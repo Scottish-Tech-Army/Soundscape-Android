@@ -2,11 +2,16 @@ package org.scottishtecharmy.soundscape.network
 
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.double
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.put
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
@@ -36,6 +41,97 @@ object GeoJsonParser {
         }
     }
 
+    /**
+     * Parse a single GeoJSON `Feature` - the shape written by [toJson], used for the metadata
+     * sidecar stored alongside a downloaded extract.
+     */
+    fun parseFeature(jsonString: String): Feature? {
+        return try {
+            parseFeature(json.parseToJsonElement(jsonString).jsonObject)
+        } catch (e: Exception) {
+            println("GeoJsonParser: Failed to parse feature: ${e.message}")
+            null
+        }
+    }
+
+    /**
+     * Serialize a [Feature] back to GeoJSON. Round-trips through [parseFeature], so the
+     * properties it emits are the JSON primitives, arrays and objects that [parseFeature]
+     * produces; anything else is written as its string form.
+     */
+    fun toJson(feature: Feature): String =
+        json.encodeToString(JsonObject.serializer(), featureToJsonObject(feature))
+
+    private fun featureToJsonObject(feature: Feature): JsonObject =
+        buildJsonObject {
+            put("type", "Feature")
+            feature.id?.let { put("id", it) }
+            put("geometry", geometryToJson(feature.geometry) ?: JsonNull)
+            put("properties", propertiesToJson(feature.properties))
+        }
+
+    private fun propertiesToJson(properties: Map<String, Any?>?): JsonObject =
+        buildJsonObject {
+            for ((key, value) in properties.orEmpty()) {
+                put(key, valueToJson(value))
+            }
+        }
+
+    private fun valueToJson(value: Any?): JsonElement = when (value) {
+        null -> JsonNull
+        is JsonElement -> value
+        is Boolean -> JsonPrimitive(value)
+        is Number -> JsonPrimitive(value)
+        is String -> JsonPrimitive(value)
+        is List<*> -> JsonArray(value.map { valueToJson(it) })
+        is Map<*, *> -> buildJsonObject {
+            for ((k, v) in value) put(k.toString(), valueToJson(v))
+        }
+
+        else -> JsonPrimitive(value.toString())
+    }
+
+    private fun geometryToJson(geometry: GeoJsonObject): JsonObject? = when (geometry) {
+        is Point -> geometryObject("Point", positionToJson(geometry.coordinates))
+        is LineString -> geometryObject("LineString", positionsToJson(geometry.coordinates))
+        is MultiPoint -> geometryObject("MultiPoint", positionsToJson(geometry.coordinates))
+        is Polygon -> geometryObject("Polygon", ringsToJson(geometry.coordinates))
+        is MultiLineString -> geometryObject("MultiLineString", ringsToJson(geometry.coordinates))
+        is MultiPolygon -> geometryObject(
+            "MultiPolygon",
+            JsonArray(geometry.coordinates.map { ringsToJson(it) }),
+        )
+
+        else -> null
+    }
+
+    private fun geometryObject(type: String, coordinates: JsonElement): JsonObject =
+        buildJsonObject {
+            put("type", type)
+            put("coordinates", coordinates)
+        }
+
+    /**
+     * Altitude is only emitted when it is actually carrying a value: [parseCoordinate] fills in
+     * 0.0 for the two-element positions that the extract manifest uses, and writing that back out
+     * would inflate every ring of every polygon by a third of its size for nothing.
+     */
+    private fun positionToJson(position: LngLatAlt): JsonArray {
+        val altitude = position.altitude
+        val values = if (altitude != null && altitude != 0.0 && !altitude.isNaN()) {
+            listOf(position.longitude, position.latitude, altitude)
+        } else {
+            listOf(position.longitude, position.latitude)
+        }
+        return JsonArray(values.map { JsonPrimitive(it) })
+    }
+
+    private fun positionsToJson(positions: List<LngLatAlt>): JsonArray =
+        JsonArray(positions.map { positionToJson(it) })
+
+    private fun ringsToJson(rings: List<List<LngLatAlt>>): JsonArray =
+        JsonArray(rings.map { positionsToJson(it) })
+
     private fun parseFeatureCollectionObj(obj: JsonObject): FeatureCollection {
         val fc = FeatureCollection()
         val featuresArray = obj["features"]?.jsonArray ?: return fc
@@ -62,11 +158,7 @@ object GeoJsonParser {
         if (propsObj != null) {
             val props = HashMap<String, Any?>()
             for ((key, value) in propsObj) {
-                props[key] = try {
-                    value.jsonPrimitive.content
-                } catch (_: Exception) {
-                    value.toString()
-                }
+                props[key] = propertyValue(value)
             }
             feature.properties = props
         }
@@ -80,6 +172,22 @@ object GeoJsonParser {
         }
 
         return feature
+    }
+
+    /**
+     * Property values are kept as the strings the rest of the app expects for primitives, but
+     * arrays are unpacked into a List. The manifest uses arrays for the city lists of a
+     * city_cluster extract, and ExtractDetails only renders those when it is handed a List -
+     * flattening them to their JSON text meant the cities were silently dropped.
+     */
+    private fun propertyValue(value: JsonElement): Any? = when (value) {
+        is JsonArray -> value.map { propertyValue(it) }
+        is JsonObject -> value.mapValues { (_, v) -> propertyValue(v) }
+        else -> try {
+            value.jsonPrimitive.content
+        } catch (_: Exception) {
+            value.toString()
+        }
     }
 
     private fun parseGeometry(obj: JsonObject): GeoJsonObject? {

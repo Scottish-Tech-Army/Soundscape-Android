@@ -65,6 +65,7 @@ class AndroidOfflineMapsManager(
         .stateIn(scope, SharingStarted.Eagerly, DownloadStateCommon.Idle)
 
     private var manifestTree: FeatureTree? = null
+    private var manifest: FeatureCollection? = null
 
     init {
         scope.launch {
@@ -94,6 +95,7 @@ class AndroidOfflineMapsManager(
         scope.launch {
             val fc = downloadAndParseManifest(appContext)
             if (fc != null) {
+                manifest = fc
                 manifestTree = FeatureTree(fc)
                 fc.features.forEach { feature -> annotateExtractSize(feature) }
                 _nearbyExtractsState.value = NearbyExtractsState.Loaded(fc)
@@ -116,19 +118,32 @@ class AndroidOfflineMapsManager(
     }
 
     /**
-     * The stable identity for an extract's on-disk files, e.g. "glasgow-gb" - everything before
-     * the ".pmtiles" extension. Every physical file for this extract (the base .pmtiles name from
-     * before versioned downloads existed, any "<logicalBase>.v<version>.pmtiles" from
-     * [startDownload], and their .geojson sidecars) starts with "$logicalBase.".
+     * The manifest entry for an extract, found by [logicalExtractName] so that the entry a
+     * downloaded extract was fetched with still resolves to the current one after the extracts
+     * have been regenerated under a new build prefix. Null when the manifest hasn't been fetched,
+     * or no longer carries this extract.
      */
-    private fun logicalBaseNameFor(filename: String): String {
-        val localFilename = filename.substringAfter("-").substringAfter("-")
-        return localFilename.removeSuffix(".pmtiles")
+    private fun currentManifestEntryFor(feature: Feature): Feature? {
+        val filename = feature.properties?.get("filename") as? String ?: return null
+        val logicalName = logicalExtractName(filename)
+        return manifest?.features?.firstOrNull { candidate ->
+            val candidateFilename = candidate.properties?.get("filename") as? String
+                ?: return@firstOrNull false
+            logicalExtractName(candidateFilename) == logicalName
+        }
     }
 
+    /**
+     * Download [feature], which is either a manifest entry the user picked from the nearby list,
+     * or - when they pressed "Update" - the entry a downloaded extract was originally fetched
+     * with. In the latter case its filename carries the build prefix of whichever manifest it came
+     * from, and that build has usually been replaced on the server by now, so the download is
+     * always made against the current manifest entry where there is one.
+     */
     fun startDownload(name: String, feature: Feature) {
-        val filename = feature.properties?.get("filename") as? String ?: return
-        val logicalBase = logicalBaseNameFor(filename)
+        val current = currentManifestEntryFor(feature) ?: feature
+        val filename = current.properties?.get("filename") as? String ?: return
+        val logicalBase = logicalExtractName(filename)
         // Never reuse a previous download's filename for a re-download/"Update": MapLibre's
         // native PMTilesFileSource caches parsed header/directory data per pmtiles://file://
         // URL forever, with no way for us to invalidate it, so overwriting an already-opened
@@ -143,13 +158,13 @@ class AndroidOfflineMapsManager(
             val adapter = moshi.adapter(Feature::class.java)
             FileOutputStream("$path.geojson").use {
                 it.write(
-                    adapter.toJson(feature).toByteArray()
+                    adapter.toJson(current).toByteArray()
                 )
             }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to write extract metadata", e)
         }
-        val extractSize = (feature.properties?.get("extract-size") as? Number)?.toDouble()
+        val extractSize = (current.properties?.get("extract-size") as? Number)?.toDouble()
         downloader.startDownload(
             "${BuildConfig.EXTRACT_PROVIDER_URL}$filename",
             path,
@@ -160,7 +175,7 @@ class AndroidOfflineMapsManager(
 
     fun deleteExtractByFeature(feature: Feature) {
         val filename = feature.properties?.get("filename") as? String ?: return
-        val logicalBase = logicalBaseNameFor(filename)
+        val logicalBase = logicalExtractName(filename)
         val dir = extractsDir()
         if (dir.exists() && dir.isDirectory) {
             // "$logicalBase." matches every version of this extract - the pre-versioning

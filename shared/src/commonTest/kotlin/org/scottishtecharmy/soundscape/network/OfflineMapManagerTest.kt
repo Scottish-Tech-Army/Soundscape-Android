@@ -614,6 +614,223 @@ class OfflineMapManagerTest {
         assertTrue(manager.downloadedExtracts.value.isEmpty())
     }
 
+    // ----- downloadedExtractsFc -----
+
+    /**
+     * The reported bug: the extracts are regenerated server-side with a new build prefix, so the
+     * manifest filename stops matching the name the extract was downloaded under, and the list
+     * showed "20240101-abc123-glasgow-gb" instead of "Glasgow".
+     */
+    @Test
+    fun downloadedExtractsFc_namesExtractFromManifestRegeneratedUnderANewPrefix() = runBlocking {
+        writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
+        val json = manifestJson(
+            squareFeatureJson("Glasgow", "20240202-def456-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
+        )
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip(json)),
+            noopDownloader(),
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.refresh()
+        waitUntil { manager.downloadedExtractsFc.value.features.isNotEmpty() }
+
+        val downloaded = manager.downloadedExtractsFc.value.features.single()
+        assertEquals("Glasgow", downloaded.properties?.get("name"))
+    }
+
+    /** With a sidecar, the name survives the manifest being unavailable entirely. */
+    @Test
+    fun downloadedExtractsFc_namesExtractFromSidecarWithNoManifest() = runBlocking {
+        writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
+        writeFile(
+            "20240101-abc123-glasgow-gb.pmtiles.geojson",
+            squareFeatureJson("Glasgow", "20240101-abc123-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
+        )
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.ServiceUnavailable, ByteArray(0)),
+            noopDownloader(),
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.refresh()
+        waitUntil { manager.downloadedExtractsFc.value.features.isNotEmpty() }
+
+        val downloaded = manager.downloadedExtractsFc.value.features.single()
+        assertEquals("Glasgow", downloaded.properties?.get("name"))
+    }
+
+    /** No sidecar and no manifest match: fall back to the filename rather than showing nothing. */
+    @Test
+    fun downloadedExtractsFc_fallsBackToFilenameWhenThereIsNoMetadata() = runBlocking {
+        writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip(manifestJson())),
+            noopDownloader(),
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.refresh()
+        waitUntil { manager.downloadedExtractsFc.value.features.isNotEmpty() }
+
+        val downloaded = manager.downloadedExtractsFc.value.features.single()
+        assertEquals("20240101-abc123-glasgow-gb", downloaded.properties?.get("name"))
+    }
+
+    /** Annotating a downloaded extract must not write local state into the manifest's own copy. */
+    @Test
+    fun downloadedExtractsFc_doesNotAnnotateTheManifestFeature() = runBlocking {
+        writeFile("20240101-abc123-glasgow-gb.pmtiles", "data")
+        val json = manifestJson(
+            squareFeatureJson("Glasgow", "20240101-abc123-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
+        )
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip(json)),
+            noopDownloader(),
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.refresh()
+        waitUntil { manager.downloadedExtractsFc.value.features.isNotEmpty() }
+
+        assertEquals(false, manager.downloadedExtractsFc.value.features.single().properties?.get("usable"))
+        assertNull(manager.manifest.value?.features?.single()?.properties?.get("usable"))
+    }
+
+    @Test
+    fun startDownload_writesMetadataSidecarNextToTheExtract() = runBlocking {
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            systemFileSystem.write(destPath.toPath()) { writeUtf8("data") }
+            DownloadResultCommon.Success
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            downloader,
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+        val feature = GeoJsonParser.parseFeature(
+            squareFeatureJson("Glasgow", "20240101-abc123-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
+        )!!
+
+        manager.startDownload("20240101-abc123-glasgow-gb.pmtiles", feature = feature)
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
+
+        assertTrue(fileExists("20240101-abc123-glasgow-gb.pmtiles.geojson"))
+        val stored = GeoJsonParser.parseFeature(
+            systemFileSystem.read(tempDir / "20240101-abc123-glasgow-gb.pmtiles.geojson") { readUtf8() },
+        )
+        assertEquals("Glasgow", stored?.properties?.get("name"))
+        assertEquals("20240101-abc123-glasgow-gb.pmtiles", stored?.properties?.get("filename"))
+    }
+
+    /**
+     * "Update" on a downloaded extract hands back the entry it was downloaded with, whose filename
+     * carries the build prefix of the manifest of the day. That build is usually gone from the
+     * server by then, so the update has to be made against the current manifest entry.
+     */
+    @Test
+    fun startDownload_updatingAnOlderBuild_downloadsWhatTheManifestCallsItNow() = runBlocking {
+        writeFile("20240101-abc123-glasgow-gb.pmtiles", "old")
+        val json = manifestJson(
+            squareFeatureJson("Glasgow", "20240202-def456-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
+        )
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            systemFileSystem.write(destPath.toPath()) { writeUtf8("new") }
+            DownloadResultCommon.Success
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip(json)),
+            downloader,
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+        manager.refresh()
+        waitUntil { manager.manifest.value != null }
+        val staleFeature = GeoJsonParser.parseFeature(
+            squareFeatureJson("Glasgow", "20240101-abc123-glasgow-gb.pmtiles", -4.3, 55.8, -4.2, 55.9),
+        )!!
+
+        manager.startDownload("20240101-abc123-glasgow-gb.pmtiles", feature = staleFeature)
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
+
+        assertEquals(
+            "https://example.test/extracts/20240202-def456-glasgow-gb.pmtiles",
+            downloader.calls.single().first,
+        )
+        assertTrue(fileExists("20240202-def456-glasgow-gb.pmtiles"))
+        assertFalse(fileExists("20240101-abc123-glasgow-gb.pmtiles"))
+        val stored = GeoJsonParser.parseFeature(
+            systemFileSystem.read(tempDir / "20240202-def456-glasgow-gb.pmtiles.geojson") { readUtf8() },
+        )
+        assertEquals("20240202-def456-glasgow-gb.pmtiles", stored?.properties?.get("filename"))
+    }
+
+    /** No manifest entry to resolve against - fall back to the filename the caller asked for. */
+    @Test
+    fun startDownload_extractNotInTheManifest_downloadsTheFilenameGiven() = runBlocking {
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            systemFileSystem.write(destPath.toPath()) { writeUtf8("data") }
+            DownloadResultCommon.Success
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip(manifestJson())),
+            downloader,
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+        manager.refresh()
+        waitUntil { manager.manifest.value != null }
+
+        manager.startDownload("20240101-abc123-glasgow-gb.pmtiles")
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
+
+        assertEquals(
+            "https://example.test/extracts/20240101-abc123-glasgow-gb.pmtiles",
+            downloader.calls.single().first,
+        )
+        assertTrue(fileExists("20240101-abc123-glasgow-gb.pmtiles"))
+    }
+
+    /**
+     * Re-downloading an extract that the server has regenerated gets a new, build-prefixed
+     * filename, so the previous copy - which can be hundreds of megabytes - has to be cleaned up
+     * explicitly rather than being overwritten in place.
+     */
+    @Test
+    fun startDownload_deletesThePreviousBuildOfTheSameExtract() = runBlocking {
+        writeFile("20240101-abc123-glasgow-gb.pmtiles", "old")
+        writeFile("20240101-abc123-glasgow-gb.pmtiles.geojson", "{}")
+        writeFile("london-gb.pmtiles", "unrelated")
+        val downloader = RecordingFileDownloader { _, destPath, _ ->
+            systemFileSystem.write(destPath.toPath()) { writeUtf8("new") }
+            DownloadResultCommon.Success
+        }
+        val manager = OfflineMapManager(
+            manifestClient(HttpStatusCode.OK, gzip("{}")),
+            downloader,
+            tempDir.toString(),
+            "https://example.test/extracts",
+        )
+
+        manager.startDownload("20240202-def456-glasgow-gb.pmtiles")
+        waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
+
+        assertFalse(fileExists("20240101-abc123-glasgow-gb.pmtiles"))
+        assertFalse(fileExists("20240101-abc123-glasgow-gb.pmtiles.geojson"))
+        assertTrue(fileExists("20240202-def456-glasgow-gb.pmtiles"))
+        assertTrue(fileExists("london-gb.pmtiles"))
+        assertEquals(
+            listOf(filePath("20240202-def456-glasgow-gb.pmtiles"), filePath("london-gb.pmtiles")),
+            manager.downloadedExtracts.value.sorted(),
+        )
+    }
+
     @Test
     fun deleteExtractByFeature_noFilenameProperty_isANoOp() {
         writeFile("region.pmtiles", "data")
