@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometryA
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.parseGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.pointIsOffTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.translateProperties
+import org.scottishtecharmy.soundscape.geoengine.utils.address.JapaneseAddress
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geoengine.utils.getCentroidOfPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
@@ -41,6 +42,10 @@ class TileSearch(
     // returning strings from an extract that's since been replaced or deleted.
     val stringCache = mutableMapOf<Long, List<String>>()
 
+    // The buildings numbered within their block in each tile, only read for a search for a Japanese
+    // address - see JapaneseAddress
+    private val addressCache = mutableMapOf<Long, List<BlockAddress>>()
+
     /**
      * Called when the on-disk offline map extracts have changed (a download completed, or an
      * extract was deleted) so that the next search re-reads tile content from the current
@@ -48,6 +53,7 @@ class TileSearch(
      */
     fun refreshOfflineMaps() {
         stringCache.clear()
+        addressCache.clear()
     }
 
     private fun cacheIndex(x: Int, y: Int): Long {
@@ -57,6 +63,7 @@ class TileSearch(
     private fun trimCache(keepSet: MutableSet<Long>) {
         // Remove all tiles which aren't in the keepSet
         stringCache.keys.removeAll { !keepSet.contains(it) }
+        addressCache.keys.removeAll { !keepSet.contains(it) }
     }
 
     fun findNearestNamedWay(location: LngLatAlt, name: String?): Way? {
@@ -410,6 +417,67 @@ class TileSearch(
         return properties
     }
 
+    /** A building numbered within its block, found by its address's [JapaneseAddress.searchKeys]. */
+    private class BlockAddress(
+        val key: String,
+        val blockKey: String,
+        val location: LngLatAlt,
+        val housenumber: String?,
+        val blockNumber: String?,
+        val quarter: String?,
+        val neighbourhood: String?,
+        val suburb: String?,
+    )
+
+    /** A [BlockAddress] a search found, for its building or for its [block]. */
+    private class AddressMatch(val address: BlockAddress, val block: Boolean)
+
+    /**
+     * The buildings numbered within their block in [tile]. The housenumber layer has every address
+     * in the map, including those of the POIs.
+     */
+    private fun blockAddresses(tile: Tile, tileX: Int, tileY: Int): List<BlockAddress> {
+        val layer = tile.layers.firstOrNull { it.name == "housenumber" } ?: return emptyList()
+        // Only Japan and a few of its neighbours number a building within its block, so everywhere
+        // else the whole layer is turned away on its keys, without looking at a single building
+        val blockNumberKey = layer.keys.indexOf("block_number")
+        if (blockNumberKey < 0) return emptyList()
+        val houseNumberKey = layer.keys.indexOf("housenumber")
+        val quarterKey = layer.keys.indexOf("quarter")
+        val neighbourhoodKey = layer.keys.indexOf("neighbourhood")
+        val suburbKey = layer.keys.indexOf("suburb")
+
+        val tileCentre = LngLatAlt()
+        val ruler = CheapRuler(0.0)
+        return layer.features.mapNotNull { feature ->
+            // The tags are read straight off the feature rather than through featureProperties(),
+            // which would build a map for every building in the tile
+            var blockNumber: String? = null
+            var housenumber: String? = null
+            var quarter: String? = null
+            var neighbourhood: String? = null
+            var suburb: String? = null
+            val tags = feature.tags
+            for (i in 0 until tags.size - 1 step 2) {
+                when (tags[i]) {
+                    blockNumberKey -> blockNumber = layer.values[tags[i + 1]].string_value
+                    houseNumberKey -> housenumber = layer.values[tags[i + 1]].string_value
+                    quarterKey -> quarter = layer.values[tags[i + 1]].string_value
+                    neighbourhoodKey -> neighbourhood = layer.values[tags[i + 1]].string_value
+                    suburbKey -> suburb = layer.values[tags[i + 1]].string_value
+                }
+            }
+            val keys = JapaneseAddress.searchKeys(quarter, neighbourhood, blockNumber, housenumber)
+                ?: return@mapNotNull null
+            val location = featureLocation(feature, tileX, tileY, tileCentre, ruler)?.location
+                ?: return@mapNotNull null
+            BlockAddress(
+                keys.first, keys.second, location,
+                housenumber, blockNumber, quarter, neighbourhood, suburb
+            )
+        }
+    }
+
     private class FeatureLocation(val location: LngLatAlt, val distance: Double)
 
     /**
@@ -541,6 +609,10 @@ class TileSearch(
         val normalizedNeedle = normalizeForSearch(needleBuilder.toString())
         val wholeNeedle = if (housenumber.isEmpty()) null else normalizeForSearch(searchString)
 
+        // A Japanese address - 梅田3-1-1 - is found by its numbers rather than by a name
+        val addressNeedle = JapaneseAddress.searchKey(searchString)
+        val addressMatches = mutableListOf<AddressMatch>()
+
         data class DetailedSearchResult(
             var score: Double,
             var string: String,
@@ -560,13 +632,20 @@ class TileSearch(
             val tileIndex = cacheIndex(x, y)
             var cache = stringCache[tileIndex]
             tilesUsed.add(tileIndex)
-            if (cache == null) {
-                // Load the tile and add all of its String to a cache
-                cache = mutableListOf()
+            val readAddresses = (addressNeedle != null) && !addressCache.containsKey(tileIndex)
+            if ((cache == null) || readAddresses) {
+                // Reading and decompressing a tile is the expensive part of a search, so the
+                // strings and the addresses both come from the one decode
                 val tileData = try { reader?.getTile(MAX_ZOOM_LEVEL, x, y) } catch (_: Exception) { null }
                 val currentReader = reader
-                if (tileData != null && currentReader != null) {
-                    val tile = decompressTile(currentReader.tileCompression, tileData)
+                val tile = if ((tileData != null) && (currentReader != null))
+                    decompressTile(currentReader.tileCompression, tileData)
+                else
+                    null
+
+                if (cache == null) {
+                    // Load the tile and add all of its String to a cache
+                    cache = mutableListOf()
                     if (tile != null) {
                         for (layer in tile.layers) {
                             if ((layer.name == "transportation") || (layer.name == "poi")) {
@@ -580,6 +659,10 @@ class TileSearch(
                         }
                         stringCache[tileIndex] = cache
                     }
+                }
+                if (readAddresses) {
+                    addressCache[tileIndex] =
+                        if (tile == null) emptyList() else blockAddresses(tile, x, y)
                 }
             }
             for (string in cache) {
@@ -603,6 +686,14 @@ class TileSearch(
                         searchResultLimit,
                         x, y
                     )
+                }
+            }
+            if (addressNeedle != null) {
+                for (address in addressCache[tileIndex].orEmpty()) {
+                    if (JapaneseAddress.isMatch(addressNeedle, address.key))
+                        addressMatches.add(AddressMatch(address, block = false))
+                    else if (JapaneseAddress.isMatch(addressNeedle, address.blockKey))
+                        addressMatches.add(AddressMatch(address, block = true))
                 }
             }
             // --- 2. Move to the next position in the spiral ---
@@ -844,7 +935,37 @@ class TileSearch(
             accumulator
         }
         try { reader?.close() } catch (_: Exception) {}
-        return streetResults.map { (mvt, result) ->
+
+        // The buildings which have the address come before the blocks which do, nearest first. A
+        // building is often mapped twice, as a point and as an outline, and a block is found by
+        // every building in it, so each is listed once.
+        val addressResults = addressMatches
+            .sortedWith(compareBy({ it.block }, { ruler.distance(location, it.address.location) }))
+            .fold(mutableListOf<AddressMatch>()) { accumulator, match ->
+                fun AddressMatch.key() = if (block) address.blockKey else address.key
+                val isDuplicate = accumulator.any {
+                    (it.key() == match.key()) &&
+                        (ruler.distance(it.address.location, match.address.location) < 100.0)
+                }
+                if (!isDuplicate) accumulator.add(match)
+                accumulator
+            }
+            .take(searchResultLimit)
+            .map { match ->
+                val address = match.address
+                val mvt = MvtFeature()
+                mvt.properties = hashMapOf()
+                // It's the block that was looked for, not the building it was found at
+                mvt.housenumber = if (match.block) null else address.housenumber
+                mvt.blockNumber = address.blockNumber
+                mvt.quarter = address.quarter
+                mvt.neighbourhood = address.neighbourhood
+                mvt.suburb = address.suburb
+                mvt.geometry = Point(address.location)
+                mvt.toLocationDescription(LocationSource.OfflineGeocoder)
+            }
+
+        return addressResults + streetResults.map { (mvt, result) ->
             mvt.toLocationDescription(
                 LocationSource.OfflineGeocoder,
                 featureName = mvt.getText(localizedStrings)

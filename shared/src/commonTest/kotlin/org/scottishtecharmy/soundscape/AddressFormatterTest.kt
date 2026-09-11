@@ -78,6 +78,16 @@ class AddressFormatterTest {
     }
 
     @Test
+    fun japaneseBlockAddressIsWrittenLargestFirst() {
+        // Most Japanese addresses have no road, and an address with neither a road nor a postcode
+        // is written with the fallback template - which for Japanese has to be largest first too
+        val formatter =
+            AddressFormatter(abbreviate = false, appendCountry = false, appendUnknown = false)
+        val json = """{"house_number":"梅田三丁目1-1","suburb":"北区","country_code":"JP"}"""
+        assertEquals("北区\n梅田三丁目1-1\n", formatter.format(json))
+    }
+
+    @Test
     fun iranianAddressInPersianUsesThePersianTemplate() {
         // The Persian template starts from the province, where the English one ends with it
         val formatter =

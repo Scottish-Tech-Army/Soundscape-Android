@@ -305,12 +305,13 @@ class WorldCitiesTest {
     @Test
     fun osakaAddressIsWrittenLargestFirst() {
         // Japanese addresses go from the largest place to the smallest, whatever language the phone
-        // is set to - the names in them are in Japanese either way
+        // is set to - the names in them are in Japanese either way. Grand Front Osaka is building 20
+        // of block 4 in Ōfukachō, in Kita ward; its addr:street isn't part of the address.
         for (phone in listOf("en-GB", "ja-JP")) {
             withDefaultLocale(phone) {
                 assertEquals(
                     phone,
-                    "北区, 創造のみち, 20",
+                    "北区, 大深町4-20",
                     osaka.search("グランフロント大阪郵便局").first().description
                 )
             }
@@ -335,6 +336,39 @@ class WorldCitiesTest {
         val festivalTower = streetNumberMap.values.flatMap { it.features }.map { it as MvtFeature }
             .firstOrNull { (it.osmId == 941884472L) && (it.superCategory == SuperCategoryId.HOUSENUMBER) }
         assertEquals("18", festivalTower?.housenumber)
+    }
+
+    @Test
+    fun osakaReverseGeocodeBlockAddress() {
+        // Osaka Station is 梅田三丁目1-1, building 1 of block 1 in the third chōme of Umeda -
+        // numbered within its block rather than along a street, as most buildings in Japan are
+        for (phone in listOf("en-GB", "ja-JP")) {
+            withDefaultLocale(phone) {
+                val address = osaka.reverseGeocode(LngLatAlt(135.49617648124692, 34.70232694701379))
+                assertEquals(phone, "梅田三丁目1-1", address.name)
+                assertEquals(phone, "北区, 梅田三丁目1-1", address.description)
+            }
+        }
+    }
+
+    @Test
+    fun osakaBlockAddressIsOnThisSideOfTheRoad() {
+        // A block is bounded by the roads around it, so the nearest building isn't the address when
+        // it's across one. Here 角田町6-7 is 17m away but across the road, and 小松原町4-16, 33m away,
+        // is the block actually stood in - a different district, not just a different block.
+        val address = osaka.reverseGeocode(LngLatAlt(135.5007471615721, 34.7033288288288))
+        assertEquals("小松原町4-16", address.name)
+    }
+
+    @Test
+    fun osakaSearchBlockAddress() {
+        for (typed in listOf("梅田3-1-1", "梅田三丁目1番1号", "北区梅田３丁目１−１")) {
+            assertEquals(typed, "梅田三丁目1-1", osaka.search(typed).first().name)
+        }
+        // A block on its own is found at its nearest building
+        assertEquals("梅田三丁目1", osaka.search("梅田三丁目1番").first().name)
+        // 大深町 has no chōme, so 番 is what marks its one number as a block
+        assertEquals("大深町4", osaka.search("大深町4番").first().name)
     }
 
     @Test

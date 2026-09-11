@@ -91,6 +91,17 @@ open class MvtFeature : Feature() {
     var ref: String? = null
     var housenumber: String? = null
     var street: String? = null
+
+    /**
+     * The parts of an address numbered within its block rather than along a street, as most in
+     * Japan are - addr:block_number, addr:quarter, addr:neighbourhood and addr:suburb. See
+     * JapaneseAddress.
+     */
+    var blockNumber: String? = null
+    var quarter: String? = null
+    var neighbourhood: String? = null
+    var suburb: String? = null
+
     var side: Side? = null
     var streetConfidence: Boolean = false
     var featureClass: String? = null
@@ -131,6 +142,10 @@ open class MvtFeature : Feature() {
         ref = other.ref
         housenumber = other.housenumber
         street = other.street
+        blockNumber = other.blockNumber
+        quarter = other.quarter
+        neighbourhood = other.neighbourhood
+        suburb = other.suburb
         side = other.side
         streetConfidence = other.streetConfidence
         featureClass = other.featureClass
