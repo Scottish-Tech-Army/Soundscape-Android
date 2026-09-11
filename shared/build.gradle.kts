@@ -65,6 +65,16 @@ kotlin {
                     )
                 }
         }
+
+        // Run the Kotlin tests on a simulator the caller has already booted (see run-tests.yaml)
+        // rather than having Gradle boot its default device standalone.
+        providers.gradleProperty("iosSimulatorDevice").orNull?.let { udid ->
+            tasks.withType<org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTest>()
+                .configureEach {
+                    device.set(udid)
+                    standalone.set(false)
+                }
+        }
     }
 
     sourceSets {

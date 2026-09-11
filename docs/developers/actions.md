@@ -79,7 +79,7 @@ This is the action which is run on each Pull Request. It runs several layers of 
 * Runs unit tests
 * Builds a debug release
 * Runs instrumentation tests locally on an emulator
-* In a parallel `ios-test` job on a macOS runner: builds the iOS app for the simulator, builds the Kotlin/Native test binary for the simulator (the `commonTest` and `iosTest` sources, linked against the MapLibre.framework that the Xcode build resolved through SPM), and runs the XCTest suite. No iOS signing secrets are used here — the simulator build sets `CODE_SIGNING_ALLOWED=NO`.
+* In a parallel `ios-test` job on a macOS runner: builds the iOS app for the simulator, runs the Kotlin/Native tests (the `commonTest` and `iosTest` sources, linked against the MapLibre.framework that the Xcode build resolved through SPM) on the simulator, and runs the XCTest suite. No iOS signing secrets are used here — the simulator build sets `CODE_SIGNING_ALLOWED=NO`.
 
 Note that because of the way GitHub triggers `run-tests.yaml` it cannot use secrets. This affects tests which use the tile provider which have to be skipped when run in this way. This is straightforward to do - see callers of `tileProviderAvailable()` in the test code. The iOS job behaves the same way: the committed (gitignored) `iosApp/Local.xcconfig` is rewritten with the runtime secrets when available, and tests that need provider URLs check at runtime.
 
