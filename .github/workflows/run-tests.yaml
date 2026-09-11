@@ -189,14 +189,6 @@ jobs:
         working-directory: iosApp
         run: xcodegen generate
 
-      # We can't link the iOS test binary because maplibre-compose's published
-      # .klib has linker flags pointing at MapLibre.framework that our build
-      # has no way to provide outside the Xcode/SPM toolchain. Compile the
-      # test sources to catch Kotlin/iOS errors; the XCTest step below
-      # exercises the linked code via xcodebuild.
-      - name: Compile shared Kotlin/Native tests for iOS simulator
-        run: ./gradlew --configure-on-demand :shared:compileTestKotlinIosSimulatorArm64 -PincludeIos=true
-
       # The runner image does not always pre-register a concrete simulator
       # device (xcodebuild only sees the "Any iOS Simulator" placeholder), so
       # pin the destination to a real UDID at runtime.
@@ -227,6 +219,22 @@ jobs:
             -destination "$SIMULATOR_DESTINATION" \
             -derivedDataPath iosApp/build/DerivedData \
             CODE_SIGNING_ALLOWED=NO
+
+      # maplibre-compose's published .klib has linker flags pointing at a
+      # MapLibre.framework on its own build machine. The Xcode build above has
+      # resolved the app's MapLibre SPM package into DerivedData, so hand the
+      # simulator slice of that to Gradle so it can link the Kotlin/Native test
+      # binary (which compiles the commonTest and iosTest sources on the way).
+      - name: Build shared Kotlin/Native tests for iOS simulator
+        run: |
+          FRAMEWORK=$(find iosApp/build/DerivedData/SourcePackages/artifacts -type d \
+            -path '*/MapLibre.xcframework/*simulator*/MapLibre.framework' -print -quit)
+          if [ -z "$FRAMEWORK" ]; then
+            echo "::error::No simulator MapLibre.framework found in iosApp/build/DerivedData/SourcePackages"
+            exit 1
+          fi
+          ./gradlew --configure-on-demand :shared:linkDebugTestIosSimulatorArm64 -PincludeIos=true \
+            -PmapLibreSimulatorFrameworkDir="$PWD/$(dirname "$FRAMEWORK")"
 
       - name: Run XCTest suite
         id: xctest

@@ -42,6 +42,29 @@ kotlin {
                 freeCompilerArgs += listOf("-Xbinary=bundleId=org.scottishtecharmy.soundscape.shared")
             }
         }
+
+        // maplibre-compose's published klib carries linker flags for MapLibre.framework and the
+        // Swift libraries at paths on its own build machine, so the test executable can't link
+        // without being pointed at real copies. The app gets MapLibre from SPM in Xcode, so pass
+        // the simulator slice from there (see run-tests.yaml) to link the Kotlin tests as well.
+        providers.gradleProperty("mapLibreSimulatorFrameworkDir").orNull?.let { frameworkDir ->
+            fun exec(vararg command: String) =
+                providers.exec { commandLine(*command) }.standardOutput.asText.get().trim()
+            val sdkPath = exec("xcrun", "--sdk", "iphonesimulator", "--show-sdk-path")
+            val developerDir = exec("xcode-select", "-p")
+            iosSimulatorArm64().binaries
+                .withType<org.jetbrains.kotlin.gradle.plugin.mpp.TestExecutable>()
+                .configureEach {
+                    linkerOpts(
+                        "-F", frameworkDir,
+                        "-L", "$sdkPath/usr/lib/swift",
+                        "-L", "$developerDir/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
+                        // Let the binary find the dynamic frameworks if it is run on a simulator
+                        "-rpath", frameworkDir,
+                        "-rpath", "/usr/lib/swift",
+                    )
+                }
+        }
     }
 
     sourceSets {
