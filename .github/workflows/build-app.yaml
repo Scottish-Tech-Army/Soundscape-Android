@@ -360,7 +360,7 @@ jobs:
       # maplibre-compose's embedded linker flags. xcodebuild archive below
       # builds via the Xcode/SPM toolchain that resolves MapLibre.
       - name: Compile shared Kotlin/Native tests for iOS simulator
-        run: ./gradlew :shared:compileTestKotlinIosSimulatorArm64 --stacktrace
+        run: ./gradlew --configure-on-demand :shared:compileTestKotlinIosSimulatorArm64
 
       - name: Setup iOS signing
         uses: ./.github/actions/setup-ios-signing
@@ -562,7 +562,7 @@ jobs:
       # maplibre-compose's embedded linker flags. xcodebuild below builds via
       # the Xcode/SPM toolchain that resolves MapLibre.
       - name: Compile shared Kotlin/Native tests for iOS device
-        run: ./gradlew :shared:compileTestKotlinIosArm64
+        run: ./gradlew --configure-on-demand :shared:compileTestKotlinIosArm64
 
       - name: Setup iOS signing
         uses: ./.github/actions/setup-ios-signing
