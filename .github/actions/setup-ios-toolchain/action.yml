@@ -57,6 +57,28 @@ runs:
       shell: bash
       run: ./gradlew --stop
 
+    - name: Repair project-local Gradle cache on self-hosted
+      # actions/checkout's `git clean -ffdx` wipes the gitignored .gradle
+      # directory, and a daemon still winding down from the previous job can
+      # race it, leaving a tree where Gradle's own mkdirs fails during service
+      # startup with "Cannot create directory '.../.gradle/configuration-cache'".
+      # Check the directory is creatable and writable here, where a failure is
+      # diagnosable, instead of inside Gradle's startup. Only an unusable cache
+      # is wiped, so a healthy configuration cache is still reused.
+      if: runner.environment == 'self-hosted'
+      shell: bash
+      run: |
+        cc=".gradle/configuration-cache"
+        if [ -e "$cc" ] && [ ! -d "$cc" ]; then
+          echo "$cc exists but is not a directory; removing"
+          rm -rf "$cc"
+        fi
+        if ! mkdir -p "$cc" 2>/dev/null || [ ! -w "$cc" ]; then
+          echo "Cannot use $cc; wiping .gradle and recreating"
+          rm -rf .gradle
+          mkdir -p "$cc"
+        fi
+
     - name: Ensure ANDROID_HOME on self-hosted
       # The shared Kotlin Multiplatform module has an `android` target, so the
       # Xcode pre-build script that invokes Gradle needs the SDK location.
