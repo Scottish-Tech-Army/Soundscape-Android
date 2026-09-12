@@ -79,11 +79,11 @@ internal fun addressCountryCode(location: LngLatAlt): String =
  * null if it isn't one. The parts of it are the [mvt]'s own for a feature from the grid, and in
  * [properties] for a search result.
  */
-private fun japaneseAddress(mvt: MvtFeature?, properties: Map<String, Any?>, location: LngLatAlt): String? {
+private fun japaneseAddress(mvt: MvtFeature?, properties: Map<String, Any?>, countryCode: () -> String): String? {
     fun part(field: String?, key: String) = field ?: (properties[key] as? String)
     val quarter = part(mvt?.quarter, "quarter")
     val neighbourhood = part(mvt?.neighbourhood, "neighbourhood")
-    if (((quarter == null) && (neighbourhood == null)) || (addressCountryCode(location) != "JP")) return null
+    if (((quarter == null) && (neighbourhood == null)) || (countryCode() != "JP")) return null
     return JapaneseAddress.address(
         quarter,
         neighbourhood,
@@ -112,7 +112,17 @@ private fun streetAddressLine(formattedAddress: String, road: String?, houseNumb
     }
 }
 
-fun LocationDescription.process(strings: LocalizedStrings? = null) {
+/**
+ * Fills in the name and address a [LocationDescription] shows, from the feature it was deferred
+ * from. Deferred because a list of a thousand nearby POIs only ever formats the handful of rows
+ * which reach the screen.
+ *
+ * [countryCode] is the country whose address conventions to write the address in, for a caller
+ * which already knows it - a list of places all within a kilometre or two of the user needs only
+ * one boundary lookup between them, not one per row. Left out, the feature's own location is
+ * looked up, which is what a search result somewhere else in the world needs.
+ */
+fun LocationDescription.process(strings: LocalizedStrings? = null, countryCode: String? = null) {
     if (feature != null) {
         feature?.let { feature ->
             var address = false
@@ -122,6 +132,7 @@ fun LocationDescription.process(strings: LocalizedStrings? = null) {
             val mvt = (feature as? MvtFeature)
             var nameLocal: String? = null
             var blockAddress: String? = null
+            val addressCountry by lazy { countryCode ?: addressCountryCode(location) }
 
             feature.properties?.let { properties ->
                 properties.forEach { (key, value) ->
@@ -170,7 +181,7 @@ fun LocationDescription.process(strings: LocalizedStrings? = null) {
                 }
                 // Most Japanese buildings are numbered within their block, and their address is
                 // the ward and then that - "北区, 梅田三丁目1-1" - with no street in it
-                blockAddress = japaneseAddress(mvt, properties, location)
+                blockAddress = japaneseAddress(mvt, properties) { addressCountry }
                 blockAddress?.let {
                     jsonFields.remove("road")
                     jsonFields["house_number"] = it
@@ -199,7 +210,7 @@ fun LocationDescription.process(strings: LocalizedStrings? = null) {
 
                 var fallbackCountryCode: String? = null
                 if (!jsonFields.containsKey("country_code"))
-                    fallbackCountryCode = addressCountryCode(location)
+                    fallbackCountryCode = addressCountry
                 if (fallbackCountryCode?.isEmpty() == true) fallbackCountryCode = "GB"
 
                 val formattedAddress = try {

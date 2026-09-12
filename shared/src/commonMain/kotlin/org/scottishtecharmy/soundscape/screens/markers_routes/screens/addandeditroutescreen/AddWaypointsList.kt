@@ -161,7 +161,7 @@ fun AddWaypointsList(
                         color = MaterialTheme.colorScheme.outlineVariant
                     )
                 }
-                locationDescription.process(localizedStrings)
+                locationDescription.process(localizedStrings, placesNearbyUiState.countryCode)
                 LocationItem(
                     item = locationDescription,
                     decoration = LocationItemDecoration(

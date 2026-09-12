@@ -68,7 +68,7 @@ fun PlacesNearbyList(
                         color = MaterialTheme.colorScheme.outlineVariant
                     )
                 }
-                locationDescription.process(localizedStrings)
+                locationDescription.process(localizedStrings, uiState.countryCode)
                 LocationItem(
                     item = locationDescription,
                     decoration = LocationItemDecoration(
