@@ -14,9 +14,14 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.ServiceConnection
+import org.scottishtecharmy.soundscape.utils.addressCountryCode
+
+/** How far the user has to move before the country their address is written in is looked up again. */
+private const val COUNTRY_LOOKUP_DISTANCE = 5000.0
 
 /**
  * Shared ViewModel backing the PlacesNearby screen on both Android and iOS.
@@ -68,6 +73,25 @@ open class PlacesNearbyViewModel(
 
     private data class LocationAndGridState(val location: LngLatAlt?, val gridState: GridState?)
 
+    private var countryLookupLocation: LngLatAlt? = null
+    private var countryCode: String? = null
+
+    /**
+     * The country [location] is in, looked up from the country boundaries the first time and then
+     * only again once the user has moved far enough for the answer to plausibly have changed. A
+     * location update arrives every second or so, and a country is not something you walk out of.
+     */
+    private fun countryCodeFor(location: LngLatAlt): String? {
+        val lastLookup = countryLookupLocation
+        if ((lastLookup == null) ||
+            (CheapRuler(location.latitude).distance(lastLookup, location) > COUNTRY_LOOKUP_DISTANCE)
+        ) {
+            countryLookupLocation = location
+            countryCode = addressCountryCode(location)
+        }
+        return countryCode
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoring() {
         monitorJob?.cancel()
@@ -80,7 +104,10 @@ open class PlacesNearbyViewModel(
                 )
             }.collect { locationAndGrid ->
                 if (locationAndGrid.location != null) {
-                    internalUiState.update { it.copy(userLocation = locationAndGrid.location) }
+                    val country = countryCodeFor(locationAndGrid.location)
+                    internalUiState.update {
+                        it.copy(userLocation = locationAndGrid.location, countryCode = country)
+                    }
                 }
                 if (locationAndGrid.gridState != null) {
                     val (pois, intersections) = withContext(locationAndGrid.gridState.treeContext) {
