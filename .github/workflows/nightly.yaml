@@ -265,8 +265,14 @@ jobs:
       # See run-tests.yaml: linking iosSimulatorArm64Test fails because of
       # maplibre-compose's embedded linker flags. xcodebuild archive below
       # builds via the Xcode/SPM toolchain that resolves MapLibre.
+      #
+      # --configure-on-demand keeps Gradle from configuring :app, which this
+      # job doesn't need: on the self-hosted Mac, AGP's NdkLocator hits a
+      # File.list() == null on $ANDROID_HOME/ndk and throws an unguarded NPE
+      # ("A problem occurred configuring project ':app'"). Same fix as the
+      # ios-build/ios-firebase jobs in build-app.yaml.
       - name: Compile shared Kotlin/Native tests for iOS simulator
-        run: ./gradlew :shared:compileTestKotlinIosSimulatorArm64
+        run: ./gradlew --configure-on-demand :shared:compileTestKotlinIosSimulatorArm64
 
       - name: Setup iOS signing
         uses: ./.github/actions/setup-ios-signing
