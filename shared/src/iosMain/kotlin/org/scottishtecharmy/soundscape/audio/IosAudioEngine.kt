@@ -29,7 +29,11 @@ import platform.Foundation.NSOperationQueue
 import platform.MediaPlayer.MPMediaItemPropertyArtist
 import platform.MediaPlayer.MPMediaItemPropertyTitle
 import platform.MediaPlayer.MPNowPlayingInfoCenter
+import platform.MediaPlayer.MPNowPlayingInfoPropertyIsLiveStream
 import platform.MediaPlayer.MPNowPlayingInfoPropertyMediaType
+import platform.MediaPlayer.MPNowPlayingInfoPropertyPlaybackRate
+import platform.MediaPlayer.MPNowPlayingPlaybackStatePlaying
+import platform.MediaPlayer.MPNowPlayingPlaybackStateStopped
 import platform.MediaPlayer.MPRemoteCommandCenter
 import platform.MediaPlayer.MPRemoteCommandHandlerStatusSuccess
 
@@ -118,6 +122,10 @@ class IosAudioEngine : AudioEngine {
                 field = value
                 if (engineStarted) {
                     reconfigureAudioSession()
+                } else {
+                    // The session itself is configured on the next engine start, but the
+                    // lock screen must not be left advertising the old choice until then.
+                    publishNowPlaying()
                 }
             }
         }
@@ -243,11 +251,7 @@ class IosAudioEngine : AudioEngine {
             )
         }
 
-        if (!mixWithOthers) {
-            setNowPlayingInfo("Soundscape")
-        } else {
-            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = null
-        }
+        publishNowPlaying()
 
         return categorySet && activated
     }
@@ -768,6 +772,12 @@ class IosAudioEngine : AudioEngine {
                 engineStarted = restarted
                 println("IosAudioEngine: Engine restart after interruption: $restarted")
             }
+
+            // Whoever interrupted us — Siri, a call, another app — took the lock screen
+            // with them. Without this the remote commands stay registered but the
+            // controls belong to someone else, which is what leaves the skip arrows
+            // greyed out until the next engine start happens to republish.
+            publishNowPlaying()
         }
     }
 
@@ -776,19 +786,57 @@ class IosAudioEngine : AudioEngine {
         engineStarted = false
         environmentNodes.clear()
         ensureEngineStarted()
+        publishNowPlaying()
     }
 
     // --- Now Playing Info ---
 
+    /**
+     * What [publishNowPlaying] advertises. Held as state because the lock screen has to
+     * be refreshed from places that have no idea what the title is — after every remote
+     * command, after an interruption, after a media services reset.
+     */
+    private var nowPlayingTitle = "Soundscape"
+    private var nowPlayingSubtitle: String? = null
+
     fun setNowPlayingInfo(title: String, subtitle: String? = null) {
+        nowPlayingTitle = title
+        nowPlayingSubtitle = subtitle
+        publishNowPlaying()
+    }
+
+    /**
+     * (Re)publish our Now Playing entry, or clear it when mixing with other apps — in
+     * that case the lock screen belongs to whatever else is playing and our remote
+     * commands are ignored anyway.
+     *
+     * The playback state is always "playing". This mirrors Android, where
+     * SoundscapeDummyMediaPlayer.getState() returns a fixed playWhenReady=true state
+     * every time it is asked: we are not really a player, the play/pause button is a
+     * mute toggle and the arrows are callout shortcuts, so there is no paused state to
+     * represent. Publishing the state explicitly is also what stops the Now Playing UI
+     * inventing one for us — with playbackState left unknown it flips its own button
+     * from Play to Pause when tapped and we have no way to correct it.
+     */
+    private fun publishNowPlaying() {
+        val center = MPNowPlayingInfoCenter.defaultCenter()
+        if (mixWithOthers) {
+            center.nowPlayingInfo = null
+            center.playbackState = MPNowPlayingPlaybackStateStopped
+            return
+        }
+
         val info = mutableMapOf<Any?, Any?>(
             MPNowPlayingInfoPropertyMediaType to 1L, // MPNowPlayingInfoMediaType.audio
-            MPMediaItemPropertyTitle to title,
+            MPMediaItemPropertyTitle to nowPlayingTitle,
+            // Callouts have no duration to scrub through, and a live stream is the one
+            // kind of item the UI draws without a progress bar parked at 0:00.
+            MPNowPlayingInfoPropertyIsLiveStream to true,
+            MPNowPlayingInfoPropertyPlaybackRate to 1.0,
         )
-        if (subtitle != null) {
-            info[MPMediaItemPropertyArtist] = subtitle
-        }
-        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = info
+        nowPlayingSubtitle?.let { info[MPMediaItemPropertyArtist] = it }
+        center.nowPlayingInfo = info
+        center.playbackState = MPNowPlayingPlaybackStatePlaying
     }
 
     // --- Remote Command Center ---
@@ -804,30 +852,35 @@ class IosAudioEngine : AudioEngine {
         commandCenter.togglePlayPauseCommand.setEnabled(true)
         commandCenter.togglePlayPauseCommand.addTargetWithHandler { _ ->
             mediaControlTarget?.onPlayPause()
+            publishNowPlaying()
             MPRemoteCommandHandlerStatusSuccess
         }
 
         commandCenter.playCommand.setEnabled(true)
         commandCenter.playCommand.addTargetWithHandler { _ ->
             mediaControlTarget?.onPlayPause()
+            publishNowPlaying()
             MPRemoteCommandHandlerStatusSuccess
         }
 
         commandCenter.pauseCommand.setEnabled(true)
         commandCenter.pauseCommand.addTargetWithHandler { _ ->
             mediaControlTarget?.onPlayPause()
+            publishNowPlaying()
             MPRemoteCommandHandlerStatusSuccess
         }
 
         commandCenter.nextTrackCommand.setEnabled(true)
         commandCenter.nextTrackCommand.addTargetWithHandler { _ ->
             mediaControlTarget?.onNext()
+            publishNowPlaying()
             MPRemoteCommandHandlerStatusSuccess
         }
 
         commandCenter.previousTrackCommand.setEnabled(true)
         commandCenter.previousTrackCommand.addTargetWithHandler { _ ->
             mediaControlTarget?.onPrevious()
+            publishNowPlaying()
             MPRemoteCommandHandlerStatusSuccess
         }
     }
