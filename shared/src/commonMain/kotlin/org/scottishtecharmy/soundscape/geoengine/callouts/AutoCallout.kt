@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
+import org.scottishtecharmy.soundscape.geoengine.roadNameWithRef
 import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
@@ -782,8 +783,26 @@ class AutoCallout(
             if ((road == null) || ((road.name == null) && (road.ref == null))) {
                 null
             } else {
-                val roadName = road.getName(null, gridState, localized, true)
-                if (roadName.isEmpty()) null else WayCrossingInfo(feature).copy(name = roadName)
+                // Named the way a road is named to anyone else travelling - route number and
+                // street name together where it carries both, see roadNameWithRef. getName()
+                // gives the ref only for a road that has no name of its own, so a train crossing
+                // the A81 in Milngavie announced "Passing over Glasgow Road": the name on the
+                // street sign, but not the one a passenger works out where they are from.
+                //
+                // Only ever the train case, despite this function being shared with the road and
+                // walking crossings: attachRailwayCrossings records ROAD_CROSSING on the railway
+                // and its mirror RAILWAY_CROSSING on the road, so a road Way never carries one.
+                val roadName = roadNameWithRef(
+                    road.ref,
+                    road.displayName,
+                    road.getName(null, gridState, localized, true).takeIf { it.isNotEmpty() },
+                    localized
+                )
+                if (roadName.isNullOrEmpty()) {
+                    null
+                } else {
+                    WayCrossingInfo(feature).copy(name = roadName)
+                }
             }
         }
 

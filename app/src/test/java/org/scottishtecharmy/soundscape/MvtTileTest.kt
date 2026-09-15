@@ -34,6 +34,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.nearestSettlement
+import org.scottishtecharmy.soundscape.geoengine.roadNameWithRef
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
@@ -3170,10 +3171,17 @@ class MvtTileTest {
                 it == "Passing over Milngavie Branch" || it == "Passing under Milngavie Branch"
             }
         )
-        // The road is over the railway, so from the train we pass beneath it.
+        // The road is over the railway, so from the train we pass beneath it - and it's named the
+        // way a road is named to anyone travelling, route number and street name together. The
+        // bridge here carries the A81, and "Passing under Milngavie Road" told the passenger the
+        // name on the street sign rather than the road they'd recognise.
+        val expected = roadNameWithRef(
+            bridge.ref, bridge.displayName, bridge.getName(null, gridState, null, true), null
+        )
+        assertEquals("A81 (Milngavie Road)", expected)
         assertTrue(
             "Expected to go under the road carrying the bridge, got: $texts",
-            texts.any { it == "Passing under ${bridge.getName(null, gridState, null, true)}" }
+            texts.any { it == "Passing under $expected" }
         )
     }
 

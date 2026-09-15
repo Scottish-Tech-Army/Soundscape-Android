@@ -256,6 +256,42 @@ internal fun formatDecimal(
 }
 
 /**
+ * How a road is named to someone travelling: its route number and its local street name together
+ * where it has both, "A81 (Glasgow Road)".
+ *
+ * The number matters to a traveller in a way it doesn't to a pedestrian. It is how the road is
+ * signposted and how it is talked about, and it is the part that stays put while the street name
+ * changes along it - the A81 through Milngavie is Strathblane Road, then Glasgow Road, then Main
+ * Street.
+ *
+ * Used both for the road being travelled along and for a road being crossed - see
+ * AutoCallout.announceableCrossing, where a train passing over the A81 should say so rather than
+ * naming only the street it happens to be called there.
+ *
+ * @param ref the road's route number, or null where it has none or shouldn't be spoken - a railway
+ * line carries no road-style ref, so callers pass null for a train.
+ * @param ownName the name the road actually carries in OSM ([MvtFeature.displayName]), which is
+ * what the ref is worth pairing with.
+ * @param describedName what [Way.getName] made of the road, used when there is no ref to pair
+ * with. That may be a confected description rather than a real name, which is exactly why it is
+ * kept separate from [ownName]: a road with a ref and no name of its own gets a description built
+ * around the ref ("A779 that joins Tailend Moss and Old Deans Road"), and pairing *that* with the
+ * ref produced "A91 (A91 that joins Mathieson Gardens and Middleflat)". Such a road is just its
+ * number.
+ */
+fun roadNameWithRef(
+    ref: String?,
+    ownName: String?,
+    describedName: String?,
+    localized: LocalizedStrings?
+): String? = when {
+    ref == null -> describedName
+    (ownName == null) || (ownName == ref) -> ref
+    else -> localized?.get(StringKey.DirectionsRoadWithRefAndName, ref, ownName)
+        ?: "$ref ($ownName)"
+}
+
+/**
  * Tracks the last railway station passed while travelling by train, so travel-mode reverse
  * geocoding can describe progress along the line as "distance since {station}" rather than just
  * naming the line - see [UserGeometry.probablyOnTrain]. A single reverse-geocode call has no
@@ -435,14 +471,8 @@ private fun travellingReverseGeocodeName(
     // the spoken name. Railway lines don't carry a road-style ref and have their own naming path
     // in Way.getName(), so trains are excluded.
     val roadRef = if (!probablyOnTrain) nearestRoad?.ref else null
-    val spokenRoadName = when {
-        roadRef == null -> roadName
-        // getName() already falls back to the ref for a way with no name of its own, so this
-        // covers both "unnamed" and "named after the number anyway" without saying "M8 (M8)".
-        (roadName == null) || (roadName == roadRef) -> roadRef
-        else -> localized?.get(StringKey.DirectionsRoadWithRefAndName, roadRef, roadName)
-            ?: "$roadRef ($roadName)"
-    }
+    val spokenRoadName =
+        roadNameWithRef(roadRef, nearestRoad?.displayName, roadName, localized)
     // Used in the dedup keys below in place of the spoken name, which embeds the street name and
     // so changes along an unchanged road.
     val roadIdentity = roadRef ?: roadName
