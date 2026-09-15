@@ -580,13 +580,16 @@ private fun travellingReverseGeocodeName(
                     StringKey.DirectionsOnRoadAndSettlementSince,
                     spokenRoadName, nearestSettlementName, distanceText, sinceStationName
                 ) ?: "On $spokenRoadName and close to $nearestSettlementName, $distanceText since $sinceStationName",
-                // The settlement is left out for the same reason a numbered road's street name is
-                // (see roadDedup): a line holds its identity along its whole length, and at line
-                // speed the nearest settlement changes almost every location update, so keying on
-                // it would re-announce the same stretch of the same journey over and over.
-                // Reaching the next station is what genuinely moves the journey on, so that stays
-                // in the key - unlike the distance to it, which climbs on every call and would
-                // defeat deduping entirely. This key is never spoken, so it needs no localizing.
+                // The station this is measured from is the whole key. The settlement is left out
+                // for the same reason a numbered road's street name is (see roadDedup): at line
+                // speed the nearest one changes almost every location update, so keying on it
+                // re-announced the same stretch of the same journey over and over. The distance is
+                // left out because it climbs on every call and would defeat deduping entirely. And
+                // the line is left out because its name isn't stable enough to key on - the rail
+                // matcher flickers onto depot sidings and adjacent lines mid-journey, and each
+                // flicker would be a fresh announcement. What is left is the one thing that
+                // genuinely marks progress: the last station called at. This key is never spoken,
+                // so it needs no localizing.
                 dedupText = "since $sinceStationName"
             )
         }
