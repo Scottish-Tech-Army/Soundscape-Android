@@ -24,6 +24,7 @@ import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
+import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
@@ -86,6 +87,7 @@ import kotlin.io.path.Path
 import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.nameWithoutExtension
 import kotlin.math.abs
+import kotlin.math.roundToInt
 import kotlin.system.measureTimeMillis
 import kotlin.time.measureTime
 
@@ -4109,6 +4111,7 @@ class MvtTileTest {
         // production, and whether the user is on a train is decided by weighing the two matchers
         // against each other rather than trusting the rail one alone.
         val railMatchArbiter = RailMatchArbiter()
+        val stationaryDetector = StationaryDetector()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
         val startIndex = 0
@@ -4143,6 +4146,9 @@ class MvtTileTest {
         var blindSinceLastUsableFix = false
         // See the confectNamesForRoad sweep below - it runs on the first grid only.
         var namesConfected = false
+        // Previous values of the two states the markers below report on when they change.
+        var lastStationary = false
+        var lastOnTrain: Way? = null
         gps.features.filterIndexed { index, _ ->
             (index > startIndex) and (index < endIndex)
         }.forEachIndexed { index, position ->
@@ -4158,6 +4164,18 @@ class MvtTileTest {
             }
 
             val location = (position.geometry as Point).coordinates
+
+            // Hoisted above the matchers to match GeoEngine's ordering: the stationary detector
+            // needs the timestamp, and RailMatchArbiter needs the detector's verdict.
+            val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
+                ?: fallbackTime
+            fallbackTime = timestamp + 1000L
+
+            if (blindSinceLastUsableFix) {
+                lastUsableFixMillis?.let { unobservedMillis += timestamp - it }
+                blindSinceLastUsableFix = false
+            }
+            lastUsableFixMillis = timestamp
 
             // Calculate direction of travel in case GPX doesn't contain it
             var travelHeading = 0.0
@@ -4202,6 +4220,20 @@ class MvtTileTest {
                 // onto a footway/cycleway alongside the road, regardless of how fast the GPX
                 // sample is actually travelling.
                 val speed = position.properties?.get("speed") as? Double? ?: 1.0
+
+                // Ahead of both matchers, mirroring GeoEngine, since RailMatchArbiter reads this.
+                // The course flag is the recorded GPS course and its own accuracy, never the
+                // phone heading - see StationaryDetector.update. A recording carrying no
+                // bearingAccuracy (GPX from other apps, or synthesized) gets false, which is
+                // right: an ungated bearing says which way the user pointed, not that they moved.
+                val bearingAccuracy = position.properties?.get("bearingAccuracy") as? Double?
+                val stationary = stationaryDetector.update(
+                    LngLatAlt(location.longitude, location.latitude),
+                    accuracy,
+                    (position.properties?.get("heading") != null) &&
+                        (bearingAccuracy != null) && (bearingAccuracy < 45.0),
+                    timestamp
+                )
 
                 // Update the nearest road filter with our new location
                 val mapMatchedResult = mapMatchFilter.filter(
@@ -4251,16 +4283,6 @@ class MvtTileTest {
                 position.properties?.set("index", index + startIndex)
                 collection.addFeature(position)
 
-                val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
-                    ?: fallbackTime
-                fallbackTime = timestamp + 1000L
-
-                if (blindSinceLastUsableFix) {
-                    lastUsableFixMillis?.let { unobservedMillis += timestamp - it }
-                    blindSinceLastUsableFix = false
-                }
-                lastUsableFixMillis = timestamp
-
                 // We can replay GPX files exported from apps like RideWithGPS. This is useful for
                 // mocking up GPX where we don't have a live recording, however some information will
                 // be missing so we need to mock it up.
@@ -4274,8 +4296,33 @@ class MvtTileTest {
                     mapMatchedRailway =
                         railMatchArbiter.update(mapMatchFilter, railMapMatchFilter, speed),
                     timestampMilliseconds = timestamp,
-                    unobservedMillis = unobservedMillis
+                    unobservedMillis = unobservedMillis,
+                    stationary = stationary,
+                    stationaryMillis = stationaryDetector.stationaryMillis
                 )
+
+                // Neither of these is a callout - they're state changes the callout text can't
+                // show, and which are the whole point of the stationary work: whether a ride
+                // survived a station stop, and whether standing about was recognised as standing.
+                if (stationary != lastStationary) {
+                    val displacement = stationaryDetector.displacementMetres
+                    callOutText.write(
+                        ("\nStationary: $stationary" +
+                            (displacement?.let { " (${it.roundToInt()}m over the window)" } ?: "") +
+                            "\n").toByteArray()
+                    )
+                    lastStationary = stationary
+                }
+                val onTrain = userGeometry.mapMatchedRailway
+                if ((onTrain != null) != (lastOnTrain != null)) {
+                    callOutText.write(
+                        ("\nTrain: " +
+                            (onTrain?.let { "on ${it.getName(null, gridState, null, true)}" }
+                                ?: "off") +
+                            "\n").toByteArray()
+                    )
+                }
+                lastOnTrain = onTrain
 
                 val callout = autoCallout.updateLocation(
                     userGeometry,

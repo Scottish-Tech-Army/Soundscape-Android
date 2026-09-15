@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.buildNearbyMarkersCall
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildWhatsAroundMeCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
+import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -119,6 +120,10 @@ class GeoEngine {
     private var railMatchArbiter = RailMatchArbiter()
     // RailMatchArbiter's verdict from the most recent location update.
     private var arbitratedRailway: Way? = null
+    // Whether the user has actually gone anywhere lately, which instantaneous speed cannot say -
+    // see StationaryDetector. Driven below, ahead of the matchers, since the arbiter reads it.
+    private var stationaryDetector = StationaryDetector()
+    private var userStationary = false
 
     // Running total of the time fixes have been arriving too inaccurate to place, and the
     // bookkeeping behind it - see UserGeometry.unobservedMillis and
@@ -244,7 +249,12 @@ class GeoEngine {
             currentBeacon = beaconLocation,
             inStreetPreview = streetPreview.running,
             timestampMilliseconds = currentTimeMillis(),
-            unobservedMillis = unobservedMillis
+            unobservedMillis = unobservedMillis,
+            // Also decided when the filters ran, and for the same reason: a UserGeometry is one
+            // location update, and whether the user has gone anywhere is a question about the last
+            // minute of them. See StationaryDetector.
+            stationary = userStationary,
+            stationaryMillis = stationaryDetector.stationaryMillis
         )
     }
 
@@ -500,6 +510,39 @@ class GeoEngine {
                         withContext(gridState.treeContext) {
                             locationProvider.locationFlow.value?.let { unfilteredLocation ->
                                 val unfilteredSpeed = speedFromLocation(unfilteredLocation)
+
+                                // Ahead of both matchers, because RailMatchArbiter reads the
+                                // verdict below. MvtTileTest.testMovingGrid mirrors this ordering
+                                // by hand - if the two drift apart the replays stop reflecting
+                                // what the app does, silently.
+                                //
+                                // The unfiltered flow, deliberately: the same stream the matchers
+                                // are fed, and the one the detector's thresholds were measured on.
+                                // The Kalman-filtered position has had exactly the jitter the
+                                // detector measures smoothed out of it.
+                                //
+                                // The course flag is the GPS course and nothing else - not the
+                                // phone's compass, not the head tracker. Someone standing still
+                                // holding the phone up to read the screen has a rock-steady
+                                // compass heading and has gone nowhere. Stricter than the
+                                // travelHeading gate below, which trusts an ungated bearing: a
+                                // bearing with no accuracy beside it is fine to steer audio with,
+                                // but says nothing about whether the user is moving.
+                                userStationary = stationaryDetector.update(
+                                    LngLatAlt(
+                                        unfilteredLocation.longitude,
+                                        unfilteredLocation.latitude
+                                    ),
+                                    if (unfilteredLocation.hasAccuracy)
+                                        unfilteredLocation.accuracy.toDouble()
+                                    else
+                                        null,
+                                    unfilteredLocation.hasBearing &&
+                                        unfilteredLocation.hasBearingAccuracy &&
+                                        (unfilteredLocation.bearingAccuracyDegrees < 45.0),
+                                    nowMillis
+                                )
+
                                 val mapMatchTime = measureTime {
                                     mapMatchFilter.filter(
                                         LngLatAlt(
