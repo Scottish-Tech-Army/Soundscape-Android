@@ -89,7 +89,14 @@ class UserGeometry(
     }
 
     fun inMotion(): Boolean {
-        return speed > 0.2
+        // Instantaneous GPS speed cannot tell standing still from walking. Measured across four
+        // recorded journeys, somebody standing still has a median speed of 1.33 m/s against
+        // 1.39 m/s walking, and this test on its own was true for every stationary window in the
+        // recordings - which is how standing on the concourse at Glasgow Queen Street came to be
+        // read as walking about. Whether the user has actually gone anywhere is a question about
+        // the last half minute, so StationaryDetector answers it and gets the veto; the speed
+        // check stays as the fast path for everything the window hasn't decided yet.
+        return (speed > 0.2) && !stationary
     }
 
     /**
@@ -102,9 +109,21 @@ class UserGeometry(
      * which used to be enough for a driver to be told "On Winchburgh Chord". Deciding this needs
      * the railway match to be weighed against the road match from the same update, which is
      * RailMatchArbiter's job; by the time mapMatchedRailway is set here, that's already happened.
+     *
+     * A train stopped at a station is still a train. Requiring [inVehicle] alone made this false
+     * throughout every dwell - and the recorded dwells run to 340 seconds - so the line the
+     * arbiter was still holding went unused for the whole of each stop, and the callouts that
+     * depend on knowing the user is on a train switched off at exactly the moment a passenger most
+     * wants them.
+     *
+     * Both halves are kept rather than trusting the arbiter's lock alone, because the lock can
+     * outlive the ride by design: walking up a platform stays within the arbiter's
+     * onTheLineDistanceMetres of the line, and a concourse often has no confident road match to
+     * weigh against it. Somebody neither travelling at vehicle speed nor standing where the train
+     * stopped is walking, and walking out of a station is not being on a train.
      */
     fun probablyOnTrain(): Boolean {
-        return inVehicle() && (mapMatchedRailway != null)
+        return (mapMatchedRailway != null) && (inVehicle() || stationary)
     }
 
     private fun transform(distance: Double): Double {
