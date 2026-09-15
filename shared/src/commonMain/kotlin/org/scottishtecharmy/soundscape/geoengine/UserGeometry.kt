@@ -36,6 +36,16 @@ import kotlin.math.abs
  * that were too inaccurate to place at all (see isAccuracyUsable) - time that passed with nothing
  * observed in it. A running total rather than a per-update figure, since not every location update
  * reaches every consumer; see AutoCallout.discountUnobservedTime, which takes the difference.
+ * @param stationary is true if the user is standing still rather than travelling. This is a
+ * windowed judgement - it asks whether they have gone anywhere over the last minute, because
+ * instantaneous speed cannot tell standing from walking at all (see StationaryDetector) - and a
+ * UserGeometry is a snapshot of one location update, so it cannot work this out for itself. It is
+ * decided by StationaryDetector and handed in, the same way mapMatchedRailway is decided by
+ * RailMatchArbiter and handed in.
+ * @param stationaryMillis is how long, in total this session, the user has been seen to be standing
+ * still. The counterpart of [unobservedMillis], a running total for the same reason, and consumed
+ * in the same place: time in which nothing can have changed shouldn't count against a window
+ * measuring how long ago something happened.
  *
  * The heading prioritization comes from iOS - see https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/364
  *
@@ -59,6 +69,8 @@ class UserGeometry(
     val ruler: Ruler = CheapRuler(location.latitude),
     val timestampMilliseconds: Long = 0L,
     val unobservedMillis: Long = 0L,
+    val stationary: Boolean = false,
+    val stationaryMillis: Long = 0L,
     private val headingMode: HeadingMode = HeadingMode.CourseAuto,
     private var travelHeading: Double? = null,
     private var headHeading: Double? = null,
