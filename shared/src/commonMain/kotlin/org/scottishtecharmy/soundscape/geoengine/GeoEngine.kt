@@ -127,7 +127,7 @@ class GeoEngine {
 
     // Running total of the time fixes have been arriving too inaccurate to place, and the
     // bookkeeping behind it - see UserGeometry.unobservedMillis and
-    // AutoCallout.discountUnobservedTime.
+    // AutoCallout.discountUninformativeTime.
     private var unobservedMillis = 0L
     private var lastUsableFixMillis: Long? = null
     private var blindSinceLastUsableFix = false
@@ -476,7 +476,7 @@ class GeoEngine {
                     if (!isAccuracyUsable(location) && haveUsableLocation) {
                         // Fixes are arriving, they just can't be placed. That's the geoengine
                         // going blind rather than idle, and the two mean opposite things to the
-                        // callout sticky windows - see AutoCallout.discountUnobservedTime.
+                        // callout sticky windows - see AutoCallout.discountUninformativeTime.
                         blindSinceLastUsableFix = true
                         return@let
                     }

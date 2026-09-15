@@ -35,7 +35,7 @@ import kotlin.math.abs
  * @param unobservedMillis is how long, in total this session, the geoengine has had fixes arriving
  * that were too inaccurate to place at all (see isAccuracyUsable) - time that passed with nothing
  * observed in it. A running total rather than a per-update figure, since not every location update
- * reaches every consumer; see AutoCallout.discountUnobservedTime, which takes the difference.
+ * reaches every consumer; see AutoCallout.discountUninformativeTime, which takes the difference.
  * @param stationary is true if the user is standing still rather than travelling. This is a
  * windowed judgement - it asks whether they have gone anywhere over the last minute, because
  * instantaneous speed cannot tell standing from walking at all (see StationaryDetector) - and a

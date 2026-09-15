@@ -113,9 +113,13 @@ class AutoCallout(
 
     /**
      * How long after last confidently detecting a train (see UserGeometry.probablyOnTrain) we
-     * keep suppressing pedestrian-style intersection callouts. Real recorded journeys show
-     * station dwell stops of ~12-19 seconds, so this gives generous margin for a real stop
-     * without permanently blocking pedestrian callouts once someone has actually got off.
+     * keep suppressing pedestrian-style intersection callouts.
+     *
+     * This does not have to cover a station dwell on its own, and could not: measured across four
+     * recorded journeys the dwells run from 17 to 340 seconds, and a window long enough for the
+     * longest of them would go on suppressing pedestrian callouts for minutes after somebody had
+     * genuinely got off. What covers a dwell is [discountUninformativeTime], which stops the clock
+     * while the passenger is standing still, so this only ever has to cover the moving parts.
      */
     private val trainStickyWindowMs = 60_000L
 
@@ -148,6 +152,13 @@ class AutoCallout(
     private var lastUnobservedMillis = 0L
 
     /**
+     * [UserGeometry.stationaryMillis] as it stood on the previous update, so that each spell of
+     * standing still is discounted once. Counted the same way, and for the same reason, as
+     * [lastUnobservedMillis] - see [discountUninformativeTime].
+     */
+    private var lastStationaryMillis = 0L
+
+    /**
      * The longest blind spell the sticky windows are carried across. Long enough for any tunnel a
      * train goes through - the recorded Argyle Line run from Finnieston to Exhibition Centre is a
      * little over a minute of unusable fixes, and the longest tunnels on the network are a few
@@ -178,13 +189,36 @@ class AutoCallout(
      * ten minutes, none of them a blackout. Rejected fixes say something a silence cannot: the
      * phone was trying, and could not place the user.
      */
-    private fun discountUnobservedTime(userGeometry: UserGeometry) {
+    private fun discountUninformativeTime(userGeometry: UserGeometry) {
         val unobserved = userGeometry.unobservedMillis - lastUnobservedMillis
         lastUnobservedMillis = userGeometry.unobservedMillis
-        if ((unobserved <= 0L) || (unobserved > blindSpellLimitMs)) return
+        if ((unobserved > 0L) && (unobserved <= blindSpellLimitMs)) {
+            lastVehicleTimestampMs = lastVehicleTimestampMs?.plus(unobserved)
+            lastTrainTimestampMs = lastTrainTimestampMs?.plus(unobserved)
+        }
 
-        lastVehicleTimestampMs = lastVehicleTimestampMs?.plus(unobserved)
-        lastTrainTimestampMs = lastTrainTimestampMs?.plus(unobserved)
+        // Time the user spent standing still, discounted for the same reason as time we couldn't
+        // see: nothing can have changed in it. A train dwelling at a station used to run the
+        // sticky windows out and expose pedestrian callouts to somebody who was still sitting on
+        // the train, because the dwells (17 to 340 seconds across the recordings) are routinely
+        // longer than the windows are.
+        //
+        // This freezes rather than extends. The windows still expire the same interval after the
+        // last moving moment, it just takes moving to get there - the same argument the blind-time
+        // discount above makes for itself.
+        //
+        // Deliberately uncapped, unlike blindSpellLimitMs. That cap exists because a phone
+        // reporting junk indoors all afternoon is not evidence of anything; standing still is
+        // positive evidence, and a cap short enough to be useful would be shorter than the longest
+        // real dwell. There is no double counting to worry about: StationaryDetector is not
+        // updated at all while fixes are being rejected, so stationaryMillis cannot grow during
+        // the spells unobservedMillis is counting.
+        val stillness = userGeometry.stationaryMillis - lastStationaryMillis
+        lastStationaryMillis = userGeometry.stationaryMillis
+        if (stillness <= 0L) return
+
+        lastVehicleTimestampMs = lastVehicleTimestampMs?.plus(stillness)
+        lastTrainTimestampMs = lastTrainTimestampMs?.plus(stillness)
     }
 
     private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
@@ -1292,7 +1326,7 @@ class AutoCallout(
 
                 // Also before any builder runs, since the sticky windows it adjusts are read by
                 // most of them.
-                discountUnobservedTime(userGeometry)
+                discountUninformativeTime(userGeometry)
 
                 val destinationCallout = buildCalloutForDestination(userGeometry)
                 if (destinationCallout != null) {
