@@ -2974,8 +2974,10 @@ class MvtTileTest {
      * The distance is always computed live (never repeats exactly), so PositionedString.dedupText
      * deliberately excludes it - roadSenseCalloutHistory dedups on that instead of the spoken
      * text, so two calls describing progress since the same station still count as a duplicate
-     * even though the exact metres differ. The settlement is excluded for the same reason: at
-     * line speed it changes almost as often as the distance does.
+     * even though the exact metres differ. The settlement is excluded for the same reason (at line
+     * speed it changes almost as often as the distance does), and so is the line name, which the
+     * rail matcher flickers between mid-journey. The station is all that's left, and all that's
+     * needed.
      */
     @Test
     fun testTravelCalloutTracksStationForSinceDistance() {
@@ -3042,16 +3044,18 @@ class MvtTileTest {
             result.text.contains("since Test Station") &&
                 result.text.startsWith("On Fake Railway Line and close to ")
         )
-        // The line and the station it's measured from, and nothing else. The distance is out
+        // The station the distance is measured from, and nothing else. The distance is out
         // because it climbs on every call; the settlement is out because at line speed the
         // nearest one changes almost as often, and keying on it re-announced the same stretch of
         // the same journey over and over (the road equivalent is roadDedup collapsing a numbered
-        // road to its ref). Reaching the next station is what actually moves the journey on, so
-        // that alone is what makes this worth saying again.
-        assertEquals("On Fake Railway Line since Test Station", result.dedupText)
+        // road to its ref). The line is out because its name is not stable enough to key on - the
+        // rail matcher flickers onto depot sidings and adjacent lines mid-journey, and each
+        // flicker would be a fresh announcement. The last station called at is the one thing that
+        // genuinely marks progress, so it alone decides when this is worth saying again.
+        assertEquals("since Test Station", result.dedupText)
 
-        // Further still - the spoken distance moves on, but the dedup key (line and station, as
-        // just asserted) stays identical so history can suppress the repeat. It takes a
+        // Further still - the spoken distance moves on, but the dedup key (the station, as just
+        // asserted) stays identical so history can suppress the repeat. It takes a
         // decent step to change the spoken text, since at this speed the distance is read out in
         // tenths of a kilometre (see formatDistanceAndDirection), and Glasgow Queen Street
         // station is only ~500m further north again.
