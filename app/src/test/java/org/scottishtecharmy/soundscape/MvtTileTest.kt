@@ -3196,6 +3196,68 @@ class MvtTileTest {
     }
 
     /**
+     * Standing still is a windowed judgement made by StationaryDetector and handed to
+     * UserGeometry, because a UserGeometry is one location update and the question is about the
+     * last half minute of them. These pin what the three consumers do with it.
+     */
+    @Test
+    fun testStandingStillIsNotInMotion() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        // 1.44 m/s is the 90th-percentile GPS speed measured while genuinely standing still, and
+        // comfortably over inMotion()'s old 0.2 threshold - which is exactly why speed alone
+        // couldn't be trusted with this question.
+        val standing = UserGeometry(
+            location = location, speed = 1.44, travelHeading = 90.0, stationary = true
+        )
+        val walking = UserGeometry(
+            location = location, speed = 1.44, travelHeading = 90.0, stationary = false
+        )
+
+        assertFalse("standing still is not in motion", standing.inMotion())
+        assertTrue("the same speed while actually moving is", walking.inMotion())
+
+        // And so a jittering GPS course stops steering the field of view while stood still, which
+        // is the Queen Street concourse case.
+        assertNull("no travel heading while standing still", standing.getTravelHeading())
+        assertEquals(90.0, walking.getTravelHeading())
+    }
+
+    /**
+     * A train stopped at a station is still a train. Requiring vehicle speed alone made this false
+     * for the whole of every dwell, and the recorded dwells run to 340 seconds.
+     */
+    @Test
+    fun testATrainStoppedAtAStationIsStillATrain() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val railway = Way().apply { name = "Fake Railway Line" }
+
+        assertTrue(
+            "a dwell is still a ride",
+            UserGeometry(
+                location = location, speed = 0.4, mapMatchedRailway = railway, stationary = true
+            ).probablyOnTrain()
+        )
+        assertTrue(
+            "and so is line speed",
+            UserGeometry(
+                location = location, speed = 15.0, mapMatchedRailway = railway
+            ).probablyOnTrain()
+        )
+        // Walking pace with a lock the arbiter hasn't let go of yet is somebody walking up a
+        // platform, not somebody on a train - see the probablyOnTrain KDoc.
+        assertFalse(
+            "walking off a platform is not a train",
+            UserGeometry(
+                location = location, speed = 1.3, mapMatchedRailway = railway, stationary = false
+            ).probablyOnTrain()
+        )
+        assertFalse(
+            "and standing still with no railway matched is not either",
+            UserGeometry(location = location, speed = 0.4, stationary = true).probablyOnTrain()
+        )
+    }
+
+    /**
      * A real line name (e.g. "Argyle Line") is an OSM route-relation concept this tile schema
      * doesn't extract onto individual rail Ways yet, so an unnamed rail Way used to fall through
      * to the same destination-confection logic used for unnamed footpaths, producing an odd
