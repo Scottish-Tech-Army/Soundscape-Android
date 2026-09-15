@@ -4132,6 +4132,8 @@ class MvtTileTest {
         var unobservedMillis = 0L
         var lastUsableFixMillis: Long? = null
         var blindSinceLastUsableFix = false
+        // See the confectNamesForRoad sweep below - it runs on the first grid only.
+        var namesConfected = false
         gps.features.filterIndexed { index, _ ->
             (index > startIndex) and (index < endIndex)
         }.forEachIndexed { index, position ->
@@ -4167,9 +4169,17 @@ class MvtTileTest {
                     null
                 )
 
-                if (gridChanged) {
+                if (gridChanged && !namesConfected) {
                     // As we're here, test the name confection for the grids. This is relatively
                     // expensive and is only done on individual Ways as needed when running the app.
+                    //
+                    // Only for the first grid of the replay. Sweeping every grid dominated this
+                    // test - on an 80km train journey it was 176s of a 190s run, 180,000 way
+                    // confections - while changing nothing: Way.getName() confects lazily as each
+                    // way is actually named (see WayGenerator), so doing it eagerly here produces
+                    // byte-identical callouts. One real grid is plenty to exercise the sweep over
+                    // live data; the per-way behaviour is covered by WayNamingTest.
+                    namesConfected = true
                     val roads = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
                     for (road in roads) {
                         confectNamesForRoad(road as Way, gridState, null)
