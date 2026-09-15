@@ -860,7 +860,7 @@ open class GridState(
      * it lies on the line itself, so a line knows exactly which stations it calls at. But the tag
      * is missing from parts of OSM, and from any tileset built before it was carried, and with
      * nothing attached the approaching-station callout never fires at all -
-     * AutoCallout.buildCalloutForTrainStop has no fallback of its own.
+     * GeoEngineHelpers.namedStationWithin has no fallback of its own.
      *
      * So where no stop node stands for a station, the station itself does, attached to every line
      * running past it: a station serves several platforms and often several lines, and the train
