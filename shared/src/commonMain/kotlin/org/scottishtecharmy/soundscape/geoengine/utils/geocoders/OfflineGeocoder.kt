@@ -205,7 +205,19 @@ class OfflineGeocoder(
                 // may be in the app's language instead, so it's only for saying.
                 val streetKey = pavement ?: nearbyWay.name ?: nearbyName
                 val description = getOrBuildStreetDescription(
-                    streetKey, nearbyWay, localizedStrings, userGeometry.inVehicle()
+                    streetKey, nearbyWay, localizedStrings,
+                    // A train counts as travelling, not just something moving faster than 5m/s.
+                    // Travel mode exists to keep confected path names out of a junction
+                    // description for somebody who has no use for them (see StreetDescription's
+                    // travelMode), and a passenger has even less use for "Path that joins Fifth
+                    // Avenue and Great Western Road" than a driver does. inVehicle() alone is a
+                    // bare speed check, so it was false through every station dwell and every
+                    // slow stretch of line, and the description fell back to the walking one.
+                    //
+                    // RailMatchArbiter's lock rather than probablyOnTrain(), which is itself
+                    // false while a train pulls away from a platform - moving too slowly to count
+                    // as a vehicle and no longer standing still either.
+                    userGeometry.inVehicle() || (userGeometry.mapMatchedRailway != null)
                 )
                 val nearestWay = description.nearestWayOnStreet(userGeometry.location)
                 if ((nearestWay != null) && !ignoreHouseNumbers) {
