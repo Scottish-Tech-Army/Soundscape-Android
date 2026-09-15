@@ -1972,7 +1972,7 @@ class MvtTileTest {
      * reason onARoadRatherThanATrain suppresses the crossings there - and the stop lookahead
      * then walks a hundred
      * metres up that road and names its stops. The stops that matter on a train are the station
-     * stops on the line itself, which buildCalloutForTrainStop reads off the railway.
+     * stops on the line itself, which namedStationWithin reads off the railway.
      */
     @Test
     fun testVehicleTransitStopIsSuppressedOnATrain() {
@@ -2119,7 +2119,7 @@ class MvtTileTest {
      * carry no stop node of their own.
      *
      * A stop node is the better record and is preferred wherever it exists, but the tagging for one
-     * is absent from parts of OSM. With nothing attached, buildCalloutForTrainStop has nothing to
+     * is absent from parts of OSM. With nothing attached, namedStationWithin has nothing to
      * find and the approaching-station callout never fires at all. See attachStationsAsRailwayStops,
      * which decides this per station rather than per grid, so a mixture of the two works - which
      * is what central Glasgow now is: ten of its stations carry stop nodes and Bellgrove does not.
