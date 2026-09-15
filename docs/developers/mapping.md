@@ -27,7 +27,9 @@ The tiles are vector tiles rather than image tiles (e.g. PNG) which means that t
 This describes the journey of the data in the vector tiles.
 
 ### Data source
-The tile server is serving up a single [PMTiles](https://github.com/protomaps/PMTiles) file. Much of the data in that comes from OpenStreetMap, though there's other data pulled in too. We're using [planetiler](https://github.com/onthegomap/planetiler) to generate the `.pmtiles` file. The contents of the `.pmtiles` file is highly configurable and we have customized it (details further down). It contains vector tiles at a range of zoom levels, but the contents of the vector tiles can be configured to have whatever data we want in them. We use the greatest zoom level (15) as the source of our GeoJSON for the audio callouts.
+The tile server is serving up a single [PMTiles](https://github.com/protomaps/PMTiles) file. Much of the data in that comes from OpenStreetMap, though there's other data pulled in too. We're using [planetiler](https://github.com/onthegomap/planetiler) to generate the `.pmtiles` file. The contents of the `.pmtiles` file is highly configurable and we have customized it (details further down). It contains vector tiles at a range of zoom levels, but the contents of the vector tiles can be configured to have whatever data we want in them. We use the greatest zoom level as the source of our GeoJSON for the audio callouts.
+
+That maximum zoom level is now **14**, having originally been 15. Dropping a level quarters the number of tiles in the planet-wide file, which makes it both cheaper to serve and very much smaller to download as an offline extract, and at 60cm resolution (see below) it's still far finer than anything our callout distances care about. The app's own `MAX_ZOOM_LEVEL` in `Configuration.kt` has to agree with whatever the maps were built at. Because the customizations are written to apply at whichever zoom level is the maximum, rather than being hard-coded to 15, changing it is a matter of changing the build arguments.
 
 ### Vector tiles
 We use [MapBox vector tiles (mvt)](https://docs.mapbox.com/data/tilesets/guides/vector-tiles-standards/). They are [protobuf](https://github.com/protocolbuffers/protobuf) encoded and provide a tile of mapping data similar to GeoJSON but much compressed.
@@ -36,7 +38,7 @@ Decoding from protobuf is handled automatically in Android, all that's required 
 There are two ways in which the vector tiles compresses the data:
 
 1. The tile contains a list of strings which make up keys and values. Strings are then referenced by their id when used in each `feature`. This means that each string is only stored once per tile.
-2. Latitude and longitude for each node within a tile are reduced down to an x,y integer position relative to the top left corner of the tile. The x,y values are stored as an accumulating list of cursor moves so that they are mostly deltas which are even more compressible. The tile is square and has an `extents` value which declares the length of its side. The origin of the tile in latitude and longitude is known, and so the x,y position can be easily converted into latitude and longitude. The default value for `extents` is `4096` and this does mean that the resolution of the locations within the tile varies with zoom level. At zoom level 0 a single tile represents the whole world, at zoom1 level 1 there are 4 tiles and so on down through the zooms. The size of a tile in metres is therefore the circumference of the earth divided by 2<sup>zoom-level</sup> = (2 x $\pi$ x 6378137) / (2<sup>zoom-level</sup>). At a zoom of 15 and with `extents` at the default of 4096, that gives a resolution of 30cm so that's well within what we need for our mapping calculations.
+2. Latitude and longitude for each node within a tile are reduced down to an x,y integer position relative to the top left corner of the tile. The x,y values are stored as an accumulating list of cursor moves so that they are mostly deltas which are even more compressible. The tile is square and has an `extents` value which declares the length of its side. The origin of the tile in latitude and longitude is known, and so the x,y position can be easily converted into latitude and longitude. The default value for `extents` is `4096` and this does mean that the resolution of the locations within the tile varies with zoom level. At zoom level 0 a single tile represents the whole world, at zoom1 level 1 there are 4 tiles and so on down through the zooms. The size of a tile in metres is therefore the circumference of the earth divided by 2<sup>zoom-level</sup> = (2 x $\pi$ x 6378137) / (2<sup>zoom-level</sup>). At our zoom of 14 that's a tile 2446m square, and with `extents` at the default of 4096 that gives a resolution of 60cm, which is well within what we need for our mapping calculations. (At zoom 15, which we used previously, it was a 1223m tile at 30cm resolution.)
 
 ### PMTile
 The file that ends up on the server is a single `.pmtiles` file which consists of all of the vector tiles smashed together into a single file with a metadata index. The server uses that metadata to find each tile so that when a request like:
@@ -49,12 +51,19 @@ is received it can return the piece of the `.pmtiles` file corresponding to that
 ### What's in a tile?
 If you looked at the [MapBox vector tiles specification](https://docs.mapbox.com/data/tilesets/guides/vector-tiles-standards/) you'd notice that there's not much in there other than layers, lines, points and properties. What actually goes into the tile, and how that data is then used within the app can all be configured. The list of layers on a tile might be:
 
-`earth`
+`building`
+`housenumber`
+`landcover`
 `landuse`
-`water`
-`pois`
+`place`
+`poi`
 `transportation`
 `transportation_name`
+`water`
+`water_name`
+`waterway`
+
+(That's the set actually present in our tiles around Glasgow; layers like `aeroway` or `mountain_peak` only appear where there's something to put in them.) Of these, the GeoEngine parses `transportation`, `transportation_name`, `poi`, `building`, `housenumber`, `water` and `waterway`, plus `place` at the lower zoom used for settlements. The rest, including `water_name`, are there for the graphical map — water names now come from the `name` we add to the `water` polygons themselves, which is what makes a bay or firth crossing detectable.
 
 The default `planetiler` build uses [this schema](https://github.com/openmaptiles/planetiler-openmaptiles https://openmaptiles.org/schema/) and the layers are described [here](https://github.com/openmaptiles/openmaptiles). When displaying the map in the app, a `style.json` file is used to describe how to display the contents of each of the layers. This includes where to get the tiles, the fonts and the icons from. The style has to be matched to the tiles as the naming convention for layers isn't fully standardized. If a layer isn't used in the style, then it should be removed from the vector tile generation. Designing the style is a huge amount of work and hopefully we can continue to use the same profile with minimum tweaking.
 
@@ -78,37 +87,111 @@ https://github.com/onthegomap/planetiler/blob/main/PLANET.md. More memory is the
 
 If we could run a similar cloud build, then a weekly rebuild of the planet would be relatively cheap at only ~£20 per month. OSM publish the `planet-latest.osm.pbf` once per week so it could be timed to build from that. It's available in S3 and so should be very quick to download to our builder instance.
 
+The build script now does the "is there a new planet file?" part of this itself — see `build-planet-map.sh` below — so a scheduled rebuild only costs anything on the weeks the planet file has actually changed.
+
 ## What's required to build the protomaps file?
 There are 3 repositories that are currently use by planetiler. These have been forked and are currently all in davecraig's GitHub account.
-1. The [openmaptiles repo](https://github.com/davecraig/openmaptiles). The layer mappings here are read directly from github by `planetiler-openmaptiles` to generate planetiler code that will match the openmaptiles configuration. The fork contains changes to increase the number of types of shop that appear as POI, and add junction (for roundabouts) and road crossings support.
-2. The [plantiler-openmaptiles repo](https://github.com/davecraig/planetiler-openmaptiles). This is the main place where maps can be customize and we have several changes that we've had to make:
-   - Changes to the `Transportation.Java` code so that only roads/paths with the same OSM id are merged into multi-strings. This is done to can ensure that the OSM id in the resulting data is correct. Without it, un-named roads get merged together to make them more efficient to draw. However, we process these roads and need them to have correct metadata so that we can correctly identify intersections.
-   - Add junction tags at to tiles at maximum zoom level (15). This ensures that any `roundabout` tags propagate through to our GeoJSON which makes it easier to describe them.
-   - Add NAPTAN metadata to bus stops. Simply passing through more metadata from OSM rather than discarding it.
-   - Add `crossing` to `Transportation.Java`. This includes metadata for dropped kerbs, tactile paving etc. 
-   - Add POI with Polygon in addition to POI at Point. Our graphical map uses the Point POI, but for audio it's more useful to know the Polygon as the distance can be calculated to the nearest point rather than to the central point.
-3. The [planetiler repo](https://github.com/davecraig/planetiler). Ideally we don't have to make changes here, however I did have a fix here prior to it being accepted upstream. Because the change has now landed we don't currently need this repo. But it's useful to see the history:
-   - The change disabled simplification at zoom level 15. Simplification removes nodes from lines and polygons that would have no effect on a drawn graphical map. The easiest example is a straight line consisting of 3 nodes. The middle node adds nothing to how the line is drawn and so can be simplified away. Obviously the simplification becomes very important the more you zoom out from the map as more and more nodes can be simplified away. It's important for our translation to GeoJSON that we preserve all intersection nodes, and the easiest way to do this is to disable simplification at the maximum zoom level. The intersection nodes are all preserved and we can build up our own list of intersections.
 
-Note that all of the changes we have made are to support our MVT to GeoJSON translation which we only perform at zoom level 15. As a result, only that zoom level of tile should be affected, all other remain unchanged.
+### 1. The [openmaptiles repo](https://github.com/davecraig/openmaptiles)
+The layer mappings here are YAML, read directly from github by `planetiler-openmaptiles` to generate planetiler code that will match the openmaptiles configuration. Everything here is about making OSM tags *reach* the Java layer code; what is then done with them is in the next repo. The fork:
 
-There are several steps to build a map, but it's quite straightforward. `planetiler` is built using Maven and then we just have to run it:
+* **Loosens the POI mappings to `__any__`** for `amenity`, `historic`, `leisure`, `office`, `shop`, `sport` and `tourism`. Upstream has explicit allow-lists — roughly 86 shop values, 61 office values, 57 amenity values and so on — and anything not on them is dropped. We first extended the shop list by hand to about 180 values taken from the OSM wiki, then gave up on enumeration and replaced the lists with the wildcard, which is why arbitrary POI types now appear. Values outside the upstream class mapping simply fall through to a generic class.
+* **Adds `entrance`** as a POI mapping and as a column, so building entrances become POIs.
+* **Adds a `junction` column** to `highway_linestring`, which is what carries `junction=roundabout`.
+* **Adds a `footway` column** to `highway_linestring`, which distinguishes `sidewalk` from `crossing` from a plain path.
+* **Adds `highway=crossing` to `highway_point`** along with a `crossing` column. Upstream's `highway_point` table holds only motorway junction nodes, so without this pedestrian crossings never reach the tiles at all.
+* **Adds a `name` column to `building_polygon`**, so a building can be named without a separate POI node.
+
+Note that these changes only add the columns to the imposm mapping. The layer schema YAML is untouched, so the attribute names that actually come out of the tiles are decided by the Java in the next repo.
+
+### 2. The [planetiler-openmaptiles repo](https://github.com/davecraig/planetiler-openmaptiles)
+This is the main place where maps are customized. Two rules apply throughout:
+
+* Almost every addition below is emitted **only at the maximum zoom level**, via `config.maxzoom()` rather than a hard-coded number. Lower zoom levels are untouched, so the graphical map is unaffected and the extra data costs nothing at the zooms where most tiles get served. Writing it against `config.maxzoom()` rather than against 15 is what made the move to zoom 14 a build-argument change.
+* Attribute names are usually the literal OSM tag key, with the NAPTAN ones as the exception.
+
+#### `transportation` layer
+
+| Attribute | From | Why |
+| --- | --- | --- |
+| `name` | `name` | Upstream only puts names in `transportation_name`. Having it here means the GeoJSON translation doesn't have to correlate two layers. |
+| `ref` | `ref` | Same reason. Refs were only in `transportation_name`, so individual segments didn't carry them and a motorway couldn't be named "M8" on the segment being driven. |
+| `tunnel_name` | `tunnel:name` | So entering a tunnel can be announced by name. |
+| `junction` | `junction` | Carries `roundabout`; describing roundabouts goes back to Soundscape iOS. |
+| `footway` | `footway` | Gives us `sidewalk`, which is how pavements are identified. |
+
+Also in this layer:
+
+* **OSM ids are preserved at max zoom.** Planetiler merges adjacent line strings to make them cheaper to draw, which destroys the one-way-one-id relationship. A temporary `__osm_id_merge` tag is added before the merge and removed afterwards, so ways with different ids are never merged together. We need correct ids and metadata per way to identify intersections.
+* **Pedestrian crossings** become points with `class=crossing`, carrying `crossing`, `button_operated`, `crossing:island`, `crossing:markings`, `kerb`, `tactile_paving` and `traffic_signals:sound`.
+* **Rail stop nodes** become points carrying `name` and `ref`, from three taggings:
+
+  | OSM | `class` | `subclass` |
+  | --- | --- | --- |
+  | `railway=stop` | `rail` | `stop` |
+  | `railway=tram_stop` | `transit` | `tram_stop` |
+  | `public_transport=stop_position` + `train=yes` | `rail` | `stop` |
+  | `public_transport=stop_position` + `tram=yes` | `transit` | `tram_stop` |
+
+  The `stop_position` forms matter because that's the newer tagging and some stations only have it — Bellgrove on the North Clyde Line is one. A node carrying both old and new tagging is emitted once, and a bus-only `stop_position` is ignored.
+
+  These matter because a `railway=station` POI is a place *beside* the tracks, and where several lines run close together a train passes stations it doesn't call at. A stop node is on the line itself, so the line knows its own stops. They go in `transportation` rather than `poi` precisely so that they don't duplicate the station POI in lists of what's nearby. Because `railway=stop` is in no OpenMapTiles mapping at all, this is handled directly from the raw OSM feature rather than through the generated tables.
+
+#### `water` layer
+* **Bay polygons are emitted** rather than dropped, at max zoom only.
+* **`name` on water polygons**, at max zoom. Upstream keeps water names in the separate `water_name` layer.
+* **Bay and strait *lines*** are emitted with `class=bay`/`class=strait` and a `name`. A lot of water is mapped as a named line rather than a polygon — the Menai Strait and most of the Norwegian fjords are done this way — and without this there's nothing to name when crossing one.
+
+#### `poi` layer
+* **Polygon POIs are emitted twice**, as the polygon and then as its centroid point. MapLibre wants the point for labelling; we want the polygon so that distance can be measured to the nearest edge rather than to the middle. The polygon comes first so the parser finds it first.
+* **Entrances** get `class=entrance`, `subclass` from the `entrance` tag, and a `railway` attribute for station entrances (`subway_entrance`, `train_station_entrance`).
+* **NAPTAN attributes** for UK bus stops, which is how stops get the name that's actually on the timetable and the sign: `naptanCode`, `naptanAtcoCode`, `naptanBearing`, `naptanCommonName`, `naptanStreet`, `naptanLandmark`, `naptanIndicator` and `naptanLocalityName`, from the corresponding `naptan:*` tags. `Bearing` gives the direction a stop serves.
+* **Address attributes**: `street`, `housenumber`, `block_number`, `neighbourhood`, `quarter` and `suburb`, from the matching `addr:*` tags.
+
+#### `housenumber` layer
+The same address attributes — `street`, `block_number`, `neighbourhood`, `quarter`, `suburb` — plus `housename` from `addr:housename`.
+
+The block-level tags are there for Japan, where most addresses number a building within its block rather than along a street, so `addr:street` is usually absent and a housenumber on its own says very little.
+
+Upstream's de-duplication has also been **removed**. It kept only one feature per street/block/housenumber group, preferring the unnamed one, which is reasonable for drawing labels and loses real addresses for our purposes. Identical housenumbers within a tile still collapse into a multipoint, which is only a size optimisation.
+
+#### `building` layer
+`name` and the raw `building` value (e.g. `warehouse`, `house`, `retail`) at max zoom.
+
+### 3. The [planetiler repo](https://github.com/davecraig/planetiler)
+Ideally we don't have to make changes here, however I did have a fix here prior to it being accepted upstream. Because the change has now landed we don't currently need this repo. But it's useful to see the history:
+
+* The change disabled simplification at the maximum zoom level. Simplification removes nodes from lines and polygons that would have no effect on a drawn graphical map. The easiest example is a straight line consisting of 3 nodes. The middle node adds nothing to how the line is drawn and so can be simplified away. Obviously the simplification becomes very important the more you zoom out from the map as more and more nodes can be simplified away. It's important for our translation to GeoJSON that we preserve all intersection nodes, and the easiest way to do this is to disable simplification at the maximum zoom level. The intersection nodes are all preserved and we can build up our own list of intersections. This is now the `--simplify-tolerance-at-max-zoom=-1` build argument, and it's paired with `--min_feature_size_at_max_zoom=0` so that small features aren't dropped either.
+
+Note that all of the changes we have made are to support our MVT to GeoJSON translation which we only perform at the maximum zoom level. As a result, only that zoom level of tile should be affected, all others remain unchanged.
+
+### Building a map
+`planetiler` is built using Maven and then we just have to run it. The build and upload scripts all live in the `soundscape-maps/` directory of the planetiler-openmaptiles fork:
 
 ```
 # Clone the repo
 git clone git@github.com:davecraig/planetiler-openmaptiles.git
 cd planetiler-openmaptiles
-# Ensure that the generated files are up to date with the `openmaptiler` repo
+# Ensure that the generated files are up to date with the `openmaptiles` repo
 scripts/regenerate-openmaptiles.sh
 # Build the code
 scripts/build.sh
-# We now have something that we can run to generate a map. This is what takes all the time.
-java -Xmx30g -jar target/planetiler-openmaptiles-3.15.1-SNAPSHOT-with-deps.jar --force --download --area=planet --fetch-wikidata --output=planet.pmtiles --nodemap-type=array --storage=mmap --maxzoom=15 --render_maxzoom=15 --simplify-tolerance-at-max-zoom=-1
+cd soundscape-maps
+# Build a single region for testing, e.g. ./build-map.sh scotland
+./build-map.sh <area>
+# ...or build the whole planet. This is what takes all the time.
+./build-planet-map.sh -t <temp-dir> -o <output-dir>
 # Once complete we have to upload the file to the cloud
+./map-to-serve/s3_push.sh <file>
 ```
 
+`build-planet-map.sh` compares the MD5 of the planet file we already have against the latest in OSM's `osm-planet-eu-central-1` S3 bucket, and only downloads and rebuilds if there's a newer one (`-f` forces a build regardless). That's what makes a scheduled rebuild practical — it can run on a timer and do nothing most of the time. `s3_push.sh` splits the file into 100 parts for a multipart upload, since it's far too big to push in one go, and `s3_continue.sh` has the incantations for resuming an upload that timed out.
+
+The planet build passes `--languages=` (empty) to suppress the `name:xx` translation attributes, which would otherwise add a great deal of bulk for data the app doesn't use.
+
+The same directory holds the two Python scripts that slice the planet file into the per-region offline extracts, and the `world_countries_and_city_groups.geojson` that defines the regions. Those are described in [Offline maps]({% link developers/offline-maps.md %}).
 
 ### Limitations
-`planetiler` is limited to a maximum zoom level of 15. Tiles at that zoom level are 1222 metres x 1222 metres (at the equator) and with `extents` set to 4096 have a resolution of 30cm. MapLibre can still zoom in further, and although the rendering is done at the higher zoom the data used will be from the zoom level 15 tile. Soundscape iOS GeoJSON tiles were at zoom level 16 so some care will have to be taken with style and configuration to ensure that we have the same data available.
+`planetiler` is limited to a maximum zoom level of 15, and we currently build at 14. Tiles at zoom 14 are 2446 metres square (at the equator) and with `extents` set to 4096 have a resolution of 60cm. MapLibre can still zoom in further, and although the rendering is done at the higher zoom the data used will be from the zoom level 14 tile. Soundscape iOS GeoJSON tiles were at zoom level 16 so some care has to be taken with style and configuration to ensure that we have the same data available.
 
 `planetiler` cannot do incremental tile generation, it always starts from scratch. The `planet.osm.pbf` can be updated incrementally, but the main time sink is the tile generation. However, this could be argued to be a benefit as any issues creating tiles in one build would hopefully be gone by the next build rather than slowly accruing problems.
