@@ -580,11 +580,14 @@ private fun travellingReverseGeocodeName(
                     StringKey.DirectionsOnRoadAndSettlementSince,
                     spokenRoadName, nearestSettlementName, distanceText, sinceStationName
                 ) ?: "On $spokenRoadName and close to $nearestSettlementName, $distanceText since $sinceStationName",
-                // Keep the station in the dedup key (unlike the distance, which is never
-                // included) - a genuinely new "since {station}" is worth a fresh announcement,
-                // only the ever-climbing distance number itself shouldn't defeat deduping. This
-                // key is never spoken, so it doesn't need localizing.
-                dedupText = "On $roadIdentity and close to $nearestSettlementName since $sinceStationName"
+                // The settlement is left out for the same reason a numbered road's street name is
+                // (see roadDedup): a line holds its identity along its whole length, and at line
+                // speed the nearest settlement changes almost every location update, so keying on
+                // it would re-announce the same stretch of the same journey over and over.
+                // Reaching the next station is what genuinely moves the journey on, so that stays
+                // in the key - unlike the distance to it, which climbs on every call and would
+                // defeat deduping entirely. This key is never spoken, so it needs no localizing.
+                dedupText = "since $sinceStationName"
             )
         }
 
@@ -593,13 +596,20 @@ private fun travellingReverseGeocodeName(
         // settlement mention.
         if (probablyOnTrain) {
             return ReverseGeocodeText(
-                if (nearestSettlementName != null) {
+                text = if (nearestSettlementName != null) {
                     localized?.get(
                         StringKey.DirectionsOnRoadAndSettlement, spokenRoadName, nearestSettlementName
                     ) ?: "On $spokenRoadName and close to $nearestSettlementName"
                 } else {
                     phrase
-                }
+                },
+                // The settlement is out of the key for the same reason as in the "since station"
+                // case above - passing one isn't news about which line we're on. This is the form
+                // used before any station has been tracked, so there's nothing else to mark
+                // progress by and the line alone is the whole key. Equivalent to roadIdentity (a
+                // train never carries a roadRef - see above), but expressed through spokenRoadName
+                // so the compiler can see it's non-null in this branch.
+                dedupText = "On $spokenRoadName"
             )
         }
 
