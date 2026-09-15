@@ -270,6 +270,15 @@ schemes:
         iosAppTests: [ test ]
     run:
       config: Debug
+      # Xcode's Metal instrumentation deadlocks the app. MetalTools/GPUToolsCapture
+      # inject objc retain traffic into Compose's render thread, which then blocks on
+      # the objc sidetable lock while the main thread holds the objc weak-table lock
+      # inside MapLibre's draw (objc_loadWeakRetained on a Kotlin ObjCBackRef) and
+      # waits for a Kotlin/Native GC that can never suspend the render thread. Set
+      # here rather than in Xcode's scheme editor because xcodegen regenerates the
+      # scheme and omits both attributes by default, silently restoring them.
+      enableGPUFrameCaptureMode: disabled
+      enableGPUValidationMode: disabled
     test:
       config: Debug
       targets:
