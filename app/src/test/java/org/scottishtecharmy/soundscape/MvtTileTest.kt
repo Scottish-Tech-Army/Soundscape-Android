@@ -204,6 +204,11 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
                     tp.bearing?.let { set("heading", it.toDouble()) }
                     tp.speed?.let { set("speed", it.toDouble()) }
                     tp.accuracy?.let { set("accuracy", it.toDouble()) }
+                    // Left absent rather than defaulted when the recording carries none: a
+                    // bearing with no accuracy beside it says which way the user was pointed,
+                    // not whether they were moving, and StationaryDetector has to be able to
+                    // tell the two apart.
+                    tp.bearingAccuracyDegrees?.let { set("bearingAccuracy", it.toDouble()) }
                     gpxTimeToEpochMilliseconds(tp.time)?.let { set("time", it.toDouble()) }
                 }
                 fc.addFeature(feature)

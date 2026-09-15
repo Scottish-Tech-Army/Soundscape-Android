@@ -43,4 +43,12 @@ data class GpxTrackPoint(
     val speed: Float? = null,
     val bearing: Float? = null,
     val accuracy: Float? = null,
+    /**
+     * How far [bearing] can be trusted, in degrees. Null where the recording carries no such
+     * figure, which is both a device that doesn't report one and a GPX written by anything other
+     * than [org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder] - the distinction matters
+     * because a bearing with no accuracy beside it says nothing about whether the user is moving,
+     * only which way they were pointed. See StationaryDetector.
+     */
+    val bearingAccuracyDegrees: Float? = null,
 )
