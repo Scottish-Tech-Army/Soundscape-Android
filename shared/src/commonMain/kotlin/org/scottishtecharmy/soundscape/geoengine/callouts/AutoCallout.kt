@@ -262,9 +262,25 @@ class AutoCallout(
         // Recorded on every call (ahead of the throttled checks below) so the sticky windows
         // above track actual vehicle presence as closely as the location updates allow, rather
         // than only being refreshed whenever this callout's own throttle happens to fire.
-        if (userGeometry.inVehicle()) {
+        //
+        // RailMatchArbiter's lock rather than a speed test, because it is the thing that actually
+        // knows whether the user is on a train, and the stretches where speed says otherwise are
+        // exactly the ones these windows exist to cover. Slowing into Falkirk High, sitting at the
+        // platform and pulling away again is one continuous ride the arbiter never lets go of; on
+        // the speed test the refresh stopped the moment the train dropped below vehicle speed on
+        // the approach, so the braking and the first part of the dwell ate the window before the
+        // standing-still freeze could even start, and the passenger was told about the platform
+        // shelters and the steps off the end of the platform as the train pulled out.
+        //
+        // Deliberately the raw lock and not probablyOnTrain(), which is false while a train pulls
+        // away at less than vehicle speed - neither moving fast enough nor standing still any
+        // more - which is precisely the moment the pedestrian callouts used to arrive. A window
+        // is a decaying timer, so refreshing it from a lock that outlives a ride is safe: once
+        // the arbiter does let go, the window runs down from there in the ordinary way.
+        val onTrain = userGeometry.mapMatchedRailway != null
+        if (userGeometry.inVehicle() || onTrain) {
             lastVehicleTimestampMs = userGeometry.timestampMilliseconds
-            if (userGeometry.probablyOnTrain()) {
+            if (onTrain) {
                 lastTrainTimestampMs = userGeometry.timestampMilliseconds
             }
         }
