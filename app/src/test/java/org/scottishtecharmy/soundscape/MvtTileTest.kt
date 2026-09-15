@@ -2974,7 +2974,8 @@ class MvtTileTest {
      * The distance is always computed live (never repeats exactly), so PositionedString.dedupText
      * deliberately excludes it - roadSenseCalloutHistory dedups on that instead of the spoken
      * text, so two calls describing progress since the same station still count as a duplicate
-     * even though the exact metres differ.
+     * even though the exact metres differ. The settlement is excluded for the same reason: at
+     * line speed it changes almost as often as the distance does.
      */
     @Test
     fun testTravelCalloutTracksStationForSinceDistance() {
@@ -3041,9 +3042,16 @@ class MvtTileTest {
             result.text.contains("since Test Station") &&
                 result.text.startsWith("On Fake Railway Line and close to ")
         )
+        // The line and the station it's measured from, and nothing else. The distance is out
+        // because it climbs on every call; the settlement is out because at line speed the
+        // nearest one changes almost as often, and keying on it re-announced the same stretch of
+        // the same journey over and over (the road equivalent is roadDedup collapsing a numbered
+        // road to its ref). Reaching the next station is what actually moves the journey on, so
+        // that alone is what makes this worth saying again.
+        assertEquals("On Fake Railway Line since Test Station", result.dedupText)
 
-        // Further still - the spoken distance moves on, but the dedup key (road, settlement,
-        // station - no distance) stays identical so history can suppress the repeat. It takes a
+        // Further still - the spoken distance moves on, but the dedup key (line and station, as
+        // just asserted) stays identical so history can suppress the repeat. It takes a
         // decent step to change the spoken text, since at this speed the distance is read out in
         // tenths of a kilometre (see formatDistanceAndDirection), and Glasgow Queen Street
         // station is only ~500m further north again.
@@ -3168,6 +3176,12 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals("On Fake Railway Line and close to Cowcaddens", result!!.text)
+        // The settlement is spoken but deliberately kept out of the dedup key: at line speed the
+        // nearest settlement changes almost every location update, and keying on it re-announced
+        // the same line over and over (see the rail dedupText comments in
+        // travellingReverseGeocodeName, and roadDedup for the road equivalent). No station has
+        // been tracked here, so the line alone is the whole key.
+        assertEquals("On Fake Railway Line", result.dedupText)
     }
 
     /**
@@ -4282,7 +4296,7 @@ class MvtTileTest {
     fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
-        val testFile = "PartickToCentral"
+        val testFile = "TransferAtQueenStreet"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
             "gpxFiles/$testFile.txt",
