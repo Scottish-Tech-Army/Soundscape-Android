@@ -3083,6 +3083,21 @@ class MvtTileTest {
             result.text != secondResult.text
         )
         assertEquals(result.dedupText, secondResult.dedupText)
+
+        // Once the ride is over the station it was measured from means nothing, and the callout
+        // goes back to naming the line alone - see LastStationTracker.clear and the ride-ended
+        // check in AutoCallout.buildCalloutForRoadSense. Changing trains at Glasgow Queen Street
+        // used to leave the Edinburgh leg reporting its progress since Partick, three stops back
+        // on a line the passenger had got off.
+        tracker.clear()
+        val afterAlighting = describeReverseGeocode(
+            userGeometryEvenFurtherAlong, gridState, settlementGrid, null, tracker
+        )
+        assertNotNull(afterAlighting)
+        assertFalse(
+            "Expected no since-distance once the ride has ended, got: ${afterAlighting!!.text}",
+            afterAlighting.text.contains("since")
+        )
     }
 
     /**

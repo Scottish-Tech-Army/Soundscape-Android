@@ -269,6 +269,16 @@ class LastStationTracker {
         name = newName
         location = newLocation
     }
+
+    /**
+     * Called when the ride the station was measured on has ended. A distance since a station is a
+     * statement about progress along one journey, and means nothing once that journey is over -
+     * see AutoCallout.buildCalloutForRoadSense, which decides when that has happened.
+     */
+    fun clear() {
+        name = null
+        location = null
+    }
 }
 
 /**

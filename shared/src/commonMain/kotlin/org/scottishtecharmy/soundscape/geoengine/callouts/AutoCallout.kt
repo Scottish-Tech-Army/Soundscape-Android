@@ -285,6 +285,21 @@ class AutoCallout(
             }
         }
 
+        // "1.2 km since Partick" is a statement about progress along one ride, and says nothing
+        // at all once that ride is over. Changing trains at Glasgow Queen Street used to leave the
+        // whole Edinburgh leg reporting its progress since Partick - three stops back, on a
+        // different line, on a train the passenger had got off. The tracker had no way to know:
+        // the first leg arrives at Queen Street Low Level underground, where the fixes stop
+        // altogether, so nothing ever saw an arrival at Queen Street to record in its place.
+        //
+        // recentlyOnTrain rather than the lock alone, so a line picked up again after a tunnel
+        // keeps the station it was measuring from instead of losing it for the next stretch. A
+        // change of trains takes far longer than that window; walking between platforms at Queen
+        // Street took several minutes.
+        if (!onTrain && !recentlyOnTrain(userGeometry)) {
+            lastStationTracker.clear()
+        }
+
         // Deliberately below the bookkeeping above and not at the top of the function: the sticky
         // vehicle/train windows are read by callouts this setting has nothing to do with, so they
         // have to keep being updated whether or not this one is allowed to speak.
