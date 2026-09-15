@@ -4293,8 +4293,9 @@ class MvtTileTest {
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
-                    mapMatchedRailway =
-                        railMatchArbiter.update(mapMatchFilter, railMapMatchFilter, speed),
+                    mapMatchedRailway = railMatchArbiter.update(
+                        mapMatchFilter, railMapMatchFilter, speed, stationary
+                    ),
                     timestampMilliseconds = timestamp,
                     unobservedMillis = unobservedMillis,
                     stationary = stationary,

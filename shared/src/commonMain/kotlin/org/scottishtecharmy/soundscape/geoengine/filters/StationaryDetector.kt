@@ -37,36 +37,42 @@ class StationaryDetector {
     )
 
     /**
-     * How long a stretch of travel the verdict is based on. The separation between standing and
-     * walking was measured over a minute and no shorter window has been validated, so this is the
-     * window the numbers below belong to.
+     * How long a stretch of travel the verdict is based on.
      *
-     * It is also [org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout]'s sticky
-     * vehicle/train window, which is the neat part: a spell of stillness too short to be detected
-     * here is also too short to outlive the window it exists to protect.
+     * Deliberately short. The separation between standing and walking is cleanest over a minute -
+     * 19.4m against 66.4m, a 47m gap - but a minute is far too slow for the thing that needs this
+     * most: RailMatchArbiter gives up on a ride about five seconds after a train stops, and the
+     * recorded station dwells are often shorter than a minute, so a minute-long window would still
+     * be making its mind up long after the ride had been lost.
+     *
+     * Measured at every length from 15s up, 25s is the shortest that still separates the two with
+     * no error in either direction. 30s is the shortest with a margin worth having: standing
+     * reaches 21.8m at the 90th percentile against walking's 34.6m at the 10th, a 14m gap, where
+     * 15s leaves under 5m and starts misreading both.
      */
-    private val windowMillis = 60_000L
+    private val windowMillis = 30_000L
 
     /**
      * How far the user may have got from where they were a [windowMillis] ago and still count as
-     * not having gone anywhere. The measured optimum: stationary windows reach 19.4m at the 90th
-     * percentile, walking ones start at 66.4m, and nothing measured sits between.
+     * not having gone anywhere. Over 30s, standing reaches 21.8m at the 90th percentile and 24.9m
+     * at its very worst, while walking starts at 34.6m.
      */
-    private val stationaryMetres = 20.0
+    private val stationaryMetres = 25.0
 
     /**
-     * How far they have to get before we accept they are moving again, and separately how far they
-     * may wander within the window while still counting as standing. Above [stationaryMetres] so
-     * the verdict doesn't chatter for a window sitting on the boundary, and far enough below
-     * walking's 66.4m that it cannot mistake a walk for a wander.
-     *
-     * As an excursion limit it stops an out-and-back - forty metres to a departure board and
-     * forty back inside the same minute - reading as standing still, since net displacement alone
-     * cannot see it. Measured against the recordings it never fires on a genuinely stationary
-     * window: labelling those by displacement alone, the furthest any of them strays from the
-     * anchor is 23.6m.
+     * How far they have to get before we accept they are moving again. Above [stationaryMetres] so
+     * the verdict doesn't chatter for a window sitting on the boundary, and below walking's 34.6m
+     * so it cannot mistake a walk for a wander.
      */
     private val movingMetres = 30.0
+
+    // There is deliberately no out-and-back test here. Over a minute-long window one is worth
+    // having, because forty metres to a departure board and forty back is a comfortable walk and
+    // leaves no net displacement to see. Over thirty seconds it cannot earn its place: walking
+    // pace only reaches about 21m out and back in the time, while genuinely stationary windows in
+    // the recordings stray up to 33m from where they started, so any limit tight enough to catch
+    // the walk would reject real stillness first. Someone who is back where they started within
+    // half a minute has not gone anywhere, which is the question being asked.
 
     /**
      * How good a fix has to be to say anything about a 20m question. A deliberately stricter gate
@@ -205,6 +211,15 @@ class StationaryDetector {
         if (isStationary) {
             val trustworthy = samples.takeLast(courseSamples).count { it.courseIsTrustworthy }
             if (trustworthy >= courseEscapeCount) {
+                // Start the window again from here rather than just answering false. The window
+                // still holds a spell of standing about, so the displacement test would say
+                // "stationary" again on the very next fix and the verdict would flip back and
+                // forth every tick. Having decided they have started moving, the evidence that
+                // they were not is stale, and they have to stand still for another full window to
+                // be believed still again.
+                val newest = samples.last()
+                samples.clear()
+                samples.addLast(newest)
                 displacementMetres = null
                 return false
             }
@@ -222,8 +237,6 @@ class StationaryDetector {
 
         val displacement = ruler.distance(anchor.location, newest.location)
         displacementMetres = displacement
-        val excursion = samples.maxOf { ruler.distance(anchor.location, it.location) }
-        if (excursion > movingMetres) return false
 
         // Hysteresis: harder to be believed moving again than it was to be believed still, so a
         // window sitting on the boundary doesn't flip back and forth.

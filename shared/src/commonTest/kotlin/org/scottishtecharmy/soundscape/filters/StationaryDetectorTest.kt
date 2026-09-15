@@ -11,10 +11,11 @@ import kotlin.test.assertTrue
 
 /**
  * The numbers these tests are built from are measurements, not invented: they come from four real
- * recorded journeys (TransferAtQueenStreet, ToWaverley, FromWaverley, ToMilngavie), taken over 60s
- * windows with fixes accurate to 25m or better. Standing still, net displacement across the window
- * reaches 19.4m at the 90th percentile; walking, it starts at 66.4m. The jitter offsets below are
- * fixed rather than randomly generated so a failure is always the same failure.
+ * recorded journeys (TransferAtQueenStreet, ToWaverley, FromWaverley, ToMilngavie), taken over
+ * windows with fixes accurate to 25m or better. Over the detector's 30s window, standing still
+ * reaches 21.8m of net displacement at the 90th percentile and 24.9m at its very worst, while
+ * walking starts at 34.6m. The jitter offsets below are fixed rather than randomly generated so a
+ * failure is always the same failure.
  */
 class StationaryDetectorTest {
 
@@ -53,16 +54,16 @@ class StationaryDetectorTest {
     }
 
     @Test
-    fun testStandingStillIsOnlyDecidedOnceTheMinuteIsUp() {
+    fun testStandingStillIsOnlyDecidedOnceTheWindowIsUp() {
         val detector = StationaryDetector()
 
-        assertFalse(detector.run(30, 0L) { jitter(it, 8.0) }, "not decided after 30s")
-        assertFalse(detector.run(29, 30_000L) { jitter(it, 8.0) }, "not decided after 59s")
-        assertTrue(detector.run(2, 59_000L) { jitter(it, 8.0) }, "decided once the minute is up")
+        assertFalse(detector.run(15, 0L) { jitter(it, 8.0) }, "not decided after 15s")
+        assertFalse(detector.run(14, 15_000L) { jitter(it, 8.0) }, "not decided after 29s")
+        assertTrue(detector.run(2, 29_000L) { jitter(it, 8.0) }, "decided once the window is up")
     }
 
     @Test
-    fun testAMinuteOfWalkingIsNeverStill() {
+    fun testWalkingIsNeverStill() {
         // 1.3 m/s is the measured median walking pace, 1.1 m/s the 10th percentile - the slowest
         // walk in the recordings, and so the hardest case to tell from standing about.
         for (pace in listOf(1.3, 1.1)) {
@@ -78,11 +79,11 @@ class StationaryDetectorTest {
 
     @Test
     fun testStandingStillSurvivesTheWorstMeasuredJitter() {
-        // A cloud sized to the 90th-percentile stationary window - the Queen Street concourse.
+        // A cloud sized to the 90th-percentile stationary window over 30s - Queen Street.
         val detector = StationaryDetector()
-        assertTrue(detector.run(61, 0L) { jitter(it, 9.7) })
-        for (second in 61 until 600) {
-            val stationary = detector.update(jitter(second, 9.7), 10.0, false, second * 1000L)
+        assertTrue(detector.run(31, 0L) { jitter(it, 10.9) })
+        for (second in 31 until 600) {
+            val stationary = detector.update(jitter(second, 10.9), 10.0, false, second * 1000L)
             assertTrue(stationary, "flipped out of stationary at ${second}s")
         }
     }
@@ -128,7 +129,7 @@ class StationaryDetectorTest {
 
     @Test
     fun testPoorFixesAreNotEvidence() {
-        // 40m fixes pass the geoengine's own 50m gate but say nothing about a 20m question.
+        // 40m fixes pass the geoengine's own 50m gate but say nothing about a 25m question.
         val detector = StationaryDetector()
         assertFalse(detector.run(300, 0L, accuracy = 40.0) { jitter(it, 8.0) })
     }
@@ -137,7 +138,7 @@ class StationaryDetectorTest {
     fun testAFixWithoutAccuracyStillCounts() {
         // Street Preview and hand-written GPX carry no accuracy, and must still get a verdict.
         val detector = StationaryDetector()
-        assertTrue(detector.run(61, 0L, accuracy = null) { jitter(it, 8.0) })
+        assertTrue(detector.run(31, 0L, accuracy = null) { jitter(it, 8.0) })
     }
 
     @Test
@@ -148,31 +149,18 @@ class StationaryDetectorTest {
         // Five minutes later, three metres away. That pair is not evidence that anybody stood
         // there for five minutes.
         assertFalse(detector.update(at(3.0, 0.0), 10.0, false, 421_000L))
-        assertFalse(detector.run(30, 422_000L) { jitter(it, 8.0) }, "30s in, still undecided")
-        assertTrue(detector.run(31, 452_000L) { jitter(it, 8.0) }, "decided a full minute later")
-    }
-
-    @Test
-    fun testThereAndBackIsNotStandingStill() {
-        // Forty metres to a departure board and forty back inside the window. Net displacement
-        // alone cannot see this; the excursion limit can.
-        val detector = StationaryDetector()
-        var stationary = false
-        for (second in 0 until 61) {
-            val north = if (second <= 30) second * 1.3 else (60 - second) * 1.3
-            stationary = detector.update(at(0.0, north), 10.0, false, second * 1000L)
-        }
-        assertFalse(stationary, "an out-and-back read as standing still")
+        assertFalse(detector.run(20, 422_000L) { jitter(it, 8.0) }, "20s in, still undecided")
+        assertTrue(detector.run(15, 442_000L) { jitter(it, 8.0) }, "decided a full window later")
     }
 
     @Test
     fun testStationaryMillisCountsOnlyObservedStillness() {
         val detector = StationaryDetector()
-        // Two minutes of standing, of which only the time after the first minute - once the window
-        // had decided - is credited.
+        // Two minutes of standing, of which only the time after the window had filled and decided
+        // is credited.
         detector.run(121, 0L) { jitter(it, 8.0) }
-        assertTrue(detector.stationaryMillis in 55_000L..65_000L,
-            "expected about 60s of observed stillness, got ${detector.stationaryMillis}")
+        assertTrue(detector.stationaryMillis in 85_000L..95_000L,
+            "expected about 90s of observed stillness, got ${detector.stationaryMillis}")
 
         // A gap is not stillness, however still the fixes either side of it are.
         val before = detector.stationaryMillis
@@ -183,7 +171,7 @@ class StationaryDetectorTest {
     @Test
     fun testOutOfOrderFixesAreIgnored() {
         val detector = StationaryDetector()
-        assertTrue(detector.run(61, 0L) { jitter(it, 8.0) })
+        assertTrue(detector.run(31, 0L) { jitter(it, 8.0) })
         val stillness = detector.stationaryMillis
         assertTrue(detector.update(jitter(0, 8.0), 10.0, false, 30_000L), "a step back in time")
         assertEquals(stillness, detector.stationaryMillis)
@@ -192,9 +180,9 @@ class StationaryDetectorTest {
     @Test
     fun testDisplacementIsOnlyReportedOnceDecided() {
         val detector = StationaryDetector()
-        detector.run(30, 0L) { jitter(it, 8.0) }
+        detector.run(15, 0L) { jitter(it, 8.0) }
         assertNull(detector.displacementMetres, "no displacement before the window fills")
-        detector.run(31, 30_000L) { jitter(it, 8.0) }
-        assertTrue((detector.displacementMetres ?: 999.0) < 20.0)
+        detector.run(16, 15_000L) { jitter(it, 8.0) }
+        assertTrue((detector.displacementMetres ?: 999.0) < 25.0)
     }
 }

@@ -575,7 +575,8 @@ class GeoEngine {
                                 // them: a ride can only end somewhere the train has slowed enough
                                 // to be got off at.
                                 arbitratedRailway = railMatchArbiter.update(
-                                    mapMatchFilter, railMapMatchFilter, unfilteredSpeed
+                                    mapMatchFilter, railMapMatchFilter, unfilteredSpeed,
+                                    userStationary
                                 )
                             }
                         }

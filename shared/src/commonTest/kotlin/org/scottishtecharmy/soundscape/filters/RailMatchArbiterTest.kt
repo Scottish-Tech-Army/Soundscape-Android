@@ -110,8 +110,10 @@ class RailMatchArbiterTest {
             "Should be on a train by now",
         )
 
-        // A line running briefly beside a road shouldn't flip the callouts back and forth.
-        repeat(5) {
+        // A line running briefly beside a road shouldn't flip the callouts back and forth. At a
+        // stop the tolerance is releaseTicksAtAStop, long enough for StationaryDetector to say
+        // whether the passenger has actually gone anywhere.
+        repeat(35) {
             assertEquals(
                 railway,
                 arbiter.update(road(1.0), railAtAStop(30.0), stopped),
@@ -224,7 +226,9 @@ class RailMatchArbiterTest {
         val arbiter = RailMatchArbiter()
         repeat(11) { arbiter.update(noMatch(), rail(2.0), travelling) }
 
-        repeat(5) { arbiter.update(road(4.0), railAtAStop(40.0), stopped) }
+        // releaseTicksAtAStop, not releaseTicks: at a stop the arbiter waits to be told whether
+        // the passenger moved, rather than assuming from five ticks of geometry that they did.
+        repeat(35) { arbiter.update(road(4.0), railAtAStop(40.0), stopped) }
         assertNull(
             arbiter.update(road(4.0), railAtAStop(40.0), stopped),
             "A fix 40m from the line and 4m from a road, at a stopped train, is on the road",
@@ -286,5 +290,74 @@ class RailMatchArbiterTest {
             arbiter.update(road(1.0), railTunnel(8.0, confident = false), travelling),
             "Walking away from the line underground should end the train journey",
         )
+    }
+
+    /**
+     * The Falkirk High case, and what StationaryDetector exists for. A train dwelling at a station
+     * satisfies every condition this class used to end a ride on: stopped, within reach of a stop,
+     * and - because platform GPS in a cutting or under a canopy is routinely 10-20m out - further
+     * off the line than onTheLineDistanceMetres, with the station approach road nearer still.
+     *
+     * Somebody who has not gone anywhere has not got off, however long the train sits there. The
+     * recorded dwells run to 340 seconds, far past the five updates releaseTicks allows.
+     */
+    @Test
+    fun testATrainAtAStandKeepsItsLine() {
+        val arbiter = RailMatchArbiter()
+        repeat(11) { arbiter.update(noMatch(), rail(2.0), travelling) }
+
+        repeat(350) {
+            assertEquals(
+                railway,
+                arbiter.update(road(4.0), railAtAStop(40.0), stopped, stationary = true),
+                "A dwell at a station is not the end of a ride",
+            )
+        }
+    }
+
+    /**
+     * The other half of the same judgement: stepping off and walking away does end it. The only
+     * difference from the test above is that the user has actually gone somewhere, which is
+     * exactly the distinction the old speed-only test could not make.
+     */
+    @Test
+    fun testWalkingAwayFromTheStandEndsTheRide() {
+        val arbiter = RailMatchArbiter()
+        repeat(11) { arbiter.update(noMatch(), rail(2.0), travelling) }
+
+        repeat(35) { arbiter.update(road(4.0), railAtAStop(40.0), stopped, stationary = false) }
+        assertNull(
+            arbiter.update(road(4.0), railAtAStop(40.0), stopped, stationary = false),
+            "Walking off the platform should end the ride",
+        )
+    }
+
+    /**
+     * Standing on a platform must never *earn* a lock, only hold one. Inside a station there is
+     * often no confident road match, so railBeatsRoad has nothing to weigh the line against and
+     * says yes - which is why acquisition needs a speed of its own now that being stationary can
+     * keep a ride alive.
+     */
+    @Test
+    fun testAStandDoesNotEarnALock() {
+        val arbiter = RailMatchArbiter()
+        repeat(200) {
+            assertNull(
+                arbiter.update(noMatch(), rail(2.0), stopped, stationary = true),
+                "Standing beside a line is not boarding a train",
+            )
+        }
+    }
+
+    /** And neither does walking along beside one - a platform, or a path by the tracks. */
+    @Test
+    fun testAPedestrianBesideTheLineNeverAcquiresATrain() {
+        val arbiter = RailMatchArbiter()
+        repeat(200) {
+            assertNull(
+                arbiter.update(noMatch(), rail(2.0), 1.3),
+                "Walking pace beside a line is not a train",
+            )
+        }
     }
 }

@@ -93,6 +93,23 @@ class RailMatchArbiter {
     private val releaseTicks = 5
 
     /**
+     * How many failing updates to tolerate where the ride really could be ending - stopped, within
+     * reach of a stop - before giving it up.
+     *
+     * Much longer than [releaseTicks], because this is the one place where the thing that settles
+     * the question takes time to answer. Whether the passenger has got off is the question "have
+     * they gone anywhere", and StationaryDetector cannot answer it until its window has filled,
+     * around thirty seconds after the train stops. Releasing on the ordinary five ticks means the
+     * ride is over about five seconds into a dwell - twenty-five seconds before anything is in a
+     * position to say it shouldn't have been.
+     *
+     * So at a stop the arbiter waits long enough to be told. The cost is that a ride the passenger
+     * really did leave takes this long to end, which is a good deal: they are walking up a platform
+     * at the time, and AutoCallout's sticky windows cover the changeover anyway.
+     */
+    private val releaseTicksAtAStop = 35
+
+    /**
      * How near the line the fix has to stay, within reach of a stop, for the railway to go on
      * explaining it by itself. A train is on the track, so its fixes sit within a few metres of the
      * centreline even in a city - through Yorkhill and Kelvinhaugh the Argyle Line match ran 3-10m,
@@ -121,22 +138,62 @@ class RailMatchArbiter {
     private var onTrain = false
 
     /**
+     * The line the ride is on, kept so that it can go on being reported through a tick or two
+     * where the matcher has no way to offer - see the confidence-without-a-way case in [update].
+     */
+    private var lastRailway: Way? = null
+
+    /**
      * Call once per location update, after both filters have been run for that location. Returns
      * the railway [Way] to treat the user as travelling on, or null if they're not on a train.
      */
-    fun update(road: MapMatchFilter, rail: MapMatchFilter, speed: Double): Way? =
-        update(road.matchState(), rail.railMatchState(stopWithinReachMetres), speed)
+    fun update(
+        road: MapMatchFilter,
+        rail: MapMatchFilter,
+        speed: Double,
+        stationary: Boolean = false
+    ): Way? =
+        update(road.matchState(), rail.railMatchState(stopWithinReachMetres), speed, stationary)
 
-    fun update(road: MatchState, rail: MatchState, speed: Double): Way? {
+    /**
+     * [stationary] is StationaryDetector's verdict - whether the user has actually gone anywhere
+     * lately, which instantaneous speed cannot say. Defaulted because the existing tests are all
+     * about a train at line speed, where it is false and irrelevant; the two production-shaped
+     * callers (GeoEngine, MvtTileTest.testMovingGrid) pass it explicitly.
+     */
+    fun update(
+        road: MatchState,
+        rail: MatchState,
+        speed: Double,
+        stationary: Boolean = false
+    ): Way? {
         val railway = rail.way.takeIf { rail.confident }
         if (railway == null) {
+            // A confident match with no way to show for it is not a contradiction: MapMatchFilter
+            // deliberately holds its confidence for a few ticks after matchedWay goes null,
+            // because a real journey loses every candidate for a tick at points and junctions and
+            // picks one straight back up - see GRACE_TICKS_AFTER_LOSING_CONFIDENCE, whose comment
+            // is about exactly this, "a real, continuous train journey".
+            //
+            // Ending the ride here threw that grace away before it could be used. On
+            // TransferAtQueenStreet it accounted for 24 of 31 ride endings, most of them lasting a
+            // tick or two before the line came straight back. So hold the line we were on, the
+            // same way the dropout path below does, rather than reporting no train at all.
+            //
+            // Standing still is reason enough not to count it against the ride at all: somebody
+            // who has not gone anywhere has not stepped off, whatever the matcher can see this
+            // tick. They will start moving eventually, and that is what ends it.
+            if (onTrain && stationary) return lastRailway
             fail()
-            return null
+            return if (onTrain) lastRailway else null
         }
+        lastRailway = railway
 
         if (onTrain) {
-            if (!railStillExplainsThePosition(road, rail, speed)) {
-                fail()
+            if (!railStillExplainsThePosition(road, rail, speed, stationary)) {
+                // Where the ride could actually be ending, wait long enough for the stationary
+                // detector to have an opinion about whether it has - see releaseTicksAtAStop.
+                fail(if (rail.nearAStop) releaseTicksAtAStop else releaseTicks)
                 // Keep reporting the railway through a short dropout - a ride shouldn't end over a
                 // tick or two of doubt.
                 return if (onTrain) railway else null
@@ -154,6 +211,18 @@ class RailMatchArbiter {
         // out however long the road runs over the tunnel - and means a metro ride is only picked up
         // where its line comes to the surface.
         if (rail.inTunnel) {
+            fail()
+            return null
+        }
+
+        // A train ride starts at train speed. Inside a station there is often no confident road
+        // match to weigh a railway against, so railBeatsRoad below returns true on its "nothing to
+        // compare with" branch, and ten ticks of standing on a platform used to be enough to earn
+        // a lock. That was harmless only because probablyOnTrain() tested inVehicle() from the
+        // outside; now that a stationary user can be reckoned to be on a train, the check has to
+        // live in here instead. Costs nothing on a real journey, which holds line speed for
+        // minutes, and makes onTrain mean what its name says.
+        if (speed <= UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS) {
             fail()
             return null
         }
@@ -178,7 +247,8 @@ class RailMatchArbiter {
     private fun railStillExplainsThePosition(
         road: MatchState,
         rail: MatchState,
-        speed: Double
+        speed: Double,
+        stationary: Boolean
     ): Boolean {
         // Underground the road overhead is routinely *nearer* the fix than the line is - measured
         // through the Charing Cross tunnel, 0.1-11m to Kent Road against 0.3-8m to the tunnel
@@ -190,6 +260,19 @@ class RailMatchArbiter {
         // are indistinguishable on speed alone - which is why this only ever holds a lock, and
         // never earns one.
         if (speed > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS) return true
+
+        // Stopped dead, and still exactly where the train stopped. A station dwell is not the end
+        // of a ride: the recorded journeys dwell for anything from 17 to 340 seconds, and somebody
+        // who has not moved twenty metres in a minute has not stepped off onto anything. Platform
+        // GPS routinely wanders well past onTheLineDistanceMetres - a fix in a cutting or under a
+        // canopy is 10-20m out at best - so without this the station approach road below is the
+        // better fit for a position nobody is actually travelling on, and the ride ends at every
+        // stop. On TransferAtQueenStreet, three rail legs used to produce 77 of these endings.
+        //
+        // No time limit, deliberately: what ends this is the user displacing, not a clock. Getting
+        // off a train always involves walking away from it eventually, so it settles itself, and
+        // any limit short enough to be useful would be shorter than a 340s dwell.
+        if (stationary) return true
 
         // Slowed down, but between stops, so there is still nothing to get off at. This is what a
         // service road passing over the line at Kelvinhaugh - or a road running beside it for a
@@ -222,11 +305,12 @@ class RailMatchArbiter {
         ticksSinceLastPass = 0
     }
 
-    private fun fail() {
+    private fun fail(tolerance: Int = releaseTicks) {
         consecutivePasses = 0
         ticksSinceLastPass++
-        if (ticksSinceLastPass > releaseTicks) {
+        if (ticksSinceLastPass > tolerance) {
             onTrain = false
+            lastRailway = null
         }
     }
 }
