@@ -28,8 +28,13 @@ packages:
     url: https://github.com/realm/realm-swift
     from: 20.0.4
   Firebase:
+    # Pinned exactly, like MapLibre above. `from:` is a >=12.18.0 <13.0.0 range, and
+    # Package.resolved isn't committed (it lives inside the generated, gitignored
+    # .xcodeproj), so CI resolved whatever was newest at build time. A release shipped
+    # on GoogleAppMeasurement 12.19.0 while local builds were still on 12.18.0, which
+    # is how the -ObjC crash below reached users without reproducing for anyone here.
     url: https://github.com/firebase/firebase-ios-sdk
-    from: 12.18.0
+    version: 12.19.0
 targets:
   iosApp:
     type: application
@@ -141,8 +146,21 @@ targets:
         FRAMEWORK_SEARCH_PATHS:
           - "$(inherited)"
           - "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
-        OTHER_LINKER_FLAGS:
+        # OTHER_LDFLAGS, not OTHER_LINKER_FLAGS: the latter isn't a build setting Xcode
+        # recognises, so everything in it was silently dropped. `-framework Shared` was
+        # inert but harmless, because `import Shared` makes Swift autolink the framework
+        # anyway. -ObjC was not harmless - see below.
+        OTHER_LDFLAGS:
           - "$(inherited)"
+          # GoogleAppMeasurement ships its Objective-C categories in object files that
+          # export a dummy _APMInclude<Name>Category symbol, referenced from
+          # APMMeasurement.o, so the linker keeps them without -ObjC. 12.19.0 added
+          # APMMeasurement+SBT.o and forgot the anchor: it defines nothing any other
+          # member references, so the linker drops it, and the -[self fetchSBT] calls in
+          # APMMeasurement.o (startMeasurementOnWorkerQueue, updateSchedule, uploadData,
+          # networkRemoteConfigFetchCompletionHandler:data:error:) become
+          # "NSInvalidArgumentException -[APMMeasurement fetchSBT]: unrecognized selector".
+          - "-ObjC"
           - "-framework"
           - "Shared"
         CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
