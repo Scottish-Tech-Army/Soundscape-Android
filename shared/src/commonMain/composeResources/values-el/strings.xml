@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">Αναγγελία στάσεων λεωφορείου και τραμ καθώς τις προσπερνάτε</string>
     <string name="directions_approaching_name">Πλησιάζετε %1$s</string>
     <string name="directions_generic_tram">τραμ</string>
+    <string name="ios_permission_location_when_in_use">Το Soundscape χρειάζεται την τοποθεσία σας για να παρέχει ηχητική πλοήγηση και να περιγράφει το περιβάλλον σας.</string>
+    <string name="ios_permission_location_always">Το Soundscape χρειάζεται την τοποθεσία σας για να παρέχει ηχητική πλοήγηση ακόμη και όταν η εφαρμογή βρίσκεται στο παρασκήνιο.</string>
+    <string name="ios_permission_motion">Το Soundscape χρησιμοποιεί δεδομένα κίνησης για να εντοπίζει την κατεύθυνση προς την οποία κοιτάτε και να προσανατολίζει τις ηχητικές επεξηγήσεις ως προς το περιβάλλον σας.</string>
+    <string name="ios_permission_bluetooth">Το Soundscape χρησιμοποιεί Bluetooth για να εντοπίζει ακουστικά με παρακολούθηση κεφαλής και άλλες συσκευές ήχου και να συνδέεται σε αυτά.</string>
 </resources>
