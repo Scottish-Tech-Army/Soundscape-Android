@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">Busz- és villamosmegállók bemondása, amikor elhalad mellettük</string>
     <string name="directions_approaching_name">Közeledés ide: %1$s</string>
     <string name="directions_generic_tram">villamos</string>
+    <string name="ios_permission_location_when_in_use">A Soundscape-nek szüksége van a tartózkodási helyére, hogy hangos navigációt nyújtson és leírja a környezetét.</string>
+    <string name="ios_permission_location_always">A Soundscape-nek szüksége van a tartózkodási helyére, hogy hangos navigációt nyújtson akkor is, amikor az alkalmazás a háttérben fut.</string>
+    <string name="ios_permission_motion">A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, és a hangos bejelentéseket a környezetéhez igazítsa.</string>
+    <string name="ios_permission_bluetooth">A Soundscape Bluetooth-t használ a fejkövetést támogató fejhallgatók és egyéb hangeszközök megkereséséhez és a hozzájuk való csatlakozáshoz.</string>
 </resources>
