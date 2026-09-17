@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">Ilmoita linja-auto- ja raitiovaunupysäkeistä, kun ohitat ne</string>
     <string name="directions_approaching_name">Lähestytään kohdetta %1$s</string>
     <string name="directions_generic_tram">raitiovaunu</string>
+    <string name="ios_permission_location_when_in_use">Soundscape tarvitsee sijaintisi tarjotakseen ääninavigointia ja kuvaillakseen ympäristöäsi.</string>
+    <string name="ios_permission_location_always">Soundscape tarvitsee sijaintisi tarjotakseen ääninavigointia myös silloin, kun sovellus on taustalla.</string>
+    <string name="ios_permission_motion">Soundscape käyttää liikedataa tunnistaakseen, mihin suuntaan olet kääntyneenä, ja suunnatakseen ääni-ilmoitukset ympäristöösi.</string>
+    <string name="ios_permission_bluetooth">Soundscape käyttää Bluetoothia löytääkseen pään seurantaa tukevat kuulokkeet ja muut äänilaitteet ja muodostaakseen niihin yhteyden.</string>
 </resources>
