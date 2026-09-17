@@ -18,7 +18,7 @@ Plutôt que de fournir des indications virage par virage, Soundscape agit comme 
 - **Marqueurs et itinéraires** - Enregistrez vos emplacements préférés et créez des itinéraires de marche entre eux. L'application vous guide le long de l'itinéraire en passant automatiquement au point de repère suivant à mesure que vous arrivez.
 - **Aperçu des rues** - Explorez virtuellement un secteur inconnu avant de vous y rendre, afin de gagner en confiance et en familiarité.
 
-L'application continue de fonctionner en arrière-plan lorsque le téléphone est dans une poche ou un sac - pas besoin de le tenir ni de regarder un écran. Elle est entièrement gratuite, sans publicité ni collecte de données, et la version Android peut fonctionner hors ligne à l'aide de régions de carte téléchargées.
+L'application continue de fonctionner en arrière-plan lorsque le téléphone est dans une poche ou un sac - pas besoin de le tenir ni de regarder un écran. Elle est entièrement gratuite et sans publicité, et elle peut fonctionner hors ligne à l'aide de régions de carte téléchargées. L'application envoie toutefois des statistiques d'utilisation et des rapports de plantage afin que nous puissions trouver et corriger les problèmes : la [politique de confidentialité]({{ "/privacy-policy.html" | relative_url }}) explique exactement ce qui est recueilli.
 
 Soundscape a été développé à l'origine sur iOS par [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) et était largement utilisé avant d'être passé en code source ouvert en 2022. La [Scottish Tech Army](https://www.scottishtecharmy.org) l'a maintenu disponible sur iOS et l'a également réécrit en tant qu'application Android à code source ouvert.
 

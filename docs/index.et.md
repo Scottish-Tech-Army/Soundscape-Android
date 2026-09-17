@@ -18,7 +18,7 @@ Selle asemel et anda pöörete kaupa juhiseid, toimib Soundscape nagu majakas k�
 - **Märgid ja marsruudid** – Salvesta lemmikkohad ja loo nende vahele jalgsimarsruute. Rakendus juhatab sind mööda marsruuti ja liigub kohale jõudmisel automaatselt järgmisse teekonnapunkti.
 - **Tänavaeelvaade** – Uuri võõrast piirkonda virtuaalselt enne külastamist, et saada enesekindlust ja tuttavlikkust.
 
-Rakendus töötab taustal edasi, kui telefon on taskus või kotis – seda ei pea käes hoidma ega ekraani vaatama. See on täiesti tasuta, ilma reklaamide ja andmekogumiseta, ning Androidi versioon saab töötada võrguühenduseta alla laaditud kaardipiirkondade abil.
+Rakendus töötab taustal edasi, kui telefon on taskus või kotis – seda ei pea käes hoidma ega ekraani vaatama. See on täiesti tasuta ja reklaamivaba ning see saab töötada võrguühenduseta alla laaditud kaardipiirkondade abil. Rakendus saadab siiski kasutusstatistikat ja krahhiaruandeid, et saaksime probleeme leida ja parandada – [privaatsuspoliitika]({{ "/privacy-policy.html" | relative_url }}) selgitab täpselt, mida kogutakse.
 
 Soundscape'i arendas algselt iOS-i jaoks [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) ja seda kasutati laialdaselt, enne kui see 2022. aastal avatud lähtekoodiga muutus. [Scottish Tech Army](https://www.scottishtecharmy.org) on hoidnud selle iOS-is saadaval ja lisaks kirjutanud selle uuesti avatud lähtekoodiga Androidi rakendusena.
 

@@ -18,7 +18,7 @@ Anstatt Abbiegehinweise zu geben, wirkt Soundscape wie ein Leuchtturm für die O
 - **Markierungen und Routen** – Speichern Sie Lieblingsorte und erstellen Sie Gehrouten zwischen ihnen. Die App führt Sie entlang der Route und wechselt bei Ihrer Ankunft automatisch zum nächsten Wegpunkt.
 - **Straßenvorschau** – Erkunden Sie ein unbekanntes Gebiet virtuell vor einem Besuch, um Selbstvertrauen und Vertrautheit aufzubauen.
 
-Die App arbeitet im Hintergrund weiter, wenn sich das Telefon in einer Tasche oder einem Beutel befindet – Sie müssen es nicht festhalten oder auf einen Bildschirm schauen. Sie ist vollständig kostenlos, ohne Werbung oder Datenerfassung, und die Android-Version kann mithilfe heruntergeladener Kartenregionen offline funktionieren.
+Die App arbeitet im Hintergrund weiter, wenn sich das Telefon in einer Tasche oder einem Beutel befindet – Sie müssen es nicht festhalten oder auf einen Bildschirm schauen. Sie ist vollständig kostenlos und werbefrei, und sie kann mithilfe heruntergeladener Kartenregionen offline funktionieren. Die App sendet allerdings Nutzungsstatistiken und Absturzberichte, damit wir Probleme finden und beheben können – die [Datenschutzerklärung]({{ "/privacy-policy.html" | relative_url }}) erklärt genau, was erfasst wird.
 
 Soundscape wurde ursprünglich auf iOS von [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) entwickelt und war weit verbreitet, bevor es 2022 quelloffen wurde. Die [Scottish Tech Army](https://www.scottishtecharmy.org) hat es auf iOS verfügbar gehalten und es außerdem als quelloffene Android-App neu geschrieben.
 

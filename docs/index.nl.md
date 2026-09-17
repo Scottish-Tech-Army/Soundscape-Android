@@ -18,7 +18,7 @@ In plaats van stap-voor-stap-routebeschrijvingen te geven, werkt Soundscape als 
 - **Markeringen en routes** - Sla favoriete locaties op en maak wandelroutes tussen die locaties. De app leidt u langs de route en gaat automatisch naar het volgende routepunt zodra u aankomt.
 - **Straatvoorbeeld** - Verken een onbekend gebied virtueel voordat u het bezoekt, om vertrouwen en bekendheid op te bouwen.
 
-De app blijft op de achtergrond werken wanneer de telefoon in een zak of tas zit - u hoeft hem niet vast te houden of naar een scherm te kijken. De app is volledig gratis, zonder advertenties of gegevensverzameling, en de Android-versie kan offline werken met behulp van gedownloade kaartregio's.
+De app blijft op de achtergrond werken wanneer de telefoon in een zak of tas zit - u hoeft hem niet vast te houden of naar een scherm te kijken. De app is volledig gratis en zonder advertenties, en de app kan offline werken met behulp van gedownloade kaartregio's. De app stuurt wel gebruiksstatistieken en crashrapporten zodat we problemen kunnen vinden en oplossen - het [privacybeleid]({{ "/privacy-policy.html" | relative_url }}) legt precies uit wat er wordt verzameld.
 
 Soundscape is oorspronkelijk op iOS ontwikkeld door [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) en werd op grote schaal gebruikt voordat het in 2022 als open source werd vrijgegeven. Het [Scottish Tech Army](https://www.scottishtecharmy.org) heeft het op iOS beschikbaar gehouden en het ook herschreven als een open-source Android-app.
 

@@ -18,7 +18,7 @@ Umjesto davanja uputa skretanje po skretanje, Soundscape djeluje poput svjetioni
 - **Oznake i rute** – Spremite omiljena mjesta i stvorite pješačke rute među njima. Aplikacija vas vodi rutom i po dolasku automatski prelazi na sljedeću točku.
 - **Pregled ulice** – Virtualno istražite nepoznato područje prije posjeta, kako biste stekli sigurnost i upoznatost.
 
-Aplikacija nastavlja raditi u pozadini dok je telefon u džepu ili torbi – nema potrebe držati ga ni gledati u zaslon. Potpuno je besplatna, bez oglasa i prikupljanja podataka, a verzija za Android može raditi izvanmrežno pomoću preuzetih regija karata.
+Aplikacija nastavlja raditi u pozadini dok je telefon u džepu ili torbi – nema potrebe držati ga ni gledati u zaslon. Potpuno je besplatna i bez oglasa, a može raditi izvanmrežno pomoću preuzetih regija karata. Aplikacija ipak šalje statistiku korištenja i izvješća o rušenju kako bismo mogli pronaći i ispraviti probleme – [pravila o privatnosti]({{ "/privacy-policy.html" | relative_url }}) objašnjavaju točno što se prikuplja.
 
 Soundscape je izvorno za iOS razvio [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) i bio je široko korišten prije nego što je 2022. postao otvorenog koda. [Scottish Tech Army](https://www.scottishtecharmy.org) održao ga je dostupnim na iOS-u i k tome ga je iznova napisao kao Android aplikaciju otvorenog koda.
 

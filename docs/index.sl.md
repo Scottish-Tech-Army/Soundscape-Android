@@ -18,7 +18,7 @@ Namesto navodil za vsak zavoj deluje Soundscape kot svetilnik za ušesa. Prek st
 - **Oznake in poti** – Shranite priljubljene kraje in med njimi ustvarite peš poti. Aplikacija vas vodi po poti in ob prihodu samodejno preide na naslednjo točko.
 - **Predogled ulice** – Neznano območje raziščite navidezno pred obiskom, da pridobite samozavest in domačnost.
 
-Aplikacija deluje naprej v ozadju, ko je telefon v žepu ali torbi – ni ga treba držati ali gledati zaslona. Je popolnoma brezplačna, brez oglasov in zbiranja podatkov, različica za Android pa lahko deluje brez povezave s prenesenimi območji zemljevidov.
+Aplikacija deluje naprej v ozadju, ko je telefon v žepu ali torbi – ni ga treba držati ali gledati zaslona. Je popolnoma brezplačna in brez oglasov, deluje pa lahko tudi brez povezave s prenesenimi območji zemljevidov. Aplikacija vseeno pošilja statistiko uporabe in poročila o sesutjih, da lahko najdemo in odpravimo težave – [pravilnik o zasebnosti]({{ "/privacy-policy.html" | relative_url }}) natančno pojasnjuje, kaj se zbira.
 
 Soundscape je za iOS prvotno razvil [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) in je bil široko uporabljan, preden je leta 2022 postal odprtokoden. [Scottish Tech Army](https://www.scottishtecharmy.org) ga je ohranila na voljo na iOS in ga poleg tega na novo napisala kot odprtokodno aplikacijo za Android.
 

@@ -18,7 +18,7 @@ Zamiast podawać wskazówki zakręt po zakręcie, Soundscape działa jak latarni
 - **Znaczniki i trasy** - Zapisuj ulubione lokalizacje i twórz między nimi trasy spacerowe. Aplikacja prowadzi Cię wzdłuż trasy, automatycznie przechodząc do kolejnego punktu trasy po dotarciu na miejsce.
 - **Podgląd ulicy** - Odkrywaj nieznaną okolicę wirtualnie przed odwiedzeniem, aby zbudować pewność siebie i poczucie znajomości miejsca.
 
-Aplikacja działa nadal w tle, gdy telefon jest w kieszeni lub torbie - nie trzeba go trzymać ani patrzeć na ekran. Jest całkowicie darmowa, bez reklam i zbierania danych, a wersja na Androida może działać offline przy użyciu pobranych regionów mapy.
+Aplikacja działa nadal w tle, gdy telefon jest w kieszeni lub torbie - nie trzeba go trzymać ani patrzeć na ekran. Jest całkowicie darmowa i pozbawiona reklam, a sama aplikacja może działać offline przy użyciu pobranych regionów mapy. Aplikacja wysyła jednak statystyki użycia i raporty o awariach, abyśmy mogli znajdować i naprawiać problemy - [polityka prywatności]({{ "/privacy-policy.html" | relative_url }}) dokładnie wyjaśnia, co jest zbierane.
 
 Soundscape zostało pierwotnie opracowane na iOS przez [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) i było szeroko używane, zanim w 2022 roku zostało udostępnione jako oprogramowanie open source. [Scottish Tech Army](https://www.scottishtecharmy.org) utrzymał jego dostępność na iOS, a także przepisał je jako aplikację open source na Androida.
 

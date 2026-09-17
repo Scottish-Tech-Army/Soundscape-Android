@@ -18,7 +18,7 @@ Soundscape, adım adım yol tarifi vermek yerine kulaklar için bir deniz feneri
 - **Kayıtlı noktalar ve rotalar** - Favori konumlarınızı kaydedin ve aralarında yürüyüş rotaları oluşturun. Uygulama, vardığınızda otomatik olarak bir sonraki ara noktaya geçerek sizi rota boyunca yönlendirir.
 - **Sokak önizlemesi** - Güven ve aşinalık kazanmak için tanımadığınız bir bölgeyi ziyaret etmeden önce sanal olarak keşfedin.
 
-Uygulama, telefon bir cebte veya çantadayken arka planda çalışmaya devam eder; ekranı tutmaya veya ona bakmaya gerek yoktur. Tamamen ücretsizdir, reklam veya veri toplama içermez ve Android sürümü, indirilmiş harita bölgelerini kullanarak çevrimdışı çalışabilir.
+Uygulama, telefon bir cebte veya çantadayken arka planda çalışmaya devam eder; ekranı tutmaya veya ona bakmaya gerek yoktur. Tamamen ücretsizdir, reklam içermez ve indirilmiş harita bölgelerini kullanarak çevrimdışı çalışabilir. Uygulama, sorunları bulup giderebilmemiz için kullanım istatistikleri ve çökme raporları gönderir; tam olarak nelerin toplandığını [gizlilik politikası]({{ "/privacy-policy.html" | relative_url }}) açıklar.
 
 Soundscape başlangıçta iOS üzerinde [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) tarafından geliştirilmiş ve 2022'de açık kaynak yapılmadan önce yaygın olarak kullanılmıştır. [Scottish Tech Army](https://www.scottishtecharmy.org), uygulamayı iOS'ta kullanılabilir tutmuş ve ayrıca açık kaynaklı bir Android uygulaması olarak yeniden yazmıştır.
 

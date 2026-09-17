@@ -18,7 +18,7 @@ I stedet for at give sving-for-sving-anvisninger fungerer Soundscape som et fyrt
 - **Mærker og ruter** - Gem foretrukne placeringer og opret gåruter mellem dem. Appen guider dig langs ruten og flytter automatisk til næste vejpunkt, når du ankommer.
 - **Forhåndsvisning af gade** - Udforsk et ukendt område virtuelt før dit besøg for at opbygge selvtillid og fortrolighed.
 
-Appen fortsætter med at fungere i baggrunden, når telefonen er i en lomme eller taske – ingen grund til at holde eller kigge på en skærm. Den er fuldstændig gratis, uden reklamer eller dataindsamling, og Android-versionen kan fungere offline ved hjælp af downloadede kortregioner.
+Appen fortsætter med at fungere i baggrunden, når telefonen er i en lomme eller taske – ingen grund til at holde eller kigge på en skærm. Den er fuldstændig gratis og uden reklamer, og den kan fungere offline ved hjælp af downloadede kortregioner. Appen sender dog brugsstatistik og nedbrudsrapporter, så vi kan finde og rette fejl – [privatlivspolitikken]({{ "/privacy-policy.html" | relative_url }}) forklarer præcis, hvad der indsamles.
 
 Soundscape blev oprindeligt udviklet på iOS af [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) og var meget anvendt, før den blev open source i 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) har holdt den tilgængelig på iOS og har desuden omskrevet den som en open source Android-app.
 

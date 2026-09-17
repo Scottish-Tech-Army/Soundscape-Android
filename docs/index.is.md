@@ -18,7 +18,7 @@ Soundscape er ókeypis forrit með opnum kóða sem notar þrívítt rúmhljóð
 - **Merki og leiðir** - Vistaðu uppáhaldsstaðina þína og búðu til gönguleiðir á milli þeirra. Forritið leiðir þig eftir leiðinni og færir sig sjálfkrafa á næsta leiðarpunkt þegar þú kemur að honum.
 - **Forskoðun gatna** - Kannaðu ókunnugt svæði sýndarlega áður en þú heimsækir það, til að byggja upp öryggi og kunnugleika.
 
-Forritið heldur áfram að virka í bakgrunni þegar síminn er í vasa eða tösku - engin þörf á að halda á skjá eða horfa á hann. Það er algjörlega ókeypis, án auglýsinga eða gagnasöfnunar, og Android-útgáfan getur virkað án nettengingar með því að nota niðurhalaða kortasvæði.
+Forritið heldur áfram að virka í bakgrunni þegar síminn er í vasa eða tösku - engin þörf á að halda á skjá eða horfa á hann. Það er algjörlega ókeypis og án auglýsinga, og það getur virkað án nettengingar með því að nota niðurhalaða kortasvæði. Forritið sendir þó notkunartölfræði og villuskýrslur svo við getum fundið og lagað vandamál - [persónuverndarstefnan]({{ "/privacy-policy.html" | relative_url }}) útskýrir nákvæmlega hverju er safnað.
 
 Soundscape var upphaflega þróað á iOS af [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) og var víða notað áður en það var gert að opnum hugbúnaði árið 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) hefur haldið því aðgengilegu á iOS og einnig endurskrifað það sem Android-forrit með opnum kóða.
 

@@ -18,7 +18,7 @@ Maimakon bayar da umarnin juyawa daya bayan daya, Soundscape yana aiki kamar has
 - **Alamomi da hanyoyi** – Ajiye wuraren da kake so ka kuma kirkiri hanyoyin tafiya a kafa tsakaninsu. Manhajar tana bi da kai a kan hanyar, tana kuma matsawa zuwa wuri na gaba ta atomatik idan ka isa.
 - **Duban titi** – Bincika yankin da ba ka sani ba a kama-da-wane kafin ka ziyarce shi, domin samun kwarin gwiwa da sanin makamar wurin.
 
-Manhajar tana ci gaba da aiki a baya idan wayar tana aljihu ko cikin jaka – babu bukatar rike ta ko duban allo. Kyauta ce gaba daya, babu talla ko tattara bayanai, kuma sigar Android tana iya aiki ba tare da intanet ba ta amfani da yankunan taswirar da aka sauke.
+Manhajar tana ci gaba da aiki a baya idan wayar tana aljihu ko cikin jaka – babu bukatar rike ta ko duban allo. Kyauta ce gaba daya kuma babu talla, kuma tana iya aiki ba tare da intanet ba ta amfani da yankunan taswirar da aka sauke. Manhajar tana aika kididdigar amfani da rahotannin gazawa domin mu gano matsaloli mu gyara su - [manufar sirri]({{ "/privacy-policy.html" | relative_url }}) tana bayyana ainihin abin da ake tattarawa.
 
 Da farko [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) ne suka kirkiri Soundscape a kan iOS, kuma an yi amfani da ita sosai kafin a mai da ita budaddiyar tushe a 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) ta ci gaba da samar da ita a kan iOS, ta kuma sake rubuta ta a matsayin manhajar Android mai budaddiyar tushe.
 

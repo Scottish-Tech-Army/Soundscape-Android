@@ -18,7 +18,7 @@ Badala ya kutoa maelekezo ya kila kona, Soundscape hufanya kazi kama mnara wa ta
 - **Alama na njia** – Hifadhi maeneo unayopenda na tengeneza njia za kutembea kati yake. Programu hukuongoza kwenye njia na kuhamia kituo kinachofuata kiotomatiki unapowasili.
 - **Mwonekano wa mtaa** – Chunguza eneo usilolifahamu kwa njia ya mtandaoni kabla ya kulitembelea, ili kujenga kujiamini na kulizoea.
 
-Programu huendelea kufanya kazi chinichini simu ikiwa mfukoni au kwenye begi – huhitaji kuishika wala kutazama skrini. Ni bure kabisa, bila matangazo wala ukusanyaji wa data, na toleo la Android linaweza kufanya kazi bila intaneti kwa kutumia maeneo ya ramani yaliyopakuliwa.
+Programu huendelea kufanya kazi chinichini simu ikiwa mfukoni au kwenye begi – huhitaji kuishika wala kutazama skrini. Ni bure kabisa na haina matangazo, na inaweza kufanya kazi bila intaneti kwa kutumia maeneo ya ramani yaliyopakuliwa. Programu hutuma takwimu za matumizi na ripoti za hitilafu ili tuweze kupata na kurekebisha matatizo - [sera ya faragha]({{ "/privacy-policy.html" | relative_url }}) inaeleza hasa kinachokusanywa.
 
 Soundscape ilitengenezwa awali kwenye iOS na [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) na ilitumika sana kabla ya kufanywa msimbo huria mwaka 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) imeiweka ikipatikana kwenye iOS na pia imeiandika upya kama programu ya Android yenye msimbo huria.
 

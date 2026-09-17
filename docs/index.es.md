@@ -18,7 +18,7 @@ En lugar de dar indicaciones paso a paso, Soundscape actúa como un faro para lo
 - **Marcadores y rutas** - Guarde sus ubicaciones favoritas y cree rutas a pie entre ellas. La aplicación le guía a lo largo de la ruta, avanzando automáticamente al siguiente punto de ruta a medida que llega.
 - **Vista previa de calles** - Explore una zona desconocida de forma virtual antes de visitarla, para ganar confianza y familiaridad.
 
-La aplicación sigue funcionando en segundo plano cuando el teléfono está en un bolsillo o un bolso, sin necesidad de sostener ni mirar una pantalla. Es completamente gratuita, sin anuncios ni recopilación de datos, y la versión de Android puede funcionar sin conexión usando regiones de mapa descargadas.
+La aplicación sigue funcionando en segundo plano cuando el teléfono está en un bolsillo o un bolso, sin necesidad de sostener ni mirar una pantalla. Es completamente gratuita y sin anuncios, y puede funcionar sin conexión usando regiones de mapa descargadas. La aplicación sí envía estadísticas de uso e informes de fallos para que podamos encontrar y solucionar problemas: la [política de privacidad]({{ "/privacy-policy.html" | relative_url }}) explica exactamente qué se recopila.
 
 Soundscape fue desarrollado originalmente en iOS por [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) y se utilizó ampliamente antes de convertirse en código abierto en 2022. El [Scottish Tech Army](https://www.scottishtecharmy.org) lo ha mantenido disponible en iOS y también lo ha reescrito como una aplicación de Android de código abierto.
 

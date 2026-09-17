@@ -18,7 +18,7 @@ Místo pokynů zatáčku po zatáčce působí Soundscape jako maják pro uši. 
 - **Značky a trasy** – Ukládejte oblíbená místa a vytvářejte mezi nimi pěší trasy. Aplikace vás trasou provede a po příchodu automaticky přejde k dalšímu bodu.
 - **Náhled ulice** – Prozkoumejte neznámou oblast virtuálně ještě před návštěvou, abyste získali jistotu a obeznámenost.
 
-Aplikace funguje dál na pozadí, i když máte telefon v kapse nebo v tašce – není nutné jej držet ani se dívat na displej. Je zcela zdarma, bez reklam a sběru dat, a verze pro Android může fungovat offline pomocí stažených oblastí map.
+Aplikace funguje dál na pozadí, i když máte telefon v kapse nebo v tašce – není nutné jej držet ani se dívat na displej. Je zcela zdarma a bez reklam a může fungovat offline pomocí stažených oblastí map. Aplikace však odesílá statistiky používání a hlášení o pádech, abychom mohli nacházet a opravovat problémy – [zásady ochrany osobních údajů]({{ "/privacy-policy.html" | relative_url }}) přesně popisují, co se sbírá.
 
 Soundscape původně vyvinula pro iOS společnost [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) a byla široce používaná, než byla v roce 2022 uvolněna jako otevřený software. [Scottish Tech Army](https://www.scottishtecharmy.org) ji udržuje dostupnou na iOS a zároveň ji přepsala jako open-source aplikaci pro Android.
 
