@@ -1525,4 +1525,8 @@
     <string name="callouts_bus_and_tram_stops_description">الإعلان عن محطات الحافلات والترام عند المرور بها</string>
     <string name="directions_approaching_name">الاقتراب من %1$s</string>
     <string name="directions_generic_tram">ترام</string>
+    <string name="ios_permission_location_when_in_use">يحتاج Soundscape إلى موقعك لتقديم التنقل الصوتي ووصف ما يحيط بك.</string>
+    <string name="ios_permission_location_always">يحتاج Soundscape إلى موقعك لتقديم التنقل الصوتي حتى عندما يكون التطبيق في الخلفية.</string>
+    <string name="ios_permission_motion">يستخدم Soundscape بيانات الحركة لتحديد الاتجاه الذي تواجهه وتوجيه النداءات الصوتية نحو ما يحيط بك.</string>
+    <string name="ios_permission_bluetooth">يستخدم Soundscape البلوتوث لاكتشاف سماعات الرأس المزوّدة بتتبع حركة الرأس والأجهزة الصوتية الأخرى والاتصال بها.</string>
 </resources>
