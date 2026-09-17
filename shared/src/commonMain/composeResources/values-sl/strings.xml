@@ -1515,4 +1515,8 @@
     <string name="callouts_bus_and_tram_stops_description">Napovej avtobusna in tramvajska postajališča, ko greš mimo njih</string>
     <string name="directions_approaching_name">Bližanje %1$s</string>
     <string name="directions_generic_tram">tramvaj</string>
+    <string name="ios_permission_location_when_in_use">Soundscape potrebuje vašo lokacijo, da lahko zagotavlja zvočno navigacijo in opisuje vašo okolico.</string>
+    <string name="ios_permission_location_always">Soundscape potrebuje vašo lokacijo, da lahko zagotavlja zvočno navigacijo tudi takrat, ko aplikacija deluje v ozadju.</string>
+    <string name="ios_permission_motion">Soundscape uporablja podatke o gibanju, da zazna smer, v katero ste obrnjeni, in zvočna obvestila umesti glede na vašo okolico.</string>
+    <string name="ios_permission_bluetooth">Soundscape uporablja Bluetooth za iskanje slušalk s sledenjem glavi in drugih zvočnih naprav ter za povezovanje z njimi.</string>
 </resources>
