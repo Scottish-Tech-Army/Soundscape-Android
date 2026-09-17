@@ -1391,7 +1391,7 @@
     <string name="help_config_voices_content_ios">Soundscape kan bruke alle stemmene du har lastet ned i Innstillinger-appen på iOS, bortsett fra Siri-stemmene, som ikke er tilgjengelige for Soundscape. Vi anbefaler at du velger en av *Enhanced*-stemmene, siden de har mye høyere lydkvalitet, men for å gjøre det må du først laste ned en forbedret stemme. Du kan laste ned stemmer i Innstillinger-appen på iOS ved å gå til Tilgjengelighet &gt; Opplest innhold &gt; Stemmer og trykke på en stemme. I Soundscape‑appen kan du velge hvilken stemme du vil bruke ved å gå til Innstillinger fra hovedmenyen og deretter velge *Stemmer*.</string>
     <string name="settings_mix_audio">Blande lyd med andre apper</string>
     <string name="settings_mix_audio_description">Når deaktivert, vil andre lydapper pause og mediekontroller på låseskjermen bli tilgjengelige</string>
-    <string name="settings_head_tracking">Aktiver hodetsporing</string>
+    <string name="settings_head_tracking">Aktiver hodesporing</string>
     <string name="settings_head_tracking_description">Posisjoner den romlige lyden i forhold til hvilken retning hodet ditt peker ved å bruke bevegelsesdata fra støttede AirPods, Bose Frames eller en ekstern Bluetooth‑IMU. Kalibreres automatisk mens du går.</string>
     <string name="sleep_snoozing">I pausemodus</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape er for øyeblikket i pausemodus. Når du forlater din nåværende posisjon, vil Soundscape våkne automatisk. Pausemodus bruker Stedstjenester i lavstrømsmodus for å spare telefonens batteri. Trykk på knappen nedenfor for å vekke Soundscape nå.</string>
