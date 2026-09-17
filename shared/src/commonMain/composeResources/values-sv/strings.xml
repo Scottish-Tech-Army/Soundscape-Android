@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">Meddela busshållplatser och spårvagnshållplatser när du passerar dem</string>
     <string name="directions_approaching_name">Du närmar dig %1$s</string>
     <string name="directions_generic_tram">spårvagn</string>
+    <string name="ios_permission_location_when_in_use">Soundscape behöver din plats för att kunna ge ljudnavigering och beskriva dina omgivningar.</string>
+    <string name="ios_permission_location_always">Soundscape behöver din plats för att kunna ge ljudnavigering även när appen körs i bakgrunden.</string>
+    <string name="ios_permission_motion">Soundscape använder rörelsedata för att känna av vilken riktning du är vänd mot och placera informationsljuden i förhållande till dina omgivningar.</string>
+    <string name="ios_permission_bluetooth">Soundscape använder Bluetooth för att hitta och ansluta till hörlurar med huvudspårning och andra ljudenheter.</string>
 </resources>
