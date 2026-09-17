@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">Bus- und Straßenbahnhaltestellen ansagen, wenn Sie daran vorbeikommen</string>
     <string name="directions_approaching_name">%1$s voraus</string>
     <string name="directions_generic_tram">Straßenbahn</string>
+    <string name="ios_permission_location_when_in_use">Soundscape benötigt Ihren Standort, um Audio-Navigation zu bieten und Ihre Umgebung zu beschreiben.</string>
+    <string name="ios_permission_location_always">Soundscape benötigt Ihren Standort, um Audio-Navigation auch dann zu bieten, wenn die App im Hintergrund ist.</string>
+    <string name="ios_permission_motion">Soundscape verwendet Bewegungsdaten, um Ihre Blickrichtung zu erkennen und Audio-Hinweise an Ihrer Umgebung auszurichten.</string>
+    <string name="ios_permission_bluetooth">Soundscape verwendet Bluetooth, um Kopfhörer mit Head-Tracking und andere Audiogeräte zu finden und sich mit ihnen zu verbinden.</string>
 </resources>
