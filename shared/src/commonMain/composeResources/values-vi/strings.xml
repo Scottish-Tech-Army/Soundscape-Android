@@ -1500,4 +1500,8 @@
     <string name="callouts_bus_and_tram_stops_description">Thông báo điểm dừng xe buýt và trạm tàu điện khi bạn đi ngang qua</string>
     <string name="directions_approaching_name">Đang đến gần %1$s</string>
     <string name="directions_generic_tram">tàu điện</string>
+    <string name="ios_permission_location_when_in_use">Soundscape cần vị trí của bạn để cung cấp điều hướng bằng âm thanh và mô tả không gian xung quanh bạn.</string>
+    <string name="ios_permission_location_always">Soundscape cần vị trí của bạn để cung cấp điều hướng bằng âm thanh ngay cả khi ứng dụng chạy nền.</string>
+    <string name="ios_permission_motion">Soundscape sử dụng dữ liệu chuyển động để xác định hướng bạn đang quay mặt và định hướng các thông báo âm thanh theo không gian xung quanh bạn.</string>
+    <string name="ios_permission_bluetooth">Soundscape sử dụng Bluetooth để tìm và kết nối với tai nghe có theo dõi chuyển động đầu và các thiết bị âm thanh khác.</string>
 </resources>
