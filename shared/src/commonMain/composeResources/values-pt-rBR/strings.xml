@@ -1510,4 +1510,8 @@
     <string name="callouts_bus_and_tram_stops_description">Anunciar pontos de ônibus e de bonde ao passar por eles</string>
     <string name="directions_approaching_name">Aproximando-se de %1$s</string>
     <string name="directions_generic_tram">bonde</string>
+    <string name="ios_permission_location_when_in_use">O Soundscape precisa da sua localização para fornecer navegação por áudio e descrever seus arredores.</string>
+    <string name="ios_permission_location_always">O Soundscape precisa da sua localização para fornecer navegação por áudio mesmo quando o aplicativo está em segundo plano.</string>
+    <string name="ios_permission_motion">O Soundscape usa dados de movimento para detectar a direção para a qual você está voltado e orientar as notificações de áudio em relação aos seus arredores.</string>
+    <string name="ios_permission_bluetooth">O Soundscape usa Bluetooth para descobrir fones de ouvido com rastreamento de cabeça e outros dispositivos de áudio e conectar-se a eles.</string>
 </resources>
