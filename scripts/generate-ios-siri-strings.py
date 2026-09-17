@@ -24,13 +24,10 @@ Not a build step. The catalog is committed, so a normal build needs neither Pyth
 this script, and a stale catalog degrades to English rather than breaking.
 """
 
-import json
 import os
-import re
-import xml.etree.ElementTree as ET
 
-REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RES = os.path.join(REPO, "shared/src/commonMain/composeResources")
+from ios_strings import REPO, read_source, read_translations, unit, write_catalog
+
 OUT = os.path.join(REPO, "iosApp/iosApp/Localizable.xcstrings")
 
 # English literal as written in Swift -> strings.xml key.
@@ -147,38 +144,9 @@ PHRASE_COUPLED = {
     },
 }
 
-# Android resource qualifiers to the BCP-47 tags Apple expects. Only the ones that differ
-# need listing; everything else passes through unchanged.
-LOCALE_OVERRIDES = {
-    "in": "id",       # Android's legacy code for Indonesian
-    "iw": "he",       # ...and for Hebrew
-    "zh-rCN": "zh-Hans",
-    "pt-rBR": "pt-BR",
-    "fr-rCA": "fr-CA",
-    "en-rGB": "en-GB",
-}
-
-
-def ios_locale(qualifier):
-    if qualifier in LOCALE_OVERRIDES:
-        return LOCALE_OVERRIDES[qualifier]
-    # e.g. "es-rMX" -> "es-MX"
-    return re.sub(r"-r([A-Z]{2})$", r"-\1", qualifier)
-
-
-def read_strings(path):
-    """Key -> text for one strings.xml, flattening any inline markup."""
-    root = ET.parse(path).getroot()
-    out = {}
-    for node in root.findall("string"):
-        name = node.get("name")
-        if name:
-            out[name] = "".join(node.itertext())
-    return out
-
 
 def main():
-    source = read_strings(os.path.join(RES, "values/strings.xml"))
+    source = read_source()
 
     missing = [k for k in MAPPING.values() if k not in source]
     if missing:
@@ -197,37 +165,23 @@ def main():
             "comment": "Recites the spoken phrases. Translate only alongside that "
                        "language's phrases in <locale>.lproj/AppShortcuts.strings.",
             "localizations": {
-                locale: {"stringUnit": {"state": "translated", "value": text}}
-                for locale, text in sorted(localized.items())
+                locale: unit(text) for locale, text in sorted(localized.items())
             },
         }
 
     locales = 0
-    for entry in sorted(os.listdir(RES)):
-        if not entry.startswith("values-"):
-            continue
-        path = os.path.join(RES, entry, "strings.xml")
-        if not os.path.exists(path):
-            continue
-        translated = read_strings(path)
-        locale = ios_locale(entry[len("values-"):])
+    for locale, translated in read_translations():
         used = False
         for literal, key in MAPPING.items():
             value = translated.get(key)
             # Untranslated keys are simply absent from a locale's file; leaving them out
             # here lets iOS fall back to the source language per string.
             if value and value.strip():
-                strings[literal]["localizations"][locale] = {
-                    "stringUnit": {"state": "translated", "value": value}
-                }
+                strings[literal]["localizations"][locale] = unit(value)
                 used = True
         locales += 1 if used else 0
 
-    catalog = {"sourceLanguage": "en", "strings": strings, "version": "1.0"}
-    with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(catalog, f, ensure_ascii=False, indent=2, sort_keys=True)
-        f.write("\n")
-
+    write_catalog(OUT, strings)
     print("Wrote %s: %d strings across %d locales" % (OUT, len(strings), locales))
 
 
