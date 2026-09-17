@@ -1510,4 +1510,8 @@
     <string name="callouts_bus_and_tram_stops_description">Anuncia les parades d'autobús i de tramvia quan hi passis a prop</string>
     <string name="directions_approaching_name">T'acostes a %1$s</string>
     <string name="directions_generic_tram">tramvia</string>
+    <string name="ios_permission_location_when_in_use">Soundscape necessita la teva ubicació per proporcionar navegació per àudio i descriure el teu entorn.</string>
+    <string name="ios_permission_location_always">Soundscape necessita la teva ubicació per proporcionar navegació per àudio fins i tot quan l'aplicació està en segon pla.</string>
+    <string name="ios_permission_motion">Soundscape utilitza dades de moviment per detectar cap a on estàs orientat i orientar els avisos de veu respecte al teu entorn.</string>
+    <string name="ios_permission_bluetooth">Soundscape utilitza el Bluetooth per detectar auriculars amb seguiment del cap i altres dispositius d'àudio, i connectar-s'hi.</string>
 </resources>
