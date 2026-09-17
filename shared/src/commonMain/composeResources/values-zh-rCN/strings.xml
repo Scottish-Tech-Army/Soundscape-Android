@@ -1500,4 +1500,8 @@
     <string name="callouts_bus_and_tram_stops_description">经过公交站和有轨电车站时进行播报</string>
     <string name="directions_approaching_name">正在接近%1$s</string>
     <string name="directions_generic_tram">有轨电车</string>
+    <string name="ios_permission_location_when_in_use">Soundscape 需要您的位置信息，以便提供音频导航并描述您周围的环境。</string>
+    <string name="ios_permission_location_always">Soundscape 需要您的位置信息，以便在应用处于后台时仍能提供音频导航。</string>
+    <string name="ios_permission_motion">Soundscape 使用运动数据来检测您面朝的方向，并将语音提示的方位与您周围的环境对应起来。</string>
+    <string name="ios_permission_bluetooth">Soundscape 使用蓝牙来发现并连接支持头部追踪的耳机及其他音频设备。</string>
 </resources>
