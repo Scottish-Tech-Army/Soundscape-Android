@@ -1506,4 +1506,8 @@
     <string name="callouts_bus_and_tram_stops_description">اعلام ایستگاه‌های اتوبوس و تراموا هنگام عبور از کنار آن‌ها</string>
     <string name="directions_approaching_name">به %1$s نزدیک می‌شوید</string>
     <string name="directions_generic_tram">تراموا</string>
+    <string name="ios_permission_location_when_in_use">ساند‌اسکیپ برای ارائه‌ی ناوبری صوتی و توصیف محیط پیرامون شما به موقعیت مکانی شما نیاز دارد.</string>
+    <string name="ios_permission_location_always">ساند‌اسکیپ برای ارائه‌ی ناوبری صوتی حتی زمانی که اپلیکیشن در پس‌زمینه است، به موقعیت مکانی شما نیاز دارد.</string>
+    <string name="ios_permission_motion">ساند‌اسکیپ از داده‌های حرکتی استفاده می‌کند تا جهتی را که رو به آن ایستاده‌اید تشخیص دهد و اعلان‌های صوتی را نسبت به محیط پیرامون شما جهت‌دهی کند.</string>
+    <string name="ios_permission_bluetooth">ساند‌اسکیپ از بلوتوث برای یافتن هدفون‌های دارای ردیابی سر و دیگر دستگاه‌های صوتی و اتصال به آنها استفاده می‌کند.</string>
 </resources>
