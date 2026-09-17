@@ -1515,4 +1515,8 @@
     <string name="callouts_bus_and_tram_stops_description">Оголошувати автобусні та трамвайні зупинки, коли ви проїжджаєте повз</string>
     <string name="directions_approaching_name">Наближення до %1$s</string>
     <string name="directions_generic_tram">трамвай</string>
+    <string name="ios_permission_location_when_in_use">Soundscape потрібне ваше місцезнаходження, щоб надавати аудіонавігацію та описувати ваше оточення.</string>
+    <string name="ios_permission_location_always">Soundscape потрібне ваше місцезнаходження, щоб надавати аудіонавігацію навіть тоді, коли програма працює у фоновому режимі.</string>
+    <string name="ios_permission_motion">Soundscape використовує дані руху, щоб визначати напрямок, у який ви повернені, і спрямовувати звукові оголошення відповідно до вашого оточення.</string>
+    <string name="ios_permission_bluetooth">Soundscape використовує Bluetooth, щоб знаходити навушники з відстеженням голови та інші аудіопристрої й підключатися до них.</string>
 </resources>
