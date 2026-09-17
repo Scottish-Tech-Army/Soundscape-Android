@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">Tilkynna stoppistöðvar strætó og sporvagna þegar þú ferð framhjá þeim</string>
     <string name="directions_approaching_name">nálgast %1$s</string>
     <string name="directions_generic_tram">sporvagn</string>
+    <string name="ios_permission_location_when_in_use">Soundscape þarf staðsetningu þína til að veita hljóðleiðsögn og lýsa umhverfi þínu.</string>
+    <string name="ios_permission_location_always">Soundscape þarf staðsetningu þína til að veita hljóðleiðsögn jafnvel þegar forritið er í bakgrunni.</string>
+    <string name="ios_permission_motion">Soundscape notar hreyfigögn til að greina í hvaða átt þú snýrð og staðsetja hljóðtilkynningar miðað við umhverfi þitt.</string>
+    <string name="ios_permission_bluetooth">Soundscape notar Bluetooth til að finna heyrnartól með höfuðrakningu og önnur hljóðtæki og tengjast þeim.</string>
 </resources>
