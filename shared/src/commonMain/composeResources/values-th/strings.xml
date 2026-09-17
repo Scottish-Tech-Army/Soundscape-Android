@@ -1500,4 +1500,8 @@
     <string name="callouts_bus_and_tram_stops_description">ประกาศป้ายรถประจำทางและป้ายรถรางเมื่อคุณผ่าน</string>
     <string name="directions_approaching_name">กำลังใกล้ถึง %1$s</string>
     <string name="directions_generic_tram">รถราง</string>
+    <string name="ios_permission_location_when_in_use">Soundscape ต้องการตำแหน่งที่ตั้งของคุณเพื่อให้บริการนำทางด้วยเสียงและอธิบายสภาพแวดล้อมรอบตัวคุณ</string>
+    <string name="ios_permission_location_always">Soundscape ต้องการตำแหน่งที่ตั้งของคุณเพื่อให้บริการนำทางด้วยเสียงแม้ในขณะที่แอปทำงานอยู่เบื้องหลัง</string>
+    <string name="ios_permission_motion">Soundscape ใช้ข้อมูลการเคลื่อนไหวเพื่อตรวจจับทิศทางที่คุณหันหน้าไป และจัดวางการแจ้งเตือนด้วยเสียงให้สอดคล้องกับสภาพแวดล้อมรอบตัวคุณ</string>
+    <string name="ios_permission_bluetooth">Soundscape ใช้บลูทูธเพื่อค้นหาและเชื่อมต่อกับหูฟังที่รองรับการติดตามการเคลื่อนไหวศีรษะและอุปกรณ์เสียงอื่นๆ</string>
 </resources>
