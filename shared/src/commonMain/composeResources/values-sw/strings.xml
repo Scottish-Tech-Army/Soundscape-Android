@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">Tangaza vituo vya basi na tramu unapovipita</string>
     <string name="directions_approaching_name">Unakaribia %1$s</string>
     <string name="directions_generic_tram">tramu</string>
+    <string name="ios_permission_location_when_in_use">Soundscape inahitaji mahali ulipo ili kutoa maelekezo ya sauti na kueleza mazingira yanayokuzunguka.</string>
+    <string name="ios_permission_location_always">Soundscape inahitaji mahali ulipo ili kutoa maelekezo ya sauti hata wakati programu iko chinichini.</string>
+    <string name="ios_permission_motion">Soundscape hutumia data ya mwendo kutambua upande uliouelekea na kupanga matangazo ya sauti kulingana na mazingira yanayokuzunguka.</string>
+    <string name="ios_permission_bluetooth">Soundscape hutumia Bluetooth kutafuta na kuunganisha vipokea sauti vyenye ufuatiliaji wa kichwa na vifaa vingine vya sauti.</string>
 </resources>
