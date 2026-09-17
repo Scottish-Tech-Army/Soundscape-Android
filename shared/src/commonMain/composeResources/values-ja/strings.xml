@@ -1500,4 +1500,8 @@
     <string name="callouts_bus_and_tram_stops_description">通過するときにバス停とトラム停留所を読み上げます</string>
     <string name="directions_approaching_name">まもなく %1$s</string>
     <string name="directions_generic_tram">トラム</string>
+    <string name="ios_permission_location_when_in_use">Soundscape は、音声ナビを提供し、周囲の状況をお伝えするために位置情報を必要とします。</string>
+    <string name="ios_permission_location_always">Soundscape は、アプリがバックグラウンドにあるときも音声ナビを提供するために位置情報を必要とします。</string>
+    <string name="ios_permission_motion">Soundscape は、あなたが向いている方向を検出し、コールアウトを周囲に合わせて定位するためにモーションデータを使用します。</string>
+    <string name="ios_permission_bluetooth">Soundscape は、ヘッドトラッキング対応ヘッドホンやその他のオーディオ機器を検出して接続するために Bluetooth を使用します。</string>
 </resources>
