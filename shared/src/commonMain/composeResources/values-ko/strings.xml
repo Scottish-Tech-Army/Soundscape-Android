@@ -1500,4 +1500,8 @@
     <string name="callouts_bus_and_tram_stops_description">지나갈 때 버스 정류장과 트램 정류장을 안내</string>
     <string name="directions_approaching_name">%1$s 접근 중</string>
     <string name="directions_generic_tram">트램</string>
+    <string name="ios_permission_location_when_in_use">Soundscape는 오디오 내비게이션을 제공하고 주변 환경을 설명하기 위해 위치 정보가 필요합니다.</string>
+    <string name="ios_permission_location_always">Soundscape는 앱이 백그라운드에 있을 때도 오디오 내비게이션을 제공하기 위해 위치 정보가 필요합니다.</string>
+    <string name="ios_permission_motion">Soundscape는 동작 데이터를 사용하여 사용자가 향하는 방향을 감지하고 오디오 안내를 주변 환경에 맞춰 배치합니다.</string>
+    <string name="ios_permission_bluetooth">Soundscape는 블루투스를 사용하여 헤드 트래킹 헤드폰 및 기타 오디오 기기를 검색하고 연결합니다.</string>
 </resources>
