@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">Sanar da tashoshin bas da na tram yayin da kake wucewa</string>
     <string name="directions_approaching_name">Ana kusanto %1$s</string>
     <string name="directions_generic_tram">tram</string>
+    <string name="ios_permission_location_when_in_use">Soundscape tana bukatar wurin da kuke domin ta ba da jagorar sauti da kuma bayyana abin da ke kewaye da ku.</string>
+    <string name="ios_permission_location_always">Soundscape tana bukatar wurin da kuke domin ta ba da jagorar sauti ko da manhajar tana aiki a baya.</string>
+    <string name="ios_permission_motion">Soundscape tana amfani da bayanan motsi domin gane inda kuke fuskanta da kuma daidaita sanarwowin sauti da abin da ke kewaye da ku.</string>
+    <string name="ios_permission_bluetooth">Soundscape tana amfani da Bluetooth domin gano belun kunne masu bin diddigin kai da sauran na'urorin sauti sannan ta haɗa da su.</string>
 </resources>
