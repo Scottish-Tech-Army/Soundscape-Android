@@ -2912,6 +2912,25 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="action_no_map_data">Soundscape is still loading the map for your area</string>
     <!-- Spoken when a route command is given while no route is playing. -->
     <string name="action_no_route_active">No route is playing</string>
+    <!-- ===== Permission prompts (iOS) =====
+         The text iOS shows in the system alert when it asks for location, motion or
+         Bluetooth. They appear before any of the app's own UI does, and again in
+         Settings > Soundscape, so they are read by people who have not seen a word of the
+         app yet. Say what Soundscape does with the data, not that it needs it. These are
+         the only strings whose English lives outside this file: iosApp/project.yml holds
+         it, because Info.plist needs a value whether or not a translation exists. Keep
+         the two in step - scripts/generate-ios-infoplist-strings.py warns when they
+         drift. -->
+    <!-- Asked when the app first needs your position, to describe your surroundings. -->
+    <string name="ios_permission_location_when_in_use">Soundscape needs your location to provide audio navigation and describe your surroundings.</string>
+    <!-- Asked when the app needs to keep describing your surroundings with the screen off
+         or another app in front. -->
+    <string name="ios_permission_location_always">Soundscape needs your location to provide audio navigation even when the app is in the background.</string>
+    <!-- Asked for the compass and head-tracking sensors, which give callouts a direction. -->
+    <string name="ios_permission_motion">Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings.</string>
+    <!-- Asked before scanning for head-tracking headphones. Covers both of the Bluetooth
+         keys iOS asks under. -->
+    <string name="ios_permission_bluetooth">Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices.</string>
     <!-- ===== Siri / assistant surface (iOS) =====
          These appear in the Shortcuts app, in Settings > Siri & Search, and when Siri asks
          which of several choices you meant. They are labels and short descriptions, not
