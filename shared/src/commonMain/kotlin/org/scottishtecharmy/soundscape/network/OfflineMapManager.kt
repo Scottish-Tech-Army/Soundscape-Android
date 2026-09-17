@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
+import org.scottishtecharmy.soundscape.platform.excludeFromCloudBackup
 import org.scottishtecharmy.soundscape.platform.systemFileSystem
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
@@ -148,7 +149,16 @@ class OfflineMapManager(
     }
 
     fun refreshDownloaded() {
-        _downloadedExtracts.value = findExtractPaths(extractBasePath)
+        val paths = findExtractPaths(extractBasePath)
+        // Keep the extracts out of the device's cloud backup. Doing it on every scan rather
+        // than only after a download means extracts left by an earlier version of the app are
+        // covered too, and the flag is idempotent so re-marking a file we marked last time
+        // costs nothing.
+        for (path in paths) {
+            excludeFromCloudBackup(path)
+            excludeFromCloudBackup("$path.geojson")
+        }
+        _downloadedExtracts.value = paths
     }
 
     /**
