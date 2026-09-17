@@ -1515,4 +1515,8 @@
     <string name="callouts_bus_and_tram_stops_description">Oznamovať zastávky autobusov a električiek, keď okolo nich prechádzate</string>
     <string name="directions_approaching_name">Blížite sa k %1$s</string>
     <string name="directions_generic_tram">električka</string>
+    <string name="ios_permission_location_when_in_use">Soundscape potrebuje vašu polohu, aby mohol poskytovať zvukovú navigáciu a opisovať vaše okolie.</string>
+    <string name="ios_permission_location_always">Soundscape potrebuje vašu polohu, aby mohol poskytovať zvukovú navigáciu, aj keď je aplikácia na pozadí.</string>
+    <string name="ios_permission_motion">Soundscape používa pohybové dáta na rozpoznanie smeru, ktorým ste otočení, a na nasmerovanie zvukových hlásení podľa vášho okolia.</string>
+    <string name="ios_permission_bluetooth">Soundscape používa Bluetooth na vyhľadanie slúchadiel so sledovaním polohy hlavy a ďalších zvukových zariadení a na pripojenie k nim.</string>
 </resources>
