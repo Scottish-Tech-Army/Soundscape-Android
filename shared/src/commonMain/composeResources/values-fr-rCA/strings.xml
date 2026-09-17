@@ -1510,4 +1510,8 @@
     <string name="callouts_bus_and_tram_stops_description">Annoncer les arrêts de bus et de tramway lorsque vous passez à côté</string>
     <string name="directions_approaching_name">Vous approchez de %1$s</string>
     <string name="directions_generic_tram">le tramway</string>
+    <string name="ios_permission_location_when_in_use">Soundscape a besoin de votre position pour fournir la navigation audio et décrire votre environnement.</string>
+    <string name="ios_permission_location_always">Soundscape a besoin de votre position pour fournir la navigation audio même lorsque l’application est en arrière-plan.</string>
+    <string name="ios_permission_motion">Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné et orienter les annonces audio par rapport à votre environnement.</string>
+    <string name="ios_permission_bluetooth">Soundscape utilise le Bluetooth pour détecter les casques avec suivi de la tête et les autres appareils audio, et s’y connecter.</string>
 </resources>
