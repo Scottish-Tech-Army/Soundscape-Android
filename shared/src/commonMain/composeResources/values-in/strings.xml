@@ -1500,4 +1500,8 @@
     <string name="callouts_bus_and_tram_stops_description">Umumkan halte bus dan halte trem saat Anda melewatinya</string>
     <string name="directions_approaching_name">Mendekati %1$s</string>
     <string name="directions_generic_tram">trem</string>
+    <string name="ios_permission_location_when_in_use">Soundscape memerlukan lokasi Anda untuk menyediakan navigasi audio dan menjelaskan lingkungan sekitar Anda.</string>
+    <string name="ios_permission_location_always">Soundscape memerlukan lokasi Anda untuk menyediakan navigasi audio bahkan saat aplikasi berjalan di latar belakang.</string>
+    <string name="ios_permission_motion">Soundscape menggunakan data gerakan untuk mendeteksi arah hadap Anda dan menyesuaikan pemberitahuan audio dengan lingkungan sekitar Anda.</string>
+    <string name="ios_permission_bluetooth">Soundscape menggunakan Bluetooth untuk menemukan dan terhubung ke headphone dengan pelacakan kepala serta perangkat audio lainnya.</string>
 </resources>
