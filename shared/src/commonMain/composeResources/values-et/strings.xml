@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">Teavita bussi- ja trammipeatustest, kui neist möödud</string>
     <string name="directions_approaching_name">Läheneb %1$s</string>
     <string name="directions_generic_tram">trammis</string>
+    <string name="ios_permission_location_when_in_use">Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ja kirjeldada teie ümbrust.</string>
+    <string name="ios_permission_location_always">Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ka siis, kui rakendus töötab taustal.</string>
+    <string name="ios_permission_motion">Soundscape kasutab liikumisandmeid, et tuvastada suund, kuhu te näoga olete, ja suunata häälteated vastavalt teie ümbrusele.</string>
+    <string name="ios_permission_bluetooth">Soundscape kasutab Bluetoothi, et leida pea jälgimisega kõrvaklappe ja muid heliseadmeid ning nendega ühenduda.</string>
 </resources>
