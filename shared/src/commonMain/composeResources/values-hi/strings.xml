@@ -1505,4 +1505,8 @@
     <string name="callouts_bus_and_tram_stops_description">पास से गुज़रते समय बस स्टॉप और ट्राम स्टॉप की घोषणा करें</string>
     <string name="directions_approaching_name">%1$s के पास पहुँच रहे हैं</string>
     <string name="directions_generic_tram">ट्राम</string>
+    <string name="ios_permission_location_when_in_use">Soundscape को ऑडियो नेविगेशन प्रदान करने और आपके परिवेश का वर्णन करने के लिए आपके स्थान की आवश्यकता है।</string>
+    <string name="ios_permission_location_always">Soundscape को ऐप के बैकग्राउंड में होने पर भी ऑडियो नेविगेशन प्रदान करने के लिए आपके स्थान की आवश्यकता है।</string>
+    <string name="ios_permission_motion">Soundscape मोशन डेटा का उपयोग करके यह पता लगाता है कि आपका मुख किस दिशा में है और कॉलआउट को आपके परिवेश के अनुसार दिशा देता है।</string>
+    <string name="ios_permission_bluetooth">Soundscape हेड ट्रैकिंग वाले हेडफ़ोन और अन्य ऑडियो डिवाइस खोजने और उनसे कनेक्ट करने के लिए ब्लूटूथ का उपयोग करता है।</string>
 </resources>
