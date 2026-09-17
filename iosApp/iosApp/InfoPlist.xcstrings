@@ -3,50 +3,1400 @@
   "strings": {
     "NSBluetoothAlwaysUsageDescription": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يستخدم Soundscape البلوتوث لاكتشاف سماعات الرأس المزوّدة بتتبع حركة الرأس والأجهزة الصوتية الأخرى والاتصال بها."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape използва Bluetooth, за да открива слушалки с проследяване на главата и други аудио устройства и да се свързва с тях."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "হেড ট্র্যাকিং সমর্থিত হেডফোন এবং অন্যান্য অডিও ডিভাইস খুঁজে পেতে ও সেগুলোর সাথে সংযোগ করতে Soundscape ব্লুটুথ ব্যবহার করে।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilitza el Bluetooth per detectar auriculars amb seguiment del cap i altres dispositius d'àudio, i connectar-s'hi."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape používá Bluetooth k vyhledání sluchátek se sledováním polohy hlavy a dalších zvukových zařízení a k připojení k nim."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape bruger Bluetooth til at finde og oprette forbindelse til hovedtelefoner med hovedsporing og andre lydenheder."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape verwendet Bluetooth, um Kopfhörer mit Head-Tracking und andere Audiogeräte zu finden und sich mit ihnen zu verbinden."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Soundscape χρησιμοποιεί Bluetooth για να εντοπίζει ακουστικά με παρακολούθηση κεφαλής και άλλες συσκευές ήχου και να συνδέεται σε αυτά."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape usa Bluetooth para detectar auriculares con seguimiento de la cabeza y otros dispositivos de audio, y conectarse a ellos."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape kasutab Bluetoothi, et leida pea jälgimisega kõrvaklappe ja muid heliseadmeid ning nendega ühenduda."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساند‌اسکیپ از بلوتوث برای یافتن هدفون‌های دارای ردیابی سر و دیگر دستگاه‌های صوتی و اتصال به آنها استفاده می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape käyttää Bluetoothia löytääkseen pään seurantaa tukevat kuulokkeet ja muut äänilaitteet ja muodostaakseen niihin yhteyden."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilise le Bluetooth pour détecter les casques avec suivi de la tête et les autres appareils audio, et s’y connecter."
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilise le Bluetooth pour détecter les casques avec suivi de la tête et les autres appareils audio, et s’y connecter."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape tana amfani da Bluetooth domin gano belun kunne masu bin diddigin kai da sauran na'urorin sauti sannan ta haɗa da su."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape हेड ट्रैकिंग वाले हेडफ़ोन और अन्य ऑडियो डिवाइस खोजने और उनसे कनेक्ट करने के लिए ब्लूटूथ का उपयोग करता है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape koristi Bluetooth za pronalaženje slušalica s praćenjem pokreta glave i drugih zvučnih uređaja te povezivanje s njima."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Soundscape Bluetooth-t használ a fejkövetést támogató fejhallgatók és egyéb hangeszközök megkereséséhez és a hozzájuk való csatlakozáshoz."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape menggunakan Bluetooth untuk menemukan dan terhubung ke headphone dengan pelacakan kepala serta perangkat audio lainnya."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape notar Bluetooth til að finna heyrnartól með höfuðrakningu og önnur hljóðtæki og tengjast þeim."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilizza il Bluetooth per rilevare auricolari con tracciamento della testa e altri dispositivi audio e connettersi a essi."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape は、ヘッドトラッキング対応ヘッドホンやその他のオーディオ機器を検出して接続するために Bluetooth を使用します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape는 블루투스를 사용하여 헤드 트래킹 헤드폰 및 기타 오디오 기기를 검색하고 연결합니다."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हेड ट्रॅकिंग असलेले हेडफोन आणि इतर ऑडिओ उपकरणे शोधण्यासाठी व त्यांच्याशी जोडण्यासाठी Soundscape ब्लूटूथ वापरते."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape bruker Bluetooth for å finne og koble til hodetelefoner med hodesporing og andre lydenheter."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape gebruikt Bluetooth om koptelefoons met hoofdtracking en andere audioapparaten te vinden en er verbinding mee te maken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape używa Bluetooth, aby wykrywać słuchawki ze śledzeniem ruchu głowy oraz inne urządzenia audio i łączyć się z nimi."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape utiliza o Bluetooth para detetar auscultadores com rastreio da cabeça e outros dispositivos de áudio, e ligar-se a eles."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape usa Bluetooth para descobrir fones de ouvido com rastreamento de cabeça e outros dispositivos de áudio e conectar-se a eles."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape folosește Bluetooth pentru a detecta căștile cu urmărirea capului și alte dispozitive audio și pentru a se conecta la ele."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape использует Bluetooth, чтобы находить наушники с отслеживанием головы и другие аудиоустройства и подключаться к ним."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape používa Bluetooth na vyhľadanie slúchadiel so sledovaním polohy hlavy a ďalších zvukových zariadení a na pripojenie k nim."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape uporablja Bluetooth za iskanje slušalk s sledenjem glavi in drugih zvočnih naprav ter za povezovanje z njimi."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape користи Bluetooth за проналажење слушалица са праћењем покрета главе и других звучних уређаја и повезивање са њима."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape använder Bluetooth för att hitta och ansluta till hörlurar med huvudspårning och andra ljudenheter."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape hutumia Bluetooth kutafuta na kuunganisha vipokea sauti vyenye ufuatiliaji wa kichwa na vifaa vingine vya sauti."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தலை கண்காணிப்பு கொண்ட ஹெட்போன்கள் மற்றும் பிற ஆடியோ சாதனங்களைக் கண்டறிந்து இணைக்க Soundscape Bluetooth ஐப் பயன்படுத்துகிறது."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "హెడ్ ట్రాకింగ్ ఉన్న హెడ్‌ఫోన్‌లను మరియు ఇతర ఆడియో పరికరాలను కనుగొని వాటికి కనెక్ట్ కావడానికి Soundscape బ్లూటూత్‌ను ఉపయోగిస్తుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ใช้บลูทูธเพื่อค้นหาและเชื่อมต่อกับหูฟังที่รองรับการติดตามการเคลื่อนไหวศีรษะและอุปกรณ์เสียงอื่นๆ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape, baş takibi olan kulaklıkları ve diğer ses cihazlarını bulup bunlara bağlanmak için Bluetooth kullanır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape використовує Bluetooth, щоб знаходити навушники з відстеженням голови та інші аудіопристрої й підключатися до них."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ہیڈ ٹریکنگ والے ہیڈفونز اور دیگر آڈیو آلات کو دریافت کرنے اور ان سے منسلک ہونے کے لیے بلوٹوتھ استعمال کرتا ہے۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape sử dụng Bluetooth để tìm và kết nối với tai nghe có theo dõi chuyển động đầu và các thiết bị âm thanh khác."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape 使用蓝牙来发现并连接支持头部追踪的耳机及其他音频设备。"
           }
         }
       }
     },
     "NSBluetoothPeripheralUsageDescription": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يستخدم Soundscape البلوتوث لاكتشاف سماعات الرأس المزوّدة بتتبع حركة الرأس والأجهزة الصوتية الأخرى والاتصال بها."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape използва Bluetooth, за да открива слушалки с проследяване на главата и други аудио устройства и да се свързва с тях."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "হেড ট্র্যাকিং সমর্থিত হেডফোন এবং অন্যান্য অডিও ডিভাইস খুঁজে পেতে ও সেগুলোর সাথে সংযোগ করতে Soundscape ব্লুটুথ ব্যবহার করে।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilitza el Bluetooth per detectar auriculars amb seguiment del cap i altres dispositius d'àudio, i connectar-s'hi."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape používá Bluetooth k vyhledání sluchátek se sledováním polohy hlavy a dalších zvukových zařízení a k připojení k nim."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape bruger Bluetooth til at finde og oprette forbindelse til hovedtelefoner med hovedsporing og andre lydenheder."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape verwendet Bluetooth, um Kopfhörer mit Head-Tracking und andere Audiogeräte zu finden und sich mit ihnen zu verbinden."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Soundscape χρησιμοποιεί Bluetooth για να εντοπίζει ακουστικά με παρακολούθηση κεφαλής και άλλες συσκευές ήχου και να συνδέεται σε αυτά."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape usa Bluetooth para detectar auriculares con seguimiento de la cabeza y otros dispositivos de audio, y conectarse a ellos."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape kasutab Bluetoothi, et leida pea jälgimisega kõrvaklappe ja muid heliseadmeid ning nendega ühenduda."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساند‌اسکیپ از بلوتوث برای یافتن هدفون‌های دارای ردیابی سر و دیگر دستگاه‌های صوتی و اتصال به آنها استفاده می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape käyttää Bluetoothia löytääkseen pään seurantaa tukevat kuulokkeet ja muut äänilaitteet ja muodostaakseen niihin yhteyden."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilise le Bluetooth pour détecter les casques avec suivi de la tête et les autres appareils audio, et s’y connecter."
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilise le Bluetooth pour détecter les casques avec suivi de la tête et les autres appareils audio, et s’y connecter."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape tana amfani da Bluetooth domin gano belun kunne masu bin diddigin kai da sauran na'urorin sauti sannan ta haɗa da su."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape हेड ट्रैकिंग वाले हेडफ़ोन और अन्य ऑडियो डिवाइस खोजने और उनसे कनेक्ट करने के लिए ब्लूटूथ का उपयोग करता है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape koristi Bluetooth za pronalaženje slušalica s praćenjem pokreta glave i drugih zvučnih uređaja te povezivanje s njima."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Soundscape Bluetooth-t használ a fejkövetést támogató fejhallgatók és egyéb hangeszközök megkereséséhez és a hozzájuk való csatlakozáshoz."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape menggunakan Bluetooth untuk menemukan dan terhubung ke headphone dengan pelacakan kepala serta perangkat audio lainnya."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape notar Bluetooth til að finna heyrnartól með höfuðrakningu og önnur hljóðtæki og tengjast þeim."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilizza il Bluetooth per rilevare auricolari con tracciamento della testa e altri dispositivi audio e connettersi a essi."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape は、ヘッドトラッキング対応ヘッドホンやその他のオーディオ機器を検出して接続するために Bluetooth を使用します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape는 블루투스를 사용하여 헤드 트래킹 헤드폰 및 기타 오디오 기기를 검색하고 연결합니다."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हेड ट्रॅकिंग असलेले हेडफोन आणि इतर ऑडिओ उपकरणे शोधण्यासाठी व त्यांच्याशी जोडण्यासाठी Soundscape ब्लूटूथ वापरते."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape bruker Bluetooth for å finne og koble til hodetelefoner med hodesporing og andre lydenheter."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape gebruikt Bluetooth om koptelefoons met hoofdtracking en andere audioapparaten te vinden en er verbinding mee te maken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape używa Bluetooth, aby wykrywać słuchawki ze śledzeniem ruchu głowy oraz inne urządzenia audio i łączyć się z nimi."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape utiliza o Bluetooth para detetar auscultadores com rastreio da cabeça e outros dispositivos de áudio, e ligar-se a eles."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape usa Bluetooth para descobrir fones de ouvido com rastreamento de cabeça e outros dispositivos de áudio e conectar-se a eles."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape folosește Bluetooth pentru a detecta căștile cu urmărirea capului și alte dispozitive audio și pentru a se conecta la ele."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape использует Bluetooth, чтобы находить наушники с отслеживанием головы и другие аудиоустройства и подключаться к ним."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape používa Bluetooth na vyhľadanie slúchadiel so sledovaním polohy hlavy a ďalších zvukových zariadení a na pripojenie k nim."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape uporablja Bluetooth za iskanje slušalk s sledenjem glavi in drugih zvočnih naprav ter za povezovanje z njimi."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape користи Bluetooth за проналажење слушалица са праћењем покрета главе и других звучних уређаја и повезивање са њима."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape använder Bluetooth för att hitta och ansluta till hörlurar med huvudspårning och andra ljudenheter."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape hutumia Bluetooth kutafuta na kuunganisha vipokea sauti vyenye ufuatiliaji wa kichwa na vifaa vingine vya sauti."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தலை கண்காணிப்பு கொண்ட ஹெட்போன்கள் மற்றும் பிற ஆடியோ சாதனங்களைக் கண்டறிந்து இணைக்க Soundscape Bluetooth ஐப் பயன்படுத்துகிறது."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "హెడ్ ట్రాకింగ్ ఉన్న హెడ్‌ఫోన్‌లను మరియు ఇతర ఆడియో పరికరాలను కనుగొని వాటికి కనెక్ట్ కావడానికి Soundscape బ్లూటూత్‌ను ఉపయోగిస్తుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ใช้บลูทูธเพื่อค้นหาและเชื่อมต่อกับหูฟังที่รองรับการติดตามการเคลื่อนไหวศีรษะและอุปกรณ์เสียงอื่นๆ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape, baş takibi olan kulaklıkları ve diğer ses cihazlarını bulup bunlara bağlanmak için Bluetooth kullanır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape використовує Bluetooth, щоб знаходити навушники з відстеженням голови та інші аудіопристрої й підключатися до них."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ہیڈ ٹریکنگ والے ہیڈفونز اور دیگر آڈیو آلات کو دریافت کرنے اور ان سے منسلک ہونے کے لیے بلوٹوتھ استعمال کرتا ہے۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape sử dụng Bluetooth để tìm và kết nối với tai nghe có theo dõi chuyển động đầu và các thiết bị âm thanh khác."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape 使用蓝牙来发现并连接支持头部追踪的耳机及其他音频设备。"
           }
         }
       }
     },
     "NSLocationAlwaysAndWhenInUseUsageDescription": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يحتاج Soundscape إلى موقعك لتقديم التنقل الصوتي حتى عندما يكون التطبيق في الخلفية."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape се нуждае от местоположението Ви, за да предоставя аудио навигация дори когато приложението е на заден план."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অ্যাপ ব্যাকগ্রাউন্ডে থাকা অবস্থাতেও অডিও নেভিগেশন প্রদান করতে Soundscape-এর আপনার অবস্থান প্রয়োজন।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape necessita la teva ubicació per proporcionar navegació per àudio fins i tot quan l'aplicació està en segon pla."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape potřebuje vaši polohu, aby mohl poskytovat zvukovou navigaci, i když je aplikace na pozadí."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape har brug for din placering for at kunne levere lydnavigation, også når appen kører i baggrunden."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape benötigt Ihren Standort, um Audio-Navigation auch dann zu bieten, wenn die App im Hintergrund ist."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Soundscape χρειάζεται την τοποθεσία σας για να παρέχει ηχητική πλοήγηση ακόμη και όταν η εφαρμογή βρίσκεται στο παρασκήνιο."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape needs your location to provide audio navigation even when the app is in the background."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape needs your location to provide audio navigation even when the app is in the background."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape necesita su ubicación para proporcionar navegación por audio incluso cuando la aplicación está en segundo plano."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ka siis, kui rakendus töötab taustal."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساند‌اسکیپ برای ارائه‌ی ناوبری صوتی حتی زمانی که اپلیکیشن در پس‌زمینه است، به موقعیت مکانی شما نیاز دارد."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape tarvitsee sijaintisi tarjotakseen ääninavigointia myös silloin, kun sovellus on taustalla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape a besoin de votre position pour fournir la navigation audio même lorsque l’application est en arrière-plan."
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape a besoin de votre position pour fournir la navigation audio même lorsque l’application est en arrière-plan."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape tana bukatar wurin da kuke domin ta ba da jagorar sauti ko da manhajar tana aiki a baya."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape को ऐप के बैकग्राउंड में होने पर भी ऑडियो नेविगेशन प्रदान करने के लिए आपके स्थान की आवश्यकता है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscapeu je potrebna vaša lokacija kako bi pružao zvučnu navigaciju i kada je aplikacija u pozadini."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Soundscape-nek szüksége van a tartózkodási helyére, hogy hangos navigációt nyújtson akkor is, amikor az alkalmazás a háttérben fut."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape memerlukan lokasi Anda untuk menyediakan navigasi audio bahkan saat aplikasi berjalan di latar belakang."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape þarf staðsetningu þína til að veita hljóðleiðsögn jafnvel þegar forritið er í bakgrunni."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ha bisogno della tua posizione per fornire la navigazione audio anche quando l'app è in background."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape は、アプリがバックグラウンドにあるときも音声ナビを提供するために位置情報を必要とします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape는 앱이 백그라운드에 있을 때도 오디오 내비게이션을 제공하기 위해 위치 정보가 필요합니다."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अ‍ॅप पार्श्वभूमीत असतानाही ऑडिओ नेव्हिगेशन देण्यासाठी Soundscape ला तुमच्या स्थानाची आवश्यकता आहे."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape trenger posisjonen din for å gi lydnavigasjon også når appen kjører i bakgrunnen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape heeft uw locatie nodig om audio-navigatie te bieden, zelfs wanneer de app op de achtergrond draait."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape potrzebuje Twojej lokalizacji, aby zapewniać nawigację audio nawet wtedy, gdy aplikacja działa w tle."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape necessita da sua localização para fornecer navegação por áudio mesmo quando a aplicação está em segundo plano."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape precisa da sua localização para fornecer navegação por áudio mesmo quando o aplicativo está em segundo plano."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape are nevoie de locația ta pentru a oferi navigare audio chiar și atunci când aplicația este în fundal."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape нужно ваше местоположение, чтобы обеспечивать аудионавигацию, даже когда приложение работает в фоновом режиме."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape potrebuje vašu polohu, aby mohol poskytovať zvukovú navigáciu, aj keď je aplikácia na pozadí."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape potrebuje vašo lokacijo, da lahko zagotavlja zvočno navigacijo tudi takrat, ko aplikacija deluje v ozadju."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape-у је потребна ваша локација да би пружао звучну навигацију и када је апликација у позадини."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape behöver din plats för att kunna ge ljudnavigering även när appen körs i bakgrunden."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape inahitaji mahali ulipo ili kutoa maelekezo ya sauti hata wakati programu iko chinichini."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "செயலி பின்னணியில் இருக்கும்போதும் ஆடியோ வழிசெலுத்தலை வழங்க Soundscape க்கு உங்கள் இருப்பிடம் தேவை."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "యాప్ బ్యాక్‌గ్రౌండ్‌లో ఉన్నప్పుడు కూడా ఆడియో నావిగేషన్ అందించడానికి Soundscapeకు మీ లొకేషన్ అవసరం."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ต้องการตำแหน่งที่ตั้งของคุณเพื่อให้บริการนำทางด้วยเสียงแม้ในขณะที่แอปทำงานอยู่เบื้องหลัง"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape, uygulama arka plandayken bile sesli gezinme sağlamak için konumunuza ihtiyaç duyar."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape потрібне ваше місцезнаходження, щоб надавати аудіонавігацію навіть тоді, коли програма працює у фоновому режимі."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape کو ایپ کے پس منظر میں ہونے کے باوجود آڈیو نیویگیشن فراہم کرنے کے لیے آپ کے مقام کی ضرورت ہے۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape cần vị trí của bạn để cung cấp điều hướng bằng âm thanh ngay cả khi ứng dụng chạy nền."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape 需要您的位置信息，以便在应用处于后台时仍能提供音频导航。"
           }
         }
       }
     },
     "NSLocationWhenInUseUsageDescription": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يحتاج Soundscape إلى موقعك لتقديم التنقل الصوتي ووصف ما يحيط بك."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape се нуждае от местоположението Ви, за да предоставя аудио навигация и да описва околността Ви."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অডিও নেভিগেশন প্রদান করতে এবং আপনার চারপাশের পরিবেশ বর্ণনা করতে Soundscape-এর আপনার অবস্থান প্রয়োজন।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape necessita la teva ubicació per proporcionar navegació per àudio i descriure el teu entorn."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape potřebuje vaši polohu, aby mohl poskytovat zvukovou navigaci a popisovat vaše okolí."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape har brug for din placering for at kunne levere lydnavigation og beskrive dine omgivelser."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape benötigt Ihren Standort, um Audio-Navigation zu bieten und Ihre Umgebung zu beschreiben."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Soundscape χρειάζεται την τοποθεσία σας για να παρέχει ηχητική πλοήγηση και να περιγράφει το περιβάλλον σας."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape needs your location to provide audio navigation and describe your surroundings."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape needs your location to provide audio navigation and describe your surroundings."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape necesita su ubicación para proporcionar navegación por audio y describir su entorno."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ja kirjeldada teie ümbrust."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساند‌اسکیپ برای ارائه‌ی ناوبری صوتی و توصیف محیط پیرامون شما به موقعیت مکانی شما نیاز دارد."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape tarvitsee sijaintisi tarjotakseen ääninavigointia ja kuvaillakseen ympäristöäsi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape a besoin de votre position pour fournir la navigation audio et décrire votre environnement."
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape a besoin de votre position pour fournir la navigation audio et décrire votre environnement."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape tana bukatar wurin da kuke domin ta ba da jagorar sauti da kuma bayyana abin da ke kewaye da ku."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape को ऑडियो नेविगेशन प्रदान करने और आपके परिवेश का वर्णन करने के लिए आपके स्थान की आवश्यकता है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscapeu je potrebna vaša lokacija kako bi pružao zvučnu navigaciju i opisivao vašu okolinu."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Soundscape-nek szüksége van a tartózkodási helyére, hogy hangos navigációt nyújtson és leírja a környezetét."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape memerlukan lokasi Anda untuk menyediakan navigasi audio dan menjelaskan lingkungan sekitar Anda."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape þarf staðsetningu þína til að veita hljóðleiðsögn og lýsa umhverfi þínu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ha bisogno della tua posizione per fornire la navigazione audio e descrivere i tuoi dintorni."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape は、音声ナビを提供し、周囲の状況をお伝えするために位置情報を必要とします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape는 오디오 내비게이션을 제공하고 주변 환경을 설명하기 위해 위치 정보가 필요합니다."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ऑडिओ नेव्हिगेशन देण्यासाठी आणि तुमच्या परिसराचे वर्णन करण्यासाठी Soundscape ला तुमच्या स्थानाची आवश्यकता आहे."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape trenger posisjonen din for å gi lydnavigasjon og beskrive omgivelsene dine."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape heeft uw locatie nodig om audio-navigatie te bieden en uw omgeving te beschrijven."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape potrzebuje Twojej lokalizacji, aby zapewniać nawigację audio i opisywać Twoje otoczenie."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape necessita da sua localização para fornecer navegação por áudio e descrever as suas imediações."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape precisa da sua localização para fornecer navegação por áudio e descrever seus arredores."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape are nevoie de locația ta pentru a oferi navigare audio și a descrie împrejurimile tale."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape нужно ваше местоположение, чтобы обеспечивать аудионавигацию и описывать ваше окружение."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape potrebuje vašu polohu, aby mohol poskytovať zvukovú navigáciu a opisovať vaše okolie."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape potrebuje vašo lokacijo, da lahko zagotavlja zvočno navigacijo in opisuje vašo okolico."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape-у је потребна ваша локација да би пружао звучну навигацију и описивао вашу околину."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape behöver din plats för att kunna ge ljudnavigering och beskriva dina omgivningar."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape inahitaji mahali ulipo ili kutoa maelekezo ya sauti na kueleza mazingira yanayokuzunguka."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஆடியோ வழிசெலுத்தலை வழங்கவும் உங்கள் சுற்றுப்புறத்தை விவரிக்கவும் Soundscape க்கு உங்கள் இருப்பிடம் தேவை."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆడియో నావిగేషన్ అందించడానికి మరియు మీ పరిసరాలను వివరించడానికి Soundscapeకు మీ లొకేషన్ అవసరం."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ต้องการตำแหน่งที่ตั้งของคุณเพื่อให้บริการนำทางด้วยเสียงและอธิบายสภาพแวดล้อมรอบตัวคุณ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape, sesli gezinme sağlamak ve çevrenizi betimlemek için konumunuza ihtiyaç duyar."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape потрібне ваше місцезнаходження, щоб надавати аудіонавігацію та описувати ваше оточення."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape کو آڈیو نیویگیشن فراہم کرنے اور آپ کے ارد گرد کے ماحول کی تفصیل بتانے کے لیے آپ کے مقام کی ضرورت ہے۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape cần vị trí của bạn để cung cấp điều hướng bằng âm thanh và mô tả không gian xung quanh bạn."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape 需要您的位置信息，以便提供音频导航并描述您周围的环境。"
           }
         }
       }
     },
     "NSMotionUsageDescription": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يستخدم Soundscape بيانات الحركة لتحديد الاتجاه الذي تواجهه وتوجيه النداءات الصوتية نحو ما يحيط بك."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape използва данни за движение, за да определи посоката, в която сте обърнати, и да насочи аудио съобщенията спрямо околността Ви."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "আপনি কোন দিকে মুখ করে আছেন তা শনাক্ত করতে এবং ঘোষণাগুলো আপনার চারপাশের পরিবেশ অনুযায়ী সাজাতে Soundscape গতিবিধি ডেটা ব্যবহার করে।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilitza dades de moviment per detectar cap a on estàs orientat i orientar els avisos de veu respecte al teu entorn."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape používá pohybová data k rozpoznání směru, kterým jste otočeni, a k nasměrování zvukových hlášení podle vašeho okolí."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape bruger bevægelsesdata til at registrere, hvilken retning du vender, og til at placere lydbeskederne i forhold til dine omgivelser."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape verwendet Bewegungsdaten, um Ihre Blickrichtung zu erkennen und Audio-Hinweise an Ihrer Umgebung auszurichten."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Soundscape χρησιμοποιεί δεδομένα κίνησης για να εντοπίζει την κατεύθυνση προς την οποία κοιτάτε και να προσανατολίζει τις ηχητικές επεξηγήσεις ως προς το περιβάλλον σας."
+          }
+        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape usa datos de movimiento para detectar la dirección hacia la que mira y orientar los avisos de audio respecto a su entorno."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape kasutab liikumisandmeid, et tuvastada suund, kuhu te näoga olete, ja suunata häälteated vastavalt teie ümbrusele."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساند‌اسکیپ از داده‌های حرکتی استفاده می‌کند تا جهتی را که رو به آن ایستاده‌اید تشخیص دهد و اعلان‌های صوتی را نسبت به محیط پیرامون شما جهت‌دهی کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape käyttää liikedataa tunnistaakseen, mihin suuntaan olet kääntyneenä, ja suunnatakseen ääni-ilmoitukset ympäristöösi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné et orienter les notifications audio par rapport à votre environnement."
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné et orienter les annonces audio par rapport à votre environnement."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape tana amfani da bayanan motsi domin gane inda kuke fuskanta da kuma daidaita sanarwowin sauti da abin da ke kewaye da ku."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape मोशन डेटा का उपयोग करके यह पता लगाता है कि आपका मुख किस दिशा में है और कॉलआउट को आपके परिवेश के अनुसार दिशा देता है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape koristi podatke o pokretu kako bi otkrio smjer u kojem ste okrenuti i uskladio zvučne najave s vašom okolinom."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, és a hangos bejelentéseket a környezetéhez igazítsa."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape menggunakan data gerakan untuk mendeteksi arah hadap Anda dan menyesuaikan pemberitahuan audio dengan lingkungan sekitar Anda."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape notar hreyfigögn til að greina í hvaða átt þú snýrð og staðsetja hljóðtilkynningar miðað við umhverfi þitt."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape utilizza i dati di movimento per rilevare la direzione verso cui sei rivolto e orientare le notifiche audio rispetto ai tuoi dintorni."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape は、あなたが向いている方向を検出し、コールアウトを周囲に合わせて定位するためにモーションデータを使用します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape는 동작 데이터를 사용하여 사용자가 향하는 방향을 감지하고 오디오 안내를 주변 환경에 맞춰 배치합니다."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुमचे तोंड कोणत्या दिशेला आहे हे ओळखण्यासाठी आणि ध्वनी सूचना तुमच्या परिसरानुसार दिशाबद्ध करण्यासाठी Soundscape गती डेटा वापरते."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape bruker bevegelsesdata for å registrere hvilken retning du står mot, og plassere lydmeldingene i forhold til omgivelsene dine."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape gebruikt bewegingsgegevens om te bepalen welke richting u op kijkt en om de audio-aankondigingen op uw omgeving af te stemmen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape wykorzystuje dane ruchu, aby wykryć kierunek, w którym jesteś zwrócony, i dopasować powiadomienia głosowe do Twojego otoczenia."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape utiliza dados de movimento para detetar a direção para a qual está virado e orientar os avisos de áudio em relação às suas imediações."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Soundscape usa dados de movimento para detectar a direção para a qual você está voltado e orientar as notificações de áudio em relação aos seus arredores."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape folosește date de mișcare pentru a detecta direcția în care ești orientat și pentru a orienta anunțurile audio în raport cu împrejurimile tale."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape использует данные движения, чтобы определять направление, в котором вы повёрнуты, и располагать звуковые уточнения относительно вашего окружения."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape používa pohybové dáta na rozpoznanie smeru, ktorým ste otočení, a na nasmerovanie zvukových hlásení podľa vášho okolia."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape uporablja podatke o gibanju, da zazna smer, v katero ste obrnjeni, in zvočna obvestila umesti glede na vašo okolico."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape користи податке о кретању да би открио правац у коме сте окренути и ускладио звучне најаве са вашом околином."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape använder rörelsedata för att känna av vilken riktning du är vänd mot och placera informationsljuden i förhållande till dina omgivningar."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape hutumia data ya mwendo kutambua upande uliouelekea na kupanga matangazo ya sauti kulingana na mazingira yanayokuzunguka."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "நீங்கள் எந்தத் திசையை நோக்கி உள்ளீர்கள் என்பதைக் கண்டறியவும், அறிவிப்புகளை உங்கள் சுற்றுப்புறத்திற்கு ஏற்ப திசைப்படுத்தவும் Soundscape இயக்கத் தரவைப் பயன்படுத்துகிறது."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీరు ఏ దిశ వైపు ముఖం పెట్టి ఉన్నారో గుర్తించడానికి మరియు కాలౌట్‌లను మీ పరిసరాలకు అనుగుణంగా ఉంచడానికి Soundscape మోషన్ డేటాను ఉపయోగిస్తుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ใช้ข้อมูลการเคลื่อนไหวเพื่อตรวจจับทิศทางที่คุณหันหน้าไป และจัดวางการแจ้งเตือนด้วยเสียงให้สอดคล้องกับสภาพแวดล้อมรอบตัวคุณ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape, baktığınız yönü algılamak ve sesli anonsları çevrenize göre yönlendirmek için hareket verilerini kullanır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape використовує дані руху, щоб визначати напрямок, у який ви повернені, і спрямовувати звукові оголошення відповідно до вашого оточення."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape حرکت کے ڈیٹا کا استعمال کرتے ہوئے آپ کے رخ کی سمت معلوم کرتا ہے اور آڈیو کالآؤٹس کو آپ کے ارد گرد کے ماحول کے مطابق ترتیب دیتا ہے۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape sử dụng dữ liệu chuyển động để xác định hướng bạn đang quay mặt và định hướng các thông báo âm thanh theo không gian xung quanh bạn."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape 使用运动数据来检测您面朝的方向，并将语音提示的方位与您周围的环境对应起来。"
           }
         }
       }
