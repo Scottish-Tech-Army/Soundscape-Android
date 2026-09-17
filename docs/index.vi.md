@@ -18,7 +18,7 @@ Thay vì đưa ra chỉ dẫn từng khúc rẽ, Soundscape hoạt động như 
 - **Điểm đánh dấu và tuyến đường** – Lưu các địa điểm ưa thích và tạo tuyến đi bộ giữa chúng. Ứng dụng dẫn bạn theo tuyến và tự động chuyển sang điểm kế tiếp khi bạn tới nơi.
 - **Xem trước đường phố** – Khám phá một khu vực lạ theo cách ảo trước khi đến, để thêm tự tin và quen thuộc.
 
-Ứng dụng vẫn tiếp tục chạy nền khi điện thoại nằm trong túi quần hay túi xách – không cần cầm hay nhìn màn hình. Ứng dụng hoàn toàn miễn phí, không quảng cáo, không thu thập dữ liệu, và bản Android có thể hoạt động ngoại tuyến bằng các vùng bản đồ đã tải về.
+Ứng dụng vẫn tiếp tục chạy nền khi điện thoại nằm trong túi quần hay túi xách – không cần cầm hay nhìn màn hình. Ứng dụng hoàn toàn miễn phí, không quảng cáo, và ứng dụng có thể hoạt động ngoại tuyến bằng các vùng bản đồ đã tải về. Ứng dụng có gửi số liệu thống kê sử dụng và báo cáo sự cố để chúng tôi tìm và khắc phục lỗi - [chính sách quyền riêng tư]({{ "/privacy-policy.html" | relative_url }}) giải thích chính xác những gì được thu thập.
 
 Soundscape ban đầu được [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) phát triển trên iOS và được dùng rộng rãi trước khi trở thành mã nguồn mở vào năm 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) đã duy trì ứng dụng trên iOS và đồng thời viết lại thành ứng dụng Android mã nguồn mở.
 

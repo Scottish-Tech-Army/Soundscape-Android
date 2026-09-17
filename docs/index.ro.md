@@ -18,7 +18,7 @@ Soundscape este o aplicație gratuită, open-source, care folosește audio spaț
 - **Marcaje și rute** - Salvează locațiile preferate și creează rute pietonale între ele. Aplicația te ghidează de-a lungul rutei, avansând automat la următorul punct de traseu pe măsură ce ajungi.
 - **Previzualizarea străzilor** - Explorează virtual o zonă necunoscută înainte de a o vizita, pentru a-ți dezvolta încrederea și familiaritatea.
 
-Aplicația continuă să funcționeze în fundal când telefonul este în buzunar sau în geantă - nu este nevoie să ții telefonul în mână sau să te uiți la ecran. Este complet gratuită, fără reclame sau colectare de date, iar versiunea Android poate funcționa offline folosind regiunile de hartă descărcate.
+Aplicația continuă să funcționeze în fundal când telefonul este în buzunar sau în geantă - nu este nevoie să ții telefonul în mână sau să te uiți la ecran. Este complet gratuită și fără reclame, iar aplicația poate funcționa offline folosind regiunile de hartă descărcate. Aplicația trimite însă statistici de utilizare și rapoarte de eroare pentru ca noi să putem găsi și remedia problemele - [politica de confidențialitate]({{ "/privacy-policy.html" | relative_url }}) explică exact ce se colectează.
 
 Soundscape a fost dezvoltat inițial pe iOS de [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) și a fost utilizat pe scară largă înainte de a deveni open source în 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) l-a menținut disponibil pe iOS și l-a rescris și ca aplicație Android open-source.
 

@@ -18,7 +18,7 @@ Sen sijaan, että Soundscape antaisi käännös käännökseltä eteneviä ohjei
 - **Merkinnät ja reitit** - Tallenna suosikkisijaintisi ja luo niiden välille kävelyreittejä. Sovellus opastaa sinua reittiä pitkin ja siirtyy automaattisesti seuraavaan reittipisteeseen, kun saavut.
 - **Katunäkymän esikatselu** - Tutustu vieraaseen alueeseen virtuaalisesti ennen vierailua kasvattaaksesi itsevarmuutta ja tuttuutta.
 
-Sovellus toimii edelleen taustalla, kun puhelin on taskussa tai laukussa – sitä ei tarvitse pitää kädessä eikä katsoa näyttöä. Se on täysin ilmainen, ilman mainoksia tai tiedonkeruuta, ja Android-versio voi toimia offline-tilassa ladattujen karttaregioiden avulla.
+Sovellus toimii edelleen taustalla, kun puhelin on taskussa tai laukussa – sitä ei tarvitse pitää kädessä eikä katsoa näyttöä. Se on täysin ilmainen eikä sisällä mainoksia, ja se voi toimia offline-tilassa ladattujen karttaregioiden avulla. Sovellus lähettää kuitenkin käyttötilastoja ja kaatumisraportteja, jotta voimme löytää ja korjata ongelmia – [tietosuojakäytäntö]({{ "/privacy-policy.html" | relative_url }}) kertoo tarkalleen, mitä kerätään.
 
 Soundscapen kehitti alun perin iOS:lle [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/), ja se oli laajalti käytössä ennen kuin se julkaistiin avoimena lähdekoodina vuonna 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) on pitänyt sen saatavilla iOS:llä ja myös kirjoittanut sen uudelleen avoimen lähdekoodin Android-sovellukseksi.
 

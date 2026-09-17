@@ -18,7 +18,7 @@ Ahelyett, hogy fordulónkénti útbaigazítást adna, a Soundscape úgy működi
 - **Jelölők és útvonalak** – Mentse el kedvenc helyeit, és hozzon létre köztük gyalogos útvonalakat. Az alkalmazás végigvezeti az útvonalon, és megérkezéskor automatikusan a következő útpontra lép.
 - **Utcanézet** – Fedezzen fel egy ismeretlen területet virtuálisan a látogatás előtt, hogy magabiztosságot és ismerősséget szerezzen.
 
-Az alkalmazás a háttérben is tovább működik, amikor a telefon zsebben vagy táskában van – nem kell kézben tartani vagy a képernyőt nézni. Teljesen ingyenes, reklámok és adatgyűjtés nélkül, az Android-változat pedig letöltött térképrégiókkal offline is működik.
+Az alkalmazás a háttérben is tovább működik, amikor a telefon zsebben vagy táskában van – nem kell kézben tartani vagy a képernyőt nézni. Teljesen ingyenes és reklámmentes, és letöltött térképrégiókkal offline is működik. Az alkalmazás használati statisztikákat és összeomlási jelentéseket küld, hogy megtalálhassuk és kijavíthassuk a hibákat – az [adatvédelmi tájékoztató]({{ "/privacy-policy.html" | relative_url }}) pontosan leírja, mit gyűjtünk.
 
 A Soundscape-et eredetileg iOS-re a [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) fejlesztette, és széles körben használták, mielőtt 2022-ben nyílt forráskódúvá vált. A [Scottish Tech Army](https://www.scottishtecharmy.org) fenntartotta az elérhetőségét iOS-en, és nyílt forráskódú Android-alkalmazásként is újraírta.
 

@@ -18,7 +18,7 @@ Alih-alih memberi petunjuk belok demi belok, Soundscape bekerja seperti mercusua
 - **Penanda dan rute** – Simpan tempat favorit dan buat rute berjalan kaki di antaranya. Aplikasi memandu Anda menyusuri rute dan otomatis berpindah ke titik berikutnya saat Anda tiba.
 - **Pratinjau jalan** – Jelajahi kawasan yang belum dikenal secara virtual sebelum mengunjunginya, untuk menumbuhkan rasa percaya diri dan keakraban.
 
-Aplikasi terus bekerja di latar belakang ketika ponsel berada di saku atau tas – tidak perlu memegangnya atau menatap layar. Aplikasi ini sepenuhnya gratis, tanpa iklan atau pengumpulan data, dan versi Android dapat bekerja luring memakai wilayah peta yang telah diunduh.
+Aplikasi terus bekerja di latar belakang ketika ponsel berada di saku atau tas – tidak perlu memegangnya atau menatap layar. Aplikasi ini sepenuhnya gratis dan tanpa iklan, dan aplikasi ini dapat bekerja luring memakai wilayah peta yang telah diunduh. Aplikasi ini mengirim statistik penggunaan dan laporan kerusakan agar kami dapat menemukan dan memperbaiki masalah - [kebijakan privasi]({{ "/privacy-policy.html" | relative_url }}) menjelaskan dengan tepat apa yang dikumpulkan.
 
 Soundscape awalnya dikembangkan di iOS oleh [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) dan digunakan secara luas sebelum menjadi sumber terbuka pada 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) menjaganya tetap tersedia di iOS dan juga menulis ulangnya sebagai aplikasi Android sumber terbuka.
 

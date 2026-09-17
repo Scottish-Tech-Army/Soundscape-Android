@@ -18,7 +18,7 @@ En comptes de donar indicacions gir a gir, Soundscape actua com un far per a les
 - **Marcadors i rutes** – Deseu llocs preferits i creeu-hi rutes a peu. L'aplicació us guia al llarg de la ruta i passa automàticament al punt següent quan hi arribeu.
 - **Vista prèvia del carrer** – Exploreu virtualment una zona desconeguda abans de visitar-la, per guanyar confiança i familiaritat.
 
-L'aplicació continua funcionant en segon pla amb el telèfon a la butxaca o a la bossa: no cal sostenir-lo ni mirar cap pantalla. És totalment gratuïta, sense anuncis ni recollida de dades, i la versió d'Android pot funcionar fora de línia amb regions de mapa baixades.
+L'aplicació continua funcionant en segon pla amb el telèfon a la butxaca o a la bossa: no cal sostenir-lo ni mirar cap pantalla. És totalment gratuïta i sense anuncis, i pot funcionar fora de línia amb regions de mapa baixades. L'aplicació sí que envia estadístiques d'ús i informes de fallades perquè puguem detectar i corregir problemes: la [política de privadesa]({{ "/privacy-policy.html" | relative_url }}) explica exactament què es recull.
 
 Soundscape va ser desenvolupada originalment a iOS per [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) i es va fer servir àmpliament abans d'alliberar-ne el codi el 2022. La [Scottish Tech Army](https://www.scottishtecharmy.org) l'ha mantinguda disponible a iOS i també l'ha reescrita com a aplicació Android de codi obert.
 
