@@ -11,10 +11,24 @@ import org.scottishtecharmy.soundscape.resources.talkback_double_tap_template
 
 @Composable
 actual fun Modifier.talkbackHint(hint: String): Modifier {
-    val fallback = stringResource(Res.string.talkback_default_activate)
-    val effective = hint.ifEmpty { fallback }
-    val label = stringResource(Res.string.talkback_double_tap_template, effective)
+    val label = activationHint(hint)
     return semantics {
         onClick(label = label, action = { false })
     }
+}
+
+/**
+ * Phrases a bare hint fragment ("hear about your current location") as a full VoiceOver hint
+ * ("Double tap to hear about your current location"), falling back to a generic verb when the
+ * caller has no fragment.
+ *
+ * TalkBack composes this phrasing itself from an onClick action's label, but VoiceOver reads
+ * the label verbatim, so iOS has to supply it. Shared with [StartsSpeechControl], whose native
+ * accessibility proxy sets the hint on a UIView instead of through Compose semantics - keeping
+ * both spellings of "the iOS hint" in one place.
+ */
+@Composable
+internal fun activationHint(hint: String): String {
+    val fallback = stringResource(Res.string.talkback_default_activate)
+    return stringResource(Res.string.talkback_double_tap_template, hint.ifEmpty { fallback })
 }

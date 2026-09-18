@@ -185,22 +185,28 @@ fun SharedRouteDetailsScreen(
                                 }
                             } else {
                                 IconWithTextButton(
-                                    modifier = Modifier.fillMaxWidth().testTag("routeDetailsStartButton"),
+                                    modifier = Modifier.fillMaxWidth(),
+                                    buttonTestTag = "routeDetailsStartButton",
                                     icon = Icons.Default.PlayArrow,
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     talkbackHint = stringResource(Res.string.route_detail_action_start_route_hint),
                                     text = stringResource(Res.string.route_detail_action_start_route),
-                                    color = MaterialTheme.colorScheme.onSurface
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    // Speaks the first waypoint's beacon-set text and starts its beacon.
+                                    startsSpeech = true,
                                 ) {
                                     onStartRoute()
                                 }
                                 IconWithTextButton(
-                                    modifier = Modifier.fillMaxWidth().testTag("routeDetailsStartReverseButton"),
+                                    modifier = Modifier.fillMaxWidth(),
+                                    buttonTestTag = "routeDetailsStartReverseButton",
                                     icon = Icons.Default.SwapVert,
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     talkbackHint = stringResource(Res.string.route_detail_action_start_route_reverse_hint),
                                     text = stringResource(Res.string.route_detail_action_start_route_reverse),
-                                    color = MaterialTheme.colorScheme.onSurface
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    // Same, walking the waypoints in reverse.
+                                    startsSpeech = true,
                                 ) {
                                     onStartRouteInReverse()
                                 }

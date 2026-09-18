@@ -291,8 +291,10 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
-                .fillMaxWidth()
-                .testTag("locationDetailsStartBeacon")
+                .fillMaxWidth(),
+            buttonTestTag = "locationDetailsStartBeacon",
+            // Speaks "Beacon set on <name>, <distance>" and starts the beacon tone.
+            startsSpeech = true,
         ) {
             onStartBeacon(locationDescription.location, locationDescription.name)
         }
@@ -335,8 +337,10 @@ private fun LocationDescriptionButtonsSection(
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
-                    .fillMaxWidth()
-                    .testTag("locationDetailsStreetPreview")
+                    .fillMaxWidth(),
+                buttonTestTag = "locationDetailsStreetPreview",
+                // Entering street preview starts road and intersection callouts.
+                startsSpeech = true,
             ) {
                 onEnableStreetPreview(locationDescription.location)
             }

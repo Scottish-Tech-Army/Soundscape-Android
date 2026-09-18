@@ -48,6 +48,7 @@ If you would like access to the main Soundscape tile provider for development, g
 ## Audio
 * [Audio engine]({% link developers/audio-API.md %}) — the C++ engine built on Oboe and Steam Audio, the JNI bridge, and the Kotlin `AudioEngine` interface.
 * [Voice and audio menu control]({% link developers/voice-and-audio-control.md %}) — voice commands and the media-key driven audio menu used when the screen is locked.
+* [VoiceOver and callout audio]({% link developers/voiceover-and-callouts.md %}) — how iOS is told to keep VoiceOver quiet for a control that starts a callout, and the Compose Multiplatform interop internals that relies on.
 
 ## Search
 * [Search]({% link developers/search.md %}) — online and offline search, the Photon server and Android system geocoder.
