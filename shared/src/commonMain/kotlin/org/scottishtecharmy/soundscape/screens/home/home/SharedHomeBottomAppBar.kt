@@ -55,6 +55,7 @@ import org.scottishtecharmy.soundscape.resources.ui_action_button_my_location
 import org.scottishtecharmy.soundscape.resources.ui_action_button_my_location_acc_hint
 import org.scottishtecharmy.soundscape.resources.ui_action_button_nearby_markers
 import org.scottishtecharmy.soundscape.resources.ui_action_button_nearby_markers_acc_hint
+import org.scottishtecharmy.soundscape.screens.StartsSpeechControl
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -128,49 +129,49 @@ fun SharedHomeBottomAppBar(
                 HomeBottomAppBarButton(
                     icon = painterResource(Res.drawable.my_location_24px),
                     text = stringResource(Res.string.ui_action_button_my_location),
+                    accessibilityHint = myLocationHint,
+                    buttonTestTag = "homeMyLocation",
                     onClick = { bottomButtonFunctions.myLocation() },
                     isActive = activeCallout == TourButton.MY_LOCATION,
                     modifier = Modifier
                         .weight(1f)
-                        .fillMaxHeight()
-                        .semantics { onClick(label = myLocationHint, action = { false }) }
-                        .testTag("homeMyLocation"),
+                        .fillMaxHeight(),
                 )
 
                 HomeBottomAppBarButton(
                     icon = painterResource(Res.drawable.around_me_24px),
                     text = stringResource(Res.string.ui_action_button_around_me),
+                    accessibilityHint = aroundMeHint,
+                    buttonTestTag = "homeAroundMe",
                     onClick = { bottomButtonFunctions.aroundMe() },
                     isActive = activeCallout == TourButton.AROUND_ME,
                     modifier = Modifier
                         .weight(1f)
-                        .fillMaxHeight()
-                        .semantics { onClick(label = aroundMeHint, action = { false }) }
-                        .testTag("homeAroundMe"),
+                        .fillMaxHeight(),
                 )
 
                 HomeBottomAppBarButton(
                     icon = painterResource(Res.drawable.ahead_of_me_24px),
                     text = stringResource(Res.string.ui_action_button_ahead_of_me),
+                    accessibilityHint = aheadOfMeHint,
+                    buttonTestTag = "homeAheadOfMe",
                     onClick = { bottomButtonFunctions.aheadOfMe() },
                     isActive = activeCallout == TourButton.AHEAD_OF_ME,
                     modifier = Modifier
                         .weight(1f)
-                        .fillMaxHeight()
-                        .semantics { onClick(label = aheadOfMeHint, action = { false }) }
-                        .testTag("homeAheadOfMe"),
+                        .fillMaxHeight(),
                 )
 
                 HomeBottomAppBarButton(
                     icon = painterResource(Res.drawable.nearby_markers_24px),
                     text = stringResource(Res.string.ui_action_button_nearby_markers),
+                    accessibilityHint = nearbyMarkersHint,
+                    buttonTestTag = "homeNearbyMarkers",
                     onClick = { bottomButtonFunctions.nearbyMarkers() },
                     isActive = activeCallout == TourButton.NEARBY_MARKERS,
                     modifier = Modifier
                         .weight(1f)
-                        .fillMaxHeight()
-                        .semantics { onClick(label = nearbyMarkersHint, action = { false }) }
-                        .testTag("homeNearbyMarkers"),
+                        .fillMaxHeight(),
                 )
             }
         }
@@ -181,6 +182,8 @@ fun SharedHomeBottomAppBar(
 private fun HomeBottomAppBarButton(
     icon: Painter,
     text: String,
+    accessibilityHint: String,
+    buttonTestTag: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isActive: Boolean = false,
@@ -214,36 +217,50 @@ private fun HomeBottomAppBarButton(
         restingColors
     }
 
-    Button(
-        onClick = onClick,
-        shape = RectangleShape,
+    // Every one of these buttons starts a callout, and on iOS VoiceOver would otherwise speak
+    // the button's label and play its activation click over the top of it. StartsSpeechControl
+    // swaps in a native accessibility proxy carrying the traits that tell VoiceOver to keep
+    // quiet for a control that makes its own sound. A plain layout wrapper on Android.
+    StartsSpeechControl(
+        label = text,
+        hint = accessibilityHint,
+        identifier = buttonTestTag,
+        onActivate = onClick,
         modifier = modifier,
-        contentPadding = PaddingValues(spacing.extraSmall),
-        colors = activeColors,
-    ) {
-        Column(
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+    ) { buttonModifier ->
+        Button(
+            onClick = onClick,
+            shape = RectangleShape,
+            modifier = buttonModifier
+                .semantics { onClick(label = accessibilityHint, action = { false }) }
+                .testTag(buttonTestTag),
+            contentPadding = PaddingValues(spacing.extraSmall),
+            colors = activeColors,
         ) {
-            Icon(
-                painter = icon,
-                contentDescription = null,
-                modifier = Modifier
-                    .size(spacing.icon)
-                    .align(Alignment.CenterHorizontally)
-                    .graphicsLayer {
-                        val s = if (isActive) iconScale else 1f
-                        scaleX = s
-                        scaleY = s
-                    },
-            )
-            Spacer(modifier = Modifier.height(spacing.small))
-            Text(
-                text = text,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.labelMedium,
-            )
+            Column(
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+            ) {
+                Icon(
+                    painter = icon,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(spacing.icon)
+                        .align(Alignment.CenterHorizontally)
+                        .graphicsLayer {
+                            val s = if (isActive) iconScale else 1f
+                            scaleX = s
+                            scaleY = s
+                        },
+                )
+                Spacer(modifier = Modifier.height(spacing.small))
+                Text(
+                    text = text,
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.labelMedium,
+                )
+            }
         }
     }
 }
