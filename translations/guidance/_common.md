@@ -1,0 +1,100 @@
+# Cross-language translation rules
+
+Rules that apply to every language. Derived from real feedback — each one
+names the case that produced it, because the case is usually more convincing
+than the rule.
+
+---
+
+## C1 — The terminology doc lists *glosses*, not preferred translations
+
+`docs/developers/translation-terminology.md` offers alternates like "route
+point" for Waypoint and "sound beacon" for Audio Beacon. Those exist to pin
+down the **concept in English** for someone who has never used the app. They
+are not a shortlist to translate from.
+
+Prefer whatever the target language's own mapping and navigation apps already
+use for the concept. A user recognises the word they have already learned
+elsewhere; a faithful calque of an English gloss is something they have to
+decode.
+
+> **Case (uk, 2026-09-18):** Ukrainian took the doc's "route point" gloss
+> literally and shipped «маршрутна точка» in 26 strings. A native speaker
+> flagged it and pointed at Google Maps Ukrainian, which uses «зупинка». The
+> translation was faithful to our documentation and still wrong for users.
+
+## C2 — Watch for tautologies the English can't show you
+
+An English modifier+noun pair can collapse into a tautology when the target
+language's noun already carries the modifier. The English reads fine, so
+nothing flags it; only a native speaker hears it.
+
+When a source string pairs a modifier with a domain noun (new/current/existing
++ release, update, version, location, setting), check whether the target noun
+already implies it, and drop the modifier if so.
+
+> **Case (uk, 2026-09-18):** "New release information" became «Інформація про
+> нове оновлення». Ukrainian renders both *release* and *update* as
+> «оновлення», so the string read "information about the new update" —
+> a tautology. Fix was to drop «нове».
+
+## C3 — A term decision is only mechanical if the term is never a verb
+
+Before treating a term change as find-and-replace, search the corpus for
+**derived forms** — verbs, participles, adverbs built off the current term.
+Those need the sentence rewritten, not the word swapped, and they are where a
+bulk substitution produces text no native speaker would write.
+
+Split the sweep into "noun forms, mechanical" and "derived forms, needs a
+human" and report the two counts separately. A term change that looks like 30
+easy edits is often 20 easy ones and 10 rewrites.
+
+> **Case (uk, 2026-09-18):** Callout «оголошення» → «підказка» touches 29
+> strings, but 6 use the verb «оголошувати» ("Soundscape will announce…"),
+> which has no natural «підказка» verb — those clauses need restructuring.
+
+## C4 — Sweep by feature, not by string
+
+A reported string nearly always has siblings the reporter never reached: the
+cancel variant, the completion message, the accessibility hint, the help page
+paragraph, the FAQ answer. Fixing only what was reported ships an app that
+contradicts itself one screen later.
+
+For every reported string, find its feature's other strings by context-key
+prefix *and* by the distinctive phrase in the target text.
+
+> **Case (uk, 2026-09-18):** Two menu items were reported. `menu_audio_tutorial`
+> had four siblings (`tour_welcome`, `tour_cancel`,
+> `menu_audio_tutorial_cancel`, `tour_continue_hint`) carrying the same
+> wording, and `new_version_info_text` had one (`new_version_info_completed`)
+> with the same tautology.
+
+## C5 — Beware adopting an everyday word as a term of art
+
+When a term decision takes a common word, grep the corpus for that word's
+*ordinary* uses. The new term-of-art meaning can make an unrelated string
+ambiguous.
+
+> **Case (uk, 2026-09-18):** Adopting «зупинка» for Waypoint collides with
+> `faq_tip_create_marker_at_bus_stop`, where «зупинки» means literal bus
+> stops. Judged acceptable — context disambiguates — but recorded so the next
+> reviewer doesn't treat it as an inconsistency to "fix".
+
+## C6 — Screenshots may be from iOS; the strings are shared
+
+Both apps draw from the same KMP resources
+(`shared/src/commonMain/composeResources/values-*/strings.xml`), which is the
+`androidkmp` Weblate component. An iOS screenshot is valid Android feedback
+and a fix lands for both. Record the reporter's platform and version anyway —
+it's what lets you reproduce the screen.
+
+## C7 — Some translation feedback is really source feedback
+
+If a translator or user had to guess at what a string means, the English is
+underspecified and **every other language guessed too**. The fix is a better
+translator comment (or a better source string) in
+`shared/src/commonMain/composeResources/values/strings.xml`, not a per-language
+patch.
+
+This is the highest-leverage bucket and the easiest to miss, because the
+report arrives labelled as one language's problem.

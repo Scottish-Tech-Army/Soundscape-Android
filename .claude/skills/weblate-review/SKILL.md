@@ -57,9 +57,18 @@ of output for the user to sift through, so don't default to "all" the way
 
    b. Read `docs/developers/translations.md` and
       `docs/developers/translation-terminology.md` from this repo for app
-      context and the canonical meaning of Soundscape-specific terms. If the
-      user points you at a glossary file for this language, load it too and
-      prefer its terms when judging correctness.
+      context and the canonical meaning of Soundscape-specific terms —
+      remembering that the alternate wordings in the terminology doc are
+      English glosses, not preferred translations.
+
+      Then load `translations/guidance/_common.md` and
+      `translations/guidance/<code>.md` if it exists. These are recorded
+      native-speaker decisions and they **outrank your own judgement** —
+      a translation matching a `confirmed` or `agreed` glossary entry is
+      correct even if you would have phrased it differently, and one that
+      departs from it is a finding. Check the "Rejected" section before
+      proposing anything, so you don't resurface a suggestion that has
+      already been turned down.
 
    c. Go through `<code>-translated.json` in batches of roughly 40-50 units
       (review is lighter-weight per unit than translating, so larger batches
