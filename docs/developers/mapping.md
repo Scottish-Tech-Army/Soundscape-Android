@@ -63,7 +63,7 @@ If you looked at the [MapBox vector tiles specification](https://docs.mapbox.com
 `water_name`
 `waterway`
 
-(That's the set actually present in our tiles around Glasgow; layers like `aeroway` or `mountain_peak` only appear where there's something to put in them.) Of these, the GeoEngine parses `transportation`, `transportation_name`, `poi`, `building`, `housenumber`, `water` and `waterway`, plus `place` at the lower zoom used for settlements. The rest, including `water_name`, are there for the graphical map — water names now come from the `name` we add to the `water` polygons themselves, which is what makes a bay or firth crossing detectable.
+(That's the set actually present in our tiles around Glasgow; layers like `aeroway` or `mountain_peak` only appear where there's something to put in them.) Of these, the GeoEngine parses `transportation`, `transportation_name`, `poi`, `building`, `housenumber`, `water` and `waterway`, plus `place` at the lower zoom used for settlements. The rest, including `water_name`, are there for the graphical map — water names now come from the `name` we add to the `water` polygons themselves, which is what makes a bay or firth crossing detectable. `landcover` and `landuse` now carry names as well, but nothing parses them yet: they're in the tiles ahead of the app work, the way the `water` names were.
 
 The default `planetiler` build uses [this schema](https://github.com/openmaptiles/planetiler-openmaptiles https://openmaptiles.org/schema/) and the layers are described [here](https://github.com/openmaptiles/openmaptiles). When displaying the map in the app, a `style.json` file is used to describe how to display the contents of each of the layers. This includes where to get the tiles, the fonts and the icons from. The style has to be matched to the tiles as the naming convention for layers isn't fully standardized. If a layer isn't used in the style, then it should be removed from the vector tile generation. Designing the style is a huge amount of work and hopefully we can continue to use the same profile with minimum tweaking.
 
@@ -103,6 +103,8 @@ The layer mappings here are YAML, read directly from github by `planetiler-openm
 * **Adds a `name` column to `building_polygon`**, so a building can be named without a separate POI node.
 
 Note that these changes only add the columns to the imposm mapping. The layer schema YAML is untouched, so the attribute names that actually come out of the tiles are decided by the Java in the next repo.
+
+A mapping change here is also the *expensive* way to add something, because it means pushing to this repo and then regenerating `Tables.java` in the next one from GitHub. Most of what follows doesn't need it: a tag that's already on a feature reaching a layer can be read straight off the `SourceFeature`, and a tag in no mapping at all can be picked up from the raw OSM feature in `processAllOsm`. The `building_polygon` column above is from before that was understood; nothing since has needed one.
 
 ### 2. The [planetiler-openmaptiles repo](https://github.com/davecraig/planetiler-openmaptiles)
 This is the main place where maps are customized. Two rules apply throughout:
@@ -157,6 +159,32 @@ Upstream's de-duplication has also been **removed**. It kept only one feature pe
 
 #### `building` layer
 `name` and the raw `building` value (e.g. `warehouse`, `house`, `retail`) at max zoom.
+
+#### `landcover` layer
+**`name` at max zoom.** Upstream emits only `class` and `subclass` here, so a wood, forest or moor arrived anonymous — `Garadhban` was a `class=wood` polygon and `Drumclog Moor` a `subclass=heath` one, with nothing to call either of them. In open country the landcover name is often the only name there is. This also names `class=farmland`, which is how a named field or farm holding arrives.
+
+Max zoom isn't just the house rule here, it's what keeps the change free. `postProcess` merges wood and forest polygons at z7–13 to make them cheaper to draw, and merging groups on the exact set of attributes a feature carries. Below max zoom the `name` resolves to null and is dropped, so those tiles are byte-for-byte what they were and the merging is untouched. If the build's maxzoom were ever dropped to 13 that would stop being true and differently named woods would stop merging into one another.
+
+#### `landuse` layer
+* **`name` at max zoom**, for the same reason. Incidentally names quarries, industrial estates, military areas and the `place=suburb`/`quarter`/`neighbourhood` polygons. One knock-on: this layer merges `class=residential` at z13+, so at max zoom two differently named estates no longer merge into each other — which is the point, since which estate you're in is the useful part. Unnamed residential still collapses into a single multipolygon.
+* **`landuse=farmyard` becomes `class=farmyard`**, at max zoom. `farmyard` is in no OpenMapTiles mapping at all, so like `railway=stop` it's read from the raw OSM feature. It's emitted named or not, as every other class in this layer is. Note it had to go here rather than in `landcover`: this layer takes its `class` straight from the OSM tag, whereas `landcover` resolves `class` through a generated `subclass`→`class` table that has no `farmyard` in it, and an unmapped subclass there is silently dropped.
+
+#### `place` layer
+**`place=farm` becomes `class=farm`**, at max zoom, from the raw OSM feature — upstream's `city_point` mapping stops at `isolated_dwelling`. Nodes become points; the minority mapped as areas become a point on the surface. A name is required, which `city_point` gets from an imposm filter and this path has to check for itself.
+
+Max zoom is deliberate rather than convenient. It does mean farms land in tiles the app doesn't read the `place` layer from — `place` is parsed only *below* the maximum zoom, from the z12 settlement grid — but a farm is not a settlement and has no business being picked up by the settlement lookahead. `isolated_dwelling` already sits at the same zoom for the same reason. Consuming farms later means either reading `place` at max zoom or deliberately lowering this one minzoom.
+
+#### How a farm reaches the tiles
+Worth setting out, because the answer is spread across four taggings and no single one of them is the farm:
+
+| OSM | Layer | As |
+| --- | --- | --- |
+| `building=farm` (the farmhouse) | `building` | polygon with `name` and `building=farm` |
+| `place=farm` (the farm as a locality) | `place` | point with `class=farm` and `name` |
+| `landuse=farmyard` (buildings and yard) | `landuse` | polygon with `class=farmyard` |
+| `landuse=farmland`, `landuse=farm` (the fields) | `landcover` | polygon with `class=farmland` and `name` |
+
+A given farm may be tagged with any combination of these, or just one, which is why no single layer answers "where are the farms". Two neighbours west of Drymen make the point: `Hoish Farm` is a named `building=farm` and so was always in the tiles, while `Douchlage`, a few hundred metres away, is a `place=farm` node — so before this change it was absent entirely.
 
 ### 3. The [planetiler repo](https://github.com/davecraig/planetiler)
 Ideally we don't have to make changes here, however I did have a fix here prior to it being accepted upstream. Because the change has now landed we don't currently need this repo. But it's useful to see the history:
