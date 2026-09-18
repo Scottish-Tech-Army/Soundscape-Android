@@ -55,9 +55,18 @@ never fetched will still be sitting there looking current.
 
 3. Read `docs/developers/translations.md` and
    `docs/developers/translation-terminology.md` for app context and the
-   canonical meaning of Soundscape-specific terms. If the user points you at a
-   glossary file for this language (only a few exist), load it too and prefer
-   its terms.
+   canonical meaning of Soundscape-specific terms. The alternate wordings in
+   the terminology doc are English glosses to explain each concept — not a
+   shortlist to translate from; prefer the word the target language's own
+   mapping apps already use.
+
+   Then load `translations/guidance/_common.md` and
+   `translations/guidance/<code>.md` if it exists — recorded native-speaker
+   decisions for that language. Any term with status `confirmed` or `agreed`
+   is binding: use it verbatim (in the right case/inflection) rather than
+   coining your own. This is the point of the file — new strings should be
+   born consistent with what a native speaker already approved, instead of
+   being corrected in a later review round.
 
 4. For each language, translate the units in `<code>-untranslated.json`:
 

@@ -1247,9 +1247,13 @@
     <!-- Callout text when at an intersection where we don't know which road we're on -->
     <string name="street_description_intersection">Near intersection of %1$s</string>
 
-    <!-- Title for dialog which explains what is new in the current release -->
+    <!-- Title for dialog which explains what is new in the current release.
+         Translators: "new" here just distinguishes this release from earlier ones. In
+         many languages "release" and "update" are the same word, so a literal "new
+         release" reads as the tautology "new update" - drop the adjective if so. -->
     <string name="new_version_info_text">New release information</string>
-    <!-- Button at end of new release dialog so that the user can continue on and use the app -->
+    <!-- Button at end of new release dialog so that the user can continue on and use the app.
+         Translators: same "new release" tautology caveat as new_version_info_text above. -->
     <string name="new_version_info_completed">Close new release dialog</string>
     <!-- Title of screen that contains all of the information about the open source licenses of the packages used within the app -->
     <string name="menu_open_source_licenses">Open source licenses</string>
