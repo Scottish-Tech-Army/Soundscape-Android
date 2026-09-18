@@ -52,6 +52,8 @@ easy edits is often 20 easy ones and 10 rewrites.
 > **Case (uk, 2026-09-18):** Callout «оголошення» → «підказка» touches 29
 > strings, but 6 use the verb «оголошувати» ("Soundscape will announce…"),
 > which has no natural «підказка» verb — those clauses need restructuring.
+> Counting that split was what turned "30 quick edits" into a real decision;
+> the change was ultimately rejected outright (see C8).
 
 ## C4 — Sweep by feature, not by string
 
@@ -98,3 +100,23 @@ patch.
 
 This is the highest-leverage bucket and the easiest to miss, because the
 report arrives labelled as one language's problem.
+
+## C8 — Record rejections *with* the evidence that made them attractive
+
+Some concepts have no good word in a given language, and the existing
+translation is the least-bad option rather than a mistake. A reviewer who
+doesn't know that will keep rediscovering the same tempting alternative and
+re-proposing it, because the case for it is genuinely real — it's the case
+against that lives only in someone's head.
+
+So a `rejected` entry has to name the attractive alternative and reproduce the
+evidence for it, not just say no. "Rejected: use X" stops nobody. "Rejected:
+X, even though <app> uses it and it looks right, because <reason>" does.
+
+Mark the surviving term `confirmed`, not merely "unchanged" — the distinction
+is between a decision and an oversight, and only the first one gets defended.
+
+> **Case (uk, 2026-09-18):** Callout «оголошення» → «підказка» was proposed
+> with a Google Maps screenshot, then withdrawn by the same reporter: no
+> really good Ukrainian word exists, so 29 strings would change for nothing.
+> The Google Maps precedent is still there for the next reviewer to find.
