@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.locationprovider
 
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
+import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
 import platform.CoreLocation.CLActivityTypeOther
 import platform.CoreLocation.CLActivityTypeOtherNavigation
 import platform.CoreLocation.CLLocation
@@ -21,6 +22,8 @@ class IosLocationProvider : LocationProvider() {
 
     private val locationManager = CLLocationManager()
     private val delegate = LocationDelegate(this)
+
+    private val filter = KalmanLocationFilter()
 
     init {
         locationManager.allowsBackgroundLocationUpdates = true
@@ -84,6 +87,16 @@ class IosLocationProvider : LocationProvider() {
         pause()
     }
 
+    /**
+     * Publishes a fix on both flows, mirroring the Android providers.
+     *
+     * CoreLocation reports an invalid course, speed, course accuracy or speed accuracy as a
+     * negative sentinel rather than by a separate flag, so each one is turned into the
+     * corresponding has* flag here. Without that the geoengine reads -1 as a real value: see
+     * GeoEngine.createUserGeometry, where a bearing with no accuracy beside it is trusted
+     * ungated, and GeoEngine.startMonitoringLocation, where the stationary detector's
+     * "moving by bearing" input is false for every fix if hasBearingAccuracy never gets set.
+     */
     @OptIn(ExperimentalForeignApi::class)
     internal fun onLocationUpdate(location: CLLocation) {
         val coordinate = location.coordinate.useContents {
@@ -92,15 +105,19 @@ class IosLocationProvider : LocationProvider() {
                 longitude = longitude,
                 accuracy = location.horizontalAccuracy.toFloat(),
                 bearing = location.course.toFloat(),
+                bearingAccuracyDegrees = location.courseAccuracy.toFloat(),
                 speed = location.speed.toFloat(),
+                speedAccuracyMetersPerSecond = location.speedAccuracy.toFloat(),
                 hasAccuracy = location.horizontalAccuracy >= 0,
                 hasBearing = location.course >= 0,
+                hasBearingAccuracy = location.courseAccuracy >= 0,
                 hasSpeed = location.speed >= 0,
+                hasSpeedAccuracy = location.speedAccuracy >= 0,
                 timestampMilliseconds = (location.timestamp.timeIntervalSince1970 * 1000).toLong(),
             )
         }
         mutableLocationFlow.value = coordinate
-        mutableFilteredLocationFlow.value = coordinate
+        mutableFilteredLocationFlow.value = filter.filterPosition(coordinate)
     }
 }
 

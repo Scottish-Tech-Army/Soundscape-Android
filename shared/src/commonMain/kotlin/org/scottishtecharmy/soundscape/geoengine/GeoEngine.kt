@@ -463,8 +463,22 @@ class GeoEngine {
                     // fix, including the ones the geoengine goes on to reject: a recording made in
                     // a tunnel is only useful for diagnosing what happened there if the bad fixes
                     // are actually in it.
+                    //
+                    // The unfiltered fix, not the filtered one this flow carries. Recordings exist
+                    // to be replayed, and only the raw stream can reconstruct both of the streams
+                    // below: the Kalman filter is reproducible from a raw fix, but nothing
+                    // recovers a raw fix from a smoothed one, and the smoothed position is the one
+                    // thing StationaryDetector and MapMatchFilter must not be given (see the
+                    // unfilteredLocation block below). Recording the filtered stream is what
+                    // recorder v1 did - see GpxRecorder.RECORDER_VERSION and GpxLocationStream.
                     if (recordTravel) {
-                        locationRecorder?.storeLocation(location)
+                        // Both flows are written together by every provider, raw first, so the
+                        // raw counterpart of this fix is already in place. Falling back to the
+                        // filtered fix only matters for a provider that publishes one flow and
+                        // not the other, where a smoothed point still beats no recording at all.
+                        locationRecorder?.storeLocation(
+                            locationProvider.locationFlow.value ?: location
+                        )
                     }
 
                     // A fix too inaccurate to say which street the user is on is worse than no fix

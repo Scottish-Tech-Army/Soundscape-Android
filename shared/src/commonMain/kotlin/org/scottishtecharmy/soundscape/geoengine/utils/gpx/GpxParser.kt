@@ -135,10 +135,21 @@ private fun buildGpx(tokens: List<XmlToken>): GpxData {
     val waypoints = mutableListOf<GpxWaypoint>()
     val routes = mutableListOf<GpxRoute>()
     val tracks = mutableListOf<GpxTrack>()
+    var recorderVersion: Int? = null
+    var locationStream = GpxLocationStream.FILTERED
 
     while (reader.hasNext()) {
         when (val t = reader.next()) {
             is XmlToken.StartTag -> when (t.localName) {
+                // Soundscape's own markers, on the root element. Both are absent from every GPX
+                // written by anything else, and from recorder v1, which is why GpxData defaults
+                // them to "unknown writer, already-filtered positions".
+                "gpx" -> {
+                    recorderVersion = t.attributes["recorderVersion"]?.toIntOrNull()
+                    locationStream =
+                        GpxLocationStream.fromAttribute(t.attributes["locationStream"])
+                }
+
                 "metadata" -> metadata = readMetadata(reader)
                 "wpt" -> waypoints.add(readWaypoint(reader, "wpt", t.attributes))
                 "rte" -> routes.add(readRoute(reader))
@@ -149,7 +160,7 @@ private fun buildGpx(tokens: List<XmlToken>): GpxData {
             else -> {}
         }
     }
-    return GpxData(metadata, waypoints, routes, tracks)
+    return GpxData(metadata, waypoints, routes, tracks, recorderVersion, locationStream)
 }
 
 private fun readMetadata(reader: TokenReader): GpxMetadata {
