@@ -379,7 +379,23 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             )
         )
         preferencesProvider.addListener(preferencesListener)
-        startGeoEngine()
+        // Starting the geo engine is what brings up location updates, and its first
+        // callouts are TTS. On iOS that lands on top of the Double Tap attribution clip
+        // the splash plays on a new minor version (SplashView.swift), so Swift asks us to
+        // hold the start back until the clip has finished. Nothing holds it on the
+        // background launches the system makes to perform an App Intent, where no splash
+        // runs and nothing would ever release the hold.
+        if (claimSplashHold(this)) {
+            // Backstop, mirroring MainActivity's maxSplashDelay: if the splash never
+            // reports back (a released AVAudioPlayer, a view that never appeared) start
+            // anyway rather than leaving the app without location or callouts.
+            scope.launch {
+                kotlinx.coroutines.delay(SPLASH_HOLD_TIMEOUT_MS)
+                releaseGeoEngineStartAfterSplash()
+            }
+        } else {
+            startGeoEngine()
+        }
         geoEngine.setHeadTrackingProvider(headTrackingProvider)
         applyHeadTrackingEnabled()
         observeAppLifecycle()
@@ -439,6 +455,16 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             streetPreviewEnabled = streetPreviewEnabled,
         )
         geoEngineStarted = true
+    }
+
+    /**
+     * Starts the geo engine unless it is already running. Only used to run a start that
+     * [claimSplashHold] deferred — every other path goes through [startGeoEngine] directly,
+     * because they each want a fresh start with different providers.
+     */
+    private fun startGeoEngineIfNotStarted() {
+        if (geoEngineStarted) return
+        startGeoEngine()
     }
 
     // --- GeoEngineListener ---
@@ -931,6 +957,71 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
         fun setAnalyticsFactory(factory: () -> Analytics) {
             analyticsFactory = factory
+        }
+
+        // --- Splash gate ---
+        //
+        // The Double Tap attribution clip plays over the splash on the first launch of a
+        // new minor version, and the geo engine's first callout would otherwise talk over
+        // it. Swift sets the hold before the clip starts and releases it when the clip
+        // finishes; the service defers its geo engine start in between.
+        //
+        // Guarded by its own lock rather than [lock]: the service's init runs while
+        // getInstance() holds [lock], and NSLock is not reentrant.
+        private val splashGateLock = NSLock()
+        private var splashHold = false
+        private var serviceAwaitingSplash: IosSoundscapeService? = null
+
+        private const val SPLASH_HOLD_TIMEOUT_MS = 8_000L
+
+        /**
+         * Defers the geo engine start of the next service construction until
+         * [releaseGeoEngineStartAfterSplash]. Called from Swift's SplashCoordinator, and
+         * only when the Double Tap clip is actually going to play.
+         *
+         * Has to be called before the first [getInstance] — a service already constructed
+         * has already started its engine, and this does not stop it again.
+         */
+        fun holdGeoEngineStartForSplash() {
+            splashGateLock.lock()
+            try {
+                splashHold = true
+            } finally {
+                splashGateLock.unlock()
+            }
+        }
+
+        /**
+         * Lets a held geo engine start proceed. Called from Swift when the Double Tap clip
+         * finishes or errors, from its safety-net timer, and from the service's own
+         * timeout. Safe to call repeatedly and when no hold was ever set.
+         */
+        fun releaseGeoEngineStartAfterSplash() {
+            splashGateLock.lock()
+            val waiting = try {
+                splashHold = false
+                serviceAwaitingSplash.also { serviceAwaitingSplash = null }
+            } finally {
+                splashGateLock.unlock()
+            }
+            waiting?.startGeoEngineIfNotStarted()
+        }
+
+        /**
+         * Registers [service] as the one waiting on the splash, if a hold is in force.
+         * Taking both decisions under the one lock is what closes the race between a
+         * service still inside its constructor (so [INSTANCE] is still null, and a release
+         * would have nothing to start) and a release arriving on the main thread.
+         */
+        private fun claimSplashHold(service: IosSoundscapeService): Boolean {
+            splashGateLock.lock()
+            try {
+                if (!splashHold) return false
+                serviceAwaitingSplash = service
+                return true
+            } finally {
+                splashGateLock.unlock()
+            }
         }
 
         fun getInstance(): IosSoundscapeService {

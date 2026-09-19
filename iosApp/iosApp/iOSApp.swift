@@ -24,6 +24,13 @@ struct iOSApp: App {
         // shared iOS singleton. Skipped on Debug/XCTest.
         // See FirebaseAnalyticsBridge.swift.
         FirebaseBootstrap.configureIfEnabled()
+
+        // If the Double Tap attribution clip is going to play over the splash, hold the
+        // geo engine back until it has finished — its first callout is TTS, and the two
+        // used to overlap. Has to happen here, before ComposeView can build the shared
+        // service, and after LegacyMigrator, which is what may have written the version
+        // key the decision is made on. See SplashView.swift.
+        SplashCoordinator.holdGeoEngineForSplashIfNeeded()
     }
 
     var body: some Scene {
