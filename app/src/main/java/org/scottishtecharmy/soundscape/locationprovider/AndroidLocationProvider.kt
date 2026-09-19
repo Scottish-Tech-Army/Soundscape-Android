@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class AndroidLocationProvider(context: Context) : LocationProvider() {
 
@@ -71,22 +70,9 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
      * so that the GPX recorder and the map still see what the receiver actually reported.
      */
     private fun publishLocation(location: Location) {
-        mutableLocationFlow.value = location.toSoundscapeLocation()
-        mutableFilteredLocationFlow.value = filterLocation(location).toSoundscapeLocation()
-    }
-
-    fun filterLocation(location: Location): Location {
-        val filteredLocation = Location(location)
-
-        val filtered = filter.process(
-            LngLatAlt(location.longitude, location.latitude),
-            System.currentTimeMillis(),
-            location.accuracy.toDouble()
-        )
-        filteredLocation.latitude = filtered.latitude
-        filteredLocation.longitude = filtered.longitude
-
-        return filteredLocation
+        val soundscapeLocation = location.toSoundscapeLocation()
+        mutableLocationFlow.value = soundscapeLocation
+        mutableFilteredLocationFlow.value = filter.filterPosition(soundscapeLocation)
     }
 
     override fun destroy() {

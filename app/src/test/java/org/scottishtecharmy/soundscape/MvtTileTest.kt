@@ -59,6 +59,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
+import org.scottishtecharmy.soundscape.locationprovider.GpxReplayLocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.toSoundscapeLocation
+import org.scottishtecharmy.soundscape.platform.parseGpxTimestamp
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
@@ -82,8 +85,6 @@ import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.process
 import java.io.File
 import java.io.FileOutputStream
-import java.time.Instant
-import java.time.format.DateTimeParseException
 import kotlin.io.path.Path
 import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.nameWithoutExtension
@@ -172,33 +173,32 @@ private fun vectorTileToGeoJsonFromFile(
 }
 
 /**
- * Turn a GPX <time> into epoch milliseconds.
+ * Reads a recording into the two position streams the geoengine runs on.
  *
- * Two flavours turn up in our recordings: ISO-8601 as the GPX spec asks for
- * ("2026-09-08T14:14:17.605Z"), and bare epoch milliseconds, which older Soundscape recordings
- * wrote. Anything else - or a track point with no time at all, as in the RideWithGPS exports -
- * returns null and leaves the caller to make a time up.
+ * Each point is pushed through [GpxReplayLocationProvider] - the same class the app replays
+ * through, filtering with the same KalmanLocationFilter the live providers use - so that a
+ * replay puts the recorded numbers through the arithmetic the journey put them through. The
+ * geometry stays the fix as recorded, and the filtered position rides along in FILTERED_LON /
+ * FILTERED_LAT for the replay loops to hand to the components that see it live.
+ *
+ * For a recording that holds already-filtered positions (recorder v1, or a GPX from another app -
+ * see GpxLocationStream) the provider publishes the recorded point on both streams, so the two
+ * properties equal the geometry and every replay behaves exactly as it did before the streams
+ * were told apart.
  */
-private fun gpxTimeToEpochMilliseconds(time: String?): Long? {
-    val text = time?.trim().orEmpty()
-    if (text.isEmpty()) return null
-
-    text.toLongOrNull()?.let { return it }
-
-    return try {
-        Instant.parse(text).toEpochMilli()
-    } catch (_: DateTimeParseException) {
-        null
-    }
-}
-
 private fun parseGpxFromFile(filename: String): FeatureCollection {
     val fc = FeatureCollection()
     val gpx = parseGpx(File(filename).readText())
+    val provider = GpxReplayLocationProvider(gpx.locationStream)
 
     for (track in gpx.tracks) {
         for (segment in track.trackSegments) {
             for (tp in segment.trackPoints) {
+                // Every point, including the ones the accuracy gate below goes on to drop: the
+                // live filter saw them all, so its estimate has to have been moved by them all.
+                provider.updateLocation(tp.toSoundscapeLocation())
+                val filtered = provider.filteredLocationFlow.value ?: continue
+
                 val feature = Feature()
                 feature.geometry = Point(tp.longitude, tp.latitude)
                 feature.properties = HashMap<String, Any?>().apply {
@@ -212,7 +212,9 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
                     // not whether they were moving, and StationaryDetector has to be able to
                     // tell the two apart.
                     tp.bearingAccuracyDegrees?.let { set("bearingAccuracy", it.toDouble()) }
-                    gpxTimeToEpochMilliseconds(tp.time)?.let { set("time", it.toDouble()) }
+                    parseGpxTimestamp(tp.time)?.let { set("time", it.toDouble()) }
+                    set(FILTERED_LON, filtered.longitude)
+                    set(FILTERED_LAT, filtered.latitude)
                 }
                 fc.addFeature(feature)
             }
@@ -220,6 +222,23 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
     }
 
     return fc
+}
+
+private const val FILTERED_LON = "filteredLon"
+private const val FILTERED_LAT = "filteredLat"
+
+/**
+ * The Kalman-filtered position for this point, as [parseGpxFromFile] worked it out.
+ *
+ * Falls back to the recorded position for a feature that didn't come from there - the synthesized
+ * tracks in TravelModeMapMatchTest, say - which is the unfiltered-equals-filtered case and so
+ * behaves as the replay did before.
+ */
+private fun Feature.filteredLocation(): LngLatAlt {
+    val recorded = (geometry as Point).coordinates
+    val lon = properties?.get(FILTERED_LON) as? Double ?: return recorded
+    val lat = properties?.get(FILTERED_LAT) as? Double ?: return recorded
+    return LngLatAlt(lon, lat)
 }
 
 /**
@@ -4248,7 +4267,14 @@ class MvtTileTest {
                 return@forEachIndexed
             }
 
-            val location = (position.geometry as Point).coordinates
+            // The two streams GeoEngine runs on, kept apart here as they are there. The grid,
+            // the geometry and the callouts follow the Kalman-filtered position; StationaryDetector
+            // and the two map matchers are given the unfiltered fix, because the filter smooths
+            // away the jitter the detector measures and the thresholds in both were set on raw
+            // fixes. See GeoEngine.startMonitoringLocation, and GpxLocationStream for what a
+            // recording has to carry for the distinction to survive into a replay.
+            val rawLocation = (position.geometry as Point).coordinates
+            val location = position.filteredLocation()
 
             // Hoisted above the matchers to match GeoEngine's ordering: the stationary detector
             // needs the timestamp, and RailMatchArbiter needs the detector's verdict.
@@ -4313,7 +4339,7 @@ class MvtTileTest {
                 // right: an ungated bearing says which way the user pointed, not that they moved.
                 val bearingAccuracy = position.properties?.get("bearingAccuracy") as? Double?
                 val stationary = stationaryDetector.update(
-                    LngLatAlt(location.longitude, location.latitude),
+                    LngLatAlt(rawLocation.longitude, rawLocation.latitude),
                     accuracy,
                     (position.properties?.get("heading") != null) &&
                         (bearingAccuracy != null) && (bearingAccuracy < 45.0),
@@ -4322,7 +4348,7 @@ class MvtTileTest {
 
                 // Update the nearest road filter with our new location
                 val mapMatchedResult = mapMatchFilter.filter(
-                    LngLatAlt(location.longitude, location.latitude),
+                    LngLatAlt(rawLocation.longitude, rawLocation.latitude),
                     gridState,
                     collection,
                     false,
@@ -4345,7 +4371,7 @@ class MvtTileTest {
                 // UserGeometry.probablyOnTrain) are matched against the transit network the same
                 // way the real app does in GeoEngine.kt.
                 val railMapMatchedResult = railMapMatchFilter.filter(
-                    LngLatAlt(location.longitude, location.latitude),
+                    LngLatAlt(rawLocation.longitude, rawLocation.latitude),
                     gridState,
                     collection,
                     false,
@@ -4509,7 +4535,10 @@ class MvtTileTest {
         gps.features.filterIndexed { index, _ ->
             (index > startIndex) and (index < endIndex)
         }.forEachIndexed { index, position ->
-            val location = (position.geometry as Point).coordinates
+            // The same split as testMovingGrid: the grid and the geometry follow the filtered
+            // position, the map matcher gets the unfiltered fix. See GeoEngine.
+            val rawLocation = (position.geometry as Point).coordinates
+            val location = position.filteredLocation()
 
             // Calculate direction of travel in case GPX doesn't contain it
             var travelHeading = 0.0
@@ -4538,9 +4567,10 @@ class MvtTileTest {
                 // testMovingGrid.
                 val speed = position.properties?.get("speed") as? Double? ?: 1.0
 
-                // Update the nearest road filter with our new location
+                // Update the nearest road filter with our new location - the unfiltered fix,
+                // as in GeoEngine and in testMovingGrid above.
                 mapMatchFilter.filter(
-                    LngLatAlt(location.longitude, location.latitude),
+                    LngLatAlt(rawLocation.longitude, rawLocation.latitude),
                     gridState,
                     collection,
                     false,

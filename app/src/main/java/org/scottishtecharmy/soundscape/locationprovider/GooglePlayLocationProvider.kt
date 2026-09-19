@@ -15,7 +15,6 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class GooglePlayLocationProvider(context: Context) :
     LocationProvider() {
@@ -32,20 +31,9 @@ class GooglePlayLocationProvider(context: Context) :
      * so that the GPX recorder and the map still see what the receiver actually reported.
      */
     private fun publishLocation(location: Location) {
-        mutableLocationFlow.value = location.toSoundscapeLocation()
-        mutableFilteredLocationFlow.value = filterLocation(location).toSoundscapeLocation()
-    }
-
-    fun filterLocation(location: Location): Location {
-        val filteredLocation = filter.process(
-            LngLatAlt(location.longitude, location.latitude),
-            System.currentTimeMillis(),
-            location.accuracy.toDouble()
-        )
-        location.latitude = filteredLocation.latitude
-        location.longitude = filteredLocation.longitude
-
-        return location
+        val soundscapeLocation = location.toSoundscapeLocation()
+        mutableLocationFlow.value = soundscapeLocation
+        mutableFilteredLocationFlow.value = filter.filterPosition(soundscapeLocation)
     }
 
     init {

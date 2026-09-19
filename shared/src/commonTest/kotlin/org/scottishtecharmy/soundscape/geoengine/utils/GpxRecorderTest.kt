@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
 import kotlinx.coroutines.test.runTest
+import org.scottishtecharmy.soundscape.geoengine.utils.gpx.GpxLocationStream
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -33,6 +34,10 @@ class GpxRecorderTest {
             bearing = 90.0f,
             bearingAccuracyDegrees = 10.0f,
             speed = 1.5f,
+            hasAccuracy = true,
+            hasBearing = true,
+            hasBearingAccuracy = true,
+            hasSpeed = true,
         )
         val second = SoundscapeLocation(
             latitude = 51.6,
@@ -41,6 +46,10 @@ class GpxRecorderTest {
             bearing = 180.0f,
             bearingAccuracyDegrees = 15.0f,
             speed = 2.5f,
+            hasAccuracy = true,
+            hasBearing = true,
+            hasBearingAccuracy = true,
+            hasSpeed = true,
         )
 
         recorder.storeLocation(first)
@@ -62,6 +71,56 @@ class GpxRecorderTest {
         assertTrue(gpx.contains("<speed>2.5</speed>"))
         assertTrue(gpx.contains("<bearing>180.0</bearing>"))
         assertTrue(gpx.contains("<bearingAccuracyDegrees>15.0</bearingAccuracyDegrees>"))
+    }
+
+    /**
+     * A field the fix didn't carry is omitted, not written as a placeholder.
+     *
+     * CoreLocation reports an unavailable course or speed as -1 rather than by a separate flag,
+     * so writing the value through put a bearing of -1 degrees in the file. Writing a zero
+     * instead only trades one lie for a quieter one: GpxParser reads a present element as a
+     * measurement, so the replay would rebuild the fix with hasBearing set and steer audio due
+     * north. Absence is the only thing the format can say that means "the receiver didn't report
+     * this", and it is what [GpxLocationStream]-aware replays read back.
+     */
+    @Test
+    fun fieldsTheFixDidNotCarryAreOmittedRatherThanWrittenAsAPlaceholder() = runTest {
+        val recorder = GpxRecorder()
+        recorder.storeLocation(
+            SoundscapeLocation(
+                latitude = 55.47,
+                longitude = -4.62,
+                accuracy = 77.4f,
+                bearing = -1.0f,
+                bearingAccuracyDegrees = -1.0f,
+                speed = -1.0f,
+                hasAccuracy = true,
+                hasBearing = false,
+                hasBearingAccuracy = false,
+                hasSpeed = false,
+            )
+        )
+
+        val gpx = recorder.generateGpx()
+
+        assertFalse(gpx.contains("<speed>"))
+        assertFalse(gpx.contains("<bearing>"))
+        assertFalse(gpx.contains("<bearingAccuracyDegrees>"))
+        assertFalse(gpx.contains("-1.0"))
+        // The one field the fix did carry is still reported as measured.
+        assertTrue(gpx.contains("<accuracy>77.4</accuracy>"))
+    }
+
+    /**
+     * The marker that tells a replay how to read the rest of the file - see
+     * [GpxRecorder.RECORDER_VERSION] and [GpxLocationStream].
+     */
+    @Test
+    fun theHeaderStampsTheRecorderVersionAndTheStreamTheTrackPointsHold() = runTest {
+        val gpx = GpxRecorder().generateGpx()
+
+        assertTrue(gpx.contains("recorderVersion=\"${GpxRecorder.RECORDER_VERSION}\""))
+        assertTrue(gpx.contains("locationStream=\"raw\""))
     }
 
     @Test
