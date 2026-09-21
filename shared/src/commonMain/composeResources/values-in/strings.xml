@@ -1504,4 +1504,16 @@
     <string name="ios_permission_location_always">Soundscape memerlukan lokasi Anda untuk menyediakan navigasi audio bahkan saat aplikasi berjalan di latar belakang.</string>
     <string name="ios_permission_motion">Soundscape menggunakan data gerakan untuk mendeteksi arah hadap Anda dan menyesuaikan pemberitahuan audio dengan lingkungan sekitar Anda.</string>
     <string name="ios_permission_bluetooth">Soundscape menggunakan Bluetooth untuk menemukan dan terhubung ke headphone dengan pelacakan kepala serta perangkat audio lainnya.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">mengeluarkan titik rute ini dari rute</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s akan dikeluarkan dari rute ini. Penanda itu sendiri tidak akan dihapus. Apakah Anda ingin melanjutkan?</string>
+    <string name="route_detail_edit_delete_alert_message">Menghapus rute ini tidak dapat dibatalkan. Penanda di dalamnya tidak akan dihapus. Apakah Anda ingin melanjutkan?</string>
+    <string name="markers_action_delete_alert_message">Menghapus penanda ini tidak dapat dibatalkan, dan penanda ini juga akan dikeluarkan dari semua rute yang menggunakannya. Apakah Anda ingin melanjutkan?</string>
+    <string name="markers_sort_name_ascending">Diurutkan berdasarkan nama, A ke Z</string>
+    <string name="markers_sort_name_descending">Diurutkan berdasarkan nama, Z ke A</string>
+    <string name="markers_sort_distance_ascending">Diurutkan berdasarkan jarak, terdekat dulu</string>
+    <string name="markers_sort_distance_descending">Diurutkan berdasarkan jarak, terjauh dulu</string>
+    <string name="markers_sort_action_name_ascending">mengurutkan berdasarkan nama, A ke Z</string>
+    <string name="markers_sort_action_name_descending">mengurutkan berdasarkan nama, Z ke A</string>
+    <string name="markers_sort_action_distance_ascending">mengurutkan berdasarkan jarak, terdekat dulu</string>
+    <string name="markers_sort_action_distance_descending">mengurutkan berdasarkan jarak, terjauh dulu</string>
 </resources>
