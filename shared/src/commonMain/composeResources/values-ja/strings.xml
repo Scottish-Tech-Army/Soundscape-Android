@@ -1504,4 +1504,16 @@
     <string name="ios_permission_location_always">Soundscape は、アプリがバックグラウンドにあるときも音声ナビを提供するために位置情報を必要とします。</string>
     <string name="ios_permission_motion">Soundscape は、あなたが向いている方向を検出し、コールアウトを周囲に合わせて定位するためにモーションデータを使用します。</string>
     <string name="ios_permission_bluetooth">Soundscape は、ヘッドトラッキング対応ヘッドホンやその他のオーディオ機器を検出して接続するために Bluetooth を使用します。</string>
+    <string name="route_detail_edit_remove_waypoint_hint">このウェイポイントをルートから外します</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s をこのルートから外します。マーカー自体は削除されません。続行しますか?</string>
+    <string name="route_detail_edit_delete_alert_message">このルートを削除すると元に戻せません。ルート内のマーカーは削除されません。続行しますか?</string>
+    <string name="markers_action_delete_alert_message">このマーカーを削除すると元に戻せません。このマーカーを使用しているすべてのルートからも外されます。続行しますか?</string>
+    <string name="markers_sort_name_ascending">名前の昇順で並べ替えられています</string>
+    <string name="markers_sort_name_descending">名前の降順で並べ替えられています</string>
+    <string name="markers_sort_distance_ascending">距離の近い順に並べ替えられています</string>
+    <string name="markers_sort_distance_descending">距離の遠い順に並べ替えられています</string>
+    <string name="markers_sort_action_name_ascending">名前の昇順で並べ替えます</string>
+    <string name="markers_sort_action_name_descending">名前の降順で並べ替えます</string>
+    <string name="markers_sort_action_distance_ascending">距離の近い順に並べ替えます</string>
+    <string name="markers_sort_action_distance_descending">距離の遠い順に並べ替えます</string>
 </resources>
