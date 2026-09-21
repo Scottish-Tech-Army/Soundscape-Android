@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">অ্যাপ ব্যাকগ্রাউন্ডে থাকা অবস্থাতেও অডিও নেভিগেশন প্রদান করতে Soundscape-এর আপনার অবস্থান প্রয়োজন।</string>
     <string name="ios_permission_motion">আপনি কোন দিকে মুখ করে আছেন তা শনাক্ত করতে এবং ঘোষণাগুলো আপনার চারপাশের পরিবেশ অনুযায়ী সাজাতে Soundscape গতিবিধি ডেটা ব্যবহার করে।</string>
     <string name="ios_permission_bluetooth">হেড ট্র্যাকিং সমর্থিত হেডফোন এবং অন্যান্য অডিও ডিভাইস খুঁজে পেতে ও সেগুলোর সাথে সংযোগ করতে Soundscape ব্লুটুথ ব্যবহার করে।</string>
+    <string name="route_detail_edit_remove_waypoint_hint">রুট থেকে এই ওয়েপয়েন্টটি সরাতে</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s এই রুট থেকে সরানো হবে। মার্কারটি নিজে মুছে ফেলা হবে না। আপনি কি চালিয়ে যেতে চান?</string>
+    <string name="route_detail_edit_delete_alert_message">এই রুট মুছে ফেলা হলে তা পূর্বাবস্থায় ফেরানো যাবে না। এর মধ্যের মার্কারগুলো মুছে ফেলা হবে না। আপনি কি চালিয়ে যেতে চান?</string>
+    <string name="markers_action_delete_alert_message">এই মার্কার মুছে ফেলা হলে তা পূর্বাবস্থায় ফেরানো যাবে না, এবং যে সব রুটে এটি ব্যবহৃত হয়েছে সেগুলো থেকেও এটি সরানো হবে। আপনি কি চালিয়ে যেতে চান?</string>
+    <string name="markers_sort_name_ascending">নাম অনুযায়ী সাজানো হয়েছে, বর্ণানুক্রমে</string>
+    <string name="markers_sort_name_descending">নাম অনুযায়ী সাজানো হয়েছে, বিপরীত বর্ণানুক্রমে</string>
+    <string name="markers_sort_distance_ascending">দূরত্ব অনুযায়ী সাজানো হয়েছে, সবচেয়ে কাছেরগুলো আগে</string>
+    <string name="markers_sort_distance_descending">দূরত্ব অনুযায়ী সাজানো হয়েছে, সবচেয়ে দূরেরগুলো আগে</string>
+    <string name="markers_sort_action_name_ascending">নাম অনুযায়ী বর্ণানুক্রমে সাজাতে</string>
+    <string name="markers_sort_action_name_descending">নাম অনুযায়ী বিপরীত বর্ণানুক্রমে সাজাতে</string>
+    <string name="markers_sort_action_distance_ascending">দূরত্ব অনুযায়ী সাজাতে, সবচেয়ে কাছেরগুলো আগে</string>
+    <string name="markers_sort_action_distance_descending">দূরত্ব অনুযায়ী সাজাতে, সবচেয়ে দূরেরগুলো আগে</string>
 </resources>
