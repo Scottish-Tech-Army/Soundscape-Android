@@ -1514,4 +1514,16 @@
     <string name="ios_permission_location_always">O Soundscape necessita da sua localização para fornecer navegação por áudio mesmo quando a aplicação está em segundo plano.</string>
     <string name="ios_permission_motion">O Soundscape utiliza dados de movimento para detetar a direção para a qual está virado e orientar os avisos de áudio em relação às suas imediações.</string>
     <string name="ios_permission_bluetooth">O Soundscape utiliza o Bluetooth para detetar auscultadores com rastreio da cabeça e outros dispositivos de áudio, e ligar-se a eles.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">remover este ponto de passagem da rota</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">O ponto de passagem %1$s será removido desta rota. O próprio marco não será eliminado. Pretende continuar?</string>
+    <string name="route_detail_edit_delete_alert_message">A eliminação desta rota não pode ser desfeita. Os marcos que contém não serão eliminados. Pretende continuar?</string>
+    <string name="markers_action_delete_alert_message">A eliminação deste marco não pode ser desfeita, e será também removido de todas as rotas que o utilizam. Pretende continuar?</string>
+    <string name="markers_sort_name_ascending">Ordenada por nome, de A a Z</string>
+    <string name="markers_sort_name_descending">Ordenada por nome, de Z a A</string>
+    <string name="markers_sort_distance_ascending">Ordenada por distância, do mais próximo ao mais distante</string>
+    <string name="markers_sort_distance_descending">Ordenada por distância, do mais distante ao mais próximo</string>
+    <string name="markers_sort_action_name_ascending">ordenar por nome, de A a Z</string>
+    <string name="markers_sort_action_name_descending">ordenar por nome, de Z a A</string>
+    <string name="markers_sort_action_distance_ascending">ordenar por distância, do mais próximo ao mais distante</string>
+    <string name="markers_sort_action_distance_descending">ordenar por distância, do mais distante ao mais próximo</string>
 </resources>
