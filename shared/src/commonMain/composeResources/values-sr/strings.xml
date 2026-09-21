@@ -1514,4 +1514,16 @@
     <string name="ios_permission_location_always">Soundscape-у је потребна ваша локација да би пружао звучну навигацију и када је апликација у позадини.</string>
     <string name="ios_permission_motion">Soundscape користи податке о кретању да би открио правац у коме сте окренути и ускладио звучне најаве са вашом околином.</string>
     <string name="ios_permission_bluetooth">Soundscape користи Bluetooth за проналажење слушалица са праћењем покрета главе и других звучних уређаја и повезивање са њима.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">уклоните ову путну тачку са руте</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Путна тачка %1$s биће уклоњена са ове руте. Сам маркер неће бити избрисан. Да ли желите да наставите?</string>
+    <string name="route_detail_edit_delete_alert_message">Брисање ове руте не може се поништити. Маркери на њој неће бити избрисани. Да ли желите да наставите?</string>
+    <string name="markers_action_delete_alert_message">Брисање овог маркера не може се поништити, а биће уклоњен и са свих рута које га користе. Да ли желите да наставите?</string>
+    <string name="markers_sort_name_ascending">Сортирано по имену, од А до Ш</string>
+    <string name="markers_sort_name_descending">Сортирано по имену, од Ш до А</string>
+    <string name="markers_sort_distance_ascending">Сортирано по удаљености, најближе прво</string>
+    <string name="markers_sort_distance_descending">Сортирано по удаљености, најдаље прво</string>
+    <string name="markers_sort_action_name_ascending">сортирате по имену, од А до Ш</string>
+    <string name="markers_sort_action_name_descending">сортирате по имену, од Ш до А</string>
+    <string name="markers_sort_action_distance_ascending">сортирате по удаљености, најближе прво</string>
+    <string name="markers_sort_action_distance_descending">сортирате по удаљености, најдаље прво</string>
 </resources>
