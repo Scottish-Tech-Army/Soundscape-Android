@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape tana bukatar wurin da kuke domin ta ba da jagorar sauti ko da manhajar tana aiki a baya.</string>
     <string name="ios_permission_motion">Soundscape tana amfani da bayanan motsi domin gane inda kuke fuskanta da kuma daidaita sanarwowin sauti da abin da ke kewaye da ku.</string>
     <string name="ios_permission_bluetooth">Soundscape tana amfani da Bluetooth domin gano belun kunne masu bin diddigin kai da sauran na'urorin sauti sannan ta haɗa da su.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">cire wannan matsayi daga tafarki</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Za a cire %1$s daga wannan tafarki. Ba za a share alamar kanta ba. Kana son ci gaba?</string>
+    <string name="route_detail_edit_delete_alert_message">Share wannan tafarki ba za a iya mayar da shi baya ba. Ba za a share alamomin da ke cikinsa ba. Kana son ci gaba?</string>
+    <string name="markers_action_delete_alert_message">Share wannan alama ba za a iya mayar da shi baya ba, kuma za a cire ta daga duk tafarkunan da ke amfani da ita. Kana son ci gaba?</string>
+    <string name="markers_sort_name_ascending">An tsara bisa suna, daga A zuwa Z</string>
+    <string name="markers_sort_name_descending">An tsara bisa suna, daga Z zuwa A</string>
+    <string name="markers_sort_distance_ascending">An tsara bisa nisa, mafi kusa da farko</string>
+    <string name="markers_sort_distance_descending">An tsara bisa nisa, mafi nisa da farko</string>
+    <string name="markers_sort_action_name_ascending">tsara bisa suna, daga A zuwa Z</string>
+    <string name="markers_sort_action_name_descending">tsara bisa suna, daga Z zuwa A</string>
+    <string name="markers_sort_action_distance_ascending">tsara bisa nisa, mafi kusa da farko</string>
+    <string name="markers_sort_action_distance_descending">tsara bisa nisa, mafi nisa da farko</string>
 </resources>
