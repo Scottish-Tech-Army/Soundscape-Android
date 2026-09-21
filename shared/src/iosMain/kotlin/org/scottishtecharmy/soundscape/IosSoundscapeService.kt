@@ -46,8 +46,8 @@ import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.network.IosFileDownloader
 import org.scottishtecharmy.soundscape.network.KmpPhotonSearch
-import org.scottishtecharmy.soundscape.network.ManifestClient
 import org.scottishtecharmy.soundscape.network.OfflineMapManager
+import org.scottishtecharmy.soundscape.network.createIosManifestClient
 import org.scottishtecharmy.soundscape.network.createIosPhotonSearchClient
 import org.scottishtecharmy.soundscape.network.createIosVectorTileClient
 import org.scottishtecharmy.soundscape.preferences.IosPreferencesProvider
@@ -145,14 +145,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     // Offline maps
     private val documentsPath = platform.Foundation.NSHomeDirectory() + "/Documents"
     val offlineMapManager by lazy {
-        val manifestClient = ManifestClient(
-            io.ktor.client.HttpClient(io.ktor.client.engine.darwin.Darwin) {
-                expectSuccess = false
-            },
-            EXTRACT_PROVIDER_URL
-        )
         OfflineMapManager(
-            manifestClient = manifestClient,
+            manifestClient = createIosManifestClient(EXTRACT_PROVIDER_URL),
             fileDownloader = IosFileDownloader(),
             extractBasePath = documentsPath,
             extractBaseUrl = EXTRACT_PROVIDER_URL,
