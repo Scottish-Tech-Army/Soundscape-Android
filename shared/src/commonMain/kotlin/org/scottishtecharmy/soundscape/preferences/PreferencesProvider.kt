@@ -63,6 +63,8 @@ object PreferenceKeys {
     const val LAST_NEW_RELEASE = "LastNewRelease"
     const val MARKERS_SORT_BY_NAME = "MarkersSortByName"
     const val MARKERS_SORT_ASCENDING = "MarkersSortAscending"
+    const val ROUTES_SORT_BY_NAME = "RoutesSortByName"
+    const val ROUTES_SORT_ASCENDING = "RoutesSortAscending"
     const val HEAD_TRACKING_ENABLED = "HeadTrackingEnabled"
 
     /**

@@ -744,8 +744,7 @@ private fun MarkersAndRoutesContainer(
                         MarkersScreen(
                             uiState = uiState,
                             clearErrorMessage = { holder.clearErrorMessage() },
-                            onToggleSortOrder = { holder.toggleSortOrder() },
-                            onToggleSortByName = { holder.toggleSortByName() },
+                            onCycleSort = { holder.cycleSort() },
                             userLocation = userLocation,
                             onSelectItem = { onSelectMarker(it) },
                             onStartBeacon = { loc, name -> holder.startBeacon(loc, name) },
@@ -756,8 +755,7 @@ private fun MarkersAndRoutesContainer(
                         MarkersScreen(
                             uiState = uiState,
                             clearErrorMessage = {},
-                            onToggleSortOrder = {},
-                            onToggleSortByName = {},
+                            onCycleSort = {},
                             userLocation = userLocation,
                             onSelectItem = { onSelectMarker(it) },
                             onStartBeacon = { loc, name ->
@@ -779,8 +777,7 @@ private fun MarkersAndRoutesContainer(
                             uiState = uiState,
                             userLocation = userLocation,
                             clearErrorMessage = { holder.clearErrorMessage() },
-                            onToggleSortOrder = { holder.toggleSortOrder() },
-                            onToggleSortByName = { holder.toggleSortByName() },
+                            onCycleSort = { holder.cycleSort() },
                             onSelectItem = { onSelectRoute(it) },
                             onStartPlayback = { holder.startRoute(it) },
                         )
@@ -791,8 +788,7 @@ private fun MarkersAndRoutesContainer(
                             uiState = uiState,
                             userLocation = userLocation,
                             clearErrorMessage = {},
-                            onToggleSortOrder = {},
-                            onToggleSortByName = {},
+                            onCycleSort = {},
                             onSelectItem = { onSelectRoute(it) },
                             onStartPlayback = { callbacks.onStartRoute(it) },
                         )

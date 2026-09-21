@@ -232,24 +232,28 @@
     <string name="routes_no_routes_hint_1">Create a route for yourself or for someone else. Add a set of markers as waypoints to build the route.</string>
     <!-- This text is displayed to the user when they navigate to the routes list but have not yet created any routes. It explains that the beacon will automatically shift between the route waypoints as they walk the route. -->
     <string name="routes_no_routes_hint_2">As you walk your route, Soundscape will announce each waypoint when you arrive. The Audio Beacon will then automatically move to the next waypoint.</string>
-    <!-- Text for a button that will cause the list of routes to be sorted by their names -->
-    <string name="routes_sort_by_name">Sort by Name</string>
-    <!-- Text for a button that will cause the list of routes to be sorted by their distance from the user -->
-    <string name="routes_sort_by_distance">Sort by Distance</string>
     <!-- Title of Markers page. Markers are locations that the user has selected and added a name for. -->
     <string name="markers_title">Markers</string>
     <!-- Button text to delete a marker -->
     <string name="markers_action_delete">Delete Marker</string>
     <!-- Sort by category, Name. Used when a user is presented an option to sort a location list by name. -->
     <string name="markers_sort_button_sort_by_name">Name</string>
-    <!-- Sort by category, Name. This is the Talkback label used when a user a location list is sorted by name. -->
-    <string name="markers_sort_button_sort_by_name_voiceover">Sorted by name</string>
-    <!-- Sort by category, Distance. Used when a user is presented an option to sort a location list by distance. -->
-    <string name="markers_sort_button_sort_by_distance">Distance</string>
-    <!-- Sort by category, Distance. This is the Talkback label used when a user a location list is sorted by distance. -->
-    <string name="markers_sort_button_sort_by_distance_voiceover">Sorted by distance</string>
-    <!-- Talkback label for the button that reverses the order of a list of markers or routes, whichever way it is currently sorted. -->
-    <string name="markers_sort_button_reverse_order">Reverse order</string>
+    <!-- Text of the button above a list of markers or routes, describing how the list is currently sorted. -->
+    <string name="markers_sort_name_ascending">Sorted by name, A to Z</string>
+    <!-- Text of the button above a list of markers or routes, describing how the list is currently sorted. -->
+    <string name="markers_sort_name_descending">Sorted by name, Z to A</string>
+    <!-- Text of the button above a list of markers or routes, describing how the list is currently sorted. -->
+    <string name="markers_sort_distance_ascending">Sorted by distance, nearest first</string>
+    <!-- Text of the button above a list of markers or routes, describing how the list is currently sorted. -->
+    <string name="markers_sort_distance_descending">Sorted by distance, furthest first</string>
+    <!-- Talkback hint for the sort button above a list of markers or routes, saying how the list will be sorted when it is pressed. This is always preceded by "Double tap to " -->
+    <string name="markers_sort_action_name_ascending">sort by name, A to Z</string>
+    <!-- Talkback hint for the sort button above a list of markers or routes, saying how the list will be sorted when it is pressed. This is always preceded by "Double tap to " -->
+    <string name="markers_sort_action_name_descending">sort by name, Z to A</string>
+    <!-- Talkback hint for the sort button above a list of markers or routes, saying how the list will be sorted when it is pressed. This is always preceded by "Double tap to " -->
+    <string name="markers_sort_action_distance_ascending">sort by distance, nearest first</string>
+    <!-- Talkback hint for the sort button above a list of markers or routes, saying how the list will be sorted when it is pressed. This is always preceded by "Double tap to " -->
+    <string name="markers_sort_action_distance_descending">sort by distance, furthest first</string>
     <!-- Title for markers page when no markers exist -->
     <string name="markers_no_markers_title">Getting Started with Markers</string>
     <!-- Text that explains to the user what "markers" are and how they can be used. Ensure "Save as Marker" is translated to be the same as "universal_links.alert.action.marker". Quotes written as " -->

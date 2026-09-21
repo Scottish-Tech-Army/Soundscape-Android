@@ -2,6 +2,9 @@ package org.scottishtecharmy.soundscape
 
 import android.content.Context
 import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.junit4.v2.createComposeRule
@@ -14,8 +17,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
-import org.scottishtecharmy.soundscape.resources.markers_sort_button_sort_by_distance
-import org.scottishtecharmy.soundscape.resources.markers_sort_button_sort_by_name
+import org.scottishtecharmy.soundscape.resources.markers_sort_distance_ascending
+import org.scottishtecharmy.soundscape.resources.markers_sort_name_ascending
 import org.scottishtecharmy.soundscape.resources.route_detail_action_start_route_hint
 import org.scottishtecharmy.soundscape.resources.routes_no_routes_hint_1
 import org.scottishtecharmy.soundscape.resources.routes_no_routes_hint_2
@@ -60,8 +63,7 @@ class RoutesScreenTest {
                     uiState = MarkersAndRoutesUiState(markers = false),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     onSelectItem = {}
                 )
             }
@@ -80,8 +82,7 @@ class RoutesScreenTest {
                     uiState = MarkersAndRoutesUiState(markers = false),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     onSelectItem = {}
                 )
             }
@@ -106,8 +107,7 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     onSelectItem = {}
                 )
             }
@@ -130,21 +130,19 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     onSelectItem = {}
                 )
             }
         }
 
         // Check that sort controls are displayed
-        composeTestRule.onNodeWithTag("SortOrder", useUnmergedTree = true).assertIsDisplayed()
         composeTestRule.onNodeWithTag("SortOption", useUnmergedTree = true).assertIsDisplayed()
     }
 
     @Test
-    fun routesScreen_sortOrderButton_callsToggleSortOrder() {
-        var sortOrderToggled = false
+    fun routesScreen_sortButton_callsCycleSort() {
+        var sortCycled = false
 
         composeTestRule.setContent {
             SoundscapeTheme {
@@ -155,39 +153,14 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = { sortOrderToggled = true },
-                    onToggleSortByName = {},
-                    onSelectItem = {}
-                )
-            }
-        }
-
-        composeTestRule.onNodeWithTag("SortOrder", useUnmergedTree = true).performClick()
-        assert(sortOrderToggled) { "Sort order toggle callback was not called" }
-    }
-
-    @Test
-    fun routesScreen_sortOptionButton_callsToggleSortByName() {
-        var sortByNameToggled = false
-
-        composeTestRule.setContent {
-            SoundscapeTheme {
-                RoutesScreen(
-                    uiState = MarkersAndRoutesUiState(
-                        markers = false,
-                        entries = testRoutes
-                    ),
-                    userLocation = null,
-                    clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = { sortByNameToggled = true },
+                    onCycleSort = { sortCycled = true },
                     onSelectItem = {}
                 )
             }
         }
 
         composeTestRule.onNodeWithTag("SortOption", useUnmergedTree = true).performClick()
-        assert(sortByNameToggled) { "Sort by name toggle callback was not called" }
+        assert(sortCycled) { "Sort cycle callback was not called" }
     }
 
     @Test
@@ -201,8 +174,7 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     onSelectItem = {}
                 )
             }
@@ -225,8 +197,7 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     onSelectItem = {},
                     onStartPlayback = { }
                 )
@@ -270,16 +241,16 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     onSelectItem = {}
                 )
             }
         }
 
         val sortByName =
-            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_button_sort_by_name) }
-        composeTestRule.onNodeWithText(sortByName, useUnmergedTree = true).assertIsDisplayed()
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_name_ascending) }
+        composeTestRule.onNodeWithTag("SortOption")
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, sortByName))
     }
 
     @Test
@@ -295,16 +266,16 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     onSelectItem = {}
                 )
             }
         }
 
         val sortByDistance =
-            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_button_sort_by_distance) }
-        composeTestRule.onNodeWithText(sortByDistance, useUnmergedTree = true).assertIsDisplayed()
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_distance_ascending) }
+        composeTestRule.onNodeWithTag("SortOption")
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, sortByDistance))
     }
 
     @Test
@@ -318,8 +289,7 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     onSelectItem = {}
                 )
             }
