@@ -1504,4 +1504,16 @@
     <string name="ios_permission_location_always">Soundscape 需要您的位置信息，以便在应用处于后台时仍能提供音频导航。</string>
     <string name="ios_permission_motion">Soundscape 使用运动数据来检测您面朝的方向，并将语音提示的方位与您周围的环境对应起来。</string>
     <string name="ios_permission_bluetooth">Soundscape 使用蓝牙来发现并连接支持头部追踪的耳机及其他音频设备。</string>
+    <string name="route_detail_edit_remove_waypoint_hint">从路线中移除此航点</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s 将从此路线中移除。标记点本身不会被删除。确定要继续吗？</string>
+    <string name="route_detail_edit_delete_alert_message">删除此路线后将无法撤销。其中的标记点不会被删除。确定要继续吗？</string>
+    <string name="markers_action_delete_alert_message">删除此标记点后将无法撤销，并且它也会从所有使用它的路线中移除。确定要继续吗？</string>
+    <string name="markers_sort_name_ascending">已按名称升序排序</string>
+    <string name="markers_sort_name_descending">已按名称降序排序</string>
+    <string name="markers_sort_distance_ascending">已按距离排序，由近到远</string>
+    <string name="markers_sort_distance_descending">已按距离排序，由远到近</string>
+    <string name="markers_sort_action_name_ascending">按名称升序排序</string>
+    <string name="markers_sort_action_name_descending">按名称降序排序</string>
+    <string name="markers_sort_action_distance_ascending">按距离由近到远排序</string>
+    <string name="markers_sort_action_distance_descending">按距离由远到近排序</string>
 </resources>
