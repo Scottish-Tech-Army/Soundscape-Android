@@ -1504,4 +1504,16 @@
     <string name="ios_permission_location_always">Soundscape cần vị trí của bạn để cung cấp điều hướng bằng âm thanh ngay cả khi ứng dụng chạy nền.</string>
     <string name="ios_permission_motion">Soundscape sử dụng dữ liệu chuyển động để xác định hướng bạn đang quay mặt và định hướng các thông báo âm thanh theo không gian xung quanh bạn.</string>
     <string name="ios_permission_bluetooth">Soundscape sử dụng Bluetooth để tìm và kết nối với tai nghe có theo dõi chuyển động đầu và các thiết bị âm thanh khác.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">bỏ điểm dừng này khỏi lộ trình</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s sẽ bị bỏ khỏi lộ trình này. Bản thân điểm đánh dấu sẽ không bị xóa. Bạn có muốn tiếp tục không?</string>
+    <string name="route_detail_edit_delete_alert_message">Việc xóa lộ trình này không thể hoàn tác. Các điểm đánh dấu trong đó sẽ không bị xóa. Bạn có muốn tiếp tục không?</string>
+    <string name="markers_action_delete_alert_message">Việc xóa điểm đánh dấu này không thể hoàn tác, và điểm đánh dấu cũng sẽ bị bỏ khỏi mọi lộ trình sử dụng nó. Bạn có muốn tiếp tục không?</string>
+    <string name="markers_sort_name_ascending">Đã sắp xếp theo tên, từ A đến Z</string>
+    <string name="markers_sort_name_descending">Đã sắp xếp theo tên, từ Z đến A</string>
+    <string name="markers_sort_distance_ascending">Đã sắp xếp theo khoảng cách, gần nhất trước</string>
+    <string name="markers_sort_distance_descending">Đã sắp xếp theo khoảng cách, xa nhất trước</string>
+    <string name="markers_sort_action_name_ascending">sắp xếp theo tên, từ A đến Z</string>
+    <string name="markers_sort_action_name_descending">sắp xếp theo tên, từ Z đến A</string>
+    <string name="markers_sort_action_distance_ascending">sắp xếp theo khoảng cách, gần nhất trước</string>
+    <string name="markers_sort_action_distance_descending">sắp xếp theo khoảng cách, xa nhất trước</string>
 </resources>
