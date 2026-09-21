@@ -1514,4 +1514,16 @@
     <string name="ios_permission_location_always">Soundscape necessita la teva ubicació per proporcionar navegació per àudio fins i tot quan l'aplicació està en segon pla.</string>
     <string name="ios_permission_motion">Soundscape utilitza dades de moviment per detectar cap a on estàs orientat i orientar els avisos de veu respecte al teu entorn.</string>
     <string name="ios_permission_bluetooth">Soundscape utilitza el Bluetooth per detectar auriculars amb seguiment del cap i altres dispositius d'àudio, i connectar-s'hi.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">treure aquest punt de ruta de la ruta</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s es traurà d'aquesta ruta. El marcador en si no se suprimirà. Voleu continuar?</string>
+    <string name="route_detail_edit_delete_alert_message">Suprimir aquesta ruta no es pot desfer. Els marcadors que conté no se suprimiran. Voleu continuar?</string>
+    <string name="markers_action_delete_alert_message">Suprimir aquest marcador no es pot desfer, i també es traurà de totes les rutes que l'utilitzin. Voleu continuar?</string>
+    <string name="markers_sort_name_ascending">Ordenat per nom, de la A a la Z</string>
+    <string name="markers_sort_name_descending">Ordenat per nom, de la Z a la A</string>
+    <string name="markers_sort_distance_ascending">Ordenat per distància, del més proper al més llunyà</string>
+    <string name="markers_sort_distance_descending">Ordenat per distància, del més llunyà al més proper</string>
+    <string name="markers_sort_action_name_ascending">ordenar per nom, de la A a la Z</string>
+    <string name="markers_sort_action_name_descending">ordenar per nom, de la Z a la A</string>
+    <string name="markers_sort_action_distance_ascending">ordenar per distància, del més proper al més llunyà</string>
+    <string name="markers_sort_action_distance_descending">ordenar per distància, del més llunyà al més proper</string>
 </resources>
