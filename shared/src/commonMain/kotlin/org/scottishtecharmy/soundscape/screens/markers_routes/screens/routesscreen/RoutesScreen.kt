@@ -36,8 +36,7 @@ fun RoutesScreen(
     uiState: MarkersAndRoutesUiState,
     userLocation: LngLatAlt?,
     clearErrorMessage: () -> Unit,
-    onToggleSortOrder: () -> Unit,
-    onToggleSortByName: () -> Unit,
+    onCycleSort: () -> Unit,
     onSelectItem: (LocationDescription) -> Unit,
     onShowError: (String) -> Unit = {},
     onStartPlayback: (Long) -> Unit = {}
@@ -112,8 +111,7 @@ fun RoutesScreen(
                     MarkersAndRoutesListSort(
                         isSortByName = uiState.isSortByName,
                         isAscending = uiState.isSortAscending,
-                        onToggleSortOrder = onToggleSortOrder,
-                        onToggleSortByName = onToggleSortByName
+                        onCycleSort = onCycleSort
                     )
 
                     // Display the list of routes

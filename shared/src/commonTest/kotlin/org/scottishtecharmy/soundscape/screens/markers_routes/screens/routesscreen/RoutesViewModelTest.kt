@@ -227,7 +227,7 @@ class RoutesViewModelTest {
     }
 
     @Test
-    fun initialState_readsPersistedSortPreferences() = runTest {
+    fun initialState_fallsBackToMarkersSortPreferences() = runTest {
         val prefs = FakePreferencesProvider()
         prefs.putBoolean(PreferenceKeys.MARKERS_SORT_BY_NAME, true)
         prefs.putBoolean(PreferenceKeys.MARKERS_SORT_ASCENDING, false)
@@ -265,27 +265,52 @@ class RoutesViewModelTest {
     }
 
     @Test
-    fun toggleSortByName_flipsStateAndPersistsPreference() = runTest {
+    fun cycleSort_stepsThroughAllFourOrdersAndPersistsThem() = runTest {
         val prefs = FakePreferencesProvider()
+        prefs.putBoolean(PreferenceKeys.ROUTES_SORT_BY_NAME, true)
+        prefs.putBoolean(PreferenceKeys.ROUTES_SORT_ASCENDING, true)
         val vm = RoutesViewModel(FakeRouteDao(), prefs, FakeServiceConnection())
-        val initial = vm.uiState.value.isSortByName
 
-        vm.toggleSortByName()
+        val seen = mutableListOf<Pair<Boolean, Boolean>>()
+        repeat(4) {
+            vm.cycleSort()
+            val state = vm.uiState.value
+            seen.add(state.isSortByName to state.isSortAscending)
+            assertEquals(state.isSortByName, prefs.getBoolean(PreferenceKeys.ROUTES_SORT_BY_NAME, !state.isSortByName))
+            assertEquals(state.isSortAscending, prefs.getBoolean(PreferenceKeys.ROUTES_SORT_ASCENDING, !state.isSortAscending))
+        }
 
-        assertEquals(!initial, vm.uiState.value.isSortByName)
-        assertEquals(!initial, prefs.getBoolean(PreferenceKeys.MARKERS_SORT_BY_NAME, initial))
+        // name Z-A, nearest first, furthest first, back to name A-Z
+        assertEquals(listOf(true to false, false to true, false to false, true to true), seen)
     }
 
     @Test
-    fun toggleSortOrder_flipsStateAndPersistsPreference() = runTest {
+    fun initialState_prefersRoutesSortPreferences() = runTest {
         val prefs = FakePreferencesProvider()
+        prefs.putBoolean(PreferenceKeys.MARKERS_SORT_BY_NAME, true)
+        prefs.putBoolean(PreferenceKeys.MARKERS_SORT_ASCENDING, false)
+        prefs.putBoolean(PreferenceKeys.ROUTES_SORT_BY_NAME, false)
+        prefs.putBoolean(PreferenceKeys.ROUTES_SORT_ASCENDING, true)
+
         val vm = RoutesViewModel(FakeRouteDao(), prefs, FakeServiceConnection())
-        val initial = vm.uiState.value.isSortAscending
 
-        vm.toggleSortOrder()
+        assertFalse(vm.uiState.value.isSortByName)
+        assertTrue(vm.uiState.value.isSortAscending)
+    }
 
-        assertEquals(!initial, vm.uiState.value.isSortAscending)
-        assertEquals(!initial, prefs.getBoolean(PreferenceKeys.MARKERS_SORT_ASCENDING, initial))
+    @Test
+    fun sortOrder_isIndependentOfMarkers() = runTest {
+        val prefs = FakePreferencesProvider()
+        prefs.putBoolean(PreferenceKeys.ROUTES_SORT_BY_NAME, true)
+        prefs.putBoolean(PreferenceKeys.ROUTES_SORT_ASCENDING, true)
+        val vm = RoutesViewModel(FakeRouteDao(), prefs, FakeServiceConnection())
+
+        vm.cycleSort()
+
+        assertFalse(prefs.getBoolean(PreferenceKeys.ROUTES_SORT_ASCENDING, true))
+        // The markers order is untouched: still unset, so both defaults come back
+        assertTrue(prefs.getBoolean(PreferenceKeys.MARKERS_SORT_ASCENDING, true))
+        assertFalse(prefs.getBoolean(PreferenceKeys.MARKERS_SORT_ASCENDING, false))
     }
 
     @Test

@@ -12,8 +12,7 @@ fun MarkersAndRoutesListSortByNamePreview() {
     MarkersAndRoutesListSort(
         isSortByName = true,
         isAscending = true,
-        onToggleSortOrder = { /* Handle toggle */ },
-        onToggleSortByName = { /* Handle toggle */ }
+        onCycleSort = { /* Handle toggle */ }
     )
 }
 
@@ -24,7 +23,6 @@ fun MarkersAndRoutesListSortByDistancePreview() {
     MarkersAndRoutesListSort(
         isSortByName = false,
         isAscending = true,
-        onToggleSortOrder = { /* Handle toggle */ },
-        onToggleSortByName = { /* Handle toggle */ }
+        onCycleSort = { /* Handle toggle */ }
     )
 }

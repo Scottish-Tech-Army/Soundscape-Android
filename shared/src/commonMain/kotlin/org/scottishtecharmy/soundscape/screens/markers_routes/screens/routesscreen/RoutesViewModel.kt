@@ -12,8 +12,7 @@ import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.applyToggleSortByName
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.applyToggleSortOrder
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.applyCycleSort
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.applyUserLocation
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.sortMarkers
 import org.scottishtecharmy.soundscape.services.ServiceConnection
@@ -28,14 +27,22 @@ open class RoutesViewModel(
     val uiState: StateFlow<MarkersAndRoutesUiState> = _uiState
 
     init {
+        // Routes used to share the markers sort order, so until the user sorts routes for
+        // themselves, start from whatever order the markers list is in.
         _uiState.value = _uiState.value.copy(
             isSortByName = prefs.getBoolean(
-                PreferenceKeys.MARKERS_SORT_BY_NAME,
-                PreferenceDefaults.MARKERS_SORT_BY_NAME,
+                PreferenceKeys.ROUTES_SORT_BY_NAME,
+                prefs.getBoolean(
+                    PreferenceKeys.MARKERS_SORT_BY_NAME,
+                    PreferenceDefaults.MARKERS_SORT_BY_NAME,
+                ),
             ),
             isSortAscending = prefs.getBoolean(
-                PreferenceKeys.MARKERS_SORT_ASCENDING,
-                PreferenceDefaults.MARKERS_SORT_ASCENDING,
+                PreferenceKeys.ROUTES_SORT_ASCENDING,
+                prefs.getBoolean(
+                    PreferenceKeys.MARKERS_SORT_ASCENDING,
+                    PreferenceDefaults.MARKERS_SORT_ASCENDING,
+                ),
             ),
         )
 
@@ -64,12 +71,13 @@ open class RoutesViewModel(
         }
     }
 
-    fun toggleSortByName() {
-        _uiState.value = applyToggleSortByName(_uiState.value, prefs)
-    }
-
-    fun toggleSortOrder() {
-        _uiState.value = applyToggleSortOrder(_uiState.value, prefs)
+    fun cycleSort() {
+        _uiState.value = applyCycleSort(
+            _uiState.value,
+            prefs,
+            PreferenceKeys.ROUTES_SORT_BY_NAME,
+            PreferenceKeys.ROUTES_SORT_ASCENDING,
+        )
     }
 
     fun updateUserLocation(location: LngLatAlt?) {

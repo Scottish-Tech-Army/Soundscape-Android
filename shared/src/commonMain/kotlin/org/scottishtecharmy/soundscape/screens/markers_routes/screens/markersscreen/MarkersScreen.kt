@@ -34,8 +34,7 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 fun MarkersScreen(
     uiState: MarkersAndRoutesUiState,
     clearErrorMessage: () -> Unit,
-    onToggleSortOrder: () -> Unit,
-    onToggleSortByName: () -> Unit,
+    onCycleSort: () -> Unit,
     userLocation: LngLatAlt?,
     onSelectItem: (LocationDescription) -> Unit,
     onShowError: (String) -> Unit = {},
@@ -118,8 +117,7 @@ fun MarkersScreen(
                         MarkersAndRoutesListSort(
                             isSortByName = uiState.isSortByName,
                             isAscending = uiState.isSortAscending,
-                            onToggleSortOrder = onToggleSortOrder,
-                            onToggleSortByName = onToggleSortByName
+                            onCycleSort = onCycleSort
                         )
 
                         // Display the list of markers

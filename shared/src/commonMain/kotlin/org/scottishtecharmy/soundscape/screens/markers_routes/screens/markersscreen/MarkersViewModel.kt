@@ -58,12 +58,13 @@ open class MarkersViewModel(
         }
     }
 
-    fun toggleSortByName() {
-        _uiState.value = applyToggleSortByName(_uiState.value, prefs)
-    }
-
-    fun toggleSortOrder() {
-        _uiState.value = applyToggleSortOrder(_uiState.value, prefs)
+    fun cycleSort() {
+        _uiState.value = applyCycleSort(
+            _uiState.value,
+            prefs,
+            PreferenceKeys.MARKERS_SORT_BY_NAME,
+            PreferenceKeys.MARKERS_SORT_ASCENDING,
+        )
     }
 
     fun updateUserLocation(location: LngLatAlt?) {
@@ -79,37 +80,27 @@ open class MarkersViewModel(
     }
 }
 
-internal fun applyToggleSortByName(
+/**
+ * The sort order that follows (sortByName, sortAscending): name A-Z, name Z-A, nearest first,
+ * furthest first, and back to name A-Z.
+ */
+fun nextSort(sortByName: Boolean, sortAscending: Boolean): Pair<Boolean, Boolean> =
+    if (sortAscending) sortByName to false
+    else !sortByName to true
+
+internal fun applyCycleSort(
     uiState: MarkersAndRoutesUiState,
     prefs: PreferencesProvider,
+    sortByNameKey: String,
+    sortAscendingKey: String,
 ): MarkersAndRoutesUiState {
-    val sortByName = !uiState.isSortByName
-    prefs.putBoolean(PreferenceKeys.MARKERS_SORT_BY_NAME, sortByName)
+    val (sortByName, sortAscending) = nextSort(uiState.isSortByName, uiState.isSortAscending)
+    prefs.putBoolean(sortByNameKey, sortByName)
+    prefs.putBoolean(sortAscendingKey, sortAscending)
     return uiState.copy(
         isSortByName = sortByName,
-        entries = sortMarkers(
-            uiState.entries,
-            sortByName,
-            uiState.isSortAscending,
-            uiState.userLocation,
-        ),
-    )
-}
-
-internal fun applyToggleSortOrder(
-    uiState: MarkersAndRoutesUiState,
-    prefs: PreferencesProvider,
-): MarkersAndRoutesUiState {
-    val sortAscending = !uiState.isSortAscending
-    prefs.putBoolean(PreferenceKeys.MARKERS_SORT_ASCENDING, sortAscending)
-    return uiState.copy(
         isSortAscending = sortAscending,
-        entries = sortMarkers(
-            uiState.entries,
-            uiState.isSortByName,
-            sortAscending,
-            uiState.userLocation,
-        ),
+        entries = sortMarkers(uiState.entries, sortByName, sortAscending, uiState.userLocation),
     )
 }
 

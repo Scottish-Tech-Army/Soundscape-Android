@@ -643,8 +643,7 @@ fun MarkersScreenPopulatedPreview() {
             userLocation = previewLngLatAlt(),
         ),
         clearErrorMessage = {},
-        onToggleSortOrder = {},
-        onToggleSortByName = {},
+        onCycleSort = {},
         userLocation = previewLngLatAlt(),
         onSelectItem = {},
     )
@@ -657,8 +656,7 @@ fun RoutesScreenPreview() {
         uiState = MarkersAndRoutesUiState(),
         userLocation = previewLngLatAlt(),
         clearErrorMessage = {},
-        onToggleSortOrder = {},
-        onToggleSortByName = {},
+        onCycleSort = {},
         onSelectItem = {},
     )
 }
@@ -673,8 +671,7 @@ fun RoutesScreenPopulatedPreview() {
         ),
         userLocation = previewLngLatAlt(),
         clearErrorMessage = {},
-        onToggleSortOrder = {},
-        onToggleSortByName = {},
+        onCycleSort = {},
         onSelectItem = {},
     )
 }

@@ -251,27 +251,23 @@ class MarkersViewModelTest {
     }
 
     @Test
-    fun toggleSortByName_flipsStateAndPersistsPreference() = runTest {
+    fun cycleSort_stepsThroughAllFourOrdersAndPersistsThem() = runTest {
         val prefs = FakePreferencesProvider()
+        prefs.putBoolean(PreferenceKeys.MARKERS_SORT_BY_NAME, true)
+        prefs.putBoolean(PreferenceKeys.MARKERS_SORT_ASCENDING, true)
         val vm = MarkersViewModel(FakeRouteDao(), prefs, FakeServiceConnection())
-        val initial = vm.uiState.value.isSortByName
 
-        vm.toggleSortByName()
+        val seen = mutableListOf<Pair<Boolean, Boolean>>()
+        repeat(4) {
+            vm.cycleSort()
+            val state = vm.uiState.value
+            seen.add(state.isSortByName to state.isSortAscending)
+            assertEquals(state.isSortByName, prefs.getBoolean(PreferenceKeys.MARKERS_SORT_BY_NAME, !state.isSortByName))
+            assertEquals(state.isSortAscending, prefs.getBoolean(PreferenceKeys.MARKERS_SORT_ASCENDING, !state.isSortAscending))
+        }
 
-        assertEquals(!initial, vm.uiState.value.isSortByName)
-        assertEquals(!initial, prefs.getBoolean(PreferenceKeys.MARKERS_SORT_BY_NAME, initial))
-    }
-
-    @Test
-    fun toggleSortOrder_flipsStateAndPersistsPreference() = runTest {
-        val prefs = FakePreferencesProvider()
-        val vm = MarkersViewModel(FakeRouteDao(), prefs, FakeServiceConnection())
-        val initial = vm.uiState.value.isSortAscending
-
-        vm.toggleSortOrder()
-
-        assertEquals(!initial, vm.uiState.value.isSortAscending)
-        assertEquals(!initial, prefs.getBoolean(PreferenceKeys.MARKERS_SORT_ASCENDING, initial))
+        // name Z-A, nearest first, furthest first, back to name A-Z
+        assertEquals(listOf(true to false, false to true, false to false, true to true), seen)
     }
 
     @Test
@@ -325,7 +321,7 @@ class MarkersViewModelTest {
     }
 
     @Test
-    fun toggleSortByName_switchesBetweenNameAndDistanceOrder() = runTest {
+    fun cycleSort_switchesBetweenNameAndDistanceOrder() = runTest {
         val dao = FakeRouteDao()
         // Near to the user but last alphabetically, and far but first alphabetically
         dao.markersFlow.value = listOf(
@@ -336,10 +332,15 @@ class MarkersViewModelTest {
         vm.updateUserLocation(LngLatAlt(-4.25, 55.86))
         testDispatcher.scheduler.advanceUntilIdle()
 
+        // Nearest first
         assertEquals(listOf("Zebra", "Apple"), vm.uiState.value.entries.map { it.name })
-        vm.toggleSortByName()
+        vm.cycleSort() // furthest first
         assertEquals(listOf("Apple", "Zebra"), vm.uiState.value.entries.map { it.name })
-        vm.toggleSortByName()
+        vm.cycleSort() // name A-Z
+        assertEquals(listOf("Apple", "Zebra"), vm.uiState.value.entries.map { it.name })
+        vm.cycleSort() // name Z-A
+        assertEquals(listOf("Zebra", "Apple"), vm.uiState.value.entries.map { it.name })
+        vm.cycleSort() // nearest first
         assertEquals(listOf("Zebra", "Apple"), vm.uiState.value.entries.map { it.name })
     }
 
@@ -361,8 +362,7 @@ class MarkersViewModelTest {
         assertEquals(listOf("East", "West"), vm.uiState.value.entries.map { it.name })
 
         // ...but the next sort uses the latest location
-        vm.toggleSortOrder()
-        vm.toggleSortOrder()
+        repeat(4) { vm.cycleSort() }
         assertEquals(listOf("West", "East"), vm.uiState.value.entries.map { it.name })
     }
 }
