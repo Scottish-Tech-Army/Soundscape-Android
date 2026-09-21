@@ -66,6 +66,10 @@ open class MarkersViewModel(
         _uiState.value = applyToggleSortOrder(_uiState.value, prefs)
     }
 
+    fun updateUserLocation(location: LngLatAlt?) {
+        _uiState.value = applyUserLocation(_uiState.value, location)
+    }
+
     fun clearErrorMessage() {
         _uiState.value = _uiState.value.copy(errorMessage = null)
     }
@@ -109,6 +113,28 @@ internal fun applyToggleSortOrder(
     )
 }
 
+/**
+ * Record the user's location so that sorting by distance has something to measure from. The list
+ * is only re-sorted when the first location arrives - re-sorting on every location update would
+ * shuffle the list under the user's finger (or TalkBack focus) as they walk. Later sorts (toggles,
+ * database changes) pick up the latest location.
+ */
+internal fun applyUserLocation(
+    uiState: MarkersAndRoutesUiState,
+    location: LngLatAlt?,
+): MarkersAndRoutesUiState {
+    if (location == null || location == uiState.userLocation) return uiState
+    val firstLocation = uiState.userLocation == null
+    return uiState.copy(
+        userLocation = location,
+        entries = if (firstLocation && !uiState.isSortByName) {
+            sortMarkers(uiState.entries, false, uiState.isSortAscending, location)
+        } else {
+            uiState.entries
+        },
+    )
+}
+
 fun sortMarkers(
     markers: List<LocationDescription>,
     sortByName: Boolean,
@@ -116,8 +142,9 @@ fun sortMarkers(
     userLocation: LngLatAlt?,
 ): List<LocationDescription> {
     val sortedMarkers = if (sortByName) {
-        if (sortAscending) markers.sortedBy { it.name }
-        else markers.sortedByDescending { it.name }
+        val byName = compareBy(String.CASE_INSENSITIVE_ORDER) { marker: LocationDescription -> marker.name }
+        if (sortAscending) markers.sortedWith(byName)
+        else markers.sortedWith(byName.reversed())
     } else {
         val ruler = userLocation?.createCheapRuler() ?: LngLatAlt().createCheapRuler()
         if (sortAscending) {

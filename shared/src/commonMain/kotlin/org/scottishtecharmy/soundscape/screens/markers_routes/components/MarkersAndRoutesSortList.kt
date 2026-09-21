@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SwapVert
 import androidx.compose.material3.Icon
@@ -20,11 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.role
-import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.font.FontWeight
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.markers_sort_button_reverse_order
 import org.scottishtecharmy.soundscape.resources.markers_sort_button_sort_by_distance
 import org.scottishtecharmy.soundscape.resources.markers_sort_button_sort_by_distance_voiceover
 import org.scottishtecharmy.soundscape.resources.markers_sort_button_sort_by_name
@@ -48,11 +48,6 @@ fun MarkersAndRoutesListSort(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = spacing.small, bottom = spacing.tiny)
-            .clearAndSetSemantics {
-                //contentDescription = ""
-                stateDescription = sortOrderState
-                role = Role.Button
-            }
             .background(color = MaterialTheme.colorScheme.surfaceContainer),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
@@ -61,30 +56,30 @@ fun MarkersAndRoutesListSort(
             modifier = Modifier
                 .testTag("SortOrder")
                 .size(spacing.targetSize)
-                .toggleable(
-                    value = isAscending,
+                .clickable(
                     role = Role.Button,
-                    onValueChange = { onToggleSortOrder() }
+                    onClick = onToggleSortOrder
                 ),
             imageVector = Icons.Default.SwapVert,
             tint = MaterialTheme.colorScheme.onSurface,
-            contentDescription = "" // TODO: Add ascending/descending hint
+            contentDescription = stringResource(Res.string.markers_sort_button_reverse_order)
         )
 
         Spacer(modifier = Modifier.width(spacing.small))
 
+        // The current sort field. Tapping it toggles the field for sighted users, but TalkBack
+        // hears it as a plain statement ("Sorted by name") and uses the button alongside it to
+        // change the sort, so that the same action isn't announced twice.
         Text(
             text = if (isSortByName) stringResource(Res.string.markers_sort_button_sort_by_name)
             else stringResource(Res.string.markers_sort_button_sort_by_distance),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.toggleable(
-                value = isSortByName,
-                role = Role.Button,
-                onValueChange = { onToggleSortByName() }
-            )
+            modifier = Modifier
                 .testTag("SortValue")
+                .clearAndSetSemantics { contentDescription = sortOrderState }
+                .clickable(onClick = onToggleSortByName)
         )
 
         Spacer(modifier = Modifier.width(spacing.small))
@@ -95,11 +90,11 @@ fun MarkersAndRoutesListSort(
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.toggleable(
-                value = isSortByName,
-                role = Role.Button,
-                onValueChange = { onToggleSortByName() }
-            )
+            modifier = Modifier
+                .clickable(
+                    role = Role.Button,
+                    onClick = onToggleSortByName
+                )
                 .testTag("SortOption")
         )
     }

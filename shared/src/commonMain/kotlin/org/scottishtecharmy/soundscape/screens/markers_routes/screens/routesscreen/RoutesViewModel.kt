@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.applyToggleSortByName
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.applyToggleSortOrder
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.applyUserLocation
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.sortMarkers
 import org.scottishtecharmy.soundscape.services.ServiceConnection
 
@@ -69,6 +70,10 @@ open class RoutesViewModel(
 
     fun toggleSortOrder() {
         _uiState.value = applyToggleSortOrder(_uiState.value, prefs)
+    }
+
+    fun updateUserLocation(location: LngLatAlt?) {
+        _uiState.value = applyUserLocation(_uiState.value, location)
     }
 
     fun clearErrorMessage() {
