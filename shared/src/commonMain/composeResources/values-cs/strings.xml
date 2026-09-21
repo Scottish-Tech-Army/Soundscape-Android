@@ -1519,4 +1519,16 @@
     <string name="ios_permission_location_always">Soundscape potřebuje vaši polohu, aby mohl poskytovat zvukovou navigaci, i když je aplikace na pozadí.</string>
     <string name="ios_permission_motion">Soundscape používá pohybová data k rozpoznání směru, kterým jste otočeni, a k nasměrování zvukových hlášení podle vašeho okolí.</string>
     <string name="ios_permission_bluetooth">Soundscape používá Bluetooth k vyhledání sluchátek se sledováním polohy hlavy a dalších zvukových zařízení a k připojení k nim.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">odeberete tento trasový bod z trasy</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Bod %1$s bude odebrán z této trasy. Samotná značka nebude smazána. Chcete pokračovat?</string>
+    <string name="route_detail_edit_delete_alert_message">Smazání této trasy nelze vrátit zpět. Značky v ní nebudou smazány. Chcete pokračovat?</string>
+    <string name="markers_action_delete_alert_message">Smazání této značky nelze vrátit zpět a bude také odebrána ze všech tras, které ji používají. Chcete pokračovat?</string>
+    <string name="markers_sort_name_ascending">Řazeno podle názvu, od A do Z</string>
+    <string name="markers_sort_name_descending">Řazeno podle názvu, od Z do A</string>
+    <string name="markers_sort_distance_ascending">Řazeno podle vzdálenosti, od nejbližších</string>
+    <string name="markers_sort_distance_descending">Řazeno podle vzdálenosti, od nejvzdálenějších</string>
+    <string name="markers_sort_action_name_ascending">seřadíte podle názvu, od A do Z</string>
+    <string name="markers_sort_action_name_descending">seřadíte podle názvu, od Z do A</string>
+    <string name="markers_sort_action_distance_ascending">seřadíte podle vzdálenosti, od nejbližších</string>
+    <string name="markers_sort_action_distance_descending">seřadíte podle vzdálenosti, od nejvzdálenějších</string>
 </resources>
