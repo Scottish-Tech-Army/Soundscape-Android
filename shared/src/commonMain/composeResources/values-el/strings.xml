@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Το Soundscape χρειάζεται την τοποθεσία σας για να παρέχει ηχητική πλοήγηση ακόμη και όταν η εφαρμογή βρίσκεται στο παρασκήνιο.</string>
     <string name="ios_permission_motion">Το Soundscape χρησιμοποιεί δεδομένα κίνησης για να εντοπίζει την κατεύθυνση προς την οποία κοιτάτε και να προσανατολίζει τις ηχητικές επεξηγήσεις ως προς το περιβάλλον σας.</string>
     <string name="ios_permission_bluetooth">Το Soundscape χρησιμοποιεί Bluetooth για να εντοπίζει ακουστικά με παρακολούθηση κεφαλής και άλλες συσκευές ήχου και να συνδέεται σε αυτά.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">αφαιρέσετε αυτό το σημείο πορείας από τη διαδρομή</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Το σημείο %1$s θα αφαιρεθεί από αυτή τη διαδρομή. Ο ίδιος ο δείκτης δεν θα διαγραφεί. Θέλετε να συνεχίσετε;</string>
+    <string name="route_detail_edit_delete_alert_message">Η διαγραφή αυτής της διαδρομής δεν μπορεί να αναιρεθεί. Οι δείκτες της δεν θα διαγραφούν. Θέλετε να συνεχίσετε;</string>
+    <string name="markers_action_delete_alert_message">Η διαγραφή αυτού του δείκτη δεν μπορεί να αναιρεθεί και θα αφαιρεθεί επίσης από όλες τις διαδρομές που τον χρησιμοποιούν. Θέλετε να συνεχίσετε;</string>
+    <string name="markers_sort_name_ascending">Λίστα ταξινομημένη κατά όνομα, Α έως Ω</string>
+    <string name="markers_sort_name_descending">Λίστα ταξινομημένη κατά όνομα, Ω έως Α</string>
+    <string name="markers_sort_distance_ascending">Λίστα ταξινομημένη κατά απόσταση, πρώτα τα πλησιέστερα</string>
+    <string name="markers_sort_distance_descending">Λίστα ταξινομημένη κατά απόσταση, πρώτα τα πιο μακρινά</string>
+    <string name="markers_sort_action_name_ascending">ταξινομήσετε κατά όνομα, Α έως Ω</string>
+    <string name="markers_sort_action_name_descending">ταξινομήσετε κατά όνομα, Ω έως Α</string>
+    <string name="markers_sort_action_distance_ascending">ταξινομήσετε κατά απόσταση, πρώτα τα πλησιέστερα</string>
+    <string name="markers_sort_action_distance_descending">ταξινομήσετε κατά απόσταση, πρώτα τα πιο μακρινά</string>
 </resources>
