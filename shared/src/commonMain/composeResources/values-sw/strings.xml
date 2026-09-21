@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape inahitaji mahali ulipo ili kutoa maelekezo ya sauti hata wakati programu iko chinichini.</string>
     <string name="ios_permission_motion">Soundscape hutumia data ya mwendo kutambua upande uliouelekea na kupanga matangazo ya sauti kulingana na mazingira yanayokuzunguka.</string>
     <string name="ios_permission_bluetooth">Soundscape hutumia Bluetooth kutafuta na kuunganisha vipokea sauti vyenye ufuatiliaji wa kichwa na vifaa vingine vya sauti.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">kuondoa kituo hiki kwenye njia</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Kituo %1$s kitaondolewa kwenye njia hii. Alama yenyewe haitafutwa. Je, unataka kuendelea?</string>
+    <string name="route_detail_edit_delete_alert_message">Kufuta njia hii hakuwezi kutenduliwa. Alama zilizomo hazitafutwa. Je, unataka kuendelea?</string>
+    <string name="markers_action_delete_alert_message">Kufuta alama hii hakuwezi kutenduliwa, na pia itaondolewa kwenye njia zote zinazoitumia. Je, unataka kuendelea?</string>
+    <string name="markers_sort_name_ascending">Imepangwa kwa jina, A hadi Z</string>
+    <string name="markers_sort_name_descending">Imepangwa kwa jina, Z hadi A</string>
+    <string name="markers_sort_distance_ascending">Imepangwa kwa umbali, karibu zaidi kwanza</string>
+    <string name="markers_sort_distance_descending">Imepangwa kwa umbali, mbali zaidi kwanza</string>
+    <string name="markers_sort_action_name_ascending">kupanga kwa jina, A hadi Z</string>
+    <string name="markers_sort_action_name_descending">kupanga kwa jina, Z hadi A</string>
+    <string name="markers_sort_action_distance_ascending">kupanga kwa umbali, karibu zaidi kwanza</string>
+    <string name="markers_sort_action_distance_descending">kupanga kwa umbali, mbali zaidi kwanza</string>
 </resources>
