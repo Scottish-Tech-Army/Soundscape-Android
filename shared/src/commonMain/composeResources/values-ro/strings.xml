@@ -1514,4 +1514,16 @@
     <string name="ios_permission_location_always">Soundscape are nevoie de locația ta pentru a oferi navigare audio chiar și atunci când aplicația este în fundal.</string>
     <string name="ios_permission_motion">Soundscape folosește date de mișcare pentru a detecta direcția în care ești orientat și pentru a orienta anunțurile audio în raport cu împrejurimile tale.</string>
     <string name="ios_permission_bluetooth">Soundscape folosește Bluetooth pentru a detecta căștile cu urmărirea capului și alte dispozitive audio și pentru a se conecta la ele.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">a elimina acest punct de traseu din rută</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Punctul de traseu %1$s va fi eliminat din această rută. Marcajul în sine nu va fi șters. Vrei să continui?</string>
+    <string name="route_detail_edit_delete_alert_message">Ștergerea acestei rute nu poate fi anulată. Marcajele din ea nu vor fi șterse. Vrei să continui?</string>
+    <string name="markers_action_delete_alert_message">Ștergerea acestui marcaj nu poate fi anulată și va fi eliminat și din toate rutele care îl folosesc. Vrei să continui?</string>
+    <string name="markers_sort_name_ascending">Sortate după nume, de la A la Z</string>
+    <string name="markers_sort_name_descending">Sortate după nume, de la Z la A</string>
+    <string name="markers_sort_distance_ascending">Sortate după distanță, de la cel mai apropiat la cel mai îndepărtat</string>
+    <string name="markers_sort_distance_descending">Sortate după distanță, de la cel mai îndepărtat la cel mai apropiat</string>
+    <string name="markers_sort_action_name_ascending">a sorta după nume, de la A la Z</string>
+    <string name="markers_sort_action_name_descending">a sorta după nume, de la Z la A</string>
+    <string name="markers_sort_action_distance_ascending">a sorta după distanță, de la cel mai apropiat la cel mai îndepărtat</string>
+    <string name="markers_sort_action_distance_descending">a sorta după distanță, de la cel mai îndepărtat la cel mai apropiat</string>
 </resources>
