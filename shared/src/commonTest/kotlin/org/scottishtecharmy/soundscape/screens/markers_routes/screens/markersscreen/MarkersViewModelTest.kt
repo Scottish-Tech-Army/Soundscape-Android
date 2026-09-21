@@ -19,6 +19,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.platform.nameCollator
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
@@ -318,6 +319,46 @@ class MarkersViewModelTest {
 
         val ascending = sortMarkers(markers, sortByName = true, sortAscending = true, userLocation = null)
         assertEquals(listOf("apple", "banana", "Cherry"), ascending.map { it.name })
+    }
+
+    private fun sortedNames(names: List<String>, languageTag: String) =
+        sortMarkers(
+            names.map { LocationDescription(name = it, location = LngLatAlt()) },
+            sortByName = true,
+            sortAscending = true,
+            userLocation = null,
+            nameOrder = nameCollator(languageTag),
+        ).map { it.name }
+
+    @Test
+    fun sortMarkers_byNameKeepsUkrainianLettersInAlphabeticalOrder() {
+        // Є, І, Ї and Ґ come before А in Unicode, so a plain comparison put them first. Ґ is a
+        // letter of its own after Г to ICU, which is what Collator is on Android and iOS, but an
+        // accented Г to the JDK's Collator that the host tests run on - so "Гай" is a word that
+        // comes before "Ґанок" either way.
+        assertEquals(
+            listOf("Аптека", "Гай", "Ґанок", "Евакуація", "Євробазар", "Ірпінь", "Їжак", "Яблуко"),
+            sortedNames(listOf("Яблуко", "Ірпінь", "Їжак", "Євробазар", "Ґанок", "Аптека", "Гай", "Евакуація"), "uk"),
+        )
+    }
+
+    @Test
+    fun sortMarkers_byNamePutsSwedishLettersAfterZ() {
+        // Å, Ä and Ö are separate letters at the end of the Swedish alphabet, in that order - which
+        // isn't their order in Unicode, and which search normalisation would fold into A and O
+        assertEquals(
+            listOf("Zinken", "Åre", "Ängby", "Örebro"),
+            sortedNames(listOf("Örebro", "Ängby", "Zinken", "Åre"), "sv"),
+        )
+    }
+
+    @Test
+    fun sortMarkers_byNameSortsFrenchAccentsWithTheirLetter() {
+        // An accented É is an E, not a letter after Z
+        assertEquals(
+            listOf("Arbre", "École", "Eglise", "Zoo"),
+            sortedNames(listOf("Zoo", "École", "Arbre", "Eglise"), "fr"),
+        )
     }
 
     @Test
