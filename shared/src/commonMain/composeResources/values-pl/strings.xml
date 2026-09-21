@@ -1519,4 +1519,16 @@
     <string name="ios_permission_location_always">Soundscape potrzebuje Twojej lokalizacji, aby zapewniać nawigację audio nawet wtedy, gdy aplikacja działa w tle.</string>
     <string name="ios_permission_motion">Soundscape wykorzystuje dane ruchu, aby wykryć kierunek, w którym jesteś zwrócony, i dopasować powiadomienia głosowe do Twojego otoczenia.</string>
     <string name="ios_permission_bluetooth">Soundscape używa Bluetooth, aby wykrywać słuchawki ze śledzeniem ruchu głowy oraz inne urządzenia audio i łączyć się z nimi.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">usunąć ten punkt trasy z trasy</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Punkt %1$s zostanie usunięty z tej trasy. Sam znacznik pozostanie zapisany. Czy chcesz kontynuować?</string>
+    <string name="route_detail_edit_delete_alert_message">Usunięcie tej trasy jest nieodwracalne. Znaczniki w niej pozostaną zapisane. Czy chcesz kontynuować?</string>
+    <string name="markers_action_delete_alert_message">Usunięcie tego znacznika jest nieodwracalne. Zostanie on również usunięty ze wszystkich tras, które go używają. Czy chcesz kontynuować?</string>
+    <string name="markers_sort_name_ascending">Posortowano według nazwy, od A do Z</string>
+    <string name="markers_sort_name_descending">Posortowano według nazwy, od Z do A</string>
+    <string name="markers_sort_distance_ascending">Posortowano według odległości, od najbliższych</string>
+    <string name="markers_sort_distance_descending">Posortowano według odległości, od najdalszych</string>
+    <string name="markers_sort_action_name_ascending">posortować według nazwy, od A do Z</string>
+    <string name="markers_sort_action_name_descending">posortować według nazwy, od Z do A</string>
+    <string name="markers_sort_action_distance_ascending">posortować według odległości, od najbliższych</string>
+    <string name="markers_sort_action_distance_descending">posortować według odległości, od najdalszych</string>
 </resources>
