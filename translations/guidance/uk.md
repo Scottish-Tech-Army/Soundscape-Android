@@ -161,3 +161,8 @@ match (rule C4).
 
 **2026-09-21 — same reporter.** Formal plural «ви» confirmed, to be used
 throughout. UK-R1 moves to `confirmed`. The sweep found nothing to change.
+
+**2026-09-21 — applied.** All 35 fixes uploaded to Weblate and verified live:
+Waypoint → «зупинка» (26), Guided tutorial → «Інтерактивний тур» (6), the «нове
+оновлення» tautology (2) and dead end → «тупика» (1). A re-sweep afterwards
+found no «маршрутна точка» or «посібник» left anywhere in the corpus.
