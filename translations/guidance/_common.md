@@ -120,3 +120,25 @@ is between a decision and an oversight, and only the first one gets defended.
 > with a Google Maps screenshot, then withdrawn by the same reporter: no
 > really good Ukrainian word exists, so 29 strings would change for nothing.
 > The Google Maps precedent is still there for the next reviewer to find.
+
+## C9 — A string substituted into a template must take the template's case
+
+Some strings never appear on their own: the code drops them into another
+string's placeholder. In a case-inflecting language the substituted string has
+to be in whatever case the template's preposition governs, and a translator
+working from the English can't know that unless the translator comment says
+so. Before judging such a string, find its call site and read the template it
+lands in.
+
+When sweeping, check the same string across *every* inflected language, not
+just the one reported — if the comment didn't warn one translator, it didn't
+warn any of them.
+
+> **Case (uk, 2026-09-21):** `confect_name_dead_end` ("dead end") is only ever
+> the `%2$s` of `confect_name_to` ("%1$s to %2$s"). Ukrainian rendered the
+> template «%1$s у напрямку %2$s» (genitive) and the string «кінець дороги»
+> (nominative), producing «дорога у напрямку кінець дороги». The same mismatch
+> is in ru «к тупик» (needs dative «тупику»), pl «do ślepa uliczka», cs «do
+> slepá ulice», sk «do slepá ulica», hr «do slijepa ulica», sr «до ћорсокак»
+> and sl «do slepa ulica» (all need the genitive). The English comment said
+> only "Dead end road description".
