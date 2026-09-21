@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape trenger posisjonen din for å gi lydnavigasjon også når appen kjører i bakgrunnen.</string>
     <string name="ios_permission_motion">Soundscape bruker bevegelsesdata for å registrere hvilken retning du står mot, og plassere lydmeldingene i forhold til omgivelsene dine.</string>
     <string name="ios_permission_bluetooth">Soundscape bruker Bluetooth for å finne og koble til hodetelefoner med hodesporing og andre lydenheter.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">fjerne dette veipunktet fra ruten</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s blir fjernet fra denne ruten. Selve markøren blir ikke slettet. Vil du fortsette?</string>
+    <string name="route_detail_edit_delete_alert_message">Sletting av denne ruten kan ikke angres. Markørene i den blir ikke slettet. Vil du fortsette?</string>
+    <string name="markers_action_delete_alert_message">Sletting av denne markøren kan ikke angres, og den blir også fjernet fra alle ruter som bruker den. Vil du fortsette?</string>
+    <string name="markers_sort_name_ascending">Sortert etter navn, A til Å</string>
+    <string name="markers_sort_name_descending">Sortert etter navn, Å til A</string>
+    <string name="markers_sort_distance_ascending">Sortert etter avstand, nærmeste først</string>
+    <string name="markers_sort_distance_descending">Sortert etter avstand, fjerneste først</string>
+    <string name="markers_sort_action_name_ascending">sortere etter navn, A til Å</string>
+    <string name="markers_sort_action_name_descending">sortere etter navn, Å til A</string>
+    <string name="markers_sort_action_distance_ascending">sortere etter avstand, nærmeste først</string>
+    <string name="markers_sort_action_distance_descending">sortere etter avstand, fjerneste først</string>
 </resources>
