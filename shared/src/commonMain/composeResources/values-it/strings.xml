@@ -1514,4 +1514,16 @@
     <string name="ios_permission_location_always">Soundscape ha bisogno della tua posizione per fornire la navigazione audio anche quando l'app è in background.</string>
     <string name="ios_permission_motion">Soundscape utilizza i dati di movimento per rilevare la direzione verso cui sei rivolto e orientare le notifiche audio rispetto ai tuoi dintorni.</string>
     <string name="ios_permission_bluetooth">Soundscape utilizza il Bluetooth per rilevare auricolari con tracciamento della testa e altri dispositivi audio e connettersi a essi.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">rimuovere questo waypoint dal percorso</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s verrà rimosso da questo percorso. L'indicatore stesso non verrà eliminato. Vuoi continuare?</string>
+    <string name="route_detail_edit_delete_alert_message">L'eliminazione di questo percorso non può essere annullata. Gli indicatori che contiene non verranno eliminati. Vuoi continuare?</string>
+    <string name="markers_action_delete_alert_message">L'eliminazione di questo indicatore non può essere annullata e verrà rimosso anche da tutti i percorsi che lo utilizzano. Vuoi continuare?</string>
+    <string name="markers_sort_name_ascending">Ordinato per nome, dalla A alla Z</string>
+    <string name="markers_sort_name_descending">Ordinato per nome, dalla Z alla A</string>
+    <string name="markers_sort_distance_ascending">Ordinato per distanza, dal più vicino al più lontano</string>
+    <string name="markers_sort_distance_descending">Ordinato per distanza, dal più lontano al più vicino</string>
+    <string name="markers_sort_action_name_ascending">ordinare per nome, dalla A alla Z</string>
+    <string name="markers_sort_action_name_descending">ordinare per nome, dalla Z alla A</string>
+    <string name="markers_sort_action_distance_ascending">ordinare per distanza, dal più vicino al più lontano</string>
+    <string name="markers_sort_action_distance_descending">ordinare per distanza, dal più lontano al più vicino</string>
 </resources>
