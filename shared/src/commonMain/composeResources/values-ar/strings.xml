@@ -1529,4 +1529,16 @@
     <string name="ios_permission_location_always">يحتاج Soundscape إلى موقعك لتقديم التنقل الصوتي حتى عندما يكون التطبيق في الخلفية.</string>
     <string name="ios_permission_motion">يستخدم Soundscape بيانات الحركة لتحديد الاتجاه الذي تواجهه وتوجيه النداءات الصوتية نحو ما يحيط بك.</string>
     <string name="ios_permission_bluetooth">يستخدم Soundscape البلوتوث لاكتشاف سماعات الرأس المزوّدة بتتبع حركة الرأس والأجهزة الصوتية الأخرى والاتصال بها.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">إزالة نقطة المسار هذه من المسار</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">ستتم إزالة %1$s من هذا المسار. لن يتم حذف العلامة نفسها. هل تريد المتابعة؟</string>
+    <string name="route_detail_edit_delete_alert_message">لا يمكن التراجع عن حذف هذا المسار. لن يتم حذف العلامات الموجودة فيه. هل تريد المتابعة؟</string>
+    <string name="markers_action_delete_alert_message">لا يمكن التراجع عن حذف هذه العلامة، وستتم إزالتها أيضًا من أي مسارات تستخدمها. هل تريد المتابعة؟</string>
+    <string name="markers_sort_name_ascending">مرتب حسب الاسم، من أ إلى ي</string>
+    <string name="markers_sort_name_descending">مرتب حسب الاسم، من ي إلى أ</string>
+    <string name="markers_sort_distance_ascending">مرتب حسب المسافة، الأقرب أولاً</string>
+    <string name="markers_sort_distance_descending">مرتب حسب المسافة، الأبعد أولاً</string>
+    <string name="markers_sort_action_name_ascending">الترتيب حسب الاسم، من أ إلى ي</string>
+    <string name="markers_sort_action_name_descending">الترتيب حسب الاسم، من ي إلى أ</string>
+    <string name="markers_sort_action_distance_ascending">الترتيب حسب المسافة، الأقرب أولاً</string>
+    <string name="markers_sort_action_distance_descending">الترتيب حسب المسافة، الأبعد أولاً</string>
 </resources>
