@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.DragIndicator
+import androidx.compose.material.icons.rounded.RemoveCircleOutline
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -38,6 +39,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.CustomAccessibilityAction
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import org.jetbrains.compose.resources.getString
@@ -48,6 +54,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.general_alert_cancel
 import org.scottishtecharmy.soundscape.resources.general_alert_done
+import org.scottishtecharmy.soundscape.resources.location_item_move_down
+import org.scottishtecharmy.soundscape.resources.location_item_move_up
 import org.scottishtecharmy.soundscape.resources.markers_sort_button_sort_by_name
 import org.scottishtecharmy.soundscape.resources.route_description_description_hint
 import org.scottishtecharmy.soundscape.resources.route_detail_action_create
@@ -56,6 +64,8 @@ import org.scottishtecharmy.soundscape.resources.route_detail_action_start_route
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_delete
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_delete_alert_message
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_description
+import org.scottishtecharmy.soundscape.resources.route_detail_edit_remove_waypoint_hint
+import org.scottishtecharmy.soundscape.resources.route_detail_edit_remove_waypoint_alert_message
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_waypoints_button
 import org.scottishtecharmy.soundscape.resources.route_name_description_hint
 import org.scottishtecharmy.soundscape.resources.route_update_success_title
@@ -67,6 +77,7 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
+import org.scottishtecharmy.soundscape.screens.talkbackHidden
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
@@ -93,6 +104,7 @@ fun SharedAddAndEditRouteScreen(
 
     var addWaypointDialog by remember { mutableStateOf(false) }
     var showDeleteDialog by rememberSaveable { mutableStateOf(false) }
+    var waypointToRemove by remember { mutableStateOf<LocationDescription?>(null) }
     var routeMembers by remember(uiState.routeMembers) {
         val members = uiState.routeMembers.toList()
         for ((index, marker) in members.withIndex()) {
@@ -100,6 +112,17 @@ fun SharedAddAndEditRouteScreen(
         }
         mutableStateOf(members)
     }
+
+    // Moves a waypoint for TalkBack's move up/down actions, returning false at either end.
+    fun moveWaypoint(from: Int, to: Int): Boolean {
+        if (to !in routeMembers.indices) return false
+        routeMembers = routeMembers.toMutableList().apply { add(to, removeAt(from)) }
+        return true
+    }
+    val waypointTitle = stringResource(Res.string.waypoint_title)
+    val removeHint = stringResource(Res.string.route_detail_edit_remove_waypoint_hint)
+    val moveUpLabel = stringResource(Res.string.location_item_move_up)
+    val moveDownLabel = stringResource(Res.string.location_item_move_down)
 
     val lazyListState = rememberLazyListState()
     val reorderableLazyListState = rememberReorderableLazyListState(lazyListState) { from, to ->
@@ -162,31 +185,65 @@ fun SharedAddAndEditRouteScreen(
         )
     }
 
+    waypointToRemove?.let { waypoint ->
+        AlertDialog(
+            onDismissRequest = { waypointToRemove = null },
+            title = { Text(stringResource(Res.string.settings_reset_dialog_title)) },
+            text = {
+                Text(stringResource(Res.string.route_detail_edit_remove_waypoint_alert_message, waypoint.name))
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        waypointToRemove = null
+                        routeMembers = routeMembers.filter { it !== waypoint }
+                        // Toggle the marker off so that the Add Waypoints dialog shows it as
+                        // unselected and doesn't restore it. Imported waypoints aren't markers
+                        // yet (databaseId 0), so there's nothing to toggle.
+                        if (waypoint.databaseId != 0L) holder.toggleMember(waypoint)
+                    },
+                    modifier = Modifier.testTag("addAndEditRouteRemoveWaypointConfirm"),
+                ) {
+                    Text(stringResource(Res.string.ui_continue))
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { waypointToRemove = null },
+                    modifier = Modifier.testTag("addAndEditRouteRemoveWaypointCancel"),
+                ) {
+                    Text(stringResource(Res.string.general_alert_cancel))
+                }
+            },
+        )
+    }
+
     if (addWaypointDialog) {
         AddWaypointsDialog(
             uiState = uiState,
             placesNearbyUiState = placesNearbyUiState,
             modifier = modifier,
             onAddWaypointComplete = {
-                val keepIds = uiState.routeMembers
-                    .filter { marker -> !uiState.toggledMembers.any { it.databaseId == marker.databaseId } }
-                    .map { it.databaseId }
-                    .toSet()
+                // A marker is on the route if it was originally and hasn't been toggled, or
+                // wasn't originally and has been toggled. Removing a waypoint from the list
+                // toggles it, so re-adding it in the dialog toggles it back. Imported waypoints
+                // aren't markers yet (databaseId 0) and can't be toggled, so they're kept only
+                // if they're still in the list.
+                val originalIds = uiState.routeMembers.map { it.databaseId }.toSet()
+                val toggledIds = uiState.toggledMembers.map { it.databaseId }.toSet()
+                fun onRoute(id: Long) = id == 0L || (id in originalIds) != (id in toggledIds)
 
-                val routeMemberIds = routeMembers.map { it.databaseId }.toSet()
+                // Keep the current order for waypoints already in the list, then append the
+                // ones that are back or new.
                 val members = routeMembers
-                    .filter { it.databaseId in keepIds }
+                    .filter { onRoute(it.databaseId) }
                     .toMutableList()
-
-                val missingFromReorder = uiState.routeMembers
-                    .filter { it.databaseId in keepIds && it.databaseId !in routeMemberIds }
-                members.addAll(missingFromReorder)
-
-                for (marker in uiState.toggledMembers) {
-                    if (!uiState.routeMembers.any { it.databaseId == marker.databaseId }) {
-                        members.add(marker)
-                    }
-                }
+                val listedIds = members.map { it.databaseId }.toSet()
+                members.addAll(
+                    (uiState.routeMembers + uiState.toggledMembers).filter {
+                        it.databaseId != 0L && onRoute(it.databaseId) && it.databaseId !in listedIds
+                    }.distinctBy { it.databaseId }
+                )
                 for ((index, marker) in members.withIndex()) {
                     marker.orderId = index.toLong()
                 }
@@ -243,17 +300,6 @@ fun SharedAddAndEditRouteScreen(
                             fontWeight = FontWeight.Bold,
                         )
                     }
-                    CustomButton(
-                        Modifier
-                            .fillMaxWidth()
-                            .smallPadding()
-                            .testTag("addWaypointsButton"),
-                        onClick = { addWaypointDialog = true },
-                        shape = RoundedCornerShape(spacing.small),
-                        text = stringResource(Res.string.route_detail_edit_waypoints_button),
-                        textStyle = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Bold,
-                    )
                 }
             },
             content = { padding ->
@@ -295,6 +341,18 @@ fun SharedAddAndEditRouteScreen(
                                 .mediumPadding(),
                         )
 
+                        CustomButton(
+                            Modifier
+                                .fillMaxWidth()
+                                .smallPadding()
+                                .testTag("addWaypointsButton"),
+                            onClick = { addWaypointDialog = true },
+                            shape = RoundedCornerShape(spacing.small),
+                            text = stringResource(Res.string.route_detail_edit_waypoints_button),
+                            textStyle = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold,
+                        )
+
                         if (routeMembers.isEmpty()) {
                             Text(
                                 stringResource(Res.string.route_detail_action_start_route_disabled_hint),
@@ -320,50 +378,68 @@ fun SharedAddAndEditRouteScreen(
                                             modifier = Modifier
                                                 .background(MaterialTheme.colorScheme.surface)
                                         ) {
-                                            LocationItem(
-                                                item = item,
-                                                modifier = Modifier.weight(1f),
-                                                decoration = LocationItemDecoration(
-                                                    index = index,
-                                                    indexDescription = stringResource(Res.string.waypoint_title),
-                                                    reorderable = true,
-                                                    moveDown = { i ->
-                                                        if (i < routeMembers.size - 1) {
-                                                            routeMembers =
-                                                                routeMembers.toMutableList().apply {
-                                                                    add(i + 1, removeAt(i))
-                                                                }
+                                            // For TalkBack the remove button and the waypoint are a
+                                            // single node, so that the focus box covers both and one
+                                            // swipe moves on to the next waypoint. Double tapping it
+                                            // removes the waypoint, and it can be moved up or down
+                                            // with custom actions. The drag handle is hidden.
+                                            Row(
+                                                modifier = Modifier
+                                                    .weight(1f)
+                                                    .testTag("addAndEditRouteWaypoint-${item.name}")
+                                                    .clearAndSetSemantics {
+                                                        contentDescription =
+                                                            "$waypointTitle ${index + 1}. ${item.name}"
+                                                        onClick(label = removeHint) {
+                                                            waypointToRemove = item
                                                             true
-                                                        } else {
-                                                            false
                                                         }
+                                                        customActions = listOf(
+                                                            CustomAccessibilityAction(moveUpLabel) {
+                                                                moveWaypoint(index, index - 1)
+                                                            },
+                                                            CustomAccessibilityAction(moveDownLabel) {
+                                                                moveWaypoint(index, index + 1)
+                                                            },
+                                                        )
                                                     },
-                                                    moveUp = { i ->
-                                                        if (i > 0) {
-                                                            routeMembers =
-                                                                routeMembers.toMutableList().apply {
-                                                                    add(i - 1, removeAt(i))
-                                                                }
-                                                            true
-                                                        } else {
-                                                            false
-                                                        }
-                                                    },
-                                                ),
-                                                userLocation = userLocation,
-                                            )
+                                            ) {
+                                                IconButton(
+                                                    modifier = Modifier
+                                                        .width(spacing.targetSize)
+                                                        .align(Alignment.CenterVertically),
+                                                    onClick = { waypointToRemove = item },
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.Rounded.RemoveCircleOutline,
+                                                        contentDescription = null,
+                                                        modifier = Modifier.size(spacing.targetSize),
+                                                        tint = MaterialTheme.colorScheme.error,
+                                                    )
+                                                }
+                                                LocationItem(
+                                                    item = item,
+                                                    modifier = Modifier.weight(1f),
+                                                    decoration = LocationItemDecoration(
+                                                        index = index,
+                                                        reorderable = true,
+                                                    ),
+                                                    userLocation = userLocation,
+                                                )
+                                            }
 
                                             IconButton(
                                                 modifier = Modifier
                                                     .draggableHandle()
                                                     .width(spacing.targetSize)
                                                     .align(Alignment.CenterVertically)
+                                                    .talkbackHidden()
                                                     .testTag("addAndEditRouteDragHandle"),
                                                 onClick = {},
                                             ) {
                                                 Icon(
                                                     imageVector = Icons.Rounded.DragIndicator,
-                                                    contentDescription = "",
+                                                    contentDescription = null,
                                                     modifier = Modifier.size(spacing.targetSize),
                                                     tint = MaterialTheme.colorScheme.onSurface,
                                                 )
