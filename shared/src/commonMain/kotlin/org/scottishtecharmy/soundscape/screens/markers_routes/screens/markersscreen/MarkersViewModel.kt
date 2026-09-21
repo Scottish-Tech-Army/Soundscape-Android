@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.platform.appNameCollator
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
@@ -131,9 +132,10 @@ fun sortMarkers(
     sortByName: Boolean,
     sortAscending: Boolean,
     userLocation: LngLatAlt?,
+    nameOrder: Comparator<String> = appNameCollator(),
 ): List<LocationDescription> {
     val sortedMarkers = if (sortByName) {
-        val byName = compareBy(String.CASE_INSENSITIVE_ORDER) { marker: LocationDescription -> marker.name }
+        val byName = compareBy(nameOrder) { marker: LocationDescription -> marker.name }
         if (sortAscending) markers.sortedWith(byName)
         else markers.sortedWith(byName.reversed())
     } else {
