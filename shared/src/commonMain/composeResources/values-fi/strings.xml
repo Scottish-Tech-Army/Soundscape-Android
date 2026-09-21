@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape tarvitsee sijaintisi tarjotakseen ääninavigointia myös silloin, kun sovellus on taustalla.</string>
     <string name="ios_permission_motion">Soundscape käyttää liikedataa tunnistaakseen, mihin suuntaan olet kääntyneenä, ja suunnatakseen ääni-ilmoitukset ympäristöösi.</string>
     <string name="ios_permission_bluetooth">Soundscape käyttää Bluetoothia löytääkseen pään seurantaa tukevat kuulokkeet ja muut äänilaitteet ja muodostaakseen niihin yhteyden.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">poistaaksesi tämän reittipisteen reitiltä</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s poistetaan tältä reitiltä. Itse merkintää ei poisteta. Haluatko jatkaa?</string>
+    <string name="route_detail_edit_delete_alert_message">Tämän reitin poistamista ei voi peruuttaa. Sen merkintöjä ei poisteta. Haluatko jatkaa?</string>
+    <string name="markers_action_delete_alert_message">Tämän merkinnän poistamista ei voi peruuttaa, ja se poistetaan myös kaikilta reiteiltä, joissa sitä käytetään. Haluatko jatkaa?</string>
+    <string name="markers_sort_name_ascending">Lajiteltu nimen mukaan, A:sta Ö:hön</string>
+    <string name="markers_sort_name_descending">Lajiteltu nimen mukaan, Ö:stä A:han</string>
+    <string name="markers_sort_distance_ascending">Lajiteltu etäisyyden mukaan, lähimmät ensin</string>
+    <string name="markers_sort_distance_descending">Lajiteltu etäisyyden mukaan, kauimmaiset ensin</string>
+    <string name="markers_sort_action_name_ascending">lajitellaksesi nimen mukaan, A:sta Ö:hön</string>
+    <string name="markers_sort_action_name_descending">lajitellaksesi nimen mukaan, Ö:stä A:han</string>
+    <string name="markers_sort_action_distance_ascending">lajitellaksesi etäisyyden mukaan, lähimmät ensin</string>
+    <string name="markers_sort_action_distance_descending">lajitellaksesi etäisyyden mukaan, kauimmaiset ensin</string>
 </resources>
