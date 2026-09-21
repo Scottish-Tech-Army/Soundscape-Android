@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape þarf staðsetningu þína til að veita hljóðleiðsögn jafnvel þegar forritið er í bakgrunni.</string>
     <string name="ios_permission_motion">Soundscape notar hreyfigögn til að greina í hvaða átt þú snýrð og staðsetja hljóðtilkynningar miðað við umhverfi þitt.</string>
     <string name="ios_permission_bluetooth">Soundscape notar Bluetooth til að finna heyrnartól með höfuðrakningu og önnur hljóðtæki og tengjast þeim.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">fjarlægja þennan leiðarpunkt úr leiðinni</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s verður fjarlægt úr þessari leið. Merkinu sjálfu verður ekki eytt. Viltu halda áfram?</string>
+    <string name="route_detail_edit_delete_alert_message">Ekki er hægt að afturkalla eyðingu þessarar leiðar. Merkjunum í henni verður ekki eytt. Viltu halda áfram?</string>
+    <string name="markers_action_delete_alert_message">Ekki er hægt að afturkalla eyðingu þessa merkis og það verður einnig fjarlægt úr öllum leiðum sem nota það. Viltu halda áfram?</string>
+    <string name="markers_sort_name_ascending">Raðað eftir nafni, frá A til Ö</string>
+    <string name="markers_sort_name_descending">Raðað eftir nafni, frá Ö til A</string>
+    <string name="markers_sort_distance_ascending">Raðað eftir fjarlægð, næst fyrst</string>
+    <string name="markers_sort_distance_descending">Raðað eftir fjarlægð, fjærst fyrst</string>
+    <string name="markers_sort_action_name_ascending">raða eftir nafni, frá A til Ö</string>
+    <string name="markers_sort_action_name_descending">raða eftir nafni, frá Ö til A</string>
+    <string name="markers_sort_action_distance_ascending">raða eftir fjarlægð, næst fyrst</string>
+    <string name="markers_sort_action_distance_descending">raða eftir fjarlægð, fjærst fyrst</string>
 </resources>
