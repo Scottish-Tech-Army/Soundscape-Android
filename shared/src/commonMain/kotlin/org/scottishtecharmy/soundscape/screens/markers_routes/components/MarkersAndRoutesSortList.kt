@@ -54,6 +54,9 @@ fun MarkersAndRoutesListSort(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = spacing.small, bottom = spacing.tiny)
+            // Before clearAndSetSemantics, which would otherwise clear the tag along with
+            // everything else inside it.
+            .testTag("SortOption")
             .background(color = MaterialTheme.colorScheme.surfaceContainer)
             .clickable(
                 role = Role.Button,
@@ -64,8 +67,7 @@ fun MarkersAndRoutesListSort(
             // TalkBack reads out a state change on the focused node once the screen has been
             // updated, whereas a live region or text change is announced from the click event,
             // which still carries the previous order.
-            .clearAndSetSemantics { stateDescription = sortState }
-            .testTag("SortOption"),
+            .clearAndSetSemantics { stateDescription = sortState },
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
