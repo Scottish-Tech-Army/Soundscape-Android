@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">A Soundscape-nek szüksége van a tartózkodási helyére, hogy hangos navigációt nyújtson akkor is, amikor az alkalmazás a háttérben fut.</string>
     <string name="ios_permission_motion">A Soundscape mozgásadatokat használ, hogy megállapítsa, merre néz, és a hangos bejelentéseket a környezetéhez igazítsa.</string>
     <string name="ios_permission_bluetooth">A Soundscape Bluetooth-t használ a fejkövetést támogató fejhallgatók és egyéb hangeszközök megkereséséhez és a hozzájuk való csatlakozáshoz.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">az útvonalpont eltávolítása az útvonalból</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s kikerül ebből az útvonalból. Maga a jelölő nem törlődik. Szeretné folytatni?</string>
+    <string name="route_detail_edit_delete_alert_message">Az útvonal törlése nem vonható vissza. A benne lévő jelölők nem törlődnek. Szeretné folytatni?</string>
+    <string name="markers_action_delete_alert_message">A jelölő törlése nem vonható vissza, és minden olyan útvonalból is kikerül, amely használja. Szeretné folytatni?</string>
+    <string name="markers_sort_name_ascending">Név szerint rendezve, A-tól Z-ig</string>
+    <string name="markers_sort_name_descending">Név szerint rendezve, Z-től A-ig</string>
+    <string name="markers_sort_distance_ascending">Távolság szerint rendezve, a legközelebbiek elöl</string>
+    <string name="markers_sort_distance_descending">Távolság szerint rendezve, a legtávolabbiak elöl</string>
+    <string name="markers_sort_action_name_ascending">rendezés név szerint, A-tól Z-ig</string>
+    <string name="markers_sort_action_name_descending">rendezés név szerint, Z-től A-ig</string>
+    <string name="markers_sort_action_distance_ascending">rendezés távolság szerint, a legközelebbiek elöl</string>
+    <string name="markers_sort_action_distance_descending">rendezés távolság szerint, a legtávolabbiak elöl</string>
 </resources>
