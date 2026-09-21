@@ -120,9 +120,7 @@ This uses a bit more of the UI, but once it's set up it should be fairly straigh
 Markers are points on the map which can be combined into a route. They're saved from the Location
 Details screen, and there are several ways to get there:
 
-* Long tap the map on the Home screen, or the map on the _Current Location_ screen.
-* Tap _Current Location_ on the Home screen. That map scrolls and zooms, so you can save a marker,
-  move to a new point, long tap and save another.
+* Tap _Current Location_ on the Home screen and save a marker at your current location.
 * Tap _Places Nearby_ on the Home screen and pick one of the nearby points.
 * Search, and tap one of the results.
 
