@@ -248,6 +248,8 @@
     <string name="markers_sort_button_sort_by_distance">Distance</string>
     <!-- Sort by category, Distance. This is the Talkback label used when a user a location list is sorted by distance. -->
     <string name="markers_sort_button_sort_by_distance_voiceover">Sorted by distance</string>
+    <!-- Talkback label for the button that reverses the order of a list of markers or routes, whichever way it is currently sorted. -->
+    <string name="markers_sort_button_reverse_order">Reverse order</string>
     <!-- Title for markers page when no markers exist -->
     <string name="markers_no_markers_title">Getting Started with Markers</string>
     <!-- Text that explains to the user what "markers" are and how they can be used. Ensure "Save as Marker" is translated to be the same as "universal_links.alert.action.marker". Quotes written as " -->

@@ -738,6 +738,9 @@ private fun MarkersAndRoutesContainer(
                     if (markersFactory != null) {
                         val holder = viewModel { markersFactory() }
                         val uiState by holder.uiState.collectAsState()
+                        LaunchedEffect(holder, userLocation) {
+                            holder.updateUserLocation(userLocation)
+                        }
                         MarkersScreen(
                             uiState = uiState,
                             clearErrorMessage = { holder.clearErrorMessage() },
@@ -769,6 +772,9 @@ private fun MarkersAndRoutesContainer(
                     if (routesFactory != null) {
                         val holder = viewModel { routesFactory() }
                         val uiState by holder.uiState.collectAsState()
+                        LaunchedEffect(holder, userLocation) {
+                            holder.updateUserLocation(userLocation)
+                        }
                         RoutesScreen(
                             uiState = uiState,
                             userLocation = userLocation,

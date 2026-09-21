@@ -311,4 +311,58 @@ class MarkersViewModelTest {
         val descending = sortMarkers(markers, sortByName = true, sortAscending = false, userLocation = null)
         assertEquals(listOf("Banana", "Apple"), descending.map { it.name })
     }
+
+    @Test
+    fun sortMarkers_byNameIgnoresCase() {
+        val markers = listOf(
+            LocationDescription(name = "banana", location = LngLatAlt()),
+            LocationDescription(name = "Cherry", location = LngLatAlt()),
+            LocationDescription(name = "apple", location = LngLatAlt()),
+        )
+
+        val ascending = sortMarkers(markers, sortByName = true, sortAscending = true, userLocation = null)
+        assertEquals(listOf("apple", "banana", "Cherry"), ascending.map { it.name })
+    }
+
+    @Test
+    fun toggleSortByName_switchesBetweenNameAndDistanceOrder() = runTest {
+        val dao = FakeRouteDao()
+        // Near to the user but last alphabetically, and far but first alphabetically
+        dao.markersFlow.value = listOf(
+            MarkerEntity(1L, "Apple", -4.30, 55.90),
+            MarkerEntity(2L, "Zebra", -4.25, 55.86),
+        )
+        val vm = MarkersViewModel(dao, FakePreferencesProvider(), FakeServiceConnection())
+        vm.updateUserLocation(LngLatAlt(-4.25, 55.86))
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        assertEquals(listOf("Zebra", "Apple"), vm.uiState.value.entries.map { it.name })
+        vm.toggleSortByName()
+        assertEquals(listOf("Apple", "Zebra"), vm.uiState.value.entries.map { it.name })
+        vm.toggleSortByName()
+        assertEquals(listOf("Zebra", "Apple"), vm.uiState.value.entries.map { it.name })
+    }
+
+    @Test
+    fun updateUserLocation_sortsByDistanceOnFirstFixOnly() = runTest {
+        val dao = FakeRouteDao()
+        dao.markersFlow.value = listOf(
+            MarkerEntity(1L, "West", -4.30, 55.86),
+            MarkerEntity(2L, "East", -4.20, 55.86),
+        )
+        val vm = MarkersViewModel(dao, FakePreferencesProvider(), FakeServiceConnection())
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        vm.updateUserLocation(LngLatAlt(-4.21, 55.86))
+        assertEquals(listOf("East", "West"), vm.uiState.value.entries.map { it.name })
+
+        // Walking west doesn't reshuffle the list under the user...
+        vm.updateUserLocation(LngLatAlt(-4.29, 55.86))
+        assertEquals(listOf("East", "West"), vm.uiState.value.entries.map { it.name })
+
+        // ...but the next sort uses the latest location
+        vm.toggleSortOrder()
+        vm.toggleSortOrder()
+        assertEquals(listOf("West", "East"), vm.uiState.value.entries.map { it.name })
+    }
 }
