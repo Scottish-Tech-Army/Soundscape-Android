@@ -39,14 +39,12 @@ import org.scottishtecharmy.soundscape.resources.markers_and_routes_import_failu
 import org.scottishtecharmy.soundscape.resources.markers_and_routes_import_success
 import org.scottishtecharmy.soundscape.resources.menu_advanced_markers_and_routes
 import org.scottishtecharmy.soundscape.resources.menu_advanced_markers_and_routes_clear_all_success
-import org.scottishtecharmy.soundscape.resources.settings_reset_button_hint
 import org.scottishtecharmy.soundscape.resources.settings_reset_dialog_title
 import org.scottishtecharmy.soundscape.resources.ui_back_button_title
 import org.scottishtecharmy.soundscape.resources.ui_continue
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.FlexibleAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
-import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -110,11 +108,7 @@ fun SharedAdvancedMarkersAndRoutesSettingsScreen(
                     },
                     modifier = Modifier.testTag("advancedMarkersClearAllConfirm"),
                 ) {
-                    Text(
-                        text = stringResource(Res.string.ui_continue),
-                        modifier = Modifier
-                            .talkbackHint(stringResource(Res.string.settings_reset_button_hint)),
-                    )
+                    Text(stringResource(Res.string.ui_continue))
                 }
             },
             dismissButton = {

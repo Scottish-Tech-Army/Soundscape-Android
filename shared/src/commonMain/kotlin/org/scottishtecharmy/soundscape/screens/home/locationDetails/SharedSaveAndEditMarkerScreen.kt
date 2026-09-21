@@ -11,8 +11,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,9 +39,12 @@ import org.scottishtecharmy.soundscape.resources.location_detail_exit_full_scree
 import org.scottishtecharmy.soundscape.resources.location_detail_full_screen_for_edit_hint
 import org.scottishtecharmy.soundscape.resources.marker_name_description_hint
 import org.scottishtecharmy.soundscape.resources.markers_action_delete
+import org.scottishtecharmy.soundscape.resources.markers_action_delete_alert_message
 import org.scottishtecharmy.soundscape.resources.markers_annotation
 import org.scottishtecharmy.soundscape.resources.markers_edit_screen_title_edit
 import org.scottishtecharmy.soundscape.resources.markers_sort_button_sort_by_name
+import org.scottishtecharmy.soundscape.resources.settings_reset_dialog_title
+import org.scottishtecharmy.soundscape.resources.ui_continue
 import org.scottishtecharmy.soundscape.resources.user_activity_save_marker_title
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
@@ -75,6 +81,34 @@ fun SharedSaveAndEditMarkerScreen(
     val fullscreenMap = remember { mutableStateOf(false) }
     var mapInteracting by remember { mutableStateOf(false) }
     val contentScrollState = rememberScrollState()
+    var showDeleteDialog by rememberSaveable { mutableStateOf(false) }
+
+    if (showDeleteDialog && onDelete != null) {
+        AlertDialog(
+            onDismissRequest = { showDeleteDialog = false },
+            title = { Text(stringResource(Res.string.settings_reset_dialog_title)) },
+            text = { Text(stringResource(Res.string.markers_action_delete_alert_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showDeleteDialog = false
+                        onDelete(locationDescription.databaseId)
+                    },
+                    modifier = Modifier.testTag("saveMarkerDeleteConfirm"),
+                ) {
+                    Text(stringResource(Res.string.ui_continue))
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { showDeleteDialog = false },
+                    modifier = Modifier.testTag("saveMarkerDeleteCancel"),
+                ) {
+                    Text(stringResource(Res.string.general_alert_cancel))
+                }
+            },
+        )
+    }
 
     Scaffold(
         modifier = Modifier.imePadding(),
@@ -100,9 +134,7 @@ fun SharedSaveAndEditMarkerScreen(
             if (isEditing && onDelete != null) {
                 Column(modifier = Modifier.smallPadding()) {
                     CustomButton(
-                        onClick = {
-                            onDelete(locationDescription.databaseId)
-                        },
+                        onClick = { showDeleteDialog = true },
                         modifier = Modifier
                             .fillMaxWidth()
                             .mediumPadding()

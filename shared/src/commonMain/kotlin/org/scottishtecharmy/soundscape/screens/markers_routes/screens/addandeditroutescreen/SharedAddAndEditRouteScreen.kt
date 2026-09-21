@@ -19,18 +19,21 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.DragIndicator
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,11 +54,14 @@ import org.scottishtecharmy.soundscape.resources.route_detail_action_create
 import org.scottishtecharmy.soundscape.resources.route_detail_action_edit
 import org.scottishtecharmy.soundscape.resources.route_detail_action_start_route_disabled_hint
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_delete
+import org.scottishtecharmy.soundscape.resources.route_detail_edit_delete_alert_message
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_description
 import org.scottishtecharmy.soundscape.resources.route_detail_edit_waypoints_button
 import org.scottishtecharmy.soundscape.resources.route_name_description_hint
 import org.scottishtecharmy.soundscape.resources.route_update_success_title
 import org.scottishtecharmy.soundscape.resources.routes_action_deleted
+import org.scottishtecharmy.soundscape.resources.settings_reset_dialog_title
+import org.scottishtecharmy.soundscape.resources.ui_continue
 import org.scottishtecharmy.soundscape.resources.waypoint_title
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
@@ -86,6 +92,7 @@ fun SharedAddAndEditRouteScreen(
     val placesNearbyUiState by holder.logic.uiState.collectAsState()
 
     var addWaypointDialog by remember { mutableStateOf(false) }
+    var showDeleteDialog by rememberSaveable { mutableStateOf(false) }
     var routeMembers by remember(uiState.routeMembers) {
         val members = uiState.routeMembers.toList()
         for ((index, marker) in members.withIndex()) {
@@ -126,6 +133,33 @@ fun SharedAddAndEditRouteScreen(
                 else -> Unit
             }
         }
+    }
+
+    if (showDeleteDialog) {
+        AlertDialog(
+            onDismissRequest = { showDeleteDialog = false },
+            title = { Text(stringResource(Res.string.settings_reset_dialog_title)) },
+            text = { Text(stringResource(Res.string.route_detail_edit_delete_alert_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showDeleteDialog = false
+                        uiState.routeObjectId?.let { holder.deleteRoute(it) }
+                    },
+                    modifier = Modifier.testTag("addAndEditRouteDeleteConfirm"),
+                ) {
+                    Text(stringResource(Res.string.ui_continue))
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { showDeleteDialog = false },
+                    modifier = Modifier.testTag("addAndEditRouteDeleteCancel"),
+                ) {
+                    Text(stringResource(Res.string.general_alert_cancel))
+                }
+            },
+        )
     }
 
     if (addWaypointDialog) {
@@ -196,9 +230,7 @@ fun SharedAddAndEditRouteScreen(
                 Column {
                     if (isEditing) {
                         CustomButton(
-                            onClick = {
-                                uiState.routeObjectId?.let { holder.deleteRoute(it) }
-                            },
+                            onClick = { showDeleteDialog = true },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .mediumPadding()

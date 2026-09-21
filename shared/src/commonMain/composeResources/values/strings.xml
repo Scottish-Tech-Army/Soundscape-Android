@@ -210,6 +210,8 @@
     <string name="route_detail_edit_waypoints_button">Add Waypoints</string>
     <!-- Label for the delete route button -->
     <string name="route_detail_edit_delete">Delete Route</string>
+    <!-- Text for dialog to check that the user really does want to delete the route they are editing -->
+    <string name="route_detail_edit_delete_alert_message">Deleting this route cannot be undone. The markers in it will not be deleted. Do you want to continue?</string>
     <!-- Title for the alert displayed when a route or tour is updated -->
     <string name="route_update_success_title">Update Complete!</string>
     <!-- Title of a waypoint used in a route, this is used in the form "Waypoint 1", "Waypoint 2" etc. -->
@@ -236,6 +238,8 @@
     <string name="markers_title">Markers</string>
     <!-- Button text to delete a marker -->
     <string name="markers_action_delete">Delete Marker</string>
+    <!-- Text for dialog to check that the user really does want to delete the marker they are editing -->
+    <string name="markers_action_delete_alert_message">Deleting this marker cannot be undone, and it will also be removed from any routes that use it. Do you want to continue?</string>
     <!-- Sort by category, Name. Used when a user is presented an option to sort a location list by name. -->
     <string name="markers_sort_button_sort_by_name">Name</string>
     <!-- Text of the button above a list of markers or routes, describing how the list is currently sorted. -->
