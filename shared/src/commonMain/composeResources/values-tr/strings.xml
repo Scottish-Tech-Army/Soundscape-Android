@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape, uygulama arka plandayken bile sesli gezinme sağlamak için konumunuza ihtiyaç duyar.</string>
     <string name="ios_permission_motion">Soundscape, baktığınız yönü algılamak ve sesli anonsları çevrenize göre yönlendirmek için hareket verilerini kullanır.</string>
     <string name="ios_permission_bluetooth">Soundscape, baş takibi olan kulaklıkları ve diğer ses cihazlarını bulup bunlara bağlanmak için Bluetooth kullanır.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">bu ara noktayı rotadan kaldırmak</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s bu rotadan kaldırılacak. Kayıtlı noktanın kendisi silinmeyecek. Devam etmek istiyor musunuz?</string>
+    <string name="route_detail_edit_delete_alert_message">Bu rotayı silmek geri alınamaz. İçindeki kayıtlı noktalar silinmeyecek. Devam etmek istiyor musunuz?</string>
+    <string name="markers_action_delete_alert_message">Bu kayıtlı noktayı silmek geri alınamaz ve bu nokta, onu kullanan tüm rotalardan da kaldırılacak. Devam etmek istiyor musunuz?</string>
+    <string name="markers_sort_name_ascending">Ada göre sıralandı, A'dan Z'ye</string>
+    <string name="markers_sort_name_descending">Ada göre sıralandı, Z'den A'ya</string>
+    <string name="markers_sort_distance_ascending">Mesafeye göre sıralandı, en yakından başlayarak</string>
+    <string name="markers_sort_distance_descending">Mesafeye göre sıralandı, en uzaktan başlayarak</string>
+    <string name="markers_sort_action_name_ascending">ada göre A'dan Z'ye sıralamak</string>
+    <string name="markers_sort_action_name_descending">ada göre Z'den A'ya sıralamak</string>
+    <string name="markers_sort_action_distance_ascending">mesafeye göre en yakından başlayarak sıralamak</string>
+    <string name="markers_sort_action_distance_descending">mesafeye göre en uzaktan başlayarak sıralamak</string>
 </resources>
