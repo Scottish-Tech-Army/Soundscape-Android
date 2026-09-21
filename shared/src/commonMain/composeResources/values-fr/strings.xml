@@ -1514,4 +1514,16 @@
     <string name="ios_permission_location_always">Soundscape a besoin de votre position pour fournir la navigation audio même lorsque l’application est en arrière-plan.</string>
     <string name="ios_permission_motion">Soundscape utilise les données de mouvement pour détecter la direction dans laquelle vous êtes tourné et orienter les notifications audio par rapport à votre environnement.</string>
     <string name="ios_permission_bluetooth">Soundscape utilise le Bluetooth pour détecter les casques avec suivi de la tête et les autres appareils audio, et s’y connecter.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">retirer ce point de repère de l’itinéraire</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Le point de repère %1$s sera retiré de cet itinéraire. Le marqueur lui-même ne sera pas supprimé. Voulez-vous continuer ?</string>
+    <string name="route_detail_edit_delete_alert_message">La suppression de cet itinéraire est irréversible. Les marqueurs qu’il contient ne seront pas supprimés. Voulez-vous continuer ?</string>
+    <string name="markers_action_delete_alert_message">La suppression de ce marqueur est irréversible. Il sera également retiré de tous les itinéraires qui l’utilisent. Voulez-vous continuer ?</string>
+    <string name="markers_sort_name_ascending">Trié par nom, de A à Z</string>
+    <string name="markers_sort_name_descending">Trié par nom, de Z à A</string>
+    <string name="markers_sort_distance_ascending">Trié par distance, du plus proche au plus éloigné</string>
+    <string name="markers_sort_distance_descending">Trié par distance, du plus éloigné au plus proche</string>
+    <string name="markers_sort_action_name_ascending">trier par nom, de A à Z</string>
+    <string name="markers_sort_action_name_descending">trier par nom, de Z à A</string>
+    <string name="markers_sort_action_distance_ascending">trier par distance, du plus proche au plus éloigné</string>
+    <string name="markers_sort_action_distance_descending">trier par distance, du plus éloigné au plus proche</string>
 </resources>
