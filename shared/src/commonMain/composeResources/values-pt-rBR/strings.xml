@@ -1514,4 +1514,16 @@
     <string name="ios_permission_location_always">O Soundscape precisa da sua localização para fornecer navegação por áudio mesmo quando o aplicativo está em segundo plano.</string>
     <string name="ios_permission_motion">O Soundscape usa dados de movimento para detectar a direção para a qual você está voltado e orientar as notificações de áudio em relação aos seus arredores.</string>
     <string name="ios_permission_bluetooth">O Soundscape usa Bluetooth para descobrir fones de ouvido com rastreamento de cabeça e outros dispositivos de áudio e conectar-se a eles.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">remover este localizador da rota</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">O localizador %1$s será removido desta rota. O favorito em si não será excluído. Deseja continuar?</string>
+    <string name="route_detail_edit_delete_alert_message">A exclusão desta rota não pode ser desfeita. Os favoritos nela não serão excluídos. Deseja continuar?</string>
+    <string name="markers_action_delete_alert_message">A exclusão deste favorito não pode ser desfeita, e ele também será removido de todas as rotas que o usam. Deseja continuar?</string>
+    <string name="markers_sort_name_ascending">Classificação por nome, de A a Z</string>
+    <string name="markers_sort_name_descending">Classificação por nome, de Z a A</string>
+    <string name="markers_sort_distance_ascending">Classificação por distância, do mais próximo ao mais distante</string>
+    <string name="markers_sort_distance_descending">Classificação por distância, do mais distante ao mais próximo</string>
+    <string name="markers_sort_action_name_ascending">classificar por nome, de A a Z</string>
+    <string name="markers_sort_action_name_descending">classificar por nome, de Z a A</string>
+    <string name="markers_sort_action_distance_ascending">classificar por distância, do mais próximo ao mais distante</string>
+    <string name="markers_sort_action_distance_descending">classificar por distância, do mais distante ao mais próximo</string>
 </resources>
