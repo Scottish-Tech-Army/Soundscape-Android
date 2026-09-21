@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape се нуждае от местоположението Ви, за да предоставя аудио навигация дори когато приложението е на заден план.</string>
     <string name="ios_permission_motion">Soundscape използва данни за движение, за да определи посоката, в която сте обърнати, и да насочи аудио съобщенията спрямо околността Ви.</string>
     <string name="ios_permission_bluetooth">Soundscape използва Bluetooth, за да открива слушалки с проследяване на главата и други аудио устройства и да се свързва с тях.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">премахване на тази пътна точка от маршрута</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s ще се премахне от този маршрут. Самият маркер няма да бъде изтрит. Искате ли да продължите?</string>
+    <string name="route_detail_edit_delete_alert_message">Изтриването на този маршрут не може да бъде отменено. Маркерите в него няма да бъдат изтрити. Искате ли да продължите?</string>
+    <string name="markers_action_delete_alert_message">Изтриването на този маркер не може да бъде отменено и той ще бъде премахнат и от всички маршрути, които го използват. Искате ли да продължите?</string>
+    <string name="markers_sort_name_ascending">Сортирано по име, от А до Я</string>
+    <string name="markers_sort_name_descending">Сортирано по име, от Я до А</string>
+    <string name="markers_sort_distance_ascending">Сортирано по разстояние, първо най-близките</string>
+    <string name="markers_sort_distance_descending">Сортирано по разстояние, първо най-отдалечените</string>
+    <string name="markers_sort_action_name_ascending">сортиране по име, от А до Я</string>
+    <string name="markers_sort_action_name_descending">сортиране по име, от Я до А</string>
+    <string name="markers_sort_action_distance_ascending">сортиране по разстояние, първо най-близките</string>
+    <string name="markers_sort_action_distance_descending">сортиране по разстояние, първо най-отдалечените</string>
 </resources>
