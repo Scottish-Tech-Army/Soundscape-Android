@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">యాప్ బ్యాక్‌గ్రౌండ్‌లో ఉన్నప్పుడు కూడా ఆడియో నావిగేషన్ అందించడానికి Soundscapeకు మీ లొకేషన్ అవసరం.</string>
     <string name="ios_permission_motion">మీరు ఏ దిశ వైపు ముఖం పెట్టి ఉన్నారో గుర్తించడానికి మరియు కాలౌట్‌లను మీ పరిసరాలకు అనుగుణంగా ఉంచడానికి Soundscape మోషన్ డేటాను ఉపయోగిస్తుంది.</string>
     <string name="ios_permission_bluetooth">హెడ్ ట్రాకింగ్ ఉన్న హెడ్‌ఫోన్‌లను మరియు ఇతర ఆడియో పరికరాలను కనుగొని వాటికి కనెక్ట్ కావడానికి Soundscape బ్లూటూత్‌ను ఉపయోగిస్తుంది.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">ఈ వేపాయింట్‌ను రూట్ నుండి తీసివేయడానికి</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s ఈ రూట్ నుండి తీసివేయబడుతుంది. మార్కర్ తొలగించబడదు. మీరు కొనసాగించాలనుకుంటున్నారా?</string>
+    <string name="route_detail_edit_delete_alert_message">ఈ రూట్‌ను తొలగించడం రద్దు చేయలేము. దీనిలోని మార్కర్‌లు తొలగించబడవు. మీరు కొనసాగించాలనుకుంటున్నారా?</string>
+    <string name="markers_action_delete_alert_message">ఈ మార్కర్‌ను తొలగించడం రద్దు చేయలేము, మరియు దీన్ని ఉపయోగించే అన్ని రూట్‌ల నుండి కూడా ఇది తీసివేయబడుతుంది. మీరు కొనసాగించాలనుకుంటున్నారా?</string>
+    <string name="markers_sort_name_ascending">పేరు ద్వారా అక్షర క్రమంలో క్రమబద్ధీకరించబడింది</string>
+    <string name="markers_sort_name_descending">పేరు ద్వారా వ్యతిరేక అక్షర క్రమంలో క్రమబద్ధీకరించబడింది</string>
+    <string name="markers_sort_distance_ascending">దూరం ద్వారా క్రమబద్ధీకరించబడింది, దగ్గరివి ముందు</string>
+    <string name="markers_sort_distance_descending">దూరం ద్వారా క్రమబద్ధీకరించబడింది, దూరమైనవి ముందు</string>
+    <string name="markers_sort_action_name_ascending">పేరు ద్వారా అక్షర క్రమంలో క్రమబద్ధీకరించడానికి</string>
+    <string name="markers_sort_action_name_descending">పేరు ద్వారా వ్యతిరేక అక్షర క్రమంలో క్రమబద్ధీకరించడానికి</string>
+    <string name="markers_sort_action_distance_ascending">దూరం ద్వారా, దగ్గరివి ముందు, క్రమబద్ధీకరించడానికి</string>
+    <string name="markers_sort_action_distance_descending">దూరం ద్వారా, దూరమైనవి ముందు, క్రమబద్ధీకరించడానికి</string>
 </resources>
