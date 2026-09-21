@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape کو ایپ کے پس منظر میں ہونے کے باوجود آڈیو نیویگیشن فراہم کرنے کے لیے آپ کے مقام کی ضرورت ہے۔</string>
     <string name="ios_permission_motion">Soundscape حرکت کے ڈیٹا کا استعمال کرتے ہوئے آپ کے رخ کی سمت معلوم کرتا ہے اور آڈیو کالآؤٹس کو آپ کے ارد گرد کے ماحول کے مطابق ترتیب دیتا ہے۔</string>
     <string name="ios_permission_bluetooth">Soundscape ہیڈ ٹریکنگ والے ہیڈفونز اور دیگر آڈیو آلات کو دریافت کرنے اور ان سے منسلک ہونے کے لیے بلوٹوتھ استعمال کرتا ہے۔</string>
+    <string name="route_detail_edit_remove_waypoint_hint">اس ویپوائنٹ کو روٹ سے ہٹانے</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s کو اس روٹ سے ہٹا دیا جائے گا۔ مارکر خود حذف نہیں ہوگا۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
+    <string name="route_detail_edit_delete_alert_message">اس روٹ کو حذف کرنا واپس نہیں کیا جا سکتا۔ اس میں موجود مارکرز حذف نہیں ہوں گے۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
+    <string name="markers_action_delete_alert_message">اس مارکر کو حذف کرنا واپس نہیں کیا جا سکتا، اور اسے ان تمام روٹس سے بھی ہٹا دیا جائے گا جو اسے استعمال کرتے ہیں۔ کیا آپ جاری رکھنا چاہتے ہیں؟</string>
+    <string name="markers_sort_name_ascending">نام کے لحاظ سے ترتیب شدہ، الف سے ی تک</string>
+    <string name="markers_sort_name_descending">نام کے لحاظ سے ترتیب شدہ، ی سے الف تک</string>
+    <string name="markers_sort_distance_ascending">فاصلے کے لحاظ سے ترتیب شدہ، قریب ترین پہلے</string>
+    <string name="markers_sort_distance_descending">فاصلے کے لحاظ سے ترتیب شدہ، دور ترین پہلے</string>
+    <string name="markers_sort_action_name_ascending">نام کے لحاظ سے الف سے ی تک ترتیب دینے</string>
+    <string name="markers_sort_action_name_descending">نام کے لحاظ سے ی سے الف تک ترتیب دینے</string>
+    <string name="markers_sort_action_distance_ascending">فاصلے کے لحاظ سے، قریب ترین پہلے، ترتیب دینے</string>
+    <string name="markers_sort_action_distance_descending">فاصلے کے لحاظ سے، دور ترین پہلے، ترتیب دینے</string>
 </resources>
