@@ -1510,4 +1510,16 @@
     <string name="ios_permission_location_always">ساند‌اسکیپ برای ارائه‌ی ناوبری صوتی حتی زمانی که اپلیکیشن در پس‌زمینه است، به موقعیت مکانی شما نیاز دارد.</string>
     <string name="ios_permission_motion">ساند‌اسکیپ از داده‌های حرکتی استفاده می‌کند تا جهتی را که رو به آن ایستاده‌اید تشخیص دهد و اعلان‌های صوتی را نسبت به محیط پیرامون شما جهت‌دهی کند.</string>
     <string name="ios_permission_bluetooth">ساند‌اسکیپ از بلوتوث برای یافتن هدفون‌های دارای ردیابی سر و دیگر دستگاه‌های صوتی و اتصال به آنها استفاده می‌کند.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">این نقطه‌ی بین‌راهی را از مسیر بردارید</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s از این مسیر برداشته می‌شود. خود نشانه حذف نمی‌شود. آیا می‌خواهید ادامه دهید؟</string>
+    <string name="route_detail_edit_delete_alert_message">حذف این مسیر قابل بازگرداندن نیست. نشانه‌های داخل آن حذف نمی‌شوند. آیا می‌خواهید ادامه دهید؟</string>
+    <string name="markers_action_delete_alert_message">حذف این نشانه قابل بازگرداندن نیست و از همه‌ی مسیرهایی که از آن استفاده می‌کنند نیز برداشته می‌شود. آیا می‌خواهید ادامه دهید؟</string>
+    <string name="markers_sort_name_ascending">ترتیب‌بندی بر اساس نام، از الف تا ی</string>
+    <string name="markers_sort_name_descending">ترتیب‌بندی بر اساس نام، از ی تا الف</string>
+    <string name="markers_sort_distance_ascending">ترتیب‌بندی بر اساس فاصله، نزدیک‌ترین‌ها اول</string>
+    <string name="markers_sort_distance_descending">ترتیب‌بندی بر اساس فاصله، دورترین‌ها اول</string>
+    <string name="markers_sort_action_name_ascending">بر اساس نام مرتب کنید، از الف تا ی</string>
+    <string name="markers_sort_action_name_descending">بر اساس نام مرتب کنید، از ی تا الف</string>
+    <string name="markers_sort_action_distance_ascending">بر اساس فاصله مرتب کنید، نزدیک‌ترین‌ها اول</string>
+    <string name="markers_sort_action_distance_descending">بر اساس فاصله مرتب کنید، دورترین‌ها اول</string>
 </resources>
