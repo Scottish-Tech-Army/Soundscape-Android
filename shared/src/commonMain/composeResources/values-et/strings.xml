@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ka siis, kui rakendus töötab taustal.</string>
     <string name="ios_permission_motion">Soundscape kasutab liikumisandmeid, et tuvastada suund, kuhu te näoga olete, ja suunata häälteated vastavalt teie ümbrusele.</string>
     <string name="ios_permission_bluetooth">Soundscape kasutab Bluetoothi, et leida pea jälgimisega kõrvaklappe ja muid heliseadmeid ning nendega ühenduda.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">eemaldada see teekonnapunkt marsruudilt</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s eemaldatakse sellelt marsruudilt. Markerit ennast ei kustutata. Kas soovid jätkata?</string>
+    <string name="route_detail_edit_delete_alert_message">Selle marsruudi kustutamist ei saa tagasi võtta. Selles olevaid markereid ei kustutata. Kas soovid jätkata?</string>
+    <string name="markers_action_delete_alert_message">Selle markeri kustutamist ei saa tagasi võtta ja see eemaldatakse ka kõigilt marsruutidelt, mis seda kasutavad. Kas soovid jätkata?</string>
+    <string name="markers_sort_name_ascending">Sorditud nime järgi, A-st Z-ni</string>
+    <string name="markers_sort_name_descending">Sorditud nime järgi, Z-st A-ni</string>
+    <string name="markers_sort_distance_ascending">Sorditud kauguse järgi, lähimad eespool</string>
+    <string name="markers_sort_distance_descending">Sorditud kauguse järgi, kaugeimad eespool</string>
+    <string name="markers_sort_action_name_ascending">sortida nime järgi, A-st Z-ni</string>
+    <string name="markers_sort_action_name_descending">sortida nime järgi, Z-st A-ni</string>
+    <string name="markers_sort_action_distance_ascending">sortida kauguse järgi, lähimad eespool</string>
+    <string name="markers_sort_action_distance_descending">sortida kauguse järgi, kaugeimad eespool</string>
 </resources>
