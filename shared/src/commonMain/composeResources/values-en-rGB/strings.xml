@@ -1509,4 +1509,16 @@
     <string name="ios_permission_location_always">Soundscape needs your location to provide audio navigation even when the app is in the background.</string>
     <string name="ios_permission_motion">Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings.</string>
     <string name="ios_permission_bluetooth">Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">remove this waypoint from the route</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s will be removed from this route. The marker itself will not be deleted. Do you want to continue?</string>
+    <string name="route_detail_edit_delete_alert_message">Deleting this route cannot be undone. The markers in it will not be deleted. Do you want to continue?</string>
+    <string name="markers_action_delete_alert_message">Deleting this marker cannot be undone, and it will also be removed from any routes that use it. Do you want to continue?</string>
+    <string name="markers_sort_name_ascending">Sorted by name, A to Z</string>
+    <string name="markers_sort_name_descending">Sorted by name, Z to A</string>
+    <string name="markers_sort_distance_ascending">Sorted by distance, nearest first</string>
+    <string name="markers_sort_distance_descending">Sorted by distance, furthest first</string>
+    <string name="markers_sort_action_name_ascending">sort by name, A to Z</string>
+    <string name="markers_sort_action_name_descending">sort by name, Z to A</string>
+    <string name="markers_sort_action_distance_ascending">sort by distance, nearest first</string>
+    <string name="markers_sort_action_distance_descending">sort by distance, furthest first</string>
 </resources>
