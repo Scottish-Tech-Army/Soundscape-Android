@@ -3,8 +3,8 @@
 | | |
 |---|---|
 | Weblate component | `androidkmp` |
-| Corpus at last sweep | 1495 translated units (2026-09-18) |
-| Last native-speaker input | 2026-09-18 |
+| Corpus at last sweep | 1495 translated units (2026-09-21) |
+| Last native-speaker input | 2026-09-21 |
 | Reporter platform | iOS v2.0.49 (strings are shared KMP — see rule C6) |
 
 Read with [`_common.md`](_common.md).
@@ -19,7 +19,8 @@ Read with [`_common.md`](_common.md).
 | Marker | мітка | `confirmed` | — | Already in use across 80 strings; native speaker confirmed it unchanged |
 | Waypoint | зупинка | `agreed` | ~~маршрутна точка~~ | Google Maps Ukrainian uses «зупинка» for a stop added to a route. «маршрутна точка» was a calque of our own doc's "route point" gloss (rule C1) |
 | Callout | оголошення | `confirmed` | ~~підказка~~ | Kept unchanged on the reporter's second look — see "Rejected". Ukrainian has no good word for this; «оголошення» is the settled least-bad choice, not an oversight |
-| Guided tutorial | Інтерактивний тур | `provisional` | ~~Керований навчальний посібник~~ | Reporter's own words: "sounds natural … cannot find any real examples of usage in Ukrainian applications, will update as soon as I find" |
+| Guided tutorial | Інтерактивний тур | `agreed` | ~~Керований навчальний посібник~~, ~~Навчання~~ | Reporter proposed it 2026-09-18 as provisional ("cannot find any real examples of usage in Ukrainian applications"), confirmed OK 2026-09-21. Also replaces «Навчання» in `tour_finish` |
+| Dead end | тупик | `agreed` | ~~кінець дороги~~ | «кінець дороги» is "end of the road", not the street type. Reporter, 2026-09-21. See UK-G1 for the case it must take |
 
 ### Waypoint declension map (`agreed`, mechanical)
 
@@ -50,6 +51,20 @@ literal bus stops. Accepted — context disambiguates (rule C5).
 ### UK-R1 — Formal register, second-person plural (`confirmed by observation`)
 The whole corpus addresses the user as «ви» / «Оберіть» / «ви можете». Keep
 it. Not yet explicitly confirmed by the reporter — on the question list below.
+
+### UK-G1 — Strings slotted into a template take the template's case (`agreed`)
+Some strings are never shown on their own; the code substitutes them into a
+template. They must be translated in the grammatical case that template's
+preposition governs, not in the dictionary form.
+
+`confect_name_dead_end` is only ever the `%2$s` of `confect_name_to`
+(«%1$s у напрямку %2$s») and `confect_name_to_via` (see `WayGenerator.kt`).
+«у напрямку» governs the genitive, so it is «тупика», not «тупик»:
+«дорога у напрямку тупика». The reporter heard «дорога у напрямку кінець
+дороги» — wrong word *and* wrong case.
+
+Open side: the same `%2$s` slot is also filled with destination names from map
+data, which arrive undeclined (question 1 below).
 
 ### UK-T4 — Callout stays «оголошення» (`confirmed`, closed)
 29 strings carry «оголошення» and all of them stay as they are. See "Rejected"
@@ -82,8 +97,12 @@ change was never the mechanical swap it appeared to be (rule C3).
 
 ## Open questions for the next native-speaker round
 
-1. **Guided tutorial.** Any precedent found for «Інтерактивний тур»? Holding
-   5 strings on this.
+1. **Undeclined destination names.** `confect_name_to` also receives
+   destination names straight from OpenStreetMap, in the nominative — e.g.
+   «Стежка у напрямку вулиця Шевченка». Is that acceptable to a listener, or
+   should the template change so it works with a nominative name? Options:
+   (a) leave it; (b) «%1$s до %2$s»; (c) «%1$s, напрямок: %2$s». If (b) or
+   (c), «тупика» may need to change to match.
 2. **Register.** Confirm «ви» (formal plural) throughout is right for the
    audience, including the audio callouts and not just the UI.
 3. **Confirm the two locked terms.** «звуковий маячок» and «мітка» are marked
@@ -91,7 +110,7 @@ change was never the mechanical swap it appeared to be (rule C3).
    explicitly if either should move, because future passes will now actively
    defend them.
 
-*Answered and closed: the two callout questions — see "Rejected".*
+*Answered and closed: the two callout questions — see "Rejected"; the guided-tutorial term — confirmed OK 2026-09-21.*
 
 ---
 
@@ -106,7 +125,7 @@ strings — 4 strings in total. Sweep found **62 affected units**:
 | UK-T3 Waypoint | 26 | Concrete fixes generated, `high` confidence |
 | UK-S1 tautology | 2 | Concrete fixes generated, `high` confidence |
 | UK-T4 Callout | 29 | **Rejected** — no change (see below) |
-| UK-T5 Tutorial | 5 | Inventory only — reporter flagged provisional |
+| UK-T5 Tutorial | 6 | Held as provisional, then confirmed 2026-09-21; 6th unit `tour_finish` found on re-sweep |
 
 Two of the four glossary terms turned out to already match what ships, which
 is why they are recorded as `confirmed` rather than ignored.
@@ -121,3 +140,17 @@ already ships.
 Also raised upstream, not Ukrainian-specific: `docs/developers/translation-terminology.md`
 had its Waypoint alternate reworded (rule C1), and `new_version_info_text` got a
 translator comment warning about the tautology (rule C7).
+
+**2026-09-21 — same reporter, bug report `localisation_UA_dead_end_translation.md`.**
+iOS 26.6.2, Soundscape 2.0 (build 1062). "dead end" → «тупик», in the genitive
+«тупика» after «у напрямку». 1 unit in Ukrainian, but the root cause is not
+Ukrainian: the English comment calls the string a "road description" and gives
+no hint it is substituted mid-sentence, so every case-inflecting language
+translated it in the nominative. Ukrainian, Russian, Polish, Czech, Slovak,
+Croatian, Serbian and Slovenian all have the same agreement bug (rule C9).
+
+**2026-09-21 — same reporter.** «Інтерактивний тур» confirmed OK, so UK-T5
+moves from `provisional` to `agreed`. Re-sweeping for it found a sixth unit,
+`tour_finish`, where the same concept had a third rendering («Навчання
+завершено») that the original «керован…/навчальн… посібник» search didn't
+match (rule C4).
