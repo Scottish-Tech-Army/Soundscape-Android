@@ -1514,4 +1514,16 @@
     <string name="ios_permission_location_always">Soundscapeu je potrebna vaša lokacija kako bi pružao zvučnu navigaciju i kada je aplikacija u pozadini.</string>
     <string name="ios_permission_motion">Soundscape koristi podatke o pokretu kako bi otkrio smjer u kojem ste okrenuti i uskladio zvučne najave s vašom okolinom.</string>
     <string name="ios_permission_bluetooth">Soundscape koristi Bluetooth za pronalaženje slušalica s praćenjem pokreta glave i drugih zvučnih uređaja te povezivanje s njima.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">uklonili ovu putnu točku s rute</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Putna točka %1$s bit će uklonjena s ove rute. Sama oznaka neće biti izbrisana. Želite li nastaviti?</string>
+    <string name="route_detail_edit_delete_alert_message">Brisanje ove rute ne može se poništiti. Oznake na njoj neće biti izbrisane. Želite li nastaviti?</string>
+    <string name="markers_action_delete_alert_message">Brisanje ove oznake ne može se poništiti, a bit će uklonjena i sa svih ruta koje je koriste. Želite li nastaviti?</string>
+    <string name="markers_sort_name_ascending">Razvrstano po nazivu, od A do Ž</string>
+    <string name="markers_sort_name_descending">Razvrstano po nazivu, od Ž do A</string>
+    <string name="markers_sort_distance_ascending">Razvrstano po udaljenosti, najbliže prvo</string>
+    <string name="markers_sort_distance_descending">Razvrstano po udaljenosti, najdalje prvo</string>
+    <string name="markers_sort_action_name_ascending">razvrstali po nazivu, od A do Ž</string>
+    <string name="markers_sort_action_name_descending">razvrstali po nazivu, od Ž do A</string>
+    <string name="markers_sort_action_distance_ascending">razvrstali po udaljenosti, najbliže prvo</string>
+    <string name="markers_sort_action_distance_descending">razvrstali po udaljenosti, najdalje prvo</string>
 </resources>
