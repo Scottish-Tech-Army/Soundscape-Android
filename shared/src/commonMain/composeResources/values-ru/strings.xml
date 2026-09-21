@@ -1519,4 +1519,16 @@
     <string name="ios_permission_location_always">Soundscape нужно ваше местоположение, чтобы обеспечивать аудионавигацию, даже когда приложение работает в фоновом режиме.</string>
     <string name="ios_permission_motion">Soundscape использует данные движения, чтобы определять направление, в котором вы повёрнуты, и располагать звуковые уточнения относительно вашего окружения.</string>
     <string name="ios_permission_bluetooth">Soundscape использует Bluetooth, чтобы находить наушники с отслеживанием головы и другие аудиоустройства и подключаться к ним.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">убрать эту путевую точку из маршрута</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">Точка %1$s будет убрана из этого маршрута. Сама отметка не будет удалена. Вы хотите продолжить?</string>
+    <string name="route_detail_edit_delete_alert_message">Удаление этого маршрута нельзя отменить. Отметки в нём не будут удалены. Вы хотите продолжить?</string>
+    <string name="markers_action_delete_alert_message">Удаление этой отметки нельзя отменить, и она также будет убрана из всех маршрутов, в которых используется. Вы хотите продолжить?</string>
+    <string name="markers_sort_name_ascending">Отсортировано по названию, от А до Я</string>
+    <string name="markers_sort_name_descending">Отсортировано по названию, от Я до А</string>
+    <string name="markers_sort_distance_ascending">Отсортировано по расстоянию, сначала ближайшие</string>
+    <string name="markers_sort_distance_descending">Отсортировано по расстоянию, сначала самые дальние</string>
+    <string name="markers_sort_action_name_ascending">отсортировать по названию, от А до Я</string>
+    <string name="markers_sort_action_name_descending">отсортировать по названию, от Я до А</string>
+    <string name="markers_sort_action_distance_ascending">отсортировать по расстоянию, сначала ближайшие</string>
+    <string name="markers_sort_action_distance_descending">отсортировать по расстоянию, сначала самые дальние</string>
 </resources>
