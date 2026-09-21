@@ -9,6 +9,7 @@ namespace soundscape {
         SimpleResampler() = default;
 
         void setRates(int sourceRate, int targetRate);
+
         void reset();
 
         // Resample from input to output. Returns frames written to output.

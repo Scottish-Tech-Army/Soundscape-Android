@@ -6,15 +6,20 @@ import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Rule
 import org.junit.Test
-import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageComposable
-import org.scottishtecharmy.soundscape.screens.onboarding.language.MockLanguagePreviewData
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.first_launch_soundscape_language
+import org.scottishtecharmy.soundscape.resources.first_launch_soundscape_language_text
+import org.scottishtecharmy.soundscape.resources.no_language_selected
+import org.scottishtecharmy.soundscape.resources.ui_continue
+import org.scottishtecharmy.soundscape.screens.onboarding.language.SharedLanguageScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.language.supportedLanguages
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.TestTags
 
@@ -27,52 +32,62 @@ class LanguageScreenTest {
     private val context: Context = ApplicationProvider.getApplicationContext()
 
     @Test
-    fun whenNoLanguageSelectedThenNoLanguageLabelDisplayedAndContinueButtonDisabled(){
+    fun whenNoLanguageSelectedThenNoLanguageLabelDisplayedAndContinueButtonDisabled() {
         composeTestRule.setContent {
             SoundscapeTheme {
-                LanguageComposable(
-                    supportedLanguages = MockLanguagePreviewData.languages,
-                    onNavigate = {},
+                SharedLanguageScreen(
+                    supportedLanguages = supportedLanguages,
+                    onContinue = {},
                     onLanguageSelected = {},
                     selectedLanguageIndex = -1,
                 )
             }
         }
-        val stringLanguageTitle = context.resources.getString(R.string.first_launch_soundscape_language)
-        val stringLanguageText = context.resources.getString(R.string.first_launch_soundscape_language_text)
+        val stringLanguageTitle =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_soundscape_language) }
+        val stringLanguageText =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_soundscape_language_text) }
 
         composeTestRule.onNodeWithText(stringLanguageTitle)
             .assertIsDisplayed()
         composeTestRule.onNodeWithText(stringLanguageText)
             .assertIsDisplayed()
-        composeTestRule.onNodeWithText(context.resources.getString(R.string.no_language_selected))
+        composeTestRule.onNodeWithText(kotlinx.coroutines.runBlocking {
+            org.jetbrains.compose.resources.getString(
+                Res.string.no_language_selected
+            )
+        })
             .assertIsDisplayed()
 
-        composeTestRule.onNodeWithText(context.resources.getString(R.string.ui_continue))
+        composeTestRule.onNodeWithText(kotlinx.coroutines.runBlocking {
+            org.jetbrains.compose.resources.getString(
+                Res.string.ui_continue
+            )
+        })
             .assertIsNotEnabled()
 
     }
 
     @Test
-    fun whenALanguageIsSelectedThenItsNameAppearsInTheDefaultButtonAndLanguageIsMarkedAsSelectedInTheMenu(){
+    fun whenALanguageIsSelectedThenItsNameAppearsInTheDefaultButtonAndLanguageIsMarkedAsSelectedInTheMenu() {
         val selectedIndex = 1
         composeTestRule.setContent {
             SoundscapeTheme {
-                LanguageComposable(
-                    supportedLanguages = MockLanguagePreviewData.languages,
+                SharedLanguageScreen(
+                    supportedLanguages = supportedLanguages,
                     onLanguageSelected = {},
                     selectedLanguageIndex = selectedIndex,
-                    onNavigate = {}
+                    onContinue = {}
                 )
             }
         }
 
-        composeTestRule.onNodeWithText(MockLanguagePreviewData.languages[selectedIndex].name)
+        composeTestRule.onNodeWithText(supportedLanguages[selectedIndex].name)
             .assertIsDisplayed()
             .performClick()
 
-        MockLanguagePreviewData.languages.forEachIndexed { index, language ->
-            if( index == selectedIndex ) {
+        supportedLanguages.forEachIndexed { index, language ->
+            if (index == selectedIndex) {
                 composeTestRule.onNodeWithTag(
                     testTag = "${TestTags.LANGUAGE_DROPDOWN_ITEM}${language.code}-${language.region}",
                     useUnmergedTree = true
@@ -86,7 +101,11 @@ class LanguageScreenTest {
 
         }
 
-        composeTestRule.onNodeWithText(context.resources.getString(R.string.ui_continue))
+        composeTestRule.onNodeWithText(kotlinx.coroutines.runBlocking {
+            org.jetbrains.compose.resources.getString(
+                Res.string.ui_continue
+            )
+        })
             .assertIsEnabled()
     }
 }

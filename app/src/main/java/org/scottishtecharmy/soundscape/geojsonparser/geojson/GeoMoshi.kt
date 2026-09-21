@@ -1,7 +1,17 @@
 package org.scottishtecharmy.soundscape.geojsonparser.geojson
 
 import com.squareup.moshi.Moshi
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.*
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.FeatureCollectionJsonAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.FeatureJsonAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeometryCollectionJsonAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.LineStringJsonAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.LngLatAltMoshiAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.MultiLineStringJsonAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.MultiPointJsonAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.MultiPolygonJsonAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.PointJsonAdapter
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.PolygonJsonAdapter
 
 /**
  * Entrypoint for generating Moshi parser with required overrides

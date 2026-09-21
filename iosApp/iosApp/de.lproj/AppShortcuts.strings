@@ -1,0 +1,28 @@
+/* Spoken Siri commands - German.
+
+   Values only: the keys are the English phrases declared in
+   SoundscapeAppShortcuts.swift and must stay exactly as they are. See
+   en.lproj/AppShortcuts.strings for the rules (${applicationName} in every phrase, ${parameter}
+   tokens kept but free to move).
+
+   Every phrase keeps the shape "<app name> <group> <choice>", so knowing the six
+   group words is enough to reach everything.
+
+   First pass, not authored by a native speaker - corrections welcome. */
+
+"${applicationName} surroundings ${kind}" = "${applicationName} Umgebung ${kind}";
+"${applicationName} surroundings" = "${applicationName} Umgebung";
+
+"${applicationName} route ${command}" = "${applicationName} Route ${command}";
+"${applicationName} route" = "${applicationName} Route";
+
+"${applicationName} start route ${route}" = "${applicationName} starte Route ${route}";
+"${applicationName} start route" = "${applicationName} starte Route";
+
+"${applicationName} beacon ${marker}" = "${applicationName} Beacon ${marker}";
+"${applicationName} beacon" = "${applicationName} Beacon";
+
+"${applicationName} list ${kind}" = "${applicationName} Liste ${kind}";
+"${applicationName} list" = "${applicationName} Liste";
+
+"${applicationName} stop beacon" = "${applicationName} stoppe Beacon";

@@ -1,0 +1,192 @@
+
+Callout
+	Approaching intersection
+		Service to dead-end goes left
+		Service goes right
+
+Callout
+	Co-op Food
+
+Callout
+	Near Jamestown
+
+Callout
+	Approaching intersection
+		Tertiary goes left
+		Tertiary goes right
+
+Callout
+	Balloch Post Office
+
+Callout
+	Approaching intersection
+		Balloch Road goes left
+		National cycle route 7 continues ahead
+		Drymen Road goes right
+
+Callout
+	Balloch Castle Country Park
+
+Callout
+	On Drymen Road and close to Jamestown
+
+Callout
+	Approaching intersection
+		Main Street goes left
+		Lomond Road goes right
+
+Callout
+	Approaching intersection
+		Main Street continues ahead
+		Service to dead-end goes right
+
+Callout
+	On Stirling Road and close to Jamestown
+
+Callout
+	On A811 that joins Stirling Road and Finnary Road and close to Jamestown
+
+Callout
+	On A811 and close to Balloch
+
+Callout
+	On A811 and close to Balloch
+
+Callout
+	On Old Military Road and close to Gartocharn
+
+Callout
+	On Old Military Road and close to Gartocharn
+
+Callout
+	On Old Military Road and close to Gartocharn
+
+Callout
+	On Old Military Road and close to Gartocharn
+
+Callout
+	On Old Military Road
+
+Callout
+	On A811
+
+Callout
+	Near Drymen
+
+Callout
+	Near Drymen
+
+Callout
+	Approaching intersection
+		Primary via bridge goes left
+		Primary goes right
+
+Callout
+	Near Croftamie
+
+Callout
+	On A809 and close to Croftamie
+
+Callout
+	Near Gaidrew
+
+Callout
+	Near Croftamie
+
+Callout
+	On Primary that joins Buchanan Crescent and Thomas Robins Architects and close to Croftamie
+
+Callout
+	On A809 and close to Gaidrew
+
+Callout
+	Near Gaidrew
+
+Callout
+	On A809 and close to Croftamie
+
+Callout
+	Near Croftamie
+
+Callout
+	On A809
+
+Callout
+	On A809
+
+Callout
+	On A809
+
+Callout
+	On A809
+
+Callout
+	On A809
+
+Callout
+	On A809 and close to Carbeth
+
+Callout
+	At Auchengillan Outdoor Centre
+
+Callout
+	Near Carbeth
+
+Callout
+	On Stockiemuir Road and close to Carbeth
+
+Callout
+	On Stockiemuir Road
+
+Callout
+	At Hilton Park Golf Club
+
+Callout
+	On Stockiemuir Road
+
+Callout
+	On Stockiemuir Road and close to Milngavie
+
+Callout
+	On Stockiemuir Road
+
+Callout
+	On Stockiemuir Road and close to Bearsden
+
+Callout
+	Near Bearsden
+
+Callout
+	Near Milngavie
+
+Callout
+	On Craigton Road and close to Milngavie
+
+Callout
+	At Clober Golf Club
+
+Callout
+	Near Milngavie, Hunter Road (before) Transit Stop
+
+Callout
+	On Craigton Gardens and close to Milngavie
+
+Callout
+	On Craigton Road and close to Milngavie
+
+Callout
+	Approaching intersection
+		Path to dead-end goes left
+		Path goes right
+
+Callout
+	On Clober Road and close to Milngavie
+
+Callout
+	Approaching intersection
+		Douglas Street goes left
+		Park Road continues ahead
+		Craigdhu Road goes right
+
+Callout
+	OSM Feature

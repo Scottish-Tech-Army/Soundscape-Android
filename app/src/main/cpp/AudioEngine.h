@@ -41,7 +41,9 @@ namespace soundscape {
         double m_Heading = 0.0;
 
         PositioningMode() = default;
-        PositioningMode(AudioType audio_type, AudioMode audio_mode, double latitude, double longitude, double heading) :
+
+        PositioningMode(AudioType audio_type, AudioMode audio_mode, double latitude,
+                        double longitude, double heading) :
                 m_AudioType(audio_type),
                 m_AudioMode(audio_mode),
                 m_Latitude(latitude),
@@ -52,9 +54,11 @@ namespace soundscape {
 
 
     class PositionedAudio;
+
     class AudioEngine {
     public:
         explicit AudioEngine(AAssetManager *assetManager) noexcept;
+
         ~AudioEngine();
 
         void UpdateGeometry(double listenerLatitude,
@@ -64,37 +68,48 @@ namespace soundscape {
                             double proximityNear);
 
         AudioMixer *GetMixer() { return m_pMixer.get(); }
+
         AAssetManager *GetAssetManager() const { return m_pAssetManager; }
 
         void SetBeaconType(int beaconType);
+
         const BeaconDescriptor *GetBeaconDescriptor() const;
 
         uint64_t AddBeacon(PositionedAudio *beacon, bool queued = false);
+
         void RemoveBeacon(PositionedAudio *beacon);
+
         bool ToggleBeaconMute();
 
         void Eof(long long id);
+
         void BeaconDestroyed();
 
         // Method to be called from Kotlin to set up the callback
         void SetBeaconEventsListener(JNIEnv *env, jobject listener_obj);
+
         void ClearBeaconEventsListener(JNIEnv *env); // To release the global ref
 
         const static BeaconDescriptor msc_BeaconDescriptors[];
 
-        void GetListenerPosition(double &heading, double &latitude, double &longitude) const
-        {
+        void GetListenerPosition(double &heading, double &latitude, double &longitude) const {
             heading = m_LastHeading;
             latitude = m_LastLatitude;
             longitude = m_LastLongitude;
         }
 
         void ClearQueue();
+
         unsigned int GetQueueDepth();
+
         bool IsHandleActive(uint64_t handle);
 
         void SetUseHrtf(bool use) { if (m_pMixer) m_pMixer->setUseHrtf(use); }
-        void SetSuppressRestart(bool suppress) { if (m_pMixer) m_pMixer->setSuppressRestart(suppress); }
+
+        void SetSuppressRestart(bool suppress) {
+            if (m_pMixer)
+                m_pMixer->setSuppressRestart(suppress);
+        }
 
         void UpdateAudioConfig(std::string &utterance_id,
                                int sample_rate,

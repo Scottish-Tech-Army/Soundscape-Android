@@ -1,0 +1,34 @@
+{%- comment -%}
+Shared interactive map of offline map extracts. Included by the English page
+(users/help-offline-map-extracts.md) and every translated copy. The user-facing
+strings come from _data/offline_extracts.yml keyed by the active polyglot
+language, falling back to English, so the one map markup serves all languages.
+{%- endcomment -%}
+{%- assign t = site.data.offline_extracts[site.active_lang] | default: site.data.offline_extracts[site.default_lang] -%}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="{{ '/assets/offline-extracts.css' | relative_url }}" />
+
+<div id="offline-extracts-app" class="loading">
+  <div id="offline-extracts-map" role="application" aria-label="{{ t.mapLabel | escape }}">
+    <p class="offline-extracts-loading">{{ t.loading | escape }}</p>
+  </div>
+  <aside id="offline-extracts-panel" aria-live="polite">
+    <p class="placeholder">{{ t.tapPrompt | escape }}</p>
+  </aside>
+</div>
+
+<div id="offline-extracts-legend" aria-hidden="true">
+  <span class="swatch country"></span> {{ t.typeCountry | escape }}
+  <span class="swatch admin1"></span> {{ t.typeRegion | escape }}
+  <span class="swatch city"></span> {{ t.typeCity | escape }}
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/protomaps-leaflet@4.0.1/dist/protomaps-leaflet.js"></script>
+<script>
+  window.OFFLINE_EXTRACTS_MANIFEST_URL = "{{ '/assets/manifest.geojson' | relative_url }}";
+  window.OFFLINE_EXTRACTS_PMTILES_URL = "{{ '/assets/world-basemap.pmtiles' | relative_url }}";
+  window.OFFLINE_EXTRACTS_LANG = {{ site.active_lang | jsonify }};
+  window.OFFLINE_EXTRACTS_I18N = {{ t | jsonify }};
+</script>
+<script src="{{ '/assets/offline-extracts.js' | relative_url }}"></script>

@@ -1,0 +1,312 @@
+
+Callout
+	At M&S Simply Food
+
+Callout
+	M&S Simply Food Main entrance
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Service continues ahead
+		Service goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Service goes left
+		Service goes right
+
+Callout
+	Approaching intersection
+		Woodburn Way goes left
+		Service to Woodburn Way continues ahead
+		Woodburn Way goes right
+
+Callout
+	Milngavie Old Peoples Committee
+
+Callout
+	Approaching intersection
+		Woodburn Way goes left
+		Woodburn Way goes right
+
+Callout
+	On Woodburn Way and close to Milngavie
+
+Callout
+	On Main Street and close to Milngavie
+
+Callout
+	Approaching intersection
+		Service continues ahead
+
+Callout
+	Lennox Park
+
+Callout
+	Ahead Main Street
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Main Street continues ahead
+		Park Road goes right
+
+Callout
+	YogaJo's
+
+Callout
+	On Pavement next to Main Street and close to Milngavie
+
+Callout
+	On Pavement next to Park Road and close to Milngavie
+
+Callout
+	Near Milngavie, Stewart Street (opp) Transit Stop
+
+Callout
+	Ahead Craigdhu Road
+
+Callout
+	OSM Feature
+
+Callout
+	On Craigdhu Road and close to Milngavie
+
+Callout
+	Near Milngavie, Campbell Avenue (opp) Transit Stop
+
+Callout
+	Approaching intersection
+		Crossburn Avenue goes left
+		Craigdhu Road continues ahead
+
+Callout
+	Oakburn Park
+
+Callout
+	Ahead Craigdhu Road
+
+Callout
+	Approaching intersection
+		Craigdhu Avenue goes left
+		Craigdhu Road continues ahead
+
+Callout
+	On Pavement next to Craigdhu Road and close to Milngavie
+
+Callout
+	On Craigdhu Road and close to Bearsden
+
+Callout
+	On Baljaffray Road and close to Bearsden
+
+Callout
+	On Baljaffray Road and close to Drumchapel
+
+Callout
+	On Duntocher Road and close to Drumchapel
+
+Callout
+	On Duntocher Road and close to Faifley
+
+Callout
+	On Glasgow Road and close to Faifley
+
+Callout
+	On Glasgow Road and close to Hardgate
+
+Callout
+	Approaching intersection
+		Glasgow Road continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Hardgate Roundabout goes left
+		Hardgate Roundabout goes right
+
+Callout
+	On Hardgate Roundabout and close to Hardgate
+
+Callout
+	On Kilbowie Road and close to Hardgate
+
+Callout
+	Near Transit
+
+Callout
+	On Kilbowie Road and close to Radnor Park
+
+Callout
+	Approaching intersection
+		Service to Clydebank Fire Station continues ahead
+
+Callout
+	Clydebank Fire Station
+
+Callout
+	On Kilbowie Roundabout and close to Radnor Park
+
+Callout
+	On Great Western Road and close to Radnor Park
+
+Callout
+	On Great Western Road and close to Parkhall
+
+Callout
+	Near Duntocher
+
+Callout
+	On Great Western Road and close to Duntocher
+
+Callout
+	On Great Western Road and close to Dalmuir
+
+Callout
+	On Pavement next to Great Western Road and close to Mountblow
+
+Callout
+	On Great Western Road at Dalnottar Interchange
+
+Callout
+	On Great Western Road and close to Old Kilpatrick
+
+Callout
+	Near Old Kilpatrick
+
+Callout
+	Near Transit
+
+Callout
+	On Great Western Road and close to Bowling
+
+Callout
+	On Great Western Road and close to Bowling
+
+Callout
+	Approaching intersection
+		Dunglass Roundabout continues ahead
+		Dunglass Roundabout goes right
+
+Callout
+	On Great Western Road and close to Milton
+
+Callout
+	On Dumbarton Road and close to Milton
+
+Callout
+	On Dumbarton Road and close to Milton
+
+Callout
+	Ahead Dumbarton Road
+
+Callout
+	On Stirling Road and close to Milton
+
+Callout
+	On Stirling Road and close to Silverton
+
+Callout
+	On Fourth Avenue and close to Silverton
+
+Callout
+	On Stirling Road and close to Silverton
+
+Callout
+	Approaching intersection
+		Path to Dumbuck Road continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Path to Round Riding Road goes right
+
+Callout
+	On Stirling Road and close to Bellsmyre
+
+Callout
+	On Barloan Toll and close to Bellsmyre
+
+Callout
+	On Stirling Road and close to Townend
+
+Callout
+	On Lomond Gate and close to Townend
+
+Callout
+	Near Townend
+
+Callout
+	On A82 and close to Dalreoch
+
+Callout
+	On A82 and close to Renton
+
+Callout
+	Near Renton
+
+Callout
+	Near Renton
+
+Callout
+	On A82 and close to Renton
+
+Callout
+	Near Tulliechewan Farm
+
+Callout
+	On A811 and close to Tulliechewan Farm
+
+Callout
+	Near Tulliechewan Farm
+
+Callout
+	Near Jamestown
+
+Callout
+	On Lomond Road and close to Jamestown
+
+Callout
+	On Lomond Bridge and close to Jamestown
+
+Callout
+	On Carrochan Road and close to Jamestown
+
+Callout
+	Approaching intersection
+		Tertiary continues ahead
+		Service goes right
+
+Callout
+	Co-op Food
+
+Callout
+	Near Jamestown
+
+Callout
+	Approaching intersection
+		Service continues ahead
+		Service goes right
+
+Callout
+	Ahead Service
+
+Callout
+	Approaching intersection
+		Service to dead-end goes left
+		Service goes right

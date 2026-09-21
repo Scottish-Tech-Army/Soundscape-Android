@@ -1,0 +1,163 @@
+// =============================================================================
+// Right-to-left (RTL) layout overrides
+// =============================================================================
+//
+// just-the-docs builds its two-column layout with *physical* properties
+// (margin-left, border-right, left:0, padding-left, ...) so it does not flip
+// for RTL languages on its own. _includes/head_custom.html sets dir="rtl" on
+// <html> for Arabic (arz) and Persian (fa); everything below mirrors the
+// physical layout under that attribute.
+//
+// This file is imported last in the theme's SCSS chain (via _sass/custom/custom),
+// so the theme's variables ($nav-width, $border-color, ...) and the mq() mixin
+// are all in scope here.
+
+[dir="rtl"] {
+  // --- Skip-to-main link -----------------------------------------------------
+  // The theme parks this off-screen at `left: -999px`. In LTR that's harmless
+  // (content off the left edge isn't scrollable), but in RTL the start side
+  // flips, so the link extends the page ~1000px to the right — pushing all
+  // content off-screen and clipping it. Mirror it off the right (start) edge.
+  a.skip-to-main {
+    right: -999px;
+    left: auto;
+  }
+
+  // --- Two-column shell: move the sidebar to the right -----------------------
+  .side-bar {
+    @include mq(md) {
+      right: 0;
+      left: auto;
+      align-items: flex-start; // theme uses flex-end to hug the right border
+      border-right: 0;
+      border-left: $border $border-color;
+    }
+
+    & + .main {
+      @include mq(md) {
+        margin-left: 0;
+        margin-right: $nav-width-md;
+      }
+
+      @include mq(lg) {
+        margin-left: 0;
+        // stylelint-disable-next-line function-name-case
+        margin-right: Max(
+          #{$nav-width},
+          calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width})
+        );
+      }
+    }
+  }
+
+  // --- Site nav: indentation + expander on the opposite side -----------------
+  // The theme has $nav-list-expander-right: true, so links are padded on the
+  // right for the expander and on the left for indentation. Swap both.
+  .nav-list .nav-list-item {
+    .nav-list-link {
+      padding-right: $gutter-spacing-sm;
+      padding-left: $nav-list-item-height-sm;
+
+      @include mq(md) {
+        padding-right: $gutter-spacing;
+        padding-left: $nav-list-item-height;
+      }
+    }
+
+    .nav-list-expander {
+      right: auto;
+      left: 0;
+      transform: scaleX(-1); // mirror the chevron; svg rotations still apply
+    }
+  }
+
+  // Child nav lists are indented with padding-left in the theme.
+  .nav-list > .nav-list-item > .nav-list {
+    padding-right: $sp-3;
+    padding-left: 0;
+  }
+
+  // --- Breadcrumbs ----------------------------------------------------------
+  .breadcrumb-nav-list {
+    padding-right: 0;
+  }
+
+  // --- Search ---------------------------------------------------------------
+  .search-input {
+    // theme: padding top right bottom left, with the icon gap on the left
+    padding: $sp-2 #{$gutter-spacing-sm + $sp-5} $sp-2 $gutter-spacing-sm;
+
+    @include mq(md) {
+      padding: $sp-2 #{$gutter-spacing + $sp-5} $sp-2 $gutter-spacing-sm;
+      transition: padding-right linear #{$transition-duration * 0.5};
+    }
+  }
+
+  .search-label {
+    right: 0;
+    left: auto;
+    padding-right: $gutter-spacing-sm;
+    padding-left: 0;
+
+    @include mq(md) {
+      padding-right: $gutter-spacing;
+      transition: padding-right linear #{$transition-duration * 0.5};
+    }
+  }
+
+  .search-results {
+    right: 0;
+    left: auto;
+  }
+
+  .search-result-doc .search-result-icon {
+    margin-right: 0;
+    margin-left: $sp-2;
+  }
+
+  // --- Main content: lists, task lists, definition lists --------------------
+  .main-content {
+    ul,
+    ol {
+      padding-right: 1.5em;
+      padding-left: 0;
+    }
+
+    ol > li::before {
+      right: -1.6em;
+      left: auto;
+    }
+
+    ul > li::before {
+      margin-right: -1.4em;
+      margin-left: 0;
+    }
+
+    .task-list-item-checkbox {
+      margin-right: -1.4em;
+      margin-left: 0.6em;
+    }
+
+    dt {
+      text-align: left; // theme right-aligns terms against the right column
+    }
+
+    dd {
+      margin-right: 1em;
+      margin-left: 0;
+    }
+  }
+}
+
+// Code blocks and other inherently LTR content stay LTR even inside an RTL
+// page (source code, shell commands, IDs are not bidirectional text).
+[dir="rtl"] {
+  pre,
+  code,
+  kbd,
+  samp,
+  .highlight {
+    direction: ltr;
+    text-align: left;
+  }
+}

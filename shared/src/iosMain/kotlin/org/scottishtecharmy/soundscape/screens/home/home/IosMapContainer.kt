@@ -1,0 +1,105 @@
+package org.scottishtecharmy.soundscape.screens.home.home
+
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
+import org.maplibre.compose.style.BaseStyle
+import org.maplibre.spatialk.geojson.Geometry
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.mapstyle.AccessibleTheme
+import org.scottishtecharmy.soundscape.mapstyle.accessibleLayerOverrides
+import org.scottishtecharmy.soundscape.mapstyle.argbToRgba
+import org.scottishtecharmy.soundscape.mapstyle.buildMapStyle
+import org.scottishtecharmy.soundscape.mapstyle.resolveTileSourceUrl
+import platform.Foundation.NSBundle
+import platform.Foundation.NSHomeDirectory
+
+private fun getTileProviderUrl(): String {
+    return NSBundle.mainBundle.objectForInfoDictionaryKey("TileProviderURL") as? String ?: ""
+}
+
+/**
+ * Returns the bundle path of the osm-liberty-accessible folder.
+ * MapLibre can read sprites/fonts directly from the bundle via file:// URIs —
+ * no copy to Documents required.
+ */
+private fun getMapAssetsBundlePath(): String {
+    return NSBundle.mainBundle.pathForResource("osm-liberty-accessible", ofType = null)
+        ?: error("osm-liberty-accessible not found in app bundle")
+}
+
+@Composable
+fun rememberIosMapBaseStyle(location: LngLatAlt?, forceOnlineTiles: Boolean = false): BaseStyle {
+    val foregroundColor = argbToRgba(MaterialTheme.colorScheme.onBackground.toArgb())
+    val backgroundColor = argbToRgba(MaterialTheme.colorScheme.background.toArgb())
+    val overrides = accessibleLayerOverrides(
+        foregroundColor = foregroundColor,
+        backgroundColor = backgroundColor,
+    )
+
+    return remember(foregroundColor, backgroundColor, location, forceOnlineTiles) {
+        val assetsDir = getMapAssetsBundlePath()
+        val extractsPath = NSHomeDirectory() + "/Documents"
+        val tileSourceUrl = if (forceOnlineTiles) {
+            resolveTileSourceUrl(
+                location = null,
+                extractsPath = "",
+                networkTileUrl = getTileProviderUrl()
+            )
+        } else {
+            resolveTileSourceUrl(
+                location = location,
+                extractsPath = extractsPath,
+                networkTileUrl = getTileProviderUrl(),
+            )
+        }
+
+        buildMapStyle(
+            theme = AccessibleTheme,
+            spritePath = "file://$assetsDir/osm-liberty",
+            glyphsPath = "file://$assetsDir/fonts/{fontstack}/{range}.pbf",
+            tileSourceUrl = tileSourceUrl,
+            overrides = overrides,
+            symbolForegroundColor = foregroundColor,
+            symbolBackgroundColor = backgroundColor,
+        )
+    }
+}
+
+/**
+ * iOS convenience wrapper for [MapContainerLibre] that automatically provides the map style.
+ */
+@Composable
+fun IosMapContainerLibre(
+    mapCenter: LngLatAlt,
+    allowScrolling: Boolean,
+    userLocation: LngLatAlt?,
+    userSymbolRotation: Float,
+    beaconLocation: LngLatAlt? = null,
+    routeData: RouteWithMarkers? = null,
+    modifier: Modifier = Modifier,
+    currentBeaconWaypointIndex: Int = 0,
+    extractGeometry: Geometry? = null,
+    forceOnlineTiles: Boolean = false,
+    onInteractionChanged: (Boolean) -> Unit = {},
+) {
+    val baseStyle =
+        rememberIosMapBaseStyle(location = mapCenter, forceOnlineTiles = forceOnlineTiles)
+
+    MapContainerLibre(
+        mapCenter = mapCenter,
+        allowScrolling = allowScrolling,
+        userLocation = userLocation,
+        userSymbolRotation = userSymbolRotation,
+        beaconLocation = beaconLocation,
+        routeData = routeData,
+        modifier = modifier,
+        currentBeaconWaypointIndex = currentBeaconWaypointIndex,
+        baseStyle = baseStyle,
+        extractGeometry = extractGeometry,
+        onInteractionChanged = onInteractionChanged,
+    )
+}

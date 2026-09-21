@@ -3611,6 +3611,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="confect_name_via" translatable="false">"%s via %s"</string>
   <string name="confect_name_pavement_next_to" translatable="false">"Pavement next to %s"</string>
   <string name="confect_name_pavement" translatable="false">"Pavement"</string>
+  <string name="confect_name_next_to" translatable="false">"%s next to %s"</string>
   <string name="confect_name_dead_end" translatable="false">"dead end"</string>
 
   <!-- We need to encode < as &lt; to prevent them being stripped prior to use -->

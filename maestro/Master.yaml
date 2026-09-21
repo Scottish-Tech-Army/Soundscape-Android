@@ -1,0 +1,22 @@
+appId: org.scottishtecharmy.soundscape
+# Master flow for Maestro Device Cloud: runs the whole suite as ONE flow to keep
+# cost down (Device Cloud bills per flow, so six separate flows cost six times as
+# much as this single one). config.yaml restricts the cloud `flows` to just this
+# file; the suite flows below are reached via runFlow.
+#
+# The suite is stateful and ordered (see the docs): Onboarding clears state and
+# onboards, and every later flow builds on that, so the order here matches the
+# old executionOrder.flowsOrder. Because these are chained with runFlow, the
+# master STOPS at the first failing flow - acceptable here since a failure early
+# in a stateful suite leaves the later flows without the state they need anyway.
+#
+# CI (run-maestro-tests.yaml) still runs each flow as a separate emulator flow
+# for per-flow reporting; it invokes explicit file paths and does not use this
+# master flow or config.yaml.
+---
+- runFlow: Onboarding.yaml
+- runFlow: HomePage.yaml
+- runFlow: LocationDetails.yaml
+- runFlow: PlacesNearby.yaml
+- runFlow: MarkersAndRoutes.yaml
+- runFlow: RouteCreation.yaml

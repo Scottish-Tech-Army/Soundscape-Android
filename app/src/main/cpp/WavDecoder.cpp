@@ -3,6 +3,8 @@
 #include <cstring>
 #include <cmath>
 #include <algorithm>
+#include <mutex>
+#include <unordered_map>
 
 namespace soundscape {
 
@@ -15,31 +17,68 @@ namespace soundscape {
     }
 
     WavDecoder::WavDecoder(AAssetManager *mgr, const std::string &path, int targetRate) {
+        m_Data = loadCached(mgr, path, targetRate);
+        if (m_Data) {
+            m_SampleRate = m_Data->sampleRate;
+            m_OriginalSampleRate = m_Data->originalSampleRate;
+        }
+    }
+
+    std::shared_ptr<const WavDecoder::DecodedWav> WavDecoder::loadCached(
+            AAssetManager *mgr, const std::string &path, int targetRate) {
+        static std::mutex s_CacheMutex;
+        static std::unordered_map<std::string, std::shared_ptr<const DecodedWav>> s_Cache;
+
+        const std::string key = stripAssetPrefix(path) + "|" + std::to_string(targetRate);
+
+        {
+            std::lock_guard<std::mutex> lock(s_CacheMutex);
+            auto it = s_Cache.find(key);
+            if (it != s_Cache.end()) {
+                return it->second;
+            }
+        }
+
+        // Decode outside the cache lock: concurrent first-time loads of different assets
+        // shouldn't serialize on each other, only on AAssetManager's own internal lock.
+        std::shared_ptr<DecodedWav> decoded = decode(mgr, path, targetRate);
+
+        std::lock_guard<std::mutex> lock(s_CacheMutex);
+        return s_Cache.try_emplace(key, decoded).first->second;
+    }
+
+    std::shared_ptr<WavDecoder::DecodedWav> WavDecoder::decode(
+            AAssetManager *mgr, const std::string &path, int targetRate) {
+        auto result = std::make_shared<DecodedWav>();
+
         std::string assetPath = stripAssetPrefix(path);
 
         AAsset *asset = AAssetManager_open(mgr, assetPath.c_str(), AASSET_MODE_BUFFER);
         if (!asset) {
             TRACE("WavDecoder: failed to open asset: %s", assetPath.c_str());
-            return;
+            return result;
         }
 
         auto rawSize = static_cast<size_t>(AAsset_getLength(asset));
         auto rawData = static_cast<const unsigned char *>(AAsset_getBuffer(asset));
 
         if (rawData && rawSize > 44) {
-            parseWav(rawData, rawSize);
+            parseWav(*result, rawData, rawSize);
         } else {
-            TRACE("WavDecoder: asset too small or null: %s (%zu bytes)", assetPath.c_str(), rawSize);
+            TRACE("WavDecoder: asset too small or null: %s (%zu bytes)", assetPath.c_str(),
+                  rawSize);
         }
 
         AAsset_close(asset);
 
-        if (targetRate > 0 && m_SampleRate != targetRate && !m_Data.empty()) {
-            resampleTo(targetRate);
+        if (targetRate > 0 && result->sampleRate != targetRate && !result->samples.empty()) {
+            resampleTo(*result, targetRate);
         }
+
+        return result;
     }
 
-    void WavDecoder::parseWav(const unsigned char *rawData, size_t rawSize) {
+    void WavDecoder::parseWav(DecodedWav &out, const unsigned char *rawData, size_t rawSize) {
         // Validate RIFF header
         if (memcmp(rawData, "RIFF", 4) != 0 || memcmp(rawData + 8, "WAVE", 4) != 0) {
             TRACE("WavDecoder: not a valid WAV file");
@@ -87,15 +126,15 @@ namespace soundscape {
             return;
         }
 
-        m_OriginalSampleRate = sampleRate;
-        m_SampleRate = sampleRate;
+        out.originalSampleRate = sampleRate;
+        out.sampleRate = sampleRate;
 
         // Calculate number of sample frames
         int bytesPerSample = bitsPerSample / 8;
         int bytesPerFrame = bytesPerSample * numChannels;
         int numFrames = static_cast<int>(dataSize / bytesPerFrame);
 
-        m_Data.resize(numFrames);
+        out.samples.resize(numFrames);
 
         // Convert to mono float32
         for (int i = 0; i < numFrames; i++) {
@@ -127,15 +166,15 @@ namespace soundscape {
                 }
                 sample += chSample;
             }
-            m_Data[i] = sample / static_cast<float>(numChannels); // downmix
+            out.samples[i] = sample / static_cast<float>(numChannels); // downmix
         }
     }
 
-    void WavDecoder::resampleTo(int targetRate) {
-        if (m_SampleRate == targetRate || m_Data.empty()) return;
+    void WavDecoder::resampleTo(DecodedWav &out, int targetRate) {
+        if (out.sampleRate == targetRate || out.samples.empty()) return;
 
-        double ratio = static_cast<double>(m_SampleRate) / static_cast<double>(targetRate);
-        int outFrames = static_cast<int>(static_cast<double>(m_Data.size()) / ratio);
+        double ratio = static_cast<double>(out.sampleRate) / static_cast<double>(targetRate);
+        int outFrames = static_cast<int>(static_cast<double>(out.samples.size()) / ratio);
 
         std::vector<float> resampled(outFrames);
 
@@ -144,17 +183,17 @@ namespace soundscape {
             int srcIdx = static_cast<int>(srcPos);
             float frac = static_cast<float>(srcPos - srcIdx);
 
-            if (srcIdx + 1 < static_cast<int>(m_Data.size())) {
-                resampled[i] = m_Data[srcIdx] * (1.0f - frac) + m_Data[srcIdx + 1] * frac;
-            } else if (srcIdx < static_cast<int>(m_Data.size())) {
-                resampled[i] = m_Data[srcIdx];
+            if (srcIdx + 1 < static_cast<int>(out.samples.size())) {
+                resampled[i] = out.samples[srcIdx] * (1.0f - frac) + out.samples[srcIdx + 1] * frac;
+            } else if (srcIdx < static_cast<int>(out.samples.size())) {
+                resampled[i] = out.samples[srcIdx];
             } else {
                 resampled[i] = 0.0f;
             }
         }
 
-        m_Data = std::move(resampled);
-        m_SampleRate = targetRate;
+        out.samples = std::move(resampled);
+        out.sampleRate = targetRate;
     }
 
 } // soundscape

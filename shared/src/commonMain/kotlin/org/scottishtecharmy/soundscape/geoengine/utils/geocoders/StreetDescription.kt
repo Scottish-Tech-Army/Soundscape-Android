@@ -1,0 +1,875 @@
+package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
+
+import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
+import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
+import org.scottishtecharmy.soundscape.geoengine.utils.Side
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.distanceAlongLineString
+import org.scottishtecharmy.soundscape.geoengine.utils.getCentralPointForFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getSideOfLine
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
+import kotlin.math.round
+import kotlin.math.sign
+
+/**
+ * @param travelMode Describing a location to someone travelling by vehicle rather than on foot.
+ * Junctions are then only described by roads that carry a real name or ref of their own. On foot,
+ * "just before the path to the park" is a useful landmark and the confected names Way.getName
+ * produces for unnamed ways earn their place; at driving speed they don't - a driver locating
+ * themselves wants the cross street, not "between Path that joins Fifth Avenue and Great Western
+ * Road and Service that joins Lennox Park and Crossveggate".
+ */
+class StreetDescription(
+    val name: String,
+    val gridState: GridState,
+    private val travelMode: Boolean = false
+) {
+
+    /**
+     * Whether a Way meeting this street can be used to describe the junction. Always excludes the
+     * street itself; in travel mode also excludes paths and anything without a name or ref of its
+     * own, since Way.getName would otherwise confect one. Pavements are excluded by the path test
+     * in travel mode, and on foot are handled by the caller as before.
+     */
+    private fun usableCrossStreet(member: Way): Boolean {
+        if (member.name == name) return false
+        if (!travelMode) return true
+        if (member.isPath()) return false
+        return (member.name != null) || (member.ref != null)
+    }
+
+    // Street numbers
+    // There are two types of street numbers, those which include a street name, and those which are
+    // just numbers. The former are reliable, but the latter could be on the corner between streets
+    // and so require some validation.
+    //
+
+    val ways: MutableList<Pair<Way, Boolean>> = mutableListOf()
+    var sortedDescriptivePoints: Map<Double, MvtFeature> = emptyMap()
+    var leftSortedNumbers: Map<Double, MvtFeature> = emptyMap()
+    var leftMode: HouseNumberMode = HouseNumberMode.MIXED
+    var rightSortedNumbers: Map<Double, MvtFeature> = emptyMap()
+    var rightMode: HouseNumberMode = HouseNumberMode.MIXED
+
+    fun whichSide(
+        way: Way,
+        direction: Boolean,
+        pdh: PointAndDistanceAndHeading,
+        location: LngLatAlt
+    ): Side {
+        val line = way.geometry as LineString
+        var start = line.coordinates[pdh.index]
+        var end = line.coordinates[pdh.index + 1]
+        if (direction) {
+            // Swap direction based on Way direction
+            val tmp = start
+            start = end
+            end = tmp
+        }
+
+        return getSideOfLine(start, end, location)
+    }
+
+    fun otherSide(side: Side): Side? {
+        return when (side) {
+            Side.LEFT -> Side.RIGHT
+            Side.RIGHT -> Side.LEFT
+            else -> null
+        }
+    }
+
+    fun parseHouseNumber(houseNumber: String): Int? {
+        val numericPart = houseNumber.takeWhile { it.isDigit() }
+
+        // Check if we actually found any digits before trying to parse.
+        if (numericPart.isNotEmpty()) {
+            return numericPart.toInt()
+        }
+        return null
+    }
+
+    fun parseHouseNumberRange(houseNumber: String): Pair<Int, Int>? {
+        var highest = 0
+        var lowest = Int.MAX_VALUE
+        var remaining = houseNumber
+        while (true) {
+            remaining = remaining.dropWhile { !it.isDigit() }
+            if (remaining.isEmpty()) break
+
+            val numericPart = remaining.takeWhile { it.isDigit() }
+            if (numericPart.isNotEmpty()) {
+                val number = numericPart.toInt()
+                if (number < lowest) lowest = number
+                if (number > highest) highest = number
+
+                remaining = remaining.drop(numericPart.length)
+            }
+        }
+        return if (lowest == Int.MAX_VALUE)
+            null
+        else
+            Pair(lowest, highest)
+    }
+
+    fun distanceAlongLine(nearestWay: Way, pdh: PointAndDistanceAndHeading): Double {
+        var totalDistance = 0.0
+        for (way in ways) {
+            if (way.first == nearestWay) {
+                val line = way.first.geometry as LineString
+                val lineDistance = distanceAlongLineString(line, pdh, gridState.ruler)
+                totalDistance += if (way.second) {
+                    lineDistance
+                } else {
+                    (way.first.length - lineDistance)
+                }
+                break
+            }
+            totalDistance += way.first.length
+        }
+        return totalDistance
+    }
+
+    fun nearestWayOnStreet(location: LngLatAlt?): Pair<Way, Boolean>? {
+        if (location == null)
+            return null
+
+        var nearestWay: Pair<Way, Boolean>? = null
+        var nearestPdh = PointAndDistanceAndHeading()
+
+        for (way in ways) {
+            val pdh = getDistanceToFeature(location, way.first, gridState.ruler)
+            if (pdh.distance < nearestPdh.distance) {
+                nearestWay = way
+                nearestPdh = pdh
+            }
+        }
+        return nearestWay
+    }
+
+    fun distanceAlongStreet(startPoint: LngLatAlt?, distance: Double, ruler: Ruler): LngLatAlt? {
+        if (startPoint == null) return null
+        val nearestWayToStart = nearestWayOnStreet(startPoint) ?: return null
+
+        var searching = true
+        var distanceLeft = distance
+        for (way in ways) {
+            if (searching) {
+                if (way.first == nearestWayToStart.first) {
+                    searching = false
+                    if (way.first.length > distanceLeft) {
+                        return ruler.along(way.first.geometry as LineString, distanceLeft)
+                    }
+                } else {
+                    distanceLeft -= way.first.length
+                    continue
+                }
+            }
+            if (distanceLeft > way.first.length) {
+                distanceLeft -= way.first.length
+                continue
+            }
+            return ruler.along(way.first.geometry as LineString, distanceLeft)
+        }
+        return null
+    }
+
+    enum class HouseNumberMode {
+        EVEN,
+        ODD,
+        MIXED
+    }
+
+    companion object {
+        /** See [isDominantParity]. */
+        private const val PARITY_EXCEPTION_TOLERANCE = 0.1
+    }
+
+    fun assignHouseNumberModes(odd: Array<Int>, even: Array<Int>) {
+        if ((odd[0] + odd[1] + even[0] + even[1]) >= 2) {
+            // We have at least 2 house numbers
+            if (isDominantParity(even[0], odd[0]) && isDominantParity(odd[1], even[1])) {
+                leftMode = HouseNumberMode.EVEN
+                rightMode = HouseNumberMode.ODD
+                println("Odd on right side, even on left")
+                return
+            } else if (isDominantParity(odd[0], even[0]) && isDominantParity(even[1], odd[1])) {
+                leftMode = HouseNumberMode.ODD
+                rightMode = HouseNumberMode.EVEN
+                println("Odd on left side, even on right")
+                return
+            }
+        }
+        println("Mixed house numbering")
+        leftMode = HouseNumberMode.MIXED
+        rightMode = HouseNumberMode.MIXED
+    }
+
+    /**
+     * True if [exceptionCount] is small enough, relative to [dominantCount], to treat a side as
+     * confidently one parity rather than MIXED. Real street data is almost never 100% clean
+     * (historic renumbering, redevelopment, corner properties genuinely tagged to this street),
+     * so a small tolerance lets an overwhelmingly-one-parity side still be usefully classified
+     * instead of always falling back to MIXED over one or two known exceptions.
+     */
+    private fun isDominantParity(dominantCount: Int, exceptionCount: Int): Boolean {
+        if (dominantCount == 0) return false
+        return exceptionCount.toDouble() / (dominantCount + exceptionCount) <= PARITY_EXCEPTION_TOLERANCE
+    }
+
+    private fun addHouse(
+        house: MvtFeature,
+        nearestWay: Pair<Way, Boolean>?,
+        points: MutableMap<Double, MvtFeature>,
+        streetConfidence: Boolean
+    ) {
+        if (nearestWay != null) {
+            val location = getCentralPointForFeature(house) ?: return
+            val pdh = getDistanceToFeature(location, nearestWay.first, gridState.ruler)
+            val totalDistance = distanceAlongLine(nearestWay.first, pdh)
+            val side = whichSide(
+                nearestWay.first,
+                nearestWay.second,
+                pdh,
+                location
+            )
+            house.side = side
+            house.streetConfidence = streetConfidence
+
+            points[totalDistance] = house
+        }
+    }
+
+    fun checkSortedNumberConsistency(sortedNumbers: Map<Double, MvtFeature>): Map<Double, MvtFeature> {
+
+        var firstConfidentHouse = Double.MIN_VALUE
+        var lastConfidentHouse = Double.MIN_VALUE
+        for (house in sortedNumbers) {
+            if (house.value.streetConfidence) {
+                if (firstConfidentHouse == Double.MIN_VALUE)
+                    firstConfidentHouse = house.key
+                lastConfidentHouse = house.key
+            }
+        }
+        if (lastConfidentHouse == Double.MIN_VALUE) {
+            // There are no houses on this side that we are confident about the number of
+            return emptyMap()
+        }
+
+        var lastDelta = 0
+        var lastHouse: MvtFeature? = null
+        var lastNumbers: Pair<Int, Int>? = null
+        val removalSet = mutableSetOf<MvtFeature>()
+        for (house in sortedNumbers) {
+
+            if ((house.key < firstConfidentHouse) || (house.key > lastConfidentHouse)) {
+                // We only allow houses that are in between ones that we are confident belong to
+                // this street.
+                removalSet.add(house.value)
+                continue
+            }
+            val numbers = parseHouseNumberRange(house.value.housenumber ?: "")
+            if ((lastNumbers != null) && (numbers != null)) {
+                // Check for overlap of range
+                if ((numbers.first <= lastNumbers.second) && (numbers.second >= lastNumbers.first)) {
+                    // The range overlaps
+                } else {
+                    val newDelta = numbers.first - lastNumbers.first
+                    if ((lastDelta != 0) && (newDelta != 0) && (newDelta.sign != lastDelta.sign)) {
+                        // Numbers have changed direction
+                        if (!house.value.streetConfidence) {
+                            // The confidence in this street number isn't high as was found via a search
+                            // Remove it
+                            removalSet.add(house.value)
+                        }
+                        if (lastHouse != null) {
+                            if (!lastHouse.streetConfidence) {
+                                // The confidence in this street number isn't high as was found via a search
+                                removalSet.add(lastHouse)
+                            }
+                        }
+                        continue
+                    }
+                    if (newDelta != 0)
+                        lastDelta = newDelta
+                }
+            }
+            lastHouse = house.value
+            lastNumbers = numbers
+        }
+        if (removalSet.isEmpty())
+            return sortedNumbers
+
+        // We need to remove some houses, so create a new map
+        val newMap = mutableMapOf<Double, MvtFeature>()
+        for (house in sortedNumbers) {
+            if (!removalSet.contains(house.value)) {
+                newMap[house.key] = house.value
+            }
+        }
+        return newMap.toList().sortedBy { it.first }.toMap()
+    }
+
+    private fun descriptiveIntersection(
+        intersection: Intersection,
+        localizedStrings: LocalizedStrings?
+    ): Boolean {
+        // Return true if this intersection is useful for describing the street. If it's just an
+        // un-named path with no confection then we return false.
+        var count = 0
+        for (member in intersection.members) {
+            // Skips this street, and in travel mode anything without a name of its own - see
+            // usableCrossStreet.
+            if (!usableCrossStreet(member)) continue
+            if (member.properties?.get("pavement") != null) {
+                // Skip over pavements
+                continue
+            }
+            val direction = member.intersections[WayEnd.START.id] == intersection
+            val segmentName = member.getName(
+                direction,
+                gridState,
+                localizedStrings,
+                nonGenericOnly = true,
+                noGenericDeadEnds = true
+            )
+            if (segmentName.isEmpty()) continue
+
+            val segmentNameReverse = member.getName(
+                !direction,
+                gridState,
+                localizedStrings,
+                nonGenericOnly = true,
+                noGenericDeadEnds = true
+            )
+            // If the description is the same in both directions, then we don't want to include it
+            // as it's probably a loop joining on to our road
+            if (segmentName.isNotEmpty() && ((segmentName == member.displayName) || (segmentName != segmentNameReverse))) ++count
+        }
+
+        return count > 0
+    }
+
+    /**
+     * createDescription creates the street description
+     */
+    fun createDescription(matchedWay: Way, localizedStrings: LocalizedStrings?) {
+        val descriptivePoints: MutableMap<Double, MvtFeature> = mutableMapOf()
+        val houseNumberPoints: MutableMap<Double, MvtFeature> = mutableMapOf()
+
+        // We've got part of our street, so follow it in each direction adding to our list
+        var intersection = matchedWay.intersections[WayEnd.START.id]
+        var currentWay = matchedWay
+        for (index in -1..0) {
+            while (intersection != null) {
+                intersection = currentWay.getOtherIntersection(intersection)
+                val direction = (intersection == currentWay.intersections[WayEnd.END.id])
+                if (index == 0) {
+                    if (ways.isEmpty() || (ways[0].first != currentWay)) {
+                        val newPair = Pair(currentWay, !direction)
+                        if (ways.contains(newPair)) {
+                            // We've looped around to a Way that we already have
+                            break
+                        }
+                        ways.add(index, newPair)
+                    }
+                } else {
+                    val newPair = Pair(currentWay, direction)
+                    if (ways.contains(newPair)) {
+                        // We've looped around to a Way that we already have
+                        break
+                    }
+                    ways.add(Pair(currentWay, direction))
+                }
+
+                if (intersection != null) {
+                    var found = false
+                    var newWay = currentWay
+                    // TODO: We need to deal with named roads splintering into dual carriageways e.g.
+                    //  St Vincent Street https://www.openstreetmap.org/way/262604454. In fact there
+                    //  all sorts of other challenges including non-linear roads e.g. Prestonfield
+                    //  https://www.openstreetmap.org/way/1053351053 or Marchfield
+                    //  https://www.openstreetmap.org/way/138354016. The main problem here is that
+                    //  the housenumber map has ALL of the house numbers with that street and so it
+                    //  confuses the odd/even numbering analysis.
+                    for (member in intersection.members) {
+                        if ((currentWay != member) &&
+                            ((member.name == name) || (member.wayType == WayType.JOINER))
+                        ) {
+                            // We've got a Way of the same name extending away. See if it's continuing
+                            // on in the same direction
+                            newWay = member
+                            found = true
+                            break
+                        }
+                    }
+                    if (found) {
+                        currentWay = newWay
+                    } else {
+                        // We reached an intersection which has no Way of the same name, so we're done
+                        intersection = null
+                    }
+                }
+            }
+            intersection = matchedWay.intersections[WayEnd.END.id]
+            currentWay = matchedWay
+        }
+
+        // We've now got an ordered list of Ways for our named street. Add all of the intersections
+        // to our linear map
+        var totalDistance = 0.0
+        for (way in ways) {
+            val beginIntersection =
+                if (way.second)
+                    way.first.intersections[WayEnd.START.id]
+                else
+                    way.first.intersections[WayEnd.END.id]
+
+            if (beginIntersection != null) {
+                if (beginIntersection.intersectionType != IntersectionType.TILE_EDGE) {
+                    if (descriptiveIntersection(beginIntersection, localizedStrings))
+                        descriptivePoints[totalDistance] = beginIntersection
+                }
+            }
+            totalDistance += way.first.length
+            if (way == ways.last()) {
+                val lastIntersection =
+                    if (way.second)
+                        way.first.intersections[WayEnd.END.id]
+                    else
+                        way.first.intersections[WayEnd.START.id]
+
+                if (lastIntersection != null) {
+                    // totalDistance already includes way.first.length from the increment above -
+                    // adding it again here would double-count the last way's length.
+                    if (descriptiveIntersection(lastIntersection, localizedStrings))
+                        descriptivePoints[totalDistance] = lastIntersection
+                }
+            }
+        }
+
+        // Add all of the house numbers with known street to our linear map
+        val houseNumberTree = gridState.gridStreetNumberTreeMap[name]
+        if (houseNumberTree != null) {
+            val houseCollection = houseNumberTree.getAllCollection()
+            for (house in houseCollection) {
+                // A building numbered within its block isn't numbered along the street - see
+                // JapaneseAddress
+                if ((house as MvtFeature).blockNumber != null) continue
+                val nearestWay = nearestWayOnStreet(getCentralPointForFeature(house))
+                addHouse(house, nearestWay, houseNumberPoints, true)
+            }
+        }
+
+        // Now search in the house numbers which don't have a known street
+        val unknownStreetTree = gridState.gridStreetNumberTreeMap["null"]
+        if (unknownStreetTree != null) {
+            // Search each of our ways for street numbers with no street
+            for (way in ways) {
+                val results = unknownStreetTree.getNearbyLine(
+                    way.first.geometry as LineString,
+                    25.0,
+                    gridState.ruler
+                )
+                for (result in results) {
+                    val house = result as MvtFeature
+                    if (house.blockNumber != null) continue
+                    val location = getCentralPointForFeature(house)
+                    // A searched for house should only be added if it's the nearest Way that it was
+                    // found in...
+                    val nearestWay = nearestWayOnStreet(location)
+                    if (way.first == nearestWay?.first && location != null) {
+                        // ...AND no other real named street is genuinely closer.
+                        // nearestWayOnStreet() only compares distance among this street's own
+                        // segments, so on its own it can't tell an untagged house that's actually
+                        // closer to a neighbouring street (e.g. across a shared junction) apart
+                        // from one that's genuinely on this street.
+                        val globalNearestWay =
+                            gridState.getNearestFeature(TreeId.WAYS_SELECTION, gridState.ruler, location, 25.0) as Way?
+                        if ((globalNearestWay != null) &&
+                            (globalNearestWay.name != null) &&
+                            (globalNearestWay.name != name)
+                        ) {
+                            continue
+                        }
+                        addHouse(house, way, houseNumberPoints, false)
+                    }
+                }
+            }
+        }
+
+        // Look for POI near the road
+        val poiTree = gridState.getFeatureTree(TreeId.LANDMARK_POIS)
+        // Search each of our ways for street numbers with no street
+        for (way in ways) {
+            val results = poiTree.getNearbyLine(
+                way.first.geometry as LineString,
+                25.0,
+                gridState.ruler
+            )
+            for (result in results) {
+                val poi = result as MvtFeature
+                // A landmark POI's own address tag, if present, takes precedence over pure
+                // proximity - e.g. "Stewart Street Car Park" tagged street=Stewart Street must
+                // not be attached to a different street's description just because it happens
+                // to sit within 25m of one of that other street's ways. The parsed street tag
+                // lives in the dedicated `street` field (see MvtToGeoJson.kt's tag parsing) -
+                // it's never copied into `properties`.
+                val poiStreet = poi.street
+                if (poiStreet != null && poiStreet != name) continue
+
+                // An unnamed POI describes itself by its class ("OSM Feature park park"), which is
+                // no use as a landmark to someone driving past. On foot it's still worth having -
+                // the postbox you're standing next to locates you.
+                if (travelMode && poi.name == null) continue
+
+                val nearestWay = nearestWayOnStreet(getCentralPointForFeature(poi))
+                if (way.first == nearestWay?.first) {
+                    addHouse(poi, way, descriptivePoints, false)
+                }
+            }
+        }
+
+        sortedDescriptivePoints = descriptivePoints.toList().sortedBy { it.first }.toMap()
+
+        // Analyse the house numbers on each side of the road. Bucketing directly on the Side enum
+        // (rather than a positional Boolean array) means the compiler enforces which bucket each
+        // side goes into, instead of relying on a convention that has to be got right by hand.
+        for (side in listOf(Side.LEFT, Side.RIGHT)) {
+            val numberPoints: MutableMap<Double, MvtFeature> = mutableMapOf()
+            for (point in houseNumberPoints) {
+                if (point.value.side != side)
+                    continue
+
+                // We have a house number on the side of the street that we're interested in
+                val houseNumberString = point.value.housenumber
+                if (houseNumberString != null) {
+                    val houseNumber = parseHouseNumber(houseNumberString)
+                    if (houseNumber != null) {
+                        numberPoints[point.key] = point.value
+                    }
+                }
+            }
+            val sortedNumberPoints = numberPoints.toList().sortedBy { it.first }.toMap()
+            when (side) {
+                Side.LEFT -> leftSortedNumbers = sortedNumberPoints
+                Side.RIGHT -> rightSortedNumbers = sortedNumberPoints
+                else -> {}
+            }
+        }
+
+        leftSortedNumbers = checkSortedNumberConsistency(leftSortedNumbers)
+        rightSortedNumbers = checkSortedNumberConsistency(rightSortedNumbers)
+
+        // Count odd/even numbers from the filtered (consistency-checked) numbers, not the raw
+        // ones - otherwise checkSortedNumberConsistency's cleanup of numbering outliers has no
+        // effect on the odd/even mode decision it exists to inform.
+        val odd = arrayOf(0, 0)
+        val even = arrayOf(0, 0)
+        for ((sideIndex, sortedNumbers) in listOf(leftSortedNumbers, rightSortedNumbers).withIndex()) {
+            for (house in sortedNumbers.values) {
+                val houseNumber = parseHouseNumber(house.housenumber ?: "") ?: continue
+                if (houseNumber % 2 == 0) even[sideIndex]++ else odd[sideIndex]++
+            }
+        }
+
+        assignHouseNumberModes(odd, even)
+
+        // A side confidently assigned ODD/EVEN under tolerance can still carry a handful of
+        // opposite-parity exceptions - those must not take part in floor/ceiling interpolation
+        // (getStreetNumber, getLocationFromStreetNumber), where a wrong-parity number sitting
+        // in the middle of an otherwise-consistent sequence would silently corrupt the
+        // estimate for genuinely unknown numbers around it.
+        leftSortedNumbers = removeParityExceptions(leftSortedNumbers, leftMode)
+        rightSortedNumbers = removeParityExceptions(rightSortedNumbers, rightMode)
+    }
+
+    private fun removeParityExceptions(
+        numbers: Map<Double, MvtFeature>,
+        mode: HouseNumberMode
+    ): Map<Double, MvtFeature> {
+        val wantEven = when (mode) {
+            HouseNumberMode.EVEN -> true
+            HouseNumberMode.ODD -> false
+            HouseNumberMode.MIXED -> return numbers
+        }
+        return numbers.filterValues { house ->
+            val houseNumber = parseHouseNumber(house.housenumber ?: "") ?: return@filterValues true
+            (houseNumber % 2 == 0) == wantEven
+        }
+    }
+
+    fun getInterpolateLocation(
+        needle: Int,
+        sortedNumbers: Map<Double, MvtFeature>
+    ): Pair<LngLatAlt, String>? {
+        var lastKey = 0.0
+        var lastParsed: Int = Int.MAX_VALUE
+        var lastPoint: LngLatAlt? = null
+        for (number in sortedNumbers) {
+            val parsedHaystack = parseHouseNumber(number.value.housenumber ?: "")
+            if (parsedHaystack == null)
+                continue
+
+            // The feature's geometry isn't always a Point - house numbers can also come from
+            // building or POI polygons that carry a housenumber tag, so use the same helper that
+            // addHouse uses to get a representative location for the feature.
+            val centralPoint = getCentralPointForFeature(number.value) ?: continue
+
+            if (parsedHaystack == needle) {
+                // We've found an exact match
+                return Pair(
+                    centralPoint,
+                    number.value.housenumber ?: ""
+                )
+            }
+            if (lastParsed != Int.MAX_VALUE) {
+                val range = minOf(lastParsed, parsedHaystack)..maxOf(lastParsed, parsedHaystack)
+                if (needle in range) {
+                    // We're going to interpolate between two house numbers
+                    val ratio =
+                        (needle - lastParsed).toDouble() / (parsedHaystack - lastParsed).toDouble()
+                    val distance = lastKey + (ratio * (number.key - lastKey))
+                    val location = distanceAlongStreet(lastPoint, distance, gridState.ruler)
+                    if (location != null)
+                        return Pair(location, needle.toString())
+
+                    return null
+                }
+            }
+
+            lastParsed = parsedHaystack
+            lastKey = number.key
+            lastPoint = centralPoint
+        }
+        return null
+    }
+
+    fun getLocationFromStreetNumber(houseNumber: String): Pair<LngLatAlt, String>? {
+        val parsedNeedle = parseHouseNumber(houseNumber) ?: return null
+        val left = getInterpolateLocation(parsedNeedle, leftSortedNumbers)
+        val right = getInterpolateLocation(parsedNeedle, rightSortedNumbers)
+        return if (left == null) right
+        else if (right == null) left
+        else if (parsedNeedle.mod(2) == 0) {
+            if (leftMode == HouseNumberMode.EVEN)
+                left
+            else
+                right
+        } else {
+            if (leftMode == HouseNumberMode.ODD)
+                left
+            else
+                right
+        }
+    }
+
+    /**
+     * Given a point and a Way this function returns the best guess house number for it. The Boolean
+     * is true if the house number is on the other side of the street.
+     */
+    fun getStreetNumber(way: Way, location: LngLatAlt): Pair<String, Boolean> {
+
+        // Find the way in our list and see which direction it's going
+        var direction: Boolean? = null
+        for (member in ways) {
+            if (way == member.first) {
+                direction = member.second
+                break
+            }
+        }
+        if (direction == null) return Pair("", false)
+
+        // Get the distance along our lines of points
+        val pdh = getDistanceToFeature(location, way, gridState.ruler)
+        val distance = distanceAlongLine(way, pdh)
+
+        // Find which side of the road the point is on. Must use the same direction convention
+        // addHouse() used when it recorded each house's side into leftSortedNumbers/
+        // rightSortedNumbers (i.e. the Pair's direction flag as-is, not negated) - otherwise
+        // this computes the opposite side from the one houses were actually filed under.
+        val locationSide = whichSide(way, direction, pdh, location)
+
+        // Try that side first, but it could be that there are no street numbers on this side,
+        // so we also have to fallback to trying the other side too.
+        for (side in listOf(locationSide, otherSide(locationSide))) {
+            val sortedNumbers = when (side) {
+                Side.LEFT -> leftSortedNumbers
+                Side.RIGHT -> rightSortedNumbers
+                else -> continue
+            }
+            val ceiling = sortedNumbers.keys.firstOrNull { it >= distance }
+            val ceilingValue = if (ceiling != null) sortedNumbers[ceiling] else null
+            var ceilingDistance = Double.MAX_VALUE
+            val floor = sortedNumbers.keys.lastOrNull { it <= distance }
+            val floorValue = if (floor != null) sortedNumbers[floor] else null
+            var floorDistance = Double.MAX_VALUE
+
+            var houseNumber = ""
+            if (ceiling != null) {
+                ceilingDistance = ceiling - distance
+                if (ceilingDistance < 10.0)
+                    houseNumber = ceilingValue?.housenumber ?: ""
+            }
+            if (floor != null) {
+                floorDistance = distance - floor
+                if ((floorDistance < 10.0) &&
+                    ((floorDistance < ceilingDistance) || houseNumber.isEmpty())
+                )
+                    houseNumber = floorValue?.housenumber ?: ""
+            }
+
+            // Check to see if we have an exact match
+            if (houseNumber.isNotEmpty())
+                return Pair(houseNumber, side != locationSide)
+
+            if ((ceilingDistance != Double.MAX_VALUE) && ((floorDistance != Double.MAX_VALUE))) {
+                val floorNumber = parseHouseNumber(floorValue?.housenumber ?: "")
+                val ceilingNumber = parseHouseNumber(ceilingValue?.housenumber ?: "")
+                if (floorNumber != null && ceilingNumber != null) {
+                    val adjustment = floorDistance / (ceilingDistance + floorDistance)
+                    val interpolatedDouble = ((ceilingNumber - floorNumber) * adjustment)
+                    val interpolatedInt = round(interpolatedDouble / 2.0).toInt() * 2
+                    return Pair((interpolatedInt + floorNumber).toString(), side != locationSide)
+                }
+            }
+            if (houseNumber.isNotEmpty())
+                return Pair(houseNumber, side != locationSide)
+        }
+        return Pair("", false)
+    }
+
+    data class StreetPosition(
+        val name: String = "",
+        val distance: Double = Double.MAX_VALUE
+    )
+
+    data class StreetLocationDescription(
+        var name: String? = null,
+        var behind: StreetPosition = StreetPosition(),
+        var ahead: StreetPosition = StreetPosition()
+    )
+
+    fun getIntersectionText(
+        intersection: Intersection?,
+        way: Way?,
+        localizedStrings: LocalizedStrings?
+    ): String? {
+        if (intersection != null) {
+            if (way != null) {
+                // Describe the intersection from the perspective of Way. The same filter as
+                // descriptiveIntersection, so that in travel mode the junction can't be admitted
+                // on the strength of a real road and then named after an unnamed path meeting it.
+                for (crossStreet in intersection.members) {
+                    if (usableCrossStreet(crossStreet)) {
+                        // In travel mode usableCrossStreet has already established there's a real
+                        // name or ref, so use it bare. Way.getName would otherwise append the
+                        // confected part - "Thomson Place to dead end", "Mountblow Road via
+                        // steps" - which is the same noise the filter above exists to avoid.
+                        val crossStreetName = if (travelMode) {
+                            crossStreet.displayName ?: crossStreet.ref ?: ""
+                        } else {
+                            crossStreet.getName(
+                                crossStreet.intersections[WayEnd.START.id] == intersection,
+                                gridState,
+                                localizedStrings,
+                                nonGenericOnly = true
+                            )
+                        }
+                        if (crossStreetName.isNotEmpty())
+                            return crossStreetName
+                    }
+                }
+            }
+
+            return localizedStrings?.get(StringKey.StreetDescriptionIntersection, intersection.name)
+                ?: "Near intersection of ${intersection.name}"
+        }
+        return null
+    }
+
+    fun describeLocation(
+        location: LngLatAlt,
+        heading: Double?,
+        nearestWay: Way?,
+        localizedStrings: LocalizedStrings?
+    ): StreetLocationDescription {
+        if (nearestWay == null) return StreetLocationDescription()
+
+        // Get the distance along our lines of points
+        val pdh = getDistanceToFeature(location, nearestWay, gridState.ruler)
+        val distance = distanceAlongLine(nearestWay, pdh)
+
+        var direction = false
+        val result = StreetLocationDescription()
+        if (heading != null) {
+            val headingDifference = calculateHeadingOffset(heading, pdh.heading)
+            direction = (headingDifference < 90.0)
+        }
+
+        val ahead = sortedDescriptivePoints.keys.firstOrNull { it >= distance }
+        val behind = sortedDescriptivePoints.keys.lastOrNull { it <= distance }
+
+        var tmpAhead = StreetPosition()
+        if (ahead != null) {
+            val aheadValue = sortedDescriptivePoints[ahead]
+            if (aheadValue != null) {
+                val text = getIntersectionText(
+                    aheadValue as? Intersection?,
+                    nearestWay,
+                    localizedStrings
+                ) ?: aheadValue.getText(localizedStrings).text
+
+                tmpAhead = StreetPosition(text, ahead - distance)
+            }
+        }
+        var tmpBehind = StreetPosition()
+        if (behind != null) {
+            val behindValue = sortedDescriptivePoints[behind]
+            if (behindValue != null) {
+                val text = getIntersectionText(
+                    behindValue as? Intersection?,
+                    nearestWay,
+                    localizedStrings
+                ) ?: behindValue.getText(localizedStrings).text
+                tmpBehind = StreetPosition(
+                    text,
+                    distance - behind
+                )
+            }
+        }
+
+        // The StreetLocationDescription is relative to the direction that the user is travelling
+        if (direction) {
+            result.ahead = tmpAhead
+            result.behind = tmpBehind
+        } else {
+            result.behind = tmpAhead
+            result.ahead = tmpBehind
+        }
+        return result
+    }
+
+    fun describeStreet() {
+        println("Describe $name")
+        for (point in sortedDescriptivePoints) {
+            val text = point.value.getText(null)
+            when (point.value.side) {
+                null, Side.INLINE -> println("\t\t\t\t\t${point.key.toInt()}m (${text.text})")
+                Side.RIGHT -> println("\t\t\t\t\t${point.key.toInt()}m ${text.text}")
+                Side.LEFT -> println("${text.text}\t${point.key.toInt()}m")
+            }
+        }
+    }
+}

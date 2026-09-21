@@ -3,12 +3,10 @@ package org.scottishtecharmy.soundscape.screens.onboarding.navigating
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
-import android.util.Log
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
@@ -28,7 +26,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.rounded.LocationOn
-import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +34,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,15 +43,25 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.OnboardButton
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_granted
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_location
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_message
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_not_granted
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_notification
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_required
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_title
+import org.scottishtecharmy.soundscape.resources.ui_continue
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
@@ -62,32 +70,31 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 enum class Permission(
     val manifestIdentifier: String,
     val icon: ImageVector,
-    @StringRes val mainText: Int,
-    @StringRes val subtitleText: Int,
+    val mainText: StringResource,
+    val subtitleText: StringResource,
 ) {
     ACCESS_FINE_LOCATION(
         Manifest.permission.ACCESS_FINE_LOCATION, Icons.Rounded.LocationOn,
-        R.string.first_launch_permissions_location,
-        R.string.first_launch_permissions_required,
-    ),
-    RECORD_AUDIO(
-        Manifest.permission.RECORD_AUDIO,
-        Icons.Rounded.Mic,
-        R.string.first_launch_permissions_record_audio,
-        R.string.first_launch_permissions_required_for_voice_control,
+        Res.string.first_launch_permissions_location,
+        Res.string.first_launch_permissions_required,
     ),
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     POST_NOTIFICATIONS(
         Manifest.permission.POST_NOTIFICATIONS,
         Icons.Rounded.Notifications,
-        R.string.first_launch_permissions_notification,
-        R.string.first_launch_permissions_required,
+        Res.string.first_launch_permissions_notification,
+        Res.string.first_launch_permissions_required,
     ),
 }
 
 @Composable
 fun NavigatingScreen(
+    // Called both when the user taps Continue and when the screen skips itself
+    // because every permission is already granted. Either way there's nothing left
+    // to review on this screen once it's satisfied, so callers should have this pop
+    // the screen off the back stack - otherwise swiping back re-reveals it, its skip
+    // check re-fires immediately, and it bounces straight forward again.
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
     vm: NavigatingScreenViewModel = viewModel(),
@@ -98,13 +105,11 @@ fun NavigatingScreen(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             listOf(
                 Permission.ACCESS_FINE_LOCATION,
-                Permission.POST_NOTIFICATIONS,
-                Permission.RECORD_AUDIO,
+                Permission.POST_NOTIFICATIONS
             )
         } else {
             listOf(
-                Permission.ACCESS_FINE_LOCATION,
-                Permission.RECORD_AUDIO,
+                Permission.ACCESS_FINE_LOCATION
             )
         }
     }
@@ -118,6 +123,14 @@ fun NavigatingScreen(
 
     LaunchedEffect(permissionsStatus) {
         vm.permissionsRequired(permissionsStatus)
+    }
+
+    // Skip this screen entirely if every required permission is already granted
+    // (e.g. the user re-runs onboarding after already having granted them).
+    LaunchedEffect(Unit) {
+        if (requiredPermissionsGranted(permissionsStatus)) {
+            onNavigate()
+        }
     }
 
     val onPermissionResult = remember(vm) {
@@ -138,8 +151,8 @@ fun NavigatingScreen(
 data class PermissionRationaleUi(
     val permission: Permission,
     val icon: ImageVector,
-    @StringRes val mainText: Int,
-    @StringRes val subtitleText: Int,
+    val mainText: StringResource,
+    val subtitleText: StringResource,
     val onPermissionResult: (permission: Permission, granted: Boolean) -> Unit
 ) {
 
@@ -176,7 +189,7 @@ fun Navigating(
         )
         {
             Text(
-                text = stringResource(id = R.string.first_launch_permissions_title),
+                text = stringResource(Res.string.first_launch_permissions_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -190,7 +203,7 @@ fun Navigating(
 
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
-                text = stringResource(id = R.string.first_launch_permissions_message),
+                text = stringResource(Res.string.first_launch_permissions_message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -222,7 +235,8 @@ fun Navigating(
                             granted,
                             onClick = {
                                 launcher.launch(permission.manifestIdentifier)
-                            }
+                            },
+                            clickableTestTag = "navigatingScreenPermissionRow${permission.name}"
                         )
                     }
                 }
@@ -236,7 +250,7 @@ fun Navigating(
                     .focusable(false)
             ) {
                 OnboardButton(
-                    text = stringResource(R.string.ui_continue),
+                    text = stringResource(Res.string.ui_continue),
                     onClick = { onContinue() },
                     enabled = continueEnabled,
                     modifier = Modifier
@@ -248,6 +262,7 @@ fun Navigating(
         }
     }
     LaunchedEffect(Unit) {
+        withFrameNanos { }
         focusRequester.requestFocus()
     }
 }
@@ -266,16 +281,30 @@ fun singlePermissionResultLauncher(
 @Composable
 fun PermissionRationale(
     icon: ImageVector,
-    @StringRes mainText: Int,
-    @StringRes subtitleText: Int,
+    mainText: StringResource,
+    subtitleText: StringResource,
     granted: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    clickableTestTag: String = "",
 ) {
     Row(
         modifier = modifier
             .mediumPadding()
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .focusable()
+            .semantics(mergeDescendants = true) {}
+            .testTag(clickableTestTag)
+            .then(
+                // Once granted there's nothing left for a tap to do - permissions can't be
+                // withdrawn from here - so drop the click action rather than leaving a
+                // "double tap to activate" hint that does nothing.
+                if (granted) {
+                    Modifier
+                } else {
+                    Modifier.clickable { onClick() }
+                }
+            ),
     )
     {
         Icon(
@@ -285,13 +314,7 @@ fun PermissionRationale(
         )
         Spacer(modifier = Modifier.width(spacing.extraSmall))
         Column(
-            modifier = Modifier
-                .weight(1f)
-                .focusable()
-                .semantics(mergeDescendants = true) {}
-                .clickable {
-                    onClick()
-                }
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = stringResource(mainText),
@@ -302,20 +325,25 @@ fun PermissionRationale(
                 text = stringResource(subtitleText),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface,
+                // The rationale text is only useful while the permission is still
+                // outstanding - once granted, TalkBack should just say "<name>,
+                // permission granted" rather than repeating the now-irrelevant
+                // rationale.
+                modifier = if (granted) Modifier.clearAndSetSemantics {} else Modifier,
             )
         }
         Spacer(modifier = Modifier.weight(0.05f))
         if (granted) {
             Icon(
                 Icons.Default.Check,
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.first_launch_permissions_granted),
                 modifier = Modifier.align(Alignment.CenterVertically),
                 tint = MaterialTheme.colorScheme.onSurface
             )
         } else {
             Icon(
                 Icons.Default.Cancel,
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.first_launch_permissions_not_granted),
                 modifier = Modifier.align(Alignment.CenterVertically),
                 tint = MaterialTheme.colorScheme.onSurface
             )
@@ -353,8 +381,8 @@ fun PermissionRationalePreview() {
     SoundscapeTheme {
         PermissionRationale(
             Icons.Rounded.LocationOn,
-            R.string.first_launch_permissions_location,
-            R.string.first_launch_permissions_required,
+            Res.string.first_launch_permissions_location,
+            Res.string.first_launch_permissions_required,
             true,
             {}
         )
@@ -367,8 +395,8 @@ fun PermissionRationaleNotGrantedPreview() {
     SoundscapeTheme {
         PermissionRationale(
             Icons.Rounded.LocationOn,
-            R.string.first_launch_permissions_location,
-            R.string.first_launch_permissions_required,
+            Res.string.first_launch_permissions_location,
+            Res.string.first_launch_permissions_required,
             false,
             {}
         )

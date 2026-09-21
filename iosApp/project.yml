@@ -1,0 +1,309 @@
+name: iosApp
+options:
+  bundleIdPrefix: org.scottishtecharmy.soundscape
+  deploymentTarget:
+    iOS: "16.0"
+configFiles:
+  Debug: Local.xcconfig
+  Release: Local.xcconfig
+settings:
+  ENABLE_BITCODE: "NO"
+  DEVELOPMENT_TEAM: 48N3J4V5KM
+  CODE_SIGNING_ALLOWED: "NO"
+  # Defaults for local Xcode runs. CI overrides both via the xcodebuild
+  # command line (see .github/workflows/build-app.yaml). Without defaults,
+  # Info.plist substitution leaves CFBundleVersion empty and installd
+  # refuses to install the Share Extension (MissingBundleVersion).
+  MARKETING_VERSION: "0.0.0"
+  CURRENT_PROJECT_VERSION: "1"
+  # Full x.y.z version. MARKETING_VERSION is trimmed to x.y on CI so TestFlight
+  # groups builds into one train; APP_VERSION_NAME preserves the patch for the
+  # AppVersionName Info.plist key that PlatformInfo.appVersionName() reads.
+  APP_VERSION_NAME: "0.0.0"
+packages:
+  MapLibre:
+    url: https://github.com/maplibre/maplibre-gl-native-distribution
+    version: 6.17.1
+  RealmSwift:
+    url: https://github.com/realm/realm-swift
+    from: 20.0.4
+  Firebase:
+    # Pinned exactly, like MapLibre above. `from:` is a >=12.18.0 <13.0.0 range, and
+    # Package.resolved isn't committed (it lives inside the generated, gitignored
+    # .xcodeproj), so CI resolved whatever was newest at build time. A release shipped
+    # on GoogleAppMeasurement 12.19.0 while local builds were still on 12.18.0, which
+    # is how the -ObjC crash below reached users without reproducing for anyone here.
+    url: https://github.com/firebase/firebase-ios-sdk
+    version: 12.19.0
+targets:
+  iosApp:
+    type: application
+    platform: iOS
+    dependencies:
+      - package: MapLibre
+        product: MapLibre
+      - package: RealmSwift
+        product: RealmSwift
+        embed: true
+      - package: Firebase
+        product: FirebaseAnalytics
+      - package: Firebase
+        product: FirebaseCrashlytics
+      - target: ShareExtension
+        embed: true
+    sources:
+      - path: iosApp
+      - path: ../shared/src/commonMain/resources/address
+        type: folder
+      - path: ../shared/src/commonMain/resources/geography
+        type: folder
+      - path: ../app/src/main/assets/open_source_licenses.json
+        buildPhase: resources
+      - path: ../app/src/main/assets/osm-liberty-accessible
+        type: folder
+      - path: ../app/src/main/assets/Sounds
+        type: folder
+      - path: ../app/src/main/assets/DoubleTap/dt_soundscape.mp3
+        buildPhase: resources
+    info:
+      path: iosApp/Info.plist
+      properties:
+        CFBundleDisplayName: Soundscape
+        CFBundleName: Soundscape
+        CFBundleIconName: AppIcon
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        AppVersionName: $(APP_VERSION_NAME)
+        ITSAppUsesNonExemptEncryption: false
+        CADisableMinimumFrameDurationOnPhone: true
+        NSLocationWhenInUseUsageDescription: "Soundscape needs your location to provide audio navigation and describe your surroundings."
+        NSLocationAlwaysAndWhenInUseUsageDescription: "Soundscape needs your location to provide audio navigation even when the app is in the background."
+        NSMotionUsageDescription: "Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings."
+        NSBluetoothAlwaysUsageDescription: "Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices."
+        NSBluetoothPeripheralUsageDescription: "Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices."
+        UIBackgroundModes:
+          - audio
+          - location
+        UILaunchScreen:
+          UIColorName: SplashBackground
+          UIImageName: SoundscapeLogo
+          UIImageRespectsSafeAreaInsets: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        TileProviderURL: "$(TILE_PROVIDER_URL)"
+        SearchProviderURL: "$(SEARCH_PROVIDER_URL)"
+        ExtractProviderURL: "$(EXTRACT_PROVIDER_URL)"
+        LSSupportsOpeningDocumentsInPlace: true
+        CFBundleURLTypes:
+          - CFBundleURLName: org.scottishtecharmy.soundscape.geo
+            CFBundleURLSchemes: [ geo ]
+          - CFBundleURLName: org.scottishtecharmy.soundscape.soundscape
+            CFBundleURLSchemes: [ soundscape ]
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Soundscape Route
+            LSHandlerRank: Owner
+            LSItemContentTypes:
+              - org.scottishtecharmy.soundscape.route-json
+              - public.json
+            CFBundleTypeRole: Editor
+          - CFBundleTypeName: GPX Route
+            LSHandlerRank: Alternate
+            LSItemContentTypes:
+              - com.topografix.gpx
+              - public.xml
+            CFBundleTypeRole: Viewer
+        UTImportedTypeDeclarations:
+          - UTTypeIdentifier: org.scottishtecharmy.soundscape.route-json
+            UTTypeDescription: Soundscape Route
+            UTTypeConformsTo:
+              - public.json
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - json
+          - UTTypeIdentifier: com.topografix.gpx
+            UTTypeDescription: GPX File
+            UTTypeConformsTo:
+              - public.xml
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - gpx
+    # xcodegen: mixing flat entries with a `configs:` key silently drops the
+    # flat entries, so wrap the shared settings in `base:` when adding per-
+    # config overrides.
+    settings:
+      base:
+        CODE_SIGNING_ALLOWED: "YES"
+        PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape
+        PRODUCT_NAME: Soundscape
+        FRAMEWORK_SEARCH_PATHS:
+          - "$(inherited)"
+          - "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
+        # OTHER_LDFLAGS, not OTHER_LINKER_FLAGS: the latter isn't a build setting Xcode
+        # recognises, so everything in it was silently dropped. `-framework Shared` was
+        # inert but harmless, because `import Shared` makes Swift autolink the framework
+        # anyway. -ObjC was not harmless - see below.
+        OTHER_LDFLAGS:
+          - "$(inherited)"
+          # GoogleAppMeasurement ships its Objective-C categories in object files that
+          # export a dummy _APMInclude<Name>Category symbol, referenced from
+          # APMMeasurement.o, so the linker keeps them without -ObjC. 12.19.0 added
+          # APMMeasurement+SBT.o and forgot the anchor: it defines nothing any other
+          # member references, so the linker drops it, and the -[self fetchSBT] calls in
+          # APMMeasurement.o (startMeasurementOnWorkerQueue, updateSchedule, uploadData,
+          # networkRemoteConfigFetchCompletionHandler:data:error:) become
+          # "NSInvalidArgumentException -[APMMeasurement fetchSBT]: unrecognized selector".
+          - "-ObjC"
+          - "-framework"
+          - "Shared"
+        CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
+      configs:
+        # CI archives with manual signing so xcodebuild uses the
+        # distribution cert + profile imported by setup-ios-signing rather
+        # than asking Apple to mint a managed Apple Development profile
+        # (which fails when the App Store Connect API key can't manage
+        # the per-machine dev cert). The profile name is injected via a
+        # user-defined build setting so each target can get its own value
+        # from the xcodebuild command line. Debug is left on the default
+        # automatic signing so local runs from Xcode keep working.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: "$(PROFILE_NAME_APP)"
+          # dSYMs are only needed for Crashlytics symbolication on Release.
+          # Firebase is gated off on Debug, so producing dSYMs there would
+          # just slow the build.
+          DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+    preBuildScripts:
+      - name: "Build Kotlin Framework"
+        script: |
+          cd "$SRCROOT/.."
+          ./gradlew --configure-on-demand :shared:embedAndSignAppleFrameworkForXcode
+        basedOnDependencyAnalysis: false
+    postBuildScripts:
+      # Crashlytics needs dSYMs uploaded so crash reports symbolicate. The
+      # Firebase SDK ships a `run` script inside its SPM checkout that handles
+      # this. Skipped on Debug because Firebase is gated off there anyway
+      # (FirebaseAnalyticsBridge.swift). The standard path formula assumes
+      # BUILD_DIR sits under DerivedData; falls back to a `find` under the
+      # module cache's parent for custom Xcode build locations.
+      - name: "Crashlytics: upload dSYMs"
+        script: |
+          if [ "$CONFIGURATION" = "Debug" ]; then
+            exit 0
+          fi
+          RUN_SCRIPT="${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run"
+          if [ ! -x "$RUN_SCRIPT" ]; then
+            DERIVED_ROOT=$(dirname "$MODULE_CACHE_DIR")
+            RUN_SCRIPT=$(find "$DERIVED_ROOT" -maxdepth 6 -type f -path "*/firebase-ios-sdk/Crashlytics/run" -print -quit)
+          fi
+          if [ -z "$RUN_SCRIPT" ] || [ ! -x "$RUN_SCRIPT" ]; then
+            echo "error: could not locate firebase-ios-sdk Crashlytics/run script"
+            exit 1
+          fi
+          "$RUN_SCRIPT"
+        inputFiles:
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}
+          - $(SRCROOT)/iosApp/GoogleService-Info.plist
+        basedOnDependencyAnalysis: false
+
+  iosAppTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: iosAppTests
+    dependencies:
+      - target: iosApp
+      # LegacyMigratorDatabaseTests builds its fixtures with RealmSwift, so the
+      # test bundle needs to link it directly. `embed: false` because the host
+      # app already embeds the framework and the bundle loads inside it.
+      - package: RealmSwift
+        product: RealmSwift
+        embed: false
+    settings:
+      base:
+        CODE_SIGNING_ALLOWED: "YES"
+        # The host app's target is `iosApp` but PRODUCT_NAME is `Soundscape`,
+        # so xcodegen's auto-derived TEST_HOST (based on target name) points
+        # at a non-existent binary. Override it to the real product path.
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/Soundscape.app/Soundscape
+        BUNDLE_LOADER: $(TEST_HOST)
+        GENERATE_INFOPLIST_FILE: "YES"
+      configs:
+        # The Firebase Test Lab build-for-testing step signs with the same
+        # Apple Distribution cert used by the host app. XCTest bundles ride
+        # inside Soundscape.app/PlugIns/ and inherit the host's provisioning
+        # context, so an empty PROVISIONING_PROFILE_SPECIFIER stops xcodebuild
+        # from demanding a per-target profile that our distribution cert
+        # doesn't cover. Automatic signing would need an Apple Development
+        # cert, which no self-hosted CI runner has.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: ""
+
+  ShareExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ShareExtension
+        excludes:
+          - Info.plist
+    info:
+      path: ShareExtension/Info.plist
+      properties:
+        CFBundleDisplayName: Soundscape
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationQueriesSchemes:
+          - soundscape
+        NSExtension:
+          NSExtensionAttributes:
+            NSExtensionActivationRule: 'SUBQUERY(extensionItems, $extensionItem, SUBQUERY($extensionItem.attachments, $attachment, ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "com.apple.mapkit.map-item" || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url" || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text").@count > 0).@count > 0'
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+    settings:
+      base:
+        CODE_SIGNING_ALLOWED: "YES"
+        PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape.share
+        SKIP_INSTALL: "YES"
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: "$(PROFILE_NAME_SHAREEXT)"
+
+schemes:
+  iosApp:
+    build:
+      targets:
+        iosApp: all
+        iosAppTests: [ test ]
+    run:
+      config: Debug
+      # Xcode's Metal instrumentation deadlocks the app. MetalTools/GPUToolsCapture
+      # inject objc retain traffic into Compose's render thread, which then blocks on
+      # the objc sidetable lock while the main thread holds the objc weak-table lock
+      # inside MapLibre's draw (objc_loadWeakRetained on a Kotlin ObjCBackRef) and
+      # waits for a Kotlin/Native GC that can never suspend the render thread. Set
+      # here rather than in Xcode's scheme editor because xcodegen regenerates the
+      # scheme and omits both attributes by default, silently restoring them.
+      enableGPUFrameCaptureMode: disabled
+      enableGPUValidationMode: disabled
+    test:
+      config: Debug
+      targets:
+        - iosAppTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

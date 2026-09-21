@@ -5,8 +5,6 @@ import android.content.Context
 import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,21 +12,23 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import javax.inject.Inject
 
-@HiltViewModel
-class AudioOnboardingViewModel @Inject constructor(@param:ApplicationContext val context: Context, val audioEngine : NativeAudioEngine): ViewModel() {
+// Context here is always the DI-supplied application context (Koin's androidContext()),
+// never an Activity, so this doesn't leak.
+@SuppressLint("StaticFieldLeak")
+class AudioOnboardingViewModel(val context: Context, val audioEngine: NativeAudioEngine) :
+    ViewModel() {
 
     data class AudioBeaconsUiState(
         // Data for the ViewMode that affects the UI
-        val beaconTypes : List<String> = emptyList(),
+        val beaconTypes: List<String> = emptyList(),
         val selectedBeacon: String? = null
     )
-    private var beacon : Long = 0
+
+    private var beacon: Long = 0
     private var currentType = ""
 
     override fun onCleared() {
-        super.onCleared()
         audioEngine.destroy()
     }
 
@@ -40,9 +40,10 @@ class AudioOnboardingViewModel @Inject constructor(@param:ApplicationContext val
     )
 
     val state: StateFlow<AudioBeaconsUiState> = _state.asStateFlow()
+
     @SuppressLint("ApplySharedPref")
     fun setAudioBeaconType(type: String) {
-        if(type != currentType) {
+        if (type != currentType) {
             audioEngine.setBeaconType(type)
             if (beacon != 0L)
                 audioEngine.destroyBeacon(beacon)
@@ -56,7 +57,7 @@ class AudioOnboardingViewModel @Inject constructor(@param:ApplicationContext val
     }
 
     fun silenceBeacon() {
-        if(beacon != 0L) {
+        if (beacon != 0L) {
             audioEngine.destroyBeacon(beacon)
             beacon = 0
             currentType = ""

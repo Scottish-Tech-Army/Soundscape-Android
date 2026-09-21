@@ -9,6 +9,8 @@ has_toc: false
 
 This document aims to be a concise introduction to terms used within the Soundscape app. The goal is for the terms to be easy to understand and identifiable as distinct concepts.
 
+The alternate wordings suggested below (‘sound beacon’, ‘route point’, ‘pin’, etc.) are there to pin down each **concept in English** for someone who has never used the app. They are not a shortlist to translate from. Where the target language's own mapping and navigation apps already have a word for the concept, prefer that — a user recognises a word they have already learned elsewhere, whereas a faithful calque of an English gloss has to be decoded. See `translations/guidance/_common.md`, rule C1.
+
 ## Key terms
 ### Audio Beacon
 When set on a location, the app plays a continuous audible sound as if it is coming from that location. It helps the user track a destination but does not give turn-by-turn directions. Possible alternate terms could be ‘sound beacon’, ‘audible guide’, or perhaps even ‘audio flare’.
@@ -17,7 +19,7 @@ When set on a location, the app plays a continuous audible sound as if it is com
 Markers are saved locations that can be given a meaningful name. Markers can be personal places like home, office, or grocery store, and can also be custom points not currently on maps (e.g. building entrances, pedestrian crossings). Soundscape can call them out automatically when nearby, and an audio beacon can be set on any marker. Other terms might be ‘saved point’ or ‘pin’.
 
 ### Waypoint
-A waypoint is an individual point along a route. It could also be translated as a ‘route point’.
+A waypoint is an individual point along a route — the app announces arrival at each one in turn and moves the audio beacon on to the next. In English this is sometimes glossed as a ‘route point’, but most languages already have a settled word for “a stop you add to a route” from their mapping apps, and that is usually the better choice (Ukrainian, for example, uses «зупинка» rather than a calque of ‘route point’).
 
 ### Routes
 Routes are a sequence of waypoints that form a path. Soundscape can play back a route with each waypoint as an audio beacon. The app announces when the user reaches each waypoint, at which time the audio beacon automatically switches to the next waypoint. This is not turn-by-turn navigation; it is a sequence of locations for beacons, like a playlist of audio beacons.

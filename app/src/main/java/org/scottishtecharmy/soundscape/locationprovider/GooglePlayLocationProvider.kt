@@ -15,10 +15,8 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import kotlin.time.Duration.Companion.seconds
 
-class GooglePlayLocationProvider(context : Context) :
+class GooglePlayLocationProvider(context: Context) :
     LocationProvider() {
 
     private val fusedLocationClient: FusedLocationProviderClient =
@@ -27,17 +25,15 @@ class GooglePlayLocationProvider(context : Context) :
 
     private val filter = KalmanLocationFilter()
 
-    fun filterLocation(location: Location) : Location {
-        // Filter the location through the Kalman filter
-        val filteredLocation = filter.process(
-            LngLatAlt(location.longitude, location.latitude),
-            System.currentTimeMillis(),
-            location.accuracy.toDouble()
-        )
-        location.latitude = filteredLocation.latitude
-        location.longitude = filteredLocation.longitude
-
-        return location
+    /**
+     * Publishes a fix on both flows. Every fix is published, however inaccurate: dropping the ones
+     * that aren't good enough to act on is GeoEngine's job (see LocationProvider.isLocationUsable),
+     * so that the GPX recorder and the map still see what the receiver actually reported.
+     */
+    private fun publishLocation(location: Location) {
+        val soundscapeLocation = location.toSoundscapeLocation()
+        mutableLocationFlow.value = soundscapeLocation
+        mutableFilteredLocationFlow.value = filter.filterPosition(soundscapeLocation)
     }
 
     init {
@@ -46,13 +42,10 @@ class GooglePlayLocationProvider(context : Context) :
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            // Faster startup for obtaining initial location
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                    // Handle the retrieved location here
                     if (location != null) {
-                        mutableLocationFlow.value = location
-                        mutableFilteredLocationFlow.value = filterLocation(location)
+                        publishLocation(location)
                     }
                 }
                 .addOnFailureListener { _: Exception ->
@@ -61,8 +54,7 @@ class GooglePlayLocationProvider(context : Context) :
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
-                    mutableLocationFlow.value = location
-                    mutableFilteredLocationFlow.value = filterLocation(location)
+                    publishLocation(location)
                 }
             }
         }
@@ -73,24 +65,22 @@ class GooglePlayLocationProvider(context : Context) :
     }
 
     @SuppressLint("MissingPermission")
-    override fun start(context : Context){
+    override fun start(accuracy: Accuracy) {
 
         fusedLocationClient.requestLocationUpdates(
             LocationRequest.Builder(
-                Priority.PRIORITY_HIGH_ACCURACY,
-                LOCATION_UPDATES_INTERVAL_MS
+                when (accuracy) {
+                    Accuracy.Balanced -> Priority.PRIORITY_BALANCED_POWER_ACCURACY
+                    Accuracy.High -> Priority.PRIORITY_HIGH_ACCURACY
+                },
+                accuracy.updateInterval.inWholeMilliseconds
             ).apply {
-                setMinUpdateDistanceMeters(1f)
+                setMinUpdateDistanceMeters(accuracy.minimumDistanceM)
                 setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
                 setWaitForAccurateLocation(true)
             }.build(),
             locationCallback,
             Looper.getMainLooper(),
         )
-    }
-
-    companion object {
-        // Check for GPS every n seconds
-        private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
     }
 }

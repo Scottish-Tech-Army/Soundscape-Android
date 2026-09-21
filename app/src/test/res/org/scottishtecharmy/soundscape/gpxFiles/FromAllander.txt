@@ -1,0 +1,138 @@
+
+Callout
+	At Allander Leisure Centre
+
+Callout
+	Allander Leisure Centre Main entrance
+
+Callout
+	Allander Leisure Centre Entrance
+
+Callout
+	Ahead Minor_construction to Allander Leisure Centre
+
+Callout
+	Approaching intersection
+		Service continues ahead
+		Service to Allander Car Park goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Service goes left
+		Service to Allander Car Park continues ahead
+		Service goes right
+
+Callout
+	At Allander Leisure Centre
+
+Callout
+	Approaching intersection
+		Dalgleish Drive goes left
+		Minor to Alexander Grove continues ahead
+
+Callout
+	On Minor that joins Dalgleish Drive and Alexander Grove and close to Milngavie
+
+Callout
+	On Alexander Grove and close to Milngavie
+
+Callout
+	Ahead Alexander Grove
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Milngavie Road goes left
+		Milngavie Road goes right
+
+Callout
+	On Milngavie Road and close to Milngavie
+
+Callout
+	On Service that joins Milngavie Road and McDonald's and close to Milngavie
+
+Callout
+	On Pavement next to Main Street and close to Milngavie
+
+Callout
+	Approaching intersection
+		Burnbrae Roundabout goes left
+		Burnbrae Roundabout goes right
+
+Callout
+	OSM Feature
+
+Callout
+	On Burnbrae Roundabout and close to Milngavie
+
+Callout
+	On Main Street and close to Milngavie
+
+Callout
+	Approaching intersection
+		Main Street continues ahead
+		Main Street continues ahead
+
+Callout
+	Lennox Park
+
+Callout
+	Approaching intersection
+		Main Street continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	On Woodburn Way and close to Milngavie
+
+Callout
+	Approaching intersection
+		Ellangowan Road goes left
+		Woodburn Way continues ahead
+		Ellangowan Road goes right
+
+Callout
+	On Station Road and close to Milngavie
+
+Callout
+	Ahead Station Road
+
+Callout
+	The Lillie Art Gallery
+
+Callout
+	Near Milngavie, Station Road (before) Transit Stop
+
+Callout
+	On Strathblane Road and close to Milngavie
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Milngavie, Roselea Drive (before) Transit Stop
+
+Callout
+	Approaching intersection
+		Roselea Drive goes left
+		Strathblane Road continues ahead
+
+Callout
+	On Roselea Drive and close to Milngavie
+
+Callout
+	Approaching intersection
+		Roselea Drive continues ahead
+		Service goes right
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Ahead Service

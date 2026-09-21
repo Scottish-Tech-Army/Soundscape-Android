@@ -32,7 +32,10 @@ class PolygonJsonAdapter : JsonAdapter<Polygon>() {
                         reader.beginArray()
                         val polyLine = arrayListOf<LngLatAlt>()
                         while (reader.hasNext()) {
-                            polyLine.add(positionJsonAdapter.fromJson(reader)!!)
+                            polyLine.add(
+                                positionJsonAdapter.fromJson(reader)
+                                    ?: throw JsonDataException("Missing position at ${reader.path}")
+                            )
                         }
                         position.add(polyLine)
                         reader.endArray()

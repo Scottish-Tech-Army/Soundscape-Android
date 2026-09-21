@@ -7,11 +7,11 @@ import org.scottishtecharmy.soundscape.geoengine.filters.IndexedLineString
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.dijkstraOnWaysWithLoops
+import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
+import org.scottishtecharmy.soundscape.geoengine.utils.getPathWays
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
-import org.scottishtecharmy.soundscape.geoengine.utils.getPathWays
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
 import kotlin.time.measureTime
@@ -20,7 +20,7 @@ import kotlin.time.measureTime
 class DijkstraTest {
 
     @Test
-    fun testMvtDijkstra(){
+    fun testMvtDijkstra() {
 
         val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
 
@@ -38,20 +38,23 @@ class DijkstraTest {
         val shortestRoutes = FeatureCollection()
 
         // We should already have these values in the real code, so don't time them
-        val startIntersection = intersectionsTree.getNearestFeature(startLocation, gridState.ruler) as Intersection
-        val endIntersection = intersectionsTree.getNearestFeature(endLocation, gridState.ruler) as Intersection
-        var shortestPath : Double
+        val startIntersection =
+            intersectionsTree.getNearestFeature(startLocation, gridState.ruler) as Intersection
+        val endIntersection =
+            intersectionsTree.getNearestFeature(endLocation, gridState.ruler) as Intersection
+        var shortestPath: Double
         val timeTakenUsingNewAlgorithm = measureTime {
             /**
              * We already have a Way/Intersection graph which has all of the lines segmented at
              * intersections and with a length value for each Way. We don't have a node ID, but
              * the intersections are all unique objects, so that should be enough.
              */
-            val shortestPathDistance = dijkstraOnWaysWithLoops(startIntersection, endIntersection, gridState.ruler)
+            val shortestPathDistance =
+                dijkstraOnWaysWithLoops(startIntersection, endIntersection, gridState.ruler)
             val ways = getPathWays(
                 endIntersection
             )
-            for(way in ways) {
+            for (way in ways) {
                 shortestRoutes.addFeature(way as Feature)
             }
             shortestPath = shortestPathDistance
@@ -65,7 +68,7 @@ class DijkstraTest {
     }
 
     @Test
-    fun testMvtArbitraryDijkstra(){
+    fun testMvtArbitraryDijkstra() {
 
         val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
 
@@ -89,10 +92,17 @@ class DijkstraTest {
         val startWay = roadTree.getNearestFeature(startLocation, gridState.ruler) as Way
         val endWay = roadTree.getNearestFeature(endLocation, gridState.ruler) as Way
 
-        var shortestPath : Double
+        var shortestPath: Double
         val shortestRoute = FeatureCollection()
         val timeTaken = measureTime {
-            val results = findShortestDistance(startLocation, startWay, endLocation, endWay, null, shortestRoute)
+            val results = findShortestDistance(
+                startLocation,
+                startWay,
+                endLocation,
+                endWay,
+                null,
+                shortestRoute
+            )
             shortestPath = results.distance
             results.tidy()
         }
@@ -105,8 +115,9 @@ class DijkstraTest {
         mapMatchingOutput.write(adapter.toJson(shortestRoute).toByteArray())
         mapMatchingOutput.close()
     }
+
     @Test
-    fun testMvtArbitraryDijkstra2(){
+    fun testMvtArbitraryDijkstra2() {
 
         val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
 
@@ -121,11 +132,18 @@ class DijkstraTest {
         val startWay = roadTree.getNearestFeature(startLocation, gridState.ruler) as Way
         val endWay = roadTree.getNearestFeature(endLocation, gridState.ruler) as Way
 
-        var shortestPath : Double
+        var shortestPath: Double
         val shortestRoute = FeatureCollection()
         val shortestRouteAsSingleLine = FeatureCollection()
         val timeTaken = measureTime {
-            val results = findShortestDistance(startLocation, startWay, endLocation, endWay, null, shortestRoute)
+            val results = findShortestDistance(
+                startLocation,
+                startWay,
+                endLocation,
+                endWay,
+                null,
+                shortestRoute
+            )
             shortestPath = results.distance
 
             val route = getPathWays(results.endIntersection)

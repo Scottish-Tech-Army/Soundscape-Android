@@ -56,19 +56,19 @@ extern "C" {
     \{
 */
 
-typedef char                IPLint8;    /**< Signed 8-bit integer. */
-typedef unsigned char       IPLuint8;   /**< Unsigned 8-bit integer. */
-typedef short               IPLint16;   /**< Signed 16-bit integer. */
-typedef unsigned short      IPLuint16;  /**< Unsigned 16-bit integer. */
-typedef int                 IPLint32;   /**< Signed 32-bit integer. */
-typedef unsigned int        IPLuint32;  /**< Unsigned 32-bit integer. */
-typedef long long           IPLint64;   /**< Signed 64-bit integer. */
-typedef unsigned long long  IPLuint64;  /**< Unsigned 64-bit integer. */
-typedef float               IPLfloat32; /**< Single-precision floating-point number. */
-typedef double              IPLfloat64; /**< Double-precision floating-point number. */
-typedef unsigned char       IPLbyte;    /**< A single byte. */
-typedef size_t              IPLsize;    /**< Unsigned integer of machine-dependent size. Equivalent to \c size_t. */
-typedef const char*         IPLstring;  /**< NULL-terminated ASCII or UTF-8 string. */
+typedef char IPLint8;    /**< Signed 8-bit integer. */
+typedef unsigned char IPLuint8;   /**< Unsigned 8-bit integer. */
+typedef short IPLint16;   /**< Signed 16-bit integer. */
+typedef unsigned short IPLuint16;  /**< Unsigned 16-bit integer. */
+typedef int IPLint32;   /**< Signed 32-bit integer. */
+typedef unsigned int IPLuint32;  /**< Unsigned 32-bit integer. */
+typedef long long IPLint64;   /**< Signed 64-bit integer. */
+typedef unsigned long long IPLuint64;  /**< Unsigned 64-bit integer. */
+typedef float IPLfloat32; /**< Single-precision floating-point number. */
+typedef double IPLfloat64; /**< Double-precision floating-point number. */
+typedef unsigned char IPLbyte;    /**< A single byte. */
+typedef size_t IPLsize;    /**< Unsigned integer of machine-dependent size. Equivalent to \c size_t. */
+typedef const char *IPLstring;  /**< NULL-terminated ASCII or UTF-8 string. */
 
 /** Boolean values. */
 typedef enum {
@@ -92,7 +92,7 @@ typedef enum {
     \param  userData    Pointer to arbitrary user-specified data provided when calling the function that will
                         call this callback.
 */
-typedef void (IPLCALL *IPLProgressCallback)(IPLfloat32 progress, void* userData);
+typedef void (IPLCALL *IPLProgressCallback)(IPLfloat32 progress, void *userData);
 
 /** \} */
 
@@ -127,7 +127,8 @@ typedef enum {
 
 /** Additional flags for modifying the behavior of a Steam Audio context. */
 typedef enum {
-    IPL_CONTEXTFLAGS_VALIDATION = 1 << 0,       /**< All API functions perform extra validation checks. NOTE: This imposes a significant performance penalty. */
+    IPL_CONTEXTFLAGS_VALIDATION = 1
+            << 0,       /**< All API functions perform extra validation checks. NOTE: This imposes a significant performance penalty. */
     IPL_CONTEXTFLAGS_FORCE_32BIT = 0x7fffffff,  /**< Force this enum to be 32 bits in size. */
 } IPLContextFlags;
 
@@ -137,7 +138,7 @@ typedef enum {
     \param  level       The severity level of the message.
     \param  message     The message to log.
 */
-typedef void (IPLCALL *IPLLogFunction)(IPLLogLevel level, const char* message);
+typedef void (IPLCALL *IPLLogFunction)(IPLLogLevel level, const char *message);
 
 /** Prototype of a callback that allocates memory. This is usually specified to let Steam Audio use a custom memory
     allocator. The default behavior is to use the OS-dependent aligned version of \c malloc.
@@ -147,14 +148,14 @@ typedef void (IPLCALL *IPLLogFunction)(IPLLogLevel level, const char* message);
 
     \return Pointer to the allocated block of memory, or \c NULL if allocation failed.
 */
-typedef void* (IPLCALL *IPLAllocateFunction)(IPLsize size, IPLsize alignment);
+typedef void *(IPLCALL *IPLAllocateFunction)(IPLsize size, IPLsize alignment);
 
 /** Prototype of a callback that frees a block of memory. This is usually specified when using a custom memory
     allocator with Steam Audio. The default behavior is to use the OS-dependent aligned version of \c free.
 
     \param  memoryBlock Pointer to the block of memory.
 */
-typedef void (IPLCALL *IPLFreeFunction)(void* memoryBlock);
+typedef void (IPLCALL *IPLFreeFunction)(void *memoryBlock);
 
 /** Settings used to create a context object. */
 typedef struct {
@@ -192,7 +193,7 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplContextCreate(IPLContextSettings* settings, IPLContext* context);
+IPLAPI IPLerror IPLCALL iplContextCreate(IPLContextSettings *settings, IPLContext *context);
 
 /** Retains an additional reference to a context. The context will not be destroyed until all references are
     released.
@@ -207,7 +208,7 @@ IPLAPI IPLContext IPLCALL iplContextRetain(IPLContext context);
 
     \param  context     [in, out] The context to release.
 */
-IPLAPI void IPLCALL iplContextRelease(IPLContext* context);
+IPLAPI void IPLCALL iplContextRelease(IPLContext *context);
 
 /** \} */
 
@@ -243,19 +244,19 @@ typedef struct {
 /** An axis-aligned box. Axis-aligned boxes are used to specify a volume of 3D space. */
 typedef struct {
     /** The minimum coordinates of any vertex. */
-    IPLVector3  minCoordinates;
+    IPLVector3 minCoordinates;
 
     /** The maximum coordinates of any vertex. */
-    IPLVector3  maxCoordinates;
+    IPLVector3 maxCoordinates;
 } IPLBox;
 
 /** A sphere. Spheres are used to define a region of influence around a point. */
 typedef struct {
     /** The center. */
-    IPLVector3  center;
+    IPLVector3 center;
 
     /** The radius. */
-    IPLfloat32  radius;
+    IPLfloat32 radius;
 } IPLSphere;
 
 /** A 3D coordinate system, expressed relative to a canonical coordinate system. */
@@ -284,7 +285,10 @@ typedef struct {
 
     \return A unit-length vector in the listener's coordinate space, pointing from the listener to the source.
 */
-IPLAPI IPLVector3 IPLCALL iplCalculateRelativeDirection(IPLContext context, IPLVector3 sourcePosition, IPLVector3 listenerPosition, IPLVector3 listenerAhead, IPLVector3 listenerUp);
+IPLAPI IPLVector3 IPLCALL
+iplCalculateRelativeDirection(IPLContext context, IPLVector3 sourcePosition,
+                              IPLVector3 listenerPosition, IPLVector3 listenerAhead,
+                              IPLVector3 listenerUp);
 
 /** \} */
 
@@ -304,7 +308,7 @@ DECLARE_OPAQUE_HANDLE(IPLSerializedObject);
 typedef struct {
     /** If non-NULL, the serialized object will contain the data in this buffer. If NULL,
         the serialized object will start out empty. */
-    IPLbyte* data;
+    IPLbyte *data;
 
     /** The number of bytes in the buffer pointed to by \c data. Set to 0 if \c data is
         NULL. */
@@ -319,7 +323,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplSerializedObjectCreate(IPLContext context, IPLSerializedObjectSettings* settings, IPLSerializedObject* serializedObject);
+IPLAPI IPLerror IPLCALL
+iplSerializedObjectCreate(IPLContext context, IPLSerializedObjectSettings *settings,
+                          IPLSerializedObject *serializedObject);
 
 /** Retains an additional reference to a serialized object.
 
@@ -333,7 +339,7 @@ IPLAPI IPLSerializedObject IPLCALL iplSerializedObjectRetain(IPLSerializedObject
 
     \param  serializedObject    The serialized object to release a reference to.
 */
-IPLAPI void IPLCALL iplSerializedObjectRelease(IPLSerializedObject* serializedObject);
+IPLAPI void IPLCALL iplSerializedObjectRelease(IPLSerializedObject *serializedObject);
 
 /** \return The size in bytes of the serialized data contained in a serialized object.
 
@@ -345,7 +351,7 @@ IPLAPI IPLsize IPLCALL iplSerializedObjectGetSize(IPLSerializedObject serialized
 
     \param  serializedObject    The serialized object.
 */
-IPLAPI IPLbyte* IPLCALL iplSerializedObjectGetData(IPLSerializedObject serializedObject);
+IPLAPI IPLbyte *IPLCALL iplSerializedObjectGetData(IPLSerializedObject serializedObject);
 
 /** \} */
 
@@ -378,7 +384,8 @@ typedef void IPLEmbreeDeviceSettings;
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplEmbreeDeviceCreate(IPLContext context, IPLEmbreeDeviceSettings* settings, IPLEmbreeDevice* device);
+IPLAPI IPLerror IPLCALL iplEmbreeDeviceCreate(IPLContext context, IPLEmbreeDeviceSettings *settings,
+                                              IPLEmbreeDevice *device);
 
 /** Retains an additional reference to an Embree device.
 
@@ -392,7 +399,7 @@ IPLAPI IPLEmbreeDevice IPLCALL iplEmbreeDeviceRetain(IPLEmbreeDevice device);
 
     \param  device  The Embree device to release a reference to.
 */
-IPLAPI void IPLCALL iplEmbreeDeviceRelease(IPLEmbreeDevice* device);
+IPLAPI void IPLCALL iplEmbreeDeviceRelease(IPLEmbreeDevice *device);
 
 /** \} */
 
@@ -470,7 +477,7 @@ typedef struct {
     device for your application. */
 typedef struct {
     /** The OpenCL platform id. Can be cast to \c cl_platform_id. */
-    void* platform;
+    void *platform;
 
     /** The OpenCL platform name. */
     IPLstring platformName;
@@ -482,7 +489,7 @@ typedef struct {
     IPLstring platformVersion;
 
     /** The OpenCL device id. Can be cast to \c cl_device_id. */
-    void* device;
+    void *device;
 
     /** The OpenCL device name. */
     IPLstring deviceName;
@@ -517,7 +524,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplOpenCLDeviceListCreate(IPLContext context, IPLOpenCLDeviceSettings* settings, IPLOpenCLDeviceList* deviceList);
+IPLAPI IPLerror IPLCALL
+iplOpenCLDeviceListCreate(IPLContext context, IPLOpenCLDeviceSettings *settings,
+                          IPLOpenCLDeviceList *deviceList);
 
 /** Retains an additional reference to an OpenCL device list.
 
@@ -531,7 +540,7 @@ IPLAPI IPLOpenCLDeviceList IPLCALL iplOpenCLDeviceListRetain(IPLOpenCLDeviceList
 
     \param  deviceList  The OpenCL device list to release a reference to.
 */
-IPLAPI void IPLCALL iplOpenCLDeviceListRelease(IPLOpenCLDeviceList* deviceList);
+IPLAPI void IPLCALL iplOpenCLDeviceListRelease(IPLOpenCLDeviceList *deviceList);
 
 /** \return The number of devices in an OpenCL device list.
 
@@ -545,7 +554,8 @@ IPLAPI IPLint32 IPLCALL iplOpenCLDeviceListGetNumDevices(IPLOpenCLDeviceList dev
     \param  index       The index of the device within the list.
     \param  deviceDesc  [out] A descriptor for the properties of the specified OpenCL device.
 */
-IPLAPI void IPLCALL iplOpenCLDeviceListGetDeviceDesc(IPLOpenCLDeviceList deviceList, IPLint32 index, IPLOpenCLDeviceDesc* deviceDesc);
+IPLAPI void IPLCALL iplOpenCLDeviceListGetDeviceDesc(IPLOpenCLDeviceList deviceList, IPLint32 index,
+                                                     IPLOpenCLDeviceDesc *deviceDesc);
 
 /** Creates an OpenCL device. The device is specified as an index into an OpenCL device list.
 
@@ -556,7 +566,9 @@ IPLAPI void IPLCALL iplOpenCLDeviceListGetDeviceDesc(IPLOpenCLDeviceList deviceL
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplOpenCLDeviceCreate(IPLContext context, IPLOpenCLDeviceList deviceList, IPLint32 index, IPLOpenCLDevice* device);
+IPLAPI IPLerror IPLCALL
+iplOpenCLDeviceCreate(IPLContext context, IPLOpenCLDeviceList deviceList, IPLint32 index,
+                      IPLOpenCLDevice *device);
 
 /** Creates an OpenCL device from an existing OpenCL device created by your application. Steam Audio will
     use up to two command queues that you provide for enqueuing OpenCL computations.
@@ -568,7 +580,9 @@ IPLAPI IPLerror IPLCALL iplOpenCLDeviceCreate(IPLContext context, IPLOpenCLDevic
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplOpenCLDeviceCreateFromExisting(IPLContext context, void* convolutionQueue, void* irUpdateQueue, IPLOpenCLDevice* device);
+IPLAPI IPLerror IPLCALL
+iplOpenCLDeviceCreateFromExisting(IPLContext context, void *convolutionQueue, void *irUpdateQueue,
+                                  IPLOpenCLDevice *device);
 
 /** Retains an additional reference to an OpenCL device.
 
@@ -582,7 +596,7 @@ IPLAPI IPLOpenCLDevice IPLCALL iplOpenCLDeviceRetain(IPLOpenCLDevice device);
 
     \param  device  The OpenCL device to release a reference to.
 */
-IPLAPI void IPLCALL iplOpenCLDeviceRelease(IPLOpenCLDevice* device);
+IPLAPI void IPLCALL iplOpenCLDeviceRelease(IPLOpenCLDevice *device);
 
 /** \} */
 
@@ -615,7 +629,9 @@ typedef void IPLRadeonRaysDeviceSettings;
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplRadeonRaysDeviceCreate(IPLOpenCLDevice openCLDevice, IPLRadeonRaysDeviceSettings* settings, IPLRadeonRaysDevice* rrDevice);
+IPLAPI IPLerror IPLCALL
+iplRadeonRaysDeviceCreate(IPLOpenCLDevice openCLDevice, IPLRadeonRaysDeviceSettings *settings,
+                          IPLRadeonRaysDevice *rrDevice);
 
 /** Retains an additional reference to a Radeon Rays device.
 
@@ -629,7 +645,7 @@ IPLAPI IPLRadeonRaysDevice IPLCALL iplRadeonRaysDeviceRetain(IPLRadeonRaysDevice
 
     \param  device  The Radeon Rays device to release a reference to.
 */
-IPLAPI void IPLCALL iplRadeonRaysDeviceRelease(IPLRadeonRaysDevice* device);
+IPLAPI void IPLCALL iplRadeonRaysDeviceRelease(IPLRadeonRaysDevice *device);
 
 /** \} */
 
@@ -668,7 +684,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplTrueAudioNextDeviceCreate(IPLOpenCLDevice openCLDevice, IPLTrueAudioNextDeviceSettings* settings, IPLTrueAudioNextDevice* tanDevice);
+IPLAPI IPLerror IPLCALL
+iplTrueAudioNextDeviceCreate(IPLOpenCLDevice openCLDevice, IPLTrueAudioNextDeviceSettings *settings,
+                             IPLTrueAudioNextDevice *tanDevice);
 
 /** Retains an additional reference to a TrueAudio Next device.
 
@@ -682,7 +700,7 @@ IPLAPI IPLTrueAudioNextDevice IPLCALL iplTrueAudioNextDeviceRetain(IPLTrueAudioN
 
     \param  device  The TrueAudio Next device to release a reference to.
 */
-IPLAPI void IPLCALL iplTrueAudioNextDeviceRelease(IPLTrueAudioNextDevice* device);
+IPLAPI void IPLCALL iplTrueAudioNextDeviceRelease(IPLTrueAudioNextDevice *device);
 
 /** \} */
 
@@ -819,7 +837,7 @@ typedef struct {
     IPLVector3 normal;
 
     /** Pointer to the material at the hit point. Ignored if nothing was hit. */
-    IPLMaterial* material;
+    IPLMaterial *material;
 } IPLHit;
 
 /** Callback for calculating the closest hit along a ray.
@@ -840,7 +858,8 @@ typedef struct {
     \param  userData            Pointer to a block of memory containing arbitrary data, specified during the call to
                                 \c iplSceneCreate.
 */
-typedef void (IPLCALL *IPLClosestHitCallback)(const IPLRay* ray, IPLfloat32 minDistance, IPLfloat32 maxDistance, IPLHit* hit, void* userData);
+typedef void (IPLCALL *IPLClosestHitCallback)(const IPLRay *ray, IPLfloat32 minDistance,
+                                              IPLfloat32 maxDistance, IPLHit *hit, void *userData);
 
 /** Callback for calculating whether a ray hits any geometry.
 
@@ -859,7 +878,9 @@ typedef void (IPLCALL *IPLClosestHitCallback)(const IPLRay* ray, IPLfloat32 minD
     \param  userData            Pointer to a block of memory containing arbitrary data, specified during the call to
                                 \c iplSceneCreate.
 */
-typedef void (IPLCALL *IPLAnyHitCallback)(const IPLRay* ray, IPLfloat32 minDistance, IPLfloat32 maxDistance, IPLuint8* occluded, void* userData);
+typedef void (IPLCALL *IPLAnyHitCallback)(const IPLRay *ray, IPLfloat32 minDistance,
+                                          IPLfloat32 maxDistance, IPLuint8 *occluded,
+                                          void *userData);
 
 /** Callback for calculating the closest hit along a batch of rays.
 
@@ -879,7 +900,10 @@ typedef void (IPLCALL *IPLAnyHitCallback)(const IPLRay* ray, IPLfloat32 minDista
     \param  userData            Pointer to a block of memory containing arbitrary data, specified during the call to
                                 \c iplSceneCreate.
 */
-typedef void (IPLCALL *IPLBatchedClosestHitCallback)(IPLint32 numRays, const IPLRay* rays, const IPLfloat32* minDistances, const IPLfloat32* maxDistances, IPLHit* hits, void* userData);
+typedef void (IPLCALL *IPLBatchedClosestHitCallback)(IPLint32 numRays, const IPLRay *rays,
+                                                     const IPLfloat32 *minDistances,
+                                                     const IPLfloat32 *maxDistances, IPLHit *hits,
+                                                     void *userData);
 
 /** Callback for calculating for each ray in a batch of rays, whether the ray hits any geometry.
 
@@ -898,7 +922,10 @@ typedef void (IPLCALL *IPLBatchedClosestHitCallback)(IPLint32 numRays, const IPL
     \param  userData            Pointer to a block of memory containing arbitrary data, specified during the call to
                                 \c iplSceneCreate.
 */
-typedef void (IPLCALL *IPLBatchedAnyHitCallback)(IPLint32 numRays, const IPLRay* rays, const IPLfloat32* minDistances, const IPLfloat32* maxDistances, IPLuint8* occluded, void* userData);
+typedef void (IPLCALL *IPLBatchedAnyHitCallback)(IPLint32 numRays, const IPLRay *rays,
+                                                 const IPLfloat32 *minDistances,
+                                                 const IPLfloat32 *maxDistances, IPLuint8 *occluded,
+                                                 void *userData);
 
 /** Settings used to create a scene. */
 typedef struct {
@@ -918,7 +945,7 @@ typedef struct {
     IPLBatchedAnyHitCallback batchedAnyHitCallback;
 
     /** Arbitrary user-provided data for use by ray tracing callbacks. Only for \c IPL_SCENETYPE_CUSTOM. */
-    void* userData;
+    void *userData;
 
     /** Handle to an Embree device. Only for \c IPL_SCENETYPE_EMBREE. */
     IPLEmbreeDevice embreeDevice;
@@ -939,16 +966,16 @@ typedef struct {
     IPLint32 numMaterials;
 
     /** Array containing vertices. */
-    IPLVector3* vertices;
+    IPLVector3 *vertices;
 
     /** Array containing (indexed) triangles. */
-    IPLTriangle* triangles;
+    IPLTriangle *triangles;
 
     /** Array containing, for each triangle, the index of the associated material. */
-    IPLint32* materialIndices;
+    IPLint32 *materialIndices;
 
     /** Array of materials. */
-    IPLMaterial* materials;
+    IPLMaterial *materials;
 } IPLStaticMeshSettings;
 
 /** Settings used to create an instanced mesh. */
@@ -971,7 +998,8 @@ typedef struct {
 
     \return Status code indicating success or failure.
 */
-IPLAPI IPLerror IPLCALL iplSceneCreate(IPLContext context, IPLSceneSettings* settings, IPLScene* scene);
+IPLAPI IPLerror IPLCALL
+iplSceneCreate(IPLContext context, IPLSceneSettings *settings, IPLScene *scene);
 
 /** Retains an additional reference to a scene.
 
@@ -985,7 +1013,7 @@ IPLAPI IPLScene IPLCALL iplSceneRetain(IPLScene scene);
 
     \param  scene   The scene to release a reference to.
 */
-IPLAPI void IPLCALL iplSceneRelease(IPLScene* scene);
+IPLAPI void IPLCALL iplSceneRelease(IPLScene *scene);
 
 /** Loads a scene from a serialized object. Typically, the serialized object will be created from a byte array
     loaded from disk or over the network.
@@ -999,7 +1027,9 @@ IPLAPI void IPLCALL iplSceneRelease(IPLScene* scene);
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplSceneLoad(IPLContext context, IPLSceneSettings* settings, IPLSerializedObject serializedObject, IPLProgressCallback progressCallback, void* progressCallbackUserData, IPLScene* scene);
+IPLAPI IPLerror IPLCALL
+iplSceneLoad(IPLContext context, IPLSceneSettings *settings, IPLSerializedObject serializedObject,
+             IPLProgressCallback progressCallback, void *progressCallbackUserData, IPLScene *scene);
 
 /** Saves a scene to a serialized object. Typically, the serialized object will then be saved to disk.
 
@@ -1057,7 +1087,8 @@ IPLAPI void IPLCALL iplSceneCommit(IPLScene scene);
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplStaticMeshCreate(IPLScene scene, IPLStaticMeshSettings* settings, IPLStaticMesh* staticMesh);
+IPLAPI IPLerror IPLCALL
+iplStaticMeshCreate(IPLScene scene, IPLStaticMeshSettings *settings, IPLStaticMesh *staticMesh);
 
 /** Retains an additional reference to a static mesh.
 
@@ -1071,7 +1102,7 @@ IPLAPI IPLStaticMesh IPLCALL iplStaticMeshRetain(IPLStaticMesh staticMesh);
 
     \param  staticMesh  The static mesh to release a reference to.
 */
-IPLAPI void IPLCALL iplStaticMeshRelease(IPLStaticMesh* staticMesh);
+IPLAPI void IPLCALL iplStaticMeshRelease(IPLStaticMesh *staticMesh);
 
 /** Loads a static mesh from a serialized object. Typically, the serialized object will be created from a byte array
     loaded from disk or over the network.
@@ -1084,7 +1115,10 @@ IPLAPI void IPLCALL iplStaticMeshRelease(IPLStaticMesh* staticMesh);
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplStaticMeshLoad(IPLScene scene, IPLSerializedObject serializedObject, IPLProgressCallback progressCallback, void* progressCallbackUserData, IPLStaticMesh* staticMesh);
+IPLAPI IPLerror IPLCALL iplStaticMeshLoad(IPLScene scene, IPLSerializedObject serializedObject,
+                                          IPLProgressCallback progressCallback,
+                                          void *progressCallbackUserData,
+                                          IPLStaticMesh *staticMesh);
 
 /** Saves a static mesh to a serialized object. Typically, the serialized object will then be saved to disk.
 
@@ -1093,7 +1127,8 @@ IPLAPI IPLerror IPLCALL iplStaticMeshLoad(IPLScene scene, IPLSerializedObject se
     \param  staticMesh          The static mesh to save.
     \param  serializedObject    The serialized object into which to save the static mesh.
 */
-IPLAPI void IPLCALL iplStaticMeshSave(IPLStaticMesh staticMesh, IPLSerializedObject serializedObject);
+IPLAPI void IPLCALL
+iplStaticMeshSave(IPLStaticMesh staticMesh, IPLSerializedObject serializedObject);
 
 /** Adds a static mesh to a scene.
 
@@ -1129,7 +1164,9 @@ IPLAPI void IPLCALL iplStaticMeshRemove(IPLStaticMesh staticMesh, IPLScene scene
     \param  newMaterial  The material data of specified object.
     \param  index  The index of specified object. It means the object's index in the order it was exported.
 */
-IPLAPI void IPLCALL iplStaticMeshSetMaterial(IPLStaticMesh staticMesh, IPLScene scene, IPLMaterial* newMaterial, IPLint32 index);
+IPLAPI void IPLCALL
+iplStaticMeshSetMaterial(IPLStaticMesh staticMesh, IPLScene scene, IPLMaterial *newMaterial,
+                         IPLint32 index);
 
 /** Creates an instanced mesh.
 
@@ -1146,7 +1183,8 @@ IPLAPI void IPLCALL iplStaticMeshSetMaterial(IPLStaticMesh staticMesh, IPLScene 
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplInstancedMeshCreate(IPLScene scene, IPLInstancedMeshSettings* settings, IPLInstancedMesh* instancedMesh);
+IPLAPI IPLerror IPLCALL iplInstancedMeshCreate(IPLScene scene, IPLInstancedMeshSettings *settings,
+                                               IPLInstancedMesh *instancedMesh);
 
 /** Retains an additional reference to a instanced mesh.
 
@@ -1160,7 +1198,7 @@ IPLAPI IPLInstancedMesh IPLCALL iplInstancedMeshRetain(IPLInstancedMesh instance
 
     \param  instancedMesh   The instanced mesh to release a reference to.
 */
-IPLAPI void IPLCALL iplInstancedMeshRelease(IPLInstancedMesh* instancedMesh);
+IPLAPI void IPLCALL iplInstancedMeshRelease(IPLInstancedMesh *instancedMesh);
 
 /** Adds an instanced mesh to a scene.
 
@@ -1198,7 +1236,8 @@ IPLAPI void IPLCALL iplInstancedMeshRemove(IPLInstancedMesh instancedMesh, IPLSc
     \param  scene           The parent scene that contains the instanced mesh.
     \param  transform       The new 4x4 local-to-world transform matrix.
 */
-IPLAPI void IPLCALL iplInstancedMeshUpdateTransform(IPLInstancedMesh instancedMesh, IPLScene scene, IPLMatrix4x4 transform);
+IPLAPI void IPLCALL iplInstancedMeshUpdateTransform(IPLInstancedMesh instancedMesh, IPLScene scene,
+                                                    IPLMatrix4x4 transform);
 
 /** \} */
 
@@ -1260,7 +1299,7 @@ typedef struct {
     IPLint32 numSpeakers;
 
     /** Array of unit-length directions for each speaker. Only for IPL_SPEAKERLAYOUTTYPE_CUSTOM. */
-    IPLVector3* speakers;
+    IPLVector3 *speakers;
 } IPLSpeakerLayout;
 
 /** Global settings for audio signal processing. */
@@ -1281,7 +1320,7 @@ typedef struct {
     IPLint32 numSamples;
 
     /** Array of pointers to sample data for each channel. Allocation of sample data is up to the user. */
-    IPLfloat32** data;
+    IPLfloat32 **data;
 } IPLAudioBuffer;
 
 /** Allocates an audio buffer.
@@ -1300,14 +1339,16 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplAudioBufferAllocate(IPLContext context, IPLint32 numChannels, IPLint32 numSamples, IPLAudioBuffer* audioBuffer);
+IPLAPI IPLerror IPLCALL
+iplAudioBufferAllocate(IPLContext context, IPLint32 numChannels, IPLint32 numSamples,
+                       IPLAudioBuffer *audioBuffer);
 
 /** Frees an audio buffer.
 
     \param  context         The context used to initialize Steam Audio.
     \param  audioBuffer     The audio buffer to free.
 */
-IPLAPI void IPLCALL iplAudioBufferFree(IPLContext context, IPLAudioBuffer* audioBuffer);
+IPLAPI void IPLCALL iplAudioBufferFree(IPLContext context, IPLAudioBuffer *audioBuffer);
 
 /** Reads samples from an audio buffer and interleaves them into a user-provided array.
 
@@ -1315,7 +1356,8 @@ IPLAPI void IPLCALL iplAudioBufferFree(IPLContext context, IPLAudioBuffer* audio
     \param  src             The audio buffer to read from.
     \param  dst             The interleaved array to write into.
 */
-IPLAPI void IPLCALL iplAudioBufferInterleave(IPLContext context, IPLAudioBuffer* src, IPLfloat32* dst);
+IPLAPI void IPLCALL
+iplAudioBufferInterleave(IPLContext context, IPLAudioBuffer *src, IPLfloat32 *dst);
 
 /** Writes interleaved samples from a user-provided array into an audio buffer.
 
@@ -1323,7 +1365,8 @@ IPLAPI void IPLCALL iplAudioBufferInterleave(IPLContext context, IPLAudioBuffer*
     \param  src             The interleaved array to read from.
     \param  dst             The audio buffer to write into.
 */
-IPLAPI void IPLCALL iplAudioBufferDeinterleave(IPLContext context, IPLfloat32* src, IPLAudioBuffer* dst);
+IPLAPI void IPLCALL
+iplAudioBufferDeinterleave(IPLContext context, IPLfloat32 *src, IPLAudioBuffer *dst);
 
 /** Mixes one audio buffer into another.
 
@@ -1333,7 +1376,7 @@ IPLAPI void IPLCALL iplAudioBufferDeinterleave(IPLContext context, IPLfloat32* s
     \param  in          The source audio buffer.
     \param  mix         The destination audio buffer, into which the source should be mixed.
 */
-IPLAPI void IPLCALL iplAudioBufferMix(IPLContext context, IPLAudioBuffer* in, IPLAudioBuffer* mix);
+IPLAPI void IPLCALL iplAudioBufferMix(IPLContext context, IPLAudioBuffer *in, IPLAudioBuffer *mix);
 
 /** Downmixes a multi-channel audio buffer into a mono audio buffer.
 
@@ -1347,7 +1390,8 @@ IPLAPI void IPLCALL iplAudioBufferMix(IPLContext context, IPLAudioBuffer* in, IP
     \param  in      The source audio buffer.
     \param  out     The destination audio buffer.
 */
-IPLAPI void IPLCALL iplAudioBufferDownmix(IPLContext context, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI void IPLCALL
+iplAudioBufferDownmix(IPLContext context, IPLAudioBuffer *in, IPLAudioBuffer *out);
 
 /** Converts an Ambisonic audio buffer from one Ambisonic format to another.
 
@@ -1365,7 +1409,9 @@ IPLAPI void IPLCALL iplAudioBufferDownmix(IPLContext context, IPLAudioBuffer* in
     \param  in          The source audio buffer.
     \param  out         The destination audio buffer.
 */
-IPLAPI void IPLCALL iplAudioBufferConvertAmbisonics(IPLContext context, IPLAmbisonicsType inType, IPLAmbisonicsType outType, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI void IPLCALL iplAudioBufferConvertAmbisonics(IPLContext context, IPLAmbisonicsType inType,
+                                                    IPLAmbisonicsType outType, IPLAudioBuffer *in,
+                                                    IPLAudioBuffer *out);
 
 /** \} */
 
@@ -1407,11 +1453,11 @@ typedef struct {
 
     /** SOFA file from which to load HRTF data. Either \c sofaFileName or \c sofaData should be non-NULL.
         Only for \c IPL_HRTFTYPE_SOFA. */
-    const char* sofaFileName;
+    const char *sofaFileName;
 
     /** Pointer to a buffer containing SOFA file data from which to load HRTF data. Either \c sofaFileName
         or \c sofaData should be non-NULL. Only for \c IPL_HRTFTYPE_SOFA. */
-    const IPLuint8* sofaData;
+    const IPLuint8 *sofaData;
 
     /** Size (in bytes) of the buffer pointed to by \c sofaData. Only for \c IPL_HRTFTYPE_SOFA. */
     int sofaDataSize;
@@ -1438,7 +1484,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplHRTFCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLHRTFSettings* hrtfSettings, IPLHRTF* hrtf);
+IPLAPI IPLerror IPLCALL
+iplHRTFCreate(IPLContext context, IPLAudioSettings *audioSettings, IPLHRTFSettings *hrtfSettings,
+              IPLHRTF *hrtf);
 
 /** Retains an additional reference to an HRTF object.
 
@@ -1452,7 +1500,7 @@ IPLAPI IPLHRTF IPLCALL iplHRTFRetain(IPLHRTF hrtf);
 
     \param  hrtf    The HRTF object to release a reference to.
 */
-IPLAPI void IPLCALL iplHRTFRelease(IPLHRTF* hrtf);
+IPLAPI void IPLCALL iplHRTFRelease(IPLHRTF *hrtf);
 
 /** \} */
 
@@ -1488,7 +1536,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplPanningEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLPanningEffectSettings* effectSettings, IPLPanningEffect* effect);
+IPLAPI IPLerror IPLCALL iplPanningEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                                               IPLPanningEffectSettings *effectSettings,
+                                               IPLPanningEffect *effect);
 
 /** Retains an additional reference to a panning effect.
 
@@ -1502,7 +1552,7 @@ IPLAPI IPLPanningEffect IPLCALL iplPanningEffectRetain(IPLPanningEffect effect);
 
     \param  effect  The panning effect to release a reference to.
 */
-IPLAPI void IPLCALL iplPanningEffectRelease(IPLPanningEffect* effect);
+IPLAPI void IPLCALL iplPanningEffectRelease(IPLPanningEffect *effect);
 
 /** Resets the internal processing state of a panning effect.
 
@@ -1523,7 +1573,9 @@ IPLAPI void IPLCALL iplPanningEffectReset(IPLPanningEffect effect);
 
     \return \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE to indicate that this effect does not generate any tail samples.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplPanningEffectApply(IPLPanningEffect effect, IPLPanningEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplPanningEffectApply(IPLPanningEffect effect, IPLPanningEffectParams *params, IPLAudioBuffer *in,
+                      IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in a panning effect's internal buffers.
 
@@ -1549,7 +1601,8 @@ IPLAPI IPLint32 IPLCALL iplPanningEffectGetTailSize(IPLPanningEffect effect);
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplPanningEffectGetTail(IPLPanningEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplPanningEffectGetTail(IPLPanningEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -1601,7 +1654,7 @@ typedef struct {
     /** Base address of an array into which to write the left- and right-ear peak delays for the HRTF used
         to spatialize the input audio. Memory for this array must be allocated and managed by the caller.
         Can be NULL, in which case peak delays will not be written. */
-    IPLfloat32* peakDelays;
+    IPLfloat32 *peakDelays;
 } IPLBinauralEffectParams;
 
 /** Creates a binaural effect.
@@ -1613,7 +1666,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplBinauralEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLBinauralEffectSettings* effectSettings, IPLBinauralEffect* effect);
+IPLAPI IPLerror IPLCALL iplBinauralEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                                                IPLBinauralEffectSettings *effectSettings,
+                                                IPLBinauralEffect *effect);
 
 /** Retains an additional reference to a binaural effect.
 
@@ -1627,7 +1682,7 @@ IPLAPI IPLBinauralEffect IPLCALL iplBinauralEffectRetain(IPLBinauralEffect effec
 
     \param  effect  The binaural effect to release a reference to.
 */
-IPLAPI void IPLCALL iplBinauralEffectRelease(IPLBinauralEffect* effect);
+IPLAPI void IPLCALL iplBinauralEffectRelease(IPLBinauralEffect *effect);
 
 /** Resets the internal processing state of a binaural effect.
 
@@ -1647,7 +1702,9 @@ IPLAPI void IPLCALL iplBinauralEffectReset(IPLBinauralEffect effect);
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplBinauralEffectApply(IPLBinauralEffect effect, IPLBinauralEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplBinauralEffectApply(IPLBinauralEffect effect, IPLBinauralEffectParams *params,
+                       IPLAudioBuffer *in, IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in a binaural effect's internal buffers.
 
@@ -1671,7 +1728,8 @@ IPLAPI IPLint32 IPLCALL iplBinauralEffectGetTailSize(IPLBinauralEffect effect);
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplBinauralEffectGetTail(IPLBinauralEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplBinauralEffectGetTail(IPLBinauralEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -1715,7 +1773,10 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplVirtualSurroundEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLVirtualSurroundEffectSettings* effectSettings, IPLVirtualSurroundEffect* effect);
+IPLAPI IPLerror IPLCALL
+iplVirtualSurroundEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                               IPLVirtualSurroundEffectSettings *effectSettings,
+                               IPLVirtualSurroundEffect *effect);
 
 /** Retains an additional reference to a virtual surround effect.
 
@@ -1723,13 +1784,14 @@ IPLAPI IPLerror IPLCALL iplVirtualSurroundEffectCreate(IPLContext context, IPLAu
 
     \return The additional reference to the virtual surround effect.
 */
-IPLAPI IPLVirtualSurroundEffect IPLCALL iplVirtualSurroundEffectRetain(IPLVirtualSurroundEffect effect);
+IPLAPI IPLVirtualSurroundEffect IPLCALL
+iplVirtualSurroundEffectRetain(IPLVirtualSurroundEffect effect);
 
 /** Releases a reference to a virtual surround effect.
 
     \param  effect  The virtual surround effect to release a reference to.
 */
-IPLAPI void IPLCALL iplVirtualSurroundEffectRelease(IPLVirtualSurroundEffect* effect);
+IPLAPI void IPLCALL iplVirtualSurroundEffectRelease(IPLVirtualSurroundEffect *effect);
 
 /** Resets the internal processing state of a virtual surround effect.
 
@@ -1750,7 +1812,10 @@ IPLAPI void IPLCALL iplVirtualSurroundEffectReset(IPLVirtualSurroundEffect effec
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplVirtualSurroundEffectApply(IPLVirtualSurroundEffect effect, IPLVirtualSurroundEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL iplVirtualSurroundEffectApply(IPLVirtualSurroundEffect effect,
+                                                                 IPLVirtualSurroundEffectParams *params,
+                                                                 IPLAudioBuffer *in,
+                                                                 IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in a virtual surround effect's internal buffers.
 
@@ -1774,7 +1839,8 @@ IPLAPI IPLint32 IPLCALL iplVirtualSurroundEffectGetTailSize(IPLVirtualSurroundEf
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplVirtualSurroundEffectGetTail(IPLVirtualSurroundEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplVirtualSurroundEffectGetTail(IPLVirtualSurroundEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -1816,7 +1882,10 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplAmbisonicsEncodeEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLAmbisonicsEncodeEffectSettings* effectSettings, IPLAmbisonicsEncodeEffect* effect);
+IPLAPI IPLerror IPLCALL
+iplAmbisonicsEncodeEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                                IPLAmbisonicsEncodeEffectSettings *effectSettings,
+                                IPLAmbisonicsEncodeEffect *effect);
 
 /** Retains an additional reference to an Ambisonics encode effect.
 
@@ -1824,13 +1893,14 @@ IPLAPI IPLerror IPLCALL iplAmbisonicsEncodeEffectCreate(IPLContext context, IPLA
 
     \return The additional reference to the Ambisonics encode effect.
 */
-IPLAPI IPLAmbisonicsEncodeEffect IPLCALL iplAmbisonicsEncodeEffectRetain(IPLAmbisonicsEncodeEffect effect);
+IPLAPI IPLAmbisonicsEncodeEffect IPLCALL
+iplAmbisonicsEncodeEffectRetain(IPLAmbisonicsEncodeEffect effect);
 
 /** Releases a reference to an Ambisonics encode effect.
 
     \param  effect  The Ambisonics encode effect to release a reference to.
 */
-IPLAPI void IPLCALL iplAmbisonicsEncodeEffectRelease(IPLAmbisonicsEncodeEffect* effect);
+IPLAPI void IPLCALL iplAmbisonicsEncodeEffectRelease(IPLAmbisonicsEncodeEffect *effect);
 
 /** Resets the internal processing state of an Ambisonics encode effect.
 
@@ -1850,7 +1920,10 @@ IPLAPI void IPLCALL iplAmbisonicsEncodeEffectReset(IPLAmbisonicsEncodeEffect eff
 
     \return \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE to indicate that this effect does not generate any tail samples.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsEncodeEffectApply(IPLAmbisonicsEncodeEffect effect, IPLAmbisonicsEncodeEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsEncodeEffectApply(IPLAmbisonicsEncodeEffect effect,
+                                                                  IPLAmbisonicsEncodeEffectParams *params,
+                                                                  IPLAudioBuffer *in,
+                                                                  IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in an Ambisonics encode effect's internal buffers.
 
@@ -1875,7 +1948,8 @@ IPLAPI IPLint32 IPLCALL iplAmbisonicsEncodeEffectGetTailSize(IPLAmbisonicsEncode
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsEncodeEffectGetTail(IPLAmbisonicsEncodeEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplAmbisonicsEncodeEffectGetTail(IPLAmbisonicsEncodeEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -1915,7 +1989,10 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplAmbisonicsPanningEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLAmbisonicsPanningEffectSettings* effectSettings, IPLAmbisonicsPanningEffect* effect);
+IPLAPI IPLerror IPLCALL
+iplAmbisonicsPanningEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                                 IPLAmbisonicsPanningEffectSettings *effectSettings,
+                                 IPLAmbisonicsPanningEffect *effect);
 
 /** Retains an additional reference to an Ambisonics panning effect.
 
@@ -1923,13 +2000,14 @@ IPLAPI IPLerror IPLCALL iplAmbisonicsPanningEffectCreate(IPLContext context, IPL
 
     \return The additional reference to the Ambisonics panning effect.
 */
-IPLAPI IPLAmbisonicsPanningEffect IPLCALL iplAmbisonicsPanningEffectRetain(IPLAmbisonicsPanningEffect effect);
+IPLAPI IPLAmbisonicsPanningEffect IPLCALL
+iplAmbisonicsPanningEffectRetain(IPLAmbisonicsPanningEffect effect);
 
 /** Releases a reference to an Ambisonics panning effect.
 
     \param  effect  The Ambisonics panning effect to release a reference to.
 */
-IPLAPI void IPLCALL iplAmbisonicsPanningEffectRelease(IPLAmbisonicsPanningEffect* effect);
+IPLAPI void IPLCALL iplAmbisonicsPanningEffectRelease(IPLAmbisonicsPanningEffect *effect);
 
 /** Resets the internal processing state of an Ambisonics panning effect.
 
@@ -1950,7 +2028,10 @@ IPLAPI void IPLCALL iplAmbisonicsPanningEffectReset(IPLAmbisonicsPanningEffect e
 
     \return \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE to indicate that this effect does not generate any tail samples.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsPanningEffectApply(IPLAmbisonicsPanningEffect effect, IPLAmbisonicsPanningEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplAmbisonicsPanningEffectApply(IPLAmbisonicsPanningEffect effect,
+                                IPLAmbisonicsPanningEffectParams *params, IPLAudioBuffer *in,
+                                IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in an Ambisonics panning effect's internal buffers.
 
@@ -1975,7 +2056,8 @@ IPLAPI IPLint32 IPLCALL iplAmbisonicsPanningEffectGetTailSize(IPLAmbisonicsPanni
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsPanningEffectGetTail(IPLAmbisonicsPanningEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplAmbisonicsPanningEffectGetTail(IPLAmbisonicsPanningEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -2018,7 +2100,10 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplAmbisonicsBinauralEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLAmbisonicsBinauralEffectSettings* effectSettings, IPLAmbisonicsBinauralEffect* effect);
+IPLAPI IPLerror IPLCALL
+iplAmbisonicsBinauralEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                                  IPLAmbisonicsBinauralEffectSettings *effectSettings,
+                                  IPLAmbisonicsBinauralEffect *effect);
 
 /** Retains an additional reference to an Ambisonics binaural effect.
 
@@ -2026,13 +2111,14 @@ IPLAPI IPLerror IPLCALL iplAmbisonicsBinauralEffectCreate(IPLContext context, IP
 
     \return The additional reference to the Ambisonics binaural effect.
 */
-IPLAPI IPLAmbisonicsBinauralEffect IPLCALL iplAmbisonicsBinauralEffectRetain(IPLAmbisonicsBinauralEffect effect);
+IPLAPI IPLAmbisonicsBinauralEffect IPLCALL
+iplAmbisonicsBinauralEffectRetain(IPLAmbisonicsBinauralEffect effect);
 
 /** Releases a reference to an Ambisonics binaural effect.
 
     \param  effect  The Ambisonics binaural effect to release a reference to.
 */
-IPLAPI void IPLCALL iplAmbisonicsBinauralEffectRelease(IPLAmbisonicsBinauralEffect* effect);
+IPLAPI void IPLCALL iplAmbisonicsBinauralEffectRelease(IPLAmbisonicsBinauralEffect *effect);
 
 /** Resets the internal processing state of an Ambisonics binaural effect.
 
@@ -2053,7 +2139,10 @@ IPLAPI void IPLCALL iplAmbisonicsBinauralEffectReset(IPLAmbisonicsBinauralEffect
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsBinauralEffectApply(IPLAmbisonicsBinauralEffect effect, IPLAmbisonicsBinauralEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplAmbisonicsBinauralEffectApply(IPLAmbisonicsBinauralEffect effect,
+                                 IPLAmbisonicsBinauralEffectParams *params, IPLAudioBuffer *in,
+                                 IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in an Ambisonics binaural effect's internal buffers.
 
@@ -2077,7 +2166,8 @@ IPLAPI IPLint32 IPLCALL iplAmbisonicsBinauralEffectGetTailSize(IPLAmbisonicsBina
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsBinauralEffectGetTail(IPLAmbisonicsBinauralEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplAmbisonicsBinauralEffectGetTail(IPLAmbisonicsBinauralEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -2118,7 +2208,10 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplAmbisonicsRotationEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLAmbisonicsRotationEffectSettings* effectSettings, IPLAmbisonicsRotationEffect* effect);
+IPLAPI IPLerror IPLCALL
+iplAmbisonicsRotationEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                                  IPLAmbisonicsRotationEffectSettings *effectSettings,
+                                  IPLAmbisonicsRotationEffect *effect);
 
 /** Retains an additional reference to an Ambisonics rotation effect.
 
@@ -2126,13 +2219,14 @@ IPLAPI IPLerror IPLCALL iplAmbisonicsRotationEffectCreate(IPLContext context, IP
 
     \return The additional reference to the Ambisonics rotation effect.
 */
-IPLAPI IPLAmbisonicsRotationEffect IPLCALL iplAmbisonicsRotationEffectRetain(IPLAmbisonicsRotationEffect effect);
+IPLAPI IPLAmbisonicsRotationEffect IPLCALL
+iplAmbisonicsRotationEffectRetain(IPLAmbisonicsRotationEffect effect);
 
 /** Releases a reference to an Ambisonics rotation effect.
 
     \param  effect  The Ambisonics rotation effect to release a reference to.
 */
-IPLAPI void IPLCALL iplAmbisonicsRotationEffectRelease(IPLAmbisonicsRotationEffect* effect);
+IPLAPI void IPLCALL iplAmbisonicsRotationEffectRelease(IPLAmbisonicsRotationEffect *effect);
 
 /** Resets the internal processing state of an Ambisonics rotation effect.
 
@@ -2153,7 +2247,10 @@ IPLAPI void IPLCALL iplAmbisonicsRotationEffectReset(IPLAmbisonicsRotationEffect
 
     \return \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE to indicate that this effect does not generate any tail samples.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsRotationEffectApply(IPLAmbisonicsRotationEffect effect, IPLAmbisonicsRotationEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplAmbisonicsRotationEffectApply(IPLAmbisonicsRotationEffect effect,
+                                 IPLAmbisonicsRotationEffectParams *params, IPLAudioBuffer *in,
+                                 IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in an Ambisonics rotation effect's internal buffers.
 
@@ -2178,7 +2275,8 @@ IPLAPI IPLint32 IPLCALL iplAmbisonicsRotationEffectGetTailSize(IPLAmbisonicsRota
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsRotationEffectGetTail(IPLAmbisonicsRotationEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplAmbisonicsRotationEffectGetTail(IPLAmbisonicsRotationEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -2231,7 +2329,10 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplAmbisonicsDecodeEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLAmbisonicsDecodeEffectSettings* effectSettings, IPLAmbisonicsDecodeEffect* effect);
+IPLAPI IPLerror IPLCALL
+iplAmbisonicsDecodeEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                                IPLAmbisonicsDecodeEffectSettings *effectSettings,
+                                IPLAmbisonicsDecodeEffect *effect);
 
 /** Retains an additional reference to an Ambisonics rotation effect.
 
@@ -2239,13 +2340,14 @@ IPLAPI IPLerror IPLCALL iplAmbisonicsDecodeEffectCreate(IPLContext context, IPLA
 
     \return The additional reference to the Ambisonics rotation effect.
 */
-IPLAPI IPLAmbisonicsDecodeEffect IPLCALL iplAmbisonicsDecodeEffectRetain(IPLAmbisonicsDecodeEffect effect);
+IPLAPI IPLAmbisonicsDecodeEffect IPLCALL
+iplAmbisonicsDecodeEffectRetain(IPLAmbisonicsDecodeEffect effect);
 
 /** Releases a reference to an Ambisonics rotation effect.
 
     \param  effect  The Ambisonics rotation effect to release a reference to.
 */
-IPLAPI void IPLCALL iplAmbisonicsDecodeEffectRelease(IPLAmbisonicsDecodeEffect* effect);
+IPLAPI void IPLCALL iplAmbisonicsDecodeEffectRelease(IPLAmbisonicsDecodeEffect *effect);
 
 /** Resets the internal processing state of an Ambisonics decode effect.
 
@@ -2268,7 +2370,10 @@ IPLAPI void IPLCALL iplAmbisonicsDecodeEffectReset(IPLAmbisonicsDecodeEffect eff
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsDecodeEffectApply(IPLAmbisonicsDecodeEffect effect, IPLAmbisonicsDecodeEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsDecodeEffectApply(IPLAmbisonicsDecodeEffect effect,
+                                                                  IPLAmbisonicsDecodeEffectParams *params,
+                                                                  IPLAudioBuffer *in,
+                                                                  IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in an Ambisonics decode effect's internal buffers.
 
@@ -2294,7 +2399,8 @@ IPLAPI IPLint32 IPLCALL iplAmbisonicsDecodeEffectGetTailSize(IPLAmbisonicsDecode
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplAmbisonicsDecodeEffectGetTail(IPLAmbisonicsDecodeEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplAmbisonicsDecodeEffectGetTail(IPLAmbisonicsDecodeEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -2312,19 +2418,19 @@ DECLARE_OPAQUE_HANDLE(IPLDirectEffect);
 /** Flags indicating which direct path parameters to apply. */
 typedef enum {
     /** Apply frequency-independent distance attenuation. */
-    IPL_DIRECTEFFECTFLAGS_APPLYDISTANCEATTENUATION  = 1 << 0,
+    IPL_DIRECTEFFECTFLAGS_APPLYDISTANCEATTENUATION = 1 << 0,
 
     /** Apply frequency-dependent air absorption as a function of distance. */
-    IPL_DIRECTEFFECTFLAGS_APPLYAIRABSORPTION        = 1 << 1,
+    IPL_DIRECTEFFECTFLAGS_APPLYAIRABSORPTION = 1 << 1,
 
     /** Apply attenuation due to source directivity pattern. */
-    IPL_DIRECTEFFECTFLAGS_APPLYDIRECTIVITY          = 1 << 2,
+    IPL_DIRECTEFFECTFLAGS_APPLYDIRECTIVITY = 1 << 2,
 
     /** Apply occlusion. */
-    IPL_DIRECTEFFECTFLAGS_APPLYOCCLUSION            = 1 << 3,
+    IPL_DIRECTEFFECTFLAGS_APPLYOCCLUSION = 1 << 3,
 
     /** Apply transmission along with occlusion. */
-    IPL_DIRECTEFFECTFLAGS_APPLYTRANSMISSION         = 1 << 4
+    IPL_DIRECTEFFECTFLAGS_APPLYTRANSMISSION = 1 << 4
 } IPLDirectEffectFlags;
 
 /** Modes of applying transmission effects. */
@@ -2375,7 +2481,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplDirectEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLDirectEffectSettings* effectSettings, IPLDirectEffect* effect);
+IPLAPI IPLerror IPLCALL iplDirectEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                                              IPLDirectEffectSettings *effectSettings,
+                                              IPLDirectEffect *effect);
 
 /** Retains an additional reference to a direct effect.
 
@@ -2389,7 +2497,7 @@ IPLAPI IPLDirectEffect IPLCALL iplDirectEffectRetain(IPLDirectEffect effect);
 
     \param  effect  The direct effect to release a reference to.
 */
-IPLAPI void IPLCALL iplDirectEffectRelease(IPLDirectEffect* effect);
+IPLAPI void IPLCALL iplDirectEffectRelease(IPLDirectEffect *effect);
 
 /** Resets the internal processing state of a direct effect.
 
@@ -2409,7 +2517,9 @@ IPLAPI void IPLCALL iplDirectEffectReset(IPLDirectEffect effect);
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplDirectEffectApply(IPLDirectEffect effect, IPLDirectEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplDirectEffectApply(IPLDirectEffect effect, IPLDirectEffectParams *params, IPLAudioBuffer *in,
+                     IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in a direct effect's internal buffers.
 
@@ -2433,7 +2543,8 @@ IPLAPI IPLint32 IPLCALL iplDirectEffectGetTailSize(IPLDirectEffect effect);
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplDirectEffectGetTail(IPLDirectEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplDirectEffectGetTail(IPLDirectEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -2541,7 +2652,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplReflectionEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLReflectionEffectSettings* effectSettings, IPLReflectionEffect* effect);
+IPLAPI IPLerror IPLCALL
+iplReflectionEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                          IPLReflectionEffectSettings *effectSettings, IPLReflectionEffect *effect);
 
 /** Retains an additional reference to a reflection effect.
 
@@ -2555,7 +2668,7 @@ IPLAPI IPLReflectionEffect IPLCALL iplReflectionEffectRetain(IPLReflectionEffect
 
     \param  effect  The reflection effect to release a reference to.
 */
-IPLAPI void IPLCALL iplReflectionEffectRelease(IPLReflectionEffect* effect);
+IPLAPI void IPLCALL iplReflectionEffectRelease(IPLReflectionEffect *effect);
 
 /** Resets the internal processing state of a reflection effect.
 
@@ -2582,7 +2695,9 @@ IPLAPI void IPLCALL iplReflectionEffectReset(IPLReflectionEffect effect);
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplReflectionEffectApply(IPLReflectionEffect effect, IPLReflectionEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out, IPLReflectionMixer mixer);
+IPLAPI IPLAudioEffectState IPLCALL
+iplReflectionEffectApply(IPLReflectionEffect effect, IPLReflectionEffectParams *params,
+                         IPLAudioBuffer *in, IPLAudioBuffer *out, IPLReflectionMixer mixer);
 
 /** Returns the number of tail samples remaining in a reflection effect's internal buffers.
 
@@ -2613,7 +2728,9 @@ IPLAPI IPLint32 IPLCALL iplReflectionEffectGetTailSize(IPLReflectionEffect effec
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplReflectionEffectGetTail(IPLReflectionEffect effect, IPLAudioBuffer* out, IPLReflectionMixer mixer);
+IPLAPI IPLAudioEffectState IPLCALL
+iplReflectionEffectGetTail(IPLReflectionEffect effect, IPLAudioBuffer *out,
+                           IPLReflectionMixer mixer);
 
 /** Creates a reflection effect mixer.
 
@@ -2625,7 +2742,9 @@ IPLAPI IPLAudioEffectState IPLCALL iplReflectionEffectGetTail(IPLReflectionEffec
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplReflectionMixerCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLReflectionEffectSettings* effectSettings, IPLReflectionMixer* mixer);
+IPLAPI IPLerror IPLCALL
+iplReflectionMixerCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                         IPLReflectionEffectSettings *effectSettings, IPLReflectionMixer *mixer);
 
 /** Retains an additional reference to a reflection mixer.
 
@@ -2639,7 +2758,7 @@ IPLAPI IPLReflectionMixer IPLCALL iplReflectionMixerRetain(IPLReflectionMixer mi
 
     \param  mixer   The reflection mixer to release a reference to.
 */
-IPLAPI void IPLCALL iplReflectionMixerRelease(IPLReflectionMixer* mixer);
+IPLAPI void IPLCALL iplReflectionMixerRelease(IPLReflectionMixer *mixer);
 
 /** Resets the internal processing state of a reflection mixer.
 
@@ -2657,7 +2776,9 @@ IPLAPI void IPLCALL iplReflectionMixerReset(IPLReflectionMixer mixer);
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplReflectionMixerApply(IPLReflectionMixer mixer, IPLReflectionEffectParams* params, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplReflectionMixerApply(IPLReflectionMixer mixer, IPLReflectionEffectParams *params,
+                        IPLAudioBuffer *out);
 
 /** \} */
 
@@ -2700,7 +2821,7 @@ typedef struct {
     /** Ambisonic coefficients for modeling the directional distribution of sound reaching the listener.
         The coefficients are specified in world-space, and must be rotated to match the listener's orientation
         separately. */
-    IPLfloat32* shCoeffs;
+    IPLfloat32 *shCoeffs;
 
     /** Ambisonic order of the output buffer. May be less than the maximum order specified when creating the effect,
         in which case higher-order \c shCoeffs will be ignored, and CPU usage will be reduced. */
@@ -2735,7 +2856,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplPathEffectCreate(IPLContext context, IPLAudioSettings* audioSettings, IPLPathEffectSettings* effectSettings, IPLPathEffect* effect);
+IPLAPI IPLerror IPLCALL iplPathEffectCreate(IPLContext context, IPLAudioSettings *audioSettings,
+                                            IPLPathEffectSettings *effectSettings,
+                                            IPLPathEffect *effect);
 
 /** Retains an additional reference to a path effect.
 
@@ -2749,7 +2872,7 @@ IPLAPI IPLPathEffect IPLCALL iplPathEffectRetain(IPLPathEffect effect);
 
     \param  effect  The path effect to release a reference to.
 */
-IPLAPI void IPLCALL iplPathEffectRelease(IPLPathEffect* effect);
+IPLAPI void IPLCALL iplPathEffectRelease(IPLPathEffect *effect);
 
 /** Resets the internal processing state of a path effect.
 
@@ -2770,7 +2893,9 @@ IPLAPI void IPLCALL iplPathEffectReset(IPLPathEffect effect);
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplPathEffectApply(IPLPathEffect effect, IPLPathEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL
+iplPathEffectApply(IPLPathEffect effect, IPLPathEffectParams *params, IPLAudioBuffer *in,
+                   IPLAudioBuffer *out);
 
 /** Returns the number of tail samples remaining in a path effect's internal buffers.
 
@@ -2795,7 +2920,7 @@ IPLAPI IPLint32 IPLCALL iplPathEffectGetTailSize(IPLPathEffect effect);
     \return \c IPL_AUDIOEFFECTSTATE_TAILREMAINING if any tail samples remain in the effect's internal buffers, or
             \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE otherwise.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplPathEffectGetTail(IPLPathEffect effect, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL iplPathEffectGetTail(IPLPathEffect effect, IPLAudioBuffer *out);
 
 /** \} */
 
@@ -2833,7 +2958,8 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplEnergyFieldCreate(IPLContext context, IPLEnergyFieldSettings* settings, IPLEnergyField* energyField);
+IPLAPI IPLerror IPLCALL iplEnergyFieldCreate(IPLContext context, IPLEnergyFieldSettings *settings,
+                                             IPLEnergyField *energyField);
 
 /** Retains an additional reference to an energy field.
 
@@ -2847,7 +2973,7 @@ IPLAPI IPLEnergyField IPLCALL iplEnergyFieldRetain(IPLEnergyField energyField);
 
     \param  energyField     The energy field to release a reference to.
 */
-IPLAPI void IPLCALL iplEnergyFieldRelease(IPLEnergyField* energyField);
+IPLAPI void IPLCALL iplEnergyFieldRelease(IPLEnergyField *energyField);
 
 /** Returns the number of channels in the energy field.
 
@@ -2871,7 +2997,7 @@ IPLAPI IPLint32 IPLCALL iplEnergyFieldGetNumBins(IPLEnergyField energyField);
 
     \return Pointer to #channels * #bands * #bins IPLfloat32 values stored in the energy field, in row-major order.
 */
-IPLAPI IPLfloat32* IPLCALL iplEnergyFieldGetData(IPLEnergyField energyField);
+IPLAPI IPLfloat32 *IPLCALL iplEnergyFieldGetData(IPLEnergyField energyField);
 
 /** Returns a pointer to the data stored in the energy field for the given channel.
 
@@ -2881,7 +3007,8 @@ IPLAPI IPLfloat32* IPLCALL iplEnergyFieldGetData(IPLEnergyField energyField);
     \return Pointer to #bands * #bins IPLfloat32 values stored in the energy field for the given channel, in 
             row-major order.
 */
-IPLAPI IPLfloat32* IPLCALL iplEnergyFieldGetChannel(IPLEnergyField energyField, IPLint32 channelIndex);
+IPLAPI IPLfloat32 *
+IPLCALL iplEnergyFieldGetChannel(IPLEnergyField energyField, IPLint32 channelIndex);
 
 /** Returns a pointer to the data stored in the energy field for the given channel and band.
 
@@ -2892,7 +3019,8 @@ IPLAPI IPLfloat32* IPLCALL iplEnergyFieldGetChannel(IPLEnergyField energyField, 
     \return Pointer to #bins IPLfloat32 values stored in the energy field for the given channel and band, in row-major 
             order.
 */
-IPLAPI IPLfloat32* IPLCALL iplEnergyFieldGetBand(IPLEnergyField energyField, IPLint32 channelIndex, IPLint32 bandIndex);
+IPLAPI IPLfloat32 *IPLCALL iplEnergyFieldGetBand(IPLEnergyField energyField, IPLint32 channelIndex,
+                                                 IPLint32 bandIndex);
 
 /** Resets all values stored in an energy field to zero.
 
@@ -2968,7 +3096,8 @@ IPLAPI void IPLCALL iplEnergyFieldScale(IPLEnergyField in, IPLfloat32 scalar, IP
     \param  scalar          The scalar value.
     \param  out             The output energy field.
 */
-IPLAPI void IPLCALL iplEnergyFieldScaleAccum(IPLEnergyField in, IPLfloat32 scalar, IPLEnergyField out);
+IPLAPI void IPLCALL
+iplEnergyFieldScaleAccum(IPLEnergyField in, IPLfloat32 scalar, IPLEnergyField out);
 
 /** \} */
 
@@ -3005,7 +3134,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplImpulseResponseCreate(IPLContext context, IPLImpulseResponseSettings* settings, IPLImpulseResponse* impulseResponse);
+IPLAPI IPLerror IPLCALL
+iplImpulseResponseCreate(IPLContext context, IPLImpulseResponseSettings *settings,
+                         IPLImpulseResponse *impulseResponse);
 
 /** Retains an additional reference to an impulse response.
 
@@ -3019,7 +3150,7 @@ IPLAPI IPLImpulseResponse IPLCALL iplImpulseResponseRetain(IPLImpulseResponse im
 
     \param  impulseResponse The impulse response to release a reference to.
 */
-IPLAPI void IPLCALL iplImpulseResponseRelease(IPLImpulseResponse* impulseResponse);
+IPLAPI void IPLCALL iplImpulseResponseRelease(IPLImpulseResponse *impulseResponse);
 
 /** Returns the number of channels in the impulse response.
 
@@ -3043,7 +3174,7 @@ IPLAPI IPLint32 IPLCALL iplImpulseResponseGetNumSamples(IPLImpulseResponse impul
 
     \return Pointer to #channels * #samples IPLfloat32 values stored in the impulse response, in row-major order.
 */
-IPLAPI IPLfloat32* IPLCALL iplImpulseResponseGetData(IPLImpulseResponse impulseResponse);
+IPLAPI IPLfloat32 *IPLCALL iplImpulseResponseGetData(IPLImpulseResponse impulseResponse);
 
 /** Returns a pointer to the data stored in the impulse response for the given channel.
 
@@ -3053,7 +3184,8 @@ IPLAPI IPLfloat32* IPLCALL iplImpulseResponseGetData(IPLImpulseResponse impulseR
     \return Pointer to #samples IPLfloat32 values stored in the impulse response for the given channel, in
             row-major order.
 */
-IPLAPI IPLfloat32* IPLCALL iplImpulseResponseGetChannel(IPLImpulseResponse impulseResponse, int channelIndex);
+IPLAPI IPLfloat32 *
+IPLCALL iplImpulseResponseGetChannel(IPLImpulseResponse impulseResponse, int channelIndex);
 
 /** Resets all values stored in an impulse response to zero.
 
@@ -3097,7 +3229,8 @@ IPLAPI void IPLCALL iplImpulseResponseSwap(IPLImpulseResponse ir1, IPLImpulseRes
     \param  in2             The second input impulse response.
     \param  out             The output impulse response.
 */
-IPLAPI void IPLCALL iplImpulseResponseAdd(IPLImpulseResponse in1, IPLImpulseResponse in2, IPLImpulseResponse out);
+IPLAPI void IPLCALL
+iplImpulseResponseAdd(IPLImpulseResponse in1, IPLImpulseResponse in2, IPLImpulseResponse out);
 
 /** Scales the values stored in an impulse response by a scalar, and stores the result in a second impulse response.
 
@@ -3113,7 +3246,8 @@ IPLAPI void IPLCALL iplImpulseResponseAdd(IPLImpulseResponse in1, IPLImpulseResp
     \param  scalar          The scalar value.
     \param  out             The output impulse response.
 */
-IPLAPI void IPLCALL iplImpulseResponseScale(IPLImpulseResponse in, IPLfloat32 scalar, IPLImpulseResponse out);
+IPLAPI void IPLCALL
+iplImpulseResponseScale(IPLImpulseResponse in, IPLfloat32 scalar, IPLImpulseResponse out);
 
 /** Scales the values stored in an impulse response by a scalar, and adds the result to a second impulse response.
 
@@ -3129,7 +3263,8 @@ IPLAPI void IPLCALL iplImpulseResponseScale(IPLImpulseResponse in, IPLfloat32 sc
     \param  scalar          The scalar value.
     \param  out             The output impulse response.
 */
-IPLAPI void IPLCALL iplImpulseResponseScaleAccum(IPLImpulseResponse in, IPLfloat32 scalar, IPLImpulseResponse out);
+IPLAPI void IPLCALL
+iplImpulseResponseScaleAccum(IPLImpulseResponse in, IPLfloat32 scalar, IPLImpulseResponse out);
 
 /** \} */
 
@@ -3190,7 +3325,9 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplReconstructorCreate(IPLContext context, IPLReconstructorSettings* settings, IPLReconstructor* reconstructor);
+IPLAPI IPLerror IPLCALL
+iplReconstructorCreate(IPLContext context, IPLReconstructorSettings *settings,
+                       IPLReconstructor *reconstructor);
 
 /** Retains an additional reference to a reconstructor.
 
@@ -3204,7 +3341,7 @@ IPLAPI IPLReconstructor IPLCALL iplReconstructorRetain(IPLReconstructor reconstr
 
     \param  reconstructor   The reconstructor to release a reference to.
 */
-IPLAPI void IPLCALL iplReconstructorRelease(IPLReconstructor* reconstructor);
+IPLAPI void IPLCALL iplReconstructorRelease(IPLReconstructor *reconstructor);
 
 /** Reconstructs one or more impulse responses as a single batch of work.
 
@@ -3217,7 +3354,10 @@ IPLAPI void IPLCALL iplReconstructorRelease(IPLReconstructor* reconstructor);
     \param  outputs         Pointer to \c numInputs output structures, each describing a single impulse response object
                             into which to write the corresponding reconstructed impulse response.
 */
-IPLAPI void IPLCALL iplReconstructorReconstruct(IPLReconstructor reconstructor, IPLint32 numInputs, IPLReconstructorInputs* inputs, IPLReconstructorSharedInputs* sharedInputs, IPLReconstructorOutputs* outputs);
+IPLAPI void IPLCALL iplReconstructorReconstruct(IPLReconstructor reconstructor, IPLint32 numInputs,
+                                                IPLReconstructorInputs *inputs,
+                                                IPLReconstructorSharedInputs *sharedInputs,
+                                                IPLReconstructorOutputs *outputs);
 
 /** \} */
 
@@ -3322,7 +3462,7 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplProbeArrayCreate(IPLContext context, IPLProbeArray* probeArray);
+IPLAPI IPLerror IPLCALL iplProbeArrayCreate(IPLContext context, IPLProbeArray *probeArray);
 
 /** Retains an additional reference to a probe array.
 
@@ -3336,7 +3476,7 @@ IPLAPI IPLProbeArray IPLCALL iplProbeArrayRetain(IPLProbeArray probeArray);
 
     \param  probeArray  The probe array to release a reference to.
 */
-IPLAPI void IPLCALL iplProbeArrayRelease(IPLProbeArray* probeArray);
+IPLAPI void IPLCALL iplProbeArrayRelease(IPLProbeArray *probeArray);
 
 /** Generates probes and adds them to a probe array.
 
@@ -3344,7 +3484,8 @@ IPLAPI void IPLCALL iplProbeArrayRelease(IPLProbeArray* probeArray);
     \param  params      Parameters to use for generating probes.
     \param  probeArray  The array into which to add the generated probes.
 */
-IPLAPI void IPLCALL iplProbeArrayGenerateProbes(IPLProbeArray probeArray, IPLScene scene, IPLProbeGenerationParams* params);
+IPLAPI void IPLCALL iplProbeArrayGenerateProbes(IPLProbeArray probeArray, IPLScene scene,
+                                                IPLProbeGenerationParams *params);
 
 /** \return The number of probes in a probe array.
 
@@ -3366,7 +3507,7 @@ IPLAPI IPLSphere IPLCALL iplProbeArrayGetProbe(IPLProbeArray probeArray, IPLint3
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplProbeBatchCreate(IPLContext context, IPLProbeBatch* probeBatch);
+IPLAPI IPLerror IPLCALL iplProbeBatchCreate(IPLContext context, IPLProbeBatch *probeBatch);
 
 /** Retains an additional reference to a probe batch.
 
@@ -3380,7 +3521,7 @@ IPLAPI IPLProbeBatch IPLCALL iplProbeBatchRetain(IPLProbeBatch probeBatch);
 
     \param  probeBatch  The probe batch to release a reference to.
 */
-IPLAPI void IPLCALL iplProbeBatchRelease(IPLProbeBatch* probeBatch);
+IPLAPI void IPLCALL iplProbeBatchRelease(IPLProbeBatch *probeBatch);
 
 /** Loads a probe batch from a serialized object. Typically, the serialized object will be created from a byte array
     loaded from disk or over the network.
@@ -3391,14 +3532,16 @@ IPLAPI void IPLCALL iplProbeBatchRelease(IPLProbeBatch* probeBatch);
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplProbeBatchLoad(IPLContext context, IPLSerializedObject serializedObject, IPLProbeBatch* probeBatch);
+IPLAPI IPLerror IPLCALL iplProbeBatchLoad(IPLContext context, IPLSerializedObject serializedObject,
+                                          IPLProbeBatch *probeBatch);
 
 /** Saves a probe batch to a serialized object. Typically, the serialized object will then be saved to disk.
 
     \param  probeBatch          The probe batch to save.
     \param  serializedObject    The serialized object into which to save the probe batch.
 */
-IPLAPI void IPLCALL iplProbeBatchSave(IPLProbeBatch probeBatch, IPLSerializedObject serializedObject);
+IPLAPI void IPLCALL
+iplProbeBatchSave(IPLProbeBatch probeBatch, IPLSerializedObject serializedObject);
 
 /** \return The number of probes in a probe batch.
 
@@ -3440,14 +3583,16 @@ IPLAPI void IPLCALL iplProbeBatchCommit(IPLProbeBatch probeBatch);
     \param  probeBatch  The probe batch.
     \param  identifier  The identifier of the baked data layer to delete.
 */
-IPLAPI void IPLCALL iplProbeBatchRemoveData(IPLProbeBatch probeBatch, IPLBakedDataIdentifier* identifier);
+IPLAPI void IPLCALL
+iplProbeBatchRemoveData(IPLProbeBatch probeBatch, IPLBakedDataIdentifier *identifier);
 
 /** \return The size (in bytes) of a specific baked data layer in a probe batch.
 
     \param  probeBatch  The probe batch.
     \param  identifier  The identifier of the baked data layer.
 */
-IPLAPI IPLsize IPLCALL iplProbeBatchGetDataSize(IPLProbeBatch probeBatch, IPLBakedDataIdentifier* identifier);
+IPLAPI IPLsize IPLCALL
+iplProbeBatchGetDataSize(IPLProbeBatch probeBatch, IPLBakedDataIdentifier *identifier);
 
 /** Retrieves a single energy field in a specific baked data layer of a specific probe in a probe batch.
 
@@ -3456,7 +3601,9 @@ IPLAPI IPLsize IPLCALL iplProbeBatchGetDataSize(IPLProbeBatch probeBatch, IPLBak
     \param  probeIndex  The index of the probe.
     \param  energyField The energy field into which to copy the baked energy field.
 */
-IPLAPI void IPLCALL iplProbeBatchGetEnergyField(IPLProbeBatch probeBatch, IPLBakedDataIdentifier* identifier, IPLint32 probeIndex, IPLEnergyField energyField);
+IPLAPI void IPLCALL
+iplProbeBatchGetEnergyField(IPLProbeBatch probeBatch, IPLBakedDataIdentifier *identifier,
+                            IPLint32 probeIndex, IPLEnergyField energyField);
 
 /** Retrieves a single array of parametric reverb times in a specific baked data layer of a specific probe in a probe batch.
 
@@ -3466,7 +3613,9 @@ IPLAPI void IPLCALL iplProbeBatchGetEnergyField(IPLProbeBatch probeBatch, IPLBak
     \param  reverbTimes Pointer to an array containing at least 3 IPLfloat32 values, into which the baked reverb times
                         will be copied.
 */
-IPLAPI void IPLCALL iplProbeBatchGetReverb(IPLProbeBatch probeBatch, IPLBakedDataIdentifier* identifier, IPLint32 probeIndex, IPLfloat32* reverbTimes);
+IPLAPI void IPLCALL
+iplProbeBatchGetReverb(IPLProbeBatch probeBatch, IPLBakedDataIdentifier *identifier,
+                       IPLint32 probeIndex, IPLfloat32 *reverbTimes);
 
 /** \} */
 
@@ -3561,40 +3710,40 @@ typedef struct {
 /** Parameters used to control how pathing data is baked. */
 typedef struct {
     /** The scene in which the probes exist. */
-    IPLScene                scene;
+    IPLScene scene;
 
     /** A probe batch containing the probes for which pathing data should be baked. */
-    IPLProbeBatch           probeBatch;
+    IPLProbeBatch probeBatch;
 
     /** An identifier for the data layer that should be baked. The identifier determines what data is simulated and
         stored at each probe. If the probe batch already contains data with this identifier, it will be overwritten. */
-    IPLBakedDataIdentifier  identifier;
+    IPLBakedDataIdentifier identifier;
 
     /** Number of point samples to use around each probe when testing whether one probe can see another. To
         determine if two probes are mutually visible, numSamples * numSamples rays are traced, from each
         point sample of the first probe, to every other point sample of the second probe. */
-    IPLint32                numSamples;
+    IPLint32 numSamples;
 
     /** When testing for mutual visibility between a pair of probes, each probe is treated as a sphere of
         this radius (in meters), and point samples are generated within this sphere. */
-    IPLfloat32              radius;
+    IPLfloat32 radius;
 
     /** When tracing rays to test for mutual visibility between a pair of probes, the fraction of rays that
         are unoccluded must be greater than this threshold for the pair of probes to be considered
         mutually visible. */
-    IPLfloat32              threshold;
+    IPLfloat32 threshold;
 
     /** If the distance between two probes is greater than this value, the probes are not considered mutually
         visible. Increasing this value can result in simpler paths, at the cost of increased bake times. */
-    IPLfloat32              visRange;
+    IPLfloat32 visRange;
 
     /** If the length of the path between two probes is greater than this value, the probes are considered to
         not have any path between them. Increasing this value allows sound to propagate over greater
         distances, at the cost of increased bake times and memory usage. */
-    IPLfloat32              pathRange;
+    IPLfloat32 pathRange;
 
     /** Number of threads to use for baking. */
-    IPLint32                numThreads;
+    IPLint32 numThreads;
 } IPLPathBakeParams;
 
 /** Bakes a single layer of reflections data in a probe batch.
@@ -3609,7 +3758,8 @@ typedef struct {
     \param  userData            (Optional) Pointer to arbitrary data that will be sent to the progress callback
                                 when Steam Audio calls it.
 */
-IPLAPI void IPLCALL iplReflectionsBakerBake(IPLContext context, IPLReflectionsBakeParams* params, IPLProgressCallback progressCallback, void* userData);
+IPLAPI void IPLCALL iplReflectionsBakerBake(IPLContext context, IPLReflectionsBakeParams *params,
+                                            IPLProgressCallback progressCallback, void *userData);
 
 /** Cancels any running bakes of reflections data.
 
@@ -3629,7 +3779,8 @@ IPLAPI void IPLCALL iplReflectionsBakerCancelBake(IPLContext context);
     \param  userData            (Optional) Pointer to arbitrary data that will be sent to the progress callback
                                 when Steam Audio calls it.
 */
-IPLAPI void IPLCALL iplPathBakerBake(IPLContext context, IPLPathBakeParams* params, IPLProgressCallback progressCallback, void* userData);
+IPLAPI void IPLCALL iplPathBakerBake(IPLContext context, IPLPathBakeParams *params,
+                                     IPLProgressCallback progressCallback, void *userData);
 
 /** Cancels any running bakes of pathing data.
 
@@ -3746,7 +3897,7 @@ typedef enum {
     \return The distance attenuation to apply, between \c 0 and \c 1. \c 0 = the sound is not audible, \c 1 = the sound
             is as loud as it would be if it were emitted from the listener's position.
 */
-typedef float (IPLCALL *IPLDistanceAttenuationCallback)(IPLfloat32 distance, void* userData);
+typedef float (IPLCALL *IPLDistanceAttenuationCallback)(IPLfloat32 distance, void *userData);
 
 /** Callback for calculating how much air absorption should be applied to a sound based on its distance from the
     listener.
@@ -3759,7 +3910,8 @@ typedef float (IPLCALL *IPLDistanceAttenuationCallback)(IPLfloat32 distance, voi
     \return The air absorption to apply, between \c 0 and \c 1. \c 0 = sound in the frequency band \c band is
             not audible, \c 1 = sound in the frequency band \c band is not attenuated.
 */
-typedef float (IPLCALL *IPLAirAbsorptionCallback)(IPLfloat32 distance, IPLint32 band, void* userData);
+typedef float (IPLCALL *IPLAirAbsorptionCallback)(IPLfloat32 distance, IPLint32 band,
+                                                  void *userData);
 
 /** Callback for calculating how much to attenuate a sound based on its directivity pattern and orientation in
     world space.
@@ -3771,7 +3923,7 @@ typedef float (IPLCALL *IPLAirAbsorptionCallback)(IPLfloat32 distance, IPLint32 
     \return The directivity value to apply, between \c 0 and \c 1. \c 0 = the sound is not audible, \c 1 = the sound
             is as loud as it would be if it had a uniform (omnidirectional) directivity pattern.
 */
-typedef float (IPLCALL *IPLDirectivityCallback)(IPLVector3 direction, void* userData);
+typedef float (IPLCALL *IPLDirectivityCallback)(IPLVector3 direction, void *userData);
 
 /** Callback for calculating how much to attenuate sound in a given frequency band based on the angle of deviation
  *  when the sound path bends around a corner as it propagated from the source to the listener.
@@ -3783,7 +3935,7 @@ typedef float (IPLCALL *IPLDirectivityCallback)(IPLVector3 direction, void* user
  *  \return The frequency-dependent attenuation to apply, between \c 0 and \c 1. \c 0 = sound in the frequency
  *          band \c band is not audible; \c 1 = sound in the frequency band \c band is not attenuated.
  */
-typedef float (IPLCALL *IPLDeviationCallback)(IPLfloat32 angle, IPLint32 band, void* userData);
+typedef float (IPLCALL *IPLDeviationCallback)(IPLfloat32 angle, IPLint32 band, void *userData);
 
 /** A distance attenuation model that can be used for modeling attenuation of sound over distance. Can be used
     with both direct and indirect sound propagation. */
@@ -3801,7 +3953,7 @@ typedef struct {
 
     /** Pointer to arbitrary data that will be provided to the \c callback function whenever it is called.
         May be \c NULL. */
-    void* userData;
+    void *userData;
 
     /** Set to \c IPL_TRUE to indicate that the distance attenuation model defined by the \c callback function
         has changed since the last time simulation was run. For example, the callback may be evaluating a
@@ -3825,7 +3977,7 @@ typedef struct {
 
     /** Pointer to arbitrary data that will be provided to the \c callback function whenever it is called.
         May be \c NULL. */
-    void* userData;
+    void *userData;
 
     /** Set to \c IPL_TRUE to indicate that the air absorption model defined by the \c callback function
         has changed since the last time simulation was run. For example, the callback may be evaluating a set of
@@ -3856,7 +4008,7 @@ typedef struct {
 
     /** Pointer to arbitrary data that will be provided to the \c callback function whenever it is called.
         May be \c NULL. */
-    void* userData;
+    void *userData;
 } IPLDirectivity;
 
 /** A deviation model that can be used for modeling frequency-dependent attenuation of sound as it
@@ -3874,7 +4026,7 @@ typedef struct {
     /** Pointer to arbitrary data that will be provided to the \c callback function whenever it is called.
      *  May be \c NULL.
      */
-    void* userData;
+    void *userData;
 } IPLDeviationModel;
 
 /** Settings used to create a simulator. */
@@ -4049,7 +4201,7 @@ typedef struct {
     IPLint32 numTransmissionRays;
 
     /** The deviation model to use for this source. Only used when simulating pathing. */
-    IPLDeviationModel* deviationModel;
+    IPLDeviationModel *deviationModel;
 } IPLSimulationInputs;
 
 /** Callback for visualizing valid path segments during call to \c iplSimulatorRunPathing.
@@ -4062,7 +4214,8 @@ typedef struct {
     \param  userData    Pointer to arbitrary user-specified data provided when calling the function that will
                         call this callback.
 */
-typedef void (IPLCALL* IPLPathingVisualizationCallback)(IPLVector3 from, IPLVector3 to, IPLbool occluded, void* userData);
+typedef void (IPLCALL *IPLPathingVisualizationCallback)(IPLVector3 from, IPLVector3 to,
+                                                        IPLbool occluded, void *userData);
 
 /** Simulation parameters that are not specific to any source. */
 typedef struct {
@@ -4098,7 +4251,7 @@ typedef struct {
 
     /** Pointer to arbitrary user-specified data provided when calling the function that will
         call this callback.*/
-    void* pathingUserData;
+    void *pathingUserData;
 } IPLSimulationSharedInputs;
 
 /** Simulation results for a source. */
@@ -4121,7 +4274,8 @@ typedef struct {
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplSimulatorCreate(IPLContext context, IPLSimulationSettings* settings, IPLSimulator* simulator);
+IPLAPI IPLerror IPLCALL
+iplSimulatorCreate(IPLContext context, IPLSimulationSettings *settings, IPLSimulator *simulator);
 
 /** Retains an additional reference to a simulator.
 
@@ -4135,7 +4289,7 @@ IPLAPI IPLSimulator IPLCALL iplSimulatorRetain(IPLSimulator simulator);
 
     \param  simulator   The simulator to release a reference to.
 */
-IPLAPI void IPLCALL iplSimulatorRelease(IPLSimulator* simulator);
+IPLAPI void IPLCALL iplSimulatorRelease(IPLSimulator *simulator);
 
 /** Specifies the scene within which all subsequent simulations should be run.
 
@@ -4182,7 +4336,8 @@ IPLAPI void IPLCALL iplSimulatorRemoveProbeBatch(IPLSimulator simulator, IPLProb
                             any synchronization between the calls.
     \param  sharedInputs    The shared input parameters to set.
 */
-IPLAPI void IPLCALL iplSimulatorSetSharedInputs(IPLSimulator simulator, IPLSimulationFlags flags, IPLSimulationSharedInputs* sharedInputs);
+IPLAPI void IPLCALL iplSimulatorSetSharedInputs(IPLSimulator simulator, IPLSimulationFlags flags,
+                                                IPLSimulationSharedInputs *sharedInputs);
 
 /** Commits changes to the scene or probe batches used for simulation.
 
@@ -4232,7 +4387,8 @@ IPLAPI void IPLCALL iplSimulatorRunPathing(IPLSimulator simulator);
 
     \return Status code indicating whether or not the operation succeeded.
 */
-IPLAPI IPLerror IPLCALL iplSourceCreate(IPLSimulator simulator, IPLSourceSettings* settings, IPLSource* source);
+IPLAPI IPLerror IPLCALL
+iplSourceCreate(IPLSimulator simulator, IPLSourceSettings *settings, IPLSource *source);
 
 /** Retains an additional reference to a source.
 
@@ -4246,7 +4402,7 @@ IPLAPI IPLSource IPLCALL iplSourceRetain(IPLSource source);
 
     \param  source  The source to release a reference to.
 */
-IPLAPI void IPLCALL iplSourceRelease(IPLSource* source);
+IPLAPI void IPLCALL iplSourceRelease(IPLSource *source);
 
 /** Adds a source to the set of sources processed by a simulator in subsequent simulations.
 
@@ -4276,7 +4432,8 @@ IPLAPI void IPLCALL iplSourceRemove(IPLSource source, IPLSimulator simulator);
                     any synchronization between the calls.
     \param  inputs  The input parameters to set.
 */
-IPLAPI void IPLCALL iplSourceSetInputs(IPLSource source, IPLSimulationFlags flags, IPLSimulationInputs* inputs);
+IPLAPI void IPLCALL
+iplSourceSetInputs(IPLSource source, IPLSimulationFlags flags, IPLSimulationInputs *inputs);
 
 /** Retrieves simulation results for a source.
 
@@ -4284,7 +4441,8 @@ IPLAPI void IPLCALL iplSourceSetInputs(IPLSource source, IPLSimulationFlags flag
     \param  flags   The types of simulation for which to retrieve results.
     \param  outputs [out] The simulation results.
 */
-IPLAPI void IPLCALL iplSourceGetOutputs(IPLSource source, IPLSimulationFlags flags, IPLSimulationOutputs* outputs);
+IPLAPI void IPLCALL
+iplSourceGetOutputs(IPLSource source, IPLSimulationFlags flags, IPLSimulationOutputs *outputs);
 
 /** \} */
 
@@ -4303,7 +4461,9 @@ IPLAPI void IPLCALL iplSourceGetOutputs(IPLSource source, IPLSimulationFlags fla
 
     \return The distance attenuation to apply, between \c 0 and \c 1.
 */
-IPLAPI IPLfloat32 IPLCALL iplDistanceAttenuationCalculate(IPLContext context, IPLVector3 source, IPLVector3 listener, IPLDistanceAttenuationModel* model);
+IPLAPI IPLfloat32 IPLCALL
+iplDistanceAttenuationCalculate(IPLContext context, IPLVector3 source, IPLVector3 listener,
+                                IPLDistanceAttenuationModel *model);
 
 /** Calculates the air absorption coefficients between a source and a listener.
 
@@ -4313,7 +4473,9 @@ IPLAPI IPLfloat32 IPLCALL iplDistanceAttenuationCalculate(IPLContext context, IP
     \param  model           The air absorption model to use.
     \param  airAbsorption   [out] The 3-band air absorption coefficients, each between \c 0 and \c 1.
 */
-IPLAPI void IPLCALL iplAirAbsorptionCalculate(IPLContext context, IPLVector3 source, IPLVector3 listener, IPLAirAbsorptionModel* model, IPLfloat32* airAbsorption);
+IPLAPI void IPLCALL
+iplAirAbsorptionCalculate(IPLContext context, IPLVector3 source, IPLVector3 listener,
+                          IPLAirAbsorptionModel *model, IPLfloat32 *airAbsorption);
 
 /** Calculates the attenuation of a source due to its directivity pattern and orientation relative to a listener.
 
@@ -4324,7 +4486,9 @@ IPLAPI void IPLCALL iplAirAbsorptionCalculate(IPLContext context, IPLVector3 sou
 
     \return The directivity value to apply, between \c 0 and \c 1.
 */
-IPLAPI IPLfloat32 IPLCALL iplDirectivityCalculate(IPLContext context, IPLCoordinateSpace3 source, IPLVector3 listener, IPLDirectivity* model);
+IPLAPI IPLfloat32 IPLCALL
+iplDirectivityCalculate(IPLContext context, IPLCoordinateSpace3 source, IPLVector3 listener,
+                        IPLDirectivity *model);
 
 /** \} */
 

@@ -1,0 +1,28 @@
+/* Spoken Siri commands - Italian.
+
+   Values only: the keys are the English phrases declared in
+   SoundscapeAppShortcuts.swift and must stay exactly as they are. See
+   en.lproj/AppShortcuts.strings for the rules (${applicationName} in every phrase, ${parameter}
+   tokens kept but free to move).
+
+   Every phrase keeps the shape "<app name> <group> <choice>", so knowing the six
+   group words is enough to reach everything.
+
+   First pass, not authored by a native speaker - corrections welcome. */
+
+"${applicationName} surroundings ${kind}" = "${applicationName} dintorni ${kind}";
+"${applicationName} surroundings" = "${applicationName} dintorni";
+
+"${applicationName} route ${command}" = "${applicationName} percorso ${command}";
+"${applicationName} route" = "${applicationName} percorso";
+
+"${applicationName} start route ${route}" = "${applicationName} avvia percorso ${route}";
+"${applicationName} start route" = "${applicationName} avvia percorso";
+
+"${applicationName} beacon ${marker}" = "${applicationName} audiofaro ${marker}";
+"${applicationName} beacon" = "${applicationName} audiofaro";
+
+"${applicationName} list ${kind}" = "${applicationName} elenco ${kind}";
+"${applicationName} list" = "${applicationName} elenco";
+
+"${applicationName} stop beacon" = "${applicationName} ferma audiofaro";

@@ -59,8 +59,6 @@ Internally the service runs its work on a `CoroutineScope(Job())` and exposes st
 private val _beaconFlow         = MutableStateFlow(BeaconState())
 private val _streetPreviewFlow  = MutableStateFlow(StreetPreviewState(StreetPreviewEnabled.OFF))
 private val _gridStateFlow      = MutableStateFlow<GridState?>(null)
-val voiceCommandStateFlow: StateFlow<VoiceCommandState>
-    get() = voiceCommandManager?.state ?: MutableStateFlow(VoiceCommandState.Idle)
 ```
 
 `onCreate`/`onDestroy` start and tear down all of the above; `onStartCommand` promotes the service to foreground (notification, location-foreground-service type) so Android will not kill it while the screen is off.
@@ -100,7 +98,6 @@ fun getBeaconFlow()        : StateFlow<BeaconState>?          = soundscapeServic
 fun getCurrentRouteFlow()  : StateFlow<RoutePlayerState>?     = soundscapeService?.routePlayer?.currentRouteFlow
 fun getGridStateFlow()     : StateFlow<GridState?>?           = soundscapeService?.gridStateFlow
 fun getStreetPreviewModeFlow() : StateFlow<StreetPreviewState>? = soundscapeService?.streetPreviewFlow
-fun getVoiceCommandStateFlow() : StateFlow<VoiceCommandState>? = soundscapeService?.voiceCommandStateFlow
 ```
 
 The pattern is: view-models inject `SoundscapeServiceConnection`, gate their work on `serviceBoundState`, and read flows off the connection. Mutating actions go through one-shot methods on the connection (`startBeacon`, `routeStart`, `routeSkipNext`, `setStreetPreviewMode`, …) which forward to the live service if there is one.
@@ -121,7 +118,7 @@ flowchart LR
     SS -->|owns| DP["DirectionProvider"]
     SS -->|owns| GE["GeoEngine"]
     SS -->|owns| RP["RoutePlayer"]
-    SS -->|owns| MC["MediaSession + VoiceCommandManager"]
+    SS -->|owns| MC["MediaSession"]
     SS -->|uses| NAE
 
     VM["ViewModels<br/>@HiltViewModel"] -->|injects| SC

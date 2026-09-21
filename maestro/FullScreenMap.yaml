@@ -1,0 +1,30 @@
+appId: org.scottishtecharmy.soundscape
+# Verifies the full screen map toggle on the home screen. The FullScreenMapFab
+# expands the map (hiding the bottom controls) and collapses it again. The same
+# control is used to toggle in both directions.
+---
+- launchApp:
+    clearState: false
+
+- runFlow:
+        file: WaitForScreen.yaml
+        env:
+              screen: Home
+
+# Normal (non-full-screen) home layout: bottom controls and the map FAB are visible.
+- assertVisible:
+    id: homeFullScreenMap
+- assertVisible:
+    id: homeMyLocation
+
+# Expand to full screen map.
+- tapOn:
+    id: homeFullScreenMap
+- assertVisible:
+    id: homeFullScreenMap
+
+# Collapse back to the normal layout and confirm the controls are back.
+- tapOn:
+    id: homeFullScreenMap
+- assertVisible:
+    id: homeMyLocation

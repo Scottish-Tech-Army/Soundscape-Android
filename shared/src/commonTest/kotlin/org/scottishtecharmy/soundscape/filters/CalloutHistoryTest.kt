@@ -1,0 +1,165 @@
+package org.scottishtecharmy.soundscape.filters
+
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
+import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
+
+class CalloutHistoryTest {
+
+    @Test
+    fun testAddAndFind() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0) // Example location
+        val callout = TrackedCallout(
+            UserGeometry(), "Poi number one", location,
+            isPoint = true,
+            isGeneric = false
+        )
+        history.add(callout)
+        assertTrue(history.find(callout))
+        assertEquals(1, history.size())
+    }
+
+    @Test
+    fun testTrimByTime() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0) // Example location
+        val callout = TrackedCallout(
+            UserGeometry(timestampMilliseconds = 0L),
+            "Poi number two",
+            location,
+            isPoint = true,
+            isGeneric = true
+        )
+        history.add(callout)
+        history.trim(
+            UserGeometry(
+                location = location,
+                timestampMilliseconds = 11L
+            )
+        )
+        assertFalse(history.find(callout))
+        assertEquals(0, history.size())
+    }
+
+    @Test
+    fun testTrimByDistance() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0) // Example location
+        val distantLocation = LngLatAlt(10.0, 10.0, 10.0)
+        val callout = TrackedCallout(
+            UserGeometry(), "Poi number three", distantLocation,
+            isPoint = true,
+            isGeneric = false
+        )
+        history.add(callout)
+        history.trim(UserGeometry(location))
+        assertFalse(history.find(callout))
+        assertEquals(0, history.size())
+    }
+
+    /**
+     * A callout carrying an extraDedupText claims that broader key as well as its own, so a
+     * later callout using the broader key is suppressed. This is what stops a motorway junction
+     * callout ("On M80 at Junction 2, Robroyston") being followed moments later by a plain
+     * "still on the M80" one.
+     */
+    @Test
+    fun testExtraDedupTextSuppressesLaterBroaderCallout() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0)
+        val junctionCallout = TrackedCallout(
+            UserGeometry(), "On M80 at Junction 2, Robroyston", location,
+            extraDedupText = "M80"
+        )
+        history.add(junctionCallout)
+        assertEquals(2, history.size())
+
+        val roadCallout = TrackedCallout(UserGeometry(), "M80", location)
+        assertTrue(history.find(roadCallout))
+    }
+
+    /**
+     * The matching is deliberately one-way: claiming the broader key must not work in reverse,
+     * or a plain "on the M80" callout would swallow the junction callout that follows it. The
+     * junction is always worth announcing.
+     */
+    @Test
+    fun testExtraDedupTextDoesNotSuppressTheJunctionCallout() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0)
+        history.add(TrackedCallout(UserGeometry(), "M80", location))
+
+        val junctionCallout = TrackedCallout(
+            UserGeometry(), "On M80 at Junction 2, Robroyston", location,
+            extraDedupText = "M80"
+        )
+        assertFalse(history.find(junctionCallout))
+    }
+
+    /**
+     * The claimed key shares the callout's timestamp, so it expires with it rather than
+     * outliving it in the history.
+     */
+    @Test
+    fun testExtraDedupTextExpiresWithItsCallout() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0)
+        history.add(
+            TrackedCallout(
+                UserGeometry(timestampMilliseconds = 0L),
+                "On M80 at Junction 2, Robroyston",
+                location,
+                extraDedupText = "M80"
+            )
+        )
+        history.trim(UserGeometry(location = location, timestampMilliseconds = 11L))
+
+        assertEquals(0, history.size())
+        assertFalse(history.find(TrackedCallout(UserGeometry(), "M80", location)))
+    }
+
+    @Test
+    fun testTrimEmptyHistory() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0) // Example location
+        history.trim(UserGeometry(location))
+        assertEquals(0, history.size())
+    }
+
+    @Test
+    fun testAdaptiveLocationFilter() {
+        val filter = LocationUpdateFilter(0, 100.0)
+
+        var calloutCount = 0
+        val destination = LngLatAlt()
+        var distanceAway = 200000.0
+
+        val ruler = CheapRuler(0.0)
+
+        while (distanceAway >= 0.0) {
+            distanceAway -= 10.0
+
+            val remoteLocation = ruler.destination(destination, distanceAway, 0.0)
+            val userGeometry = UserGeometry(
+                location = remoteLocation,
+                timestampMilliseconds = 1,
+                ruler = ruler
+            )
+            if (filter.shouldUpdate(userGeometry, destination)) {
+                println("Updating on $distanceAway")
+                calloutCount += 1
+                filter.update(userGeometry)
+            }
+        }
+        println("Callout count: $calloutCount")
+        assertEquals(41, calloutCount)
+    }
+}

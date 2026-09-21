@@ -9,9 +9,11 @@ namespace soundscape {
     class SteamAudioSpatializer {
     public:
         SteamAudioSpatializer(int sampleRate, int frameSize);
+
         ~SteamAudioSpatializer();
 
         bool isInitialized() const { return m_Context != nullptr; }
+
         int getFrameSize() const { return m_AudioSettings.frameSize; }
 
         // Create a per-source binaural effect, returns an ID

@@ -1,4 +1,5 @@
 #pragma once
+
 #include <atomic>
 #include <utility>
 
@@ -12,18 +13,19 @@ namespace soundscape {
         FAR_INDEX = 1
     };
     const BeaconDescriptor msc_ProximityDescriptor =
-    {
-        "Proximity",
-        36,
-        {
-            {"file:///android_asset/Route/Proximity_Close.wav" ,0}, // NEAR_INDEX
-            {"file:///android_asset/Route/Proximity_Far.wav" ,0},   // FAR_INDEX
-        }
-    };
+            {
+                    "Proximity",
+                    36,
+                    {
+                            {"file:///android_asset/Sounds/Proximity_Close.wav", 0}, // NEAR_INDEX
+                            {"file:///android_asset/Sounds/Proximity_Far.wav", 0},   // FAR_INDEX
+                    }
+            };
 
     class PositionedAudio {
     public:
-        PositionedAudio(AudioEngine *engine, PositioningMode mode, bool dimmable = false, std::string utterance_id = "");
+        PositionedAudio(AudioEngine *engine, PositioningMode mode, bool dimmable = false,
+                        std::string utterance_id = "");
 
         virtual ~PositionedAudio();
 
@@ -38,10 +40,15 @@ namespace soundscape {
                                        int audioFormat,
                                        int channelCount,
                                        bool proximityBeacon) = 0;
+
         bool IsEof() { return m_Eof; }
+
         void Eof() { m_Eof = true; }
+
         void PlayNow();
+
         void Mute(bool mute);
+
         virtual bool CanStart() = 0;
 
         void UpdateAudioConfig(int sample_rate, int audio_format, int channel_count);
@@ -56,9 +63,11 @@ namespace soundscape {
                   int sampleRate = 44100,
                   int audioFormat = 1,
                   int channelCount = 1);
+
         void RegisterWithMixer();
 
         double GetHeadingOffset(double heading, double latitude, double longitude) const;
+
         void UpdateAzimuth(double heading, double latitude, double longitude);
 
         PositioningMode m_Mode;
@@ -77,6 +86,7 @@ namespace soundscape {
 
     protected:
         bool CanStart() override { return true; }
+
         bool CreateAudioSource(double degrees_off_axis,
                                int sampleRate,
                                int audioFormat,
@@ -87,9 +97,8 @@ namespace soundscape {
     class BeaconWithProximity {
     public:
         BeaconWithProximity(AudioEngine *engine, PositioningMode mode, bool heading_only) :
-            m_HeadingBeacon(engine, mode)
-        {
-            if(!heading_only) {
+                m_HeadingBeacon(engine, mode) {
+            if (!heading_only) {
                 mode.m_AudioMode = PositioningMode::PROXIMITY;
                 mode.m_AudioType = PositioningMode::STANDARD;
                 m_pProximityBeacon = std::make_unique<soundscape::Beacon>(engine, mode);
@@ -104,6 +113,7 @@ namespace soundscape {
     class TextToSpeech : public PositionedAudio {
     public:
         bool CanStart() override { return m_AudioConfigured; }
+
         TextToSpeech(AudioEngine *engine,
                      PositioningMode mode,
                      int tts_socket,
@@ -127,6 +137,7 @@ namespace soundscape {
 
     protected:
         bool CanStart() override { return true; }
+
         bool CreateAudioSource(double degrees_off_axis,
                                int sampleRate,
                                int audioFormat,

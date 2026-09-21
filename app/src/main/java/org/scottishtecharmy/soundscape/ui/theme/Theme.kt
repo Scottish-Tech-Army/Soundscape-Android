@@ -1,21 +1,23 @@
 package org.scottishtecharmy.soundscape.ui.theme
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ColorScheme
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.ProvidableCompositionLocal
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.ThemeState
 
@@ -292,24 +294,10 @@ private val testColorTheme = darkColorScheme(
 var LocalHintsEnabled = compositionLocalOf { true }
 
 
-val LocalAppButtonColors: ProvidableCompositionLocal<ButtonColors> = compositionLocalOf {
-    error("No AppButtonColors provided.")
-}
+// LocalAppButtonColors, currentAppButtonColors, and defaultAppButtonColors
+// are now in the shared module (ui.theme.AppButtonColors)
 
-val currentAppButtonColors: ButtonColors
-    @Composable
-    get() = LocalAppButtonColors.current
-
-fun defaultAppButtonColors(colorScheme: ColorScheme) : ButtonColors {
-
-    return ButtonColors(
-        containerColor = colorScheme.surfaceContainer,
-        contentColor = colorScheme.onSurface,
-        disabledContainerColor = colorScheme.surfaceContainer.copy(alpha = 0.38f),
-        disabledContentColor = colorScheme.onSurface.copy(alpha = 0.38f)
-    )
-}
-
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SoundscapeTheme(
     themeStateFlow: StateFlow<ThemeState>? = null,
@@ -319,11 +307,10 @@ fun SoundscapeTheme(
     val themeState = themeStateFlow?.collectAsState()
     val hintsEnabled = remember(themeState?.value) { themeState?.value?.hintsEnabled != false }
     val currentColorScheme = remember(themeState?.value, testTheme) {
-        if(testTheme) {
+        if (testTheme) {
             // Override theme for checking color usage
             testColorTheme
-        }
-        else {
+        } else {
             if (themeState?.value?.themeIsLight == true) {
                 when (themeState.value.themeContrast) {
                     "Regular" -> lightScheme
@@ -350,78 +337,23 @@ fun SoundscapeTheme(
         MaterialTheme(
             colorScheme = currentColorScheme,
             typography = Typography,
-            content = content
-        )
+        ) {
+            // Set once at the root so every screen's testTags are exposed as
+            // resource-ids for UiAutomator-based tools (e.g. Maestro) and every
+            // screen avoids the status/nav bars, instead of relying on each
+            // screen to opt in individually.
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            ) {
+                content()
+            }
+        }
     }
 }
 
-/**
- * Specifies amount of spacing that should be used through the application in a non-graphic
- * library specific amount.
- */
-data class Spacing(
-    val none: Dp = 0.dp,
-    val tiny: Dp = 2.dp,
-    val extraSmall: Dp = 4.dp,
-    val small: Dp = 8.dp,
-    val medium: Dp = 16.dp,
-    val large: Dp = 32.dp,
-    val extraLarge: Dp = 64.dp,
-    val default: Dp = small,
+// Spacing, LocalSpacing, and spacing are now in the shared module (ui.theme.Spacing)
 
-    val icon: Dp = 32.dp,
-    val targetSize: Dp = 48.dp,
-
-    val preview: Dp = 200.dp
-)
-val LocalSpacing = compositionLocalOf { Spacing() }
-
-val spacing: Spacing
-    @Composable
-    @ReadOnlyComposable
-    get() = LocalSpacing.current
-
-@Composable
-fun Modifier.largePadding(): Modifier =
-    padding(
-        top = spacing.large,
-        bottom = spacing.large,
-        start = spacing.large,
-        end = spacing.large
-    )
-
-@Composable
-fun Modifier.mediumPadding(): Modifier =
-    padding(
-        top = spacing.medium,
-        bottom = spacing.medium,
-        start = spacing.medium,
-        end = spacing.medium
-    )
-
-@Composable
-fun Modifier.smallPadding(): Modifier =
-    padding(
-        top = spacing.small,
-        bottom = spacing.small,
-        start = spacing.small,
-        end = spacing.small
-    )
-
-@Composable
-fun Modifier.extraSmallPadding(): Modifier =
-    padding(
-        top = spacing.extraSmall,
-        bottom = spacing.extraSmall,
-        start = spacing.extraSmall,
-        end = spacing.extraSmall
-    )
-
-@Composable
-fun Modifier.tinyPadding(): Modifier =
-    padding(
-        top = spacing.tiny,
-        bottom = spacing.tiny,
-        start = spacing.tiny,
-        end = spacing.tiny
-    )
+// All padding extensions are now in the shared module (ui.theme.Spacing)

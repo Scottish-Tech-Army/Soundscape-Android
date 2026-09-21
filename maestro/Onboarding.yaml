@@ -3,56 +3,134 @@ appId: org.scottishtecharmy.soundscape
 - launchApp:
     clearState: true
     permissions:
-        all: deny
-        notifications: allow
-        location: allow
+        all: allow
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
-    env:
-      ID: "welcomeScreenContinueButton"
+# iOS 26 sims show a system-level "Allow widgets from Maps to use your
+# location" dialog on fresh boots. It floats above our app and blocks Maestro
+# from reaching the Welcome screen. permissions.all: allow on launchApp only
+# covers our own app's runtime prompts, not Springboard widget prompts, so we
+# dismiss it explicitly here. optional: true means the flow still passes if
+# the dialog never appears (Android, warm sims). It should only fire once per
+# sim session, so subsequent flows don't need the same guard.
+- tapOn:
+    text: "Don.t Allow"
+    optional: true
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
+- runFlow:
+    file: WaitForScreen.yaml
     env:
-      ID: "languageScreenContinueButton"
+      screen: Welcome
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
+- runFlow:
+    file: SwipeAndTap.yaml
     env:
-      ID: "navigatingScreenContinueButton"
+      id: "welcomeScreenContinueButton"
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
+- runFlow:
+    file: SwipeAndTap.yaml
     env:
-      ID: "listeningScreenContinueButton"
+      id: "languageScreenContinueButton"
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
+- runFlow:
+    when:
+      platform: Android
+    file: SwipeAndTap.yaml
     env:
-      ID: "hearingScreenContinueButton"
+      id: "navigatingScreenContinueButton"
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
+# Battery optimization screen. Tapping "Grant permission" launches a system
+# dialog (ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) which is not a runtime
+# permission, so it is not handled by the launchApp permissions block. We wait
+# for the system dialog's positive button and tap it, then continue.
+- runFlow:
+    when:
+      platform: Android
+    file: SwipeAndTap.yaml
     env:
-      ID: "CurrentButton"
+      id: "batteryOptimizationGrantPermissionButton"
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
+- runFlow:
+    when:
+      platform: Android
+    file: Wait.yaml
     env:
-      ID: "audioBeaconsContinueButton"
+      timeout: 3000
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
-    env:
-      ID: "termsScreenAgree"
+# The system battery-optimisation dialog only appears if the app isn't already
+# exempt. Dismiss its "Allow" button if it shows; if it never appears, optional
+# lets the flow carry on instead of failing.
+- tapOn:
+    id: "android:id/button1"
+    optional: true
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
+- runFlow:
+    when:
+      platform: Android
+    file: SwipeAndTap.yaml
     env:
-      ID: "termsScreenContinueButton"
+      id: "batteryOptimizationContinueButton"
 
-- runFlow: 
-    file: SwipeUpAndTap.yaml
+- runFlow:
+    file: SwipeAndTap.yaml
     env:
-      ID: "finishScreenContinueButton"
+      id: "listeningScreenContinueButton"
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: "hearingScreenContinueButton"
+
+- runFlow:
+    when:
+      platform: iOS
+    file: SwipeAndTap.yaml
+    env:
+      id: "permissionsScreenContinueButton"
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: "CurrentButton"
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: "audioBeaconsContinueButton"
+
+- runFlow:
+    when:
+      platform: Android
+    file: SwipeAndTap.yaml
+    env:
+      id: "offlineStorageOnboardingScreenContinueButton"
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: "accessibilityOnboardingScreenShowMapToggle"
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: "accessibilityOnboardingScreenContinueButton"
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: "termsScreenAgree"
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: "termsScreenContinueButton"
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: "finishScreenContinueButton"
+
+# The "new release" dialog only appears for certain version/build states.
+# Dismiss it if present; optional means the flow still passes if it never shows.
+- tapOn:
+    id: "newReleaseDialogDismiss"
+    optional: true

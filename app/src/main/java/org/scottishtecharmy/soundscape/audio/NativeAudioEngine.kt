@@ -3,76 +3,98 @@ package org.scottishtecharmy.soundscape.audio
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.os.Build
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
-import androidx.preference.PreferenceManager
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.services.SoundscapeService
-import org.scottishtecharmy.soundscape.utils.getCurrentLocale
-import java.util.Locale
-import javax.inject.Inject
-import javax.inject.Singleton
 import androidx.core.content.edit
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.MainActivity.Companion.BEACON_TYPE_KEY
+import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.MainActivity.Companion.BEACON_TYPE_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_RATE_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_RATE_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_ENGINE_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.BEACON_TYPE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_ENGINE_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_ENGINE_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_RATE_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_RATE_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_KEY
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.first_launch_callouts_example_3
+import org.scottishtecharmy.soundscape.services.SoundscapeService
+import org.scottishtecharmy.soundscape.utils.getCurrentLocale
+import java.util.Locale
 
-enum class AudioType(val type: Int) {
-    STANDARD(0),
-    LOCALIZED(1),
-    RELATIVE(2),
-    COMPASS(3)
-}
+class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
 
-@Singleton
-class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = null): AudioEngine {
-
-    private var engineHandle : Long = 0
-    private val engineMutex = Object()
+    @Volatile private var engineHandle: Long = 0
+    private val engineMutex = Any()
     private var beaconType = BEACON_TYPE_DEFAULT
 
-    lateinit var ttsEngine : TtsEngine
+    lateinit var ttsEngine: TtsEngine
 
-    private external fun create(assetManager: android.content.res.AssetManager) : Long
+    private external fun create(assetManager: android.content.res.AssetManager): Long
     private external fun destroy(engineHandle: Long)
-    private external fun createNativeBeacon(engineHandle: Long, audioType: Int, headingOnly: Boolean, latitude: Double, longitude: Double, heading: Double) :  Long
+    private external fun createNativeBeacon(
+        engineHandle: Long,
+        audioType: Int,
+        headingOnly: Boolean,
+        latitude: Double,
+        longitude: Double,
+        heading: Double
+    ): Long
+
     private external fun destroyNativeBeacon(beaconHandle: Long)
-    private external fun toggleNativeBeaconMute(engineHandle: Long) : Boolean
-    external fun createNativeTextToSpeech(engineHandle: Long,
-                                          mode: Int,
-                                          latitude: Double,
-                                          longitude: Double,
-                                          heading: Double,
-                                          ttsSocket: Int,
-                                          utteranceId: String) : Long
-    private external fun audioConfigTextToSpeech(engineHandle: Long,
-                                                 utteranceId: String,
-                                                 sampleRate: Int,
-                                                 format: Int,
-                                                 channelCount: Int)
-    private external fun createNativeEarcon(engineHandle: Long, asset:String, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
+    private external fun toggleNativeBeaconMute(engineHandle: Long): Boolean
+    external fun createNativeTextToSpeech(
+        engineHandle: Long,
+        mode: Int,
+        latitude: Double,
+        longitude: Double,
+        heading: Double,
+        ttsSocket: Int,
+        utteranceId: String
+    ): Long
+
+    private external fun audioConfigTextToSpeech(
+        engineHandle: Long,
+        utteranceId: String,
+        sampleRate: Int,
+        format: Int,
+        channelCount: Int
+    )
+
+    private external fun createNativeEarcon(
+        engineHandle: Long,
+        asset: String,
+        mode: Int,
+        latitude: Double,
+        longitude: Double,
+        heading: Double
+    ): Long
+
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
-    private external fun getQueueDepth(engineHandle: Long) : Long
-    private external fun isHandleActive(engineHandle: Long, handle: Long) : Boolean
-    private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double, focusGained: Boolean, duckingAllowed: Boolean, proximityNear: Double)
+    private external fun getQueueDepth(engineHandle: Long): Long
+    private external fun isHandleActive(engineHandle: Long, handle: Long): Boolean
+    private external fun updateGeometry(
+        engineHandle: Long,
+        latitude: Double,
+        longitude: Double,
+        heading: Double,
+        focusGained: Boolean,
+        duckingAllowed: Boolean,
+        proximityNear: Double
+    )
+
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
-    private external fun getListOfBeacons() : Array<String>
+    private external fun getListOfBeacons(): Array<String>
     private external fun setHrtfEnabled(engineHandle: Long, enabled: Boolean)
     private external fun setSuppressRestart(engineHandle: Long, suppress: Boolean)
 
@@ -86,13 +108,15 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private val engineCoroutineScope = CoroutineScope(Dispatchers.Default)
     private var geometryUpdateJob: Job? = null // Job to manage the periodic update task
     private var isActive = true
+
     init {
         // Skip calls to native/external code in unit tests which run on Windows, rather than Android.
         if (Build.FINGERPRINT != "robolectric") {
             if (service == null) {
                 geometryUpdateJob = engineCoroutineScope.launch {
                     while (isActive) { // Loop while the coroutine is active
-                        updateGeometry(0.0, 0.0, 0.0,
+                        updateGeometry(
+                            0.0, 0.0, 0.0,
                             focusGained = true,
                             duckingAllowed = true,
                             proximityNear = 15.0
@@ -104,8 +128,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         }
     }
 
-    fun destroy()
-    {
+    fun destroy() {
         isActive = false
         geometryUpdateJob?.cancel()
 
@@ -125,11 +148,10 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         }
     }
 
-    private var sharedPreferences : SharedPreferences? = null
-    private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
+    private var sharedPreferences: SharedPreferences? = null
+    private lateinit var sharedPreferencesListener: SharedPreferences.OnSharedPreferenceChangeListener
 
-    fun initialize(context : Context)
-    {
+    fun initialize(context: Context) {
         val configLocale = getCurrentLocale()
         val configuration = Configuration(context.resources.configuration)
         configuration.setLocale(configLocale)
@@ -142,13 +164,14 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
             SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
                 if (sharedPreferences == preferences) {
                     var update = false
-                    if(key == SPEECH_ENGINE_KEY) {
+                    if (key == SPEECH_ENGINE_KEY) {
                         // Replace the current TTS engine
                         val engineLabelAndName = preferences?.getString(
                             SPEECH_ENGINE_KEY,
-                            SPEECH_ENGINE_DEFAULT)
+                            SPEECH_ENGINE_DEFAULT
+                        )
 
-                        if(ttsEngine.getCurrentLabelAndName() != engineLabelAndName) {
+                        if (ttsEngine.getCurrentLabelAndName() != engineLabelAndName) {
                             Log.d(
                                 TAG,
                                 "Destroy TTS engine due to SPEECH_ENGINE_KEY change: $engineLabelAndName vs. ${ttsEngine.getCurrentLabelAndName()}"
@@ -171,25 +194,24 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                     }
                     if (key == VOICE_TYPE_KEY) {
                         update = (preferences.getString(VOICE_TYPE_KEY, VOICE_TYPE_DEFAULT)
-                            != ttsEngine.getCurrentVoice())
-                        if(update)
+                                != ttsEngine.getCurrentVoice())
+                        if (update)
                             Log.d(TAG, "VOICE_TYPE_KEY change")
                     }
-                    if(!update && (key == SPEECH_RATE_KEY)) {
+                    if (!update && (key == SPEECH_RATE_KEY)) {
                         update = (preferences.getFloat(SPEECH_RATE_KEY, SPEECH_RATE_DEFAULT)
                                 != ttsEngine.getCurrentRate())
-                        if(update)
+                        if (update)
                             Log.d(TAG, "SPEECH_RATE_KEY change")
                     }
-                    if(update)
-                    {
-                        if(ttsEngine.checkTextToSpeechInitialization(false)) {
+                    if (update) {
+                        if (ttsEngine.checkTextToSpeechInitialization(false)) {
                             if (ttsEngine.updateSpeech(preferences)) {
                                 if (service?.requestAudioFocus() == true) {
                                     // If the voice type preference changes play some test speech
                                     clearTextToSpeechQueue()
                                     val testString =
-                                        localizedContext.getString(R.string.first_launch_callouts_example_3)
+                                        kotlinx.coroutines.runBlocking { getString(Res.string.first_launch_callouts_example_3) }
                                     createTextToSpeech(testString, AudioType.STANDARD)
                                 }
                             }
@@ -212,7 +234,8 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                 this,
                 sharedPreferences?.getString(
                     SPEECH_ENGINE_KEY,
-                    SPEECH_ENGINE_DEFAULT)
+                    SPEECH_ENGINE_DEFAULT
+                )
             )
             Log.d(TAG, "Call initialize on ttsEngine")
             ttsEngine.initialize(context)
@@ -228,18 +251,22 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         }
     }
 
-    override fun textToSpeechAudioConfigCallback(id : String, sampleRateInHz: Int, format: Int, channelCount: Int) {
+    fun textToSpeechAudioConfigCallback(
+        id: String,
+        sampleRateInHz: Int,
+        format: Int,
+        channelCount: Int
+    ) {
         synchronized(engineMutex) {
-            if(engineHandle != 0L) {
+            if (engineHandle != 0L) {
                 audioConfigTextToSpeech(engineHandle, id, sampleRateInHz, format, channelCount)
             }
         }
     }
 
-    override fun createBeacon(location: LngLatAlt, headingOnly: Boolean) : Long
-    {
+    override fun createBeacon(location: LngLatAlt, headingOnly: Boolean): Long {
         synchronized(engineMutex) {
-            if(engineHandle != 0L) {
+            if (engineHandle != 0L) {
                 Log.d(TAG, "Call createNativeBeacon")
                 return createNativeBeacon(
                     engineHandle,
@@ -247,27 +274,26 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                     headingOnly,
                     location.latitude,
                     location.longitude,
-                    0.0)
+                    0.0
+                )
             }
 
             return 0
         }
     }
 
-    override fun destroyBeacon(beaconHandle: Long)
-    {
+    override fun destroyBeacon(beaconHandle: Long) {
         synchronized(engineMutex) {
-            if(beaconHandle != 0L) {
+            if (beaconHandle != 0L) {
                 Log.d(TAG, "Call destroyNativeBeacon")
                 destroyNativeBeacon(beaconHandle)
             }
         }
     }
 
-    override fun toggleBeaconMute() : Boolean
-    {
+    override fun toggleBeaconMute(): Boolean {
         synchronized(engineMutex) {
-            if(engineHandle != 0L) {
+            if (engineHandle != 0L) {
                 return toggleNativeBeaconMute(engineHandle)
             }
         }
@@ -279,12 +305,12 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         type: AudioType,
         latitude: Double,
         longitude: Double,
-        heading: Double) : Long
-    {
+        heading: Double
+    ): Long {
         synchronized(engineMutex) {
-            if(engineHandle != 0L) {
+            if (engineHandle != 0L) {
 
-                if(!ttsEngine.checkTextToSpeechInitialization(true))
+                if (!ttsEngine.checkTextToSpeechInitialization(true))
                     return 0
 
                 return ttsEngine.createTextToSpeech(
@@ -306,13 +332,20 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         type: AudioType,
         latitude: Double,
         longitude: Double,
-        heading: Double) : Long
-    {
+        heading: Double
+    ): Long {
         synchronized(engineMutex) {
-            if(engineHandle != 0L) {
+            if (engineHandle != 0L) {
 
                 Log.d(TAG, "Call createNativeEarcon: $asset")
-                return createNativeEarcon(engineHandle, asset, type.type,  latitude, longitude, heading)
+                return createNativeEarcon(
+                    engineHandle,
+                    asset,
+                    type.type,
+                    latitude,
+                    longitude,
+                    heading
+                )
             }
 
             return 0
@@ -320,21 +353,25 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     }
 
     override fun clearTextToSpeechQueue() {
+        if(engineHandle == 0L)
+            return
+
+        if (!ttsEngine.checkTextToSpeechInitialization(true))
+            return
+
+        // Stop the Text to Speech engine. This makes a blocking binder call to the system TTS
+        // service, so it MUST NOT be held inside engineMutex: a slow or wedged TTS service would
+        // otherwise freeze the whole audio engine (geometry updates, beacons, ...) behind the lock.
+        ttsEngine.stop()
+
+        // Clear the queue in the engine. This is a native call that does need the engine mutex.
         synchronized(engineMutex) {
-            if(engineHandle != 0L) {
-                if (!ttsEngine.checkTextToSpeechInitialization(true))
-                    return
-
-                // Stop the Text to Speech engine
-                ttsEngine.stop()
-
-                // Clear the queue in the engine
+            if (engineHandle != 0L)
                 clearNativeTextToSpeechQueue(engineHandle)
-            }
         }
     }
 
-    override fun getQueueDepth() : Long {
+    override fun getQueueDepth(): Long {
         synchronized(engineMutex) {
             if (engineHandle != 0L) {
                 return getQueueDepth(engineHandle)
@@ -343,7 +380,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         return 0
     }
 
-    override fun isHandleActive(handle: Long) : Boolean {
+    override fun isHandleActive(handle: Long): Boolean {
         synchronized(engineMutex) {
             if (engineHandle != 0L) {
                 return isHandleActive(engineHandle, handle)
@@ -352,28 +389,28 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         return false
     }
 
-    override fun getAvailableSpeechEngines() : List<TextToSpeech.EngineInfo> {
+    fun getAvailableSpeechEngines(): List<TextToSpeech.EngineInfo> {
         return ttsEngine.getAvailableEngines()
     }
 
-    override fun getAvailableSpeechLanguages() : Set<Locale> {
+    fun getAvailableSpeechLanguages(): Set<Locale> {
         return ttsEngine.getAvailableSpeechLanguages()
     }
 
-    override fun getAvailableSpeechVoices() : Set<Voice> {
+    fun getAvailableSpeechVoices(): Set<Voice> {
         return ttsEngine.getAvailableSpeechVoices()
     }
 
-    override fun setSpeechLanguage(language : String) : Boolean {
+    override fun setSpeechLanguage(language: String): Boolean {
         return ttsEngine.setSpeechLanguage(language)
     }
 
-    override fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean {
+    fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean {
         val newBeaconType = sharedPreferences.getString(
             BEACON_TYPE_KEY,
             BEACON_TYPE_DEFAULT
-        )!!
-        if(newBeaconType != beaconType) {
+        ) ?: BEACON_TYPE_DEFAULT
+        if (newBeaconType != beaconType) {
             setBeaconType(newBeaconType)
             Log.d(TAG, "Beacon changed from $beaconType to $newBeaconType on $this")
             beaconType = newBeaconType
@@ -382,14 +419,16 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         return false
     }
 
-    override fun updateGeometry(listenerLatitude: Double,
-                                listenerLongitude: Double,
-                                listenerHeading: Double?,
-                                focusGained: Boolean,
-                                duckingAllowed: Boolean,
-                                proximityNear: Double)
-    {        synchronized(engineMutex) {
-            if(engineHandle != 0L)
+    override fun updateGeometry(
+        listenerLatitude: Double,
+        listenerLongitude: Double,
+        listenerHeading: Double?,
+        focusGained: Boolean,
+        duckingAllowed: Boolean,
+        proximityNear: Double
+    ) {
+        synchronized(engineMutex) {
+            if (engineHandle != 0L)
                 updateGeometry(
                     engineHandle,
                     listenerLatitude,
@@ -401,31 +440,28 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                 )
         }
     }
-    override fun setBeaconType(beaconType: String)
-    {
+
+    override fun setBeaconType(beaconType: String) {
         synchronized(engineMutex) {
-            if(engineHandle != 0L)
+            if (engineHandle != 0L)
                 setBeaconType(engineHandle, beaconType)
         }
     }
 
-    override fun getListOfBeaconTypes() : Array<String>
-    {
+    override fun getListOfBeaconTypes(): Array<String> {
         return getListOfBeacons()
     }
 
-    override fun setHrtfEnabled(enabled: Boolean)
-    {
+    override fun setHrtfEnabled(enabled: Boolean) {
         synchronized(engineMutex) {
-            if(engineHandle != 0L)
+            if (engineHandle != 0L)
                 setHrtfEnabled(engineHandle, enabled)
         }
     }
 
-    fun setSuppressRestart(suppress: Boolean)
-    {
+    fun setSuppressRestart(suppress: Boolean) {
         synchronized(engineMutex) {
-            if(engineHandle != 0L)
+            if (engineHandle != 0L)
                 setSuppressRestart(engineHandle, suppress)
         }
     }
@@ -451,25 +487,28 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
 
     companion object {
         private const val TAG = "NativeAudioEngine"
+
         init {
             System.loadLibrary("soundscape-audio")
         }
 
         // Earcon asset filenames
-        const val EARCON_CALIBRATION_IN_PROGRESS = "file:///android_asset/earcons/calibration_in_progress.wav"
-        const val EARCON_CALIBRATION_SUCCESS = "file:///android_asset/earcons/calibration_success.wav"
-        const val EARCON_CALLOUTS_ON = "file:///android_asset/earcons/callouts_on.wav"
-        const val EARCON_CALLOUTS_OFF = "file:///android_asset/earcons/callouts_off.wav"
-        const val EARCON_CONNECTION_SUCCESS = "file:///android_asset/earcons/connection_success.wav"
-        const val EARCON_LOW_CONFIDENCE = "file:///android_asset/earcons/low_confidence.wav"
-        const val EARCON_MODE_ENTER = "file:///android_asset/earcons/mode_enter.wav"
-        const val EARCON_MODE_EXIT = "file:///android_asset/earcons/mode_exit.wav"
-        const val EARCON_OFFLINE = "file:///android_asset/earcons/offline.wav"
-        const val EARCON_ONLINE = "file:///android_asset/earcons/online.wav"
-        const val EARCON_SENSE_LOCATION = "file:///android_asset/earcons/sense_location.wav"
-        const val EARCON_SENSE_MOBILITY = "file:///android_asset/earcons/sense_mobility.wav"
-        const val EARCON_SENSE_POI = "file:///android_asset/earcons/sense_poi.wav"
-        const val EARCON_SENSE_SAFETY = "file:///android_asset/earcons/sense_safety.wav"
-        const val EARCON_INFORMATION_ALERT = "file:///android_asset/earcons/information_alert.wav"
+        const val EARCON_CALIBRATION_IN_PROGRESS =
+            "file:///android_asset/Sounds/calibration_in_progress.wav"
+        const val EARCON_CALIBRATION_SUCCESS =
+            "file:///android_asset/Sounds/calibration_success.wav"
+        const val EARCON_CALLOUTS_ON = "file:///android_asset/Sounds/callouts_on.wav"
+        const val EARCON_CALLOUTS_OFF = "file:///android_asset/Sounds/callouts_off.wav"
+        const val EARCON_CONNECTION_SUCCESS = "file:///android_asset/Sounds/connection_success.wav"
+        const val EARCON_LOW_CONFIDENCE = "file:///android_asset/Sounds/low_confidence.wav"
+        const val EARCON_MODE_ENTER = "file:///android_asset/Sounds/mode_enter.wav"
+        const val EARCON_MODE_EXIT = "file:///android_asset/Sounds/mode_exit.wav"
+        const val EARCON_OFFLINE = "file:///android_asset/Sounds/offline.wav"
+        const val EARCON_ONLINE = "file:///android_asset/Sounds/online.wav"
+        const val EARCON_SENSE_LOCATION = "file:///android_asset/Sounds/sense_location.wav"
+        const val EARCON_SENSE_MOBILITY = "file:///android_asset/Sounds/sense_mobility.wav"
+        const val EARCON_SENSE_POI = "file:///android_asset/Sounds/sense_poi.wav"
+        const val EARCON_SENSE_SAFETY = "file:///android_asset/Sounds/sense_safety.wav"
+        const val EARCON_INFORMATION_ALERT = "file:///android_asset/Sounds/information_alert.wav"
     }
 }

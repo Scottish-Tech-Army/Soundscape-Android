@@ -2,14 +2,18 @@ package org.scottishtecharmy.soundscape
 
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.core.app.ApplicationProvider
-import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.junit.Rule
 import org.junit.Test
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.first_launch_welcome_button
+import org.scottishtecharmy.soundscape.resources.first_launch_welcome_description
+import org.scottishtecharmy.soundscape.resources.first_launch_welcome_title
+import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 // This is very helpful:
 // https://developer.android.com/develop/ui/compose/testing/testing-cheatsheet
@@ -18,7 +22,7 @@ class WelcomeScreenTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun welcomeScreenTest(){
+    fun welcomeScreenTest() {
         composeTestRule.setContent {
             SoundscapeTheme {
                 Welcome(onNavigate = {})
@@ -26,9 +30,12 @@ class WelcomeScreenTest {
         }
         // Unable to get translations strings using the stringResource() which is a composable so..
         val context: Context = ApplicationProvider.getApplicationContext()
-        val stringWelcomeTitle = context.resources.getString(R.string.first_launch_welcome_title)
-        val stringWelcomeDescription = context.resources.getString(R.string.first_launch_welcome_description)
-        val stringWelcomeGetStarted = context.resources.getString(R.string.first_launch_welcome_button)
+        val stringWelcomeTitle =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_welcome_title) }
+        val stringWelcomeDescription =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_welcome_description) }
+        val stringWelcomeGetStarted =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_welcome_button) }
 
         // format for composeTestRule is:
         // composeTestRule{.finder}{.assertion}{.action}

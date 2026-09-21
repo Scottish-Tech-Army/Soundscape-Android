@@ -14,6 +14,7 @@
 namespace soundscape {
 
     class PositionedAudio;
+
     class AudioEngine;
 
     class BeaconBuffer {
@@ -88,6 +89,7 @@ namespace soundscape {
 
         // AudioSourceBase interface
         int readPcm(float *outMono, int numFrames) override;
+
         bool isFinished() const override;
 
     private:
@@ -121,6 +123,7 @@ namespace soundscape {
 
         // AudioSourceBase interface
         int readPcm(float *outMono, int numFrames) override;
+
         bool isFinished() const override;
 
     private:
@@ -139,10 +142,12 @@ namespace soundscape {
     public:
         EarconSource(PositionedAudio *parent, std::string &asset,
                      AAssetManager *mgr, int targetSampleRate);
+
         ~EarconSource() override = default;
 
         // AudioSourceBase interface
         int readPcm(float *outMono, int numFrames) override;
+
         bool isFinished() const override;
 
         void UpdateGeometry(double degrees_off_axis, SourceMode mode) override;

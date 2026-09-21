@@ -1,0 +1,28 @@
+/* Spoken Siri commands - Thai.
+
+   Values only: the keys are the English phrases declared in
+   SoundscapeAppShortcuts.swift and must stay exactly as they are. See
+   en.lproj/AppShortcuts.strings for the rules (${applicationName} in every phrase, ${parameter}
+   tokens kept but free to move).
+
+   Every phrase keeps the shape "<app name> <group> <choice>", so knowing the six
+   group words is enough to reach everything.
+
+   First pass, not authored by a native speaker - corrections welcome. */
+
+"${applicationName} surroundings ${kind}" = "${applicationName} รอบตัว ${kind}";
+"${applicationName} surroundings" = "${applicationName} รอบตัว";
+
+"${applicationName} route ${command}" = "${applicationName} เส้นทาง ${command}";
+"${applicationName} route" = "${applicationName} เส้นทาง";
+
+"${applicationName} start route ${route}" = "${applicationName} เริ่มเส้นทาง ${route}";
+"${applicationName} start route" = "${applicationName} เริ่มเส้นทาง";
+
+"${applicationName} beacon ${marker}" = "${applicationName} บีคอน ${marker}";
+"${applicationName} beacon" = "${applicationName} บีคอน";
+
+"${applicationName} list ${kind}" = "${applicationName} รายการ ${kind}";
+"${applicationName} list" = "${applicationName} รายการ";
+
+"${applicationName} stop beacon" = "${applicationName} หยุดบีคอน";

@@ -2,18 +2,27 @@ package org.scottishtecharmy.soundscape
 
 import android.content.Context
 import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.markers_sort_distance_ascending
+import org.scottishtecharmy.soundscape.resources.markers_sort_name_ascending
+import org.scottishtecharmy.soundscape.resources.route_detail_action_start_route_hint
+import org.scottishtecharmy.soundscape.resources.routes_no_routes_hint_1
+import org.scottishtecharmy.soundscape.resources.routes_no_routes_hint_2
+import org.scottishtecharmy.soundscape.resources.routes_no_routes_title
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
@@ -51,17 +60,17 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(markers = false),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onCycleSort = {},
+                    onSelectItem = {}
                 )
             }
         }
 
-        val noRoutesTitle = context.resources.getString(R.string.routes_no_routes_title)
+        val noRoutesTitle =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.routes_no_routes_title) }
         composeTestRule.onNodeWithText(noRoutesTitle).assertIsDisplayed()
     }
 
@@ -70,18 +79,19 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(markers = false),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onCycleSort = {},
+                    onSelectItem = {}
                 )
             }
         }
 
-        val hint1 = context.resources.getString(R.string.routes_no_routes_hint_1)
-        val hint2 = context.resources.getString(R.string.routes_no_routes_hint_2)
+        val hint1 =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.routes_no_routes_hint_1) }
+        val hint2 =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.routes_no_routes_hint_2) }
         composeTestRule.onNodeWithText(hint1).assertIsDisplayed()
         composeTestRule.onNodeWithText(hint2).assertIsDisplayed()
     }
@@ -91,15 +101,14 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onCycleSort = {},
+                    onSelectItem = {}
                 )
             }
         }
@@ -115,70 +124,43 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onCycleSort = {},
+                    onSelectItem = {}
                 )
             }
         }
 
         // Check that sort controls are displayed
-        composeTestRule.onNodeWithTag("SortOrder", useUnmergedTree = true).assertIsDisplayed()
         composeTestRule.onNodeWithTag("SortOption", useUnmergedTree = true).assertIsDisplayed()
     }
 
     @Test
-    fun routesScreen_sortOrderButton_callsToggleSortOrder() {
-        var sortOrderToggled = false
+    fun routesScreen_sortButton_callsCycleSort() {
+        var sortCycled = false
 
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = { sortOrderToggled = true },
-                    onToggleSortByName = {}
-                )
-            }
-        }
-
-        composeTestRule.onNodeWithTag("SortOrder", useUnmergedTree = true).performClick()
-        assert(sortOrderToggled) { "Sort order toggle callback was not called" }
-    }
-
-    @Test
-    fun routesScreen_sortOptionButton_callsToggleSortByName() {
-        var sortByNameToggled = false
-
-        composeTestRule.setContent {
-            SoundscapeTheme {
-                RoutesScreen(
-                    homeNavController = rememberNavController(),
-                    uiState = MarkersAndRoutesUiState(
-                        markers = false,
-                        entries = testRoutes
-                    ),
-                    userLocation = null,
-                    clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = { sortByNameToggled = true }
+                    onCycleSort = { sortCycled = true },
+                    onSelectItem = {}
                 )
             }
         }
 
         composeTestRule.onNodeWithTag("SortOption", useUnmergedTree = true).performClick()
-        assert(sortByNameToggled) { "Sort by name toggle callback was not called" }
+        assert(sortCycled) { "Sort cycle callback was not called" }
     }
 
     @Test
@@ -186,21 +168,21 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         isLoading = true
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onCycleSort = {},
+                    onSelectItem = {}
                 )
             }
         }
 
         // When loading, the empty state message should not be visible
-        val noRoutesTitle = context.resources.getString(R.string.routes_no_routes_title)
+        val noRoutesTitle =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.routes_no_routes_title) }
         composeTestRule.onNodeWithText(noRoutesTitle).assertDoesNotExist()
     }
 
@@ -209,15 +191,14 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
+                    onSelectItem = {},
                     onStartPlayback = { }
                 )
             }
@@ -230,14 +211,16 @@ class RoutesScreenTest {
             .fetchSemanticsNode()
 
         // Check that custom actions exist on the node
-        val customActions = semanticsNode.config.getOrElseNullable(SemanticsActions.CustomActions) { null }
+        val customActions =
+            semanticsNode.config.getOrElseNullable(SemanticsActions.CustomActions) { null }
         assertTrue(
             "Route item should have custom accessibility actions",
             customActions != null && customActions.isNotEmpty()
         )
 
         // Verify the action label contains expected text (start route hint)
-        val startRouteHint = context.resources.getString(R.string.route_detail_action_start_route_hint)
+        val startRouteHint =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.route_detail_action_start_route_hint) }
         val hasStartRouteAction = customActions?.any { it.label == startRouteHint } ?: false
         assertTrue(
             "Route item should have 'Start this route' accessibility action",
@@ -250,7 +233,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes,
@@ -259,14 +241,16 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onCycleSort = {},
+                    onSelectItem = {}
                 )
             }
         }
 
-        val sortByName = context.resources.getString(R.string.markers_sort_button_sort_by_name)
-        composeTestRule.onNodeWithText(sortByName, useUnmergedTree = true).assertIsDisplayed()
+        val sortByName =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_name_ascending) }
+        composeTestRule.onNodeWithTag("SortOption")
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, sortByName))
     }
 
     @Test
@@ -274,7 +258,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes,
@@ -283,14 +266,16 @@ class RoutesScreenTest {
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onCycleSort = {},
+                    onSelectItem = {}
                 )
             }
         }
 
-        val sortByDistance = context.resources.getString(R.string.markers_sort_button_sort_by_distance)
-        composeTestRule.onNodeWithText(sortByDistance, useUnmergedTree = true).assertIsDisplayed()
+        val sortByDistance =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_distance_ascending) }
+        composeTestRule.onNodeWithTag("SortOption")
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, sortByDistance))
     }
 
     @Test
@@ -298,22 +283,24 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
                     ),
                     userLocation = null,
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onCycleSort = {},
+                    onSelectItem = {}
                 )
             }
         }
 
         // Check that route descriptions are displayed
-        composeTestRule.onNodeWithText("A nice morning route", useUnmergedTree = true).assertIsDisplayed()
-        composeTestRule.onNodeWithText("Tour around the city", useUnmergedTree = true).assertIsDisplayed()
-        composeTestRule.onNodeWithText("Loop through the park", useUnmergedTree = true).assertIsDisplayed()
+        composeTestRule.onNodeWithText("A nice morning route", useUnmergedTree = true)
+            .assertIsDisplayed()
+        composeTestRule.onNodeWithText("Tour around the city", useUnmergedTree = true)
+            .assertIsDisplayed()
+        composeTestRule.onNodeWithText("Loop through the park", useUnmergedTree = true)
+            .assertIsDisplayed()
     }
 }

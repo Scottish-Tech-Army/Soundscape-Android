@@ -1,0 +1,167 @@
+package org.scottishtecharmy.soundscape.geoengine
+
+import kotlinx.coroutines.CloseableCoroutineDispatcher
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.withContext
+import okio.Path.Companion.toPath
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
+import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.platform.ioDispatcher
+import org.scottishtecharmy.soundscape.utils.findExtractPaths
+import vector_tile.Tile
+import kotlin.coroutines.cancellation.CancellationException
+import kotlin.time.TimeSource
+import kotlin.time.measureTime
+
+@OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
+open class ProtomapsGridState(
+    zoomLevel: Int = MAX_ZOOM_LEVEL,
+    gridSize: Int = GRID_SIZE,
+    passedInTreeContext: CloseableCoroutineDispatcher? = null
+) : GridState(zoomLevel, gridSize, passedInTreeContext) {
+
+    // We need an array of pmtile readers, one for each tile in the grid.
+    var fileTileReaders = arrayOfNulls<PmTilesReader?>(gridSize * gridSize)
+    var currentExtracts: MutableList<String> = mutableListOf()
+    var extractPath: String = ""
+
+    override fun start(offlineExtractPath: String) {
+        extractPath = offlineExtractPath
+        currentExtracts = mutableListOf()
+    }
+
+    override fun stop() {
+        super.stop()
+        for (reader in fileTileReaders) {
+            try { reader?.close() } catch (_: Exception) {}
+        }
+        fileTileReaders = arrayOfNulls<PmTilesReader?>(gridSize * gridSize)
+    }
+
+    override fun checkOfflineMaps() {
+        // Check for change in offline map extracts and update our file readers if there's a change
+        val extracts = findExtractPaths(extractPath).toMutableList()
+        if (extracts != currentExtracts) {
+            println("Change in offline extracts")
+            currentExtracts = extracts
+            // These events don't really tell us very much, so mark them as costly
+            if (currentExtracts.isEmpty())
+                analytics.logCostlyEvent("GridNoOfflineMap")
+            else
+                analytics.logCostlyEvent("GridWithOfflineMap")
+
+            // Close old file readers
+            for (reader in fileTileReaders) {
+                try { reader?.close() } catch (_: Exception) {}
+            }
+            fileTileReaders = arrayOfNulls<PmTilesReader?>(gridSize * gridSize)
+        }
+    }
+
+    /**
+     * updateTile is responsible for getting data from the protomaps server and translating it from
+     * MVT format into a set of FeatureCollections.
+     */
+    override suspend fun updateTile(
+        x: Int,
+        y: Int,
+        workerIndex: Int,
+        featureCollections: Array<FeatureCollection>,
+        intersectionMap: HashMap<LngLatAlt, Intersection>,
+        streetNumberMap: HashMap<String, FeatureCollection>,
+        transitIntersectionMap: HashMap<LngLatAlt, Intersection>
+    ): Boolean {
+        var ret = false
+
+        withContext(ioDispatcher) {
+            try {
+                val startMark = TimeSource.Monotonic.markNow()
+
+                var result: Tile? = null
+
+                // Try the reader that we are currently using first
+                var reader = fileTileReaders[workerIndex]
+                var fileTile: ByteArray? = reader?.getTile(zoomLevel, x, y)
+
+                if (fileTile == null) {
+                    // We failed to get a tile from the current reader, so we need to find one that
+                    // does work. Reset it, and then see if we can find an extract that does work.
+                    fileTileReaders[workerIndex]?.close()
+                    fileTileReaders[workerIndex] = null
+                    for (extract in currentExtracts) {
+                        println("Try $extract for worker $workerIndex")
+                        reader = PmTilesReader(extract.toPath())
+                        fileTile = reader.getTile(zoomLevel, x, y)
+                        if (fileTile != null) {
+                            // We've found an extract that works, so use that
+                            fileTileReaders[workerIndex] = reader
+                            break
+                        }
+                        reader.close()
+                    }
+                }
+                if (fileTile != null) {
+                    // Turn the byte array into a VectorTile
+                    result = decompressTile(reader?.tileCompression, fileTile)
+                }
+
+                // Fallback to network
+                if (result == null) {
+                    val bytes = tileClient?.getTile(x, y, zoomLevel)
+                    if (bytes != null) result = Tile.ADAPTER.decode(bytes)
+                }
+
+                if (result != null) {
+                    val requestTime = startMark.elapsedNow()
+                    println("Tile size ${Tile.ADAPTER.encodedSize(result)}")
+                    var collections: Array<FeatureCollection>? = null
+                    val mvtParseTime = measureTime {
+                        collections = vectorTileToGeoJson(
+                            tileX = x,
+                            tileY = y,
+                            mvt = result,
+                            intersectionMap = intersectionMap,
+                            streetNumberMap = streetNumberMap,
+                            tileZoom = zoomLevel,
+                            transitIntersectionMap = transitIntersectionMap,
+                            nameKeys = nameKeys
+                        )
+                    }
+                    val addTime = measureTime {
+                        if (collections != null) {
+                            for ((index, collection) in collections.withIndex()) {
+                                featureCollections[index] += collection
+                            }
+                        }
+                    }
+
+                    println("Request time $requestTime")
+                    println("MVT parse time $mvtParseTime")
+                    println("Add to FeatureCollection time $addTime")
+
+                    ret = true
+                } else {
+                    println("No response for protomaps tile")
+                }
+            } catch (ce: CancellationException) {
+                // We have to rethrow cancellation exceptions
+                throw ce
+            } catch (e: Exception) {
+                println("Exception getting protomaps tile $e")
+            }
+        }
+        return ret
+    }
+
+    override fun fixupCollections(featureCollections: Array<FeatureCollection>) {
+        // Merge any overlapping Polygons that are on the tile boundaries
+        val mergedPoi = mergeAllPolygonsInFeatureCollection(featureCollections[TreeId.POIS.id])
+        featureCollections[TreeId.POIS.id] = mergedPoi
+    }
+}

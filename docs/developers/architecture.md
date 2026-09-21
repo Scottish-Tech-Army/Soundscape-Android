@@ -23,10 +23,10 @@ The app can also be driven entirely from downloaded map extracts so that users c
 Because Soundscape is primarily an audio app it is essential that the user can drive it without unlocking the phone. Three control surfaces are supported in addition to the touch UI:
 
 1. Media-key shortcuts (play/pause/next/previous on a headset or watch), modelled on the iOS app's bindings.
-2. Voice commands — the user tap-and-holds a media key to enter a listening state, speaks a command, and the recognised text is dispatched to the same handlers as the touch UI.
+2. Voice commands (CURRENTLY REMOVED) — the user tap-and-holds a media key to enter a listening state, speaks a command, and the recognised text is dispatched to the same handlers as the touch UI.
 3. An audio menu — repeated media-key presses walk a tree of spoken menu options that mirrors the GUI.
 
-See [Voice and audio menu control]({% link developers/voice-and-audio-control.md %}) for the command catalogue and menu layout. The implementation lives in `services/mediacontrol/` (`MediaControlTarget`, `VoiceCommandManager`, `AudioMenu`, `SoundscapeMediaSessionCallback`).
+See [Audio menu control]({% link developers/voice-and-audio-control.md %}) for the command catalogue and menu layout. The implementation lives in `services/mediacontrol/` (`MediaControlTarget`, `AudioMenu`, `SoundscapeMediaSessionCallback`).
 
 ## Onboarding Activity
 The onboarding screens have been given their own activity. Onboarding screens guide the users through some initial choices of language,  permissions and audio beacon settings. Onboarding screens are only shown the first time through the app, or if the user selects *App Setup* from within the *Help & Tutorials* section of the menu.

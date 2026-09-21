@@ -16,20 +16,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.stringResource
+import org.koin.androidx.compose.koinViewModel
 import org.scottishtecharmy.soundscape.components.OnboardButton
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.offline_map_storage_description
+import org.scottishtecharmy.soundscape.resources.offline_map_storage_title
+import org.scottishtecharmy.soundscape.resources.ui_continue
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -39,7 +43,7 @@ import org.scottishtecharmy.soundscape.utils.StorageUtils
 fun OfflineStorageOnboardingScreenVM(
     onNavigate: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    viewModel: OffscreenStorageOnboardingViewModel = hiltViewModel()
+    viewModel: OffscreenStorageOnboardingViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -63,7 +67,7 @@ fun OfflineStorageOnboardingScreen(
     BoxWithGradientBackground(
         modifier = modifier,
         color = MaterialTheme.colorScheme.surface
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .padding(horizontal = spacing.large)
@@ -75,7 +79,7 @@ fun OfflineStorageOnboardingScreen(
             verticalArrangement = Arrangement.Top
         ) {
             Text(
-                text = stringResource(R.string.offline_map_storage_title),
+                text = stringResource(Res.string.offline_map_storage_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -89,7 +93,7 @@ fun OfflineStorageOnboardingScreen(
             Spacer(modifier = Modifier.height(spacing.large))
 
             Text(
-                text = stringResource(R.string.offline_map_storage_description),
+                text = stringResource(Res.string.offline_map_storage_description),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
@@ -111,9 +115,9 @@ fun OfflineStorageOnboardingScreen(
 
             Spacer(modifier = Modifier.height(spacing.large))
 
-            if(onNavigate != null) {
+            if (onNavigate != null) {
                 OnboardButton(
-                    text = stringResource(R.string.ui_continue),
+                    text = stringResource(Res.string.ui_continue),
                     onClick = { onNavigate() },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -125,6 +129,7 @@ fun OfflineStorageOnboardingScreen(
     }
 
     LaunchedEffect(Unit) {
+        withFrameNanos { }
         focusRequester.requestFocus()
     }
 }
@@ -137,30 +142,30 @@ fun OfflineStorageOnboardingScreenPreview() {
         description = "Internal",
         isExternal = false,
         isPrimary = false,
-        64*1024*1024*1024L,
-        22*1024*1024*1024L,
+        64 * 1024 * 1024 * 1024L,
+        22 * 1024 * 1024 * 1024L,
         "22000 MB",
-        23*1024*1024*1024L
+        23 * 1024 * 1024 * 1024L
     )
     val externalStorage1 = StorageUtils.StorageSpace(
         "/path/to/external1",
         description = "External",
         isExternal = true,
         isPrimary = false,
-        128*1024*1024*1024L,
-        88*1024*1024*1024L,
+        128 * 1024 * 1024 * 1024L,
+        88 * 1024 * 1024 * 1024L,
         "88000 MB",
-        90*1024*1024*1024L
+        90 * 1024 * 1024 * 1024L
     )
     val externalStorage2 = StorageUtils.StorageSpace(
         "/path/to/external2",
         description = "SD",
         isExternal = true,
         isPrimary = true,
-        128*1024*1024*1024L,
-        20*1024*1024*1024L,
+        128 * 1024 * 1024 * 1024L,
+        20 * 1024 * 1024 * 1024L,
         "20000 MB",
-        30*1024*1024*1024L
+        30 * 1024 * 1024 * 1024L
     )
     OfflineStorageOnboardingScreen(
         onNavigate = null,

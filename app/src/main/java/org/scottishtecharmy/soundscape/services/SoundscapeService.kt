@@ -1,18 +1,18 @@
 package org.scottishtecharmy.soundscape.services
 
 import android.Manifest
-import android.content.Context
-import android.content.res.Configuration
 import android.annotation.SuppressLint
 import android.app.ForegroundServiceStartNotAllowedException
-import android.content.pm.PackageManager
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
+import android.content.res.Configuration
 import android.media.AudioAttributes
 import android.media.AudioFocusRequest
 import android.media.AudioManager
@@ -27,70 +27,97 @@ import androidx.annotation.OptIn
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider.getUriForFile
 import androidx.core.content.edit
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_KEY
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.actions.SoundscapeActionExecutor
 import org.scottishtecharmy.soundscape.audio.AudioType
+import org.scottishtecharmy.soundscape.audio.BeaconPreviewController
+import org.scottishtecharmy.soundscape.audio.CalloutController
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.audio.TourButton
+import org.scottishtecharmy.soundscape.bluetooth.AudioHeadsetBatteryMonitor
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.GeoEngineListener
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
-import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
-import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
-import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.hasPlayServices
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.GooglePlayDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.GooglePlayLocationProvider
-import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.GpxDrivenProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.locationprovider.CompositeHeadTrackingProvider
+import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.bleimu.BleImuHeadTrackingProvider
+import org.scottishtecharmy.soundscape.locationprovider.bose.BoseFramesHeadTrackingProvider
+import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
+import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
+import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
+import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.app_name
+import org.scottishtecharmy.soundscape.resources.notification_text
+import org.scottishtecharmy.soundscape.resources.preview_go_title
+import org.scottishtecharmy.soundscape.resources.service_still_running
+import org.scottishtecharmy.soundscape.resources.voice_cmd_markers_list
+import org.scottishtecharmy.soundscape.resources.voice_cmd_no_markers
+import org.scottishtecharmy.soundscape.resources.voice_cmd_no_routes
+import org.scottishtecharmy.soundscape.resources.voice_cmd_routes_list
+import org.scottishtecharmy.soundscape.resources.voice_cmd_starting_beacon_at_marker
+import org.scottishtecharmy.soundscape.resources.voice_cmd_starting_route
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.services.SoundscapeService.Companion.TICKER_PERIOD_SECONDS
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenu
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenuMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControlTarget
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
 import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeDummyMediaPlayer
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeMediaSessionCallback
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandManager
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandMediaControls
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
+import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
+import java.io.File
+import java.io.FileOutputStream
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -99,10 +126,7 @@ import kotlin.time.Duration.Companion.seconds
  * data persistence with realmDB. It inherits from MediaSessionService so that we can receive
  * Media Transport button presses to act as a remote control whilst the phone is locked.
  */
-data class BeaconState(val location: LngLatAlt? = null, val muteState: Boolean = false)
-
-@AndroidEntryPoint
-class SoundscapeService : MediaSessionService() {
+class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControllableService {
 
     private val coroutineScope = CoroutineScope(Job())
 
@@ -110,11 +134,41 @@ class SoundscapeService : MediaSessionService() {
     lateinit var directionProvider: DirectionProvider
     lateinit var routePlayer: RoutePlayer
 
+    // External head-tracker — currently a composite of WitMotion (WT9011DCL)
+    // and Bose Frames AR. Null until providers are built.
+    private var headTrackingProvider: HeadTrackingProvider? = null
+
+    // Stable flow that mirrors the current provider's headHeadingFlow. Kept
+    // separate so subscribers (HomeViewModel) survive provider rebuilds.
+    private val _headHeadingFlow = MutableStateFlow<HeadHeading?>(null)
+    override val headHeadingFlow: StateFlow<HeadHeading?> = _headHeadingFlow
+    private var headHeadingForwarderJob: Job? = null
+
+    // System broadcast-based battery monitor for paired Bluetooth headphones.
+    private val headsetBatteryMonitor by lazy { AudioHeadsetBatteryMonitor(this) }
+    override val headsetBatteryPercentFlow: StateFlow<Int?>
+        get() = headsetBatteryMonitor.batteryPercentFlow
+
+    // Listener instance is field-level so it can be unregistered cleanly in onDestroy.
+    private val headTrackingPrefListener =
+        SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == PreferenceKeys.HEAD_TRACKING_ENABLED) applyHeadTrackingEnabled()
+        }
+
+    override val filteredLocationFlow: StateFlow<SoundscapeLocation?>
+        get() = locationProvider.filteredLocationFlow
+
+    override val locationFlow: StateFlow<SoundscapeLocation?>
+        get() = locationProvider.locationFlow
+
+    override val orientationFlow: StateFlow<org.scottishtecharmy.soundscape.locationprovider.DeviceDirection?>
+        get() = directionProvider.orientationFlow
+
+    override val currentRouteFlow: StateFlow<org.scottishtecharmy.soundscape.services.RoutePlayerState>
+        get() = routePlayer.currentRouteFlow
+
     // secondary service
     private var timerJob: Job? = null
-
-    // Guard to prevent duplicate user-triggered callouts
-    private var calloutJob: Job? = null
 
     // Wake lock — keeps CPU running while screen is off so audio callbacks continue
     private var wakeLock: PowerManager.WakeLock? = null
@@ -124,10 +178,23 @@ class SoundscapeService : MediaSessionService() {
     private var audioBeacon: Long = 0
 
     // Audio menu (navigated via media buttons when no route is active)
-    var audioMenu : AudioMenu? = null
+    var audioMenu: AudioMenu? = null
+
+    /**
+     * Entry point for assistant commands, shared with iOS's Siri App Intents. Nullable
+     * like [audioMenu] because both are built when the service starts, and a command
+     * can arrive before that.
+     */
+    var actions: SoundscapeActionExecutor? = null
 
     /** True while the user is actively navigating the audio menu. Suppresses auto callouts. */
-    var menuActive: Boolean = false
+    override var menuActive: Boolean = false
+
+    override fun getStreetPreviewChoices(): List<StreetPreviewChoice> =
+        streetPreviewFlow.value.choices
+
+    override fun getStreetPreviewBestChoice(): StreetPreviewChoice? =
+        streetPreviewFlow.value.bestChoice
 
     // Audio focus
     private lateinit var audioManager: AudioManager
@@ -143,21 +210,25 @@ class SoundscapeService : MediaSessionService() {
                 audioFocusGained = true
                 duckingAllowed = false
             }
+
             AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK -> {
                 Log.d(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK: Focus gained.")
                 audioFocusGained = true
                 duckingAllowed = false
             }
+
             AudioManager.AUDIOFOCUS_LOSS -> {
                 Log.d(TAG, "AUDIOFOCUS_LOSS: Focus lost permanently")
                 abandonAudioFocus()
             }
+
             AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {
                 // Temporarily lost focus. Pause playback.
                 Log.d(TAG, "AUDIOFOCUS_LOSS_TRANSIENT: Focus lost temporarily")
                 audioFocusGained = false
                 duckingAllowed = false
             }
+
             AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK -> {
                 // Temporarily lost focus, but you can duck (lower volume).
                 Log.d(TAG, "AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK: Ducking allowed")
@@ -171,28 +242,114 @@ class SoundscapeService : MediaSessionService() {
     // Geo engine
     private var geoEngine = GeoEngine()
     lateinit var localizedContext: Context
+    private var gpxRecorder: GpxRecorder? = null
+    private lateinit var networkUtils: NetworkUtils
+
+    private fun startGeoEngine(streetPreviewEnabled: Boolean) {
+        val preferencesProvider = AndroidPreferencesProvider(sharedPreferences)
+
+        val extractPath = sharedPreferences.getString(
+            MainActivity.SELECTED_STORAGE_KEY,
+            MainActivity.SELECTED_STORAGE_DEFAULT
+        ) ?: MainActivity.SELECTED_STORAGE_DEFAULT
+        val offlineExtractPath = extractPath + "/" + android.os.Environment.DIRECTORY_DOWNLOADS
+
+        networkUtils = NetworkUtils(application)
+
+        val tileClient = createAndroidVectorTileClient(
+            baseUrl = BuildConfig.TILE_PROVIDER_URL,
+            cacheDir = application.cacheDir,
+            userAgent = UserAgentInterceptor.USER_AGENT,
+            hasNetwork = { networkUtils.hasNetwork() },
+        )
+
+        val platformGeocoder = if (AndroidGeocoder.enabled) AndroidGeocoder(application) else null
+        val routeDao = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
+
+        gpxRecorder = GpxRecorder()
+        geoEngine.locationRecorder = gpxRecorder
+
+        geoEngine.start(
+            newLocationProvider = locationProvider,
+            newDirectionProvider = directionProvider,
+            listener = this,
+            localizedStrings = ComposeLocalizedStrings(),
+            preferencesProvider = preferencesProvider,
+            analytics = AnalyticsProvider.getInstance(),
+            tileClient = tileClient,
+            routeDao = routeDao,
+            offlineExtractPath = offlineExtractPath,
+            hasNetwork = { networkUtils.hasNetwork() },
+            photonSearch = PhotonSearchProvider,
+            platformGeocoder = platformGeocoder,
+            streetPreviewEnabled = streetPreviewEnabled,
+        )
+
+        rebuildHeadTrackingProvider()
+    }
+
+    /**
+     * Replace [headTrackingProvider] with a fresh instance bound to the current
+     * location/direction providers. Called whenever those providers are rebuilt
+     * (initial start or street-preview toggle). Honours the HEAD_TRACKING_ENABLED
+     * preference — only starts streaming if the user has it on.
+     */
+    private fun rebuildHeadTrackingProvider() {
+        headTrackingProvider?.destroy()
+        headHeadingForwarderJob?.cancel()
+        val provider = CompositeHeadTrackingProvider(
+            listOf(
+                BleImuHeadTrackingProvider(directionProvider, locationProvider),
+                BoseFramesHeadTrackingProvider(directionProvider, locationProvider),
+            ),
+        )
+        headTrackingProvider = provider
+        geoEngine.setHeadTrackingProvider(provider)
+        headHeadingForwarderJob = coroutineScope.launch {
+            provider.headHeadingFlow.collect { _headHeadingFlow.value = it }
+        }
+        applyHeadTrackingEnabled()
+    }
+
+    fun applyHeadTrackingEnabled() {
+        val enabled = sharedPreferences.getBoolean(
+            PreferenceKeys.HEAD_TRACKING_ENABLED,
+            PreferenceDefaults.HEAD_TRACKING_ENABLED,
+        )
+        val provider = headTrackingProvider ?: return
+        if (enabled) {
+            // If permissions are missing the start is deferred — MainActivity
+            // requests them and re-applies the preference once granted.
+            if (hasBluetoothPermissions()) provider.start()
+        } else {
+            provider.stop()
+        }
+    }
+
+    private fun hasBluetoothPermissions(): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return true
+        val scan = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
+        val connect = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT)
+        return scan == PackageManager.PERMISSION_GRANTED &&
+            connect == PackageManager.PERMISSION_GRANTED
+    }
 
     // Flow to return beacon location
     private val _beaconFlow = MutableStateFlow(BeaconState())
-    var beaconFlow: StateFlow<BeaconState> = _beaconFlow
+    override val beaconFlow: StateFlow<BeaconState> = _beaconFlow
 
     // Flow to return street preview mode
     private val _streetPreviewFlow = MutableStateFlow(StreetPreviewState(StreetPreviewEnabled.OFF))
-    var streetPreviewFlow: StateFlow<StreetPreviewState> = _streetPreviewFlow
+    override val streetPreviewFlow: StateFlow<StreetPreviewState> = _streetPreviewFlow
 
     // Flow to return nearby places
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
-    var gridStateFlow: StateFlow<GridState?> = _gridStateFlow
-
-    // Voice command manager — only initialized when RECORD_AUDIO permission is granted
-    private var voiceCommandManager: VoiceCommandManager? = null
-    val voiceCommandStateFlow: StateFlow<VoiceCommandState>
-        get() = voiceCommandManager?.state ?: MutableStateFlow(VoiceCommandState.Idle)
+    override val gridStateFlow: StateFlow<GridState?> = _gridStateFlow
 
     // Media control button code
     private var mediaSession: MediaSession? = null
 
-    private var mediaControlsTarget : MediaControlTarget = OriginalMediaControls(this)
+    private var mediaControlsTarget: MediaControlTarget = OriginalMediaControls(this)
     private val mediaPlayer = SoundscapeDummyMediaPlayer { mediaControlsTarget }
 
     var running: Boolean = false
@@ -202,29 +359,26 @@ class SoundscapeService : MediaSessionService() {
 
     @SuppressLint("MissingSuperCall")
     override fun onBind(intent: Intent?): IBinder {
-        if (binder == null) {
-            // Create binder if we don't have one already
-            binder = SoundscapeBinder(this@SoundscapeService)
-        }
-        return binder!!
+        // Create binder if we don't have one already
+        return binder ?: SoundscapeBinder(this@SoundscapeService).also { binder = it }
     }
 
-    fun setStreetPreviewMode(on: Boolean, location: LngLatAlt?) {
+    override fun setStreetPreviewMode(on: Boolean, location: LngLatAlt?) {
         directionProvider.destroy()
         locationProvider.destroy()
         geoEngine.stop()
         if (on) {
             // Use static location, but phone's direction
-            if(location != null) {
+            if (location != null) {
                 locationProvider = StaticLocationProvider(location)
-                directionProvider = if(hasPlayServices(this))
+                directionProvider = if (hasPlayServices(this))
                     GooglePlayDirectionProvider(this)
                 else
                     AndroidDirectionProvider(this)
             }
         } else {
             // Switch back to phone's location and direction
-            if(hasPlayServices(this)) {
+            if (hasPlayServices(this)) {
                 locationProvider = GooglePlayLocationProvider(this)
                 directionProvider = GooglePlayDirectionProvider(this)
             } else {
@@ -235,21 +389,33 @@ class SoundscapeService : MediaSessionService() {
 
         // Set the StreetPreview state prior to starting the location provider. Otherwise there's a
         // race in the tileGridUpdated callback.
-        _streetPreviewFlow.value = StreetPreviewState(if(on) StreetPreviewEnabled.INITIALIZING else StreetPreviewEnabled.OFF)
+        _streetPreviewFlow.value =
+            StreetPreviewState(if (on) StreetPreviewEnabled.INITIALIZING else StreetPreviewEnabled.OFF)
 
-        locationProvider.start(this)
-        directionProvider.start(audioEngine, locationProvider)
-        geoEngine.start(application, locationProvider, directionProvider, this, localizedContext, on)
+        startProviders()
+        startGeoEngine(on)
     }
 
-    fun tileGridUpdated() {
-        if(_streetPreviewFlow.value.enabled == StreetPreviewEnabled.INITIALIZING) {
+    private fun startProviders() {
+        when (val lp = locationProvider) {
+            is GooglePlayLocationProvider -> lp.start()
+            is AndroidLocationProvider -> lp.start()
+            is StaticLocationProvider -> lp.start()
+        }
+        when (val dp = directionProvider) {
+            is GooglePlayDirectionProvider -> dp.start()
+            is AndroidDirectionProvider -> dp.start()
+        }
+    }
+
+    override fun tileGridUpdated() {
+        if (_streetPreviewFlow.value.enabled == StreetPreviewEnabled.INITIALIZING) {
             val choices = geoEngine.streetPreviewGo()
             _streetPreviewFlow.value = StreetPreviewState(
                 StreetPreviewEnabled.ON,
                 choices
             )
-            geoEngine.recomputeStreetPreviewBestChoice(this)
+            geoEngine.recomputeStreetPreviewBestChoice()
         }
         _gridStateFlow.value = geoEngine.gridState
     }
@@ -259,37 +425,55 @@ class SoundscapeService : MediaSessionService() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (!running) {
-            if(startAsForegroundService()) {
+            // Normally already done at the top of onCreate(); this is a fallback retry in case
+            // that attempt failed (e.g. the notification couldn't be built at the time).
+            if (startAsForegroundService()) {
                 // Reminds the user every hour that the Soundscape service is still running in the background
                 startServiceStillRunningTicker()
                 running = true
             }
+        }
 
-            if(!started) {
-                Analytics.getInstance().crashLogNotes("Start geo-engine")
-                locationProvider.start(this)
-                directionProvider.start(audioEngine, locationProvider)
-                val configLocale = getCurrentLocale()
-                val configuration = Configuration(applicationContext.resources.configuration)
-                configuration.setLocale(configLocale)
-                localizedContext = applicationContext.createConfigurationContext(configuration)
-                voiceCommandManager?.updateContext(localizedContext)
-                geoEngine.start(application, locationProvider, directionProvider, this, localizedContext, false)
-                started = true
-            }
+        if (!started) {
+            AnalyticsProvider.getInstance().crashLogNotes("Start geo-engine")
+            startProviders()
+            val configLocale = getCurrentLocale()
+            val configuration = Configuration(applicationContext.resources.configuration)
+            configuration.setLocale(configLocale)
+            localizedContext = applicationContext.createConfigurationContext(configuration)
+            startGeoEngine(false)
+            started = true
         }
 
         return super.onStartCommand(intent, flags, startId)
     }
 
-    lateinit var sharedPreferences : SharedPreferences
+    lateinit var sharedPreferences: SharedPreferences
 
     @OptIn(UnstableApi::class)
+    // WakelockTimeout: the lock is held for the service's whole session lifetime (a walking
+    // session can run for hours) and is released in onDestroy(); a timeout would need renewal
+    // logic that risks an audio dropout if it's ever missed.
+    @Suppress("WakelockTimeout")
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "onCreate $running")
+        runningInstance = this
 
         if (!running) {
+
+            // Promote to a foreground service as the very first thing we do, before any of the
+            // slower initialization below (native audio engine, Realm DB, MediaSession). The
+            // system starts its "must call startForeground() in time" timer from the client's
+            // Context.startForegroundService() call, and onCreate() always runs before
+            // onStartCommand() - so if startForeground() is deferred until onStartCommand(), any
+            // slowness here can eat the whole grace period and trigger a
+            // ForegroundServiceDidNotStartInTimeException.
+            if (startAsForegroundService()) {
+                // Reminds the user every hour that the Soundscape service is still running in the background
+                startServiceStillRunningTicker()
+                running = true
+            }
 
             // Hold a partial wake lock for the service lifetime so the CPU stays awake when the
             // screen is off and the Oboe audio callback keeps firing.
@@ -301,10 +485,20 @@ class SoundscapeService : MediaSessionService() {
             audioEngine.initialize(applicationContext)
 
             audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-            audioMenu = AudioMenu(this, application)
-            routePlayer = RoutePlayer(this, applicationContext)
+            audioMenu = AudioMenu(
+                this,
+                MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
+            )
+            routePlayer = RoutePlayer(
+                this,
+                MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
+            )
+            actions = SoundscapeActionExecutor(
+                this,
+                MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
+            )
 
-            if(true) {
+            if (true) {
                 // Normal app behaviour using the phone location and direction providers
                 if (hasPlayServices(this)) {
                     locationProvider = GooglePlayLocationProvider(this)
@@ -324,30 +518,19 @@ class SoundscapeService : MediaSessionService() {
             // create new RealmDB or open existing
             startRealms(applicationContext)
 
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-                == PackageManager.PERMISSION_GRANTED) {
-                voiceCommandManager = VoiceCommandManager(
-                    service = this
-                )
-            }
+            headsetBatteryMonitor.start()
 
             // Update the media controls mode
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-            val mode = sharedPreferences.getString(MEDIA_CONTROLS_MODE_KEY, MEDIA_CONTROLS_MODE_DEFAULT)!!
+            sharedPreferences.registerOnSharedPreferenceChangeListener(headTrackingPrefListener)
+            val mode = sharedPreferences.getString(
+                PreferenceKeys.MEDIA_CONTROLS_MODE,
+                PreferenceDefaults.MEDIA_CONTROLS_MODE
+            ) ?: PreferenceDefaults.MEDIA_CONTROLS_MODE
             updateMediaControls(mode)
 
-            // Keep biasing strings up to date whenever markers or routes change
-            val dao = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao()
-            coroutineScope.launch {
-                dao.getAllMarkersFlow().collect { markers ->
-                    voiceCommandManager?.updateMarkers(markers)
-                }
-            }
-            coroutineScope.launch {
-                dao.getAllRoutesFlow().collect { routes ->
-                    voiceCommandManager?.updateRoutes(routes)
-                }
-            }
+            // Resume whatever route/beacon was playing when sleep mode last stopped this service.
+            restoreSleepPlaybackState()
 
             mediaSession = MediaSession.Builder(this, mediaPlayer)
                 .setId("org.scottishtecharmy.soundscape")
@@ -357,14 +540,7 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun updateMediaControls(target: String) {
-        val hasRecordAudio = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) ==
-            PackageManager.PERMISSION_GRANTED
         mediaControlsTarget = when (target) {
-            "VoiceControl" if hasRecordAudio -> {
-                voiceCommandManager?.initialize()
-                VoiceCommandMediaControls(this)
-            }
-            "VoiceControl" -> AudioMenuMediaControls(audioMenu)
             "AudioMenu" -> AudioMenuMediaControls(audioMenu)
             "Original" -> OriginalMediaControls(this)
             else -> OriginalMediaControls(this)
@@ -374,7 +550,10 @@ class SoundscapeService : MediaSessionService() {
     override fun onTaskRemoved(rootIntent: Intent?) {
         Log.d(TAG, "onTaskRemoved for service - ignoring, as we want to keep running")
     }
+
     override fun onDestroy() {
+        // Guarded in case a replacement instance has already registered itself.
+        if (runningInstance === this) runningInstance = null
         suppressionJob?.cancel()
 
         // If _mediaSession is not null, run the following block
@@ -394,6 +573,15 @@ class SoundscapeService : MediaSessionService() {
         audioBeacon = 0
         audioEngine.destroy()
 
+        headsetBatteryMonitor.stop()
+        headHeadingForwarderJob?.cancel()
+        headHeadingForwarderJob = null
+        headTrackingProvider?.destroy()
+        headTrackingProvider = null
+        _headHeadingFlow.value = null
+        if (::sharedPreferences.isInitialized) {
+            sharedPreferences.unregisterOnSharedPreferenceChangeListener(headTrackingPrefListener)
+        }
         locationProvider.destroy()
         directionProvider.destroy()
         started = false
@@ -408,8 +596,6 @@ class SoundscapeService : MediaSessionService() {
         wakeLock?.let { if (it.isHeld) it.release() }
         wakeLock = null
 
-        voiceCommandManager?.destroy()
-
         // Clear service reference in binder so that it can be garbage collected
         binder?.reset()
     }
@@ -419,23 +605,25 @@ class SoundscapeService : MediaSessionService() {
      *
      * This needs to be called within 10 seconds of starting the service or the system will throw an exception.
      */
-    private fun startAsForegroundService() : Boolean {
+    private fun startAsForegroundService(): Boolean {
 
-        val analytics = Analytics.getInstance()
+        val analytics = AnalyticsProvider.getInstance()
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 // Code to simulate startForeground failing
-                if(startForegroundShouldFail) {
+                if (startForegroundShouldFail) {
                     startForegroundShouldFail = false
                     throw ForegroundServiceStartNotAllowedException("Simulated startForeground failure")
                 }
             }
 
+            val serviceType = ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION or
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
             ServiceCompat.startForeground(
                 this,
                 NOTIFICATION_ID,
                 getNotification(),
-                ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
+                serviceType
             )
         } catch (e: Exception) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
@@ -443,9 +631,17 @@ class SoundscapeService : MediaSessionService() {
             ) {
                 analytics.crashLogNotes("ForegroundServiceStartNotAllowedException caught")
                 analytics.logEvent("startAsForegroundServiceError", null)
-                Analytics.getInstance().crashSetCustomKey("Service start success", "false")
+                AnalyticsProvider.getInstance().crashSetCustomKey("Service start success", "false")
                 return false
             }
+            // Any other failure (e.g. building or posting the notification) means the service did
+            // not actually reach the foreground. Previously this was swallowed and the method went
+            // on to report success, leaving `running = true` for a service that never started.
+            Log.e(TAG, "startAsForegroundService failed", e)
+            analytics.crashLogNotes("startAsForegroundService failed: $e")
+            analytics.logEvent("startAsForegroundServiceError", null)
+            analytics.crashSetCustomKey("Service start success", "false")
+            return false
         }
         analytics.crashSetCustomKey("Service start success", "true")
         return true
@@ -454,11 +650,73 @@ class SoundscapeService : MediaSessionService() {
     /**
      * Stops the foreground service and removes the notification.
      * Can be called from inside or outside the service.
+     * @param forSleep If true, the current route/beacon playback state is persisted so it can be
+     * automatically resumed when the service is next started (used by sleep mode).
      */
-    fun stopForegroundService() {
+    fun stopForegroundService(forSleep: Boolean = false) {
+        if (forSleep) {
+            saveSleepPlaybackState()
+        }
         destroyBeacon()
         abandonAudioFocus()
         stopSelf()
+    }
+
+    /**
+     * Persists whatever route/beacon RoutePlayer is currently playing so that
+     * [restoreSleepPlaybackState] can restart it after the service is recreated on waking from
+     * sleep mode.
+     */
+    private fun saveSleepPlaybackState() {
+        val state = routePlayer.currentRouteFlow.value
+        val routeData = state.routeData
+        sharedPreferences.edit {
+            if (routeData == null) {
+                putBoolean(SLEEP_RESUME_ACTIVE_KEY, false)
+            } else if (routeData.route.routeId != 0L) {
+                // A route from the markers/routes database.
+                putBoolean(SLEEP_RESUME_ACTIVE_KEY, true)
+                putLong(SLEEP_RESUME_ROUTE_ID_KEY, routeData.route.routeId)
+                putBoolean(SLEEP_RESUME_REVERSE_KEY, state.reverse)
+                putInt(SLEEP_RESUME_WAYPOINT_KEY, state.currentWaypoint)
+            } else {
+                // An ad-hoc beacon (RoutePlayer.startBeacon), identified by routeId 0.
+                val marker = routeData.markers.firstOrNull()
+                if (marker == null) {
+                    putBoolean(SLEEP_RESUME_ACTIVE_KEY, false)
+                } else {
+                    putBoolean(SLEEP_RESUME_ACTIVE_KEY, true)
+                    putLong(SLEEP_RESUME_ROUTE_ID_KEY, 0L)
+                    putString(SLEEP_RESUME_BEACON_NAME_KEY, marker.name)
+                    putString(SLEEP_RESUME_BEACON_LAT_KEY, marker.latitude.toString())
+                    putString(SLEEP_RESUME_BEACON_LON_KEY, marker.longitude.toString())
+                }
+            }
+        }
+    }
+
+    /**
+     * Restarts route/beacon playback saved by [saveSleepPlaybackState], if any. Called once when
+     * a fresh service instance is created after sleep mode stopped the previous one. The saved
+     * state is consumed (cleared) so it's only ever applied once.
+     */
+    private fun restoreSleepPlaybackState() {
+        if (!sharedPreferences.getBoolean(SLEEP_RESUME_ACTIVE_KEY, false)) return
+        sharedPreferences.edit { putBoolean(SLEEP_RESUME_ACTIVE_KEY, false) }
+
+        val routeId = sharedPreferences.getLong(SLEEP_RESUME_ROUTE_ID_KEY, 0L)
+        if (routeId != 0L) {
+            val reverse = sharedPreferences.getBoolean(SLEEP_RESUME_REVERSE_KEY, false)
+            val waypoint = sharedPreferences.getInt(SLEEP_RESUME_WAYPOINT_KEY, 0)
+            routePlayer.startRoute(routeId, reverse, waypoint)
+        } else {
+            val name = sharedPreferences.getString(SLEEP_RESUME_BEACON_NAME_KEY, null)
+            val lat = sharedPreferences.getString(SLEEP_RESUME_BEACON_LAT_KEY, null)?.toDoubleOrNull()
+            val lon = sharedPreferences.getString(SLEEP_RESUME_BEACON_LON_KEY, null)?.toDoubleOrNull()
+            if (name != null && lat != null && lon != null) {
+                routePlayer.startBeacon(LngLatAlt(lon, lat), name)
+            }
+        }
     }
 
     /**
@@ -472,7 +730,7 @@ class SoundscapeService : MediaSessionService() {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@SoundscapeService,
-                            localizedContext.getString(R.string.service_still_running),
+                            getString(Res.string.service_still_running),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -502,9 +760,13 @@ class SoundscapeService : MediaSessionService() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle(getString(R.string.app_name))
-            .setContentText(getString(R.string.notification_text))
-            .setSmallIcon(R.drawable.nearby_markers_24px)
+            .setContentTitle(kotlinx.coroutines.runBlocking { getString(Res.string.app_name) })
+            .setContentText(kotlinx.coroutines.runBlocking { getString(Res.string.notification_text) })
+            // Use a rasterized (PNG) small icon rather than the vector drawable: some OEM System
+            // UIs (e.g. Kapsys SmartVision3) fail to inflate vector notification icons, which makes
+            // the system reject the foreground-service notification and kill us with a
+            // RemoteServiceException.
+            .setSmallIcon(R.drawable.ic_notification)
             .setOngoing(true)
             .setContentIntent(notifyPendingIntent)
 
@@ -528,7 +790,7 @@ class SoundscapeService : MediaSessionService() {
     }
 
     private fun startRealms(context: Context) {
-        MarkersAndRoutesDatabase.getMarkersInstance(context)
+        MarkersAndRoutesDatabaseProvider.getInstance(context)
     }
 
     /*    fun deleteRealm(){
@@ -538,8 +800,8 @@ class SoundscapeService : MediaSessionService() {
             Realm.deleteRealm(config)
         }*/
 
-    fun createBeacon(location: LngLatAlt?, headingOnly: Boolean) {
-        if(location == null) return
+    override fun createBeacon(location: LngLatAlt?, headingOnly: Boolean) {
+        if (location == null) return
 
         requestAudioFocus()
         val oldBeacon = audioBeacon
@@ -552,7 +814,7 @@ class SoundscapeService : MediaSessionService() {
         geoEngine.updateBeaconLocation(location)
     }
 
-    fun destroyBeacon() {
+    override fun destroyBeacon() {
         if (audioBeacon != 0L) {
             audioEngine.destroyBeacon(audioBeacon)
             audioBeacon = 0L
@@ -562,303 +824,117 @@ class SoundscapeService : MediaSessionService() {
         geoEngine.updateBeaconLocation(null)
     }
 
-    // -----------------------------------------------------------------
-    // Beacon style preview
-    //
-    // While the user is choosing a beacon style in Settings we stop any
-    // currently running real beacon, place a temporary "preview" beacon
-    // directly north of the listener, and let them rotate the phone to
-    // hear how it sounds from different angles. When they commit (OK) or
-    // dismiss (Cancel) we tear the preview down and restart whatever
-    // beacon was running before. Cancel additionally reverts the engine's
-    // beacon type to what it was when the preview started.
-    // -----------------------------------------------------------------
-
-    private var previewBeaconHandle: Long = 0L
-    private var savedBeaconLocation: LngLatAlt? = null
-    private var savedBeaconType: String? = null
-
-    /**
-     * Begin a beacon style preview. Saves the location of any currently
-     * running beacon so it can be restarted later, stops that beacon,
-     * and creates a fresh beacon using the supplied [beaconType]. If a
-     * beacon was already active the preview reuses its location; otherwise
-     * the preview is placed ~150m directly north of the listener.
-     */
-    fun startBeaconPreview(beaconType: String) {
-        // Defensive: a stale preview from an aborted prior session would
-        // otherwise leak its handle and clobber savedBeacon* below.
-        if (previewBeaconHandle != 0L) {
-            audioEngine.destroyBeacon(previewBeaconHandle)
-            previewBeaconHandle = 0L
-        }
-
-        // Remember what was playing so we can restore it on close.
-        savedBeaconLocation = _beaconFlow.value.location
-        savedBeaconType = sharedPreferences.getString(MainActivity.BEACON_TYPE_KEY, MainActivity.BEACON_TYPE_DEFAULT)
-
-        if (audioBeacon != 0L) {
-            audioEngine.destroyBeacon(audioBeacon)
-            audioBeacon = 0L
-        }
-
-        audioEngine.setBeaconType(beaconType)
-        createPreviewBeacon()
+    // Beacon style preview — implementation lives in shared
+    // BeaconPreviewController so iOS and Android stay in lockstep.
+    private val beaconPreviewController by lazy {
+        BeaconPreviewController(audioEngine, this, AndroidPreferencesProvider(sharedPreferences))
     }
 
-    /**
-     * Switch the running preview to [beaconType]. Engine state only —
-     * does not write to SharedPreferences, so a subsequent cancel reverts
-     * without any persisted side effect.
-     */
-    fun updateBeaconPreviewType(beaconType: String) {
-        audioEngine.setBeaconType(beaconType)
-        if (previewBeaconHandle != 0L) {
-            audioEngine.destroyBeacon(previewBeaconHandle)
-            previewBeaconHandle = 0L
-        }
-        createPreviewBeacon()
+    fun startBeaconPreview(beaconType: String) =
+        beaconPreviewController.start(beaconType)
+
+    fun updateBeaconPreviewType(beaconType: String) =
+        beaconPreviewController.update(beaconType)
+
+    fun stopBeaconPreview(commit: Boolean, chosenBeaconType: String?) =
+        beaconPreviewController.stop(commit, chosenBeaconType)
+
+    // Callout buttons and user-initiated-TTS-interrupt behaviour — implementation
+    // lives in shared CalloutController so iOS and Android stay in lockstep.
+    private val calloutController by lazy {
+        CalloutController(audioEngine, geoEngine, this, coroutineScope)
     }
 
-    /**
-     * Stop the preview. If [commit] is true, persist [chosenBeaconType]
-     * as the new style; otherwise revert the engine to the type that
-     * was active before the preview started. In both cases, the beacon
-     * that was running before the preview (if any) is restarted at the
-     * same location it was at.
-     */
-    fun stopBeaconPreview(commit: Boolean, chosenBeaconType: String?) {
-        if (previewBeaconHandle != 0L) {
-            audioEngine.destroyBeacon(previewBeaconHandle)
-            previewBeaconHandle = 0L
-        }
+    override val activeCalloutFlow: StateFlow<TourButton?>
+        get() = calloutController.activeCalloutFlow
 
-        if (commit && chosenBeaconType != null) {
-            // Persisting the chosen style fires the SharedPreferences
-            // listener which is idempotent at the native level.
-            sharedPreferences.edit { putString(MainActivity.BEACON_TYPE_KEY, chosenBeaconType) }
-        } else {
-            savedBeaconType?.let { audioEngine.setBeaconType(it) }
-        }
+    override fun myLocation() = calloutController.myLocation()
 
-        savedBeaconLocation?.let { loc ->
-            createBeacon(loc, headingOnly = false)
-        }
+    override fun whatsAroundMe() = calloutController.whatsAroundMe()
 
-        savedBeaconLocation = null
-        savedBeaconType = null
+    override fun aheadOfMe() = calloutController.aheadOfMe()
+
+    override fun nearbyMarkers() = calloutController.nearbyMarkers()
+
+    override fun cancelCallout() = calloutController.cancel()
+
+    override suspend fun searchResult(query: String): List<LocationDescription>? {
+        return geoEngine.searchResult(query)
     }
 
-    private fun createPreviewBeacon() {
-        requestAudioFocus()
-
-        val previewLocation = savedBeaconLocation ?: run {
-            // 150m straight ahead in the direction the phone is currently pointing.
-            val listener = locationProvider.filteredLocationFlow.value
-            val base = LngLatAlt(listener?.longitude ?: 0.0, listener?.latitude ?: 0.0)
-            val heading = directionProvider.orientationFlow.value?.headingDegrees?.toDouble() ?: 0.0
-            getDestinationCoordinate(base, heading, 150.0)
-        }
-
-        previewBeaconHandle = audioEngine.createBeacon(previewLocation, false)
-    }
-
-    private suspend fun awaitHandle(handle: Long) {
-        while (handle != 0L && audioEngine.isHandleActive(handle)) {
-            delay(100)
-        }
-    }
-
-    private fun cancelCallout(): Boolean {
-        val wasActive = calloutJob?.isActive == true
-        if (wasActive)
-            calloutJob?.cancel()
-
-        // Always clear the TTS queue as there's been a user action that requires a response
-        audioEngine.clearTextToSpeechQueue()
-        return wasActive
-    }
-
-    fun myLocation() {
-        if (cancelCallout()) return
-        calloutJob = coroutineScope.launch {
-            if (requestAudioFocus()) {
-                // The call to myLocation can take a second or so as it might be doing network
-                // based reverse geocoding. Ensure that the user has feedback that the action is
-                // taking place by immediately playing the earcon.
-                audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
-                val results = geoEngine.myLocation()
-                ensureActive()
-                var lastHandle = 0L
-                if (results != null) {
-                    lastHandle = speakCallout(results, false)
-                }
-                audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
-                awaitHandle(lastHandle)
-            } else {
-                Log.w(TAG, "myLocation: Could not get audio focus.")
-            }
-        }
-    }
-
-    fun whatsAroundMe() {
-        if (cancelCallout()) return
-        calloutJob = coroutineScope.launch {
-            val results = geoEngine.whatsAroundMe()
-            ensureActive()
-            var lastHandle = 0L
-            if(results.positionedStrings.isNotEmpty()) {
-                lastHandle = speakCallout(results, true)
-            }
-            awaitHandle(lastHandle)
-        }
-    }
-
-    fun aheadOfMe() {
-        if (cancelCallout()) return
-        calloutJob = coroutineScope.launch {
-            val results = geoEngine.aheadOfMe()
-            ensureActive()
-            var lastHandle = 0L
-            if(results != null) {
-                lastHandle = speakCallout(results, true)
-            }
-            awaitHandle(lastHandle)
-        }
-    }
-
-    fun nearbyMarkers() {
-        if (cancelCallout()) return
-        calloutJob = coroutineScope.launch {
-            val results = geoEngine.nearbyMarkers()
-            ensureActive()
-            var lastHandle = 0L
-            if(results != null) {
-                lastHandle = speakCallout(results, true)
-            }
-            awaitHandle(lastHandle)
-        }
-    }
-
-    fun triggerVoiceCommand() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-            != PackageManager.PERMISSION_GRANTED) return
-
-        if (!requestAudioFocus()) {
-            Log.w(TAG, "speakText: Could not get audio focus. Aborting callouts.")
-            return
-        }
-
-        // Stop callbacks whilst we handle voice commands
-        callbackHoldOff()
-
-        // Clear the speech queue
-        audioEngine.clearTextToSpeechQueue()
-
-        // And start listening for voice commands
-        coroutineScope.launch {
-            withContext(Dispatchers.Main) {
-                voiceCommandManager?.startListening()
-            }
-        }
-    }
-
-    suspend fun searchResult(searchString: String): List<LocationDescription>? {
-        return geoEngine.searchResult(searchString)
-    }
-
-    fun getLocationDescription(location: LngLatAlt) : LocationDescription {
+    override fun getLocationDescription(location: LngLatAlt): LocationDescription {
         return geoEngine.getLocationDescription(location)
     }
 
-    fun startBeacon(location: LngLatAlt, name: String) {
-        routePlayer.startBeacon(location, name)
+    override suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? {
+        return geoEngine.getOfflineAddress(location)
     }
-    fun routeStartById(routeId: Long) {
+
+    override fun startBeacon(location: LngLatAlt, name: String) {
+        // RoutePlayer.startBeacon() makes blocking audio engine calls (WAV decode, native
+        // lock), so it's dispatched off the caller's thread to avoid blocking the main thread
+        // when called directly from a UI click handler.
+        coroutineScope.launch {
+            routePlayer.startBeacon(location, name)
+        }
+    }
+
+    override fun routeStartById(routeId: Long) {
         routePlayer.startRoute(routeId)
     }
 
-    fun routeStartReverse(routeId: Long) {
+    override fun routeStartReverse(routeId: Long) {
         routePlayer.startRoute(routeId, reverse = true)
     }
-    fun routeStop() {
+
+    override fun routeStop() {
         routePlayer.stopRoute()
     }
-    fun routeSkipPrevious(): Boolean {
+
+    override fun routeSkipPrevious(): Boolean {
         return routePlayer.moveToPrevious(true)
     }
-    fun routeSkipNext(): Boolean {
+
+    override fun routeSkipNext(): Boolean {
         return routePlayer.moveToNext(true)
     }
-    fun routeMute(): Boolean {
-        if(routePlayer.isPlaying()) {
-            // Silence any current text-to-speech output
-            audioEngine.clearTextToSpeechQueue()
 
-            // Toggle the beacon mute
-            val muteState = audioEngine.toggleBeaconMute()
-            // Update the beacon flow with the new mute state
-            _beaconFlow.value = _beaconFlow.value.copy(muteState = muteState)
-
-            return true
-        }
-        return false
-    }
-    fun routeListRoutes() {
+    override fun routeMute(): Boolean {
+        // Both calls below can block on the audio engine's native lock, so run them off the
+        // caller's thread. No caller uses the return value for anything beyond an immediate,
+        // best-effort indication of whether a mute toggle was triggered.
+        val wasPlaying = routePlayer.isPlaying()
         coroutineScope.launch {
-            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-            val routes = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllRoutes()
-            if (routes.isEmpty())
-                speak2dText(ctx.getString(R.string.voice_cmd_no_routes))
-            else {
-               val names = routes.joinToString(". ") { it.name }
-                speak2dText(ctx.getString(R.string.voice_cmd_routes_list) + names)
+            if (wasPlaying) {
+                // Silence any current text-to-speech output
+                audioEngine.clearTextToSpeechQueue()
+
+                // Toggle the beacon mute
+                val muteState = audioEngine.toggleBeaconMute()
+                // Update the beacon flow with the new mute state
+                _beaconFlow.value = _beaconFlow.value.copy(muteState = muteState)
             }
         }
-    }
-
-    fun routeStart(route: RouteEntity) {
-        val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-        speak2dText(ctx.getString(R.string.voice_cmd_starting_route).format(route.name))
-        routeStartById(route.routeId)
-    }
-
-    fun routeListMarkers() {
-        coroutineScope.launch {
-            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-            val markers = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllMarkers()
-            if (markers.isEmpty()) {
-                speak2dText(ctx.getString(R.string.voice_cmd_no_markers))
-            } else {
-                val names = markers.joinToString(". ") { it.name }
-                speak2dText(ctx.getString(R.string.voice_cmd_markers_list) + names)
-            }
-        }
-    }
-
-    fun markerStart(marker: MarkerEntity) {
-        val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-        speak2dText(ctx.getString(R.string.voice_cmd_starting_beacon_at_marker).format(marker.name))
-
-        val location = LngLatAlt(marker.longitude, marker.latitude)
-        startBeacon(location, marker.name)
+        return wasPlaying
     }
 
     /**
      * isAudioEngineBusy returns true if there is more than one entry in the
      * audio engine queue. The queue consists of earcons and text-to-speech.
      */
-    fun isAudioEngineBusy() : Boolean {
+    override fun isAudioEngineBusy(): Boolean {
         val depth = audioEngine.getQueueDepth()
         //Log.d(TAG, "Queue depth: $depth")
         return (depth > 0)
     }
 
-    fun speakText(text: String,
-                  type: AudioType,
-                  latitude: Double = Double.NaN,
-                  longitude: Double = Double.NaN,
-                  heading: Double = Double.NaN) {
+    override fun speakText(
+        text: String,
+        type: AudioType,
+        latitude: Double,
+        longitude: Double,
+        heading: Double
+    ) {
 
         if (!requestAudioFocus()) {
             Log.w(TAG, "speakText: Could not get audio focus.")
@@ -868,28 +944,30 @@ class SoundscapeService : MediaSessionService() {
         audioEngine.createTextToSpeech(text, type, latitude, longitude, heading)
     }
 
-    fun speak2dText(text: String, clearQueue: Boolean = false, earcon: String? = null) {
+    override fun clearTextToSpeechQueue() {
+        audioEngine.clearTextToSpeechQueue()
+    }
+
+    override fun speak2dText(text: String, clearQueue: Boolean, earcon: String?) {
         if (!requestAudioFocus()) {
             Log.w(TAG, "speak2dText: Could not get audio focus.")
             return
         }
-        if(clearQueue)
+        if (clearQueue)
             audioEngine.clearTextToSpeechQueue()
-        if(earcon != null) {
+        if (earcon != null) {
             audioEngine.createEarcon(earcon, AudioType.STANDARD)
         }
-        if(text.isNotEmpty())
+        if (text.isNotEmpty())
             audioEngine.createTextToSpeech(text, AudioType.STANDARD)
     }
 
-    private var lastGeometry : UserGeometry? = null
-    private var ruler = CheapRuler(0.0)
-    fun updateAudioEngineGeometry(
+    override fun updateAudioEngineGeometry(
         userGeometry: UserGeometry
     ) {
         // Send the update to the audio engine. This affects the direction and sound
         // of the audio beacon.
-        lastGeometry = userGeometry
+        calloutController.updateGeometry(userGeometry)
         audioEngine.updateGeometry(
             userGeometry.location.latitude,
             userGeometry.location.longitude,
@@ -900,75 +978,15 @@ class SoundscapeService : MediaSessionService() {
         )
     }
 
-    fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) : Long {
-
-        if(callout == null) return 0L
-
-        if (!requestAudioFocus()) {
-            Log.w(TAG, "SpeakCallout: Could not get audio focus.")
-            return 0L
-        }
-
-        var lastHandle = 0L
-        if(addModeEarcon) lastHandle = audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
-        for(result in callout.positionedStrings) {
-            if(result.location == null) {
-                var type = result.type
-                if(type == AudioType.LOCALIZED) type = AudioType.STANDARD
-                if(result.earcon != null)
-                    audioEngine.createEarcon(result.earcon, type, 0.0, 0.0, result.heading?:0.0)
-
-                lastHandle = audioEngine.createTextToSpeech(result.text, type, 0.0, 0.0, result.heading?:0.0)
-            }
-            else {
-                if(result.earcon != null) {
-                    audioEngine.createEarcon(
-                        result.earcon,
-                        result.type,
-                        result.location.latitude,
-                        result.location.longitude,
-                        result.heading?:0.0)
-                }
-                val text =
-                    if(result.addDistanceAndHeading) {
-                        lastGeometry?.location?.let { location ->
-                            if (ruler.needsReplacing(location.latitude))
-                                ruler = CheapRuler(location.latitude)
-
-                            val distance =
-                                ruler.distance(location, result.location)
-                            val heading = ruler.bearing(location, result.location)
-                            result.text + ", " + formatDistanceAndDirection(
-                                distance,
-                                heading,
-                                localizedContext,
-                                lastGeometry?.heading(),
-                                sharedPreferences.getString(RELATIVE_DIRECTION_KEY, RELATIVE_DIRECTION_DEFAULT)!!
-                            )
-                        } ?: result.text
-                    }
-                    else
-                        result.text
-                lastHandle = audioEngine.createTextToSpeech(
-                    text,
-                    result.type,
-                    result.location.latitude,
-                    result.location.longitude,
-                    result.heading?:0.0
-                )
-            }
-        }
-        // Don't set lastHandle on the earcon, we don't really care if this has finished or not,
-        // we just want to wait on the TTS.
-        if(addModeEarcon) audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
-
-        callout.calloutHistory?.add(callout)
-        callout.locationFilter?.update(callout.userGeometry)
-        return lastHandle
-    }
+    override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long =
+        calloutController.speakCallout(callout, addModeEarcon)
 
     fun toggleAutoCallouts() {
         geoEngine.toggleAutoCallouts()
+    }
+
+    fun refreshOfflineMaps() {
+        geoEngine.refreshOfflineMaps()
     }
 
     /**
@@ -976,19 +994,21 @@ class SoundscapeService : MediaSessionService() {
      * It indicates that the user has selected the direction of travel in which they which to move.
      */
 
-    fun streetPreviewGo() {
+    override fun streetPreviewGo() {
         val choices = geoEngine.streetPreviewGo()
-        _streetPreviewFlow.value = _streetPreviewFlow.value.copy(choices = choices, bestChoice = null)
-        geoEngine.recomputeStreetPreviewBestChoice(this)
+        _streetPreviewFlow.value =
+            _streetPreviewFlow.value.copy(choices = choices, bestChoice = null)
+        geoEngine.recomputeStreetPreviewBestChoice()
     }
 
-    fun updateStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
+    override fun updateStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
         _streetPreviewFlow.value = _streetPreviewFlow.value.copy(bestChoice = bestChoice)
     }
 
-    fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
-        val compassLabel = localizedContext.getString(getCompassLabel(bestChoice.heading.toInt()))
-        val go = localizedContext.getString(R.string.preview_go_title)
+    override fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
+        val compassLabel =
+            ComposeLocalizedStrings().get(getCompassLabel(bestChoice.heading.toInt()))
+        val go = kotlinx.coroutines.runBlocking { getString(Res.string.preview_go_title) }
         speakText("$go ${bestChoice.name} $compassLabel", AudioType.STANDARD)
     }
 
@@ -997,23 +1017,31 @@ class SoundscapeService : MediaSessionService() {
 //  the GPS heading rather than the non-existent phone heading. Uncomment the check below to enable
 //  that behaviour.
 //        if(Build.DEVICE.contains("generic")) {
-            // Set flag in GeoEngine so that it can adjust it's behaviour
-            geoEngine.appInForeground = foreground
+        // Set flag in GeoEngine so that it can adjust it's behaviour
+        geoEngine.appInForeground = foreground
 //        }
-        if(foreground) {
+        if (foreground) {
             // If the app has switched to the foreground and we've got an active audio beacon, then
             // we should request audio focus
-            if(audioBeacon != 0L)
+            if (audioBeacon != 0L)
                 requestAudioFocus()
         }
     }
 
     fun getRecordingShareUri(context: Context): Uri? {
-        return geoEngine.getRecordingShareUri(context)
+        val recorder = gpxRecorder ?: return null
+        val recordingsStorageDir = File("${context.filesDir}/recordings/")
+        if (!recordingsStorageDir.exists()) {
+            recordingsStorageDir.mkdirs()
+        }
+        val outputFile = File(recordingsStorageDir, "travel.gpx")
+        val gpx = runBlocking { recorder.generateGpx() }
+        FileOutputStream(outputFile, false).use { it.write(gpx.toByteArray()) }
+        return getUriForFile(context, "${context.packageName}.provider", outputFile)
     }
 
-    fun requestAudioFocus(): Boolean {
-        if(!audioFocusGained) {
+    override fun requestAudioFocus(): Boolean {
+        if (!audioFocusGained) {
             if (audioFocusRequest == null) {
                 // Build our audio focus request
                 val audioAttributes = AudioAttributes.Builder()
@@ -1030,8 +1058,8 @@ class SoundscapeService : MediaSessionService() {
                         .setOnAudioFocusChangeListener(focusChangeListener)
                         .build()
             }
-            if (audioFocusRequest != null) {
-                val result = audioManager.requestAudioFocus(audioFocusRequest!!)
+            audioFocusRequest?.let { request ->
+                val result = audioManager.requestAudioFocus(request)
 
                 return if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     audioFocusGained = true
@@ -1065,7 +1093,7 @@ class SoundscapeService : MediaSessionService() {
     /** Cancels pending re-enable of auto callouts and restarts the 10-second countdown. */
     private var suppressionJob: Job? = null
     private val scope = CoroutineScope(Dispatchers.Default)
-    fun callbackHoldOff() {
+    override fun callbackHoldOff() {
         menuActive = true
         suppressionJob?.cancel()
         suppressionJob = scope.launch {
@@ -1077,6 +1105,21 @@ class SoundscapeService : MediaSessionService() {
     companion object {
         private const val TAG = "SoundscapeService"
 
+        /**
+         * The running service, or null when it isn't up.
+         *
+         * Exists for AppFunctions, which are invoked into this process by the system with
+         * no guarantee the service is running - and no way to start it, since a
+         * location-type foreground service can't be launched from the background. Binding
+         * would be the usual answer, but a bind is asynchronous and an AppFunction needs
+         * to know *now* whether it can act. Same process, so a plain reference is enough.
+         *
+         * Deliberately not a way to obtain the service: callers get null and must cope.
+         */
+        @Volatile
+        var runningInstance: SoundscapeService? = null
+            private set
+
         // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 3600.seconds
 
@@ -1086,7 +1129,16 @@ class SoundscapeService : MediaSessionService() {
         private const val NOTIFICATION_CHANNEL_NAME = "Soundscape_SoundscapeService"
         private const val NOTIFICATION_ID = 100000
 
-//      Variable used when simulating startForeground failure - only for debug usage
+        // Keys used to persist route/beacon playback across a sleep mode stop/restart.
+        private const val SLEEP_RESUME_ACTIVE_KEY = "sleep_resume_active"
+        private const val SLEEP_RESUME_ROUTE_ID_KEY = "sleep_resume_route_id"
+        private const val SLEEP_RESUME_REVERSE_KEY = "sleep_resume_reverse"
+        private const val SLEEP_RESUME_WAYPOINT_KEY = "sleep_resume_waypoint"
+        private const val SLEEP_RESUME_BEACON_NAME_KEY = "sleep_resume_beacon_name"
+        private const val SLEEP_RESUME_BEACON_LAT_KEY = "sleep_resume_beacon_lat"
+        private const val SLEEP_RESUME_BEACON_LON_KEY = "sleep_resume_beacon_lon"
+
+        //      Variable used when simulating startForeground failure - only for debug usage
         private var startForegroundShouldFail = false
     }
 }
@@ -1094,8 +1146,8 @@ class SoundscapeService : MediaSessionService() {
 // Binder to allow local clients to Bind to our service
 class SoundscapeBinder(newService: SoundscapeService?) : Binder() {
     var service: SoundscapeService? = newService
-    fun getSoundscapeService(): SoundscapeService {
-        return service!!
+    fun getSoundscapeService(): SoundscapeService? {
+        return service
     }
 
     fun reset() {

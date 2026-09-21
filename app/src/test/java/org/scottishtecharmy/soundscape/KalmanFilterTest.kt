@@ -2,10 +2,10 @@ package org.scottishtecharmy.soundscape
 
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class KalmanFilterTest {
 
@@ -19,7 +19,12 @@ class KalmanFilterTest {
         val timestamp = System.currentTimeMillis()
         var filteredValue = filter.process(start, timestamp, 10.0)
         println("First location: " + filteredValue.latitude + " " + filteredValue.longitude)
-        var distanceToData =  distance(filteredValue.latitude, filteredValue.longitude, start.latitude, start.longitude)
+        var distanceToData = distance(
+            filteredValue.latitude,
+            filteredValue.longitude,
+            start.latitude,
+            start.longitude
+        )
         println("$distanceToData from start")
         assertEquals(start.latitude, filteredValue.latitude, 0.0)
         assertEquals(start.longitude, filteredValue.longitude, 0.0)
@@ -31,19 +36,22 @@ class KalmanFilterTest {
 
         // 1 second later, inaccurate location - this shouldn't move us very close
         filteredValue = filter.process(end, timestamp + 1000, 1000.0)
-        distanceToData =  distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
+        distanceToData =
+            distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
         println("$distanceToData from end")
         assertEquals(distanceToData, 999.0, 1.0)
 
         // 1 second later, accurate location - this should move us much closer
         filteredValue = filter.process(end, timestamp + 1000, 10.0)
-        distanceToData =  distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
+        distanceToData =
+            distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
         println("$distanceToData from end")
         assertEquals(distanceToData, 478.0, 1.0)
 
         // 1 second later, accurate location - this should move us very close
         filteredValue = filter.process(end, timestamp + 1000, 1.0)
-        distanceToData =  distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
+        distanceToData =
+            distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
         println("$distanceToData from end")
         assertEquals(distanceToData, 9.0, 1.0)
     }
@@ -58,7 +66,12 @@ class KalmanFilterTest {
         val timestamp = System.currentTimeMillis()
         var filteredValue = filter.process(start, timestamp, 10.0)
         println("First location: " + filteredValue.latitude + " " + filteredValue.longitude)
-        var distanceToData =  distance(filteredValue.latitude, filteredValue.longitude, start.latitude, start.longitude)
+        var distanceToData = distance(
+            filteredValue.latitude,
+            filteredValue.longitude,
+            start.latitude,
+            start.longitude
+        )
         println("$distanceToData from start")
         assertEquals(start.latitude, filteredValue.latitude, 0.0)
         assertEquals(start.longitude, filteredValue.longitude, 0.0)
@@ -70,13 +83,15 @@ class KalmanFilterTest {
 
         // 1 second later, accurate location
         filteredValue = filter.process(end, timestamp + 1000, 1.0)
-        distanceToData =  distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
+        distanceToData =
+            distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
         println("$distanceToData from end")
         assertEquals(distanceToData, 0.0, 10.0)
 
         // 1 second later, accurate location
         filteredValue = filter.process(end, timestamp + 1000, 1.0)
-        distanceToData =  distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
+        distanceToData =
+            distance(filteredValue.latitude, filteredValue.longitude, end.latitude, end.longitude)
         println("$distanceToData from end")
         assertEquals(distanceToData, 0.0, 5.0)
     }

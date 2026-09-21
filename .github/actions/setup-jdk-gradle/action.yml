@@ -1,0 +1,20 @@
+name: Setup JDK and Gradle
+description: Installs Zulu JDK 19 and configures the Gradle build action with caching.
+
+runs:
+  using: composite
+  steps:
+    - name: Set up JDK
+      uses: actions/setup-java@v6
+      with:
+        distribution: zulu
+        java-version: '19'
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v6
+      with:
+        gradle-version: current
+        # Self-hosted runners are long-lived, so a cache left by a previous
+        # job would otherwise carry over into this build; hosted runners are
+        # ephemeral and always start with no cache anyway.
+        cache-overwrite-existing: ${{ runner.environment == 'self-hosted' }}

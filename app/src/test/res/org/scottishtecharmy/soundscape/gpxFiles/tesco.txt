@@ -5,27 +5,19 @@ Callout
 		Roselea Drive goes right
 
 Callout
-	Approaching intersection
-		Roselea Drive goes left
-		Roselea Drive goes right
+	On Roselea Drive and close to Milngavie
 
 Callout
-	Near Roselea Drive and close to Milngavie
+	Milngavie, Roselea Drive (before) Transit Stop
 
 Callout
-	Milngavie, Roselea Drive (before)
+	Near Milngavie, Roselea Drive (before) Transit Stop
 
 Callout
-	Near Strathblane Road and close to Milngavie
+	On Strathblane Road and close to Milngavie
 
 Callout
-	Near Milngavie, Strathblane Road (at 110)
-
-Callout
-	Near Milngavie
-
-Callout
-	Near Strathblane Road and close to Milngavie
+	Near Milngavie, Strathblane Road (at 70) Transit Stop
 
 Callout
 	Ahead Strathblane Road
@@ -40,22 +32,16 @@ Callout
 		Station Road goes right
 
 Callout
-	crossing
+	OSM Feature
 
 Callout
-	Approaching intersection
-		Baldernock Road goes left
-		Glasgow Road continues ahead
-		Station Road goes right
+	On Station Road and close to Milngavie
 
 Callout
-	Near Station Road and close to Milngavie
+	On Woodburn Way and close to Milngavie
 
 Callout
-	Near Woodburn Way and close to Milngavie
-
-Callout
-	Near Gavin's Mill Road and close to Milngavie
+	On Gavin's Mill Road and close to Milngavie
 
 Callout
 	Approaching intersection
@@ -63,19 +49,7 @@ Callout
 		Gavin's Mill Road goes right
 
 Callout
-	Approaching intersection
-		Gavin's Mill Road continues ahead
-		Service to Gavin's Mill Road goes right
-
-Callout
-	Approaching intersection
-		Gavin's Mill Road continues ahead
-		Service to Gavin's Mill Road goes right
-
-Callout
-	Approaching intersection
-		Gavin's Mill Road continues ahead
-		Service to Gavin's Mill Road goes right
+	Tesco
 
 Callout
 	Approaching intersection
@@ -87,11 +61,11 @@ Callout
 
 Callout
 	Approaching intersection
-		Path to Pavement next to Gavin's Mill Road goes left
+		Path to Tesco goes left
 		Gavin's Mill Road continues ahead
 
 Callout
-	Tesco
+	Tesco Main entrance
 
 Callout
 	Approaching intersection
@@ -108,12 +82,7 @@ Callout
 		Path via bridge goes right
 
 Callout
-	post
-
-Callout
-	Approaching intersection
-		Path to Lennox Park goes left
-		Path to Lennox Park via bridge continues ahead
+	OSM Feature
 
 Callout
 	Ahead Path via bridge
@@ -126,12 +95,6 @@ Callout
 
 Callout
 	Approaching intersection
-		Path to Pavement next to Gavin's Mill Road via bridge goes left
-		Path to Tesco via bridge continues ahead
-		Path to Tesco goes right
-
-Callout
-	Approaching intersection
 		Path via bridge goes left
 		Path to Recycling Centre car park via bridge continues ahead
 
@@ -140,75 +103,45 @@ Callout
 
 Callout
 	Approaching intersection
-		Path to Tesco goes left
-		Path via bridge continues ahead
-		Path to Pavement next to Gavin's Mill Road via bridge goes right
-
-Callout
-	At Tesco
-
-Callout
-	Lennox Park
-
-Callout
-	Approaching intersection
-		Path via bridge goes left
-		Path to Recycling Centre car park via bridge continues ahead
+		Path continues ahead
+		Path via tunnel goes right
 
 Callout
 	Ahead Path to Tesco via bridge
 
 Callout
-	Ahead Path via bridge
+	Tesco Main entrance
 
 Callout
-	At Tesco
+	Lennox Park
+
+Callout
+	Tesco Main entrance
 
 Callout
 	Approaching intersection
+		Service to Gavin's Mill Road goes left
 		Gavin's Mill Road continues ahead
-		Service to Gavin's Mill Road goes right
 
 Callout
 	YO! Sushi
 
 Callout
 	Approaching intersection
-		Service to Gavin's Mill Road goes left
-		Gavin's Mill Road continues ahead
-
-Callout
-	Ahead Path to Tesco via bridge
-
-Callout
-	At Tesco
-
-Callout
-	Approaching intersection
 		Gavin's Mill Road continues ahead
 		Service to Gavin's Mill Road goes right
+
+Callout
+	Tesco Main entrance
 
 Callout
 	Approaching intersection
 		Path to Tesco goes left
 		Path via bridge continues ahead
-		Path to Pavement next to Gavin's Mill Road via bridge goes right
+		Path via bridge goes right
 
 Callout
-	Approaching intersection
-		Service to Gavin's Mill Road goes left
-		Gavin's Mill Road continues ahead
-
-Callout
-	Lennox Park
-
-Callout
-	post
-
-Callout
-	Approaching intersection
-		Gavin's Mill Road continues ahead
-		Service to Gavin's Mill Road goes right
+	OSM Feature
 
 Callout
 	At Tesco
@@ -219,24 +152,13 @@ Callout
 		Path to Recycling Centre car park via bridge continues ahead
 
 Callout
-	Approaching intersection
-		Gavin's Mill Road continues ahead
-		Service to Gavin's Mill Road goes right
+	Ahead Path to Tesco via bridge
 
 Callout
 	Lennox Park
 
 Callout
-	At Tesco
-
-Callout
-	Ahead Path via bridge
-
-Callout
-	Lennox Park
-
-Callout
-	post
+	Tesco Main entrance
 
 Callout
 	Approaching intersection
@@ -244,15 +166,9 @@ Callout
 		Path to Lennox Park via bridge continues ahead
 
 Callout
-	At Tesco
-
-Callout
 	Approaching intersection
 		Gavin's Mill Road continues ahead
 		Service to Gavin's Mill Road goes right
-
-Callout
-	Lennox Park
 
 Callout
 	Approaching intersection
@@ -260,10 +176,12 @@ Callout
 		Path to Recycling Centre car park via bridge continues ahead
 
 Callout
-	Ahead Path to Tesco via bridge
+	At Tesco
 
 Callout
-	At Tesco
+	Approaching intersection
+		Service to Gavin's Mill Road goes left
+		Gavin's Mill Road continues ahead
 
 Callout
 	YO! Sushi
@@ -272,19 +190,13 @@ Callout
 	Lennox Park
 
 Callout
-	At Tesco
-
-Callout
-	Lennox Park
+	Tesco Main entrance
 
 Callout
 	At Tesco
 
 Callout
-	Lennox Park
-
-Callout
-	At Tesco
+	Tesco Main entrance
 
 Callout
 	Costa
@@ -296,19 +208,10 @@ Callout
 	At Tesco
 
 Callout
-	At Tesco
-
-Callout
-	At Tesco
+	Tesco Main entrance
 
 Callout
 	Costa
-
-Callout
-	Lennox Park
-
-Callout
-	At Tesco
 
 Callout
 	Approaching intersection
@@ -316,80 +219,58 @@ Callout
 		Path via bridge goes right
 
 Callout
-	Approaching intersection
-		Gavin's Mill Road goes left
-		Gavin's Mill Road goes right
-
-Callout
-	post
+	OSM Feature
 
 Callout
 	Approaching intersection
 		Gavin's Mill Road goes left
 		Gavin's Mill Road goes right
-
-Callout
-	Approaching intersection
-		Gavin's Mill Road continues ahead
-		Service to Gavin's Mill Road goes right
-
-Callout
-	Ahead Service to Gavin's Mill Road
 
 Callout
 	Lennox Park
-
-Callout
-	Approaching intersection
-		Gavin's Mill Road goes left
-		Gavin's Mill Road goes right
-
-Callout
-	Tesco
-
-Callout
-	Ahead Service to Gavin's Mill Road
-
-Callout
-	Approaching intersection
-		Gavin's Mill Road continues ahead
-		Service to Gavin's Mill Road goes right
-
-Callout
-	Lennox Park
-
-Callout
-	Approaching intersection
-		Gavin's Mill Road goes left
-		Gavin's Mill Road goes right
-
-Callout
-	Approaching intersection
-		Path to Pavement next to Gavin's Mill Road goes left
-		Gavin's Mill Road continues ahead
-
-Callout
-	Tesco
-
-Callout
-	Approaching intersection
-		Path to Tesco via bridge goes left
-		Path to Tesco continues ahead
-		Path via bridge goes right
-
-Callout
-	post
 
 Callout
 	Ahead Path to Gavin's Mill Road
 
 Callout
+	Approaching intersection
+		Gavin's Mill Road goes left
+		Gavin's Mill Road goes right
+
+Callout
 	Ahead Service to Gavin's Mill Road
+
+Callout
+	Approaching intersection
+		Gavin's Mill Road continues ahead
+		Service to Gavin's Mill Road goes right
+
+Callout
+	Tesco
 
 Callout
 	Approaching intersection
 		Gavin's Mill Road goes left
 		Gavin's Mill Road goes right
+
+Callout
+	Tesco Main entrance
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Gavin's Mill Road goes left
+		Gavin's Mill Road goes right
+
+Callout
+	Approaching intersection
+		Gavin's Mill Road goes left
+		Gavin's Mill Road goes right
+
+Callout
+	Ahead Service to Gavin's Mill Road
 
 Callout
 	Approaching intersection
@@ -397,7 +278,9 @@ Callout
 		Gavin's Mill Road continues ahead
 
 Callout
-	Ahead Service to Gavin's Mill Road
+	Approaching intersection
+		Gavin's Mill Road continues ahead
+		Service to Gavin's Mill Road goes right
 
 Callout
 	Approaching intersection
@@ -405,23 +288,10 @@ Callout
 		Gavin's Mill Road goes right
 
 Callout
-	Approaching intersection
-		Gavin's Mill Road continues ahead
-		Service to Gavin's Mill Road continues ahead
+	On Woodburn Way and close to Milngavie
 
 Callout
-	Approaching intersection
-		Gavin's Mill Road goes left
-		Gavin's Mill Road continues ahead
-
-Callout
-	Near Gavin's Mill Road and close to Milngavie
-
-Callout
-	Near Milngavie
-
-Callout
-	Near Station Road and close to Milngavie
+	On Station Road and close to Milngavie
 
 Callout
 	Approaching intersection
@@ -430,19 +300,19 @@ Callout
 		Glasgow Road goes right
 
 Callout
-	crossing
+	OSM Feature
 
 Callout
-	Near Milngavie, Kersland Lane (before)
+	Near Milngavie, Station Road (before) Transit Stop
 
 Callout
-	Near Strathblane Road and close to Milngavie
+	On Strathblane Road and close to Milngavie
 
 Callout
 	Ahead Strathblane Road
 
 Callout
-	Near Roselea Drive and close to Milngavie
+	On Roselea Drive and close to Milngavie
 
 Callout
 	Ahead Roselea Drive

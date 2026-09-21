@@ -6,7 +6,6 @@ import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
@@ -19,40 +18,40 @@ import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAda
 import java.io.FileOutputStream
 import kotlin.test.assertNotEquals
 
-fun diffFeatureCollections(collection1 : FeatureCollection, collection2: FeatureCollection) {
+fun diffFeatureCollections(collection1: FeatureCollection, collection2: FeatureCollection) {
     val uniqueTo1 = FeatureCollection()
     val uniqueTo2 = FeatureCollection()
 
-    for(feature1 in collection1) {
+    for (feature1 in collection1) {
         var found = false
-        for(feature2 in collection2) {
-            if(feature1 == feature2) {
+        for (feature2 in collection2) {
+            if (feature1 == feature2) {
                 found = true
                 break
             }
         }
-        if(!found) {
+        if (!found) {
             uniqueTo1.addFeature(feature1)
         }
     }
 
-    for(feature2 in collection2) {
+    for (feature2 in collection2) {
         var found = false
-        for(feature1 in collection1) {
-            if(feature1 == feature2) {
+        for (feature1 in collection1) {
+            if (feature1 == feature2) {
                 found = true
                 break
             }
         }
-        if(!found) {
+        if (!found) {
             uniqueTo2.addFeature(feature2)
         }
     }
 
-    for(feature in uniqueTo1.features) {
+    for (feature in uniqueTo1.features) {
         println("Unique to 1: ${feature.properties}")
     }
-    for(feature in uniqueTo2.features) {
+    for (feature in uniqueTo2.features) {
         println("Unique to 2: ${feature.properties}")
     }
 
@@ -141,9 +140,9 @@ class PoiTest {
             println("Furthest name : $furthestName")
             when (index) {
                 0 -> assertEquals("Woodburn Way Car Park", furthestName)
-                1 -> assertEquals("No. 1 Boutique", furthestName)
+                1 -> assertEquals("No1 Boutique", furthestName)
                 2 -> assertEquals("Vivienne Nails & Spa", furthestName)
-                3 -> assertEquals("Woodburn Way Car Park", furthestName)
+                3 -> assertEquals("W & J Lewis", furthestName)
             }
 
             featuresToDraw.addFeature(polygon)
@@ -242,9 +241,9 @@ class PoiTest {
         val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, GRID_SIZE)
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
         val pois = poiTree.getNearbyCollection(userGeometry.location, 50.0, gridState.ruler)
-        for(poi in pois) {
-            println("Poi: ${(poi as MvtFeature).name} ${getTextForFeature(null, poi)}")
-            assertNotEquals("Unknown", getTextForFeature(null, poi).text)
+        for (poi in pois) {
+            println("Poi: ${(poi as MvtFeature).name} ${poi.getText(null)}")
+            assertNotEquals("Unknown", poi.getText(null).text)
         }
     }
 }

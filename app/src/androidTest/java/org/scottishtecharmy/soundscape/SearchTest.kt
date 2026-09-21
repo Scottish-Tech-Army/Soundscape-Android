@@ -4,9 +4,9 @@ import android.os.Environment
 import androidx.preference.PreferenceManager
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
-import ch.poole.geo.pmtiles.Reader
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import okio.Path.Companion.toPath
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
@@ -15,11 +15,11 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.StreetDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
+import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
-import java.io.File
 import java.text.Normalizer
 import java.util.Collections
 import java.util.Locale
@@ -27,7 +27,8 @@ import kotlin.time.measureTime
 
 class SearchTest {
 
-    val stringCache: MutableMap<Long, List<String>> = Collections.synchronizedMap(mutableMapOf<Long, List<String>>())
+    val stringCache: MutableMap<Long, List<String>> =
+        Collections.synchronizedMap(mutableMapOf<Long, List<String>>())
 
     private val apostrophes = setOf('\'', '’', '‘', '‛', 'ʻ', 'ʼ', 'ʹ', 'ꞌ', '＇')
 
@@ -71,21 +72,24 @@ class SearchTest {
     private fun localSearch(
         location: LngLatAlt,
         searchString: String
-    ) : List<String> {
+    ): List<String> {
 
         val tileLocation = getXYTile(location, MAX_ZOOM_LEVEL)
 
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
-        val offlineExtractPath =  path + "/" + Environment.DIRECTORY_DOWNLOADS
+        val path = sharedPreferences.getString(
+            MainActivity.SELECTED_STORAGE_KEY,
+            MainActivity.SELECTED_STORAGE_DEFAULT
+        )
+        val offlineExtractPath = path + "/" + Environment.DIRECTORY_DOWNLOADS
         val extracts = findExtractPaths(offlineExtractPath).toMutableList()
 
-        var reader : Reader? = null
-        for(extract in extracts) {
-            reader = Reader(File(extract))
+        var reader: PmTilesReader? = null
+        for (extract in extracts) {
+            reader = PmTilesReader(extract.toPath())
             println("Try extract $extract")
-            if(reader.getTile(MAX_ZOOM_LEVEL, tileLocation.first, tileLocation.second) != null)
+            if (reader.getTile(MAX_ZOOM_LEVEL, tileLocation.first, tileLocation.second) != null)
                 break
         }
 
@@ -111,20 +115,21 @@ class SearchTest {
         while (turnCount < maxTurns) {
             val tileIndex = x.toLong() + (y.toLong().shl(32))
             var cache = stringCache[tileIndex]
-            if(cache == null) {
+            if (cache == null) {
 
                 // Load the tile and add all of its String to a cache
                 println("Get tile: ($x, $y)")
                 val tileData = reader?.getTile(MAX_ZOOM_LEVEL, x, y)
                 if (tileData != null) {
                     val tile = decompressTile(reader.tileCompression, tileData)
-                    if(tile != null) {
+                    if (tile != null) {
                         cache = mutableListOf()
-                        for(layer in tile.layersList) {
-                            if((layer.name == "transportation") || (layer.name == "poi") || (layer.name == "building")) {
-                                for (value in layer.valuesList) {
-                                    if (value.hasStringValue()) {
-                                        cache.add(normalizeForSearch(value.stringValue))
+                        for (layer in tile.layers) {
+                            if ((layer.name == "transportation") || (layer.name == "poi") || (layer.name == "building")) {
+                                for (value in layer.values) {
+                                    val sv = value.string_value
+                                    if (sv != null) {
+                                        cache.add(normalizeForSearch(sv))
                                     }
                                 }
                             }
@@ -133,15 +138,15 @@ class SearchTest {
                     }
                 }
             }
-            if(cache == null) {
+            if (cache == null) {
                 println("Failed to load tile")
                 reader?.close()
                 return emptyList()
             }
-            for(string in cache) {
+            for (string in cache) {
 
                 val score = normalizedNeedle.fuzzyCompare(string, true)
-                if(score < 0.3) {
+                if (score < 0.3) {
                     println("Found $searchString as $string (score $score)")
                     searchResults += string
                 }
@@ -214,7 +219,7 @@ class SearchTest {
             // Final cache size
             var totalStringSize = 0
             stringCache.forEach { set ->
-                for(string in set.value) {
+                for (string in set.value) {
                     totalStringSize += string.length
                 }
             }
@@ -223,19 +228,24 @@ class SearchTest {
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun streetDescription(location: LngLatAlt,
-                          streetName: String,
-                          describeLocation: LngLatAlt? = null) {
+    fun streetDescription(
+        location: LngLatAlt,
+        streetName: String,
+        describeLocation: LngLatAlt? = null
+    ) {
 
         val gridState = ProtomapsGridState()
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
-        val offlineExtractPath =  path + "/" + Environment.DIRECTORY_DOWNLOADS
+        val path = sharedPreferences.getString(
+            MainActivity.SELECTED_STORAGE_KEY,
+            MainActivity.SELECTED_STORAGE_DEFAULT
+        )
+        val offlineExtractPath = path + "/" + Environment.DIRECTORY_DOWNLOADS
         gridState.validateContext = false
-        gridState.start(ApplicationProvider.getApplicationContext(), offlineExtractPath)
+        gridState.startWithContext(ApplicationProvider.getApplicationContext(), offlineExtractPath)
         runBlocking {
-            gridState.locationUpdate(location,emptySet())
+            gridState.locationUpdate(location, emptySet(), ComposeLocalizedStrings())
         }
 
         val nearbyWays = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
@@ -245,13 +255,13 @@ class SearchTest {
                 gridState.ruler
             )
         var matchedWay: Way? = null
-        for(way in nearbyWays) {
-            if((way as Way).name == streetName) {
+        for (way in nearbyWays) {
+            if ((way as Way).name == streetName) {
                 matchedWay = way
                 break
             }
         }
-        if(matchedWay == null) return
+        if (matchedWay == null) return
 
         val duration = measureTime {
             val description = StreetDescription(streetName, gridState)
@@ -260,7 +270,7 @@ class SearchTest {
                 location,
                 null,
                 matchedWay,
-                context
+                ComposeLocalizedStrings()
             )
             if (describeLocation != null) {
                 val nearestWay = description.nearestWayOnStreet(describeLocation)

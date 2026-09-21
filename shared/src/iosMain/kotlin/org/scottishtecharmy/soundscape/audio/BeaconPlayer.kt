@@ -1,0 +1,263 @@
+package org.scottishtecharmy.soundscape.audio
+
+import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.get
+import kotlinx.cinterop.set
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
+import platform.AVFAudio.AVAudioFile
+import platform.AVFAudio.AVAudioPCMBuffer
+import platform.AVFAudio.AVAudioPlayerNodeBufferInterrupts
+import platform.AVFAudio.AVAudioPlayerNodeBufferLoops
+import platform.AVFAudio.AVAudioTime
+import platform.Foundation.NSBundle
+import platform.Foundation.NSURL
+
+/**
+ * Continuous looped audio player for beacons with beat-aligned asset switching.
+ * Port of DynamicAudioPlayer.swift from the original iOS Soundscape app.
+ */
+@OptIn(ExperimentalForeignApi::class)
+class BeaconPlayer(
+    private val beaconType: BeaconType,
+    val beaconLatitude: Double,
+    val beaconLongitude: Double,
+    /**
+     * Whether the beacon is positioned in the 3D environment. False for the proximity
+     * beacon, which conveys distance rather than direction and so plays flat, matching
+     * `isLocalized: false` in the original iOS app.
+     */
+    private val spatialised: Boolean = true,
+) {
+    val layer = AudioLayer()
+    private val buffers = mutableMapOf<String, AVAudioPCMBuffer>()
+    private var silentBuffer: AVAudioPCMBuffer? = null
+    private var currentAssetName: String? = null
+    private var isPlaying = false
+    private var muted = false
+
+    fun loadAssets(): Boolean {
+        // AVAudioFile/AVAudioPCMBuffer's failable ObjC initializers are bridged to Kotlin
+        // constructors, which can't return null on failure like the ObjC init can — Kotlin/Native
+        // throws instead. Catch that so a corrupt/unreadable bundled WAV degrades gracefully
+        // (matching the false-return contract below) instead of crashing the app.
+        try {
+            for (assetName in beaconType.assets) {
+                val path = NSBundle.mainBundle.pathForResource(assetName, "wav", "Sounds")
+                    ?: run {
+                        println("BeaconPlayer: WAV not found: $assetName")
+                        return false
+                    }
+
+                val url = NSURL.fileURLWithPath(path)
+                val audioFile = AVAudioFile(forReading = url, error = null)
+
+                val format = audioFile.processingFormat
+                val frameCount = audioFile.length().toUInt()
+                val buffer = AVAudioPCMBuffer(pCMFormat = format, frameCapacity = frameCount)
+                audioFile.readIntoBuffer(buffer, error = null)
+                buffer.frameLength = frameCount
+                buffers[assetName] = buffer
+            }
+
+            val firstBuffer = buffers.values.firstOrNull() ?: return false
+            silentBuffer = AVAudioPCMBuffer(
+                pCMFormat = firstBuffer.format,
+                frameCapacity = firstBuffer.frameLength
+            ).also {
+                it.frameLength = firstBuffer.frameLength
+            }
+
+            layer.format = firstBuffer.format
+            return true
+        } catch (e: Exception) {
+            println("BeaconPlayer: Failed to load assets: ${e.message}")
+            return false
+        }
+    }
+
+    fun startPlaying() {
+        layer.play()
+        isPlaying = true
+        scheduleAsset(currentAssetName)
+    }
+
+    fun updateForGeometry(
+        listenerLatitude: Double,
+        listenerLongitude: Double,
+        listenerHeading: Double?,
+        proximityNear: Double
+    ) {
+        if (!isPlaying) return
+
+        val poiBearing = bearing(
+            listenerLatitude, listenerLongitude,
+            beaconLatitude, beaconLongitude
+        )
+
+        if (spatialised) {
+            // Update 3D position based on bearing from listener to beacon
+            layer.position = bearingToPoint(poiBearing)
+        }
+
+        val selection = beaconType.selector(
+            BeaconGeometry(
+                userHeading = listenerHeading,
+                poiBearing = poiBearing,
+                distance = distance(
+                    listenerLatitude, listenerLongitude,
+                    beaconLatitude, beaconLongitude
+                ),
+                proximityNear = proximityNear
+            )
+        )
+        val newAssetName = if (selection != null) {
+            beaconType.assets.getOrNull(selection.assetIndex)
+        } else {
+            null
+        }
+
+        val volume = selection?.volume ?: 0f
+
+        if (newAssetName != currentAssetName) {
+            scheduleAsset(newAssetName)
+        }
+
+        layer.volume = if (muted) 0f else volume
+    }
+
+    /**
+     * Schedule a new asset buffer aligned to the current beat position.
+     * Matches DynamicAudioPlayer.scheduleAsset() from the original iOS app.
+     */
+    private fun scheduleAsset(newAsset: String?) {
+        val previousAsset = currentAssetName
+        currentAssetName = newAsset
+
+        val buffer = newAsset?.let { buffers[it] } ?: silentBuffer ?: return
+
+        // Try to get the current playback position for beat alignment
+        val lastRendered = layer.player.lastRenderTime
+        val playerTime = if (lastRendered != null &&
+            (lastRendered.isSampleTimeValid() || lastRendered.isHostTimeValid())
+        ) {
+            layer.player.playerTimeForNodeTime(lastRendered)
+        } else null
+
+        if (playerTime == null || beaconType.beatsInPhrase <= 0) {
+            // No timing info — just schedule with interrupts + loops
+            layer.player.scheduleBuffer(
+                buffer,
+                atTime = null,
+                options = AVAudioPlayerNodeBufferInterrupts or AVAudioPlayerNodeBufferLoops,
+                completionHandler = null
+            )
+            if (!layer.isPlaying) layer.play()
+            return
+        }
+
+        // Calculate beat-aligned start time
+        val currentBuffer = previousAsset?.let { buffers[it] } ?: silentBuffer ?: buffer
+        val samplesPerBeat = currentBuffer.frameLength.toLong() / beaconType.beatsInPhrase.toLong()
+        if (samplesPerBeat <= 0) {
+            layer.player.scheduleBuffer(
+                buffer,
+                atTime = null,
+                options = AVAudioPlayerNodeBufferInterrupts or AVAudioPlayerNodeBufferLoops,
+                completionHandler = null
+            )
+            return
+        }
+
+        val sampleTime = playerTime.sampleTime
+        val beatsPlayed = sampleTime / samplesPerBeat
+        val startTime = (beatsPlayed + 1) * samplesPerBeat
+
+        // Calculate which beat we'll be at in the new asset's phrase
+        val beatInPhrase = beatsPlayed % beaconType.beatsInPhrase.toLong()
+        val suffixStartFrame = ((beatInPhrase + 1) * samplesPerBeat).toInt()
+
+        // Try to create a partial buffer starting at the right beat position
+        val partialBuffer = bufferSuffix(buffer, fromFrame = suffixStartFrame)
+
+        val startAudioTime = AVAudioTime(
+            sampleTime = startTime,
+            atRate = playerTime.sampleRate
+        )
+
+        if (partialBuffer != null) {
+            // Schedule: partial (to sync the beat) → full loop
+            layer.player.scheduleBuffer(
+                partialBuffer,
+                atTime = startAudioTime,
+                options = AVAudioPlayerNodeBufferInterrupts,
+                completionHandler = null
+            )
+            val fullStartTime = AVAudioTime(
+                sampleTime = startTime + partialBuffer.frameLength.toLong(),
+                atRate = playerTime.sampleRate
+            )
+            layer.player.scheduleBuffer(
+                buffer,
+                atTime = fullStartTime,
+                options = AVAudioPlayerNodeBufferLoops,
+                completionHandler = null
+            )
+        } else {
+            // Can't create partial — just schedule at next beat with loop
+            layer.player.scheduleBuffer(
+                buffer,
+                atTime = startAudioTime,
+                options = AVAudioPlayerNodeBufferInterrupts or AVAudioPlayerNodeBufferLoops,
+                completionHandler = null
+            )
+        }
+    }
+
+    /**
+     * Create a new buffer containing frames from [fromFrame] to the end of the source buffer.
+     * Port of AVAudioPCMBuffer.suffix(from:) from the original iOS app.
+     */
+    private fun bufferSuffix(source: AVAudioPCMBuffer, fromFrame: Int): AVAudioPCMBuffer? {
+        val totalFrames = source.frameLength.toInt()
+        if (fromFrame >= totalFrames || fromFrame < 0) return null
+
+        val suffixLength = totalFrames - fromFrame
+        // See loadAssets(): the failable ObjC init behind this constructor throws on
+        // failure instead of returning null, so catch it to preserve this function's
+        // graceful-null-on-failure contract.
+        val result = try {
+            AVAudioPCMBuffer(pCMFormat = source.format, frameCapacity = suffixLength.toUInt())
+        } catch (e: Exception) {
+            println("BeaconPlayer: Failed to create buffer suffix: ${e.message}")
+            return null
+        }
+
+        // Copy float channel data (mono)
+        val srcChannels = source.floatChannelData ?: return null
+        val dstChannels = result.floatChannelData ?: return null
+
+        val channelCount = source.format.channelCount.toInt()
+        for (ch in 0 until channelCount) {
+            val srcPtr = srcChannels[ch] ?: return null
+            val dstPtr = dstChannels[ch] ?: return null
+            for (i in 0 until suffixLength) {
+                dstPtr[i] = srcPtr[fromFrame + i]
+            }
+        }
+
+        result.frameLength = suffixLength.toUInt()
+        return result
+    }
+
+    fun setMuted(muted: Boolean) {
+        this.muted = muted
+        layer.volume = if (muted) 0f else 1f
+    }
+
+    fun stop() {
+        isPlaying = false
+        layer.stop()
+        layer.disconnect()
+        layer.detach()
+    }
+}

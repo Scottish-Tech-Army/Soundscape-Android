@@ -1,9 +1,20 @@
 package org.scottishtecharmy.soundscape
 
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.*
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeometryCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 
 class GeoJsonParserTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -113,7 +124,8 @@ class GeoJsonParserTest {
     @Test
     @Throws(Exception::class)
     fun itShouldDeserializeLineString() {
-        val lineString = moshi.adapter(LineString::class.java).fromJson(GeoJsonData.LINE_STRING_JSON)
+        val lineString =
+            moshi.adapter(LineString::class.java).fromJson(GeoJsonData.LINE_STRING_JSON)
         Assert.assertNotNull(lineString)
         Assert.assertTrue(lineString is LineString)
 
@@ -158,7 +170,8 @@ class GeoJsonParserTest {
     @Test
     @Throws(Exception::class)
     fun itShouldDeserializeMultiPoint() {
-        val multiPoint = moshi.adapter(MultiPoint::class.java).fromJson(GeoJsonData.MULTI_POINT_JSON)
+        val multiPoint =
+            moshi.adapter(MultiPoint::class.java).fromJson(GeoJsonData.MULTI_POINT_JSON)
         Assert.assertTrue(multiPoint is MultiPoint)
         Assert.assertNotNull(multiPoint)
         val coordinates = multiPoint!!.coordinates

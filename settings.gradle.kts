@@ -34,4 +34,4 @@ develocity {
 
 rootProject.name = "Soundscape"
 include(":app")
- 
+include(":shared")

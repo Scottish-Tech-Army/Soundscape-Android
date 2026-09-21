@@ -14,9 +14,6 @@ Callout
 		Roselea Drive goes right
 
 Callout
-	Ahead Roselea Drive
-
-Callout
 	Ahead Path to Mosswell Road
 
 Callout
@@ -39,7 +36,7 @@ Callout
 		Path to Campsie Drive via steps goes right
 
 Callout
-	Milngavie, Strathblane Road (at 110)
+	Milngavie, Strathblane Road (at 110) Transit Stop
 
 Callout
 	Ahead Strathblane Road
@@ -48,7 +45,7 @@ Callout
 	Ahead Strathblane Road
 
 Callout
-	Milngavie, Roselea Drive (before)
+	Milngavie, Roselea Drive (before) Transit Stop
 
 Callout
 	Approaching intersection

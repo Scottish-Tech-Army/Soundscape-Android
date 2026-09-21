@@ -61,7 +61,7 @@ class FeatureJsonAdapter : JsonAdapter<Feature>() {
             throw NullPointerException("Feature was null! Wrap in .nullSafe() to write nullable values.")
         }
 
-        if(value is MvtFeature) {
+        if (value is MvtFeature) {
             // We're going to populate the properties with the values that we have stored.
             (value.properties ?: HashMap()).also { properties ->
                 properties["name"] = value.name
@@ -69,7 +69,7 @@ class FeatureJsonAdapter : JsonAdapter<Feature>() {
                 properties["class"] = value.featureClass
                 properties["subclass"] = value.featureSubClass
                 properties["feature_type"] = value.featureType
-                properties["category"] = when(value.superCategory) {
+                properties["category"] = when (value.superCategory) {
                     SuperCategoryId.UNCATEGORIZED -> ""
                     SuperCategoryId.SETTLEMENT_CITY -> "city"
                     SuperCategoryId.SETTLEMENT_TOWN -> "town"

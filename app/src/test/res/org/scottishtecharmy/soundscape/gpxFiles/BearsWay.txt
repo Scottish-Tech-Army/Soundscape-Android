@@ -3,7 +3,7 @@ Callout
 	Ahead Milngavie Road
 
 Callout
-	Hillfoot, Kilmardinny Avenue (opp)
+	Hillfoot, Kilmardinny Avenue (opp) Transit Stop
 
 Callout
 	Approaching intersection
@@ -11,7 +11,7 @@ Callout
 		Kilmardinny Avenue goes right
 
 Callout
-	Hillfoot, Kilmardinny Avenue (before)
+	Hillfoot, Kilmardinny Avenue (before) Transit Stop
 
 Callout
 	Ahead Milngavie Road
@@ -22,10 +22,14 @@ Callout
 		Milngavie Road continues ahead
 
 Callout
+	Approaching intersection
+		Milngavie Road continues ahead
+
+Callout
 	Ahead Milngavie Road
 
 Callout
-	Hillfoot, Reid Avenue (opp)
+	Hillfoot, Reid Avenue (opp) Transit Stop
 
 Callout
 	Approaching intersection
@@ -33,13 +37,13 @@ Callout
 		Reid Avenue goes right
 
 Callout
-	Hillfoot, Reid Avenue (before)
+	Hillfoot, Reid Avenue (before) Transit Stop
 
 Callout
 	Ahead Milngavie Road
 
 Callout
-	Hillfoot, Manse Road (after)
+	Hillfoot, Manse Road (after) Transit Stop
 
 Callout
 	Approaching intersection
@@ -50,4 +54,13 @@ Callout
 	Rainbow Room International
 
 Callout
-	Hillfoot, Manse Road (opp)
+	Approaching intersection
+		Service to dead-end via bridge continues ahead
+
+Callout
+	Hillfoot, Manse Road (opp) Transit Stop
+
+Callout
+	Approaching intersection
+		Burnmouth Place goes left
+		Milngavie Road continues ahead

@@ -1,18 +1,12 @@
-import com.android.build.gradle.internal.tasks.AndroidTestTask
-import com.google.protobuf.gradle.id
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.util.Properties
-import kotlin.io.path.Path
-import kotlin.io.path.createDirectories
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.google.protobuf)
+
     alias(libs.plugins.screenshot)
-    alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics)
@@ -22,12 +16,18 @@ plugins {
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
-    compileSdk = 36
+    compileSdk = 37
 
     buildFeatures {
         buildConfig = true
         compose = true
-        prefab = true
+        // Must stay off. Enabling prefab makes AGP validate the prefab metadata of every
+        // AAR on the classpath, not just the ones the native build consumes, and MapLibre
+        // 13.4.0+ declares stl=c++_static which is rejected against our c++_shared build
+        // (CXX1211). Oboe was the only reason this was on; it is vendored instead - see
+        // scripts/update-oboe.sh and app/src/main/cpp/CMakeLists.txt.
+        prefab = false
+
     }
 
     @Suppress("UnstableApiUsage")
@@ -41,8 +41,15 @@ android {
         }
     }
 
-    @Suppress("UnstableApiUsage")
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
+
+    testOptions {
+        unitTests {
+            // Let JVM unit tests touch android.util.Log (etc.) without mocking - they
+            // return default values instead of throwing "not mocked".
+            isReturnDefaultValues = true
+        }
+    }
 
     signingConfigs {
         create("release") {
@@ -56,39 +63,10 @@ android {
     defaultConfig {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
-        targetSdk = 35
-        versionCode = 197
-        versionName = "1.0.9"
+        targetSdk = 37
+        versionCode = 1065
+        versionName = "2.0.65"
 
-        // Maintaining this list means that we can exclude translations that aren't complete yet
-        resourceConfigurations.addAll(listOf(
-            "arz",
-            "zh-rCN",
-            "da",
-            "de",
-            "el",
-            "en",
-            "en-rGB",
-            "es",
-            "fa",
-            "fi",
-            "fr",
-            "fr-rCA",
-            "hi",
-            "is",
-            "it",
-            "ja",
-            "nb",
-            "nl",
-            "pl",
-            "pt",
-            "pt-rBR",
-            "ro",
-            "ru",
-            "sv",
-            "tr",
-            "uk"
-        ))
 
         // Retrieve the tile provider URL and API key from local.properties. This is not under
         // version control and must be configured by each developer locally. GitHub actions fill in
@@ -129,19 +107,7 @@ android {
                     "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON",
                     "-DANDROID_STL=c++_shared"
                 )
-                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
             }
-        }
-    }
-
-    sourceSets {
-        getByName("test") {
-            java.srcDirs("src/test/java", "src/testFixtures/java")
-            assets.srcDirs("src/debug/assets")
-        }
-        getByName("androidTest") {
-            java.srcDirs("src/androidTest/java", "src/testFixtures/java")
-            assets.srcDirs("src/androidTest/assets", "src/debug/assets")
         }
     }
 
@@ -164,6 +130,14 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            // Embed native debug symbols in the App Bundle so native (NDK) crashes
+            // symbolicate in Play Console / Crashlytics. Note: this can only extract
+            // symbols from libraries that still contain them - prebuilt third party
+            // libs that ship stripped (e.g. libmaplibre.so) must be symbolicated
+            // manually using their BuildId and the matching debug-symbols package.
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -175,15 +149,11 @@ android {
         create("releaseTest") {
             initWith(getByName("release"))
             buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
+            // The :shared module only declares `debug` and `release`, so fall
+            // back to its `release` variant when consuming it from this build.
+            matchingFallbacks += listOf("release")
         }
     }
-
-    testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_19
         targetCompatibility = JavaVersion.VERSION_19
@@ -202,6 +172,69 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    androidResources {
+        // Maintaining this list means that we can exclude translations that aren't complete yet
+        localeFilters += listOf(
+            "ar",
+            "bg",
+            "bn",
+            "ca",
+            "zh-rCN",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "en-rGB",
+            "es",
+            "et",
+            "fa",
+            "fi",
+            "fr",
+            "fr-rCA",
+            "ha",
+            "hi",
+            "hr",
+            "hu",
+            "in",
+            "is",
+            "it",
+            "ja",
+            "ko",
+            "mr",
+            "nb",
+            "nl",
+            "pl",
+            "pt",
+            "pt-rBR",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sr",
+            "sv",
+            "sw",
+            "ta",
+            "te",
+            "th",
+            "tr",
+            "uk",
+            "ur",
+            "vi"
+        )
+        // Keep the map style assets stored uncompressed in the APK. "pbf" is unique to the
+        // glyph fonts in this folder; the style JSON/sprite PNGs need exact paths since those
+        // extensions are also used elsewhere in the app.
+        noCompress += listOf(
+            "pbf",
+            "assets/osm-liberty-accessible/style.json",
+            "assets/osm-liberty-accessible/originalStyle.json",
+            "assets/osm-liberty-accessible/osm-liberty.json",
+            "assets/osm-liberty-accessible/osm-liberty@2x.json",
+            "assets/osm-liberty-accessible/osm-liberty.png",
+            "assets/osm-liberty-accessible/osm-liberty@2x.png",
+        )
+    }
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
@@ -210,6 +243,21 @@ android {
     }
     lint {
         warning += "MissingTranslation"
+        // Timber is only a transitive dependency; it's never planted or used in this app, so
+        // don't flag Log usage until/unless that changes.
+        // Dependency versions below are deliberately pinned (see comments in libs.versions.toml
+        // and build.gradle.kts) or intentionally left alone - don't flag them as outdated.
+        // mipmap-anydpi-v26 keeps its version qualifier deliberately: renaming it to the
+        // unqualified mipmap-anydpi (as ObsoleteSdkInt suggests) makes lint's IconXmlAndPng
+        // check stop recognizing the XML/PNG pair as an intentional API-gated fallback and
+        // flag both as a conflict instead - a net regression.
+        disable += setOf(
+            "LogNotTimber",
+            "NewerVersionAvailable",
+            "GradleDependency",
+            "AndroidGradlePluginVersion",
+            "ObsoleteSdkInt",
+        )
     }
 }
 
@@ -218,22 +266,78 @@ composeCompiler {
     //stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
 }
 
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:4.29.3"
-    }
+// Generates app/res strings.xml files for the keys consumed by res/xml/shortcuts.xml
+// (referenced from AndroidManifest as launcher app-shortcuts). Manifest-resolved
+// @string/... lookups can't reach Compose Resources, so we project the relevant keys
+// out of shared/src/commonMain/composeResources into Android resources at build time.
+abstract class GenerateShortcutStringsTask @javax.inject.Inject constructor(
+    objects: org.gradle.api.model.ObjectFactory
+) : DefaultTask() {
+    @get:InputFiles
+    val sharedResources: ConfigurableFileCollection = objects.fileCollection()
 
-    generateProtoTasks {
-        all().forEach {
-            it.builtins {
-                id("kotlin") {
-                    option("lite")
-                }
-                id("java") {
-                    option("lite")
-                }
+    @get:OutputDirectory
+    abstract val outputDir: DirectoryProperty
+
+    @TaskAction
+    fun generate() {
+        val keys = listOf("routes_title", "markers_title")
+        val outDir = outputDir.get().asFile
+        outDir.deleteRecursively()
+
+        val localeDirs: Set<File> = sharedResources.files
+            .mapNotNull { it.parentFile }
+            .filter { it.isDirectory && (it.name == "values" || it.name.startsWith("values-")) }
+            .toSet()
+
+        for (localeDir in localeDirs) {
+            val stringsFile = localeDir.resolve("strings.xml")
+            if (!stringsFile.exists()) continue
+
+            val content = stringsFile.readText()
+            val extracted = keys.mapNotNull { key ->
+                val pattern = Regex("""<string\s+name="$key"[^>]*>([\s\S]*?)</string>""")
+                pattern.find(content)?.let { key to it.groupValues[1] }
             }
+
+            val isDefault = localeDir.name == "values"
+            if (extracted.isEmpty() && !isDefault) continue
+
+            val target = outDir.resolve(localeDir.name).resolve("strings.xml")
+            target.parentFile.mkdirs()
+
+            val sb = StringBuilder()
+            sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+            sb.append("<!-- Generated by generateShortcutStrings - do not edit. -->\n")
+            sb.append("<!-- Source: shared/src/commonMain/composeResources/${localeDir.name}/strings.xml -->\n")
+            sb.append("<resources>\n")
+            if (isDefault) {
+                sb.append("    <string name=\"app_name\" translatable=\"false\">Soundscape</string>\n")
+            }
+            for ((key, value) in extracted) {
+                sb.append("    <string name=\"$key\">$value</string>\n")
+            }
+            sb.append("</resources>\n")
+
+            target.writeText(sb.toString())
         }
+    }
+}
+
+val generateShortcutStrings = tasks.register<GenerateShortcutStringsTask>("generateShortcutStrings") {
+    sharedResources.from(
+        rootProject.fileTree("shared/src/commonMain/composeResources") {
+            include("values*/strings.xml")
+        }
+    )
+}
+
+androidComponents {
+    onVariants { variant ->
+        variant.sources.res?.addGeneratedSourceDirectory(
+            generateShortcutStrings,
+            GenerateShortcutStringsTask::outputDir
+        )
     }
 }
 
@@ -260,6 +364,7 @@ licenseReport {
 
 dependencies {
 
+    implementation(project(":shared"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.service)
@@ -285,51 +390,49 @@ dependencies {
     implementation(libs.screenshot.validation.api)
     implementation(libs.core.google.shortcuts)
 
+    // JTS kept only as the oracle for PolygonClipperParityTest, which checks our
+    // :shared polygon clipper against it - the same arrangement as rtree2 below
+    testImplementation(libs.jts.core)
+
     testImplementation(libs.junit)
-    testImplementation(libs.robolectric)
-    testImplementation(libs.ui.test.junit4)
     testImplementation(libs.androidx.core.testing)
-    testImplementation(testFixtures(project(":app")))
     testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.kotlin.test.junit)
+    testImplementation (libs.kotlin.test.junit)
     testImplementation(libs.junit.jupiter)
+    testImplementation(libs.ktor.client.mock)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
 
     androidTestImplementation(libs.androidx.junit.v121)
     androidTestImplementation(libs.androidx.espresso.core.v351)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     androidTestImplementation(testFixtures(project(":app")))
+    debugImplementation(libs.leakcanary)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
     // Viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.okhttp)
-    implementation(libs.kotlinx.serialization.json)
-    // logging interceptor
-    implementation (libs.logging.interceptor)
-
-    // Retrofit with Scalar Converter
-    implementation(libs.converter.scalars)
-    implementation(libs.converter.moshi)
-    implementation(libs.converter.protobuf) {
-        exclude("com.google.protobuf")
-    }
-
     // Location permissions
     implementation(libs.accompanist.permissions)
 
     // GeoJSON parsing
     implementation(libs.moshi)
+    // AppFunctions: exposes Soundscape actions to Gemini and other agents. The KSP
+    // compiler generates the service class and the XML schema the OS indexes.
+    implementation(libs.androidx.appfunctions)
+    ksp(libs.androidx.appfunctions.compiler)
+
     ksp(libs.moshi.kotlin.codegen)
 
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
     // Dependency injection
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
 
     // LiveData
@@ -343,7 +446,6 @@ dependencies {
     implementation(libs.androidx.datastore)
 
     // Audio engine
-    implementation("com.google.oboe:oboe:1.9.3")
 
     // Firebase
     implementation(platform(libs.firebase.bom))
@@ -351,21 +453,13 @@ dependencies {
     implementation(libs.firebase.analytics)
 
     // GPX parser
-    implementation (libs.android.gpx.parser)
 
     // MapLibre library
     implementation (libs.maplibre)
     implementation (libs.maplibre.annotations)
-//    implementation (libs.maplibre.compose.material3)
+    implementation (libs.maplibre.compose)
 
     androidTestImplementation(libs.androidx.uiautomator)
-
-    // Protobuf
-    implementation(libs.protobuf.kotlin.lite)
-
-    // Regression file handling for tests
-    androidTestImplementation(libs.androidx.media3.common)
-//    androidTestImplementation(libs.androidx.media3.common.ktx)
 
     // In app review
     implementation(libs.review)
@@ -375,11 +469,9 @@ dependencies {
     implementation(libs.composepreferencelibrary)
     implementation(libs.androidx.preference.ktx)
 
-    // Rtree spatial search library
-    implementation(libs.rtree2)
-
-    // JTS for manipulating 2D geometry
-    implementation(libs.jts.core)
+    // rtree2 kept only for parity tests against our :shared rtree port
+    testImplementation(libs.rtree2)
+    androidTestImplementation(libs.rtree2)
 
     // Dokka plugin
     dokkaPlugin(libs.html.mermaid.dokka.plugin)
@@ -387,23 +479,10 @@ dependencies {
     // Leak canary
     debugImplementation(libs.leakcanary.android)
 
-    implementation(libs.reorderable)
-
-    // Database
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
-
     implementation(libs.symbol.processing.api)
 
     // Markdown to HTML converter for Help screens
     implementation(libs.commonmark)
-
-    // PMTiles reading libraries
-    implementation(libs.pmtilesreader)
-
-    // Address formatting library
-    implementation(libs.androidaddressformatter)
 
     testImplementation(libs.json)
 
@@ -417,6 +496,38 @@ dependencies {
     testFixturesImplementation(libs.junit)
 }
 
+
+// Some JVM unit tests (e.g. MvtTileTest.testCallouts, which replays every GPX fixture through
+// the full grid/callout engine) are too slow to run on every PR. They're tagged with the
+// NightlyOnlyTest JUnit4 category so they can be excluded from the regular `test` task and run
+// separately, e.g. overnight - see .github/workflows/nightly.yaml.
+val nightlyOnlyTestCategory = "org.scottishtecharmy.soundscape.NightlyOnlyTest"
+
+tasks.withType<Test>().configureEach {
+    // Many of the tests build grids from the real map extracts of seven cities, and all the test
+    // classes share one JVM. Since Osaka's, the densest of them, that's more than Gradle's default
+    // 512 MB test heap holds.
+    maxHeapSize = "2g"
+
+    // Matches the AGP-generated testDebugUnitTest/testReleaseUnitTest/testReleaseTestUnitTest
+    // tasks, but not nightlyUnitTest below (that one includes the category instead).
+    if (name.startsWith("test") && name.endsWith("UnitTest")) {
+        useJUnit {
+            excludeCategories(nightlyOnlyTestCategory)
+        }
+    }
+}
+
+tasks.register<Test>("nightlyUnitTest") {
+    group = "verification"
+    description = "Runs the slow JVM unit tests excluded from the regular test task (nightly build only)."
+    val debugUnitTest = tasks.named<Test>("testDebugUnitTest").get()
+    testClassesDirs = debugUnitTest.testClassesDirs
+    classpath = debugUnitTest.classpath
+    useJUnit {
+        includeCategories(nightlyOnlyTestCategory)
+    }
+}
 
 dokka {
     dokkaSourceSets.configureEach {

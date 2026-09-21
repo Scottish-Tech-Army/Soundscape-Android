@@ -32,8 +32,8 @@ object LogcatHelper {
     private val logcatPattern = Pattern.compile(
         "(\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3})\\s*\\d([0-9]*)\\s*\\d([0-9]*)\\s*([FEWIDV]) ([^:]*):\\s*(.*)"
     )
-    enum class GroupId( val id: Int)
-    {
+
+    enum class GroupId(val id: Int) {
         Datetime(1),
         Pid(2),
         Tid(3),
@@ -45,7 +45,12 @@ object LogcatHelper {
     /**
      * Parse a line from `logcat -v threadtime` and build a JSON object for it.
      */
-    private fun buildLogJsonObject(matcher: java.util.regex.Matcher, currentYear: Int, formatter: SimpleDateFormat, startTime: Long): JSONObject? {
+    private fun buildLogJsonObject(
+        matcher: java.util.regex.Matcher,
+        currentYear: Int,
+        formatter: SimpleDateFormat,
+        startTime: Long
+    ): JSONObject? {
         val level = when (matcher.group(GroupId.Priority.id)) {
             "F" -> "FATAL"
             "E" -> "ERROR"
@@ -67,7 +72,7 @@ object LogcatHelper {
             Pair(0L, 0L)
         }
 
-        if(timestampPair.first < startTime) {
+        if (timestampPair.first < startTime) {
             println("Reject - ${timestampPair.first} vs $startTime")
             return null
         }
@@ -104,7 +109,7 @@ object LogcatHelper {
 
         val physicalDeviceObject = JSONObject().apply {
             put("serialNumber", "xxxxxxx") // We don't have permissions for the
-                                                          // serial number, and we don't need it
+            // serial number, and we don't need it
             put("isOnline", false)
             put("release", Build.VERSION.RELEASE)
             put("apiLevel", apiLevel)
@@ -169,8 +174,9 @@ object LogcatHelper {
                 }
 
                 // Build the JSON object for the current log line
-                val logObject = buildLogJsonObject(matcher, currentYear, logcatDateFormatter, startTimeSeconds)
-                if(logObject != null) {
+                val logObject =
+                    buildLogJsonObject(matcher, currentYear, logcatDateFormatter, startTimeSeconds)
+                if (logObject != null) {
                     // Write the formatted JSON object string to the file
                     writer.write(logObject.toString(2).toByteArray())
                     isFirstLogEntry = false
@@ -210,7 +216,7 @@ object LogcatHelper {
             if (!directory.exists()) {
                 directory.mkdirs()
             }
-            val zipFile = File(storageDir,fileName)
+            val zipFile = File(storageDir, fileName)
             FileOutputStream(zipFile).use { it.write(byteArrayOutputStream.toByteArray()) }
             return@withContext storageDir + fileName
         } catch (e: Exception) { // Catch broader exceptions

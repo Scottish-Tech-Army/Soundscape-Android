@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
-sealed class OnboardingScreens(val route: String)
-{
+sealed class OnboardingScreens(val route: String) {
     data object Home : OnboardingScreens("home")
     data object Welcome : OnboardingScreens("welcome")
     data object Language : OnboardingScreens("language")

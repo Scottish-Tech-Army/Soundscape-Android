@@ -35,13 +35,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.no_language_selected
+import org.scottishtecharmy.soundscape.resources.offline_maps_free_space
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 
@@ -86,20 +90,22 @@ fun StorageItem(
 @Composable
 fun StorageDropDownMenu(
     storages: List<StorageUtils.StorageSpace>,
-    onStorageSelected : (String) -> Unit,
+    onStorageSelected: (String) -> Unit,
     selectedStorageIndex: Int,
-    modifier : Modifier = Modifier,
+    modifier: Modifier = Modifier,
     backgroundColor: Color
-){
+) {
     var expanded by rememberSaveable { mutableStateOf(false) }
     val storageSelected by remember(selectedStorageIndex) {
         derivedStateOf {
             selectedStorageIndex >= 0
         }
     }
-    Box(modifier = modifier
-        .fillMaxSize()
-        .wrapContentSize(Alignment.CenterStart)) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.CenterStart)
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -113,7 +119,9 @@ fun StorageDropDownMenu(
                 onClick = {
                     expanded = !expanded
                 },
-                modifier = Modifier.semantics {
+                modifier = Modifier
+                    .testTag("storageDropDownMenuToggleButton")
+                    .semantics {
                     if (storageSelected) {
                         selected = true
                     }
@@ -122,10 +130,10 @@ fun StorageDropDownMenu(
                 Text(
                     text = if (storageSelected) {
                         storages[selectedStorageIndex].description +
-                        ", " +
-                        stringResource(R.string.offline_maps_free_space).format(storages[selectedStorageIndex].availableString)
+                                ", " +
+                                stringResource(Res.string.offline_maps_free_space).format(storages[selectedStorageIndex].availableString)
                     } else {
-                        stringResource(R.string.no_language_selected)
+                        stringResource(Res.string.no_language_selected)
                     },
                     color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.weight(1f)
@@ -145,7 +153,11 @@ fun StorageDropDownMenu(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.surface)
                 .selectableGroup()
-                .heightIn(max = LocalConfiguration.current.screenHeightDp.dp * 0.9f)
+                .heightIn(
+                    max = with(LocalDensity.current) {
+                        LocalWindowInfo.current.containerSize.height.toDp()
+                    } * 0.9f
+                )
         ) {
             storages.forEachIndexed { index, storage ->
                 val isSelected = remember { index == selectedStorageIndex }
@@ -167,7 +179,7 @@ fun StorageDropDownMenu(
                                 onStorageSelected(storage.path)
                             }
                         )
-                    ,
+                        .testTag("storageDropDownItem${storage.description}"),
                     onClick = {
                         expanded = false
                         onStorageSelected(storage.path)
@@ -184,37 +196,37 @@ data object MockStoragePreviewData {
         description = "Internal",
         isExternal = false,
         isPrimary = false,
-        64*1024*1024*1024L,
-        22*1024*1024*1024L,
+        64 * 1024 * 1024 * 1024L,
+        22 * 1024 * 1024 * 1024L,
         "22000 MB",
-        23*1024*1024*1024L
+        23 * 1024 * 1024 * 1024L
     )
     val externalStorage1 = StorageUtils.StorageSpace(
         "/path/to/external1",
         description = "External",
         isExternal = true,
         isPrimary = false,
-        128*1024*1024*1024L,
-        88*1024*1024*1024L,
+        128 * 1024 * 1024 * 1024L,
+        88 * 1024 * 1024 * 1024L,
         "88000 MB",
-        90*1024*1024*1024L
+        90 * 1024 * 1024 * 1024L
     )
     val externalStorage2 = StorageUtils.StorageSpace(
         "/path/to/external2",
         description = "SD",
         isExternal = true,
         isPrimary = true,
-        128*1024*1024*1024L,
-        20*1024*1024*1024L,
+        128 * 1024 * 1024 * 1024L,
+        20 * 1024 * 1024 * 1024L,
         "20000 MB",
-        30*1024*1024*1024L
+        30 * 1024 * 1024 * 1024L
     )
     val storages = listOf(internalStorage, externalStorage1, externalStorage2)
 }
 
 @Preview
 @Composable
-fun StorageDropDownMenuPreview(){
+fun StorageDropDownMenuPreview() {
     StorageDropDownMenu(
         storages = MockStoragePreviewData.storages,
         onStorageSelected = {},

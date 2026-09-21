@@ -1,0 +1,887 @@
+package org.scottishtecharmy.soundscape.audio
+
+import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.cValue
+import kotlinx.coroutines.CoroutineDispatcher
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControlTarget
+import platform.AVFAudio.AVAudio3DAngularOrientation
+import platform.AVFAudio.AVAudioChannelLayout
+import platform.AVFAudio.AVAudioEngine
+import platform.AVFAudio.AVAudioEnvironmentNode
+import platform.AVFAudio.AVAudioFormat
+import platform.AVFAudio.AVAudioSession
+import platform.AVFAudio.AVAudioSessionCategoryOptionMixWithOthers
+import platform.AVFAudio.AVAudioSessionCategoryPlayback
+import platform.AVFAudio.AVAudioSessionInterruptionTypeBegan
+import platform.AVFAudio.AVAudioSessionInterruptionTypeEnded
+import platform.AVFAudio.AVAudioSessionInterruptionTypeKey
+import platform.AVFAudio.setActive
+import platform.posix.usleep
+import platform.CoreAudioTypes.kAudioChannelLayoutTag_Stereo
+import platform.darwin.dispatch_async
+import platform.darwin.dispatch_queue_create
+import platform.darwin.dispatch_queue_t
+import platform.Foundation.NSLock
+import platform.Foundation.NSNotification
+import platform.Foundation.NSNotificationCenter
+import platform.Foundation.NSOperationQueue
+import platform.MediaPlayer.MPMediaItemPropertyArtist
+import platform.MediaPlayer.MPMediaItemPropertyTitle
+import platform.MediaPlayer.MPNowPlayingInfoCenter
+import platform.MediaPlayer.MPNowPlayingInfoPropertyIsLiveStream
+import platform.MediaPlayer.MPNowPlayingInfoPropertyMediaType
+import platform.MediaPlayer.MPNowPlayingInfoPropertyPlaybackRate
+import platform.MediaPlayer.MPNowPlayingPlaybackStatePlaying
+import platform.MediaPlayer.MPNowPlayingPlaybackStateStopped
+import platform.MediaPlayer.MPRemoteCommandCenter
+import platform.MediaPlayer.MPRemoteCommandHandlerStatusSuccess
+
+/**
+ * How long ensureEngineStarted keeps trying to activate the audio session, and how
+ * often. Only reached when activation has already failed — i.e. when audio is broken
+ * anyway — so the block on the audio queue costs nothing that was working.
+ */
+private const val SESSION_ACTIVATION_TIMEOUT_MS = 2_000
+private const val SESSION_ACTIVATION_RETRY_INTERVAL_MS = 200
+
+/**
+ * Proximity range used until the first updateGeometry call supplies one. Matches the
+ * value IosSoundscapeService passes.
+ */
+private const val DEFAULT_PROXIMITY_NEAR = 15.0
+
+/**
+ * iOS audio engine implementing the KMP AudioEngine interface.
+ * Uses Apple's AVAudioEngine with AVAudioEnvironmentNode for HRTF spatial audio.
+ * Ported from the original Soundscape iOS Swift implementation.
+ */
+@OptIn(ExperimentalForeignApi::class)
+class IosAudioEngine : AudioEngine {
+
+    private val engine = AVAudioEngine()
+    private var engineStarted = false
+
+    // Environment nodes for 3D audio (one per sample rate)
+    private val environmentNodes = mutableListOf<AVAudioEnvironmentNode>()
+
+    // Handle tracking
+    private var nextHandle = 1L
+    private val activePlayers = mutableMapOf<Long, PlayerEntry>()
+
+    // activePlayers is touched from multiple threads: from coroutine dispatchers
+    // (updateGeometry, createBeacon, speakCallout, ...) and from [audioQueue]
+    // completion callbacks. mutableMapOf is not thread-safe, so guard every
+    // access with this lock.
+    private val activePlayersLock = NSLock()
+
+    // Serial queue that owns the discrete-sound pipeline (TTS render callback,
+    // DiscretePlayer completion, playQueued → attach/connect/play). Kept off
+    // the main queue so first-tap keyboard init (or any other main-thread stall)
+    // can't gap out callout audio between utterances.
+    private val audioQueue: dispatch_queue_t =
+        dispatch_queue_create("org.scottishtecharmy.soundscape.audio", null)!!
+
+    /**
+     * Serial coroutine dispatcher backed by [audioQueue]. Publish this so
+     * [org.scottishtecharmy.soundscape.IosSoundscapeService.startCallout] can
+     * launch on the same queue: its `clearTextToSpeechQueue` + `createTextToSpeech`
+     * calls then serialize naturally with the render/completion callbacks in
+     * [playQueued] / [onDiscreteComplete], without ever hopping to main.
+     */
+    val audioDispatcher: CoroutineDispatcher = DispatchQueueDispatcher(audioQueue)
+
+    // Discrete sound queue
+    private val discreteQueue = ArrayDeque<QueuedSound>()
+    private var currentDiscreteHandle: Long? = null
+
+    // Listener state
+    private var listenerLatitude = 0.0
+    private var listenerLongitude = 0.0
+    private var listenerHeading: Double? = null
+
+    // TTS
+    private val ttsRenderer = TtsRenderer()
+
+    // Beacon state
+    private var currentBeaconType = "Current"
+    private var beaconMuted = false
+
+    // Range within which the proximity beacon plays its "close" asset. Updated by
+    // updateGeometry; seeded so a beacon created before the first geometry update
+    // still uses a sensible range.
+    private var proximityNear = DEFAULT_PROXIMITY_NEAR
+
+    // Media control target for remote commands
+    var mediaControlTarget: MediaControlTarget? = null
+
+    // Audio session configuration
+    var mixWithOthers: Boolean = true
+        set(value) {
+            if (field != value) {
+                field = value
+                if (engineStarted) {
+                    reconfigureAudioSession()
+                } else {
+                    // The session itself is configured on the next engine start, but the
+                    // lock screen must not be left advertising the old choice until then.
+                    publishNowPlaying()
+                }
+            }
+        }
+
+    // Audio session state
+    private var needsReactivation = false
+    private var interruptionObserver: Any? = null
+    private var remoteCommandsRegistered = false
+    private var mediaResetObserver: Any? = null
+
+    private sealed class PlayerEntry {
+        class Discrete(val player: DiscretePlayer, val isTts: Boolean) : PlayerEntry()
+        class Beacon(
+            val player: BeaconPlayer,
+            /** The distance beacon that plays alongside [player]; null for heading-only beacons. */
+            val proximityPlayer: BeaconPlayer?
+        ) : PlayerEntry() {
+            val players: List<BeaconPlayer> get() = listOfNotNull(player, proximityPlayer)
+        }
+    }
+
+    private inline fun <T> withActivePlayersLock(block: () -> T): T {
+        activePlayersLock.lock()
+        try {
+            return block()
+        } finally {
+            activePlayersLock.unlock()
+        }
+    }
+
+    private data class QueuedSound(
+        val handle: Long,
+        val isTts: Boolean,
+        val text: String = "",
+        val assetName: String = "",
+        val audioType: AudioType = AudioType.STANDARD,
+        val latitude: Double = Double.NaN,
+        val longitude: Double = Double.NaN,
+        val heading: Double = Double.NaN,
+    )
+
+    // --- Engine Lifecycle ---
+
+    private fun ensureEngineStarted() {
+        // The engine's real state is re-checked every time rather than trusted from a
+        // latch. Siri deactivates our session and stops the engine when it takes audio
+        // for the *next* question, and the interruption-ended notification that would
+        // tell us about it is not reliably delivered to a backgrounded app. Returning
+        // early on engineStarted alone therefore made every Siri callout after the
+        // first one silent: the flag still said "started" while the engine was stopped.
+        if (engineStarted && engine.isRunning()) return
+
+        // Registered before the session is touched. If activation fails below, these
+        // observers are the only route back to working audio — an interruption-ended
+        // notification is what tells us the session is ours again.
+        registerAudioSessionObservers()
+
+        // Configure and activate the audio session, retrying activation for a short
+        // while if it loses. The case that matters is an App Intent: Siri still owns
+        // audio as the callout begins, and with MIX_AUDIO off (the default) our
+        // exclusive Playback category is not allowed to interrupt it from the
+        // background. Siri releases a moment after it stops talking. The retry lives
+        // here rather than in configureAudioSession because Swift's SplashCoordinator
+        // calls that one on the main thread, where blocking would stall the launch.
+        var sessionActive = configureAudioSession()
+        var waitedMs = 0
+        while (!sessionActive && waitedMs < SESSION_ACTIVATION_TIMEOUT_MS) {
+            usleep((SESSION_ACTIVATION_RETRY_INTERVAL_MS * 1000).toUInt())
+            waitedMs += SESSION_ACTIVATION_RETRY_INTERVAL_MS
+            sessionActive = AVAudioSession.sharedInstance().setActive(true, error = null)
+        }
+        if (sessionActive && waitedMs > 0) {
+            println("IosAudioEngine: Audio session activated after ${waitedMs}ms")
+        }
+
+        // Set up lock screen remote commands (always registered, but only
+        // effective when not mixing — iOS ignores them otherwise)
+        registerRemoteCommands()
+
+        // Access mainMixerNode to ensure the output chain is connected
+        // (AVAudioEngine requires at least one node before starting)
+        @Suppress("UNUSED_VARIABLE")
+        val mixer = engine.mainMixerNode
+
+        // startAndReturnError reports failure by returning false, not by throwing, so
+        // the old try/catch could never fire and engineStarted latched true even when
+        // the engine had not started. That left callouts running and animating for the
+        // rest of the process while making no sound at all. Leaving the flag false on
+        // failure means the next callout retries.
+        val started = engine.startAndReturnError(null)
+        if (started) {
+            engineStarted = true
+        } else {
+            println(
+                "IosAudioEngine: Engine failed to start (sessionActive=$sessionActive); " +
+                    "will retry on the next callout"
+            )
+        }
+    }
+
+    /**
+     * Idempotent AVAudioSession setup. Called internally when the audio engine
+     * first needs to start playing, and from Swift (SplashCoordinator) so the
+     * splash's AVAudioPlayer shares the same session category/options rather
+     * than racing us for `setCategory`/`setActive` on the shared session.
+     */
+    fun configureAudioSession(): Boolean {
+        val session = AVAudioSession.sharedInstance()
+        val options = if (mixWithOthers) AVAudioSessionCategoryOptionMixWithOthers else 0u
+        // Both of these return false on failure rather than throwing. Discarding the
+        // results hid the most interesting case entirely: activation losing to whoever
+        // already holds the session — Siri, while an App Intent runs.
+        val categorySet = session.setCategory(
+            AVAudioSessionCategoryPlayback,
+            withOptions = options,
+            error = null
+        )
+        val activated = session.setActive(true, error = null)
+        if (!categorySet || !activated) {
+            println(
+                "IosAudioEngine: Audio session setup failed " +
+                    "(categorySet=$categorySet, activated=$activated, mixWithOthers=$mixWithOthers)"
+            )
+        }
+
+        publishNowPlaying()
+
+        return categorySet && activated
+    }
+
+    /**
+     * Reconfigure the audio session when the mixWithOthers setting changes at runtime.
+     */
+    private fun reconfigureAudioSession() {
+        configureAudioSession()
+        println("IosAudioEngine: Audio session reconfigured (mixWithOthers=$mixWithOthers)")
+    }
+
+    /**
+     * Matches AudioEngine.outputFormat() from the original iOS app:
+     * Creates a stereo format with a channel layout at the given sample rate.
+     */
+    private fun outputFormat(sampleRate: Double): AVAudioFormat? {
+        // AVAudioChannelLayout's failable ObjC init is bridged to a Kotlin constructor, which
+        // throws on failure rather than returning null like the ObjC init can. kAudioChannelLayoutTag_Stereo
+        // is a well-known built-in tag so this shouldn't realistically fail, but catch it anyway
+        // to match this function's nullable-on-failure contract instead of crashing.
+        val layout = try {
+            AVAudioChannelLayout(layoutTag = kAudioChannelLayoutTag_Stereo)
+        } catch (e: Exception) {
+            println("IosAudioEngine: Failed to create stereo channel layout: ${e.message}")
+            return null
+        }
+        return AVAudioFormat(standardFormatWithSampleRate = sampleRate, channelLayout = layout)
+    }
+
+    /**
+     * Connect a layer to the 3D audio environment, matching the original iOS app's
+     * connectLayer(_:for:) method. Handles:
+     * - Finding/creating the environment node
+     * - Disconnecting the layer first
+     * - Connecting layer → environment (with source format)
+     * - Connecting environment → mainMixer (with stereo output format)
+     */
+    fun connectLayerToEnvironment(layer: AudioLayer) {
+        val format = layer.format
+        val envNode = getOrCreateEnvironmentNode(format)
+
+        // Disconnect existing connections (matching original)
+        layer.disconnect()
+
+        // Connect layer → environment (uses the file's processingFormat)
+        layer.connect(envNode, format)
+
+        // Connect environment → mainMixer with stereo layout format at source sample rate
+        val sampleRate = format?.sampleRate ?: engine.outputNode.outputFormatForBus(0u).sampleRate
+        val envOutputFmt = outputFormat(sampleRate)
+        engine.connect(envNode, to = engine.mainMixerNode, format = envOutputFmt)
+    }
+
+    private fun getOrCreateEnvironmentNode(format: AVAudioFormat?): AVAudioEnvironmentNode {
+        // Reuse existing environment node
+        for (node in environmentNodes) {
+            return node
+        }
+
+        // Create new environment node
+        val envNode = AVAudioEnvironmentNode()
+        engine.attachNode(envNode)
+        envNode.distanceAttenuationParameters.referenceDistance =
+            DEFAULT_RENDERING_DISTANCE.toFloat()
+        envNode.outputVolume = 1.0f
+
+        // Apply current listener heading
+        listenerHeading?.let { heading ->
+            envNode.listenerAngularOrientation = cValue<AVAudio3DAngularOrientation> {
+                yaw = heading.toFloat()
+                pitch = 0f
+                roll = 0f
+            }
+        }
+
+        environmentNodes.add(envNode)
+        return envNode
+    }
+
+    private fun positionForType(
+        type: AudioType,
+        latitude: Double,
+        longitude: Double,
+        heading: Double
+    ): kotlinx.cinterop.CValue<platform.AVFAudio.AVAudio3DPoint>? {
+        return when (type) {
+            AudioType.STANDARD -> null // 2D, no positioning
+            AudioType.LOCALIZED -> {
+                if (latitude.isNaN() || longitude.isNaN()) return null
+                val b = bearing(listenerLatitude, listenerLongitude, latitude, longitude)
+                bearingToPoint(b)
+            }
+
+            AudioType.RELATIVE -> {
+                if (heading.isNaN()) return null
+                val absHeading = (listenerHeading ?: 0.0) + heading
+                bearingToPoint(absHeading)
+            }
+
+            AudioType.COMPASS -> {
+                if (heading.isNaN()) return null
+                bearingToPoint(heading)
+            }
+        }
+    }
+
+    // --- AudioEngine Interface: TTS ---
+
+    override fun createTextToSpeech(
+        text: String,
+        type: AudioType,
+        latitude: Double,
+        longitude: Double,
+        heading: Double
+    ): Long {
+        val handle = nextHandle++
+        val queuedSound = QueuedSound(
+            handle = handle,
+            isTts = true,
+            text = text,
+            audioType = type,
+            latitude = latitude,
+            longitude = longitude,
+            heading = heading,
+        )
+
+        if (currentDiscreteHandle == null) {
+            playQueued(queuedSound)
+        } else {
+            discreteQueue.addLast(queuedSound)
+        }
+        return handle
+    }
+
+    override fun createEarcon(
+        asset: String,
+        type: AudioType,
+        latitude: Double,
+        longitude: Double,
+        heading: Double
+    ): Long {
+        val handle = nextHandle++
+
+        // Extract asset name from Android-style path
+        val assetName = asset
+            .removePrefix("file:///android_asset/Sounds/")
+            .removeSuffix(".wav")
+
+        val queuedSound = QueuedSound(
+            handle = handle,
+            isTts = false,
+            assetName = assetName,
+            audioType = type,
+            latitude = latitude,
+            longitude = longitude,
+            heading = heading,
+        )
+
+        if (currentDiscreteHandle == null) {
+            playQueued(queuedSound)
+        } else {
+            discreteQueue.addLast(queuedSound)
+        }
+        return handle
+    }
+
+    private fun playQueued(sound: QueuedSound) {
+        ensureEngineStarted()
+        currentDiscreteHandle = sound.handle
+
+        val is3D = sound.audioType != AudioType.STANDARD
+
+        val player = DiscretePlayer(onComplete = {
+            dispatch_async(audioQueue) {
+                onDiscreteComplete(sound.handle)
+            }
+        })
+
+        withActivePlayersLock {
+            activePlayers[sound.handle] = PlayerEntry.Discrete(player, sound.isTts)
+        }
+
+        if (sound.isTts) {
+            // Render TTS to PCM buffers, then connect and play through the audio graph
+            ttsRenderer.render(sound.text) { buffers ->
+                dispatch_async(audioQueue) {
+                    // If the sound was cancelled (e.g. clearTextToSpeechQueue) while we were
+                    // rendering, it is no longer in activePlayers. Bail without touching the
+                    // engine — otherwise we would attach a node that no one will disconnect
+                    // and the next teardown trips AVAudioEngine's `_nodes containsObject`
+                    // assertion.
+                    val stillActive =
+                        withActivePlayersLock { activePlayers.containsKey(sound.handle) }
+                    if (!stillActive) return@dispatch_async
+
+                    if (buffers.isNotEmpty()) {
+                        // Attach the layer
+                        player.layer.format = buffers.first().format
+                        player.layer.attach(engine)
+
+                        if (is3D) {
+                            connectLayerToEnvironment(player.layer)
+                        } else {
+                            player.layer.connect(engine.mainMixerNode)
+                        }
+
+                        val position = positionForType(
+                            sound.audioType,
+                            sound.latitude,
+                            sound.longitude,
+                            sound.heading
+                        )
+                        if (position != null) player.layer.position = position
+
+                        player.layer.play()
+                        player.scheduleTtsBuffers(buffers)
+                    } else {
+                        onDiscreteComplete(sound.handle)
+                    }
+                }
+            }
+        } else {
+            // For earcons: load the WAV, then attach/connect/play
+            if (!player.loadEarcon(sound.assetName)) {
+                onDiscreteComplete(sound.handle)
+                return
+            }
+
+            player.layer.attach(engine)
+            if (is3D) {
+                connectLayerToEnvironment(player.layer)
+            } else {
+                player.layer.connect(engine.mainMixerNode)
+            }
+
+            val position =
+                positionForType(sound.audioType, sound.latitude, sound.longitude, sound.heading)
+            if (position != null) player.layer.position = position
+
+            player.layer.play()
+            player.scheduleEarconBuffer()
+        }
+    }
+
+    private fun onDiscreteComplete(handle: Long) {
+        val entry = withActivePlayersLock { activePlayers.remove(handle) }
+        if (entry is PlayerEntry.Discrete) {
+            entry.player.layer.disconnect()
+            entry.player.layer.detach()
+        }
+        if (currentDiscreteHandle == handle) {
+            currentDiscreteHandle = null
+            playNextQueued()
+        }
+    }
+
+    private fun playNextQueued() {
+        val next = discreteQueue.removeFirstOrNull() ?: return
+        playQueued(next)
+    }
+
+    override fun clearTextToSpeechQueue() {
+        // Cancel any in-progress TTS rendering
+        ttsRenderer.cancel()
+
+        // Match Android's ClearQueue: nuke *everything* queued behind the current
+        // sound (TTS and earcons alike). Filtering just isTts here left earcons
+        // piled up so callouts kept playing beeps long after the user cancelled.
+        discreteQueue.clear()
+
+        // Stop the current sound only if it's TTS — matches Android where
+        // ttsEngine.stop() cancels in-flight TTS but leaves currently-playing
+        // earcons/beacons alone. Removing from activePlayers *before* stop() so
+        // that a TTS render callback already dispatched to the main queue for
+        // this handle sees the sound as cancelled and bails on its own
+        // containsKey check; otherwise it would attach a zombie node behind our
+        // back. Clearing currentDiscreteHandle here also lets the next enqueued
+        // sound play immediately instead of stacking behind the async
+        // onDiscreteComplete.
+        val currentHandle = currentDiscreteHandle ?: return
+        val stopped = withActivePlayersLock {
+            val entry = activePlayers[currentHandle]
+            if (entry is PlayerEntry.Discrete && entry.isTts) {
+                activePlayers.remove(currentHandle)
+                entry
+            } else null
+        }
+        if (stopped != null) {
+            currentDiscreteHandle = null
+            stopped.player.stop()
+        }
+    }
+
+    override fun getQueueDepth(): Long {
+        val current = if (currentDiscreteHandle != null) 1L else 0L
+        return current + discreteQueue.size.toLong()
+    }
+
+    override fun isHandleActive(handle: Long): Boolean {
+        if (withActivePlayersLock { activePlayers.containsKey(handle) }) return true
+        // A handle enqueued behind the currently-playing sound isn't in activePlayers
+        // yet — treat it as active so awaitHandle waits for its whole turn.
+        return discreteQueue.any { it.handle == handle }
+    }
+
+    // --- AudioEngine Interface: Beacons ---
+
+    override fun createBeacon(location: LngLatAlt, headingOnly: Boolean): Long {
+        ensureEngineStarted()
+        val handle = nextHandle++
+
+        val type = BEACON_TYPES[currentBeaconType]
+            ?: BEACON_TYPES["Current"]
+            ?: error("BEACON_TYPES is missing its \"Current\" entry")
+        val player = BeaconPlayer(type, location.latitude, location.longitude)
+
+        if (!player.loadAssets()) {
+            println("IosAudioEngine: Failed to load beacon assets for $currentBeaconType")
+            return handle
+        }
+
+        player.layer.attach(engine)
+        connectLayerToEnvironment(player.layer)
+        player.startPlaying()
+        player.setMuted(beaconMuted)
+
+        // The distance beacon plays alongside the directional one, telling the user how
+        // close the destination is. A heading-only beacon (the settings preview) has no
+        // real destination to be close to, so it gets none.
+        val proximityPlayer = if (headingOnly) null else createProximityPlayer(location)
+
+        // Apply initial geometry
+        player.updateForGeometry(
+            listenerLatitude, listenerLongitude, listenerHeading, proximityNear
+        )
+        proximityPlayer?.updateForGeometry(
+            listenerLatitude, listenerLongitude, listenerHeading, proximityNear
+        )
+
+        withActivePlayersLock {
+            activePlayers[handle] = PlayerEntry.Beacon(player, proximityPlayer)
+        }
+        return handle
+    }
+
+    /**
+     * Create and start the non-spatialised distance beacon. Returns null if its assets
+     * can't be loaded — the directional beacon is still worth playing on its own.
+     */
+    private fun createProximityPlayer(location: LngLatAlt): BeaconPlayer? {
+        val player = BeaconPlayer(
+            PROXIMITY_BEACON_TYPE,
+            location.latitude,
+            location.longitude,
+            spatialised = false
+        )
+        if (!player.loadAssets()) {
+            println("IosAudioEngine: Failed to load proximity beacon assets")
+            return null
+        }
+
+        player.layer.attach(engine)
+        player.layer.connect(engine.mainMixerNode)
+        player.startPlaying()
+        player.setMuted(beaconMuted)
+        return player
+    }
+
+    override fun destroyBeacon(beaconHandle: Long) {
+        val entry = withActivePlayersLock { activePlayers.remove(beaconHandle) }
+        if (entry is PlayerEntry.Beacon) {
+            entry.players.forEach { it.stop() }
+        }
+    }
+
+    override fun toggleBeaconMute(): Boolean {
+        beaconMuted = !beaconMuted
+        val beacons = withActivePlayersLock {
+            activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
+        }
+        for (entry in beacons) {
+            entry.players.forEach { it.setMuted(beaconMuted) }
+        }
+        return beaconMuted
+    }
+
+    // --- AudioEngine Interface: Geometry ---
+
+    override fun updateGeometry(
+        listenerLatitude: Double,
+        listenerLongitude: Double,
+        listenerHeading: Double?,
+        focusGained: Boolean,
+        duckingAllowed: Boolean,
+        proximityNear: Double
+    ) {
+        this.listenerLatitude = listenerLatitude
+        this.listenerLongitude = listenerLongitude
+        this.listenerHeading = listenerHeading
+        this.proximityNear = proximityNear
+
+        // Update listener orientation on all environment nodes
+        if (listenerHeading != null) {
+            val orientation = cValue<AVAudio3DAngularOrientation> {
+                yaw = listenerHeading.toFloat()
+                pitch = 0f
+                roll = 0f
+            }
+            for (envNode in environmentNodes) {
+                envNode.listenerAngularOrientation = orientation
+            }
+        }
+
+        // Update all active beacon players with new geometry. Snapshot under
+        // the lock so we don't iterate the live map (which can be mutated on
+        // the main queue by onDiscreteComplete or by other callers).
+        val beacons = withActivePlayersLock {
+            activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
+        }
+        for (entry in beacons) {
+            entry.players.forEach {
+                it.updateForGeometry(
+                    listenerLatitude, listenerLongitude, this.listenerHeading, proximityNear
+                )
+            }
+        }
+    }
+
+    // --- AudioEngine Interface: Configuration ---
+
+    override fun setBeaconType(beaconType: String) {
+        currentBeaconType = beaconType
+    }
+
+    override fun getListOfBeaconTypes(): Array<String> {
+        return arrayOf(
+            "Original", "Current", "Tactile", "Flare", "Shimmer",
+            "Ping", "Drop", "Signal", "Signal Slow", "Signal Very Slow",
+            "Mallet", "Mallet Slow", "Mallet Very Slow"
+        )
+    }
+
+    override fun setSpeechLanguage(language: String): Boolean {
+        ttsRenderer.setLanguage(language)
+        return true
+    }
+
+    fun setSpeechVoice(voiceId: String?) {
+        ttsRenderer.setVoiceId(voiceId)
+    }
+
+    fun setSpeechRate(multiplier: Float) {
+        ttsRenderer.setRateMultiplier(multiplier)
+    }
+
+    override fun onAllBeaconsCleared() {
+        val beaconHandles = withActivePlayersLock {
+            activePlayers.entries
+                .filter { it.value is PlayerEntry.Beacon }
+                .map { it.key }
+        }
+        for (handle in beaconHandles) {
+            destroyBeacon(handle)
+        }
+    }
+
+    override fun setHrtfEnabled(enabled: Boolean) {
+        // AVAudioEnvironmentNode uses HRTF by default
+        // Could toggle rendering algorithm here if needed
+    }
+
+    // --- Audio Session Interruption Handling ---
+
+    private fun registerAudioSessionObservers() {
+        // ensureEngineStarted retries after a failed start, so this can be reached more
+        // than once. Without the guard each retry would add another observer and the
+        // interruption handler would run once per registration.
+        if (interruptionObserver != null) return
+
+        val center = NSNotificationCenter.defaultCenter
+
+        interruptionObserver = center.addObserverForName(
+            name = platform.AVFAudio.AVAudioSessionInterruptionNotification,
+            `object` = AVAudioSession.sharedInstance(),
+            queue = NSOperationQueue.mainQueue
+        ) { notification ->
+            handleInterruption(notification)
+        }
+
+        mediaResetObserver = center.addObserverForName(
+            name = platform.AVFAudio.AVAudioSessionMediaServicesWereResetNotification,
+            `object` = AVAudioSession.sharedInstance(),
+            queue = NSOperationQueue.mainQueue
+        ) { _ ->
+            handleMediaServicesReset()
+        }
+    }
+
+    private fun handleInterruption(notification: NSNotification?) {
+        val userInfo = notification?.userInfo ?: return
+        val typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? Long ?: return
+
+        if (typeValue == AVAudioSessionInterruptionTypeBegan.toLong()) {
+            println("IosAudioEngine: Audio session interruption began")
+            needsReactivation = true
+        } else if (typeValue == AVAudioSessionInterruptionTypeEnded.toLong()) {
+            println("IosAudioEngine: Audio session interruption ended")
+            // Reactivate audio session
+            val session = AVAudioSession.sharedInstance()
+            val activated = session.setActive(true, error = null)
+            needsReactivation = !activated
+            println("IosAudioEngine: Audio session reactivation after interruption: $activated")
+
+            // Restart engine if needed
+            if (!engine.isRunning()) {
+                val restarted = engine.startAndReturnError(null)
+                engineStarted = restarted
+                println("IosAudioEngine: Engine restart after interruption: $restarted")
+            }
+
+            // Whoever interrupted us — Siri, a call, another app — took the lock screen
+            // with them. Without this the remote commands stay registered but the
+            // controls belong to someone else, which is what leaves the skip arrows
+            // greyed out until the next engine start happens to republish.
+            publishNowPlaying()
+        }
+    }
+
+    private fun handleMediaServicesReset() {
+        println("IosAudioEngine: Media services were reset — reconfiguring")
+        engineStarted = false
+        environmentNodes.clear()
+        ensureEngineStarted()
+        publishNowPlaying()
+    }
+
+    // --- Now Playing Info ---
+
+    /**
+     * What [publishNowPlaying] advertises. Held as state because the lock screen has to
+     * be refreshed from places that have no idea what the title is — after every remote
+     * command, after an interruption, after a media services reset.
+     */
+    private var nowPlayingTitle = "Soundscape"
+    private var nowPlayingSubtitle: String? = null
+
+    fun setNowPlayingInfo(title: String, subtitle: String? = null) {
+        nowPlayingTitle = title
+        nowPlayingSubtitle = subtitle
+        publishNowPlaying()
+    }
+
+    /**
+     * (Re)publish our Now Playing entry, or clear it when mixing with other apps — in
+     * that case the lock screen belongs to whatever else is playing and our remote
+     * commands are ignored anyway.
+     *
+     * The playback state is always "playing". This mirrors Android, where
+     * SoundscapeDummyMediaPlayer.getState() returns a fixed playWhenReady=true state
+     * every time it is asked: we are not really a player, the play/pause button is a
+     * mute toggle and the arrows are callout shortcuts, so there is no paused state to
+     * represent. Publishing the state explicitly is also what stops the Now Playing UI
+     * inventing one for us — with playbackState left unknown it flips its own button
+     * from Play to Pause when tapped and we have no way to correct it.
+     */
+    private fun publishNowPlaying() {
+        val center = MPNowPlayingInfoCenter.defaultCenter()
+        if (mixWithOthers) {
+            center.nowPlayingInfo = null
+            center.playbackState = MPNowPlayingPlaybackStateStopped
+            return
+        }
+
+        val info = mutableMapOf<Any?, Any?>(
+            MPNowPlayingInfoPropertyMediaType to 1L, // MPNowPlayingInfoMediaType.audio
+            MPMediaItemPropertyTitle to nowPlayingTitle,
+            // Callouts have no duration to scrub through, and a live stream is the one
+            // kind of item the UI draws without a progress bar parked at 0:00.
+            MPNowPlayingInfoPropertyIsLiveStream to true,
+            MPNowPlayingInfoPropertyPlaybackRate to 1.0,
+        )
+        nowPlayingSubtitle?.let { info[MPMediaItemPropertyArtist] = it }
+        center.nowPlayingInfo = info
+        center.playbackState = MPNowPlayingPlaybackStatePlaying
+    }
+
+    // --- Remote Command Center ---
+
+    private fun registerRemoteCommands() {
+        // addTargetWithHandler stacks handlers, so re-entering after an interruption
+        // would fire each media-key action once per registration.
+        if (remoteCommandsRegistered) return
+        remoteCommandsRegistered = true
+
+        val commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
+
+        commandCenter.togglePlayPauseCommand.setEnabled(true)
+        commandCenter.togglePlayPauseCommand.addTargetWithHandler { _ ->
+            mediaControlTarget?.onPlayPause()
+            publishNowPlaying()
+            MPRemoteCommandHandlerStatusSuccess
+        }
+
+        commandCenter.playCommand.setEnabled(true)
+        commandCenter.playCommand.addTargetWithHandler { _ ->
+            mediaControlTarget?.onPlayPause()
+            publishNowPlaying()
+            MPRemoteCommandHandlerStatusSuccess
+        }
+
+        commandCenter.pauseCommand.setEnabled(true)
+        commandCenter.pauseCommand.addTargetWithHandler { _ ->
+            mediaControlTarget?.onPlayPause()
+            publishNowPlaying()
+            MPRemoteCommandHandlerStatusSuccess
+        }
+
+        commandCenter.nextTrackCommand.setEnabled(true)
+        commandCenter.nextTrackCommand.addTargetWithHandler { _ ->
+            mediaControlTarget?.onNext()
+            publishNowPlaying()
+            MPRemoteCommandHandlerStatusSuccess
+        }
+
+        commandCenter.previousTrackCommand.setEnabled(true)
+        commandCenter.previousTrackCommand.addTargetWithHandler { _ ->
+            mediaControlTarget?.onPrevious()
+            publishNowPlaying()
+            MPRemoteCommandHandlerStatusSuccess
+        }
+    }
+}

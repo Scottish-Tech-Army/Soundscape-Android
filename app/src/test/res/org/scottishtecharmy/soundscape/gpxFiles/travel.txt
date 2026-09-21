@@ -42,7 +42,7 @@ Callout
 		Moor Road goes right
 
 Callout
-	post
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -119,7 +119,7 @@ Callout
 	Ahead Cairns Drive
 
 Callout
-	school
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -127,10 +127,7 @@ Callout
 		Path to Mugdock Road via steps goes right
 
 Callout
-	school
-
-Callout
-	Ahead Cairns Drive
+	OSM Feature
 
 Callout
 	Ahead Path to Mugdock Road via steps
@@ -149,7 +146,7 @@ Callout
 		Barloch Avenue to dead end goes right
 
 Callout
-	crossing
+	OSM Feature
 
 Callout
 	Ahead Barloch Avenue
@@ -194,7 +191,7 @@ Callout
 		Allander Road goes right
 
 Callout
-	memorial
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -203,27 +200,21 @@ Callout
 		Path goes right
 
 Callout
-	crossing
+	OSM Feature
 
 Callout
 	Approaching intersection
-		West Highland Way goes left
-		Path continues ahead
-		West Highland Way goes right
-
-Callout
-	Approaching intersection
-		West Highland Way goes left
-		West Highland Way goes right
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd goes left
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd goes right
 
 Callout
 	Milngavie Youth Centre
 
 Callout
-	Ahead Path to West Highland Way
+	Ahead Path to West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
 
 Callout
-	Ahead West Highland Way
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
 
 Callout
 	Approaching intersection
@@ -236,7 +227,18 @@ Callout
 		Riverside goes right
 
 Callout
-	bridge
+	Approaching intersection
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd goes left
+		Riverside continues ahead
+
+Callout
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
+
+Callout
+	OSM Feature
+
+Callout
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -250,24 +252,13 @@ Callout
 	Timpson
 
 Callout
-	Approaching intersection
-		Path to The Fraser Centre goes left
-		Douglas Street continues ahead
-
-Callout
-	At bridge
-
-Callout
-	Costa
-
-Callout
 	Ahead Douglas Street
 
 Callout
 	Spar
 
 Callout
-	playground
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -275,13 +266,10 @@ Callout
 		Douglas Street goes right
 
 Callout
-	Paper Kisses
-
-Callout
 	Specsavers
 
 Callout
-	clock
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -289,21 +277,21 @@ Callout
 		Path to Claremont Drive goes right
 
 Callout
+	M&S Simply Food
+
+Callout
 	Approaching intersection
 		Main Street continues ahead
 		Path to Stewart Street (North) Car Park via tunnel goes right
 
 Callout
-	M&S Simply Food
-
-Callout
-	Ruby Red
+	Ladbrokes
 
 Callout
 	Ahead Main Street
 
 Callout
-	Ladbrokes
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -311,13 +299,7 @@ Callout
 		Stewart Street goes right
 
 Callout
-	office
-
-Callout
-	Reid's of Milngavie
-
-Callout
-	Café Alba
+	Colpi Gelateria
 
 Callout
 	Approaching intersection
@@ -325,21 +307,19 @@ Callout
 		Main Street goes right
 
 Callout
-	Hynds Travel
+	Beauty at No 25
 
 Callout
-	Approaching intersection
-		Path via steps goes left
-		Main Street continues ahead
+	Ahead Path to Douglas House
 
 Callout
 	Douglas House
 
 Callout
-	Lennox Park
+	Ahead Path to Lennox Park via tunnel
 
 Callout
-	Milngavie, Main Street (after)
+	Milngavie, Main Street (after) Transit Stop
 
 Callout
 	Approaching intersection
@@ -347,10 +327,16 @@ Callout
 		Path continues ahead
 
 Callout
+	Lennox Park
+
+Callout
 	Approaching intersection
 		Gavin's Mill Road goes left
 		Gavin's Mill Road continues ahead
-		Path to Pavement next to Gavin's Mill Road goes right
+		Path to Lennox Park goes right
+
+Callout
+	Gavin's Mill
 
 Callout
 	Approaching intersection
@@ -358,7 +344,7 @@ Callout
 		Path goes right
 
 Callout
-	Gavin's Mill
+	Ahead Path to Lennox Park via bridge
 
 Callout
 	Approaching intersection
@@ -366,16 +352,13 @@ Callout
 		Path continues ahead
 
 Callout
-	At Lennox Park
-
-Callout
-	Ahead Path
-
-Callout
 	Ahead Path
 
 Callout
 	At Lennox Park
+
+Callout
+	Ahead Path
 
 Callout
 	Approaching intersection
@@ -402,9 +385,7 @@ Callout
 	Ahead Path
 
 Callout
-	Approaching intersection
-		Path via steps goes left
-		Path via bridge goes right
+	Ahead Path
 
 Callout
 	At Lennox Park
@@ -413,13 +394,10 @@ Callout
 	Ahead Path via steps
 
 Callout
-	At Lennox Park
-
-Callout
 	Ahead Path via steps
 
 Callout
-	pitch
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -427,28 +405,25 @@ Callout
 		Service to Crossveggate via bridge goes right
 
 Callout
-	pitch
+	At Lennox Park
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Service to Crossveggate via bridge
 
 Callout
 	Ahead Service to Crossveggate via bridge
 
 Callout
 	Lennox Park
-
-Callout
-	Ahead Service to Crossveggate via bridge
 
 Callout
 	Approaching intersection
 		Service to Jaw Brew goes left
 		Crossveggate continues ahead
 		Crossveggate goes right
-
-Callout
-	Milngavie Bowling Club
-
-Callout
-	Lennox Park
 
 Callout
 	Approaching intersection
@@ -460,16 +435,13 @@ Callout
 
 Callout
 	Approaching intersection
-		Service to Milngavie Bowling Club goes left
+		Service to dead-end goes left
 		Crossveggate continues ahead
 
 Callout
 	Approaching intersection
 		Glasgow Road goes left
 		Glasgow Road goes right
-
-Callout
-	Milngavie Bowling Club
 
 Callout
 	Ahead Crossveggate
@@ -479,11 +451,8 @@ Callout
 
 Callout
 	Approaching intersection
-		Service to Milngavie Bowling Club goes left
+		Service to dead-end goes left
 		Glasgow Road continues ahead
-
-Callout
-	Ahead Glasgow Road
 
 Callout
 	Milngavie Bowling Club
@@ -502,7 +471,7 @@ Callout
 		Glasgow Road continues ahead
 
 Callout
-	St Pauls Milngavie
+	Milngavie Bowling Club
 
 Callout
 	Approaching intersection
@@ -511,7 +480,13 @@ Callout
 		Baldernock Road goes right
 
 Callout
-	crossing
+	St Pauls Milngavie
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Baldernock Road
 
 Callout
 	Andiamo
@@ -520,24 +495,21 @@ Callout
 	Ahead Baldernock Road
 
 Callout
-	Ahead Baldernock Road
-
-Callout
-	St Pauls Milngavie
-
-Callout
 	Approaching intersection
 		Glassford Street to dead end goes left
 		Baldernock Road continues ahead
 		South Glassford Street goes right
 
 Callout
-	post
+	OSM Feature
 
 Callout
 	Approaching intersection
 		Garwhitter Drive to dead end goes left
 		Baldernock Road continues ahead
+
+Callout
+	St Pauls Milngavie
 
 Callout
 	Ahead Baldernock Road
@@ -605,10 +577,10 @@ Callout
 		Middleton Drive continues ahead
 
 Callout
-	Ahead Middleton Drive
+	Ahead Tower Place
 
 Callout
-	Ahead Tower Place
+	Ahead Middleton Drive
 
 Callout
 	Ahead Middleton Drive
@@ -630,18 +602,12 @@ Callout
 		Campsie Drive goes right
 
 Callout
-	post
-
-Callout
-	Ahead Middleton Drive
+	OSM Feature
 
 Callout
 	Approaching intersection
 		Lynn Drive goes left
 		Lynn Drive continues ahead
-
-Callout
-	Ahead Campsie Drive
 
 Callout
 	Ahead Lynn Drive
@@ -652,7 +618,7 @@ Callout
 		Strathblane Road goes right
 
 Callout
-	Milngavie, Lynn Drive (after)
+	Milngavie, Lynn Drive (after) Transit Stop
 
 Callout
 	Ahead Strathblane Road
@@ -674,4 +640,4 @@ Callout
 		Service goes right
 
 Callout
-	Ahead Roselea Drive
+	Ahead Service

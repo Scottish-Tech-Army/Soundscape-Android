@@ -1,0 +1,76 @@
+name: Setup iOS signing
+description: |
+  Imports a base64 .p12 distribution certificate and .mobileprovision profile
+  into a temporary keychain so xcodebuild archive can sign the build. The
+  keychain is created in $RUNNER_TEMP and is auto-discarded with the runner.
+
+inputs:
+  cert_base64:
+    description: Base64-encoded .p12 certificate
+    required: true
+  cert_password:
+    description: Password for the .p12 certificate
+    required: true
+  provisioning_profile_base64:
+    description: Base64-encoded .mobileprovision file for the main app
+    required: true
+  shareext_provisioning_profile_base64:
+    description: Base64-encoded .mobileprovision file for the ShareExtension target
+    required: false
+    default: ''
+  keychain_password:
+    description: Password used for the temporary keychain
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Import certificate and provisioning profiles
+      shell: bash
+      env:
+        CERT_BASE64: ${{ inputs.cert_base64 }}
+        CERT_PASSWORD: ${{ inputs.cert_password }}
+        PROFILE_BASE64: ${{ inputs.provisioning_profile_base64 }}
+        SHAREEXT_PROFILE_BASE64: ${{ inputs.shareext_provisioning_profile_base64 }}
+        KEYCHAIN_PASSWORD: ${{ inputs.keychain_password }}
+      run: |
+        CERT_PATH="$RUNNER_TEMP/dist_cert.p12"
+        KEYCHAIN_PATH="$RUNNER_TEMP/build.keychain-db"
+        PROFILE_DIR="$HOME/Library/MobileDevice/Provisioning Profiles"
+        mkdir -p "$PROFILE_DIR"
+
+        printf '%s' "$CERT_BASE64" | base64 -d > "$CERT_PATH"
+
+        security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+        security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+        security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+        security import "$CERT_PATH" -P "$CERT_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+        security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+        security list-keychain -d user -s "$KEYCHAIN_PATH" $(security list-keychain -d user | tr -d '"')
+
+        # Decode a profile, install it under its UUID filename (where Xcode
+        # looks), and echo $env_prefix_NAME / $env_prefix_UUID to $GITHUB_ENV
+        # so downstream steps can reference the profile in ExportOptions.plist.
+        install_profile() {
+          local b64=$1 file_label=$2 env_prefix=$3
+          local path="$RUNNER_TEMP/$file_label.mobileprovision"
+          printf '%s' "$b64" | base64 -d > "$path"
+          local plist uuid name
+          plist=$(security cms -D -i "$path")
+          uuid=$(/usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< "$plist")
+          name=$(/usr/libexec/PlistBuddy -c 'Print :Name' /dev/stdin <<< "$plist")
+          cp "$path" "$PROFILE_DIR/$uuid.mobileprovision"
+          echo "Installed $file_label profile $name ($uuid)"
+          echo "${env_prefix}_UUID=$uuid" >> "$GITHUB_ENV"
+          echo "${env_prefix}_NAME=$name" >> "$GITHUB_ENV"
+        }
+
+        # Manual signing during export needs the profile present in the
+        # standard location; the alternative (asking Apple to mint a managed
+        # profile via -allowProvisioningUpdates) can drop entitlements like
+        # Associated Domains under restrictive API key roles.
+        install_profile "$PROFILE_BASE64" "app" "IOS_PROFILE"
+
+        if [ -n "$SHAREEXT_PROFILE_BASE64" ]; then
+          install_profile "$SHAREEXT_PROFILE_BASE64" "shareext" "IOS_SHAREEXT_PROFILE"
+        fi

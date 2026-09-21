@@ -1,4 +1,5 @@
 package org.scottishtecharmy.soundscape.ui.theme
+
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF465D91)

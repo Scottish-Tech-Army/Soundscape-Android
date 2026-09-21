@@ -9,8 +9,7 @@ namespace soundscape {
     class BeaconAsset {
     public:
         BeaconAsset(const std::string &filename, double max_angle)
-        : m_Filename(filename), m_MaxAngle(max_angle)
-        {
+                : m_Filename(filename), m_MaxAngle(max_angle) {
         }
 
         double m_MaxAngle;
@@ -19,11 +18,11 @@ namespace soundscape {
 
     class BeaconDescriptor {
     public:
-        BeaconDescriptor(const std::string &name, unsigned int beats_in_phrase, const std::vector<BeaconAsset> &beacons)
-        : m_Name(name),
-          m_BeatsInPhrase(beats_in_phrase),
-          m_Beacons(beacons)
-        {
+        BeaconDescriptor(const std::string &name, unsigned int beats_in_phrase,
+                         const std::vector<BeaconAsset> &beacons)
+                : m_Name(name),
+                  m_BeatsInPhrase(beats_in_phrase),
+                  m_Beacons(beacons) {
         }
 
         std::string m_Name;

@@ -1,0 +1,86 @@
+
+Callout
+	On Roselea Drive and close to Milngavie
+
+Callout
+	Milngavie, Roselea Drive (before) Transit Stop
+
+Callout
+	Approaching intersection
+		Strathblane Road goes left
+		Strathblane Road goes right
+
+Callout
+	On Strathblane Road and close to Milngavie
+
+Callout
+	Near Milngavie, Moor Road (before) Transit Stop
+
+Callout
+	Near Milngavie, Strathblane Road (at 70) Transit Stop
+
+Callout
+	Approaching intersection
+		Baldernock Road goes left
+		Glasgow Road continues ahead
+		Station Road goes right
+
+Callout
+	St Pauls Milngavie
+
+Callout
+	OSM Feature
+
+Callout
+	On Strathblane Road and close to Milngavie
+
+Callout
+	On Glasgow Road and close to Milngavie
+
+Callout
+	Approaching intersection
+		Burnbrae Roundabout goes left
+		Burnbrae Roundabout goes right
+
+Callout
+	OSM Feature
+
+Callout
+	On Main Street and close to Milngavie
+
+Callout
+	Near Milngavie, Mosshead Road (after) Transit Stop
+
+Callout
+	Approaching intersection
+		Milngavie Road continues ahead
+		Mosshead Road goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Milngavie Road continues ahead
+
+Callout
+	On Pavement next to Milngavie Road and close to Milngavie
+
+Callout
+	Approaching intersection
+		Milngavie Road continues ahead
+
+Callout
+	Near Milngavie
+
+Callout
+	On Alexander Grove and close to Milngavie
+
+Callout
+	On Minor that joins Dalgleish Drive and Alexander Grove and close to Milngavie
+
+Callout
+	Ahead Service to dead-end
+
+Callout
+	At Allander Leisure Centre

@@ -2,139 +2,168 @@ package org.scottishtecharmy.soundscape.locationprovider
 
 import android.content.Context
 import android.util.Log
-import io.ticofab.androidgpxparser.parser.GPXParser
-import io.ticofab.androidgpxparser.parser.domain.Gpx
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
-import org.scottishtecharmy.soundscape.geoengine.utils.rulers.GeodesicRuler
+import org.scottishtecharmy.soundscape.geoengine.utils.gpx.GpxData
+import org.scottishtecharmy.soundscape.geoengine.utils.gpx.GpxLocationStream
+import org.scottishtecharmy.soundscape.geoengine.utils.gpx.GpxTrackPoint
+import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.xmlpull.v1.XmlPullParserException
-import java.io.IOException
+import org.scottishtecharmy.soundscape.platform.parseGpxTimestamp
 import java.io.InputStream
 
-class GpxDrivenProvider  {
+/**
+ * Replays a recorded GPX through the app as though the fixes were arriving from the receiver.
+ *
+ * The point of the exercise is that a user can send in a recording of something going wrong and
+ * we can watch the app do the same thing, so this feeds the geoengine what the recording holds
+ * rather than a tidied-up version of it: the recorded accuracy, speed, bearing and timing, at the
+ * intervals they actually arrived at, published onto both location flows by
+ * [GpxReplayLocationProvider]. Anything this synthesizes instead of replaying is a way for the
+ * replay to disagree with the journey.
+ *
+ * Enabled by developers only - put the file in `assets/` and name it in [REPLAY_ASSET_PATH].
+ */
+class GpxDrivenProvider {
 
-    var locationProvider = StaticLocationProvider(LngLatAlt())
+    /** Replaced in [start] once the recording says which stream it holds. */
+    var locationProvider: LocationProvider =
+        GpxReplayLocationProvider(GpxLocationStream.FILTERED)
+        private set
     var directionProvider = DirectionProvider()
+    var audioEngine: NativeAudioEngine? = null
 
-    private var parsedGpx: Gpx? = null
+    /**
+     * Multiplies the recorded pace: 1.0 replays an hour's journey over an hour, 10.0 does it in
+     * six minutes. Fast-forwarding changes what the app does - the geoengine's callout windows
+     * and the stationary detector both work in wall-clock time - so a replay being chased for a
+     * discrepancy wants this left alone.
+     */
+    var playbackSpeed = 1.0
+
+    private var parsedGpx: GpxData? = null
     private val coroutineScope = CoroutineScope(Job())
-    private var trackPointIndex = 0
 
-    private var stepsInPoint = 0
-    private var currentStep = 0
-    private var latStep = 0.0
-    private var lngStep = 0.0
+    fun start(context: Context, assetPath: String = REPLAY_ASSET_PATH) {
+        if (assetPath.isBlank()) {
+            Log.e(TAG, "No GPX asset named - set GpxDrivenProvider.REPLAY_ASSET_PATH")
+            return
+        }
+        parseGpxStream(context.assets.open(assetPath))
 
-    private val msWait = 1000.0
-    private val walkingSpeed = 1.0
+        val gpx = parsedGpx ?: return
+        val points = gpx.tracks.firstOrNull()
+            ?.trackSegments?.firstOrNull()
+            ?.trackPoints
+            .orEmpty()
+        if (points.isEmpty()) {
+            Log.e(TAG, "$assetPath holds no track points")
+            return
+        }
 
-    fun start(context : Context) {
-        val input = context.assets.open("gpx/milngavie-centre.gpx")
-        parseGpx(input)
+        // Rebuilt for the recording in hand, because whether the filter runs at all depends on
+        // which stream the file holds - see GpxReplayLocationProvider.
+        val provider = GpxReplayLocationProvider(gpx.locationStream)
+        locationProvider = provider
+        Log.d(
+            TAG,
+            "Replaying $assetPath: ${points.size} points, recorder v${gpx.recorderVersion}, " +
+                "${gpx.locationStream} stream"
+        )
 
         coroutineScope.launch {
-            val ruler = GeodesicRuler()
-            while (true) {
-                val point = parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.get(trackPointIndex)
+            // Track points are replayed exactly as recorded, never interpolated between. A
+            // position the receiver never reported is a position the geoengine never saw, and
+            // inventing them at a constant walking pace turned every recording - a train journey
+            // included - into a walk.
+            points.forEachIndexed { index, point ->
+                val location = LngLatAlt(point.longitude, point.latitude)
+                val heading = point.bearing?.toDouble()
+                    ?: headingToNextPoint(points, index)
+                    ?: 0.0
 
-                var heading = 0.0
-                point?.let {
-                    if(stepsInPoint == 0) {
-                        val pointLngLatAlt = LngLatAlt(it.longitude, it.latitude)
-                        val nextPoint =
-                            parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.get(
-                                trackPointIndex + 1
-                            )
-                        nextPoint?.let { itNext ->
-                            val nextPointLngLatAlt = LngLatAlt(itNext.longitude, itNext.latitude)
-                            val distance = ruler.distance(pointLngLatAlt, nextPointLngLatAlt)
-                            stepsInPoint = (distance / (walkingSpeed * (msWait/1000.0))).toInt()
-                            if(stepsInPoint == 0) stepsInPoint = 1
-                            currentStep = 0
-                            latStep = (nextPoint.latitude - point.latitude) / stepsInPoint
-                            lngStep = (nextPoint.longitude - point.longitude) / stepsInPoint
+                // The recording carries no phone or head orientation, so the direction of travel
+                // stands in for it. It is a stand-in, not a recording: a replay cannot show what
+                // the user was pointing at while standing still.
+                directionProvider.mutableOrientationFlow.value = DeviceDirection(
+                    attitude = FloatArray(4),
+                    headingDegrees = heading.toFloat(),
+                    headingAccuracyDegrees = point.bearingAccuracyDegrees ?: 0.0F,
+                    elapsedRealtimeNanos = 1000000
+                )
 
-                            heading = bearingFromTwoPoints(
-                                LngLatAlt(point.longitude, point.latitude),
-                                LngLatAlt(nextPoint.longitude, nextPoint.latitude))
+                provider.updateLocation(point.toSoundscapeLocation())
 
-                            val orientation = DeviceDirection(
-                                attitude = FloatArray(4),
-                                headingDegrees = heading.toFloat(),
-                                headingAccuracyDegrees = 0.0F,
-                                elapsedRealtimeNanos = 1000000
-                            )
-                            directionProvider.mutableOrientationFlow.value = orientation
-                        }
-                    }
-                    // Interpolate next point location
-                    val interpolatedPoint = LngLatAlt(
-                        point.longitude + (lngStep * currentStep),
-                        point.latitude + (latStep * currentStep)
-                    )
-                    locationProvider.updateLocation(
-                        LngLatAlt(
-                            interpolatedPoint.longitude,
-                            interpolatedPoint.latitude
-                        ),
-                        heading.toFloat(),
-                        walkingSpeed.toFloat()
-                    )
-                    directionProvider.audioEngine?.updateGeometry(
-                        interpolatedPoint.latitude,
-                        interpolatedPoint.longitude,
+                // The filtered position, so the audio engine follows what the geoengine acts on.
+                provider.filteredLocationFlow.value?.let { filtered ->
+                    audioEngine?.updateGeometry(
+                        filtered.latitude,
+                        filtered.longitude,
                         heading,
                         focusGained = true,
                         duckingAllowed = false,
                         15.0
                     )
-
-                    currentStep++
-                    if (currentStep == stepsInPoint) {
-                        trackPointIndex++
-                        if (trackPointIndex >= (parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.size
-                                ?: 0)
-                        ) {
-                            trackPointIndex = 0
-                        }
-                        stepsInPoint = 0
-                    }
                 }
-                delay(msWait.toLong())
+
+                delay(waitBeforeNextPoint(points, index))
             }
+            Log.d(TAG, "Replay of $assetPath finished")
         }
     }
 
-    fun parseGpx(input : InputStream) {
+    /**
+     * How long to hold this fix before publishing the next, from the recorded timestamps.
+     *
+     * Capped so that a recording with a gap in it - the app backgrounded, the phone asleep -
+     * doesn't stall the replay for as long as the user was away, and floored at zero so that
+     * points sharing a timestamp (the duplicate fixes iOS reports on start) don't run backwards.
+     */
+    private fun waitBeforeNextPoint(points: List<GpxTrackPoint>, index: Int): Long {
+        val thisTime = parseGpxTimestamp(points[index].time)
+        val nextTime = points.getOrNull(index + 1)?.let { parseGpxTimestamp(it.time) }
+        if (thisTime == null || nextTime == null) return DEFAULT_INTERVAL_MS
+
+        val interval = ((nextTime - thisTime) / playbackSpeed).toLong()
+        return interval.coerceIn(0L, MAX_INTERVAL_MS)
+    }
+
+    private fun headingToNextPoint(points: List<GpxTrackPoint>, index: Int): Double? {
+        val next = points.getOrNull(index + 1) ?: return null
+        return bearingFromTwoPoints(
+            LngLatAlt(points[index].longitude, points[index].latitude),
+            LngLatAlt(next.longitude, next.latitude)
+        )
+    }
+
+    fun parseGpxStream(input: InputStream) {
         Log.d(TAG, "Parsing GPX file")
 
-        val parser = GPXParser()
         try {
-            parsedGpx = parser.parse(input)
-            parsedGpx?.let { gpx ->
-                gpx.tracks.forEach { track ->
-                    track.trackSegments.forEach { segment ->
-                        segment.trackPoints.forEach { trackPoint ->
-                            Log.d("gpx", "TrackPoint: ${trackPoint.time} ${trackPoint.latitude} ${trackPoint.longitude}")
-                        }
-                    }
-                }
-            } ?: {
+            parsedGpx = parseGpx(input.bufferedReader().readText())
+            if (parsedGpx == null) {
                 Log.e(TAG, "Error parsing GPX file")
             }
-        } catch (e: IOException) {
-            Log.e(TAG, "IOException whilst parsing GPX file")
-            e.printStackTrace()
-        } catch (e: XmlPullParserException) {
-            Log.e(TAG,  "XmlPullParserException whilst parsing GPX file")
+        } catch (e: Exception) {
+            Log.e(TAG, "Exception whilst parsing GPX file: ${e.message}")
             e.printStackTrace()
         }
     }
+
     companion object {
         private const val TAG = "GpxDrivenProvider"
+
+        /** Name of the file under `assets/` to replay. Set this to use the provider. */
+        const val REPLAY_ASSET_PATH = ""
+
+        /** Used between points where the recording carries no usable timestamps. */
+        private const val DEFAULT_INTERVAL_MS = 1000L
+
+        /** See [waitBeforeNextPoint]. */
+        private const val MAX_INTERVAL_MS = 10_000L
     }
 }

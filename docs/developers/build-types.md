@@ -77,3 +77,30 @@ EXTRACT_PROVIDER_URL
 ```
 
 `local.properties` is not under version control. Each developer fills it in by hand (the format is documented in [Developer information]({% link developers/developers.md %})). On GitHub Actions, the workflow writes `local.properties` from a repo secret before invoking Gradle — see [GitHub actions]({% link developers/actions.md %}). If a value is missing the build still succeeds but those `BuildConfig` strings are empty, and the corresponding feature will fail at runtime.
+
+## iOS gating
+
+iOS does not use Android-style build-type source-set splitting — the same `iosApp` target compiles for both Debug and Release. Instead, `iosApp/iosApp/FirebaseAnalyticsBridge.swift` runs a `shouldEnableFirebase()` gate at launch inside `FirebaseBootstrap.configureIfEnabled()`:
+
+```swift
+#if DEBUG
+return false
+#else
+let env = ProcessInfo.processInfo.environment
+if env["XCTestConfigurationFilePath"] != nil { return false }
+if NSClassFromString("XCTestCase") != nil { return false }
+return true
+#endif
+```
+
+Mapping to Android's three-way gate:
+
+| Android | iOS |
+| --- | --- |
+| `BuildConfig.DUMMY_ANALYTICS` (from `debug` / `releaseTest`) | `#if DEBUG` |
+| `firebase.test.lab` system setting | `XCTestConfigurationFilePath` env var + `XCTestCase` class presence |
+| `hasPlayServices()` | No analog — Firebase iOS has no equivalent hard runtime dependency |
+
+Only Release, non-XCTest launches call `FirebaseApp.configure()` and inject `FirebaseAnalyticsBridge` into `IosSoundscapeService` via `setAnalyticsFactory { ... }`. Debug builds and XCTest runs leave the shared code's default `NoOpAnalytics` in place, so no Firebase framework code runs even though it is linked in.
+
+The shared Kotlin `Analytics` interface is renamed for Objective-C export using `@ObjCName("SoundscapeAnalytics", exact = true)` in `shared/src/commonMain/kotlin/.../utils/Analytics.kt` — Firebase's Swift API also exports a class called `Analytics`, and renaming the Kotlin symbol at the source avoids module-qualified references at every Swift call site.

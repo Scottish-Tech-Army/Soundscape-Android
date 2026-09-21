@@ -1,0 +1,1640 @@
+package org.scottishtecharmy.soundscape.geoengine
+
+import kotlinx.coroutines.CloseableCoroutineDispatcher
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.newSingleThreadContext
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.dto.BoundingBox
+import org.scottishtecharmy.soundscape.dto.Tile
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.significantWaterwayClasses
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
+import org.scottishtecharmy.soundscape.geoengine.utils.multiPolygonContainsCoordinates
+import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
+import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.getCentralPointForFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.distanceAlongLineString
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getSideOfLine
+import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
+import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
+import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.network.VectorTileClient
+import org.scottishtecharmy.soundscape.platform.ioDispatcher
+import kotlin.concurrent.Volatile
+import kotlin.time.measureTime
+
+enum class TreeId(
+    val id: Int,
+    val description: String
+) {
+    ROADS(0, "Roads"),
+    ROADS_AND_PATHS(1, "Roads and Paths"),
+    INTERSECTIONS(2, "Intersections"),
+    ENTRANCES(3, "Entrances"),
+    CROSSINGS(4, "Crossings"),
+    POIS(5, "Pois"),
+    TRANSIT_STOPS(6, "Transit Stops"),
+    INTERPOLATIONS(7, "Interpolations"),
+    INFORMATION_POIS(8, "Information POIs"),
+    OBJECT_POIS(9, "Object POIs"),
+    PLACE_POIS(10, "Place POIs"),
+    LANDMARK_POIS(11, "Landmark POIs"),
+    MOBILITY_POIS(12, "Mobility POIs"),
+    SAFETY_POIS(13, "Safey POIs"),
+    PLACES_AND_LANDMARKS(14, "Places and Landmarks"),
+    SELECTED_SUPER_CATEGORIES(15, "Selected Super Categories"),
+    SETTLEMENT_CITY(16, "Cities"),
+    SETTLEMENT_TOWN(17, "Towns"),
+    SETTLEMENT_VILLAGE(18, "Villages"),
+    SETTLEMENT_HAMLET(19, "Hamlets"),
+    TRANSIT(20, "Transit"),
+    HOUSENUMBER(21, "House numbers"),
+    HIGHWAY_JUNCTIONS(22, "Highway Junctions"),
+    NAMED_WATER_POLYGONS(23, "Named Water Polygons"),
+    NAMED_WATERWAYS(24, "Named Waterways"),
+    RAILWAY_STOPS(25, "Railway Stops"),
+    MAX_COLLECTION_ID(26, ""),
+    WAYS_SELECTION(id = 26, "Either Roads OR Roads and Paths")
+}
+
+fun treeIdToIndex(id: TreeId): TreeId {
+    return if (id == TreeId.WAYS_SELECTION)
+        TreeId.ROADS_AND_PATHS
+    else
+        id
+}
+
+
+@OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
+open class GridState(
+    val zoomLevel: Int = MAX_ZOOM_LEVEL,
+    val gridSize: Int = GRID_SIZE,
+    passedInTreeContext: CloseableCoroutineDispatcher? = null
+) {
+
+    // HTTP connection to tile server; set by the platform layer before start().
+    var tileClient: VectorTileClient? = null
+
+    // Hook for platform-specific analytics; defaults to no-op
+    var analytics: GridStateAnalytics = GridStateAnalytics.NoOp
+
+    @Volatile
+    private var centralBoundingBox = BoundingBox()
+    private var totalBoundingBox = BoundingBox()
+    var ruler = CheapRuler(0.0)
+    var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
+    var gridIntersections = hashMapOf<LngLatAlt, Intersection>()
+    var gridTransitIntersections = hashMapOf<LngLatAlt, Intersection>()
+    var gridStreetNumberTreeMap = hashMapOf<String, FeatureTree>()
+
+    val treeContext = passedInTreeContext ?: newSingleThreadContext("TreeContext")
+
+    var validateContext = true
+
+    // Bumped every time featureTrees/gridStreetNumberTreeMap are rebuilt from a new tile grid (or
+    // torn down in stop()). Callers that cache anything derived from those trees - e.g.
+    // OfflineGeocoder's per-street StreetDescription cache - key off this value to know when a
+    // cached result no longer matches the data it was built from.
+    var generation: Int = 0
+
+    // This doesn't naturally belong in GridState, but it's where all the other geo info is. It's
+    // a tree of Markers from the database.
+    var markerTree: FeatureTree? = null
+
+    open fun start(offlineExtractPath: String = "") {}
+    open fun stop() {
+        // Clean up the feature trees
+        for (tree in featureTrees) {
+            tree.tree = null
+        }
+        centralBoundingBox = BoundingBox()
+        generation++
+    }
+
+    open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
+
+    open fun checkOfflineMaps() {}
+
+    /**
+     * Forces the next locationUpdate() to recompute the grid from scratch, even if the location
+     * hasn't left the current central area. Used when the on-disk offline map extracts have
+     * changed (new download published, or an extract deleted) so the change is picked up on the
+     * very next location fix instead of waiting for the user to walk outside the current grid.
+     */
+    fun refreshOfflineMaps() {
+        centralBoundingBox = BoundingBox()
+    }
+
+    fun isLocationWithinGrid(location: LngLatAlt): Boolean {
+        return pointIsWithinBoundingBox(location, totalBoundingBox)
+    }
+
+    /**
+     * We want to join up Ways that cross tile boundaries.
+     *
+     * In our initial parsing we created Intersections at every line ending that is at the
+     * tile boundary. Now that we have our grid, we can match up pairs of these intersections
+     * in the same way that the InterpolatedPointsJoiner does - searching by distance. We add
+     * a Way between each pair which is marked as a 'Tile Joiner'. These Ways can be followed
+     * between the tiles, but are otherwise transparent. We should make it easy to dispose of
+     * them when a new grid is made so that we can reuse the Tiles themselves for the new grid.
+     *
+     * This is generic across the road and transit (railway) intersection graphs - it just joins
+     * whatever Intersections it's given, so the same logic works for either as long as they're
+     * kept in separate lists (a road and a railway can share an exact coordinate at a level
+     * crossing, and we don't want those two unrelated networks joined together).
+     */
+    private fun joinTileEdgeIntersections(
+        grid: TileGrid,
+        newGridIntersections: List<HashMap<LngLatAlt, Intersection>>
+    ) {
+        if (grid.tiles.size <= 1) return
+
+        // The boundaries between tiles inside the grid, as opposed to around its outside. The tiles
+        // are listed row by row from the top left, so the left edges of the first row's tiles after
+        // the first are the grid's internal lines of longitude, and the top edges of the first
+        // column's tiles after the first are its internal lines of latitude. A 2x2 grid has one of
+        // each, through its centre, but a 3x3 grid has two - and joining only the pair through the
+        // corner of the first tile left every road and railway stopping dead at the other two.
+        val columns = grid.tiles.count { it.tileY == grid.tiles[0].tileY }
+        val rows = grid.tiles.size / columns
+        val internalLongitudes = (1 until columns).map { column ->
+            val tile = grid.tiles[column]
+            getLatLonTileWithOffset(tile.tileX, tile.tileY, zoomLevel, 0.0, 0.0).longitude
+        }.toSet()
+        val internalLatitudes = (1 until rows).map { row ->
+            val tile = grid.tiles[row * columns]
+            getLatLonTileWithOffset(tile.tileX, tile.tileY, zoomLevel, 0.0, 0.0).latitude
+        }.toSet()
+
+        val tileEdgeList = mutableListOf<Intersection>()
+        for (intersectionList in newGridIntersections) {
+            for (intersection in intersectionList) {
+                if (intersection.value.intersectionType == IntersectionType.TILE_EDGE) {
+                    // We have an edge - check if it's an internal edge to the grid
+                    if (
+                        (intersection.value.location.longitude in internalLongitudes) or
+                        (intersection.value.location.latitude in internalLatitudes)
+                    ) {
+                        // This intersection needs joining, so put add it to our list
+                        tileEdgeList.add(intersection.value)
+                    }
+                }
+            }
+        }
+
+        // We have our list of intersections to join, so join them
+        for (intersection1 in tileEdgeList) {
+            for (intersection2 in tileEdgeList) {
+                // Don't join to ourselves
+                if (intersection1 != intersection2) {
+                    // Don't join if already joined. The number of members doesn't say, as Ways
+                    // which share their geometry share the intersection where they cross the edge.
+                    if (intersection1.members.none { it.wayType == WayType.JOINER }) {
+                        // Join if within 1.0m
+                        val distance =
+                            ruler.distance(intersection1.location, intersection2.location)
+                        if (distance < 1.0) {
+                            // Join the intersections together
+                            val way = Way()
+                            way.geometry =
+                                LineString(intersection1.location, intersection2.location)
+                            way.wayType = WayType.JOINER
+                            way.intersections[WayEnd.START.id] = intersection1
+                            way.intersections[WayEnd.END.id] = intersection2
+                            intersection1.members.add(way)
+                            intersection2.members.add(way)
+                            break
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Candidate-gathering radius for attachRailwayCrossings - generous since it's only used to
+    // shortlist nearby road/path Ways from the rtree before the real geometric intersection test
+    // decides the match, not as a proximity threshold in its own right.
+    private val structureCrossingSearchDistanceMetres = 20.0
+
+    /**
+     * Attaches an AlongWayFeature (RAILWAY_CROSSING) directly onto the road/path
+     * Way(s) that geometrically cross a railway - and, via attachRailwayWaterwayCrossing, onto the
+     * railway Ways that cross a named river or canal - mirroring what extractCrossings (MvtToGeoJson.kt)
+     * already does for waterway crossings at MVT-tile-parse time - see its class doc comment for
+     * why railway crossings specifically can't be resolved that early: a road and a railway can
+     * straddle an MVT tile boundary right at the point they cross, with each tile's raw geometry
+     * independently clipped there, so the two clipped pieces can fail to actually touch within
+     * either single tile even though the real-world crossing is genuine. Running here instead,
+     * against this whole grid's already-merged ROADS_AND_PATHS/TRANSIT Ways (localTrees, built
+     * just above), means a crossing near a tile edge has the full, unclipped-relative-to-each-
+     * other geometry available from both tiles at once.
+     *
+     * A genuine grade-separated crossing needs a brunnel tag on one side of the pair - either the
+     * road (`brunnel=bridge`/`tunnel`) or, just as commonly, the railway itself (`brunnel=bridge`
+     * for a viaduct, with the road/path running underneath left untagged, since OSM only tags the
+     * structure that's actually built). Either side supplies the "grade separated" evidence; when
+     * only the railway is tagged, the road is inferred to be going under it. A road with neither
+     * side tagged is a level crossing, handled separately (an explicit `railway=level_crossing`
+     * point), not by this geometric test.
+     *
+     * A railway that is itself in a tunnel is skipped outright. TreeId.TRANSIT contains
+     * `brunnel=tunnel` segments, heavy rail and metro alike, because they're needed to keep a
+     * train matched underground, but a road bridge that happens to pass over the horizontal
+     * projection of a deep tunnel isn't crossing anything a traveller can perceive, and announcing
+     * "Passing over the North Clyde Line" to a driver on a bridge above the Charing Cross tunnel
+     * would be nonsense.
+     *
+     * Returns the number of road/railway crossings found, for the timing log in the caller.
+     */
+    private fun attachRailwayCrossings(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val railwayWays = featureCollections[TreeId.TRANSIT.id].features.filterIsInstance<Way>()
+        if (railwayWays.isEmpty()) return 0
+        var crossingsFound = 0
+
+        val roadTree = localTrees[TreeId.ROADS_AND_PATHS.id]
+        val waterwayTree = localTrees[TreeId.NAMED_WATERWAYS.id]
+        for (railway in railwayWays) {
+            val railwayGeometry = railway.geometry as? LineString ?: continue
+            if (railwayGeometry.coordinates.size < 2) continue
+            val railwayBrunnel = railway.properties?.get("brunnel") as? String
+
+            // The rivers and canals the line itself crosses, recorded on the railway Way. Done
+            // before the tunnel check below rather than after it, because a railway *tunnel* under
+            // a canal is a real crossing worth announcing ("Passing under the Forth and Clyde
+            // Canal", where the North Clyde Line runs beneath it) - unlike a road bridge that
+            // merely happens to pass over the horizontal projection of a deep tunnel.
+            if (attachRailwayWaterwayCrossing(railway, railwayGeometry, railwayBrunnel, waterwayTree)) {
+                crossingsFound++
+            }
+
+            if (railwayBrunnel == "tunnel") continue
+
+            // Shortlist by proximity to the railway *line*, not to its vertices: a bridge is
+            // routinely a single 2-point way spanning the whole obstacle, so its vertices sit well
+            // back from the road it crosses (172m viaduct, endpoints 47m and 119m from the M80 at
+            // Castlecary) and a per-vertex query finds nothing at all.
+            val candidates = roadTree
+                .getNearbyLine(railwayGeometry, structureCrossingSearchDistanceMetres, ruler)
+                .features
+                .filterIsInstance<Way>()
+
+            for (road in candidates) {
+                val roadGeometry = road.geometry as? LineString ?: continue
+                val roadBrunnel = road.properties?.get("brunnel") as? String
+                if (roadBrunnel == null && railwayBrunnel != "bridge") continue
+                val point = findLineIntersectionPoint(
+                    railwayGeometry.coordinates,
+                    roadGeometry.coordinates
+                ) ?: continue
+                // Either the road carries the brunnel and reads directly, or it carries none and
+                // the evidence came from the railway being a bridge - in which case the road is
+                // the thing underneath. (railwayBrunnel can never be "tunnel" here: those are
+                // skipped above, so passing over a rail tunnel is deliberately never announced.)
+                val position =
+                    if (roadBrunnel == "bridge") AlongWayPosition.OVER else AlongWayPosition.UNDER
+                applyCrossing(
+                    road,
+                    AlongWayKind.RAILWAY_CROSSING,
+                    railway.name,
+                    position,
+                    point,
+                    translatedName = railway.translatedName
+                )
+
+                // And the mirror of it on the railway, so that a passenger's callout is a lookup
+                // on the line being ridden rather than a search of the roads that happen to be
+                // nearby - most of which are running alongside the line, not crossing it. The
+                // position inverts: a road that goes over the line is one the train passes under.
+                // The road Way is carried rather than its name, so that the callout can name it
+                // with the user's own localized strings (see Way.getName).
+                //
+                // Deliberately asymmetric. On a path, the railway overhead is worth knowing about;
+                // on a train, the pavements and footbridges the line passes are not, and they are
+                // the ones with nothing to be called - WayNaming.confectNamesForRoad writes a
+                // made-up name onto an unnamed way, so a footbridge was announced as "Passing over
+                // Pavement next to Clyde Place". So the path keeps its RAILWAY_CROSSING above and
+                // only the railway side is dropped.
+                if (!road.isPath()) {
+                    applyCrossing(
+                        railway,
+                        AlongWayKind.ROAD_CROSSING,
+                        road.name,
+                        if (position == AlongWayPosition.OVER) {
+                            AlongWayPosition.UNDER
+                        } else {
+                            AlongWayPosition.OVER
+                        },
+                        point,
+                        feature = road
+                    )
+                }
+                crossingsFound++
+            }
+        }
+        return crossingsFound
+    }
+
+    /**
+     * Records on a railway [Way] the named river or canal it crosses, using the same
+     * AlongWayFeature the road crossings use, so that the callout code can read either the same
+     * way.
+     *
+     * Nothing computes this anywhere else. extractCrossings (MvtToGeoJson.kt) resolves waterway
+     * crossings at tile-parse time but deliberately excludes railways from its road list, on the
+     * grounds that railway crossings are this function's job - and until now this function only did
+     * road-against-railway. So a train crossing the River Kelvin, the Allander Water or the Clyde
+     * said nothing at all, while a car over the same bridge announced it.
+     *
+     * The over/under sense comes from the railway's own brunnel and is *not* inverted the way the
+     * road-against-railway case is: this property describes the train's own relationship to the
+     * water, which is what gets spoken. A railway with no brunnel at all is skipped - with nothing
+     * built there it's a ford or a tagging error, not a crossing to announce. Note that the
+     * waterway half can never supply the evidence instead, the way it can for roads: brunnel-tagged
+     * waterway segments are kept out of TreeId.NAMED_WATERWAYS entirely (see
+     * getNamedWaterwaysFromTileFeatureCollection), so an aqueduct carrying a canal over a line
+     * isn't representable here.
+     *
+     * Returns true if a crossing was recorded.
+     */
+    // How far from a bridge or tunnel a named water body can be and still be the thing it crosses.
+    // Only shortlists polygons for the containment test below, so it can afford to be generous.
+    private val waterPolygonSearchDistanceMetres = 100.0
+
+    /**
+     * Records the named water a road bridge or tunnel crosses where that water is a *polygon* - a
+     * firth, a bay, a tidal river - rather than a waterway line.
+     *
+     * extractCrossings only ever sees waterway lines, so without this the Firth of Forth under the
+     * Queensferry Crossing, or the Menai Strait under the bridges to Anglesey, is not a recorded
+     * crossing at all. It used to be answered live instead, from wherever the user happened to be
+     * standing, which is precisely why the callout needed a Way-change edge to trigger it: there
+     * was no point to measure a distance to. Recorded here it is an along-way feature like any
+     * other, found by the same walk at the same measured distance.
+     */
+    private fun attachWaterPolygonCrossings(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val waterTree = localTrees[TreeId.NAMED_WATER_POLYGONS.id]
+        var attached = 0
+        for (way in featureCollections[TreeId.ROADS_AND_PATHS.id].features.filterIsInstance<Way>()) {
+            val geometry = way.geometry as? LineString ?: continue
+            val brunnel = way.properties?.get("brunnel") as? String
+            if (attachWaterPolygonCrossing(way, geometry, brunnel, waterTree)) attached++
+        }
+        return attached
+    }
+
+    /**
+     * Records the named water this bridge or tunnel crosses, for the one road Way [way].
+     *
+     * Returns whether anything was attached. Broken out from the pass above, and public rather
+     * than internal, so that a test in the app module can drive it for a single Way without
+     * standing up a whole tile grid first.
+     */
+    fun attachWaterPolygonCrossing(
+        way: Way,
+        wayGeometry: LineString,
+        brunnel: String?,
+        waterTree: FeatureTree
+    ): Boolean {
+        val position = when (brunnel) {
+            "bridge" -> AlongWayPosition.OVER
+            "tunnel" -> AlongWayPosition.UNDER
+            else -> return false
+        }
+        if (wayGeometry.coordinates.size < 2) return false
+
+        // A waterway line already found here is the better record - it has a real intersection
+        // point rather than a stretch of open water - so the same water isn't described twice.
+        val alreadyNamed = way.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)
+            .mapNotNull { it.name }
+            .toSet()
+
+        var attached = false
+        val candidates = waterTree
+            .getNearbyLine(wayGeometry, waterPolygonSearchDistanceMetres, ruler)
+            .features
+            .filterIsInstance<MvtFeature>()
+        for (water in candidates) {
+            val name = water.name ?: continue
+            if (name in alreadyNamed) continue
+            val point = waterPolygonCrossingPoint(wayGeometry, water) ?: continue
+            way.addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = way.distanceAlongWay(point, ruler),
+                    point = point,
+                    kind = AlongWayKind.WATERWAY_CROSSING,
+                    name = name,
+                    position = position,
+                    translatedName = water.translatedName
+                )
+            )
+            attached = true
+        }
+        return attached
+    }
+
+    /**
+     * Where [way] meets [water]: the middle of the stretch that is actually over the water, or
+     * failing that the bank it crosses.
+     *
+     * The second case covers two things - a single-span bridge over a narrow channel, which has
+     * both its ends on dry land and so no vertex inside the polygon at all, and the entries in
+     * this collection which are not polygons: despite the name it carries whatever the tiles tag
+     * as named water, and a strait or a firth commonly arrives as the line of its shore.
+     */
+    private fun waterPolygonCrossingPoint(way: LineString, water: MvtFeature): LngLatAlt? {
+        val geometry = water.geometry
+        val inside = way.coordinates.filter { point ->
+            when (geometry.type) {
+                "Polygon" -> polygonContainsCoordinates(point, geometry as Polygon)
+                "MultiPolygon" -> multiPolygonContainsCoordinates(point, geometry as MultiPolygon)
+                else -> false
+            }
+        }
+        if (inside.isNotEmpty()) return inside[inside.size / 2]
+
+        val rings = when (geometry.type) {
+            "Polygon" -> (geometry as Polygon).coordinates
+            "MultiPolygon" -> (geometry as MultiPolygon).coordinates.map { it.first() }
+            "LineString" -> listOf((geometry as LineString).coordinates)
+            else -> return null
+        }
+        return rings.firstNotNullOfOrNull { findLineIntersectionPoint(way.coordinates, it) }
+    }
+
+    private fun attachRailwayWaterwayCrossing(
+        railway: Way,
+        railwayGeometry: LineString,
+        railwayBrunnel: String?,
+        waterwayTree: FeatureTree
+    ): Boolean {
+        val position = when (railwayBrunnel) {
+            "bridge" -> AlongWayPosition.OVER
+            "tunnel" -> AlongWayPosition.UNDER
+            else -> return false
+        }
+
+        val candidates = waterwayTree
+            .getNearbyLine(railwayGeometry, structureCrossingSearchDistanceMetres, ruler)
+            .features
+            .filterIsInstance<MvtFeature>()
+
+        for (waterway in candidates) {
+            // Only rivers and canals - a burn under a railway bridge is no more a landmark than a
+            // burn under a road one. Same judgement, same set, as extractCrossings.
+            if (waterway.featureClass !in significantWaterwayClasses) continue
+            val name = waterway.name ?: continue
+            val waterwayGeometry = waterway.geometry as? LineString ?: continue
+            if (waterwayGeometry.coordinates.size < 2) continue
+            val point = findLineIntersectionPoint(
+                railwayGeometry.coordinates,
+                waterwayGeometry.coordinates
+            ) ?: continue
+
+            // Written straight onto this Way rather than onto every piece sharing its osmId: OSM
+            // splits the line at the structure, so the Way that intersects the water *is* the
+            // bridge, and it's the piece the train will be matched to as it goes over.
+            railway.addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = railway.distanceAlongWay(point, ruler),
+                    point = point,
+                    kind = AlongWayKind.WATERWAY_CROSSING,
+                    name = name,
+                    position = position,
+                    translatedName = waterway.translatedName
+                )
+            )
+            return true
+        }
+        return false
+    }
+
+    /**
+     * Records a crossing on the Way whose geometry it actually lies on - the road for a
+     * RAILWAY_CROSSING, the railway for the mirrored ROAD_CROSSING.
+     *
+     * Exactly one Way, even though a single OSM way is split into several Way objects sharing an
+     * osmId. The crossing point comes from intersecting this Way's own geometry, so this is the
+     * piece it genuinely belongs to, and AlongWayFeature.distanceFromStart is an exact position
+     * within it. Marking the neighbouring pieces too would put the same crossing at a distance
+     * clamped to one of their ends, which the along-way queries (see nextAlongWayFeature) would
+     * then read as a real position - reporting the crossing several times over, at distances that
+     * are wrong. Reaching a crossing on the Way ahead is the graph walk's job, not the attach
+     * step's.
+     */
+    private fun applyCrossing(
+        way: Way,
+        kind: AlongWayKind,
+        name: String?,
+        position: AlongWayPosition,
+        point: LngLatAlt,
+        feature: MvtFeature? = null,
+        translatedName: String? = null
+    ) {
+        way.addAlongWayFeature(
+            AlongWayFeature(
+                distanceFromStart = way.distanceAlongWay(point, ruler),
+                point = point,
+                kind = kind,
+                name = name,
+                position = position,
+                feature = feature,
+                translatedName = translatedName
+            )
+        )
+    }
+
+    // How far from a POI we'll look for a road to call it "on". StreetDescription uses 25m for
+    // the same job when deciding which houses belong to a street; much beyond 50m and we start
+    // attributing POIs to the road on the far side of the block.
+    private val nearestWaySearchDistanceMetres = 30.0
+
+    // ~110m of latitude, less of longitude away from the equator. See settlementByCell below.
+    private val settlementCellsPerDegree = 1000.0
+
+
+    /**
+     * Supplies the name of the settlement a location is in. Settlements aren't in the high-zoom
+     * tiles this grid is built from - the "place" layer only appears at low zoom - so they live in
+     * a separate GridState which only GeoEngine can see. It sets this; left null (e.g. in tests,
+     * or for the settlement grid itself) no settlement is recorded.
+     */
+    var settlementNameProvider: ((LngLatAlt) -> String?)? = null
+
+    /**
+     * The tile keys of the name translation to keep for each feature, from nameKeysForLanguage -
+     * see MvtFeature.translatedName. Set by GeoEngine before start(); left empty, features have
+     * only their local names.
+     */
+    var nameKeys: List<String> = emptyList()
+
+    /**
+     * How far [feature] reaches from [probe] - zero for a point. Added to the candidate search
+     * radius so that a road alongside the far edge of a large feature is still found.
+     */
+    private fun extentFrom(feature: Feature, probe: LngLatAlt): Double {
+        val ring = when (val geometry = feature.geometry) {
+            is Polygon -> geometry.coordinates.firstOrNull()
+            is MultiPolygon -> geometry.coordinates.firstOrNull()?.firstOrNull()
+            is LineString -> geometry.coordinates
+            else -> null
+        } ?: return 0.0
+        return ring.maxOfOrNull { ruler.distance(probe, it) } ?: 0.0
+    }
+
+    /**
+     * The nearest way to [poi] which identifies itself, or null if there isn't one within
+     * [nearestWaySearchDistanceMetres] of it.
+     *
+     * getNearbyCollection rather than getNearestCollection: the latter passes its metre distance
+     * into RTree.nearest as a planar degree bound and asks for an unbounded k, so it ends up
+     * walking the whole tree. This is a properly pruned box search, and it already deduplicates
+     * the per-segment rtree entries back down to whole Ways.
+     */
+    private fun nearestNamedWay(
+        tree: FeatureTree,
+        poi: Feature,
+        probe: LngLatAlt,
+        extent: Double
+    ): Way? {
+        var nearest: Way? = null
+        var nearestDistance = Double.POSITIVE_INFINITY
+        // Candidates are gathered around the POI's centre, widened by how far the POI reaches:
+        // a large feature's centre can be well outside the threshold while the feature itself is
+        // right beside the road - a playground's middle is 35m from the street its fence is 10m
+        // from. The real threshold is applied to the measured distance below.
+        for (candidate in tree.getNearbyCollection(probe, nearestWaySearchDistanceMetres + extent, ruler)) {
+            val way = candidate as? Way ?: continue
+            // Only ways which identify themselves are any use as an address. Read name/ref
+            // directly rather than calling getName(), which confects names for un-named ways
+            // (more rtree searches) and can decorate them with "to dead end" style suffixes.
+            if ((way.name == null) && (way.ref == null)) continue
+            // getDistanceToFeature measures a point against a whole feature, polygons included,
+            // so going from the way back to the POI judges the POI by how close it actually gets
+            // to the road rather than by where its middle happens to be.
+            val pointOnWay = getDistanceToFeature(probe, way, ruler).point
+            val distance = getDistanceToFeature(pointOnWay, poi, ruler).distance
+            if ((distance < nearestWaySearchDistanceMetres) && (distance < nearestDistance)) {
+                nearestDistance = distance
+                nearest = way
+            }
+        }
+        return nearest
+    }
+
+    /**
+     * Associates each POI with the nearest named way and the settlement it's in, storing them as
+     * MvtFeature.nearestWay and MvtFeature.nearestSettlement.
+     *
+     * Lists like Places Nearby are full of POIs which OSM never named - post boxes, benches,
+     * waste baskets - and which all render as the same generic type label. Knowing which street
+     * each one is on is what makes them tellable apart. Doing the association here, once per grid,
+     * rather than on demand means it survives for as long as the grid does: the screen can be
+     * opened, scrolled, re-sorted and re-opened without repeating any of it, and it's available
+     * to any other consumer of the feature.
+     *
+     * Only the association is done here - no strings are built. Turning these into displayable
+     * text stays lazy (LocationDescription.process()), so nothing is formatted for the thousands
+     * of POIs which are never looked at.
+     *
+     * Needs the ROADS and ROADS_AND_PATHS rtrees built above, and must run inside the treeContext
+     * like the rest of processGridState.
+     */
+    internal fun attachNearestWays(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ) {
+        val roadTree = localTrees[TreeId.ROADS.id]
+        val pathTree = localTrees[TreeId.ROADS_AND_PATHS.id]
+        val settlementNameProvider = settlementNameProvider
+        // The settlement grid is built from the low zoom "place" layer only, so it has no ways to
+        // associate anything with and nothing to ask about settlements - don't walk its POIs.
+        val hasWays = featureCollections[TreeId.ROADS.id].features.isNotEmpty() ||
+                featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()
+        if (!hasWays && (settlementNameProvider == null)) return
+
+        // Which settlement a point is in barely changes over a hundred metres - the cascade's
+        // radii start at 1km - so POIs are bucketed into ~100m cells and the lookup done once per
+        // cell. POIs cluster hard along streets, so this takes most of the work out of what is
+        // otherwise four rtree queries each.
+        val settlementByCell = mutableMapOf<Pair<Int, Int>, String?>()
+
+        for (feature in featureCollections[TreeId.POIS.id]) {
+            val poi = feature as? MvtFeature ?: continue
+            if (poi.superCategory == SuperCategoryId.HOUSENUMBER) continue
+
+            // A POI which carries its own OSM street doesn't need one confecting for it - but it
+            // still needs a settlement. OSM addresses on POIs very often stop at addr:street with
+            // no addr:city, which is how "Kersland Drive Car Park" ends up presented as a bare
+            // "Kersland Drive" with no town, so the settlement is recorded either way.
+            val hasOwnStreet = (poi.street != null) || (poi.housenumber != null)
+
+            val probe = getCentralPointForFeature(poi) ?: continue
+            val extent = extentFrom(poi, probe)
+
+            // Roads first, and only if there's nothing there do we accept a path. A named path
+            // ("Clyde Walkway") places a POI in a park far better than nothing does, but where
+            // there's a road it's always the better answer - ROADS deliberately excludes
+            // footways, so a POI on a pavement is described by the street, not the pavement.
+            if (!hasOwnStreet) {
+                poi.nearestWay = nearestNamedWay(roadTree, poi, probe, extent)
+                    ?: nearestNamedWay(pathTree, poi, probe, extent)
+            }
+
+            if (settlementNameProvider != null) {
+                val cell = Pair(
+                    (probe.latitude * settlementCellsPerDegree).toInt(),
+                    (probe.longitude * settlementCellsPerDegree).toInt()
+                )
+                poi.nearestSettlement = settlementByCell.getOrPut(cell) {
+                    settlementNameProvider(probe)
+                }
+            }
+        }
+    }
+
+    // How far from a road a transit stop can be and still be taken as serving it. Bus stops sit on
+    // the kerb, so this is tighter than nearestWaySearchDistanceMetres - which is about finding a
+    // POI an address, where the far side of a dual carriageway is still a fair answer, and here it
+    // very much isn't.
+    private val transitStopWaySearchDistanceMetres = 20.0
+
+    /**
+     * Records each bus/tram stop against the road it serves, as a TRANSIT_STOP AlongWayFeature at
+     * its position along that road.
+     *
+     * This is what lets "which stop have I just gone past?" be a walk along the road being driven,
+     * rather than a search of everything near the path travelled since the last fix - a search
+     * which can't tell the stop on this road from one on the next street over, and can't tell
+     * either kerb apart without comparing bearings.
+     *
+     * [AlongWayFeature.side] settles the kerb question once, here, where the geometry is to hand:
+     * which side of the road the stop is on, relative to the road's own START-to-END direction.
+     * The callout then only has to know which way along the road it's travelling.
+     *
+     * TreeId.ROADS rather than ROADS_AND_PATHS: a stop belongs to the street, not to the pavement
+     * running alongside it. Unnamed roads count - a stop on an unnamed service road is still on
+     * that road, and unlike attachNearestWays this isn't looking for a name to use as an address.
+     */
+    private fun attachTransitStopsToWays(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val stops = featureCollections[TreeId.TRANSIT_STOPS.id].features
+        if (stops.isEmpty()) return 0
+        val roadTree = localTrees[TreeId.ROADS.id]
+        var attached = 0
+
+        for (feature in stops) {
+            val stop = feature as? MvtFeature ?: continue
+            val point = getCentralPointForFeature(stop) ?: continue
+
+            var nearestWay: Way? = null
+            var nearestDistance = Double.POSITIVE_INFINITY
+            for (candidate in roadTree.getNearbyCollection(
+                point, transitStopWaySearchDistanceMetres, ruler
+            )) {
+                val way = candidate as? Way ?: continue
+                val line = way.geometry as? LineString ?: continue
+                if (line.coordinates.size < 2) continue
+                val distance = ruler.distanceToLineString(point, line).distance
+                if (distance < nearestDistance) {
+                    nearestDistance = distance
+                    nearestWay = way
+                }
+            }
+            val way = nearestWay ?: continue
+            if (nearestDistance > transitStopWaySearchDistanceMetres) continue
+
+            val line = way.geometry as LineString
+            val projection = ruler.distanceToLineString(point, line)
+            way.addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = distanceAlongLineString(line, projection, ruler),
+                    point = point,
+                    kind = AlongWayKind.TRANSIT_STOP,
+                    name = stop.name,
+                    translatedName = stop.translatedName,
+                    side = getSideOfLine(
+                        line.coordinates[projection.index],
+                        line.coordinates[projection.index + 1],
+                        point
+                    ),
+                    feature = stop
+                )
+            )
+            attached++
+        }
+        return attached
+    }
+
+    // How far off a railway line a railway=stop node can sit and still be taken as being on it.
+    // OSM puts these nodes on the line itself, so a genuine one is at zero distance and this only
+    // has to absorb the tile's coordinate quantisation. Anything further out is a tagging mistake,
+    // and taking it would put a stop on a line that doesn't serve it - the very thing these nodes
+    // exist to avoid.
+    private val railwayStopWayToleranceMetres = 2.0
+
+    /**
+     * Records each railway=stop node against the railway Way it sits on, as a RAILWAY_STOP
+     * AlongWayFeature at its position along that line.
+     *
+     * A station POI can only ever be matched to a line by proximity, and in a dense area that is
+     * wrong often enough to matter - several lines pass Glasgow Central without stopping at it.
+     * These nodes are on the line, so the match is exact and the line being ridden can simply be
+     * asked what it stops at next.
+     *
+     * Returns the number attached, for the timing log in the caller.
+     */
+    // How far off a railway line a station can sit and still be taken as served by it. Far looser
+    // than railwayStopWayToleranceMetres above, because a station is a place beside the tracks
+    // rather than a node on them, and this has to reach across a full width of platforms.
+    //
+    // Not looser still: King's Cross and St Pancras are about 100m apart with through lines
+    // running between them, and a wider radius starts giving each station's name to the other's
+    // lines - which is the guess railway=stop exists to remove.
+    private val stationWayToleranceMetres = 100.0
+
+    // The transit stop kinds that are railway stations. TRANSIT_STOPS carries bus and tram stops
+    // and ferry terminals too, and none of those belongs on a railway. Subway stations are left
+    // out: metro lines carry railway=stop nodes of their own in every extract with one, and a
+    // metro station stood in on every line within reach would give its name to the surface
+    // railways that pass over it without calling.
+    private val railwayStationValues = setOf("station", "train_station")
+
+    /**
+     * Whether [feature] is a station in its own right, rather than a building belonging to one.
+     *
+     * building=train_station arrives here as featureType "building", and it marks a *structure*,
+     * not a stop: a station commonly has several of them - entrances, booking halls, the buildings
+     * either side of the tracks - so taking them would put a stop on the line several times over
+     * for one station. Worse, the tag stays on the building when it stops being a station: South
+     * West Community Cycles at Pollokshaws West is a bike shop in the old station building, and
+     * was being announced to passengers as somewhere the train was about to call.
+     *
+     * railway=station is the operational record and is what is left. Nothing is lost by dropping
+     * the buildings - every station in the test extracts has such a point within about a hundred
+     * metres of its building, including the ones whose building carries the fuller name.
+     */
+    private fun isARailwayStation(feature: MvtFeature) =
+        (feature.featureValue in railwayStationValues) && (feature.featureType != "building")
+
+    /**
+     * Attaches named railway stations as RAILWAY_STOP along-way features, for lines that have no
+     * railway=stop node of their own.
+     *
+     * A stop node is the better record, and attachRailwayStopsToWays above uses it in preference:
+     * it lies on the line itself, so a line knows exactly which stations it calls at. But the tag
+     * is missing from parts of OSM, and from any tileset built before it was carried, and with
+     * nothing attached the approaching-station callout never fires at all -
+     * GeoEngineHelpers.namedStationWithin has no fallback of its own.
+     *
+     * So where no stop node stands for a station, the station itself does, attached to every line
+     * running past it: a station serves several platforms and often several lines, and the train
+     * may be map-matched to any one of them.
+     *
+     * This is knowingly the guess that railway=stop exists to remove - a line running past a
+     * station without calling there will be given a stop. It applies only where there is no
+     * stop-node data at all, where the alternative is silence. Decided per station rather than per
+     * grid, so a mixture of the two works and this stops doing anything, station by station, as
+     * the tiles improve.
+     *
+     * Public rather than private so a test can drive it over a hand-built pair of lines - the
+     * committed fixtures carry no railway=stop nodes at all, so the per-line case below cannot be
+     * reached with real tile data yet. Same reason as attachWaterPolygonCrossing.
+     */
+    fun attachStationsAsRailwayStops(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val transitTree = localTrees[TreeId.TRANSIT.id]
+        var attached = 0
+
+        for (feature in featureCollections[TreeId.TRANSIT_STOPS.id].features) {
+            val station = feature as? MvtFeature ?: continue
+            if (!isARailwayStation(station)) continue
+            // Only the name is any use here - "Approaching" an unnamed station says nothing.
+            val name = station.name ?: continue
+            // Not just Point: a station is commonly mapped as a building=train_station footprint,
+            // and the parser drops the point feature where a polygon of the same id exists. Around
+            // a quarter of the named stations in central Glasgow arrive as polygons, and requiring
+            // a Point here skipped every one of them.
+            val point = getCentralPointForFeature(station) ?: continue
+
+            val linesPastTheStation = transitTree
+                .getNearbyCollection(point, stationWayToleranceMetres, ruler)
+                .features
+                .filterIsInstance<Way>()
+                .filter { way ->
+                    val line = way.geometry as? LineString
+                    // Not a metro line: those carry railway=stop nodes of their own, and pass
+                    // within reach of plenty of stations they don't serve, above or below them.
+                    (way.featureValue != "subway") &&
+                        (line != null) && (line.coordinates.size >= 2) &&
+                        (ruler.distanceToLineString(point, line).distance <=
+                            stationWayToleranceMetres)
+                }
+            if (linesPastTheStation.isEmpty()) continue
+
+            // Decided for the station as a whole, not line by line. Where OSM records stops for a
+            // station it records them per line - Glasgow Queen Street has separate High Level and
+            // Low Level nodes - so a line running past with no stop of its own is a line that
+            // doesn't call there. Standing the station in on it announces a stop the train will
+            // sail straight through, which is what happened to Pollokshields West.
+            val stationHasStopNodes = linesPastTheStation.any { way ->
+                way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).any {
+                    ruler.distance(point, it.point) <= stationWayToleranceMetres
+                }
+            }
+            if (stationHasStopNodes) continue
+
+            for (way in linesPastTheStation) {
+                way.addAlongWayFeature(
+                    AlongWayFeature(
+                        distanceFromStart = way.distanceAlongWay(point, ruler),
+                        point = point,
+                        kind = AlongWayKind.RAILWAY_STOP,
+                        name = name,
+                        feature = station,
+                        translatedName = station.translatedName
+                    )
+                )
+                attached++
+            }
+        }
+        return attached
+    }
+
+    private fun attachRailwayStopsToWays(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val stops = featureCollections[TreeId.RAILWAY_STOPS.id].features
+        if (stops.isEmpty()) return 0
+        val transitTree = localTrees[TreeId.TRANSIT.id]
+        var attached = 0
+
+        for (feature in stops) {
+            val stop = feature as? MvtFeature ?: continue
+            val point = (stop.geometry as? Point)?.coordinates ?: continue
+
+            var nearestWay: Way? = null
+            var nearestDistance = Double.POSITIVE_INFINITY
+            for (candidate in transitTree.getNearbyCollection(
+                point, railwayStopWayToleranceMetres, ruler
+            )) {
+                val way = candidate as? Way ?: continue
+                val line = way.geometry as? LineString ?: continue
+                if (line.coordinates.size < 2) continue
+                val distance = ruler.distanceToLineString(point, line).distance
+                if (distance < nearestDistance) {
+                    nearestDistance = distance
+                    nearestWay = way
+                }
+            }
+            val way = nearestWay ?: continue
+            if (nearestDistance > railwayStopWayToleranceMetres) continue
+
+            way.addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = way.distanceAlongWay(point, ruler),
+                    point = point,
+                    kind = AlongWayKind.RAILWAY_STOP,
+                    name = stop.name,
+                    feature = stop,
+                    translatedName = stop.translatedName
+                )
+            )
+            attached++
+        }
+        return attached
+    }
+
+    /**
+     * processGridState is now called from within the single thread that can access the tile grid.
+     * This makes it somewhat performance critical. However, by doing this it allows us to
+     * disconnect and reconnect the tile grid
+     */
+    fun processGridState(
+        featureCollections: Array<FeatureCollection>,
+        enabledCategories: Set<String>,
+        newGridIntersections: List<HashMap<LngLatAlt, Intersection>>,
+        newGridTransitIntersections: List<HashMap<LngLatAlt, Intersection>>,
+        localTrees: Array<FeatureTree>,
+        intersectionAccumulator: HashMap<LngLatAlt, Intersection>,
+        transitIntersectionAccumulator: HashMap<LngLatAlt, Intersection>,
+        grid: TileGrid,
+        strings: LocalizedStrings?,
+    ) {
+
+        fixupCollections(featureCollections)
+
+        val classifyTiming = measureTime {
+            classifyPois(featureCollections, enabledCategories)
+        }
+        println("Classify took $classifyTiming")
+
+        val rtreeTiming = measureTime {
+            // Create rtrees for each feature collection
+            for ((index, fc) in featureCollections.withIndex()) {
+                localTrees[index] = FeatureTree(fc)
+            }
+        }
+        println("R-Trees took $rtreeTiming")
+
+        // Needs both the ROADS_AND_PATHS and TRANSIT rtrees built above, but nothing else from
+        // this function, so it can run before the tile-edge stitching below.
+        var railwayCrossings = 0
+        var waterPolygonCrossings = 0
+        val crossingTiming = measureTime {
+            railwayCrossings = attachRailwayCrossings(featureCollections, localTrees)
+            waterPolygonCrossings = attachWaterPolygonCrossings(featureCollections, localTrees)
+        }
+        // Waterway crossings are resolved per-tile at parse time instead (see extractCrossings),
+        // so only the railway half is timed here - but report both counts, since the time is only
+        // meaningful against how many crossings there were to find.
+        val waterwayCrossings = featureCollections[TreeId.ROADS_AND_PATHS.id].features
+            .sumOf { (it as? Way)?.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)?.size ?: 0 }
+        println(
+            "Crossings took $crossingTiming " +
+                "($railwayCrossings railway crossings, $waterwayCrossings waterway crossings, " +
+                "$waterPolygonCrossings water polygon crossings)"
+        )
+
+        val nearestWayTiming = measureTime {
+            attachNearestWays(featureCollections, localTrees)
+        }
+        println("Nearest ways took $nearestWayTiming")
+
+        var transitStopsAttached = 0
+        var railwayStopsAttached = 0
+        var stationsAttached = 0
+        val transitStopTiming = measureTime {
+            transitStopsAttached = attachTransitStopsToWays(featureCollections, localTrees)
+            railwayStopsAttached = attachRailwayStopsToWays(featureCollections, localTrees)
+            // After the stop nodes, so that it can see which stations they already stand for.
+            stationsAttached = attachStationsAsRailwayStops(featureCollections, localTrees)
+        }
+        println(
+            "Transit stops took $transitStopTiming " +
+                "($transitStopsAttached road stops, $railwayStopsAttached railway stops, " +
+                "$stationsAttached stations as stops)"
+        )
+
+        if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
+            joinTileEdgeIntersections(grid, newGridIntersections)
+
+            //
+            // Confect names for un-named ways
+            //
+            // Start by traversing the way graph which is efficient and adds cut-through and
+            // dead-end modifiers to the ways
+            for (hashmap in newGridIntersections) {
+                traverseIntersectionsConfectingNames(hashmap, intersectionAccumulator)
+            }
+
+            // And now update the names for the intersection to include the confections
+            for (intersection in intersectionAccumulator) {
+                intersection.value.updateName(strings = strings)
+            }
+
+// The other confection is done lazily as it's relatively time consuming to do the whole tile at once
+//          //And then fill in any remaining names using rtree searches - this is slower and
+//            // adds POIs and co-linear names
+//            for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
+//                confectNamesForRoad(road, this)
+//          }
+        }
+
+        if (featureCollections[TreeId.TRANSIT.id].features.isNotEmpty()) {
+            // Rail lines are normally already named, so unlike roads there's no name confection
+            // step needed here - just stitch the Ways across tile boundaries and keep a merged,
+            // location-keyed map of the intersections for lookup (mirroring gridIntersections).
+            joinTileEdgeIntersections(grid, newGridTransitIntersections)
+            for (hashmap in newGridTransitIntersections) {
+                for (intersection in hashmap) {
+                    transitIntersectionAccumulator[intersection.key] = intersection.value
+                }
+            }
+        }
+    }
+
+    /**
+     * The tile grid service is called each time the location changes. It checks if the location
+     * has moved away from the center of the current tile grid and if it has calculates a new grid.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend fun locationUpdate(
+        location: LngLatAlt,
+        enabledCategories: Set<String>,
+        strings: LocalizedStrings?,
+    ): Boolean {
+        // Check if we're still within the central area of our grid
+        if (!pointIsWithinBoundingBox(location, centralBoundingBox)) {
+            //println("Update central grid area")
+            // The current location has moved from within the central area, so get the
+            // new grid and the new central area.
+            val tileGrid = getTileGrid(location, zoomLevel, gridSize)
+
+            // We have a new centralBoundingBox, so update the tiles
+            val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+            val newGridIntersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
+            val newGridTransitIntersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
+            val newGridStreetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
+            if (updateTileGrid(
+                    tileGrid,
+                    featureCollections,
+                    newGridIntersections,
+                    newGridStreetNumberMap,
+                    newGridTransitIntersections
+                )
+            ) {
+                // We have got a new grid, so create our new central region
+                centralBoundingBox = tileGrid.centralBoundingBox
+                totalBoundingBox = tileGrid.totalBoundingBox
+
+                // Assign rtrees to our shared trees from within the treeContext. All
+                // other accesses of featureTrees needs to be from within the same
+                // context.
+                runBlocking {
+                    withContext(treeContext) {
+
+                        val duration = measureTime {
+                            ruler = CheapRuler(location.latitude)
+                            gridIntersections.clear()
+                            gridTransitIntersections.clear()
+                            processGridState(
+                                featureCollections,
+                                enabledCategories,
+                                newGridIntersections,
+                                newGridTransitIntersections,
+                                featureTrees,
+                                gridIntersections,
+                                gridTransitIntersections,
+                                tileGrid,
+                                strings
+                            )
+                            gridStreetNumberTreeMap.clear()
+                            for (collection in newGridStreetNumberMap)
+                                gridStreetNumberTreeMap[collection.key] =
+                                    FeatureTree(collection.value)
+                            generation++
+                        }
+                        println("Time to process grid: $duration")
+                    }
+                }
+                return true
+            } else {
+                // Updating the tile grid failed, due to a lack of network/server issue. There's
+                // nothing that we can do, so simply retry on the next location update.
+                return false
+            }
+        }
+        return false
+    }
+
+    data class TileUpdateResult(
+        val success: Boolean,
+        val tile: Tile,
+        var collections: Array<FeatureCollection>?,
+        var intersections: HashMap<LngLatAlt, Intersection>?,
+        var streetNumberMap: HashMap<String, FeatureCollection>?,
+        var transitIntersections: HashMap<LngLatAlt, Intersection>? = null
+    )
+
+    private suspend fun updateTileGrid(
+        tileGrid: TileGrid,
+        featureCollections: Array<FeatureCollection>,
+        gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>>,
+        gridStreetNumberMap: HashMap<String, FeatureCollection>,
+        gridTransitIntersections: MutableList<HashMap<LngLatAlt, Intersection>>
+    ): Boolean = withContext(ioDispatcher) {
+
+        // Check for an updated list of offline maps
+        checkOfflineMaps()
+
+        for ((workerIndex, tile) in tileGrid.tiles.withIndex()) {
+            tile.workerIndex = workerIndex
+        }
+
+        val deferredUpdates = tileGrid.tiles.map { tile ->
+            async {
+                var ret = false
+                val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+                val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
+                val transitIntersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+                val tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+                analytics.logCostlyEvent("updateTile")
+                for (retry in 1..5) {
+                    ret = updateTile(
+                        tile.tileX,
+                        tile.tileY,
+                        tile.workerIndex,
+                        tileCollections,
+                        intersectionMap,
+                        streetNumberMap,
+                        transitIntersectionMap
+                    )
+                    if (ret)
+                        break
+                }
+                if (ret) {
+                    TileUpdateResult(
+                        true,
+                        tile,
+                        tileCollections,
+                        intersectionMap,
+                        streetNumberMap,
+                        transitIntersectionMap
+                    )
+                } else {
+                    TileUpdateResult(false, tile, null, null, null, null)
+                }
+            }
+        }
+
+        val results = deferredUpdates.awaitAll()
+        if (results.any { !it.success }) {
+            return@withContext false // If any tile failed, abort the whole grid update
+        }
+
+        // All tiles were processed successfully, now aggregate the results
+        for (result in results) {
+            result.collections?.let { collections ->
+                for ((index, collection) in collections.withIndex()) {
+                    featureCollections[index] += collection
+                }
+            }
+            result.intersections?.let { intersections ->
+                gridIntersections.add(intersections)
+            }
+            result.transitIntersections?.let { transitIntersections ->
+                gridTransitIntersections.add(transitIntersections)
+            }
+            result.streetNumberMap?.let { streetNumberMap ->
+                // Go through each street in the map and either add it to an existing map for the
+                // same street, or add it in it's entirety as a new entry
+                for (entry in streetNumberMap) {
+                    if (gridStreetNumberMap.containsKey(entry.key))
+                        gridStreetNumberMap[entry.key]?.plusAssign(entry.value)
+                    else
+                        gridStreetNumberMap[entry.key] = entry.value
+                }
+            }
+        }
+
+        return@withContext true
+    }
+
+    open suspend fun updateTile(
+        x: Int,
+        y: Int,
+        workerIndex: Int,
+        featureCollections: Array<FeatureCollection>,
+        intersectionMap: HashMap<LngLatAlt, Intersection>,
+        streetNumberMap: HashMap<String, FeatureCollection>,
+        transitIntersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+    ): Boolean {
+        return false
+    }
+
+    fun classifyPois(
+        featureCollections: Array<FeatureCollection>,
+        enabledCategories: Set<String> = emptySet()
+    ) {
+        // The FeatureCollection for POIS has been created, but we need to create sub-collections
+        // for each of the super-categories along with one for the currently selected super-
+        // categories.
+        val superCategories = listOf(
+            SuperCategoryId.INFORMATION,
+            SuperCategoryId.OBJECT,
+            SuperCategoryId.PLACE,
+            SuperCategoryId.LANDMARK,
+            SuperCategoryId.MOBILITY,
+            SuperCategoryId.SAFETY,
+            SuperCategoryId.SETTLEMENT_CITY,
+            SuperCategoryId.SETTLEMENT_TOWN,
+            SuperCategoryId.SETTLEMENT_VILLAGE,
+            SuperCategoryId.SETTLEMENT_HAMLET,
+            SuperCategoryId.HOUSENUMBER,
+        )
+        val superCategoryCollections = superCategories.associateWith { superCategory ->
+            getPoiFeatureCollectionBySuperCategory(
+                superCategory,
+                featureCollections[TreeId.POIS.id]
+            )
+        }
+
+        // Create super category feature collections
+        var category = superCategoryCollections[SuperCategoryId.INFORMATION]
+        featureCollections[TreeId.INFORMATION_POIS.id] = category ?: FeatureCollection()
+        category = superCategoryCollections[SuperCategoryId.OBJECT]
+        featureCollections[TreeId.OBJECT_POIS.id] = category ?: FeatureCollection()
+        category = superCategoryCollections[SuperCategoryId.PLACE]
+        featureCollections[TreeId.PLACE_POIS.id] = category ?: FeatureCollection()
+        category = superCategoryCollections[SuperCategoryId.LANDMARK]
+        featureCollections[TreeId.LANDMARK_POIS.id] = category ?: FeatureCollection()
+        category = superCategoryCollections[SuperCategoryId.MOBILITY]
+        featureCollections[TreeId.MOBILITY_POIS.id] = category ?: FeatureCollection()
+        category = superCategoryCollections[SuperCategoryId.SAFETY]
+        featureCollections[TreeId.SAFETY_POIS.id] = category ?: FeatureCollection()
+        category = superCategoryCollections[SuperCategoryId.HOUSENUMBER]
+        featureCollections[TreeId.HOUSENUMBER.id] = category ?: FeatureCollection()
+
+        // Settlement and their area names
+        category = superCategoryCollections[SuperCategoryId.SETTLEMENT_CITY]
+        featureCollections[TreeId.SETTLEMENT_CITY.id] = category ?: FeatureCollection()
+        category = superCategoryCollections[SuperCategoryId.SETTLEMENT_TOWN]
+        featureCollections[TreeId.SETTLEMENT_TOWN.id] = category ?: FeatureCollection()
+        category = superCategoryCollections[SuperCategoryId.SETTLEMENT_VILLAGE]
+        featureCollections[TreeId.SETTLEMENT_VILLAGE.id] = category ?: FeatureCollection()
+        category = superCategoryCollections[SuperCategoryId.SETTLEMENT_HAMLET]
+        featureCollections[TreeId.SETTLEMENT_HAMLET.id] = category ?: FeatureCollection()
+
+        // Create a merged collection of places and landmarks, as used by whatsAroundMe and aheadOfMe
+        featureCollections[TreeId.PLACES_AND_LANDMARKS.id] += featureCollections[TreeId.PLACE_POIS.id]
+        featureCollections[TreeId.PLACES_AND_LANDMARKS.id] += featureCollections[TreeId.LANDMARK_POIS.id]
+
+        // Create merged collection of currently selected super categories. The two settings each
+        // cover more than one super-category, as they do on iOS (see CalloutSettingsCellView) -
+        // the switches are worded for what the user hears rather than for our category names, and
+        // "Places and Landmarks" is where a guidepost or a notice board belongs.
+        if (enabledCategories.contains(PLACES_AND_LANDMARKS_KEY)) {
+            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
+                featureCollections[TreeId.PLACE_POIS.id]
+            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
+                featureCollections[TreeId.LANDMARK_POIS.id]
+            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
+                featureCollections[TreeId.INFORMATION_POIS.id]
+        }
+        if (enabledCategories.contains(MOBILITY_KEY)) {
+            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
+                featureCollections[TreeId.MOBILITY_POIS.id]
+        }
+    }
+
+    // All functions which access the featureTrees need to be running within the treeContext,
+    // so assert that this is the case.
+    private fun checkContext() {
+        // TODO: It feels like there should be a way to check the context, but coroutineContext
+        //  is a suspend function and we are not. We can at least check that the current thread
+        //  name matches. This should spot any calls using featureTrees which aren't running in
+        //  the treeContext.
+        if (validateContext) {
+            assertRunningInTreeContext()
+        }
+    }
+
+    fun getFeatureTree(id: TreeId): FeatureTree {
+        checkContext()
+
+        return featureTrees[treeIdToIndex(id).id]
+    }
+
+    fun getFeatureCollection(
+        id: TreeId,
+        location: LngLatAlt = LngLatAlt(),
+        distance: Double = Double.POSITIVE_INFINITY,
+        maxCount: Int = 0
+    ): FeatureCollection {
+        checkContext()
+        val id = treeIdToIndex(id).id
+        val result = if (distance == Double.POSITIVE_INFINITY) {
+            featureTrees[id].getAllCollection()
+        } else {
+            val ruler = CheapRuler(location.latitude)
+            if (maxCount == 0) {
+                featureTrees[id].getNearbyCollection(location, distance, ruler)
+            } else {
+                featureTrees[id].getNearestCollection(location, distance, maxCount, ruler)
+            }
+        }
+        return result
+    }
+
+    fun getNearestFeature(
+        id: TreeId,
+        ruler: Ruler,
+        location: LngLatAlt = LngLatAlt(),
+        distance: Double = Double.POSITIVE_INFINITY
+    ): Feature? {
+        checkContext()
+        return featureTrees[treeIdToIndex(id).id].getNearestFeature(location, ruler, distance)
+    }
+
+    companion object {
+        const val TAG = "GridState"
+    }
+}
+
+/**
+ * Given a valid Tile feature collection this will parse the collection and return a bus stops
+ * feature collection. Uses the "bus_stop" feature_value to extract bus stops from GeoJSON.
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only bus stops.
+ */
+private fun getTransitStopsFeatureCollectionFromTileFeatureCollection(
+    tileFeatureCollection: FeatureCollection
+): FeatureCollection {
+    val transitStopFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType != "transit") {
+            when (mvtFeature.featureValue) {
+                "bus_stop", "tram_stop", "subway", "station", "train_station", "ferry_terminal" ->
+                    transitStopFeatureCollection.addFeature(feature)
+            }
+        }
+    }
+    return transitStopFeatureCollection
+}
+
+/**
+ * Given a valid Tile feature collection this will parse the collection and return a crossing
+ * feature collection. Uses the "crossing" feature_value to extract crossings from GeoJSON.
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only crossings.
+ */
+private fun getCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val crossingsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "highway" && mvtFeature.featureValue == "crossing") {
+            crossingsFeatureCollection.addFeature(feature)
+        }
+    }
+    return crossingsFeatureCollection
+}
+
+/**
+ * Given a valid Tile feature collection this will parse the collection and return an interpolation
+ * points feature collection. Uses the "edgePoint" feature_value to extract crossings from GeoJSON.
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only edgePoints
+ */
+private fun getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val interpolationPointsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureClass == "edgePoint") {
+            interpolationPointsFeatureCollection.addFeature(feature)
+        }
+    }
+    return interpolationPointsFeatureCollection
+}
+
+/**
+ * Given a valid Tile feature collection this will parse the collection and return a highway
+ * junction feature collection. Uses the "highway_junction" feature_value to extract junctions
+ * from GeoJSON - see [org.scottishtecharmy.soundscape.geoengine.mvttranslation.extractHighwayJunctions].
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only highway junctions.
+ */
+private fun getHighwayJunctionsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val junctionsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "highway" && mvtFeature.featureValue == "highway_junction") {
+            junctionsFeatureCollection.addFeature(feature)
+        }
+    }
+    return junctionsFeatureCollection
+}
+
+/**
+ * Parses out the `railway=stop` and `railway=tram_stop` nodes, which OSM places on the line itself
+ * at the point a train or tram actually stops - see the transportation layer in
+ * planetiler-openmaptiles, which emits them as points with subclass=stop/tram_stop.
+ *
+ * Kept in their own collection rather than folded into TreeId.TRANSIT_STOPS, and deliberately not
+ * added to POIS: a stop node is not a place in its own right. The station POI is already there, and
+ * putting both in would name the same station twice in any list of what's nearby.
+ *
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only railway stop nodes.
+ */
+private fun getRailwayStopsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val stopsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        // Both halves matter. The value alone would also match the poi layer's own tram_stop
+        // entries, which are the platform beside the track rather than the point on the line, and
+        // taking those would attach every tram stop to its line twice. The type alone would not
+        // do either: a tram stop is "transit" and a train stop "rail", matching the lines they
+        // sit on, and both types carry plenty that isn't a stop.
+        if ((mvtFeature.featureType in railwayStopTypes) &&
+            (mvtFeature.featureValue in railwayStopValues)
+        ) {
+            stopsFeatureCollection.addFeature(feature)
+        }
+    }
+    return stopsFeatureCollection
+}
+
+// The stop-position nodes emitted into the transportation layer - see the Transportation layer in
+// planetiler-openmaptiles. Both sit on the line itself, unlike the station or platform beside it.
+private val railwayStopValues = setOf("stop", "tram_stop")
+private val railwayStopTypes = setOf("rail", "transit")
+
+/**
+ * Parses out the named `water` layer polygons used for the water-crossing proximity check - see
+ * [org.scottishtecharmy.soundscape.geoengine.mvttranslation.extractNamedWaterPolygons].
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only named water polygons.
+ */
+private fun getNamedWaterPolygonsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val waterPolygonsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "water" && mvtFeature.featureValue == "named_water_polygon") {
+            waterPolygonsFeatureCollection.addFeature(feature)
+        }
+    }
+    return waterPolygonsFeatureCollection
+}
+
+/**
+ * Parses out the named `waterway` lines - rivers, canals and burns - used to name un-named paths
+ * which follow them, see [org.scottishtecharmy.soundscape.geoengine.mvttranslation.extractNamedWaterways].
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only named waterways.
+ */
+private fun getNamedWaterwaysFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val waterwaysFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "waterway" && mvtFeature.featureValue == "named_waterway") {
+            waterwaysFeatureCollection.addFeature(feature)
+        }
+    }
+    return waterwaysFeatureCollection
+}
+
+/**
+ * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return a feature collection object that contains only entrances.
+ */
+private fun getEntrancesFeatureCollectionFromTileFeatureCollection(
+    tileFeatureCollection: FeatureCollection
+): FeatureCollection {
+    val entrancesFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        feature.properties?.let { properties ->
+            if (properties.contains("entrance")) {
+                entrancesFeatureCollection.addFeature(feature)
+            }
+        }
+    }
+    return entrancesFeatureCollection
+}
+
+/**
+ * Parses out all the Points of Interest (POI) in a tile FeatureCollection.
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return a Feature collection object that contains only POI.
+ */
+private fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+    tileFeatureCollection: FeatureCollection
+): FeatureCollection {
+    val poiFeaturesCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        var add = true
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "highway" ||
+            mvtFeature.featureType == "water" ||
+            mvtFeature.featureType == "waterway"
+        ) {
+            add = false
+        }
+        if (mvtFeature.featureClass == "edgePoint" ||
+            mvtFeature.featureClass == "rail" ||
+            mvtFeature.featureClass == "transit"
+        ) {
+            add = false
+        }
+        if (add) poiFeaturesCollection.addFeature(mvtFeature)
+    }
+
+    return poiFeaturesCollection
+}
+
+fun processTileFeatureCollection(
+    initialFeatureCollections: Array<FeatureCollection>,
+    tileFeatureCollection: FeatureCollection
+) {
+
+    initialFeatureCollections[TreeId.ENTRANCES.id] += getEntrancesFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.POIS.id] += getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.TRANSIT_STOPS.id] += getTransitStopsFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.CROSSINGS.id] += getCrossingsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.INTERPOLATIONS.id] += getInterpolationPointsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.HIGHWAY_JUNCTIONS.id] += getHighwayJunctionsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.NAMED_WATER_POLYGONS.id] += getNamedWaterPolygonsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.NAMED_WATERWAYS.id] += getNamedWaterwaysFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.RAILWAY_STOPS.id] += getRailwayStopsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+
+    // POIS includes bus stops and crossings
+    initialFeatureCollections[TreeId.POIS.id].plusAssignDeduplicate(initialFeatureCollections[TreeId.TRANSIT_STOPS.id])
+    initialFeatureCollections[TreeId.POIS.id] += initialFeatureCollections[TreeId.CROSSINGS.id]
+}

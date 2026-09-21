@@ -27,3 +27,10 @@
 -keep class org.scottishtecharmy.soundscape.audio.NativeAudioEngine {
     public void onAllBeaconsCleared();
 }
+
+# The :shared module reads VERSION_NAME, DUMMY_ANALYTICS and TILE_PROVIDER_URL
+# from this class via Class.forName(...).getField(...) (see PlatformInfo.android.kt
+# and PlatformMapContainer.kt). Without this rule R8 renames BuildConfig in
+# release builds, the reflective lookup fails, and the drawer shows "0.0.0"
+# while the map renders with an empty tile URL.
+-keep class org.scottishtecharmy.soundscape.BuildConfig { *; }

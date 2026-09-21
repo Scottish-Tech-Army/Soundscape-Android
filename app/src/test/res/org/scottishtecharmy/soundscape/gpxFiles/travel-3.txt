@@ -36,7 +36,7 @@ Callout
 		Moor Road goes right
 
 Callout
-	post
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -84,9 +84,6 @@ Callout
 		Buchanan Street continues ahead
 
 Callout
-	Ahead Buchanan Street
-
-Callout
 	Ahead Path to Barloch Moor
 
 Callout
@@ -96,26 +93,31 @@ Callout
 
 Callout
 	Approaching intersection
-		Path to Mugdock Road via bridge continues ahead
+		Path via bridge continues ahead
 		Path continues ahead
-
-Callout
-	At Barloch Moor
 
 Callout
 	Ahead Path
 
 Callout
-	Ahead Path to Mugdock Road via bridge
+	At Barloch Moor
 
 Callout
-	Ahead Path to Mugdock Road via bridge
+	Ahead Path via bridge
+
+Callout
+	Ahead Path via bridge
 
 Callout
 	At Barloch Moor
 
 Callout
-	Ahead Path to Mugdock Road via bridge
+	Ahead Path via bridge
+
+Callout
+	Approaching intersection
+		Path to Mugdock Road continues ahead
+		Path goes right
 
 Callout
 	Approaching intersection
@@ -128,13 +130,13 @@ Callout
 		Service to Woodlands Street goes right
 
 Callout
-	Barloch Moor
-
-Callout
 	Ahead Sinclair Street
 
 Callout
-	post
+	OSM Feature
+
+Callout
+	Barloch Moor
 
 Callout
 	Approaching intersection
@@ -145,44 +147,55 @@ Callout
 	Ahead Sinclair Street
 
 Callout
-	Ahead Sinclair Street
-
-Callout
-	Milngavie Library & Community Education Centre
-
-Callout
-	Ahead Path
-
-Callout
 	Approaching intersection
-		Path to West Highland Way via steps goes left
-		Path continues ahead
-
-Callout
-	Approaching intersection
-		West Highland Way goes left
-		West Highland Way continues ahead
+		Service to dead-end goes left
+		Sinclair Street to dead end continues ahead
 		Path goes right
 
 Callout
+	Milngavie Library & Community Education Centre
+
+Callout
+	Approaching intersection
+		Path continues ahead
+		Path to Iddesleigh Avenue goes right
+
+Callout
 	Ahead Path
 
 Callout
 	Approaching intersection
-		Path via tunnel goes left
-		West Highland Way goes right
+		Path to West Highland Way - Slighe Taobh an Iar na Gàidhealtachd via steps goes left
+		Path goes right
 
 Callout
-	Ahead Path to West Highland Way
+	Approaching intersection
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd goes left
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd continues ahead
+		Path goes right
+
+Callout
+	Ahead Path to West Highland Way - Slighe Taobh an Iar na Gàidhealtachd via steps
+
+Callout
+	Ahead Path to West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
+
+Callout
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
 
 Callout
 	Milngavie Library & Community Education Centre
 
 Callout
-	Ahead West Highland Way
+	Milngavie Library & Community Education Centre Main entrance
 
 Callout
-	Ahead West Highland Way
+	Approaching intersection
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd continues ahead
+		Path to Milngavie Library & Community Education Centre via steps goes right
+
+Callout
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
 
 Callout
 	Approaching intersection
@@ -190,27 +203,38 @@ Callout
 		Allander Road goes right
 
 Callout
+	Approaching intersection
+		Allander Road continues ahead
+		Path goes right
+
+Callout
 	Milngavie Library & Community Education Centre
 
 Callout
 	Approaching intersection
-		West Highland Way continues ahead
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd continues ahead
 		Path to Allander Road goes right
 
 Callout
-	Ahead West Highland Way
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
 
 Callout
-	Ahead West Highland Way
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
 
 Callout
 	Milngavie Enterprise Centre
 
 Callout
-	Ahead West Highland Way
+	OSM Feature
 
 Callout
-	memorial
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
+
+Callout
+	Approaching intersection
+		Path to Milngavie Youth Centre goes left
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd goes left
+		Path goes right
 
 Callout
 	Approaching intersection
@@ -220,19 +244,10 @@ Callout
 Callout
 	Approaching intersection
 		Path to Milngavie Youth Centre goes left
-		West Highland Way goes left
-		Path goes right
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd continues ahead
 
 Callout
-	Approaching intersection
-		Path to Milngavie Youth Centre goes left
-		West Highland Way continues ahead
-
-Callout
-	Ahead West Highland Way
-
-Callout
-	memorial
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
 
 Callout
 	Approaching intersection
@@ -246,11 +261,20 @@ Callout
 
 Callout
 	Approaching intersection
-		West Highland Way goes left
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd goes left
 		Riverside continues ahead
 
 Callout
-	bridge
+	Ahead Riverside
+
+Callout
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
+
+Callout
+	OSM Feature
+
+Callout
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -269,29 +293,18 @@ Callout
 	Costa
 
 Callout
-	Approaching intersection
-		Path to The Fraser Centre goes left
-		Douglas Street continues ahead
-
-Callout
 	Top Up Tap
 
 Callout
 	Ahead Douglas Street
 
 Callout
-	Spar
-
-Callout
-	playground
+	OSM Feature
 
 Callout
 	Approaching intersection
 		Main Street goes left
 		Douglas Street goes right
-
-Callout
-	Milngavie Pharmacy
 
 Callout
 	Specsavers
@@ -305,13 +318,13 @@ Callout
 		Path to Claremont Drive goes right
 
 Callout
-	clock
-
-Callout
-	Allander Evangelical
+	OSM Feature
 
 Callout
 	Ahead Path to Claremont Drive
+
+Callout
+	Allander Evangelical
 
 Callout
 	Approaching intersection
@@ -339,7 +352,7 @@ Callout
 Callout
 	Approaching intersection
 		South Claremont Lane goes left
-		Clober Road continues ahead
+		South Claremont Lane goes right
 
 Callout
 	Ahead Clober Road
@@ -357,22 +370,24 @@ Callout
 		Craigdhu Road goes right
 
 Callout
-	crossing
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Craigdhu Road continues ahead
 
 Callout
 	Ahead Craigdhu Road
 
 Callout
 	Approaching intersection
-		Lennox Avenue goes left
-		Craigdhu Road continues ahead
-		Ferguson Avenue goes right
+		Ferguson Avenue continues ahead
 
 Callout
 	Milngavie United Free Church
 
 Callout
-	crossing
+	OSM Feature
 
 Callout
 	Ahead Craigdhu Road
@@ -386,13 +401,13 @@ Callout
 		Craigdhu Road continues ahead
 
 Callout
-	Milngavie, Campbell Avenue (before)
+	Milngavie, Campbell Avenue (before) Transit Stop
 
 Callout
 	Milngavie Clinic
 
 Callout
-	crossing
+	OSM Feature
 
 Callout
 	Ahead Campbell Avenue
@@ -443,11 +458,6 @@ Callout
 		Service to Main Street goes right
 
 Callout
-	Approaching intersection
-		South Mains Road continues ahead
-		Service to Main Street goes right
-
-Callout
 	Lennox Park
 
 Callout
@@ -459,21 +469,13 @@ Callout
 
 Callout
 	Approaching intersection
-		Path to Pavement next to Main Street goes left
 		Main Street continues ahead
-
-Callout
-	Approaching intersection
-		Main Street goes left
-		Path to Lennox Park goes left
-		Keystone Avenue continues ahead
-		Main Street goes right
 
 Callout
 	Ahead Keystone Avenue
 
 Callout
-	At Lennox Park
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -482,19 +484,13 @@ Callout
 		Path goes right
 
 Callout
-	pitch
-
-Callout
 	Ahead Path
 
 Callout
-	playground
+	OSM Feature
 
 Callout
-	pitch
-
-Callout
-	Ahead Path
+	OSM Feature
 
 Callout
 	At Lennox Park
@@ -512,19 +508,7 @@ Callout
 	Ahead Path
 
 Callout
-	Approaching intersection
-		Keystone Road goes left
-		Keystone Avenue continues ahead
-
-Callout
-	Approaching intersection
-		Keystone Avenue goes left
-		Keystone Avenue goes right
-
-Callout
-	Approaching intersection
-		Keystone Avenue goes left
-		Keystone Avenue continues ahead
+	Ahead Path
 
 Callout
 	Ahead Path via bridge
@@ -550,7 +534,7 @@ Callout
 	Ahead Path via steps
 
 Callout
-	pitch
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -558,10 +542,7 @@ Callout
 		Service to Crossveggate via bridge goes right
 
 Callout
-	pitch
-
-Callout
-	At Lennox Park
+	OSM Feature
 
 Callout
 	Ahead Path via steps
@@ -570,10 +551,13 @@ Callout
 	Ahead Path
 
 Callout
-	pitch
+	OSM Feature
 
 Callout
-	pitch
+	At Lennox Park
+
+Callout
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -581,7 +565,7 @@ Callout
 		Path continues ahead
 
 Callout
-	pitch
+	OSM Feature
 
 Callout
 	Tesco
@@ -590,13 +574,16 @@ Callout
 	Ahead Path
 
 Callout
-	At Lennox Park
-
-Callout
 	Ahead Path
 
 Callout
-	shelter
+	Lennox Park
+
+Callout
+	OSM Feature
+
+Callout
+	Love Pilates
 
 Callout
 	Tesco
@@ -608,13 +595,19 @@ Callout
 	Pod Point
 
 Callout
-	Milngavie
+	Milngavie Transit Stop
+
+Callout
+	Milngavie Station
 
 Callout
 	Ahead Path
 
 Callout
-	Milngavie Station
+	Milngavie Station Entrance
+
+Callout
+	Milngavie Station Main entrance
 
 Callout
 	Prego
@@ -625,6 +618,9 @@ Callout
 		Path goes right
 
 Callout
+	Ahead Path
+
+Callout
 	Approaching intersection
 		Path via tunnel goes left
 		Path goes right
@@ -633,21 +629,12 @@ Callout
 	Kwik Fit
 
 Callout
-	Milngavie
-
-Callout
-	Milngavie Station
-
-Callout
 	Ahead Path to Milngavie Station
 
 Callout
 	Approaching intersection
 		Path to Station Road goes left
 		Path to Station Road via steps continues ahead
-
-Callout
-	Ahead Path via tunnel
 
 Callout
 	Approaching intersection
@@ -668,11 +655,6 @@ Callout
 	Kersland House Surgery
 
 Callout
-	Approaching intersection
-		Path via tunnel continues ahead
-		Path to Station Road goes right
-
-Callout
 	Ahead Station Road
 
 Callout
@@ -687,7 +669,7 @@ Callout
 		Woodburn Way goes right
 
 Callout
-	crossing
+	OSM Feature
 
 Callout
 	Milngavie Town Hall
@@ -704,19 +686,13 @@ Callout
 		Fulton Road goes right
 
 Callout
-	Ahead Station Road
-
-Callout
-	St Joseph's RC Church
+	The Lillie Art Gallery
 
 Callout
 	Approaching intersection
 		Service to Kersland Drive goes left
 		Station Road continues ahead
 		Path goes right
-
-Callout
-	The Lillie Art Gallery
 
 Callout
 	Ahead Station Road
@@ -731,10 +707,13 @@ Callout
 		Glasgow Road goes right
 
 Callout
+	OSM Feature
+
+Callout
 	St Pauls Milngavie
 
 Callout
-	crossing
+	Ahead Strathblane Road
 
 Callout
 	Approaching intersection
@@ -742,13 +721,15 @@ Callout
 		Strathblane Road continues ahead
 
 Callout
-	Milngavie, Station Road (before)
+	Milngavie, Station Road (before) Transit Stop
 
 Callout
-	Milngavie, Kersland Lane (before)
+	Milngavie, Kersland Lane (before) Transit Stop
 
 Callout
-	Ahead Strathblane Road
+	Approaching intersection
+		Strathblane Road continues ahead
+		Service to St Pauls Milngavie goes right
 
 Callout
 	Approaching intersection
@@ -756,7 +737,7 @@ Callout
 		Strathblane Road continues ahead
 
 Callout
-	St Pauls Milngavie
+	Ahead Strathblane Road
 
 Callout
 	Ahead Strathblane Road
@@ -764,19 +745,19 @@ Callout
 Callout
 	Approaching intersection
 		Strathblane Road continues ahead
-		Service to dead-end goes right
+		Service to Strathblane Road goes right
 
 Callout
 	Robert Hill
 
 Callout
-	Ahead Strathblane Road
-
-Callout
 	Milngavie Mini Market
 
 Callout
-	Milngavie, Strathblane Road (at 70)
+	Ahead Strathblane Road
+
+Callout
+	Milngavie, Strathblane Road (at 70) Transit Stop
 
 Callout
 	Approaching intersection
@@ -789,12 +770,10 @@ Callout
 		Service to Milngavie Mini Market continues ahead
 
 Callout
-	Ahead Path to Campsie Drive via steps
+	Ahead Service
 
 Callout
-	Approaching intersection
-		Campsie Drive goes left
-		Campsie Drive goes right
+	Ahead Path to Campsie Drive via steps
 
 Callout
 	Approaching intersection
@@ -823,10 +802,7 @@ Callout
 		Path to Tower Place goes right
 
 Callout
-	playground
-
-Callout
-	Ahead Campsie Drive
+	OSM Feature
 
 Callout
 	Ahead Campsie Drive
@@ -840,7 +816,7 @@ Callout
 		Middleton Drive goes right
 
 Callout
-	post
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -856,7 +832,7 @@ Callout
 		Strathblane Road goes right
 
 Callout
-	Milngavie, Lynn Drive (after)
+	Milngavie, Lynn Drive (after) Transit Stop
 
 Callout
 	Ahead Strathblane Road

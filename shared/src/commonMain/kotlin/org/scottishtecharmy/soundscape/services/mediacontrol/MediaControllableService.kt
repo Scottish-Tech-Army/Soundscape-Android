@@ -1,0 +1,115 @@
+package org.scottishtecharmy.soundscape.services.mediacontrol
+
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import org.scottishtecharmy.soundscape.audio.AudioType
+import org.scottishtecharmy.soundscape.audio.TourButton
+import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
+import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
+import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.services.BeaconState
+import org.scottishtecharmy.soundscape.services.RoutePlayerState
+
+private val DEFAULT_STREET_PREVIEW_FLOW: StateFlow<StreetPreviewState> =
+    MutableStateFlow(StreetPreviewState(StreetPreviewEnabled.OFF)).asStateFlow()
+
+private val DEFAULT_HEAD_HEADING_FLOW: StateFlow<HeadHeading?> =
+    MutableStateFlow<HeadHeading?>(null).asStateFlow()
+
+private val DEFAULT_HEADSET_BATTERY_FLOW: StateFlow<Int?> =
+    MutableStateFlow<Int?>(null).asStateFlow()
+
+private val DEFAULT_ACTIVE_CALLOUT_FLOW: StateFlow<TourButton?> =
+    MutableStateFlow<TourButton?>(null).asStateFlow()
+
+interface MediaControllableService {
+    // Media control target methods
+    fun routeMute(): Boolean
+    fun routeSkipNext(): Boolean
+    fun routeSkipPrevious(): Boolean
+    fun myLocation()
+    fun whatsAroundMe()
+
+    // Route player support
+    val filteredLocationFlow: StateFlow<SoundscapeLocation?>
+    fun speakText(
+        text: String,
+        type: AudioType,
+        latitude: Double = Double.NaN,
+        longitude: Double = Double.NaN,
+        heading: Double = Double.NaN,
+    )
+
+    fun clearTextToSpeechQueue()
+    fun createBeacon(location: LngLatAlt?, headingOnly: Boolean)
+    fun destroyBeacon()
+
+    // Audio menu support
+    var menuActive: Boolean
+    fun speak2dText(text: String, clearQueue: Boolean = false, earcon: String? = null)
+    fun callbackHoldOff()
+    fun requestAudioFocus(): Boolean
+    fun aheadOfMe()
+    fun nearbyMarkers()
+
+    /**
+     * Cancels any in-flight user-initiated callout without starting another.
+     * Defaults to a no-op for implementations with no callout pipeline of their
+     * own; the real services delegate to CalloutController.cancel().
+     */
+    fun cancelCallout() {}
+    fun routeStop()
+    fun routeStartById(routeId: Long)
+    fun startBeacon(location: LngLatAlt, name: String)
+
+    // Flow surface used by shared state-holders. Each implementation forwards to its
+    // location/direction provider, route player, beacon state, etc.
+    val locationFlow: StateFlow<SoundscapeLocation?>
+    val orientationFlow: StateFlow<DeviceDirection?>
+    /** Calibrated head heading from an external head tracker, or null when no
+     *  external head tracker is active. The home screen uses this in
+     *  preference to [orientationFlow] when present. */
+    val headHeadingFlow: StateFlow<HeadHeading?>
+        get() = DEFAULT_HEAD_HEADING_FLOW
+    /** 0–100 battery for the most-recently-active Bluetooth audio device, or
+     *  null when the platform hasn't reported one (no headphones paired, or
+     *  the device doesn't expose battery — e.g. AirPods on Android). */
+    val headsetBatteryPercentFlow: StateFlow<Int?>
+        get() = DEFAULT_HEADSET_BATTERY_FLOW
+    val beaconFlow: StateFlow<BeaconState>
+    val currentRouteFlow: StateFlow<RoutePlayerState>
+    val gridStateFlow: StateFlow<GridState?>
+
+    // Default no-op implementations for iOS until it grows these features.
+    val streetPreviewFlow: StateFlow<StreetPreviewState>
+        get() = DEFAULT_STREET_PREVIEW_FLOW
+
+    /** Which "hear my surroundings" button, if any, has an in-flight callout.
+     *  Emits null when nothing is playing. The home-screen bottom bar uses
+     *  this to animate the active button and stop when the audio completes
+     *  or the user cancels by tapping again. */
+    val activeCalloutFlow: StateFlow<TourButton?>
+        get() = DEFAULT_ACTIVE_CALLOUT_FLOW
+
+    fun routeStartReverse(routeId: Long)
+    fun setStreetPreviewMode(on: Boolean, location: LngLatAlt? = null) {}
+    fun streetPreviewGo() {}
+    fun getLocationDescription(location: LngLatAlt): LocationDescription
+
+    /**
+     * The offline geocoder's full address for a point, or null when it can't produce one (e.g.
+     * the point is outside the loaded tile grid). Defaults to null so implementations which have
+     * no geo engine don't have to provide it.
+     */
+    suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? = null
+    suspend fun searchResult(query: String): List<LocationDescription>?
+    fun isAudioEngineBusy(): Boolean
+    fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long
+}

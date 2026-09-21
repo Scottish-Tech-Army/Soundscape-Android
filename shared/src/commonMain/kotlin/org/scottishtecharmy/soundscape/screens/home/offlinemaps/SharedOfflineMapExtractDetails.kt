@@ -1,0 +1,254 @@
+package org.scottishtecharmy.soundscape.screens.home.offlinemaps
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CloudDownload
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.SdStorage
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import org.jetbrains.compose.resources.stringResource
+import org.maplibre.spatialk.geojson.Position
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreference
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.offline_map_details_alternate_city_list
+import org.scottishtecharmy.soundscape.resources.offline_map_details_city_list
+import org.scottishtecharmy.soundscape.resources.offline_map_details_delete
+import org.scottishtecharmy.soundscape.resources.offline_map_details_download
+import org.scottishtecharmy.soundscape.resources.offline_map_details_name
+import org.scottishtecharmy.soundscape.resources.offline_map_details_size_on_phone
+import org.scottishtecharmy.soundscape.resources.offline_map_details_size_on_server
+import org.scottishtecharmy.soundscape.resources.offline_map_details_update
+import org.scottishtecharmy.soundscape.screens.home.home.PlatformMapContainer
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
+import org.scottishtecharmy.soundscape.ui.theme.spacing
+
+@Composable
+fun SharedOfflineMapExtractDetails(
+    extract: Feature,
+    downloadExtract: (String, Feature) -> Unit,
+    deleteExtract: (Feature) -> Unit,
+    local: Boolean,
+    userLocation: LngLatAlt? = null,
+    userHeading: Float = 0.0f,
+    markerLocation: LngLatAlt? = null,
+    preferencesProvider: PreferencesProvider? = null,
+    modifier: Modifier = Modifier,
+) {
+    val showMap by rememberBooleanPreference(
+        preferencesProvider,
+        PreferenceKeys.SHOW_MAP,
+        PreferenceDefaults.SHOW_MAP,
+    )
+    val details = remember(extract) { ExtractDetails(extract) }
+    val extractGeometry = remember(extract) { extract.toMaplibreGeometry() }
+    var mapInteracting by remember { mutableStateOf(false) }
+    val contentScrollState = rememberScrollState()
+
+    Column(
+        modifier = modifier.verticalScroll(contentScrollState, enabled = !mapInteracting),
+        verticalArrangement = Arrangement.spacedBy(spacing.small),
+    ) {
+        MapExtractTextsSection(
+            extract = extract,
+            details = details,
+            local = local,
+        )
+        HorizontalDivider()
+        MapExtractButtonsSection(
+            deleteExtract = { deleteExtract(extract) },
+            downloadExtract = { downloadExtract(details.localName, extract) },
+            local = local,
+        )
+
+        if (showMap) {
+            PlatformMapContainer(
+                beaconLocation = markerLocation,
+                allowScrolling = false,
+                routeData = null,
+                mapCenter = markerLocation ?: userLocation ?: LngLatAlt(),
+                userLocation = userLocation,
+                userSymbolRotation = userHeading,
+                extractGeometry = extractGeometry,
+                forceOnlineTiles = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1.0f),
+                onInteractionChanged = { mapInteracting = it },
+            )
+        }
+    }
+}
+
+private fun ArrayList<LngLatAlt>.toPositionRing(): List<Position> =
+    map { Position(it.longitude, it.latitude) }
+
+private fun Feature.toMaplibreGeometry(): org.maplibre.spatialk.geojson.Geometry? {
+    return when (val g = geometry) {
+        is Polygon -> org.maplibre.spatialk.geojson.Polygon(
+            g.coordinates.map { ring -> ring.toPositionRing() }
+        )
+
+        is MultiPolygon -> org.maplibre.spatialk.geojson.MultiPolygon(
+            g.coordinates.map { polygon -> polygon.map { ring -> ring.toPositionRing() } }
+        )
+
+        else -> null
+    }
+}
+
+@Composable
+private fun MapExtractButtonsSection(
+    downloadExtract: () -> Unit,
+    deleteExtract: () -> Unit,
+    local: Boolean,
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(spacing.none),
+    ) {
+        if (local) {
+            IconWithTextButton(
+                icon = Icons.Filled.Download,
+                text = stringResource(Res.string.offline_map_details_update),
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier
+                    .defaultMinSize(minHeight = spacing.targetSize)
+                    .testTag("offlineMapUpdate"),
+                onClick = downloadExtract
+            )
+            IconWithTextButton(
+                icon = Icons.Filled.Delete,
+                text = stringResource(Res.string.offline_map_details_delete),
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier
+                    .defaultMinSize(minHeight = spacing.targetSize)
+                    .testTag("offlineMapDelete"),
+                onClick = deleteExtract,
+            )
+        } else {
+            IconWithTextButton(
+                icon = Icons.Filled.Download,
+                text = stringResource(Res.string.offline_map_details_download),
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier
+                    .defaultMinSize(minHeight = spacing.targetSize)
+                    .testTag("offlineMapDownload"),
+                onClick = downloadExtract,
+            )
+        }
+    }
+}
+
+@Composable
+private fun MapExtractTextsSection(
+    extract: Feature,
+    details: ExtractDetails,
+    local: Boolean,
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(spacing.small),
+    ) {
+        Text(
+            text = stringResource(Res.string.offline_map_details_name, details.localName),
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+        if (details.alternateName.isNotEmpty()) {
+            Text(
+                text = details.alternateName,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+        val size = extract.properties?.get("extract-size-string")
+        if (size != null) {
+            val sizeA11y = extract.properties?.get("extract-size-a11y-string") ?: size
+            val template = if (local)
+                Res.string.offline_map_details_size_on_phone
+            else
+                Res.string.offline_map_details_size_on_server
+            val sizeString = stringResource(template, size.toString())
+            val sizeStringA11y = stringResource(template, sizeA11y.toString())
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(spacing.small),
+            ) {
+                if (local) {
+                    Icon(
+                        imageVector = Icons.Filled.SdStorage,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.Filled.CloudDownload,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+                Text(
+                    text = sizeString,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.semantics { contentDescription = sizeStringA11y },
+                )
+            }
+        }
+        if (extract.properties?.get("feature_type") == "city_cluster") {
+            val cities = details.localCities.ifEmpty { details.alternateCities }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(spacing.small),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Map,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurface,
+                )
+                Text(
+                    text = stringResource(Res.string.offline_map_details_city_list, cities),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+            }
+            if (details.alternateCities.isNotEmpty() && details.localCities.isNotEmpty()) {
+                Text(
+                    text = stringResource(
+                        Res.string.offline_map_details_alternate_city_list,
+                        details.alternateCities,
+                    ),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+            }
+        }
+    }
+}

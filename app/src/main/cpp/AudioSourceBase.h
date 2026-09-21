@@ -39,6 +39,7 @@ namespace soundscape {
         virtual bool isAudible() const { return !isFinished() && !muted.load(); }
 
         void setDeviceSampleRate(int rate) { deviceSampleRate = rate; }
+
         int getDeviceSampleRate() const { return deviceSampleRate; }
 
     protected:

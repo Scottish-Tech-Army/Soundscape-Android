@@ -1,0 +1,112 @@
+package org.scottishtecharmy.soundscape.geoengine.utils
+
+import org.scottishtecharmy.soundscape.clipper.PolygonClipper
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+
+/**
+ * Unions two Polygon features.
+ *
+ * In production these are always two clippings of the same OSM way, matched by osmId, taken
+ * from adjacent z14 MVT tiles - so they share long runs of exactly coincident boundary and
+ * differ only where each tile's buffer cut them and where each tile's simplification kept a
+ * different subset of vertices.
+ *
+ * When the two do not merge into a single connected polygon - disjoint, touching at only a
+ * point, or too degenerate for the clipper to resolve - this returns **polygon2 itself, by
+ * reference**. [mergeAllPolygonsInFeatureCollection] detects a failed merge with
+ * `mergedFeature == feature`, so this must stay a reference return and must never be a copy.
+ * That is also what the JTS implementation this replaces did when its union came back as a
+ * MultiPolygon.
+ */
+fun mergePolygons(polygon1: Feature, polygon2: Feature): Feature {
+    val geometry1 = polygon1.geometry as? Polygon ?: return polygon2
+    val geometry2 = polygon2.geometry as? Polygon ?: return polygon2
+
+    val merged = PolygonClipper.union(geometry1.coordinates, geometry2.coordinates)
+    // Anything other than exactly one result polygon means the two didn't combine into one
+    // connected area, which is the same signal JTS gave by returning a MultiPolygon.
+    if (merged.size != 1) return polygon2
+
+    return MvtFeature().also { feature ->
+        feature.properties = polygon1.properties
+        feature.type = "Feature"
+        // The JTS implementation cast unconditionally. polygon1 is always an MvtFeature in
+        // production, but the tests pass a plain Feature, so degrade rather than throw.
+        (polygon1 as? MvtFeature)?.let { feature.copyProperties(it) }
+        feature.geometry = Polygon().also { polygon ->
+            polygon.coordinates = merged[0].mapTo(ArrayList()) { ring ->
+                ring.mapTo(ArrayList<LngLatAlt>()) { it }
+            }
+        }
+    }
+}
+
+fun polygonFeaturesOverlap(feature1: Feature, feature2: Feature): Boolean {
+    for (point in (feature1.geometry as Polygon).coordinates[0]) {
+        if (polygonContainsCoordinates(point, (feature2.geometry as Polygon)))
+            return true
+    }
+    return false
+}
+
+fun mergeAllPolygonsInFeatureCollection(
+    polygonFeatureCollection: FeatureCollection
+): FeatureCollection {
+
+    val resultantFeatureCollection = FeatureCollection()
+
+    val features = hashMapOf<Any, MutableList<FeatureCollection>>()
+    for (feature in polygonFeatureCollection.features) {
+        if (feature.geometry.type == "Polygon") {
+            val osmId = (feature as MvtFeature).osmId
+            val featureCollectionsForId = features.getOrPut(osmId) { mutableListOf() }
+            var foundOverlap = false
+            for (featureCollection in featureCollectionsForId) {
+                for (existingFeature in featureCollection) {
+                    if (polygonFeaturesOverlap(feature, existingFeature)) {
+                        featureCollection.addFeature(feature)
+                        foundOverlap = true
+                        break
+                    }
+                }
+            }
+            if (!foundOverlap) {
+                val newFeatureCollection = FeatureCollection()
+                newFeatureCollection.addFeature(feature)
+                featureCollectionsForId.add(newFeatureCollection)
+            }
+        } else {
+            resultantFeatureCollection.addFeature(feature)
+        }
+    }
+
+    for (featureCollectionList in features) {
+        for (featureCollection in featureCollectionList.value) {
+            var mergedFeature: Feature? = null
+            for ((index, feature) in featureCollection.features.withIndex()) {
+                val tempMergedFeature = mergedFeature
+                // index > 0 should imply tempMergedFeature is set (from the first feature or a
+                // prior merge), but if that invariant is ever violated, fall back to starting a
+                // fresh chain from this feature rather than crash.
+                mergedFeature = if (index == 0 || tempMergedFeature == null) {
+                    feature
+                } else {
+                    mergePolygons(tempMergedFeature, feature)
+                }
+                if (mergedFeature == feature) {
+                    if (tempMergedFeature != null)
+                        resultantFeatureCollection.addFeature(tempMergedFeature)
+                }
+            }
+            // featureCollection is only ever created with at least one feature already added to
+            // it, so the loop above always runs and sets mergedFeature. Skip adding anything if
+            // that's ever not the case, rather than crash.
+            mergedFeature?.let { resultantFeatureCollection.addFeature(it) }
+        }
+    }
+    return resultantFeatureCollection
+}

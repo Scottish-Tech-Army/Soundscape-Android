@@ -2,18 +2,25 @@ package org.scottishtecharmy.soundscape
 
 import android.content.Context
 import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.location_detail_action_beacon_from_markers
+import org.scottishtecharmy.soundscape.resources.markers_no_markers_title
+import org.scottishtecharmy.soundscape.resources.markers_sort_distance_ascending
+import org.scottishtecharmy.soundscape.resources.markers_sort_name_ascending
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreen
@@ -48,17 +55,17 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(markers = true),
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
-                    userLocation = null
+                    onCycleSort = {},
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
 
-        val noMarkersTitle = context.resources.getString(R.string.markers_no_markers_title)
+        val noMarkersTitle =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_no_markers_title) }
         composeTestRule.onNodeWithText(noMarkersTitle).assertIsDisplayed()
     }
 
@@ -67,15 +74,14 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers
                     ),
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
-                    userLocation = null
+                    onCycleSort = {},
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
@@ -91,70 +97,42 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers
                     ),
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
-                    userLocation = null
+                    onCycleSort = {},
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
 
-        // Note: useUnmergedTree is needed because parent Row uses clearAndSetSemantics
-        composeTestRule.onNodeWithTag("SortOrder", useUnmergedTree = true).assertIsDisplayed()
         composeTestRule.onNodeWithTag("SortOption", useUnmergedTree = true).assertIsDisplayed()
     }
 
     @Test
-    fun markersScreen_sortOrderButton_callsToggleSortOrder() {
-        var sortOrderToggled = false
+    fun markersScreen_sortButton_callsCycleSort() {
+        var sortCycled = false
 
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers
                     ),
                     clearErrorMessage = {},
-                    onToggleSortOrder = { sortOrderToggled = true },
-                    onToggleSortByName = {},
-                    userLocation = null
-                )
-            }
-        }
-
-        composeTestRule.onNodeWithTag("SortOrder", useUnmergedTree = true).performClick()
-        assert(sortOrderToggled) { "Sort order toggle callback was not called" }
-    }
-
-    @Test
-    fun markersScreen_sortOptionButton_callsToggleSortByName() {
-        var sortByNameToggled = false
-
-        composeTestRule.setContent {
-            SoundscapeTheme {
-                MarkersScreen(
-                    homeNavController = rememberNavController(),
-                    uiState = MarkersAndRoutesUiState(
-                        markers = true,
-                        entries = testMarkers
-                    ),
-                    clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = { sortByNameToggled = true },
-                    userLocation = null
+                    onCycleSort = { sortCycled = true },
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
 
         composeTestRule.onNodeWithTag("SortOption", useUnmergedTree = true).performClick()
-        assert(sortByNameToggled) { "Sort by name toggle callback was not called" }
+        assert(sortCycled) { "Sort cycle callback was not called" }
     }
 
     @Test
@@ -162,21 +140,21 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         isLoading = true
                     ),
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
-                    userLocation = null
+                    onCycleSort = {},
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
 
         // When loading, the markers list should not be visible
-        val noMarkersTitle = context.resources.getString(R.string.markers_no_markers_title)
+        val noMarkersTitle =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_no_markers_title) }
         composeTestRule.onNodeWithText(noMarkersTitle).assertDoesNotExist()
     }
 
@@ -185,7 +163,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers,
@@ -193,15 +170,17 @@ class MarkersScreenTest {
                         isSortAscending = true
                     ),
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
-                    userLocation = null
+                    onCycleSort = {},
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
 
-        val sortByName = context.resources.getString(R.string.markers_sort_button_sort_by_name)
-        composeTestRule.onNodeWithText(sortByName, useUnmergedTree = true).assertIsDisplayed()
+        val sortByName =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_name_ascending) }
+        composeTestRule.onNodeWithTag("SortOption")
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, sortByName))
     }
 
     @Test
@@ -209,7 +188,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers,
@@ -217,15 +195,17 @@ class MarkersScreenTest {
                         isSortAscending = true
                     ),
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
-                    userLocation = null
+                    onCycleSort = {},
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
 
-        val sortByDistance = context.resources.getString(R.string.markers_sort_button_sort_by_distance)
-        composeTestRule.onNodeWithText(sortByDistance, useUnmergedTree = true).assertIsDisplayed()
+        val sortByDistance =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_distance_ascending) }
+        composeTestRule.onNodeWithTag("SortOption")
+            .assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, sortByDistance))
     }
 
     @Test
@@ -233,15 +213,14 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers
                     ),
                     clearErrorMessage = {},
-                    onToggleSortOrder = {},
-                    onToggleSortByName = {},
+                    onCycleSort = {},
                     userLocation = null,
+                    onSelectItem = {},
                     onStartBeacon = { _, _ -> }
                 )
             }
@@ -250,18 +229,23 @@ class MarkersScreenTest {
         // Find the LocationItem node by its content description (set via clearAndSetSemantics)
         // The contentDescription includes the marker name and description
         val semanticsNode = composeTestRule
-            .onNode(hasContentDescription("Test Marker 1", substring = true), useUnmergedTree = true)
+            .onNode(
+                hasContentDescription("Test Marker 1", substring = true),
+                useUnmergedTree = true
+            )
             .fetchSemanticsNode()
 
         // Check that custom actions exist on the node
-        val customActions = semanticsNode.config.getOrElseNullable(SemanticsActions.CustomActions) { null }
+        val customActions =
+            semanticsNode.config.getOrElseNullable(SemanticsActions.CustomActions) { null }
         assertTrue(
             "Marker item should have custom accessibility actions",
             customActions != null && customActions.isNotEmpty()
         )
 
         // Verify the action label contains expected text (start beacon hint)
-        val startBeaconHint = context.resources.getString(R.string.location_detail_action_beacon_from_markers)
+        val startBeaconHint =
+            kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.location_detail_action_beacon_from_markers) }
         val hasStartBeaconAction = customActions?.any { it.label == startBeaconHint } ?: false
         assertTrue(
             "Marker item should have 'Start audio beacon at this marker' accessibility action",

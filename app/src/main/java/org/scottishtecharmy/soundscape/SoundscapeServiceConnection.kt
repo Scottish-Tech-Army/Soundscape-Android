@@ -3,44 +3,50 @@ package org.scottishtecharmy.soundscape
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.Log
-import dagger.hilt.android.scopes.ActivityRetainedScoped
-import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
+import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.services.ServiceConnection
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
-import javax.inject.Inject
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
+import android.content.ServiceConnection as AndroidServiceConnection
 
-@ActivityRetainedScoped
-class SoundscapeServiceConnection @Inject constructor() {
+class SoundscapeServiceConnection : ServiceConnection {
     var soundscapeService: SoundscapeService? = null
 
+    override val service: MediaControllableService?
+        get() = soundscapeService
+
     private var _serviceBoundState = MutableStateFlow(false)
-    val serviceBoundState = _serviceBoundState.asStateFlow()
+    override val serviceBoundState = _serviceBoundState.asStateFlow()
 
     // Simplify access of flows
-    fun getLocationFlow() : StateFlow<android.location.Location?>? {
+    fun getLocationFlow(): StateFlow<SoundscapeLocation?>? {
         return soundscapeService?.locationProvider?.locationFlow
     }
-    fun getOrientationFlow() : StateFlow<DeviceDirection?>? {
+
+    fun getOrientationFlow(): StateFlow<DeviceDirection?>? {
         return soundscapeService?.directionProvider?.orientationFlow
     }
+
     fun getBeaconFlow(): StateFlow<BeaconState>? {
         return soundscapeService?.beaconFlow
     }
+
     fun getStreetPreviewModeFlow(): StateFlow<StreetPreviewState>? {
         return soundscapeService?.streetPreviewFlow
     }
+
     fun getCurrentRouteFlow(): StateFlow<RoutePlayerState>? {
         return soundscapeService?.routePlayer?.currentRouteFlow
     }
@@ -49,11 +55,7 @@ class SoundscapeServiceConnection @Inject constructor() {
         return soundscapeService?.gridStateFlow
     }
 
-    fun getVoiceCommandStateFlow(): StateFlow<VoiceCommandState>? {
-        return soundscapeService?.voiceCommandStateFlow
-    }
-
-    fun setStreetPreviewMode(on : Boolean, location: LngLatAlt? = null) {
+    fun setStreetPreviewMode(on: Boolean, location: LngLatAlt? = null) {
         Log.d(TAG, "setStreetPreviewMode $on")
         soundscapeService?.setStreetPreviewMode(on, location)
     }
@@ -73,25 +75,33 @@ class SoundscapeServiceConnection @Inject constructor() {
     fun routeSkipPrevious() {
         soundscapeService?.routeSkipPrevious()
     }
+
     fun routeSkipNext() {
         soundscapeService?.routeSkipNext()
     }
+
     fun routeMute() {
         soundscapeService?.routeMute()
     }
+
     fun routeStop() {
         soundscapeService?.routeStop()
     }
 
     // needed to communicate with the service.
-    private val connection = object : ServiceConnection {
+    private val connection = object : AndroidServiceConnection {
 
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             // we've bound to ExampleLocationForegroundService, cast the IBinder and get ExampleLocationForegroundService instance.
             Log.d(TAG, "onServiceConnected")
 
             val binder = service as SoundscapeBinder
-            soundscapeService = binder.getSoundscapeService()
+            val boundService = binder.getSoundscapeService()
+            if (boundService == null) {
+                Log.w(TAG, "onServiceConnected but underlying service already destroyed; ignoring")
+                return
+            }
+            soundscapeService = boundService
             _serviceBoundState.value = true
         }
 
@@ -103,19 +113,19 @@ class SoundscapeServiceConnection @Inject constructor() {
         }
     }
 
-    fun tryToBindToServiceIfRunning(context : Context) {
+    fun tryToBindToServiceIfRunning(context: Context) {
         Log.d(TAG, "tryToBindToServiceIfRunning " + serviceBoundState.value)
 
-        if(!serviceBoundState.value) {
+        if (!serviceBoundState.value) {
             Intent(context, SoundscapeService::class.java).also { intent ->
                 context.bindService(intent, connection, 0)
             }
         }
     }
 
-    fun stopService() {
-        Log.d(TAG, "stopService")
-        soundscapeService?.stopForegroundService()
+    fun stopService(forSleep: Boolean = false) {
+        Log.d(TAG, "stopService forSleep=$forSleep")
+        soundscapeService?.stopForegroundService(forSleep)
     }
 
     fun streetPreviewGo() {
@@ -132,6 +142,10 @@ class SoundscapeServiceConnection @Inject constructor() {
 
     fun stopBeaconPreview(commit: Boolean, chosenBeaconType: String?) {
         soundscapeService?.stopBeaconPreview(commit, chosenBeaconType)
+    }
+
+    fun refreshOfflineMaps() {
+        soundscapeService?.refreshOfflineMaps()
     }
 
     companion object {

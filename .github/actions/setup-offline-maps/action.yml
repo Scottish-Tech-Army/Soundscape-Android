@@ -1,0 +1,49 @@
+name: Setup offline maps for tests
+description: Downloads the pmtiles and manifest fixtures used by the Android test suite.
+
+inputs:
+  output_dir:
+    description: Directory where pmtiles and the manifest are written.
+    required: false
+    default: app/src/test/res/org/scottishtecharmy/soundscape
+
+runs:
+  using: composite
+  steps:
+    # Bump the `v` in the cache key below to force a refresh when the R2 fixtures change.
+    - name: Restore cached pmtiles + manifest
+      id: cache
+      uses: actions/cache@v6
+      with:
+        path: |
+          ${{ inputs.output_dir }}/bristol-gb.pmtiles
+          ${{ inputs.output_dir }}/glasgow-gb.pmtiles
+          ${{ inputs.output_dir }}/tehran-ir.pmtiles
+          ${{ inputs.output_dir }}/san-salvador-sv.pmtiles
+          ${{ inputs.output_dir }}/paris-fr.pmtiles
+          ${{ inputs.output_dir }}/buenos-aires-ar.pmtiles
+          ${{ inputs.output_dir }}/osaka-prefecture-jp.pmtiles
+          ${{ inputs.output_dir }}/manifest.geojson.gz
+        key: pmtiles-v7-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
+
+    - name: Download pmtiles + manifest
+      if: steps.cache.outputs.cache-hit != 'true'
+      shell: bash
+      env:
+        OUTPUT_DIR: ${{ inputs.output_dir }}
+      run: |
+        mkdir -p "$OUTPUT_DIR"
+        base=https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev
+        current_version=August2026-update
+        # --timeout aborts a stalled connection after 30s, --tries retries on failure,
+        # --waitretry backs off between retries. Without these, wget can silently hang
+        # for an hour at <50 KB/s when R2 connections drop.
+        WGET_OPTS="--no-verbose --show-progress --progress=dot:giga --tries=5 --timeout=30 --waitretry=10"
+        wget $WGET_OPTS "$base/$current_version/bristol-gb.pmtiles"      -O "$OUTPUT_DIR/bristol-gb.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/glasgow-gb.pmtiles"      -O "$OUTPUT_DIR/glasgow-gb.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/tehran-ir.pmtiles"       -O "$OUTPUT_DIR/tehran-ir.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/san-salvador-sv.pmtiles" -O "$OUTPUT_DIR/san-salvador-sv.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/paris-fr.pmtiles"        -O "$OUTPUT_DIR/paris-fr.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/buenos-aires-ar.pmtiles" -O "$OUTPUT_DIR/buenos-aires-ar.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/osaka-prefecture-jp.pmtiles" -O "$OUTPUT_DIR/osaka-prefecture-jp.pmtiles"
+        wget $WGET_OPTS "$base/manifest.geojson.gz"                     -O "$OUTPUT_DIR/manifest.geojson.gz"

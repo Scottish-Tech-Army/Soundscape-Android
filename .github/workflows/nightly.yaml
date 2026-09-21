@@ -15,62 +15,62 @@ on:
     - cron:  '30 5 * * *'
 
 jobs:
-  build:
-    name: Build package (${{ matrix.ref }})
+  check_date:
+    name: Check latest commit
     runs-on: ubuntu-latest
     environment: development
     permissions:
       contents: write
-    strategy:
-      fail-fast: false
-      matrix:
-        ref: [main, v1.0, multiplatform]
+    outputs:
+      should_run: ${{ steps.should_run.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Check latest commit is less than a day
+        id: should_run
+        continue-on-error: true
+        #if: ${{ github.event_name == 'schedule' }}
+        run: test -z $(git rev-list  --after="24 hours" HEAD) && echo "should_run=false" >> $GITHUB_OUTPUT
+
+  build:
+    name: Build package
+    runs-on: ubuntu-latest
+    environment: development
+    needs: check_date
+    if: ${{ needs.check_date.outputs.should_run != 'false' }}
+    permissions:
+      contents: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
-          ref: ${{ matrix.ref }}
           fetch-depth: 0
 
       - name: Setup offline maps for tests
-        run: |
-          pwd
-          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/bristol-gb.pmtiles  -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/bristol-gb.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/glasgow-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/liverpool-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/liverpool-gb.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/manifest.geojson.gz -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manifest.geojson.gz
+        uses: ./.github/actions/setup-offline-maps
+        with:
+          output_dir: ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
 
       - name: Setup tile and search providers
-        env:
-          TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
-          TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
-          SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
-          SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
-          EXTRACT_PROVIDER_URL: ${{ secrets.EXTRACT_PROVIDER_URL }}
-        run: |
-          echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
-          echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
-          echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
-          echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
-          echo extractProviderUrl="$EXTRACT_PROVIDER_URL" >> local.properties
+        uses: ./.github/actions/write-provider-config
+        with:
+          platform: android
+          tile_provider_url: ${{ secrets.TILE_PROVIDER_URL }}
+          tile_provider_api_key: ${{ secrets.TILE_PROVIDER_API_KEY }}
+          search_provider_url: ${{ secrets.SEARCH_PROVIDER_URL }}
+          search_provider_api_key: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
+          extract_provider_url: ${{ secrets.EXTRACT_PROVIDER_URL }}
 
       - name: Decode Google services
-        env:
-          ENCODED_STRING: ${{ secrets.GOOGLE_SERVICES }}
-          GOOGLE_SERVICES_PATH: ${{ secrets.GOOGLE_SERVICES_PATH }}
-
-        run: |
-          echo $ENCODED_STRING > google-services-b64.txt
-          base64 -d google-services-b64.txt > ${{ env.main_project_module }}/$GOOGLE_SERVICES_PATH
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
-
-      - name: Set Up JDK
-        uses: actions/setup-java@v5
+        uses: ./.github/actions/decode-base64-secret
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
-          java-version: '19'
+          encoded: ${{ secrets.GOOGLE_SERVICES }}
+          output_path: ${{ env.main_project_module }}/${{ secrets.GOOGLE_SERVICES_PATH }}
+
+      - name: Setup JDK + Gradle
+        uses: ./.github/actions/setup-jdk-gradle
 
       - name: Run lint over the repo
         run: ./gradlew lint
@@ -79,15 +79,18 @@ jobs:
       - name: Run gradle tests
         run: ./gradlew test
 
+      # Slow JVM unit tests (tagged @Category(NightlyOnlyTest::class)) that are excluded from
+      # the regular `test` task run in run-tests.yaml, e.g. because they just replay every GPX
+      # fixture through the full grid/callout engine to check nothing crashes.
+      - name: Run nightly-only unit tests
+        run: ./gradlew :app:nightlyUnitTest
+
       # Setup release build keys
       - name: Decode Keystore
-        env:
-          ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
-          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
-
-        run: |
-          echo $ENCODED_STRING > keystore-b64.txt
-          base64 -d keystore-b64.txt > ${{ env.main_project_module }}/$SIGNING_KEY_STORE_PATH
+        uses: ./.github/actions/decode-base64-secret
+        with:
+          encoded: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
+          output_path: ${{ env.main_project_module }}/${{ secrets.SIGNING_KEY_STORE_PATH }}
 
       # Create APK Release
       - name: Build apk project (APK)
@@ -102,105 +105,94 @@ jobs:
       # Upload Artifact Build
       # Noted For Output [main_project_module]/build/outputs/apk/release/
       - name: Upload APK Release
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
-          name: release-apk-${{ matrix.ref }}
+          name: release-apk
           path: ${{ env.main_project_module }}/build/outputs/apk/releaseTest/
 
-      # Generate android instrumentation tests APK
-#      - name: Assemble Android Instrumentation Tests
-#        env:
-#          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
-#          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-#          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-#          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-#        run: ./gradlew assembleAndroidTest -DtestBuildType=debug
-#      - name: Upload Android Test APK
-#        uses: actions/upload-artifact@v6
-#        with:
-#          name: release-androidTest
-#          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-release-androidTest.apk
+  instrumentation-tests-nightly:
+    name: Run full instrumentation test suite
+    runs-on: ubuntu-latest
+    environment: development
+    needs: check_date
+    if: ${{ needs.check_date.outputs.should_run != 'false' }}
 
-#  instrumentation-tests:
-#    name: Run matrix of instrumentation tests
-#    needs: build
-#    environment: development
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        api-level: [30, 31, 34]
-#      fail-fast: false
-#    steps:
-#      - uses: actions/checkout@v6
-#        with:
-#          fetch-depth: 0
-#
-#      - name: Setup tile provider
-#        env:
-#          TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
-#          TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
-#        run: |
-#          echo tileProviderUrl=$TILE_PROVIDER_URL > local.properties
-#          echo tileProviderApiKey=$TILE_PROVIDER_API_KEY >> local.properties
-#
-#      - name: Decode Google services
-#        env:
-#          ENCODED_STRING: ${{ secrets.GOOGLE_SERVICES }}
-#          GOOGLE_SERVICES_PATH: ${{ secrets.GOOGLE_SERVICES_PATH }}
-#
-#        run: |
-#          echo $ENCODED_STRING > google-services-b64.txt
-#          base64 -d google-services-b64.txt > ${{ env.main_project_module }}/$GOOGLE_SERVICES_PATH
-#
-#      - name: Setup Gradle
-#        uses: gradle/actions/setup-gradle@v5
-#
-#      - name: Set Up JDK
-#        uses: actions/setup-java@v5
-#        with:
-#          distribution: 'zulu' # See 'Supported distributions' for available options
-#          java-version: '19'
-#
-#      - name: Enable KVM
-#        run: |
-#          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-#          sudo udevadm control --reload-rules
-#          sudo udevadm trigger --name-match=kvm
-#
-#      - name: Instrumentation Tests
-#        id: instrumentation-tests
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: ${{ matrix.api-level }}
-#          target: default
-#          arch: x86_64
-#          script: |
-#            adb logcat -c                             # clear logs
-#            touch app/emulator.log                    # create log file
-#            chmod 777 app/emulator.log                # allow writing to log file
-#            adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
-#            ./gradlew connectedCheck
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup offline maps for tests
+        uses: ./.github/actions/setup-offline-maps
+        with:
+          output_dir: ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
+
+      - name: Setup JDK + Gradle
+        uses: ./.github/actions/setup-jdk-gradle
+
+      - name: Setup tile and search providers
+        uses: ./.github/actions/write-provider-config
+        with:
+          platform: android
+          tile_provider_url: ${{ secrets.TILE_PROVIDER_URL }}
+          tile_provider_api_key: ${{ secrets.TILE_PROVIDER_API_KEY }}
+          search_provider_url: ${{ secrets.SEARCH_PROVIDER_URL }}
+          search_provider_api_key: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
+          extract_provider_url: ${{ secrets.EXTRACT_PROVIDER_URL }}
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      # Runs the full instrumented suite unfiltered - both the tests that also run on every PR
+      # (run-tests.yaml excludes @NightlyOnly there via notAnnotation) and the @NightlyOnly ones
+      # (real-time audio soak tests, live-network map fetches) that are too slow for PRs.
+      - name: Full instrumentation test suite
+        id: instrumentation-tests-nightly
+        uses: reactivecircus/android-emulator-runner@v2
+        continue-on-error: true # IMPORTANT: allow pipeline to continue to log upload step
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          script: |
+            adb root
+            adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download
+            adb push ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/
+            adb logcat -c                             # clear logs
+            touch app/emulator.log                    # create log file
+            chmod 777 app/emulator.log                # allow writing to log file
+            adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
+            ./gradlew connectedCheck
+
+      - name: Upload Failing Test Report Log
+        if: steps.instrumentation-tests-nightly.outcome != 'success'
+        uses: actions/upload-artifact@v7
+        with:
+          name: nightly-instrumentation-logs
+          path: app/emulator.log
+
+      - name: Raise error on test fail
+        if: steps.instrumentation-tests-nightly.outcome != 'success'
+        run: exit 1
 
   firebase:
-    name: Run UI tests with Firebase Test Lab (${{ matrix.ref }})
+    name: Run UI tests with Firebase Test Lab
     needs: build
     environment: development
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        ref: [main, v1.0, multiplatform]
 
     steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
       - name: Download app APK
         uses: actions/download-artifact@v8
         with:
-          name: release-apk-${{ matrix.ref }}
-
-#      - name: Download Android test APK
-#        uses: actions/download-artifact@v8
-#        with:
-#          name: release-androidTest
+          name: release-apk
 
       - name: Auth
         uses: google-github-actions/auth@v3
@@ -213,9 +205,157 @@ jobs:
       - name: Set current project
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
 
-# These tests now need the pmtiles file, skip for now as we already test locally
-#      - name: Run Instrumentation Tests in Firebase Test Lab
-#        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-release.apk --test app-release-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
-
       - name: Run Robo test in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app=app-releaseTest.apk --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait
+        run: gcloud firebase test android run --type robo --app=app-releaseTest.apk --robo-script firebase/robo_script.json --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait
+
+  ios-build:
+    name: Build iOS app
+    runs-on: [self-hosted, macOS, ARM64]
+    environment: development
+    needs: check_date
+    if: ${{ needs.check_date.outputs.should_run != 'false' }}
+    # Konan's devirtualization pass during linkReleaseFrameworkIosArm64 runs
+    # in-process in the Gradle daemon and OOMs at gradle.properties' 4 GB
+    # default with Realm + MapLibre + shared/. GRADLE_OPTS overrides the file
+    # setting for this job only; the Linux runners keep the 4 GB default so
+    # the Android emulator has room in its 16 GB budget.
+    env:
+      GRADLE_OPTS: -Xmx8192m
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # Konan's devirtualization pass during linkReleaseFrameworkIosArm64
+      # runs in-process in the Gradle daemon and OOMs at gradle.properties'
+      # 4 GB default with Realm + MapLibre + shared/. GRADLE_OPTS only sets
+      # the client JVM, so patch the file for this checkout instead. Linux
+      # runners never run this step and keep the 4 GB default so the Android
+      # emulator has room in its 16 GB budget.
+      - name: Bump Gradle daemon heap for Kotlin/Native release link
+        run: |
+          sed -i.bak 's/^org\.gradle\.jvmargs=.*/org.gradle.jvmargs=-Xmx8192m -Dfile.encoding=UTF-8/' gradle.properties
+          grep '^org\.gradle\.jvmargs' gradle.properties
+
+      - name: Setup iOS toolchain
+        uses: ./.github/actions/setup-ios-toolchain
+
+      - name: Setup tile and search providers
+        uses: ./.github/actions/write-provider-config
+        with:
+          platform: ios
+          tile_provider_url: ${{ secrets.TILE_PROVIDER_URL }}
+          search_provider_url: ${{ secrets.SEARCH_PROVIDER_URL }}
+          extract_provider_url: ${{ secrets.EXTRACT_PROVIDER_URL }}
+
+      # Overwrite the committed placeholder GoogleService-Info.plist with the
+      # real one for the archive step. Firebase itself is only initialised on
+      # Release + non-XCTest, gated in FirebaseAnalyticsBridge.swift.
+      - name: Decode Google service info
+        uses: ./.github/actions/decode-base64-secret
+        with:
+          encoded: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}
+          output_path: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_PATH }}
+
+      - name: Generate Xcode project
+        working-directory: iosApp
+        run: xcodegen generate
+
+      # See run-tests.yaml: linking iosSimulatorArm64Test fails because of
+      # maplibre-compose's embedded linker flags. xcodebuild archive below
+      # builds via the Xcode/SPM toolchain that resolves MapLibre.
+      #
+      # --configure-on-demand keeps Gradle from configuring :app, which this
+      # job doesn't need: on the self-hosted Mac, AGP's NdkLocator hits a
+      # File.list() == null on $ANDROID_HOME/ndk and throws an unguarded NPE
+      # ("A problem occurred configuring project ':app'"). Same fix as the
+      # ios-build/ios-firebase jobs in build-app.yaml.
+      - name: Compile shared Kotlin/Native tests for iOS simulator
+        run: ./gradlew --configure-on-demand :shared:compileTestKotlinIosSimulatorArm64
+
+      - name: Setup iOS signing
+        uses: ./.github/actions/setup-ios-signing
+        with:
+          cert_base64: ${{ secrets.IOS_DIST_CERT_BASE64 }}
+          cert_password: ${{ secrets.IOS_DIST_CERT_PASSWORD }}
+          provisioning_profile_base64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+          shareext_provisioning_profile_base64: ${{ secrets.IOS_SHAREEXT_PROVISIONING_PROFILE_BASE64 }}
+          keychain_password: ${{ secrets.IOS_KEYCHAIN_PASSWORD }}
+
+      # CI runners have no Apple ID logged in, so xcodebuild authenticates
+      # via the App Store Connect API key for any -allowProvisioningUpdates
+      # operation; otherwise it fails with "No Accounts: Add a new account
+      # in Accounts settings."
+      - name: Decode App Store Connect API key
+        uses: ./.github/actions/decode-base64-secret
+        with:
+          encoded: ${{ secrets.APPSTORE_CONNECT_API_KEY_BASE64 }}
+          output_path: ${{ runner.temp }}/private_keys/AuthKey_${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}.p8
+
+      # Manual signing: project.yml pins each Release target to the
+      # distribution cert and references PROFILE_NAME_APP /
+      # PROFILE_NAME_SHAREEXT as user-defined build settings. Passing them
+      # here lets each target pick up its own profile name (xcodebuild
+      # SETTING=VALUE overrides apply to all targets, but each target's
+      # PROVISIONING_PROFILE_SPECIFIER references a different var). No
+      # -allowProvisioningUpdates: the profiles were already imported by
+      # setup-ios-signing, so Apple doesn't need to mint fresh ones.
+      - name: Archive iOS app
+        run: |
+          xcodebuild archive \
+            -project iosApp/iosApp.xcodeproj \
+            -scheme iosApp \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/Soundscape.xcarchive" \
+            PROFILE_NAME_APP="$IOS_PROFILE_NAME" \
+            PROFILE_NAME_SHAREEXT="$IOS_SHAREEXT_PROFILE_NAME"
+
+      # Manual signing during export so xcodebuild reuses the profile we
+      # imported in setup-ios-signing instead of asking Apple to mint a fresh
+      # managed profile (which may lack capabilities like Associated Domains
+      # that exist on the App ID but can't be granted under the API key role).
+      - name: Write export options
+        run: |
+          cat > "$RUNNER_TEMP/ExportOptions.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key><string>app-store</string>
+            <key>teamID</key><string>48N3J4V5KM</string>
+            <key>signingStyle</key><string>manual</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>org.scottishtecharmy.soundscape</key>
+              <string>${IOS_PROFILE_NAME}</string>
+              <key>org.scottishtecharmy.soundscape.share</key>
+              <string>${IOS_SHAREEXT_PROFILE_NAME}</string>
+            </dict>
+            <key>uploadBitcode</key><false/>
+            <key>uploadSymbols</key><true/>
+          </dict>
+          </plist>
+          PLIST
+
+      - name: Export .ipa
+        env:
+          KEY_ID: ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APPSTORE_CONNECT_API_ISSUER_ID }}
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/Soundscape.xcarchive" \
+            -exportPath "$RUNNER_TEMP/export" \
+            -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
+            -authenticationKeyPath "$RUNNER_TEMP/private_keys/AuthKey_$KEY_ID.p8" \
+            -authenticationKeyID "$KEY_ID" \
+            -authenticationKeyIssuerID "$ISSUER_ID" \
+            -allowProvisioningUpdates
+
+      - name: Upload .ipa
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-ipa
+          path: ${{ runner.temp }}/export/*.ipa

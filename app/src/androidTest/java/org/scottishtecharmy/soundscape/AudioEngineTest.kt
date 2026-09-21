@@ -2,11 +2,11 @@ package org.scottishtecharmy.soundscape
 
 import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
-import org.scottishtecharmy.soundscape.audio.AudioEngine
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioType
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class AudioEngineTest {
@@ -26,9 +26,9 @@ class AudioEngineTest {
         Assert.assertEquals("Signal", beaconTypes[7])
         Assert.assertEquals("Signal Slow", beaconTypes[8])
         Assert.assertEquals("Signal Very Slow", beaconTypes[9])
-        Assert.assertEquals( "Mallet", beaconTypes[10])
-        Assert.assertEquals( "Mallet Slow", beaconTypes[11])
-        Assert.assertEquals( "Mallet Very Slow", beaconTypes[12])
+        Assert.assertEquals("Mallet", beaconTypes[10])
+        Assert.assertEquals("Mallet Slow", beaconTypes[11])
+        Assert.assertEquals("Mallet Very Slow", beaconTypes[12])
     }
 
     private fun moveListener(audioEngine: AudioEngine, duration: Int, noMovement: Boolean = false) {
@@ -36,23 +36,24 @@ class AudioEngineTest {
         var orientation = 0.0
         val delta = 360.0 / (duration / delayMilliseconds)
         var time: Long = 0
-        while(time <= duration) {
+        while (time <= duration) {
             audioEngine.updateGeometry(
                 listenerLatitude = 0.0,
                 listenerLongitude = 0.0,
                 listenerHeading = orientation,
                 focusGained = true,
                 duckingAllowed = false,
-                proximityNear = 15.0)
+                proximityNear = 15.0
+            )
             Thread.sleep(delayMilliseconds)
             time += delayMilliseconds
-            if(!noMovement)
+            if (!noMovement)
                 orientation += delta
         }
         Log.d(TAG, "Time $time, Orientation $orientation")
     }
 
-    private fun initializeAudioEngine() : NativeAudioEngine {
+    private fun initializeAudioEngine(): NativeAudioEngine {
         // Use the instrumentation targetContext for the assets etc.
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val audioEngine = NativeAudioEngine()
@@ -61,10 +62,11 @@ class AudioEngineTest {
         return audioEngine
     }
 
-    private fun tidyUp(audioEngine : NativeAudioEngine) {
+    private fun tidyUp(audioEngine: NativeAudioEngine) {
         audioEngine.destroy()
     }
 
+    @NightlyOnly
     @Test
     fun soundBeacon() {
         val audioEngine = initializeAudioEngine()
@@ -83,6 +85,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun allBeacons() {
         val audioEngine = initializeAudioEngine()
@@ -90,7 +93,7 @@ class AudioEngineTest {
 
         // Play each of the beacon types, with the orientation of the listener rotating
         // a full 360 degrees
-        for(beaconType in beaconTypes) {
+        for (beaconType in beaconTypes) {
             Log.d(TAG, "Test beacon type $beaconType")
             audioEngine.setBeaconType(beaconType)
 
@@ -102,6 +105,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun queuedSpeech() {
         val audioEngine = initializeAudioEngine()
@@ -114,11 +118,15 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun earcon() {
         val audioEngine = initializeAudioEngine()
 
-        audioEngine.createEarcon(NativeAudioEngine.EARCON_CALIBRATION_IN_PROGRESS, AudioType.STANDARD)
+        audioEngine.createEarcon(
+            NativeAudioEngine.EARCON_CALIBRATION_IN_PROGRESS,
+            AudioType.STANDARD
+        )
         audioEngine.createEarcon(NativeAudioEngine.EARCON_CALIBRATION_SUCCESS, AudioType.STANDARD)
         audioEngine.createEarcon(NativeAudioEngine.EARCON_CALLOUTS_ON, AudioType.STANDARD)
         audioEngine.createEarcon(NativeAudioEngine.EARCON_CALLOUTS_OFF, AudioType.STANDARD)
@@ -137,6 +145,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun textAndEarcon() {
         val audioEngine = initializeAudioEngine()
@@ -147,6 +156,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun textWithShutdownRestart() {
         var audioEngine = initializeAudioEngine()
@@ -154,7 +164,10 @@ class AudioEngineTest {
         moveListener(audioEngine, 1000)
         tidyUp(audioEngine)
         audioEngine = initializeAudioEngine()
-        audioEngine.createTextToSpeech("Text is playing out again to test shutdown.", AudioType.STANDARD)
+        audioEngine.createTextToSpeech(
+            "Text is playing out again to test shutdown.",
+            AudioType.STANDARD
+        )
         moveListener(audioEngine, 5000)
         tidyUp(audioEngine)
     }
@@ -178,6 +191,7 @@ class AudioEngineTest {
 //        tidyUp(audioEngine)
 //    }
 
+    @NightlyOnly
     @Test
     fun earconPosition() {
         val audioEngine = initializeAudioEngine()
@@ -194,7 +208,7 @@ class AudioEngineTest {
         Thread.sleep(2000)
 
         var heading = 0.0
-        while(heading < 360.0) {
+        while (heading < 360.0) {
             audioEngine.createEarcon(
                 NativeAudioEngine.EARCON_SENSE_POI,
                 AudioType.RELATIVE,
@@ -215,23 +229,26 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun textPosition() {
         val audioEngine = initializeAudioEngine()
         audioEngine.createTextToSpeech(
             "Position text to the left",
             AudioType.COMPASS,
-            heading = -90.0)
+            heading = -90.0
+        )
         moveListener(audioEngine, 4000, noMovement = true)
         audioEngine.createTextToSpeech(
             "Position text to the right",
             AudioType.COMPASS,
-            heading = 90.0)
+            heading = 90.0
+        )
         moveListener(audioEngine, 4000, noMovement = true)
         tidyUp(audioEngine)
     }
 
     companion object {
-        const val TAG : String = "AudioTestEngine"
+        const val TAG: String = "AudioTestEngine"
     }
 }

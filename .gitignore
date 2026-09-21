@@ -1,4 +1,5 @@
 
+__pycache__/
 .gradle
 /local.properties
 /.idea/caches
@@ -8,6 +9,7 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 .DS_Store
+ComposePreference/.patched
 /build
 /captures
 .externalNativeBuild
@@ -51,3 +53,12 @@ google-services.json
 # Android Profiling
 *.hprof
 
+iosApp/Local.xcconfig
+iosApp/iosApp.xcodeproj/
+iosApp/iosApp/Info.plist
+iosApp/ShareExtension/Info.plist
+
+# Jira -> GitHub migration scratch output
+scripts/migration_attachments/
+scripts/migration_mapping.csv
+/acli-token*.txt

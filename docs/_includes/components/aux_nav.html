@@ -1,0 +1,28 @@
+{%- comment -%}
+  Overrides the just-the-docs aux-nav component to localise each link label.
+  The label in _config.yml `aux_links` (e.g. "Soundscape on GitHub") is used as
+  the lookup key into _data/ui_strings.yml `aux_links`; if there is a translation
+  for the current jekyll-polyglot render language we use it, otherwise we fall
+  back to the config label itself. Everything else matches the theme component.
+{%- endcomment -%}
+<nav aria-label="Auxiliary" class="aux-nav">
+  <ul class="aux-nav-list">
+    {% for link in site.aux_links %}
+      {%- assign link_translations = site.data.ui_strings.aux_links[link.first] -%}
+      {%- if link_translations -%}
+        {%- assign link_label = link_translations[site.active_lang] | default: link.first -%}
+      {%- else -%}
+        {%- assign link_label = link.first -%}
+      {%- endif -%}
+      <li class="aux-nav-list-item">
+        <a href="{{ link.last }}" class="site-button"
+          {% if site.aux_links_new_tab %}
+          target="_blank" rel="noopener noreferrer"
+          {% endif %}
+        >
+          {{ link_label }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

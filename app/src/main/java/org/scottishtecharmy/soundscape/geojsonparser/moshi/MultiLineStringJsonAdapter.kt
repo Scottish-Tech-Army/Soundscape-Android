@@ -1,6 +1,11 @@
 package org.scottishtecharmy.soundscape.geojsonparser.moshi
 
-import com.squareup.moshi.*
+import com.squareup.moshi.FromJson
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonDataException
+import com.squareup.moshi.JsonReader
+import com.squareup.moshi.JsonWriter
+import com.squareup.moshi.ToJson
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter.Companion.OPTIONS
@@ -27,7 +32,10 @@ class MultiLineStringJsonAdapter : JsonAdapter<MultiLineString>() {
                         reader.beginArray()
                         val line = arrayListOf<LngLatAlt>()
                         while (reader.hasNext()) {
-                            line.add(positionJsonAdapter.fromJson(reader)!!)
+                            line.add(
+                                positionJsonAdapter.fromJson(reader)
+                                    ?: throw JsonDataException("Missing position at ${reader.path}")
+                            )
                         }
                         position.add(line)
                         reader.endArray()

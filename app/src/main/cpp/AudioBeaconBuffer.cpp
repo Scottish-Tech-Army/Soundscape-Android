@@ -76,7 +76,7 @@ BeaconAudioSource::BeaconAudioSource(PositionedAudio *parent, double degrees_off
 }
 
 void BeaconAudioSource::UpdateGeometry(double degrees_off_axis,
-                                        BeaconAudioSource::SourceMode mode) {
+                                       BeaconAudioSource::SourceMode mode) {
     m_DegreesOffAxis = degrees_off_axis;
     m_Mode = mode;
 }
@@ -93,18 +93,18 @@ BeaconBufferGroup::BeaconBufferGroup(AAssetManager *mgr,
     TRACE("Create BeaconBufferGroup %p", this);
     m_pDescription = beacon_descriptor;
 
-    for (const auto &asset : m_pDescription->m_Beacons) {
+    for (const auto &asset: m_pDescription->m_Beacons) {
         auto buffer = std::make_unique<BeaconBuffer>(mgr, asset.m_Filename,
                                                      asset.m_MaxAngle, targetSampleRate);
         m_pBuffers.push_back(std::move(buffer));
     }
 
     m_pIntro = std::make_unique<BeaconBuffer>(mgr,
-                                               "file:///android_asset/Route/Route_Start.wav",
-                                               180.0, targetSampleRate);
+                                              "file:///android_asset/Sounds/Route_Start.wav",
+                                              180.0, targetSampleRate);
     m_pOutro = std::make_unique<BeaconBuffer>(mgr,
-                                               "file:///android_asset/Route/Route_End.wav",
-                                               180.0, targetSampleRate);
+                                              "file:///android_asset/Sounds/Route_End.wav",
+                                              180.0, targetSampleRate);
 }
 
 BeaconBufferGroup::~BeaconBufferGroup() {
@@ -122,7 +122,7 @@ void BeaconBufferGroup::UpdateCurrentBufferFromHeadingAndLocation() {
 
     switch (m_Mode) {
         case BeaconAudioSource::DIRECTION_MODE: {
-            for (const auto &buffer : m_pBuffers) {
+            for (const auto &buffer: m_pBuffers) {
                 if (buffer->CheckIsActive(m_DegreesOffAxis)) {
                     m_pCurrentBuffer = buffer.get();
                     break;
@@ -167,8 +167,8 @@ int BeaconBufferGroup::readPcm(float *outMono, int numFrames) {
     if (m_PlayState == PLAYING_BEACON) {
         unsigned int phraseFrames = m_pCurrentBuffer->GetNumFrames();
         unsigned int framesPerBeat = (m_pDescription->m_BeatsInPhrase > 0 && phraseFrames > 0)
-                ? phraseFrames / m_pDescription->m_BeatsInPhrase
-                : phraseFrames;
+                                     ? phraseFrames / m_pDescription->m_BeatsInPhrase
+                                     : phraseFrames;
 
         int written = 0;
         int remaining = numFrames;
@@ -179,7 +179,8 @@ int BeaconBufferGroup::readPcm(float *outMono, int numFrames) {
             unsigned int posInBeat = (framesPerBeat > 0) ? posInPhrase % framesPerBeat : 0;
             unsigned int framesToBeat = (framesPerBeat > 0) ? framesPerBeat - posInBeat : remaining;
 
-            int toRead = (static_cast<int>(framesToBeat) < remaining) ? static_cast<int>(framesToBeat) : remaining;
+            int toRead = (static_cast<int>(framesToBeat) < remaining)
+                         ? static_cast<int>(framesToBeat) : remaining;
 
             m_pCurrentBuffer->Read(outMono + written, toRead, m_FramePos, false);
             m_FramePos += toRead;
@@ -197,7 +198,7 @@ int BeaconBufferGroup::readPcm(float *outMono, int numFrames) {
         }
     } else {
         unsigned int framesRead = m_pCurrentBuffer->Read(outMono, numFrames, m_FramePos,
-                                                          padWithSilence);
+                                                         padWithSilence);
         m_FramePos += framesRead;
 
         if (m_PlayState == PLAYING_INTRO) {
@@ -266,10 +267,16 @@ int TtsAudioSource::readPcm(float *outMono, int numFrames) {
     // Determine bytes per sample
     int bytesPerSample;
     switch (m_SrcAudioFormat) {
-        case 0: bytesPerSample = 1; break;
+        case 0:
+            bytesPerSample = 1;
+            break;
         default:
-        case 1: bytesPerSample = 2; break;
-        case 2: bytesPerSample = 4; break;
+        case 1:
+            bytesPerSample = 2;
+            break;
+        case 2:
+            bytesPerSample = 4;
+            break;
     }
     int bytesPerFrame = bytesPerSample * m_SrcChannelCount;
     int rawBytesNeeded = srcFramesNeeded * bytesPerFrame;
@@ -334,7 +341,7 @@ int TtsAudioSource::readPcm(float *outMono, int numFrames) {
     if (m_Resampler.needsResampling() && srcFramesRead > 0) {
         int consumed;
         int outFrames = m_Resampler.process(m_SrcBuf.data(), srcFramesRead,
-                                             outMono, numFrames, consumed);
+                                            outMono, numFrames, consumed);
         // Zero-fill remainder
         if (outFrames < numFrames) {
             memset(outMono + outFrames, 0, (numFrames - outFrames) * sizeof(float));
@@ -396,7 +403,7 @@ bool EarconSource::isFinished() const {
 }
 
 void EarconSource::UpdateGeometry(double degrees_off_axis,
-                                   BeaconAudioSource::SourceMode mode) {
+                                  BeaconAudioSource::SourceMode mode) {
     if (isFinished()) {
         m_pParent->Eof();
     }

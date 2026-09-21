@@ -1,0 +1,28 @@
+/* Spoken Siri commands - Korean.
+
+   Values only: the keys are the English phrases declared in
+   SoundscapeAppShortcuts.swift and must stay exactly as they are. See
+   en.lproj/AppShortcuts.strings for the rules (${applicationName} in every phrase, ${parameter}
+   tokens kept but free to move).
+
+   Every phrase keeps the shape "<app name> <group> <choice>", so knowing the six
+   group words is enough to reach everything.
+
+   First pass, not authored by a native speaker - corrections welcome. */
+
+"${applicationName} surroundings ${kind}" = "${applicationName} 주변 ${kind}";
+"${applicationName} surroundings" = "${applicationName} 주변";
+
+"${applicationName} route ${command}" = "${applicationName} 경로 ${command}";
+"${applicationName} route" = "${applicationName} 경로";
+
+"${applicationName} start route ${route}" = "${applicationName} 경로 시작 ${route}";
+"${applicationName} start route" = "${applicationName} 경로 시작";
+
+"${applicationName} beacon ${marker}" = "${applicationName} 비콘 ${marker}";
+"${applicationName} beacon" = "${applicationName} 비콘";
+
+"${applicationName} list ${kind}" = "${applicationName} 목록 ${kind}";
+"${applicationName} list" = "${applicationName} 목록";
+
+"${applicationName} stop beacon" = "${applicationName} 비콘 중지";

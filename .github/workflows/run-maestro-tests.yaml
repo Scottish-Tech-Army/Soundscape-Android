@@ -9,43 +9,113 @@ env:
 
 on:
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually from the Actions tab. With no
+  # inputs it downloads and tests the latest GitHub release. An optional tag
+  # can be given to test an older release instead.
   workflow_dispatch:
-    branches: [ "main", "test-tags" ]
+    inputs:
+      release_tag:
+        description: 'Release tag to test (e.g. soundscape-1.0.12). Leave empty for the latest release.'
+        required: false
+        type: string
+
+  # Allows another workflow (e.g. run-tests) to call this as a follow-on job,
+  # passing the name of an APK artifact it uploaded earlier in the same run.
+  workflow_call:
+    inputs:
+      apk_artifact:
+        description: 'Name of an APK artifact uploaded earlier in the same run to install and test.'
+        required: false
+        type: string
+      fail_on_error:
+        description: 'Fail the run if any Maestro flow fails. Callers can set this false to keep Maestro non-blocking.'
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   maestro-test:
     runs-on: ubuntu-latest
     environment: development
+    permissions:
+      contents: read
+
+    # Run the suite across a matrix of API levels, screen sizes and languages so
+    # the flows are exercised on small and large screens, on API 31 and 35, and
+    # in both English and Japanese. Four combinations: small and large each run
+    # on API 31 and 35, and the API 35 large run is done in Japanese. fail-fast
+    # is off so one failing combination doesn't cancel the others.
+    strategy:
+      fail-fast: false
+      matrix:
+        # target is per-leg: API 31 has a "default" x86_64 system image, but API
+        # 35 doesn't reliably, so it uses "google_apis" instead.
+        include:
+          - api-level: 31
+            target: default
+            screen: small
+            profile: small_phone
+            locale: en-US
+          - api-level: 31
+            target: default
+            screen: large
+            profile: pixel_6
+            locale: en-US
+          - api-level: 35
+            target: google_apis
+            screen: small
+            profile: small_phone
+            locale: en-US
+          - api-level: 35
+            target: google_apis
+            screen: large
+            profile: pixel_6
+            locale: ja-JP
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
-
-      - name: Set Up JDK
-        uses: actions/setup-java@v5
+      # When called from another workflow, grab the APK that workflow built and
+      # uploaded earlier in the same run.
+      - name: Download APK from calling workflow
+        if: ${{ inputs.apk_artifact != '' }}
+        uses: actions/download-artifact@v8
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
-          java-version: '19'
+          name: ${{ inputs.apk_artifact }}
+          path: apk
 
-      - name: Setup tile and search providers
+      # When run standalone, download the APK from a GitHub release. Defaults to
+      # the latest release unless a tag was supplied.
+      - name: Download APK from release
+        if: ${{ inputs.apk_artifact == '' }}
         env:
-          TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
-          TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
-          SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
-          SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
-          echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
-          echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
-          echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
-          echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
+          mkdir -p apk
+          if [ -z "$RELEASE_TAG" ]; then
+            RELEASE_TAG=$(gh release view --json tagName -q .tagName)
+            echo "No tag supplied, using latest release: $RELEASE_TAG"
+          else
+            echo "Using requested release: $RELEASE_TAG"
+          fi
+          gh release download "$RELEASE_TAG" --pattern 'release-apk-*.zip' --dir apk
+          unzip -o apk/release-apk-*.zip -d apk
 
-      - name: Build debug version
-        run: ./gradlew assembleDebug
+      # The artifact (debug build) and the release zip (release build) put the
+      # APK at different paths, so locate it rather than hard-coding the name.
+      - name: Locate APK
+        id: find-apk
+        run: |
+          apk_path=$(find apk -name '*.apk' | head -n1)
+          if [ -z "$apk_path" ]; then
+            echo "No APK found to test" >&2
+            exit 1
+          fi
+          echo "Found APK: $apk_path"
+          echo "apk_path=$apk_path" >> "$GITHUB_OUTPUT"
 
       - name: Enable KVM
         run: |
@@ -54,43 +124,155 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - name: Install Maestro
-        run: MAESTRO_VERSION=1.40.3 curl -Ls 'https://get.maestro.mobile.dev' | bash
+        run: MAESTRO_VERSION=2.6.0 curl -Ls 'https://get.maestro.mobile.dev' | bash
+
+      # Fetch the Glasgow offline map extract on the runner host; it is pushed
+      # onto the emulator in the Maestro Tests step below.
+      - name: Download offline map extract
+        run: |
+          curl -Lsf -o glasgow-gb.pmtiles \
+            'https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/glasgow-gb.pmtiles'
 
       - name: Maestro Tests
         id: maestro-tests
         uses: reactivecircus/android-emulator-runner@v2
         continue-on-error: true # IMPORTANT: allow pipeline to continue to Android Test Report step
         with:
-          api-level: 34
+          api-level: ${{ matrix.api-level }}
           arch: x86_64
           ram-size: 2048M
           enable-hw-keyboard: false
-          target: default
+          target: ${{ matrix.target }}
+          # Screen-size dimension: the AVD is created as this hardware device
+          # (small_phone for "small", pixel_6 for "large"), so the resolution and
+          # density are baked in rather than resized at runtime.
+          profile: ${{ matrix.profile }}
           script: |
+            # The emulator runs a userdebug image, so "adb root" is available;
+            # we need it for scoped-storage writes and to set the system locale.
+            # "adb root" restarts adbd and the connection briefly drops while it
+            # does; intermittently the client sees that drop as a hard failure
+            # ("adb: unable to connect for root: closed") instead of reconnecting,
+            # especially right after the adb daemon has just started. Each script
+            # line here runs in its own shell, so a non-zero exit is fatal to the
+            # whole run - retry a few times with a short backoff rather than
+            # failing the job on what is normally a transient race.
+            status=1; for i in $(seq 1 10); do if adb wait-for-device && adb root; then status=0; break; fi; echo "adb root attempt $i failed, retrying..."; sleep 3; done; if [ "$status" -ne 0 ]; then echo "::error::adb root did not succeed after retries"; exit 1; fi
+            adb wait-for-device
+
+            # Language dimension: set the system locale and restart the Android
+            # framework so the entire UI (including onboarding) comes up in the
+            # matrix language. matrix.locale is a BCP-47 tag, e.g. en-US / ja-JP.
+            # The flows select controls by testTag, so they are language-agnostic;
+            # this exercises layout/wrapping under a different language.
+            #
+            # Only restart when the locale actually differs from the current one
+            # (the emulator already boots en-US, so the English legs skip this).
+            # sys.boot_completed is NOT reset by a framework restart, so we clear
+            # it before "stop; start" and then wait for the framework to set it
+            # back to "1" - otherwise the next steps race a half-restarted system.
+            adb shell 'want='"${{ matrix.locale }}"'; have=$(getprop persist.sys.locale); [ -z "$have" ] && have=$(getprop ro.product.locale); if [ "$have" != "$want" ]; then setprop persist.sys.locale "$want"; setprop sys.boot_completed 0; stop; start; fi'
+            adb wait-for-device
+            adb shell 'while [ "$(getprop sys.boot_completed)" != "1" ]; do sleep 2; done'
+
+            # Put SELinux in permissive mode. The offline map extract is pushed
+            # into the app's scoped external-storage dir by the shell/root user
+            # below, so it lands with the SELinux label "storage_file" and none of
+            # the app's per-process MLS categories. Enforcing SELinux then denies
+            # the app ("untrusted_app") read access to its own extract
+            # (avc: denied { read } ... tcontext=...:storage_file), so every tile
+            # falls through to the network. Permissive mode lets the app read the
+            # pushed file; it is acceptable on this userdebug test emulator and is
+            # set after the framework restart above so it is in effect for the run.
+            adb shell setenforce 0
+
             adb logcat -c                             # clear logs
             touch app/emulator.log                    # create log file
             chmod 777 app/emulator.log                # allow writing to log file
             adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
-            adb install app/build/outputs/apk/debug/app-debug.apk
-            mkdir maestro_outputs
-            $HOME/.maestro/bin/maestro test --format=junit --output=report1.xml --test-output-dir=maestro_outputs --no-ansi maestro/Onboarding.yaml
-            $HOME/.maestro/bin/maestro test --format=junit --output=report2.xml --test-output-dir=maestro_outputs --no-ansi maestro/HomePage.yaml
-            $HOME/.maestro/bin/maestro test --format=junit --output=report3.xml --test-output-dir=maestro_outputs --no-ansi maestro/LocationDetails.yaml
-            $HOME/.maestro/bin/maestro test --format=junit --output=report4.xml --test-output-dir=maestro_outputs --no-ansi maestro/PlacesNearby.yaml
+            adb install ${{ steps.find-apk.outputs.apk_path }}
 
+            # Pin the emulator GPS to a fixed location (Edinburgh) so the
+            # location-dependent flows run against known map data. This is emulator
+            # GPS state, not app state, so it survives the app data being cleared
+            # and only needs setting once here.
+            # adb emu geo fix takes longitude then latitude.
+            adb emu geo fix -3.223538 55.955360
+
+            mkdir maestro_outputs
+            # Run every flow even if an earlier one fails, then fail the step at
+            # the end if any of them failed.
+            #
+            # This MUST stay a single line. android-emulator-runner runs each
+            # script line in its own "sh -c", so a shell variable assigned on one
+            # line is empty by the next; a
+            # "status" variable accumulated across separate lines, with a trailing
+            # "exit $status", does not work: each line gets a fresh shell, the
+            # "|| status=1" makes the failing line still exit 0, and the final
+            # "exit $status" sees an empty variable and exits 0 - which left the
+            # step (and the whole run) green even when every flow failed. Keeping
+            # the loop and the exit in one shell makes the non-zero status stick.
+            #
+            # The Onboarding flow runs "launchApp: clearState: true" (pm clear),
+            # which deletes the app's external-storage directory - including any
+            # offline map extract pushed there. So Onboarding runs FIRST, and only
+            # then is the Glasgow extract pushed into the (now app-created)
+            # offline-extracts directory, before the location-dependent flows run.
+            # Pushing earlier is pointless: clearState would wipe it and every tile
+            # request would fall through to the network (which has no provider URL
+            # on fork PRs, producing hundreds of errors). The extracts directory is
+            # the app-specific external files dir + "/Download" (see
+            # GeoEngine.offlineExtractPath); scoped storage blocks writes there even
+            # for the shell user, which is why we took root above. The .geojson
+            # metadata sidecar (findExtracts reads "<pmtiles>.geojson") is committed
+            # under .github/fixtures as it is too small to be worth a download,
+            # unlike the pmtiles itself. The push stays inside this one shell so the
+            # "status" aggregation above keeps working.
+            #
+            # "Unable to launch app" launch timeouts are intermittent on the
+            # heavier google_apis images - the app itself does not crash and the
+            # next flow launches fine. Also seen for the same reason: Maestro's
+            # launchApp issuing its own adb call right into the adbd-restart race
+            # described above (adb root, further up), surfacing as "Command failed
+            # (host:transport:...): device offline" instead of the launch-timeout
+            # message - same transient cause, different wording, so it needs the
+            # same retry. A third wording: when that same race throws inside
+            # Maestro's internal deviceInfo/viewHierarchy call as a
+            # DeviceServerDiedException, Maestro's JUnit writer collapses it to a
+            # bare "Unknown error" in the XML - the "device offline" text only
+            # shows up in the per-flow maestro.log, not the report this grep reads.
+            # Confirmed via a real run: Onboarding got status="ERROR" with
+            # <failure>Unknown error</failure> while every genuine UI-assertion
+            # failure in the same run had a specific message, so this is a safe,
+            # distinct signature to retry on too. The rf() helper runs a flow and
+            # retries it ONCE, but ONLY when its JUnit report shows one of these
+            # exact launch failures. launchApp is the first command, before a flow
+            # does any work, so a retry then is safe. A blind retry-on-any-failure
+            # would NOT be: the stateful flows (e.g. LocationDetails assumes an
+            # empty database and creates markers A and B, asserting their order)
+            # would double-apply their changes if re-run after a mid-flow failure.
+            # The retry reuses the same --output path so the report reflects the
+            # final attempt. To add a flow, add its name (without .yaml) to the
+            # list below.
+            status=0; rf(){ $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; if [ "$r" -ne 0 ] && grep -Eq "Unable to launch app|device offline|Unknown error" "maestro_outputs/report-$1.xml" 2>/dev/null; then echo "::warning::launch of $1 failed; retrying once"; $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; fi; return "$r"; }; rf Onboarding || status=1; adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download; adb push glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; adb push .github/fixtures/glasgow-gb.pmtiles.geojson /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; for flow in HomePage LocationDetails PlacesNearby MarkersAndRoutes RouteCreation; do rf "$flow" || status=1; done; exit $status
+
+      # Artifact names must be unique across the matrix, so suffix them with the
+      # combination (e.g. maestro-reports-35-large-ja-JP).
       - name: Upload maestro reports
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
-          name: maestro-reports
+          name: maestro-reports-${{ matrix.api-level }}-${{ matrix.screen }}-${{ matrix.locale }}
           path: maestro_outputs
 
       - name: Upload Failing Test Report Log
         if: steps.maestro-tests.outcome != 'success'        # upload the generated log on failure of the tests job
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
-          name: logs
+          name: logs-${{ matrix.api-level }}-${{ matrix.screen }}-${{ matrix.locale }}
           path: app/emulator.log # path to where the log is
 
       - name: Raise error on test fail # set a red tick on the workflow run if the tests failed
-        if: steps.maestro-tests.outcome != 'success'
+        # inputs.fail_on_error is unset for a manual (workflow_dispatch) run, in
+        # which case we still want to fail; a caller can pass false to suppress.
+        if: steps.maestro-tests.outcome != 'success' && inputs.fail_on_error != false
         run: exit 1

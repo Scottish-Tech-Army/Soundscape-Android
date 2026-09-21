@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.navigating
 
-import android.Manifest
 import org.junit.Test
 
 class NavigatingScreenViewModelTest {

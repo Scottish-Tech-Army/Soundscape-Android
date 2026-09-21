@@ -1,51 +1,40 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
 import android.content.Context
-import android.media.AudioDeviceInfo
-import android.media.AudioManager
 import android.util.Log
 import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
-import javax.inject.Inject
 
-@HiltViewModel
-class SettingsViewModel @Inject constructor(
+class SettingsViewModel(
     private val soundscapeServiceConnection: SoundscapeServiceConnection,
-    @param:ApplicationContext val appContext: Context
+    val appContext: Context
 ) : ViewModel() {
     data class SettingsUiState(
         // Data for the ViewMode that affects the UI
-        var beaconDescriptions : List<Int> = emptyList(),
-        var beaconValues : List<String> = emptyList(),
-        var engineTypes : List<String> = emptyList(),
-        var voiceTypes : List<String> = emptyList(),
-        var storages : List<StorageUtils.StorageSpace> = emptyList(),
+        var beaconDescriptions: List<org.jetbrains.compose.resources.StringResource> = emptyList(),
+        var beaconValues: List<String> = emptyList(),
+        var engineTypes: List<String> = emptyList(),
+        var voiceTypes: List<String> = emptyList(),
+        var storages: List<StorageUtils.StorageSpace> = emptyList(),
         var currentStoragePath: String = "",
         var selectedStorageIndex: Int = -1,
-        var microphoneDescriptions : List<String> = listOf("Auto"),
-        var microphoneValues : List<String> = listOf(MainActivity.VOICE_COMMAND_MICROPHONE_DEFAULT),
     )
-
-    private val _restartAppEvent = MutableSharedFlow<Unit>()
-    val restartAppEvent = _restartAppEvent.asSharedFlow()
 
     private val _state: MutableStateFlow<SettingsUiState> = MutableStateFlow(SettingsUiState())
     val state: StateFlow<SettingsUiState> = _state.asStateFlow()
@@ -57,11 +46,14 @@ class SettingsViewModel @Inject constructor(
             // demonstrate settings changes.
             val storages = getOfflineMapStorage(appContext)
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
-            val path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
+            val path = sharedPreferences.getString(
+                MainActivity.SELECTED_STORAGE_KEY,
+                MainActivity.SELECTED_STORAGE_DEFAULT
+            )
             var currentPath = ""
             var currentIndex = 0
-            if((path != null) && (path.isNotEmpty())) {
-                for((index, storage) in storages.withIndex()) {
+            if ((path != null) && (path.isNotEmpty())) {
+                for ((index, storage) in storages.withIndex()) {
                     if (storage.path == path) {
                         currentIndex = index
                         currentPath = path
@@ -69,7 +61,7 @@ class SettingsViewModel @Inject constructor(
                     }
                 }
             } else {
-                if(storages.isNotEmpty()) {
+                if (storages.isNotEmpty()) {
                     currentPath = storages[0].path
                     currentIndex = 0
                 }
@@ -79,20 +71,25 @@ class SettingsViewModel @Inject constructor(
                 currentStoragePath = currentPath,
                 selectedStorageIndex = currentIndex
             )
-            refreshMicrophones()
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
-                if (it) {
-                    val audioEngine = soundscapeServiceConnection.soundscapeService?.audioEngine!!
-                    serviceBoundJob = Job()
-                    viewModelScope.launch(serviceBoundJob!!) {
+                val audioEngine = soundscapeServiceConnection.soundscapeService?.audioEngine
+                if (it && audioEngine != null) {
+                    serviceBoundJob = viewModelScope.launch {
                         audioEngine.ttsRunningStateChange.collectLatest { initialized ->
                             if (initialized) {
                                 // Only once the TextToSpeech engine is initialized can we populate the
                                 // members of these lists.
-                                val audioEngineTypes = audioEngine.getAvailableSpeechEngines()
-
-                                val audioEngineVoiceTypes = audioEngine.getAvailableSpeechVoices()
+                                // getAvailableSpeechEngines/getAvailableSpeechVoices end up making a
+                                // synchronous Binder call into the system TTS service
+                                // (ITextToSpeechService.getVoices), which can block for a long time on
+                                // some OEM builds. Run them off the main thread to avoid ANRs.
+                                val (audioEngineTypes, audioEngineVoiceTypes) = withContext(Dispatchers.IO) {
+                                    Pair(
+                                        audioEngine.getAvailableSpeechEngines(),
+                                        audioEngine.getAvailableSpeechVoices()
+                                    )
+                                }
                                 val voiceTypes = mutableListOf<String>()
 
                                 // The list of voices will start of with those in the current locale
@@ -120,7 +117,8 @@ class SettingsViewModel @Inject constructor(
                                 }
 
                                 val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
-                                val beaconTypes = mutableListOf<Int>()
+                                val beaconTypes =
+                                    mutableListOf<org.jetbrains.compose.resources.StringResource>()
                                 val beaconValues = mutableListOf<String>()
                                 for (type in audioEngineBeaconTypes) {
                                     beaconTypes.add(getBeaconResourceId(type))
@@ -132,61 +130,16 @@ class SettingsViewModel @Inject constructor(
                                     voiceTypes = voiceTypes,
                                     engineTypes = audioEngineTypes.map { engine -> "${engine.label}:::${engine.name}" },
                                 )
-                            }
-                            else {
+                            } else {
                                 Log.d(TAG, "Engine has gone uninitialized")
                             }
                         }
                     }
-                }
-                else
-                {
+                } else {
                     serviceBoundJob?.cancel()
                 }
             }
         }
-    }
-    fun refreshMicrophones() {
-        val am = appContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        val inputs = am.getDevices(AudioManager.GET_DEVICES_INPUTS)
-        val descriptions = mutableListOf("Auto")
-        val values = mutableListOf(MainActivity.VOICE_COMMAND_MICROPHONE_DEFAULT)
-        for (device in inputs) {
-            val name = device.productName.toString().ifBlank { "Unknown" }
-            val typeName = microphoneTypeName(device.type)
-            val description = "$name ($typeName)"
-            // Use address as stable identifier for BT, fall back to type|productName
-            val value = if (device.address.isNotBlank())
-                "${device.type}|${device.address}"
-            else
-                "${device.type}|${device.productName}"
-            descriptions.add(description)
-            values.add(value)
-        }
-        _state.value = _state.value.copy(
-            microphoneDescriptions = descriptions,
-            microphoneValues = values
-        )
-    }
-
-    private fun microphoneTypeName(type: Int): String = when (type) {
-        AudioDeviceInfo.TYPE_BUILTIN_MIC -> "Built-in"
-        AudioDeviceInfo.TYPE_BLUETOOTH_SCO -> "Bluetooth SCO"
-        AudioDeviceInfo.TYPE_BLE_HEADSET -> "BLE Headset"
-        AudioDeviceInfo.TYPE_WIRED_HEADSET -> "Wired Headset"
-        AudioDeviceInfo.TYPE_USB_DEVICE -> "USB"
-        AudioDeviceInfo.TYPE_USB_HEADSET -> "USB Headset"
-        AudioDeviceInfo.TYPE_TELEPHONY -> "Telephony"
-        else -> "Type $type"
-    }
-
-    fun updateLanguage() {
-        // Stop the service so it picks up the new locale on next start. The activity will be
-        // recreated by AppCompatDelegate.setApplicationLocales(...); its onResume() detects the
-        // stopped service and calls setServiceState(true) from a freshly-registered
-        // ActivityResultLauncher. Holding a MainActivity reference across recreate would crash
-        // when launch() is invoked on the destroyed activity's launcher.
-        soundscapeServiceConnection.stopService()
     }
 
     fun selectStorage(path: String) {
@@ -194,7 +147,7 @@ class SettingsViewModel @Inject constructor(
         sharedPreferences.edit(commit = true) { putString(MainActivity.SELECTED_STORAGE_KEY, path) }
 
         var currentIndex = -1
-        for((index, storage) in _state.value.storages.withIndex()) {
+        for ((index, storage) in _state.value.storages.withIndex()) {
             if (storage.path == path) {
                 currentIndex = index
                 break
@@ -216,16 +169,6 @@ class SettingsViewModel @Inject constructor(
 
     fun stopBeaconPreview(commit: Boolean, chosenBeaconType: String?) {
         soundscapeServiceConnection.stopBeaconPreview(commit, chosenBeaconType)
-    }
-
-    fun resetToDefaults() {
-        viewModelScope.launch {
-            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
-            sharedPreferences.edit(commit = true) {
-                clear()
-            }
-            _restartAppEvent.emit(Unit)
-        }
     }
 
     companion object {

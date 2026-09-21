@@ -5,17 +5,19 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class IntersectionsTestMvt {
-    private fun setupTest(currentLocation: LngLatAlt,
-                          deviceHeading: Double,
-                          fovDistance: Double) : Intersection? {
+    private fun setupTest(
+        currentLocation: LngLatAlt,
+        deviceHeading: Double,
+        fovDistance: Double
+    ): Intersection? {
 
         val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
         val mapMatchFilter = MapMatchFilter()
@@ -23,7 +25,8 @@ class IntersectionsTestMvt {
             location = currentLocation,
             gridState = gridState,
             collection = FeatureCollection(),
-            dump = false
+            dump = false,
+            strings = null
         )
         val userGeometry = UserGeometry(
             location = currentLocation,
@@ -33,12 +36,14 @@ class IntersectionsTestMvt {
         )
 
         return getRoadsDescriptionFromFov(
-                    gridState,
-                    userGeometry
-                ).intersection
+            gridState,
+            userGeometry,
+            null
+        ).intersection
     }
+
     @Test
-    fun intersectionsStraightAheadType(){
+    fun intersectionsStraightAheadType() {
         // This is the same test but using GeoJSON generated from a .Mvt tile NOT the original
         // GeoJSON from the Soundscape backend
         //  Road Switch
@@ -64,20 +69,26 @@ class IntersectionsTestMvt {
         val intersection = setupTest(currentLocation, deviceHeading, fovDistance)!!
 
         // should be two roads that make up the intersection
-        Assert.assertEquals(2, intersection.members.size )
+        Assert.assertEquals(2, intersection.members.size)
 
         // they are Weston Road and Long Ashton Road and should be behind (0) and the other ahead (4)
         val indexWR = 1
         val indexLA = 0
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexWR].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexWR].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Weston Road", intersection.members[indexWR].name)
-        Assert.assertEquals(Direction.AHEAD, intersection.members[indexLA].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.AHEAD,
+            intersection.members[indexLA].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA].name)
 
     }
 
     @Test
-    fun intersectionsRightTurn(){
+    fun intersectionsRightTurn() {
         //  Turn Right
         //   _____________
         //  |          B →
@@ -92,26 +103,32 @@ class IntersectionsTestMvt {
 
         // Fake device location and pretend the device is pointing South West and we are located on:
         // Belgrave Place (A)
-        val currentLocation = LngLatAlt(-2.615585745757045,51.457957257918395)
+        val currentLocation = LngLatAlt(-2.615585745757045, 51.457957257918395)
         val deviceHeading = 225.0 // South West
         val fovDistance = 50.0
 
         val intersection = setupTest(currentLocation, deviceHeading, fovDistance)!!
 
         // should be two roads that make up the intersection
-        Assert.assertEquals(2, intersection.members.size )
+        Assert.assertEquals(2, intersection.members.size)
         // they are Belgrave Place and Codrington Place and should be behind (0) and right (6)
         val indexBP = 0
         val indexCP = 1
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexBP].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexBP].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Belgrave Place", intersection.members[indexBP].name)
-        Assert.assertEquals(Direction.RIGHT, intersection.members[indexCP].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.RIGHT,
+            intersection.members[indexCP].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Codrington Place", intersection.members[indexCP].name)
 
     }
 
     @Test
-    fun intersectionsLeftTurn(){
+    fun intersectionsLeftTurn() {
         //  Turn Left
         //  _____________
         //  ← B          |
@@ -133,19 +150,25 @@ class IntersectionsTestMvt {
         val intersection = setupTest(currentLocation, deviceHeading, fovDistance)!!
 
         // should be two roads that make up the intersection
-        Assert.assertEquals(2, intersection.members.size )
+        Assert.assertEquals(2, intersection.members.size)
         // they are Codrington Place and Belgrave Place and should be behind (0) and left (2)
         val indexBP = 0
         val indexCP = 1
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexCP].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexCP].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Codrington Place", intersection.members[indexCP].name)
-        Assert.assertEquals(Direction.LEFT, intersection.members[indexBP].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.LEFT,
+            intersection.members[indexBP].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Belgrave Place", intersection.members[indexBP].name)
 
     }
 
     @Test
-    fun intersectionsSideRoadRight(){
+    fun intersectionsSideRoadRight() {
         //  Side Road Right
         //
         //  | ↑ |
@@ -164,7 +187,7 @@ class IntersectionsTestMvt {
 
         // Fake device location and pretend the device is pointing South West and we are located on:
         // Long Ashton Road
-        val currentLocation = LngLatAlt(-2.656109007812404,51.43079699441145)
+        val currentLocation = LngLatAlt(-2.656109007812404, 51.43079699441145)
         val deviceHeading = 250.0 // South West
         val fovDistance = 50.0
 
@@ -174,22 +197,31 @@ class IntersectionsTestMvt {
         // The road that leads up to the intersection Long Ashton Road (0)
         // The road that continues on from the intersection Long Ashton Road (4)
         // The road that is the right turn St Martins (6)
-        Assert.assertEquals(3, intersection.members.size )
+        Assert.assertEquals(3, intersection.members.size)
 
         val indexLA1 = 1
         val indexLA2 = 0
         val indexSM = 2
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexLA1].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexLA1].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA1].name)
-        Assert.assertEquals(Direction.AHEAD, intersection.members[indexLA2].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.AHEAD,
+            intersection.members[indexLA2].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA2].name)
-        Assert.assertEquals(Direction.RIGHT, intersection.members[indexSM].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.RIGHT,
+            intersection.members[indexSM].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("St Martins", intersection.members[indexSM].name)
 
     }
 
     @Test
-    fun intersectionsSideRoadLeft(){
+    fun intersectionsSideRoadLeft() {
         //  Side Road Left
         //
         //           | ↑ |
@@ -207,7 +239,7 @@ class IntersectionsTestMvt {
         //
         // Fake device location and pretend the device is pointing North East and we are located on:
         // Long Ashton Road (A)
-        val currentLocation = LngLatAlt(-2.656530323429564,51.43065207103919)
+        val currentLocation = LngLatAlt(-2.656530323429564, 51.43065207103919)
         val deviceHeading = 50.0 // North East
         val fovDistance = 50.0
 
@@ -222,16 +254,25 @@ class IntersectionsTestMvt {
         val indexLA1 = 0
         val indexLA2 = 2
         val indexSM = 1
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexLA1].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexLA1].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA1].name)
-        Assert.assertEquals(Direction.LEFT, intersection.members[indexLA2].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.LEFT,
+            intersection.members[indexLA2].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("St Martins", intersection.members[indexLA2].name)
-        Assert.assertEquals(Direction.AHEAD, intersection.members[indexSM].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.AHEAD,
+            intersection.members[indexSM].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Long Ashton Road", intersection.members[indexSM].name)
     }
 
     @Test
-    fun intersectionsT1Test(){
+    fun intersectionsT1Test() {
         //  T1
         //  ___________________
         //  ← B             B →
@@ -248,7 +289,7 @@ class IntersectionsTestMvt {
 
         // Fake device location and pretend the device is pointing South West and we are located on:
         // St Martins
-        val currentLocation = LngLatAlt(-2.656540700657672,51.430978147982785)
+        val currentLocation = LngLatAlt(-2.656540700657672, 51.430978147982785)
         val deviceHeading = 140.0 // South East
         val fovDistance = 50.0
 
@@ -258,21 +299,30 @@ class IntersectionsTestMvt {
         // The road that leads up to the intersection St Martins (0)
         // The road that is the T intersection Long Ashton Road left (2) and right (6)
 
-        Assert.assertEquals(3, intersection.members.size )
+        Assert.assertEquals(3, intersection.members.size)
 
         val indexLA1 = 1
         val indexLA2 = 0
         val indexSM = 2
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexSM].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexSM].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("St Martins", intersection.members[indexSM].name)
-        Assert.assertEquals(Direction.LEFT, intersection.members[indexLA1].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.LEFT,
+            intersection.members[indexLA1].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA1].name)
-        Assert.assertEquals(Direction.RIGHT, intersection.members[indexLA2].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.RIGHT,
+            intersection.members[indexLA2].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA2].name)
     }
 
     @Test
-    fun intersectionsT2Test(){
+    fun intersectionsT2Test() {
         //  T2
         //  ___________________
         //  ← B             C →
@@ -294,21 +344,30 @@ class IntersectionsTestMvt {
 
         val intersection = setupTest(currentLocation, deviceHeading, fovDistance)!!
 
-        Assert.assertEquals(3, intersection.members.size )
+        Assert.assertEquals(3, intersection.members.size)
         // Goodeve Road (0) Seawalls Road (2) and Knoll Hill (6)
         val indexGR = 1
         val indexSR = 2
         val indexKH = 0
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexGR].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexGR].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Goodeve Road", intersection.members[indexGR].name)
-        Assert.assertEquals(Direction.LEFT, intersection.members[indexSR].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.LEFT,
+            intersection.members[indexSR].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Seawalls Road", intersection.members[indexSR].name)
-        Assert.assertEquals(Direction.RIGHT, intersection.members[indexKH].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.RIGHT,
+            intersection.members[indexKH].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Knoll Hill", intersection.members[indexKH].name)
     }
 
     @Test
-    fun intersectionsCross1Test(){
+    fun intersectionsCross1Test() {
         //  Cross1
         //         | ↑ |
         //         | A |
@@ -332,25 +391,37 @@ class IntersectionsTestMvt {
 
         val intersection = setupTest(currentLocation, deviceHeading, fovDistance)!!
 
-        Assert.assertEquals(4, intersection.members.size )
+        Assert.assertEquals(4, intersection.members.size)
         // Grange Road (0) and (4) Manilla Road Road (2) and (6)
         val indexGR1 = 0
         val indexGR2 = 2
         val indexMR1 = 3
         val indexMR2 = 1
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexGR1].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexGR1].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Grange Road", intersection.members[indexGR1].name)
-        Assert.assertEquals(Direction.LEFT, intersection.members[indexMR1].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.LEFT,
+            intersection.members[indexMR1].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Manilla Road", intersection.members[indexMR1].name)
-        Assert.assertEquals(Direction.AHEAD, intersection.members[indexGR2].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.AHEAD,
+            intersection.members[indexGR2].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Grange Road", intersection.members[indexGR2].name)
-        Assert.assertEquals(Direction.RIGHT, intersection.members[indexMR2].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.RIGHT,
+            intersection.members[indexMR2].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Manilla Road", intersection.members[indexMR2].name)
 
     }
 
     @Test
-    fun intersectionCross2Test(){
+    fun intersectionCross2Test() {
         //  Cross2
         //         | ↑ |
         //         | A |
@@ -377,26 +448,38 @@ class IntersectionsTestMvt {
 
         val intersection = setupTest(currentLocation, deviceHeading, fovDistance)!!
 
-        Assert.assertEquals(4, intersection.members.size )
+        Assert.assertEquals(4, intersection.members.size)
 
         // Lansdown Road (0) and (4) Manilla Road (2) and Vyvyan Road(6)
         val indexLR1 = 0
         val indexLR2 = 2
         val indexMR = 1
         val indexVR = 3
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexLR1].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexLR1].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Lansdown Road", intersection.members[indexLR1].name)
-        Assert.assertEquals(Direction.LEFT, intersection.members[indexMR].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.LEFT,
+            intersection.members[indexMR].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Manilla Road", intersection.members[indexMR].name)
-        Assert.assertEquals(Direction.AHEAD, intersection.members[indexLR2].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.AHEAD,
+            intersection.members[indexLR2].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Lansdown Road", intersection.members[indexLR2].name)
-        Assert.assertEquals(Direction.RIGHT, intersection.members[indexVR].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.RIGHT,
+            intersection.members[indexVR].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Vyvyan Road", intersection.members[indexVR].name)
 
     }
 
     //@Test
-    fun intersectionsCross3Test(){
+    fun intersectionsCross3Test() {
         //  Cross3
         //         | ↑ |
         //         | D |
@@ -419,43 +502,58 @@ class IntersectionsTestMvt {
 
         val intersection = setupTest(currentLocation, deviceHeading, fovDistance)!!
 
-        Assert.assertEquals(4, intersection.members.size )
+        Assert.assertEquals(4, intersection.members.size)
 
         // St Mary's Butts (0)  Oxford Road (2), West Street (4) and Broad Street (6)
         val indexSMB = 1
         val indexOR = 0
         val indexWS = 2
         val indexBS = 3
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexSMB].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexSMB].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("St Mary's Butts", intersection.members[indexSMB].name)
-        Assert.assertEquals(Direction.LEFT, intersection.members[indexOR].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.LEFT,
+            intersection.members[indexOR].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Oxford Road", intersection.members[indexOR].name)
-        Assert.assertEquals(Direction.AHEAD, intersection.members[indexWS].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.AHEAD,
+            intersection.members[indexWS].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("West Street", intersection.members[indexWS].name)
-        Assert.assertEquals(Direction.RIGHT, intersection.members[indexBS].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.RIGHT,
+            intersection.members[indexBS].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Broad Street", intersection.members[indexBS].name)
 
     }
 
     //@Test
-    fun intersectionsLoopBackTest(){
+    fun intersectionsLoopBackTest() {
         // Some intersections can contain the same road more than once,
         // for example if one road loops back to the intersection
         // https://geojson.io/#map=18/37.339112/-122.038756
 
-        val currentLocation = LngLatAlt(-122.03856292573965,37.33916628666543)
+        val currentLocation = LngLatAlt(-122.03856292573965, 37.33916628666543)
         val deviceHeading = 270.0
         val fovDistance = 50.0
 
         val intersection = setupTest(currentLocation, deviceHeading, fovDistance)!!
 
         // Removed the duplicate osm_ids so we should be good to go...or not
-        Assert.assertEquals(3, intersection.members.size )
+        Assert.assertEquals(3, intersection.members.size)
 
         val indexKC = 0
 //        val indexS1 = 1
 //        val indexS2 = 2
-        Assert.assertEquals(Direction.BEHIND, intersection.members[indexKC].direction(intersection, deviceHeading))
+        Assert.assertEquals(
+            Direction.BEHIND,
+            intersection.members[indexKC].direction(intersection, deviceHeading)
+        )
         Assert.assertEquals("Kodiak Court", intersection.members[indexKC].name)
 //        Assert.assertEquals(3, intersection.members[indexS1].direction(intersection, deviceHeading))
 //        Assert.assertEquals("service", intersection.members[indexS1].name)

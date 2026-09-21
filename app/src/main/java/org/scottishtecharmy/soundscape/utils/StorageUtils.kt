@@ -15,7 +15,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.utils.StorageUtils.StorageSpace
 import java.io.File
-import kotlin.text.isEmpty
 
 object StorageUtils {
 
@@ -52,7 +51,9 @@ object StorageUtils {
         val externalFilesDirs: Array<File> = context.getExternalFilesDirs(null)
         val primaryExternalStoragePath = try {
             Environment.getExternalStorageDirectory()?.absolutePath
-        } catch (_: Exception) { null }
+        } catch (_: Exception) {
+            null
+        }
 
 
         val sm = context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
@@ -68,7 +69,9 @@ object StorageUtils {
                 val totalBytes = statFs.blockCountLong * statFs.blockSizeLong
                 val availableBytes = statFs.availableBlocksLong * statFs.blockSizeLong
                 val freeBytes = statFs.freeBlocksLong * statFs.blockSizeLong
-                val isPrimary = primaryExternalStoragePath != null && dir.absolutePath.startsWith(primaryExternalStoragePath)
+                val isPrimary = primaryExternalStoragePath != null && dir.absolutePath.startsWith(
+                    primaryExternalStoragePath
+                )
                 val sv: StorageVolume? = sm.getStorageVolume(dir)
                 val description = sv?.getDescription(context) ?: "External Storage"
 
@@ -81,7 +84,8 @@ object StorageUtils {
                         totalBytes = totalBytes,
                         availableBytes = availableBytes,
                         availableString = Formatter.formatFileSize(context, availableBytes),
-                        freeBytes = freeBytes)
+                        freeBytes = freeBytes
+                    )
                 )
             } catch (e: Exception) {
                 Log.e(TAG, "Error getting external storage space: ${e.message}")
@@ -106,18 +110,21 @@ fun getOfflineMapStorage(context: Context): List<StorageSpace> {
 //    }
 
     val externalAppSpecificSpaces = StorageUtils.getExternalStorageSpacesAppSpecific(context)
-    for(storage in externalAppSpecificSpaces) {
+    for (storage in externalAppSpecificSpaces) {
         storages.add(storage)
         if (storage.isPrimary)
             defaultPath = storage.path
-        else if(defaultPath.isEmpty())
+        else if (defaultPath.isEmpty())
             defaultPath = storage.path
     }
 
     // Check that the preference is set
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    var path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
-    if((path == null) || path.isEmpty()) {
+    var path = sharedPreferences.getString(
+        MainActivity.SELECTED_STORAGE_KEY,
+        MainActivity.SELECTED_STORAGE_DEFAULT
+    )
+    if ((path == null) || path.isEmpty()) {
         // Default path is to the first external storage
         path = defaultPath
         sharedPreferences.edit(commit = true) { putString(MainActivity.SELECTED_STORAGE_KEY, path) }
@@ -125,9 +132,9 @@ fun getOfflineMapStorage(context: Context): List<StorageSpace> {
 
     // Ensure that the directories exist
     val filesDir = File(path)
-    if(filesDir.exists() && filesDir.isDirectory) {
+    if (filesDir.exists() && filesDir.isDirectory) {
         val downloadsDir = File(path, Environment.DIRECTORY_DOWNLOADS)
-        if(!downloadsDir.exists()) {
+        if (!downloadsDir.exists()) {
             downloadsDir.mkdir()
         }
     }
@@ -135,33 +142,42 @@ fun getOfflineMapStorage(context: Context): List<StorageSpace> {
     return storages
 }
 
-fun getMetadata(pmtilesPath: String) : Feature? {
+fun getMetadata(pmtilesPath: String): Feature? {
     val geojsonFile = File("$pmtilesPath.geojson")
     if (geojsonFile.exists() && geojsonFile.isFile) {
         val adapter = GeoJsonObjectMoshiAdapter()
         val feature = adapter.fromJson(geojsonFile.readText())
-        if(feature != null) {
-            if(feature.type == "Feature")
+        if (feature != null) {
+            if (feature.type == "Feature")
                 return feature as Feature
         }
     }
     return null
 }
 
-fun findExtracts(path: String) : FeatureCollection? {
+fun findExtracts(path: String): FeatureCollection? {
     // Find any extracts that we have downloaded
     val extractsDir = File(path)
     if (extractsDir.exists() && extractsDir.isDirectory) {
         // Find files within the directory and filter for those ending with ".pmtiles". It is
         // possible to have metadata for .pmtiles files that failed to download, so we have to
         // search for the .pmtiles files first and then get the metadata for them.
-        val files = extractsDir.listFiles { file -> file.name.endsWith(".pmtiles") }?.toList() ?: emptyList()
+        val files = extractsDir.listFiles { file -> file.name.endsWith(".pmtiles") }?.toList()
+            ?: emptyList()
         val extractCollection = FeatureCollection()
-        for(file in files) {
+        for (file in files) {
             val feature = getMetadata(file.path)
-            if(feature != null)
+            if (feature != null) {
+                // Validate the extract so callers can show whether it is working or
+                // damaged. A damaged extract (its metadata won't decompress) would crash
+                // MapLibre if used, so it is excluded from the live map; here we flag it
+                // via the "usable" property instead. This does file I/O, so callers
+                // should run findExtracts off the main thread.
+                val properties = feature.properties ?: HashMap()
+                properties["usable"] = isPmtilesUsable(file.path)
+                feature.properties = properties
                 extractCollection.addFeature(feature)
-            else
+            } else
                 println("No metadata")
         }
         return extractCollection
@@ -169,21 +185,3 @@ fun findExtracts(path: String) : FeatureCollection? {
     return null
 }
 
-fun findExtractPaths(path: String) : List<String> {
-    // Find any extracts that we have downloaded
-    val extractsDir = File(path)
-    if (extractsDir.exists() && extractsDir.isDirectory) {
-        // Find files within the directory and filter for those ending with ".pmtiles". It is
-        // possible to have metadata for .pmtiles files that failed to download, so we have to
-        // search for the .pmtiles files first and then get the metadata for them.
-        val fileList = extractsDir.listFiles { file -> file.name.endsWith(".pmtiles") }?.toList()
-        if(fileList != null) {
-            val returnList = mutableListOf<String>()
-            for (file in fileList) {
-                returnList += file.path
-            }
-            return returnList
-        }
-    }
-    return emptyList()
-}

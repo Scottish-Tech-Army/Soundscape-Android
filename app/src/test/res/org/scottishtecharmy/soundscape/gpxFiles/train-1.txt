@@ -1,0 +1,399 @@
+
+Callout
+	Milngavie Transit Stop
+
+Callout
+	OSM Feature
+
+Callout
+	Prego
+
+Callout
+	Milngavie Station
+
+Callout
+	Near Milngavie
+
+Callout
+	On Service that joins Lennox Park and Crossveggate and close to Milngavie
+
+Callout
+	On Glasgow Road and close to Milngavie
+
+Callout
+	On Cobden Crescent and close to Milngavie
+
+Callout
+	On Grant Place and close to Milngavie
+
+Callout
+	Near Milngavie
+
+Callout
+	Near Bearsden
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Path to dead-end via steps
+
+Callout
+	Hillfoot Transit Stop
+
+Callout
+	OSM Feature
+
+Callout
+	On Milngavie Road and close to Bearsden
+
+Callout
+	On Roman Road and close to Bearsden
+
+Callout
+	On Jubilee Path and close to Bearsden
+
+Callout
+	Near Bearsden
+
+Callout
+	Ahead Path
+
+Callout
+	OSM Feature
+
+Callout
+	Bearsden Transit Stop
+
+Callout
+	On Station Road and close to Bearsden
+
+Callout
+	Near Netherton
+
+Callout
+	On Conon Avenue and close to Bearsden
+
+Callout
+	On Path that joins Canniesburn Road and Canniesburn Road and close to Knightswood
+
+Callout
+	Near Knightswood
+
+Callout
+	On Service that joins Westerton Railway Station and Westerton car park and close to Netherton
+
+Callout
+	Approaching intersection
+		Path via steps goes left
+		Maxwell Avenue continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	On Service that joins Maxwell Avenue and Westerton Railway Station and close to Netherton
+
+Callout
+	On Maxwell Avenue and close to Netherton
+
+Callout
+	On Westerton Avenue and close to Netherton
+
+Callout
+	On Old Farm Road and close to Temple
+
+Callout
+	On Bearsden Road and close to Temple
+
+Callout
+	On Strathcona Drive and close to Temple
+
+Callout
+	Near Temple
+
+Callout
+	Approaching intersection
+		Path goes left
+		Service continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Reformed Baptist Church Anniesland
+
+Callout
+	OSM Feature
+
+Callout
+	On Great Western Road and close to Temple
+
+Callout
+	On Ancaster Lane and close to Temple
+
+Callout
+	On Whittingehame Park and close to Temple
+
+Callout
+	On Whittingehame Gardens and close to Temple
+
+Callout
+	Near Broomhill
+
+Callout
+	Near Hyndland
+
+Callout
+	Near Hyndland Transit Stop
+
+Callout
+	OSM Feature
+
+Callout
+	Hyndland Transit Stop
+
+Callout
+	Ahead Path via steps
+
+Callout
+	On Blairatholl Avenue and close to Hyndland
+
+Callout
+	Near Partick
+
+Callout
+	On Service that joins Sainsbury's and M&S Simply Food and close to Partick
+
+Callout
+	On Dumbarton Road and close to Partick
+
+Callout
+	Approaching intersection
+		Path continues ahead
+		Path goes right
+		Path to dead-end goes right
+
+Callout
+	Partick (Rail) Transit Stop
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Path to Partick (Rail)
+
+Callout
+	OSM Feature
+
+Callout
+	Near Transit Entrance
+
+Callout
+	Near Partick Interchange Transit Stop
+
+Callout
+	Near Partick
+
+Callout
+	On Pavement next to Clydeside Expressway and close to Partick
+
+Callout
+	Near Yorkhill
+
+Callout
+	On Centurion Way and close to Yorkhill
+
+Callout
+	On Service that joins Yorkhill Park and Sandyford Street and close to Yorkhill
+
+Callout
+	Exhibition Centre Transit Stop
+
+Callout
+	Exhibition Centre Railway Station
+
+Callout
+	Approaching intersection
+		Minerva Street goes left
+		Minerva Street goes right
+
+Callout
+	Exhibition Centre Railway Station Main entrance
+
+Callout
+	Approaching intersection
+		Minerva Street continues ahead
+		West Greenhill Place goes right
+
+Callout
+	Ahead Minerva Street
+
+Callout
+	Approaching intersection
+		Minerva Street continues ahead
+
+Callout
+	Ahead Path to Exhibition Centre Railway Station via steps
+
+Callout
+	Approaching intersection
+		Minerva Street continues ahead
+		West Greenhill Place goes right
+
+Callout
+	Exhibition Centre Transit Stop
+
+Callout
+	Exhibition Centre Railway Station
+
+Callout
+	Exhibition Centre Railway Station Main entrance
+
+Callout
+	Ahead West Greenhill Place
+
+Callout
+	Ahead West Greenhill Place
+
+Callout
+	Approaching intersection
+		Finnieston Street goes left
+		Finnieston Street goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Skypark
+
+Callout
+	Ahead Finnieston Square
+
+Callout
+	Music Broth - Scotland's Loudest Library
+
+Callout
+	Ahead Finnieston Square
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Stobcross Street goes left
+		Tertiary continues ahead
+		Stobcross Street goes right
+
+Callout
+	Approaching intersection
+		Finnieston Street goes left
+		Primary to Clydeside Expressway continues ahead
+		Finnieston Street goes right
+
+Callout
+	Ahead Path to Finnieston Street via steps
+
+Callout
+	Ahead Clydeside Expressway
+
+Callout
+	Approaching intersection
+		Tertiary to Stobcross Street goes left
+		Tertiary goes right
+
+Callout
+	Ahead Path to Finnieston Street via steps
+
+Callout
+	Ahead Clydeside Expressway
+
+Callout
+	Approaching intersection
+		Finnieston Street continues ahead
+
+Callout
+	Approaching intersection
+		Finnieston Street goes left
+		Path continues ahead
+		Finnieston Street goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Serial Affinity
+
+Callout
+	Moxy Glasgow SEC
+
+Callout
+	Approaching intersection
+		Service to Serial Affinity goes left
+		Finnieston Street continues ahead
+
+Callout
+	Nuffield Health Fitness & Wellbeing
+
+Callout
+	Ahead Finnieston Street
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Stobcross Road continues ahead
+		Finnieston Street continues ahead
+
+Callout
+	Approaching intersection
+		Stobcross Road continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Finnieston Street continues ahead
+		Stobcross Road goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Finnieston Street continues ahead
+		Tunnel Street goes right
+
+Callout
+	Ahead Finnieston Street
+
+Callout
+	Nuffield Health Fitness & Wellbeing
+
+Callout
+	Ahead Finnieston Street
+
+Callout
+	Approaching intersection
+		Path to Lancefield Quay goes left
+		Finnieston Street continues ahead
+		Path to Finnieston Quay goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Lancefield Quay
+
+Callout
+	India Quay
+
+Callout
+	OSM Feature

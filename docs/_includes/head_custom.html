@@ -1,0 +1,25 @@
+{%- comment -%}
+  RTL support for jekyll-polyglot language renders.
+
+  The just-the-docs theme layout (_layouts/default.html in the gem) hardcodes
+  `<html lang="en-US">` with no `dir` attribute, so right-to-left languages
+  (Arabic `arz`, Persian `fa`) render with a left-to-right page layout — the
+  text reads correctly but the sidebar, alignment and nav stay on the wrong
+  side. We can't edit that <html> tag from an include (it is emitted before
+  <head>), so we set the attributes here.
+
+  head_custom.html is included at the end of <head>, so this inline script
+  runs synchronously before the <body> paints — no flash of LTR layout. It is
+  driven by polyglot's site.active_lang, so the direction is fixed per
+  language-render pass rather than guessed from the browser.
+
+  The matching RTL CSS overrides live in _sass/custom/custom.scss, scoped to
+  [dir="rtl"] which this script sets.
+{%- endcomment -%}
+{%- assign rtl_languages = "ar,arz,fa,he,iw,ur,ps,sd,ckb,ug,yi,dv" | split: "," -%}
+{%- if rtl_languages contains site.active_lang -%}
+<script>
+  document.documentElement.setAttribute("dir", "rtl");
+  document.documentElement.setAttribute("lang", "{{ site.active_lang }}");
+</script>
+{%- endif -%}

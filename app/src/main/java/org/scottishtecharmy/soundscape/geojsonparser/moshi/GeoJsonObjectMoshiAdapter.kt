@@ -13,7 +13,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
-import java.util.HashMap
 
 open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
     companion object {
@@ -110,6 +109,7 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
                     // (e.g., throw an exception or use a default value)
                 }
             }
+
             3 -> {
                 // Get an unchecked cast warning for this which is weird as I thought it was checking it
                 // so try this which isn't the best idea apparently ...
@@ -122,7 +122,7 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
 
             -1 -> {
                 if (reader.peek() == JsonReader.Token.NAME) {
-                    reader.nextName()
+                    reader.skipName()
                     reader.readJsonValue()
                 } else {
                     reader.skipValue()
@@ -135,7 +135,7 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
         inObj.bbox?.let {
             writer.name("bbox")
             writer.beginArray()
-            it.forEach { coord -> writer.value(coord)}
+            it.forEach { coord -> writer.value(coord) }
             writer.endArray()
         }
 

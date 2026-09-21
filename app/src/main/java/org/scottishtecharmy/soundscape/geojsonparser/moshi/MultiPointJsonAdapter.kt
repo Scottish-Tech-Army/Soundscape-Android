@@ -1,6 +1,11 @@
 package org.scottishtecharmy.soundscape.geojsonparser.moshi
 
-import com.squareup.moshi.*
+import com.squareup.moshi.FromJson
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonDataException
+import com.squareup.moshi.JsonReader
+import com.squareup.moshi.JsonWriter
+import com.squareup.moshi.ToJson
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter.Companion.OPTIONS
@@ -24,7 +29,10 @@ class MultiPointJsonAdapter : JsonAdapter<MultiPoint>() {
                     position = arrayListOf()
                     reader.beginArray()
                     while (reader.hasNext()) {
-                        position.add(positionJsonAdapter.fromJson(reader)!!)
+                        position.add(
+                            positionJsonAdapter.fromJson(reader)
+                                ?: throw JsonDataException("Missing position at ${reader.path}")
+                        )
                     }
                     reader.endArray()
                 }

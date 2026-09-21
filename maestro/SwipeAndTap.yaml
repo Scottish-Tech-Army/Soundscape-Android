@@ -1,0 +1,122 @@
+appId: org.scottishtecharmy.soundscape
+# Scrolls a possibly off-screen or partially-visible element into view, then taps
+# it. Pass the element id and a direction:
+#
+#   - runFlow:
+#       file: SwipeAndTap.yaml
+#       env:
+#         id: someTestTag
+#         direction: up     # 'up' reveals items below the fold (default),
+#                           # 'down' reveals items above.
+#
+# We deliberately don't use scrollUntilVisible: it swipes from the screen centre
+# (which on the home screen is the non-scrollable map), and Maestro treats a
+# partially-visible element as fully visible - so it stops before the element is
+# actually tappable and the tap lands on a clipped control. Instead we swipe the
+# scrollable part of the screen in small steps until the element appears, nudge
+# it clear of the edge, then tap.
+#
+# The nudge swipe can land on an inner scrollable list (e.g. the audio beacon
+# list) rather than the outer page; that scrolls a fully-visible target back out
+# of view. So after nudging we check the target is still visible and, if not,
+# reverse the nudge to put it back - a partially-clipped target stays visible and
+# is left as nudged.
+#
+# Note: swipe start/end coordinates can't be supplied via ${} variables (Maestro
+# parses them as literals and throws a number-format error), so the per-direction
+# coordinates are hard-coded below and selected with `when` conditions.
+---
+# Validate the direction (defaulting to 'up') and stash it for the conditions
+# below.
+- evalScript: |
+    ${
+      output.swipeFound = 0;
+      output.swipeTries = 0;
+      const dir = (typeof direction === 'undefined' || direction === '') ? 'up' : direction;
+      if (dir !== 'up' && dir !== 'down') {
+        throw 'SwipeAndTap: direction must be "up" or "down", got "' + dir + '"';
+      }
+      output.swipeDir = dir;
+    }
+
+# If it's already on screen we don't need to scroll, but it may still be only
+# partially visible, so the nudge below still runs.
+- runFlow:
+    when:
+      visible:
+        id: ${id}
+    commands:
+      - evalScript: ${output.swipeFound = 1}
+
+# Swipe in small steps until the element shows up or we run out of tries. If it
+# never appears, the tapOn below fails loudly.
+- repeat:
+    while:
+      true: "${output.swipeFound == 0 && output.swipeTries < 15}"
+    commands:
+      # 'up' reveals items below the fold (swipe the finger up).
+      - runFlow:
+          when:
+            true: "${output.swipeDir == 'up'}"
+          commands:
+            - swipe:
+                start: 50%, 80%
+                end: 50%, 50%
+      # 'down' reveals items above (swipe the finger down).
+      - runFlow:
+          when:
+            true: "${output.swipeDir == 'down'}"
+          commands:
+            - swipe:
+                start: 50%, 50%
+                end: 50%, 80%
+      - evalScript: ${output.swipeTries = output.swipeTries + 1}
+      - runFlow:
+          when:
+            visible:
+              id: ${id}
+          commands:
+            - evalScript: ${output.swipeFound = 1}
+
+# Nudge the element away from the edge it was revealed at, so a partially-visible
+# item is fully tappable rather than clipped.
+- runFlow:
+    when:
+      true: "${output.swipeFound == 1 && output.swipeDir == 'up'}"
+    commands:
+      - swipe:
+          start: 50%, 75%
+          end: 50%, 60%
+- runFlow:
+    when:
+      true: "${output.swipeFound == 1 && output.swipeDir == 'down'}"
+    commands:
+      - swipe:
+          start: 50%, 60%
+          end: 50%, 75%
+
+# If the nudge landed on an inner scrollable list it can scroll a fully-visible
+# target back out of view. If the target is no longer visible, reverse the nudge
+# (the opposite swipe) to restore it. A normally partially-clipped target stays
+# visible after the nudge, so this reverse is skipped for it.
+- runFlow:
+    when:
+      true: "${output.swipeFound == 1 && output.swipeDir == 'up'}"
+      notVisible:
+        id: ${id}
+    commands:
+      - swipe:
+          start: 50%, 60%
+          end: 50%, 75%
+- runFlow:
+    when:
+      true: "${output.swipeFound == 1 && output.swipeDir == 'down'}"
+      notVisible:
+        id: ${id}
+    commands:
+      - swipe:
+          start: 50%, 75%
+          end: 50%, 60%
+
+- tapOn:
+    id: ${id}

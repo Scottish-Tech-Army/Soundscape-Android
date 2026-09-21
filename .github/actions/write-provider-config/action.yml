@@ -1,0 +1,74 @@
+name: Write provider config
+description: |
+  Writes the tile/search/extract provider configuration for either the Android
+  build (local.properties at the repo root) or the iOS build
+  (iosApp/Local.xcconfig). Secrets won't be available for fork-triggered PRs;
+  in that case the inputs are blank and the resulting file is written with
+  empty values, matching the existing fallback behaviour.
+
+inputs:
+  platform:
+    description: Either "android" or "ios"
+    required: true
+  tile_provider_url:
+    description: Tile provider base URL
+    required: false
+    default: ''
+  tile_provider_api_key:
+    description: Tile provider API key (Android only)
+    required: false
+    default: ''
+  search_provider_url:
+    description: Search provider base URL
+    required: false
+    default: ''
+  search_provider_api_key:
+    description: Search provider API key (Android only)
+    required: false
+    default: ''
+  extract_provider_url:
+    description: Extract provider base URL
+    required: false
+    default: ''
+
+runs:
+  using: composite
+  steps:
+    - name: Write Android local.properties
+      shell: bash
+      env:
+        TILE_PROVIDER_URL: ${{ inputs.tile_provider_url }}
+        TILE_PROVIDER_API_KEY: ${{ inputs.tile_provider_api_key }}
+        SEARCH_PROVIDER_URL: ${{ inputs.search_provider_url }}
+        SEARCH_PROVIDER_API_KEY: ${{ inputs.search_provider_api_key }}
+        EXTRACT_PROVIDER_URL: ${{ inputs.extract_provider_url }}
+      run: |
+        echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
+        echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
+        echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
+        echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
+        echo extractProviderUrl="$EXTRACT_PROVIDER_URL" >> local.properties
+
+    - name: Write iOS Local.xcconfig
+      shell: bash
+      env:
+        TILE_PROVIDER_URL: ${{ inputs.tile_provider_url }}
+        SEARCH_PROVIDER_URL: ${{ inputs.search_provider_url }}
+        EXTRACT_PROVIDER_URL: ${{ inputs.extract_provider_url }}
+      run: |
+        # Xcode treats // as a comment in xcconfig; the $() escape splits the
+        # token so the URL survives intact. Matches the committed placeholder.
+        escape() { printf '%s' "$1" | sed 's|//|/$()/|g'; }
+        {
+          echo "DEVELOPMENT_TEAM = 48N3J4V5KM"
+          if [ -n "$TILE_PROVIDER_URL" ];    then echo "TILE_PROVIDER_URL = $(escape "$TILE_PROVIDER_URL")"; fi
+          if [ -n "$SEARCH_PROVIDER_URL" ];  then echo "SEARCH_PROVIDER_URL = $(escape "$SEARCH_PROVIDER_URL")"; fi
+          if [ -n "$EXTRACT_PROVIDER_URL" ]; then echo "EXTRACT_PROVIDER_URL = $(escape "$EXTRACT_PROVIDER_URL")"; fi
+        } > iosApp/Local.xcconfig
+
+    - name: Reject unknown platform
+      if: inputs.platform != 'android' && inputs.platform != 'ios'
+      shell: bash
+      run: |
+        echo "::error::write-provider-config: platform must be 'android' or 'ios' (got '${{ inputs.platform }}')"
+        exit 1
