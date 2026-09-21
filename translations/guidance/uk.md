@@ -48,9 +48,15 @@ literal bus stops. Accepted — context disambiguates (rule C5).
 "new update". Drop «нове». Applies to `new_version_info_text` and its sibling
 `new_version_info_completed`.
 
-### UK-R1 — Formal register, second-person plural (`confirmed by observation`)
-The whole corpus addresses the user as «ви» / «Оберіть» / «ви можете». Keep
-it. Not yet explicitly confirmed by the reporter — on the question list below.
+### UK-R1 — Formal register, second-person plural, throughout (`confirmed`)
+Address the user as «ви» everywhere — UI, TalkBack/VoiceOver hints, audio
+callouts, help pages and the tutorial: «ви можете», «ваш маршрут», plural
+imperatives «Натисніть», «Оберіть». Never «ти»/«твій» or singular
+imperatives («натисни», «обери»). Confirmed by the reporter 2026-09-21.
+
+A sweep on 2026-09-21 found no informal forms in the 1495 translated units
+(«ти»/«тебе»/«твій» and common singular imperatives): the rule confirms what
+ships. Its job now is to keep new strings in line.
 
 ### UK-G1 — Strings slotted into a template take the template's case (`agreed`)
 Some strings are never shown on their own; the code substitutes them into a
@@ -103,14 +109,12 @@ change was never the mechanical swap it appeared to be (rule C3).
    should the template change so it works with a nominative name? Options:
    (a) leave it; (b) «%1$s до %2$s»; (c) «%1$s, напрямок: %2$s». If (b) or
    (c), «тупика» may need to change to match.
-2. **Register.** Confirm «ви» (formal plural) throughout is right for the
-   audience, including the audio callouts and not just the UI.
-3. **Confirm the two locked terms.** «звуковий маячок» and «мітка» are marked
+2. **Confirm the two locked terms.** «звуковий маячок» and «мітка» are marked
    `confirmed` on the strength of the 2026-09-18 glossary note — please say
    explicitly if either should move, because future passes will now actively
    defend them.
 
-*Answered and closed: the two callout questions — see "Rejected"; the guided-tutorial term — confirmed OK 2026-09-21.*
+*Answered and closed: the two callout questions — see "Rejected"; the guided-tutorial term — confirmed OK 2026-09-21; register — formal «ви» confirmed 2026-09-21.*
 
 ---
 
@@ -154,3 +158,6 @@ moves from `provisional` to `agreed`. Re-sweeping for it found a sixth unit,
 `tour_finish`, where the same concept had a third rendering («Навчання
 завершено») that the original «керован…/навчальн… посібник» search didn't
 match (rule C4).
+
+**2026-09-21 — same reporter.** Formal plural «ви» confirmed, to be used
+throughout. UK-R1 moves to `confirmed`. The sweep found nothing to change.
