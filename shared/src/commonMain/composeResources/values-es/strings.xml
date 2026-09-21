@@ -1514,4 +1514,16 @@
     <string name="ios_permission_location_always">Soundscape necesita su ubicación para proporcionar navegación por audio incluso cuando la aplicación está en segundo plano.</string>
     <string name="ios_permission_motion">Soundscape usa datos de movimiento para detectar la dirección hacia la que mira y orientar los avisos de audio respecto a su entorno.</string>
     <string name="ios_permission_bluetooth">Soundscape usa Bluetooth para detectar auriculares con seguimiento de la cabeza y otros dispositivos de audio, y conectarse a ellos.</string>
+    <string name="route_detail_edit_remove_waypoint_hint">quitar este punto de ruta de la ruta</string>
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s se quitará de esta ruta. El marcador en sí no se eliminará. ¿Desea continuar?</string>
+    <string name="route_detail_edit_delete_alert_message">Eliminar esta ruta no se puede deshacer. Los marcadores que contiene no se eliminarán. ¿Desea continuar?</string>
+    <string name="markers_action_delete_alert_message">Eliminar este marcador no se puede deshacer, y también se quitará de todas las rutas que lo usen. ¿Desea continuar?</string>
+    <string name="markers_sort_name_ascending">Ordenada por nombre, de la A a la Z</string>
+    <string name="markers_sort_name_descending">Ordenada por nombre, de la Z a la A</string>
+    <string name="markers_sort_distance_ascending">Ordenada por distancia, del más cercano al más lejano</string>
+    <string name="markers_sort_distance_descending">Ordenada por distancia, del más lejano al más cercano</string>
+    <string name="markers_sort_action_name_ascending">ordenar por nombre, de la A a la Z</string>
+    <string name="markers_sort_action_name_descending">ordenar por nombre, de la Z a la A</string>
+    <string name="markers_sort_action_distance_ascending">ordenar por distancia, del más cercano al más lejano</string>
+    <string name="markers_sort_action_distance_descending">ordenar por distancia, del más lejano al más cercano</string>
 </resources>
