@@ -1,11 +1,13 @@
 package org.scottishtecharmy.soundscape.platform
 
+import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSCaseInsensitiveSearch
 import platform.Foundation.NSLocale
 import platform.Foundation.NSMakeRange
 import platform.Foundation.NSString
 import platform.Foundation.compare
 
+@OptIn(ExperimentalForeignApi::class)
 actual fun nameCollator(languageTag: String): Comparator<String> {
     // Comparing with a locale is what makes NSString collate the way that language does, as
     // Android's Collator does; without one it compares the characters. Case insensitive but not
