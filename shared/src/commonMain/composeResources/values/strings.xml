@@ -208,6 +208,10 @@
     <string name="route_detail_edit_description">Description</string>
     <!-- Label for the button used to add waypoints to a route -->
     <string name="route_detail_edit_waypoints_button">Add Waypoints</string>
+    <!-- Hint for each waypoint in the list when editing a route, as double tapping it removes the waypoint from the route. This is always preceded by "Double tap to " -->
+    <string name="route_detail_edit_remove_waypoint_hint">remove this waypoint from the route</string>
+    <!-- Text for dialog to check that the user really does want to remove a waypoint from the route they are editing. %1$s is the waypoint name. -->
+    <string name="route_detail_edit_remove_waypoint_alert_message">%1$s will be removed from this route. The marker itself will not be deleted. Do you want to continue?</string>
     <!-- Label for the delete route button -->
     <string name="route_detail_edit_delete">Delete Route</string>
     <!-- Text for dialog to check that the user really does want to delete the route they are editing -->
