@@ -236,12 +236,7 @@ class AutoCallout(
         )
     )
 
-    private fun interest() = CalloutInterest.fromPreference(
-        preferences?.getString(
-            PreferenceKeys.CALLOUT_INTEREST,
-            PreferenceDefaults.CALLOUT_INTEREST
-        )
-    )
+    private fun placesToCallOut() = PlacesToCallOut.read(preferences)
 
     /**
      * Retunes the histories for the current verbosity. Done on every update rather than once, so
@@ -342,7 +337,7 @@ class AutoCallout(
         // Deliberately below the bookkeeping above and not at the top of the function: the sticky
         // vehicle/train windows are read by callouts this setting has nothing to do with, so they
         // have to keep being updated whether or not this one is allowed to speak.
-        if (!mobilityCalloutsEnabled()) return null
+        if (!streetsAndJunctionsEnabled()) return null
 
         // Check that our location/time has changed enough to generate this callout
         if (!locationFilter.shouldUpdate(userGeometry)) {
@@ -408,7 +403,7 @@ class AutoCallout(
         userGeometry: UserGeometry,
         gridState: GridState
     ): TrackedCallout? {
-        if (!placesAndLandmarkCalloutsEnabled()) {
+        if (placesToCallOut() == PlacesToCallOut.NOTHING) {
             return null
         }
 
@@ -472,50 +467,22 @@ class AutoCallout(
     // is expected to be tuned once it has been ridden with.
     private val transitStopLookaheadMetres = 100.0
 
-    // The transit stop kinds the "Bus and tram stops" setting covers. Deliberately not the whole
-    // of TreeId.TRANSIT_STOPS: a station or a ferry terminal is a destination in its own right and
-    // is passed rarely enough that nobody needs it switched off, whereas these two are what make
-    // an urban street or a bus route noisy.
-    private val busAndTramStopValues = setOf("bus_stop", "tram_stop")
-
     /**
-     * The "Mobility" callout setting.
-     *
-     * As well as the mobility POIs it selects at grid load time (see GridState.classifyPois), it
-     * covers the intersection callouts and the in-vehicle road-sense callout - which is what makes
-     * its description, "Intersection and transportation information", true. Both of those are
-     * read here rather than through the grid's enabled categories, so they are gated on the
-     * current value rather than on whatever it was when the grid was last built.
+     * The "Streets and Junctions" setting: the intersection callouts and the in-vehicle road-sense
+     * callout. Read on each callout so that it takes effect straight away.
      */
-    private fun mobilityCalloutsEnabled(): Boolean =
-        preferences?.getBoolean(PreferenceKeys.MOBILITY, PreferenceDefaults.MOBILITY)
-            ?: PreferenceDefaults.MOBILITY
-
-    /**
-     * The "Places and Landmarks" callout setting.
-     *
-     * Walking callouts get this for free - the setting chooses what goes into
-     * TreeId.SELECTED_SUPER_CATEGORIES at grid load time, and buildCalloutForNearbyPOI reads only
-     * that. Anything reaching past that tree to a super-category tree of its own has to ask here.
-     */
-    private fun placesAndLandmarkCalloutsEnabled(): Boolean =
+    private fun streetsAndJunctionsEnabled(): Boolean =
         preferences?.getBoolean(
-            PreferenceKeys.PLACES_AND_LANDMARKS,
-            PreferenceDefaults.PLACES_AND_LANDMARKS
-        ) ?: PreferenceDefaults.PLACES_AND_LANDMARKS
+            PreferenceKeys.STREETS_AND_JUNCTIONS,
+            PreferenceDefaults.STREETS_AND_JUNCTIONS
+        ) ?: PreferenceDefaults.STREETS_AND_JUNCTIONS
 
     /**
-     * Whether this feature is one the "Bus and tram stops" setting silences, given that setting's
-     * current value. Read on each callout rather than captured once, so turning the switch off
-     * takes effect on the next location update rather than at the next grid rebuild.
+     * Whether this feature is a bus or tram stop that the Places to Call Out setting leaves out -
+     * see PlacesToCallOut.includesBusAndTramStops.
      */
-    private fun suppressedAsBusOrTramStop(feature: MvtFeature): Boolean {
-        if (feature.featureValue !in busAndTramStopValues) return false
-        return !(preferences?.getBoolean(
-            PreferenceKeys.BUS_AND_TRAM_STOPS,
-            PreferenceDefaults.BUS_AND_TRAM_STOPS
-        ) ?: PreferenceDefaults.BUS_AND_TRAM_STOPS)
-    }
+    private fun suppressedAsBusOrTramStop(feature: MvtFeature): Boolean =
+        isBusOrTramStop(feature) && !placesToCallOut().includesBusAndTramStops
 
     /**
      * Announces a bus/tram stop on the approach to it while travelling by car/bus, about
@@ -1207,7 +1174,7 @@ class AutoCallout(
         gridState: GridState
     ): TrackedCallout? {
 
-        if (!mobilityCalloutsEnabled()) return null
+        if (!streetsAndJunctionsEnabled()) return null
 
         // We rely heavily on having map matched our GPS location to a nearby way. If we're not in
         // StreetPreview mode and we don't have that Way, then skip intersection callouts until we
@@ -1267,7 +1234,7 @@ class AutoCallout(
         poiCalloutHistory.trim(userGeometry)
 
         val verbosity = verbosity()
-        val interest = interest()
+        val places = placesToCallOut()
         // Too soon after the last POI callout for anything but a marker - see
         // CalloutVerbosity.minimumPoiGapMs. Street Preview is stepped through deliberately, so
         // it's exempt.
@@ -1308,7 +1275,7 @@ class AutoCallout(
         ordered.map { it.feature }.filter { feature ->
 
             if (suppressedAsBusOrTramStop(feature as MvtFeature)) return@filter true
-            if (!poiAllowedBySettings(feature, verbosity, interest)) return@filter true
+            if (!poiAllowedBySettings(feature, verbosity, places)) return@filter true
             val isMarker = feature.superCategory == SuperCategoryId.MARKER
             if (onlyMarkers && !isMarker) return@filter true
 

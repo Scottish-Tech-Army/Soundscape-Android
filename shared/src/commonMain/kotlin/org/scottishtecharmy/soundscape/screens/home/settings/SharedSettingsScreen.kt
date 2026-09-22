@@ -34,7 +34,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
-import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutInterest
+import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreferenceState
@@ -47,24 +47,22 @@ import org.scottishtecharmy.soundscape.resources.callouts_allow_callouts
 import org.scottishtecharmy.soundscape.resources.callouts_allow_callouts_description
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_description
-import org.scottishtecharmy.soundscape.resources.callouts_bus_and_tram_stops
-import org.scottishtecharmy.soundscape.resources.callouts_bus_and_tram_stops_description
-import org.scottishtecharmy.soundscape.resources.callouts_interest
-import org.scottishtecharmy.soundscape.resources.callouts_interest_description
+import org.scottishtecharmy.soundscape.resources.callouts_places_everything
+import org.scottishtecharmy.soundscape.resources.callouts_places_landmarks
+import org.scottishtecharmy.soundscape.resources.callouts_places_nothing
+import org.scottishtecharmy.soundscape.resources.callouts_places_to_call_out
+import org.scottishtecharmy.soundscape.resources.callouts_places_to_call_out_description
+import org.scottishtecharmy.soundscape.resources.callouts_streets_and_junctions
+import org.scottishtecharmy.soundscape.resources.callouts_streets_and_junctions_description
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity_balanced
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity_description
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity_detailed
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity_quiet
-import org.scottishtecharmy.soundscape.resources.filter_all
 import org.scottishtecharmy.soundscape.resources.filter_banks
 import org.scottishtecharmy.soundscape.resources.filter_food_drink
 import org.scottishtecharmy.soundscape.resources.filter_groceries
 import org.scottishtecharmy.soundscape.resources.filter_transit
-import org.scottishtecharmy.soundscape.resources.callouts_mobility
-import org.scottishtecharmy.soundscape.resources.callouts_mobility_description
-import org.scottishtecharmy.soundscape.resources.callouts_places_and_landmarks
-import org.scottishtecharmy.soundscape.resources.callouts_places_and_landmarks_description
 import org.scottishtecharmy.soundscape.resources.general_alert_cancel
 import org.scottishtecharmy.soundscape.resources.menu_advanced_markers_and_routes
 import org.scottishtecharmy.soundscape.resources.menu_manage_accessibility
@@ -203,22 +201,18 @@ fun SharedSettingsScreen(
         CalloutVerbosity.DETAILED.preferenceValue,
     )
 
-    // The Places Nearby folder names, so that each interest reads the same as the folder it
-    // filters with - see CalloutInterest.
-    val interestDescriptions = listOf(
-        stringResource(Res.string.filter_all),
+    // The narrowing choices use the Places Nearby folder names, so that each reads the same as the
+    // folder it filters with - see PlacesToCallOut. Same order as PlacesToCallOut.entries.
+    val placesDescriptions = listOf(
+        stringResource(Res.string.callouts_places_everything),
+        stringResource(Res.string.callouts_places_landmarks),
         stringResource(Res.string.filter_transit),
         stringResource(Res.string.filter_food_drink),
         stringResource(Res.string.filter_groceries),
         stringResource(Res.string.filter_banks),
+        stringResource(Res.string.callouts_places_nothing),
     )
-    val interestValues = listOf(
-        CalloutInterest.ALL.preferenceValue,
-        CalloutInterest.TRANSIT.preferenceValue,
-        CalloutInterest.FOOD_AND_DRINK.preferenceValue,
-        CalloutInterest.GROCERIES.preferenceValue,
-        CalloutInterest.BANKS.preferenceValue,
-    )
+    val placesValues = PlacesToCallOut.entries.map { it.preferenceValue }
 
     val unitsDescriptions = listOf(
         stringResource(Res.string.settings_theme_auto),
@@ -337,74 +331,48 @@ fun SharedSettingsScreen(
                         )
                     },
                 )
+                switchPreference(
+                    key = PreferenceKeys.STREETS_AND_JUNCTIONS,
+                    defaultValue = PreferenceDefaults.STREETS_AND_JUNCTIONS,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            Res.string.callouts_streets_and_junctions,
+                            Res.string.callouts_streets_and_junctions_description,
+                            textColor
+                        )
+                    },
+                    enabled = { allowCallouts },
+                )
                 listPreference(
-                    key = PreferenceKeys.CALLOUT_INTEREST,
-                    defaultValue = PreferenceDefaults.CALLOUT_INTEREST,
-                    values = interestValues,
+                    key = PreferenceKeys.PLACES_TO_CALL_OUT,
+                    defaultValue = PreferenceDefaults.PLACES_TO_CALL_OUT,
+                    values = placesValues,
                     modifier = expandedSectionModifier,
                     enabled = { allowCallouts },
                     title = {
                         SettingDetails(
-                            Res.string.callouts_interest,
-                            Res.string.callouts_interest_description,
+                            Res.string.callouts_places_to_call_out,
+                            Res.string.callouts_places_to_call_out_description,
                             textColor
                         )
                     },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
-                            interestDescriptions[interestValues.indexOf(value)],
+                            placesDescriptions[placesValues.indexOf(value)],
                             value,
                             currentValue,
                             onClick,
-                            interestValues.indexOf(value),
-                            interestValues.size
+                            placesValues.indexOf(value),
+                            placesValues.size
                         )
                     },
                     summary = {
                         ClickableOption(
-                            interestDescriptions[interestValues.indexOf(it).coerceAtLeast(0)],
+                            placesDescriptions[placesValues.indexOf(it).coerceAtLeast(0)],
                             textColor
                         )
                     },
-                )
-                switchPreference(
-                    key = PreferenceKeys.PLACES_AND_LANDMARKS,
-                    defaultValue = PreferenceDefaults.PLACES_AND_LANDMARKS,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.callouts_places_and_landmarks,
-                            Res.string.callouts_places_and_landmarks_description,
-                            textColor
-                        )
-                    },
-                    enabled = { allowCallouts },
-                )
-                switchPreference(
-                    key = PreferenceKeys.MOBILITY,
-                    defaultValue = PreferenceDefaults.MOBILITY,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.callouts_mobility,
-                            Res.string.callouts_mobility_description,
-                            textColor
-                        )
-                    },
-                    enabled = { allowCallouts },
-                )
-                switchPreference(
-                    key = PreferenceKeys.BUS_AND_TRAM_STOPS,
-                    defaultValue = PreferenceDefaults.BUS_AND_TRAM_STOPS,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.callouts_bus_and_tram_stops,
-                            Res.string.callouts_bus_and_tram_stops_description,
-                            textColor
-                        )
-                    },
-                    enabled = { allowCallouts },
                 )
                 switchPreference(
                     key = PreferenceKeys.DISTANCE_TO_BEACON,

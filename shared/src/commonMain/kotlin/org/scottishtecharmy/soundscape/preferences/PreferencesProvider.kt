@@ -32,17 +32,24 @@ fun interface PreferencesListener {
 
 object PreferenceKeys {
     const val ALLOW_CALLOUTS = "AllowCallouts"
-    const val PLACES_AND_LANDMARKS =
-        org.scottishtecharmy.soundscape.geoengine.PLACES_AND_LANDMARKS_KEY
-    const val MOBILITY = org.scottishtecharmy.soundscape.geoengine.MOBILITY_KEY
+    /**
+     * The "Streets and Junctions" switch: intersection callouts while walking, and the road-sense
+     * callout while travelling. Stored under the key of the old "Mobility" switch, which gated
+     * both of those too, so turning that off carries over.
+     */
+    const val STREETS_AND_JUNCTIONS = org.scottishtecharmy.soundscape.geoengine.MOBILITY_KEY
 
     /**
-     * Bus and tram stops are part of the Mobility super-category, but there are far more of them
-     * than of anything else in it - a walk down an urban main road passes one every couple of
-     * hundred metres, and a bus ride passes nothing else - so they get a switch of their own.
-     * Turning them off leaves the rest of Mobility (crossings, gates, lifts, steps...) alone.
+     * Which places are called out - see PlacesToCallOut. Stored as its preferenceValue.
      */
-    const val BUS_AND_TRAM_STOPS = "BusAndTramStops"
+    const val PLACES_TO_CALL_OUT = "PlacesToCallOut"
+
+    /**
+     * The old "Places and Landmarks" switch, replaced by PLACES_TO_CALL_OUT. Only read to set that
+     * once - see PlacesToCallOut.migrate. Still written by the iOS LegacyMigrator.
+     */
+    const val LEGACY_PLACES_AND_LANDMARKS =
+        org.scottishtecharmy.soundscape.geoengine.PLACES_AND_LANDMARKS_KEY
     const val DISTANCE_TO_BEACON = "DistanceToBeacon"
 
     /**
@@ -50,12 +57,6 @@ object PreferenceKeys {
      * Stored as CalloutVerbosity.preferenceValue.
      */
     const val CALLOUT_VERBOSITY = "CalloutVerbosity"
-
-    /**
-     * Which kind of place the walking POI callouts are narrowed to, if any - see CalloutInterest.
-     * Stored as CalloutInterest.preferenceValue.
-     */
-    const val CALLOUT_INTEREST = "CalloutInterest"
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = "PositionTextDescription"
     const val RELATIVE_DIRECTION = "RelativeDirectionMode"
 
@@ -89,12 +90,10 @@ object PreferenceKeys {
 
 object PreferenceDefaults {
     const val ALLOW_CALLOUTS = true
-    const val PLACES_AND_LANDMARKS = true
-    const val MOBILITY = true
-    const val BUS_AND_TRAM_STOPS = true
+    const val STREETS_AND_JUNCTIONS = true
+    const val PLACES_TO_CALL_OUT = "Everything"
     const val DISTANCE_TO_BEACON = true
     const val CALLOUT_VERBOSITY = "Detailed"
-    const val CALLOUT_INTEREST = "All"
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = false
     const val RELATIVE_DIRECTION = "ClockFace"
 
