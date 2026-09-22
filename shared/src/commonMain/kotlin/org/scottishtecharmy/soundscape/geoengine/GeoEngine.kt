@@ -12,6 +12,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildAheadOfMeCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildMyLocationCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildNearbyMarkersCallout
@@ -309,6 +310,7 @@ class GeoEngine {
         this.listener = listener
         this.localizedStrings = localizedStrings
         this.preferencesProvider = preferencesProvider
+        PlacesToCallOut.migrate(preferencesProvider)
         this.analytics = analytics
         this.hasNetwork = hasNetwork
 
@@ -444,16 +446,12 @@ class GeoEngine {
         tileSearch.refreshOfflineMaps()
     }
 
-    fun createSuperCategoriesSet(): Set<String> {
-        val enabledCategories = mutableSetOf<String>()
-        if (preferencesProvider.getBoolean(PLACES_AND_LANDMARKS_KEY, true))
-            enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-
-        if (preferencesProvider.getBoolean(MOBILITY_KEY, true))
-            enabledCategories.add(MOBILITY_KEY)
-
-        return enabledCategories
-    }
+    /**
+     * Every category the walking POI callouts could announce. Which of them actually are is the
+     * Places to Call Out setting, applied as each callout is made (see poiAllowedBySettings) so
+     * that changing it takes effect straight away rather than at the next grid rebuild.
+     */
+    fun createSuperCategoriesSet(): Set<String> = setOf(PLACES_AND_LANDMARKS_KEY, MOBILITY_KEY)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringLocation() {

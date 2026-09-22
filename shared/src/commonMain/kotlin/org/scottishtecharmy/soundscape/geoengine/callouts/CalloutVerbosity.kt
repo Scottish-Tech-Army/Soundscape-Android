@@ -11,6 +11,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.featureIsInFilterGroup
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import kotlin.math.abs
 
 /**
@@ -189,42 +192,89 @@ enum class CalloutVerbosity(
 }
 
 /**
- * What the user is interested in right now, which narrows the walking POI callouts to one kind of
- * place. The groups are the Places Nearby folders (see featureIsInFilterGroup and
- * placesNearbyFolders), so that "Food and Drink" means the same thing in both places.
+ * Which places the walking and travel POI callouts announce - the "Places to Call Out" setting.
+ * It replaced three switches (Places and Landmarks, Mobility's POIs, Bus and Tram Stops) which
+ * overlapped with it; see [migrate] for how their values carry over. Junctions have their own
+ * switch (PreferenceKeys.STREETS_AND_JUNCTIONS) and markers are always announced.
  *
- * With an interest set, a POI in that group is always eligible, whatever the verbosity - the user
- * has asked for it by name. Other shops and amenities (the PLACE super-category) are dropped.
- * Landmarks, information and mobility POIs are left to the verbosity setting, since they are
- * about finding the way rather than about what the user is out to find. Junctions, markers and
- * beacons are never affected.
+ * The narrowing choices are the Places Nearby folders (see featureIsInFilterGroup and
+ * placesNearbyFolders), so that "Food and Drink" means the same thing in both places. With one of
+ * those chosen, a POI in that group is always eligible, whatever the verbosity - the user has asked
+ * for it by name. Other shops and amenities, and bus and tram stops, are dropped. Landmarks,
+ * information and the rest of mobility (crossings, steps, lifts) are left to the verbosity
+ * setting, since they are about finding the way rather than about what the user is out to find.
  */
-enum class CalloutInterest(val preferenceValue: String, val filterGroup: String) {
-    ALL("All", ""),
+enum class PlacesToCallOut(val preferenceValue: String, val filterGroup: String?) {
+    EVERYTHING("Everything", null),
+    LANDMARKS("Landmarks", null),
     TRANSIT("Transit", "transit"),
     FOOD_AND_DRINK("FoodAndDrink", "food_and_drink"),
     GROCERIES("Groceries", "groceries"),
-    BANKS("Banks", "banks");
+    BANKS("Banks", "banks"),
+    NOTHING("Nothing", null);
+
+    /** Bus and tram stops are the noisiest thing there is, so only these two include them. */
+    val includesBusAndTramStops get() = (this == EVERYTHING) || (this == TRANSIT)
 
     companion object {
-        fun fromPreference(value: String?): CalloutInterest =
-            entries.firstOrNull { it.preferenceValue == value } ?: ALL
+        fun fromPreference(value: String?): PlacesToCallOut =
+            entries.firstOrNull { it.preferenceValue == value } ?: EVERYTHING
+
+        fun read(preferences: PreferencesProvider?): PlacesToCallOut = fromPreference(
+            preferences?.getString(
+                PreferenceKeys.PLACES_TO_CALL_OUT,
+                PreferenceDefaults.PLACES_TO_CALL_OUT
+            )
+        )
+
+        /**
+         * Sets the selector once from the switches it replaced, so that somebody who had turned
+         * places off doesn't find them all back on. Places and Landmarks on is Everything - it
+         * was the switch for shops. With it off, Mobility on was left announcing bus stops and
+         * crossings, which Transit is the nearest to; both off is Nothing. The old Mobility key
+         * lives on as the Streets and Junctions switch, which is the part of it that was about
+         * junctions. Bus and Tram Stops has no equivalent: a user who had only that off gets
+         * Everything, and can choose a narrower setting.
+         */
+        fun migrate(preferences: PreferencesProvider) {
+            if (preferences.getString(PreferenceKeys.PLACES_TO_CALL_OUT, "").isNotEmpty()) return
+            val places = when {
+                preferences.getBoolean(PreferenceKeys.LEGACY_PLACES_AND_LANDMARKS, true) ->
+                    EVERYTHING
+                preferences.getBoolean(PreferenceKeys.STREETS_AND_JUNCTIONS, true) -> TRANSIT
+                else -> NOTHING
+            }
+            preferences.putString(PreferenceKeys.PLACES_TO_CALL_OUT, places.preferenceValue)
+        }
     }
 }
 
+// Not the whole transit group: a station or a ferry terminal is a destination in its own right
+// and is passed rarely enough to be worth hearing whatever the setting, whereas these two are what
+// make an urban street or a bus route noisy.
+private val busAndTramStopValues = setOf("bus_stop", "tram_stop")
+
+fun isBusOrTramStop(feature: MvtFeature) = feature.featureValue in busAndTramStopValues
+
 /**
- * Whether a walking POI callout for [feature] is allowed by the [verbosity] and [interest]
+ * Whether a walking POI callout for [feature] is allowed by the [verbosity] and [places]
  * settings. Distance, history and trigger range are checked separately by the caller.
  */
 fun poiAllowedBySettings(
     feature: MvtFeature,
     verbosity: CalloutVerbosity,
-    interest: CalloutInterest
+    places: PlacesToCallOut
 ): Boolean {
     if (feature.superCategory == SuperCategoryId.MARKER) return true
-    if (interest != CalloutInterest.ALL) {
-        if (featureIsInFilterGroup(feature, interest.filterGroup)) return true
-        if (feature.superCategory == SuperCategoryId.PLACE) return false
+    when (places) {
+        PlacesToCallOut.NOTHING -> return false
+        PlacesToCallOut.LANDMARKS -> return feature.superCategory == SuperCategoryId.LANDMARK
+        PlacesToCallOut.EVERYTHING -> {}
+        else -> {
+            if (featureIsInFilterGroup(feature, places.filterGroup!!)) return true
+            if (feature.superCategory == SuperCategoryId.PLACE) return false
+            if (isBusOrTramStop(feature)) return false
+        }
     }
     return verbosity.poiCategories?.contains(feature.superCategory) ?: true
 }

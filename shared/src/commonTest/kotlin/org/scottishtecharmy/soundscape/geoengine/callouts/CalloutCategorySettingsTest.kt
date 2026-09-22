@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import kotlin.test.Test
@@ -27,15 +28,16 @@ import kotlin.test.assertTrue
 /** In-memory [PreferencesProvider] holding only what a test sets on it. */
 private class FakePreferences : PreferencesProvider {
     private val booleans = mutableMapOf<String, Boolean>()
+    private val strings = mutableMapOf<String, String>()
 
     override fun getBoolean(key: String, default: Boolean): Boolean = booleans[key] ?: default
-    override fun getString(key: String, default: String): String = default
+    override fun getString(key: String, default: String): String = strings[key] ?: default
     override fun getFloat(key: String, default: Float): Float = default
 
     override fun putBoolean(key: String, value: Boolean) { booleans[key] = value }
-    override fun putString(key: String, value: String) {}
+    override fun putString(key: String, value: String) { strings[key] = value }
 
-    override fun clearAll() { booleans.clear() }
+    override fun clearAll() { booleans.clear(); strings.clear() }
 
     override fun addListener(listener: PreferencesListener) {}
     override fun removeListener(listener: PreferencesListener) {}
@@ -156,13 +158,15 @@ class CalloutCategorySettingsTest {
     /**
      * Travel mode does not get it for free. buildCalloutForVehicleLandmark reads
      * TreeId.LANDMARK_POIS directly rather than the tree the setting selects into, so until it
-     * checked the preference itself a user with Places and Landmarks off was still told about
-     * every park and hospital they drove past. iOS runs its in-vehicle landmarks through the same
-     * sense check as the walking ones - see filterAnnounceablePOIs in AutoCalloutGenerator.swift.
+     * checked the preference itself a user with places turned off was still told about every park
+     * and hospital they drove past. iOS runs its in-vehicle landmarks through the same sense check
+     * as the walking ones - see filterAnnounceablePOIs in AutoCalloutGenerator.swift.
      */
     @Test
-    fun vehicleLandmarkIsAnnouncedWhenPlacesAndLandmarksIsOn() {
-        val preferences = FakePreferences().apply { putBoolean(PLACES_AND_LANDMARKS_KEY, true) }
+    fun vehicleLandmarkIsAnnouncedWithLandmarksOnly() {
+        val preferences = FakePreferences().apply {
+            putString(PreferenceKeys.PLACES_TO_CALL_OUT, PlacesToCallOut.LANDMARKS.preferenceValue)
+        }
 
         val callout = AutoCallout(null, preferences).updateLocation(
             vehicleFix(1000L), landmarkGrid(), GridState()
@@ -176,8 +180,10 @@ class CalloutCategorySettingsTest {
     }
 
     @Test
-    fun vehicleLandmarkIsSilencedWhenPlacesAndLandmarksIsOff() {
-        val preferences = FakePreferences().apply { putBoolean(PLACES_AND_LANDMARKS_KEY, false) }
+    fun vehicleLandmarkIsSilencedWithNoPlaces() {
+        val preferences = FakePreferences().apply {
+            putString(PreferenceKeys.PLACES_TO_CALL_OUT, PlacesToCallOut.NOTHING.preferenceValue)
+        }
 
         assertNull(
             AutoCallout(null, preferences).updateLocation(

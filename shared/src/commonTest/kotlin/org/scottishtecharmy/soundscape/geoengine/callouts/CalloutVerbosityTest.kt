@@ -208,7 +208,7 @@ class CalloutVerbosityTest {
 
     @Test
     fun quietKeepsLandmarksAndMarkersOnly() {
-        val all = CalloutInterest.ALL
+        val all = PlacesToCallOut.EVERYTHING
         val quiet = CalloutVerbosity.QUIET
         assertTrue(poiAllowedBySettings(poi("Park", SuperCategoryId.LANDMARK), quiet, all))
         assertTrue(poiAllowedBySettings(poi("Home", SuperCategoryId.MARKER), quiet, all))
@@ -220,8 +220,8 @@ class CalloutVerbosityTest {
     }
 
     @Test
-    fun anInterestDropsOtherPlacesButNotLandmarks() {
-        val food = CalloutInterest.FOOD_AND_DRINK
+    fun aNarrowerChoiceDropsOtherPlacesAndBusStopsButNotLandmarks() {
+        val food = PlacesToCallOut.FOOD_AND_DRINK
         val detailed = CalloutVerbosity.DETAILED
         assertTrue(
             poiAllowedBySettings(poi("Cafe", SuperCategoryId.PLACE, "cafe"), detailed, food)
@@ -229,18 +229,51 @@ class CalloutVerbosityTest {
         assertFalse(
             poiAllowedBySettings(poi("Boots", SuperCategoryId.PLACE, "chemist"), detailed, food)
         )
+        assertFalse(
+            poiAllowedBySettings(poi("Stop", SuperCategoryId.MOBILITY, "bus_stop"), detailed, food)
+        )
+        assertTrue(
+            poiAllowedBySettings(poi("Lift", SuperCategoryId.MOBILITY, "elevator"), detailed, food)
+        )
         assertTrue(poiAllowedBySettings(poi("Park", SuperCategoryId.LANDMARK), detailed, food))
         assertTrue(poiAllowedBySettings(poi("Home", SuperCategoryId.MARKER), detailed, food))
     }
 
+    @Test
+    fun transitIncludesBusStops() {
+        assertTrue(
+            poiAllowedBySettings(
+                poi("Stop", SuperCategoryId.MOBILITY, "bus_stop"),
+                CalloutVerbosity.DETAILED,
+                PlacesToCallOut.TRANSIT
+            )
+        )
+        assertTrue(PlacesToCallOut.TRANSIT.includesBusAndTramStops)
+        assertTrue(PlacesToCallOut.EVERYTHING.includesBusAndTramStops)
+        assertFalse(PlacesToCallOut.LANDMARKS.includesBusAndTramStops)
+    }
+
+    @Test
+    fun landmarksOnlyAndNoPlaces() {
+        val detailed = CalloutVerbosity.DETAILED
+        val landmarks = PlacesToCallOut.LANDMARKS
+        assertTrue(poiAllowedBySettings(poi("Park", SuperCategoryId.LANDMARK), detailed, landmarks))
+        assertFalse(poiAllowedBySettings(poi("Shop", SuperCategoryId.PLACE), detailed, landmarks))
+        assertFalse(poiAllowedBySettings(poi("Steps", SuperCategoryId.MOBILITY), detailed, landmarks))
+
+        val nothing = PlacesToCallOut.NOTHING
+        assertFalse(poiAllowedBySettings(poi("Park", SuperCategoryId.LANDMARK), detailed, nothing))
+        assertTrue(poiAllowedBySettings(poi("Home", SuperCategoryId.MARKER), detailed, nothing))
+    }
+
     /** What the user asked for by name is called out even when Quiet would otherwise drop it. */
     @Test
-    fun anInterestIsCalledOutEvenWhenQuiet() {
+    fun aChosenKindOfPlaceIsCalledOutEvenWhenQuiet() {
         assertTrue(
             poiAllowedBySettings(
                 poi("Cafe", SuperCategoryId.PLACE, "cafe"),
                 CalloutVerbosity.QUIET,
-                CalloutInterest.FOOD_AND_DRINK
+                PlacesToCallOut.FOOD_AND_DRINK
             )
         )
     }
@@ -249,7 +282,32 @@ class CalloutVerbosityTest {
     fun unknownPreferenceValuesFallBackToTheOriginalBehaviour() {
         assertEquals(CalloutVerbosity.DETAILED, CalloutVerbosity.fromPreference(null))
         assertEquals(CalloutVerbosity.DETAILED, CalloutVerbosity.fromPreference("Loud"))
-        assertEquals(CalloutInterest.ALL, CalloutInterest.fromPreference("Shoes"))
+        assertEquals(PlacesToCallOut.EVERYTHING, PlacesToCallOut.fromPreference("Shoes"))
+    }
+
+    private fun migrated(placesAndLandmarks: Boolean?, mobility: Boolean?): String {
+        val preferences = VerbosityPreferences().apply {
+            placesAndLandmarks?.let { putBoolean(PreferenceKeys.LEGACY_PLACES_AND_LANDMARKS, it) }
+            mobility?.let { putBoolean(PreferenceKeys.STREETS_AND_JUNCTIONS, it) }
+        }
+        PlacesToCallOut.migrate(preferences)
+        return preferences.getString(PreferenceKeys.PLACES_TO_CALL_OUT, "")
+    }
+
+    @Test
+    fun theOldSwitchesCarryOverOnce() {
+        assertEquals("Everything", migrated(null, null))
+        assertEquals("Everything", migrated(true, false))
+        assertEquals("Transit", migrated(false, true))
+        assertEquals("Nothing", migrated(false, false))
+
+        // ...and once only: a choice already made is left alone
+        val preferences = VerbosityPreferences().apply {
+            putString(PreferenceKeys.PLACES_TO_CALL_OUT, "Banks")
+            putBoolean(PreferenceKeys.LEGACY_PLACES_AND_LANDMARKS, false)
+        }
+        PlacesToCallOut.migrate(preferences)
+        assertEquals("Banks", preferences.getString(PreferenceKeys.PLACES_TO_CALL_OUT, ""))
     }
 
     private val userLocation = LngLatAlt(-4.2546, 55.8609)

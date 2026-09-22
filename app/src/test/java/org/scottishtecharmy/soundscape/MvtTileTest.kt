@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
+import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
 import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
@@ -1844,7 +1845,8 @@ class MvtTileTest {
         )
 
         val off = MvtTestPreferences()
-        off.putBoolean(PreferenceKeys.BUS_AND_TRAM_STOPS, false)
+        // Landmarks Only is one of the choices that leaves bus and tram stops out
+        off.putString(PreferenceKeys.PLACES_TO_CALL_OUT, PlacesToCallOut.LANDMARKS.preferenceValue)
         val spokenWithStopsOff =
             driveOneFix(gridState, settlementGrid, way, startPoint, heading, off)
         assertTrue(
