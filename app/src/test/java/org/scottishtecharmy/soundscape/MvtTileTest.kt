@@ -4511,12 +4511,25 @@ class MvtTileTest {
         }
     }
 
+    /**
+     * One trace through the whole callout path, written out as text and as GeoJSON for eyeballing
+     * on geojson.io - each callout is the field-of-view triangle that produced it, carrying its
+     * spoken lines as properties.
+     *
+     * A walk rather than a journey: AutoCallout suppresses intersection callouts in a vehicle and
+     * for a while afterwards, so a drive or a train exercises everything here except the
+     * pedestrian callouts, which are most of them. CentralToBuchananStreet walks through the
+     * middle of Glasgow and produces getting on for two hundred callouts, around a quarter of
+     * them about junctions.
+     *
+     * testCallouts below still covers every trace, vehicles and trains included, nightly.
+     */
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
-        val testFile = "TransferAtQueenStreet"
+        val testFile = "CentralToBuchananStreet"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
             "gpxFiles/$testFile.txt",
