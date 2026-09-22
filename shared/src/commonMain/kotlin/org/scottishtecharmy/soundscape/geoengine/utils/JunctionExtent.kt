@@ -30,6 +30,19 @@ import kotlin.math.sin
  *
  * Tuning them is cheaper than it looks: formatDistanceAndDirection rounds to the nearest 5m below
  * 100m, so an error of a metre or two never reaches the user.
+ *
+ * Checked against the map rather than guessed at. Where a junction has a footway=crossing member,
+ * that arm runs from the road centre-line out to the pavement, so its length less a footway
+ * half-width is a measurement of this number. Over the test fixtures - 90 crossings in Glasgow,
+ * 1793 in Paris - the table's median error is +0.45m and -0.83m respectively, and it is out by
+ * more than half a rounding step (2.5m) in 23% and 10% of cases. No class was consistently wrong
+ * in both cities by more than about a metre, so there was nothing to correct for.
+ *
+ * That is also the argument against reading those crossing lengths at runtime instead: it would
+ * change what the user hears in a tenth to a quarter of junctions, by one rounding step, at the
+ * cost of a per-junction rtree search and a pile of attribution rules (a crossing is evidence
+ * about the road it crosses, not the road it belongs to). Worth revisiting if real width or lanes
+ * tags ever reach the tiles, which is a tile-build change rather than an app one.
  */
 private val halfWidthByClass = mapOf(
     "motorway" to 6.0,      // per carriageway - a dual is two Ways, each its own arm
