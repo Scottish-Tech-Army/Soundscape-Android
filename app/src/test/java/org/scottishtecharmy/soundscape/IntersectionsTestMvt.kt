@@ -6,11 +6,14 @@ import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.IntersectionDescription
+import org.scottishtecharmy.soundscape.geoengine.callouts.addIntersectionCalloutFromDescription
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
+import org.scottishtecharmy.soundscape.geoengine.utils.setbackAlong
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
@@ -97,6 +100,84 @@ class IntersectionsTestMvt {
             mapMatchedLocation = mapMatchFilter.matchedLocation
         )
         return getRoadsDescriptionFromFov(gridState, userGeometry, null)
+    }
+
+    /**
+     * The callout that would be spoken on walking in to [currentLocation], with the string keys
+     * left unresolved by FakeLocalizedStrings so that assertions can name them.
+     */
+    private fun calloutWalkingIn(
+        currentLocation: LngLatAlt,
+        deviceHeading: Double,
+        speakDistance: Boolean = true,
+    ): Pair<IntersectionDescription, TrackedCallout?> {
+
+        val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+        val mapMatchFilter = MapMatchFilter()
+        val behind = (deviceHeading + 180.0) % 360.0
+        var offset = 30.0
+        while (offset >= 0.0) {
+            mapMatchFilter.filter(
+                getDestinationCoordinate(currentLocation, behind, offset),
+                gridState, FeatureCollection(), false, null
+            )
+            offset -= 3.0
+        }
+        val userGeometry = UserGeometry(
+            location = currentLocation,
+            phoneHeading = deviceHeading,
+            fovDistance = 50.0,
+            mapMatchedWay = mapMatchFilter.matchedWay,
+            mapMatchedLocation = mapMatchFilter.matchedLocation
+        )
+        val strings = FakeLocalizedStrings()
+        val description = getRoadsDescriptionFromFov(gridState, userGeometry, strings)
+        return description to addIntersectionCalloutFromDescription(
+            description, strings, null, gridState, speakDistance
+        )
+    }
+
+    /**
+     * The whole point of the exercise: the callout says how far away the junction is, and the
+     * distance it says is to the kerb rather than to the node where the centre-lines meet.
+     */
+    @Test
+    fun intersectionCalloutSaysHowFarAway() {
+        val (description, callout) = calloutWalkingIn(
+            LngLatAlt(-2.637514213827643, 51.472589063821175), 225.0
+        )
+        Assert.assertNotNull(callout)
+
+        val spoken = callout!!.positionedStrings.first().text
+        Assert.assertTrue(
+            "expected a distance in \"$spoken\"",
+            spoken.startsWith("IntersectionApproachingIntersectionDistance(")
+        )
+
+        // The setback is subtracted, so what is spoken is shorter than the distance to the node.
+        val centreLine = description.centreLineDistance!!
+        val setback = description.intersection!!.setbackAlong(
+            description.nearestRoad!!,
+            getGridStateForLocation(
+                LngLatAlt(-2.637514213827643, 51.472589063821175), MAX_ZOOM_LEVEL, GRID_SIZE
+            ),
+            null
+        )
+        Assert.assertTrue("no setback was applied", setback > 0.0)
+        Assert.assertTrue("setback $setback exceeds the distance $centreLine", setback < centreLine)
+    }
+
+    /** With the setting off, the callout still announces the junction but says no distance. */
+    @Test
+    fun intersectionCalloutCanBeSilentAboutDistance() {
+        val (_, callout) = calloutWalkingIn(
+            LngLatAlt(-2.637514213827643, 51.472589063821175), 225.0, speakDistance = false
+        )
+        Assert.assertNotNull(callout)
+        Assert.assertEquals(
+            "IntersectionApproachingIntersection()",
+            callout!!.positionedStrings.first().text
+        )
     }
 
     /**

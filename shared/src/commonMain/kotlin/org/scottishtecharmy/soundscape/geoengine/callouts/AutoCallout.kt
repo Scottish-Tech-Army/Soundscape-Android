@@ -475,6 +475,17 @@ class AutoCallout(
         ) ?: PreferenceDefaults.STREETS_AND_JUNCTIONS
 
     /**
+     * The "Distance to Intersections" callout setting - whether an intersection callout says how
+     * far away the junction is as well as that there is one. Read here rather than at grid load
+     * time so that it takes effect on the next callout rather than the next grid.
+     */
+    private fun intersectionDistanceEnabled(): Boolean =
+        preferences?.getBoolean(
+            PreferenceKeys.DISTANCE_TO_INTERSECTION,
+            PreferenceDefaults.DISTANCE_TO_INTERSECTION
+        ) ?: PreferenceDefaults.DISTANCE_TO_INTERSECTION
+
+    /**
      * Whether this feature is a bus or tram stop that the Places to Call Out setting leaves out -
      * see PlacesToCallOut.includesBusAndTramStops.
      */
@@ -1208,7 +1219,8 @@ class AutoCallout(
             roadsDescription,
             localized,
             intersectionCalloutHistory,
-            gridState
+            gridState,
+            speakDistance = intersectionDistanceEnabled()
         )
     }
 

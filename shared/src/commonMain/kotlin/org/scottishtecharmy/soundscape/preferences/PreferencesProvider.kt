@@ -61,6 +61,13 @@ object PreferenceKeys {
      * Stored as CalloutVerbosity.preferenceValue.
      */
     const val CALLOUT_VERBOSITY = "CalloutVerbosity"
+
+    /**
+     * Whether an intersection callout says how far away the junction is, as well as that there is
+     * one. Part of Mobility, but separable: the distance is the whole point for somebody
+     * navigating an unfamiliar street, and just more words for somebody who knows the route.
+     */
+    const val DISTANCE_TO_INTERSECTION = "DistanceToIntersection"
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = "PositionTextDescription"
     const val RELATIVE_DIRECTION = "RelativeDirectionMode"
 
@@ -97,6 +104,7 @@ object PreferenceDefaults {
     const val PLACES_TO_CALL_OUT = "Everything"
     const val DISTANCE_TO_BEACON = true
     const val CALLOUT_VERBOSITY = "Detailed"
+    const val DISTANCE_TO_INTERSECTION = true
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = false
     const val RELATIVE_DIRECTION = "ClockFace"
 

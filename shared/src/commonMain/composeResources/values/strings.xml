@@ -368,6 +368,10 @@
     <string name="callouts_places_landmarks">Landmarks</string>
     <!-- Places to call out setting option: no places are called out. Markers, streets and junctions still are. -->
     <string name="callouts_places_nothing">No Places</string>
+    <!-- Name of the setting controlling whether intersection callouts include a distance -->
+    <string name="callouts_intersection_distance">Distance to Intersections</string>
+    <!-- Description of the setting controlling whether intersection callouts include a distance -->
+    <string name="callouts_intersection_distance_description">Say how far away a junction is, as well as that one is coming up</string>
     <!-- Help title for automatic callouts -->
     <string name="callouts_automatic_callouts">Automatic Callouts</string>
     <!-- Speech callout indicating that there's no useful information available -->
@@ -398,6 +402,8 @@
     <string name="sleep_wake_on_leave">Wake On Leave</string>
     <!-- Callout that a road junction is getting near -->
     <string name="intersection_approaching_intersection">Approaching intersection</string>
+    <!-- Callout that a road junction is getting near, %1$s is an already-formatted distance such as "30 metres" - see the distance_meters and distance_feet plurals. The distance is to the kerb the user will reach, not to the middle of the junction. -->
+    <string name="intersection_approaching_intersection_distance">Intersection in %1$s</string>
     <!-- Notification, %s is a point of interest, "At Starbucks" -->
     <string name="directions_at_poi">At %1$s</string>
     <!-- Text for button on home page that callous the current user location -->
