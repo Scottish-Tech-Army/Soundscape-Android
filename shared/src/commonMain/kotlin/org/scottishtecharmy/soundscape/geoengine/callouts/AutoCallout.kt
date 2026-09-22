@@ -63,7 +63,12 @@ class AutoCallout(
     private val destinationFilter = LocationUpdateFilter(60000, 10.0)
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
     private val poiFilter = LocationUpdateFilter(5000, 5.0)
-    private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
+    /**
+     * Rate limiter for the intersection callout - not what decides when it is announced, which is
+     * intersectionAnnounceBandMetres below. Tighter than the other filters because the band is a
+     * threshold to be caught: at walking pace a 5s/5m filter can carry the user 8m past it.
+     */
+    private val intersectionFilter = LocationUpdateFilter(2000, 3.0)
     private val intersectionCalloutHistory =
         CalloutHistory(CalloutVerbosity.DETAILED.roadHistoryExpiryMs)
     private val poiCalloutHistory = CalloutHistory(
@@ -1177,6 +1182,17 @@ class AutoCallout(
         return null
     }
 
+    /**
+     * How close to a junction the user has to be before it is announced.
+     *
+     * Previously the callout fired wherever the update filter happened to land inside the 50m
+     * field of view, so it could come 45m out or 10m out with nothing to tell the two apart. Now
+     * that a distance is spoken, that would be worse than vague: a number heard at an arbitrary
+     * range is a number that cannot be calibrated against. Announcing on entering a band means
+     * "intersection ahead" always means about the same thing.
+     */
+    private val intersectionAnnounceBandMetres = 30.0
+
     fun buildCalloutForIntersections(
         userGeometry: UserGeometry,
         gridState: GridState
@@ -1213,6 +1229,18 @@ class AutoCallout(
             localized,
             verbosity().minimumIntersectionTier
         )
+
+        // Hold off until the junction is within the announce band. The callout history is keyed
+        // on the junction, so this gates rather than edge-triggers: if the user is already inside
+        // the band, or the chosen junction changes between fixes, it still gets announced once.
+        // In StreetPreview there is no real position to measure from, so there is nothing to wait
+        // for.
+        if (!userGeometry.inStreetPreview) {
+            val kerbDistance = roadsDescription.kerbDistance(gridState, localized)
+            if ((kerbDistance != null) && (kerbDistance > intersectionAnnounceBandMetres)) {
+                return null
+            }
+        }
 
         // Don't describe the road we're on if there's an intersection
         return addIntersectionCalloutFromDescription(

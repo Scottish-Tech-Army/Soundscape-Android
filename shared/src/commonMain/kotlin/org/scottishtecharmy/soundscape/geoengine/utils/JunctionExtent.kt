@@ -91,6 +91,9 @@ fun Way.halfWidth(): Double {
     return base
 }
 
+/** Identity, not equality: Intersection deliberately has no equals - see WayGenerator. */
+private fun Intersection.containsMember(way: Way) = members.any { it === way }
+
 /**
  * True for arms that have no kerb line worth stopping at: the approach itself, tile-edge joiners,
  * pavements and crossings, and the short unnamed stubs joining a road to its own pavement.
@@ -131,6 +134,12 @@ fun Intersection.setbackAlong(
     // give-way line rather than a kerb a half-width back. The model does not describe that shape,
     // and no setback is a much better wrong answer than a confident one.
     if (members.any { it.properties?.get("junction") == "roundabout" }) return 0.0
+
+    // Way.heading(intersection) assumes the intersection is one of the Way's own ends, and
+    // returns a bearing measured from an unrelated vertex if it isn't. A caller holding a Way
+    // that does not reach this junction - the map-matched Way before it has been followed to the
+    // intersection, say - has no approach to set anything back along.
+    if (!containsMember(approach)) return 0.0
 
     val approachHeading = approach.heading(this)
     var setback = 0.0
