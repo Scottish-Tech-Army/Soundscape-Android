@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathWays
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
@@ -33,7 +34,56 @@ data class IntersectionDescription(
     var nearestRoad: Way? = null,
     val userGeometry: UserGeometry = UserGeometry(),
     val intersection: Intersection? = null,
+    /**
+     * How far the user has to travel along the road network to reach [intersection]'s node, in
+     * metres, or null where it could not be measured (no map match, or the intersection is not
+     * reachable within the search limit).
+     *
+     * Centre-line to centre-line: this is the distance to the point where the road centre-lines
+     * meet, which is not the point a pedestrian arrives at - they stop at the kerb, one
+     * cross-road half-width short of it. Subtracting that setback is a separate concern; this
+     * value is deliberately the raw network distance.
+     *
+     * [nearestRoad] is the Way the user approaches along, and is re-derived by
+     * addIntersectionCalloutFromDescription when the matched Way is not itself a member of the
+     * intersection, so it can be relied on as the approach arm once that has run.
+     */
+    val centreLineDistance: Double? = null,
 )
+
+/**
+ * A candidate intersection, with the priority that decides between candidates and the network
+ * distance measured while reaching it - the distance is worth carrying because it has already
+ * been computed by the time a candidate is scored, and recomputing it later would mean a second
+ * Dijkstra run.
+ */
+private data class IntersectionCandidate(
+    val priority: Int,
+    val intersection: Intersection,
+    val distance: Double?,
+)
+
+/**
+ * The distance from [from] along [way] to whichever of [way]'s ends [intersection] is, or null if
+ * it is neither.
+ *
+ * This is the common pedestrian case - already walking the Way that ends at the junction - and is
+ * exactly the case getRoadsDescriptionFromFov skips Dijkstra for, so it needs its own (much
+ * cheaper) measurement rather than inheriting one.
+ */
+private fun distanceAlongWayTo(
+    way: Way,
+    intersection: Intersection,
+    from: LngLatAlt,
+    ruler: Ruler,
+): Double? {
+    val along = way.distanceAlongWay(from, ruler)
+    return when {
+        way.intersections[WayEnd.END.id] === intersection -> way.length - along
+        way.intersections[WayEnd.START.id] === intersection -> along
+        else -> null
+    }
+}
 
 /**
  * getRoadsDescriptionFromFov returns a description of the nearestRoad and also the 'best'
@@ -190,14 +240,24 @@ fun getRoadsDescriptionFromFov(
     )
 
     // Inspect each intersection so as to skip trivial ones
-    val nonTrivialIntersections = mutableListOf<Pair<Int, Intersection>>()
+    val nonTrivialIntersections = mutableListOf<IntersectionCandidate>()
 
     for (intersection in sortedFovIntersections.features) {
         val intersectionLocation = (intersection.geometry as Point).coordinates
         val graphIntersection = gridState.gridIntersections[intersectionLocation]
         if (graphIntersection != null) {
+            var distance: Double? = null
             val matched = userGeometry.mapMatchedLocation
             if ((matched != null) && (nearestRoad != null)) {
+                // The nearestRoad ends at this intersection, so the distance is simply what is
+                // left of the Way ahead of us. The Dijkstra below is skipped in this case, so
+                // this is the only chance to measure it.
+                distance = distanceAlongWayTo(
+                    nearestRoad,
+                    graphIntersection,
+                    matched.point,
+                    userGeometry.ruler
+                )
                 // If our current matched way ends at this intersection, then we don't need to use
                 // more elaborate (Dijkstra) pathfinding to check the connection.
                 if (!nearestRoad.intersections.contains(graphIntersection)) {
@@ -215,6 +275,7 @@ fun getRoadsDescriptionFromFov(
                         50.0
                     )
                     if (shortestDistanceResults.distance < 50.0) {
+                        distance = shortestDistanceResults.distance
                         var skip = false
                         val ways = getPathWays(graphIntersection)
                         var nextIntersection: Intersection? = graphIntersection
@@ -271,7 +332,9 @@ fun getRoadsDescriptionFromFov(
             // We aim to skip 'simple' intersections e.g. ones where the only roads involved have
             // the same name.
             val priority = checkWhetherIntersectionIsOfInterest(graphIntersection, nearestRoad)
-            nonTrivialIntersections.add(Pair(priority, graphIntersection))
+            nonTrivialIntersections.add(
+                IntersectionCandidate(priority, graphIntersection, distance)
+            )
         }
     }
     if (nonTrivialIntersections.isEmpty()) {
@@ -279,23 +342,24 @@ fun getRoadsDescriptionFromFov(
     }
 
     // No intersection with a priority greater than zero, so just pick the highest
-    val intersection = nonTrivialIntersections.firstOrNull { prioritised ->
-        prioritised.first > 0
-    }?.second
+    val candidate = nonTrivialIntersections.firstOrNull { prioritised ->
+        prioritised.priority > 0
+    }
         ?: nonTrivialIntersections.maxByOrNull { prioritised ->
-            prioritised.first
-        }?.second
+            prioritised.priority
+        }
         ?: return IntersectionDescription(nearestRoad, userGeometry)
 
     // Find the bearing that we're coming in at - measured to the nearest intersection
-    val heading = nearestRoad?.heading(intersection)
+    val heading = nearestRoad?.heading(candidate.intersection)
     //val heading = userGeometry.heading()
     if (heading != null) {
         // And use the polygons to describe the roads at the intersection
         return IntersectionDescription(
             nearestRoad,
             userGeometry,
-            intersection
+            candidate.intersection,
+            candidate.distance
         )
     }
     return IntersectionDescription(nearestRoad, userGeometry)
