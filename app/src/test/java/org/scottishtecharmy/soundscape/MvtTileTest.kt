@@ -136,7 +136,7 @@ private class MvtTestPreferences : PreferencesProvider {
  * Minimal [LocalizedStrings] stub for tests that need to check *which* string key and arguments
  * a callout resolves to, without pulling in the real Compose resource-bundle string lookup.
  */
-private class FakeLocalizedStrings : LocalizedStrings {
+internal class FakeLocalizedStrings : LocalizedStrings {
     override fun get(key: StringKey, vararg args: Any?): String = when (key) {
         // Keep formatted numbers readable in assertions rather than nesting a
         // NumberDecimalSeparator() stub in the middle of every distance.

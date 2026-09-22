@@ -59,6 +59,8 @@ import org.scottishtecharmy.soundscape.resources.callout_settings_position_descr
 import org.scottishtecharmy.soundscape.resources.callout_settings_position_text
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_description
+import org.scottishtecharmy.soundscape.resources.callouts_intersection_distance
+import org.scottishtecharmy.soundscape.resources.callouts_intersection_distance_description
 import org.scottishtecharmy.soundscape.resources.callouts_places_everything
 import org.scottishtecharmy.soundscape.resources.callouts_places_landmarks
 import org.scottishtecharmy.soundscape.resources.callouts_places_nothing
@@ -343,6 +345,19 @@ fun SharedSettingsScreen(
                             textColor
                         )
                     },
+                )
+                switchPreference(
+                    key = PreferenceKeys.DISTANCE_TO_INTERSECTION,
+                    defaultValue = PreferenceDefaults.DISTANCE_TO_INTERSECTION,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            Res.string.callouts_intersection_distance,
+                            Res.string.callouts_intersection_distance_description,
+                            textColor
+                        )
+                    },
+                    enabled = { allowCallouts },
                 )
                 switchPreference(
                     key = PreferenceKeys.POSITION_INCLUDES_HEADING_AND_DISTANCE,

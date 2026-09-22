@@ -158,6 +158,7 @@ import org.scottishtecharmy.soundscape.resources.distance_format_meters
 import org.scottishtecharmy.soundscape.resources.distance_format_miles
 import org.scottishtecharmy.soundscape.resources.general_error_location_services_find_location_error
 import org.scottishtecharmy.soundscape.resources.intersection_approaching_intersection
+import org.scottishtecharmy.soundscape.resources.intersection_approaching_intersection_distance
 import org.scottishtecharmy.soundscape.resources.markers_generic_name
 import org.scottishtecharmy.soundscape.resources.menu_no_routes
 import org.scottishtecharmy.soundscape.resources.voice_cmd_markers_list
@@ -251,6 +252,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsAtPoi -> Res.string.directions_at_poi
         StringKey.DirectionsDirectionAhead -> Res.string.directions_direction_ahead
         StringKey.IntersectionApproachingIntersection -> Res.string.intersection_approaching_intersection
+        StringKey.IntersectionApproachingIntersectionDistance -> Res.string.intersection_approaching_intersection_distance
         StringKey.DirectionsNameGoesLeft -> Res.string.directions_name_goes_left
         StringKey.DirectionsNameGoesRight -> Res.string.directions_name_goes_right
         StringKey.DirectionsNameContinuesAhead -> Res.string.directions_name_continues_ahead

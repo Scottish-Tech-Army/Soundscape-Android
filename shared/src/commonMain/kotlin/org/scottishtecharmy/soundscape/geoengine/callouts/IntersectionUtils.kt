@@ -6,6 +6,7 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -20,6 +21,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathWays
+import org.scottishtecharmy.soundscape.geoengine.utils.setbackAlong
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -29,6 +31,12 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import kotlin.math.abs
+
+/**
+ * Below this the formatter has nothing useful left to say - it rounds to the nearest 5m under
+ * 100m, so 2m becomes "0 metres" - and at that range the user is at the junction anyway.
+ */
+private const val minimumSpokenDistanceMetres = 5.0
 
 data class IntersectionDescription(
     var nearestRoad: Way? = null,
@@ -374,6 +382,8 @@ fun getRoadsDescriptionFromFov(
  * @param localized A LocalizedStrings for obtaining localized strings
  * @param calloutHistory An optional CalloutHistory to use so as to filter out recently played out
  * @param gridState The current gridState
+ * @param speakDistance Whether to say how far away the intersection is - the
+ * PreferenceKeys.DISTANCE_TO_INTERSECTION setting
  *
  * @return A TrackedCallout for the intersection if one was found, otherwise null.
  */
@@ -381,7 +391,8 @@ fun addIntersectionCalloutFromDescription(
     description: IntersectionDescription,
     localized: LocalizedStrings?,
     calloutHistory: CalloutHistory? = null,
-    gridState: GridState
+    gridState: GridState,
+    speakDistance: Boolean = true,
 ): TrackedCallout? {
 
     // Report nearby road
@@ -466,14 +477,43 @@ fun addIntersectionCalloutFromDescription(
     // Check if we should be filtering out this callout
     val intersectionLocation = description.intersection.location
 
+    // The distance is to the kerb rather than to the node where the centre-lines meet, which is
+    // where the user will actually arrive - see JunctionExtent. Both the setback and the distance
+    // it is taken from can be absent (an unmapped junction, or no map match to measure from), in
+    // which case we say that there is an intersection without saying how far, rather than saying
+    // a number we don't have.
+    //
+    // Note this formats the distance here rather than letting SpeakCallout's addDistanceAndHeading
+    // do it: that path is only reached for a PositionedString with a location, and it would
+    // measure the straight line to the centre-line node, which is the number being replaced.
+    val setback = description.nearestRoad
+        ?.let { description.intersection.setbackAlong(it, gridState, localized) }
+        ?: 0.0
+    val kerbDistance = description.centreLineDistance?.let { maxOf(0.0, it - setback) }
+    val approachText = if (speakDistance &&
+        (kerbDistance != null) &&
+        (kerbDistance >= minimumSpokenDistanceMetres)
+    ) {
+        val formatted = formatDistanceAndDirection(
+            kerbDistance,
+            null,
+            localized,
+            speed = description.userGeometry.speed
+        )
+        localized?.get(StringKey.IntersectionApproachingIntersectionDistance, formatted)
+            ?: "Intersection in $formatted"
+    } else {
+        localized?.get(StringKey.IntersectionApproachingIntersection)
+            ?: "Approaching intersection"
+    }
+
     val trackedCallout = TrackedCallout(
         description.userGeometry,
         intersectionName ?: "",
         intersectionLocation,
         positionedStrings = List(1) {
             PositionedString(
-                text = localized?.get(StringKey.IntersectionApproachingIntersection)
-                    ?: "Approaching intersection",
+                text = approachText,
                 heading = -10000.0,
                 earcon = Earcons.SENSE_POI,
                 type = AudioType.STANDARD
