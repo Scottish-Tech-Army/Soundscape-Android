@@ -408,7 +408,7 @@ class Way : MvtFeature() {
         getOtherIntersection(intersection)?.let { otherIntersection ->
             for (way in otherIntersection.members) {
                 if (way == this) continue
-                if (isSidewalkOrCrossing()) {
+                if (!way.isSidewalkOrCrossing()) {
                     // This does connect to something that isn't a sidewalk, so it's not a simple
                     // connector i.e. it may connect to a sidewalk, but it goes further.
                     return false
