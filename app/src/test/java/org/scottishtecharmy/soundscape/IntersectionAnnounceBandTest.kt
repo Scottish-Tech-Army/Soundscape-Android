@@ -14,7 +14,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import kotlin.test.Test
 
 /**
- * Replays a recorded walk and checks how far away junctions are when they would be announced.
+ * Replays recorded walks and checks how far away junctions are when they would be announced.
  *
  * Half of the "it's never clear how far away an intersection is" complaint is that "approaching
  * intersection" used to arrive at no particular range - anywhere in the 50m field of view. Adding
@@ -22,9 +22,9 @@ import kotlin.test.Test
  * distance, so this is the test that the tie holds on recorded GPS rather than on hand-built
  * geometry.
  *
- * ToAllander is a walk down Strathblane Road and Glasgow Road in Milngavie, which has both kinds
- * of junction this needs to distinguish: well-spaced side roads, and stretches where service
- * roads and paths come every ten metres.
+ * Walking traces specifically. AutoCallout suppresses intersection callouts in a vehicle and for
+ * a while afterwards, so a drive is not a case this code ever runs in - and the sparse fixes of
+ * one would test the band against samples further apart than the band's own tolerance.
  */
 class IntersectionAnnounceBandTest {
 
@@ -37,19 +37,63 @@ class IntersectionAnnounceBandTest {
      */
     private val isolatedJunctionGapMetres = 50.0
 
+    /** A wander around Milngavie, and a walk through the middle of Glasgow. */
     @Test
     fun junctionsAreAnnouncedOnApproachRatherThanUnderfoot() {
-        val track = parseGpxTrack("$offlineExtractPath/gpxFiles/ToAllander.gpx")
-        Assert.assertTrue("no track points", track.size > 50)
+        for (trace in listOf("travel-2", "CentralToBuchananStreet")) {
+            val announcedAt = replay(trace)
+            Assert.assertTrue("$trace: too few junctions announced", announcedAt.size >= 10)
+
+            val isolated = mutableListOf<Double>()
+            var previous: LngLatAlt? = null
+            for ((junction, distance) in announcedAt) {
+                Assert.assertTrue(
+                    "$trace: ${junction.first} announced at $distance m, beyond the " +
+                        "$announceBandMetres m band",
+                    distance <= announceBandMetres
+                )
+
+                // Where there was room to give the full warning, it should usually have been
+                // given. Junctions packed ten metres apart cannot be announced thirty metres
+                // ahead - the user has only just passed the previous one - so only well-spaced
+                // ones are counted.
+                val gap = previous?.let { ruler.distance(it, junction.second) }
+                if ((gap != null) && (gap > isolatedJunctionGapMetres)) isolated.add(distance)
+                previous = junction.second
+            }
+
+            Assert.assertTrue("$trace: no well-spaced junctions to check", isolated.size >= 5)
+
+            // A proportion rather than every junction, because selection can still surface one
+            // late: getRoadsDescriptionFromFov describes one junction at a time, and until it
+            // chooses this one there is nothing for the band to gate. So the guarantee the gate
+            // can make is that nothing is announced from too far away, not that everything is
+            // announced from far enough.
+            val onApproach = isolated.count { it > announceBandMetres / 2 }
+            Assert.assertTrue(
+                "$trace: only $onApproach of ${isolated.size} well-spaced junctions were " +
+                    "announced on approach: $isolated",
+                onApproach >= (isolated.size * 3) / 4
+            )
+        }
+    }
+
+    private lateinit var ruler: org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
+
+    /**
+     * Walks [trace], returning the distance at the first fix where each junction would have been
+     * announced. Keyed on the junction so the repeated fixes of one approach collapse to the
+     * first, which is what the callout history does in production.
+     */
+    private fun replay(trace: String): Map<Pair<String?, LngLatAlt>, Double> {
+        val track = parseGpxTrack("$offlineExtractPath/gpxFiles/$trace.gpx")
+        Assert.assertTrue("$trace: no track points", track.size > 50)
 
         val gridState = FileGridState()
         gridState.start(offlineExtractPath)
+        ruler = gridState.ruler
         val mapMatchFilter = MapMatchFilter()
         val categories = setOf(PLACES_AND_LANDMARKS_KEY, MOBILITY_KEY)
-
-        // Distance at the first fix where the gate would have let each junction through. Keyed on
-        // the junction so the repeated fixes of one approach collapse to the first, which is what
-        // the callout history does in production.
         val announcedAt = linkedMapOf<Pair<String?, LngLatAlt>, Double>()
         var measured = 0
 
@@ -77,45 +121,8 @@ class IntersectionAnnounceBandTest {
             if (distance > announceBandMetres) continue
             announcedAt.getOrPut(junction.name to junction.location) { distance }
         }
-
-        Assert.assertTrue("no distances measured along the walk", measured > 50)
-        Assert.assertTrue("too few junctions announced", announcedAt.size >= 10)
-
-        val isolatedDistances = mutableListOf<Double>()
-        var previous: LngLatAlt? = null
-        for ((junction, distance) in announcedAt) {
-            Assert.assertTrue(
-                "${junction.first} announced at $distance m, beyond the $announceBandMetres m band",
-                distance <= announceBandMetres
-            )
-
-            // Where there was room to give the full warning, it should usually have been given.
-            // Junctions packed ten metres apart cannot be announced thirty metres ahead - the user
-            // has only just passed the previous one - so only well-spaced ones are counted.
-            val gap = previous?.let { gridState.ruler.distance(it, junction.second) }
-            if ((gap != null) && (gap > isolatedJunctionGapMetres)) {
-                isolatedDistances.add(distance)
-            }
-            previous = junction.second
-        }
-        Assert.assertTrue(
-            "no well-spaced junctions on this walk to check",
-            isolatedDistances.size >= 10
-        )
-
-        // Asserted as a proportion rather than of every junction, because selection can still
-        // surface one late: on this walk Kersland Lane has 84m of clear road before it and is
-        // picked only at 6m, where its seventeen neighbours are all picked between 18m and 30m.
-        // getRoadsDescriptionFromFov describes one junction at a time, and until it chooses this
-        // one there is nothing for the band to gate - so the guarantee the gate can make is that
-        // nothing is announced from too far away, not that everything is announced from far
-        // enough.
-        val onApproach = isolatedDistances.count { it > announceBandMetres / 2 }
-        Assert.assertTrue(
-            "only $onApproach of ${isolatedDistances.size} well-spaced junctions were announced " +
-                "on approach: $isolatedDistances",
-            onApproach >= (isolatedDistances.size * 3) / 4
-        )
+        Assert.assertTrue("$trace: no distances measured along the walk", measured > 50)
+        return announcedAt
     }
 }
 
