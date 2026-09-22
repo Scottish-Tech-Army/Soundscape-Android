@@ -188,7 +188,7 @@ private fun vectorTileToGeoJsonFromFile(
  * properties equal the geometry and every replay behaves exactly as it did before the streams
  * were told apart.
  */
-private fun parseGpxFromFile(filename: String): FeatureCollection {
+internal fun parseGpxFromFile(filename: String): FeatureCollection {
     val fc = FeatureCollection()
     val gpx = parseGpx(File(filename).readText())
     val provider = GpxReplayLocationProvider(gpx.locationStream)

@@ -60,6 +60,23 @@ data class IntersectionDescription(
 )
 
 /**
+ * How far the user still has to walk to reach the edge of [IntersectionDescription.intersection] -
+ * the kerb of the road crossing theirs - or null when there is nothing to measure from.
+ *
+ * This is the number the user is told, and the number the announcement is timed off, so that what
+ * is said and when it is said agree.
+ */
+fun IntersectionDescription.kerbDistance(
+    gridState: GridState,
+    strings: LocalizedStrings?,
+): Double? {
+    val junction = intersection ?: return null
+    val distance = centreLineDistance ?: return null
+    val setback = nearestRoad?.let { junction.setbackAlong(it, gridState, strings) } ?: 0.0
+    return maxOf(0.0, distance - setback)
+}
+
+/**
  * A candidate intersection, with the priority that decides between candidates and the network
  * distance measured while reaching it - the distance is worth carrying because it has already
  * been computed by the time a candidate is scored, and recomputing it later would mean a second
@@ -486,10 +503,7 @@ fun addIntersectionCalloutFromDescription(
     // Note this formats the distance here rather than letting SpeakCallout's addDistanceAndHeading
     // do it: that path is only reached for a PositionedString with a location, and it would
     // measure the straight line to the centre-line node, which is the number being replaced.
-    val setback = description.nearestRoad
-        ?.let { description.intersection.setbackAlong(it, gridState, localized) }
-        ?: 0.0
-    val kerbDistance = description.centreLineDistance?.let { maxOf(0.0, it - setback) }
+    val kerbDistance = description.kerbDistance(gridState, localized)
     val approachText = if (speakDistance &&
         (kerbDistance != null) &&
         (kerbDistance >= minimumSpokenDistanceMetres)
