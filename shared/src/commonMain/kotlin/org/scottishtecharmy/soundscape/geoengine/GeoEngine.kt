@@ -149,10 +149,6 @@ class GeoEngine {
     var appInForeground = false
 
     private lateinit var autoCallout: AutoCallout
-    private var autoCalloutDisabled = false
-    fun toggleAutoCallouts() {
-        autoCalloutDisabled = autoCalloutDisabled.xor(true)
-    }
 
     private val streetPreview = StreetPreview()
 
@@ -605,7 +601,7 @@ class GeoEngine {
                         listener.tileGridUpdated()
                     }
 
-                    if ((!listener.isAudioEngineBusy() || streetPreview.running) && !autoCalloutDisabled && !listener.menuActive) {
+                    if ((!listener.isAudioEngineBusy() || streetPreview.running) && !listener.menuActive) {
                         val callout =
                             autoCallout.updateLocation(
                                 getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),

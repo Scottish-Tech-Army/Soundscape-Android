@@ -13,6 +13,17 @@ As well as the accessible GUI to control the app, we also have 3 other options w
 
 The first of these was implemented in an early release, but the second two are new.
 
+## Original media controls
+These started as the iOS app's bindings, and apply whenever the audio menu isn't selected:
+
+* **Play/Pause** toggles the beacon audio on and off.
+* **Next** moves the beacon to the next waypoint while a route is playing, and otherwise calls out *Around Me*.
+* **Previous** moves the beacon to the previous waypoint while a route is playing, and otherwise steps the *Callout Detail* setting down one level: Detailed, Balanced, Quiet, Silent, and round to Detailed again. It speaks only the level it reached.
+
+*My Location* is not on the buttons; it's a home screen button and a Siri or Gemini command.
+
+Stepping the Callout Detail is on the same button in both modes, so that the press worth finding in a hurry doesn't depend on which mode is chosen. Automatic callouts are held off while the new level is spoken, so nothing talks over it. The implementation is the `MediaControllableService.cycleCalloutDetailAndSay()` extension in `CalloutDetailCycle.kt`, called from both `OriginalMediaControls` and `AudioMenuMediaControls`.
+
 ## Voice control
 
 *Voice control has been disabled for now. It was too unreliable in its operation, which was simply confusing to users.*
@@ -24,6 +35,8 @@ It's possible to have a number of phrases that have the same action, though it's
 Because we want the functionality of voice control and audio menus to be similar, I've added in the text alongside the audio menu options in the next section.
 
 ## Audio menus
+**Next** moves through the options at the current level, wrapping round after the last one, and **Play/Pause** selects the one just spoken. **Previous** does not step backwards through the menu: it changes the Callout Detail exactly as in the original mode (see above).
+
 Each menu consists of a number of options to pick from. The main menu is simply a list of these sub menus. Each sub menu has an option which allows navigating back up to the main menu. That option obviously doesn't exist as a voice control command where all commands are in a flat structure.
 
 ### Existing features
@@ -87,6 +100,8 @@ Perhaps we could add filters to "List markers" e.g. "List markers nearby" or "Li
 One of the main reasons for having an extensible menu system is so that we can add in new remotely controlled features. We need to decide how we expose these within the on screen GUI too - in many ways it's a lot easier not to!
 
 #### Audio profile
+*This now exists as the **Places to Call Out** setting in Manage Callouts: a list to tick of Everything, Landmarks, Public Transit, Food and Drink, Groceries, Banks, or No Places. The narrowing choices are the same groups as the Places Nearby filters. It is only in Settings, not in the audio menu. The logic is `PlacesToCallOut` and `CalloutPoiSelection` in `CalloutVerbosity.kt`. The rest of this section is the original proposal.*
+
 This is a new feature which would allow the user to pick a filter for points of interest. I think the implementation of the filters is the crucial thing here. Rather than ONLY playing out eating POI, perhaps it guarantees eating POI, but will play some other POI to aid navigation e.g. at least one POI per 100m if there have been no intersections? 
 ```
 Audio Profile
@@ -117,6 +132,8 @@ Voice control does have some major advantages as we can allow the user to specif
 If the name is empty, we can either guess a good marker name or fall back to using "Waypoint X".
 
 #### Callback filtering
+*This now exists as the **Callout Detail** setting: Silent, Quiet, Balanced or Detailed. Rather than a menu, it's on the Previous button in both media control modes, a slider in Settings, and a Siri or Gemini command ("Soundscape detail quiet" on iOS, `setCalloutDetail` in the Android AppFunctions). Silent replaced the old Allow Callouts switch. The levels are bundles of thresholds in `CalloutVerbosity.kt`. The rest of this section is the original proposal.*
+
 This sort of goes along with audio profiles, but it simply a way of getting the app to quieten down when there's too much to describe. Perhaps this should just be an audio profile e.g. "Quieter"?
 ```
 Callback filtering
