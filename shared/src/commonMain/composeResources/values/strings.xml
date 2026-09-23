@@ -343,7 +343,7 @@
     <!-- Settings option under Manage Callouts which chooses how much the automatic callouts say while walking. -->
     <string name="callouts_verbosity">Callout Detail</string>
     <!-- A description for the callout detail setting, naming each of the four levels the slider below it chooses between. Translate the level names the same as callouts_verbosity_level_*. -->
-    <string name="callouts_verbosity_description">Callout detail controls how much Soundscape tells you about as you walk. Detailed calls out everything nearby. Balanced leaves out minor paths and service roads, and repeats itself less often. Quiet calls out streets, junctions and landmarks only. Silent makes no automatic callouts at all, leaving beacons, routes and the buttons on the home screen.</string>
+    <string name="callouts_verbosity_description">Callout detail controls how much Soundscape tells you about as you walk. Detailed mode calls out everything nearby. Balanced mode leaves out minor paths and service roads, and repeats itself less often. Quiet mode calls out streets, junctions and landmarks only. Silent mode makes no automatic callouts at all, leaving beacons, routes and the buttons on the home screen.</string>
     <!-- Short name of the Silent callout detail, as spoken by the headphone button and offered by Siri. Translate the same as the name used for it in callouts_verbosity_description. -->
     <string name="callouts_verbosity_level_silent">Silent</string>
     <!-- Short name of the Quiet callout detail, as spoken by the headphone button and offered by Siri. Translate the same as the name used for it in callouts_verbosity_description. -->

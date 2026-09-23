@@ -12,6 +12,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildAheadOfMeCallout
@@ -323,6 +324,13 @@ class GeoEngine {
                 )
             } else if (key == PreferenceKeys.MEASUREMENT_UNITS) {
                 updateMeasurementUnits(preferencesProvider)
+            } else if ((key == PreferenceKeys.CALLOUT_VERBOSITY) ||
+                (key == PreferenceKeys.PLACES_TO_CALL_OUT)
+            ) {
+                // TreeId.SELECTED_SUPER_CATEGORIES holds what these two settings allow, so it
+                // has to be built again - but only it: the tiles, ways and intersections behind
+                // it are unchanged.
+                gridState.updatePoiSelection(calloutPoiSelection())
             }
         }
         preferencesProvider.addListener(preferencesListener)
@@ -440,12 +448,8 @@ class GeoEngine {
         tileSearch.refreshOfflineMaps()
     }
 
-    /**
-     * Every category the walking POI callouts could announce. Which of them actually are is the
-     * Places to Call Out setting, applied as each callout is made (see poiAllowedBySettings) so
-     * that changing it takes effect straight away rather than at the next grid rebuild.
-     */
-    fun createSuperCategoriesSet(): Set<String> = setOf(PLACES_AND_LANDMARKS_KEY, MOBILITY_KEY)
+    /** What the walking POI callouts may announce - see [CalloutPoiSelection]. */
+    fun calloutPoiSelection() = CalloutPoiSelection.read(preferencesProvider)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringLocation() {
@@ -511,12 +515,12 @@ class GeoEngine {
                     // settlements covering this location by the time gridState rebuilds.
                     settlementGrid.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        createSuperCategoriesSet(),
+                        calloutPoiSelection(),
                         localizedStrings
                     )
                     val updated = gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        createSuperCategoriesSet(),
+                        calloutPoiSelection(),
                         localizedStrings
                     )
 

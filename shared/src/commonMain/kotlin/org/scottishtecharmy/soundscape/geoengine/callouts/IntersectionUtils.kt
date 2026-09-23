@@ -264,10 +264,7 @@ fun getRoadsDescriptionFromFov(
             // setting asks for, e.g. a service road or footpath off a street.
             if (!intersectionMeetsRoadTier(
                     graphIntersection, nearestRoad, minimumTier, gridState, strings,
-                    bearingFromTwoPoints(
-                        graphIntersection.location,
-                        userGeometry.mapMatchedLocation?.point ?: userGeometry.location
-                    )
+                    comingFromBearing(userGeometry, graphIntersection.location)
                 ))
                 continue
 
@@ -497,4 +494,22 @@ fun addIntersectionCalloutFromDescription(
     intersectionResults.sortBy { it.heading }
     trackedCallout.positionedStrings = intersectionResults
     return trackedCallout
+}
+
+/**
+ * The bearing from [intersectionLocation] back to the user, which says which way they arrived -
+ * see [intersectionMeetsRoadTier].
+ *
+ * Null when they are standing on the intersection, where there is no direction to measure:
+ * bearingFromTwoPoints of a point to itself is due north, and anything leaving the junction
+ * northwards would then be taken for the way they came. Street Preview steps from intersection to
+ * intersection, so that is its normal state rather than an edge case.
+ */
+private fun comingFromBearing(
+    userGeometry: UserGeometry,
+    intersectionLocation: LngLatAlt,
+): Double? {
+    val userLocation = userGeometry.mapMatchedLocation?.point ?: userGeometry.location
+    if (userGeometry.ruler.distance(intersectionLocation, userLocation) < 1.0) return null
+    return bearingFromTwoPoints(intersectionLocation, userLocation)
 }

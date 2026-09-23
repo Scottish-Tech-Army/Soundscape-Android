@@ -30,9 +30,16 @@ internal actual fun rememberSoundscapePreferenceFlow(): MutableStateFlow<Prefere
         MutableStateFlow(sharedPreferences.asPreferences())
     }
 
-    // Settings changed on this screen, out to the store.
+    // Settings changed on this screen, out to the store. Each write is measured against what
+    // the flow last held rather than against the store, so that keys written elsewhere in the
+    // meantime are left alone - see preferenceEdits.
     LaunchedEffect(sharedPreferences, flow) {
-        flow.drop(1).collect { preferences -> sharedPreferences.write(preferences.asMap()) }
+        var known = flow.value.asMap()
+        flow.drop(1).collect { preferences ->
+            val desired = preferences.asMap()
+            sharedPreferences.write(preferenceEdits(known, desired))
+            known = desired
+        }
     }
 
     // ...and settings changed anywhere else - the headphone button, the audio menu, Siri,
@@ -52,8 +59,7 @@ internal actual fun rememberSoundscapePreferenceFlow(): MutableStateFlow<Prefere
 private fun SharedPreferences.asPreferences(): Preferences =
     MapPreferences(all.filterValues { it != null } as Map<String, Any>)
 
-private fun SharedPreferences.write(desired: Map<String, Any>) {
-    val edits = preferenceEdits(asPreferences().asMap(), desired)
+private fun SharedPreferences.write(edits: PreferenceEdits) {
     if (edits.removed.isEmpty() && edits.changed.isEmpty()) return
     edit {
         for (key in edits.removed) remove(key)

@@ -333,6 +333,9 @@ fun SharedSettingsScreen(
                     key = PreferenceKeys.DISTANCE_TO_BEACON,
                     defaultValue = PreferenceDefaults.DISTANCE_TO_BEACON,
                     modifier = expandedSectionModifier,
+                    // Not gated on the callout level: the beacon distance is the one automatic
+                    // callout Silent leaves running - it belongs to a beacon the user set - so
+                    // greying its switch out at Silent would leave no way to stop it.
                     title = {
                         SettingDetails(
                             Res.string.callouts_audio_beacon,
@@ -340,7 +343,6 @@ fun SharedSettingsScreen(
                             textColor
                         )
                     },
-                    enabled = { allowCallouts },
                 )
                 switchPreference(
                     key = PreferenceKeys.POSITION_INCLUDES_HEADING_AND_DISTANCE,
@@ -361,11 +363,7 @@ fun SharedSettingsScreen(
                     values = relativeDirectionValues,
                     modifier = expandedSectionModifier,
                     title = {
-                        SettingDetails(
-                            Res.string.settings_relative_directions_text,
-                            Res.string.settings_relative_directions_description,
-                            textColor
-                        )
+                        SettingTitle(Res.string.settings_relative_directions_text, textColor)
                     },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
@@ -380,10 +378,10 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
-                            relativeDirectionDescriptions[relativeDirectionValues.indexOf(
-                                it
-                            )], textColor
+                        SettingDescriptionAndOption(
+                            Res.string.settings_relative_directions_description,
+                            relativeDirectionDescriptions[relativeDirectionValues.indexOf(it)],
+                            textColor
                         )
                     },
                 )
@@ -407,13 +405,7 @@ fun SharedSettingsScreen(
                     defaultValue = PreferenceDefaults.GEOCODER_MODE,
                     values = geocoderValues,
                     modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.settings_section_search_network,
-                            Res.string.settings_section_search_network_description,
-                            textColor
-                        )
-                    },
+                    title = { SettingTitle(Res.string.settings_section_search_network, textColor) },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
                             geocoderDescriptions[geocoderValues.indexOf(value)],
@@ -425,7 +417,8 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
+                        SettingDescriptionAndOption(
+                            Res.string.settings_section_search_network_description,
                             geocoderDescriptions[geocoderValues.indexOf(it)],
                             textColor
                         )
@@ -436,13 +429,7 @@ fun SharedSettingsScreen(
                     defaultValue = PreferenceDefaults.SEARCH_LANGUAGE,
                     values = searchLanguageValues,
                     modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.settings_search_results_language,
-                            Res.string.settings_search_results_language_description,
-                            textColor
-                        )
-                    },
+                    title = { SettingTitle(Res.string.settings_search_results_language, textColor) },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
                             searchLanguageDescriptions[searchLanguageValues.indexOf(
@@ -456,10 +443,10 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
-                            searchLanguageDescriptions[searchLanguageValues.indexOf(
-                                it
-                            )], textColor
+                        SettingDescriptionAndOption(
+                            Res.string.settings_search_results_language_description,
+                            searchLanguageDescriptions[searchLanguageValues.indexOf(it)],
+                            textColor
                         )
                     },
                 )
@@ -593,13 +580,7 @@ fun SharedSettingsScreen(
                     defaultValue = PreferenceDefaults.MEASUREMENT_UNITS,
                     values = unitsValues,
                     modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.settings_section_units,
-                            Res.string.settings_section_units_description,
-                            textColor
-                        )
-                    },
+                    title = { SettingTitle(Res.string.settings_section_units, textColor) },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
                             unitsDescriptions[unitsValues.indexOf(value)],
@@ -611,7 +592,8 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
+                        SettingDescriptionAndOption(
+                            Res.string.settings_section_units_description,
                             unitsDescriptions[unitsValues.indexOf(it)],
                             textColor
                         )
@@ -639,13 +621,7 @@ fun SharedSettingsScreen(
                     defaultValue = PreferenceDefaults.MEDIA_CONTROLS_MODE,
                     values = defaultMediaControlsValues,
                     modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.settings_section_media_controls,
-                            Res.string.settings_section_media_controls_description,
-                            textColor
-                        )
-                    },
+                    title = { SettingTitle(Res.string.settings_section_media_controls, textColor) },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
                             defaultMediaControlsDescriptions[defaultMediaControlsValues.indexOf(
@@ -659,10 +635,10 @@ fun SharedSettingsScreen(
                         )
                     },
                     summary = {
-                        ClickableOption(
-                            defaultMediaControlsDescriptions[defaultMediaControlsValues.indexOf(
-                                it
-                            )], textColor
+                        SettingDescriptionAndOption(
+                            Res.string.settings_section_media_controls_description,
+                            defaultMediaControlsDescriptions[defaultMediaControlsValues.indexOf(it)],
+                            textColor
                         )
                     },
                 )

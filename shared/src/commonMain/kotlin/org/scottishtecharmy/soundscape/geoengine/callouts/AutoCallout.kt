@@ -1231,7 +1231,6 @@ class AutoCallout(
         poiCalloutHistory.trim(userGeometry)
 
         val verbosity = verbosity()
-        val places = placesToCallOut()
         // Too soon after the last POI callout for anything but a marker - see
         // CalloutVerbosity.minimumPoiGapMs. Street Preview is stepped through deliberately, so
         // it's exempt.
@@ -1271,9 +1270,9 @@ class AutoCallout(
         val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         ordered.map { it.feature }.filter { feature ->
 
-            if (suppressedAsBusOrTramStop(feature as MvtFeature)) return@filter true
-            if (!poiAllowedBySettings(feature, verbosity, places)) return@filter true
-            val isMarker = feature.superCategory == SuperCategoryId.MARKER
+            // No settings check here: TreeId.SELECTED_SUPER_CATEGORIES was built from them when
+            // the grid was, so everything in it is something this user wants to hear about.
+            val isMarker = (feature as MvtFeature).superCategory == SuperCategoryId.MARKER
             if (onlyMarkers && !isMarker) return@filter true
 
             val name = feature.getText(localized)

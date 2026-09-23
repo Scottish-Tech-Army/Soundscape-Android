@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape.geoengine
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -136,16 +135,6 @@ class NearestWayTest {
 
         assertNull(shop.nearestWay)
         assertEquals("Milngavie", shop.nearestSettlement)
-    }
-
-    @Test
-    fun housenumberFeatureIsSkipped() {
-        val mainStreet = road(name = "Main Street", bearing = 0.0, offset = 10.0)
-        val house = poi { superCategory = SuperCategoryId.HOUSENUMBER }
-
-        attach(listOf(house), listOf(mainStreet))
-
-        assertNull(house.nearestWay)
     }
 
     @Test

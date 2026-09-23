@@ -64,7 +64,7 @@ class SoundscapePreferenceFlowTest {
     @Test
     fun onlyChangedKeysAreWritten() {
         val edits = preferenceEdits(
-            current = mapOf(
+            known = mapOf(
                 "CalloutVerbosity" to "Detailed",
                 "MeasurementUnits" to "Metric",
                 "sleep_resume_route_id" to 7L,
@@ -80,10 +80,26 @@ class SoundscapePreferenceFlowTest {
         assertTrue(edits.removed.isEmpty())
     }
 
+    /**
+     * A key the flow never held is not the screen's to remove: the service and the migrations
+     * write to the same store, and one of those can land between the screen reading it and its
+     * listener being registered.
+     */
+    @Test
+    fun aKeyTheScreenNeverSawIsLeftAlone() {
+        val edits = preferenceEdits(
+            known = mapOf("CalloutVerbosity" to "Quiet"),
+            desired = mapOf("CalloutVerbosity" to "Balanced"),
+        )
+
+        assertTrue(edits.removed.isEmpty())
+        assertEquals(mapOf("CalloutVerbosity" to "Balanced"), edits.changed)
+    }
+
     @Test
     fun aKeyThatHasGoneIsRemovedAndANewOneIsWritten() {
         val edits = preferenceEdits(
-            current = mapOf("CalloutVerbosity" to "Quiet", "BeaconType" to "Classic"),
+            known = mapOf("CalloutVerbosity" to "Quiet", "BeaconType" to "Classic"),
             desired = mapOf("CalloutVerbosity" to "Quiet", "StreetsAndJunctions" to false),
         )
 

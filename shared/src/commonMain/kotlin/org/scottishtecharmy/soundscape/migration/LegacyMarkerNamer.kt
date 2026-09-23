@@ -3,8 +3,7 @@ package org.scottishtecharmy.soundscape.migration
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.geoengine.GridState
-import org.scottishtecharmy.soundscape.geoengine.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.geoengine.PLACES_AND_LANDMARKS_KEY
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -215,9 +214,9 @@ class TileLegacyMarkerNamer(
     companion object {
         /**
          * Everything the grid can hold, so that a marker on a mobility POI is found even if the
-         * user has that category switched off for callouts.
+         * user's callout settings would never announce one.
          */
-        private val ALL_CATEGORIES = setOf(PLACES_AND_LANDMARKS_KEY, MOBILITY_KEY)
+        private val ALL_CATEGORIES = CalloutPoiSelection.EVERYTHING
 
         /**
          * Trees searched for an OSM id match, in order. POIs first because that's what a marker is

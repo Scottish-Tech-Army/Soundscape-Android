@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import junit.framework.TestCase.assertEquals
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNotNull
 import org.junit.Assert.assertNotEquals
@@ -10,8 +11,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.experimental.categories.Category
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
@@ -290,14 +289,11 @@ fun getGridStateForLocation(
     }
     runBlocking {
 
-        val enabledCategories = mutableSetOf<String>()
-        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-        enabledCategories.add(MOBILITY_KEY)
 
         // Update the grid state
         gridState.locationUpdate(
             LngLatAlt(location.longitude, location.latitude),
-            enabledCategories,
+            CalloutPoiSelection.EVERYTHING,
             null
         )
     }
@@ -3573,7 +3569,7 @@ class MvtTileTest {
 
         var railEverConfident = false
         for (coordinate in (motorway!!.geometry as LineString).coordinates) {
-            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            runBlocking { gridState.locationUpdate(coordinate, CalloutPoiSelection.EVERYTHING, null) }
             mapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null, true)
             railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
             if (railMapMatchFilter.isMatchConfident) railEverConfident = true
@@ -3614,7 +3610,7 @@ class MvtTileTest {
 
         var matchedAsTrain = false
         for (coordinate in (railway!!.geometry as LineString).coordinates) {
-            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            runBlocking { gridState.locationUpdate(coordinate, CalloutPoiSelection.EVERYTHING, null) }
             mapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null, true)
             railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
             if (arbiter.update(mapMatchFilter, railMapMatchFilter, motorwaySpeedMps) != null) {
@@ -3645,7 +3641,7 @@ class MvtTileTest {
         val coordinates = (targetWay!!.geometry as LineString).coordinates
         val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
         for (coordinate in coordinates) {
-            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            runBlocking { gridState.locationUpdate(coordinate, CalloutPoiSelection.EVERYTHING, null) }
             railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
         }
 
@@ -3690,7 +3686,7 @@ class MvtTileTest {
 
         var railEverConfident = false
         for (sample in samples) {
-            runBlocking { gridState.locationUpdate(sample.location, emptySet(), null) }
+            runBlocking { gridState.locationUpdate(sample.location, CalloutPoiSelection.EVERYTHING, null) }
             mapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null, true)
             railMapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null)
             if (railMapMatchFilter.isMatchConfident) railEverConfident = true
@@ -4233,9 +4229,6 @@ class MvtTileTest {
         val callOutText = FileOutputStream(calloutFilename)
         var calloutCount = 0
 
-        val enabledCategories = mutableSetOf<String>()
-        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-        enabledCategories.add(MOBILITY_KEY)
 
         val markers = FeatureCollection()
         val marker = MvtFeature()
@@ -4308,12 +4301,12 @@ class MvtTileTest {
                 // Update the grid state
                 val gridChanged = gridState.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    enabledCategories,
+                    CalloutPoiSelection.EVERYTHING,
                     null
                 )
                 settlementGrid.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    emptySet(),
+                    CalloutPoiSelection.EVERYTHING,
                     null
                 )
 
@@ -4489,6 +4482,9 @@ class MvtTileTest {
      * the one above it, and Silent must say nothing.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
+    // Sixteen full replays - four walks at four levels - so it keeps the whole-corpus company
+    // rather than running on every unit test invocation.
+    @Category(NightlyOnlyTest::class)
     @Test
     fun testCalloutVerbosityLevels() {
         val resultsStorageDir = File("gpxFiles/")
@@ -4567,9 +4563,6 @@ class MvtTileTest {
         val endIndex = gps.features.size
         val callOutText = FileOutputStream(calloutFilename)
 
-        val enabledCategories = mutableSetOf<String>()
-        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-        enabledCategories.add(MOBILITY_KEY)
 
         // Callout throttling is all elapsed-time arithmetic (CalloutHistory's expiry, AutoCallout's
         // sticky vehicle/train windows, the POI sweep interval), so a replay only behaves like the
@@ -4596,7 +4589,7 @@ class MvtTileTest {
                 // Update the grid state
                 val gridChanged = gridState.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    enabledCategories,
+                    CalloutPoiSelection.EVERYTHING,
                     null
                 )
 
@@ -4749,7 +4742,7 @@ class MvtTileTest {
                     // Update the grid state
                     gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        emptySet(),
+                        CalloutPoiSelection.EVERYTHING,
                         null
                     )
                     if (false) {
@@ -5074,10 +5067,6 @@ class MvtTileTest {
         // extracts
         val gridState = FileGridState(MAX_ZOOM_LEVEL, GRID_SIZE)
         gridState.start(offlineExtractPath)
-        val enabledCategories = emptySet<String>().toMutableSet()
-        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
-        enabledCategories.add(MOBILITY_KEY)
-
         // Intersperse locations that are in each of the extracts (Glasgow, Bristol, Tehran, San
         // Salvador, Paris, Buenos Aires and Osaka) with some that are outside and should fail.
         // The failing ones are Isfahan, which is in Iran but well outside the Tehran extract, and
@@ -5106,7 +5095,7 @@ class MvtTileTest {
                 assertEquals(
                     gridState.locationUpdate(
                         location.first,
-                        enabledCategories,
+                        CalloutPoiSelection.EVERYTHING,
                         null
                     ), location.second
                 )

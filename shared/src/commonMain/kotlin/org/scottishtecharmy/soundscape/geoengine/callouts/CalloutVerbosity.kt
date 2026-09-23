@@ -205,11 +205,17 @@ enum class CalloutVerbosity(
          * Carries the Allow Callouts switch over once: switched off, it becomes SILENT. The
          * switch is then set back to its default so that this never runs again - nothing else
          * reads it now, though the iOS LegacyMigrator still writes it on first launch.
+         *
+         * A level the user has already chosen wins. This only runs from GeoEngine.start, and
+         * Settings is reachable with the engine down - sleeping, waiting on permissions, before
+         * the service is up on first launch - so somebody who set Balanced there would otherwise
+         * find it back at Silent the next time the engine started.
          */
         fun migrate(preferences: PreferencesProvider) {
             if (preferences.getBoolean(PreferenceKeys.LEGACY_ALLOW_CALLOUTS, true)) return
-            preferences.putString(PreferenceKeys.CALLOUT_VERBOSITY, SILENT.preferenceValue)
             preferences.putBoolean(PreferenceKeys.LEGACY_ALLOW_CALLOUTS, true)
+            if (preferences.getString(PreferenceKeys.CALLOUT_VERBOSITY, "").isNotEmpty()) return
+            preferences.putString(PreferenceKeys.CALLOUT_VERBOSITY, SILENT.preferenceValue)
         }
     }
 }
@@ -339,34 +345,70 @@ private val busAndTramStopValues = setOf("bus_stop", "tram_stop")
 fun isBusOrTramStop(feature: MvtFeature) = feature.featureValue in busAndTramStopValues
 
 /**
- * Whether a walking POI callout for [feature] is allowed by the Callout Detail and Places to Call
- * Out settings. Distance, history and trigger range are checked separately by the caller.
+ * Which POIs the walking callouts may announce, from the two settings that decide it.
+ *
+ * This is applied when the tile grid is built rather than at each callout: the trees then hold
+ * exactly what is searchable, which is what a callout does every second, instead of every POI
+ * being fetched and most of them thrown away. Changing either setting rebuilds the grid - see
+ * GeoEngine's preferences listener - which is rare next to that.
  */
-fun poiAllowedBySettings(
-    feature: MvtFeature,
-    verbosity: CalloutVerbosity,
-    places: Set<PlacesToCallOut>
-): Boolean {
-    if (feature.superCategory == SuperCategoryId.MARKER) return true
-    if (PlacesToCallOut.NOTHING in places) return false
-    if (PlacesToCallOut.EVERYTHING !in places) {
-        // A kind the user ticked is announced whatever the Callout Detail says: they asked for
-        // it by name, which is a stronger statement than a level they set once.
-        val chosen = places.any { kind ->
-            kind.filterGroup?.let { featureIsInFilterGroup(feature, it) } == true
-        }
-        if (chosen) return true
-        when {
+data class CalloutPoiSelection(
+    val verbosity: CalloutVerbosity,
+    val places: Set<PlacesToCallOut>,
+) {
+    /**
+     * Below Balanced the level decides on its own and the chosen kinds are ignored: Quiet means
+     * landmarks, whatever kinds of place are ticked, and Silent means nothing at all. Narrowing
+     * to a kind is for when Soundscape is talking, not for when it has been asked to stop.
+     */
+    fun allows(feature: MvtFeature): Boolean {
+        if (feature.superCategory !in announceableCategories) return false
+        verbosity.poiCategories?.let { return feature.superCategory in it }
+
+        if (PlacesToCallOut.NOTHING in places) return false
+        if (PlacesToCallOut.EVERYTHING in places) return true
+        if (places.any { kind ->
+                kind.filterGroup?.let { featureIsInFilterGroup(feature, it) } == true
+            }
+        ) return true
+
+        return when {
             // Landmarks are a kind of their own to tick, so unticked they go like any other,
             // even though they are the most useful thing to navigate by.
             feature.superCategory == SuperCategoryId.LANDMARK ->
-                return PlacesToCallOut.LANDMARKS in places
-            feature.superCategory == SuperCategoryId.PLACE -> return false
-            isBusOrTramStop(feature) -> return false
+                PlacesToCallOut.LANDMARKS in places
+            feature.superCategory == SuperCategoryId.PLACE -> false
+            isBusOrTramStop(feature) -> false
+            // What is left - guideposts, crossings, steps, lifts - is not a kind of place
+            // anybody sets out to find, so it isn't on the list to choose from. It is how you
+            // get about, so it stays.
+            else -> true
         }
-        // What is left - guideposts, crossings, steps, lifts - is not a kind of place anybody
-        // sets out to find, so it isn't on the list to choose from. It is how you get about, so
-        // it follows the Callout Detail like everything else rather than being narrowed away.
     }
-    return verbosity.poiCategories?.contains(feature.superCategory) ?: true
+
+    companion object {
+        /**
+         * The super-categories a walking callout can ever name. The others share the POI tree
+         * and have never been announced as you pass them: street furniture and building parts
+         * (OBJECT), car parks and construction (SAFETY), and - in the low-zoom grid, which is
+         * classified by the same code - the settlements the reverse geocoder reads.
+         */
+        private val announceableCategories = setOf(
+            SuperCategoryId.PLACE,
+            SuperCategoryId.LANDMARK,
+            SuperCategoryId.INFORMATION,
+            SuperCategoryId.MOBILITY,
+        )
+
+        fun read(preferences: PreferencesProvider?) = CalloutPoiSelection(
+            readCalloutVerbosity(preferences),
+            PlacesToCallOut.read(preferences),
+        )
+
+        /** Everything a POI callout could ever name - what the tests that predate this used. */
+        val EVERYTHING = CalloutPoiSelection(
+            CalloutVerbosity.DETAILED,
+            setOf(PlacesToCallOut.EVERYTHING),
+        )
+    }
 }
