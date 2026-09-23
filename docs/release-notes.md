@@ -20,6 +20,9 @@ Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release
   speed and describes your journey instead of your immediate surroundings.
 * **Told when you cross water and railways.** Rivers, canals, firths and railway lines are called
   out as you cross them, whether you're walking or travelling.
+* **Choose how much Soundscape says.** A new *Callout Detail* setting makes Soundscape quieter in
+  busy places, and *Places to Call Out* lets you choose which kinds of place you hear about. You
+  can change the detail from your headphone buttons as you walk.
 * **Better addresses and place names.** Places that have no address of their own now get the street
   and area they're in, house numbers are matched to the correct side of the street, and bus stops
   in Great Britain use their official names.
@@ -81,6 +84,37 @@ that you hear about something before you've passed it.
 Soundscape now tells you when you cross a river, canal, firth, bay or railway line. This works when
 you're walking as well as when you're travelling, and it covers going underneath as well as over the
 top, so a footbridge and an underpass are both described.
+
+### Choosing how much Soundscape says
+
+The most common thing we hear about Soundscape is that there's too much of it in busy places like a
+city centre. The *Manage Callouts* section of *Settings* now has three settings in place of the old
+list of switches:
+
+* **Callout Detail** is Silent, Quiet, Balanced or Detailed. *Detailed* is what Soundscape has
+  always done, and is where you start. *Balanced* leaves out minor paths and service roads and
+  repeats itself less often. *Quiet* calls out only streets, junctions and landmarks. *Silent* makes
+  no automatic callouts at all, while beacons, routes and the home screen buttons carry on working.
+  It replaces the old *Allow Callouts* switch, and if you had that switched off you'll find
+  Callout Detail set to Silent.
+* **Streets and Junctions** turns the callouts for intersections and the road you're on on or off.
+* **Places to Call Out** is a list you can tick: Everything, Landmarks, Public Transit, Food and
+  Drink, Groceries, Banks or No Places. Tick as many as you like - for example landmarks and bus
+  stops. Your markers are always called out.
+
+The right amount of detail changes as you walk, so you don't have to go into Settings to change
+it. Pressing *previous* on your headphones steps the Callout Detail down one level at a time,
+from Detailed through Balanced and Quiet to Silent, then round to Detailed again. It says the new
+level each time. This works in both media control modes, and it means the headphone buttons have
+changed a little:
+
+* In *Original* mode, *next* now calls out *Around Me* when no route is playing, and *My Location*
+  is no longer on the buttons. While a route is playing, *next* and *previous* still move between
+  waypoints.
+* In *Audio menu* mode, *previous* no longer steps backwards through the menu. *Next* still moves
+  through it and *play/pause* still selects.
+
+You can also ask Gemini to set the callout detail, on phones with Android 16 or later.
 
 ### Better addresses and place names
 

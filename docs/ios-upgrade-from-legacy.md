@@ -104,11 +104,25 @@ upgrading.
 
 - **Per-category callout toggles.** The legacy app had seven separate switches
   for callouts (places, landmarks, mobility, information, safety,
-  intersections, destination). The new app has fewer, broader categories
-  (places & landmarks, mobility, distance to beacon) plus the master "allow
-  callouts" switch. During migration, your old per-category preferences are
-  collapsed into the new ones — for example, "places" and "landmarks" are
-  combined into "places & landmarks" (on if either was on).
+  intersections, destination) plus a master switch for automatic callouts.
+  The new app's *Manage Callouts* settings work differently:
+  - **Callout Detail** — Silent, Quiet, Balanced or Detailed — sets how much
+    is said as you walk. Silent replaces the master switch: no automatic
+    callouts, while beacons, routes and the home screen buttons carry on.
+  - **Streets and Junctions** turns intersection and road callouts on or off.
+  - **Places to Call Out** is a list to tick: Everything, Landmarks, Public
+    Transit, Food and Drink, Groceries, Banks, or No Places.
+  - **Distance to the Audio Beacon**, as before.
+
+  Your old settings are carried over in two steps. On first launch the
+  upgrade collapses them into an intermediate set: "places" and "landmarks"
+  become one switch (on if either was on), "mobility" is kept, and the master
+  switch is copied. The first time Soundscape then starts its callouts, those
+  become the new settings: the master switch off becomes Silent, "mobility"
+  becomes Streets and Junctions, and places and landmarks on becomes
+  Everything — otherwise Public Transit if mobility was on, or No Places if
+  both were off. "Information", "safety", "intersections" and "destination"
+  have no equivalent and are dropped.
 - **Per-channel audio gains.** The legacy app exposed separate gain controls
   for TTS, beacon and effects, plus three per-channel volume sliders. The new
   app has a single speech rate plus a "mix with other audio" toggle; per-

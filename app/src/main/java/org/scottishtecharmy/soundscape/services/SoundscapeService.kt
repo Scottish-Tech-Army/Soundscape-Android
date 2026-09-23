@@ -983,10 +983,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long =
         calloutController.speakCallout(callout, addModeEarcon)
 
-    fun toggleAutoCallouts() {
-        geoEngine.toggleAutoCallouts()
-    }
-
     override fun setCalloutVerbosity(verbosity: CalloutVerbosity) {
         AndroidPreferencesProvider(sharedPreferences)
             .putString(PreferenceKeys.CALLOUT_VERBOSITY, verbosity.preferenceValue)
