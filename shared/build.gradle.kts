@@ -120,7 +120,23 @@ room {
     schemaDirectory("$projectDir/schemas")
 }
 
+// Indonesian has two language codes: the legacy "in", which Weblate and Android's resource
+// folders use, and "id", which is what java.util.Locale reports from Android 14 and NSLocale
+// always has. Compose Resources matches the code exactly, so strings only in values-in were never
+// found and Indonesian users saw English. This copies the resources with values-in duplicated as
+// values-id, so either code finds them, while Weblate goes on writing the one folder.
+val composeResourcesWithIndonesianAlias = tasks.register<Sync>("composeResourcesWithIndonesianAlias") {
+    val source = layout.projectDirectory.dir("src/commonMain/composeResources")
+    from(source)
+    from(source.dir("values-in")) { into("values-id") }
+    into(layout.buildDirectory.dir("generated/composeResourcesWithIndonesianAlias"))
+}
+
 compose.resources {
     publicResClass = true
     packageOfResClass = "org.scottishtecharmy.soundscape.resources"
+    customDirectory(
+        sourceSetName = "commonMain",
+        directoryProvider = layout.dir(composeResourcesWithIndonesianAlias.map { it.destinationDir }),
+    )
 }
