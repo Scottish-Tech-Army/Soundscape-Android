@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateSmallestAngleBetweenLines
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
@@ -42,6 +43,8 @@ data class IntersectionDescription(
  * @param gridState The current GridState which is the state of the downloaded tiles
  * @param userGeometry This includes location, heading and other data
  * @param strings An optional LocalizedStrings used when confecting names for unnamed roads
+ * @param minimumTier The least important road that makes an intersection worth describing - see
+ * [intersectionMeetsRoadTier]. The default keeps every intersection.
  *
  * @return An IntersectionDescription containing all the data required for callouts to describe the
  * intersection.
@@ -50,6 +53,7 @@ fun getRoadsDescriptionFromFov(
     gridState: GridState,
     userGeometry: UserGeometry,
     strings: LocalizedStrings?,
+    minimumTier: RoadTier = RoadTier.OTHER,
 ): IntersectionDescription {
 
     // Create FOV triangle
@@ -255,6 +259,17 @@ fun getRoadsDescriptionFromFov(
                     shortestDistanceResults.tidy()
                 }
             }
+
+            // Skip intersections which only offer roads less important than the verbosity
+            // setting asks for, e.g. a service road or footpath off a street.
+            if (!intersectionMeetsRoadTier(
+                    graphIntersection, nearestRoad, minimumTier, gridState, strings,
+                    bearingFromTwoPoints(
+                        graphIntersection.location,
+                        userGeometry.mapMatchedLocation?.point ?: userGeometry.location
+                    )
+                ))
+                continue
 
             // We aim to skip 'simple' intersections e.g. ones where the only roads involved have
             // the same name.

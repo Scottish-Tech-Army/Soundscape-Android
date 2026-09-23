@@ -34,6 +34,8 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutInterest
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreferenceState
 import org.scottishtecharmy.soundscape.resources.Res
@@ -47,6 +49,18 @@ import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_description
 import org.scottishtecharmy.soundscape.resources.callouts_bus_and_tram_stops
 import org.scottishtecharmy.soundscape.resources.callouts_bus_and_tram_stops_description
+import org.scottishtecharmy.soundscape.resources.callouts_interest
+import org.scottishtecharmy.soundscape.resources.callouts_interest_description
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_balanced
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_description
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_detailed
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_quiet
+import org.scottishtecharmy.soundscape.resources.filter_all
+import org.scottishtecharmy.soundscape.resources.filter_banks
+import org.scottishtecharmy.soundscape.resources.filter_food_drink
+import org.scottishtecharmy.soundscape.resources.filter_groceries
+import org.scottishtecharmy.soundscape.resources.filter_transit
 import org.scottishtecharmy.soundscape.resources.callouts_mobility
 import org.scottishtecharmy.soundscape.resources.callouts_mobility_description
 import org.scottishtecharmy.soundscape.resources.callouts_places_and_landmarks
@@ -178,6 +192,34 @@ fun SharedSettingsScreen(
     )
     val relativeDirectionValues = listOf("ClockFace", "Degrees", "LeftRight")
 
+    val verbosityDescriptions = listOf(
+        stringResource(Res.string.callouts_verbosity_quiet),
+        stringResource(Res.string.callouts_verbosity_balanced),
+        stringResource(Res.string.callouts_verbosity_detailed),
+    )
+    val verbosityValues = listOf(
+        CalloutVerbosity.QUIET.preferenceValue,
+        CalloutVerbosity.BALANCED.preferenceValue,
+        CalloutVerbosity.DETAILED.preferenceValue,
+    )
+
+    // The Places Nearby folder names, so that each interest reads the same as the folder it
+    // filters with - see CalloutInterest.
+    val interestDescriptions = listOf(
+        stringResource(Res.string.filter_all),
+        stringResource(Res.string.filter_transit),
+        stringResource(Res.string.filter_food_drink),
+        stringResource(Res.string.filter_groceries),
+        stringResource(Res.string.filter_banks),
+    )
+    val interestValues = listOf(
+        CalloutInterest.ALL.preferenceValue,
+        CalloutInterest.TRANSIT.preferenceValue,
+        CalloutInterest.FOOD_AND_DRINK.preferenceValue,
+        CalloutInterest.GROCERIES.preferenceValue,
+        CalloutInterest.BANKS.preferenceValue,
+    )
+
     val unitsDescriptions = listOf(
         stringResource(Res.string.settings_theme_auto),
         stringResource(Res.string.settings_units_imperial),
@@ -261,6 +303,66 @@ fun SharedSettingsScreen(
                         SettingDetails(
                             Res.string.callouts_allow_callouts,
                             Res.string.callouts_allow_callouts_description,
+                            textColor
+                        )
+                    },
+                )
+                listPreference(
+                    key = PreferenceKeys.CALLOUT_VERBOSITY,
+                    defaultValue = PreferenceDefaults.CALLOUT_VERBOSITY,
+                    values = verbosityValues,
+                    modifier = expandedSectionModifier,
+                    enabled = { allowCallouts },
+                    title = {
+                        SettingDetails(
+                            Res.string.callouts_verbosity,
+                            Res.string.callouts_verbosity_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(
+                            verbosityDescriptions[verbosityValues.indexOf(value)],
+                            value,
+                            currentValue,
+                            onClick,
+                            verbosityValues.indexOf(value),
+                            verbosityValues.size
+                        )
+                    },
+                    summary = {
+                        ClickableOption(
+                            verbosityDescriptions[verbosityValues.indexOf(it).coerceAtLeast(0)],
+                            textColor
+                        )
+                    },
+                )
+                listPreference(
+                    key = PreferenceKeys.CALLOUT_INTEREST,
+                    defaultValue = PreferenceDefaults.CALLOUT_INTEREST,
+                    values = interestValues,
+                    modifier = expandedSectionModifier,
+                    enabled = { allowCallouts },
+                    title = {
+                        SettingDetails(
+                            Res.string.callouts_interest,
+                            Res.string.callouts_interest_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(
+                            interestDescriptions[interestValues.indexOf(value)],
+                            value,
+                            currentValue,
+                            onClick,
+                            interestValues.indexOf(value),
+                            interestValues.size
+                        )
+                    },
+                    summary = {
+                        ClickableOption(
+                            interestDescriptions[interestValues.indexOf(it).coerceAtLeast(0)],
                             textColor
                         )
                     },

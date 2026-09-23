@@ -340,6 +340,26 @@
     <string name="callouts_audio_beacon_description">Updates about distance to the audio beacon when it's set</string>
     <!-- Callout text for the distance to the currently playing beacon. %1$s contains the distance in metres e.g. "Beacon is currently 105 metres away". -->
     <string name="callouts_audio_beacon_distance">Beacon is currently %1$s away</string>
+    <!-- Settings option under Manage Callouts which chooses how much the automatic callouts say while walking. -->
+    <string name="callouts_verbosity">Amount of Detail</string>
+    <!-- A description for the amount of detail callout setting. -->
+    <string name="callouts_verbosity_description">How much Soundscape tells you about as you walk</string>
+    <!-- Amount of detail setting option: only street junctions, landmarks and markers are called out, and less often. -->
+    <string name="callouts_verbosity_quiet">Quiet: streets and landmarks only</string>
+    <!-- Amount of detail setting option: minor paths and service roads are skipped and places are repeated less often. -->
+    <string name="callouts_verbosity_balanced">Balanced: skip minor paths and repeat less</string>
+    <!-- Amount of detail setting option: everything nearby is called out. This is the original behaviour. -->
+    <string name="callouts_verbosity_detailed">Detailed: everything nearby</string>
+    <!-- Settings option under Manage Callouts which narrows the automatic callouts for places to one kind of place. The options are the same as the Places Nearby filters, e.g. "Food and Drink". -->
+    <string name="callouts_interest">Places to Call Out</string>
+    <!-- A description for the places to call out setting. -->
+    <string name="callouts_interest_description">Only call out one kind of place, such as food and drink. Roads, landmarks and markers are still called out.</string>
+    <!-- Audio menu item which pauses the automatic callouts, or resumes them if they are already paused. -->
+    <string name="callouts_pause_resume">Pause or Resume Automatic Callouts</string>
+    <!-- Spoken after the automatic callouts have been paused from the audio menu. -->
+    <string name="callouts_auto_paused">Automatic callouts paused</string>
+    <!-- Spoken after the automatic callouts have been resumed from the audio menu. -->
+    <string name="callouts_auto_resumed">Automatic callouts resumed</string>
     <!-- Help title for automatic callouts -->
     <string name="callouts_automatic_callouts">Automatic Callouts</string>
     <!-- Speech callout indicating that there's no useful information available -->

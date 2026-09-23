@@ -234,6 +234,10 @@ fun addPoiDestinations(
             val startName = (startPoi as MvtFeature?)?.getText(strings)?.text
             if (!startName.isNullOrEmpty()) {
                 way.setProperty("destination:backward", startName)
+                way.setProperty(
+                    "$DESTINATION_KIND:backward",
+                    (startPoi as MvtFeature).superCategory.name
+                )
                 addedDestinations = true
             }
         }
@@ -241,6 +245,10 @@ fun addPoiDestinations(
             val endName = (endPoi as MvtFeature?)?.getText(strings)?.text
             if (!endName.isNullOrEmpty()) {
                 way.setProperty("destination:forward", endName)
+                way.setProperty(
+                    "$DESTINATION_KIND:forward",
+                    (endPoi as MvtFeature).superCategory.name
+                )
                 addedDestinations = true
             }
         }
@@ -500,6 +508,15 @@ fun confectNamesForRoad(
     return null
 }
 
+/**
+ * Recorded alongside each "destination:forward/backward" tag: what kind of thing the destination
+ * is - [DESTINATION_KIND_ROAD] for a named road, otherwise the name of the POI's SuperCategoryId.
+ * The destination itself is only a name, and whether a path leads to a street or a park or a shop
+ * is what decides if it's worth announcing - see intersectionMeetsRoadTier.
+ */
+const val DESTINATION_KIND = "destination-kind"
+const val DESTINATION_KIND_ROAD = "road"
+
 fun setDestinationTag(
     way: Way,
     forwards: Boolean,
@@ -508,11 +525,12 @@ fun setDestinationTag(
     brunnelOrStepsValue: String
 ) {
 
-    if (tagValue.isNotEmpty())
-        way.setProperty(
-            "${if (deadEnd) "dead-end" else "destination"}:${if (forwards) "backward" else "forward"}",
-            tagValue
-        )
+    if (tagValue.isNotEmpty()) {
+        val direction = if (forwards) "backward" else "forward"
+        way.setProperty("${if (deadEnd) "dead-end" else "destination"}:$direction", tagValue)
+        if (!deadEnd)
+            way.setProperty("$DESTINATION_KIND:$direction", DESTINATION_KIND_ROAD)
+    }
     if (brunnelOrStepsValue.isNotEmpty())
         way.setProperty("passes:${if (forwards) "backward" else "forward"}", brunnelOrStepsValue)
 }

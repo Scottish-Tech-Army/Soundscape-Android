@@ -147,8 +147,16 @@ class GeoEngine {
 
     private lateinit var autoCallout: AutoCallout
     private var autoCalloutDisabled = false
-    fun toggleAutoCallouts() {
-        autoCalloutDisabled = autoCalloutDisabled.xor(true)
+    /**
+     * Pauses or resumes the automatic callouts for this session, leaving beacons, routes and the
+     * manual callouts alone. Unlike the Allow Callouts setting it isn't saved, so a pause that's
+     * forgotten about doesn't outlive the app.
+     *
+     * @return true if automatic callouts are now on
+     */
+    fun toggleAutoCallouts(): Boolean {
+        autoCalloutDisabled = !autoCalloutDisabled
+        return !autoCalloutDisabled
     }
 
     private val streetPreview = StreetPreview()
