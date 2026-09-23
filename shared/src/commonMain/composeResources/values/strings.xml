@@ -360,12 +360,12 @@
     <string name="callouts_streets_and_junctions_description">Intersections ahead and the road you are on</string>
     <!-- Settings option under Manage Callouts which chooses which places (shops, landmarks, bus stops and so on) are called out. Most of the options are the same as the Places Nearby filters, e.g. "Food and Drink". -->
     <string name="callouts_places_to_call_out">Places to Call Out</string>
-    <!-- A description for the places to call out setting. -->
-    <string name="callouts_places_to_call_out_description">Which places are called out as you pass them. Your markers are always called out.</string>
+    <!-- A description for the places to call out setting, which is a list of kinds of place to tick. -->
+    <string name="callouts_places_to_call_out_description">Which kinds of place are called out as you pass them. Tick as many as you like, or tick Everything or No Places. Your markers are always called out.</string>
     <!-- Places to call out setting option: all places, landmarks, bus stops, crossings and so on are called out. -->
     <string name="callouts_places_everything">Everything</string>
-    <!-- Places to call out setting option: only landmarks such as parks and churches are called out. -->
-    <string name="callouts_places_landmarks">Landmarks Only</string>
+    <!-- Places to call out setting option: landmarks such as parks and churches. One of a list of kinds to tick, so it is a plain noun rather than "only landmarks". -->
+    <string name="callouts_places_landmarks">Landmarks</string>
     <!-- Places to call out setting option: no places are called out. Markers, streets and junctions still are. -->
     <string name="callouts_places_nothing">No Places</string>
     <!-- Help title for automatic callouts -->

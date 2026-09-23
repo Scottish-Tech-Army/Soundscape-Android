@@ -398,7 +398,9 @@ class AutoCallout(
         userGeometry: UserGeometry,
         gridState: GridState
     ): TrackedCallout? {
-        if (placesToCallOut() == PlacesToCallOut.NOTHING) {
+        if (PlacesToCallOut.LANDMARKS !in placesToCallOut() &&
+            PlacesToCallOut.EVERYTHING !in placesToCallOut()
+        ) {
             return null
         }
 

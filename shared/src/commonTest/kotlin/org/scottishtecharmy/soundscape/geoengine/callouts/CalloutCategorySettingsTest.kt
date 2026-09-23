@@ -165,7 +165,7 @@ class CalloutCategorySettingsTest {
     @Test
     fun vehicleLandmarkIsAnnouncedWithLandmarksOnly() {
         val preferences = FakePreferences().apply {
-            putString(PreferenceKeys.PLACES_TO_CALL_OUT, PlacesToCallOut.LANDMARKS.preferenceValue)
+            putString(PreferenceKeys.PLACES_TO_CALL_OUT, setOf(PlacesToCallOut.LANDMARKS).toPreference())
         }
 
         val callout = AutoCallout(null, preferences).updateLocation(
@@ -182,7 +182,7 @@ class CalloutCategorySettingsTest {
     @Test
     fun vehicleLandmarkIsSilencedWithNoPlaces() {
         val preferences = FakePreferences().apply {
-            putString(PreferenceKeys.PLACES_TO_CALL_OUT, PlacesToCallOut.NOTHING.preferenceValue)
+            putString(PreferenceKeys.PLACES_TO_CALL_OUT, setOf(PlacesToCallOut.NOTHING).toPreference())
         }
 
         assertNull(

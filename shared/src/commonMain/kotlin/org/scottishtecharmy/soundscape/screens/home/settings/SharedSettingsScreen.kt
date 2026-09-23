@@ -33,6 +33,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import me.zhanghai.compose.preference.Preference
 import me.zhanghai.compose.preference.LocalPreferenceTheme
@@ -46,6 +47,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
+import org.scottishtecharmy.soundscape.geoengine.callouts.normalized
+import org.scottishtecharmy.soundscape.geoengine.callouts.toPreference
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreferenceState
@@ -220,7 +223,7 @@ fun SharedSettingsScreen(
         stringResource(Res.string.filter_banks),
         stringResource(Res.string.callouts_places_nothing),
     )
-    val placesValues = PlacesToCallOut.entries.map { it.preferenceValue }
+    val placesValues = PlacesToCallOut.entries.toList()
 
     val unitsDescriptions = listOf(
         stringResource(Res.string.settings_theme_auto),
@@ -318,36 +321,14 @@ fun SharedSettingsScreen(
                     },
                     enabled = { allowCallouts },
                 )
-                listPreference(
-                    key = PreferenceKeys.PLACES_TO_CALL_OUT,
-                    defaultValue = PreferenceDefaults.PLACES_TO_CALL_OUT,
-                    values = placesValues,
-                    modifier = expandedSectionModifier,
-                    enabled = { allowCallouts },
-                    title = {
-                        SettingDetails(
-                            Res.string.callouts_places_to_call_out,
-                            Res.string.callouts_places_to_call_out_description,
-                            textColor
-                        )
-                    },
-                    item = { value, currentValue, onClick ->
-                        ListPreferenceItem(
-                            placesDescriptions[placesValues.indexOf(value)],
-                            value,
-                            currentValue,
-                            onClick,
-                            placesValues.indexOf(value),
-                            placesValues.size
-                        )
-                    },
-                    summary = {
-                        ClickableOption(
-                            placesDescriptions[placesValues.indexOf(it).coerceAtLeast(0)],
-                            textColor
-                        )
-                    },
-                )
+                item(key = PreferenceKeys.PLACES_TO_CALL_OUT) {
+                    PlacesToCallOutPreference(
+                        names = placesDescriptions,
+                        textColor = textColor,
+                        enabled = allowCallouts,
+                        modifier = expandedSectionModifier,
+                    )
+                }
                 switchPreference(
                     key = PreferenceKeys.DISTANCE_TO_BEACON,
                     defaultValue = PreferenceDefaults.DISTANCE_TO_BEACON,
@@ -973,4 +954,129 @@ private fun CalloutVerbositySlider(
             }
         },
     )
+}
+
+/**
+ * Drives the Places to Call Out checkboxes from the setting, which is stored as a list of names
+ * (PlacesToCallOut.preferenceValue) so that it stays readable by the callouts and by anything
+ * else that has to know what was chosen.
+ *
+ * Everything and No Places are normalised as they are ticked - see [normalized] - so the list
+ * can't end up saying two things at once.
+ */
+@Composable
+private fun rememberPlacesToCallOutState(): MutableState<Set<PlacesToCallOut>> {
+    val stored = rememberPreferenceState(
+        PreferenceKeys.PLACES_TO_CALL_OUT,
+        PreferenceDefaults.PLACES_TO_CALL_OUT
+    )
+    return remember(stored) {
+        object : MutableState<Set<PlacesToCallOut>> {
+            override var value: Set<PlacesToCallOut>
+                get() = PlacesToCallOut.fromPreference(stored.value)
+                set(newValue) {
+                    val justAdded = (newValue - PlacesToCallOut.fromPreference(stored.value))
+                        .firstOrNull()
+                    stored.value = newValue.normalized(justAdded).toPreference()
+                }
+
+            override fun component1(): Set<PlacesToCallOut> = value
+            override fun component2(): (Set<PlacesToCallOut>) -> Unit = { value = it }
+        }
+    }
+}
+
+/**
+ * The Places to Call Out setting: a row saying what is chosen, and a dialog of kinds to tick.
+ *
+ * Its own dialog rather than the preference library's multiSelectListPreference, whose rows can
+ * only tick or untick themselves: ticking Landmarks has to clear Everything and No Places as it
+ * happens - see [normalized] - or the list sits there saying two things at once until OK is
+ * pressed. The dialog shows the title alone, without the paragraph that introduces the setting on
+ * the screen behind it.
+ */
+@Composable
+private fun PlacesToCallOutPreference(
+    names: List<String>,
+    textColor: Color,
+    enabled: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    var stored by rememberPreferenceState(
+        PreferenceKeys.PLACES_TO_CALL_OUT,
+        PreferenceDefaults.PLACES_TO_CALL_OUT
+    )
+    val chosen = PlacesToCallOut.fromPreference(stored)
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+    var chosenInDialog by remember { mutableStateOf(chosen) }
+
+    Preference(
+        title = {
+            SettingDetails(
+                Res.string.callouts_places_to_call_out,
+                Res.string.callouts_places_to_call_out_description,
+                textColor
+            )
+        },
+        modifier = modifier,
+        enabled = enabled,
+        summary = {
+            // The same row the list settings use for what is chosen - see the relative
+            // directions setting - so that it reads as something to tap rather than as a line
+            // of text about the setting above it.
+            ClickableOption(
+                PlacesToCallOut.entries.filter { it in chosen }
+                    .joinToString { names[it.ordinal] },
+                textColor
+            )
+        },
+        onClick = {
+            chosenInDialog = chosen
+            showDialog = true
+        },
+    )
+
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = {
+                Text(
+                    text = stringResource(Res.string.callouts_places_to_call_out),
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+            },
+            text = {
+                LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                    items(PlacesToCallOut.entries.size) { index ->
+                        val kind = PlacesToCallOut.entries[index]
+                        val ticked = kind in chosenInDialog
+                        MultiSelectPreferenceItem(
+                            description = names[index],
+                            checked = ticked,
+                            onToggle = {
+                                chosenInDialog = if (ticked) {
+                                    (chosenInDialog - kind).normalized()
+                                } else {
+                                    (chosenInDialog + kind).normalized(kind)
+                                }
+                            },
+                        )
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    stored = chosenInDialog.toPreference()
+                    showDialog = false
+                }) {
+                    Text(stringResource(Res.string.ui_continue))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDialog = false }) {
+                    Text(stringResource(Res.string.general_alert_cancel))
+                }
+            },
+        )
+    }
 }

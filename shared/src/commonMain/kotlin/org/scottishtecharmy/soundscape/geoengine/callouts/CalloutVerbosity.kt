@@ -254,22 +254,30 @@ fun cycleCalloutVerbosity(preferences: PreferencesProvider): CalloutVerbosity {
  * setting, since they are about finding the way rather than about what the user is out to find.
  */
 enum class PlacesToCallOut(val preferenceValue: String, val filterGroup: String?) {
+    /** Everything the Callout Detail allows, with nothing narrowed out. */
     EVERYTHING("Everything", null),
     LANDMARKS("Landmarks", null),
     TRANSIT("Transit", "transit"),
     FOOD_AND_DRINK("FoodAndDrink", "food_and_drink"),
     GROCERIES("Groceries", "groceries"),
     BANKS("Banks", "banks"),
+    /** No places at all. Markers are still called out, as they always are. */
     NOTHING("Nothing", null);
 
-    /** Bus and tram stops are the noisiest thing there is, so only these two include them. */
-    val includesBusAndTramStops get() = (this == EVERYTHING) || (this == TRANSIT)
-
     companion object {
-        fun fromPreference(value: String?): PlacesToCallOut =
-            entries.firstOrNull { it.preferenceValue == value } ?: EVERYTHING
+        /**
+         * The kinds chosen, from the stored list. Unknown names are ignored, and nothing at all
+         * means Everything - the default, and what an empty or unreadable setting should do
+         * rather than falling silent.
+         */
+        fun fromPreference(value: String?): Set<PlacesToCallOut> {
+            val chosen = value.orEmpty().split(SEPARATOR)
+                .mapNotNull { name -> entries.firstOrNull { it.preferenceValue == name.trim() } }
+                .toSet()
+            return chosen.ifEmpty { setOf(EVERYTHING) }
+        }
 
-        fun read(preferences: PreferencesProvider?): PlacesToCallOut = fromPreference(
+        fun read(preferences: PreferencesProvider?): Set<PlacesToCallOut> = fromPreference(
             preferences?.getString(
                 PreferenceKeys.PLACES_TO_CALL_OUT,
                 PreferenceDefaults.PLACES_TO_CALL_OUT
@@ -293,10 +301,35 @@ enum class PlacesToCallOut(val preferenceValue: String, val filterGroup: String?
                 preferences.getBoolean(PreferenceKeys.STREETS_AND_JUNCTIONS, true) -> TRANSIT
                 else -> NOTHING
             }
-            preferences.putString(PreferenceKeys.PLACES_TO_CALL_OUT, places.preferenceValue)
+            preferences.putString(PreferenceKeys.PLACES_TO_CALL_OUT, setOf(places).toPreference())
         }
+
+        private const val SEPARATOR = ','
     }
 }
+
+/**
+ * The chosen kinds as they are stored: their names, in the order they are declared, so that a
+ * setting written by hand or carried over from an older version still reads back the same.
+ */
+fun Set<PlacesToCallOut>.toPreference(): String =
+    PlacesToCallOut.entries.filter { it in this }.joinToString(",") { it.preferenceValue }
+
+/**
+ * Keeps a choice of kinds meaningful: Everything and No Places each say something about all the
+ * others, so choosing one drops them, and choosing another drops it. Choosing nothing at all is
+ * No Places - the user unticked the last box, which is not the same as never having chosen.
+ */
+fun Set<PlacesToCallOut>.normalized(justAdded: PlacesToCallOut? = null): Set<PlacesToCallOut> {
+    val exclusive = setOf(PlacesToCallOut.EVERYTHING, PlacesToCallOut.NOTHING)
+    if (justAdded in exclusive) return setOf(justAdded!!)
+    val rest = this - exclusive
+    return rest.ifEmpty { setOf(PlacesToCallOut.NOTHING) }
+}
+
+/** Bus and tram stops are the noisiest thing there is, so only these two include them. */
+val Set<PlacesToCallOut>.includesBusAndTramStops: Boolean
+    get() = PlacesToCallOut.EVERYTHING in this || PlacesToCallOut.TRANSIT in this
 
 // Not the whole transit group: a station or a ferry terminal is a destination in its own right
 // and is passed rarely enough to be worth hearing whatever the setting, whereas these two are what
@@ -306,24 +339,34 @@ private val busAndTramStopValues = setOf("bus_stop", "tram_stop")
 fun isBusOrTramStop(feature: MvtFeature) = feature.featureValue in busAndTramStopValues
 
 /**
- * Whether a walking POI callout for [feature] is allowed by the [verbosity] and [places]
- * settings. Distance, history and trigger range are checked separately by the caller.
+ * Whether a walking POI callout for [feature] is allowed by the Callout Detail and Places to Call
+ * Out settings. Distance, history and trigger range are checked separately by the caller.
  */
 fun poiAllowedBySettings(
     feature: MvtFeature,
     verbosity: CalloutVerbosity,
-    places: PlacesToCallOut
+    places: Set<PlacesToCallOut>
 ): Boolean {
     if (feature.superCategory == SuperCategoryId.MARKER) return true
-    when (places) {
-        PlacesToCallOut.NOTHING -> return false
-        PlacesToCallOut.LANDMARKS -> return feature.superCategory == SuperCategoryId.LANDMARK
-        PlacesToCallOut.EVERYTHING -> {}
-        else -> {
-            if (featureIsInFilterGroup(feature, places.filterGroup!!)) return true
-            if (feature.superCategory == SuperCategoryId.PLACE) return false
-            if (isBusOrTramStop(feature)) return false
+    if (PlacesToCallOut.NOTHING in places) return false
+    if (PlacesToCallOut.EVERYTHING !in places) {
+        // A kind the user ticked is announced whatever the Callout Detail says: they asked for
+        // it by name, which is a stronger statement than a level they set once.
+        val chosen = places.any { kind ->
+            kind.filterGroup?.let { featureIsInFilterGroup(feature, it) } == true
         }
+        if (chosen) return true
+        when {
+            // Landmarks are a kind of their own to tick, so unticked they go like any other,
+            // even though they are the most useful thing to navigate by.
+            feature.superCategory == SuperCategoryId.LANDMARK ->
+                return PlacesToCallOut.LANDMARKS in places
+            feature.superCategory == SuperCategoryId.PLACE -> return false
+            isBusOrTramStop(feature) -> return false
+        }
+        // What is left - guideposts, crossings, steps, lifts - is not a kind of place anybody
+        // sets out to find, so it isn't on the list to choose from. It is how you get about, so
+        // it follows the Callout Detail like everything else rather than being narrowed away.
     }
     return verbosity.poiCategories?.contains(feature.superCategory) ?: true
 }
