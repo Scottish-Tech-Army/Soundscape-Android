@@ -229,12 +229,7 @@ class AutoCallout(
         lastTrainTimestampMs = lastTrainTimestampMs?.plus(stillness)
     }
 
-    private fun verbosity() = CalloutVerbosity.fromPreference(
-        preferences?.getString(
-            PreferenceKeys.CALLOUT_VERBOSITY,
-            PreferenceDefaults.CALLOUT_VERBOSITY
-        )
-    )
+    private fun verbosity() = readCalloutVerbosity(preferences)
 
     private fun placesToCallOut() = PlacesToCallOut.read(preferences)
 
@@ -1406,7 +1401,7 @@ class AutoCallout(
                     // Update the destination filter if we're outputting it
                     destinationCallout.locationFilter = destinationFilter
                     trackedCallout = destinationCallout
-                } else if (preferences?.getBoolean(PreferenceKeys.ALLOW_CALLOUTS, true) != false) {
+                } else if (verbosity() != CalloutVerbosity.SILENT) {
                     // Going into a tunnel is worth saying however the user is travelling, so it's
                     // computed outside the vehicle/pedestrian split below and merged onto whatever
                     // else this update produced.

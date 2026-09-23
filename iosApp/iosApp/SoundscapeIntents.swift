@@ -178,6 +178,32 @@ enum ListKind: String, AppEnum, CaseIterable {
     }
 }
 
+/// The Callout Detail setting. Raw values are CalloutVerbosity's preferenceValue, which is how
+/// the choice crosses into Kotlin - through the companion's lookup rather than the exported enum
+/// cases, the same way the rest of this file reaches the shared code.
+enum CalloutDetailLevel: String, AppEnum, CaseIterable {
+    case silent = "Silent"
+    case quiet = "Quiet"
+    case balanced = "Balanced"
+    case detailed = "Detailed"
+
+    static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Callout Detail")
+
+    /// Wording matches the audio menu: callouts_verbosity_level_*.
+    static var caseDisplayRepresentations: [CalloutDetailLevel: DisplayRepresentation] = [
+        .silent: "Silent",
+        .quiet: "Quiet",
+        .balanced: "Balanced",
+        .detailed: "Detailed",
+    ]
+
+    var action: SoundscapeAction {
+        SoundscapeAction.SetCalloutDetail(
+            level: CalloutVerbosity.companion.fromPreference(value: rawValue)
+        )
+    }
+}
+
 // MARK: - Intents
 //
 // All set openAppWhenRun = false: callouts, beacons and route control all play through
@@ -187,9 +213,9 @@ enum ListKind: String, AppEnum, CaseIterable {
 // Whether an intent speaks follows one rule: does the app already answer? Starting a
 // route or beacon announces itself, spatialised at the destination; skipping a waypoint
 // is announced by the route player; muting and stopping change or end the beacon tone,
-// which is audible in itself. All of those stay silent. Only the list actions speak,
-// being the only ones with no audio of their own. The executor supplies wording in every case and the
-// platform decides — which is the point of it returning text rather than speaking.
+// which is audible in itself. All of those stay silent. Only the list actions and the
+// callout detail speak, being the only ones with no audio of their own. The executor
+// supplies wording in every case and the platform decides — which is the point of it returning text rather than speaking.
 
 struct SurroundingsIntent: AppIntent {
     static var title: LocalizedStringResource = "Hear My Surroundings"
@@ -282,6 +308,26 @@ struct StartBeaconIntent: AppIntent {
     }
 }
 
+/// Changes how much the automatic callouts say. Speaks its confirmation, as the list actions
+/// do: a setting has no audio of its own, and the next callout may be a minute away.
+struct CalloutDetailIntent: AppIntent {
+    static var title: LocalizedStringResource = "Callout Detail"
+    static var description = IntentDescription("Sets how much Soundscape says as you walk.")
+    static var openAppWhenRun = false
+
+    @Parameter(title: "Level")
+    var level: CalloutDetailLevel
+
+    static var parameterSummary: some ParameterSummary {
+        Summary("Set callout detail to \(\.$level)")
+    }
+
+    func perform() async throws -> some IntentResult & ProvidesDialog {
+        let speech = try await SoundscapeIntentRunner.run(level.action)
+        return .result(dialog: SoundscapeIntentRunner.dialog(for: speech))
+    }
+}
+
 /// Kept out of the route group: stopping the beacon is not a route command, and folding it
 /// in would have made "Soundscape route stop beacon" the way to reach it.
 struct StopBeaconIntent: AppIntent {
@@ -323,5 +369,5 @@ struct ListIntent: AppIntent {
     /// phrases in AppShortcuts.xcstrings; a literal translation would tell the user to say
     /// commands that do not exist.
     private static let commandSummary: LocalizedStringResource =
-        "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, Soundscape beacon, Soundscape stop beacon, or Soundscape list."
+        "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, Soundscape beacon, Soundscape stop beacon, Soundscape detail, or Soundscape list."
 }

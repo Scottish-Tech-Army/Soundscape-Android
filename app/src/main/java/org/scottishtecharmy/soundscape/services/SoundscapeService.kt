@@ -66,6 +66,8 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
+import org.scottishtecharmy.soundscape.geoengine.callouts.cycleCalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
@@ -981,7 +983,17 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long =
         calloutController.speakCallout(callout, addModeEarcon)
 
-    override fun toggleAutoCallouts() = geoEngine.toggleAutoCallouts()
+    fun toggleAutoCallouts() {
+        geoEngine.toggleAutoCallouts()
+    }
+
+    override fun setCalloutVerbosity(verbosity: CalloutVerbosity) {
+        AndroidPreferencesProvider(sharedPreferences)
+            .putString(PreferenceKeys.CALLOUT_VERBOSITY, verbosity.preferenceValue)
+    }
+
+    override fun cycleCalloutDetail() =
+        cycleCalloutVerbosity(AndroidPreferencesProvider(sharedPreferences))
 
     fun refreshOfflineMaps() {
         geoEngine.refreshOfflineMaps()

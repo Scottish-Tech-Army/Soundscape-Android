@@ -33,3 +33,6 @@
 "${applicationName} list" = "${applicationName} list";
 
 "${applicationName} stop beacon" = "${applicationName} stop beacon";
+
+"${applicationName} detail ${level}" = "${applicationName} detail ${level}";
+"${applicationName} detail" = "${applicationName} detail";

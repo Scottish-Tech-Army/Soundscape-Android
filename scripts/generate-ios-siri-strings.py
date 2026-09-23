@@ -50,6 +50,11 @@ MAPPING = {
     "Routes": "routes_title",
     "Markers": "markers_title",
     "Commands": "siri_choice_commands",
+    # Amount of detail choices
+    "Silent": "callouts_verbosity_level_silent",
+    "Quiet": "callouts_verbosity_level_quiet",
+    "Balanced": "callouts_verbosity_level_balanced",
+    "Detailed": "callouts_verbosity_level_detailed",
     # Shortcut and intent names
     "Hear My Surroundings": "callouts_panel_title",
     "Control Route": "siri_title_control_route",
@@ -59,12 +64,15 @@ MAPPING = {
     "List": "siri_type_list",
     "Surroundings": "siri_short_surroundings",
     "Beacon": "siri_short_beacon",
+    "Callout Detail": "callouts_verbosity",
+    "Detail": "siri_short_detail",
     # Parameter and type names
     "Callout": "siri_type_callout",
     "Route Command": "siri_type_route_command",
     "Command": "siri_param_command",
     "Route": "siri_param_route",
     "Marker": "markers_generic_name",
+    "Level": "siri_param_level",
     # Descriptions
     "Describes where you are and what is around you.": "siri_desc_surroundings",
     "Skips waypoints, mutes the beacon, or stops the route.": "siri_desc_route_control",
@@ -73,6 +81,7 @@ MAPPING = {
     "Switches the audio beacon off.": "siri_desc_stop_beacon",
     "Reads back your saved routes, your saved markers, or the commands you can say.":
         "siri_desc_list",
+    "Sets how much Soundscape says as you walk.": "siri_desc_callout_detail",
     # Spoken failures and confirmations
     "Done": "general_alert_done",
     "Open Soundscape to finish that.": "siri_error_needs_app",
@@ -87,60 +96,60 @@ MAPPING = {
 # has no phrases of its own and still answers to the English ones.
 PHRASE_COUPLED = {
     "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, "
-    "Soundscape beacon, Soundscape stop beacon, or Soundscape list.": {
+    "Soundscape beacon, Soundscape stop beacon, Soundscape detail, or Soundscape list.": {
         "ar": "يمكنك أن تقول: Soundscape المحيط، Soundscape المسار، "
-              "Soundscape ابدأ المسار، Soundscape المنارة، Soundscape أوقف المنارة، "
+              "Soundscape ابدأ المسار، Soundscape المنارة، Soundscape أوقف المنارة، Soundscape التفاصيل، "
               "أو Soundscape قائمة.",
         "da": "Du kan sige: Soundscape omgivelser, Soundscape rute, "
-              "Soundscape start rute, Soundscape lydfyr, Soundscape stop lydfyr "
+              "Soundscape start rute, Soundscape lydfyr, Soundscape stop lydfyr, Soundscape detaljer "
               "eller Soundscape liste.",
         "de": "Sie können sagen: Soundscape Umgebung, Soundscape Route, "
-              "Soundscape starte Route, Soundscape Beacon, Soundscape stoppe Beacon "
+              "Soundscape starte Route, Soundscape Beacon, Soundscape stoppe Beacon, Soundscape Details "
               "oder Soundscape Liste.",
         "es": "Puedes decir: Soundscape entorno, Soundscape ruta, "
-              "Soundscape iniciar ruta, Soundscape señal, Soundscape detener señal "
+              "Soundscape iniciar ruta, Soundscape señal, Soundscape detener señal, Soundscape detalle "
               "o Soundscape lista.",
         "fi": "Voit sanoa: Soundscape ympäristö, Soundscape reitti, "
               "Soundscape aloita reitti, Soundscape majakka, "
-              "Soundscape pysäytä majakka tai Soundscape luettelo.",
+              "Soundscape pysäytä majakka, Soundscape yksityiskohdat tai Soundscape luettelo.",
         "fr": "Vous pouvez dire : Soundscape environs, Soundscape itinéraire, "
               "Soundscape démarre l'itinéraire, Soundscape balise, "
-              "Soundscape arrête la balise ou Soundscape liste.",
+              "Soundscape arrête la balise, Soundscape détails ou Soundscape liste.",
         "it": "Puoi dire: Soundscape dintorni, Soundscape percorso, "
               "Soundscape avvia percorso, Soundscape audiofaro, "
-              "Soundscape ferma audiofaro o Soundscape elenco.",
+              "Soundscape ferma audiofaro, Soundscape dettagli o Soundscape elenco.",
         "ja": "「Soundscape 周辺」「Soundscape ルート」「Soundscape ルート開始」"
-              "「Soundscape ビーコン」「Soundscape ビーコン停止」「Soundscape リスト」"
+              "「Soundscape ビーコン」「Soundscape ビーコン停止」「Soundscape 詳細」「Soundscape リスト」"
               "と言えます。",
         "ko": "다음과 같이 말할 수 있습니다: Soundscape 주변, Soundscape 경로, "
-              "Soundscape 경로 시작, Soundscape 비콘, Soundscape 비콘 중지, "
+              "Soundscape 경로 시작, Soundscape 비콘, Soundscape 비콘 중지, Soundscape 상세, "
               "Soundscape 목록.",
         "nb": "Du kan si: Soundscape omgivelser, Soundscape rute, "
               "Soundscape start rute, Soundscape lydsignal, "
-              "Soundscape stopp lydsignal eller Soundscape liste.",
+              "Soundscape stopp lydsignal, Soundscape detaljer eller Soundscape liste.",
         "nl": "U kunt zeggen: Soundscape omgeving, Soundscape route, "
-              "Soundscape start route, Soundscape baken, Soundscape stop baken "
+              "Soundscape start route, Soundscape baken, Soundscape stop baken, Soundscape detail "
               "of Soundscape lijst.",
         "pt": "Pode dizer: Soundscape arredores, Soundscape rota, "
-              "Soundscape iniciar rota, Soundscape sinal, Soundscape parar sinal "
+              "Soundscape iniciar rota, Soundscape sinal, Soundscape parar sinal, Soundscape detalhe "
               "ou Soundscape lista.",
         "pt-BR": "Você pode dizer: Soundscape arredores, Soundscape rota, "
                  "Soundscape iniciar rota, Soundscape sinalizador, "
-                 "Soundscape parar sinalizador ou Soundscape lista.",
+                 "Soundscape parar sinalizador, Soundscape detalhe ou Soundscape lista.",
         "ru": "Можно сказать: Soundscape окружение, Soundscape маршрут, "
               "Soundscape запусти маршрут, Soundscape маяк, "
-              "Soundscape выключи маяк или Soundscape список.",
+              "Soundscape выключи маяк, Soundscape детали или Soundscape список.",
         "sv": "Du kan säga: Soundscape omgivning, Soundscape rutt, "
               "Soundscape starta rutt, Soundscape ljudfyr, "
-              "Soundscape stoppa ljudfyr eller Soundscape lista.",
+              "Soundscape stoppa ljudfyr, Soundscape detaljer eller Soundscape lista.",
         "th": "คุณสามารถพูดว่า: Soundscape รอบตัว, Soundscape เส้นทาง, "
-              "Soundscape เริ่มเส้นทาง, Soundscape บีคอน, Soundscape หยุดบีคอน "
+              "Soundscape เริ่มเส้นทาง, Soundscape บีคอน, Soundscape หยุดบีคอน, Soundscape รายละเอียด "
               "หรือ Soundscape รายการ",
         "tr": "Şunları diyebilirsiniz: Soundscape çevre, Soundscape rota, "
-              "Soundscape rota başlat, Soundscape işaret, Soundscape işareti durdur "
+              "Soundscape rota başlat, Soundscape işaret, Soundscape işareti durdur, Soundscape ayrıntı "
               "veya Soundscape liste.",
         "zh-Hans": "你可以说：Soundscape 周围、Soundscape 路线、Soundscape 开始路线、"
-                   "Soundscape 信标、Soundscape 停止信标，或 Soundscape 列表。",
+                   "Soundscape 信标、Soundscape 停止信标、Soundscape 详细，或 Soundscape 列表。",
     },
 }
 

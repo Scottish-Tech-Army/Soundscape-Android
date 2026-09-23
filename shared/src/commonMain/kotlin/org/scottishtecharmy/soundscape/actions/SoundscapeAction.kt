@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.actions
 
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
+
 /**
  * Assistant-level command vocabulary. Deliberately headless: every action here is
  * executable against a [org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService]
@@ -38,6 +40,17 @@ sealed class SoundscapeAction {
     data class BeaconOnMarkerById(val markerId: Long) : SoundscapeAction()
     data class BeaconOnMarkerNamed(val name: String) : SoundscapeAction()
     data object StopBeacon : SoundscapeAction()
+
+    // ── Settings ────────────────────────────────────────────────────────────
+    /** Sets how much the automatic callouts say - see [CalloutVerbosity]. */
+    data class SetCalloutDetail(val level: CalloutVerbosity) : SoundscapeAction()
+
+    /**
+     * [SetCalloutDetail] by name, for an assistant that passes a word rather than a value - the
+     * Android AppFunction. Matches the stored value ("Quiet") or the level's name in the app's
+     * language, ignoring case.
+     */
+    data class SetCalloutDetailNamed(val name: String) : SoundscapeAction()
 
     // ── Enumeration ──────────────────────────────────────────────────────────
     /**

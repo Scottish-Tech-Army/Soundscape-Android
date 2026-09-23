@@ -12,6 +12,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildAheadOfMeCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildMyLocationCallout
@@ -148,16 +149,8 @@ class GeoEngine {
 
     private lateinit var autoCallout: AutoCallout
     private var autoCalloutDisabled = false
-    /**
-     * Pauses or resumes the automatic callouts for this session, leaving beacons, routes and the
-     * manual callouts alone. Unlike the Allow Callouts setting it isn't saved, so a pause that's
-     * forgotten about doesn't outlive the app.
-     *
-     * @return true if automatic callouts are now on
-     */
-    fun toggleAutoCallouts(): Boolean {
-        autoCalloutDisabled = !autoCalloutDisabled
-        return !autoCalloutDisabled
+    fun toggleAutoCallouts() {
+        autoCalloutDisabled = autoCalloutDisabled.xor(true)
     }
 
     private val streetPreview = StreetPreview()
@@ -311,6 +304,7 @@ class GeoEngine {
         this.localizedStrings = localizedStrings
         this.preferencesProvider = preferencesProvider
         PlacesToCallOut.migrate(preferencesProvider)
+        CalloutVerbosity.migrate(preferencesProvider)
         this.analytics = analytics
         this.hasNetwork = hasNetwork
 

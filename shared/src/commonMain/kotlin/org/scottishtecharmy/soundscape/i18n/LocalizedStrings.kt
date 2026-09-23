@@ -233,6 +233,12 @@ enum class StringKey {
     ActionAtRouteEnd,
     ActionNoOtherWaypoints,
     ActionServiceNotRunning,
+    CalloutDetailSet,
+    ActionNoSuchCalloutDetail,
+    CalloutDetailSilent,
+    CalloutDetailQuiet,
+    CalloutDetailBalanced,
+    CalloutDetailDetailed,
     MenuNoRoutes,
 
     // Left behind by the voice-control removal in 75c0bc59 and still translated, so the

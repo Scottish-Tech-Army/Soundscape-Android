@@ -4485,7 +4485,7 @@ class MvtTileTest {
      * Milngavie town centre to the station, and to and from Tesco in Milngavie, which goes along
      * the footpaths through the precinct and Lennox Park - at each CalloutVerbosity level, writing
      * the callouts to gpxFiles/<walk>-<level>.txt for comparison. Each level must say no more than
-     * the one above it.
+     * the one above it, and Silent must say nothing.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
@@ -4507,6 +4507,8 @@ class MvtTileTest {
                 )
             }
             println("$walk callouts: $counts")
+            // No beacon is set on these walks, so Silent has nothing at all to say
+            assertEquals(0, counts[CalloutVerbosity.SILENT])
             assertTrue(counts[CalloutVerbosity.QUIET]!! <= counts[CalloutVerbosity.BALANCED]!!)
             assertTrue(counts[CalloutVerbosity.BALANCED]!! <= counts[CalloutVerbosity.DETAILED]!!)
         }

@@ -30,6 +30,8 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
+import org.scottishtecharmy.soundscape.geoengine.callouts.cycleCalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.IosGeocoder
@@ -668,7 +670,11 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     override fun cancelCallout() = calloutController.cancel()
 
-    override fun toggleAutoCallouts() = geoEngine.toggleAutoCallouts()
+    override fun setCalloutVerbosity(verbosity: CalloutVerbosity) {
+        preferencesProvider.putString(PreferenceKeys.CALLOUT_VERBOSITY, verbosity.preferenceValue)
+    }
+
+    override fun cycleCalloutDetail() = cycleCalloutVerbosity(preferencesProvider)
 
     // --- Beacon Control ---
 

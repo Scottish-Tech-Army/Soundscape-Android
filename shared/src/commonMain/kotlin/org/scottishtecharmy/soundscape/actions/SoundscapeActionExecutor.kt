@@ -6,6 +6,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
@@ -141,6 +142,26 @@ class SoundscapeActionExecutor(
             ActionResult.Ok(strings.get(StringKey.ActionBeaconStopped))
         }
 
+        // Spoken back, unlike most: a setting has no audio of its own to confirm it.
+        is SoundscapeAction.SetCalloutDetail -> setCalloutDetail(service, action.level)
+
+        is SoundscapeAction.SetCalloutDetailNamed -> {
+            val wanted = action.name.trim()
+            CalloutVerbosity.entries.firstOrNull { level ->
+                level.preferenceValue.equals(wanted, ignoreCase = true) ||
+                        calloutDetailName(strings, level).equals(wanted, ignoreCase = true)
+            }?.let { setCalloutDetail(service, it) }
+                ?: notFound(action.name, StringKey.ActionNoSuchCalloutDetail)
+        }
+
+    }
+
+    private fun setCalloutDetail(
+        service: MediaControllableService,
+        level: CalloutVerbosity,
+    ): ActionResult {
+        service.setCalloutVerbosity(level)
+        return ActionResult.Ok(calloutDetailSetSpeech(strings, level))
     }
 
     private suspend fun listRoutes(): ActionResult {
@@ -268,3 +289,18 @@ class SoundscapeActionExecutor(
     private fun itemNotFound() =
         ActionResult.NotFound("", strings.get(StringKey.ActionItemNotFound))
 }
+
+/** The name of [level] as it is spoken and shown in the audio menu and to Siri. */
+fun calloutDetailName(strings: LocalizedStrings, level: CalloutVerbosity): String =
+    strings.get(
+        when (level) {
+            CalloutVerbosity.SILENT -> StringKey.CalloutDetailSilent
+            CalloutVerbosity.QUIET -> StringKey.CalloutDetailQuiet
+            CalloutVerbosity.BALANCED -> StringKey.CalloutDetailBalanced
+            CalloutVerbosity.DETAILED -> StringKey.CalloutDetailDetailed
+        }
+    )
+
+/** "Amount of detail: Quiet" - the confirmation for [SoundscapeAction.SetCalloutDetail]. */
+fun calloutDetailSetSpeech(strings: LocalizedStrings, level: CalloutVerbosity): String =
+    strings.get(StringKey.CalloutDetailSet, calloutDetailName(strings, level))

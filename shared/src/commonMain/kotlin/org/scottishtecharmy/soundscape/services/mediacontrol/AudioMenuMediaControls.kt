@@ -12,8 +12,13 @@ class AudioMenuMediaControls(val audioMenu: AudioMenu?) : MediaControlTarget {
         return true
     }
 
+    /**
+     * Not menu navigation: making Soundscape quieter is wanted far more often than stepping
+     * backwards through a menu that wraps round anyway, and this way it is one press from
+     * wherever the menu happens to be - and the same press as in Original mode.
+     */
     override fun onPrevious(): Boolean {
-        audioMenu?.previous()
+        audioMenu?.cycleCalloutDetail()
         return true
     }
 }

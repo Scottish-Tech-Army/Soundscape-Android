@@ -13,10 +13,7 @@ import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.beacon_action_mute_beacon
-import org.scottishtecharmy.soundscape.resources.callouts_auto_paused
-import org.scottishtecharmy.soundscape.resources.callouts_auto_resumed
 import org.scottishtecharmy.soundscape.resources.callouts_nearby_markers
-import org.scottishtecharmy.soundscape.resources.callouts_pause_resume
 import org.scottishtecharmy.soundscape.resources.callouts_panel_title
 import org.scottishtecharmy.soundscape.resources.directions_my_location
 import org.scottishtecharmy.soundscape.resources.help_explore_page_title
@@ -34,8 +31,10 @@ import org.scottishtecharmy.soundscape.resources.route_detail_action_stop_route
  * AudioMenu provides a hierarchical, navigable audio menu controlled by media buttons.
  *
  * - NEXT    : advance to next item at the current level (wraps at end)
- * - PREVIOUS: go back one item (wraps at end)
  * - SELECT  : enter a sub-menu, or execute a leaf action
+ *
+ * PREVIOUS is not menu navigation - AudioMenuMediaControls gives it to [cycleCalloutDetail],
+ * which is wanted more often than stepping backwards through a menu that wraps anyway.
  *
  * There is no inactivity timeout — the current position is remembered until changed.
  */
@@ -92,17 +91,6 @@ class AudioMenu(
         service.speak2dText(level.items[level.currentIndex].label, true)
     }
 
-    fun previous() {
-        service.callbackHoldOff()
-        val level = menuStack.last()
-        level.currentIndex =
-            if (level.currentIndex == 0)
-                level.items.size - 1
-            else
-                level.currentIndex - 1
-        service.speak2dText(level.items[level.currentIndex].label, true)
-    }
-
     fun select() {
         service.callbackHoldOff()
         val item = menuStack.last().let { it.items[it.currentIndex] }
@@ -119,6 +107,9 @@ class AudioMenu(
             is MenuItem.DynamicSubmenu -> loadAndEnter(item)
         }
     }
+
+    /** See [cycleCalloutDetailAndSay]. */
+    fun cycleCalloutDetail() = service.cycleCalloutDetailAndSay()
 
     // ── Main-menu escape ──────────────────────────────────────────────────────
 
@@ -173,18 +164,6 @@ class AudioMenu(
                 },
                 MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.callouts_nearby_markers) }) {
                     service.nearbyMarkers()
-                },
-                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.callouts_pause_resume) }) {
-                    val enabled = service.toggleAutoCallouts()
-                    scope.launch {
-                        service.speak2dText(
-                            getString(
-                                if (enabled) Res.string.callouts_auto_resumed
-                                else Res.string.callouts_auto_paused
-                            ),
-                            true
-                        )
-                    }
                 },
                 mainMenuAction(),
             )

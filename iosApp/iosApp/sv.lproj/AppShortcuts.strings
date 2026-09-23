@@ -26,3 +26,6 @@
 "${applicationName} list" = "${applicationName} lista";
 
 "${applicationName} stop beacon" = "${applicationName} stoppa ljudfyr";
+
+"${applicationName} detail ${level}" = "${applicationName} detaljer ${level}";
+"${applicationName} detail" = "${applicationName} detaljer";
