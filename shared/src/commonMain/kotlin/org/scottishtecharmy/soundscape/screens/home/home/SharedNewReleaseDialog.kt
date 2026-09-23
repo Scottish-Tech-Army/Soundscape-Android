@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.platform.appVersionMinorTrimmed
@@ -19,6 +20,7 @@ import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.new_version_info_completed
 import org.scottishtecharmy.soundscape.resources.new_version_info_details
+import org.scottishtecharmy.soundscape.resources.new_version_info_release_notes
 import org.scottishtecharmy.soundscape.resources.new_version_info_text
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -27,6 +29,10 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
  * them as plain text. (The previous Android-only version pre-rendered each sentence as
  * HTML via commonmark; that path can be re-added behind a platform helper if richer
  * styling is needed.)
+ *
+ * The dialog only has room for the headlines, so a button opens the full release notes on the
+ * website. It's a button rather than a link in the text so that a screen reader finds it as one of
+ * the dialog's actions, and it leaves the dialog open, to be closed as before.
  */
 @Composable
 fun SharedNewReleaseDialog(
@@ -38,6 +44,7 @@ fun SharedNewReleaseDialog(
     val sentences = remember(markdownText) {
         markdownText.split(Regex("(?<=[.!?][ \n])\\s*")).filter { it.isNotBlank() }
     }
+    val uriHandler = LocalUriHandler.current
 
     AlertDialog(
         modifier = Modifier.padding(innerPadding),
@@ -50,7 +57,15 @@ fun SharedNewReleaseDialog(
             }
         },
         onDismissRequest = { },
-        confirmButton = { },
+        confirmButton = {
+            TextButton(
+                modifier = Modifier.testTag("newReleaseDialogReleaseNotes"),
+                // Throws on a phone with no browser; there's nothing better to offer then.
+                onClick = { runCatching { uriHandler.openUri(releaseNotesUrl()) } },
+            ) {
+                Text(text = stringResource(Res.string.new_version_info_release_notes))
+            }
+        },
         dismissButton = {
             TextButton(
                 modifier = Modifier.testTag("newReleaseDialogDismiss"),
