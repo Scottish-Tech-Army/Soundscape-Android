@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.services.mediacontrol
 
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -67,10 +68,17 @@ interface MediaControllableService {
     fun cancelCallout() {}
 
     /**
-     * Pauses or resumes the automatic callouts - see GeoEngine.toggleAutoCallouts. Returns true
-     * if they are now on. Defaults to leaving them on for implementations with no geoengine.
+     * Sets the Callout Detail setting - see CalloutVerbosity. Saved, the same as choosing it
+     * in Settings. Defaults to doing nothing for implementations with no preferences.
      */
-    fun toggleAutoCallouts(): Boolean = true
+    fun setCalloutVerbosity(verbosity: CalloutVerbosity) {}
+
+    /**
+     * Steps the Callout Detail one quieter, wrapping from Silent back to the most detailed -
+     * see cycleCalloutVerbosity. Returns the level now in use, or null for implementations with
+     * no preferences.
+     */
+    fun cycleCalloutDetail(): CalloutVerbosity? = null
     fun routeStop()
     fun routeStartById(routeId: Long)
     fun startBeacon(location: LngLatAlt, name: String)

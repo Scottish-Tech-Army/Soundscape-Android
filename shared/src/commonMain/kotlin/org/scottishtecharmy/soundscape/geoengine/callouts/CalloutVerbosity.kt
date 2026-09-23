@@ -130,6 +130,9 @@ private fun angleBetween(a: Double, b: Double): Double = abs(((a - b) % 360.0 + 
  *
  * DETAILED is the behaviour from before the setting existed, and is what a null
  * PreferencesProvider gets, so that the tests which build AutoCallout directly are unchanged.
+ *
+ * SILENT makes no automatic callouts at all - it replaced the Allow Callouts switch, see
+ * [migrate]. Its thresholds are never consulted.
  */
 enum class CalloutVerbosity(
     val preferenceValue: String,
@@ -152,6 +155,15 @@ enum class CalloutVerbosity(
     /** The shortest gap allowed between two POI callouts (markers excepted). */
     val minimumPoiGapMs: Long,
 ) {
+    SILENT(
+        preferenceValue = "Silent",
+        minimumIntersectionTier = RoadTier.MINOR,
+        poiCategories = emptySet(),
+        poiHistoryExpiryMs = 20 * 60_000L,
+        poiHistoryTrimRadiusMetres = 200.0,
+        roadHistoryExpiryMs = 5 * 60_000L,
+        minimumPoiGapMs = 30_000L,
+    ),
     // Quiet keeps every street junction, the same as Balanced: in a city-centre grid such as
     // Glasgow's nearly every street is "minor" in OSM - Gordon Street, St Vincent Street, West
     // George Street - and requiring a MAJOR road left a walk up Buchanan Street with two junction
@@ -188,7 +200,44 @@ enum class CalloutVerbosity(
     companion object {
         fun fromPreference(value: String?): CalloutVerbosity =
             entries.firstOrNull { it.preferenceValue == value } ?: DETAILED
+
+        /**
+         * Carries the Allow Callouts switch over once: switched off, it becomes SILENT. The
+         * switch is then set back to its default so that this never runs again - nothing else
+         * reads it now, though the iOS LegacyMigrator still writes it on first launch.
+         */
+        fun migrate(preferences: PreferencesProvider) {
+            if (preferences.getBoolean(PreferenceKeys.LEGACY_ALLOW_CALLOUTS, true)) return
+            preferences.putString(PreferenceKeys.CALLOUT_VERBOSITY, SILENT.preferenceValue)
+            preferences.putBoolean(PreferenceKeys.LEGACY_ALLOW_CALLOUTS, true)
+        }
     }
+}
+
+fun readCalloutVerbosity(preferences: PreferencesProvider?): CalloutVerbosity =
+    CalloutVerbosity.fromPreference(
+        preferences?.getString(
+            PreferenceKeys.CALLOUT_VERBOSITY,
+            PreferenceDefaults.CALLOUT_VERBOSITY
+        )
+    )
+
+/**
+ * Steps the Callout Detail one quieter, and from Silent back to the most detailed - the
+ * headphone button, where there is no list to choose from and each press has to do one thing.
+ * The order is the order of the enum, which is loudest last, so it steps backwards through it.
+ *
+ * @return the level now in use
+ */
+fun cycleCalloutVerbosity(preferences: PreferencesProvider): CalloutVerbosity {
+    val current = readCalloutVerbosity(preferences)
+    val next = if (current == CalloutVerbosity.SILENT) {
+        CalloutVerbosity.entries.last()
+    } else {
+        CalloutVerbosity.entries[CalloutVerbosity.entries.indexOf(current) - 1]
+    }
+    preferences.putString(PreferenceKeys.CALLOUT_VERBOSITY, next.preferenceValue)
+    return next
 }
 
 /**

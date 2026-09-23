@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.resources.action_at_route_end
 import org.scottishtecharmy.soundscape.resources.action_at_route_start
 import org.scottishtecharmy.soundscape.resources.action_beacon_started
 import org.scottishtecharmy.soundscape.resources.action_beacon_stopped
+import org.scottishtecharmy.soundscape.resources.action_no_such_callout_detail
 import org.scottishtecharmy.soundscape.resources.action_item_not_found
 import org.scottishtecharmy.soundscape.resources.action_no_location
 import org.scottishtecharmy.soundscape.resources.action_no_map_data
@@ -38,6 +39,11 @@ import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_distance
 import org.scottishtecharmy.soundscape.resources.callouts_no_nearby_markers
 import org.scottishtecharmy.soundscape.resources.callouts_nothing_to_call_out_now
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_balanced
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_detailed
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_quiet
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_silent
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_set
 import org.scottishtecharmy.soundscape.resources.confect_name_dead_end
 import org.scottishtecharmy.soundscape.resources.confect_name_joins
 import org.scottishtecharmy.soundscape.resources.confect_name_pavement
@@ -402,6 +408,12 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ActionRouteStopped -> Res.string.action_route_stopped
         StringKey.ActionBeaconStarted -> Res.string.action_beacon_started
         StringKey.ActionBeaconStopped -> Res.string.action_beacon_stopped
+        StringKey.CalloutDetailSet -> Res.string.callouts_verbosity_set
+        StringKey.ActionNoSuchCalloutDetail -> Res.string.action_no_such_callout_detail
+        StringKey.CalloutDetailSilent -> Res.string.callouts_verbosity_level_silent
+        StringKey.CalloutDetailQuiet -> Res.string.callouts_verbosity_level_quiet
+        StringKey.CalloutDetailBalanced -> Res.string.callouts_verbosity_level_balanced
+        StringKey.CalloutDetailDetailed -> Res.string.callouts_verbosity_level_detailed
         StringKey.ActionNoSuchRoute -> Res.string.action_no_such_route
         StringKey.ActionNoSuchMarker -> Res.string.action_no_such_marker
         StringKey.ActionItemNotFound -> Res.string.action_item_not_found

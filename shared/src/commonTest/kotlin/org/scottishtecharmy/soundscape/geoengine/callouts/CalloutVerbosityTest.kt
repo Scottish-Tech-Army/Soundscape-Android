@@ -384,6 +384,70 @@ class CalloutVerbosityTest {
         assertNull(AutoCallout(null, preferences).updateLocation(walkingFix(0), busyStreet(), GridState()))
     }
 
+    /** Silent took over from Allow Callouts: nothing automatic, but the beacon still reports. */
+    @Test
+    fun silentMakesNoAutomaticCalloutsButKeepsTheBeacon() {
+        val preferences = VerbosityPreferences().apply {
+            putString(PreferenceKeys.CALLOUT_VERBOSITY, CalloutVerbosity.SILENT.preferenceValue)
+        }
+        assertNull(
+            AutoCallout(null, preferences).updateLocation(walkingFix(0), busyStreet(), GridState())
+        )
+
+        val beacon = getDestinationCoordinate(userLocation, 90.0, 300.0)
+        val empty = GridState().apply { validateContext = false }
+        val callout = AutoCallout(null, preferences)
+            .updateLocation(walkingFix(0, beacon), empty, GridState())
+        assertTrue(calloutText(callout)!!.startsWith("Distance to beacon"))
+    }
+
+    /** The headphone button: quieter each press, and round again rather than a dead end. */
+    @Test
+    fun cyclingStepsQuieterAndWrapsToTheMostDetailed() {
+        val preferences = VerbosityPreferences()
+        assertEquals(CalloutVerbosity.DETAILED, readCalloutVerbosity(preferences))
+        assertEquals(CalloutVerbosity.BALANCED, cycleCalloutVerbosity(preferences))
+        assertEquals(CalloutVerbosity.QUIET, cycleCalloutVerbosity(preferences))
+        assertEquals(CalloutVerbosity.SILENT, cycleCalloutVerbosity(preferences))
+        assertEquals(CalloutVerbosity.DETAILED, cycleCalloutVerbosity(preferences))
+        // ...and it is saved, so Settings and the next callout agree with what was said
+        assertEquals(CalloutVerbosity.DETAILED, readCalloutVerbosity(preferences))
+    }
+
+    /** Every level is reached from every starting point, whichever way it was chosen. */
+    @Test
+    fun cyclingFromAnyLevelVisitsThemAll() {
+        for (start in CalloutVerbosity.entries) {
+            val preferences = VerbosityPreferences().apply {
+                putString(PreferenceKeys.CALLOUT_VERBOSITY, start.preferenceValue)
+            }
+            val visited = CalloutVerbosity.entries.map { cycleCalloutVerbosity(preferences) }
+            assertEquals(CalloutVerbosity.entries.toSet(), visited.toSet(), "from $start")
+            assertEquals(start, readCalloutVerbosity(preferences), "from $start")
+        }
+    }
+
+    @Test
+    fun allowCalloutsOffBecomesSilentOnce() {
+        val preferences = VerbosityPreferences().apply {
+            putBoolean(PreferenceKeys.LEGACY_ALLOW_CALLOUTS, false)
+        }
+        CalloutVerbosity.migrate(preferences)
+        assertEquals("Silent", preferences.getString(PreferenceKeys.CALLOUT_VERBOSITY, ""))
+
+        // Having carried over, a later choice isn't overwritten on the next start
+        preferences.putString(PreferenceKeys.CALLOUT_VERBOSITY, "Balanced")
+        CalloutVerbosity.migrate(preferences)
+        assertEquals("Balanced", preferences.getString(PreferenceKeys.CALLOUT_VERBOSITY, ""))
+    }
+
+    @Test
+    fun allowCalloutsOnLeavesTheAmountOfDetailAlone() {
+        val preferences = VerbosityPreferences()
+        CalloutVerbosity.migrate(preferences)
+        assertEquals("", preferences.getString(PreferenceKeys.CALLOUT_VERBOSITY, ""))
+    }
+
     @Test
     fun beaconDistanceFollowsItsSetting() {
         val beacon = getDestinationCoordinate(userLocation, 90.0, 300.0)

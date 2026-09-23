@@ -26,3 +26,6 @@
 "${applicationName} list" = "${applicationName} قائمة";
 
 "${applicationName} stop beacon" = "${applicationName} أوقف المنارة";
+
+"${applicationName} detail ${level}" = "${applicationName} التفاصيل ${level}";
+"${applicationName} detail" = "${applicationName} التفاصيل";

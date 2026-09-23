@@ -26,3 +26,6 @@
 "${applicationName} list" = "${applicationName} リスト";
 
 "${applicationName} stop beacon" = "${applicationName} ビーコン停止";
+
+"${applicationName} detail ${level}" = "${applicationName} 詳細 ${level}";
+"${applicationName} detail" = "${applicationName} 詳細";

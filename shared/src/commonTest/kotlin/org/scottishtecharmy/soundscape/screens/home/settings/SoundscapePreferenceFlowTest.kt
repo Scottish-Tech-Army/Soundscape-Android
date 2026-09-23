@@ -1,36 +1,102 @@
 package org.scottishtecharmy.soundscape.screens.home.settings
 
+import kotlinx.coroutines.flow.MutableStateFlow
+import me.zhanghai.compose.preference.MapPreferences
+import me.zhanghai.compose.preference.Preferences
 import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
 /**
- * [rememberSoundscapePreferenceFlow] is declared in commonMain as `@Composable internal expect
- * fun rememberSoundscapePreferenceFlow(): MutableStateFlow<Preferences>` with no body of its
- * own - every bit of actual behavior lives in the platform `actual` implementations:
- *  - Android (SoundscapePreferenceFlow.android.kt): a one-line delegation to the
- *    compose-preference library's own `createDefaultPreferenceFlow()`.
- *  - iOS (SoundscapePreferenceFlow.ios.kt): custom `NSUserDefaults` read/merge/write logic that
- *    coexists with Firebase Crashlytics's cached settings dictionary in the same persistent
- *    domain.
- *
- * None of that logic is reachable from a plain `kotlin.test` unit test in `commonTest`:
- *  - It's `@Composable`, so it can only be invoked from inside a live Compose composition (e.g.
- *    via `runComposeUiTest`/`ComposeTestRule`). This module's `commonTest` source set has no
- *    compose-ui-test (or Robolectric) dependency to provide one.
- *  - Even with such a harness, the Android actual needs a real `android.content.Context`-backed
- *    `SharedPreferences`/DataStore and the iOS actual needs a real `NSUserDefaults`; neither is
- *    available, and there is no mocking library in this module to fake them with.
- *  - The task's instructions were to only add test files, not to add new test
- *    dependencies/infrastructure to shared/build.gradle.kts.
- *
- * So rather than silently having no test for this file at all, this records *why*: there is no
- * pure, platform-independent logic in the commonMain declaration to exercise. (Contrast this
- * with, say, StringExt.kt/FormatBytes.kt, which are genuine pure functions.)
+ * [rememberSoundscapePreferenceFlow] itself can't be tested here - it is @Composable, and each
+ * actual needs a real SharedPreferences or NSUserDefaults, neither of which this source set has
+ * a harness for. What both actuals share is [publishExternalChange], which is plain Kotlin.
  */
 class SoundscapePreferenceFlowTest {
+
+    private fun flowOf(vararg pairs: Pair<String, Any>): MutableStateFlow<Preferences> =
+        MutableStateFlow(MapPreferences(mapOf(*pairs)))
+
+    /** A setting changed from the headphone button, the audio menu, Siri or Gemini. */
     @Test
-    fun noPureLogicToTestInCommonMain() {
-        // See class KDoc above for the full explanation.
-        assertTrue(true)
+    fun anOutsideChangeReachesTheFlow() {
+        val flow = flowOf("CalloutVerbosity" to "Detailed")
+
+        assertTrue(flow.publishExternalChange(mapOf("CalloutVerbosity" to "Quiet")))
+        assertEquals("Quiet", flow.value.get<String>("CalloutVerbosity"))
+    }
+
+    /**
+     * The store reports back every write the flow itself made. Publishing those again would be a
+     * new MapPreferences each time - the class has no equals - and the flow and the store would
+     * chase each other round for as long as the screen was open.
+     */
+    @Test
+    fun theFlowsOwnWriteComingBackIsIgnored() {
+        val flow = flowOf("CalloutVerbosity" to "Quiet", "MeasurementUnits" to "Metric")
+        val before = flow.value
+
+        assertFalse(
+            flow.publishExternalChange(
+                mapOf("MeasurementUnits" to "Metric", "CalloutVerbosity" to "Quiet")
+            )
+        )
+        assertSame(before, flow.value)
+    }
+
+    /** A key appearing or disappearing is a change like any other. */
+    @Test
+    fun keysAddedAndRemovedAreChangesToo() {
+        val flow = flowOf("CalloutVerbosity" to "Quiet")
+
+        assertTrue(
+            flow.publishExternalChange(
+                mapOf("CalloutVerbosity" to "Quiet", "StreetsAndJunctions" to false)
+            )
+        )
+        assertTrue(flow.publishExternalChange(emptyMap()))
+        assertEquals(emptyMap(), flow.value.asMap())
+    }
+
+    /** Only what changed is written, so keys this screen knows nothing about are left alone. */
+    @Test
+    fun onlyChangedKeysAreWritten() {
+        val edits = preferenceEdits(
+            current = mapOf(
+                "CalloutVerbosity" to "Detailed",
+                "MeasurementUnits" to "Metric",
+                "sleep_resume_route_id" to 7L,
+            ),
+            desired = mapOf(
+                "CalloutVerbosity" to "Quiet",
+                "MeasurementUnits" to "Metric",
+                "sleep_resume_route_id" to 7L,
+            ),
+        )
+
+        assertEquals(mapOf("CalloutVerbosity" to "Quiet"), edits.changed)
+        assertTrue(edits.removed.isEmpty())
+    }
+
+    @Test
+    fun aKeyThatHasGoneIsRemovedAndANewOneIsWritten() {
+        val edits = preferenceEdits(
+            current = mapOf("CalloutVerbosity" to "Quiet", "BeaconType" to "Classic"),
+            desired = mapOf("CalloutVerbosity" to "Quiet", "StreetsAndJunctions" to false),
+        )
+
+        assertEquals(setOf("BeaconType"), edits.removed)
+        assertEquals(mapOf("StreetsAndJunctions" to false), edits.changed)
+    }
+
+    @Test
+    fun nothingToDoWhenTheyMatch() {
+        val same = mapOf("CalloutVerbosity" to "Quiet", "sleep_resume_route_id" to 7L)
+        val edits = preferenceEdits(same, same)
+
+        assertTrue(edits.removed.isEmpty())
+        assertTrue(edits.changed.isEmpty())
     }
 }

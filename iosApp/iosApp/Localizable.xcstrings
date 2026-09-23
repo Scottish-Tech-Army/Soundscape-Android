@@ -549,6 +549,9 @@
         }
       }
     },
+    "Balanced": {
+      "localizations": {}
+    },
     "Beacon": {
       "localizations": {
         "ar": {
@@ -1096,6 +1099,9 @@
           }
         }
       }
+    },
+    "Callout Detail": {
+      "localizations": {}
     },
     "Command": {
       "localizations": {
@@ -2193,6 +2199,12 @@
         }
       }
     },
+    "Detail": {
+      "localizations": {}
+    },
+    "Detailed": {
+      "localizations": {}
+    },
     "Done": {
       "localizations": {
         "ar": {
@@ -2740,6 +2752,9 @@
           }
         }
       }
+    },
+    "Level": {
+      "localizations": {}
     },
     "List": {
       "localizations": {
@@ -4636,7 +4651,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Наступна маршрутна точка"
+            "value": "Наступна зупинка"
           }
         },
         "ur": {
@@ -5184,7 +5199,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Попередня маршрутна точка"
+            "value": "Попередня зупинка"
           }
         },
         "ur": {
@@ -5206,6 +5221,9 @@
           }
         }
       }
+    },
+    "Quiet": {
+      "localizations": {}
     },
     "Reads back your saved routes, your saved markers, or the commands you can say.": {
       "localizations": {
@@ -6577,6 +6595,12 @@
         }
       }
     },
+    "Sets how much Soundscape says as you walk.": {
+      "localizations": {}
+    },
+    "Silent": {
+      "localizations": {}
+    },
     "Skips waypoints, mutes the beacon, or stops the route.": {
       "localizations": {
         "ar": {
@@ -6828,7 +6852,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Пропускає маршрутні точки, вимикає звук маячка або зупиняє маршрут."
+            "value": "Пропускає зупинки, вимикає звук маячка або зупиняє маршрут."
           }
         },
         "ur": {
@@ -9043,115 +9067,115 @@
         }
       }
     },
-    "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, Soundscape beacon, Soundscape stop beacon, or Soundscape list.": {
+    "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, Soundscape beacon, Soundscape stop beacon, Soundscape detail, or Soundscape list.": {
       "comment": "Recites the spoken phrases. Translate only alongside that language's phrases in <locale>.lproj/AppShortcuts.strings.",
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يمكنك أن تقول: Soundscape المحيط، Soundscape المسار، Soundscape ابدأ المسار، Soundscape المنارة، Soundscape أوقف المنارة، أو Soundscape قائمة."
+            "value": "يمكنك أن تقول: Soundscape المحيط، Soundscape المسار، Soundscape ابدأ المسار، Soundscape المنارة، Soundscape أوقف المنارة، Soundscape التفاصيل، أو Soundscape قائمة."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du kan sige: Soundscape omgivelser, Soundscape rute, Soundscape start rute, Soundscape lydfyr, Soundscape stop lydfyr eller Soundscape liste."
+            "value": "Du kan sige: Soundscape omgivelser, Soundscape rute, Soundscape start rute, Soundscape lydfyr, Soundscape stop lydfyr, Soundscape detaljer eller Soundscape liste."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sie können sagen: Soundscape Umgebung, Soundscape Route, Soundscape starte Route, Soundscape Beacon, Soundscape stoppe Beacon oder Soundscape Liste."
+            "value": "Sie können sagen: Soundscape Umgebung, Soundscape Route, Soundscape starte Route, Soundscape Beacon, Soundscape stoppe Beacon, Soundscape Details oder Soundscape Liste."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Puedes decir: Soundscape entorno, Soundscape ruta, Soundscape iniciar ruta, Soundscape señal, Soundscape detener señal o Soundscape lista."
+            "value": "Puedes decir: Soundscape entorno, Soundscape ruta, Soundscape iniciar ruta, Soundscape señal, Soundscape detener señal, Soundscape detalle o Soundscape lista."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voit sanoa: Soundscape ympäristö, Soundscape reitti, Soundscape aloita reitti, Soundscape majakka, Soundscape pysäytä majakka tai Soundscape luettelo."
+            "value": "Voit sanoa: Soundscape ympäristö, Soundscape reitti, Soundscape aloita reitti, Soundscape majakka, Soundscape pysäytä majakka, Soundscape yksityiskohdat tai Soundscape luettelo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous pouvez dire : Soundscape environs, Soundscape itinéraire, Soundscape démarre l'itinéraire, Soundscape balise, Soundscape arrête la balise ou Soundscape liste."
+            "value": "Vous pouvez dire : Soundscape environs, Soundscape itinéraire, Soundscape démarre l'itinéraire, Soundscape balise, Soundscape arrête la balise, Soundscape détails ou Soundscape liste."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Puoi dire: Soundscape dintorni, Soundscape percorso, Soundscape avvia percorso, Soundscape audiofaro, Soundscape ferma audiofaro o Soundscape elenco."
+            "value": "Puoi dire: Soundscape dintorni, Soundscape percorso, Soundscape avvia percorso, Soundscape audiofaro, Soundscape ferma audiofaro, Soundscape dettagli o Soundscape elenco."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "「Soundscape 周辺」「Soundscape ルート」「Soundscape ルート開始」「Soundscape ビーコン」「Soundscape ビーコン停止」「Soundscape リスト」と言えます。"
+            "value": "「Soundscape 周辺」「Soundscape ルート」「Soundscape ルート開始」「Soundscape ビーコン」「Soundscape ビーコン停止」「Soundscape 詳細」「Soundscape リスト」と言えます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "다음과 같이 말할 수 있습니다: Soundscape 주변, Soundscape 경로, Soundscape 경로 시작, Soundscape 비콘, Soundscape 비콘 중지, Soundscape 목록."
+            "value": "다음과 같이 말할 수 있습니다: Soundscape 주변, Soundscape 경로, Soundscape 경로 시작, Soundscape 비콘, Soundscape 비콘 중지, Soundscape 상세, Soundscape 목록."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du kan si: Soundscape omgivelser, Soundscape rute, Soundscape start rute, Soundscape lydsignal, Soundscape stopp lydsignal eller Soundscape liste."
+            "value": "Du kan si: Soundscape omgivelser, Soundscape rute, Soundscape start rute, Soundscape lydsignal, Soundscape stopp lydsignal, Soundscape detaljer eller Soundscape liste."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "U kunt zeggen: Soundscape omgeving, Soundscape route, Soundscape start route, Soundscape baken, Soundscape stop baken of Soundscape lijst."
+            "value": "U kunt zeggen: Soundscape omgeving, Soundscape route, Soundscape start route, Soundscape baken, Soundscape stop baken, Soundscape detail of Soundscape lijst."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pode dizer: Soundscape arredores, Soundscape rota, Soundscape iniciar rota, Soundscape sinal, Soundscape parar sinal ou Soundscape lista."
+            "value": "Pode dizer: Soundscape arredores, Soundscape rota, Soundscape iniciar rota, Soundscape sinal, Soundscape parar sinal, Soundscape detalhe ou Soundscape lista."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Você pode dizer: Soundscape arredores, Soundscape rota, Soundscape iniciar rota, Soundscape sinalizador, Soundscape parar sinalizador ou Soundscape lista."
+            "value": "Você pode dizer: Soundscape arredores, Soundscape rota, Soundscape iniciar rota, Soundscape sinalizador, Soundscape parar sinalizador, Soundscape detalhe ou Soundscape lista."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Можно сказать: Soundscape окружение, Soundscape маршрут, Soundscape запусти маршрут, Soundscape маяк, Soundscape выключи маяк или Soundscape список."
+            "value": "Можно сказать: Soundscape окружение, Soundscape маршрут, Soundscape запусти маршрут, Soundscape маяк, Soundscape выключи маяк, Soundscape детали или Soundscape список."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du kan säga: Soundscape omgivning, Soundscape rutt, Soundscape starta rutt, Soundscape ljudfyr, Soundscape stoppa ljudfyr eller Soundscape lista."
+            "value": "Du kan säga: Soundscape omgivning, Soundscape rutt, Soundscape starta rutt, Soundscape ljudfyr, Soundscape stoppa ljudfyr, Soundscape detaljer eller Soundscape lista."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "คุณสามารถพูดว่า: Soundscape รอบตัว, Soundscape เส้นทาง, Soundscape เริ่มเส้นทาง, Soundscape บีคอน, Soundscape หยุดบีคอน หรือ Soundscape รายการ"
+            "value": "คุณสามารถพูดว่า: Soundscape รอบตัว, Soundscape เส้นทาง, Soundscape เริ่มเส้นทาง, Soundscape บีคอน, Soundscape หยุดบีคอน, Soundscape รายละเอียด หรือ Soundscape รายการ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Şunları diyebilirsiniz: Soundscape çevre, Soundscape rota, Soundscape rota başlat, Soundscape işaret, Soundscape işareti durdur veya Soundscape liste."
+            "value": "Şunları diyebilirsiniz: Soundscape çevre, Soundscape rota, Soundscape rota başlat, Soundscape işaret, Soundscape işareti durdur, Soundscape ayrıntı veya Soundscape liste."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你可以说：Soundscape 周围、Soundscape 路线、Soundscape 开始路线、Soundscape 信标、Soundscape 停止信标，或 Soundscape 列表。"
+            "value": "你可以说：Soundscape 周围、Soundscape 路线、Soundscape 开始路线、Soundscape 信标、Soundscape 停止信标、Soundscape 详细，或 Soundscape 列表。"
           }
         }
       }

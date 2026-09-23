@@ -26,3 +26,6 @@
 "${applicationName} list" = "${applicationName} liste";
 
 "${applicationName} stop beacon" = "${applicationName} arrête la balise";
+
+"${applicationName} detail ${level}" = "${applicationName} détails ${level}";
+"${applicationName} detail" = "${applicationName} détails";

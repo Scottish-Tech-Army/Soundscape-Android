@@ -3,9 +3,11 @@ package org.scottishtecharmy.soundscape.screens.home.settings
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
@@ -13,17 +15,26 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
+import me.zhanghai.compose.preference.Preference
 import me.zhanghai.compose.preference.LocalPreferenceTheme
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
@@ -43,8 +54,6 @@ import org.scottishtecharmy.soundscape.resources.beacon_settings_style
 import org.scottishtecharmy.soundscape.resources.beacon_settings_style_description
 import org.scottishtecharmy.soundscape.resources.callout_settings_position_description
 import org.scottishtecharmy.soundscape.resources.callout_settings_position_text
-import org.scottishtecharmy.soundscape.resources.callouts_allow_callouts
-import org.scottishtecharmy.soundscape.resources.callouts_allow_callouts_description
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_description
 import org.scottishtecharmy.soundscape.resources.callouts_places_everything
@@ -55,10 +64,11 @@ import org.scottishtecharmy.soundscape.resources.callouts_places_to_call_out_des
 import org.scottishtecharmy.soundscape.resources.callouts_streets_and_junctions
 import org.scottishtecharmy.soundscape.resources.callouts_streets_and_junctions_description
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity
-import org.scottishtecharmy.soundscape.resources.callouts_verbosity_balanced
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_balanced
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_detailed
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_quiet
+import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_silent
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity_description
-import org.scottishtecharmy.soundscape.resources.callouts_verbosity_detailed
-import org.scottishtecharmy.soundscape.resources.callouts_verbosity_quiet
 import org.scottishtecharmy.soundscape.resources.filter_banks
 import org.scottishtecharmy.soundscape.resources.filter_food_drink
 import org.scottishtecharmy.soundscape.resources.filter_groceries
@@ -110,6 +120,7 @@ import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -190,15 +201,12 @@ fun SharedSettingsScreen(
     )
     val relativeDirectionValues = listOf("ClockFace", "Degrees", "LeftRight")
 
-    val verbosityDescriptions = listOf(
-        stringResource(Res.string.callouts_verbosity_quiet),
-        stringResource(Res.string.callouts_verbosity_balanced),
-        stringResource(Res.string.callouts_verbosity_detailed),
-    )
-    val verbosityValues = listOf(
-        CalloutVerbosity.QUIET.preferenceValue,
-        CalloutVerbosity.BALANCED.preferenceValue,
-        CalloutVerbosity.DETAILED.preferenceValue,
+    // In CalloutVerbosity.entries order, which is the order of the slider: quietest left
+    val verbosityNames = listOf(
+        stringResource(Res.string.callouts_verbosity_level_silent),
+        stringResource(Res.string.callouts_verbosity_level_quiet),
+        stringResource(Res.string.callouts_verbosity_level_balanced),
+        stringResource(Res.string.callouts_verbosity_level_detailed),
     )
 
     // The narrowing choices use the Places Nearby folder names, so that each reads the same as the
@@ -250,11 +258,12 @@ fun SharedSettingsScreen(
     )
 
     ProvidePreferenceLocals(flow = rememberSoundscapePreferenceFlow()) {
-        // Track allowCallouts reactively for enabling/disabling child settings
-        val allowCallouts by rememberPreferenceState(
-            PreferenceKeys.ALLOW_CALLOUTS,
-            PreferenceDefaults.ALLOW_CALLOUTS,
+        // Everything else in the section only matters while callouts are on, i.e. not Silent
+        val verbosity by rememberPreferenceState(
+            PreferenceKeys.CALLOUT_VERBOSITY,
+            PreferenceDefaults.CALLOUT_VERBOSITY,
         )
+        val allowCallouts = verbosity != CalloutVerbosity.SILENT.preferenceValue
 
         LazyColumn(modifier = modifier.background(backgroundColor).fillMaxSize()) {
             stickyHeader {
@@ -289,48 +298,13 @@ fun SharedSettingsScreen(
                 )
             }
             if (expandedSection.value == "callouts") {
-                switchPreference(
-                    key = PreferenceKeys.ALLOW_CALLOUTS,
-                    defaultValue = PreferenceDefaults.ALLOW_CALLOUTS,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.callouts_allow_callouts,
-                            Res.string.callouts_allow_callouts_description,
-                            textColor
-                        )
-                    },
-                )
-                listPreference(
-                    key = PreferenceKeys.CALLOUT_VERBOSITY,
-                    defaultValue = PreferenceDefaults.CALLOUT_VERBOSITY,
-                    values = verbosityValues,
-                    modifier = expandedSectionModifier,
-                    enabled = { allowCallouts },
-                    title = {
-                        SettingDetails(
-                            Res.string.callouts_verbosity,
-                            Res.string.callouts_verbosity_description,
-                            textColor
-                        )
-                    },
-                    item = { value, currentValue, onClick ->
-                        ListPreferenceItem(
-                            verbosityDescriptions[verbosityValues.indexOf(value)],
-                            value,
-                            currentValue,
-                            onClick,
-                            verbosityValues.indexOf(value),
-                            verbosityValues.size
-                        )
-                    },
-                    summary = {
-                        ClickableOption(
-                            verbosityDescriptions[verbosityValues.indexOf(it).coerceAtLeast(0)],
-                            textColor
-                        )
-                    },
-                )
+                item(key = PreferenceKeys.CALLOUT_VERBOSITY) {
+                    CalloutVerbositySlider(
+                        names = verbosityNames,
+                        textColor = textColor,
+                        modifier = expandedSectionModifier,
+                    )
+                }
                 switchPreference(
                     key = PreferenceKeys.STREETS_AND_JUNCTIONS,
                     defaultValue = PreferenceDefaults.STREETS_AND_JUNCTIONS,
@@ -930,4 +904,73 @@ private fun BeaconStylePreference(
             },
         )
     }
+}
+
+/** A slider position as an index into [CalloutVerbosity.entries]. */
+private fun Float.levelIndex(): Int =
+    roundToInt().coerceIn(0, CalloutVerbosity.entries.size - 1)
+
+/**
+ * The Callout Detail setting, as a slider over [CalloutVerbosity.entries] - quietest on the
+ * left, so moving right is more talk.
+ *
+ * Built from the preference library's [Preference] row rather than its sliderPreference so that
+ * the Slider's own modifier is ours to set: left alone, a screen reader reads the bare position
+ * ("2 of 4"), which says nothing about what it means. [stateDescription] replaces that with the
+ * level's name, and is what a screen reader then speaks as the slider is moved. Deliberately not
+ * clearAndSetSemantics, which would take the slider's adjust action away with it.
+ *
+ * The setting itself stays a word (CalloutVerbosity.preferenceValue), since Siri, Gemini, the
+ * headphone button and the callouts all read it by name; only this slider thinks in positions.
+ */
+@Composable
+private fun CalloutVerbositySlider(
+    names: List<String>,
+    textColor: Color,
+    modifier: Modifier = Modifier,
+) {
+    var stored by rememberPreferenceState(
+        PreferenceKeys.CALLOUT_VERBOSITY,
+        PreferenceDefaults.CALLOUT_VERBOSITY
+    )
+    val index = CalloutVerbosity.fromPreference(stored).ordinal
+    val title = stringResource(Res.string.callouts_verbosity)
+    val theme = LocalPreferenceTheme.current
+
+    Preference(
+        title = {
+            SettingDetails(
+                Res.string.callouts_verbosity,
+                Res.string.callouts_verbosity_description,
+                textColor
+            )
+        },
+        modifier = modifier,
+        summary = {
+            // No line of its own describing the level: a screen reader never reads it when the
+            // slider moves, so it told a sighted user something a blind one couldn't have. What
+            // each level does is in the setting's own description above, read with the title.
+            Column {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Slider(
+                        value = index.toFloat(),
+                        onValueChange = { position ->
+                            val level = CalloutVerbosity.entries[position.levelIndex()]
+                            if (level.preferenceValue != stored) stored = level.preferenceValue
+                        },
+                        modifier = Modifier.weight(1f).semantics {
+                            contentDescription = title
+                            stateDescription = names[index]
+                        },
+                        valueRange = 0f..(CalloutVerbosity.entries.size - 1).toFloat(),
+                        // One stop per level, so there is nothing in between to land on
+                        steps = CalloutVerbosity.entries.size - 2,
+                    )
+                    Box(modifier = Modifier.padding(start = theme.horizontalSpacing)) {
+                        Text(text = names[index], color = textColor)
+                    }
+                }
+            }
+        },
+    )
 }

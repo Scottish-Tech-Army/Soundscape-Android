@@ -31,7 +31,11 @@ fun interface PreferencesListener {
 }
 
 object PreferenceKeys {
-    const val ALLOW_CALLOUTS = "AllowCallouts"
+    /**
+     * The old "Allow Callouts" switch, replaced by the Silent callout detail. Only read to
+     * carry it over once - see CalloutVerbosity.migrate. Still written by the iOS LegacyMigrator.
+     */
+    const val LEGACY_ALLOW_CALLOUTS = "AllowCallouts"
     /**
      * The "Streets and Junctions" switch: intersection callouts while walking, and the road-sense
      * callout while travelling. Stored under the key of the old "Mobility" switch, which gated
@@ -89,7 +93,6 @@ object PreferenceKeys {
 }
 
 object PreferenceDefaults {
-    const val ALLOW_CALLOUTS = true
     const val STREETS_AND_JUNCTIONS = true
     const val PLACES_TO_CALL_OUT = "Everything"
     const val DISTANCE_TO_BEACON = true

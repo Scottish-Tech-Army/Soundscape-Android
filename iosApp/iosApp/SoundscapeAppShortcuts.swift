@@ -14,7 +14,7 @@ import AppIntents
 /// can tell which app a phrase belongs to — and putting it first turns that requirement
 /// into the mnemonic rather than a suffix tacked on.
 ///
-/// Six of ten slots used. The three unparameterised leaf actions that lost their own
+/// Seven of ten slots used. The three unparameterised leaf actions that lost their own
 /// phrases still exist as intents, reachable from the Shortcuts app and any phrase the
 /// user builds there.
 ///
@@ -71,6 +71,16 @@ struct SoundscapeAppShortcuts: AppShortcutsProvider {
             ],
             shortTitle: "List",
             systemImageName: "list.bullet.circle"
+        )
+
+        AppShortcut(
+            intent: CalloutDetailIntent(),
+            phrases: [
+                "\(.applicationName) detail \(\.$level)",
+                "\(.applicationName) detail",
+            ],
+            shortTitle: "Detail",
+            systemImageName: "slider.horizontal.3"
         )
 
         AppShortcut(

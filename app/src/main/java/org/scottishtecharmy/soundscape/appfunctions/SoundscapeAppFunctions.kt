@@ -121,6 +121,19 @@ abstract class BaseSoundscapeAppFunctionService : AppFunctionService() {
     suspend fun stopBeacon(): SoundscapeResult = run(SoundscapeAction.StopBeacon)
 
     /**
+     * Sets how much Soundscape says automatically as the user walks: Silent turns automatic
+     * callouts off altogether, leaving beacons, routes and on-demand callouts; Quiet calls out only
+     * streets, junctions and landmarks; Balanced skips minor paths and repeats itself less;
+     * Detailed calls out everything nearby. Useful when a busy street is too noisy, or a quiet
+     * one too sparse. The change is saved, the same as choosing it in Settings.
+     */
+    @AppFunction(isDescribedByKDoc = true)
+    suspend fun setCalloutDetail(
+        /** One of Silent, Quiet, Balanced or Detailed. */
+        level: String,
+    ): SoundscapeResult = run(SoundscapeAction.SetCalloutDetailNamed(level))
+
+    /**
      * Lists the names of the user's saved routes. Works whether or not Soundscape is
      * running, because it only reads saved data.
      */
