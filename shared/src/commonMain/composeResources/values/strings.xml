@@ -1297,6 +1297,8 @@
     <!-- Button at end of new release dialog so that the user can continue on and use the app.
          Translators: same "new release" tautology caveat as new_version_info_text above. -->
     <string name="new_version_info_completed">Close new release dialog</string>
+    <!-- Button in the new release dialog which opens the full release notes on the Soundscape website, in the phone's browser. -->
+    <string name="new_version_info_release_notes">Full release notes</string>
     <!-- Title of screen that contains all of the information about the open source licenses of the packages used within the app -->
     <string name="menu_open_source_licenses">Open source licenses</string>
     <!-- Text for dialog which explains what is new in the current release. Rendered as plain text, split into sentences - avoid markdown syntax. -->
