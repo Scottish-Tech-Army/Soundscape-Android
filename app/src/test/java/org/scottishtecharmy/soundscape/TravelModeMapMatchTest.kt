@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import junit.framework.TestCase.assertTrue
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -66,7 +67,7 @@ internal fun buildContinuousRoute(
     while (totalDistance < targetDistance) {
         // Recentre the grid on where we've got to, so the tiles ahead of us are loaded before we
         // reach their edge - mirroring how the real app follows a moving user.
-        val gridChanged = runBlocking { gridState.locationUpdate(orderedCoords.last(), emptySet(), null) }
+        val gridChanged = runBlocking { gridState.locationUpdate(orderedCoords.last(), CalloutPoiSelection.EVERYTHING, null) }
         println("  locationUpdate at totalDistance=$totalDistance gridChanged=$gridChanged")
 
         // The end the route leaves currentWay by - its START if the route joined it at its END
@@ -197,7 +198,7 @@ class TravelModeMapMatchTest {
         val gridState = FileGridState(MAX_ZOOM_LEVEL, 3)
         gridState.start(offlineExtractPath)
         runBlocking {
-            gridState.locationUpdate(startLocation, emptySet(), null)
+            gridState.locationUpdate(startLocation, CalloutPoiSelection.EVERYTHING, null)
         }
 
         val startWay = gridState.getFeatureTree(TreeId.ROADS)
@@ -220,7 +221,7 @@ class TravelModeMapMatchTest {
         var unmatchedCount = 0
         for (sample in samples) {
             runBlocking {
-                gridState.locationUpdate(sample.location, emptySet(), null)
+                gridState.locationUpdate(sample.location, CalloutPoiSelection.EVERYTHING, null)
             }
             mapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null, true)
             val matched = mapMatchFilter.matchedWay
@@ -259,7 +260,7 @@ class TravelModeMapMatchTest {
         val gridState = FileGridState(MAX_ZOOM_LEVEL, 3)
         gridState.start(offlineExtractPath)
         runBlocking {
-            gridState.locationUpdate(startLocation, emptySet(), null)
+            gridState.locationUpdate(startLocation, CalloutPoiSelection.EVERYTHING, null)
         }
 
         val startWay = gridState.getFeatureTree(TreeId.TRANSIT)
@@ -288,7 +289,7 @@ class TravelModeMapMatchTest {
         var unmatchedCount = 0
         for (sample in samples) {
             runBlocking {
-                gridState.locationUpdate(sample.location, emptySet(), null)
+                gridState.locationUpdate(sample.location, CalloutPoiSelection.EVERYTHING, null)
             }
             railMapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null)
             val matched = railMapMatchFilter.matchedWay

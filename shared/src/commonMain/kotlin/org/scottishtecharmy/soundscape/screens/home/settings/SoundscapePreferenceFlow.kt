@@ -48,14 +48,20 @@ internal fun MutableStateFlow<Preferences>.publishExternalChange(
 }
 
 /**
- * What has to be written to a preference store to take it from [current] to [desired]: the keys
- * to remove, and the keys to write.
+ * What has to be written to a preference store to take it from [known] to [desired]: the keys to
+ * remove, and the keys to write.
  *
  * Android writes the difference rather than the whole map because the store holds more than this
  * screen's settings - sleep-resume keeps a route id there as a Long, which the preference
  * library's own write path refuses outright, and rewriting everything on each change would throw
  * on it. Writing only what changed also leaves keys of types the library can't represent alone,
  * the same way the iOS path merges foreign values back.
+ *
+ * [known] is what the flow itself last held, not what is in the store: only a key the screen has
+ * seen and then dropped is a key the screen means to remove. A key written by something else -
+ * the service saving a sleep-resume route, a migration running as the engine starts - can appear
+ * between the flow being read and its listener being registered, and removing those because the
+ * flow had never heard of them would delete another component's state on the next tap.
  */
 internal data class PreferenceEdits(
     val removed: Set<String>,
@@ -63,9 +69,9 @@ internal data class PreferenceEdits(
 )
 
 internal fun preferenceEdits(
-    current: Map<String, Any>,
+    known: Map<String, Any>,
     desired: Map<String, Any>,
 ): PreferenceEdits = PreferenceEdits(
-    removed = current.keys - desired.keys,
-    changed = desired.filter { (key, value) -> current[key] != value },
+    removed = known.keys - desired.keys,
+    changed = desired.filter { (key, value) -> known[key] != value },
 )

@@ -13,6 +13,10 @@ import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
  * way of the answer.
  */
 fun MediaControllableService.cycleCalloutDetailAndSay() {
+    // The same hold-off the audio menu takes before it speaks: without it an auto callout can
+    // arrive on top of the level being named, which is the one press somebody reaches for in a
+    // hurry and the one answer they need to hear.
+    callbackHoldOff()
     val level = cycleCalloutDetail() ?: return
     speak2dText(calloutDetailName(ComposeLocalizedStrings(), level), true)
 }

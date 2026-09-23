@@ -169,6 +169,37 @@ fun SettingDetails(title: StringResource, description: StringResource, textColor
     }
 }
 
+/**
+ * A setting's name on its own, for one whose choices are made in a dialog: the preference
+ * library shows the same title in the row and in the dialog, and a paragraph explaining the
+ * setting is worth reading on the way in but only stands between the user and the options once
+ * the dialog is open. The description goes below it, with the chosen value - see
+ * [SettingDescriptionAndOption].
+ */
+@Composable
+fun SettingTitle(title: StringResource, textColor: Color) {
+    Text(
+        text = stringResource(title),
+        color = textColor,
+        style = MaterialTheme.typography.headlineSmall,
+        modifier = Modifier.padding(spacing.extraSmall),
+    )
+}
+
+/** What a setting means, and what it is set to - see [SettingTitle]. */
+@Composable
+fun SettingDescriptionAndOption(description: StringResource, option: String, textColor: Color) {
+    Column {
+        Text(
+            text = stringResource(description),
+            color = textColor,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(spacing.extraSmall),
+        )
+        ClickableOption(option, textColor)
+    }
+}
+
 @Composable
 fun ClickableOption(text: String, textColor: Color) {
     Row(
