@@ -10,7 +10,12 @@ import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.InternalResourceApi
+import org.jetbrains.compose.resources.LanguageQualifier
+import org.jetbrains.compose.resources.RegionQualifier
+import org.jetbrains.compose.resources.ResourceEnvironment
 import org.jetbrains.compose.resources.getString
+import org.jetbrains.compose.resources.getSystemResourceEnvironment
 import org.junit.Rule
 import org.junit.Test
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
@@ -405,26 +410,17 @@ class DocumentationScreens {
             helpDir.mkdirs()
         }
 
-        // The slug always comes from the English title so all languages of one page share a
-        // base name (help-routes.md / help-routes.de.md) and the same permalink, which is how
-        // polyglot pairs them. "en" has no strings.xml qualifier folder, so it resolves via the
-        // default (unqualified) resource folder, which is English.
-        val originalLocales = androidx.appcompat.app.AppCompatDelegate.getApplicationLocales()
+        // Each language's ResourceEnvironment is built from its resource qualifier - see
+        // environmentFor. Every page body in English is kept to check each language against.
+        val englishBodies = mutableMapOf<String, String>()
         runBlocking {
-            androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(
-                androidx.core.os.LocaleListCompat.forLanguageTags("en")
-            )
-            val englishEnvironment = org.jetbrains.compose.resources.getSystemResourceEnvironment()
+            val englishEnvironment = environmentFor("en")
 
-            for ((_, webLang) in localeMap) {
-                if (webLang != "en") {
-                    androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(
-                        androidx.core.os.LocaleListCompat.forLanguageTags(webLang)
-                    )
-                }
-                val environment = org.jetbrains.compose.resources.getSystemResourceEnvironment()
+            for ((qualifier, webLang) in localeMap) {
+                val environment = environmentFor(qualifier)
                 // Fall back to the English label if a language is somehow missing from the map.
                 val parentLabel = parentLabels[webLang] ?: "Using Soundscape"
+                var translatedPages = 0
 
                 for (page in helpPages) {
                     if (page.titleId == Res.string.menu_help)
@@ -441,6 +437,10 @@ class DocumentationScreens {
                     // fallback page whose English parent wouldn't match.
                     val markdown = buildPageMarkdown(environment, page, webLang, slug, parentLabel)
 
+                    val body = markdown.substringAfter("\n---\n")
+                    if (webLang == "en") englishBodies[slug] = body
+                    else if (body != englishBodies[slug]) translatedPages++
+
                     val suffix = if (webLang == "en") "" else ".$webLang"
 
                     val file = File(helpDir, "help-$slug$suffix.md")
@@ -448,9 +448,47 @@ class DocumentationScreens {
                     outputFile.write(markdown.toByteArray())
                     outputFile.close()
                 }
-            }
 
-            androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(originalLocales)
+                // A single untranslated page is normal, but a language with none at all
+                // means its strings were never found - fail rather than publish English.
+                // en-GB is exempt: it only overrides the few strings that differ.
+                if (webLang != "en" && webLang != "en-GB") {
+                    check(translatedPages > 0) {
+                        "Help for $webLang ($qualifier) came out identical to English"
+                    }
+                }
+            }
         }
+    }
+
+    /**
+     * The ResourceEnvironment for an Android resource qualifier from [localeMap]: "de", "zh-rCN".
+     *
+     * getSystemResourceEnvironment() takes its language from java.util.Locale.getDefault(),
+     * which is not something a test can steer reliably. AppCompatDelegate.setApplicationLocales
+     * never reaches it with no activity to recreate - every page came out in the emulator's
+     * English under a translated `parent:` - and even Locale.setDefault can't reach Indonesian:
+     * since Android 14 Locale("in") reports itself as "id", while the strings are generated
+     * with the qualifier "in" from their values-in folder, and are matched exactly.
+     *
+     * So the language and region are set here from the folder's own qualifier, keeping the
+     * device's theme and density. The constructor is internal to Compose Resources, hence the
+     * reflection; the check in getHelp catches it if that ever stops working.
+     */
+    @OptIn(InternalResourceApi::class)
+    private fun environmentFor(qualifier: String): ResourceEnvironment {
+        val system = getSystemResourceEnvironment()
+        val type = ResourceEnvironment::class.java
+        fun systemField(name: String) =
+            type.getDeclaredField(name).apply { isAccessible = true }.get(system)
+        val parts = qualifier.split("-r")
+        val constructor = type.declaredConstructors.single { it.parameterCount == 4 }
+        constructor.isAccessible = true
+        return constructor.newInstance(
+            LanguageQualifier(parts[0]),
+            RegionQualifier(parts.getOrElse(1) { "" }),
+            systemField("theme"),
+            systemField("density"),
+        ) as ResourceEnvironment
     }
 }
