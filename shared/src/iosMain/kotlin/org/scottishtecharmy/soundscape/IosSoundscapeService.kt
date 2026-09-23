@@ -668,6 +668,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     override fun cancelCallout() = calloutController.cancel()
 
+    override fun toggleAutoCallouts() = geoEngine.toggleAutoCallouts()
+
     // --- Beacon Control ---
 
     override fun createBeacon(location: LngLatAlt?, headingOnly: Boolean) {

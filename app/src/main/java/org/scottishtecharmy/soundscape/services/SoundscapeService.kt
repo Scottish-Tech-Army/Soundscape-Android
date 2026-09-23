@@ -981,9 +981,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long =
         calloutController.speakCallout(callout, addModeEarcon)
 
-    fun toggleAutoCallouts() {
-        geoEngine.toggleAutoCallouts()
-    }
+    override fun toggleAutoCallouts() = geoEngine.toggleAutoCallouts()
 
     fun refreshOfflineMaps() {
         geoEngine.refreshOfflineMaps()

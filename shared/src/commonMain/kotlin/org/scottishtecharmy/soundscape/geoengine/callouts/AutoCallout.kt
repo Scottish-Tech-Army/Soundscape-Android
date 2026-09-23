@@ -64,8 +64,15 @@ class AutoCallout(
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
     private val poiFilter = LocationUpdateFilter(5000, 5.0)
     private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
-    private val intersectionCalloutHistory = CalloutHistory(30000)
-    private val poiCalloutHistory = CalloutHistory()
+    private val intersectionCalloutHistory =
+        CalloutHistory(CalloutVerbosity.DETAILED.roadHistoryExpiryMs)
+    private val poiCalloutHistory = CalloutHistory(
+        CalloutVerbosity.DETAILED.poiHistoryExpiryMs,
+        CalloutVerbosity.DETAILED.poiHistoryTrimRadiusMetres
+    )
+    // When the last walking POI callout (other than a marker) was made - see
+    // CalloutVerbosity.minimumPoiGapMs.
+    private var lastPoiCalloutTimestampMs: Long? = null
     private val roadSenseCalloutHistory = CalloutHistory()
     private val vehicleLandmarkFilter = LocationUpdateFilter(10000, 50.0)
     private val vehicleLandmarkCalloutHistory = CalloutHistory()
@@ -222,10 +229,41 @@ class AutoCallout(
         lastTrainTimestampMs = lastTrainTimestampMs?.plus(stillness)
     }
 
+    private fun verbosity() = CalloutVerbosity.fromPreference(
+        preferences?.getString(
+            PreferenceKeys.CALLOUT_VERBOSITY,
+            PreferenceDefaults.CALLOUT_VERBOSITY
+        )
+    )
+
+    private fun interest() = CalloutInterest.fromPreference(
+        preferences?.getString(
+            PreferenceKeys.CALLOUT_INTEREST,
+            PreferenceDefaults.CALLOUT_INTEREST
+        )
+    )
+
+    /**
+     * Retunes the histories for the current verbosity. Done on every update rather than once, so
+     * that changing the setting takes effect straight away; the histories keep what's in them.
+     */
+    private fun applyVerbosity(verbosity: CalloutVerbosity) {
+        intersectionCalloutHistory.expiryPeriodMilliseconds = verbosity.roadHistoryExpiryMs
+        poiCalloutHistory.expiryPeriodMilliseconds = verbosity.poiHistoryExpiryMs
+        poiCalloutHistory.trimRadiusMetres = verbosity.poiHistoryTrimRadiusMetres
+    }
+
     private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
 
         // Check that we have a destination
         val beacon = userGeometry.currentBeacon ?: return null
+
+        // ...and that the user wants to hear how far away it is
+        if (preferences?.getBoolean(
+                PreferenceKeys.DISTANCE_TO_BEACON,
+                PreferenceDefaults.DISTANCE_TO_BEACON
+            ) == false
+        ) return null
 
         // Check that our location/time has changed enough to generate this callout
         if (!destinationFilter.shouldUpdate(userGeometry)) {
@@ -1197,7 +1235,8 @@ class AutoCallout(
         val roadsDescription = getRoadsDescriptionFromFov(
             gridState,
             userGeometry,
-            localized
+            localized,
+            verbosity().minimumIntersectionTier
         )
 
         // Don't describe the road we're on if there's an intersection
@@ -1226,6 +1265,16 @@ class AutoCallout(
 
         // Trim history based on location and current time
         poiCalloutHistory.trim(userGeometry)
+
+        val verbosity = verbosity()
+        val interest = interest()
+        // Too soon after the last POI callout for anything but a marker - see
+        // CalloutVerbosity.minimumPoiGapMs. Street Preview is stepped through deliberately, so
+        // it's exempt.
+        val onlyMarkers = !userGeometry.inStreetPreview &&
+                lastPoiCalloutTimestampMs?.let { last ->
+                    (userGeometry.timestampMilliseconds - last) < verbosity.minimumPoiGapMs
+                } ?: false
 
         // Get nearby markers that are ahead of us in our field of view
         val triangle = getFovTriangle(userGeometry)
@@ -1259,6 +1308,9 @@ class AutoCallout(
         ordered.map { it.feature }.filter { feature ->
 
             if (suppressedAsBusOrTramStop(feature as MvtFeature)) return@filter true
+            if (!poiAllowedBySettings(feature, verbosity, interest)) return@filter true
+            val isMarker = feature.superCategory == SuperCategoryId.MARKER
+            if (onlyMarkers && !isMarker) return@filter true
 
             val name = feature.getText(localized)
             val nearestPoint =
@@ -1339,6 +1391,8 @@ class AutoCallout(
                                 }
                             }
                             poiCalloutHistory.add(callout)
+                            if (!isMarker)
+                                lastPoiCalloutTimestampMs = userGeometry.timestampMilliseconds
                             return callout
                         } else {
                             true
@@ -1377,6 +1431,8 @@ class AutoCallout(
                 // Also before any builder runs, since the sticky windows it adjusts are read by
                 // most of them.
                 discountUninformativeTime(userGeometry)
+
+                applyVerbosity(verbosity())
 
                 val destinationCallout = buildCalloutForDestination(userGeometry)
                 if (destinationCallout != null) {

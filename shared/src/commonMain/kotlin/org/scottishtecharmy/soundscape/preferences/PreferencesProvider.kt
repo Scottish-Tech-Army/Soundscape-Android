@@ -44,6 +44,18 @@ object PreferenceKeys {
      */
     const val BUS_AND_TRAM_STOPS = "BusAndTramStops"
     const val DISTANCE_TO_BEACON = "DistanceToBeacon"
+
+    /**
+     * How much the walking auto callouts say - see CalloutVerbosity for what each level sets.
+     * Stored as CalloutVerbosity.preferenceValue.
+     */
+    const val CALLOUT_VERBOSITY = "CalloutVerbosity"
+
+    /**
+     * Which kind of place the walking POI callouts are narrowed to, if any - see CalloutInterest.
+     * Stored as CalloutInterest.preferenceValue.
+     */
+    const val CALLOUT_INTEREST = "CalloutInterest"
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = "PositionTextDescription"
     const val RELATIVE_DIRECTION = "RelativeDirectionMode"
 
@@ -81,6 +93,8 @@ object PreferenceDefaults {
     const val MOBILITY = true
     const val BUS_AND_TRAM_STOPS = true
     const val DISTANCE_TO_BEACON = true
+    const val CALLOUT_VERBOSITY = "Detailed"
+    const val CALLOUT_INTEREST = "All"
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = false
     const val RELATIVE_DIRECTION = "ClockFace"
 

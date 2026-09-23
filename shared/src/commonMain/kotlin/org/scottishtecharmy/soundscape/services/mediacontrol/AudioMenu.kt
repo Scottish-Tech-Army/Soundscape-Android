@@ -13,7 +13,10 @@ import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.beacon_action_mute_beacon
+import org.scottishtecharmy.soundscape.resources.callouts_auto_paused
+import org.scottishtecharmy.soundscape.resources.callouts_auto_resumed
 import org.scottishtecharmy.soundscape.resources.callouts_nearby_markers
+import org.scottishtecharmy.soundscape.resources.callouts_pause_resume
 import org.scottishtecharmy.soundscape.resources.callouts_panel_title
 import org.scottishtecharmy.soundscape.resources.directions_my_location
 import org.scottishtecharmy.soundscape.resources.help_explore_page_title
@@ -170,6 +173,18 @@ class AudioMenu(
                 },
                 MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.callouts_nearby_markers) }) {
                     service.nearbyMarkers()
+                },
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.callouts_pause_resume) }) {
+                    val enabled = service.toggleAutoCallouts()
+                    scope.launch {
+                        service.speak2dText(
+                            getString(
+                                if (enabled) Res.string.callouts_auto_resumed
+                                else Res.string.callouts_auto_paused
+                            ),
+                            true
+                        )
+                    }
                 },
                 mainMenuAction(),
             )

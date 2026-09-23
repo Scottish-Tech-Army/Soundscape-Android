@@ -19,6 +19,7 @@ import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
 import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
@@ -4203,7 +4204,12 @@ class MvtTileTest {
         }
     }
 
-    fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
+    fun testMovingGrid(
+        gpxFilename: String,
+        calloutFilename: String,
+        geojsonFilename: String,
+        preferences: PreferencesProvider? = null
+    ): Int {
 
         val gridState = FileGridState()
         gridState.start(offlineExtractPath)
@@ -4220,8 +4226,9 @@ class MvtTileTest {
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
-        val autoCallout = AutoCallout(null, null)
+        val autoCallout = AutoCallout(null, preferences)
         val callOutText = FileOutputStream(calloutFilename)
+        var calloutCount = 0
 
         val enabledCategories = mutableSetOf<String>()
         enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
@@ -4445,6 +4452,7 @@ class MvtTileTest {
                     // We've got a new callout, so add it to our geoJSON as a triangle for the
                     // FOV that was used to create it, along with the text from the callouts.
                     callOutText.write("\nCallout\n".toByteArray())
+                    calloutCount++
                     val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry, true))
                     val fovFeature = Feature()
                     fovFeature.geometry = polygon
@@ -4467,6 +4475,39 @@ class MvtTileTest {
         val mapMatchingOutput = FileOutputStream(geojsonFilename)
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
+        return calloutCount
+    }
+
+    /**
+     * Replays four recorded walks - Central Station up Buchanan Street, from home through
+     * Milngavie town centre to the station, and to and from Tesco in Milngavie, which goes along
+     * the footpaths through the precinct and Lennox Park - at each CalloutVerbosity level, writing
+     * the callouts to gpxFiles/<walk>-<level>.txt for comparison. Each level must say no more than
+     * the one above it.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun testCalloutVerbosityLevels() {
+        val resultsStorageDir = File("gpxFiles/")
+        if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
+        for (walk in listOf(
+            "CentralToBuchananStreet", "ToTown", "WalkToTesco-samsung", "WalkFromTesco-pixel"
+        )) {
+            val counts = CalloutVerbosity.entries.associateWith { level ->
+                val preferences = MvtTestPreferences().apply {
+                    putString(PreferenceKeys.CALLOUT_VERBOSITY, level.preferenceValue)
+                }
+                testMovingGrid(
+                    "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$walk.gpx",
+                    "gpxFiles/$walk-${level.preferenceValue}.txt",
+                    "gpxFiles/$walk-${level.preferenceValue}.geojson",
+                    preferences
+                )
+            }
+            println("$walk callouts: $counts")
+            assertTrue(counts[CalloutVerbosity.QUIET]!! <= counts[CalloutVerbosity.BALANCED]!!)
+            assertTrue(counts[CalloutVerbosity.BALANCED]!! <= counts[CalloutVerbosity.DETAILED]!!)
+        }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

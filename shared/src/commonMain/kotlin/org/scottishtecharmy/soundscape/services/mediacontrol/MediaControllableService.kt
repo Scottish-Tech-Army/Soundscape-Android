@@ -65,6 +65,12 @@ interface MediaControllableService {
      * own; the real services delegate to CalloutController.cancel().
      */
     fun cancelCallout() {}
+
+    /**
+     * Pauses or resumes the automatic callouts - see GeoEngine.toggleAutoCallouts. Returns true
+     * if they are now on. Defaults to leaving them on for implementations with no geoengine.
+     */
+    fun toggleAutoCallouts(): Boolean = true
     fun routeStop()
     fun routeStartById(routeId: Long)
     fun startBeacon(location: LngLatAlt, name: String)
