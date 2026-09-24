@@ -14,13 +14,22 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.IntersectionAhead
+import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
+import org.scottishtecharmy.soundscape.geoengine.utils.WayCursor
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateSmallestAngleBetweenLines
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
+import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
+import org.scottishtecharmy.soundscape.geoengine.utils.forEachIntersectionAhead
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathWays
+import org.scottishtecharmy.soundscape.geoengine.utils.isJunctionArm
+import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
+import org.scottishtecharmy.soundscape.geoengine.utils.sameRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.setbackAlong
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
@@ -77,15 +86,21 @@ fun IntersectionDescription.kerbDistance(
 }
 
 /**
- * A candidate intersection, with the priority that decides between candidates and the network
- * distance measured while reaching it - the distance is worth carrying because it has already
- * been computed by the time a candidate is scored, and recomputing it later would mean a second
- * Dijkstra run.
+ * A candidate intersection, with the priority that decides between candidates, the network
+ * distance measured while reaching it, and the Way that arrives at it.
+ *
+ * The distance is worth carrying because it has already been computed by the time a candidate is
+ * scored, and recomputing it later would mean a second Dijkstra run. Likewise arrivingWay: it is
+ * whatever Way the search actually reached the candidate by - the walk's own cursor.way once it
+ * has crossed zero or more pass-through nodes, or the legacy search's Dijkstra path - so
+ * IntersectionDescription.nearestRoad never needs a separate re-derivation afterwards. Null only
+ * when nothing usable was found (no map match at all).
  */
 private data class IntersectionCandidate(
     val priority: Int,
     val intersection: Intersection,
     val distance: Double?,
+    val arrivingWay: Way?,
 )
 
 /**
@@ -211,6 +226,134 @@ fun getRoadsDescriptionFromFov(
         nearestRoad = bestRoad
     }
 
+    // The steady-state case: there's a genuine map match and we're not standing at a node
+    // already, so walk the Way graph ahead of it rather than searching the intersection tree -
+    // see walkForIntersection. Gated on mapMatchedWay specifically, not just nearestRoad: without
+    // a real match nearestRoad is only ever the tree fallback's best guess a few lines up, good
+    // enough to describe a road by but not to measure a confident network distance from - exactly
+    // the distinction legacyIntersectionSearch's own matched-location guard makes below, and
+    // MapMatchFilter always sets mapMatchedWay and mapMatchedLocation together, so this implies
+    // that guard would have passed too. Street Preview steps from intersection to intersection,
+    // sitting essentially at a node already (see comingFromBearing's own doc comment), which a
+    // forward-walking cursor would step straight past rather than report - so it keeps the
+    // tree+Dijkstra search below, as does the rare case there's no map-matched Way to build a
+    // cursor on at all.
+    if (!userGeometry.inStreetPreview && (userGeometry.mapMatchedWay != null)) {
+        val cursor = nearestRoad?.let {
+            userGeometry.cursorOn(it, fallbackHeading = userGeometry.snappedHeading())
+        }
+        if (cursor != null) {
+            return walkForIntersection(
+                cursor, nearestRoad, userGeometry, gridState, strings, minimumTier, triangle
+            )
+        }
+    }
+
+    return legacyIntersectionSearch(
+        gridState, userGeometry, strings, minimumTier, intersectionTree, triangle, nearestRoad
+    )
+}
+
+/**
+ * The steady-state intersection search: walk the Way graph ahead of [cursor] (see
+ * [org.scottishtecharmy.soundscape.geoengine.utils.forEachIntersectionAhead]) for candidates, then
+ * choose among them exactly as [legacyIntersectionSearch] does - sorted nearest-first *as the crow
+ * flies* from the user, first one with priority (see [checkWhetherIntersectionIsOfInterest])
+ * greater than zero, or the highest-priority one if none does.
+ *
+ * Crow-fly rather than the walk's own network distance for that ordering/choice: on a bend, the
+ * network-nearest junction and the crow-fly-nearest one are not always the same one, and it is the
+ * crow-fly-nearest that historically got the tie-break here (legacyIntersectionSearch's candidates
+ * come from sortedByDistanceTo, a crow-fly sort). The chosen candidate's network distance - its
+ * [org.scottishtecharmy.soundscape.geoengine.utils.IntersectionAhead.distance] - is still what
+ * ends up spoken; only the *choice* between candidates uses crow-fly, matching history.
+ *
+ * No rtree search and no Dijkstra to measure that network distance or check reachability:
+ * [nearestRoad] is already known - MapMatchFilter computes it every location tick regardless of
+ * this call - and the distance to a junction found this way is the walk's own accumulated
+ * distance. The Way the walk arrives on is also, by construction, a genuine member of whichever
+ * intersection is chosen, so nothing downstream needs to re-derive it.
+ *
+ * [triangle] still gates which junctions count as candidates at all, the same field-of-view cone
+ * [legacyIntersectionSearch] sources its own candidates from. The walk follows the road network
+ * rather than a viewing cone, so without this a real but unrelated cluster of junctions - a
+ * driveway loop, a staggered side road - a short unrelated hop away could out-rank the junction
+ * actually ahead of the user; checking membership here is one point-in-polygon test per junction
+ * the walk reports, nothing like the cost of the FeatureTree search the walk avoids for finding
+ * them in the first place.
+ */
+private fun walkForIntersection(
+    cursor: WayCursor,
+    nearestRoad: Way,
+    userGeometry: UserGeometry,
+    gridState: GridState,
+    strings: LocalizedStrings?,
+    minimumTier: RoadTier,
+    triangle: Triangle,
+): IntersectionDescription {
+    val fovPolygon = createPolygonFromTriangle(triangle)
+    val userLocation = userGeometry.mapMatchedLocation?.point ?: userGeometry.location
+    val candidates = mutableListOf<IntersectionCandidate>()
+    forEachIntersectionAhead(cursor, userGeometry.fovDistance, gridState, strings) { found ->
+        if (!polygonContainsCoordinates(found.intersection.location, fovPolygon)) {
+            return@forEachIntersectionAhead true
+        }
+
+        // Within 5m of the user there's nothing new to say - the same trim
+        // legacyIntersectionSearch applies, now measured along the network rather than as the
+        // crow flies.
+        if (found.distance < 5.0) return@forEachIntersectionAhead true
+
+        // Skip intersections which only offer roads less important than the verbosity setting
+        // asks for, e.g. a service road or footpath off a street. Scored against the fixed
+        // nearestRoad - the Way the user is actually known to be on - not found.arrivingWay: both
+        // this and checkWhetherIntersectionIsOfInterest below use "does an arm's name match the
+        // road we're on" to decide what to ignore, and that comparison means the road the user is
+        // walking, not whichever Way happened to lead the search to this particular candidate
+        // (which needn't even be named).
+        if (!intersectionMeetsRoadTier(
+                found.intersection, nearestRoad, minimumTier, gridState, strings,
+                comingFromBearing(userGeometry, found.intersection.location)
+            )
+        ) return@forEachIntersectionAhead true
+
+        // We aim to skip 'simple' intersections e.g. ones where the only roads involved have the
+        // same name.
+        val priority = checkWhetherIntersectionIsOfInterest(found.intersection, nearestRoad)
+        candidates.add(
+            IntersectionCandidate(priority, found.intersection, found.distance, found.arrivingWay)
+        )
+        true // Every candidate within range is needed before the crow-fly choice below can be made.
+    }
+    if (candidates.isEmpty()) return IntersectionDescription(nearestRoad, userGeometry)
+
+    val sortedByCrowFlyDistance =
+        candidates.sortedBy { userGeometry.ruler.distance(userLocation, it.intersection.location) }
+    val candidate = sortedByCrowFlyDistance.firstOrNull { it.priority > 0 }
+        ?: sortedByCrowFlyDistance.maxByOrNull { it.priority }
+        ?: return IntersectionDescription(nearestRoad, userGeometry)
+
+    return IntersectionDescription(
+        candidate.arrivingWay ?: nearestRoad,
+        userGeometry,
+        candidate.intersection,
+        candidate.distance
+    )
+}
+
+/**
+ * The tree-search + Dijkstra fallback, used only when there's no cursor to walk the Way graph
+ * from - see [getRoadsDescriptionFromFov]'s own comment on when that is.
+ */
+private fun legacyIntersectionSearch(
+    gridState: GridState,
+    userGeometry: UserGeometry,
+    strings: LocalizedStrings?,
+    minimumTier: RoadTier,
+    intersectionTree: FeatureTree,
+    triangle: Triangle,
+    nearestRoad: Way?,
+): IntersectionDescription {
     // Find intersections within FOV
     val fovIntersections = intersectionTree.getAllWithinTriangle(triangle)
     if (fovIntersections.features.isEmpty()) return IntersectionDescription(
@@ -233,26 +376,18 @@ fun getRoadsDescriptionFromFov(
         )
             add = false
         else {
-            var disposalCount = 0
-            for (way in i.members) {
-                if (way.isSidewalkOrCrossing())
-                    ++disposalCount
-                else if (way.isSidewalkConnector(intersection, nearestRoad, gridState, strings))
-                    ++disposalCount
+            // The same "is this a real arm" test the Way-graph walk uses (see
+            // forEachIntersectionAhead): at least two real arms, or exactly one that doesn't
+            // continue nearestRoad by name/ref - otherwise this is a pass-through, not a real
+            // junction. Sharing the test with the walk also fixes a pre-existing bug here: the
+            // previous version compared intersection.members[0]/[1] regardless of whether either
+            // one had actually survived disposal.
+            val realArms = intersection.members.filter {
+                (it !== nearestRoad) && it.isJunctionArm(intersection, nearestRoad, gridState, strings)
             }
-            if ((i.members.size - disposalCount) < 2) {
-                // We're disposing of pavement intersections, if we've got fewer then 2 non-
-                // pavement Ways then we're not interested in this intersection. Intersections
-                // worth describing have the Way we're coming in on as well as at least two other
-                // Ways leaving the intersection.
-                add = false
-            } else {
-                if ((i.members.size - disposalCount) == 2) {
-                    // If the way names are the same then also skip it
-                    if (i.members[0].name == i.members[1].name)
-                        add = false
-                }
-            }
+            add = (realArms.size >= 2) ||
+                ((realArms.size == 1) &&
+                    !sameRoad(realArms.single(), nearestRoad?.name, nearestRoad?.ref))
         }
         if (add)
             trimmedIntersections.features.add(intersection)
@@ -272,6 +407,9 @@ fun getRoadsDescriptionFromFov(
         val graphIntersection = gridState.gridIntersections[intersectionLocation]
         if (graphIntersection != null) {
             var distance: Double? = null
+            // The Way that actually arrives at this candidate - nearestRoad unless the Dijkstra
+            // path below finds otherwise. See IntersectionCandidate.arrivingWay.
+            var arrivingWay: Way? = nearestRoad
             val matched = userGeometry.mapMatchedLocation
             if ((matched != null) && (nearestRoad != null)) {
                 // The nearestRoad ends at this intersection, so the distance is simply what is
@@ -303,6 +441,9 @@ fun getRoadsDescriptionFromFov(
                         distance = shortestDistanceResults.distance
                         var skip = false
                         val ways = getPathWays(graphIntersection)
+                        // The first Way on the path back from the candidate is the one that
+                        // actually arrives at it.
+                        arrivingWay = ways.firstOrNull() ?: nearestRoad
                         var nextIntersection: Intersection? = graphIntersection
                         for (way in ways) {
                             val currentIntersection = nextIntersection ?: break
@@ -358,7 +499,7 @@ fun getRoadsDescriptionFromFov(
             // the same name.
             val priority = checkWhetherIntersectionIsOfInterest(graphIntersection, nearestRoad)
             nonTrivialIntersections.add(
-                IntersectionCandidate(priority, graphIntersection, distance)
+                IntersectionCandidate(priority, graphIntersection, distance, arrivingWay)
             )
         }
     }
@@ -376,12 +517,11 @@ fun getRoadsDescriptionFromFov(
         ?: return IntersectionDescription(nearestRoad, userGeometry)
 
     // Find the bearing that we're coming in at - measured to the nearest intersection
-    val heading = nearestRoad?.heading(candidate.intersection)
-    //val heading = userGeometry.heading()
+    val heading = candidate.arrivingWay?.heading(candidate.intersection)
     if (heading != null) {
         // And use the polygons to describe the roads at the intersection
         return IntersectionDescription(
-            nearestRoad,
+            candidate.arrivingWay,
             userGeometry,
             candidate.intersection,
             candidate.distance
@@ -466,25 +606,14 @@ fun addIntersectionCalloutFromDescription(
 
     val intersectionName = description.intersection.name
 
-    // It's possible to get here and the nearestRoad is NOT a member of the intersection. This is
-    // particularly likely where there are sidewalks breaking up the road segments. So we need to
-    // follow our nearestRoad to the intersection. However, we need to be careful with the heading
-    // as the incoming Way to the intersection could be 90 degrees (or more?) away from the current
-    // heading.
+    // nearestRoad not being a member of the intersection used to be common - particularly where
+    // sidewalks break up the road segments - and was rescued here with a second Dijkstra search.
+    // Both getRoadsDescriptionFromFov's walk and its legacy tree+Dijkstra fallback now set
+    // nearestRoad to whichever Way actually arrives at the intersection they chose (see
+    // IntersectionCandidate.arrivingWay), so this should not happen via either path any more; a
+    // defensive check rather than a silent guess if it somehow still does.
     if (description.nearestRoad?.containsIntersection(description.intersection) != true) {
-        val nearestRoadBeforeExtension = description.nearestRoad ?: return null
-
-        val shortestDistanceResults = findShortestDistance(
-            description.userGeometry.mapMatchedLocation?.point ?: description.userGeometry.location,
-            nearestRoadBeforeExtension,
-            null, null, description.intersection,
-            null,
-            50.0
-        )
-        val ways = getPathWays(shortestDistanceResults.endIntersection)
-        description.nearestRoad = ways.firstOrNull()
-
-        shortestDistanceResults.tidy()
+        return null
     }
     val heading = description.nearestRoad?.heading(description.intersection) ?: return null
 
