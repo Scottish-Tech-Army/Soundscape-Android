@@ -3,7 +3,8 @@ package org.scottishtecharmy.soundscape.utils
 import org.scottishtecharmy.soundscape.geoengine.decimalSeparator
 import org.scottishtecharmy.soundscape.geoengine.formatDecimal
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
-import org.scottishtecharmy.soundscape.i18n.StringKey
+import org.scottishtecharmy.soundscape.i18n.PluralKey
+import kotlin.math.abs
 import kotlin.math.roundToInt
 
 /**
@@ -20,27 +21,34 @@ fun formatBytes(
     forAccessibility: Boolean = false,
 ): String {
     val shortKeys = arrayOf(
-        StringKey.BytesFormatKb,
-        StringKey.BytesFormatMb,
-        StringKey.BytesFormatGb,
-        StringKey.BytesFormatTb,
+        PluralKey.BytesFormatKb,
+        PluralKey.BytesFormatMb,
+        PluralKey.BytesFormatGb,
+        PluralKey.BytesFormatTb,
     )
     val longKeys = arrayOf(
-        StringKey.BytesFormatKbA11y,
-        StringKey.BytesFormatMbA11y,
-        StringKey.BytesFormatGbA11y,
-        StringKey.BytesFormatTbA11y,
+        PluralKey.BytesFormatKbA11y,
+        PluralKey.BytesFormatMbA11y,
+        PluralKey.BytesFormatGbA11y,
+        PluralKey.BytesFormatTbA11y,
     )
     val unitKeys = if (forAccessibility) longKeys else shortKeys
-    // Fallback unit suffixes used when no LocalizedStrings is supplied.
+    // Fallback unit suffixes used when no LocalizedStrings is supplied. These units never
+    // change shape in English, so the fallback below only needs to pick the byte-count
+    // singular ("byte") from the plural ("bytes"), not these.
     val fallbackShort = arrayOf("kB", "MB", "GB", "TB")
     val fallbackLong = arrayOf("kilobytes", "megabytes", "gigabytes", "terabytes")
     val fallbackUnits = if (forAccessibility) fallbackLong else fallbackShort
 
     if (bytes < 1000) {
-        val byteKey = if (forAccessibility) StringKey.BytesFormatBA11y else StringKey.BytesFormatB
-        val fallbackByteUnit = if (forAccessibility) "bytes" else "B"
-        return localized?.get(byteKey, bytes.toString()) ?: "$bytes $fallbackByteUnit"
+        val byteKey = if (forAccessibility) PluralKey.BytesFormatBA11y else PluralKey.BytesFormatB
+        val fallbackByteUnit = when {
+            !forAccessibility -> "B"
+            abs(bytes) == 1L -> "byte"
+            else -> "bytes"
+        }
+        return localized?.getPlural(byteKey, abs(bytes).toInt(), bytes.toString())
+            ?: "$bytes $fallbackByteUnit"
     }
 
     var value = bytes.toDouble() / 1000.0
@@ -57,16 +65,25 @@ fun formatBytes(
         unitIndex++
     }
     val separator = decimalSeparator(localized, forAccessibility)
-    val formatted = if (value >= 100.0) {
-        value.roundToInt().toString()
+    val formatted: String
+    val quantity: Int
+    if (value >= 100.0) {
+        // A whole number once rounded ("100 kB"), so it can select a real plural category.
+        val rounded = value.roundToInt()
+        formatted = rounded.toString()
+        quantity = rounded
     } else {
-        formatDecimal(
+        // Always shown with a decimal digit ("1.0 kB"), so - like "1.4 km" - the fraction
+        // never reaches CLDR's `v` operand and which category it lands in is a per-language
+        // question. See LocalizedStrings.fractionalPluralQuantity.
+        formatted = formatDecimal(
             value,
             decimals = 1,
             separator = separator,
             spaceFractionalDigits = forAccessibility,
         )
+        quantity = localized?.fractionalPluralQuantity ?: 2
     }
-    return localized?.get(unitKeys[unitIndex], formatted)
+    return localized?.getPlural(unitKeys[unitIndex], quantity, formatted)
         ?: "$formatted ${fallbackUnits[unitIndex]}"
 }
