@@ -368,10 +368,6 @@
     <string name="callouts_places_landmarks">Landmarks</string>
     <!-- Places to call out setting option: no places are called out. Markers, streets and junctions still are. -->
     <string name="callouts_places_nothing">No Places</string>
-    <!-- Name of the setting controlling whether intersection callouts include a distance -->
-    <string name="callouts_intersection_distance">Distance to Intersections</string>
-    <!-- Description of the setting controlling whether intersection callouts include a distance -->
-    <string name="callouts_intersection_distance_description">Say how far away a junction is, as well as that one is coming up</string>
     <!-- Help title for automatic callouts -->
     <string name="callouts_automatic_callouts">Automatic Callouts</string>
     <!-- Speech callout indicating that there's no useful information available -->
