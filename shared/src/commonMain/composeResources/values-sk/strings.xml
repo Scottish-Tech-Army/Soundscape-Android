@@ -1322,7 +1322,7 @@
     <string name="confect_name_via">%1$s cez %2$s</string>
     <string name="confect_name_pavement_next_to">Chodník vedľa %1$s</string>
     <string name="confect_name_pavement">Chodník</string>
-    <string name="confect_name_dead_end">slepá ulica</string>
+    <string name="confect_name_dead_end">slepej ulice</string>
     <string name="offline_maps_title">Offline mapy</string>
     <string name="offline_map_details_title">Podrobnosti offline mapy</string>
     <string name="offline_maps_loading">Načítava sa…</string>
