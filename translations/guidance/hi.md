@@ -44,11 +44,14 @@ VoiceOver on iOS therefore says «दो बार टैप करें ऑड
 commands back to back. The English comment explicitly asks for an
 infinitive fragment placed where the grammar needs it.
 
-The likely fix is the template «%1$s के लिए दो बार टैप करें» with hints in the
-oblique infinitive («ऑडियो बीकन म्यूट करने»). Bengali, Tamil and Urdu already
-work this way. This is ~40 strings, so get the pattern confirmed first (Q5)
-and then sweep. Some hints are also used as TalkBack text on Android, so check
-that the infinitive form reads acceptably there too.
+**Fix the template first (see `_common.md` C13).** The same hints are
+TalkBack's action labels on Android, so rewriting ~40 of them to suit iOS
+would change what Android says too. A frame that fits the existing
+imperatives, e.g. «%1$s — इसके लिए दो बार टैप करें» ("mute the beacon: tap
+twice for this"), is a one-string, iOS-only fix. Rewriting the hints into
+the oblique infinitive («ऑडियो बीकन म्यूट करने के लिए दो बार टैप करें», as
+bn/ta/ur do) is cleaner, but only do it once a Hindi TalkBack user confirms
+it also reads well on Android. See Q5.
 
 ### HI-G1 — `confect_name_to` says "from … to" (`agreed` defect, `unconfirmed` wording)
 
@@ -70,7 +73,8 @@ Nothing yet.
 2. Beacon: is «ऑडियो बीकन» understood, or is there a Hindi word?
 3. Waypoint «मार्ग बिंदु»: natural? What do your map apps say?
 4. Sleep/Snooze: «स्लीप» / «स्नूज़» are loanwords. Are they what your phone says?
-5. The VoiceOver pattern «… म्यूट करने के लिए दो बार टैप करें»: correct? (HI-B1)
+5. VoiceOver: «… म्यूट करने के लिए दो बार टैप करें» or «… म्यूट करें — इसके लिए दो बार
+   टैप करें»? And what does Android TalkBack say around the same hint? (HI-B1, C13)
 6. «%2$s तक जाने वाला %1$s» for "path to Moor Road"? (HI-G1)
 7. Is «आप» the right register?
 8. Anything else.

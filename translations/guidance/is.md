@@ -51,13 +51,15 @@ Q1…Q11 to match the Open questions below.
 | Snooze | lúr («Í lúra-ham») | `unconfirmed` | Þorkell wrote «Dvala eða Lúra» once in the FAQ, but «Í lúra-ham» is AI-built. See IS-T1 / Q3 |
 | Callout Detail | Nákvæmni tilkynninga | `unconfirmed` | AI pass, 2026-09-23 |
 | Detailed / Balanced / Quiet / Silent | Ítarlegt / Jafnvægi / Hljóðlátt / Þögult | `unconfirmed` | «Jafnvægi» is a noun among three adjectives. See Q7 |
-| dead end | blindgata | `unconfirmed` | The word is fine. Its case is wrong in the template. See IS-G1 |
+| dead end | blindgata | `unconfirmed` | The word is fine. Case fixed 2026-09-24 («blindgötu»). See IS-G1 |
 
 ---
 
 ## Rules
 
-### IS-G1 — `confect_name_dead_end` must be in the genitive (`agreed`)
+### IS-G1 — `confect_name_dead_end` must be in the genitive (`confirmed` fixed 2026-09-24)
+
+**Fixed 2026-09-24:** `confect_name_dead_end` is now «blindgötu», uploaded to Weblate and verified live.
 
 The same defect as PL-G1 and rule C9 in `_common.md`: `confect_name_dead_end`
 is only ever the `%2$s` of `confect_name_to` «%1$s til %2$s» and
@@ -179,3 +181,5 @@ quote escaping.
 question sheet. Found IS-G1 by checking `WayGenerator.kt`, and IS-G3 by
 looking for slashes, which a speech synthesiser reads aloud. Checked that
 Þorkell's terms still ship and that his typos are gone. Nothing uploaded.
+
+**2026-09-24 — dead-end case fix applied.** `confect_name_dead_end` → «blindgötu» (the C9 batch fix across ru, cs, sk, hr, sr, sl, pl and is).

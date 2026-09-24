@@ -148,6 +148,10 @@ warn any of them.
 > since it has no noun case (`bg.md` BG-G1). A non-inflecting language can
 > still get this slot wrong another way: French «à impasse» lacks its article
 > (`fr.md` FR-G1).
+>
+> **Fixed 2026-09-24** in ru, cs, sk, hr, sr, sl, pl and is: the genitive (dative for
+> ru «тупику») was uploaded and verified live in all eight. uk was fixed earlier
+> (see `uk.md`). fr FR-G1 is still open, because it needs a wording decision.
 
 ## C10 — `confect_name_to` means "a path that leads to", not "from … to"
 
@@ -200,3 +204,28 @@ Two things still make a term wrong regardless of origin:
   (vi «Đèn hiệu», "signal lamp", and id «Suar», "flare", for Beacon)
 - **a split corpus**: two different words for one concept (bn ঘোষণা/কলআউট,
   ur اعلان/کالآؤٹ, zh 提示/播报, ja コールアウト/読み上げ)
+
+## C13 — Accessibility hints serve two platforms; fix the iOS template, not the hints
+
+Every `*_hint` / `*_acc_hint` fragment goes to both platforms:
+
+- **Android:** `TalkbackHelpers.android.kt` passes it as the `onClick` label,
+  and TalkBack wraps it in its *own* system-language phrasing ("Double-tap to
+  <label>" in English).
+- **iOS:** `TalkbackHelpers.ios.kt` substitutes it into our
+  `talkback_double_tap_template`.
+
+So when the iOS output reads badly, the first fix to try is the **template**,
+which is one string and iOS-only. The hints are ~40 strings and changing
+them also changes what TalkBack says. Pick a template frame that fits the
+grammatical form the hints already have:
+
+> **Case (sk, 2026-09-24):** The hints are infinitives («stlmiť zvukový
+> maják»), but the template «Dvojitým ťuknutím %1$s» ("by double-tapping …")
+> needs a finite verb. «Ak chcete %1$s, dvakrát ťuknite» or «Dvojitým
+> ťuknutím môžete %1$s» fits the existing infinitives without touching them.
+> By contrast, cs hints are already second-person future («ztlumíte»), which
+> «Dvojitým klepnutím %1$s» expects.
+
+Only change the hints if no template frame can work, and then ask a
+TalkBack user in that language what Android actually says around them.
