@@ -1378,16 +1378,46 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">komma</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s bæti</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kílóbæti</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megabæti</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gígabæti</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s terabæti</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s bæti</item>
+        <item quantity="other">%1$s bæti</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kílóbæti</item>
+        <item quantity="other">%1$s kílóbæti</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megabæti</item>
+        <item quantity="other">%1$s megabæti</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gígabæti</item>
+        <item quantity="other">%1$s gígabæti</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s terabæti</item>
+        <item quantity="other">%1$s terabæti</item>
+    </plurals>
     <string name="help_config_voices_content_ios">Soundscape getur notað hvaða raddir sem þú hefur hlaðið niður í iOS‑stillingunum, nema Siri‑raddirnar sem Soundscape hefur ekki aðgang að. Við mælum með að velja eina af *Enhanced* röddunum þar sem þær bjóða upp á mun betri talgervilsgæði, en til þess þarftu fyrst að hlaða niður slíkri rödd. Þú getur hlaðið niður röddum í iOS‑stillingunum undir Aðgengi &gt; Talað efni &gt; Raddir og bankað á þá rödd sem þú vilt. Í Soundscape velur þú röddina með því að fara í Stillingar úr aðalvalmyndinni og síðan velja *Raddir*.</string>
     <string name="settings_mix_audio">Blanda hljóði með öðrum forritum</string>
     <string name="settings_mix_audio_description">Ef þetta er óvirkt munu önnur hljóðforrit stöðvast og fjölmiðlahnappir á læstum skjá verða tiltækar</string>
@@ -1540,4 +1570,5 @@
     <string name="siri_short_detail">Nákvæmni</string>
     <string name="siri_param_level">Stig</string>
     <string name="siri_desc_callout_detail">Stillir hversu mikið Soundscape segir á meðan þú gengur.</string>
+    <string name="intersection_approaching_intersection_distance">Gatnamót í %1$s fjarlægð</string>
 </resources>
