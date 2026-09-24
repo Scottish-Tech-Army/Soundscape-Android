@@ -304,16 +304,56 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">coma</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s bytes</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilobytes</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megabytes</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigabytes</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s terabytes</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="many">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s bytes</item>
+        <item quantity="many">%1$s bytes</item>
+        <item quantity="other">%1$s bytes</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="many">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kilobytes</item>
+        <item quantity="many">%1$s kilobytes</item>
+        <item quantity="other">%1$s kilobytes</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="many">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megabytes</item>
+        <item quantity="many">%1$s megabytes</item>
+        <item quantity="other">%1$s megabytes</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="many">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigabytes</item>
+        <item quantity="many">%1$s gigabytes</item>
+        <item quantity="other">%1$s gigabytes</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="many">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s terabytes</item>
+        <item quantity="many">%1$s terabytes</item>
+        <item quantity="other">%1$s terabytes</item>
+    </plurals>
     <string name="ui_action_button_my_location">La meva\nubicació</string>
     <string name="ui_action_button_my_location_acc_hint">escoltar informació sobre la teva ubicació actual</string>
     <string name="ui_action_button_nearby_markers">Marcadors\npropers</string>
@@ -1545,4 +1585,5 @@
     <string name="siri_short_detail">Detall</string>
     <string name="siri_param_level">Nivell</string>
     <string name="siri_desc_callout_detail">Estableix quant diu Soundscape mentre camines.</string>
+    <string name="intersection_approaching_intersection_distance">Cruïlla a %1$s</string>
 </resources>
