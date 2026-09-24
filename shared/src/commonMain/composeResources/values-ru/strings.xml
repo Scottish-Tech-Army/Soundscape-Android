@@ -1497,7 +1497,7 @@
     <string name="directions_cardinal_north_west_bound">На северо-запад</string>
     <string name="first_launch_permissions_granted">Разрешение предоставлено</string>
     <string name="first_launch_permissions_not_granted">Пока не предоставлено</string>
-    <string name="talkback_double_tap_template">Дважды нажмите, чтобы%1$s</string>
+    <string name="talkback_double_tap_template">Дважды нажмите, чтобы %1$s</string>
     <string name="menu_manage_locale">Региональные параметры</string>
     <string name="callouts_audio_beacon_distance">До маяка сейчас %1$s</string>
     <string name="directions_street_settlement">%1$s, %2$s</string>
