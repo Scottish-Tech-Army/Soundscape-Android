@@ -1011,16 +1011,46 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">egész</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s bájt</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilobájt</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megabájt</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigabájt</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s terabájt</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s bájt</item>
+        <item quantity="other">%1$s bájt</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kilobájt</item>
+        <item quantity="other">%1$s kilobájt</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megabájt</item>
+        <item quantity="other">%1$s megabájt</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigabájt</item>
+        <item quantity="other">%1$s gigabájt</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s terabájt</item>
+        <item quantity="other">%1$s terabájt</item>
+    </plurals>
     <string name="ui_action_button_my_location">Saját\nhelyzet</string>
     <string name="ui_action_button_my_location_acc_hint">a jelenlegi helyzeted meghallgatása</string>
     <string name="ui_action_button_nearby_markers">Közeli\njelölők</string>
@@ -1540,4 +1570,5 @@
     <string name="siri_short_detail">Részletesség</string>
     <string name="siri_param_level">Szint</string>
     <string name="siri_desc_callout_detail">Beállítja, mennyit mond a Soundscape séta közben.</string>
+    <string name="intersection_approaching_intersection_distance">Kereszteződés %1$s távolságra</string>
 </resources>
