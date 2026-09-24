@@ -1016,7 +1016,7 @@
         <item quantity="other">%1$s B</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s bytes</item>
+        <item quantity="one">%1$s byte</item>
         <item quantity="other">%1$s bytes</item>
     </plurals>
     <plurals name="bytes_format_kb">
@@ -1024,7 +1024,7 @@
         <item quantity="other">%1$s kB</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s kilobytes</item>
+        <item quantity="one">%1$s kilobyte</item>
         <item quantity="other">%1$s kilobytes</item>
     </plurals>
     <plurals name="bytes_format_mb">
@@ -1032,7 +1032,7 @@
         <item quantity="other">%1$s MB</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s megabytes</item>
+        <item quantity="one">%1$s megabyte</item>
         <item quantity="other">%1$s megabytes</item>
     </plurals>
     <plurals name="bytes_format_gb">
@@ -1040,7 +1040,7 @@
         <item quantity="other">%1$s GB</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s gigabytes</item>
+        <item quantity="one">%1$s gigabyte</item>
         <item quantity="other">%1$s gigabytes</item>
     </plurals>
     <plurals name="bytes_format_tb">
@@ -1048,7 +1048,7 @@
         <item quantity="other">%1$s TB</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s terabytes</item>
+        <item quantity="one">%1$s terabyte</item>
         <item quantity="other">%1$s terabytes</item>
     </plurals>
     <string name="ui_action_button_my_location">Matsayi\nNa</string>
