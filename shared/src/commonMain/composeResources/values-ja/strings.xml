@@ -1373,16 +1373,36 @@
     </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">点</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s バイト</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s キロバイト</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s メガバイト</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s ギガバイト</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s テラバイト</string>
+    <plurals name="bytes_format_b">
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="other">%1$s バイト</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="other">%1$s キロバイト</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="other">%1$s メガバイト</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="other">%1$s ギガバイト</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="other">%1$s テラバイト</item>
+    </plurals>
     <string name="help_config_voices_content_ios">Soundscape は、iOS の設定アプリでダウンロードした音声（Siri の音声は Soundscape では使用できません）を任意に使用できます。音声品質が大幅に高い *Enhanced* 音声を選択することをおすすめしますが、そのためには事前にその音声をダウンロードする必要があります。iOS の設定アプリでは、[アクセシビリティ] &gt; [読み上げコンテンツ] &gt; [音声] と進み、音声をタップしてダウンロードできます。Soundscape アプリ内では、メインメニューから設定を開き、*「声」* を選択して使用する音声を指定できます。</string>
     <string name="settings_mix_audio">他のアプリと音声をミックスする</string>
     <string name="settings_mix_audio_description">無効にすると、他のオーディオアプリは一時停止され、ロック画面のメディアコントロールが利用可能になります</string>
@@ -1535,4 +1555,5 @@
     <string name="siri_short_detail">詳細</string>
     <string name="siri_param_level">レベル</string>
     <string name="siri_desc_callout_detail">歩行中に Soundscape がどれだけ話すかを設定します。</string>
+    <string name="intersection_approaching_intersection_distance">交差点まで%1$s</string>
 </resources>
