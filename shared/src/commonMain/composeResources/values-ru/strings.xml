@@ -208,7 +208,7 @@
     <string name="settings_keep_value">оставить</string>
     <string name="settings_use_value">использовать</string>
     <string name="confect_name_pavement">Тротуар</string>
-    <string name="confect_name_dead_end">тупик</string>
+    <string name="confect_name_dead_end">тупику</string>
     <string name="preview_title">Симуляция местоположения</string>
     <string name="last_entry_in_list"> и %1$s</string>
     <string name="directions_cardinal_north_abb">С</string>
