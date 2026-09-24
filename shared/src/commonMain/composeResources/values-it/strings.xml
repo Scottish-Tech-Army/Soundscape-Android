@@ -1482,7 +1482,7 @@
     <string name="directions_cardinal_north_west_bound">Direzione nord ovest</string>
     <string name="first_launch_permissions_granted">Autorizzazione concessa</string>
     <string name="first_launch_permissions_not_granted">Non ancora concessa</string>
-    <string name="talkback_double_tap_template">Tocca due volte per%1$s</string>
+    <string name="talkback_double_tap_template">Tocca due volte per %1$s</string>
     <string name="menu_manage_locale">Impostazioni locali</string>
     <string name="callouts_audio_beacon_distance">L'audiofaro si trova attualmente a %1$s</string>
     <string name="directions_street_settlement">%1$s, %2$s</string>
