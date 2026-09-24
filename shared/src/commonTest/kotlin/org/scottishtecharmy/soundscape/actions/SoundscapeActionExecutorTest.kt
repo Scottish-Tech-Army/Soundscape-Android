@@ -1,3 +1,5 @@
+@file:OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+
 package org.scottishtecharmy.soundscape.actions
 
 import kotlinx.coroutines.flow.Flow
