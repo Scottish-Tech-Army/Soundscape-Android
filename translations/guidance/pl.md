@@ -54,7 +54,9 @@ A review pack was prepared for the first reviewer:
 
 ## Rules
 
-### PL-G1 — `confect_name_dead_end` must be in the genitive (`agreed` for the case, `unconfirmed` for the word)
+### PL-G1 — `confect_name_dead_end` must be in the genitive (case `confirmed` fixed 2026-09-24, word `unconfirmed`)
+
+**Fixed 2026-09-24:** `confect_name_dead_end` is now «ślepej uliczki», uploaded and verified live. This applied the genitive to the *existing* noun only. The register question below stays open, and if the noun changes, the genitive has to change with it.
 
 `confect_name_dead_end` is never shown on its own. `WayGenerator.kt` substitutes it
 as the `%2$s` of `confect_name_to` and `confect_name_to_via` — and only those two.
@@ -192,3 +194,5 @@ for an unrelated reason) and the first attempt failed outright on every
 request; re-run cleanly after he unlocked it. Fully resolved and grammatically
 uncontroversial (no reviewer decision needed), so PL-N1 was removed from
 Rules rather than kept as `fixed` — this entry is the record of it.
+
+**2026-09-24 — dead-end case fix applied.** `confect_name_dead_end` → «ślepej uliczki» (the C9 batch fix across ru, cs, sk, hr, sr, sl, pl and is).
