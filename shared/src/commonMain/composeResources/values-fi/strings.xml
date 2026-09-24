@@ -1378,16 +1378,46 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">pilkku</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s tavua</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilotavua</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megatavua</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigatavua</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s teratavua</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s tavua</item>
+        <item quantity="other">%1$s tavua</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kilotavua</item>
+        <item quantity="other">%1$s kilotavua</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megatavua</item>
+        <item quantity="other">%1$s megatavua</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigatavua</item>
+        <item quantity="other">%1$s gigatavua</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s teratavua</item>
+        <item quantity="other">%1$s teratavua</item>
+    </plurals>
     <string name="help_config_voices_content_ios">Soundscape voi käyttää mitä tahansa ääntä, jonka olet ladannut iOS:n Asetukset-sovelluksessa, lukuun ottamatta Siri-ääniä, jotka eivät ole Soundscapen käytettävissä. Suosittelemme valitsemaan jonkin *"Enhanced"*-äänistä, koska niiden äänenlaatu on paljon parempi, mutta sitä varten sinun täytyy ensin ladata parannettu ääni. Voit ladata ääniä iOS:n Asetukset-sovelluksessa siirtymällä kohtaan Käyttöapu &gt; Puhuttu sisältö &gt; Äänet ja napauttamalla ääntä. Soundscape-sovelluksessa voit valita haluamasi äänen avaamalla päävalikon, siirtymällä Asetukset-kohtaan ja valitsemalla sieltä *"Äänet"*.</string>
     <string name="settings_mix_audio">Sekoita ääni muiden sovellusten kanssa</string>
     <string name="settings_mix_audio_description">Kun tämä on pois päältä, muiden äänisovellusten toisto keskeytetään ja lukitusnäytön mediasäätimet ovat käytettävissä</string>
@@ -1540,4 +1570,5 @@
     <string name="siri_short_detail">Yksityiskohdat</string>
     <string name="siri_param_level">Taso</string>
     <string name="siri_desc_callout_detail">Määrittää, kuinka paljon Soundscape puhuu kävellessäsi.</string>
+    <string name="intersection_approaching_intersection_distance">Risteys %1$s päässä</string>
 </resources>
