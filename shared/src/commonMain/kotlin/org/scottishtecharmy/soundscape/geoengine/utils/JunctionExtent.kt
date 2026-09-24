@@ -110,10 +110,17 @@ private fun Intersection.containsMember(way: Way) = members.any { it === way }
 /**
  * True for arms that have no kerb line worth stopping at: the approach itself, tile-edge joiners,
  * pavements and crossings, and the short unnamed stubs joining a road to its own pavement.
+ *
+ * Internal rather than private: AlongWay's junction-lookahead walk reuses this as its definition of
+ * a "real" arm too - the same question of what counts as an actual crossing road, asked to decide
+ * whether to stop at a node rather than to size a kerb setback. [approach] is nullable for that
+ * reuse: a walk always has one, but IntersectionUtils' legacy (Street-Preview/no-map-match) search
+ * can be asking without knowing what road the user is on at all - Way.isSidewalkConnector already
+ * treats a null approach as "nothing to identify as a connector to", so this does the same.
  */
-private fun Way.isJunctionArm(
+internal fun Way.isJunctionArm(
     intersection: Intersection,
-    approach: Way,
+    approach: Way?,
     gridState: GridState,
     strings: LocalizedStrings?,
 ): Boolean {

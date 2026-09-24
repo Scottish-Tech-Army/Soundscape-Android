@@ -1,12 +1,15 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 
 /**
  * Converts the result of [Ruler.distanceToLineString] into a distance in metres from the start of
@@ -282,12 +285,206 @@ private fun walkOneDirection(
     }
 }
 
-/** Whether a Way continues the road the walk started on, by name or by route number. */
-private fun sameRoad(candidate: Way, name: String?, ref: String?): Boolean {
+/**
+ * Whether a Way continues the road the walk started on, by name or by route number.
+ *
+ * Internal rather than private: IntersectionUtils' legacy (Street-Preview/no-map-match) junction
+ * search shares this same-road test, so a two-arm junction is judged a pass-through by the same
+ * rule whichever search finds it.
+ */
+internal fun sameRoad(candidate: Way, name: String?, ref: String?): Boolean {
     if (candidate.wayType == WayType.JOINER) return false
     if ((name != null) && (candidate.name == name)) return true
     if ((ref != null) && (candidate.ref == ref)) return true
     return false
+}
+
+/**
+ * An Intersection found by a junction-lookahead walk, with how far along the network it is from
+ * the querying cursor.
+ */
+data class IntersectionAhead(
+    val intersection: Intersection,
+    /** Metres from the querying cursor, following the Ways rather than as the crow flies. */
+    val distance: Double,
+    /**
+     * The Way the walk arrived on - by construction a member of [intersection], so it is directly
+     * usable as the approach road, with no need to re-derive it afterwards.
+     */
+    val arrivingWay: Way,
+    /** Whether the walk was travelling [arrivingWay]'s own START-to-END direction on arrival. */
+    val arrivingForwards: Boolean,
+)
+
+/**
+ * Walks the Way network ahead of [cursor], calling [action] for every "real" junction reached -
+ * see [Way.isJunctionArm] - until [maxDistance] is exhausted, the road runs out, or [action]
+ * returns false.
+ *
+ * A node is only reported when it has at least two arms that pass [Way.isJunctionArm], or exactly
+ * one whose name/ref doesn't continue the road being followed. Anything short of that - a plain
+ * pass-through, a tile-edge JOINER, or a node that exists only for a sidewalk/crossing stub off
+ * the road - is walked through transparently, the same way [forEachAlongWayFeatureAhead] already
+ * treats a plain two-Way node.
+ *
+ * When the cursor's direction is unknown, both directions are walked and the results interleaved
+ * by distance, matching [forEachAlongWayFeatureAhead].
+ */
+fun forEachIntersectionAhead(
+    cursor: WayCursor,
+    maxDistance: Double,
+    gridState: GridState,
+    strings: LocalizedStrings?,
+    continuation: WayContinuation = WayContinuation.SAME_ROAD,
+    action: (IntersectionAhead) -> Boolean
+) {
+    when (cursor.forwards) {
+        true, false -> walkIntersectionsOneDirection(
+            cursor, cursor.forwards, maxDistance, gridState, strings, continuation, action
+        )
+        null -> {
+            // Merge the two directions by distance so the nearest junction is still seen first.
+            val both = mutableListOf<IntersectionAhead>()
+            walkIntersectionsOneDirection(cursor, true, maxDistance, gridState, strings, continuation) {
+                both.add(it); true
+            }
+            walkIntersectionsOneDirection(cursor, false, maxDistance, gridState, strings, continuation) {
+                both.add(it); true
+            }
+            for (found in both.sortedBy { it.distance }) {
+                if (!action(found)) return
+            }
+        }
+    }
+}
+
+/**
+ * Unlike [walkOneDirection] - which gives up rather than guess when it cannot identify a single
+ * road to keep following (a staggered junction of two same-named arms, say) - a junction-lookahead
+ * walk cannot afford to give up. It doesn't know which way the user will actually go, and roads
+ * fork into same-named one-way carriageways or quietly rename at an unremarkable node constantly;
+ * either would silently cut the search short of the junction actually being asked about (see the
+ * "complex intersection" fixtures in app/src/test/.../ComplexIntersections.kt, and
+ * [collectIntersectionsAhead]'s own comment). So this instead explores every real arm at each
+ * junction it passes through looking for something better, gathering everything found within
+ * [maxDistance] and merging the results by distance - a small, distance-bounded local search
+ * rather than a single path, but still nothing like the cost of the FeatureTree/Dijkstra search it
+ * replaces: a real junction's fan-out is small, and [MAX_WAYS_WALKED] bounds the total regardless.
+ */
+private fun walkIntersectionsOneDirection(
+    cursor: WayCursor,
+    forwards: Boolean,
+    maxDistance: Double,
+    gridState: GridState,
+    strings: LocalizedStrings?,
+    continuation: WayContinuation,
+    action: (IntersectionAhead) -> Boolean
+) {
+    // Keyed by the Intersection's own reference identity - see WayGenerator's comment on why it
+    // has none of its own - because the exhaustive fan-out below can reach the same physical
+    // junction by more than one path (a small loop of short same-named arms, say), and scoring it
+    // is only meaningful once, from whichever arrival is nearest.
+    val found = LinkedHashMap<Intersection, IntersectionAhead>()
+    collectIntersectionsAhead(
+        way = cursor.way,
+        stepForwards = forwards,
+        entry = cursor.distanceFromStart,
+        travelled = 0.0,
+        // The identity of the road being followed, for WayContinuation.SAME_ROAD - see
+        // walkOneDirection. Taken once, from the Way the walk starts on.
+        roadName = cursor.way.name,
+        roadRef = cursor.way.ref,
+        maxDistance = maxDistance,
+        gridState = gridState,
+        strings = strings,
+        continuation = continuation,
+        // Shared across every branch of the search, not per-branch: it is what keeps a fork that
+        // rejoins itself (a short one-way loop around a block, say) from being walked forever, and
+        // MAX_WAYS_WALKED is a budget on the whole search, not on any one path through it.
+        visited = mutableSetOf(),
+        found = found,
+    )
+    for (result in found.values.sortedBy { it.distance }) {
+        if (!action(result)) return
+    }
+}
+
+private fun collectIntersectionsAhead(
+    way: Way,
+    stepForwards: Boolean,
+    entry: Double,
+    travelled: Double,
+    roadName: String?,
+    roadRef: String?,
+    maxDistance: Double,
+    gridState: GridState,
+    strings: LocalizedStrings?,
+    continuation: WayContinuation,
+    visited: MutableSet<Way>,
+    found: MutableMap<Intersection, IntersectionAhead>,
+) {
+    if (!visited.add(way)) return
+    if (visited.size > MAX_WAYS_WALKED) return
+
+    val travelledToExit = travelled + if (stepForwards) way.length - entry else entry
+    if (travelledToExit > maxDistance) return
+
+    // Walked here rather than by calling Way.followWays for the same reason walkOneDirection is:
+    // that seeds from the intersection behind the first Way, which a Way at the end of the mapped
+    // network doesn't have.
+    val exit = if (stepForwards) {
+        way.intersections[WayEnd.END.id]
+    } else {
+        way.intersections[WayEnd.START.id]
+    } ?: return
+
+    fun continueOnto(next: Way) {
+        val nextForwards = (next.intersections[WayEnd.START.id] === exit)
+        collectIntersectionsAhead(
+            next, nextForwards, if (nextForwards) 0.0 else next.length, travelledToExit,
+            roadName, roadRef, maxDistance, gridState, strings, continuation, visited, found
+        )
+    }
+
+    // "Real" arms - excludes the approach's own sidewalk/crossing stubs and tile-edge joiners, the
+    // same exclusion Way.setbackAlong sizes a kerb setback from. Computed regardless of the total
+    // member count: a node with only two members overall (the approach and one other) is still a
+    // real junction to report when that other arm doesn't continue the current road - a name
+    // change is itself an intersection worth describing (see legacyIntersectionSearch and
+    // checkWhetherIntersectionIsOfInterest, which score such a node rather than discard it
+    // outright) - so member count alone can never be the shortcut for "nothing to report here".
+    val candidates = exit.members.filter { it !== way }
+    val realArms = candidates.filter { it.isJunctionArm(exit, way, gridState, strings) }
+    when {
+        realArms.size >= 2 ||
+            (realArms.size == 1 && !sameRoad(realArms.single(), roadName, roadRef)) -> {
+            val ahead = IntersectionAhead(exit, travelledToExit, way, stepForwards)
+            val alreadyFound = found[exit]
+            if ((alreadyFound == null) || (ahead.distance < alreadyFound.distance)) {
+                found[exit] = ahead
+            }
+            if (continuation == WayContinuation.STRAIGHT_ON) return
+            // Explore every real arm looking for something better further on - not just whichever
+            // continues the road by name. Unlike walkOneDirection's own same-road-only
+            // continuation (right for "when's the next crossing on this named road"), a junction
+            // search that gave up here whenever the road being followed happens to rename at this
+            // very node - a common, unremarkable event - would silently stop looking for the more
+            // interesting junction that is often just beyond it.
+            for (next in realArms) continueOnto(next)
+        }
+        // The one real arm continues the same road - walk through without reporting, same as a
+        // plain pass-through node.
+        realArms.size == 1 -> continueOnto(realArms.single())
+        // Nothing real here (only sidewalks/crossings/joiners, or a genuine dead end) but there's
+        // exactly one physical way through regardless - take it, the same forced continuation
+        // walkOneDirection makes.
+        candidates.size == 1 -> continueOnto(candidates.single())
+        // Several non-real exits (a node built only of pavement stubs and tile joiners) - explore
+        // all of them rather than guess, the same reasoning as the reported-junction case above.
+        candidates.isNotEmpty() -> for (next in candidates) continueOnto(next)
+        // No continuation at all: the road dead-ends here.
+        else -> return
+    }
 }
 
 /**

@@ -64,6 +64,9 @@ private fun buildTJunctionFixture(): TJunctionFixture {
         featureType = "highway"
         featureValue = "residential"
         geometry = LineString(southEnd, origin)
+        // WayGenerator always sets this from the geometry (WayGenerator.kt:788) - the along-way
+        // walk (AlongWay.kt) relies on it being accurate, so a hand-built fixture has to match.
+        length = 30.0
         intersections[WayEnd.END.id] = intersection
     }
     val wayLeft = Way().apply {
@@ -71,6 +74,7 @@ private fun buildTJunctionFixture(): TJunctionFixture {
         featureType = "highway"
         featureValue = "residential"
         geometry = LineString(origin, westEnd)
+        length = 40.0
         intersections[WayEnd.START.id] = intersection
     }
     val wayRight = Way().apply {
@@ -78,6 +82,7 @@ private fun buildTJunctionFixture(): TJunctionFixture {
         featureType = "highway"
         featureValue = "residential"
         geometry = LineString(origin, eastEnd)
+        length = 40.0
         intersections[WayEnd.START.id] = intersection
     }
     intersection.members = mutableListOf(wayOnRoad, wayLeft, wayRight)
@@ -166,6 +171,32 @@ class IntersectionUtilsTest {
         assertNotNull(description.intersection)
         assertEquals(fixture.intersection, description.intersection)
         assertEquals(3, description.intersection.members.size)
+    }
+
+    /**
+     * Street Preview steps from intersection to intersection, so the user sits essentially at the
+     * node itself rather than approaching it along a Way - the one case getRoadsDescriptionFromFov
+     * always routes to the tree+Dijkstra search (see its own comment), because a forward-walking
+     * cursor would step straight past a junction at distance zero rather than report it. There was
+     * no test coverage of this path at all before this one.
+     */
+    @Test
+    fun getRoadsDescriptionFromFov_streetPreview_findsTheJunctionStoodAt() {
+        val fixture = buildTJunctionFixture()
+        // Standing exactly at the junction. Facing north matches wayOnRoad's own heading reversed
+        // (it runs south from the junction - see Way.heading), which is how Street Preview picks
+        // nearestRoad: the arm the user is treated as having arrived by.
+        val userGeometry = UserGeometry(
+            location = fixture.origin,
+            phoneHeading = 0.0,
+            inStreetPreview = true,
+        )
+
+        val description = getRoadsDescriptionFromFov(fixture.gridState, userGeometry, null)
+
+        assertEquals(fixture.wayOnRoad, description.nearestRoad)
+        assertNotNull(description.intersection)
+        assertEquals(fixture.intersection, description.intersection)
     }
 
     // ---- addIntersectionCalloutFromDescription: no intersection (nearby road only) -----------
