@@ -1379,16 +1379,46 @@
     </plurals>
     <string name="number_decimal_separator">٫</string>
     <string name="number_decimal_separator_a11y">نقطه</string>
-    <string name="bytes_format_b">%1$s بایت</string>
-    <string name="bytes_format_b_a11y">%1$s بایت</string>
-    <string name="bytes_format_kb">%1$s کیلوبایت</string>
-    <string name="bytes_format_kb_a11y">%1$s کیلوبایت</string>
-    <string name="bytes_format_mb">%1$s مگابایت</string>
-    <string name="bytes_format_mb_a11y">%1$s مگابایت</string>
-    <string name="bytes_format_gb">%1$s گیگابایت</string>
-    <string name="bytes_format_gb_a11y">%1$s گیگابایت</string>
-    <string name="bytes_format_tb">%1$s ترابایت</string>
-    <string name="bytes_format_tb_a11y">%1$s ترابایت</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s بایت</item>
+        <item quantity="other">%1$s بایت</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s بایت</item>
+        <item quantity="other">%1$s بایت</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s کیلوبایت</item>
+        <item quantity="other">%1$s کیلوبایت</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s کیلوبایت</item>
+        <item quantity="other">%1$s کیلوبایت</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s مگابایت</item>
+        <item quantity="other">%1$s مگابایت</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s مگابایت</item>
+        <item quantity="other">%1$s مگابایت</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s گیگابایت</item>
+        <item quantity="other">%1$s گیگابایت</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s گیگابایت</item>
+        <item quantity="other">%1$s گیگابایت</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s ترابایت</item>
+        <item quantity="other">%1$s ترابایت</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s ترابایت</item>
+        <item quantity="other">%1$s ترابایت</item>
+    </plurals>
     <string name="help_config_voices_content_ios">ساند‌اسکیپ می‌تواند از هر یک از صداهایی که در اپلیکیشن تنظیمات iOS دانلود کرده‌اید استفاده کند، به‌جز صداهای Siri که برای ساند‌اسکیپ در دسترس نیستند. پیشنهاد می‌کنیم یکی از صداهای *Enhanced* را انتخاب کنید زیرا کیفیت صوتی بسیار بالاتری دارند؛ اما برای این کار ابتدا باید یک صدای Enhanced را دانلود کنید. شما می‌توانید صداها را در اپ تنظیمات iOS از مسیر Accessibility &gt; Spoken Content &gt; Voices دانلود کرده و روی یک صدا ضربه بزنید. در داخل اپ ساند‌اسکیپ نیز می‌توانید از منوی اصلی به تنظیمات بروید و سپس *صدای موتور صوتی* را انتخاب کنید تا صدای مورد نظر خود را تعیین نمایید.</string>
     <string name="settings_mix_audio">ترکیب صدا با اپلیکیشن‌های دیگر</string>
     <string name="settings_mix_audio_description">هنگامی که غیرفعال باشد، سایر اپلیکیشن‌های صوتی متوقف می‌شوند و کنترل‌های رسانه‌ای صفحهٔ قفل در دسترس خواهند بود</string>
@@ -1541,4 +1571,5 @@
     <string name="siri_short_detail">جزئیات</string>
     <string name="siri_param_level">سطح</string>
     <string name="siri_desc_callout_detail">تعیین می‌کند ساند‌اسکیپ هنگام راه رفتن چقدر بگوید.</string>
+    <string name="intersection_approaching_intersection_distance">تقاطع در %1$s</string>
 </resources>
