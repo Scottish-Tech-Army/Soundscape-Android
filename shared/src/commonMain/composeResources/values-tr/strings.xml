@@ -1378,16 +1378,46 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">virgül</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s bayt</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilobayt</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megabayt</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigabayt</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s terabayt</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s bayt</item>
+        <item quantity="other">%1$s bayt</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kilobayt</item>
+        <item quantity="other">%1$s kilobayt</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megabayt</item>
+        <item quantity="other">%1$s megabayt</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigabayt</item>
+        <item quantity="other">%1$s gigabayt</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s terabayt</item>
+        <item quantity="other">%1$s terabayt</item>
+    </plurals>
     <string name="help_config_voices_content_ios">Soundscape, iOS Ayarlar uygulamasında indirdiğiniz herhangi bir sesi kullanabilir; ancak Siri sesleri Soundscape tarafından kullanılamaz. Ses kalitesi çok daha yüksek olduğu için *Enhanced* seslerden birini seçmenizi öneririz; bunun için önce bir gelişmiş ses indirmeniz gerekir. Sesleri iOS Ayarlar uygulamasında Accessibility &gt; Spoken Content &gt; Voices bölümüne gidip bir sese dokunarak indirebilirsiniz. Soundscape uygulamasında ise ana menüden Settings'e gidip *Voices* seçeneğini kullanarak kullanmak istediğiniz sesi seçebilirsiniz.</string>
     <string name="settings_mix_audio">Diğer uygulamalarla sesi karıştır</string>
     <string name="settings_mix_audio_description">Devre dışı bırakıldığında diğer ses uygulamaları duraklatılır ve kilit ekranı medya kontrolleri kullanılabilir olur</string>
@@ -1540,4 +1570,5 @@
     <string name="siri_short_detail">Ayrıntı</string>
     <string name="siri_param_level">Düzey</string>
     <string name="siri_desc_callout_detail">Yürürken Soundscape'in ne kadar konuşacağını ayarlar.</string>
+    <string name="intersection_approaching_intersection_distance">Kavşak %1$s uzaklıkta</string>
 </resources>
