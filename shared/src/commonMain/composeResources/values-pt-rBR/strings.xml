@@ -1383,16 +1383,56 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">vírgula</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s bytes</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilobytes</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megabytes</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigabytes</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s terabytes</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="many">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s bytes</item>
+        <item quantity="many">%1$s bytes</item>
+        <item quantity="other">%1$s bytes</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="many">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kilobytes</item>
+        <item quantity="many">%1$s kilobytes</item>
+        <item quantity="other">%1$s kilobytes</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="many">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megabytes</item>
+        <item quantity="many">%1$s megabytes</item>
+        <item quantity="other">%1$s megabytes</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="many">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigabytes</item>
+        <item quantity="many">%1$s gigabytes</item>
+        <item quantity="other">%1$s gigabytes</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="many">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s terabytes</item>
+        <item quantity="many">%1$s terabytes</item>
+        <item quantity="other">%1$s terabytes</item>
+    </plurals>
     <string name="help_config_voices_content_ios">O Soundscape pode usar qualquer uma das vozes que você tenha baixado no app Ajustes do iOS, exceto as vozes da Siri, que não estão disponíveis para o Soundscape. Recomendamos escolher uma das vozes *Aprimoradas* pois apresentam qualidade de voz muito superior; entretanto, para isso você precisará primeiro baixar uma voz aprimorada. Você pode baixar vozes no app Ajustes do iOS indo em Acessibilidade &gt; Conteúdo Falado &gt; Vozes e tocando na voz desejada. Dentro do app Soundscape, selecione a voz que deseja usar acessando Ajustes no menu principal e depois escolhendo *Vozes*.</string>
     <string name="settings_mix_audio">Misturar áudio com outros aplicativos</string>
     <string name="settings_mix_audio_description">Quando desativado, outros apps de áudio serão pausados e os controles de mídia na tela de bloqueio estarão disponíveis</string>
@@ -1545,4 +1585,5 @@
     <string name="siri_short_detail">Detalhe</string>
     <string name="siri_param_level">Nível</string>
     <string name="siri_desc_callout_detail">Define quanto o Soundscape fala enquanto você caminha.</string>
+    <string name="intersection_approaching_intersection_distance">Cruzamento a %1$s de distância</string>
 </resources>
