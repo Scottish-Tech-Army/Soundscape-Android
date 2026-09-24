@@ -1482,7 +1482,7 @@
     <string name="directions_cardinal_north_west_bound">Em direção a noroeste</string>
     <string name="first_launch_permissions_granted">Permissão concedida</string>
     <string name="first_launch_permissions_not_granted">Ainda não concedida</string>
-    <string name="talkback_double_tap_template">Toque duas vezes para%1$s</string>
+    <string name="talkback_double_tap_template">Toque duas vezes para %1$s</string>
     <string name="menu_manage_locale">Configurações regionais</string>
     <string name="callouts_audio_beacon_distance">O sinal está atualmente a %1$s de distância</string>
     <string name="directions_street_settlement">%1$s, %2$s</string>
