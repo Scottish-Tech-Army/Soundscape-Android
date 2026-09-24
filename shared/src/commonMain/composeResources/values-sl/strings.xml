@@ -1462,7 +1462,7 @@
     <string name="confect_name_via">%1$s prek %2$s</string>
     <string name="confect_name_pavement_next_to">Pločnik ob %1$s</string>
     <string name="confect_name_pavement">Pločnik</string>
-    <string name="confect_name_dead_end">slepa ulica</string>
+    <string name="confect_name_dead_end">slepe ulice</string>
     <string name="offline_maps_title">Zemljevidi brez povezave</string>
     <string name="offline_map_details_title">Podrobnosti zemljevida brez povezave</string>
     <string name="offline_maps_loading">Nalaganje …</string>
