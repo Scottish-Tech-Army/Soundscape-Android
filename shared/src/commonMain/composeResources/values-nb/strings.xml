@@ -1467,7 +1467,7 @@
     <string name="directions_cardinal_north_west_bound">Mot nordvest</string>
     <string name="first_launch_permissions_granted">Tillatelse gitt</string>
     <string name="first_launch_permissions_not_granted">Ikke gitt ennå</string>
-    <string name="talkback_double_tap_template">Dobbelttrykk for å%1$s</string>
+    <string name="talkback_double_tap_template">Dobbelttrykk for å %1$s</string>
     <string name="menu_manage_locale">Region</string>
     <string name="callouts_audio_beacon_distance">Lydsignalet er for øyeblikket %1$s unna</string>
     <string name="directions_street_settlement">%1$s, %2$s</string>
