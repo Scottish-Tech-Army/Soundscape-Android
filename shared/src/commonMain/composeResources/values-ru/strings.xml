@@ -1388,16 +1388,66 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">запятая</string>
-    <string name="bytes_format_b">%1$s Б</string>
-    <string name="bytes_format_b_a11y">%1$s байт</string>
-    <string name="bytes_format_kb">%1$s кБ</string>
-    <string name="bytes_format_kb_a11y">%1$s килобайт</string>
-    <string name="bytes_format_mb">%1$s МБ</string>
-    <string name="bytes_format_mb_a11y">%1$s мегабайт</string>
-    <string name="bytes_format_gb">%1$s ГБ</string>
-    <string name="bytes_format_gb_a11y">%1$s гигабайт</string>
-    <string name="bytes_format_tb">%1$s ТБ</string>
-    <string name="bytes_format_tb_a11y">%1$s терабайт</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s Б</item>
+        <item quantity="few">%1$s Б</item>
+        <item quantity="many">%1$s Б</item>
+        <item quantity="other">%1$s Б</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s байт</item>
+        <item quantity="few">байта</item>
+        <item quantity="many">%1$s байт</item>
+        <item quantity="other">%1$s байт</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s кБ</item>
+        <item quantity="few">%1$s кБ</item>
+        <item quantity="many">%1$s кБ</item>
+        <item quantity="other">%1$s кБ</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s килобайт</item>
+        <item quantity="few">килобайта</item>
+        <item quantity="many">%1$s килобайт</item>
+        <item quantity="other">%1$s килобайт</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s МБ</item>
+        <item quantity="few">%1$s МБ</item>
+        <item quantity="many">%1$s МБ</item>
+        <item quantity="other">%1$s МБ</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s мегабайт</item>
+        <item quantity="few">мегабайта</item>
+        <item quantity="many">%1$s мегабайт</item>
+        <item quantity="other">%1$s мегабайт</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s ГБ</item>
+        <item quantity="few">%1$s ГБ</item>
+        <item quantity="many">%1$s ГБ</item>
+        <item quantity="other">%1$s ГБ</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s гигабайт</item>
+        <item quantity="few">гигабайта</item>
+        <item quantity="many">%1$s гигабайт</item>
+        <item quantity="other">%1$s гигабайт</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s ТБ</item>
+        <item quantity="few">%1$s ТБ</item>
+        <item quantity="many">%1$s ТБ</item>
+        <item quantity="other">%1$s ТБ</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s терабайт</item>
+        <item quantity="few">терабайта</item>
+        <item quantity="many">%1$s терабайт</item>
+        <item quantity="other">%1$s терабайт</item>
+    </plurals>
     <string name="help_config_voices_content_ios">Soundscape может использовать любые голоса, которые вы загрузили в приложении «Настройки» iOS, за исключением голосов Siri, недоступных для Soundscape. Рекомендуется выбрать один из голосов *Enhanced*, поскольку у них существенно выше качество звучания, но для этого сначала потребуется скачать улучшенный голос. Загрузить голоса можно в приложении «Настройки» iOS: «Универсальный доступ» &gt; «Произносимое содержимое» &gt; «Голоса» — коснитесь нужного голоса для загрузки. В приложении Soundscape выбранный голос устанавливается через меню Настройки → *Голоса*.</string>
     <string name="settings_mix_audio">Смешивать звук с другими приложениями</string>
     <string name="settings_mix_audio_description">Если отключено, другие аудиоприложения будут приостановлены, а элементы управления медиа на экране блокировки станут доступны</string>
@@ -1550,4 +1600,5 @@
     <string name="siri_short_detail">Детали</string>
     <string name="siri_param_level">Уровень</string>
     <string name="siri_desc_callout_detail">Задаёт, сколько Soundscape говорит во время ходьбы.</string>
+    <string name="intersection_approaching_intersection_distance">До перекрёстка %1$s</string>
 </resources>
