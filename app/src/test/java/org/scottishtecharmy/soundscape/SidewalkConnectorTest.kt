@@ -1,3 +1,5 @@
+@file:OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+
 package org.scottishtecharmy.soundscape
 
 import org.junit.Assert
