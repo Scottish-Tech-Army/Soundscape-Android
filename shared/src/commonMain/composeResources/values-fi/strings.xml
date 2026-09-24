@@ -1383,7 +1383,7 @@
         <item quantity="other">%1$s B</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s tavua</item>
+        <item quantity="one">%1$s tavu</item>
         <item quantity="other">%1$s tavua</item>
     </plurals>
     <plurals name="bytes_format_kb">
@@ -1391,7 +1391,7 @@
         <item quantity="other">%1$s kB</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s kilotavua</item>
+        <item quantity="one">%1$s kilotavu</item>
         <item quantity="other">%1$s kilotavua</item>
     </plurals>
     <plurals name="bytes_format_mb">
@@ -1399,7 +1399,7 @@
         <item quantity="other">%1$s MB</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s megatavua</item>
+        <item quantity="one">%1$s megatavu</item>
         <item quantity="other">%1$s megatavua</item>
     </plurals>
     <plurals name="bytes_format_gb">
@@ -1407,7 +1407,7 @@
         <item quantity="other">%1$s GB</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s gigatavua</item>
+        <item quantity="one">%1$s gigatavu</item>
         <item quantity="other">%1$s gigatavua</item>
     </plurals>
     <plurals name="bytes_format_tb">
@@ -1415,7 +1415,7 @@
         <item quantity="other">%1$s TB</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s teratavua</item>
+        <item quantity="one">%1$s teratavu</item>
         <item quantity="other">%1$s teratavua</item>
     </plurals>
     <string name="help_config_voices_content_ios">Soundscape voi käyttää mitä tahansa ääntä, jonka olet ladannut iOS:n Asetukset-sovelluksessa, lukuun ottamatta Siri-ääniä, jotka eivät ole Soundscapen käytettävissä. Suosittelemme valitsemaan jonkin *"Enhanced"*-äänistä, koska niiden äänenlaatu on paljon parempi, mutta sitä varten sinun täytyy ensin ladata parannettu ääni. Voit ladata ääniä iOS:n Asetukset-sovelluksessa siirtymällä kohtaan Käyttöapu &gt; Puhuttu sisältö &gt; Äänet ja napauttamalla ääntä. Soundscape-sovelluksessa voit valita haluamasi äänen avaamalla päävalikon, siirtymällä Asetukset-kohtaan ja valitsemalla sieltä *"Äänet"*.</string>
