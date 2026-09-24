@@ -229,3 +229,38 @@ grammatical form the hints already have:
 
 Only change the hints if no template frame can work, and then ask a
 TalkBack user in that language what Android actually says around them.
+
+## C14 — Fifteen languages started from Microsoft's professional localisation
+
+The original Microsoft Soundscape iOS app shipped professionally translated
+strings for **da, de, el, en_GB, es, fi, fr, fr_CA, it, ja, nb_NO, nl, pt,
+pt_BR, sv**. They are open source at
+`github.com/microsoft/soundscape/tree/main/apps/ios/GuideDogs/Assets/Localization/<locale>.lproj/Localizable.strings`.
+The files are UTF-16, and a key `a.b.c` there is our `a_b_c`. The 2024
+prototype commits (`53d4f20d5`, then Adam Ward's "Translation strings for …"
+series) copied them in verbatim. Verified 2026-09-24: `first_launch_beacon_message_2`
+in German is word-for-word Microsoft's.
+
+About 360 of our non-POI keys exist in Microsoft's files. As of 2026-09-24,
+roughly 60% of those are still Microsoft's exact wording in each language.
+The rest changed, mostly because our English changed. The ones that matter
+are **drift**: the English is identical to Microsoft's en-US, but the
+translation differs. That means an AI pass replaced a professional
+translation for no source reason. Counts: da 73, fr_CA 69, es 34, nl 29,
+fr 27, ja 27, nb 26, fi 24, el 21, de 20, sv 15, it 8, pt_BR 8, pt 7,
+en_GB 2.
+
+How to use this:
+
+- **Microsoft's term is the default** when a term is disputed and no native
+  speaker has spoken. It was chosen by professional translators, and it's
+  what long-time Soundscape users have heard for years.
+- **But it isn't infallible.** Some drift is an AI fixing Microsoft's errors:
+  de «Endpunkt» for "Done", the typo «Wie verwenden ich», «zu, dass» for
+  «hin, an dem». Check each drifted string on its merits, not by reverting.
+- **Microsoft never saw ~410 of our keys** (callout detail, confected way
+  names, voice commands, travel mode…). Those are AI-only in every language.
+
+> **Case (sv, 2026-09-24):** Microsoft's button/status pair was «Inaktivera» /
+> «Inaktiverad». An AI pass changed only the button, to «Viloläge», leaving the
+> status on Microsoft's word, so the two no longer match.

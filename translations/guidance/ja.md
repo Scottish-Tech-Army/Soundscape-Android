@@ -14,10 +14,12 @@ Read with [`_common.md`](_common.md).
 Japanese is the oldest non-English language in the repo. The first strings
 arrived in 2024-07 with the prototype (`53d4f20d5`), then grew through
 developer commits (Adam Ward, Fanny Demey) and AI passes. **None of those
-authors is a recorded Japanese translator.** The early strings may come from
-the original Microsoft Soundscape iOS localisation, which shipped Japanese,
-but that is **unverified**. If it's true, the early terms deserve more weight
-than AI output. Treat everything as `unconfirmed`.
+authors is a recorded Japanese translator.** The early strings **come from Microsoft's
+professional ja-JP localisation** of the iOS app (verified 2026-09-24, see
+`_common.md` C14). 209 of those ~360 keys are still Microsoft's wording, and
+27 have drifted even though their English is unchanged. Microsoft's terms
+are the default when a term is disputed. Everything Microsoft never had is
+AI. Treat everything as `unconfirmed` until a speaker weighs in.
 
 The authored Siri phrases (`ja.lproj`) match the help text. Questions:
 `translations/review/ja.md` (Q1…Q7).
