@@ -7,26 +7,26 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 /**
- * Records every key/args pair passed to [get] and returns a deterministic, inspectable string
- * so assertions can pin down exactly which StringKey and formatted argument formatBytes used,
- * without depending on real translated copy.
+ * Records every key/quantity/args triple passed to [getPlural] and returns a deterministic,
+ * inspectable string so assertions can pin down exactly which PluralKey, quantity and formatted
+ * argument formatBytes used, without depending on real translated copy.
  */
 private class FakeLocalizedStrings : LocalizedStrings {
-    val calls = mutableListOf<Pair<StringKey, List<Any?>>>()
+    val calls = mutableListOf<Triple<PluralKey, Int, List<Any?>>>()
 
-    override fun get(key: StringKey, vararg args: Any?): String {
-        calls.add(key to args.toList())
-        return when (key) {
+    override fun get(key: StringKey, vararg args: Any?): String =
+        when (key) {
             StringKey.NumberDecimalSeparator -> ","
             StringKey.NumberDecimalSeparatorA11y -> " comma "
             else -> "${key.name}(${args.joinToString(",")})"
         }
-    }
 
     override fun getOrNull(key: StringKey, vararg args: Any?): String? = get(key, *args)
 
-    override fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String =
-        "$key(${args.joinToString(", ")})"
+    override fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String {
+        calls.add(Triple(key, quantity, args.toList()))
+        return "$key:$quantity(${args.joinToString(", ")})"
+    }
 
     override fun resolveFeatureClass(key: String): String? = null
 }
@@ -159,56 +159,73 @@ class FormatBytesTest {
     fun bytesBelowKb_usesLocalizedByteKey() {
         val fake = FakeLocalizedStrings()
         val result = formatBytes(500L, fake)
-        assertEquals("BytesFormatB(500)", result)
-        assertEquals(listOf(StringKey.BytesFormatB to listOf<Any?>("500")), fake.calls)
+        assertEquals("BytesFormatB:500(500)", result)
+        assertEquals(listOf(Triple(PluralKey.BytesFormatB, 500, listOf<Any?>("500"))), fake.calls)
     }
 
     @Test
     fun bytesBelowKb_accessibility_usesLocalizedA11yByteKey() {
         val fake = FakeLocalizedStrings()
         val result = formatBytes(500L, fake, forAccessibility = true)
-        assertEquals("BytesFormatBA11y(500)", result)
+        assertEquals("BytesFormatBA11y:500(500)", result)
+    }
+
+    @Test
+    fun exactlyOneByte_selectsSingularQuantity() {
+        val fake = FakeLocalizedStrings()
+        val result = formatBytes(1L, fake, forAccessibility = true)
+        assertEquals("BytesFormatBA11y:1(1)", result)
     }
 
     @Test
     fun kbValue_usesLocalizedDecimalSeparator() {
         val fake = FakeLocalizedStrings()
         // FakeLocalizedStrings uses a comma decimal separator, like many European locales.
+        // The value is shown with a fractional digit, so the quantity falls back to the
+        // interface default of 2 (fractionalPluralQuantity), not to the true magnitude.
         val result = formatBytes(1500L, fake)
-        assertEquals("BytesFormatKb(1,5)", result)
+        assertEquals("BytesFormatKb:2(1,5)", result)
     }
 
     @Test
     fun kbValue_accessibility_usesLocalizedA11ySeparatorAndUnit() {
         val fake = FakeLocalizedStrings()
         val result = formatBytes(1500L, fake, forAccessibility = true)
-        assertEquals("BytesFormatKbA11y(1 comma 5)", result)
+        assertEquals("BytesFormatKbA11y:2(1 comma 5)", result)
     }
 
     @Test
     fun mbValue_usesLocalizedMbKey() {
         val fake = FakeLocalizedStrings()
         val result = formatBytes(2_500_000L, fake)
-        assertEquals("BytesFormatMb(2,5)", result)
+        assertEquals("BytesFormatMb:2(2,5)", result)
     }
 
     @Test
     fun gbValue_usesLocalizedGbKey() {
         val fake = FakeLocalizedStrings()
         val result = formatBytes(3_000_000_000L, fake)
-        assertEquals("BytesFormatGb(3,0)", result)
+        assertEquals("BytesFormatGb:2(3,0)", result)
     }
 
     @Test
     fun tbValue_usesLocalizedTbKey() {
         val fake = FakeLocalizedStrings()
         val result = formatBytes(4_000_000_000_000L, fake)
-        assertEquals("BytesFormatTb(4,0)", result)
+        assertEquals("BytesFormatTb:2(4,0)", result)
     }
 
     @Test
-    fun negativeBytes_withLocalizedStrings_usesByteKeyVerbatim() {
+    fun wholeUnitValueAtOrAbove100_usesRealQuantity() {
         val fake = FakeLocalizedStrings()
-        assertEquals("BytesFormatB(-50)", formatBytes(-50L, fake))
+        // No fractional digit is shown, so the whole rounded value selects the plural category.
+        val result = formatBytes(100_000L, fake)
+        assertEquals("BytesFormatKb:100(100)", result)
+    }
+
+    @Test
+    fun negativeBytes_withLocalizedStrings_usesAbsoluteValueAsQuantity() {
+        val fake = FakeLocalizedStrings()
+        assertEquals("BytesFormatB:50(-50)", formatBytes(-50L, fake))
     }
 }

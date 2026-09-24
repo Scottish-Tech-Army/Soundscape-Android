@@ -647,26 +647,56 @@
     <string name="number_decimal_separator">.</string>
     <!-- Spoken form of the decimal separator, used in screen-reader content descriptions where punctuation gets mispronounced (e.g. iOS VoiceOver reads "1.05" as "one dot oh five"). Surround with spaces so it reads as a discrete word, e.g. " point " (English), " Komma " (German), " virgule " (French). -->
     <string name="number_decimal_separator_a11y"> point </string>
-    <!-- Byte count, fewer than 1000 bytes. %s is a number, "950 B" -->
-    <string name="bytes_format_b">%1$s B</string>
-    <!-- Accessibility variant of bytes_format_b. Screen-reader content description. Spell the unit out fully. %s is a number, "950 bytes" -->
-    <string name="bytes_format_b_a11y">%1$s bytes</string>
-    <!-- Byte count, kilobytes (1000-based). %s is a number, "120 kB" -->
-    <string name="bytes_format_kb">%1$s kB</string>
-    <!-- Accessibility variant of bytes_format_kb. Screen-reader content description, where the abbreviation "kB" gets mispronounced. Spell the unit out fully. %s is a number, "120 kilobytes" -->
-    <string name="bytes_format_kb_a11y">%1$s kilobytes</string>
-    <!-- Byte count, megabytes (1000-based). %s is a number, "120 MB" -->
-    <string name="bytes_format_mb">%1$s MB</string>
-    <!-- Accessibility variant of bytes_format_mb. Screen-reader content description, where the abbreviation "MB" gets mispronounced. Spell the unit out fully. %s is a number, "120 megabytes" -->
-    <string name="bytes_format_mb_a11y">%1$s megabytes</string>
-    <!-- Byte count, gigabytes (1000-based). %s is a number, "1.4 GB" -->
-    <string name="bytes_format_gb">%1$s GB</string>
-    <!-- Accessibility variant of bytes_format_gb. Screen-reader content description, where the abbreviation "GB" gets mispronounced. Spell the unit out fully. %s is a number, "1.4 gigabytes" -->
-    <string name="bytes_format_gb_a11y">%1$s gigabytes</string>
-    <!-- Byte count, terabytes (1000-based). %s is a number, "1.4 TB" -->
-    <string name="bytes_format_tb">%1$s TB</string>
-    <!-- Accessibility variant of bytes_format_tb. Screen-reader content description, where the abbreviation "TB" gets mispronounced. Spell the unit out fully. %s is a number, "1.4 terabytes" -->
-    <string name="bytes_format_tb_a11y">%1$s terabytes</string>
+    <!-- Byte count, fewer than 1000 bytes. %s is a number, "950 B". The singular form is only ever used for exactly 1 (or -1). -->
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <!-- Accessibility variant of bytes_format_b. Screen-reader content description. Spell the unit out fully. %s is a number, "950 bytes". The singular form is only ever used for exactly 1 (or -1). -->
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s byte</item>
+        <item quantity="other">%1$s bytes</item>
+    </plurals>
+    <!-- Byte count, kilobytes (1000-based). %s is a number, "120 kB". The singular form is only ever used for exactly 1. -->
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <!-- Accessibility variant of bytes_format_kb. Screen-reader content description, where the abbreviation "kB" gets mispronounced. Spell the unit out fully. %s is a number, "120 kilobytes". The singular form is only ever used for exactly 1. -->
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kilobyte</item>
+        <item quantity="other">%1$s kilobytes</item>
+    </plurals>
+    <!-- Byte count, megabytes (1000-based). %s is a number, "120 MB". The singular form is only ever used for exactly 1. -->
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <!-- Accessibility variant of bytes_format_mb. Screen-reader content description, where the abbreviation "MB" gets mispronounced. Spell the unit out fully. %s is a number, "120 megabytes". The singular form is only ever used for exactly 1. -->
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megabyte</item>
+        <item quantity="other">%1$s megabytes</item>
+    </plurals>
+    <!-- Byte count, gigabytes (1000-based). %s is a number, "1.4 GB". The singular form is only ever used for exactly 1. -->
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <!-- Accessibility variant of bytes_format_gb. Screen-reader content description, where the abbreviation "GB" gets mispronounced. Spell the unit out fully. %s is a number, "1.4 gigabytes". The singular form is only ever used for exactly 1. -->
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigabyte</item>
+        <item quantity="other">%1$s gigabytes</item>
+    </plurals>
+    <!-- Byte count, terabytes (1000-based). %s is a number, "1.4 TB". The singular form is only ever used for exactly 1. -->
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <!-- Accessibility variant of bytes_format_tb. Screen-reader content description, where the abbreviation "TB" gets mispronounced. Spell the unit out fully. %s is a number, "1.4 terabytes". The singular form is only ever used for exactly 1. -->
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s terabyte</item>
+        <item quantity="other">%1$s terabytes</item>
+    </plurals>
     <!-- Similar to `directions.my_location`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
     <string name="ui_action_button_my_location">My\nLocation</string>
     <!-- Accessibility Notification, ...hear about your current location. This is always preceded by "Double tap to " -->

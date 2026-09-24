@@ -236,6 +236,16 @@ class ComposeLocalizedStrings : LocalizedStrings {
         PluralKey.DistanceKm -> Res.plurals.distance_format_km
         PluralKey.DistanceKmA11y -> Res.plurals.distance_format_km_a11y
         PluralKey.DistanceMiles -> Res.plurals.distance_format_miles
+        PluralKey.BytesFormatB -> Res.plurals.bytes_format_b
+        PluralKey.BytesFormatBA11y -> Res.plurals.bytes_format_b_a11y
+        PluralKey.BytesFormatKb -> Res.plurals.bytes_format_kb
+        PluralKey.BytesFormatKbA11y -> Res.plurals.bytes_format_kb_a11y
+        PluralKey.BytesFormatMb -> Res.plurals.bytes_format_mb
+        PluralKey.BytesFormatMbA11y -> Res.plurals.bytes_format_mb_a11y
+        PluralKey.BytesFormatGb -> Res.plurals.bytes_format_gb
+        PluralKey.BytesFormatGbA11y -> Res.plurals.bytes_format_gb_a11y
+        PluralKey.BytesFormatTb -> Res.plurals.bytes_format_tb
+        PluralKey.BytesFormatTbA11y -> Res.plurals.bytes_format_tb_a11y
     }
 
     private fun resId(key: StringKey): StringResource = when (key) {
@@ -256,16 +266,6 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsNameGoesLeft -> Res.string.directions_name_goes_left
         StringKey.DirectionsNameGoesRight -> Res.string.directions_name_goes_right
         StringKey.DirectionsNameContinuesAhead -> Res.string.directions_name_continues_ahead
-        StringKey.BytesFormatB -> Res.string.bytes_format_b
-        StringKey.BytesFormatBA11y -> Res.string.bytes_format_b_a11y
-        StringKey.BytesFormatKb -> Res.string.bytes_format_kb
-        StringKey.BytesFormatKbA11y -> Res.string.bytes_format_kb_a11y
-        StringKey.BytesFormatMb -> Res.string.bytes_format_mb
-        StringKey.BytesFormatMbA11y -> Res.string.bytes_format_mb_a11y
-        StringKey.BytesFormatGb -> Res.string.bytes_format_gb
-        StringKey.BytesFormatGbA11y -> Res.string.bytes_format_gb_a11y
-        StringKey.BytesFormatTb -> Res.string.bytes_format_tb
-        StringKey.BytesFormatTbA11y -> Res.string.bytes_format_tb_a11y
         StringKey.NumberDecimalSeparator -> Res.string.number_decimal_separator
         StringKey.NumberDecimalSeparatorA11y -> Res.string.number_decimal_separator_a11y
         StringKey.RelativeClockDirection -> Res.string.relative_clock_direction
