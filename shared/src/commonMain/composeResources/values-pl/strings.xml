@@ -1395,7 +1395,7 @@
         <item quantity="other">%1$s B</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s bajtów</item>
+        <item quantity="one">%1$s bajt</item>
         <item quantity="few">bajty</item>
         <item quantity="many">%1$s bajtów</item>
         <item quantity="other">%1$s bajtów</item>
@@ -1407,7 +1407,7 @@
         <item quantity="other">%1$s kB</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s kilobajtów</item>
+        <item quantity="one">%1$s kilobajt</item>
         <item quantity="few">kilobajty</item>
         <item quantity="many">%1$s kilobajtów</item>
         <item quantity="other">%1$s kilobajtów</item>
@@ -1419,7 +1419,7 @@
         <item quantity="other">%1$s MB</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s megabajtów</item>
+        <item quantity="one">%1$s megabajt</item>
         <item quantity="few">megabajty</item>
         <item quantity="many">%1$s megabajtów</item>
         <item quantity="other">%1$s megabajtów</item>
@@ -1431,7 +1431,7 @@
         <item quantity="other">%1$s GB</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s gigabajtów</item>
+        <item quantity="one">%1$s gigabajt</item>
         <item quantity="few">gigabajty</item>
         <item quantity="many">%1$s gigabajtów</item>
         <item quantity="other">%1$s gigabajtów</item>
@@ -1443,7 +1443,7 @@
         <item quantity="other">%1$s TB</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s terabajtów</item>
+        <item quantity="one">%1$s terabajt</item>
         <item quantity="few">terabajty</item>
         <item quantity="many">%1$s terabajtów</item>
         <item quantity="other">%1$s terabajtów</item>
