@@ -1395,7 +1395,7 @@
         <item quantity="other">%1$s Б</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s байтів</item>
+        <item quantity="one">%1$s байт</item>
         <item quantity="few">байти</item>
         <item quantity="many">%1$s байтів</item>
         <item quantity="other">%1$s байтів</item>
@@ -1407,7 +1407,7 @@
         <item quantity="other">%1$s кБ</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s кілобайтів</item>
+        <item quantity="one">%1$s кілобайт</item>
         <item quantity="few">кілобайти</item>
         <item quantity="many">%1$s кілобайтів</item>
         <item quantity="other">%1$s кілобайтів</item>
@@ -1419,7 +1419,7 @@
         <item quantity="other">%1$s МБ</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s мегабайтів</item>
+        <item quantity="one">%1$s мегабайт</item>
         <item quantity="few">мегабайти</item>
         <item quantity="many">%1$s мегабайтів</item>
         <item quantity="other">%1$s мегабайтів</item>
@@ -1431,7 +1431,7 @@
         <item quantity="other">%1$s ГБ</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s гігабайтів</item>
+        <item quantity="one">%1$s гігабайт</item>
         <item quantity="few">гігабайти</item>
         <item quantity="many">%1$s гігабайтів</item>
         <item quantity="other">%1$s гігабайтів</item>
@@ -1443,7 +1443,7 @@
         <item quantity="other">%1$s ТБ</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s терабайтів</item>
+        <item quantity="one">%1$s терабайт</item>
         <item quantity="few">терабайти</item>
         <item quantity="many">%1$s терабайтів</item>
         <item quantity="other">%1$s терабайтів</item>
