@@ -20,10 +20,22 @@ covers (courriel, magasiner, and the tu/vous balance). Give it its own
 
 ## Status of this file
 
-**No native speaker has reviewed French.** Every French commit is `Translated
-using Weblate`, authored by Dave, which means AI passes. Like `pl.md`, this file
-gives the first reviewers something to react to. Nearly everything is
-`unconfirmed`, and nothing should be swept from it.
+**No native speaker has reviewed French.** *Correction (2026-09-24):* an
+earlier draft said every French string came from AI passes. That's wrong.
+The oldest ~360 strings were copied from **Microsoft's professional fr-FR
+localisation** of the iOS app (see `_common.md` C14), and 213 of them are
+still Microsoft's exact wording. 27 have drifted even though their English
+is unchanged. Everything Microsoft never had (callout detail, confected way
+names, voice commands…) is AI. Like `pl.md`, this file gives the first
+reviewers something to react to. Most entries are `unconfirmed`, and nothing
+should be swept from it.
+
+Checked 2026-09-24: **«notification» (Callout), «point de repère»
+(Waypoint), «repères» (Landmarks) and «balise sonore» (Beacon) are all
+Microsoft's own terms.** FR-T1 and FR-T2 therefore challenge a professional
+translator's choice that long-time users have heard for years, not an AI
+slip. The collisions are still real, but changing them costs familiarity.
+Put that to the reviewers, and record the outcome under C8 either way.
 
 Two entries are `agreed` because neither is a matter of taste. FR-G1 is a
 grammar defect you can check against `WayGenerator.kt`. FR-B1 was a missing
@@ -131,6 +143,8 @@ Keep it unless the reviewers disagree. See Q4.
 
 ### FR-T1 — Callout is split between «notification» and «annonce» (`unconfirmed`)
 
+*«notification» is Microsoft's term (C14). «annonce» came later, from AI.*
+
 Nouns in the UI and settings use «notification» («Autoriser les
 notifications», «Gérer les notifications», `siri_type_callout`
 «Notification»). Verbs and some descriptions use «annoncer»/«annonce»
@@ -141,6 +155,8 @@ system-notification collision. It is still a term change touching dozens of
 strings, so it needs a speaker's yes first. See Q1.
 
 ### FR-T2 — Waypoint and Landmark share «repère» (`unconfirmed`, likely a real problem)
+
+*Both terms are Microsoft's (C14): the collision shipped in the original iOS app.*
 
 Waypoint is «point de repère». Landmark is «repère», and in everyday French
 «point de repère» *is* the word for a landmark. So «Lieux et repères»

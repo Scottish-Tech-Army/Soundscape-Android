@@ -144,6 +144,13 @@ the new rule.*
 
 ## Provenance
 
+**2024-07 → 2024-09 — Microsoft baseline.** The oldest ~360 strings were
+copied from Microsoft's professional es-ES localisation of the iOS app (see
+`_common.md` C14). That baseline was formal «usted», which is what JJ's May
+2026 pass converted away from. So ES-R1's informal rule deliberately
+overrides the professional baseline, and that should be defended rather than
+"restored" by anyone who compares against Microsoft's files.
+
 **2026-05-06 to 2026-05-13 — native speaker, GitHub issues #881, #885, #889,
 #891, #892.** JJ Gatchalian (native Spanish speaker, also a Soundscape
 Community translator) did an extensive live-Weblate revision pass: converted
