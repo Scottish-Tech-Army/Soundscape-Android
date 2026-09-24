@@ -1307,7 +1307,7 @@
     <string name="confect_name_via">%1$s преко %2$s</string>
     <string name="confect_name_pavement_next_to">Тротоар поред %1$s</string>
     <string name="confect_name_pavement">Тротоар</string>
-    <string name="confect_name_dead_end">ћорсокак</string>
+    <string name="confect_name_dead_end">ћорсокака</string>
     <string name="offline_maps_title">Офлајн мапе</string>
     <string name="offline_map_details_title">Детаљи офлајн мапе</string>
     <string name="offline_maps_loading">Учитавање…</string>
