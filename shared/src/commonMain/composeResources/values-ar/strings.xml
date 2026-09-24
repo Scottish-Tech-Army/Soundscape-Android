@@ -1263,16 +1263,86 @@
     </plurals>
     <string name="number_decimal_separator">٫</string>
     <string name="number_decimal_separator_a11y">فاصلة</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s بايت</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s كيلوبايت</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s ميغابايت</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s غيغابايت</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s تيرابايت</string>
+    <plurals name="bytes_format_b">
+        <item quantity="zero">%1$s B</item>
+        <item quantity="one">%1$s B</item>
+        <item quantity="two">%1$s B</item>
+        <item quantity="few">%1$s B</item>
+        <item quantity="many">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="zero">%1$s بايت</item>
+        <item quantity="one">%1$s بايت</item>
+        <item quantity="two">%1$s بايت</item>
+        <item quantity="few">%1$s بايت</item>
+        <item quantity="many">%1$s بايت</item>
+        <item quantity="other">%1$s بايت</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="zero">%1$s kB</item>
+        <item quantity="one">%1$s kB</item>
+        <item quantity="two">%1$s kB</item>
+        <item quantity="few">%1$s kB</item>
+        <item quantity="many">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="zero">%1$s كيلوبايت</item>
+        <item quantity="one">%1$s كيلوبايت</item>
+        <item quantity="two">%1$s كيلوبايت</item>
+        <item quantity="few">%1$s كيلوبايت</item>
+        <item quantity="many">%1$s كيلوبايت</item>
+        <item quantity="other">%1$s كيلوبايت</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="zero">%1$s MB</item>
+        <item quantity="one">%1$s MB</item>
+        <item quantity="two">%1$s MB</item>
+        <item quantity="few">%1$s MB</item>
+        <item quantity="many">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="zero">%1$s ميغابايت</item>
+        <item quantity="one">%1$s ميغابايت</item>
+        <item quantity="two">%1$s ميغابايت</item>
+        <item quantity="few">%1$s ميغابايت</item>
+        <item quantity="many">%1$s ميغابايت</item>
+        <item quantity="other">%1$s ميغابايت</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="zero">%1$s GB</item>
+        <item quantity="one">%1$s GB</item>
+        <item quantity="two">%1$s GB</item>
+        <item quantity="few">%1$s GB</item>
+        <item quantity="many">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="zero">%1$s غيغابايت</item>
+        <item quantity="one">%1$s غيغابايت</item>
+        <item quantity="two">%1$s غيغابايت</item>
+        <item quantity="few">%1$s غيغابايت</item>
+        <item quantity="many">%1$s غيغابايت</item>
+        <item quantity="other">%1$s غيغابايت</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="zero">%1$s TB</item>
+        <item quantity="one">%1$s TB</item>
+        <item quantity="two">%1$s TB</item>
+        <item quantity="few">%1$s TB</item>
+        <item quantity="many">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="zero">%1$s تيرابايت</item>
+        <item quantity="one">%1$s تيرابايت</item>
+        <item quantity="two">%1$s تيرابايت</item>
+        <item quantity="few">%1$s تيرابايت</item>
+        <item quantity="many">%1$s تيرابايت</item>
+        <item quantity="other">%1$s تيرابايت</item>
+    </plurals>
     <string name="ui_action_button_my_location">موقعي</string>
     <string name="ui_action_button_my_location_acc_hint">سماع معلومات عن موقعك الحالي</string>
     <string name="ui_action_button_nearby_markers">العلامات\nالقريبة</string>
@@ -1560,4 +1630,5 @@
     <string name="siri_short_detail">التفاصيل</string>
     <string name="siri_param_level">المستوى</string>
     <string name="siri_desc_callout_detail">يحدد مقدار ما يقوله Soundscape أثناء سيرك.</string>
+    <string name="intersection_approaching_intersection_distance">تقاطع على بعد %1$s</string>
 </resources>
