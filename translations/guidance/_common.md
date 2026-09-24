@@ -264,3 +264,23 @@ How to use this:
 > **Case (sv, 2026-09-24):** Microsoft's button/status pair was «Inaktivera» /
 > «Inaktiverad». An AI pass changed only the button, to «Viloläge», leaving the
 > status on Microsoft's word, so the two no longer match.
+
+## C15 — "You're ready!" forces a gender the English doesn't have
+
+`first_launch_prompt_title` was Microsoft's "You're all set!" and became
+"You're ready!" in `19af0e0a1` (2026-04-19). "Ready" is an adjective, and in
+most gendered languages it has to agree with the user. Translators then pick
+the masculine, a slash, or a plural dodge. Microsoft's translators, working
+from "all set", mostly found an impersonal form:
+
+> **Case (2026-09-24 sweep):** pt «Está tudo pronto!» → «Está pronto!» (m),
+> pt_BR «Tudo pronto!» → «Você está pronto!» (m), fr_CA «La configuration est
+> terminée.» → «Vous êtes prêt!» (m). Also it «Sei pronto!» (m), ro «Ești
+> pregătit!» (m), ar «أنت جاهز!» (m), is «tilbúin/n» (slash, read aloud),
+> cs/sk plural «připraveni»/«pripravení».
+
+This is a rule C7 source problem. Either restore "You're all set!" or add a
+translator comment such as "Prefer an impersonal phrasing (e.g. 'All set!',
+'Everything is ready') so the text doesn't have to agree with the user's
+gender". **Not yet edited.** The same applies to any future English that
+puts an adjective or participle on "you".
