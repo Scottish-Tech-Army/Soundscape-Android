@@ -1383,7 +1383,7 @@
         <item quantity="other">%1$s B</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s bytes</item>
+        <item quantity="one">%1$s byte</item>
         <item quantity="other">%1$s bytes</item>
     </plurals>
     <plurals name="bytes_format_kb">
@@ -1391,7 +1391,7 @@
         <item quantity="other">%1$s kB</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s kilobytes</item>
+        <item quantity="one">%1$s kilobyte</item>
         <item quantity="other">%1$s kilobytes</item>
     </plurals>
     <plurals name="bytes_format_mb">
@@ -1399,7 +1399,7 @@
         <item quantity="other">%1$s MB</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s megabytes</item>
+        <item quantity="one">%1$s megabyte</item>
         <item quantity="other">%1$s megabytes</item>
     </plurals>
     <plurals name="bytes_format_gb">
@@ -1407,7 +1407,7 @@
         <item quantity="other">%1$s GB</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s gigabytes</item>
+        <item quantity="one">%1$s gigabyte</item>
         <item quantity="other">%1$s gigabytes</item>
     </plurals>
     <plurals name="bytes_format_tb">
@@ -1415,7 +1415,7 @@
         <item quantity="other">%1$s TB</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s terabytes</item>
+        <item quantity="one">%1$s terabyte</item>
         <item quantity="other">%1$s terabytes</item>
     </plurals>
     <string name="help_config_voices_content_ios">Soundscape can use any of the voices you have downloaded in the iOS Settings app, except for the Siri voices, which are not available to Soundscape. We recommend choosing one of the *"Enhanced"* voices, since they have much higher voice quality, but to do this, you will first need to download an enhanced voice. You can download voices in the iOS Settings app by going to Accessibility &gt; Spoken Content &gt; Voices and tapping on a voice. Within the Soundscape app, you can select the voice you want to use by going to Settings from the main menu and then selecting *"Voices"*.</string>
