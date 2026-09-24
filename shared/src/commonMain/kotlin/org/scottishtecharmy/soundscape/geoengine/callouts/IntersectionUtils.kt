@@ -139,6 +139,13 @@ private fun distanceAlongWayTo(
  * @return An IntersectionDescription containing all the data required for callouts to describe the
  * intersection.
  */
+/**
+ * Test-only: when true, [getRoadsDescriptionFromFov] always uses [legacyIntersectionSearch] rather
+ * than walking the Way graph, so that tests can compare the current callouts with what the app
+ * used to do. Never set in the app itself.
+ */
+var forceLegacyIntersectionSearch = false
+
 fun getRoadsDescriptionFromFov(
     gridState: GridState,
     userGeometry: UserGeometry,
@@ -238,7 +245,8 @@ fun getRoadsDescriptionFromFov(
     // forward-walking cursor would step straight past rather than report - so it keeps the
     // tree+Dijkstra search below, as does the rare case there's no map-matched Way to build a
     // cursor on at all.
-    if (!userGeometry.inStreetPreview && (userGeometry.mapMatchedWay != null)) {
+    if (!forceLegacyIntersectionSearch &&
+        !userGeometry.inStreetPreview && (userGeometry.mapMatchedWay != null)) {
         val cursor = nearestRoad?.let {
             userGeometry.cursorOn(it, fallbackHeading = userGeometry.snappedHeading())
         }

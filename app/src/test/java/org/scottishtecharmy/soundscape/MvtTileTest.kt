@@ -19,6 +19,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
+import org.scottishtecharmy.soundscape.geoengine.callouts.forceLegacyIntersectionSearch
 import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.callouts.toPreference
 import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
@@ -4529,12 +4530,24 @@ class MvtTileTest {
     fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
-        val testFile = "CentralToBuchananStreet"
+        val testFile = "TreeCoveredWalk-iphone"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
             "gpxFiles/$testFile.txt",
             "gpxFiles/$testFile.geojson"
         )
+
+        // And again through the old tree-search + Dijkstra intersection path, to diff against.
+        forceLegacyIntersectionSearch = true
+        try {
+            testMovingGrid(
+                "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
+                "gpxFiles/$testFile-legacy.txt",
+                "gpxFiles/$testFile-legacy.geojson"
+            )
+        } finally {
+            forceLegacyIntersectionSearch = false
+        }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
