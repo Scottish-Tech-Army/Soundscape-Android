@@ -299,8 +299,14 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">запетая</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s байта</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s байта</item>
+        <item quantity="other">%1$s байта</item>
+    </plurals>
     <string name="route_beacon_progress">Маяк при %1$s</string>
     <string name="home_screen_title">Начало на Soundscape</string>
     <string name="settings_reset_button">Възстановяване на настройките по подразбиране</string>
@@ -1153,14 +1159,38 @@
     <string name="loading_indicator_content_description">Зареждане</string>
     <string name="menu_exit_app">Изход от Soundscape</string>
     <string name="offline_map_details_update">Актуализирай офлайн картата</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s килобайта</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s мегабайта</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s гигабайта</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s терабайта</string>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s килобайта</item>
+        <item quantity="other">%1$s килобайта</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s мегабайта</item>
+        <item quantity="other">%1$s мегабайта</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s гигабайта</item>
+        <item quantity="other">%1$s гигабайта</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s терабайта</item>
+        <item quantity="other">%1$s терабайта</item>
+    </plurals>
     <string name="ui_action_button_my_location">Моето\nместоположение</string>
     <string name="ui_action_button_my_location_acc_hint">чуете за текущото си местоположение</string>
     <string name="ui_action_button_nearby_markers">Близки\nмаркери</string>
@@ -1540,4 +1570,5 @@
     <string name="siri_short_detail">Детайлност</string>
     <string name="siri_param_level">Ниво</string>
     <string name="siri_desc_callout_detail">Задава колко говори Soundscape, докато вървите.</string>
+    <string name="intersection_approaching_intersection_distance">Кръстовище на %1$s разстояние</string>
 </resources>
