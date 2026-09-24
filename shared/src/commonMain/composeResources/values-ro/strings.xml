@@ -1383,16 +1383,56 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">virgulă</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s octeți</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kiloocteți</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megaocteți</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigaocteți</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s teraocteți</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="few">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s octeți</item>
+        <item quantity="few">%1$s octeți</item>
+        <item quantity="other">%1$s octeți</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="few">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kiloocteți</item>
+        <item quantity="few">%1$s kiloocteți</item>
+        <item quantity="other">%1$s kiloocteți</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="few">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megaocteți</item>
+        <item quantity="few">%1$s megaocteți</item>
+        <item quantity="other">%1$s megaocteți</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="few">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigaocteți</item>
+        <item quantity="few">%1$s gigaocteți</item>
+        <item quantity="other">%1$s gigaocteți</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="few">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s teraocteți</item>
+        <item quantity="few">%1$s teraocteți</item>
+        <item quantity="other">%1$s teraocteți</item>
+    </plurals>
     <string name="help_config_voices_content_ios">Soundscape poate folosi oricare dintre vocile descărcate în aplicația Setări din iOS, cu excepția vocilor Siri, care nu sunt disponibile pentru Soundscape. Îți recomandăm să alegi una dintre vocile *Enhanced*, deoarece au o calitate mult mai bună, dar pentru aceasta trebuie mai întâi să descarci o voce îmbunătățită. Poți descărca voci în aplicația Setări din iOS accesând Accesibilitate &gt; Conținut vorbit &gt; Voci și atingând o voce. În aplicația Soundscape, poți selecta vocea dorită din Setări din meniul principal, apoi alegând *Voci*.</string>
     <string name="settings_mix_audio">Permite redarea audio împreună cu alte aplicații</string>
     <string name="settings_mix_audio_description">Când este dezactivat, celelalte aplicații audio vor fi puse pe pauză, iar controalele media de pe ecranul blocat vor fi disponibile</string>
@@ -1545,4 +1585,5 @@
     <string name="siri_short_detail">Detaliu</string>
     <string name="siri_param_level">Nivel</string>
     <string name="siri_desc_callout_detail">Stabilește cât de mult vorbește Soundscape în timp ce mergi.</string>
+    <string name="intersection_approaching_intersection_distance">Intersecție la %1$s</string>
 </resources>
