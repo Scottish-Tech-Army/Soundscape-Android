@@ -485,7 +485,7 @@
     <string name="confect_name_via">%1$s um %2$s</string>
     <string name="confect_name_pavement_next_to">Gangstétt við %1$s</string>
     <string name="confect_name_pavement">Gangstétt</string>
-    <string name="confect_name_dead_end">blindgata</string>
+    <string name="confect_name_dead_end">blindgötu</string>
     <string name="offline_maps_title">Ónettengd kort</string>
     <string name="offline_map_details_title">Upplýsingar um ónettengt kort</string>
     <string name="offline_maps_loading">Hleður…</string>
