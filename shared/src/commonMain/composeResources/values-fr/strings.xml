@@ -1389,7 +1389,7 @@
         <item quantity="other">%1$s o</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s octets</item>
+        <item quantity="one">%1$s octet</item>
         <item quantity="many">%1$s octets</item>
         <item quantity="other">%1$s octets</item>
     </plurals>
@@ -1399,7 +1399,7 @@
         <item quantity="other">%1$s Ko</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s kilooctets</item>
+        <item quantity="one">%1$s kilooctet</item>
         <item quantity="many">%1$s kilooctets</item>
         <item quantity="other">%1$s kilooctets</item>
     </plurals>
@@ -1409,7 +1409,7 @@
         <item quantity="other">%1$s Mo</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s mégaoctets</item>
+        <item quantity="one">%1$s mégaoctet</item>
         <item quantity="many">%1$s mégaoctets</item>
         <item quantity="other">%1$s mégaoctets</item>
     </plurals>
@@ -1419,7 +1419,7 @@
         <item quantity="other">%1$s Go</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s gigaoctets</item>
+        <item quantity="one">%1$s gigaoctet</item>
         <item quantity="many">%1$s gigaoctets</item>
         <item quantity="other">%1$s gigaoctets</item>
     </plurals>
@@ -1429,7 +1429,7 @@
         <item quantity="other">%1$s To</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s téraoctets</item>
+        <item quantity="one">%1$s téraoctet</item>
         <item quantity="many">%1$s téraoctets</item>
         <item quantity="other">%1$s téraoctets</item>
     </plurals>
