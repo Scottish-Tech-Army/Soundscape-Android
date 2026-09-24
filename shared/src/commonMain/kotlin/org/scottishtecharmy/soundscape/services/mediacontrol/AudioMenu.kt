@@ -133,6 +133,15 @@ class AudioMenu(
         service.speak2dText(firstRootLabel, true, EARCON_MODE_EXIT)
     }
 
+    /**
+     * Silently pops back to the root menu, leaving its cursor on the item that led here.
+     * Used after starting a route or beacon so the user doesn't have to step through the
+     * rest of the list to reach "Main Menu", and without talking over the start announcement.
+     */
+    private fun popToRoot() {
+        while (menuStack.size > 1) menuStack.removeLast()
+    }
+
     // ── Audio helpers ─────────────────────────────────────────────────────────
     private fun loadAndEnter(item: MenuItem.DynamicSubmenu) {
         scope.launch {
@@ -204,7 +213,10 @@ class AudioMenu(
     private suspend fun loadRouteMenuItems(): List<MenuItem> =
         withContext(Dispatchers.Default) {
             routeDao.getAllRoutes().map { route ->
-                MenuItem.Action(route.name) { service.routeStartById(route.routeId) }
+                MenuItem.Action(route.name) {
+                    service.routeStartById(route.routeId)
+                    popToRoot()
+                }
             } + mainMenuAction()
         }
 
@@ -214,6 +226,7 @@ class AudioMenu(
                 MenuItem.Action(marker.name) {
                     val location = LngLatAlt(marker.longitude, marker.latitude)
                     service.startBeacon(location, marker.name)
+                    popToRoot()
                 }
             } + mainMenuAction()
         }
