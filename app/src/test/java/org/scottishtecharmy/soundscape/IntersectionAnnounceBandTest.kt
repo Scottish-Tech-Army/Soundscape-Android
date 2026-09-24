@@ -2,9 +2,8 @@ package org.scottishtecharmy.soundscape
 
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
-import org.scottishtecharmy.soundscape.geoengine.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.geoengine.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.callouts.kerbDistance
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
@@ -93,12 +92,11 @@ class IntersectionAnnounceBandTest {
         gridState.start(offlineExtractPath)
         ruler = gridState.ruler
         val mapMatchFilter = MapMatchFilter()
-        val categories = setOf(PLACES_AND_LANDMARKS_KEY, MOBILITY_KEY)
         val announcedAt = linkedMapOf<Pair<String?, LngLatAlt>, Double>()
         var measured = 0
 
         for ((location, recordedHeading) in track) {
-            runBlocking { gridState.locationUpdate(location, categories, null) }
+            runBlocking { gridState.locationUpdate(location, CalloutPoiSelection.EVERYTHING, null) }
             mapMatchFilter.filter(location, gridState, FeatureCollection(), false, null)
             val matchedWay = mapMatchFilter.matchedWay ?: continue
 
