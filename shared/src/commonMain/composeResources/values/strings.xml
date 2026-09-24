@@ -808,7 +808,7 @@
     <string name="first_launch_soundscape_language">Soundscape Language</string>
     <!-- Notification, introduction to Soundscape Language -->
     <string name="first_launch_soundscape_language_text">Select the language you would like Soundscape to use. You can always change your selection in the app settings.</string>
-    <!-- Title text for the welcome screen in the first launch experience -->
+    <!-- Title text for the welcome screen in the first launch experience. Many users are blind and hear this read aloud, and the app doesn't know their gender: prefer a phrasing that needs no gender agreement (e.g. Italian "Salve!", Portuguese "Está tudo pronto!"). Avoid slashes or brackets like "o/a" or "(a)", which screen readers read aloud. -->
     <string name="first_launch_welcome_title">Welcome!</string>
     <!-- Short description included in the welcome screen in the first launch experience -->
     <string name="first_launch_welcome_description">Navigate with confidence using Soundscape spatial audio</string>
@@ -859,7 +859,7 @@
     <string name="first_launch_beacon_message_2">Listen to the available audio beacons and select your preference.</string>
     <!-- Message text to tell the user that the audio beacon can be changed in app settings -->
     <string name="first_launch_beacon_message_3">This can be changed later in app settings.</string>
-    <!-- Title text for last screen in the first launch experience -->
+    <!-- Title text for last screen in the first launch experience - onboarding is complete and the app is ready to use. Equivalent to "You're all set!" / "All set!". Many users are blind and hear this read aloud, and the app doesn't know their gender: prefer a phrasing that needs no gender agreement (e.g. Italian "Salve!", Portuguese "Está tudo pronto!"). Avoid slashes or brackets like "o/a" or "(a)", which screen readers read aloud. -->
     <string name="first_launch_prompt_title">You're ready!</string>
     <!-- Message text for the last screen in the first launch experience, "destination" should be translated the same as it is in "search.choose_destination" -->
     <string name="first_launch_prompt_message">You are ready for your first walk with Soundscape. To get started, choose a nearby destination and start the audio beacon — you’ll hear it playing in the direction of your destination.</string>
@@ -2861,7 +2861,7 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="osm_events_venue">Events Venue</string>
 
     <!-- Tutorial strings -->
-    <!-- Welcome message for the tutorial -->
+    <!-- Welcome message for the tutorial. Many users are blind and hear this read aloud, and the app doesn't know their gender: prefer a phrasing that needs no gender agreement (e.g. Italian "Salve!", Portuguese "Está tudo pronto!"). Avoid slashes or brackets like "o/a" or "(a)", which screen readers read aloud. -->
     <string name="tour_welcome">Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.</string>
     <!-- Prompt to select a place from the list -->
     <string name="tour_select_place">Places Nearby groups points of interest by type. Browse the places in the lists and select one.</string>

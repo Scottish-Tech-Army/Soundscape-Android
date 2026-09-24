@@ -282,5 +282,14 @@ from "all set", mostly found an impersonal form:
 This is a rule C7 source problem. Either restore "You're all set!" or add a
 translator comment such as "Prefer an impersonal phrasing (e.g. 'All set!',
 'Everything is ready') so the text doesn't have to agree with the user's
-gender". **Not yet edited.** The same applies to any future English that
-puts an adjective or participle on "you".
+gender". The same applies to any future English that puts an adjective or
+participle on "you".
+
+**Comment edited 2026-09-24** (English text unchanged, to avoid flagging 44
+languages at once) for `first_launch_prompt_title`, `first_launch_welcome_title`
+and `tour_welcome`: prefer gender-free phrasing, and never use slashes or
+brackets. The welcome title had the same problem: es «¡Bienvenido!», pt
+«Bem-vindo!» and ca «Benvingut!» are masculine, and pt_BR «Bem-vindo(a)!»
+puts brackets in front of a screen reader. it «Salve!» is the model. Existing
+translations aren't re-flagged by a comment change, so fix them through each
+language's reviewer.

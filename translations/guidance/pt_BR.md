@@ -55,6 +55,9 @@ or «vai para a esquerda» would avoid it.
 
 Microsoft's «Tudo pronto!» was neutral (C15). Revert.
 
+`first_launch_welcome_title` «Bem-vindo(a)!» has the same root problem, and a
+screen reader reads the brackets aloud. «Boas-vindas!» or «Olá!» avoids both.
+
 ## Rejected
 
 «Em Ociosidade» for Snooze (Microsoft). It means "idle" and was replaced by
@@ -65,7 +68,7 @@ Microsoft's «Tudo pronto!» was neutral (C15). Revert.
 1. Marker «Favoritos» and Waypoint «Localizador»: natural? (PTBR-T1)
 2. «Rua X, vira à esquerda»: does it sound like an instruction? (PTBR-S1)
 3. «Caminho para uma rua sem saída»? (PTBR-G1)
-4. «Tudo pronto!» again? (PTBR-R1)
+4. «Tudo pronto!» again? And «Boas-vindas!» instead of «Bem-vindo(a)!»? (PTBR-R1)
 5. Callout «notificação»: confused with phone notifications?
 6. Siri phrases «Soundscape arredores / rota / sinalizador / parar sinalizador…»: natural?
 7. Anything else.
