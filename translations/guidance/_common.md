@@ -167,8 +167,11 @@ This is a rule C7 source problem. The English comment ("Road description of
 path to another road e.g. "Path to Moor Road"") doesn't say that `%1$s` is a
 way type. It should say "%1$s is a kind of way (Path, Track…); %2$s is where
 it leads. Translate as 'a %1$s leading to %2$s', not 'from %1$s to %2$s'".
-**Not yet edited.** A comment edit needs a Weblate source update to reach
-translators.
+**Edited 2026-09-24**, together with `confect_name_dead_end`'s comment,
+which now says it only ever lands in these templates' `%2$s` (C9). A comment
+edit reaches translators in Weblate only after the component pulls the new
+English source. Existing translations are not re-flagged, so the hi, ta and
+ja strings still need fixing through their reviewers (HI-G1, TA-G1, JA-G1).
 
 ## C11 — "goes left" describes a road; it is not a turn instruction
 

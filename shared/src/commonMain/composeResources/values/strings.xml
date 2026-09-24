@@ -1182,9 +1182,9 @@
     <string name="settings_search_results_language_description">You can let online search use the local language of the result, or force it to return English, French, or German.</string>
     <!-- Menu option for sharing the recorded travel route via another app -->
     <string name="menu_share_recorded_route">Share recording of travel</string>
-    <!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->
+    <!-- Describes an unnamed way by where it leads and what it passes on the way, e.g. "Path to Moor Road via steps". %1$s is the kind of way (Path, Track, Service road...), %2$s is the road it leads to or the dead end string (confect_name_dead_end), %3$s is what it passes (steps, tunnel, bridge). Translate as "a %1$s that leads to %2$s, passing %3$s" - the way is the thing being described, not the starting point of a journey, so do not use a "from %1$s to %2$s" construction. -->
     <string name="confect_name_to_via">%1$s to %2$s via %3$s</string>
-    <!-- Road description of path to another road e.g. "Path to Moor Road" -->
+    <!-- Describes an unnamed way by where it leads, e.g. "Path to Moor Road". %1$s is the kind of way (Path, Track, Service road...), %2$s is the road it leads to or the dead end string (confect_name_dead_end). Translate as "a %1$s that leads to %2$s" - the way is the thing being described, not the starting point of a journey, so do not use a "from %1$s to %2$s" construction. -->
     <string name="confect_name_to">%1$s to %2$s</string>
     <!-- Road description of path joining two roads e.g. "Path that joins Roselea Drive and Moor Road" -->
     <string name="confect_name_joins">%1$s that joins %2$s and %3$s</string>
@@ -1196,7 +1196,7 @@
     <string name="confect_name_pavement">Sidewalk</string>
     <!-- Description of an un-named path which follows a river or the shore of a lake e.g. "Path next to Allander Water" -->
     <string name="confect_name_next_to">%1$s next to %2$s</string>
-    <!-- Dead end road description - a road that goes nowhere -->
+    <!-- Dead end road description - a road that goes nowhere. Never shown on its own: it is only ever the %2$s of confect_name_to and confect_name_to_via ("Path to dead end"), so translate it in whatever form (case, article) your translation of those templates needs after its "to" word. -->
     <string name="confect_name_dead_end">dead end</string>
     <!-- Offscreen maps screen title - offline maps are map files which can be downloaded by the app so that the app can work without Internet -->
     <string name="offline_maps_title">Offline maps</string>
