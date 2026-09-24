@@ -1482,7 +1482,7 @@
     <string name="directions_cardinal_north_west_bound">Spre nord-vest</string>
     <string name="first_launch_permissions_granted">Permisiune acordată</string>
     <string name="first_launch_permissions_not_granted">Încă neacordată</string>
-    <string name="talkback_double_tap_template">Atinge de două ori pentru%1$s</string>
+    <string name="talkback_double_tap_template">Atinge de două ori pentru %1$s</string>
     <string name="menu_manage_locale">Localizare</string>
     <string name="callouts_audio_beacon_distance">Baliza se află momentan la %1$s</string>
     <string name="directions_street_settlement">%1$s, %2$s</string>
