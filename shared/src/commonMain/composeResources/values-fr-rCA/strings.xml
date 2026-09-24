@@ -1383,16 +1383,56 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">virgule</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s octets</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilooctets</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s mégaoctets</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigaoctets</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s téraoctets</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="many">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s octets</item>
+        <item quantity="many">%1$s octets</item>
+        <item quantity="other">%1$s octets</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="many">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kilooctets</item>
+        <item quantity="many">%1$s kilooctets</item>
+        <item quantity="other">%1$s kilooctets</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="many">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s mégaoctets</item>
+        <item quantity="many">%1$s mégaoctets</item>
+        <item quantity="other">%1$s mégaoctets</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="many">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigaoctets</item>
+        <item quantity="many">%1$s gigaoctets</item>
+        <item quantity="other">%1$s gigaoctets</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="many">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s téraoctets</item>
+        <item quantity="many">%1$s téraoctets</item>
+        <item quantity="other">%1$s téraoctets</item>
+    </plurals>
     <string name="help_config_voices_content_ios">Soundscape peut utiliser n’importe quelle voix que vous avez téléchargée dans l’application Réglages d’iOS, à l’exception des voix Siri qui ne sont pas accessibles à Soundscape. Nous recommandons de choisir l’une des voix *Améliorées*, car leur qualité est bien supérieure ; pour cela, vous devez d’abord télécharger une voix améliorée. Vous pouvez télécharger des voix dans l’app Réglages d’iOS en allant dans Accessibilité &gt; Contenu énoncé &gt; Voix, puis en appuyant sur une voix. Dans l’application Soundscape, vous pouvez sélectionner la voix à utiliser en allant dans Réglages depuis le menu principal, puis en sélectionnant *Voix*.</string>
     <string name="settings_mix_audio">Mixer l’audio avec d’autres applications</string>
     <string name="settings_mix_audio_description">Si désactivé, les autres applications audio seront mises en pause et les commandes multimédias de l’écran verrouillé seront disponibles</string>
@@ -1545,4 +1585,5 @@
     <string name="siri_short_detail">Détails</string>
     <string name="siri_param_level">Niveau</string>
     <string name="siri_desc_callout_detail">Définit la quantité d’informations que Soundscape annonce pendant que vous marchez.</string>
+    <string name="intersection_approaching_intersection_distance">Intersection à %1$s</string>
 </resources>
