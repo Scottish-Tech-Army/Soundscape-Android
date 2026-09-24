@@ -828,16 +828,36 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">phẩy</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s byte</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilobyte</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megabyte</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigabyte</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s terabyte</string>
+    <plurals name="bytes_format_b">
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="other">%1$s byte</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="other">%1$s kilobyte</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="other">%1$s megabyte</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="other">%1$s gigabyte</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="other">%1$s terabyte</item>
+    </plurals>
     <string name="ui_action_button_my_location">Vị trí\ncủa tôi</string>
     <string name="ui_action_button_my_location_acc_hint">nghe về vị trí hiện tại của bạn</string>
     <string name="ui_action_button_nearby_markers">Điểm đánh dấu\ngần đây</string>
@@ -1535,4 +1555,5 @@
     <string name="siri_short_detail">Chi tiết</string>
     <string name="siri_param_level">Mức</string>
     <string name="siri_desc_callout_detail">Đặt mức độ Soundscape nói khi bạn đi bộ.</string>
+    <string name="intersection_approaching_intersection_distance">Giao lộ cách %1$s</string>
 </resources>
