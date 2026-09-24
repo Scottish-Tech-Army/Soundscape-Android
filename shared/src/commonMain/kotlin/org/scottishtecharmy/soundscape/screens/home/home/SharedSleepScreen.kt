@@ -316,7 +316,7 @@ fun WakeButton(
         Text(
             text = text,
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.displaySmall,
+            style = MaterialTheme.typography.titleLarge,
         )
     }
 }
