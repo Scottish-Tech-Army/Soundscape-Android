@@ -142,3 +142,58 @@ warn any of them.
 > slepá ulice», sk «do slepá ulica», hr «do slijepa ulica», sr «до ћорсокак»
 > and sl «do slepa ulica» (all need the genitive). The English comment said
 > only "Dead end road description".
+>
+> **Addendum (2026-09-24):** Icelandic has it too. «til blindgata» should be
+> genitive «til blindgötu» (`is.md` IS-G1). Bulgarian is correctly absent,
+> since it has no noun case (`bg.md` BG-G1). A non-inflecting language can
+> still get this slot wrong another way: French «à impasse» lacks its article
+> (`fr.md` FR-G1).
+
+## C10 — `confect_name_to` means "a path that leads to", not "from … to"
+
+`confect_name_to` («%1$s to %2$s») and `confect_name_to_via` put a **way
+type** in `%1$s` («Path», «Service road») and the place it leads to in
+`%2$s`. English "to" is ambiguous, so translators reached for their language's
+*from–to* range construction, which makes the path the starting point instead
+of the thing being described:
+
+> **Case (2026-09-24 sweep):** hi «%1$s से %2$s तक», ta «%1$s முதல் %2$s
+> வரை» and ja «%1$s から %2$s へ» all say "from the path to Moor Road".
+> zh «%1$s到%2$s» is ambiguous in the same way. mr, te and ko got it right
+> with a relative clause («%2$s कडे जाणारा %1$s», «%2$s(으)로 이어지는
+> %1$s»), which is the model to follow.
+
+This is a rule C7 source problem. The English comment ("Road description of
+path to another road e.g. "Path to Moor Road"") doesn't say that `%1$s` is a
+way type. It should say "%1$s is a kind of way (Path, Track…); %2$s is where
+it leads. Translate as 'a %1$s leading to %2$s', not 'from %1$s to %2$s'".
+**Not yet edited.** A comment edit needs a Weblate source update to reach
+translators.
+
+## C11 — "goes left" describes a road; it is not a turn instruction
+
+`directions_name_goes_left/right` and `directions_name_continues_ahead` tell
+the user which way each road at an intersection *leads*. Soundscape never
+gives turn-by-turn instructions. A translation that reads as an instruction
+(«turn left») tells a blind user to do something the app never decided.
+
+> **Case (2026-09-24 sweep):** vi «%1$s, rẽ trái» and zh «%1$s，左转» both
+> mean "turn left". The zh version was a native speaker's change (Benjamin
+> Lin, 2026-02-17, replacing «向左延伸», "extends to the left"). So the
+> original wording evidently sounded wrong to a native ear, and the fix
+> overshot. Treat that as a question, not a revert (C8).
+
+## C12 — A transliterated English term isn't wrong by default
+
+In many languages the phone itself uses the English loanword (Hindi
+«स्लीप», Japanese «スヌーズ», Telugu «కాలౌట్»). A native-sounding coinage the
+user has never heard on their phone is worse than a loanword they recognise.
+This is the same logic as C1. Ask what the reviewer's phone and navigation
+apps say before "nativising" a transliteration.
+
+Two things still make a term wrong regardless of origin:
+
+- **the wrong sense**: a term with a *visual* meaning for something audible
+  (vi «Đèn hiệu», "signal lamp", and id «Suar», "flare", for Beacon)
+- **a split corpus**: two different words for one concept (bn ঘোষণা/কলআউট,
+  ur اعلان/کالآؤٹ, zh 提示/播报, ja コールアウト/読み上げ)
