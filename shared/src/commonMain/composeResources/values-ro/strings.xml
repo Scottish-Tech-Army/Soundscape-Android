@@ -1389,7 +1389,7 @@
         <item quantity="other">%1$s B</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s octeți</item>
+        <item quantity="one">%1$s octet</item>
         <item quantity="few">%1$s octeți</item>
         <item quantity="other">%1$s octeți</item>
     </plurals>
@@ -1399,7 +1399,7 @@
         <item quantity="other">%1$s kB</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s kiloocteți</item>
+        <item quantity="one">%1$s kilooctet</item>
         <item quantity="few">%1$s kiloocteți</item>
         <item quantity="other">%1$s kiloocteți</item>
     </plurals>
@@ -1409,7 +1409,7 @@
         <item quantity="other">%1$s MB</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s megaocteți</item>
+        <item quantity="one">%1$s megaoctet</item>
         <item quantity="few">%1$s megaocteți</item>
         <item quantity="other">%1$s megaocteți</item>
     </plurals>
@@ -1419,7 +1419,7 @@
         <item quantity="other">%1$s GB</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s gigaocteți</item>
+        <item quantity="one">%1$s gigaoctet</item>
         <item quantity="few">%1$s gigaocteți</item>
         <item quantity="other">%1$s gigaocteți</item>
     </plurals>
@@ -1429,7 +1429,7 @@
         <item quantity="other">%1$s TB</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s teraocteți</item>
+        <item quantity="one">%1$s teraoctet</item>
         <item quantity="few">%1$s teraocteți</item>
         <item quantity="other">%1$s teraocteți</item>
     </plurals>
