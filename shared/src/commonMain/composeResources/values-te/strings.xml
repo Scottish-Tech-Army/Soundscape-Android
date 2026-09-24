@@ -1016,7 +1016,7 @@
         <item quantity="other">%1$s B</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s బైట్లు</item>
+        <item quantity="one">%1$s బైట్</item>
         <item quantity="other">%1$s బైట్లు</item>
     </plurals>
     <plurals name="bytes_format_kb">
@@ -1024,7 +1024,7 @@
         <item quantity="other">%1$s kB</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s కిలోబైట్లు</item>
+        <item quantity="one">%1$s కిలోబైట్</item>
         <item quantity="other">%1$s కిలోబైట్లు</item>
     </plurals>
     <plurals name="bytes_format_mb">
@@ -1032,7 +1032,7 @@
         <item quantity="other">%1$s MB</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s మెగాబైట్లు</item>
+        <item quantity="one">%1$s మెగాబైట్</item>
         <item quantity="other">%1$s మెగాబైట్లు</item>
     </plurals>
     <plurals name="bytes_format_gb">
@@ -1040,7 +1040,7 @@
         <item quantity="other">%1$s GB</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s గిగాబైట్లు</item>
+        <item quantity="one">%1$s గిగాబైట్</item>
         <item quantity="other">%1$s గిగాబైట్లు</item>
     </plurals>
     <plurals name="bytes_format_tb">
@@ -1048,7 +1048,7 @@
         <item quantity="other">%1$s TB</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s టెరాబైట్లు</item>
+        <item quantity="one">%1$s టెరాబైట్</item>
         <item quantity="other">%1$s టెరాబైట్లు</item>
     </plurals>
     <string name="ui_action_button_my_location">నా\nస్థానం</string>
