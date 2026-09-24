@@ -1383,7 +1383,7 @@
         <item quantity="other">%1$s B</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s Bytes</item>
+        <item quantity="one">%1$s Byte</item>
         <item quantity="other">%1$s Bytes</item>
     </plurals>
     <plurals name="bytes_format_kb">
