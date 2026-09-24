@@ -655,16 +655,46 @@
     </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">দশমিক</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s বাইট</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s কিলোবাইট</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s মেগাবাইট</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s গিগাবাইট</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s টেরাবাইট</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s বাইট</item>
+        <item quantity="other">%1$s বাইট</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s কিলোবাইট</item>
+        <item quantity="other">%1$s কিলোবাইট</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s মেগাবাইট</item>
+        <item quantity="other">%1$s মেগাবাইট</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s গিগাবাইট</item>
+        <item quantity="other">%1$s গিগাবাইট</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s টেরাবাইট</item>
+        <item quantity="other">%1$s টেরাবাইট</item>
+    </plurals>
     <string name="ui_action_button_my_location">আমার\nঅবস্থান</string>
     <string name="ui_action_button_my_location_acc_hint">আপনার বর্তমান অবস্থান সম্পর্কে শুনতে</string>
     <string name="ui_action_button_nearby_markers">নিকটবর্তী\nমার্কার</string>
@@ -1540,4 +1570,5 @@
     <string name="siri_short_detail">বিবরণ</string>
     <string name="siri_param_level">স্তর</string>
     <string name="siri_desc_callout_detail">আপনি হাঁটার সময় Soundscape কতটা বলবে তা নির্ধারণ করে।</string>
+    <string name="intersection_approaching_intersection_distance">মোড় %1$s দূরে</string>
 </resources>
