@@ -1378,16 +1378,46 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">komma</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s byte</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilobyte</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megabyte</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigabyte</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s terabyte</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s byte</item>
+        <item quantity="other">%1$s byte</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kilobyte</item>
+        <item quantity="other">%1$s kilobyte</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megabyte</item>
+        <item quantity="other">%1$s megabyte</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigabyte</item>
+        <item quantity="other">%1$s gigabyte</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s terabyte</item>
+        <item quantity="other">%1$s terabyte</item>
+    </plurals>
     <string name="help_config_voices_content_ios">Soundscape kan använda de röster du har laddat ner i iOS‑appen Inställningar, förutom Siri‑rösterna som inte är tillgängliga för Soundscape. Vi rekommenderar att du väljer en av de *"förbättrade"* rösterna eftersom de har betydligt bättre röstkvalitet, men för att göra det måste du först ladda ner en förbättrad röst. Du kan ladda ner röster i iOS‑appen Inställningar genom att gå till Tillgänglighet &gt; Talat innehåll &gt; Röster och trycka på en röst. I Soundscape‑appen väljer du vilken röst du vill använda genom att gå till Inställningar i huvudmenyn och sedan välja *"Röster"*.</string>
     <string name="settings_mix_audio">Blanda ljud med andra appar</string>
     <string name="settings_mix_audio_description">När det är inaktiverat pausas andra ljudappar och mediereglagen på låsskärmen blir tillgängliga</string>
@@ -1540,4 +1570,5 @@
     <string name="siri_short_detail">Detaljer</string>
     <string name="siri_param_level">Nivå</string>
     <string name="siri_desc_callout_detail">Ställer in hur mycket Soundscape säger medan du går.</string>
+    <string name="intersection_approaching_intersection_distance">Vägkorsning %1$s bort</string>
 </resources>
