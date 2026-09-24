@@ -1244,7 +1244,7 @@
         <item quantity="other">%1$s B</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s baiti</item>
+        <item quantity="one">%1$s bait</item>
         <item quantity="other">%1$s baiti</item>
     </plurals>
     <plurals name="bytes_format_kb">
@@ -1252,7 +1252,7 @@
         <item quantity="other">%1$s kB</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s kilobaiti</item>
+        <item quantity="one">%1$s kilobait</item>
         <item quantity="other">%1$s kilobaiti</item>
     </plurals>
     <plurals name="bytes_format_mb">
@@ -1260,7 +1260,7 @@
         <item quantity="other">%1$s MB</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s megabaiti</item>
+        <item quantity="one">%1$s megabait</item>
         <item quantity="other">%1$s megabaiti</item>
     </plurals>
     <plurals name="bytes_format_gb">
@@ -1268,7 +1268,7 @@
         <item quantity="other">%1$s GB</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s gigabaiti</item>
+        <item quantity="one">%1$s gigabait</item>
         <item quantity="other">%1$s gigabaiti</item>
     </plurals>
     <plurals name="bytes_format_tb">
@@ -1276,7 +1276,7 @@
         <item quantity="other">%1$s TB</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s terabaiti</item>
+        <item quantity="one">%1$s terabait</item>
         <item quantity="other">%1$s terabaiti</item>
     </plurals>
     <string name="ui_action_button_my_location">Minu\nasukoht</string>
