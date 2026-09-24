@@ -128,10 +128,10 @@ particle attaches directly to the fragment, per commit `de8a39bab`). A naive
 `[^ ]%1$s` grep counts all five of these, plus the three with `%1$s` at the
 start, which is how an earlier draft of this entry arrived at "30".
 
-Still open, for those languages' reviewers: fi «Kaksoisnapauta %1$s» and hi
-«दो बार टैप करें %1$s» have the space now, but neither has a connective
-("to" / "in order to") before the fragment, so the sentence may still read
-badly.
+Still open, for that language's reviewer: hi «दो बार टैप करें %1$s» has
+the space now, but the hint grammar is still wrong (see `hi.md` HI-B1).
+fi «Kaksoisnapauta %1$s» turned out to be **fine**: its hints are
+translative infinitives that carry the "to" themselves (see `fi.md`).
 
 ### FR-R1 — Formal «vous» throughout (`unconfirmed`)
 
@@ -143,7 +143,7 @@ Keep it unless the reviewers disagree. See Q4.
 
 ### FR-T1 — Callout is split between «notification» and «annonce» (`unconfirmed`)
 
-*«notification» is Microsoft's term (C14). «annonce» came later, from AI.*
+*«notification» is Microsoft's term (C14). «annonce» came later, from AI. fr_CA now uses «annonces» throughout (see `fr_CA.md`).*
 
 Nouns in the UI and settings use «notification» («Autoriser les
 notifications», «Gérer les notifications», `siri_type_callout`
@@ -156,7 +156,7 @@ strings, so it needs a speaker's yes first. See Q1.
 
 ### FR-T2 — Waypoint and Landmark share «repère» (`unconfirmed`, likely a real problem)
 
-*Both terms are Microsoft's (C14): the collision shipped in the original iOS app.*
+*Both terms are Microsoft's (C14): the collision shipped in the original iOS app. **fr_CA has already moved to «point de cheminement»** (see `fr_CA.md`), so there is a live precedent to show the reviewers.*
 
 Waypoint is «point de repère». Landmark is «repère», and in everyday French
 «point de repère» *is* the word for a landmark. So «Lieux et repères»
