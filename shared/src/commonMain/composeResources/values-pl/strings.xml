@@ -1497,7 +1497,7 @@
     <string name="directions_cardinal_north_west_bound">W kierunku północno-zachodnim</string>
     <string name="first_launch_permissions_granted">Uprawnienie przyznane</string>
     <string name="first_launch_permissions_not_granted">Jeszcze nie przyznano</string>
-    <string name="talkback_double_tap_template">Stuknij dwukrotnie, aby%1$s</string>
+    <string name="talkback_double_tap_template">Stuknij dwukrotnie, aby %1$s</string>
     <string name="menu_manage_locale">Ustawienia regionalne</string>
     <string name="callouts_audio_beacon_distance">Naprowadzanie jest obecnie w odległości %1$s</string>
     <string name="directions_street_settlement">%1$s, %2$s</string>
