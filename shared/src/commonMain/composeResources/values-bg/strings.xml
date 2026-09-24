@@ -304,7 +304,7 @@
         <item quantity="other">%1$s B</item>
     </plurals>
     <plurals name="bytes_format_b_a11y">
-        <item quantity="one">%1$s байта</item>
+        <item quantity="one">%1$s байт</item>
         <item quantity="other">%1$s байта</item>
     </plurals>
     <string name="route_beacon_progress">Маяк при %1$s</string>
@@ -1164,7 +1164,7 @@
         <item quantity="other">%1$s kB</item>
     </plurals>
     <plurals name="bytes_format_kb_a11y">
-        <item quantity="one">%1$s килобайта</item>
+        <item quantity="one">%1$s килобайт</item>
         <item quantity="other">%1$s килобайта</item>
     </plurals>
     <plurals name="bytes_format_mb">
@@ -1172,7 +1172,7 @@
         <item quantity="other">%1$s MB</item>
     </plurals>
     <plurals name="bytes_format_mb_a11y">
-        <item quantity="one">%1$s мегабайта</item>
+        <item quantity="one">%1$s мегабайт</item>
         <item quantity="other">%1$s мегабайта</item>
     </plurals>
     <plurals name="bytes_format_gb">
@@ -1180,7 +1180,7 @@
         <item quantity="other">%1$s GB</item>
     </plurals>
     <plurals name="bytes_format_gb_a11y">
-        <item quantity="one">%1$s гигабайта</item>
+        <item quantity="one">%1$s гигабайт</item>
         <item quantity="other">%1$s гигабайта</item>
     </plurals>
     <plurals name="bytes_format_tb">
@@ -1188,7 +1188,7 @@
         <item quantity="other">%1$s TB</item>
     </plurals>
     <plurals name="bytes_format_tb_a11y">
-        <item quantity="one">%1$s терабайта</item>
+        <item quantity="one">%1$s терабайт</item>
         <item quantity="other">%1$s терабайта</item>
     </plurals>
     <string name="ui_action_button_my_location">Моето\nместоположение</string>
