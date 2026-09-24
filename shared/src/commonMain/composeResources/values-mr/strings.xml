@@ -1247,16 +1247,46 @@
     </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">पूर्णांक</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s बाइट्स</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s किलोबाइट्स</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s मेगाबाइट्स</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s गिगाबाइट्स</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s टेराबाइट्स</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s बाइट्स</item>
+        <item quantity="other">%1$s बाइट्स</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s किलोबाइट्स</item>
+        <item quantity="other">%1$s किलोबाइट्स</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s मेगाबाइट्स</item>
+        <item quantity="other">%1$s मेगाबाइट्स</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s गिगाबाइट्स</item>
+        <item quantity="other">%1$s गिगाबाइट्स</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s टेराबाइट्स</item>
+        <item quantity="other">%1$s टेराबाइट्स</item>
+    </plurals>
     <string name="ui_action_button_my_location">माझे\nस्थान</string>
     <string name="ui_action_button_my_location_acc_hint">तुमच्या सध्याच्या स्थानाबद्दल ऐका</string>
     <string name="ui_action_button_nearby_markers">जवळचे\nमार्कर</string>
@@ -1540,4 +1570,5 @@
     <string name="siri_short_detail">तपशील</string>
     <string name="siri_param_level">स्तर</string>
     <string name="siri_desc_callout_detail">तुम्ही चालत असताना Soundscape किती सांगेल हे ठरवते.</string>
+    <string name="intersection_approaching_intersection_distance">चौक %1$s अंतरावर</string>
 </resources>
