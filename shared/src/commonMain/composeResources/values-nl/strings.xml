@@ -1467,7 +1467,7 @@
     <string name="directions_cardinal_north_west_bound">Richting noordwesten</string>
     <string name="first_launch_permissions_granted">Toestemming verleend</string>
     <string name="first_launch_permissions_not_granted">Nog niet verleend</string>
-    <string name="talkback_double_tap_template">Dubbel tik om%1$s</string>
+    <string name="talkback_double_tap_template">Dubbel tik om %1$s</string>
     <string name="menu_manage_locale">Landinstellingen</string>
     <string name="callouts_audio_beacon_distance">Het baken is momenteel %1$s verwijderd</string>
     <string name="directions_street_settlement">%1$s, %2$s</string>
