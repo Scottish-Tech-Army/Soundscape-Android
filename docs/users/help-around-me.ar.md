@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: حولي
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ar
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# حولي
 
-## What is it?
+## ما هو؟
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+يخبرك زر *حولي* عن شيء واحد في كل ربع من الأرباع الأربعة المحيطة بك (أمامك، وإلى يمينك، وخلفك، وإلى يسارك). يهدف *حولي* إلى مساعدتك على التوجه ضمن محيطك.
 
-## When would I use it?
+## متى أستخدمه؟
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+عندما تحاول تحديد موقعك والتوجه ضمن محيطك، استخدم *حولي* لسماع الأشياء من حولك.
 
-## How does it work?
+## كيف يعمل؟
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+كما هو الحال مع جميع الأزرار الأربعة أسفل الشاشة الرئيسية، أمسك هاتفك بحيث تكون الشاشة أفقية (متجهة نحو السماء) وأعلى الهاتف يشير إلى الاتجاه الذي تواجهه قبل الضغط على زر *حولي*. يعمل هذا كبوصلة تخبر التطبيق بالاتجاه الذي تواجهه. ببساطة، انقر على زر *حولي* وستسمع أربع نقاط اهتمام موزعة حولك.
 

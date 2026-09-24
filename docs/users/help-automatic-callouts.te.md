@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: స్వయంచాలక కాలౌట్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,33 +7,33 @@ lang: te
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# స్వయంచాలక కాలౌట్‌లు
 
-## What is it?
+## ఇది ఏమిటి?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+మీరు సమీపించే వస్తువుల గురించి, అవి ఏ దిశలో ఉన్నాయో ఆ దిశ నుండి వాటి పేరును కాలౌట్ చేయడం ద్వారా Soundscape మీకు తెలియజేయగలదు. వ్యాపారాలు, బస్ స్టాప్‌లు, మరియు కూడళ్ల వంటి అన్ని రకాల వాటికి యాప్ దీన్ని స్వయంచాలకంగా చేస్తుంది. *\"సెట్టింగ్‌లు\"* స్క్రీన్‌లోని *\"కాలౌట్‌లను నిర్వహించండి\"* విభాగంలో యాప్ స్వయంచాలకంగా ఏమి కాలౌట్ చేస్తుందో మీరు కాన్ఫిగర్ చేసుకోవచ్చు, మరియు యాప్ నిశ్శబ్దంగా ఉండాలని మీరు కోరుకున్నప్పుడు అన్ని కాలౌట్‌లను ఆఫ్ చేయవచ్చు.
 
-## When would I use it?
+## దీన్ని నేను ఎప్పుడు ఉపయోగించాలి?
 
-**Exploring a new area :**
+**కొత్త ప్రాంతాన్ని అన్వేషించడం :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ స్వయంచాలక కాలౌట్‌లను ఆన్ చేసి చుట్టూ నడవండి, మీరు దాటిపోతున్నప్పుడు వివిధ దుకాణాలు, రెస్టారెంట్లు వంటి వాటి గురించి వినడానికి.
 
-**Walking to a specific location :**
+**ఒక నిర్దిష్ట ప్రదేశానికి నడవడం :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ మీరు ఒక నిర్దిష్ట ప్రదేశానికి వెళ్తున్నప్పుడు, కూడళ్ల కోసం స్వయంచాలక కాలౌట్‌లు ప్రత్యేకంగా ఉపయోగకరంగా ఉంటాయి. మీరు కూడళ్లను సమీపిస్తున్నప్పుడు వాటి నిర్మాణం గురించి కూడలి కాలౌట్‌లు తెలియజేస్తాయి, మరియు మీరు వాటిని దాటిన తర్వాత మీరు ఉన్న రోడ్డును ధృవీకరిస్తాయి.
 
-**When you need silence :**
+**మీకు నిశ్శబ్దం అవసరమైనప్పుడు :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ మీరు రోడ్డు దాటబోతున్నప్పుడు లేదా యాప్ నిశ్శబ్దంగా ఉండాలని కోరుకున్నప్పుడు, మీరు కాలౌట్‌లను ఆఫ్ చేయవచ్చు. కాలౌట్‌లు ఆఫ్‌లో ఉన్నప్పుడు, మీరు *నా స్థానం*, *సమీప మార్కర్‌లు*, *నా చుట్టూ*, లేదా *నా ముందు* బటన్లలో ఒకదాన్ని మాన్యువల్‌గా నొక్కితేనే యాప్ మీకు సమాచారం తెలియజేస్తుంది.
 
-## How does it work?
+## ఇది ఎలా పని చేస్తుంది?
 
-**Turning callouts on or off :**
+**కాలౌట్‌లను ఆన్ లేదా ఆఫ్ చేయడం :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ కాలౌట్‌లను ఆఫ్ చేయడం వలన యాప్ నిశ్శబ్దమవుతుంది. *\"సెట్టింగ్‌లు\"* స్క్రీన్‌లోని *\"కాలౌట్‌లను నిర్వహించండి\"* విభాగంలో *\"కాలౌట్ వివరాలు\"* ను *\"నిశ్శబ్దం\"* కు సెట్ చేయడం ద్వారా కాలౌట్‌లను ఆఫ్ చేయవచ్చు; మరే ఇతర స్థాయిని ఎంచుకున్నా అవి మళ్లీ ఆన్ అవుతాయి. ఇదే పని Siri లేదా Gemini ను అడిగి కూడా చేయించుకోవచ్చు. మీ హెడ్‌ఫోన్‌ల మీడియా కంట్రోల్ బటన్లతో Soundscape ను ఒక్కో అంచెలో నిశ్శబ్దం చేయవచ్చు: *\"మునుపటి\"* నొక్కిన ప్రతిసారీ *\"వివరణాత్మకం\"*, *\"సమతుల్యం\"*, *\"క్లుప్తం\"*, *\"నిశ్శబ్దం\"* గుండా ఒక అంచె కిందకు వెళుతుంది, మరోసారి నొక్కితే తిరిగి *\"వివరణాత్మకం\"* కు వస్తుంది. *\"మీడియా నియంత్రణలను ఉపయోగించడం\"* సహాయ అంశాన్ని చూడండి. ప్రత్యామ్నాయంగా, Soundscape మళ్లీ మేల్కొల్పే వరకు కాలౌట్‌లు చేయకుండా ఆపడానికి హోమ్ స్క్రీన్ ఎగువ-కుడి మూలలో ఉన్న *\"నిద్ర\"* బటన్‌ను మీరు ఉపయోగించవచ్చు.
 
-**Managing which callouts you hear :**
+**మీరు వినే కాలౌట్‌లను నిర్వహించడం :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Soundscape స్వయంచాలకంగా దేని గురించి కాలౌట్ చేయాలో ఎంచుకోవడానికి, *\"హోమ్\"* స్క్రీన్‌లోని మెనూను ఉపయోగించి *\"సెట్టింగ్‌లు\"* స్క్రీన్‌కు వెళ్లండి. *\"సెట్టింగ్‌లు\"* స్క్రీన్‌లోని *\"కాలౌట్‌లను నిర్వహించండి\"* విభాగంలోనే, *\"కాలౌట్ వివరాలు\"* తో యాప్ ఎంత చెప్పాలో, *\"వీధులు మరియు కూడళ్లు\"* కాలౌట్ చేయాలా వద్దా, మరియు *\"కాలౌట్ చేయాల్సిన స్థలాలు\"* ఏవో మీరు ఎంచుకుంటారు. మీరు అన్ని కాలౌట్‌లను ఆఫ్ చేయాలనుకుంటే, *\"కాలౌట్ వివరాలు\"* ను *\"నిశ్శబ్దం\"* కు సెట్ చేయండి.
 

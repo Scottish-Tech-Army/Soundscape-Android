@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Навколо Мене
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: uk
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Навколо Мене
 
-## What is it?
+## Що це?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+Кнопка *"Навколо Мене"* дозволяє вам дізнатися про одне місце у кожному з чотирьох квадрантів навколо вас (попереду, праворуч, позаду та ліворуч). *"Навколо Мене"* призначена для того, щоб допомогти вам зорієнтуватися на місцевості.
 
-## When would I use it?
+## Коли б я міг це використати?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Коли ви намагаєтесь зорієнтуватися та ознайомитися з місцевістю, використовуйте *"Навколо Мене"*, щоб дізнатися про місця навколо вас.
 
-## How does it work?
+## Як це працює?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Як і з усіма чотирма кнопками внизу головного екрана, перш ніж натиснути кнопку *Навколо Мене*, тримайте телефон горизонтально (екраном догори) і верхньою частиною телефону в напрямку, в якому ви дивитеся. Це працює як компас, що дозволяє програмі визначити, в якому напрямку ви дивитесь. Просто торкніться кнопки *Навколо Мене*, і ви почуєте чотири точки інтересу поблизу вас.
 

@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: మార్కర్‌లను సృష్టించడం
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,9 +7,9 @@ lang: te
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# మార్కర్‌లను సృష్టించడం
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+మీరు మూడు విధాలుగా మార్కర్‌లను సృష్టించవచ్చు: శోధన పట్టీని ఉపయోగించి మీరు సేవ్ చేయాలనుకున్న ప్రదేశం కోసం వెతకడం, *\"సమీప ప్రదేశాలు\"* బటన్‌ను ఉపయోగించి ఎక్కడైనా కనుగొనడం, లేదా *\"ప్రస్తుత స్థానాన్ని ఉపయోగించండి\"* బటన్‌ను ఉపయోగించడం, ఇవన్నీ Soundscape హోమ్ స్క్రీన్‌లో కనిపిస్తాయి. మీకు కావలసిన ప్రదేశాన్ని కనుగొన్న తర్వాత, దాన్ని ఎంచుకుంటే మిమ్మల్ని *\"స్థాన వివరాలు\"* స్క్రీన్‌కు తీసుకువెళ్తుంది. ఈ స్క్రీన్‌లో, *\"మార్కర్‌గా సేవ్ చేయండి\"* బటన్‌ను ఎంచుకోండి.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+ఇప్పుడు మీకు ఈ మార్కర్‌ను అనుకూలీకరించే ఆప్షన్ ఉంటుంది. మీరు మార్కర్ పేరును మార్చవచ్చు, అలాగే అదనపు సమాచారాన్ని అందించడానికి మార్కర్‌తో పాటు కాలౌట్ చేయబడే ఒక అనొటేషన్‌ను కూడా జోడించవచ్చు. మీరు పూర్తి చేసిన తర్వాత, మీ మార్కర్‌ను సేవ్ చేయడానికి *పూర్తయింది* బటన్‌ను ఎంచుకోండి.
 

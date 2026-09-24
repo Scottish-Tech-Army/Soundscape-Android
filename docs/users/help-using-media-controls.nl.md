@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Mediaregelaars gebruiken
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,33 +7,35 @@ lang: nl
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Mediaregelaars gebruiken
 
-## What is it?
+## Wat is het?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+U hebt toegang tot bepaalde functies in Soundscape met de mediaregelknoppen op uw koptelefoon. Deze functionaliteit werkt met alle bedrade en Bluetooth-koptelefoons met mediaregelknoppen zoals Afspelen, Pauzeren, Volgende, Vorige en andere. Verschillende koptelefoons hebben mogelijk andere knoppen, dus kijk in de onderstaande lijst met acties om te bepalen welke beschikbaar zijn op uw koptelefoon.
 
-## When would I use it?
+## Wanneer zou ik het moeten gebruiken?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Mediaregelaars op de koptelefoon kunnen worden gebruikt terwijl Soundscape actief is — of u de app nu actief gebruikt, of deze op de achtergrond draait, of uw apparaat vergrendeld is. De mediaregelknoppen op de koptelefoon werken echter niet met Soundscape als u met een andere app audio afspeelt, zoals muziek, podcasts of video's.
 
-## How does it work?
+## Hoe werkt het?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Er zijn 2 modi voor de mediaregelaars. De modus kan worden geselecteerd in de *Instellingen*-sectie *Mediaregelaars*. De modi zijn:
 
- Original mode. 
+ Originele modus. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Afspelen/Pauzeren: Zet het audiobaken aan of uit. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Volgende: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het volgende routepunt in de route. Als er geen route wordt afgespeeld, roept het *Om me heen* op.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Vorige: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het vorige routepunt in de route. Als er geen route wordt afgespeeld, wijzigt het het *Detailniveau aankondigingen*, met elke druk een stap rustiger: *Gedetailleerd*, *Gebalanceerd*, *Rustig*, *Stil*, en weer terug naar *Gedetailleerd*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Audiomenu. 
+
+
+
+⏭ Volgende bladert door een reeks menuopties die de app via tekst-naar-spraak beschrijft, en keert na de laatste terug naar de eerste. ⏯ Afspelen/Pauzeren activeert vervolgens de beschreven optie. Er is één hoofdmenu dat alleen submenus als opties heeft. Elk submenu bevat een groep vergelijkbare acties.
+
+⏮ Vorige bladert niet door het menu. In plaats daarvan wijzigt het het *Detailniveau aankondigingen*, precies zoals in de originele modus, zodat dezelfde knop de app rustiger maakt in welke modus u ook werkt.
 

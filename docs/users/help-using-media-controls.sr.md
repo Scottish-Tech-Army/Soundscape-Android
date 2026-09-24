@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Коришћење медијских контрола
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: sr
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Коришћење медијских контрола
 
-## What is it?
+## Шта је то?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Одређеним функцијама у Soundscape-у можете приступити уз помоћ дугмади за управљање медијима на вашим слушалицама. Ова функционалност ради са свим жичаним или Bluetooth слушалицама које имају дугмад за управљање медијима, попут Play, Pause, Next, Previous и других. Различите слушалице могу имати различиту дугмад, па погледајте списак радњи испод да бисте утврдили које су вам доступне.
 
-## When would I use it?
+## Када бих то користио/ла?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Дугмад за управљање медијима на слушалицама могу се користити док Soundscape ради — без обзира да ли активно користите апликацију, да ли ради у позадини или је ваш уређај закључан. Међутим, дугмад за управљање медијима на слушалицама неће радити са Soundscape-ом ако пуштате звук, попут музике, подкаста или видео снимака, помоћу друге апликације.
 
-## How does it work?
+## Како то функционише?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Постоје 2 режима рада за дугмад за управљање медијима. Режим можете изабрати у одељку *Подешавања* *Управљање медијима*. Режими су:
 
- Original mode. 
+ Оригинални режим. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Play/Pause: Укључује и искључује звук бакена. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Next: Ако се пушта рута, помера звучни бакен на следећу путну тачку у рути. Ако се не пушта рута, најављује *Шта је око мене*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Previous: Ако се пушта рута, помера звучни бакен на претходну путну тачку у рути. Ако се не пушта рута, мења *Ниво детаља најава* за један ниво тише при сваком притиску: *Детаљно*, *Уравнотежено*, *Тихо*, *Без звука*, па назад на *Детаљно*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Звучни мени. 
+
+
+
+⏭ Next креће се кроз низ опција менија које апликација описује путем претварања текста у говор, а после последње се враћа на прву. ⏯ Play/Pause тада покреће апликацију да изврши описану опцију. Постоји један главни мени који као опције има само подменије. Сваки подмени садржи групу сличних могућих радњи.
+
+⏮ Previous не креће се кроз мени. Уместо тога мења *Ниво детаља најава*, исто као у оригиналном режиму, па исто дугме утишава апликацију у оба режима.
 

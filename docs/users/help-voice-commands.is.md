@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Raddskipanir
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: is
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Raddskipanir
 
-## What is it?
+## hvað er það?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Þú getur beðið Gemini um að gera hluti í Soundscape án þess að snerta símann: heyra tilkynningu, ræsa eina af leiðunum þínum eða setja hljóðvita á eitt af merkjunum þínum. Allir aðrir aðstoðarmenn sem styðja forritsaðgerðir í Android geta gert það sama.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape svarar með sinni eigin rödd, með þeim tilkynningum og vitahljóðum sem þú þekkir nú þegar, í stað þess að aðstoðarmaðurinn lesi upp samantekt. Þannig kemur það sem þú heyrir áfram úr þeirri átt sem verið er að lýsa.
 
-## When would I use it?
+## Hvenær ætti að nota það?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Raddskipanir eru gagnlegar þegar síminn er í vasanum, þegar þú ert með fullar hendur eða þegar þú vilt helst ekki stoppa til að ýta á hnapp. Þær virka á meðan Soundscape keyrir í bakgrunni og á meðan síminn er læstur, og það opnar ekki forritið að biðja um tilkynningu.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Það er aðstoðarmaðurinn þinn sem hlustar, ekki Soundscape, svo forritið tekur aldrei yfir hljóðnemann og Bluetooth-heyrnartólin þín haldast í hágæða hljóðstillingu í stað þess að skipta yfir í lakari stillinguna sem notuð er fyrir símtöl.
 
-## How does it work?
+## hvernig virkar það?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Það eru engin nákvæm orðasambönd til að læra utan að. Biddu um það sem þú vilt með þínum eigin orðum og aðstoðarmaðurinn parar það við eina af aðgerðunum hér að neðan. Heiti leiða og merkja eru pöruð lauslega, svo hluti af heiti dugar yfirleitt.
 
-You can ask Soundscape to:
+Þú getur beðið Soundscape um að:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Lýsa *\"mín staðsetning\"*, hvað er *\"í kringum mig\"* eða hvað er *\"fyrir framan mig\"*.
 
-Call out the saved markers near you.
+Lesa upp vistuðu merkin nálægt þér.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Ræsa eina af vistuðu leiðunum þínum eftir heiti, fara á næsta leiðarpunkt, fara aftur á þann fyrri, slökkva á hljóðvitanum eða stöðva leiðina.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Setja hljóðvita á eitt af vistuðu merkjunum þínum eftir heiti, eða slökkva á hljóðvitanum.
 
-Read back the names of your saved routes or your saved markers.
+Stilla nákvæmni tilkynninga á *\"Þögult\"*, *\"Hljóðlátt\"*, *\"Jafnvægi\"* eða *\"Ítarlegt\"*, til að breyta því hversu mikið Soundscape segir á meðan þú gengur. Þögult slekkur á sjálfvirkum tilkynningum.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Lesa upp heiti vistuðu leiðanna þinna eða vistuðu merkjanna þinna.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Allt nema listarnir tveir krefst þess að Soundscape sé í gangi. Sé svo ekki biður aðstoðarmaðurinn þig um að opna Soundscape fyrst. Að telja upp leiðirnar þínar og merkin þín virkar hvort sem er, því þá er aðeins lesið upp það sem þú hefur þegar vistað.
+
+Raddskipanir krefjast síma með Android 16 eða nýrra og aðstoðarmanns sem styður forritsaðgerðir.
 

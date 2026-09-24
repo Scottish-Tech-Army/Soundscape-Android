@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: Hangjelző
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,27 +7,27 @@ lang: hu
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Hangjelző
 
-## What is it?
+## Mi ez?
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+Ha hangjelzőt állít be egy közeli helyre, a Soundscape folyamatosan tájékoztatja Önt azáltal, hogy hallható hangjelzést játszik le az adott hely irányából. Ez a hangjelző a kezdőképernyőn némítható vagy visszakapcsolható. Emellett a Soundscape megjeleníti a hely adatait a kezdőképernyőn, beleértve a távolságát és – ha ismert – az utcacímét.
 
-## When would I use it?
+## Mikor használnám?
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+A hangjelző beállítása akkor hasznos, ha egy ismerős tereptárgyat szeretne nyomon követni új terület felfedezése közben, vagy amikor valahová tart, és útközben tájékozódni szeretne a környezetéről. A hangjelző funkció nem ad lépésről lépésre navigációt, viszont folyamatos, hallható hangot ad, amely megmutatja a hangjelző irányát az Ön jelenlegi helyzetéhez képest. A hangjelző, a meglévő tájékozódási képességei, sőt akár a kedvenc navigációs alkalmazása segítségével Ön döntheti el, hogyan szeretne eljutni a közeli helyekre.
 
-## How does it work?
+## Hogyan működik?
 
-**To set a beacon :**
+**Hangjelző beállítása:**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ Először tekintse meg egy hely adatait: használja a keresősávot egy hely kereséséhez, vagy koppintson a *\"Közeli helyek\"*, a *\"Jelölők és útvonalak\"*, vagy a *\"Jelenlegi hely\"* gombok egyikére, majd válasszon egy helyet. A *\"Hely részletei\"* képernyőn kiválaszthatja a *\"Hangjelző indítása\"* gombot. Ha erre koppint, visszatér a kezdőképernyőre, és bekapcsol egy hallható hangjelző a kiválasztott hely irányából. A kiválasztott hely neve, valamint – ha elérhető – a távolsága és a fizikai címe mostantól megjelenik az alkalmazás főképernyőjén.
 
-**To remove the current beacon :**
+**A jelenlegi hangjelző eltávolítása:**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ Egyszerűen nyomja meg az *\"Útvonal leállítása\"* gombot a kezdőképernyőn.
 
-**To mute the audible beacon :**
+**A hallható hangjelző némítása:**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ Koppintson a *\"Hangjelző némítása\"* gombra, amely az *\"Útvonal leállítása\"* gomb mellett található a kezdőképernyőn.
 

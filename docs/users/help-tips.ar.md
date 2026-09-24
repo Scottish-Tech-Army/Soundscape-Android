@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: نصائح
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ar
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# نصائح
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+يمكنك العثور على محطات الحافلات القريبة عن طريق تحديد عامل التصفية *"وسائل النقل العام"* في قائمة *"الأماكن القريبة"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+يمكنك ضبط منارة صوتية على أي عنوان. من الشاشة الرئيسية لتطبيق Soundscape، ابحث عن العنوان. بعد اختيار العنوان من نتائج البحث، ستظهر شاشة *"تفاصيل الموقع"* وتحتوي على خيار *"تشغيل المنارة الصوتية"* على العنوان. بهذه الطريقة، يمكنك ضبط منارة صوتية على المحال التجارية والأماكن ونقاط الاهتمام والمساكن غير الموجودة في Open Street Map.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+إذا كان هناك مسار حافلة تستقلّه بانتظام، فاضبط محطتي الركوب والنزول كعلامات. بهذه الطريقة سيتم حفظها لتتمكن من العثور عليها مرة أخرى بسهولة، فقط انتقل إلى *"العلامات والمسارات"* من الشاشة الرئيسية وابحث عنها في صفحة *"العلامات"*. يمكنك ضبط منارة صوتية عليها وستحصل على تحديثات دورية حول مدى اقترابك من محطة النزول. ملاحظة: يمكنك إيقاف تشغيل الصوت الإيقاعي وستظل تحصل على تحديثات المسافة أثناء الطريق.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+إذا وضعت هاتفك في جيبك وتوقفت عن الحركة، يصبح صوت المنارة الصوتية أخفت لأن Soundscape لا يستطيع معرفة الاتجاه الذي تواجهه. لإصلاح ذلك، ابدأ بالمشي مرة أخرى، أو أخرج هاتفك وأمسكه بشكل أفقي.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+يعمل Soundscape بأفضل شكل عندما تُمسك الهاتف بشكل أفقي مع توجيه الشاشة نحو السماء وأعلى الهاتف بعيدًا عنك.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+يمكنك تشغيل الصوت الإيقاعي للمنارة الصوتية وإيقافه باستخدام زر الكتم في الشاشة الرئيسية. إذا كانت المنارة الصوتية مكتومة، فستظل تحصل على تحديثات عن المسافة إلى وجهتك كل 50 مترًا تقريبًا.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+لمواصلة استخدام Soundscape دون سماع النداءات الصوتية التلقائية، اضبط *تفاصيل النداءات الصوتية* على *صامت* من قسم *إدارة النداءات الصوتية* في شاشة *الإعدادات* من القائمة. وإذا كنت لن تستخدم Soundscape لفترة، يمكنك بدلًا من ذلك وضعه في وضع النوم أو وضع الغفوة باستخدام زر *نوم* في الشاشة الرئيسية.
 

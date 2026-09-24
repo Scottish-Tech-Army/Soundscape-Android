@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Moja poloha
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sk
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Moja poloha
 
-## What is it?
+## Čo to je?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Tlačidlo *Moja poloha* vám rýchlo poskytne informácie, ktoré vám pomôžu zistiť, kde sa práve nachádzate. *Moja poloha* vám povie o vašej aktuálnej polohe vrátane smeru, ktorým ste otočení, kde sa nachádzajú blízke cesty alebo križovatky a kde sú blízke zaujímavé miesta.
 
-## When would I use it?
+## Kedy by som to použil(a)?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*Moja poloha* je užitočná, keď potrebujete zistiť, kde sa nachádzate alebo ktorým svetovým smerom ste otočení.
 
-## How does it work?
+## Ako to funguje?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Rovnako ako pri všetkých štyroch tlačidlách v spodnej časti domovskej obrazovky, pred stlačením tlačidla *Moja poloha* držte telefón vodorovne (obrazovkou smerom k oblohe) tak, aby horná časť telefónu smerovala v smere, ktorým ste otočení. Toto funguje ako kompas, ktorý aplikácii oznamuje, ktorým smerom ste otočení. Jednoducho ťuknite na tlačidlo *Moja poloha* a počúvajte.
 

@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Markerite kohandamine
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,9 +7,9 @@ lang: et
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Markerite kohandamine
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Kui soovite ümber nimetada varem loodud markeri või lisada sellele märkuse, saate seda teha, valides markeri lehe *"Markerid ja marsruudid"* vahekaardilt *"Markerid"* ja seejärel valides nupu *"Muuda markerit"*. Nii saate anda markeritele kirjeldavaid või kasulikke hüüdnimesid ning lisada neile märkuse väljal pikema kirjelduse.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+Ekraanilt *Muuda* saate markeri ka kustutada, kui te seda enam ei vaja.
 

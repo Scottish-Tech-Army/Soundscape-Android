@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: บีคอนเสียง
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: th
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# บีคอนเสียง
 
-## What is it?
+## คืออะไร
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+การตั้งบีคอนที่ตำแหน่งใกล้เคียงช่วยให้ Soundscape คอยแจ้งให้คุณทราบ โดยเล่นเสียงบีคอนที่ดังมาจากทิศทางของตำแหน่งนั้น คุณสามารถปิดหรือเปิดเสียงบีคอนนี้ได้จากหน้าจอหลัก นอกจากนี้ Soundscape ยังแสดงข้อมูลเกี่ยวกับตำแหน่งนั้นบนหน้าจอหลัก รวมถึงระยะทางไปยังตำแหน่งและที่อยู่ถนน หากทราบข้อมูลดังกล่าว
 
-## When would I use it?
+## ควรใช้เมื่อใด
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+การตั้งบีคอนมีประโยชน์เมื่อคุณต้องการติดตามจุดสังเกตที่คุ้นเคยขณะสำรวจพื้นที่ใหม่ หรือเมื่อคุณกำลังเดินทางไปยังที่ใดที่หนึ่งและต้องการทราบข้อมูลเกี่ยวกับสภาพแวดล้อมระหว่างทาง ฟีเจอร์บีคอนไม่ได้บอกทิศทางแบบเลี้ยวซ้ายเลี้ยวขวาให้คุณ แต่จะให้เสียงต่อเนื่องที่บอกทิศทางไปยังบีคอน โดยเทียบกับตำแหน่งปัจจุบันของคุณ ด้วยบีคอนเสียง ทักษะการหาทางที่คุณมีอยู่ และแม้แต่แอปนำทางที่คุณชื่นชอบ คุณสามารถเลือกวิธีเดินทางไปยังสถานที่ใกล้เคียงได้ด้วยตัวเอง
 
-## How does it work?
+## ทำงานอย่างไร
 
-**To set a beacon :**
+**วิธีตั้งบีคอน :**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ ก่อนอื่น ให้ดูรายละเอียดของตำแหน่งโดยใช้แถบค้นหาเพื่อค้นหาสถานที่ หรือแตะปุ่ม *"สถานที่ใกล้เคียง"*, *"หมุดและเส้นทาง"* หรือ *"ตำแหน่งปัจจุบัน"* แล้วเลือกตำแหน่งที่ต้องการ จากหน้าจอ *"รายละเอียดสถานที่"* คุณสามารถเลือกปุ่ม *"เริ่มบีคอนเสียง"* การแตะปุ่มนี้จะพาคุณกลับไปยังหน้าจอหลักและเปิดเสียงบีคอนที่ดังมาจากทิศทางของสถานที่ที่คุณเลือก ชื่อของสถานที่ที่คุณเลือก พร้อมทั้งระยะทางและที่อยู่ทางกายภาพ (ถ้ามี) จะแสดงบนหน้าจอหลักของแอป
 
-**To remove the current beacon :**
+**วิธีนำบีคอนปัจจุบันออก :**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ เพียงกดปุ่ม *"หยุดเส้นทาง"* บนหน้าจอหลัก
 
-**To mute the audible beacon :**
+**วิธีปิดเสียงบีคอน :**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ แตะปุ่ม *"ปิดเสียงบีคอน"* ที่อยู่ถัดจากปุ่ม *"หยุดเส้นทาง"* บนหน้าจอหลัก
 

@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Značky
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: cs
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Značky
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Se Soundscape můžete označit svůj svět a cokoli, na čem vám záleží, podobně jako špendlíky na mapě.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Můžete si označit místa, která jsou pro vás osobní a důležitá, jako je váš domov, kancelář nebo oblíbený obchod s potravinami. Můžete označit jakékoli místo nebo adresu a také věci, které se na mapách běžně neuvádějí, například: vchody do budov nebo parků, tlačítka na přechodech pro chodce, přechody pro chodce, mosty, autobusové zastávky nebo dokonce oblíbený strom vašeho psa. Používejte tyto značky jako orientační body během své cesty.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Abyste mohli označená místa využívat, Soundscape je automaticky ohlásí, když kolem nich procházíte nebo se k nim přibližujete, nebo můžete použít tlačítko *\"Značky v okolí\"* ve spodní části domovské obrazovky Soundscape a poslechnout si prostorové hlášení označených míst kolem vás. Kromě toho máte možnost nastavit zvukový maják na libovolném označeném místě. Když to uděláte, uslyšíte již známý zvukový maják Soundscape a můžete ho ovládat jako obvykle.
 

@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Utilizar Controlos Multimédia
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: pt
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Utilizar Controlos Multimédia
 
-## What is it?
+## O que é?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Pode aceder a determinadas funcionalidades do Soundscape com a ajuda dos botões de controlo multimédia dos auscultadores. Isto funciona em quaisquer auscultadores Bluetooth com ou sem fios equipados com botões de controlo multimédia como Reproduzir, Pausa, Seguinte, Anterior e outros. Os botões podem variar consoante os auscultadores. Por este motivo, consulte a lista de ações abaixo para identificar as que estão disponíveis para si.
 
-## When would I use it?
+## Quando devo utilizá-lo?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+É possível utilizar os controlos multimédia dos auscultadores enquanto o Soundscape está em execução — quer esteja a utilizar ativamente a aplicação, quer esta esteja em segundo plano, quer o dispositivo esteja bloqueado. No entanto, os botões de controlo multimédia dos auscultadores não funcionarão com o Soundscape se estiver a reproduzir áudio, como música, podcasts ou vídeos, noutra aplicação.
 
-## How does it work?
+## Como funciona?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Existem 2 modos de funcionamento para os controlos multimédia. O modo pode ser selecionado na secção *Definições* *Controlos Multimédia*. Os modos são:
 
- Original mode. 
+ Modo original. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Reproduzir/Pausa: Liga e desliga o som do sinal. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Seguinte: Se uma rota estiver a ser reproduzida, move o sinal de áudio para o Ponto de Passagem seguinte da rota. Se não estiver a ser reproduzida nenhuma rota, anuncia *Em Meu Redor*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Anterior: Se uma rota estiver a ser reproduzida, move o sinal de áudio para o Ponto de Passagem anterior da rota. Se não estiver a ser reproduzida nenhuma rota, altera o *Detalhe dos Avisos*, um nível mais discreto a cada toque: *Detalhado*, *Equilibrado*, *Discreto*, *Silencioso*, e de novo *Detalhado*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menu áudio. 
+
+
+
+⏭ Seguinte percorre uma série de opções de menu que a aplicação descreve por síntese de voz, regressando à primeira depois da última. ⏯ Reproduzir/Pausa faz então com que a aplicação execute a opção descrita. Existe um único menu de nível superior que tem apenas submenus como opções. Cada submenu reúne um grupo de ações semelhantes.
+
+⏮ Anterior não percorre o menu. Em vez disso, altera o *Detalhe dos Avisos*, exatamente como no modo original, para que o mesmo botão torne a aplicação mais discreta em qualquer dos modos.
 

@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: ভয়েস কমান্ড
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
@@ -7,37 +7,39 @@ lang: bn
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# ভয়েস কমান্ড
 
-## What is it?
+## এটি কী?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+ফোন স্পর্শ না করেই আপনি Gemini-কে Soundscape-এ কাজ করতে বলতে পারেন: একটি ঘোষণা শোনা, আপনার কোনো একটি রুট শুরু করা, বা আপনার কোনো একটি মার্কারে অডিও বীকন বসানো। Android অ্যাপ ফাংশন সমর্থন করে এমন যেকোনো সহকারীও একই কাজ করতে পারে।
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+সহকারী কোনো সারসংক্ষেপ পড়ে শোনানোর বদলে Soundscape নিজের কণ্ঠে, আপনার পরিচিত ঘোষণা আর বীকনের শব্দ দিয়েই উত্তর দেয়। ফলে আপনি যা শোনেন তা এখনও সেই দিক থেকেই আসে যে দিকের কথা বলা হচ্ছে।
 
-## When would I use it?
+## কখন এটি ব্যবহার করব?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+ফোন পকেটে থাকলে, হাত ভর্তি থাকলে, বা বোতাম টিপতে থামতে না চাইলে ভয়েস কমান্ড কাজে লাগে। Soundscape পটভূমিতে চললে এবং ফোন লক থাকলেও এগুলি কাজ করে, আর ঘোষণা চাইলে অ্যাপটি খোলে না।
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+শোনার কাজটি করে আপনার সহকারী, Soundscape নয়। তাই অ্যাপটি কখনও আপনার মাইক্রোফোন দখল করে না এবং আপনার ব্লুটুথ হেডফোন ফোন কলের জন্য ব্যবহৃত নিম্নমানের মোডে না গিয়ে উচ্চমানের অডিও মোডেই থাকে।
 
-## How does it work?
+## এটি কীভাবে কাজ করে?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+মুখস্থ করার মতো নির্দিষ্ট কোনো বাক্য নেই। নিজের ভাষায় যা চান তা বলুন, সহকারী সেটিকে নিচের কোনো একটি কাজের সঙ্গে মিলিয়ে নেবে। রুট ও মার্কারের নাম আলগাভাবে মেলানো হয়, তাই সাধারণত নামের কিছু অংশই যথেষ্ট।
 
-You can ask Soundscape to:
+আপনি Soundscape-কে বলতে পারেন:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+*\"আমার অবস্থান\"* বর্ণনা করতে, *\"আমার চারপাশ\"*-এ কী আছে, বা *\"আমার সামনে\"* কী আছে।
 
-Call out the saved markers near you.
+আপনার কাছাকাছি সংরক্ষিত মার্কারগুলি ঘোষণা করতে।
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+আপনার কোনো সংরক্ষিত রুট নাম ধরে শুরু করতে, পরবর্তী ওয়েপয়েন্টে যেতে, আগেরটিতে ফিরতে, বীকন মিউট করতে, বা রুট বন্ধ করতে।
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+আপনার কোনো সংরক্ষিত মার্কারে নাম ধরে অডিও বীকন বসাতে, বা বীকন বন্ধ করতে।
 
-Read back the names of your saved routes or your saved markers.
+কলআউট বিবরণ *\"নীরব\"*, *\"শান্ত\"*, *\"ভারসাম্যপূর্ণ\"* বা *\"বিস্তারিত\"* করতে, যাতে আপনি হাঁটার সময় Soundscape কতটা বলবে তা বদলে যায়। নীরব করলে স্বয়ংক্রিয় কলআউট বন্ধ হয়ে যায়।
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+আপনার সংরক্ষিত রুট বা সংরক্ষিত মার্কারের নামগুলি পড়ে শোনাতে।
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+ওই দুটি তালিকা ছাড়া বাকি সবকিছুর জন্য Soundscape চালু থাকা দরকার। চালু না থাকলে সহকারী আপনাকে আগে Soundscape খুলতে বলবে। আপনার রুট ও মার্কারের তালিকা দুই ক্ষেত্রেই কাজ করে, কারণ এতে কেবল আপনি যা আগেই সংরক্ষণ করেছেন তাই পড়া হয়।
+
+ভয়েস কমান্ডের জন্য Android 16 বা তার নতুন সংস্করণের ফোন এবং অ্যাপ ফাংশন সমর্থন করে এমন একটি সহকারী প্রয়োজন।
 

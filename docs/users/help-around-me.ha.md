@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Kewaye da Ni
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ha
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Kewaye da Ni
 
-## What is it?
+## Menene wannan?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+Maɓallin *Kewaye da Ni* yana gaya muku game da abu ɗaya a kowanne daga sassan huɗu da ke kewaye da ku (gaba, dama, baya, da hagu). An ƙirƙiri *Kewaye da Ni* domin taimaka muku daidaita kanku da abin da ke kewaye da ku.
 
-## When would I use it?
+## Yaushe zan yi amfani da shi?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Idan kuna ƙoƙarin gane inda kuke da kuma daidaita kanku da abin da ke kewaye da ku, yi amfani da *Kewaye da Ni* don jin labarin abubuwan da ke kewaye da ku.
 
-## How does it work?
+## Yaya yake aiki?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Kamar sauran dukkan maɓallai huɗu da ke ƙasan babban allo, riƙe wayarku a kwance (fuska sama zuwa sama) tare da saman wayar yana nuni da alkiblar da kuke fuskanta kafin ku danna maɓallin *Kewaye da Ni*. Wannan yana aiki kamar kamfas wanda ke gaya wa manhajar alkiblar da kuke fuskanta. Kawai, danna maɓallin *Kewaye da Ni* kuma za ku ji wurare masu ban sha'awa guda huɗu da aka shirya a kewaye da ku.
 

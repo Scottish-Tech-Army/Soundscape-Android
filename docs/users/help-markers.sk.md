@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Značky
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: sk
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Značky
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Pomocou aplikácie Soundscape si môžete označiť svoj svet a čokoľvek, na čom vám záleží, podobne ako špendlíky na mape.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Môžete si označiť miesta, ktoré sú pre vás osobné a dôležité, napríklad váš domov, kanceláriu či obľúbenú predajňu potravín. Označiť si môžete akékoľvek miesto alebo adresu, ale aj veci, ktoré sa bežne na mapách nezobrazujú, napríklad: vchody do budov alebo parkov, tlačidlá pre chodcov, priechody pre chodcov, mosty, autobusové zastávky alebo dokonca obľúbený strom vášho psa. Používajte tieto značky ako orientačné body počas prechádzky.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Označené miesta vám Soundscape automaticky oznámi, keď popri nich prechádzate alebo sa k nim priblížite. Prípadne môžete použiť tlačidlo *\"Značky v okolí\"* v spodnej časti domovskej obrazovky aplikácie Soundscape, aby ste počuli priestorové hlásenie označených miest vo vašom okolí. Okrem toho môžete na akékoľvek označené miesto nastaviť zvukový maják. Keď to urobíte, ozve sa vám už známy zvukový maják aplikácie Soundscape a môžete ho ovládať ako obvykle.
 

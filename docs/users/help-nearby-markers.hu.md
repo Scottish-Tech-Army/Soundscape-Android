@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Közeli jelölők
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hu
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Közeli jelölők
 
-## What is it?
+## Mi ez?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+A *Közeli jelölők* gomb legfeljebb négy, Önhöz legközelebb eső jelölőről tájékoztat. A *Közeli jelölők* célja, hogy segítsen tájékozódni olyan helyek segítségével, amelyeket már ismer.
 
-## When would I use it?
+## Mikor használnám?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Amikor tájékozódni próbál, és el szeretné helyezni magát a környezetéhez képest, használja a *Közeli jelölők* funkciót, hogy meghallja az Ön által ismert helyek elhelyezkedését.
 
-## How does it work?
+## Hogyan működik?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Mint a kezdőképernyő alján található mind a négy gomb esetében, tartsa a telefonját vízszintesen (a képernyővel az ég felé), és a telefon teteje mutasson abba az irányba, amerre néz, mielőtt megnyomja a *Közeli jelölők* gombot. Ez iránytűként működik, és megmondja az alkalmazásnak, merre néz. Egyszerűen koppintson a *Közeli jelölők* gombra, és legfeljebb négy, Önhöz közeli jelölőt fog hallani.
 

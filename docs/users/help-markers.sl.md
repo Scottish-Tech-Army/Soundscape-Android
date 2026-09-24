@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Oznake
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: sl
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Oznake
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+S Soundscape lahko označite svoj svet in vse, kar vam je pomembno, podobno kot bucike na zemljevidu.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Označite lahko kraje, ki so osebni in vam pomembni, kot so vaš dom, pisarna ali najljubša trgovina z živili. Označite lahko kateri koli kraj ali naslov, pa tudi stvari, ki jih na zemljevidih običajno ni, na primer: vhode v stavbe ali parke, gumbe za prehod za pešce, prehode za pešce, mostove, avtobusne postaje ali celo najljubše drevo vašega psa. Te oznake uporabite kot orientacijske točke na svojem sprehodu.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Da bi doživeli označene kraje, jih bo Soundscape samodejno oznanil, ko boste šli mimo njih ali se jim približali, lahko pa uporabite tudi gumb *"Oznake v bližini"* na dnu domačega zaslona Soundscape, da slišite prostorsko obvestilo o označenih krajih okoli vas. Poleg tega lahko na katerem koli označenem kraju nastavite zvočni svetilnik. Ko to storite, boste slišali znani zvočni svetilnik Soundscape in ga lahko upravljate kot običajno.
 

@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Sesli Komutlar
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,37 +7,39 @@ lang: tr
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Sesli Komutlar
 
-## What is it?
+## Bu nedir?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Telefonunuza dokunmadan Gemini'den Soundscape'te işlem yapmasını isteyebilirsiniz: bir anons dinlemek, rotalarınızdan birini başlatmak ya da kayıtlı noktalarınızdan birine sesli işaret koymak. Android uygulama işlevlerini destekleyen diğer tüm asistanlar da aynısını yapabilir.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape, asistanın bir özet okuması yerine kendi sesiyle, zaten bildiğiniz anonslar ve işaret sesleriyle yanıt verir. Böylece duyduğunuz şey yine anlattığı yönden gelir.
 
-## When would I use it?
+## Ne zaman kullanırım?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Sesli komutlar; telefonunuz cebinizdeyken, elleriniz doluyken ya da bir düğmeye basmak için durmak istemediğinizde işe yarar. Soundscape arka planda çalışırken ve telefonunuz kilitliyken de çalışırlar; anons istemek uygulamayı açmaz.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Dinleyen Soundscape değil asistanınızdır; bu yüzden uygulama mikrofonunuzu hiçbir zaman meşgul etmez ve Bluetooth kulaklığınız, telefon görüşmeleri için kullanılan düşük kaliteli moda geçmek yerine yüksek kaliteli ses modunda kalır.
 
-## How does it work?
+## Nasıl çalışır?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Ezberlenecek belirli kalıplar yoktur. İstediğinizi kendi sözcüklerinizle söyleyin; asistan bunu aşağıdaki işlemlerden biriyle eşleştirir. Rota ve kayıtlı nokta adları esnek biçimde eşleştirilir, bu yüzden genellikle adın bir kısmı yeterlidir.
 
-You can ask Soundscape to:
+Soundscape'ten şunları isteyebilirsiniz:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+*\"Konumum\"*, *\"Etrafımda\"* ne olduğu ya da *\"Önümde\"* ne olduğu anlatılsın.
 
-Call out the saved markers near you.
+Yakınınızdaki kayıtlı noktalar anons edilsin.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Kayıtlı rotalarınızdan biri adıyla başlatılsın, sonraki ara noktaya geçilsin, öncekine dönülsün, işaret sessize alınsın ya da rota durdurulsun.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Kayıtlı noktalarınızdan birine adıyla sesli işaret konsun ya da işaret kapatılsın.
 
-Read back the names of your saved routes or your saved markers.
+Anons ayrıntısı *\"Sessiz\"*, *\"Sakin\"*, *\"Dengeli\"* ya da *\"Ayrıntılı\"* yapılsın; böylece yürürken Soundscape'in ne kadar konuşacağı değişir. Sessiz, otomatik anonsları kapatır.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Kayıtlı rotalarınızın ya da kayıtlı noktalarınızın adları okunsun.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+İki liste dışındaki her şey Soundscape'in çalışıyor olmasını gerektirir. Çalışmıyorsa asistan size önce Soundscape'i açmanızı söyler. Rotalarınızı ve kayıtlı noktalarınızı listelemek her durumda çalışır, çünkü yalnızca zaten kaydettiklerinizi okur.
+
+Sesli komutlar için Android 16 veya üzeri bir telefon ve uygulama işlevlerini destekleyen bir asistan gerekir.
 

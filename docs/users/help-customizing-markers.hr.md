@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Prilagodba oznaka
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: hr
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Prilagodba oznaka
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Ako želite preimenovati oznaku koju ste ranije stvorili ili joj dodati napomenu, to možete učiniti tako da odaberete oznaku na kartici *"Oznake"* stranice *"Oznake i rute"*, a zatim odaberete gumb *"Uredi oznaku"*. To možete koristiti kako biste oznakama dali opisne ili korisne nadimke, kao i dulji opis pomoću polja za napomenu.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+S ovog zaslona za *uređivanje* možete i izbrisati oznaku ako vam više nije potrebna.
 

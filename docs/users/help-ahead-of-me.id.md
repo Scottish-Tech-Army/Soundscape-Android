@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: Di Depan Saya
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: id
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Di Depan Saya
 
-## What is it?
+## Apa itu?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+Tombol *\"Di Depan Saya\"* memberi tahu Anda tentang hingga lima hal di depan Anda. *\"Di Depan Saya\"* dimaksudkan untuk membantu Anda menjelajahi jalan di depan saat Anda sedang mengenal area baru.
 
-## When would I use it?
+## Kapan saya menggunakannya?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Saat Anda berjalan menyusuri jalan, coba gunakan *Di Depan Saya* untuk menemukan tempat dan hal-hal yang akan muncul di kedua sisi jalan di depan.
 
-## How does it work?
+## Bagaimana cara kerjanya?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Seperti keempat tombol lainnya di bagian bawah layar utama, pegang ponsel Anda dengan layar rata (menghadap ke langit) dan bagian atas ponsel mengarah ke arah hadap Anda sebelum menekan tombol *Di Depan Saya*. Ini berfungsi seperti kompas yang memberi tahu aplikasi arah hadap Anda. Cukup ketuk tombol *Di Depan Saya* dan Anda akan mendengar beberapa tempat menarik yang kira-kira berada di depan Anda.
 

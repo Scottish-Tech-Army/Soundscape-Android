@@ -1,5 +1,5 @@
 ---
-title: Why is Soundscape working offline?
+title: چرا ساند‌اسکیپ آفلاین کار می‌کند؟
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fa
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Why is Soundscape working offline?
+# چرا ساند‌اسکیپ آفلاین کار می‌کند؟
 
-## Why is Soundscape working offline?
+## چرا ساند‌اسکیپ آفلاین کار می‌کند؟
 
-When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
+هنگامی که اینترنت در دسترس نباشد یا خدمات ساند‌اسکیپ از کار افتاده باشد، ساند‌اسکیپ به حالت آفلاین می‌رود. اپلیکیشن به کار خود ادامه می‌دهد، اما ممکن است برخی امکانات محدود شوند.
 
-## Limitations
+## محدودیت‌ها
 
-Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
+اعلان‌ها در محدوده‌هایی که پیش‌تر از آنها عبور کرده‌اید همچنان کار می‌کنند، زیرا ساند‌اسکیپ آنها را در فهرست اعلان‌های گذشته‌ی شما ذخیره می‌کند. همچنین می‌توانید برای مکان‌هایی که پیش‌تر در فهرست اعلان‌های گذشته‌ی شما ذخیره شده‌اند، جهت‌نمای صوتی تنظیم کنید یا نشانه ایجاد نمایید.
 
-## What can you do?
+## چه کار می‌توانید بکنید؟
 
-Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
+ساند‌اسکیپ به‌محض اینکه گوشی شما اتصال اینترنت خوبی داشته باشد، چه از طریق وایفای و چه از طریق دیتای همراه، تلاش می‌کند به عمل‌کرد عادی خود بازگردد. اگر گوشی شما اتصال خوبی دارد اما ساند‌اسکیپ همچنان به عمل‌کرد عادی خود باز نمی‌گردد، ممکن است در خدمات ساند‌اسکیپ اختلالی وجود داشته باشد.
 

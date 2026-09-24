@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Di Sekitar Saya
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: id
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Di Sekitar Saya
 
-## What is it?
+## Apa itu?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+Tombol *Di Sekitar Saya* memberi tahu Anda tentang satu hal di masing-masing dari empat kuadran di sekitar Anda (depan, kanan, belakang, dan kiri). *Di Sekitar Saya* dimaksudkan untuk membantu Anda mengetahui orientasi Anda terhadap sekitar.
 
-## When would I use it?
+## Kapan saya menggunakannya?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Saat Anda mencoba mengetahui posisi dan orientasi Anda terhadap sekitar, gunakan *Di Sekitar Saya* untuk mendengar hal-hal di sekeliling Anda.
 
-## How does it work?
+## Bagaimana cara kerjanya?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Seperti keempat tombol lainnya di bagian bawah layar utama, pegang ponsel Anda dengan layar rata (menghadap ke langit) dan bagian atas ponsel mengarah ke arah hadap Anda sebelum menekan tombol *Di Sekitar Saya*. Ini berfungsi seperti kompas yang memberi tahu aplikasi arah hadap Anda. Cukup ketuk tombol *Di Sekitar Saya* dan Anda akan mendengar empat tempat menarik yang tersusun di sekeliling Anda.
 

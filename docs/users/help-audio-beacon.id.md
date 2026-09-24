@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: Suar Audio
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: id
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Suar Audio
 
-## What is it?
+## Apa itu?
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+Mengatur beacon pada lokasi terdekat memungkinkan Soundscape terus memberi Anda informasi dengan memutar suara beacon yang terdengar dari arah lokasi tersebut. Beacon ini dapat dibisukan atau diaktifkan kembali di layar utama. Selain itu, Soundscape menampilkan informasi tentang lokasi tersebut di layar utama, termasuk jarak ke lokasi itu dan alamat jalannya jika diketahui.
 
-## When would I use it?
+## Kapan saya menggunakannya?
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+Mengatur beacon berguna saat Anda ingin memantau tempat yang familiar ketika menjelajahi area baru, atau saat Anda sedang menuju suatu tempat dan ingin tetap mendapat informasi tentang sekitar Anda sepanjang perjalanan. Fitur beacon tidak memberikan petunjuk arah langkah demi langkah, tetapi memberikan suara terus-menerus yang menunjukkan arah menuju beacon relatif terhadap posisi Anda saat ini. Dengan menggunakan Audio Beacon, kemampuan mencari arah yang sudah Anda miliki, dan bahkan aplikasi navigasi favorit Anda, Anda dapat memilih sendiri cara untuk menuju lokasi-lokasi terdekat.
 
-## How does it work?
+## Bagaimana cara kerjanya?
 
-**To set a beacon :**
+**Untuk mengatur beacon :**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ Pertama, lihat detail suatu lokasi dengan menggunakan bilah pencarian untuk mencari tempat, atau ketuk salah satu tombol *\"Tempat di Sekitar\"*, *\"Penanda dan Rute\"*, atau *\"Lokasi Saat Ini\"* lalu pilih lokasi. Dari layar *\"Detail Lokasi\"* Anda dapat memilih tombol *\"Mulai Audio Beacon\"*. Mengetuk tombol ini akan membawa Anda kembali ke layar utama dan mengaktifkan beacon yang terdengar dari arah tempat yang Anda pilih. Nama tempat yang Anda pilih beserta jaraknya dan alamat fisiknya, jika tersedia, kini akan ditampilkan di layar utama aplikasi.
 
-**To remove the current beacon :**
+**Untuk menghapus beacon saat ini :**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ Cukup tekan tombol *\"Hentikan Rute\"* di layar utama.
 
-**To mute the audible beacon :**
+**Untuk membisukan beacon :**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ Ketuk tombol *\"Bisukan Beacon\"* di sebelah tombol *\"Hentikan Rute\"* di layar utama.
 

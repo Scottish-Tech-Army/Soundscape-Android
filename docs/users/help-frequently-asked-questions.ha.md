@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions
+title: Tambayoyin da Ake Yawan Yi
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,123 +7,123 @@ lang: ha
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# Frequently Asked Questions
+# Tambayoyin da Ake Yawan Yi
 
-## What is Soundscape and how should I use it?
+## Menene Soundscape kuma yaya zan yi amfani da ita?
 
-### When should I use Soundscape?
-Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
+### Yaushe ya kamata in yi amfani da Soundscape?
+Soundscape tana da fasalulluka da amfanoni waɗanda suka shafi yanayi da lokuta daban-daban. Darajar Soundscape gare ku kuma na iya canzawa a kan lokaci, saboda haka yadda kuke amfani da ita yau na iya bambanta da yadda za ku yi amfani da ita a cikin wata uku. Mutane sukan yi tunani game da manhajoji ta fuskar *wace matsala ce wannan manhajar ta fi bayarwa mafita gare ta?* Hakika ana iya amfani da Soundscape domin takamaiman bukatu – kamar bin diddigin wurin da kuke zuwa yayin da kuke kai, taimaka muku daidaita kanku idan kuka fito daga tashar jirgin ƙasa, gane inda kuke idan kuka fita daga mota, ko neman sunayen tituna ko nisa zuwa mahadar hanya ta gaba. Duk da haka, falsafar da ke bayan Soundscape ita ce ta *haskaka duniyarku da sauti* – an tsara ta don amfani a duk lokacin da kuke waje, don ba ku masaniyar yanayi game da abin da ke kewaye da ku, kamar sunayen tituna da kuke a kai, alkiblar da kuke nufa, da sunayen shagunan da kuke wucewa. A wannan hanyar amfani, masu amfani da mu sun kira Soundscape a matsayin *kyakkyawar manhajar aboki*, wadda ke tallafawa *kwatsam samun abu mai kyau*, tana taimakawa wajen *cika giɓi a taswirar tunaninku*, kuma tana ba da ƙarin *ƙarfin gwiwa yayin tafiya*. Ga wasu misalan yadda masu amfani da mu ke amfani da Soundscape a rayuwarsu:
 
-"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
+Soundscape ta taimaka min in dawo kan hanya bayan na sauka daga bas na nufi wata hanyar da ba daidai ba.
 
-"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
+Ko a garin da na zauna shekaru 3, na gina cikakkiyar hoto game da abin da ke kewaye da ni [tare da Soundscape].
 
-"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
+Sautin 3D yana ƙara wa tafiyata kyau, domin ina jin haɗin kai da muhallina fiye da yadda nake…Na fi son gwada sabuwar hanya yanzu da nake da manhajar da zan yi amfani da ita.
 
-"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
+Ina rasa jin daɗin yawo da lura da abubuwa kwatsam. Samun Soundscape yana da kyau – ba ya bukatar ƙoƙari don jin labarin abubuwan da ke kewaye da ni. Bayanin da ke da alaƙa yana da amfani kuma babbar manhaja ce don sanin yanayi da bincikar hanyoyin kasuwanci.
 
-"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
+[Na yi amfani da Soundscape] don gano wani mashaya a tsakiyar York. [Na] yi amfani da zaɓuɓɓuka da dama don farko in gano sannan in samu shi da gaske. Ta kai ni cikin mita 3 daga ƙofar – kyakkyawa sosai!
 
-### What are Markers and how do I get the most out of them?
-Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
+### Menene Alamomi kuma ta yaya zan cimma amfani mafi girma daga gare su?
+Alamomi wurare ne da kuka ajiye. Za su iya zama wurare da za a iya samu a cikin manhajar, ko kuma za su iya zama sabbin wurare da kuka ƙara da kanku. Za ku iya ajiye wurinku na yanzu a matsayin alama ta hanyar zaɓar maɓallin *\"Wurin Yanzu\"* a babban allo sannan ku zaɓi *\"Ajiye a matsayin Alama\"*. Za ku iya ajiye wasu wurare a matsayin alama ta hanyar neman wurin da kuke son ajiyewa ta amfani da sandar bincike, ko gano wani wuri ta amfani da maɓallin *\"Wurare Kusa\"*, dukkansu za a same su a babban allon Soundscape. Da zarar kun sami wurin da kuke so, zaɓarsa zai kai ku zuwa allon *\"Cikakkun Bayanan Wuri\"*. A wannan allo, zaɓi maɓallin da ake kira *\"Ajiye a matsayin Alama\"*.
 
-## How do I get the best out of Soundscape?
+## Ta yaya zan samu mafi kyawun amfani daga Soundscape?
 
-### What can I set as a beacon?
-You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+### Me zan iya kafawa a matsayin alamar sauti?
+Za ku iya kafa alamar sauti a kan kowane shago, wuri, wurin sha'awa, adireshi, ko mahadar hanyoyi. Akwai hanyoyi kaɗan da za ku iya ƙara alama a wani wuri. Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko ta danna ɗaya daga cikin maɓallan *\"Wurare Kusa\"*, *\"Alamomi da Hanyoyi\"*, ko *\"Wurin Yanzu\"* sannan ku zaɓi wuri. Daga allon *\"Cikakkun Bayanan Wuri\"* za ku iya zaɓar maɓallin *\"Fara Alamar Sauti\"*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna alamar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin da kuka zaɓa tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allon manhajar.
 
-### How do I get the most out of a beacon?
-You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
+### Ta yaya zan fi amfana da siginar sauti?
+Za ku iya tunanin siginar sauti a matsayin *"tashar hasken jirgin ruwa domin kunnuwanku"*: tana gaya muku inda wurin da kuke zuwa yake, a layi mikakke daga wurin da kuke yanzu. Kamar tashar hasken jirgin ruwa, ba ta gaya muku yadda za ku isa can ba – wataƙila za ku bukaci yin zaɓuka na tafiya a hanya domin guje wa cikas. Sautin da ke ci gaba da bugawa na siginar sauti yana zuwa daga alkiblar wurin da kuke zuwa, kuma yana taimaka muku ku ci gaba da sanin inda wurin yake dangane da ku yayin da kuke tafiya. Idan kuna tafiya kai tsaye zuwa wurin da kuke zuwa, ko kuka nuna wayar zuwa wurin, za ku ji sautin *"ƙara"* mai ƙarar sauti. Wannan yana taimaka muku ku gane ainihin alkiblar wurin, tun da alkiblar sautin bugawa wani lokaci na iya zama da wahalar ji a wurare masu hayaniya. Domin samun sautin *"ƙara"* mai ƙarar sauti, riƙe wayar a kwance sannan ka juya a hankali cikin da'ira; juya kanku zuwa hanya ɗaya da wayar zai ba ku mafi kyawun ƙwarewar sauti na sararin samaniya.
 
-This design has a few natural results:
+Wannan ƙira tana da sakamako na halitta kaɗan:
 
-1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
+1. Babu wata alkibla *"daidai"* ta tafiya idan ana amfani da siginar – tare da Soundscape kuku ne kuke zaɓar yadda za ku isa can;
 
-2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
+2. Sautin *"ƙara"* mai ƙarar sauti yana taimaka muku ganin alkiblar wurin da kuke zuwa kawai – ba ya gaya muku yadda za ku isa can;
 
-3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
+3. Idan gabaɗaya kun san yadda za ku isa wurin da kuke zuwa, kuna iya son kashe sautin siginar na tsawon mafi yawan tafiyarku sannan ku kunna shi ne kawai idan kuka kusanci wurin da kuke zuwa.
 
-### Why does the audible beacon disappear sometimes?
-Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
+### Me ya sa alamar sauti kan ɓace wani lokaci?
+Alamar sautin Soundscape a asali alama ce ta alkibla, tana gaya muku inda wurin da kuke zuwa yake dangane da alkiblar da kuke fuskanta. Idan Soundscape ba ta da tabbaci game da alkiblar da kuke fuskanta, tana rage ƙarar sautin alamar. Sau da yawa wannan yana faruwa idan kuna tafiya da wayar a cikin aljihu ko jaka, sannan kuka daina motsi, misali don ƙetare titi. Alamar za ta ƙara ƙara idan kuka sake motsi, ko kuma idan kuka riƙe wayar a kwance ku nuna ta zuwa alkiblar da kuke fuskanta.
 
-### Can I set a beacon on an address?
-Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
+### Zan iya kafa alamar sauti a kan adireshi?
+Eh, za ku iya. Ba a jera adireshi ta atomatik ba amma ana iya samun su ta amfani da filin bincike. Domin ajiye wannan adireshin don kada ku sake nema shi, za ku iya ƙara shi a matsayin alama daga allon *\"Cikakkun Bayanan Wuri\"* ta hanyar zaɓar maɓallin *\"Ajiye a matsayin Alama\"*.
 
-### How do I set a beacon on my home?
-Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
+### Ta yaya zan kafa alamar sauti a gidana?
+Soundscape tana goyan bayan kafa alamomi a kan adireshi. Don kafa alamar sauti a gidanku, ko wani adireshi dabam, nemo wuri daga babban allon Soundscape. A allon *Cikakkun Bayanan Wuri*, danna maɓallin *Fara Alamar Sauti*.
 
-### When I set a beacon on a destination, how close will Soundscape get me to the destination?
-Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
+### Idan na kafa alamar sauti a wurin da zan zuwa, nawa kusanci Soundscape za ta kai ni zuwa wurin?
+Soundscape na iya gano wurin da kuke zuwa a cikin 'yan mitoci, amma ba ƙasa da haka ba. Idan Soundscape ta gano cewa kun kusanci wurin da kuke zuwa, za ku ji sanarwa ta ƙarshe cewa wurin da kuke zuwa yana kusa, sannan alamar za ta kashe.
 
-### Can I turn the beacon back on when I am close to my destination?
-Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
+### Zan iya sake kunna alamar sauti idan na kusanci wurin da zan zuwa?
+Eh, za ku iya sake kunna alamar sauti da zarar Soundscape ta kashe ta ta hanyar zaɓar *maɓallin kunna sautin alama*; duk da haka, tun da Sabis na Wuri daidai ne kawai kusan mita 10, ba za mu iya tabbatar da yadda alamar za ta yi aiki ba idan kun kasance cikin 'yan mitoci na wurin da kuke zuwa.
 
-### Why does Soundscape call out road names twice when I approach an intersection?
-To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
+### Me ya sa Soundscape ke sanar da sunayen hanyoyi sau biyu idan na kusanci mahadar hanyoyi?
+Domin daidaitawa da nau'o'in mahadar hanyoyi daban-daban, Soundscape tana bayyana mahadar hanyoyi a matsayin sassan hanyoyin da ke fita daga wuri guda. Soundscape tana amfani da sautin sararin samaniya don nuna sunan hanyar da ke zuwa hagu, sunan hanyar da ke ci gaba kai tsaye zuwa gaba, da sunan hanyar da ke zuwa dama, cikin wannan tsari. Idan bayanin mahadar ya fara da hanyar da kuke a kai maimakon wadda ke hagu, to mahadar ta zama siffar T tare da hanyar da kuke a kai tana ci gaba zuwa gaba da wata hanya da ta haɗu daga dama. Haka nan, idan bayanin ya ƙunshi hanya zuwa hagu da dama kawai, za ku sani cewa hanyar da kuke a kai ta ƙare a siffar T a gabanku. Wannan hanyar bayyana mahadar hanyoyi kuma tana taimakawa a lokacin da hanya ta canza suna a mahadar.
 
-### Why doesn’t Soundscape announce every business that I pass?
-Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
+### Me ya sa Soundscape ba ta sanar da kowane shago da na wuce ba?
+An tsara Soundscape don kada ta ba ku sanarwa da yawa. Bugu da ƙari, tana amfani da OpenStreetMap a matsayin tushen bayananta. OpenStreetMap (OSM, https://www.openstreetmap.org/) taswirar duniya ce da al'ummar masu ba da gudummawa ɗaya-ɗaya ke ginawa da gyarawa. Idan Soundscape ba ta sanar da wani shago ko wurin sha'awa ba, mafi yiwuwar dalili shi ne cewa wani memba na al'ummar OSM bai riga ya ƙara shagon a bayanan ba, ko a wasu lokutan bai sabunta shi ba.
 
-### Why do some callouts stop when I'm in a vehicle?
-In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
+### Me ya sa wasu sanarwa ke tsayawa idan ina cikin mota?
+Domin hana yawan sanarwa ya zama mai yawa, ba a sanar da wasu rukunoni, kamar mahadar hanyoyi, kai tsaye idan kuna tafiya cikin mota.
 
-### What if I don't understand a callout or miss it because of ambient noise?
-Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
+### Yaya idan ban gane sanarwa ba ko na rasa ta saboda hayaniyar muhalli?
+Soundscape tana da jerin sanarwar da kuka samu kwanan nan don ku iya sake dubawa ga sanarwar da kuka iya rasa. Don gano wannan, danna sandar bincike a babban allon Soundscape. A ƙasan wannan allo, akwai sashen *Sanarwar Kwanan Nan* inda za a jera sanarwar da kuka rasa.
 
-## How does Soundscape work?
+## Yaya Soundscape ke aiki?
 
-### What phone does Soundscape run on?
-Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
+### A wace waya Soundscape ke aiki?
+Soundscape a halin yanzu tana akwai ga iPhone masu tafiyar da iOS 16 ko sama da haka, da kuma wayoyin Android masu tafiyar da Android 11 ko sama da haka.
 
-### What headphones should I use with Soundscape?
-Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
+### Wace belun kunne ya kamata in yi amfani da su tare da Soundscape?
+Wace belun kunne kuke amfani da ita tare da Soundscape al'amari ne na zaɓin kai, kuma kowane zaɓi yana da amfanoni da rashin amfanoni. Buƙata guda ɗaya kawai ita ce amfani da belun kunne na stereo domin ku ci gajiyar sanarwar sautin 3D na sararin samaniya na Soundscape.
 
-### How does Soundscape impact my phone’s battery?
-Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
+### Ta yaya Soundscape ke shafar batirin wayata?
+Rayuwar batir tana bambanta sosai dangane da irin wayar da kuke da ita da kuma tsawon shekarunta. Abin da ke fitar da batir mafi yawa shi ne kunna allo, don haka domin ƙara tsawon rayuwar batirin wayarku, ya kamata ku kiyaye allo a kulle a duk lokacin da za a iya. Domin taimakawa rage tasirin batir na wayarku, Soundscape yanzu tana da Yanayin Barci. Domin ƙara rage yawan batirin da kuke amfani da shi, idan ba kwa amfani da Soundscape, ya kamata ku tilasta rufe ta ta amfani da Mai Sauya Manhajoji na wayarku.
 
-### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
+### Ta yaya zan yi amfani da Yanayin Barci don rage tasirin Soundscape a kan batirin wayata?
+Domin sanya Soundscape a Yanayin Barci, zaɓi maɓallin *Barci* da ke a saman dama na allo. Idan kuka zaɓi wannan, Soundscape za ta daina amfani da Sabis na Wuri da bayanan waya har sai kun zaɓi farkar da ita.
 
-### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
+### Ta yaya zan yi amfani da Yanayin Jinkirtawa don rage tasirin Soundscape a kan batirin wayata?
+Domin sanya Soundscape a Yanayin Jinkirtawa, zaɓi maɓallin *Barci* da ke a saman dama na allo. Da zarar Soundscape ta shiga Yanayin Barci, zaɓi maɓallin *Farka ni idan na tafi* sannan Soundscape za ta shiga yanayin ƙarancin wutar lantarki har sai kun bar wurinku na yanzu.
 
-### How does my choice of headphones affect the battery life of my phone?
-In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
+### Ta yaya zaɓina na belun kunne ke shafar rayuwar batirin wayata?
+A gwaje-gwajenmu, cin batirin belun kunnen Bluetooth yana kama da na belun kunnen waya kuma bai kamata ya zama babban abin la'akari ba idan ana zaɓar belun kunne.
 
-### How does running Soundscape in the background impact battery life of my phone?
-Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
+### Ta yaya tafiyar da Soundscape a bango ke shafar rayuwar batirin wayata?
+Soundscape manhaja ce da ta dogara da wuri kuma tana amfani da Sabis na Wuri don gano wurinku. A gwaje-gwajenmu, Soundscape ba ta cin batir fiye da yadda matsakaicin manhajar taswira ke yi ba; amma idan kuna damuwa game da cin batir yayin amfani da wayarku, ga wasu shawarwari kaɗan da za su taimaka rage yawan amfani:
 
-1. Turn the screen display off as much as possible when you are not interacting with the app.
+1. Kashe allon nuni gwargwadon iko idan ba ku hulɗa da manhajar.
 
-2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
+2. Idan ba kwa amfani da manhajar, ku rufe ta. Soundscape tana amfani da sabis na wuri koyaushe yayin da take aiki domin ta san wurinku a koda yaushe, ko da ba ku motsi. Kada ku manta da sake kunna manhajar idan kuka sake fara tafiyarku.
 
-3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
+3. A yanayin sanyi, ku kiyaye wayarku ta kasance mai dumi domin batirori suna aiki mafi rauni a yanayin zafi mai sanyi.
 
-### How much mobile data does Soundscape use?
-The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
+### Nawa bayanan waya Soundscape ke amfani da su?
+Yawan bayanan wayar da ake amfani da su ya danganta da yadda kuke amfani da Soundscape. Mun tsara Soundscape don amfani da ƙananan bayanai kawai idan kuna waje, ta hanyar yin abubuwa kamar ajiye wurare yayin da kuke yawo don kada ku sake sauke su duk lokacin da kuka koma wani wurin da kuka riga kuka je. Don rage yawan bayanan wayar da kuke amfani da su, ku tabbata kun haɗu da Wi-Fi a duk lokacin da za a iya, musamman don sauke manhajar. Idan ba kwa amfani da Soundscape, ya kamata ku yi amfani da maɓallin *Barci* don sanya Soundscape barci ko tilasta rufe manhajar.
 
-### How is Soundscape different from other map apps?
-Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
+### Ta yaya Soundscape ta bambanta da sauran manhajojin taswira?
+Soundscape tana ba da bayanin yanayi game da abin da ke kewaye da ku don taimakawa a bincike da nemo hanya. Ta amfani da sautin sararin samaniya, Soundscape za ta sanar da wurare masu ban sha'awa, wuraren shakatawa, hanyoyi, da mahadar hanyoyi daga alkiblar da suke a zahiri a muhallinku na kusa yayin da kuke tafiya. Misali, idan kuka wuce wani shago a hannun daminku, za ku ji sunan shagon yana zuwa daga hannun daminku. Yayin da kuke kusantar mahadar hanyoyi, za ku ji kowane sunan hanya yana zuwa daga alkiblar da take kai, farawa daga hagu, gaba sannan dama.
 
-Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
+Maimakon umarnin mataki-mataki kamar yadda sauran manhajojin taswira ke bayarwa, Soundscape za ta kunna alamar sauti a alkiblar wurin da kuke zuwa, wanda ke ba ku ikon nemo hanyarku ta duk hanyar da ta fi dacewa da ku, ta amfani da ƙarin masaniyar ku game da abin da ke kewaye da ku da wurin da kuke zuwa. An tsara Soundscape don aiki a bango, wanda ke baiwa dama amfani da wata manhajar umarnin mataki-mataki, yayin da take ci gaba da ba da masaniyar muhalli yayin da kuke kai zuwa wurin da kuke zuwa.
 
-### How do I use Soundscape with a wayfinding app?
-Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
+### Ta yaya zan yi amfani da Soundscape tare da manhajar nemo hanya?
+An tsara Soundscape a matsayin manhajar wayar da kai domin taimakawa cika bayanai game da muhallinku wanda wataƙila ba ku sani ba in ba haka ba. Ko da yake ba a tsara ta a matsayin manhajar umarnin mataki-mataki ba, ana iya amfani da ita tare da irin waɗannan manhajoji don ba da ƙarin bayani. Domin amfani da Soundscape tare da waɗannan manhajoji, fara manhajar jagorar tafiyarku da farko. Sannan, ku koma zuwa Soundscape ku kafa alamar sauti a kan wurin da kuke zuwa iri ɗaya da ke cikin manhajar jagorar. A wannan lokacin, manhajoji biyu za su kasance suna aiki kuma za ku ji umarnin tafiya daga manhajar jagorarku, yayin da kuke samun sabuntawa game da wurare masu ban sha'awa, mahadar hanyoyi, da nisan ku zuwa wurin da kuke zuwa daga Soundscape.
 
-### How do I control what I hear and when I hear it in Soundscape?
-Soundscape provides several ways to control what you hear and when:
+### Ta yaya zan sarrafa abin da nake ji da kuma lokacin da nake jin sa a Soundscape?
+Soundscape tana ba da hanyoyi da dama don sarrafa abin da kuke ji da lokacin da kuke ji shi:
 
-1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
+1. Dakatar da dukkan sauti nan take: Danna allo sau biyu da yatsu biyu don kashe dukkan sauti nan take, gami da duk wata sanarwa da ke kunna a halin yanzu da kuma alamar sauti idan tana kunne. Sanarwa za su sake farawa kai tsaye idan kuka kusanci mahadar hanyoyi ko wurin sha'awa na gaba, amma alamar sauti ba za ta yi haka ba. Zaɓi *\"maɓallin kunna sautin alama\"* a babban allo don sake jin alamar.
 
-2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
+2. Dakatar da sanarwa ta atomatik: Idan ba kwa tafiya ko kun riga kun isa wurin da kuke zuwa, wataƙila ba za ku bukaci Soundscape ta ci gaba da sanar da ku abubuwan da ke kewaye da ku ba. Maimakon fita daga manhajar, za ku iya sanya Soundscape a Yanayin Jinkirtawa sannan za ta sake farkawa idan kuka tafi, ko kuma za ku iya sanya Soundscape a Yanayin Barci sannan za ta ci gaba da kashewa har sai kun zaɓi sake kunna ta. Ko kuma, za ku iya zaɓar *\"Saitunan\"* daga menu ku sanya *\"Matakin Sanarwa\"* ya zama *\"Shiru\"* a sashen *\"Sarrafa Sanarwa\"*.
 
-3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
+3. Dakatar da alamar sauti: Akwai yanayoyi da dama inda za ku iya kafa wurin da za ku zuwa amma ba kwa bukatar alamar sauti ta kunna. Misali, wataƙila kun san daidai yadda za ku isa wurin da kuke zuwa amma har yanzu kuna son sabuntawa ta atomatik game da nawa nisa kuke da shi. Ko kuma wataƙila kuna bukatar alamar sauti ne kawai idan kuka kusanci wurin da kuke zuwa. Ko da yaya lamarin yake, za ku iya zaɓar lokacin jin alamar ta hanyar sauya maɓallin *\"kashe sautin alama\"*/*\"kunna sautin alama\"* a babban allo.
 
-If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
+Idan har yanzu kuna son yin hulɗa da Soundscape amma ba kwa son jin sanarwa ta atomatik, za ku iya sanya *\"Matakin Sanarwa\"* ya zama *\"Shiru\"* a sashen *\"Sarrafa Sanarwa\"* na allon *\"Saitunan\"* daga menu. Ko kuma, idan ba za ku yi amfani da Soundscape ba, za ku iya sanya ta ko dai Yanayin Barci ko Yanayin Jinkirtawa ta amfani da maɓallin *\"Barci\"* a babban allo.
 
-### Do I need to hold the phone in my hand all the time?
-No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
+### Shin ina bukatar riƙe wayar a hannuna koyaushe?
+A'a! Yayin tafiya za ku iya sanya wayar a jaka ko aljihu ko duk inda ya dace muku. Soundscape za ta yi amfani da alkiblar da kuke tafiya don gane wace sanarwa za ta sanar zuwa hagunku da damanku. Idan kuka daina motsi, Soundscape ba ta san alkiblar da kuke fuskanta ba. Idan alamar sauti tana kunne, za ku lura ta yi shiru har sai kun sake motsi. Za ku iya fitar da wayar don danna maɓallan wuri da bincike da ke ƙasan allo a kowane lokaci, amma ku tabbata kun riƙe wayar da saman wayar yana nuni da alkiblar da kuke fuskanta tare da allo yana fuskantar sama. A wannan matsayi na *\"kwance\"*, Soundscape za ta yi amfani da kamfas na wayar don gano alkiblar da kuke fuskanta sannan ta ba da sanarwar sararin samaniya daidai. Idan alamar tana kunne, za ku kuma lura ta koma ga cikakkiyar ƙarar sautinta.
 
-### What is OpenStreetMap and why do we use it for Soundscape?
-Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
+### Menene OpenStreetMap kuma me ya sa muke amfani da ita don Soundscape?
+Soundscape tana amfani da bayanan taswira don ƙirƙirar sanarwowin sautinta. Babban tushen taswirar mu shi ne OpenStreetMap (www.openstreetmap.org). Wannan dandali ne na taswira da al'ummar masu ba da gudummawa suka ƙirƙira. Ƙungiyoyi da mutane za su iya amfani da kayan aikin OpenStreetMap don inganta bayanan da sanya wuraren su su fi sauƙin shiga.
 

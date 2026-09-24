@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Sfaturi
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ro
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Sfaturi
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Poți găsi stațiile de autobuz din apropiere selectând filtrul *\"Transport public\"* în lista *\"Locuri din apropiere\"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Poți seta o baliză pe orice adresă. Din ecranul principal Soundscape, caută adresa. Selectează adresa în rezultatele căutării pentru a deschide ecranul *"Detalii locație"*. Acest ecran are opțiunea *"Pornește baliza audio"* pentru acea adresă. În acest fel, poți seta o baliză pe afaceri, locuri, puncte de interes și locuințe care nu se regăsesc în OpenStreetMap.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Dacă circuli regulat pe o linie de autobuz, salvează stațiile la care urci și cobori ca marcaje. Astfel vor fi salvate și le vei găsi ușor. Accesează *"Marcaje și rute"* de pe ecranul principal, apoi găsește‑le în pagina *"Marcaje"*. Poți seta o baliză pe ele pentru a primi actualizări periodice despre cât de aproape ești de stația la care trebuie să cobori. Notă: poți dezactiva sunetul ritmic și vei primi în continuare actualizări despre distanță pe parcurs.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Dacă îți pui telefonul în buzunar și te oprești din mers, sunetul balizei devine mai silențios deoarece Soundscape nu poate determina în ce direcție ești orientat. Pentru a rezolva, începe să mergi din nou sau scoate telefonul și ține-l orizontal.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape funcționează cel mai bine când ții telefonul orizontal, cu ecranul orientat spre cer și cu partea de sus a telefonului îndreptată în direcția opusă ție.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Poți activa și dezactiva sunetul ritmic al balizei folosind butonul de dezactivare a sunetului de pe ecranul principal. Dacă baliza este dezactivată, vei primi în continuare actualizări despre distanța până la destinație aproximativ la fiecare 50 de metri.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Pentru a continua să folosești Soundscape fără să auzi anunțuri automate, setează *\"Detaliul anunțurilor\"* pe *\"Silențios\"* în secțiunea *\"Gestionare anunțuri\"* a ecranului *\"Setări\"*, accesând meniul. Dacă nu vei folosi Soundscape pentru o perioadă, poți în schimb să îl pui în modul Repaus sau Amânare utilizând butonul *\"Repaus\"* de pe ecranul principal.
 

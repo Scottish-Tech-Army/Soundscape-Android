@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Favoritos nas Proximidades
 layout: page
 parent: "Usando o Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: pt-BR
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Favoritos nas Proximidades
 
-## What is it?
+## O que é?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+O botão *"Favoritos nas Proximidades"* mostra até quatro favoritos mais próximos a você. *"Favoritos nas Proximidades"* destina-se a ajudar você a se orientar usando locais que já conhece.
 
-## When would I use it?
+## Quando eu o usaria?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Quando você estiver tentando se orientar em seus arredores, use *"Favoritos nas Proximidades"* para ouvir sobre as localizações dos locais que você conhece.
 
-## How does it work?
+## Como ele funciona?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Tal como acontece com os quatro botões da parte inferior da tela inicial, segure seu telefone com a tela na horizontal (com a tela voltada para cima) e o topo apontando na direção para a qual você estava voltado antes de pressionar o botão *"Favoritos nas Proximidades"*. Isso age como uma bússola, mostrando ao aplicativo a direção para a qual você está voltado. Bastará tocar no botão *"Favoritos nas Proximidades"* e você ouvirá até quatro favoritos perto de você.
 

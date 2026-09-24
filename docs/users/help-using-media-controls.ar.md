@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: استخدام أزرار التحكم بالوسائط
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: ar
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# استخدام أزرار التحكم بالوسائط
 
-## What is it?
+## ما هو؟
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+يمكنك الوصول إلى بعض ميزات Soundscape بمساعدة أزرار التحكم بالوسائط الموجودة على سماعات الرأس الخاصة بك. تعمل هذه الميزة مع أي سماعات سلكية أو بلوتوث تحتوي على أزرار تحكم بالوسائط مثل تشغيل وإيقاف مؤقت وتالي وسابق وغيرها. قد تختلف الأزرار الموجودة حسب نوع السماعات، لذا يُرجى الرجوع إلى قائمة الإجراءات أدناه لمعرفة الأزرار المتاحة لديك.
 
-## When would I use it?
+## متى أستخدمه؟
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+يمكن استخدام أزرار التحكم بالوسائط في السماعات أثناء تشغيل Soundscape — سواء كنت تستخدم التطبيق بنشاط، أو كان يعمل في الخلفية، أو كان جهازك مقفلاً. ومع ذلك، لن تعمل أزرار التحكم بالوسائط في السماعات مع Soundscape إذا كنت تشغّل صوتًا، مثل الموسيقى أو البودكاست أو الفيديوهات، من تطبيق آخر.
 
-## How does it work?
+## كيف يعمل؟
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+هناك وضعان لتشغيل عناصر التحكم في الوسائط. يمكن اختيار الوضع من قسم *الإعدادات* *عناصر التحكم في الوسائط*. الوضعان هما:
 
- Original mode. 
+ الوضع الأصلي. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ تشغيل/إيقاف مؤقت: يشغّل صوت المنارة ويوقفه. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ التالي: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار التالية. إذا لم يكن هناك مسار قيد التشغيل، ينادي بـ *حولي*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ السابق: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار السابقة. إذا لم يكن هناك مسار قيد التشغيل، يغيّر *تفاصيل النداءات الصوتية* درجة واحدة أهدأ مع كل ضغطة: *مفصّل*، *متوازن*، *هادئ*، *صامت*، ثم يعود إلى *مفصّل*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+قائمة صوتية. 
+
+
+
+⏭ التالي ينتقل بين سلسلة من خيارات القائمة التي يصفها التطبيق عبر تحويل النص إلى كلام، ويعود إلى الخيار الأول بعد الأخير. ثم يجعل ⏯ تشغيل/إيقاف مؤقت التطبيق ينفّذ الخيار الموصوف. هناك قائمة واحدة في المستوى الأعلى لا تحتوي إلا على قوائم فرعية كخيارات. وتضم كل قائمة فرعية مجموعة من الإجراءات المتشابهة.
+
+⏮ السابق لا ينتقل بين خيارات القائمة. بل يغيّر *تفاصيل النداءات الصوتية* تمامًا كما في الوضع الأصلي، فيخفض الزر نفسه كلام التطبيق أيًا كان الوضع الذي تستخدمه.
 

@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Okolo mňa
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sk
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Okolo mňa
 
-## What is it?
+## Čo to je?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+Tlačidlo *Okolo mňa* vám povie o jednej veci v každom zo štyroch kvadrantov okolo vás (vpredu, vpravo, vzadu a vľavo). *Okolo mňa* má za cieľ pomôcť vám zorientovať sa vo svojom okolí.
 
-## When would I use it?
+## Kedy by som to použil(a)?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Keď sa snažíte zorientovať a získať prehľad o svojom okolí, použite *Okolo mňa*, aby ste počuli o veciach vo vašom okolí.
 
-## How does it work?
+## Ako to funguje?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Rovnako ako pri všetkých štyroch tlačidlách v spodnej časti domovskej obrazovky, pred stlačením tlačidla *Okolo mňa* držte telefón vodorovne (obrazovkou smerom k oblohe) tak, aby horná časť telefónu smerovala v smere, ktorým ste otočení. Toto funguje ako kompas, ktorý aplikácii oznamuje, ktorým smerom ste otočení. Jednoducho ťuknite na tlačidlo *Okolo mňa* a počujete štyri zaujímavé miesta rozmiestnené okolo vás.
 

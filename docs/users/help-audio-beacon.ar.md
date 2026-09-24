@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: المنارة الصوتية
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ar
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# المنارة الصوتية
 
-## What is it?
+## ما هو؟
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+يتيح لك ضبط منارة صوتية على موقع قريب أن يبقيك Soundscape على اطلاع من خلال تشغيل صوت منارة مسموع يصدر من اتجاه ذلك الموقع. يمكن كتم هذه المنارة أو إلغاء كتمها من الشاشة الرئيسية. بالإضافة إلى ذلك، يعرض Soundscape معلومات عن الموقع على الشاشة الرئيسية، بما في ذلك المسافة إليه وعنوانه إن كان معروفًا.
 
-## When would I use it?
+## متى أستخدمه؟
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+يُعد ضبط منارة صوتية مفيدًا عندما تريد تتبع معلم مألوف أثناء استكشاف منطقة جديدة، أو عندما تكون متجهًا إلى مكان ما وتريد أن تبقى على اطلاع بمحيطك في الطريق. لا توفر ميزة المنارة الصوتية إرشادات ملاحية خطوة بخطوة، لكنها تصدر صوتًا مسموعًا مستمرًا يخبرك باتجاه المنارة الصوتية بالنسبة إلى موقعك الحالي. باستخدام المنارة الصوتية ومهارات تحديد الاتجاه لديك، بل وحتى تطبيق الملاحة المفضل لديك، يمكنك اختيار الطريقة التي تريدها للوصول إلى الأماكن القريبة بنفسك.
 
-## How does it work?
+## كيف يعمل؟
 
-**To set a beacon :**
+**لضبط منارة صوتية:**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ أولًا، اعرض تفاصيل الموقع إما باستخدام شريط البحث للبحث عن مكان، أو بالنقر على أحد الأزرار *"الأماكن القريبة"* أو *"العلامات والمسارات"* أو *"الموقع الحالي"* واختيار موقع. من شاشة *"تفاصيل الموقع"*، يمكنك اختيار زر *"تشغيل المنارة الصوتية"*. سيعيدك النقر على هذا الزر إلى الشاشة الرئيسية ويشغّل منارة صوتية مسموعة قادمة من اتجاه المكان الذي اخترته. سيُعرض الآن اسم المكان الذي اخترته إلى جانب المسافة إليه وعنوانه الفعلي، إن كان متاحًا، على الشاشة الرئيسية للتطبيق.
 
-**To remove the current beacon :**
+**لإزالة المنارة الصوتية الحالية:**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ اضغط ببساطة على زر *"إيقاف المسار"* في الشاشة الرئيسية.
 
-**To mute the audible beacon :**
+**لكتم المنارة الصوتية المسموعة:**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ اضغط على زر *"كتم المنارة"* بجانب زر *"إيقاف المسار"* في الشاشة الرئيسية.
 

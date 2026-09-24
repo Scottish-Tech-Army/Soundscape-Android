@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: การสร้างหมุด
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: th
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# การสร้างหมุด
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+คุณสามารถสร้างหมุดได้สามวิธี: ค้นหาสถานที่ที่ต้องการบันทึกโดยใช้แถบค้นหา ค้นหาสถานที่โดยใช้ปุ่ม *"สถานที่ใกล้เคียง"* หรือใช้ปุ่ม *"ใช้ตำแหน่งปัจจุบัน"* ซึ่งทั้งหมดนี้สามารถพบได้บนหน้าจอหลักของ Soundscape เมื่อคุณพบสถานที่ที่ต้องการแล้ว การเลือกสถานที่นั้นจะพาคุณไปยังหน้าจอ *"รายละเอียดสถานที่"* บนหน้าจอนี้ ให้เลือกปุ่ม *"บันทึกเป็นหมุด"*
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+ตอนนี้คุณจะมีตัวเลือกในการปรับแต่งหมุดนี้ คุณสามารถเปลี่ยนชื่อของหมุด และเพิ่มคำอธิบายประกอบที่จะถูกแจ้งเตือนพร้อมกับหมุดเพื่อให้ข้อมูลเพิ่มเติม เมื่อเสร็จแล้ว ให้เลือกปุ่ม *เสร็จสิ้น* เพื่อบันทึกหมุดของคุณ
 

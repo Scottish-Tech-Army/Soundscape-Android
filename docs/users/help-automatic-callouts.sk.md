@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Automatické hlásenia
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: sk
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Automatické hlásenia
 
-## What is it?
+## Čo to je?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape vám môže povedať o veciach vo vašom okolí, keď sa k nim priblížite, tým, že vám oznámi ich názov zo smeru, kde sa nachádzajú. Aplikácia to robí automaticky pre najrôznejšie veci, ako sú obchody, autobusové zastávky či dokonca križovatky. To, čo aplikácia automaticky oznamuje, môžete nastaviť v časti *\"Správa hlásení\"* na obrazovke *\"Nastavenia\"*, a keď chcete, aby aplikácia mlčala, môžete všetky hlásenia vypnúť.
 
-## When would I use it?
+## Kedy by som to použil(a)?
 
-**Exploring a new area :**
+**Skúmanie novej oblasti:**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Zapnite automatické hlásenia a prejdite sa okolo, aby ste popri prechádzaní počuli o rôznych obchodoch, reštauráciách a podobne.
 
-**Walking to a specific location :**
+**Chôdza na konkrétne miesto:**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Keď smerujete na konkrétne miesto, obzvlášť užitočné môžu byť automatické hlásenia križovatiek. Hlásenia križovatiek vám pri priblížení opíšu ich usporiadanie a pri ich opustení vám potvrdia, na akej ceste sa nachádzate.
 
-**When you need silence :**
+**Keď potrebujete ticho:**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Keď sa chystáte prejsť cez cestu, alebo jednoducho potrebujete, aby aplikácia mlčala, môžete hlásenia vypnúť. Keď sú hlásenia vypnuté, aplikácia vám poskytne informácie iba vtedy, keď sami ťuknete na jedno z tlačidiel *Moja poloha*, *Značky v okolí*, *Okolo mňa* alebo *Predo mnou*.
 
-## How does it work?
+## Ako to funguje?
 
-**Turning callouts on or off :**
+**Zapnutie alebo vypnutie hlásení:**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Vypnutím hlásení stlmíte aplikáciu. Hlásenia môžete vypnúť v časti *\"Správa hlásení\"* na obrazovke *\"Nastavenia\"* nastavením položky *\"Podrobnosť hlásení\"* na *\"Bez zvuku\"* a znova ich zapnúť výberom ktorejkoľvek inej úrovne. To isté môžete urobiť aj tak, že o to požiadate Siri alebo Gemini. Soundscape môžete tiež postupne stlmovať tlačidlami na ovládanie médií na slúchadlách: každé stlačenie *\"predchádzajúce\"* posunie o úroveň nižšie cez *\"Podrobný\"*, *\"Vyvážený\"*, *\"Tichý\"* a *\"Bez zvuku\"* a ďalšie stlačenie sa vráti na *\"Podrobný\"*. Pozrite si tému pomocníka *\"Používanie ovládacích prvkov médií\"*. Prípadne môžete použiť tlačidlo *\"Spánok\"* v pravom hornom rohu domovskej obrazovky, čím zastavíte hlásenia aplikácie Soundscape, kým sa ju sami nerozhodnete znova zobudiť.
 
-**Managing which callouts you hear :**
+**Správa toho, aké hlásenia počujete:**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Ak chcete zvoliť typy vecí, ktoré vám Soundscape bude automaticky oznamovať, prejdite pomocou menu na obrazovke *\"Domov\"* na obrazovku *\"Nastavenia\"*. V časti *\"Správa hlásení\"* na obrazovke *\"Nastavenia\"* si volíte, koľko toho aplikácia hovorí, pomocou položky *\"Podrobnosť hlásení\"*, či ohlasuje *\"Ulice a križovatky\"* a aké sú *\"Miesta na ohlasovanie\"*. Ak chcete vypnúť všetky hlásenia, nastavte *\"Podrobnosť hlásení\"* na *\"Bez zvuku\"*.
 

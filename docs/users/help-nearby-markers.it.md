@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Indicatori nelle vicinanze
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: it
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Indicatori nelle vicinanze
 
-## What is it?
+## Cos'è?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+Il pulsante *"Indicatori nelle vicinanze"* indica fino a quattro indicatori più vicini a te. *"Indicatori nelle vicinanze"* ha lo scopo di aiutarti a orientarti tramite i luoghi che già conosci.
 
-## When would I use it?
+## Quando si usa?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Quando cerchi di orientarti rispetto all'ambiente circostante, utilizza *"Indicatori nelle vicinanze"* per conoscere la posizione dei luoghi che conosci.
 
-## How does it work?
+## Come funziona?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Come per tutti e quattro i pulsanti nella parte inferiore della schermata iniziale, tieni il telefono con lo schermo piatto (rivolto verso il cielo) e la parte superiore del telefono che punta davanti a te prima di premere il pulsante *"Indicatori nelle vicinanze"*. Questo pulsante funziona come una bussola che dice all'app in quale direzione sei rivolto. Tocca semplicemente il pulsante *"Indicatori nelle vicinanze"* e sentirai fino a quattro indicatori vicino a te.
 

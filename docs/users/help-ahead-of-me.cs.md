@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: Přede mnou
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: cs
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Přede mnou
 
-## What is it?
+## Co to je?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+Tlačítko *\"Přede mnou\"* vás informuje až o pěti věcech před vámi. Cílem funkce *\"Přede mnou\"* je pomoci vám prozkoumat cestu před sebou, když poznáváte novou oblast.
 
-## When would I use it?
+## Kdy to použít?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Když jdete po ulici, zkuste použít *Přede mnou*, abyste objevili místa a věci, které se objevují po obou stranách ulice před vámi.
 
-## How does it work?
+## Jak to funguje?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Stejně jako u všech čtyř tlačítek ve spodní části domovské obrazovky, než stisknete tlačítko *Přede mnou*, držte telefon rovně (obrazovkou k obloze) a horní stranou telefonu ve směru, kterým jste otočeni. Toto funguje jako kompas a sděluje aplikaci, kterým směrem jste otočeni. Jednoduše klepněte na tlačítko *Přede mnou* a uslyšíte několik bodů zájmu přibližně před vámi.
 

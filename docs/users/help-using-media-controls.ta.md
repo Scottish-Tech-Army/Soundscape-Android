@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: மீடியா கட்டுப்பாடுகளைப் பயன்படுத்துதல்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,33 +7,35 @@ lang: ta
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# மீடியா கட்டுப்பாடுகளைப் பயன்படுத்துதல்
 
-## What is it?
+## இது என்ன?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+உங்கள் ஹெட்போன்களில் உள்ள மீடியா கட்டுப்பாட்டு பொத்தான்களின் உதவியுடன் Soundscape இல் உள்ள சில அம்சங்களை நீங்கள் அணுகலாம். Play, Pause, Next, Previous மற்றும் பிற மீடியா கட்டுப்பாட்டு பொத்தான்களைக் கொண்ட எந்தவொரு வயர் அல்லது Bluetooth ஹெட்போன்களுடனும் இந்த செயல்பாடு வேலை செய்யும். வெவ்வேறு ஹெட்போன்களில் வெவ்வேறு பொத்தான்கள் இருக்கலாம், எனவே உங்களுக்கு எவை கிடைக்கும் என்பதை அறிய கீழே உள்ள செயல்களின் பட்டியலைப் பார்க்கவும்.
 
-## When would I use it?
+## இதை எப்போது பயன்படுத்துவேன்?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Soundscape இயங்கும்போது ஹெட்போன் மீடியா கட்டுப்பாடுகளைப் பயன்படுத்தலாம் — நீங்கள் செயலியைப் பயன்படுத்திக் கொண்டிருந்தாலும், அது பின்னணியில் இயங்கினாலும், உங்கள் சாதனம் பூட்டப்பட்டிருந்தாலும். எனினும், நீங்கள் மற்றொரு பயன்பாட்டில் இசை, பாட்காஸ்ட் அல்லது வீடியோ போன்ற ஆடியோவை இயக்கிக் கொண்டிருந்தால், ஹெட்போன் மீடியா கட்டுப்பாட்டு பொத்தான்கள் Soundscape உடன் வேலை செய்யாது.
 
-## How does it work?
+## இது எப்படி வேலை செய்கிறது?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+மீடியா கட்டுப்பாடுகளுக்கு 2 செயல்பாட்டு முறைகள் உள்ளன. *அமைப்புகள்* *மீடியா கட்டுப்பாடுகள்* பிரிவில் முறையைத் தேர்ந்தெடுக்கலாம். முறைகள்:
 
- Original mode. 
+ அசல் முறை. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Play/Pause: பீக்கன் ஆடியோவை இயக்குகிறது/அணைக்கிறது. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Next: ஒரு பாதை இயங்கிக் கொண்டிருந்தால், ஒலி பீக்கனை பாதையின் அடுத்த வழிப்புள்ளிக்கு நகர்த்தும். எந்த பாதையும் இயங்காவிட்டால் *என்னைச் சுற்றி என்ன உள்ளது* ஐ அறிவிக்கும்.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Previous: ஒரு பாதை இயங்கிக் கொண்டிருந்தால், ஒலி பீக்கனை பாதையின் முந்தைய வழிப்புள்ளிக்கு நகர்த்தும். எந்த பாதையும் இயங்காவிட்டால், ஒவ்வொரு அழுத்தலிலும் *அறிவிப்பு விவரம்* ஒரு படி அமைதியாகும்: *விரிவு*, *சமநிலை*, *அமைதி*, *மௌனம்*, பிறகு மீண்டும் *விரிவு*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+ஒலி மெனு. 
+
+
+
+⏭ Next ஆனது, பயன்பாடு எழுத்திலிருந்து பேச்சு மூலம் விவரிக்கும் மெனு விருப்பங்களின் தொடர் வரிசையில் நகர்கிறது; கடைசியைத் தாண்டியதும் மீண்டும் முதலாவதற்குத் திரும்புகிறது. பின்னர் ⏯ Play/Pause விவரிக்கப்பட்ட விருப்பத்தை செயல்படுத்த பயன்பாட்டைத் தூண்டும். துணை மெனுக்களை மட்டுமே விருப்பங்களாகக் கொண்ட ஒரே ஒரு உயர்நிலை மெனு உள்ளது. ஒவ்வொரு துணை மெனுவிலும் ஒத்த சாத்தியமான செயல்களின் குழு உள்ளது.
+
+⏮ Previous மெனுவில் நகர்வதில்லை. அதற்குப் பதிலாக, அசல் முறையில் உள்ளதைப் போலவே *அறிவிப்பு விவரம்* ஐ மாற்றுகிறது; எனவே நீங்கள் எந்த முறையைப் பயன்படுத்தினாலும் அதே பொத்தான் பயன்பாட்டை அமைதியாக்கும்.
 

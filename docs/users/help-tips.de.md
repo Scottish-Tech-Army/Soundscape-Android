@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Tipps
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,19 +7,19 @@ lang: de
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Tipps
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Sie finden nahegelegene Bushaltestellen, indem Sie in der Liste *„Orte in der Nähe“* den Filter *„Öffentliche Verkehrsmittel“* auswählen.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Sie können auf jede Adresse ein Beacon setzen. Suchen Sie dazu auf dem Soundscape‑Startbildschirm nach der Adresse. Wählen Sie die Adresse in den Suchergebnissen aus, um den Bildschirm *„Standortdetails“* zu öffnen. Auf diesem Bildschirm gibt es die Option *„Audiobeacon starten“* für die Adresse. Auf diese Weise können Sie Beacons auf Geschäfte, Orte, Points of Interest und Wohnhäuser setzen, die nicht in OpenStreetMap erfasst sind.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Wenn Sie eine Buslinie regelmäßig nutzen, speichern Sie Ihre Ein‑ und Ausstiegshaltestellen als Markierungen. So sind sie gespeichert und leicht wiederzufinden. Gehen Sie vom Startbildschirm zu *„Markierungen und Routen“* und suchen Sie sie dann auf der Seite *„Markierungen“*. Sie können ein Beacon darauf setzen, um regelmäßig zu erfahren, wie nahe Sie Ihrer Ausstiegshaltestelle sind. Hinweis: Sie können den rhythmischen Ton ausschalten und erhalten trotzdem weiterhin Entfernungsangaben.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Wenn Sie Ihr Telefon in die Tasche stecken und stehen bleiben, wird der Beacon‑Ton leiser, weil Soundscape nicht erkennen kann, in welche Richtung Sie blicken. Um das zu beheben, gehen Sie wieder los oder nehmen Sie Ihr Telefon heraus und halten Sie es flach.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape funktioniert am besten, wenn Sie das Telefon flach halten, so dass der Bildschirm in den Himmel zeigt und die Oberseite des Telefons von Ihnen weg zeigt.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Sie können den rhythmischen Ton des Beacons mit der Stummschalttaste auf dem Startbildschirm ein- und ausschalten. Wenn das Beacon stummgeschaltet ist, erhalten Sie weiterhin etwa alle 50 Meter Angaben zur Entfernung zu Ihrem Ziel.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Wenn Sie Soundscape weiterhin nutzen möchten, ohne automatische Hinweise zu hören, setzen Sie im Menü im Abschnitt *„Hinweise verwalten“* des Bildschirms *„Einstellungen“* den *„Detailgrad der Hinweise“* auf *„Stumm“*. Wenn Sie Soundscape eine Weile nicht nutzen werden, können Sie die App stattdessen über die Schaltfläche *„Ruhemodus“* auf dem Startbildschirm in den Ruhe- oder Standbymodus versetzen.
 

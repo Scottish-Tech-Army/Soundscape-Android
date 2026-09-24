@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: تخصيص العلامات
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ar
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# تخصيص العلامات
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+إذا كنت ترغب في إعادة تسمية علامة أنشأتها سابقًا، أو إضافة ملاحظة إليها، يمكنك القيام بذلك عبر اختيار العلامة من علامة تبويب *"العلامات"* في صفحة *"العلامات والمسارات"*، ثم اختيار زر *"تعديل العلامة"*. يمكنك استخدام ذلك لإعطاء العلامات أسماء وصفية أو مفيدة، بالإضافة إلى إعطائها وصفًا أطول باستخدام حقل الملاحظة.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+من شاشة *التعديل* هذه، يمكنك أيضًا حذف علامة إذا لم تعد بحاجة إليها.
 

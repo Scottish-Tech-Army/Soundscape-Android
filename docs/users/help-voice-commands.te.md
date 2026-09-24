@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: వాయిస్ కమాండ్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,37 +7,39 @@ lang: te
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# వాయిస్ కమాండ్‌లు
 
-## What is it?
+## ఇది ఏమిటి?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+ఫోన్‌ను తాకకుండానే Soundscape లో పనులు చేయమని Gemini ని అడగవచ్చు: ఒక కాలౌట్ వినడం, మీ రూట్‌లలో ఒకదాన్ని ప్రారంభించడం, లేదా మీ మార్కర్‌లలో ఒకదానిపై ఆడియో బీకాన్‌ను సెట్ చేయడం. Android యాప్ ఫంక్షన్‌లకు మద్దతిచ్చే ఏ ఇతర అసిస్టెంట్ అయినా ఇదే చేయగలదు.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+అసిస్టెంట్ సారాంశాన్ని చదివి వినిపించడానికి బదులుగా, Soundscape తన సొంత గొంతుతో, మీకు ఇప్పటికే తెలిసిన కాలౌట్‌లు మరియు బీకాన్ శబ్దాలతో బదులిస్తుంది. అందువల్ల మీరు వినేది అది వివరిస్తున్న దిశ నుండే వస్తూ ఉంటుంది.
 
-## When would I use it?
+## దీన్ని నేను ఎప్పుడు ఉపయోగించాలి?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+ఫోన్ జేబులో ఉన్నప్పుడు, చేతులు నిండి ఉన్నప్పుడు, లేదా బటన్ నొక్కడానికి ఆగకూడదనుకున్నప్పుడు వాయిస్ కమాండ్‌లు ఉపయోగపడతాయి. Soundscape నేపథ్యంలో నడుస్తున్నప్పుడూ, ఫోన్ లాక్ అయి ఉన్నప్పుడూ అవి పని చేస్తాయి, మరియు కాలౌట్ అడిగితే యాప్ తెరుచుకోదు.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+వినేది Soundscape కాదు, మీ అసిస్టెంట్. కాబట్టి యాప్ ఎప్పుడూ మీ మైక్రోఫోన్‌ను తీసుకోదు, మీ బ్లూటూత్ హెడ్‌ఫోన్‌లు కాల్‌ల కోసం వాడే తక్కువ నాణ్యత మోడ్‌కు మారకుండా అధిక నాణ్యత ఆడియో మోడ్‌లోనే ఉంటాయి.
 
-## How does it work?
+## ఇది ఎలా పని చేస్తుంది?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+గుర్తుపెట్టుకోవాల్సిన కచ్చితమైన వాక్యాలేవీ లేవు. మీకు కావాల్సినది మీ మాటల్లోనే అడగండి, అసిస్టెంట్ దాన్ని కింది చర్యల్లో ఒకదానితో సరిపోలుస్తుంది. రూట్ మరియు మార్కర్ పేర్లు సుమారుగా సరిపోల్చబడతాయి, కాబట్టి సాధారణంగా పేరులోని కొంత భాగం సరిపోతుంది.
 
-You can ask Soundscape to:
+మీరు Soundscape ని ఇలా అడగవచ్చు:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+*\"నా స్థానం\"* గురించి చెప్పమని, *\"నా చుట్టూ\"* ఏముందో, లేదా *\"నా ముందు\"* ఏముందో చెప్పమని.
 
-Call out the saved markers near you.
+మీ దగ్గర సేవ్ చేసిన మార్కర్‌లను ప్రకటించమని.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+సేవ్ చేసిన రూట్‌లలో ఒకదాన్ని పేరుతో ప్రారంభించమని, తదుపరి వేపాయింట్‌కు వెళ్లమని, మునుపటిదానికి తిరిగి రమ్మని, బీకాన్‌ను మ్యూట్ చేయమని, లేదా రూట్‌ను ఆపమని.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+సేవ్ చేసిన మార్కర్‌లలో ఒకదానిపై పేరుతో ఆడియో బీకాన్ సెట్ చేయమని, లేదా బీకాన్‌ను ఆఫ్ చేయమని.
 
-Read back the names of your saved routes or your saved markers.
+కాలౌట్ వివరాలను *\"నిశ్శబ్దం\"*, *\"క్లుప్తం\"*, *\"సమతుల్యం\"* లేదా *\"వివరణాత్మకం\"* కు సెట్ చేయమని, తద్వారా మీరు నడుస్తున్నప్పుడు Soundscape ఎంత చెబుతుందో మారుతుంది. నిశ్శబ్దం స్వయంచాలక కాలౌట్‌లను ఆఫ్ చేస్తుంది.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+మీరు సేవ్ చేసిన రూట్‌ల లేదా మార్కర్‌ల పేర్లను చదివి వినిపించమని.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+ఆ రెండు జాబితాలు తప్ప మిగతా అన్నింటికీ Soundscape నడుస్తూ ఉండాలి. లేకపోతే ముందుగా Soundscape ను తెరవమని అసిస్టెంట్ చెబుతుంది. మీ రూట్‌లు, మార్కర్‌ల జాబితా ఏ సందర్భంలోనైనా పని చేస్తుంది, ఎందుకంటే అది మీరు ఇప్పటికే సేవ్ చేసినదాన్ని మాత్రమే చదువుతుంది.
+
+వాయిస్ కమాండ్‌లకు Android 16 లేదా అంతకంటే కొత్త ఫోన్, మరియు యాప్ ఫంక్షన్‌లకు మద్దతిచ్చే అసిస్టెంట్ అవసరం.
 

@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: Vytváření značek
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: cs
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# Vytváření značek
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+Značky můžete vytvořit třemi způsoby: vyhledáním místa, které chcete uložit, pomocí vyhledávacího pole, nalezením místa pomocí tlačítka *\"Místa v okolí\"* nebo pomocí tlačítka *\"Použít aktuální polohu\"*, přičemž všechny tyto možnosti najdete na domovské obrazovce Soundscape. Jakmile najdete požadované místo, jeho výběrem se dostanete na obrazovku *\"Podrobnosti o místě\"*. Na této obrazovce vyberte tlačítko *\"Uložit jako značku\"*.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+Nyní máte možnost tuto značku upravit. Můžete změnit název značky a také přidat poznámku, která bude oznámena společně se značkou a poskytne dodatečné informace. Jakmile budete hotovi, výběrem tlačítka *Hotovo* značku uložíte.
 

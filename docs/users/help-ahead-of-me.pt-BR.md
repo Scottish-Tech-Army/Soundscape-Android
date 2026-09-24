@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: À Minha Frente
 layout: page
 parent: "Usando o Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: pt-BR
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# À Minha Frente
 
-## What is it?
+## O que é?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+O botão *\"À Minha Frente\"* informa sobre até cinco itens à sua frente. *\"À Minha Frente\"* destina‑se a ajudar você a explorar o caminho à sua frente quando estiver se familiarizando com uma nova área.
 
-## When would I use it?
+## Quando eu o usaria?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Quando estiver andando pela rua, tente usar *À Minha Frente* para descobrir os locais e as coisas à sua frente em ambos os lados da rua.
 
-## How does it work?
+## Como ele funciona?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Tal como acontece com os quatro botões da parte inferior da tela inicial, segure seu telefone com a tela na horizontal (com a tela voltada para cima) e o topo apontando na direção para a qual você estava voltado antes de pressionar o botão *"À Minha Frente"*. Isso age como uma bússola, mostrando ao aplicativo a direção para a qual você está voltado. Bastará tocar no botão *"À Minha Frente"* e você ouvirá vários pontos de interesse nas proximidades à sua frente.
 

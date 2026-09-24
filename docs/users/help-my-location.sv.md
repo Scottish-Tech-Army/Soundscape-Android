@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Min plats
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sv
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Min plats
 
-## What is it?
+## Vad är det?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+*Min plats* berättar om den aktuella platsen, bland annat vilken riktning du går i och vilka vägar, vägkorsningar eller intressepunkter som finns i närheten.
 
-## When would I use it?
+## När ska jag använda det?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*"Min plats"* är användbar när du behöver ta reda på var du är eller i vilken riktning du går.
 
-## How does it work?
+## Hur fungerar det?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Tryck på knappen *Min plats* och lyssna.
 

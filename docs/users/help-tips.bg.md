@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Съвети
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: bg
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Съвети
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Можете да намерите близки автобусни спирки, като изберете филтъра *"Градски транспорт"* в списъка *"Места наблизо"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Можете да зададете маяк на всеки адрес. От главния екран на Soundscape потърсете адреса. След като изберете адреса от резултатите от търсенето, ще се покаже екран *"Подробности за местоположението"*, който има опция *"Стартирай аудио маяк"* за адреса. По този начин можете да зададете маяк на фирми, места, забележителности и жилища, които не са в Open Street Map.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Ако има автобусен маршрут, който ползвате редовно, задайте спирките за качване и слизане като маркери. По този начин те ще бъдат запазени, за да ги намирате лесно отново — просто отидете в *"Маркери и маршрути"* от началния екран и ги намерете в страницата *"Маркери"*. Можете да зададете маяк на тях и ще получавате периодични актуализации за това колко близо сте до спирката си за слизане. Забележка: можете да изключите ритмичния звук и пак ще получавате актуализации за разстоянието по пътя.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Ако приберете телефона в джоба си и спрете да се движите, звукът на маяка става по-тих, защото Soundscape не може да определи в каква посока сте обърнати. За да поправите това, започнете отново да вървите или извадете телефона и го дръжте хоризонтално.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape работи най-добре, когато държите телефона хоризонтално, с екрана нагоре към небето и горния край на телефона, насочен встрани от вас.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Можете да включвате и изключвате ритмичния звук на маяка с бутона за заглушаване на началния екран. Ако маякът е заглушен, пак ще получавате актуализации за разстоянието до дестинацията си приблизително на всеки 50 метра.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+За да продължите да използвате Soundscape, без да чувате автоматични аудио съобщения, задайте *Детайлност на съобщенията* на *Без звук* в раздела *Управление на аудио съобщенията* на екрана *Настройки* от менюто. Ако няма да използвате Soundscape известно време, можете вместо това да го поставите в режим Сън или Дрямка, като използвате бутона *Сън* на началния екран.
 

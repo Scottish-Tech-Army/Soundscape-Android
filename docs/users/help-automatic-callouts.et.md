@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Automaatsed häälteated
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,33 +7,33 @@ lang: et
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Automaatsed häälteated
 
-## What is it?
+## Mis see on?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape saab teile rääkida ümbritsevatest asjadest, kui neile lähenete, teatades nende nime selle suunast, kus need asuvad. Rakendus teeb seda automaatselt igasuguste asjade puhul, näiteks ettevõtete, bussipeatuste ja isegi ristmike puhul. Saate seadistada, mida rakendus automaatselt teatab, ekraani *"Seadistused"* jaotises *"Halda häälteateid"*, ning saate kõik häälteated välja lülitada, kui soovite, et rakendus oleks vait.
 
-## When would I use it?
+## Millal seda kasutada?
 
-**Exploring a new area :**
+**Uue piirkonna avastamine:**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Lülitage automaatsed häälteated sisse ja jalutage ringi, et kuulda erinevatest poodidest, restoranidest ja muust sellisest, kui neist mööda kõnnite.
 
-**Walking to a specific location :**
+**Kindlasse asukohta kõndimine:**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Kui olete teel kindlasse asukohta, võivad ristmike automaatsed häälteated olla eriti kasulikud. Ristmike häälteated räägivad teile ristmiku paigutusest, kui te sellele lähenete, ja kinnitavad tänavat, millel olete, kui te ristmikult lahkute.
 
-**When you need silence :**
+**Kui vajate vaikust:**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Kui kavatsete ületada teed või vajate lihtsalt, et rakendus oleks vaikne, saate häälteated välja lülitada. Kui häälteated on väljas, annab rakendus teavet ainult siis, kui puudutate käsitsi ühte nuppudest *Minu asukoht*, *Lähedal asuvad markerid*, *Minu ümber* või *Minu ees*.
 
-## How does it work?
+## Kuidas see töötab?
 
-**Turning callouts on or off :**
+**Häälteadete sisse- või väljalülitamine:**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Häälteadete väljalülitamine muudab rakenduse vaikseks. Häälteateid saab välja lülitada ekraani *Seadistused* jaotises *Halda häälteateid*, seades valiku *Häälteadete detailsus* väärtusele *Hääletu*, ja uuesti sisse lülitada, valides mis tahes muu taseme. Sama saate teha, paludes seda Siril või Geminil. Samuti saate Soundscape'i samm-sammult vaiksemaks muuta kõrvaklappide meediumijuhtnuppudega: iga vajutus nupule *eelmine* liigub ühe taseme võrra allapoole läbi tasemete *Üksikasjalik*, *Tasakaalustatud*, *Vaikne* ja *Hääletu*, ning veel üks vajutus naaseb tasemele *Üksikasjalik*. Vaadake abiteemat *Meedianuppude kasutamine*. Teise võimalusena saate kasutada avakuva paremas ülanurgas olevat nuppu *Unerežiim*, et peatada Soundscape'i häälteated, kuni otsustate selle uuesti äratada.
 
-**Managing which callouts you hear :**
+**Häälteadete haldamine:**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Et valida, milliseid asju Soundscape automaatselt teatab, minge ekraani *Avakuva* menüü kaudu ekraanile *Seadistused*. Ekraani *Seadistused* jaotises *Halda häälteateid* valite valikuga *Häälteadete detailsus*, kui palju rakendus räägib, kas see teatab *Tänavad ja ristmikud* ning millised on *Teatatavad kohad*. Kui soovite kõik häälteated välja lülitada, seadke *Häälteadete detailsus* väärtusele *Hääletu*.
 

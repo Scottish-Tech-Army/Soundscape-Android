@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: அருகிலுள்ள குறிப்பான்கள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ta
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# அருகிலுள்ள குறிப்பான்கள்
 
-## What is it?
+## இது என்ன?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+*அருகிலுள்ள மார்க்கர்கள்* பொத்தான், உங்களுக்கு மிக அருகில் உள்ள நான்கு மார்க்கர்கள் வரை உங்களுக்குத் தெரிவிக்கும். நீங்கள் ஏற்கனவே அறிந்த இடங்களைப் பயன்படுத்தி உங்களை நோக்குநிலைப்படுத்த *அருகிலுள்ள மார்க்கர்கள்* உதவும் வகையில் வடிவமைக்கப்பட்டுள்ளது.
 
-## When would I use it?
+## இதை எப்போது பயன்படுத்துவேன்?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+நீங்கள் உங்கள் திசையறிவைப் பெற்று உங்கள் சுற்றுப்புறத்தில் உங்களை நோக்குநிலைப்படுத்த முயலும்போது, நீங்கள் அறிந்த இடங்களின் இருப்பிடங்களைப் பற்றி கேட்க *அருகிலுள்ள மார்க்கர்கள்* ஐப் பயன்படுத்தவும்.
 
-## How does it work?
+## இது எப்படி வேலை செய்கிறது?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+முகப்புத் திரையின் அடிப்பகுதியில் உள்ள நான்கு பொத்தான்களைப் போலவே, *அருகிலுள்ள மார்க்கர்கள்* பொத்தானை அழுத்துவதற்கு முன், உங்கள் தொலைபேசியைத் தட்டையாக (வானத்தை நோக்கி) வைத்து, தொலைபேசியின் மேற்பகுதி நீங்கள் எதிர்நோக்கும் திசையில் இருக்கும்படி வையுங்கள். இது ஒரு திசைகாட்டியைப் போல செயல்பட்டு, நீங்கள் எந்தத் திசையை நோக்கி இருக்கிறீர்கள் என்பதைப் பயன்பாட்டிற்குத் தெரிவிக்கும். வெறுமனே, *அருகிலுள்ள மார்க்கர்கள்* பொத்தானைத் தட்டினால், உங்களுக்கு அருகில் உள்ள நான்கு மார்க்கர்கள் வரை கேட்பீர்கள்.
 

@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: माझ्याभोवती
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
@@ -7,17 +7,17 @@ lang: mr
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# माझ्याभोवती
 
-## What is it?
+## हे काय आहे?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+*माझ्याभोवती* बटण तुमच्याभोवतीच्या चार दिशांपैकी (पुढे, उजवीकडे, मागे आणि डावीकडे) प्रत्येकातील एका गोष्टीबद्दल तुम्हाला सांगते. आजूबाजूच्या परिस्थितीशी जुळवून घेण्यास मदत करणे हा *माझ्याभोवती* चा उद्देश आहे.
 
-## When would I use it?
+## मी हे केव्हा वापरावे?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+तुम्हाला तुमची दिशा समजून घ्यायची असेल आणि आजूबाजूच्या परिस्थितीशी जुळवून घ्यायचे असेल, तेव्हा तुमच्याभोवतीच्या गोष्टींबद्दल ऐकण्यासाठी *माझ्याभोवती* वापरा.
 
-## How does it work?
+## हे कसे काम करते?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+मुख्य स्क्रीनच्या खालच्या भागातील चारही बटणांप्रमाणे, *माझ्याभोवती* बटण दाबण्यापूर्वी तुमचा फोन सपाट धरा (स्क्रीन आकाशाकडे तोंड करून) आणि फोनचा वरचा भाग तुम्ही ज्या दिशेला तोंड करून आहात त्या दिशेला ठेवा. यामुळे अॅपला तुम्ही कोणत्या दिशेला तोंड करून आहात हे कंपाससारखे कळते. फक्त *माझ्याभोवती* बटणावर टॅप करा आणि तुमच्याभोवती मांडलेली चार आवडीची ठिकाणे तुम्हाला ऐकू येतील.
 

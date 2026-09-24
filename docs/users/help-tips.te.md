@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: చిట్కాలు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,19 +7,19 @@ lang: te
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# చిట్కాలు
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+*\"సమీప ప్రదేశాలు\"* జాబితాలో *\"పబ్లిక్ ట్రాన్సిట్\"* ఫిల్టర్‌ను ఎంచుకోవడం ద్వారా మీరు సమీప బస్ స్టాప్‌లను కనుగొనవచ్చు.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+మీరు ఏ చిరునామాపైనైనా బీకాన్‌ను సెట్ చేయవచ్చు. ప్రధాన Soundscape స్క్రీన్ నుండి, చిరునామా కోసం వెతకండి. *"స్థాన వివరాలు"* స్క్రీన్‌ను తెరవడానికి శోధన ఫలితాల్లో చిరునామాను ఎంచుకోండి. ఆ స్క్రీన్‌లో ఆ చిరునామాపై *"ఆడియో బీకాన్‌ను ప్రారంభించండి"* అనే ఆప్షన్ ఉంటుంది. ఈ విధంగా, OpenStreetMapలో లేని వ్యాపారాలు, ప్రదేశాలు, ఆసక్తికరమైన ప్రదేశాలు, మరియు నివాసాలపై కూడా మీరు బీకాన్‌ను సెట్ చేయవచ్చు.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+మీరు క్రమం తప్పకుండా ఉపయోగించే బస్ రూట్ ఉంటే, మీరు ఎక్కే మరియు దిగే స్టాప్‌లను మార్కర్‌లుగా సేవ్ చేయండి. ఈ విధంగా అవి సేవ్ చేయబడతాయి కాబట్టి మీరు వాటిని మళ్లీ సులభంగా కనుగొనవచ్చు. హోమ్ స్క్రీన్ నుండి *"మార్కర్‌లు మరియు రూట్‌లు"* కు వెళ్లి *"మార్కర్‌లు"* పేజీలో వాటిని కనుగొనండి. మీ దిగే స్టాప్‌కు ఎంత దగ్గరగా ఉన్నారో కాలానుగుణ అప్‌డేట్‌లు పొందడానికి మీరు వాటిపై బీకాన్‌ను సెట్ చేయవచ్చు. గమనిక: మీరు లయబద్ధమైన శబ్దాన్ని ఆఫ్ చేసినా, దారిలో దూర అప్‌డేట్‌లు మీకు లభిస్తూనే ఉంటాయి.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+మీరు మీ ఫోన్‌ను జేబులో పెట్టి కదలడం ఆపితే, మీరు ఏ దిశలో ఉన్నారో Soundscape గుర్తించలేదు కాబట్టి బీకాన్ శబ్దం నిశ్శబ్దమవుతుంది. దీన్ని పరిష్కరించడానికి మళ్లీ నడవడం మొదలుపెట్టండి, లేదా మీ ఫోన్‌ను బయటకు తీసి చదునుగా పట్టుకోండి.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+మీరు ఫోన్‌ను స్క్రీన్ ఆకాశం వైపు మరియు ఫోన్ పైభాగం మీ నుండి దూరంగా చూపేలా చదునుగా పట్టుకున్నప్పుడు Soundscape ఉత్తమంగా పనిచేస్తుంది.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+హోమ్ స్క్రీన్‌లోని మ్యూట్ బటన్‌ను ఉపయోగించి బీకాన్ యొక్క లయబద్ధమైన శబ్దాన్ని ఆన్ మరియు ఆఫ్ చేయవచ్చు. బీకాన్ మ్యూట్‌లో ఉన్నా, సుమారు ప్రతి 50 మీటర్లకు ఒకసారి మీ గమ్యస్థానానికి దూరం గురించి అప్‌డేట్‌లు మీకు లభిస్తూనే ఉంటాయి.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+స్వయంచాలక కాలౌట్‌లను వినకుండా Soundscapeను ఉపయోగించడం కొనసాగించడానికి, మెనూ నుండి *\"సెట్టింగ్‌లు\"* స్క్రీన్‌లోని *\"కాలౌట్‌లను నిర్వహించండి\"* విభాగంలో *\"కాలౌట్ వివరాలు\"* ను *\"నిశ్శబ్దం\"* కు సెట్ చేయండి. కొంతకాలం మీరు Soundscapeను ఉపయోగించబోకపోతే, బదులుగా హోమ్ స్క్రీన్‌లోని *\"నిద్ర\"* బటన్‌ను ఉపయోగించి దాన్ని నిద్ర లేదా స్నూజ్ మోడ్‌లో పెట్టవచ్చు.
 

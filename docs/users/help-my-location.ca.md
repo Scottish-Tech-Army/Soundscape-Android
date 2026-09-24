@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: La meva ubicació
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ca
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# La meva ubicació
 
-## What is it?
+## Què és?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+El botó *La meva ubicació* et dona ràpidament informació que t'ajuda a esbrinar on ets actualment. *La meva ubicació* t'informa sobre la teva ubicació actual, incloent-hi coses com la direcció cap a la qual estàs orientat, on hi ha carrers o cruïlles properes, i on hi ha punts d'interès propers.
 
-## When would I use it?
+## Quan l'hauria d'utilitzar?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*La meva ubicació* és útil quan necessites esbrinar on ets o cap a quin punt cardinal estàs orientat.
 
-## How does it work?
+## Com funciona?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Com passa amb els quatre botons de la part inferior de la pantalla principal, sostén el telèfon amb la pantalla plana (mirant cap al cel) i la part superior del telèfon apuntant en la direcció cap a la qual estàs orientat abans de prémer el botó *La meva ubicació*. Això funciona com una brúixola que indica a l'aplicació cap a quina direcció estàs orientat. Simplement, toca el botó *La meva ubicació* i escolta.
 

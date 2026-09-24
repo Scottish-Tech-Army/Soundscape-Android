@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: مقابل من
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fa
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# مقابل من
 
-## What is it?
+## این چیست؟
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+دکمه‌ی *«مقابل من»* تا حداکثر پنج مورد را که در جلوی شما قرار دارند اعلام می‌کند. هدف از *«مقابل من»* کمک به شما در آشنایی با آنچه پیش‌رو دارید هنگام یادگیری یک منطقهٔ جدید است.
 
-## When would I use it?
+## چه زمانی از آن استفاده کنم؟
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+هنگامی که در خیابان راه می‌روید، از قابلیت *«مقابل من»* استفاده کنید تا از مکان‌هایی که در امتداد مسیر حرکتتان در دو سمت خیابان قرار دارد مطلع شوید.
 
-## How does it work?
+## چگونه کار می‌کند؟
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+پیش از آنکه روی دکمه‌ی *«مقابل من»* ضربه بزنید، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی آن در جهتی باشد که رو به آن ایستاده‌اید. این کار را هنگام استفاده از هر چهار دکمه‌ی پایین صفحه‌ی اصلی انجام دهید. در این حالت، گوشی شما مانند یک قطب‌نما عمل کرده و به اپلیکیشن می‌گوید که شما رو به کدام جهت ایستاده‌اید. حالا کافیست روی دکمه‌ی *«مقابل من»* ضربه بزنید تا ساند‌اسکیپ چند نقطه‌ی شاخص که در امتداد مسیر حرکتتان قرار گرفته‌اند را به شما اعلام کند.
 

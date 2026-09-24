@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Útvonalak
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,27 +7,27 @@ lang: hu
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Útvonalak
 
-## What is it?
+## Mi ez?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Az útvonalak útpontok sorozatai. Minden útpont elérésekor értesítést kap, és a hangjelző automatikusan a következő útpontra vált.
 
-## When would I use it?
+## Mikor használnám?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Létrehozhat és használhat egy útvonalat egy Önnek már ismerős helyen, hogy a helyes úton maradjon. Vagy használhat egy útvonalat ahhoz, hogy megtanuljon egy új útvonalat.
 
-## How does it work?
+## Hogyan működik?
 
-**Creating a route :**
+**Útvonal létrehozása:**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Először lépjen a *Jelölők és útvonalak* menübe, válassza az *Útvonalak* lapot, majd válassza az *Új útvonal* gombot. Adjon nevet az útvonalnak, és opcionálisan írjon hozzá leírást, majd adjon hozzá útpontokat útközben, vagy válassza ki őket a jelölőlistájából. Az útvonal szerkesztésével bármikor átrendezheti az útpontok sorrendjét.
 
-**Editing a route :**
+**Útvonal szerkesztése:**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Válassza ki az útvonalát a *\"Jelölők és útvonalak\"* képernyőn, majd válassza az *\"Útvonal szerkesztése\"* lehetőséget. Innen hozzáadhat és eltávolíthat útpontokat, valamint szerkesztheti az útvonal nevét és leírását.
 
-**Sharing a route :**
+**Útvonal megosztása:**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Válassza ki az útvonalát a *Jelölők és útvonalak* képernyőn, majd válassza a *Megosztás* lehetőséget, és használja a szokásos megosztási lehetőségek bármelyikét.
 

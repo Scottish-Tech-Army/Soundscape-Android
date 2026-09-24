@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Platsmarkörer
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: sv
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Platsmarkörer
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Med Soundscape kan du markera din omvärld och allt som är viktigt för dig – ungefär som kartnålar på en karta.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Du kan markera platser som är personliga och viktiga för dig, som din bostad, din arbetsplats eller matbutiken du brukar handla i. Du kan markera valfri plats eller adress, och även sådant som vanligtvis inte finns med på kartor, till exempel: ingångar till byggnader eller parker, tryckknappar vid övergångsställen, övergångsställen, broar, busshållplatser eller till och med hundens favoritträd. Använd dessa markeringar som referenspunkter när du promenerar.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+För att uppleva markerade platser kommer Soundscape automatiskt att läsa upp platsmarkörer när du passerar dem eller närmar dig dem. Du kan också använda knappen *\"Platsmarkörer i närheten\"* längst ner på Soundscapes startskärm för att höra en rumsbestämd uppläsning av platsmarkörer runt dig. Dessutom kan du ställa in en ljudfyr på vilken platsmarkör som helst. Då hör du den ljudfyr du känner igen från Soundscape och kan använda den som vanligt.
 

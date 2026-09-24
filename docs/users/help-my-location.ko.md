@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: 내 위치
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ko
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# 내 위치
 
-## What is it?
+## 이것은 무엇인가요?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+*내 위치* 버튼은 현재 위치를 파악하는 데 도움이 되는 정보를 빠르게 알려줍니다. *내 위치*는 현재 바라보고 있는 방향, 근처 도로나 교차로의 위치, 근처 관심 지점의 위치 등 현재 위치에 대한 정보를 알려줍니다.
 
-## When would I use it?
+## 언제 사용하나요?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*내 위치*는 현재 위치나 바라보고 있는 방위를 파악해야 할 때 유용합니다.
 
-## How does it work?
+## 어떻게 작동하나요?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+홈 화면 하단의 네 가지 버튼과 마찬가지로, *내 위치* 버튼을 누르기 전에 휴대폰 화면이 하늘을 향하도록 평평하게 들고 휴대폰 상단이 바라보고 있는 방향을 가리키게 하세요. 이는 나침반처럼 앱에 현재 바라보고 있는 방향을 알려줍니다. 이제 *내 위치* 버튼을 탭하고 들어보세요.
 

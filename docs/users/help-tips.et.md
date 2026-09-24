@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Nõuanded
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,19 +7,19 @@ lang: et
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Nõuanded
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Lähedal asuvaid bussipeatusi leiate, valides loendis *"Lähedal asuvad kohad"* filtri *"Ühistransport"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Helimajaka saate seada igale aadressile. Otsige aadressi Soundscape'i põhikuvalt. Pärast aadressi valimist otsingutulemustest kuvatakse ekraan *"Asukoha üksikasjad"*, kus on suvand *"Käivita helimajakas"* selle aadressi kohta. Nii saate seada helimajaka ettevõtetele, kohtadele, huvipunktidele ja eluasemetele, mida OpenStreetMapis ei ole.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Kui kasutate regulaarselt mõnda bussiliini, salvestage oma pealemineku- ja mahaminekupeatused markeritena. Nii jäävad need salvestatuks ja leiate need hõlpsalt uuesti — minge lihtsalt avakuvalt lehele *"Markerid ja marsruudid"* ja leidke need lehelt *"Markerid"*. Saate neile seada helimajaka ning saate perioodilisi värskendusi selle kohta, kui lähedal olete oma mahaminekupeatusele. Märkus: saate rütmilise heli välja lülitada ja saate teekonnal ikkagi kauguse värskendusi.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Kui panete telefoni taskusse ja seiskute, muutub helimajaka heli vaiksemaks, kuna Soundscape ei tea, millises suunas te vaatate. Selle parandamiseks hakake uuesti kõndima või võtke telefon välja ja hoidke seda tasapinnaliselt.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape töötab kõige paremini, kui hoiate telefoni tasapinnaliselt, ekraan taeva poole ja telefoni ülaosa endast eemale suunatuna.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Helimajaka rütmilise heli saate sisse ja välja lülitada avakuva vaigistusnupuga. Kui helimajakas on vaigistatud, saate ikkagi umbes iga 50 meetri järel värskendusi oma kauguse kohta sihtkohast.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Et Soundscape'i edasi kasutada ilma automaatseid häälteateid kuulmata, seadke menüüst ekraani *Seadistused* jaotises *Halda häälteateid* valik *Häälteadete detailsus* väärtusele *Hääletu*. Kui te ei kavatse Soundscape'i mõnda aega kasutada, saate selle hoopis lülitada unerežiimi või uinakurežiimi, kasutades avakuval nuppu *Unerežiim*.
 

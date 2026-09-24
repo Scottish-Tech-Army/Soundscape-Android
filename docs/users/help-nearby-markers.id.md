@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Penanda di Sekitar
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: id
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Penanda di Sekitar
 
-## What is it?
+## Apa itu?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+Tombol *Penanda Terdekat* memberi tahu Anda tentang hingga empat penanda yang paling dekat dengan Anda. *Penanda Terdekat* dimaksudkan untuk membantu Anda mengetahui posisi Anda menggunakan tempat-tempat yang sudah Anda kenal.
 
-## When would I use it?
+## Kapan saya menggunakannya?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Saat Anda mencoba mengetahui posisi dan orientasi Anda terhadap sekitar, gunakan *Penanda Terdekat* untuk mendengar lokasi tempat-tempat yang Anda kenal.
 
-## How does it work?
+## Bagaimana cara kerjanya?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Seperti keempat tombol lainnya di bagian bawah layar utama, pegang ponsel Anda dengan layar rata (menghadap ke langit) dan bagian atas ponsel mengarah ke arah hadap Anda sebelum menekan tombol *Penanda Terdekat*. Ini berfungsi seperti kompas yang memberi tahu aplikasi arah hadap Anda. Cukup ketuk tombol *Penanda Terdekat* dan Anda akan mendengar hingga empat penanda di dekat Anda.
 

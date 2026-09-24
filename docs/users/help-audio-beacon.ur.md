@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: آڈیو بیکن
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ur
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# آڈیو بیکن
 
-## What is it?
+## یہ کیا ہے؟
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+کسی قریبی مقام پر بیکن سیٹ کرنے سے Soundscape آپ کو اس مقام کی سمت سے ایک قابلِ سماعت بیکن آواز چلا کر باخبر رکھ سکتا ہے۔ اس بیکن کو ہوم اسکرین پر خاموش یا فعال کیا جا سکتا ہے۔ مزید برآں، Soundscape ہوم اسکرین پر اس مقام کے بارے میں معلومات ظاہر کرتا ہے جن میں اس کا فاصلہ اور، اگر معلوم ہو تو، اس کا سڑک کا پتہ شامل ہے۔
 
-## When would I use it?
+## میں اسے کب استعمال کروں گا؟
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+بیکن سیٹ کرنا اس وقت مفید ہوتا ہے جب آپ کسی نئے علاقے کو دریافت کرتے ہوئے کسی مانوس نشان کا سراغ رکھنا چاہتے ہوں، یا جب آپ کہیں جا رہے ہوں اور راستے میں اپنے ارد گرد کے ماحول سے باخبر رہنا چاہتے ہوں۔ بیکن کی خصوصیت آپ کو موڑ بہ موڑ ہدایات نہیں دیتی، بلکہ یہ آپ کو ایک مسلسل قابلِ سماعت آواز فراہم کرتی ہے جو آپ کے موجودہ مقام کے نسبت بیکن کی سمت بتاتی ہے۔ آڈیو بیکن، اپنی موجودہ راستہ تلاش کرنے کی مہارتوں، اور یہاں تک کہ اپنی پسندیدہ نیویگیشن ایپ کو استعمال کرتے ہوئے، آپ خود منتخب کر سکتے ہیں کہ قریبی مقامات تک کیسے پہنچنا ہے۔
 
-## How does it work?
+## یہ کیسے کام کرتا ہے؟
 
-**To set a beacon :**
+**بیکن سیٹ کرنے کے لیے:**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ سب سے پہلے، سرچ بار کا استعمال کر کے کسی مقام کو تلاش کریں، یا *\"قریبی مقامات\"*، *\"مارکرز اور روٹس\"*، یا *\"موجودہ مقام\"* بٹنوں میں سے کسی ایک پر ٹیپ کر کے ایک مقام منتخب کریں، اور اس مقام کی تفصیلات دیکھیں۔ *\"مقام کی تفصیلات\"* اسکرین سے آپ *\"آڈیو بیکن شروع کریں\"* بٹن منتخب کر سکتے ہیں۔ اس پر ٹیپ کرنے سے آپ ہوم اسکرین پر واپس آ جائیں گے اور منتخب کردہ مقام کی سمت سے ایک قابلِ سماعت بیکن فعال ہو جائے گا۔ اب آپ کے منتخب کردہ مقام کا نام، اس کا فاصلہ، اور اگر دستیاب ہو تو اس کا مکمل پتہ مرکزی ایپ اسکرین پر ظاہر ہوگا۔
 
-**To remove the current beacon :**
+**موجودہ بیکن ہٹانے کے لیے:**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ بس ہوم اسکرین پر *\"روٹ روکیں\"* بٹن دبائیں۔
 
-**To mute the audible beacon :**
+**قابلِ سماعت بیکن کو خاموش کرنے کے لیے:**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ ہوم اسکرین پر *\"روٹ روکیں\"* بٹن کے ساتھ موجود *\"بیکن خاموش کریں\"* بٹن پر ٹیپ کریں۔
 

@@ -9,17 +9,17 @@ permalink: /users/help-tips.html
 
 # Tips
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Anda dapat menemukan halte bus terdekat dengan memilih filter *\"Transportasi Umum\"* pada daftar *\"Tempat di Sekitar\"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Anda dapat mengatur suar pada alamat apa pun. Dari layar utama Soundscape, cari alamat tersebut. Pilih alamat dari hasil pencarian untuk membuka layar *"Detail Lokasi"*. Layar ini memiliki opsi *"Mulai Suar Audio"* pada alamat tersebut. Dengan cara ini, Anda dapat mengatur suar pada bisnis, tempat, tempat menarik, dan rumah tinggal yang tidak ada di OpenStreetMap.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Jika Anda rutin menggunakan sebuah rute bus, simpan halte naik dan turun Anda sebagai Penanda. Dengan begitu halte-halte tersebut tersimpan dan mudah Anda temukan lagi. Buka *"Penanda dan Rute"* dari layar utama, lalu temukan di halaman *"Penanda"*. Anda dapat mengatur suar pada halte tersebut untuk mendapatkan pembaruan berkala tentang seberapa dekat Anda dengan halte turun Anda. Catatan: Anda dapat menonaktifkan suara ritmis dan tetap mendapatkan pembaruan jarak di sepanjang perjalanan.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Jika Anda memasukkan ponsel ke dalam saku dan berhenti bergerak, suara suar akan melemah karena Soundscape tidak dapat mengetahui arah hadap Anda. Untuk mengatasinya, mulailah berjalan lagi, atau keluarkan ponsel Anda dan pegang secara datar.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape bekerja paling baik saat Anda memegang ponsel secara rata dengan layar menghadap ke langit dan bagian atas ponsel mengarah menjauh dari Anda.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Anda dapat mengaktifkan dan menonaktifkan suara ritmis suar menggunakan tombol bisukan di layar utama. Jika suar dibisukan, Anda tetap akan mendapatkan pembaruan tentang jarak ke tujuan Anda kira-kira setiap 50 meter.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Untuk tetap menggunakan Soundscape tanpa mendengar pemberitahuan otomatis, atur *\"Tingkat Detail Pemberitahuan\"* ke *\"Senyap\"* di bagian *\"Kelola Pemberitahuan\"* pada layar *\"Pengaturan\"* dari menu. Jika Anda tidak akan menggunakan Soundscape untuk sementara waktu, Anda dapat mengaktifkan Mode Tidur atau Mode Tunda menggunakan tombol *\"Tidur\"* di layar utama.
 

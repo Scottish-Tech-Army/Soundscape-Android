@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Uso de controles multimedia
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: es
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Uso de controles multimedia
 
-## What is it?
+## ¿Qué es?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Puedes obtener acceso a determinadas características de Soundscape con la ayuda de los botones de control multimedia de tus auriculares. Esta funcionalidad funciona con auriculares Bluetooth o por cable que tenga botones de control multimedia, como Reproducir, Pausa, Siguiente, Anterior y otros. Distintos modelos de auriculares con micrófono pueden incluir diferentes botones; consulta la lista de acciones a continuación para determinar cuáles están disponibles para ti.
 
-## When would I use it?
+## ¿Cuándo lo usaría?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Los controles multimedia de los auriculares se pueden usar mientras Soundscape se está ejecutando, tanto si estás usando la aplicación activamente, como si se ejecuta en segundo plano o si el dispositivo está bloqueado. Sin embargo, los botones de control multimedia de los auriculares no funcionarán con Soundscape si estás reproduciendo audio, como música, podcasts o vídeos, con otra aplicación.
 
-## How does it work?
+## ¿Cómo funciona?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Existen 2 modos de funcionamiento para los controles multimedia. El modo se puede seleccionar en la sección *Ajustes* *Controles multimedia*. Los modos son:
 
- Original mode. 
+ Modo Original. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Reproducir/Pausa: Activa o desactiva el audio de la señal. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Siguiente: Si se está reproduciendo una ruta, mueve la señal de audio al siguiente punto de ruta de la ruta. Si no se está reproduciendo ninguna ruta, avisa de *Alrededor de mí*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Anterior: Si se está reproduciendo una ruta, mueve la señal de audio al punto de ruta anterior de la ruta. Si no se está reproduciendo ninguna ruta, cambia el *Detalle de los avisos*, un nivel más discreto con cada pulsación: *Detallado*, *Equilibrado*, *Discreto*, *Silencioso*, y de vuelta a *Detallado*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menú de audio. 
+
+
+
+⏭ Siguiente avanza por una serie de opciones de menú que la aplicación describe mediante síntesis de voz, y vuelve a la primera después de la última. ⏯ Reproducir/Pausa hace entonces que la aplicación ejecute la opción descrita. Hay un único menú de primer nivel que solo tiene submenús como opciones. Cada submenú agrupa un conjunto de acciones similares.
+
+⏮ Anterior no avanza por el menú. En su lugar cambia el *Detalle de los avisos*, exactamente igual que en el modo Original, de modo que el mismo botón hace que la aplicación hable menos en cualquiera de los dos modos.
 

@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Uso dos Controles de Mídia
 layout: page
 parent: "Usando o Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: pt-BR
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Uso dos Controles de Mídia
 
-## What is it?
+## O que é?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Você pode acessar determinados recursos do Soundscape com a ajuda dos botões de controle de mídia nos fones de ouvido. Esse recurso funciona com quaisquer fones de ouvido com fio ou Bluetooth que tenham botões de controle de mídia como Reproduzir, Pausar, Próximo, Anterior e outros. Os fones de ouvido diferentes podem incluir botões diferentes, então consulte a lista de ações a seguir para determinar quais estão disponíveis para você.
 
-## When would I use it?
+## Quando eu o usaria?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Os controles de mídia dos fones de ouvido podem ser usados enquanto o Soundscape está em execução — esteja você usando o aplicativo ativamente, esteja ele em segundo plano ou esteja seu dispositivo bloqueado. No entanto, os botões de controle de mídia dos fones de ouvido não funcionarão com o Soundscape se você estiver reproduzindo áudio, como música, podcasts ou vídeos, em outro aplicativo.
 
-## How does it work?
+## Como ele funciona?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Existem 2 modos de operação para os controles de mídia. O modo pode ser selecionado em *Ajustes* → *Controles de Mídia*. Os modos são:
 
- Original mode. 
+ Modo Original. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Reproduzir/Pausar: Alterna o áudio do sinalizador sonoro (liga/desliga). 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Próximo: Se uma rota estiver em reprodução, move o sinalizador sonoro para o próximo localizador da rota. Se nenhuma rota estiver em reprodução, anuncia *Ao Meu Redor*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Anterior: Se uma rota estiver em reprodução, move o sinalizador sonoro para o localizador anterior da rota. Se nenhuma rota estiver em reprodução, altera o *Detalhe das Notificações*, um nível mais discreto a cada toque: *Detalhado*, *Equilibrado*, *Discreto*, *Silencioso*, e de volta a *Detalhado*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Modo Menu de Áudio. 
+
+
+
+⏭ Próximo navega por uma série de opções de menu que o aplicativo descreve por síntese de voz, voltando à primeira depois da última. ⏯ Reproduzir/Pausar então aciona o aplicativo para executar a opção descrita. Há um único menu de nível superior que apenas contém submenus como opções. Cada submenu agrupa um conjunto de ações semelhantes.
+
+⏮ Anterior não navega pelo menu. Em vez disso, altera o *Detalhe das Notificações*, exatamente como no modo Original, de modo que o mesmo botão deixa o aplicativo mais discreto em qualquer um dos modos.
 

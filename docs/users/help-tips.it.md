@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Suggerimenti
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: it
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Suggerimenti
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Puoi trovare le fermate degli autobus nelle vicinanze selezionando il filtro *\"Trasporto pubblico\"* nella lista *\"Luoghi nelle vicinanze\"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Puoi impostare un audiofaro su qualsiasi indirizzo. Dalla schermata principale di Soundscape cerca l'indirizzo. Seleziona l'indirizzo nei risultati di ricerca per aprire la schermata *"Dettagli posizione"*. Questa schermata include l'opzione *"Avvia audiofaro"* per quell'indirizzo. In questo modo puoi impostare un audiofaro su attività commerciali, luoghi, punti di interesse e abitazioni che non sono presenti in OpenStreetMap.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Se prendi regolarmente una linea di autobus, salva le fermate di salita e discesa come Indicatori. In questo modo saranno salvate e potrai ritrovarle facilmente. Vai su *"Indicatori e Percorsi"* dalla schermata iniziale, poi cercale nella pagina *"Indicatori"*. Puoi impostare un audiofaro su di esse per ricevere aggiornamenti periodici su quanto sei vicino alla fermata di uscita. Nota: puoi disattivare il suono ritmico e continuare comunque a ricevere aggiornamenti sulla distanza lungo il percorso.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Se metti il telefono in tasca e smetti di muoverti, il suono dell'audiofaro diventa meno percettibile perché Soundscape non riesce a capire in quale direzione sei rivolto. Per risolvere il problema, ricomincia a camminare oppure tira fuori il telefono e tienilo piatto.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape funziona in modo ottimale quando si tiene il telefono piatto con lo schermo rivolto verso il cielo e la parte superiore del telefono che punta davanti a te.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Puoi attivare e disattivare il suono ritmico dell'audiofaro utilizzando il pulsante di disattivazione dell'audio nella schermata iniziale. Se l'audiofaro è disattivato, riceverai comunque gli aggiornamenti sulla distanza dalla destinazione all'incirca ogni 50 metri.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Per continuare a usare Soundscape senza ascoltare le notifiche automatiche, imposta *\"Dettaglio delle notifiche\"* su *\"Silenzioso\"* nella sezione *\"Gestisci notifiche\"* della schermata *\"Impostazioni\"* dal menu. Se non userai Soundscape per un po', puoi invece metterlo in modalità Sospendi o Posponi usando il pulsante *\"Sospendi\"* nella schermata principale.
 

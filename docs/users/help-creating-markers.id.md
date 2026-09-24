@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: Membuat Penanda
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: id
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# Membuat Penanda
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+Anda dapat membuat marker dengan tiga cara: mencari tempat yang ingin Anda simpan menggunakan bilah pencarian, menemukan suatu tempat menggunakan tombol *\"Tempat di Sekitar\"*, atau menggunakan tombol *\"Gunakan Lokasi Saat Ini\"*, yang semuanya dapat ditemukan di layar utama Soundscape. Setelah Anda menemukan tempat yang diinginkan, memilihnya akan membawa Anda ke layar *\"Detail Lokasi\"*. Di layar ini, pilih tombol *\"Simpan sebagai Marker\"*.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+Anda sekarang memiliki opsi untuk menyesuaikan marker ini. Anda dapat mengubah nama marker, dan juga menambahkan anotasi yang akan disebutkan bersama marker untuk memberikan informasi tambahan. Setelah selesai, pilih tombol *Selesai* untuk menyimpan Marker Anda.
 

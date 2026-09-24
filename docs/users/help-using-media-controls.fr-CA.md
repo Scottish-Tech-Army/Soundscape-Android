@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Utilisation des commandes multimédias
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: fr-CA
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Utilisation des commandes multimédias
 
-## What is it?
+## De quoi s’agit-il?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+...veuillez consulter la liste des actions ci-dessous pour déterminer celles qui sont disponibles.
 
-## When would I use it?
+## Quand l’utiliser?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Les boutons de commande des casques peuvent être utilisés lorsque Soundscape est en cours d’exécution, que vous utilisiez activement l’appli, qu’elle s’exécute en arrière-plan ou que votre appareil soit verrouillé. Toutefois, les boutons de commande des casques ne fonctionnent pas avec Soundscape si vous lisez de l’audio, comme de la musique, des balados ou des vidéos, avec une autre appli.
 
-## How does it work?
+## Fonctionnement
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Il existe 2 modes de fonctionnement pour les commandes multimédias. Le mode se sélectionne dans la section *Réglages* *Commandes multimédias*. Les modes sont :
 
- Original mode. 
+ Mode original. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Lecture/Pause : active ou désactive le son de la balise audio. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Suivant : si un itinéraire est en cours de lecture, déplace la balise audio vers le point de cheminement suivant de l’itinéraire. Si aucun itinéraire n’est en cours de lecture, annonce *Autour de moi*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Précédent : si un itinéraire est en cours de lecture, déplace la balise audio vers le point de cheminement précédent de l’itinéraire. Si aucun itinéraire n’est en cours de lecture, modifie le *Détail des annonces*, d’un niveau plus discret à chaque appui : *Détaillé*, *Équilibré*, *Discret*, *Silencieux*, puis retour à *Détaillé*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menu audio. 
+
+
+
+⏭ Suivant parcourt une série d’options de menu que l’application décrit par synthèse vocale, en revenant à la première après la dernière. ⏯ Lecture/Pause déclenche alors l’exécution de l’option décrite. Il existe un menu de niveau supérieur qui ne contient que des sous-menus comme options. Chaque sous-menu regroupe un ensemble d’actions similaires.
+
+⏮ Précédent ne parcourt pas le menu. Il modifie plutôt le *Détail des annonces*, exactement comme en mode original, de sorte que le même bouton rend l’application plus discrète quel que soit le mode utilisé.
 

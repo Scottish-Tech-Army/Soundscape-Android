@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Uporaba kontrolnikov predstavnosti
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: sl
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Uporaba kontrolnikov predstavnosti
 
-## What is it?
+## Kaj je to?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Do določenih funkcij v aplikaciji Soundscape lahko dostopate s pomočjo gumbov za upravljanje predvajanja na slušalkah. Ta funkcija deluje s katerimikoli žičnimi ali Bluetooth slušalkami, ki imajo gumbe za upravljanje predvajanja, kot so Predvajaj, Premor, Naprej, Nazaj in drugi. Različne slušalke lahko vključujejo različne gumbe, zato si oglejte spodnji seznam dejanj, da ugotovite, kateri so na voljo vam.
 
-## When would I use it?
+## Kdaj naj to uporabim?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Gumbe za upravljanje predvajanja na slušalkah lahko uporabljate, ko Soundscape deluje – ne glede na to, ali aplikacijo aktivno uporabljate, ali teče v ozadju ali je vaša naprava zaklenjena. Gumbi za upravljanje predvajanja na slušalkah pa ne bodo delovali s Soundscape, če z drugo aplikacijo predvajate zvok, kot so glasba, podkasti ali videoposnetki.
 
-## How does it work?
+## Kako deluje?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Za predstavnostne kontrolnike sta na voljo 2 načina delovanja. Način lahko izberete v razdelku *Nastavitve* *Kontrolniki za predstavnost*. Načina sta:
 
- Original mode. 
+ Izvirni način. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Predvajaj/Premor: vklopi in izklopi zvok svetilnika. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Naprej: Če se predvaja pot, premakne zvočni svetilnik na naslednjo točko poti. Če se ne predvaja nobena pot, izgovori *Okoli mene*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Nazaj: Če se predvaja pot, premakne zvočni svetilnik na prejšnjo točko poti. Če se ne predvaja nobena pot, spremeni *Raven podrobnosti obvestil* za eno raven tiše ob vsakem pritisku: *Podrobno*, *Uravnoteženo*, *Tiho*, *Brez zvoka* in nazaj na *Podrobno*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Zvočni meni. 
+
+
+
+⏭ Naprej se pomika po vrsti menijskih možnosti, ki jih aplikacija opiše z govorno sintezo, in se po zadnji vrne na prvo. ⏯ Predvajaj/Premor nato sproži izvedbo opisane možnosti. Obstaja en sam meni najvišje ravni, ki ima kot možnosti samo podmenije. Vsak podmeni vsebuje skupino podobnih dejanj.
+
+⏮ Nazaj se ne pomika po meniju. Namesto tega spremeni *Raven podrobnosti obvestil*, povsem enako kot v izvirnem načinu, tako da isti gumb utiša aplikacijo v obeh načinih.
 

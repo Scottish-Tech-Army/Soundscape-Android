@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Okoli mene
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sl
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Okoli mene
 
-## What is it?
+## Kaj je to?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+Gumb *Okoli mene* vam pove o eni stvari v vsakem od štirih kvadrantov okoli vas (spredaj, desno, zadaj in levo). *Okoli mene* vam pomaga pri orientaciji v okolici.
 
-## When would I use it?
+## Kdaj naj to uporabim?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Kadar se poskušate orientirati in seznaniti s svojo okolico, uporabite *Okoli mene*, da slišite o stvareh okoli vas.
 
-## How does it work?
+## Kako deluje?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Kot pri vseh štirih gumbih na dnu domačega zaslona telefon držite tako, da je zaslon vodoraven (obrnjen proti nebu), vrh telefona pa naj kaže v smer, v katero ste obrnjeni, preden pritisnete gumb *Okoli mene*. To deluje kot kompas, ki aplikaciji pove, v katero smer ste obrnjeni. Preprosto tapnite gumb *Okoli mene* in slišali boste štiri zanimivosti, razporejene okoli vas.
 

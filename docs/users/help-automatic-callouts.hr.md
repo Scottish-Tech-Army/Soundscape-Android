@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Automatske najave
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: hr
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Automatske najave
 
-## What is it?
+## Što je to?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape vam može reći o stvarima u vašoj okolini dok im se približavate tako što najavljuje njihov naziv iz smjera u kojem se nalaze. Aplikacija to radi automatski za razne stvari poput trgovina, autobusnih stajališta pa čak i raskrižja. Možete odrediti što aplikacija automatski najavljuje u odjeljku *"Upravljanje najavama"* na zaslonu *"Postavke"*, a sve najave možete i potpuno isključiti kada želite da aplikacija bude tiha.
 
-## When would I use it?
+## Kada se ovo koristi?
 
-**Exploring a new area :**
+**Istraživanje novog područja:**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Uključite automatske najave i prošećite okolinom kako biste čuli o svim raznim trgovinama, restoranima i sličnome dok prolazite pored njih.
 
-**Walking to a specific location :**
+**Hod prema određenoj lokaciji:**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Kada ste na putu prema određenoj lokaciji, automatske najave raskrižja mogu biti posebno korisne. Najave raskrižja govore vam o rasporedu raskrižja dok im se približavate i potvrđuju cestu na kojoj se nalazite kada ih napustite.
 
-**When you need silence :**
+**Kada vam treba tišina:**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Kada se spremate prijeći cestu ili jednostavno trebate da aplikacija bude tiha, možete isključiti najave. Kada su najave isključene, aplikacija će vam davati informacije samo ako ručno dodirnete jedan od gumba *Moja lokacija*, *Oznake u blizini*, *Oko mene* ili *Ispred mene*.
 
-## How does it work?
+## Kako to funkcionira?
 
-**Turning callouts on or off :**
+**Uključivanje ili isključivanje najava:**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Isključivanjem najava utišat ćete aplikaciju. Najave se mogu isključiti u odjeljku *Upravljanje najavama* na zaslonu *Postavke* postavljanjem opcije *Razina detalja najava* na *Bez zvuka*, a ponovno se uključuju odabirom bilo koje druge razine. Isto možete učiniti i tako da to zatražite od Siri ili Geminija. Soundscape možete i postupno utišavati gumbima za upravljanje medijima na slušalicama: svaki pritisak na *prethodno* spušta razinu kroz *Detaljno*, *Uravnoteženo*, *Tiho* i *Bez zvuka*, a još jedan pritisak vraća na *Detaljno*. Pogledajte temu pomoći *Upotreba upravljanja medijima*. Također, možete koristiti gumb *Mirovanje* u gornjem desnom kutu početnog zaslona kako biste zaustavili Soundscape da izgovara najave dok ga ponovno ne probudite.
 
-**Managing which callouts you hear :**
+**Upravljanje najavama koje čujete:**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Kako biste odabrali vrste stvari koje će Soundscape automatski najavljivati, otvorite zaslon *Postavke* pomoću izbornika na zaslonu *Početni*. U odjeljku *Upravljanje najavama* na zaslonu *Postavke* birate koliko aplikacija govori pomoću opcije *Razina detalja najava*, najavljuje li *Ulice i raskrižja* te koja su *Mjesta za najavu*. Ako želite isključiti sve najave, postavite *Razina detalja najava* na *Bez zvuka*.
 

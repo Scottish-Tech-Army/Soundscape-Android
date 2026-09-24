@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: نشانه‌های نزدیک
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fa
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# نشانه‌های نزدیک
 
-## What is it?
+## این چیست؟
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+دکمه‌ی *«نشانه‌های نزدیک»* حد‌اکثر چهار مورد از نزدیک‌ترین مکان‌هایی را که قبلاً نشانه‌گذاری کرده‌اید به شما اعلام می‌کند. هدف از این قابلیت آن است که به شما کمک شود تا با استفاده از مکان‌هایی که از قبل می‌شناسید، موقعیت فعلی خود را تشخیص دهید.
 
-## When would I use it?
+## چه زمانی از آن استفاده کنم؟
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+هنگامی که می‌خواهید بدانید نسبت به محیط پیرامونتان در چه موقعیتی قرار دارید، از قابلیت *«نشانه‌های نزدیک»* استفاده کنید تا درباره‌ی موقعیت جاهایی که از قبل می‌شناسید اطلاع کسب نمایید.
 
-## How does it work?
+## چگونه کار می‌کند؟
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+پیش از آنکه روی دکمه‌ی *«نشانه‌های نزدیک»* ضربه بزنید، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی گوشی در جهتی باشد که رو به آن ایستاده‌اید. این کار را هنگام استفاده از هر چهار دکمه‌ی پایین صفحه‌ی اصلی انجام دهید. در این حالت، گوشی شما مانند یک قطب‌نما عمل کرده و به اپلیکیشن می‌گوید که شما رو به کدام جهت ایستاده‌اید. حالا کافیست روی دکمه‌ی *«نشانه‌های نزدیک»* ضربه بزنید تا ساند‌اسکیپ حد‌اکثر چهار مورد از نزدیک‌تریین مکان‌هایی که قبلاً نشانه‌گذاری کرده‌اید را به شما اعلام کند.
 

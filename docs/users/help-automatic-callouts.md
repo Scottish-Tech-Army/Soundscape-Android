@@ -29,9 +29,9 @@ Soundscape can tell you about things around you as you approach them by calling 
 
 **Turning callouts on or off :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Turning callouts off will silence the app. Callouts can be turned off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen by setting *\"Callout Detail\"* to *\"Silent\"*, and turned back on by choosing any other level. You can do the same by asking Siri or Gemini. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *\"previous\"* moves down through *\"Detailed\"*, *\"Balanced\"*, *\"Quiet\"* and *\"Silent\"*, and one more press goes back to *\"Detailed\"*. See the *\"Using Media Controls\"* help topic. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
 
 **Managing which callouts you hear :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen is where you choose how much the app says with *\"Callout Detail\"*, whether it calls out *\"Streets and Junctions\"*, and which *\"Places to Call Out\"*. If you wish to turn off all callouts, set *\"Callout Detail\"* to *\"Silent\"*.
 

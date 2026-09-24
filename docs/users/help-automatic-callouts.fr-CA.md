@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Annonces automatiques
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: fr-CA
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Annonces automatiques
 
-## What is it?
+## De quoi s’agit-il?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape peut vous informer de ce qui vous entoure à mesure que vous vous en approchez, en annonçant le nom des éléments depuis la direction où ils se situent. L’application effectue cela automatiquement pour toutes sortes d’éléments, comme des commerces, des arrêts de bus et même des intersections. Vous pouvez configurer ce que l’application annonce automatiquement dans la section *« Gérer les annonces »* de l’écran *« Réglages »*, et vous pouvez désactiver toutes les annonces lorsque vous souhaitez que l’application reste silencieuse.
 
-## When would I use it?
+## Quand l’utiliser?
 
-**Exploring a new area :**
+**Exploration d’un nouvel environnement** :
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Activez les annonces automatiques et promenez-vous pour en savoir plus sur les différents commerces, restaurants et autres, à mesure que vous passez à côté.
 
-**Walking to a specific location :**
+**Marcher vers un emplacement spécifique** :
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Lorsque vous vous dirigez vers un emplacement spécifique, les annonces automatiques des intersections peuvent s’avérer particulièrement utiles. Les annonces d’intersections vous indiquent la disposition des intersections à mesure que vous vous en approchez, et vous confirment ensuite la route sur laquelle vous vous trouvez.
 
-**When you need silence :**
+**Lorsque vous avez besoin de silence** :
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Lorsque vous êtes sur le point de traverser une route ou si vous souhaitez simplement que l’appli soit silencieuse, il vous suffit de désactiver les annonces. Une fois cela fait, l’appli vous fournira uniquement des informations si vous appuyez manuellement sur l’un des boutons *Mon emplacement*, *Marqueurs à proximité*, *Autour de moi* ou *Devant moi*.
 
-## How does it work?
+## Fonctionnement
 
-**Turning callouts on or off :**
+**Activer ou désactiver les annonces :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Désactiver les annonces coupera le son de l’application. Les annonces peuvent être désactivées dans la section *« Gérer les annonces »* de l’écran *« Réglages »* en réglant *« Détail des annonces »* sur *« Silencieux »*, et réactivées en choisissant n’importe quel autre niveau. Vous pouvez faire de même en le demandant à Siri ou à Gemini. Vous pouvez aussi rendre Soundscape plus discret par paliers à l’aide des boutons de contrôle multimédia de votre casque : chaque appui sur *« précédent »* descend d’un niveau parmi *« Détaillé »*, *« Équilibré »*, *« Discret »* et *« Silencieux »*, et un appui de plus revient à *« Détaillé »*. Consultez la rubrique d’aide *« Utilisation des commandes multimédias »*. Autrement, vous pouvez utiliser le bouton *« Mettre en veille »* dans le coin supérieur droit de l’écran d’accueil pour empêcher Soundscape d’émettre des annonces jusqu’à ce que vous choisissiez de le réveiller.
 
-**Managing which callouts you hear :**
+**Gérer les annonces que vous entendez :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Pour choisir les types d’éléments que Soundscape annoncera automatiquement, allez dans l’écran *« Réglages »* via le menu sur l’écran *« Accueil »*. C’est dans la section *« Gérer les annonces »* de l’écran *« Réglages »* que vous choisissez la quantité d’informations annoncées avec *« Détail des annonces »*, si l’application annonce les *« Rues et intersections »*, et quels sont les *« Lieux à annoncer »*. Si vous souhaitez désactiver toutes les annonces, réglez *« Détail des annonces »* sur *« Silencieux »*.
 

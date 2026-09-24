@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: قریبی مارکرز
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ur
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# قریبی مارکرز
 
-## What is it?
+## یہ کیا ہے؟
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+*قریبی مارکرز* بٹن آپ کو آپ کے قریب ترین چار مارکرز تک کے بارے میں بتاتا ہے۔ *قریبی مارکرز* کا مقصد ان جگہوں کا استعمال کرتے ہوئے آپ کو سمت کا تعین کرنے میں مدد دینا ہے جنہیں آپ پہلے سے جانتے ہیں۔
 
-## When would I use it?
+## میں اسے کب استعمال کروں گا؟
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+جب آپ اپنا رخ متعین کرنے اور اپنے ارد گرد کے ماحول سے مطابقت پیدا کرنے کی کوشش کر رہے ہوں، تو ان جگہوں کے مقامات کے بارے میں سننے کے لیے *قریبی مارکرز* کا استعمال کریں جنہیں آپ جانتے ہیں۔
 
-## How does it work?
+## یہ کیسے کام کرتا ہے؟
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+ہوم اسکرین کے نیچے موجود تمام چار بٹنوں کی طرح، *قریبی مارکرز* بٹن دبانے سے پہلے اپنے فون کو چپٹا (آسمان کی طرف رخ کیے ہوئے) پکڑیں اور فون کا اوپری حصہ اسی سمت میں رکھیں جس طرف آپ کا رخ ہے۔ یہ ایک کمپاس کی طرح کام کرتا ہے جو ایپ کو بتاتا ہے کہ آپ کس سمت کا رخ کیے ہوئے ہیں۔ بس *قریبی مارکرز* بٹن پر ٹیپ کریں اور آپ اپنے قریب موجود چار مارکرز تک کے بارے میں سنیں گے۔
 

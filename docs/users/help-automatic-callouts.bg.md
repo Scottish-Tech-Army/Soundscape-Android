@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Автоматични аудио съобщения
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: bg
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Автоматични аудио съобщения
 
-## What is it?
+## Какво представлява?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape може да Ви съобщава за неща около Вас, когато се приближавате до тях, като изговаря името им от посоката, в която се намират. Приложението прави това автоматично за всякакви неща като бизнеси, спирки на градския транспорт и дори кръстовища. Можете да настроите какво приложението да съобщава автоматично в секцията *"Управление на аудио съобщенията"* на екрана *"Настройки"*, а можете да изключите всички аудио съобщения, когато искате приложението да е тихо.
 
-## When would I use it?
+## Кога да го използвам?
 
-**Exploring a new area :**
+**Изследване на нов район :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Включете автоматичните аудио съобщения и се разходете, за да чуете за различните магазини, ресторанти и други подобни, докато минавате покрай тях.
 
-**Walking to a specific location :**
+**Придвижване до конкретно местоположение :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Когато сте на път към конкретно местоположение, автоматичните аудио съобщения за кръстовища могат да бъдат особено полезни. Съобщенията за кръстовища Ви информират за разположението на кръстовищата, докато се приближавате до тях, и потвърждават пътя, по който сте, когато ги напускате.
 
-**When you need silence :**
+**Когато имате нужда от тишина :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Когато се готвите да пресечете път или просто искате приложението да замълчи, можете да изключите аудио съобщенията. Когато аудио съобщенията са изключени, приложението ще Ви дава информация само ако ръчно докоснете един от бутоните *Моето местоположение*, *Близки маркери*, *Около мен* или *Пред мен*.
 
-## How does it work?
+## Как работи?
 
-**Turning callouts on or off :**
+**Включване или изключване на аудио съобщенията :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Изключването на аудио съобщенията ще заглуши приложението. Аудио съобщенията могат да бъдат изключени в секцията *Управление на аудио съобщенията* на екрана *Настройки*, като зададете *Детайлност на съобщенията* на *Без звук*, и включени отново, като изберете което и да е друго ниво. Същото можете да направите и като помолите Siri или Gemini. Можете също да заглушавате Soundscape стъпка по стъпка с бутоните за медийно управление на слушалките си: всяко натискане на *назад* слиза с едно ниво надолу през *Подробно*, *Балансирано*, *Тихо* и *Без звук*, а още едно натискане се връща на *Подробно*. Вижте темата от помощта *Използване на медийните контроли*. Алтернативно можете да използвате бутона *Сън* в горния десен ъгъл на началния екран, за да спрете Soundscape да издава аудио съобщения, докато не изберете да го събудите отново.
 
-**Managing which callouts you hear :**
+**Управление на това кои аудио съобщения чувате :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ За да изберете видовете неща, които Soundscape ще съобщава автоматично, отидете на екрана *Настройки* чрез менюто на екрана *Начало*. В секцията *Управление на аудио съобщенията* на екрана *Настройки* избирате колко говори приложението с *Детайлност на съобщенията*, дали да съобщава *Улици и кръстовища* и кои са *Места за съобщаване*. Ако искате да изключите всички аудио съобщения, задайте *Детайлност на съобщенията* на *Без звук*.
 

@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: ఆడియో బీకాన్
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,27 +7,27 @@ lang: te
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# ఆడియో బీకాన్
 
-## What is it?
+## ఇది ఏమిటి?
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+సమీప ప్రదేశంపై బీకాన్‌ను సెట్ చేయడం వలన, ఆ ప్రదేశం దిశ నుండి వినిపించే ఆడియో బీకాన్ శబ్దాన్ని ప్లే చేయడం ద్వారా Soundscape మిమ్మల్ని ఎప్పటికప్పుడు తెలియజేస్తూ ఉంటుంది. ఈ బీకాన్‌ను హోమ్ స్క్రీన్‌పై మ్యూట్ చేయవచ్చు లేదా అన్‌మ్యూట్ చేయవచ్చు. అదనంగా, Soundscape ఆ ప్రదేశం గురించిన సమాచారాన్ని, దానికి దూరం మరియు తెలిస్తే దాని వీధి చిరునామాతో సహా, హోమ్ స్క్రీన్‌పై చూపిస్తుంది.
 
-## When would I use it?
+## దీన్ని నేను ఎప్పుడు ఉపయోగించాలి?
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+మీరు కొత్త ప్రాంతాన్ని అన్వేషిస్తున్నప్పుడు తెలిసిన ల్యాండ్‌మార్క్‌ను ట్రాక్ చేయాలనుకున్నప్పుడు లేదా మీరు ఎక్కడికైనా వెళ్తున్నప్పుడు దారిలో మీ పరిసరాల గురించి తెలుసుకోవాలనుకున్నప్పుడు బీకాన్‌ను సెట్ చేయడం ఉపయోగకరంగా ఉంటుంది. బీకాన్ ఫీచర్ మీకు టర్న్-బై-టర్న్ దిశలను ఇవ్వదు, కానీ మీరు ప్రస్తుతం ఉన్న స్థానానికి సంబంధించి బీకాన్ దిశను తెలియజేసే నిరంతర ఆడియో శబ్దాన్ని ఇస్తుంది. ఆడియో బీకాన్‌ను, మీకున్న దారి కనిపెట్టే నైపుణ్యాలను, మరియు మీకు ఇష్టమైన నావిగేషన్ యాప్‌ను కూడా ఉపయోగించి, సమీప ప్రదేశాలకు ఎలా చేరుకోవాలో మీరే ఎంచుకోవచ్చు.
 
-## How does it work?
+## ఇది ఎలా పని చేస్తుంది?
 
-**To set a beacon :**
+**బీకాన్‌ను సెట్ చేయడానికి :**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ ముందుగా, శోధన పట్టీని ఉపయోగించి ఒక ప్రదేశం కోసం వెతకడం ద్వారా లేదా *\"సమీప ప్రదేశాలు\"*, *\"మార్కర్‌లు మరియు రూట్‌లు\"*, లేదా *\"ప్రస్తుత స్థానం\"* బటన్లలో ఒకదాన్ని నొక్కి ఒక ప్రదేశాన్ని ఎంచుకోవడం ద్వారా ఆ ప్రదేశం వివరాలను చూడండి. *\"స్థాన వివరాలు\"* స్క్రీన్ నుండి మీరు *\"ఆడియో బీకాన్‌ను ప్రారంభించండి\"* బటన్‌ను ఎంచుకోవచ్చు. దీన్ని నొక్కడం వలన మీరు హోమ్ స్క్రీన్‌కు తిరిగి వెళ్తారు మరియు మీరు ఎంచుకున్న ప్రదేశం దిశ నుండి ఆడియో బీకాన్ ఆన్ అవుతుంది. మీరు ఎంచుకున్న ప్రదేశం పేరు, దాని దూరం మరియు అందుబాటులో ఉంటే దాని భౌతిక చిరునామాతో పాటు, ఇప్పుడు ప్రధాన యాప్ స్క్రీన్‌పై చూపబడతాయి.
 
-**To remove the current beacon :**
+**బీకాన్‌ను తీసివేయడానికి :**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ హోమ్ స్క్రీన్‌లో *\"రూట్‌ను ఆపండి\"* బటన్‌ను నొక్కండి.
 
-**To mute the audible beacon :**
+**ఆడియో బీకాన్‌ను మ్యూట్ చేయడానికి :**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ హోమ్ స్క్రీన్‌లో *\"రూట్‌ను ఆపండి\"* బటన్ పక్కన ఉన్న *\"బీకాన్‌ను మ్యూట్ చేయండి\"* బటన్‌ను నొక్కండి.
 

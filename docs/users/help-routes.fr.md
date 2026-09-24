@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Itinéraires
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: fr
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Itinéraires
 
-## What is it?
+## De quoi s’agit-il ?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Un Itinéraire correspond à une série de points de repère. Vous êtes informé quand vous arrivez à chaque point de repère, et la balise audio avance automatiquement jusqu’au point de repère suivant.
 
-## When would I use it?
+## Quand l’utiliser ?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Vous pouvez créer et utiliser un Itinéraire dans un endroit que vous connaissez déjà, pour vous aider à rester sur la bonne voie. Ou vous pouvez utiliser un Itinéraire pour vous aider à apprendre un nouveau trajet.
 
-## How does it work?
+## Comment ça fonctionne ?
 
-**Creating a route :**
+**Création d’un Itinéraire** :
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ tout d’abord, allez dans *Marqueurs et Itinéraires*, sélectionnez l’onglet *Itinéraires*, puis cliquez sur le bouton *Nouvel Itinéraire*. Donnez à l’Itinéraire un nom et une description facultative, puis ajoutez des points de repère à mesure que vous vous déplacez ou choisissez-les dans votre liste de Marqueurs. Vous pouvez réorganiser l’ordre des points de repère sur un Itinéraire à tout moment en modifiant l’Itinéraire.
 
-**Editing a route :**
+**Modification d’un Itinéraire :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Sélectionnez votre Itinéraire sur l’écran *\"Marqueurs et Itinéraires\"* puis choisissez *\"Modifier l’itinéraire\"*. À partir d’ici, vous pouvez ajouter ou supprimer des points de repère, ainsi que modifier le nom et la description de l’itinéraire.
 
-**Sharing a route :**
+**Partage d’un Itinéraire** :
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ sélectionnez votre Itinéraire sur l’écran *Marqueurs et Itinéraires* puis sélectionnez l’option *Partager* en utilisant les options de partage habituelles à votre disposition.
 

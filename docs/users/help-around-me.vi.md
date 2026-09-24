@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Xung quanh tôi
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: vi
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Xung quanh tôi
 
-## What is it?
+## Đây là gì?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+Nút *Xung quanh tôi* cho bạn biết về một thứ trong mỗi khu vực trong bốn khu vực xung quanh bạn (phía trước, bên phải, phía sau, và bên trái). *Xung quanh tôi* được thiết kế để giúp bạn định hướng trong không gian xung quanh.
 
-## When would I use it?
+## Khi nào tôi nên dùng tính năng này?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Khi bạn đang cố gắng xác định phương hướng và định vị bản thân trong không gian xung quanh, hãy dùng *Xung quanh tôi* để nghe về những thứ xung quanh bạn.
 
-## How does it work?
+## Tính năng này hoạt động như thế nào?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Cũng như với cả bốn nút ở dưới cùng màn hình chính, hãy giữ điện thoại nằm ngang (màn hình hướng lên trời) với đầu điện thoại chỉ về hướng bạn đang nhìn trước khi nhấn nút *Xung quanh tôi*. Cách cầm này hoạt động như một chiếc la bàn, cho ứng dụng biết bạn đang hướng mặt về phía nào. Chỉ cần nhấn nút *Xung quanh tôi* và bạn sẽ nghe được bốn địa điểm quan tâm được sắp xếp xung quanh bạn.
 

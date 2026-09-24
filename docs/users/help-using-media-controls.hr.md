@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Upotreba upravljanja medijima
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: hr
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Upotreba upravljanja medijima
 
-## What is it?
+## Što je to?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Uz pomoć gumba za upravljanje medijima na slušalicama možete pristupiti određenim značajkama u Soundscapeu. Ova funkcija radi sa svim žičanim ili Bluetooth slušalicama koje imaju gumbe za upravljanje medijima poput Play, Pause, Next, Previous i drugih. Različite slušalice mogu imati različite gumbe, pa pogledajte popis radnji u nastavku kako biste utvrdili koje su vam dostupne.
 
-## When would I use it?
+## Kada se ovo koristi?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Gumbi za upravljanje medijima na slušalicama mogu se koristiti dok Soundscape radi — bilo da aktivno koristite aplikaciju, da radi u pozadini ili da je uređaj zaključan. Međutim, gumbi za upravljanje medijima na slušalicama neće raditi sa Soundscapeom ako drugom aplikacijom reproducirate zvuk, poput glazbe, podcasta ili videozapisa.
 
-## How does it work?
+## Kako to funkcionira?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Postoje 2 načina rada gumba za upravljanje medijima. Način rada može se odabrati u odjeljku *Postavke* *Upravljanje medijima*. Načini rada su:
 
- Original mode. 
+ Izvorni način. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Play/Pause: Uključuje ili isključuje zvuk svjetionika. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Next: Ako se reproducira ruta, pomiče zvučni svjetionik na sljedeću putnu točku. Ako se ruta ne reproducira, najavljuje *Što je oko mene*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Previous: Ako se reproducira ruta, pomiče zvučni svjetionik na prethodnu putnu točku. Ako se ruta ne reproducira, mijenja *Razinu detalja najava*, za jednu razinu tiše pri svakom pritisku: *Detaljno*, *Uravnoteženo*, *Tiho*, *Bez zvuka*, pa natrag na *Detaljno*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Zvučni izbornik. 
+
+
+
+⏭ Next kreće se kroz niz opcija izbornika koje aplikacija opisuje putem pretvorbe teksta u govor, a nakon posljednje se vraća na prvu. ⏯ Play/Pause zatim pokreće aplikaciju da izvrši opisanu opciju. Postoji jedan glavni izbornik koji ima samo podizbornike kao opcije. Svaki podizbornik sadrži skupinu sličnih mogućih radnji.
+
+⏮ Previous ne kreće se kroz izbornik. Umjesto toga mijenja *Razinu detalja najava*, jednako kao u izvornom načinu, pa isti gumb utišava aplikaciju u oba načina rada.
 

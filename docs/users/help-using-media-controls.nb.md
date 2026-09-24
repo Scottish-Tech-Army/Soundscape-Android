@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Bruk mediekontroller
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: nb
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Bruk mediekontroller
 
-## What is it?
+## Hva er det?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Du har tilgang til visse funksjoner i Soundscape ved å bruke mediekontrollknappene på hodetelefonene. Denne funksjonaliteten fungerer med kabelbaserte hodetelefoner og Bluetooth-hodetelefoner som har mediekontrollknapper som Spill av, Stans midlertidig, Neste, Forrige og andre. Forskjellige hodetelefoner kan ha forskjellige knapper. Se listen nedenfor for å se hvilke av knappene som er tilgjengelige for deg.
 
-## When would I use it?
+## Når skal jeg bruke den?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Du kan bruke hodetelefonenes mediekontroller mens Soundscape kjører — enten du bruker appen aktivt, den kjører i bakgrunnen, eller enheten er låst. Mediekontrollknappene på hodetelefonene fungerer imidlertid ikke med Soundscape hvis du spiller av lyd, som musikk, podkaster eller videoer, med en annen app.
 
-## How does it work?
+## Hvordan fungerer den?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Det finnes to driftsmoduser for mediekontrollene. Modus velges i seksjonen *Innstillinger* > *Mediekontroller*. Modusene er:
 
- Original mode. 
+ Originalmodus. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Spill av/Stans midlertidig: Veksler lydsignalet av og på. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Neste: Hvis en rute spilles av, flytt lydsignalet til neste veipunkt i ruten. Hvis ingen rute spilles av, les opp *Rundt meg*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Forrige: Hvis en rute spilles av, flytt lydsignalet til forrige veipunkt i ruten. Hvis ingen rute spilles av, endres *Detaljnivå for meldinger* ett trinn stillere for hvert trykk: *Detaljert*, *Balansert*, *Stille*, *Lydløs*, og tilbake til *Detaljert*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Lydmeny. 
+
+
+
+⏭ Neste går gjennom en serie menyvalg som appen beskriver med tekst-til-tale, og går tilbake til det første etter det siste. ⏯ Spill av/Stans midlertidig får deretter appen til å utføre det beskrevne valget. Det finnes én toppnivåmeny som kun har undermenyer som valg. Hver undermeny inneholder en gruppe med lignende handlinger.
+
+⏮ Forrige går ikke gjennom menyen. I stedet endrer den *Detaljnivå for meldinger*, akkurat som i originalmodus, slik at den samme knappen gjør appen stillere uansett hvilken modus du bruker.
 

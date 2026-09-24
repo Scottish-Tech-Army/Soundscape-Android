@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Lộ trình
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: vi
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Lộ trình
 
-## What is it?
+## Đây là gì?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Lộ trình là một chuỗi các điểm dừng. Bạn sẽ được thông báo khi đến mỗi điểm dừng, và Đèn hiệu Âm thanh sẽ tự động chuyển sang điểm dừng tiếp theo.
 
-## When would I use it?
+## Khi nào tôi nên dùng tính năng này?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Bạn có thể muốn tạo và sử dụng một lộ trình ở nơi bạn đã quen thuộc để đảm bảo mình luôn đi đúng hướng. Hoặc bạn có thể dùng một lộ trình để làm quen với một hành trình mới.
 
-## How does it work?
+## Tính năng này hoạt động như thế nào?
 
-**Creating a route :**
+**Tạo một lộ trình :**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Trước tiên, hãy vào *Điểm đánh dấu và Lộ trình*, chọn thẻ *Lộ trình*, rồi chọn nút *Lộ trình mới*. Đặt tên cho lộ trình và thêm mô tả (không bắt buộc), sau đó thêm các điểm dừng trong khi di chuyển hoặc chọn chúng từ danh sách Điểm đánh dấu của bạn. Bạn có thể sắp xếp lại thứ tự các điểm dừng trên lộ trình bất cứ lúc nào bằng cách chỉnh sửa lộ trình.
 
-**Editing a route :**
+**Chỉnh sửa một lộ trình :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Chọn lộ trình của bạn trên màn hình *\"Điểm đánh dấu và Lộ trình\"* rồi chọn *\"Chỉnh sửa Lộ trình\"*. Từ đây bạn có thể thêm và xóa các điểm dừng, cũng như chỉnh sửa tên và mô tả của lộ trình.
 
-**Sharing a route :**
+**Chia sẻ một lộ trình :**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Chọn lộ trình của bạn trên màn hình *Điểm đánh dấu và Lộ trình* rồi chọn tùy chọn *Chia sẻ*, sử dụng tất cả các tùy chọn chia sẻ thông thường có sẵn cho bạn.
 

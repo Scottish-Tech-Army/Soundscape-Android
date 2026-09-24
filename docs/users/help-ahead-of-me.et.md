@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: Minu ees
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,17 +7,17 @@ lang: et
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Minu ees
 
-## What is it?
+## Mis see on?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+Nupp *"Minu ees"* räägib teile kuni viiest teie ees olevast asjast. *"Minu ees"* on mõeldud aitama teil uut piirkonda tundma õppides uurida enda ees olevat teed.
 
-## When would I use it?
+## Millal seda kasutada?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Kui kõnnite mööda tänavat, proovige kasutada *Minu ees*, et avastada kohti ja asju, mis on eesootaval tänaval mõlemal küljel.
 
-## How does it work?
+## Kuidas see töötab?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Nagu kõigi nelja avakuva allosas oleva nupu puhul, hoidke enne nupu *Minu ees* vajutamist telefoni tasapinnaliselt (ekraan taeva poole) ja telefoni ülaosa suunatuna sinnapoole, kuhu vaatate. See toimib kompassina, mis ütleb rakendusele, millises suunas te vaatate. Puudutage lihtsalt nuppu *Minu ees* ja kuulete mitut huvipunkti, mis kõik asuvad ligikaudu teie ees.
 

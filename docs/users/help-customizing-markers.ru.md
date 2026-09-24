@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Настройка отметок
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ru
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Настройка отметок
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Если вы хотите переименовать ранее созданную отметку или добавить к ней аннотацию, выберите отметку на вкладке *\"Отметки\"* страницы *\"Отметки и пути\", затем нажмите кнопку *\"Изменить отметку\"*. Это позволит дать отметкам понятные или полезные прозвища, а в поле аннотации — более подробное описание.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+На экране *"Изменить"* вы также можете удалить отметку, если она вам больше не нужна.
 

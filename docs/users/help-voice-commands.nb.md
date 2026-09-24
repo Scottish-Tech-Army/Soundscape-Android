@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Talekommandoer
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: nb
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Talekommandoer
 
-## What is it?
+## Hva er det?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Du kan be Gemini om å gjøre ting i Soundscape uten å ta på telefonen: høre en melding, starte en av rutene dine eller sette et lydsignal på en av markørene dine. Alle andre assistenter som støtter appfunksjoner i Android, kan gjøre det samme.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape svarer med sin egen stemme, med de meldingene og signallydene du allerede kjenner, i stedet for at assistenten leser opp et sammendrag. Slik kommer det du hører fortsatt fra retningen det beskriver.
 
-## When would I use it?
+## Når skal jeg bruke den?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Talekommandoer er nyttige når telefonen ligger i lomma, når du har hendene fulle, eller når du helst ikke vil stoppe for å trykke på en knapp. De virker mens Soundscape kjører i bakgrunnen og mens telefonen er låst, og å be om en melding åpner ikke appen.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Det er assistenten din som lytter, ikke Soundscape, så appen tar aldri over mikrofonen, og Bluetooth-hodetelefonene dine blir værende i modusen med høy lydkvalitet i stedet for å bytte til den dårligere kvaliteten som brukes til telefonsamtaler.
 
-## How does it work?
+## Hvordan fungerer den?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Det finnes ingen faste uttrykk du må lære utenat. Be om det du vil ha med dine egne ord, så matcher assistenten det mot en av handlingene nedenfor. Navn på ruter og markører matches løst, så en del av et navn holder som regel.
 
-You can ask Soundscape to:
+Du kan be Soundscape om å:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Beskrive *\"Min posisjon\"*, hva som er *\"Rundt meg\"*, eller hva som er *\"Foran meg\"*.
 
-Call out the saved markers near you.
+Lese opp de lagrede markørene i nærheten av deg.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Starte en av de lagrede rutene dine ved navn, gå videre til neste veipunkt, gå tilbake til forrige, slå av lydsignalet eller stoppe ruten.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Sette et lydsignal på en av de lagrede markørene dine ved navn, eller slå av lydsignalet.
 
-Read back the names of your saved routes or your saved markers.
+Sette detaljnivået for meldinger til *\"Lydløs\"*, *\"Stille\"*, *\"Balansert\"* eller *\"Detaljert\"*, for å endre hvor mye Soundscape sier mens du går. Lydløs slår av de automatiske meldingene.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Lese opp navnene på de lagrede rutene eller de lagrede markørene dine.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Alt bortsett fra de to listene krever at Soundscape kjører. Hvis appen ikke kjører, ber assistenten deg om å åpne Soundscape først. Å liste opp rutene og markørene dine fungerer uansett, fordi det bare leser opp det du allerede har lagret.
+
+Talekommandoer krever en telefon med Android 16 eller nyere og en assistent som støtter appfunksjoner.
 

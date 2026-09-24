@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Савети
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: sr
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Савети
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Оближња аутобуска стајалишта можете пронаћи тако што ћете изабрати филтер *\"Јавни превоз\"* на листи *\"Оближња места\"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Бакен можете поставити на било коју адресу. На главном екрану Soundscape-а потражите адресу. Изаберите адресу из резултата претраге да бисте отворили екран *"Детаљи локације"*. Овај екран нуди опцију *"Покрени звучни бакен"* на тој адреси. На овај начин можете поставити бакен на продавнице, места, тачке од интереса и станове који се не налазе у OpenStreetMap-у.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Ако редовно користите неку аутобуску линију, сачувајте своја стајалишта за укрцавање и излазак као маркере. На тај начин ће бити сачувани и лако ћете их поново пронаћи. Идите на *"Маркери и руте"* са почетног екрана, а затим их пронађите на страници *"Маркери"*. На њих можете поставити бакен да бисте добијали повремена ажурирања о томе колико сте близу стајалишту на коме излазите. Напомена: звук можете искључити, а и даље ћете добијати ажурирања о удаљености успут.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Ако ставите телефон у џеп и престанете да се крећете, звук бакена постаје тиши, јер Soundscape не може да утврди у ком сте правцу окренути. Да бисте то решили, поново почните да ходате, или извадите телефон и држите га равно.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape ради најбоље када телефон држите равно, са екраном окренутим ка небу и врхом телефона усмереним даље од вас.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Ритмични звук бакена можете укључити или искључити помоћу дугмета за утишавање на почетном екрану. Ако је бакен утишан, и даље ћете добијати ажурирања о удаљености до одредишта отприлике сваких 50 метара.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Да бисте наставили да користите Soundscape без слушања аутоматских најава, поставите *\"Ниво детаља најава\"* на *\"Без звука\"* у одељку *\"Управљање најавама\"* на екрану *\"Подешавања\"* из менија. Ако нећете користити Soundscape неко време, можете га уместо тога пребацити у Режим спавања или Режим дремања помоћу дугмета *\"Успавај\"* на почетном екрану.
 

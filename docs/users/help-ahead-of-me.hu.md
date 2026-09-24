@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: Előttem
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hu
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Előttem
 
-## What is it?
+## Mi ez?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+Az *\"Előttem\"* gomb legfeljebb öt, Ön előtt található dologról tájékoztat. Az *\"Előttem\"* célja, hogy segítsen felfedezni az Ön előtt lévő utat, amikor egy új területet ismer meg.
 
-## When would I use it?
+## Mikor használnám?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Amikor az utcán sétál, próbálja ki az *Előttem* funkciót, hogy felfedezze az utca mindkét oldalán, Ön előtt található helyeket és dolgokat.
 
-## How does it work?
+## Hogyan működik?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Mint a kezdőképernyő alján található mind a négy gomb esetében, tartsa a telefonját vízszintesen (a képernyővel az ég felé), és a telefon teteje mutasson abba az irányba, amerre néz, mielőtt megnyomja az *Előttem* gombot. Ez iránytűként működik, és megmondja az alkalmazásnak, merre néz. Egyszerűen koppintson az *Előttem* gombra, és több, nagyjából Ön előtt található érdekes helyet fog hallani.
 

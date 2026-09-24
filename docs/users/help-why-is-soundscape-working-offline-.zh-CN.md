@@ -1,5 +1,5 @@
 ---
-title: Why is Soundscape working offline?
+title: 为什么 Soundscape 在离线模式下运行？
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: zh-CN
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Why is Soundscape working offline?
+# 为什么 Soundscape 在离线模式下运行？
 
-## Why is Soundscape working offline?
+## 为什么 Soundscape 在离线模式下运行？
 
-When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
+当没有网络连接，或 Soundscape 服务不可用时，Soundscape 会切换至离线模式。它仍会继续工作，但部分功能可能受到限制。
 
-## Limitations
+## 功能限制
 
-Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
+在您之前走过的区域，播报仍会继续工作，因为 Soundscape 会将它们保存在您的播报历史记录中。您也可以在播报历史记录中已保存的地点设置音频信标或创建标记点。
 
-## What can you do?
+## 您可以做什么？
 
-Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
+一旦您的手机通过 Wi-Fi 或蜂窝数据获得良好的网络连接，Soundscape 就会尝试恢复正常运行。如果您的手机网络连接良好但 Soundscape 未恢复正常运行，则可能是 Soundscape 服务出现了故障。
 

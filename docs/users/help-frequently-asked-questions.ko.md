@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions
+title: 자주 묻는 질문
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
@@ -7,123 +7,123 @@ lang: ko
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# Frequently Asked Questions
+# 자주 묻는 질문
 
-## What is Soundscape and how should I use it?
+## Soundscape란 무엇이며 어떻게 사용해야 하나요?
 
-### When should I use Soundscape?
-Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
+### Soundscape는 언제 사용해야 하나요?
+Soundscape는 다양한 상황과 시간대에 걸쳐 유용한 기능과 장점을 제공합니다. 또한 Soundscape의 가치는 시간이 지남에 따라 달라질 수 있으므로, 오늘 사용하는 방식이 3개월 후 사용하는 방식과 다를 수 있습니다. 사람들은 흔히 앱을 *이 앱은 어떤 문제를 해결하는 데 능한가?*라는 관점에서 생각합니다. Soundscape는 목적지로 가는 동안 위치를 계속 파악하거나, 지하철역에서 나올 때 방향을 잡거나, 자동차에서 내릴 때 방향을 파악하거나, 다음 교차로의 도로 이름이나 거리를 찾는 등 구체적인 필요에 확실히 사용할 수 있습니다. 하지만 Soundscape의 근본 철학은 *소리로 당신의 세상을 밝히는 것*으로, 외출할 때 언제든 사용하여 주변 환경에 대한 인식을 제공하도록 설계되었습니다. 예를 들어 현재 있는 거리의 이름, 향하고 있는 방향, 지나치는 상점의 이름 등입니다. 이러한 사용 방식에서 사용자들은 Soundscape를 *좋은 동반자 앱*이라고 부르며, *뜻밖의 발견*을 돕고, *머릿속 지도의 빈틈을 채워주며*, *걸을 때 더 큰 자신감*을 준다고 이야기합니다. 다음은 사용자들이 Soundscape를 삶에서 어떻게 사용하고 있는지 보여주는 몇 가지 예시입니다:
 
-"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
+Soundscape 덕분에 버스에서 내려 엉뚱한 방향으로 갔을 때 다시 제 길을 찾을 수 있었습니다.
 
-"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
+3년째 살고 있는 동네에서도 [Soundscape와 함께] 주변에 대한 더 나은 그림을 그릴 수 있었습니다.
 
-"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
+3D 사운드는 제 산책 경험을 풍부하게 해주고, 주변 환경과 더 연결된 느낌을 줍니다…이제 이 앱이 있어서 새로운 경로를 시도해 볼 가능성이 더 높아졌습니다.
 
-"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
+돌아다니며 우연히 무언가를 발견하는 즐거움이 그리웠는데, Soundscape가 있으니 좋습니다. 주변에 대한 정보를 듣는 데 아무런 노력이 필요 없거든요. 관계 정보가 유용하고, 상황 인식과 상업 지구 탐색에 훌륭한 앱입니다.
 
-"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
+[Soundscape를 사용해] 요크 시내 한복판에서 술집을 찾았습니다. 다양한 옵션을 사용해 먼저 위치를 파악한 다음 실제로 찾아냈습니다. 문에서 3미터 이내까지 안내해 줬어요 – 정말 훌륭합니다!
 
-### What are Markers and how do I get the most out of them?
-Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
+### 마커란 무엇이며 어떻게 최대한 활용할 수 있나요?
+마커는 저장해 둔 장소입니다. 앱 내에서 찾을 수 있는 장소일 수도 있고, 직접 추가한 완전히 새로운 장소일 수도 있습니다. 홈 화면에서 *\"현재 위치\"* 버튼을 선택한 다음 *\"마커로 저장\"*을 선택하면 현재 위치를 마커로 저장할 수 있습니다. 검색창을 사용하여 저장하고 싶은 장소를 검색하거나, *\"주변 장소\"* 버튼을 사용하여 장소를 찾아 다른 위치를 마커로 저장할 수 있으며, 두 버튼 모두 Soundscape 홈 화면에서 찾을 수 있습니다. 원하는 장소를 찾으면 이를 선택하여 *\"위치 세부정보\"* 화면으로 이동합니다. 이 화면에서 *\"마커로 저장\"*이라는 버튼을 선택하세요.
 
-## How do I get the best out of Soundscape?
+## Soundscape를 최대한 활용하려면 어떻게 해야 하나요?
 
-### What can I set as a beacon?
-You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+### 무엇을 비콘으로 설정할 수 있나요?
+모든 상점, 장소, 관심 지점, 주소 또는 교차로에 오디오 비콘을 설정할 수 있습니다. 위치에 비콘을 추가하는 방법은 몇 가지가 있습니다. 먼저 검색창을 사용하여 장소를 검색하거나, *\"주변 장소\"*, *\"마커 및 경로\"*, *\"현재 위치\"* 버튼 중 하나를 탭하여 위치를 선택함으로써 해당 위치의 세부정보를 확인합니다. *\"위치 세부정보\"* 화면에서 *\"오디오 비콘 시작\"* 버튼을 선택할 수 있습니다. 이 버튼을 탭하면 홈 화면으로 돌아가고 선택한 장소 방향에서 오디오 비콘이 켜집니다. 선택한 장소의 이름과 거리, (알려진 경우) 실제 주소가 이제 앱의 메인 화면에 표시됩니다.
 
-### How do I get the most out of a beacon?
-You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
+### 비콘을 최대한 활용하려면 어떻게 해야 하나요?
+오디오 비콘은 *"귀를 위한 등대"*라고 생각할 수 있습니다. 현재 위치에서 직선으로 목적지가 어디에 있는지 알려줍니다. 등대와 마찬가지로 비콘은 그곳까지 가는 방법을 알려주지는 않습니다 – 장애물을 피하기 위해 도중에 이동 방향을 선택해야 할 수도 있습니다. 오디오 비콘의 지속적이고 리드미컬한 소리는 목적지 방향에서 들리며, 걷는 동안 현재 위치를 기준으로 목적지가 어디에 있는지 계속 파악하는 데 도움이 됩니다. 목적지를 향해 똑바로 걷고 있거나 휴대폰을 목적지 방향으로 향하게 하면 더 높은 음의 *"울림"* 소리가 들립니다. 이는 목적지 방향을 정확히 짚어내는 데 도움이 됩니다. 시끄러운 환경에서는 리드미컬한 소리의 방향을 듣기 어려울 수 있기 때문입니다. 더 높은 음의 *"울림"*을 찾으려면 휴대폰을 평평하게 들고 제자리에서 천천히 한 바퀴 도세요. 고개를 휴대폰과 같은 방향으로 돌리면 최상의 공간 음향 경험을 할 수 있습니다.
 
-This design has a few natural results:
+이러한 설계에는 몇 가지 자연스러운 결과가 있습니다:
 
-1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
+1. 비콘을 사용할 때 이동해야 할 *"정답"* 방향은 없습니다 – Soundscape에서는 그곳까지 가는 방법을 직접 선택합니다;
 
-2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
+2. 더 높은 음의 *"울림"*은 목적지 방향만을 정확히 짚어줄 뿐, 그곳까지 가는 방법을 알려주지는 않습니다;
 
-3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
+3. 목적지까지 가는 방법을 대체로 알고 있다면, 여정의 대부분 동안 비콘을 음소거하고 목적지에 가까워질 때만 켜는 것이 좋을 수 있습니다.
 
-### Why does the audible beacon disappear sometimes?
-Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
+### 오디오 비콘 소리가 가끔 사라지는 이유는 무엇인가요?
+Soundscape의 오디오 비콘은 기본적으로 방향 신호로, 현재 바라보고 있는 방향을 기준으로 목적지가 어디에 있는지 알려줍니다. Soundscape가 현재 바라보고 있는 방향을 확신하지 못하면 비콘의 음량을 낮춥니다. 이는 대개 휴대폰을 주머니나 가방에 넣고 걷다가 도로를 건너는 등의 이유로 멈춰 섰을 때 발생합니다. 다시 움직이기 시작하거나 휴대폰을 평평하게 들고 바라보는 방향으로 향하게 하면 비콘 소리가 다시 커집니다.
 
-### Can I set a beacon on an address?
-Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
+### 주소에 비콘을 설정할 수 있나요?
+네, 가능합니다. 주소는 기본적으로 목록에 표시되지 않지만 검색창을 사용하여 찾을 수 있습니다. 다시 검색할 필요가 없도록 이 주소를 저장하려면, *\"위치 세부정보\"* 화면에서 *\"마커로 저장\"* 버튼을 선택하여 마커로 추가할 수 있습니다.
 
-### How do I set a beacon on my home?
-Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
+### 집에 비콘을 설정하려면 어떻게 해야 하나요?
+Soundscape는 주소에 비콘을 설정하는 기능을 지원합니다. 집이나 다른 주소에 비콘을 설정하려면 Soundscape 메인 화면에서 위치를 검색하세요. *위치 세부정보* 화면에서 *오디오 비콘 시작* 버튼을 탭합니다.
 
-### When I set a beacon on a destination, how close will Soundscape get me to the destination?
-Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
+### 목적지에 비콘을 설정하면 Soundscape가 목적지까지 얼마나 가깝게 안내해 주나요?
+Soundscape는 목적지의 위치를 몇 미터 이내의 정확도로 파악할 수 있지만, 그보다 더 정밀하지는 않습니다. Soundscape가 목적지에 가까워졌다고 판단하면 목적지가 근처에 있다는 마지막 안내가 들리고 비콘이 꺼집니다.
 
-### Can I turn the beacon back on when I am close to my destination?
-Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
+### 목적지에 가까워졌을 때 비콘을 다시 켤 수 있나요?
+네, Soundscape가 비콘을 끈 후에도 *비콘 음소거 해제 버튼*을 선택하여 다시 켤 수 있습니다. 다만 위치 서비스의 정확도가 약 10미터 이내이므로 목적지 몇 미터 이내에 있을 때 비콘의 동작을 보장할 수는 없습니다.
 
-### Why does Soundscape call out road names twice when I approach an intersection?
-To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
+### 교차로에 다가갈 때 Soundscape가 도로 이름을 두 번 안내하는 이유는 무엇인가요?
+다양한 교차로 구조를 반영하기 위해 Soundscape는 교차로를 한 지점에서 뻗어 나가는 도로 구간들로 설명합니다. Soundscape는 공간 음향을 사용하여 왼쪽으로 이어지는 도로 이름, 앞으로 계속 이어지는 도로 이름, 오른쪽으로 이어지는 도로 이름을 이 순서대로 안내합니다. 교차로 설명이 왼쪽 도로가 아니라 현재 있는 도로로 시작한다면, 이는 현재 있는 도로가 앞으로 계속 이어지고 오른쪽에서 도로가 합류하는 T자형 교차로임을 의미합니다. 마찬가지로 설명에 왼쪽과 오른쪽 도로만 포함되어 있다면, 현재 있는 도로가 앞쪽 T자형 교차로에서 끝난다는 것을 알 수 있습니다. 이러한 교차로 설명 방식은 교차로에서 도로 이름이 바뀌는 경우에도 작동합니다.
 
-### Why doesn’t Soundscape announce every business that I pass?
-Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
+### 지나치는 모든 상점을 Soundscape가 안내하지 않는 이유는 무엇인가요?
+Soundscape는 너무 많은 안내를 하지 않도록 설계되었습니다. 또한 데이터 소스로 오픈스트리트맵을 사용합니다. 오픈스트리트맵(OSM, https://www.openstreetmap.org/)은 개인 기여자들의 커뮤니티가 구축하고 편집하는 세계 지도입니다. Soundscape가 상점이나 관심 지점을 안내하지 않는다면, 가장 가능성이 높은 이유는 OSM 커뮤니티 구성원이 아직 해당 상점을 데이터에 추가하지 않았거나, 경우에 따라 업데이트하지 않았기 때문입니다.
 
-### Why do some callouts stop when I'm in a vehicle?
-In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
+### 차량에 타고 있을 때 일부 안내가 중지되는 이유는 무엇인가요?
+안내 횟수가 지나치게 많아지지 않도록, 차량으로 이동할 때는 교차로와 같은 일부 항목이 자동으로 안내되지 않습니다.
 
-### What if I don't understand a callout or miss it because of ambient noise?
-Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
+### 안내를 이해하지 못했거나 주변 소음 때문에 놓쳤다면 어떻게 하나요?
+Soundscape에는 놓쳤을 수 있는 안내를 다시 확인할 수 있도록 최근 안내 목록이 있습니다. 이를 확인하려면 Soundscape 홈 화면에서 검색창을 탭하세요. 이 화면 하단에는 *최근 안내* 섹션이 있으며, 놓친 안내가 여기에 나열됩니다.
 
-## How does Soundscape work?
+## Soundscape는 어떻게 작동하나요?
 
-### What phone does Soundscape run on?
-Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
+### Soundscape는 어떤 휴대폰에서 실행되나요?
+Soundscape는 현재 iOS 16 이상을 실행하는 iPhone과 Android 11 이상을 실행하는 Android 휴대폰에서 사용할 수 있습니다.
 
-### What headphones should I use with Soundscape?
-Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
+### Soundscape와 함께 어떤 헤드폰을 사용해야 하나요?
+Soundscape와 함께 사용할 헤드폰은 개인의 취향에 따라 달라지며, 각 선택지마다 장단점이 있습니다. 유일한 구체적 요구 사항은 Soundscape의 3D 공간 음향 안내를 제대로 활용하기 위해 스테레오 헤드폰을 사용하는 것입니다.
 
-### How does Soundscape impact my phone’s battery?
-Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
+### Soundscape가 휴대폰 배터리에 미치는 영향은 무엇인가요?
+배터리 수명은 보유한 휴대폰의 기종과 사용 기간에 따라 크게 달라집니다. 배터리를 가장 많이 소모하는 것은 화면을 켜 두는 것이므로, 휴대폰 배터리 수명을 최대화하려면 가능한 한 화면을 잠가 두어야 합니다. 휴대폰 배터리에 미치는 영향을 최소화하기 위해 Soundscape에는 이제 잠자기 모드가 있습니다. 배터리 사용량을 더 줄이려면 Soundscape를 사용하지 않을 때 휴대폰의 앱 전환기를 통해 강제 종료해야 합니다.
 
-### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
+### Soundscape가 휴대폰 배터리에 미치는 영향을 최소화하기 위해 잠자기 모드를 어떻게 사용하나요?
+Soundscape를 잠자기 모드로 전환하려면 화면 오른쪽 상단에 있는 *잠자기* 버튼을 선택하세요. 이를 선택하면 다시 깨우기 전까지 Soundscape는 위치 서비스와 모바일 데이터 사용을 중지합니다.
 
-### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
+### Soundscape가 휴대폰 배터리에 미치는 영향을 최소화하기 위해 스누즈 모드를 어떻게 사용하나요?
+Soundscape를 스누즈 모드로 전환하려면 화면 오른쪽 상단에 있는 *잠자기* 버튼을 선택하세요. Soundscape가 잠자기 모드에 들어가면 *떠날 때 깨우기* 버튼을 선택하면, 현재 위치를 벗어날 때까지 Soundscape가 저전력 상태로 전환됩니다.
 
-### How does my choice of headphones affect the battery life of my phone?
-In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
+### 헤드폰 선택이 휴대폰 배터리 수명에 어떤 영향을 미치나요?
+저희 테스트 결과, 블루투스 헤드폰의 배터리 소모량은 유선 헤드폰과 비슷하므로 헤드폰을 선택할 때 크게 고려할 요소는 아닙니다.
 
-### How does running Soundscape in the background impact battery life of my phone?
-Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
+### Soundscape를 백그라운드에서 실행하면 휴대폰 배터리 수명에 어떤 영향을 미치나요?
+Soundscape는 위치 기반 앱으로, 위치 서비스를 사용하여 현재 위치를 파악합니다. 저희 테스트 결과 Soundscape는 일반적인 지도 애플리케이션보다 배터리를 더 많이 소모하지 않습니다. 하지만 휴대폰 사용 시 배터리 소모가 걱정된다면 사용량을 줄이는 데 도움이 되는 몇 가지 팁을 소개합니다:
 
-1. Turn the screen display off as much as possible when you are not interacting with the app.
+1. 앱을 사용하지 않을 때는 가능한 한 화면 디스플레이를 꺼 두세요.
 
-2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
+2. 앱을 사용하지 않을 때는 종료하세요. Soundscape는 실행 중일 때 움직이지 않을 때도 항상 현재 위치를 파악할 수 있도록 위치 서비스를 계속 사용합니다. 이동을 다시 시작할 때 앱을 다시 실행하는 것을 잊지 마세요.
 
-3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
+3. 추운 날씨에는 저온에서 배터리 성능이 떨어지므로 휴대폰을 따뜻하게 유지하세요.
 
-### How much mobile data does Soundscape use?
-The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
+### Soundscape는 모바일 데이터를 얼마나 사용하나요?
+사용하는 모바일 데이터의 양은 Soundscape를 어떻게 사용하는지에 따라 달라집니다. Soundscape는 이동 중 지점을 저장하는 등의 방식으로 이미 방문한 곳에 다시 갈 때마다 다시 다운로드할 필요가 없도록 설계되어, 외출 시 적은 양의 데이터만 사용하도록 설계되었습니다. 모바일 데이터 사용량을 줄이려면 가능한 한 Wi-Fi에 연결되어 있어야 하며, 특히 앱을 다운로드할 때는 더욱 그렇습니다. Soundscape를 사용하지 않을 때는 *잠자기* 버튼을 사용하여 Soundscape를 잠자기 상태로 전환하거나 앱을 강제 종료해야 합니다.
 
-### How is Soundscape different from other map apps?
-Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
+### Soundscape는 다른 지도 앱과 어떻게 다른가요?
+Soundscape는 탐색과 길찾기를 돕기 위해 주변 환경에 대한 주변적 설명을 제공합니다. Soundscape는 공간 음향을 사용하여 걷는 동안 관심 지점, 공원, 도로, 교차로가 실제로 위치한 방향에서 이를 안내합니다. 예를 들어 오른쪽에 있는 상점을 지나치면 오른쪽에서 상점 이름이 들립니다. 교차로에 다가가면 왼쪽부터 시작하여 앞쪽, 오른쪽 순서로 각 도로가 이어지는 방향에서 도로 이름이 들립니다.
 
-Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
+다른 지도 애플리케이션에서 흔히 제공하는 턴바이턴 길 안내 대신, Soundscape는 목적지 방향에서 오디오 비콘을 재생하여 주변 환경과 목적지 위치에 대해 높아진 인식을 바탕으로 가장 편한 방식으로 길을 찾을 수 있도록 해줍니다. Soundscape는 백그라운드에서 실행되도록 설계되어 턴바이턴 길 안내 앱을 사용하면서도 목적지로 이동하는 동안 계속해서 주변 환경에 대한 인식을 제공받을 수 있습니다.
 
-### How do I use Soundscape with a wayfinding app?
-Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
+### 길찾기 앱과 함께 Soundscape를 어떻게 사용하나요?
+Soundscape는 평소라면 알기 어려운 주변 환경에 대한 세부 정보를 채워주는 인식 지원 앱으로 설계되었습니다. 턴바이턴 내비게이션 앱으로 설계되지는 않았지만, 그러한 앱과 함께 사용하여 보완 정보를 제공할 수 있습니다. 이러한 앱과 함께 Soundscape를 사용하려면 먼저 내비게이션 앱을 시작하세요. 그런 다음 Soundscape로 전환하여 내비게이션 앱과 동일한 목적지에 비콘을 설정합니다. 이렇게 하면 두 앱이 모두 실행되어 내비게이션 앱에서 도보 길 안내를 들으면서, Soundscape로부터 관심 지점, 교차로, 목적지까지의 거리에 대한 업데이트를 받을 수 있습니다.
 
-### How do I control what I hear and when I hear it in Soundscape?
-Soundscape provides several ways to control what you hear and when:
+### Soundscape에서 무엇을, 언제 들을지 어떻게 조절하나요?
+Soundscape는 무엇을, 언제 들을지 조절할 수 있는 여러 방법을 제공합니다:
 
-1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
+1. 모든 오디오 즉시 중지: 손가락 두 개로 화면을 두 번 탭하면 현재 재생 중인 안내와 켜져 있는 비콘을 포함한 모든 오디오가 즉시 꺼집니다. 다음 교차로나 관심 지점에 다가가면 안내는 자동으로 다시 시작되지만, 오디오 비콘은 다시 시작되지 않습니다. 비콘 소리를 다시 들으려면 메인 화면에서 *\"비콘 음소거 해제 버튼\"*을 선택하세요.
 
-2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
+2. 자동 안내 중지: 이동 중이 아니거나 목적지에 도착한 경우, Soundscape가 주변 사물에 대해 계속 알려줄 필요가 없을 수 있습니다. 앱을 종료하는 대신 Soundscape를 스누즈 모드로 전환하면 떠날 때 다시 깨어나며, 잠자기 모드로 전환하면 다시 켜기 전까지 꺼진 상태로 유지됩니다. 또는 메뉴에서 *\"설정\"*을 선택하고 *\"안내 관리\"* 섹션에서 *\"안내 상세도\"*를 *\"무음\"*으로 설정할 수 있습니다.
 
-3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
+3. 비콘 중지: 목적지를 설정했지만 오디오 비콘을 켤 필요가 없는 여러 상황이 있을 수 있습니다. 예를 들어 목적지까지 가는 방법을 정확히 알고 있지만 거리에 대한 자동 업데이트는 계속 받고 싶을 수 있습니다. 또는 목적지에 가까워질 때만 오디오 비콘이 필요할 수도 있습니다. 어떤 경우든 메인 화면의 *\"비콘 음소거\"*/*\"비콘 음소거 해제\"* 버튼을 전환하여 비콘을 들을 시점을 선택할 수 있습니다.
 
-If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
+Soundscape와 계속 상호작용하고 싶지만 자동 안내를 듣고 싶지 않다면, 메뉴에서 *\"설정\"* 화면의 *\"안내 관리\"* 섹션으로 이동하여 *\"안내 상세도\"*를 *\"무음\"*으로 설정할 수 있습니다. 또는 Soundscape를 사용하지 않을 예정이라면 홈 화면의 *\"잠자기\"* 버튼을 사용하여 잠자기 모드나 스누즈 모드로 전환할 수 있습니다.
 
-### Do I need to hold the phone in my hand all the time?
-No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
+### 휴대폰을 항상 손에 들고 있어야 하나요?
+아니요! 걸을 때는 휴대폰을 가방이나 주머니 등 편리한 곳에 넣어 두어도 됩니다. Soundscape는 걷는 방향을 사용하여 왼쪽과 오른쪽에 안내할 항목을 파악합니다. 움직임을 멈추면 Soundscape는 현재 바라보고 있는 방향을 알 수 없습니다. 오디오 비콘이 켜져 있다면 다시 움직이기 시작할 때까지 소리가 작아지는 것을 알아차릴 수 있습니다. 언제든지 휴대폰을 꺼내 화면 하단의 위치 및 탐색 버튼을 누를 수 있지만, 휴대폰 상단이 바라보고 있는 방향을 가리키고 화면이 하늘을 향하도록 들어야 합니다. 이러한 *\"평평한\"* 자세에서 Soundscape는 휴대폰의 나침반을 사용하여 바라보고 있는 방향을 파악하고 정확한 공간 안내를 제공합니다. 비콘이 켜져 있다면 소리가 다시 최대 음량으로 돌아오는 것도 알아차릴 수 있습니다.
 
-### What is OpenStreetMap and why do we use it for Soundscape?
-Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
+### 오픈스트리트맵이란 무엇이며 Soundscape에서 왜 이를 사용하나요?
+Soundscape는 오디오 안내를 만들기 위해 지도 데이터를 사용합니다. 저희의 주요 지도 소스는 오픈스트리트맵(www.openstreetmap.org)입니다. 이는 기여자들의 커뮤니티가 만든 지도 제작 플랫폼입니다. 조직과 개인은 오픈스트리트맵의 도구를 사용하여 데이터를 개선하고 자신들의 공간에 대한 접근성을 높일 수 있습니다.
 

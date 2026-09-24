@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: Markerite loomine
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,9 +7,9 @@ lang: et
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# Markerite loomine
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+Markereid saate luua kolmel viisil: otsides otsinguriba abil kohta, mida soovite salvestada, leides koha nupuga *"Lähedal asuvad kohad"* või kasutades nuppu *"Kasuta praegust asukohta"* — kõik need leiate Soundscape'i avakuvalt. Kui olete leidnud soovitud koha, viib selle valimine teid ekraanile *"Asukoha üksikasjad"*. Sellel ekraanil valige nupp *"Salvesta markerina"*.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+Nüüd saate seda markerit kohandada. Saate muuta markeri nime ja lisada ka märkuse, mida teatatakse koos markeriga, et anda lisateavet. Kui olete valmis, valige markeri salvestamiseks nupp *Valmis*.
 

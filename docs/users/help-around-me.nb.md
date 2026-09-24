@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Rundt meg
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: nb
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Rundt meg
 
-## What is it?
+## Hva er det?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+Knappen *Rundt meg* forteller deg om én ting i hver av de fire kvadrantene rundt deg (foran deg, til høyre, bak deg og til venstre). *Rundt meg* er beregnet på å hjelpe deg med å orientere deg i omgivelsene.
 
-## When would I use it?
+## Når skal jeg bruke den?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Når du prøver å orientere deg i omgivelsene, kan du bruke *Rundt meg* til å høre om tingene rundt deg.
 
-## How does it work?
+## Hvordan fungerer den?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Rundt meg*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Rundt meg* så hører du fire interessepunkter rundt deg.
 

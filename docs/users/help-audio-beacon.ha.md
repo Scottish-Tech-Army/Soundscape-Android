@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: Siginar Sauti
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ha
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Siginar Sauti
 
-## What is it?
+## Menene wannan?
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+Kafa alamar sauti a wani wuri da ke kusa yana ba wa Soundscape damar ci gaba da sanar da ku ta hanyar kunna sautin alama daga wajen wannan wurin. Ana iya kashe ko kunna sautin wannan alama daga babban allo. Bugu da ƙari, Soundscape yana nuna bayanan wurin a babban allo, wanda ya haɗa da nisan zuwa wurin da adireshin titinsa idan an san shi.
 
-## When would I use it?
+## Yaushe zan yi amfani da shi?
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+Kafa alamar sauti yana da amfani idan kuna son bin diddigin wani sanannen wuri yayin da kuke bincikar sabon yanki, ko kuma idan kuna zuwa wani wuri kuma kuna son sanin abin da ke kewaye da ku a hanya. Fasalin alamar sauti ba ya ba ku umarni na mataki-mataki, amma yana ba ku sautin da ke ci gaba da kunnawa wanda ke nuna muku alkiblar zuwa alamar, dangane da inda kuke a halin yanzu. Ta amfani da alamar sauti, ƙwarewarku ta wajen nemo hanya, har ma da manhajar tafiya da kuka fi so, za ku iya zaɓar yadda kuke son isa wurare kusa da ku da kanku.
 
-## How does it work?
+## Yaya yake aiki?
 
-**To set a beacon :**
+**Don kafa alamar sauti :**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko kuma ta danna ɗaya daga cikin maɓallan *\"Wurare Kusa\"*, *\"Alamomi da Hanyoyi\"*, ko *\"Wurin Yanzu\"* sannan ku zaɓi wuri. Daga allon *\"Cikakkun Bayanan Wuri\"* za ku iya zaɓar maɓallin *\"Fara Alamar Sauti\"*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna alamar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin da kuka zaɓa tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allon manhajar.
 
-**To remove the current beacon :**
+**Don cire alamar sauti ta yanzu :**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ Kawai danna maɓallin *\"Dakatar da Hanya\"* a babban allo.
 
-**To mute the audible beacon :**
+**Don kashe sautin alama :**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ Danna maɓallin *\"Kashe Sautin Alama\"* kusa da maɓallin *\"Dakatar da Hanya\"* a babban allo.
 

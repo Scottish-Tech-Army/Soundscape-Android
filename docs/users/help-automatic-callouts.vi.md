@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Thông báo âm thanh tự động
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: vi
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Thông báo âm thanh tự động
 
-## What is it?
+## Đây là gì?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape có thể cho bạn biết về những thứ xung quanh khi bạn đến gần chúng, bằng cách đọc to tên của chúng từ hướng mà chúng nằm. Ứng dụng sẽ tự động làm điều này cho đủ loại thứ như cửa hàng, điểm dừng xe buýt, và cả giao lộ. Bạn có thể tùy chỉnh những gì ứng dụng tự động thông báo trong phần *\"Quản lý Thông báo\"* của màn hình *\"Cài đặt\"*, và bạn có thể tắt toàn bộ thông báo khi muốn ứng dụng im lặng.
 
-## When would I use it?
+## Khi nào tôi nên dùng tính năng này?
 
-**Exploring a new area :**
+**Khám phá một khu vực mới :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Bật thông báo tự động và đi bộ xung quanh để nghe về các cửa hàng, nhà hàng, và những địa điểm tương tự khi bạn đi ngang qua chúng.
 
-**Walking to a specific location :**
+**Đi bộ đến một địa điểm cụ thể :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Khi bạn đang trên đường đến một địa điểm cụ thể, thông báo tự động về giao lộ có thể đặc biệt hữu ích. Thông báo giao lộ cho bạn biết về cấu trúc của giao lộ khi bạn đến gần, và xác nhận con đường bạn đang đi khi bạn rời khỏi giao lộ đó.
 
-**When you need silence :**
+**Khi bạn cần sự im lặng :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Khi bạn sắp băng qua đường hoặc chỉ đơn giản cần ứng dụng im lặng, bạn có thể tắt thông báo. Khi thông báo tắt, ứng dụng chỉ cung cấp thông tin khi bạn tự tay nhấn vào một trong các nút *Vị trí của tôi*, *Điểm đánh dấu gần đây*, *Xung quanh tôi*, hoặc *Phía trước tôi*.
 
-## How does it work?
+## Tính năng này hoạt động như thế nào?
 
-**Turning callouts on or off :**
+**Bật hoặc tắt thông báo :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Tắt thông báo sẽ khiến ứng dụng im lặng. Bạn có thể tắt thông báo trong phần *\"Quản lý thông báo thoại\"* của màn hình *\"Cài đặt\"* bằng cách đặt *\"Mức chi tiết thông báo\"* thành *\"Im lặng\"*, và bật lại bằng cách chọn bất kỳ mức nào khác. Bạn cũng có thể làm điều tương tự bằng cách nhờ Siri hoặc Gemini. Ngoài ra, bạn có thể giảm dần độ nói của Soundscape bằng các nút điều khiển media trên tai nghe: mỗi lần nhấn *\"trước đó\"* sẽ hạ xuống một mức theo thứ tự *\"Chi tiết\"*, *\"Cân bằng\"*, *\"Yên tĩnh\"* và *\"Im lặng\"*, nhấn thêm một lần nữa sẽ quay lại *\"Chi tiết\"*. Xem chủ đề trợ giúp *\"Sử dụng nút điều khiển media\"*. Ngoài ra, bạn có thể dùng nút *\"Ngủ\"* ở góc trên bên phải màn hình chính để ngừng Soundscape đưa ra thông báo cho đến khi bạn chọn đánh thức lại.
 
-**Managing which callouts you hear :**
+**Quản lý những thông báo bạn nghe :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Để chọn các loại thông tin mà Soundscape sẽ tự động thông báo, hãy vào màn hình *\"Cài đặt\"* thông qua menu trên màn hình *\"Trang chủ\"*. Trong phần *\"Quản lý thông báo thoại\"* của màn hình *\"Cài đặt\"*, bạn chọn ứng dụng nói nhiều hay ít bằng *\"Mức chi tiết thông báo\"*, có thông báo *\"Đường phố và giao lộ\"* hay không, và những *\"Địa điểm cần thông báo\"* nào. Nếu bạn muốn tắt toàn bộ thông báo, hãy đặt *\"Mức chi tiết thông báo\"* thành *\"Im lặng\"*.
 

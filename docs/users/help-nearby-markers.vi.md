@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Điểm đánh dấu gần đây
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: vi
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Điểm đánh dấu gần đây
 
-## What is it?
+## Đây là gì?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+Nút *Điểm đánh dấu gần đây* cho bạn biết về tối đa bốn điểm đánh dấu gần bạn nhất. *Điểm đánh dấu gần đây* được thiết kế để giúp bạn định hướng bằng cách sử dụng những địa điểm mà bạn đã biết.
 
-## When would I use it?
+## Khi nào tôi nên dùng tính năng này?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Khi bạn đang cố gắng xác định phương hướng và định vị bản thân trong không gian xung quanh, hãy dùng *Điểm đánh dấu gần đây* để nghe về vị trí của những nơi bạn đã biết.
 
-## How does it work?
+## Tính năng này hoạt động như thế nào?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Cũng như với cả bốn nút ở dưới cùng màn hình chính, hãy giữ điện thoại nằm ngang (màn hình hướng lên trời) với đầu điện thoại chỉ về hướng bạn đang nhìn trước khi nhấn nút *Điểm đánh dấu gần đây*. Cách cầm này hoạt động như một chiếc la bàn, cho ứng dụng biết bạn đang hướng mặt về phía nào. Chỉ cần nhấn nút *Điểm đánh dấu gần đây* và bạn sẽ nghe được tối đa bốn điểm đánh dấu gần bạn.
 

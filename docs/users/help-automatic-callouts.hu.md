@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Automatikus bejelentések
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,33 +7,33 @@ lang: hu
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Automatikus bejelentések
 
-## What is it?
+## Mi ez?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+A Soundscape képes tájékoztatni Önt a környezetében lévő dolgokról, amint azokhoz közeledik, azáltal, hogy bemondja a nevüket abból az irányból, amerre találhatók. Az alkalmazás ezt automatikusan megteszi mindenféle dologgal kapcsolatban, például üzletekkel, buszmegállókkal, sőt kereszteződésekkel is. Beállíthatja, hogy az alkalmazás mit mondjon be automatikusan a *\"Beállítások\"* képernyő *\"Közlések kezelése\"* részében, és az összes közlést kikapcsolhatja, ha azt szeretné, hogy az alkalmazás néma legyen.
 
-## When would I use it?
+## Mikor használnám?
 
-**Exploring a new area :**
+**Új terület felfedezése:**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Kapcsolja be az automatikus közléseket, és sétáljon körbe, hogy hallja a különféle üzleteket, éttermeket és hasonlókat, amint elhalad mellettük.
 
-**Walking to a specific location :**
+**Séta egy adott helyre:**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Amikor egy adott hely felé tart, a kereszteződésekre vonatkozó automatikus közlések különösen hasznosak lehetnek. A kereszteződés-közlések tájékoztatják a kereszteződés elrendezéséről, amint közeledik hozzá, és megerősítik, hogy melyik úton van, amikor elhagyja azt.
 
-**When you need silence :**
+**Amikor csendre van szüksége:**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Amikor éppen át készül kelni egy úton, vagy egyszerűen csak azt szeretné, hogy az alkalmazás csendben legyen, kikapcsolhatja a közléseket. Ha a közlések ki vannak kapcsolva, az alkalmazás csak akkor ad tájékoztatást, ha kézzel megérinti a *Saját helyzet*, a *Közeli jelölők*, a *Körülöttem* vagy az *Előttem* gombok egyikét.
 
-## How does it work?
+## Hogyan működik?
 
-**Turning callouts on or off :**
+**A közlések be- vagy kikapcsolása:**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ A közlések kikapcsolása elnémítja az alkalmazást. A közléseket a *\"Beállítások\"* képernyő *\"Közlések kezelése\"* részében kapcsolhatja ki úgy, hogy a *\"Közlések részletessége\"* beállítást *\"Néma\"* értékre állítja, és bármely másik szint kiválasztásával kapcsolhatja vissza. Ugyanezt megteheti úgy is, hogy megkéri rá a Sirit vagy a Geminit. A Soundscape-et fokozatosan is halkíthatja a fülhallgatója médiavezérlő gombjaival: a *\"előző\"* minden egyes megnyomása egy szinttel lejjebb lép a *\"Részletes\"*, *\"Kiegyensúlyozott\"*, *\"Csendes\"* és *\"Néma\"* szinteken, egy további megnyomás pedig visszatér a *\"Részletes\"* szintre. Lásd a *\"Médiavezérlők használata\"* súgótémakört. Ehelyett használhatja az *\"Alvás\"* gombot is a kezdőképernyő jobb felső sarkában, hogy leállítsa a Soundscape közléseit, amíg úgy nem dönt, hogy újra felébreszti.
 
-**Managing which callouts you hear :**
+**Annak kezelése, hogy milyen közléseket hall :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Ha ki szeretné választani, hogy a Soundscape milyen típusú dolgokat mondjon be automatikusan, lépjen a *\"Beállítások\"* képernyőre a *\"Kezdőképernyő\"* menüjén keresztül. A *\"Beállítások\"* képernyő *\"Közlések kezelése\"* részében választhatja ki a *\"Közlések részletessége\"* beállítással, hogy mennyit mondjon az alkalmazás, hogy bemondja-e az *\"Utcák és kereszteződések\"* elemeit, és hogy melyek a *\"Bemondandó helyek\"*. Ha az összes közlést ki szeretné kapcsolni, állítsa a *\"Közlések részletessége\"* beállítást *\"Néma\"* értékre.
 

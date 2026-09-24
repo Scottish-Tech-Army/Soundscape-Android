@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Shawarwari
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ha
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Shawarwari
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Za ku iya samun tashoshin bas na kusa ta hanyar zaɓar tacewar *\"Sufurin Jama'a\"* a jerin *\"Wurare Kusa\"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Za ku iya kafa siginar sauti a kan kowane adireshi. Daga babban allon Soundscape, nemi adireshin. Zaɓi adireshin a sakamakon binciken domin buɗe allon *"Cikakkun Bayanan Wuri"*. Wannan allon yana da zaɓin *"Fara Siginar Sauti"* a kan adireshin. Ta wannan hanya, za ku iya kafa sigina a kan shaguna, wurare, wurare masu ban sha'awa, da gidaje da ba su cikin OpenStreetMap.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Idan kuna amfani da hanyar bas akai-akai, ku ajiye tashoshin ɗaukarku da fitarku a matsayin Alamomi. Ta wannan hanya za a ajiye su kuma za ku same su cikin sauƙi. Ku je zuwa *"Alamomi da Tafarkuna"* daga babban allo, sannan ku same su a shafin *"Alamomi"*. Za ku iya kafa sigina a kansu domin samun sabuntawa akai-akai game da nawa kusanci kuke da tashar fitarku. Lura: za ku iya kashe sautin bugawa kuma har yanzu za ku samu sabuntawar nisa a hanya.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Idan kuka sanya wayarku a aljihu kuka daina motsi, sautin siginar zai yi shiru domin Soundscape ba za ta iya sanin alkiblar da kuke fuskanta ba. Domin gyara wannan, ku sake fara tafiya, ko ku fitar da wayarku ku riƙe ta a kwance.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape tana aiki mafi kyau idan kuka riƙe wayar a kwance da allo yana fuskantar sama sannan saman wayar yana nuni nesa da ku.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Za ku iya kunna da kashe sautin bugawa na siginar ta amfani da maɓallin kashe sauti a babban allo. Idan an kashe sautin siginar, har yanzu za ku samu sabuntawa game da nisanku zuwa wurin da kuke zuwa kusan a duk mita 50.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Domin ci gaba da amfani da Soundscape ba tare da jin sanarwa ta atomatik ba, ku sanya *\"Matakin Sanarwa\"* ya zama *\"Shiru\"* a sashen *\"Sarrafa Sanarwa\"* na allon *\"Saitunan\"* daga menu. Idan ba za ku yi amfani da Soundscape na ɗan lokaci ba, za ku iya maimakon haka sanya ta cikin Yanayin Barci ko Yanayin Jinkirtawa ta amfani da maɓallin *\"Barci\"* a babban allo.
 

@@ -19,5 +19,5 @@ Callouts still work in areas you have walked through before, since Soundscape st
 
 ## What can you do?
 
-Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
+Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or mobile data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
 

@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Spraakopdrachten
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,37 +7,39 @@ lang: nl
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Spraakopdrachten
 
-## What is it?
+## Wat is het?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+U kunt Gemini vragen om dingen in Soundscape te doen zonder uw telefoon aan te raken: een aankondiging horen, een van uw routes starten of een audiobaken op een van uw markeringen instellen. Elke andere assistent die Android-appfuncties ondersteunt, kan hetzelfde.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape antwoordt met zijn eigen stem, met de aankondigingen en bakengeluiden die u al kent, in plaats van dat de assistent een samenvatting voorleest. Zo blijft wat u hoort uit de richting komen die het beschrijft.
 
-## When would I use it?
+## Wanneer zou ik het moeten gebruiken?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Spraakopdrachten zijn handig als uw telefoon in uw zak zit, uw handen vol zijn of u liever niet stilstaat om op een knop te drukken. Ze werken terwijl Soundscape op de achtergrond draait en terwijl uw telefoon vergrendeld is, en om een aankondiging te vragen opent de app niet.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Uw assistent luistert, niet Soundscape, dus de app neemt nooit uw microfoon over en uw bluetooth-hoofdtelefoon blijft in de modus met hoge geluidskwaliteit in plaats van over te schakelen naar de mindere kwaliteit die voor telefoongesprekken wordt gebruikt.
 
-## How does it work?
+## Hoe werkt het?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Er zijn geen vaste zinnen om uit uw hoofd te leren. Vraag in uw eigen woorden om wat u wilt en de assistent koppelt dat aan een van de onderstaande acties. Namen van routes en markeringen worden ruim herkend, dus een deel van een naam is meestal genoeg.
 
-You can ask Soundscape to:
+U kunt Soundscape vragen om:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+*\"Mijn locatie\"* te beschrijven, wat er *\"Om me heen\"* is, of wat er *\"Vóór me\"* is.
 
-Call out the saved markers near you.
+De opgeslagen markeringen bij u in de buurt aan te kondigen.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Een van uw opgeslagen routes op naam te starten, door te gaan naar het volgende routepunt, terug te gaan naar het vorige, het baken te dempen of de route te stoppen.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Een audiobaken op een van uw opgeslagen markeringen op naam in te stellen, of het baken uit te zetten.
 
-Read back the names of your saved routes or your saved markers.
+Het detailniveau van de aankondigingen op *\"Stil\"*, *\"Rustig\"*, *\"Gebalanceerd\"* of *\"Gedetailleerd\"* te zetten, om te wijzigen hoeveel Soundscape zegt terwijl u loopt. Stil zet de automatische aankondigingen uit.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+De namen van uw opgeslagen routes of uw opgeslagen markeringen voor te lezen.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Alles behalve de twee lijsten vereist dat Soundscape draait. Als dat niet zo is, zegt de assistent dat u Soundscape eerst moet openen. Uw routes en uw markeringen opsommen werkt hoe dan ook, want daarbij wordt alleen voorgelezen wat u al hebt opgeslagen.
+
+Spraakopdrachten vereisen een telefoon met Android 16 of nieuwer en een assistent die appfuncties ondersteunt.
 

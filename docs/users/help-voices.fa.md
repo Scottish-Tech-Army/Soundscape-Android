@@ -1,5 +1,5 @@
 ---
-title: Voices
+title: صدای موتور صوتی
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,7 +7,7 @@ lang: fa
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# صدای موتور صوتی
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+ساند‌اسکیپ می‌تواند از هر یک از صداهایی که در تنظیمات خروجی تبدیل متن به گفتار (Text-to-speech) روی گوشی اندروید خود دانلود کرده‌اید استفاده کند. در اپلیکیشن ساند‌اسکیپ، برای انتخاب صدایی به‌جز صدای پیش‌فرض اندروید، از منوی اصلی به *«تنظیمات»* بروید، بخش *«صدا»* را باز کنید، و سپس *«صدای موتور صوتی»* را انتخاب نمایید.
 

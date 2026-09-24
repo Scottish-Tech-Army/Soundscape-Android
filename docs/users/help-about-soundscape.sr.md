@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: О апликацији Soundscape
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: sr
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# О апликацији Soundscape
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape користи иновативну технологију засновану на звуку како би помогао људима да изграде богатију свест о својој околини. То људе чини сигурнијим и оспособљенијим да се крећу самостално.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape се ослања на ове одличне библиотеке и податке трећих страна. Кликните на везе да бисте видели њихове лиценце:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©OpenStreetMap сарадници](https://www.openstreetmap.org/copyright) пружају све географске податке за мапирање и звук који се користе у Soundscape-у.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) се користи за израду картографских плочица које користимо.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio библиотека ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) се користи за генерисање 3D звука и доступна је за коришћење под [Apache 2.0 лиценцом](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+[Oboe библиотека ©The Android Open Source Project](https://github.com/google/oboe) се користи за репродукцију звука са малим кашњењем и доступна је за коришћење под [Apache 2.0 лиценцом](https://github.com/google/oboe/blob/main/LICENSE).
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+Сви називи производа, компанија и логотипи трећих страна су заштитни знакови или регистровани заштитни знакови и остају у власништву својих носилаца права.
 

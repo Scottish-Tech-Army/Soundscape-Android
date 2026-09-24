@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: स्वयंचलित ध्वनी सूचना
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
@@ -7,33 +7,33 @@ lang: mr
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# स्वयंचलित ध्वनी सूचना
 
-## What is it?
+## हे काय आहे?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape तुमच्या आजूबाजूच्या गोष्टींबद्दल, तुम्ही त्यांच्या जवळ जाताच त्या ज्या दिशेला आहेत त्या दिशेने त्यांचे नाव सांगून तुम्हाला माहिती देऊ शकते. व्यवसाय, बस स्टॉप आणि अगदी चौकांसारख्या सर्व प्रकारच्या गोष्टींसाठी अॅप हे आपोआप करेल. *"सेटिंग्ज"* स्क्रीनच्या *"ध्वनी सूचना व्यवस्थापित करा"* विभागात तुम्ही अॅप आपोआप काय सांगेल हे कॉन्फिगर करू शकता, आणि अॅप शांत ठेवायचे असल्यास तुम्ही सर्व ध्वनी सूचना बंद करू शकता.
 
-## When would I use it?
+## मी हे केव्हा वापरावे?
 
-**Exploring a new area :**
+**नवीन भाग एक्सप्लोर करणे :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ आपोआप ध्वनी सूचना सुरू करा आणि विविध दुकाने, रेस्टॉरंट्स आणि तत्सम ठिकाणांजवळून जाताना त्यांच्याबद्दल ऐकण्यासाठी फिरा.
 
-**Walking to a specific location :**
+**विशिष्ट ठिकाणी चालत जाणे :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ तुम्ही एखाद्या विशिष्ट ठिकाणी जात असताना, चौकांसाठीच्या आपोआप ध्वनी सूचना विशेष उपयुक्त ठरू शकतात. चौकाजवळ पोहोचताच चौकाच्या रचनेबद्दल ध्वनी सूचना तुम्हाला सांगतात आणि चौक सोडताना तुम्ही कोणत्या रस्त्यावर आहात याची पुष्टी करतात.
 
-**When you need silence :**
+**तुम्हाला शांतता हवी असताना :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ तुम्ही रस्ता ओलांडणार असाल किंवा फक्त अॅप शांत असावे असे वाटत असेल, तेव्हा तुम्ही ध्वनी सूचना बंद करू शकता. ध्वनी सूचना बंद असताना, तुम्ही *माझे स्थान*, *जवळचे मार्कर*, *माझ्याभोवती*, किंवा *माझ्यापुढे* यांपैकी एखादे बटण स्वतः टॅप केले तरच अॅप तुम्हाला माहिती सांगेल.
 
-## How does it work?
+## हे कसे काम करते?
 
-**Turning callouts on or off :**
+**ध्वनी सूचना सुरू किंवा बंद करणे :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ ध्वनी सूचना बंद केल्याने अॅप शांत होईल. *सेटिंग्ज* स्क्रीनच्या *ध्वनी सूचना व्यवस्थापित करा* विभागात *ध्वनी सूचना तपशील* हा *निःशब्द* वर ठेवून ध्वनी सूचना बंद करता येतात, आणि इतर कोणताही स्तर निवडल्यास त्या पुन्हा सुरू होतात. हेच तुम्ही Siri किंवा Gemini ला सांगूनही करू शकता. तुमच्या हेडफोनच्या मीडिया नियंत्रण बटणांनी Soundscape ला एकेक पायरी शांत करता येते: *मागील* दाबल्यावर प्रत्येक वेळी *तपशीलवार*, *संतुलित*, *संक्षिप्त* आणि *निःशब्द* मधून एक पायरी खाली जाते, आणि आणखी एकदा दाबल्यास पुन्हा *तपशीलवार* वर येते. *मीडिया नियंत्रणे वापरणे* हा मदत विषय पहा. याशिवाय, तुम्ही पुन्हा सुरू करण्याचे ठरवेपर्यंत Soundscape ला ध्वनी सूचना देण्यापासून थांबवण्यासाठी मुख्य स्क्रीनच्या वरच्या उजव्या कोपऱ्यातील *झोप मोड* बटण वापरू शकता.
 
-**Managing which callouts you hear :**
+**तुम्हाला कोणत्या ध्वनी सूचना ऐकू येतात हे व्यवस्थापित करणे :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Soundscape आपोआप कोणत्या प्रकारच्या गोष्टींबद्दल सांगेल हे निवडण्यासाठी, *मुख्यपृष्ठ* स्क्रीनवरील मेनू वापरून *सेटिंग्ज* स्क्रीनवर जा. *सेटिंग्ज* स्क्रीनच्या *ध्वनी सूचना व्यवस्थापित करा* विभागातच तुम्ही *ध्वनी सूचना तपशील* ने अॅप किती सांगेल हे ठरवता, *रस्ते आणि चौक* सांगायचे की नाही हे ठरवता, आणि *सांगायची ठिकाणे* कोणती हे निवडता. तुम्हाला सर्व ध्वनी सूचना बंद करायच्या असल्यास, *ध्वनी सूचना तपशील* हा *निःशब्द* वर ठेवा.
 

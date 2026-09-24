@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: মিডিয়া কন্ট্রোল ব্যবহার করা
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
@@ -7,33 +7,35 @@ lang: bn
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# মিডিয়া কন্ট্রোল ব্যবহার করা
 
-## What is it?
+## এটি কী?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+আপনি আপনার হেডফোনের মিডিয়া কন্ট্রোল বোতামের সাহায্যে Soundscape-এর নির্দিষ্ট কিছু ফিচার ব্যবহার করতে পারেন। এই ফাংশনালিটি Play, Pause, Next, Previous এবং অন্যান্য মিডিয়া কন্ট্রোল বোতামযুক্ত যেকোনো তারযুক্ত বা ব্লুটুথ হেডফোনের সাথে কাজ করে। বিভিন্ন হেডফোনে বিভিন্ন বোতাম থাকতে পারে, তাই আপনার জন্য কোনগুলি উপলব্ধ তা জানতে অনুগ্রহ করে নিচের কার্যকলাপের তালিকাটি দেখুন।
 
-## When would I use it?
+## কখন এটি ব্যবহার করব?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Soundscape চলাকালীন হেডফোনের মিডিয়া কন্ট্রোল ব্যবহার করা যায় — আপনি অ্যাপটি সক্রিয়ভাবে ব্যবহার করুন, এটি ব্যাকগ্রাউন্ডে চলুক, বা আপনার ডিভাইস লক থাকুক। তবে আপনি যদি অন্য কোনো অ্যাপে গান, পডকাস্ট বা ভিডিওর মতো অডিও চালান, তাহলে হেডফোনের মিডিয়া কন্ট্রোল বোতাম Soundscape-এর সাথে কাজ করবে না।
 
-## How does it work?
+## এটি কীভাবে কাজ করে?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+মিডিয়া কন্ট্রোলের জন্য ২টি অপারেশন মোড আছে। *সেটিংস* এর *মিডিয়া কন্ট্রোল* বিভাগে মোড নির্বাচন করা যায়। মোডগুলি হলো:
 
- Original mode. 
+ আসল মোড। 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Play/Pause: বীকন অডিও চালু ও বন্ধ করে। 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Next: কোনো রুট চললে অডিও বীকনটি রুটের পরবর্তী ওয়েপয়েন্টে নিয়ে যায়। কোনো রুট না চললে *আমার চারপাশে কী আছে* কলআউট করে।
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Previous: কোনো রুট চললে অডিও বীকনটি রুটের পূর্ববর্তী ওয়েপয়েন্টে নিয়ে যায়। কোনো রুট না চললে প্রতিবার চাপে *কলআউট বিবরণ* এক ধাপ শান্ত হয়: *বিস্তারিত*, *ভারসাম্যপূর্ণ*, *শান্ত*, *নীরব*, তারপর আবার *বিস্তারিত*।
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+অডিও মেনু। 
+
+
+
+⏭ Next মেনু অপশনগুলোর একটি ধারা অতিক্রম করে যা অ্যাপটি টেক্সট টু স্পিচের মাধ্যমে বর্ণনা করে, আর শেষেরটির পরে আবার প্রথমটিতে ফিরে আসে। এরপর ⏯ Play/Pause অ্যাপটিকে বর্ণিত অপশনটি সম্পাদন করতে সক্রিয় করে। একটিমাত্র শীর্ষ স্তরের মেনু আছে যেখানে শুধুমাত্র উপ-মেনু অপশন হিসেবে থাকে। প্রতিটি উপ-মেনুতে একই ধরনের সম্ভাব্য কার্যকলাপের একটি দল থাকে।
+
+⏮ Previous মেনুতে চলাচল করে না। বরং এটি *কলআউট বিবরণ* ঠিক আসল মোডের মতোই বদলায়, তাই আপনি যে মোডই ব্যবহার করুন, একই বোতাম অ্যাপটিকে শান্ত করে।
 

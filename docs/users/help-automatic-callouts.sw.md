@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Matangazo ya Sauti Kiotomatiki
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: sw
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Matangazo ya Sauti Kiotomatiki
 
-## What is it?
+## Ni nini?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape inaweza kukujulisha kuhusu vitu vinavyokuzunguka unapovikaribia kwa kutangaza jina lake kutoka upande vilipo. Programu hii hufanya hivi kiotomatiki kwa aina zote za vitu kama biashara, vituo vya mabasi, na hata makutano ya barabara. Unaweza kupanga programu itangaze nini kiotomatiki katika sehemu ya *"Dhibiti Matangazo"* ya skrini ya *"Mipangilio"*, na unaweza kuzima matangazo yote unapotaka programu ikae kimya.
 
-## When would I use it?
+## Ni lini nitaitumia?
 
-**Exploring a new area :**
+**Kuchunguza eneo jipya :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Washa matangazo ya kiotomatiki kisha utembee ili usikie kuhusu maduka mbalimbali, mikahawa, na mengineyo unapoyapita.
 
-**Walking to a specific location :**
+**Kutembea kuelekea mahali maalum :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Unapokuwa njiani kuelekea mahali fulani, matangazo ya kiotomatiki ya makutano ya barabara yanaweza kuwa muhimu sana. Matangazo ya makutano hukujulisha kuhusu muundo wa makutano unapoyakaribia, na kuthibitisha barabara uliyopo unapoyaacha.
 
-**When you need silence :**
+**Unapohitaji ukimya :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Unapokaribia kuvuka barabara au unahitaji tu programu ikae kimya, unaweza kuzima matangazo. Matangazo yanapokuwa yamezimwa, programu itakupa taarifa tu ikiwa utagusa mwenyewe kimoja cha vitufe vya *Mahali Nilipo*, *Alama za Karibu*, *Karibu Nami*, au *Mbele Yangu*.
 
-## How does it work?
+## Inafanyaje kazi?
 
-**Turning callouts on or off :**
+**Kuwasha au kuzima matangazo :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Kuzima matangazo kutaifanya programu ikae kimya. Matangazo yanaweza kuzimwa katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio* kwa kuweka *Kiwango cha Matangazo* kuwa *Kimya*, na yanawashwa tena kwa kuchagua kiwango kingine chochote. Unaweza kufanya vivyo hivyo kwa kumwomba Siri au Gemini. Unaweza pia kuifanya Soundscape iwe kimya hatua kwa hatua kwa kutumia vitufe vya kudhibiti sauti kwenye vipokea sauti vyako: kila unapobonyeza *iliyotangulia* hushuka kiwango kimoja kupitia *Kwa Kina*, *Wastani*, *Chache* na *Kimya*, na kubonyeza mara nyingine hurudi kwenye *Kwa Kina*. Angalia mada ya usaidizi ya *Kutumia Vidhibiti vya Media*. Vinginevyo, unaweza kutumia kitufe cha *Lala* kilichopo kona ya juu kulia ya skrini ya mwanzo ili kuzuia Soundscape kutoa matangazo mpaka utakapoichagua kuiamsha tena.
 
-**Managing which callouts you hear :**
+**Kudhibiti matangazo unayosikia :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Ili kuchagua aina za vitu ambavyo Soundscape itatangaza kiotomatiki, nenda kwenye skrini ya *Mipangilio* kwa kutumia menyu iliyopo kwenye skrini ya *Mwanzo*. Katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio* ndipo unachagua kiasi ambacho programu husema kwa kutumia *Kiwango cha Matangazo*, kama itatangaza *Barabara na Makutano*, na ni *Sehemu za Kutangaza* zipi. Ikiwa unataka kuzima matangazo yote, weka *Kiwango cha Matangazo* kuwa *Kimya*.
 

@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Использование элементов управления мультимедиа
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: ru
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Использование элементов управления мультимедиа
 
-## What is it?
+## Что это такое?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Вы можете получить доступ к некоторым функциям Soundscape с помощью кнопок управления мультимедиа на наушниках. Эта функция работает с любыми проводными или Bluetooth‑наушниками, у которых есть кнопки управления мультимедиа, такие как Воспроизведение, Пауза, Следующий, Предыдущий и др. Разные наушники могут иметь разные наборы кнопок, поэтому ознакомьтесь со списком действий ниже, чтобы узнать, какие из них доступны для ваших наушников.
 
-## When would I use it?
+## Когда использовать Soundscape?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Кнопки управления мультимедиа на наушниках можно использовать, пока Soundscape запущен, — независимо от того, работаете ли вы в самом приложении, работает ли оно в фоне или устройство заблокировано. Однако кнопки управления мультимедиа на наушниках не будут работать с Soundscape, если в другом приложении воспроизводится аудио, например музыка, подкасты или видео.
 
-## How does it work?
+## Как оно работает?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Существует 2 режима работы кнопок управления мультимедиа. Режим можно выбрать в разделе *Настройки* *Элементы управления мультимедиа*. Режимы:
 
- Original mode. 
+ Исходный режим. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Воспроизведение/Пауза: переключает звук звукового маяка (включить/выключить). 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Следующий: если воспроизводится маршрут, перемещает звуковой маяк к следующей путевой точке маршрута. Если маршрут не воспроизводится, выполняет уточнение *Вокруг меня*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Предыдущий: если воспроизводится маршрут, перемещает звуковой маяк к предыдущей путевой точке маршрута. Если маршрут не воспроизводится, изменяет *Подробность уточнений* на один уровень тише при каждом нажатии: *Подробный*, *Сбалансированный*, *Тихий*, *Беззвучный* и обратно к *Подробный*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Аудио-меню. 
+
+
+
+⏭ Следующий перемещается по ряду пунктов меню, которые приложение озвучивает с помощью синтеза речи, и после последнего возвращается к первому. ⏯ Воспроизведение/Пауза затем выполняет описанную опцию. Существует одно меню верхнего уровня, в котором в качестве пунктов присутствуют только подменю. Каждое подменю содержит группу схожих действий.
+
+⏮ Предыдущий не перемещается по меню. Вместо этого он изменяет *Подробность уточнений* точно так же, как в исходном режиме, поэтому одна и та же кнопка приглушает приложение в любом из режимов.
 

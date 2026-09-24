@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: การใช้ปุ่มควบคุมสื่อ
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: th
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# การใช้ปุ่มควบคุมสื่อ
 
-## What is it?
+## คืออะไร
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+คุณสามารถเข้าถึงฟีเจอร์บางอย่างใน Soundscape ได้ด้วยความช่วยเหลือของปุ่มควบคุมสื่อบนหูฟังของคุณ ฟังก์ชันนี้ใช้งานได้กับหูฟังแบบมีสายหรือบลูทูธที่มีปุ่มควบคุมสื่อ เช่น เล่น หยุดชั่วคราว ถัดไป ก่อนหน้า และอื่นๆ หูฟังแต่ละรุ่นอาจมีปุ่มที่แตกต่างกัน ดังนั้นโปรดดูรายการการทำงานด้านล่างเพื่อดูว่ามีปุ่มใดบ้างที่ใช้งานได้กับหูฟังของคุณ
 
-## When would I use it?
+## ควรใช้เมื่อใด
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+คุณสามารถใช้ปุ่มควบคุมสื่อบนหูฟังได้ขณะที่ Soundscape ทำงานอยู่ ไม่ว่าคุณจะกำลังใช้งานแอป แอปทำงานอยู่เบื้องหลัง หรืออุปกรณ์ของคุณล็อกอยู่ อย่างไรก็ตาม ปุ่มควบคุมสื่อบนหูฟังจะไม่ทำงานกับ Soundscape หากคุณกำลังเล่นเสียง เช่น เพลง พอดแคสต์ หรือวิดีโอด้วยแอปอื่นอยู่
 
-## How does it work?
+## ทำงานอย่างไร
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+การควบคุมสื่อมี 2 โหมดการทำงาน สามารถเลือกโหมดได้ในส่วน *การตั้งค่า* *การควบคุมสื่อ* โหมดต่าง ๆ ได้แก่:
 
- Original mode. 
+ โหมดดั้งเดิม 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ เล่น/หยุดชั่วคราว: เปิดและปิดเสียงบีคอน 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ ถัดไป: หากกำลังเล่นเส้นทางอยู่ จะย้ายบีคอนเสียงไปยังจุดผ่านทางถัดไปในเส้นทาง หากไม่มีเส้นทางที่กำลังเล่นอยู่ จะแจ้งเตือน *รอบตัวฉัน*
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ ก่อนหน้า: หากกำลังเล่นเส้นทางอยู่ จะย้ายบีคอนเสียงไปยังจุดผ่านทางก่อนหน้าในเส้นทาง หากไม่มีเส้นทางที่กำลังเล่นอยู่ จะเปลี่ยน *ระดับรายละเอียดการแจ้งเตือน* ให้เงียบลงทีละขั้นในแต่ละครั้งที่กด: *ละเอียด*, *สมดุล*, *เงียบ*, *เงียบสนิท* แล้วกลับไปที่ *ละเอียด*
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+เมนูเสียง 
+
+
+
+⏭ ถัดไป ใช้เลื่อนไปตามตัวเลือกเมนูต่าง ๆ ที่แอปอธิบายด้วยการอ่านออกเสียง และจะกลับไปยังตัวเลือกแรกหลังจากตัวเลือกสุดท้าย จากนั้น ⏯ เล่น/หยุดชั่วคราว จะสั่งให้แอปทำตามตัวเลือกที่อธิบายไว้ มีเมนูระดับบนสุดเพียงเมนูเดียวซึ่งมีเฉพาะเมนูย่อยเป็นตัวเลือก แต่ละเมนูย่อยจะรวมกลุ่มการกระทำที่คล้ายกันไว้ด้วยกัน
+
+⏮ ก่อนหน้า ไม่ได้ใช้เลื่อนไปตามเมนู แต่จะเปลี่ยน *ระดับรายละเอียดการแจ้งเตือน* เหมือนกับในโหมดดั้งเดิมทุกประการ ดังนั้นปุ่มเดียวกันนี้จะลดเสียงแอปได้ไม่ว่าคุณจะใช้โหมดใด
 

@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Jelölők
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,11 +7,11 @@ lang: hu
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Jelölők
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+A Soundscape segítségével megjelölheti a világát és mindent, ami fontos Önnek, mint a térképeken elhelyezett tűk.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Megjelölheti azokat a helyeket, amelyek személyesek és fontosak az Ön számára, például az otthonát, a munkahelyét vagy a kedvenc élelmiszerboltját. Bármely helyet vagy címet megjelölhet, és olyan dolgokat is, amelyek általában nem szerepelnek a térképeken, például: épületek vagy parkok bejáratait, gyalogosjelző-nyomógombokat, gyalogátkelőhelyeket, hidakat, buszmegállókat, vagy akár a kutyája kedvenc fáját. Használja ezeket a jelöléseket referenciapontként a sétái során.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+A megjelölt helyek megtapasztalásához a Soundscape automatikusan bemondja a megjelölt helyeket, amint elhalad mellettük vagy közeledik hozzájuk, de használhatja a *\"Közeli jelölők\"* gombot is a Soundscape kezdőképernyőjének alján, hogy térbeli közlést halljon az Ön körüli megjelölt helyekről. Emellett bármely megjelölt helyre beállíthat hangjelzőt. Ha ezt teszi, a jól ismert Soundscape hangjelzőt fogja hallani, és a szokásos módon kezelheti azt.
 

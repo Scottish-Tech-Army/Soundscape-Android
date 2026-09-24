@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Trasy
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: sk
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Trasy
 
-## What is it?
+## Čo to je?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Trasy sú séria bodov trasy. Pri príchode ku každému bodu trasy budete informovaní a zvukový maják automaticky prejde na ďalší bod trasy.
 
-## When would I use it?
+## Kedy by som to použil(a)?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Trasu si možno budete chcieť vytvoriť a použiť na mieste, ktoré už poznáte, aby ste sa držali správnej cesty. Alebo môžete trasu použiť na to, aby ste sa naučili novú cestu.
 
-## How does it work?
+## Ako to funguje?
 
-**Creating a route :**
+**Vytvorenie trasy:**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Najprv prejdite na *Značky a trasy*, vyberte kartu *Trasy* a potom tlačidlo *Nová trasa*. Zadajte názov trasy a voliteľný popis, a potom priebežne pridávajte body trasy alebo ich vyberte zo svojho zoznamu značiek. Poradie bodov na trase môžete kedykoľvek zmeniť úpravou trasy.
 
-**Editing a route :**
+**Úprava trasy:**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Vyberte svoju trasu na obrazovke *\"Značky a trasy\"* a potom vyberte *\"Upraviť trasu\"*. Odtiaľto môžete pridávať a odstraňovať body trasy, ako aj upravovať názov a popis trasy.
 
-**Sharing a route :**
+**Zdieľanie trasy:**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Vyberte svoju trasu na obrazovke *Značky a trasy* a potom vyberte možnosť *Zdieľať* pomocou ktorejkoľvek z bežných možností zdieľania, ktoré máte k dispozícii.
 

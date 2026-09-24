@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Dostosowywanie znaczników (pinezek)
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: pl
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Dostosowywanie znaczników (pinezek)
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Jeśli chcesz zmienić nazwę wcześniej utworzonego znacznika lub dodać do niego adnotację, wybierz znacznik na karcie *„Znaczniki (pinezki)”* na stronie *„Znaczniki (pinezki) i trasy”*, a następnie naciśnij przycisk *„Edytuj znacznik (pinezkę)”.* Możesz nadać znacznikom opisowe lub użyteczne przydomki oraz dłuższy opis, korzystając z pola adnotacji.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+Na tym ekranie *„Edytuj”* możesz także usunąć znacznik, jeśli nie jest już potrzebny.
 

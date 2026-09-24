@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: Ƙirƙirar Alamomi
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ha
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# Ƙirƙirar Alamomi
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+Za ku iya ƙirƙirar alamomi ta hanyoyi guda uku: neman wurin da kuke son ajiyewa ta amfani da sandar bincike, gano wani wuri ta amfani da maɓallin *\"Wurare Kusa\"*, ko amfani da maɓallin *\"Yi Amfani da Wurin Yanzu\"*, dukkansu za a same su a babban allon Soundscape. Da zarar kun sami wurin da kuke so, zaɓarsa zai kai ku zuwa allon *\"Cikakkun Bayanan Wuri\"*. A wannan allo, zaɓi maɓallin *\"Ajiye a matsayin Alama\"*.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+Yanzu za ku sami zaɓi na daidaita wannan alama. Za ku iya canza sunan alamar, sannan kuma ku ƙara bayanin da za a sanar tare da alamar don ba da ƙarin bayani. Da zarar kun gama, zaɓi maɓallin *Gama* don ajiye Alamarku.
 

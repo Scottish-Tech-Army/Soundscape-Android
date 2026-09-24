@@ -1,5 +1,5 @@
 ---
-title: Why is Soundscape working offline?
+title: Soundscape ऑफ़लाइन क्यों काम कर रहा है?
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hi
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Why is Soundscape working offline?
+# Soundscape ऑफ़लाइन क्यों काम कर रहा है?
 
-## Why is Soundscape working offline?
+## Soundscape ऑफ़लाइन क्यों काम कर रहा है?
 
-When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
+जब इंटरनेट कनेक्शन उपलब्ध न हो, या Soundscape सेवाएँ बंद हों, तो Soundscape ऑफ़लाइन मोड में चला जाता है। यह काम करता रहेगा, लेकिन कुछ सुविधाएँ सीमित हो सकती हैं।
 
-## Limitations
+## सीमाएँ
 
-Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
+जिन क्षेत्रों से आप पहले गुज़र चुके हैं, वहाँ कॉलआउट काम करते रहते हैं, क्योंकि Soundscape उन्हें आपके कॉलआउट इतिहास में सहेजता है। आप अपने कॉलआउट इतिहास में पहले से सहेजे गए स्थानों पर ऑडियो बीकन भी लगा सकते हैं या मार्कर बना सकते हैं।
 
-## What can you do?
+## आप क्या कर सकते हैं?
 
-Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
+जैसे ही आपके फ़ोन को Wi-Fi या सेल्युलर डेटा के ज़रिए अच्छा इंटरनेट कनेक्शन मिलेगा, Soundscape सामान्य कार्य फिर से शुरू करने का प्रयास करेगा। यदि आपके फ़ोन में अच्छा कनेक्शन है फिर भी Soundscape सामान्य कार्य फिर से शुरू नहीं करता, तो Soundscape सेवाओं में रुकावट हो सकती है।
 

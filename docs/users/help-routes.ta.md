@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: பாதைகள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ta
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# பாதைகள்
 
-## What is it?
+## இது என்ன?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+பாதைகள் என்பது வழிப்புள்ளிகளின் தொடர். ஒவ்வொரு வழிப்புள்ளியையும் நீங்கள் அடையும்போது உங்களுக்குத் தெரிவிக்கப்படும், மேலும் ஒலி பீக்கன் தானாகவே அடுத்த வழிப்புள்ளிக்கு முன்னேறும்.
 
-## When would I use it?
+## இதை எப்போது பயன்படுத்துவேன்?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+நீங்கள் ஏற்கனவே அறிந்த ஓர் இடத்தில், சரியான பாதையில் இருக்க உதவும் வகையில் ஒரு பாதையை உருவாக்கிப் பயன்படுத்த விரும்பலாம். அல்லது ஒரு புதிய பயணத்தைக் கற்றுக்கொள்ள ஒரு பாதையைப் பயன்படுத்த விரும்பலாம்.
 
-## How does it work?
+## இது எப்படி வேலை செய்கிறது?
 
-**Creating a route :**
+**ஒரு பாதையை உருவாக்குதல்:**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ முதலில், *குறியிடங்கள் மற்றும் பாதைகள்* க்குச் சென்று, *பாதைகள்* தாவலைத் தேர்ந்தெடுத்து, பின்னர் *புதிய பாதை* பொத்தானைத் தேர்ந்தெடுக்கவும். பாதைக்கு ஒரு பெயரும் விருப்பமான விளக்கமும் கொடுத்து, பின்னர் நீங்கள் செல்லும்போது வழிப்புள்ளிகளைச் சேர்க்கவும் அல்லது உங்கள் குறியிடங்கள் பட்டியலில் இருந்து தேர்ந்தெடுக்கவும். பாதையைத் திருத்துவதன் மூலம் எந்த நேரத்திலும் பாதையில் உள்ள வழிப்புள்ளிகளின் வரிசையை மறுசீரமைக்கலாம்.
 
-**Editing a route :**
+**ஒரு பாதையைத் திருத்துதல்:**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ *\"குறியிடங்கள் மற்றும் பாதைகள்\"* திரையில் உங்கள் பாதையைத் தேர்ந்தெடுத்து, பின்னர் *\"பாதையைத் திருத்து\"* ஐத் தேர்ந்தெடுக்கவும். இங்கிருந்து நீங்கள் வழிப்புள்ளிகளைச் சேர்க்கவும் நீக்கவும் முடியும், மேலும் பாதையின் பெயர் மற்றும் விளக்கத்தையும் திருத்தலாம்.
 
-**Sharing a route :**
+**ஒரு பாதையைப் பகிர்தல்:**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ *குறியிடங்கள் மற்றும் பாதைகள்* திரையில் உங்கள் பாதையைத் தேர்ந்தெடுத்து, பின்னர் உங்களுக்குக் கிடைக்கும் வழக்கமான பகிர்வு விருப்பங்களைப் பயன்படுத்தி *பகிர்* விருப்பத்தைத் தேர்ந்தெடுக்கவும்.
 

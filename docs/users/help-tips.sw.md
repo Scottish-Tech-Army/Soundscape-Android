@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Vidokezo
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: sw
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Vidokezo
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Unaweza kupata vituo vya mabasi vya karibu kwa kuchagua kichujio cha *"Usafiri wa Umma"* katika orodha ya *"Sehemu za Karibu"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Unaweza kuweka beacon kwenye anwani yoyote. Kutoka skrini kuu ya Soundscape, tafuta anwani hiyo. Baada ya kuchagua anwani katika matokeo ya utafutaji, skrini ya *"Maelezo ya Mahali"* itaonyeshwa na ina chaguo la *"Anzisha Beacon ya Sauti"* kwenye anwani hiyo. Kwa njia hii, unaweza kuweka beacon kwenye biashara, mahali, sehemu za kuvutia, na makazi ambayo hayapo kwenye Open Street Map.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Ikiwa kuna njia ya basi unayoitumia mara kwa mara, weka vituo vyako vya kupanda na kushuka kama Alama. Kwa njia hii vitahifadhiwa ili uweze kuvipata tena kwa urahisi, nenda tu kwenye *"Alama na Njia"* kutoka skrini ya mwanzo na uvipate kwenye ukurasa wa *"Alama"*. Unaweza kuweka beacon juu yake nawe utapata masasisho ya mara kwa mara kuhusu umbali wako hadi kituo chako cha kushukia. Kumbuka: unaweza kuzima sauti yenye mdundo nawe bado utapata masasisho ya umbali njiani.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Ukiweka simu yako mfukoni na kusimama, sauti ya beacon hupungua kwa sababu Soundscape haiwezi kujua upande unaoelekea. Ili kurekebisha hili, anza kutembea tena, au toa simu yako na uishikilie ikiwa gorofa.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape hufanya kazi vizuri zaidi unaposhikilia simu ikiwa gorofa na skrini ikielekeza angani na sehemu ya juu ya simu ikielekeza mbali nawe.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Unaweza kuwasha na kuzima sauti yenye mdundo ya beacon kwa kutumia kitufe cha kunyamazisha kwenye skrini ya mwanzo. Ikiwa beacon imenyamazishwa, bado utapata masasisho kuhusu umbali wako hadi mahali unapoenda takriban kila mita 50.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Ili kuendelea kutumia Soundscape bila kusikia matangazo ya kiotomatiki, weka *Kiwango cha Matangazo* kuwa *Kimya* katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio* kutoka kwenye menyu. Ikiwa hutaenda kutumia Soundscape kwa muda, unaweza badala yake kuiweka katika hali ya Kulala au Kusinzia kwa kutumia kitufe cha *Lala* kwenye skrini ya mwanzo.
 

@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: Dźwięk naprowadzający
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: pl
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Dźwięk naprowadzający
 
-## What is it?
+## Co to jest?
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+Ustawienie naprowadzania na pobliską lokalizację pozwala Soundscape prowadzić cię, odtwarzając dźwięk dochodzący z kierunku tej lokalizacji. Ten dźwięk można wyciszyć lub włączyć ponownie na ekranie głównym. Dodatkowo Soundscape wyświetla na ekranie głównym informacje o tej lokalizacji, w tym odległość oraz adres, jeśli jest znany.
 
-## When would I use it?
+## Kiedy używać?
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+Ustawienie naprowadzania dzwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz być informowany(-a) o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.
 
-## How does it work?
+## Jak to działa?
 
-**To set a beacon :**
+**Aby ustawić dźwięk naprowadzający:**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ Najpierw wyświetl szczegóły lokalizacji, wyszukując miejsce w pasku wyszukiwania lub stukając w jeden z przycisków *„Miejsca w pobliżu”*, *„Znaczniki (pinezki) i trasy”* lub *„Bieżąca lokalizacja”* i wybierając lokalizację. Na ekranie *„Szczegóły lokalizacji”* wybierz przycisk *„Uruchom dźwięk naprowadzający”*. Stuknięcie tego przycisku spowoduje powrót do ekranu głównego i włączenie słyszalnego naprowadzania dochodzącego z kierunku wybranej lokalizacji. Nazwa wybranego miejsca wraz z jego odległością oraz fizycznym adresem (jeśli dostępny) zostaną teraz wyświetlone na ekranie głównym aplikacji.
 
-**To remove the current beacon :**
+**Aby usunąć bieżący dźwięk naprowadzający:**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ Po prostu naciśnij przycisk *„Zatrzymaj trasę”* na ekranie głównym.
 
-**To mute the audible beacon :**
+**Aby wyciszyć dźwięk naprowadzający:**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ Stuknij przycisk *„Wycisz dźwięk naprowadzający”* obok przycisku *„Zatrzymaj trasę”* na ekranie głównym.
 

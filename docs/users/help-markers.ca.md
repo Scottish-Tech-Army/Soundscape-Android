@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Marcadors
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: ca
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Marcadors
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Amb Soundscape, pots marcar el teu món i qualsevol cosa que t'importi, com xinxetes en un mapa.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Pots marcar llocs que són personals i rellevants per a tu, com casa teva, la teva oficina o la teva botiga de queviures preferida. Pots marcar qualsevol lloc o adreça, i també pots marcar coses que normalment no apareixen als mapes, per exemple: entrades a edificis o parcs, botons per creuar, passos de vianants, ponts, parades d'autobús o fins i tot l'arbre preferit del teu gos. Utilitza aquestes marques com a referències durant el teu passeig.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Per experimentar els llocs marcats, Soundscape anunciarà automàticament els llocs marcats quan hi passis a prop o t'hi acostis, o també pots utilitzar el botó *"Marcadors propers"* a la part inferior de la pantalla principal de Soundscape per escoltar un avís espacial dels llocs marcats al teu voltant. A més, tens la possibilitat d'establir una balisa sonora en qualsevol lloc marcat. Quan ho facis, sentiràs la balisa sonora de Soundscape que ja coneixes i la podràs fer servir com de costum.
 

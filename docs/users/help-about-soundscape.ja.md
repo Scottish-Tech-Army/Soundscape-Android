@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: Soundscape について
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ja
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Soundscape について
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape は、革新的な音声ベースの技術を用いて、人々が周囲の環境に対するより豊かな認識を築けるように支援します。これにより、人々はより自信を持ち、自立して移動できるようになります。
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape は、これらの優れたサードパーティ製のライブラリやデータを利用しています。リンクをクリックして各ライセンスをご確認ください：
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) は、Soundscape で使用される地図および音声の地理データをすべて提供しています。
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) は、アプリで使用する地図タイルの生成に使用されています。
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) は 3D オーディオの生成に使用されており、[Apache 2.0 ライセンス](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) のもとで利用可能です。
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) は低遅延でのオーディオ再生に使用されており、[Apache 2.0 ライセンス](https://github.com/google/oboe/blob/main/LICENSE) のもとで利用可能です。
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+第三者の製品名、会社名およびロゴは各社の商標または登録商標であり、それぞれの権利所有者に帰属します。
 

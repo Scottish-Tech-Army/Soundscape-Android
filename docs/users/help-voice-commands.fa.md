@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: فرمان‌های صوتی
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,37 +7,39 @@ lang: fa
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# فرمان‌های صوتی
 
-## What is it?
+## این چیست؟
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+می‌توانید بدون لمس گوشی از Gemini بخواهید کارهایی را در Soundscape انجام دهد: شنیدن یک اعلان، شروع یکی از مسیرهایتان، یا تنظیم جهت‌نمای صوتی روی یکی از نشانه‌هایتان. هر دستیار دیگری هم که از قابلیت‌های برنامه‌ای اندروید پشتیبانی کند می‌تواند همین کار را انجام دهد.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape به‌جای اینکه دستیار خلاصه‌ای را بخواند، با صدای خودش و با همان اعلان‌ها و صداهای جهت‌نما که می‌شناسید پاسخ می‌دهد. به این ترتیب آنچه می‌شنوید همچنان از همان جهتی می‌آید که توصیفش می‌کند.
 
-## When would I use it?
+## چه زمانی از آن استفاده کنم؟
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+فرمان‌های صوتی وقتی به کار می‌آیند که گوشی در جیبتان باشد، دست‌هایتان پر باشد، یا ترجیح بدهید برای فشار دادن یک دکمه توقف نکنید. این فرمان‌ها هنگامی که Soundscape در پس‌زمینه است و هنگامی که گوشی قفل است هم کار می‌کنند، و درخواست اعلان برنامه را باز نمی‌کند.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+شنیدن بر عهده‌ی دستیار شماست، نه Soundscape؛ بنابراین برنامه هرگز میکروفون شما را در اختیار نمی‌گیرد و هدفون بلوتوثی شما به‌جای رفتن به حالت کیفیت پایین‌تری که برای تماس‌ها به کار می‌رود، در حالت صوتی باکیفیت باقی می‌ماند.
 
-## How does it work?
+## چگونه کار می‌کند؟
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+هیچ عبارت دقیقی برای حفظ کردن وجود ندارد. آنچه می‌خواهید را با کلمات خودتان بگویید و دستیار آن را به یکی از کارهای زیر ربط می‌دهد. نام مسیرها و نشانه‌ها به‌صورت تقریبی تطبیق داده می‌شود، بنابراین معمولاً بخشی از نام کافی است.
 
-You can ask Soundscape to:
+می‌توانید از Soundscape بخواهید:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+*\"موقعیت مکانی من\"* را توصیف کند، بگوید چه چیزی در *\"اطراف من\"* است، یا چه چیزی *\"مقابل من\"* است.
 
-Call out the saved markers near you.
+نشانه‌های ذخیره‌شده‌ی نزدیک شما را اعلام کند.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+یکی از مسیرهای ذخیره‌شده‌تان را با نام شروع کند، به نقطه‌ی بین‌راهی بعدی برود، به نقطه‌ی قبلی بازگردد، صدای جهت‌نما را ببندد، یا مسیر را متوقف کند.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+روی یکی از نشانه‌های ذخیره‌شده‌تان با نام، جهت‌نمای صوتی تنظیم کند، یا جهت‌نما را خاموش کند.
 
-Read back the names of your saved routes or your saved markers.
+جزئیات اعلان‌ها را روی *\"بی‌صدا\"*، *\"مختصر\"*، *\"متعادل\"* یا *\"مفصل\"* بگذارد تا تعیین شود ساند‌اسکیپ هنگام راه رفتن چقدر بگوید. بی‌صدا اعلان‌های خودکار را خاموش می‌کند.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+نام مسیرهای ذخیره‌شده یا نشانه‌های ذخیره‌شده‌تان را بخواند.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+همه چیز به‌جز آن دو فهرست نیاز دارد که Soundscape در حال اجرا باشد. اگر در حال اجرا نباشد، دستیار به شما می‌گوید ابتدا Soundscape را باز کنید. فهرست کردن مسیرها و نشانه‌هایتان در هر دو حالت کار می‌کند، چون فقط آنچه را که پیش‌تر ذخیره کرده‌اید می‌خواند.
+
+فرمان‌های صوتی به گوشی با اندروید ۱۶ یا جدیدتر و دستیاری که از قابلیت‌های برنامه‌ای پشتیبانی کند نیاز دارند.
 

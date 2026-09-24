@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Sterowanie przyciskami multimedialnymi
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: pl
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Sterowanie przyciskami multimedialnymi
 
-## What is it?
+## Co to jest?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Do niektórych funkcji Soundscape możesz uzyskać dostęp za pomocą przycisków sterowania mediami w słuchawkach. Funkcjonalność działa z dowolnymi słuchawkami przewodowymi lub Bluetooth, które mają przyciski sterowania mediami, takie jak Odtwarzaj, Pauza, Dalej, Wstecz i inne. Różne modele słuchawek mogą mieć różny zestaw przycisków — zapoznaj się z poniższą listą akcji, aby sprawdzić, które z nich są dostępne dla Ciebie.
 
-## When would I use it?
+## Kiedy używać?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Przycisków sterowania mediami w słuchawkach można używać, gdy Soundscape działa — niezależnie od tego, czy aktywnie korzystasz z aplikacji, czy działa ona w tle, czy urządzenie jest zablokowane. Przyciski sterowania mediami w słuchawkach nie będą jednak działać ze Soundscape, jeśli w innej aplikacji odtwarzasz dźwięk, na przykład muzykę, podcasty lub filmy.
 
-## How does it work?
+## Jak to działa?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w sekcji *Ustawienia* *Sterowanie multimediami*. Tryby to:
 
- Original mode. 
+ Tryb oryginalny. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Odtwórz/Pauza: włącza i wyłącza dźwięk naprowadzający. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Następny: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do następnego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, ogłasza *Wokół mnie*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Poprzedni: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do poprzedniego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, zmienia *Szczegółowość powiadomień* o jeden poziom ciszej przy każdym naciśnięciu: *Szczegółowy*, *Zrównoważony*, *Cichy*, *Wyciszony* i z powrotem *Szczegółowy*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menu dźwiękowe. 
+
+
+
+⏭ Następny przechodzi przez szereg opcji menu, które aplikacja opisuje za pomocą syntezatora mowy, i po ostatniej wraca do pierwszej. ⏯ Odtwórz/Pauza uruchamia następnie opisaną opcję. Istnieje jedno menu główne, którego elementami są tylko podmenu. Każde podmenu grupuje podobne akcje.
+
+⏮ Poprzedni nie przechodzi przez menu. Zamiast tego zmienia *Szczegółowość powiadomień*, dokładnie tak jak w trybie oryginalnym, więc ten sam przycisk wycisza aplikację niezależnie od używanego trybu.
 

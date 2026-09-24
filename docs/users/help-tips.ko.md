@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: 팁
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ko
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# 팁
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+*\"주변 장소\"* 목록에서 *\"대중교통\"* 필터를 선택하면 근처 버스 정류장을 찾을 수 있습니다.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+모든 주소에 비콘을 설정할 수 있습니다. Soundscape 메인 화면에서 주소를 검색하세요. 검색 결과에서 주소를 선택하면 *"위치 세부 정보"* 화면이 열립니다. 이 화면에는 해당 주소에 *"오디오 비콘 시작"*을 할 수 있는 옵션이 있습니다. 이러한 방식으로 오픈스트리트맵에 없는 상점, 장소, 관심 지점, 주거지에도 비콘을 설정할 수 있습니다.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+정기적으로 이용하는 버스 노선이 있다면, 승차 및 하차 정류장을 마커로 저장해 보세요. 이렇게 하면 저장되어 쉽게 다시 찾을 수 있습니다. 홈 화면에서 *"마커 및 경로"*로 이동한 다음 *"마커"* 페이지에서 찾으세요. 이 마커에 비콘을 설정하면 하차 정류장까지 얼마나 가까워졌는지 주기적으로 업데이트를 받을 수 있습니다. 참고: 리드미컬한 소리를 꺼도 도중에 거리 업데이트는 계속 받을 수 있습니다.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+휴대폰을 주머니에 넣고 멈춰 서면, Soundscape가 바라보고 있는 방향을 알 수 없기 때문에 비콘 소리가 작아집니다. 이를 해결하려면 다시 걷기 시작하거나, 휴대폰을 꺼내 평평하게 드세요.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+화면이 하늘을 향하도록 휴대폰을 평평하게 들고 휴대폰 상단이 몸에서 먼 쪽을 가리키도록 하면 Soundscape가 가장 잘 작동합니다.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+홈 화면의 음소거 버튼을 사용하여 비콘의 리드미컬한 소리를 켜거나 끌 수 있습니다. 비콘이 음소거되어 있어도 약 50미터마다 목적지까지의 거리에 대한 업데이트는 계속 받을 수 있습니다.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+자동 안내를 듣지 않고 Soundscape를 계속 사용하려면, 메뉴에서 *\"설정\"* 화면의 *\"안내 관리\"* 섹션으로 이동하여 *\"안내 상세도\"*를 *\"무음\"*으로 설정하세요. 한동안 Soundscape를 사용하지 않을 예정이라면, 대신 홈 화면의 *\"잠자기\"* 버튼을 사용하여 잠자기 모드나 스누즈 모드로 전환할 수 있습니다.
 

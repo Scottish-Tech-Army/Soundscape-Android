@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: 自動コールアウト
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,33 +7,33 @@ lang: ja
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# 自動コールアウト
 
-## What is it?
+## どのようなものですか?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+...アプリが自動的にコールアウトする項目は、*「設定」* 画面の *「コールアウト」* セクションで構成できます。アプリを静かにしたいときは、すべてのコールアウトをオフにすることもできます。
 
-## When would I use it?
+## どのような場合に使用できますか?
 
-**Exploring a new area :**
+**新しい場所の探索**:
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ 自動コールアウトをオンにして歩くと、移動に応じて近くの店舗やレストランなどさまざまな情報を耳で確認できます。
 
-**Walking to a specific location :**
+**特定の場所への移動**:
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ 特定の場所に向かって歩く際には、交差点の自動コールアウトが特に役立つ可能性があります。交差点のコールアウトを使用すると、交差点に近付くとその交差点の構造がわかり、交差点を出るときには、どの道路にいるかを確認できます。
 
-**When you need silence :**
+**無音にしたい場合**:
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ 交差点を横断するときや、単にアプリの音声を消したい場合、コールアウトをオフにすることができます。コールアウトをオフにすると、[*現在地*]、[*近くのマーカー*]、[*周辺*]、[*前方*] のいずれかのボタンをタップしたときにだけ、情報が伝えられます。
 
-## How does it work?
+## どのような仕組みですか?
 
-**Turning callouts on or off :**
+**コールアウトのオン／オフ：**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ コールアウトをオフにするとアプリは無音になります。コールアウトは、*「設定」* 画面の *「コールアウト」* セクションで *「コールアウトの詳細度」* を *「無音」* に設定するとオフになり、それ以外のレベルを選ぶと再びオンになります。同じことを Siri や Gemini に頼んで行うこともできます。ヘッドホンのメディアコントロールボタンで、Soundscape を一段階ずつ静かにすることもできます。*「前へ」* を押すたびに *「詳細」*、*「バランス」*、*「控えめ」*、*「無音」* の順に一段階下がり、もう一度押すと *「詳細」* に戻ります。ヘルプの *「メディアコントロールの使用」* を参照してください。あるいはホーム画面右上の *「スリープ」* ボタンを使って、再びウェイクアップするまで Soundscape のコールアウトを停止することもできます。
 
-**Managing which callouts you hear :**
+**どのコールアウトを聞くかの管理：**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Soundscape が自動的にコールアウトする項目の種類を選択するには、*「ホーム」* 画面のメニューから *「設定」* 画面に移動してください。*「設定」* 画面の *「コールアウト」* セクションでは、*「コールアウトの詳細度」* でアプリがどれだけ話すかを選び、*「道路と交差点」* をコールアウトするかどうか、そして *「コールアウトする場所」* を選びます。すべてのコールアウトをオフにしたい場合は、*「コールアウトの詳細度」* を *「無音」* に設定してください。
 

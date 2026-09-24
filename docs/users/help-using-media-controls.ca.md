@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Utilitzar els controls multimèdia
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: ca
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Utilitzar els controls multimèdia
 
-## What is it?
+## Què és?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Pots accedir a certes funcions de Soundscape amb l'ajuda dels botons de control multimèdia dels teus auriculars. Aquesta funcionalitat funciona amb qualsevol auricular amb fil o Bluetooth que tingui botons de control multimèdia com Reprodueix, Pausa, Següent, Anterior i altres. Diferents auriculars poden incloure botons diferents, així que consulta la llista d'accions a continuació per determinar quins estan disponibles per a tu.
 
-## When would I use it?
+## Quan l'hauria d'utilitzar?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Els controls multimèdia dels auriculars es poden utilitzar mentre Soundscape s'executa, tant si estàs utilitzant l'aplicació activament, com si s'executa en segon pla o el dispositiu està bloquejat. Tanmateix, els botons de control multimèdia dels auriculars no funcionaran amb Soundscape si estàs reproduint àudio, com ara música, pòdcasts o vídeos, amb una altra aplicació.
 
-## How does it work?
+## Com funciona?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Hi ha 2 modes de funcionament per als controls multimèdia. El mode es pot seleccionar a la secció *Configuració* *Controls multimèdia*. Els modes són:
 
- Original mode. 
+ Mode original. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Reprodueix/Pausa: Activa o desactiva l'àudio de la balisa. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Següent: Si s'està reproduint una ruta, mou la balisa sonora al punt de ruta següent de la ruta. Si no s'està reproduint cap ruta, anuncia *Què hi ha al meu voltant*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Anterior: Si s'està reproduint una ruta, mou la balisa sonora al punt de ruta anterior de la ruta. Si no s'està reproduint cap ruta, canvia el *Detall dels avisos de veu*, un nivell més discret a cada pulsació: *Detallat*, *Equilibrat*, *Discret*, *Silenciós*, i torna a *Detallat*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menú d'àudio. 
+
+
+
+⏭ Següent es mou per una sèrie d'opcions de menú que l'aplicació descriu mitjançant conversió de text a veu, i torna a la primera després de l'última. ⏯ Reprodueix/Pausa activa llavors que l'aplicació executi l'opció descrita. Hi ha un únic menú de nivell superior que només té submenús com a opcions. Cada submenú té un grup d'accions possibles similars.
+
+⏮ Anterior no es mou pel menú. En lloc d'això canvia el *Detall dels avisos de veu*, exactament igual que en el mode original, de manera que el mateix botó fa que l'aplicació sigui més discreta en qualsevol dels dos modes.
 

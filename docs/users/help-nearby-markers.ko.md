@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: 주변 마커
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ko
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# 주변 마커
 
-## What is it?
+## 이것은 무엇인가요?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+*주변 마커* 버튼은 가장 가까운 마커 최대 4개에 대해 알려줍니다. *주변 마커*는 이미 알고 있는 장소를 활용하여 방향을 파악하는 데 도움을 주기 위한 기능입니다.
 
-## When would I use it?
+## 언제 사용하나요?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+방향을 파악하고 주변 환경에 적응하려 할 때 *주변 마커*를 사용하여 알고 있는 장소의 위치에 대한 안내를 들어보세요.
 
-## How does it work?
+## 어떻게 작동하나요?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+홈 화면 하단의 네 가지 버튼과 마찬가지로, *주변 마커* 버튼을 누르기 전에 휴대폰 화면이 하늘을 향하도록 평평하게 들고 휴대폰 상단이 바라보고 있는 방향을 가리키게 하세요. 이는 나침반처럼 앱에 현재 바라보고 있는 방향을 알려줍니다. *주변 마커* 버튼을 탭하기만 하면 근처에 있는 마커 최대 4개에 대한 안내를 들을 수 있습니다.
 

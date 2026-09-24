@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: 자동 안내
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
@@ -7,33 +7,33 @@ lang: ko
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# 자동 안내
 
-## What is it?
+## 이것은 무엇인가요?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape는 주변 사물에 다가갈 때 해당 사물이 있는 방향에서 이름을 안내하여 알려줄 수 있습니다. 앱은 상점, 버스 정류장, 심지어 교차로 등 다양한 사물에 대해 이를 자동으로 수행합니다. *\"설정\"* 화면의 *\"안내 관리\"* 섹션에서 앱이 자동으로 안내할 항목을 설정할 수 있으며, 앱을 조용하게 하고 싶을 때는 모든 안내를 끌 수 있습니다.
 
-## When would I use it?
+## 언제 사용하나요?
 
-**Exploring a new area :**
+**새로운 지역 탐색 :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ 자동 안내를 켜고 돌아다니면 지나치는 다양한 상점, 식당 등에 대한 안내를 들을 수 있습니다.
 
-**Walking to a specific location :**
+**특정 위치로 이동할 때 :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ 특정 위치로 이동하는 중에는 교차로에 대한 자동 안내가 특히 유용할 수 있습니다. 교차로 안내는 교차로에 다가갈 때 그 구조를 알려주고, 교차로를 벗어날 때는 현재 있는 도로를 확인해 줍니다.
 
-**When you need silence :**
+**조용히 해야 할 때 :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ 도로를 건너려고 하거나 앱을 조용하게 유지해야 할 때는 안내를 끌 수 있습니다. 안내가 꺼져 있으면 앱은 *내 위치*, *주변 마커*, *내 주변*, *내 앞쪽* 버튼 중 하나를 직접 탭했을 때만 정보를 알려줍니다.
 
-## How does it work?
+## 어떻게 작동하나요?
 
-**Turning callouts on or off :**
+**안내 켜기 또는 끄기 :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ 안내를 끄면 앱이 조용해집니다. 안내는 *\"설정\"* 화면의 *\"안내 관리\"* 섹션에서 *\"안내 상세도\"*를 *\"무음\"*으로 설정하면 꺼지고, 다른 수준을 선택하면 다시 켜집니다. Siri나 Gemini에게 요청해도 똑같이 할 수 있습니다. 헤드폰의 미디어 제어 버튼으로 Soundscape를 한 단계씩 조용하게 만들 수도 있습니다. *\"이전\"*을 누를 때마다 *\"상세\"*, *\"균형\"*, *\"간략\"*, *\"무음\"* 순으로 한 단계씩 내려가고, 한 번 더 누르면 *\"상세\"*로 돌아갑니다. *\"미디어 컨트롤 사용하기\"* 도움말 항목을 참조하세요. 또는 홈 화면 오른쪽 상단의 *\"잠자기\"* 버튼을 사용하여 다시 깨우기 전까지 Soundscape의 안내를 중지할 수 있습니다.
 
-**Managing which callouts you hear :**
+**들을 안내 유형 관리하기 :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Soundscape가 자동으로 안내할 항목의 유형을 선택하려면 *\"홈\"* 화면의 메뉴를 사용하여 *\"설정\"* 화면으로 이동합니다. *\"설정\"* 화면의 *\"안내 관리\"* 섹션에서 *\"안내 상세도\"*로 앱이 얼마나 말할지, *\"도로와 교차로\"*를 안내할지, 그리고 어떤 *\"안내할 장소\"*를 사용할지 선택합니다. 모든 안내를 끄고 싶다면 *\"안내 상세도\"*를 *\"무음\"*으로 설정하세요.
 

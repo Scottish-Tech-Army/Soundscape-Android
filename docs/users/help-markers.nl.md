@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Markeringen
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,11 +7,11 @@ lang: nl
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Markeringen
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Met Soundscape kunt u uw wereld markeren en alles wat u belangrijk vindt, zoals pinnen op een kaart.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+U kunt plaatsen markeren die persoonlijk en belangrijk voor u zijn, zoals uw huis, uw werkplek of uw favoriete supermarkt. U kunt elke plaats of elk adres markeren, en ook dingen die normaal gesproken niet op kaarten staan, bijvoorbeeld: ingangen van gebouwen of parken, drukknoppen bij oversteekplaatsen, zebrapaden, bruggen, bushaltes of zelfs de favoriete boom van uw hond. Gebruik deze markeringen als referentie tijdens uw wandeling.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Om gemarkeerde plaatsen te ervaren, kondigt Soundscape automatisch gemarkeerde plaatsen aan terwijl u erlangs loopt of ze nadert, of u kunt de knop *\"Markeringen in de buurt\"* onderaan het hoofdscherm gebruiken om ruimtelijke aankondigingen te horen van gemarkeerde plaatsen om u heen. Daarnaast kunt u op elke gemarkeerde plaats een audiobaken instellen. Wanneer u dat doet, hoort u het voor u bekende Soundscape‑audiobaken en kunt u het zoals gebruikelijk bedienen.
 

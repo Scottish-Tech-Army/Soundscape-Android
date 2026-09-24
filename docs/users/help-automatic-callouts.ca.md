@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Avisos de veu automàtics
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: ca
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Avisos de veu automàtics
 
-## What is it?
+## Què és?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape et pot informar sobre les coses del teu voltant a mesura que t'hi acostes, anunciant el seu nom des de la direcció on es troben. L'aplicació ho farà automàticament per a tota mena de coses, com ara negocis, parades d'autobús i fins i tot cruïlles. Pots configurar què anuncia automàticament l'aplicació a la secció *"Gestiona els avisos de veu"* de la pantalla *"Configuració"*, i pots desactivar tots els avisos de veu quan vulguis que l'aplicació estigui en silenci.
 
-## When would I use it?
+## Quan l'hauria d'utilitzar?
 
-**Exploring a new area :**
+**Explorant una zona nova:**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Activa els avisos de veu automàtics i camina per escoltar informació sobre les diferents botigues, restaurants i similars a mesura que hi passes.
 
-**Walking to a specific location :**
+**Caminant cap a una ubicació específica:**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Quan et dirigeixes cap a una ubicació concreta, els avisos de veu automàtics de cruïlles poden ser especialment útils. Els avisos de cruïlla t'informen sobre la disposició de les cruïlles a mesura que t'hi acostes, i confirmen el carrer en què ets quan les deixes enrere.
 
-**When you need silence :**
+**Quan necessites silenci:**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Quan estàs a punt de creuar un carrer o simplement necessites que l'aplicació estigui en silenci, pots desactivar els avisos de veu. Quan els avisos de veu estan desactivats, l'aplicació només et donarà informació si toques manualment un dels botons *La meva ubicació*, *Marcadors propers*, *Al meu voltant* o *Davant meu*.
 
-## How does it work?
+## Com funciona?
 
-**Turning callouts on or off :**
+**Activar o desactivar els avisos de veu:**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Desactivar els avisos de veu silenciarà l'aplicació. Els avisos de veu es poden desactivar a la secció *Gestiona els avisos de veu* de la pantalla *Configuració*, posant *Detall dels avisos de veu* a *Silenciós*, i es tornen a activar triant qualsevol altre nivell. Pots fer el mateix demanant-ho al Siri o al Gemini. També pots fer que Soundscape sigui més discret pas a pas amb els botons de control multimèdia dels teus auriculars: cada pulsació d'*anterior* baixa un nivell per *Detallat*, *Equilibrat*, *Discret* i *Silenciós*, i una pulsació més torna a *Detallat*. Consulta el tema d'ajuda *Utilitzar els controls multimèdia*. Alternativament, pots utilitzar el botó *Repòs* a la cantonada superior dreta de la pantalla principal per aturar que Soundscape faci avisos de veu fins que decideixis reactivar-lo.
 
-**Managing which callouts you hear :**
+**Gestionar quins avisos de veu escoltes:**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Per triar els tipus de coses que Soundscape anunciarà automàticament, ves a la pantalla *Configuració* utilitzant el menú de la pantalla *Principal*. A la secció *Gestiona els avisos de veu* de la pantalla *Configuració* és on tries quant diu l'aplicació amb *Detall dels avisos de veu*, si anuncia *Carrers i cruïlles* i quins són els *Llocs per anunciar*. Si vols desactivar tots els avisos de veu, posa *Detall dels avisos de veu* a *Silenciós*.
 

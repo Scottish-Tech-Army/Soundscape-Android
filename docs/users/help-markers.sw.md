@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Alama
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: sw
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Alama
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Kwa Soundscape, unaweza kuweka alama katika dunia yako na kitu chochote unachokijali, kama pini kwenye ramani.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Unaweza kuweka alama kwenye sehemu za binafsi na muhimu kwako kama nyumbani kwako, ofisini kwako au duka lako la vyakula unalolipenda. Unaweza kuweka alama kwenye mahali au anwani yoyote, na pia kwenye vitu ambavyo kwa kawaida havionyeshwi kwenye ramani, kwa mfano: milango ya kuingilia majengo au bustani, vitufe vya kuvukia watembea kwa miguu, vivukio vya watembea kwa miguu, madaraja, vituo vya mabasi, au hata mti unaopendwa na mbwa wako. Tumia alama hizi kama vielelezo wakati wa matembezi yako.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Ili kupata uzoefu wa mahali yaliyowekewa alama, Soundscape itatangaza kiotomatiki mahali hayo unapopita karibu nayo au kuyakaribia, au unaweza pia kutumia kitufe cha *"Alama za Karibu"* kilichopo chini ya skrini ya mwanzo ya Soundscape ili kusikia tangazo la anga la mahali yaliyowekewa alama yanayokuzunguka. Zaidi ya hayo, una uwezo wa kuweka beacon ya sauti kwenye mahali popote palipowekewa alama. Ukifanya hivyo, beacon ya sauti ya Soundscape unayoifahamu itasikika nawe unaweza kuiendesha kama kawaida.
 

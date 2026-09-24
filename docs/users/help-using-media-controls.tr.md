@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Medya Kontrollerini Kullanma
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,33 +7,35 @@ lang: tr
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Medya Kontrollerini Kullanma
 
-## What is it?
+## Bu nedir?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Kulaklığınızdaki medya kontrol düğmeleri yardımıyla Soundscape'teki belirli özelliklere erişebilirsiniz. Bu işlev, Oynat, Duraklat, Sonraki, Önceki ve diğerleri gibi medya kontrol düğmelerine sahip kablolu veya Bluetooth kulaklıklarla çalışır. Farklı kulaklıklar farklı düğmeler içerebilir; hangi işlevlerin kullanılabilir olduğunu belirlemek için lütfen aşağıdaki eylemler listesine bakın.
 
-## When would I use it?
+## Ne zaman kullanırım?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Soundscape çalışırken kulaklık medya kontrollerini kullanabilirsiniz; uygulamayı kullanıyor olmanız, uygulamanın arka planda çalışması ya da cihazınızın kilitli olması fark etmez. Ancak başka bir uygulamayla müzik, podcast veya video gibi ses oynatıyorsanız, kulaklık medya kontrol düğmeleri Soundscape ile çalışmaz.
 
-## How does it work?
+## Nasıl çalışır?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Medya kontrolleri için 2 çalışma modu vardır. Mod, *Ayarlar* ekranının *Medya Kontrolleri* bölümünden seçilebilir. Modlar şunlardır:
 
- Original mode. 
+ Orijinal Mod. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Oynat/Duraklat: İşaret sesini açar veya kapatır. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ İleri: Bir rota oynatılıyorsa sesli işareti rotadaki bir sonraki Ara Noktaya taşır. Hiçbir rota oynatılmıyorsa *Etrafımda* anonsunu yapar.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Geri: Bir rota oynatılıyorsa sesli işareti rotadaki önceki Ara Noktaya taşır. Hiçbir rota oynatılmıyorsa *Anons Ayrıntısı* ayarını her basışta bir kademe daha sakin hale getirir: *Ayrıntılı*, *Dengeli*, *Sakin*, *Sessiz* ve yeniden *Ayrıntılı*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Sesli Menü. 
+
+
+
+⏭ İleri düğmesi, uygulamanın metin okumayla anlattığı bir dizi menü seçeneği arasında ilerler ve sonuncudan sonra yeniden ilkine döner. ⏯ Oynat/Duraklat düğmesi ise anlatılan seçeneğin uygulanmasını sağlar. Tek bir üst düzey menü vardır ve bunun seçenekleri yalnızca alt menülerdir. Her alt menü benzer eylemler grubunu içerir.
+
+⏮ Geri düğmesi menüde gezinmez. Bunun yerine *Anons Ayrıntısı* ayarını tıpkı Orijinal Mod'daki gibi değiştirir; böylece hangi modu kullanırsanız kullanın aynı düğme uygulamayı kısar.
 

@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Моето местоположение
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: bg
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Моето местоположение
 
-## What is it?
+## Какво представлява?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Бутонът *Моето местоположение* бързо Ви дава информация, която Ви помага да разберете къде се намирате в момента. *Моето местоположение* Ви съобщава за текущото Ви местоположение, включително неща като посоката, в която сте обърнати, къде се намират близките пътища или кръстовища и къде се намират близките забележителности.
 
-## When would I use it?
+## Кога да го използвам?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*Моето местоположение* е полезно, когато трябва да разберете къде се намирате или в коя посока на света сте обърнати.
 
-## How does it work?
+## Как работи?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Както при всичките четири бутона в долната част на началния екран, дръжте телефона с екрана хоризонтално (обърнат нагоре към небето) и горната част на телефона, сочеща в посоката, в която сте обърнати, преди да натиснете бутона *Моето местоположение*. Това действа като компас, който казва на приложението в коя посока сте обърнати. Просто докоснете бутона *Моето местоположение* и слушайте.
 

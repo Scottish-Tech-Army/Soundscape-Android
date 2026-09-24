@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: المسارات
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ar
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# المسارات
 
-## What is it?
+## ما هو؟
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+المسارات هي سلسلة من نقاط المسار. ستُعلَم عند الوصول إلى كل نقطة مسار، وستنتقل المنارة الصوتية تلقائيًا إلى نقطة المسار التالية.
 
-## When would I use it?
+## متى أستخدمه؟
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+قد ترغب في إنشاء مسار واستخدامه في مكان تعرفه بالفعل، لمساعدتك على البقاء على الطريق الصحيح. أو قد ترغب في استخدام مسار لمساعدتك على تعلّم رحلة جديدة.
 
-## How does it work?
+## كيف يعمل؟
 
-**Creating a route :**
+**إنشاء مسار:**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ أولًا، انتقل إلى *العلامات والمسارات*، ثم اختر علامة تبويب *المسارات*، ثم اختر زر *مسار جديد*. أعطِ المسار اسمًا ووصفًا اختياريًا، ثم أضف نقاط المسار أثناء تقدمك أو اخترها من قائمة علاماتك. يمكنك إعادة ترتيب نقاط المسار على طول المسار في أي وقت عبر تعديل المسار.
 
-**Editing a route :**
+**تعديل مسار:**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ اختر مسارك في شاشة *"العلامات والمسارات"* ثم اختر *"تعديل المسار"*. من هنا يمكنك إضافة نقاط المسار وإزالتها، بالإضافة إلى تعديل اسم المسار ووصفه.
 
-**Sharing a route :**
+**مشاركة مسار:**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ اختر مسارك في شاشة *العلامات والمسارات* ثم اختر خيار *مشاركة* باستخدام جميع خيارات المشاركة المعتادة المتاحة لك.
 

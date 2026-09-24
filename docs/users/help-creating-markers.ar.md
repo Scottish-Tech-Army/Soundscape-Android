@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: إنشاء العلامات
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ar
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# إنشاء العلامات
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+يمكنك إنشاء العلامات بثلاث طرق: البحث عن المكان الذي تريد حفظه باستخدام شريط البحث، أو إيجاد مكان باستخدام زر *"الأماكن القريبة"*، أو استخدام زر *"استخدام الموقع الحالي"*، وجميعها موجودة على الشاشة الرئيسية لتطبيق Soundscape. بمجرد العثور على المكان الذي تريده، سيؤدي اختياره إلى نقلك إلى شاشة *"تفاصيل الموقع"*. من هذه الشاشة، اختر زر *"الحفظ كعلامة"*.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+سيكون لديك الآن خيار تخصيص هذه العلامة. يمكنك تغيير اسم العلامة، وإضافة ملاحظة سيتم نداؤها مع العلامة لتوفير بعض المعلومات الإضافية. بمجرد الانتهاء، اختر زر *تم* لحفظ علامتك.
 

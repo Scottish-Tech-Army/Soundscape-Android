@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Äänikomennot
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
@@ -7,37 +7,39 @@ lang: fi
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Äänikomennot
 
-## What is it?
+## Mikä se on?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Voit pyytää Geminiä tekemään asioita Soundscapessa koskematta puhelimeen: kuulla ilmoituksen, aloittaa jonkin reiteistäsi tai asettaa äänimajakan johonkin merkinnöistäsi. Sama onnistuu millä tahansa muullakin avustajalla, joka tukee Androidin sovellustoimintoja.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape vastaa omalla äänellään, niillä ilmoituksilla ja majakan äänillä, jotka jo tunnet, sen sijaan että avustaja lukisi yhteenvedon. Näin kuulemasi tulee edelleen siitä suunnasta, jota se kuvaa.
 
-## When would I use it?
+## Milloin käyttäisin sitä?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Äänikomennoista on hyötyä, kun puhelin on taskussa, kädet ovat täynnä tai et halua pysähtyä painamaan painiketta. Ne toimivat, kun Soundscape on taustalla ja kun puhelin on lukittuna, eikä ilmoituksen pyytäminen avaa sovellusta.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Kuunteleminen on avustajasi tehtävä, ei Soundscapen, joten sovellus ei koskaan varaa mikrofoniasi ja Bluetooth-kuulokkeesi pysyvät korkealaatuisessa äänitilassa sen sijaan, että ne vaihtaisivat puheluissa käytettävään heikompilaatuiseen tilaan.
 
-## How does it work?
+## Kuinka se toimii?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Ulkoa opeteltavia tarkkoja sanamuotoja ei ole. Pyydä haluamaasi omin sanoin, niin avustaja yhdistää sen johonkin alla olevista toiminnoista. Reittien ja merkintöjen nimet tunnistetaan väljästi, joten osa nimestä riittää yleensä.
 
-You can ask Soundscape to:
+Voit pyytää Soundscapea:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Kuvailemaan *\"Oma sijaintini\"*, mitä on *\"Lähiympäristö\"* tai mitä on *\"Edessäpäin\"*.
 
-Call out the saved markers near you.
+Ilmoittamaan lähelläsi olevat tallennetut merkinnät.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Aloittamaan jonkin tallennetuista reiteistäsi nimeltä, siirtymään seuraavaan reittipisteeseen, palaamaan edelliseen, hiljentämään majakan tai pysäyttämään reitin.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Asettamaan äänimajakan johonkin tallennetuista merkinnöistäsi nimeltä tai kytkemään majakan pois.
 
-Read back the names of your saved routes or your saved markers.
+Asettamaan ilmoitusten tarkkuudeksi *\"Äänetön\"*, *\"Hiljainen\"*, *\"Tasapainoinen\"* tai *\"Yksityiskohtainen\"*, jolloin muuttuu, kuinka paljon Soundscape puhuu kävellessäsi. Äänetön kytkee automaattiset ilmoitukset pois.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Lukemaan tallennettujen reittiesi tai tallennettujen merkintöjesi nimet.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Kaikki muu paitsi nämä kaksi luetteloa edellyttää, että Soundscape on käynnissä. Jos se ei ole, avustaja kehottaa avaamaan Soundscapen ensin. Reittiesi ja merkintöjesi luetteleminen toimii kummassakin tapauksessa, koska siinä vain luetaan se, minkä olet jo tallentanut.
+
+Äänikomennot edellyttävät puhelinta, jossa on Android 16 tai uudempi, ja avustajaa, joka tukee sovellustoimintoja.
 

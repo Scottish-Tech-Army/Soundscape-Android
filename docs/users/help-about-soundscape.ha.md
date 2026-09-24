@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: Game da Soundscape
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ha
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Game da Soundscape
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape yana amfani da sabuwar fasahar sauti domin taimaka wa mutane su gina cikakkiyar fahimtar abin da ke kewaye da su. Wannan yana sa mutane su samu ƙarin ƙarfin gwiwa da ikon zagayawa da kansu.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape ya dogara ga waɗannan kyawawan laburare da bayanai na wasu kamfanoni. Danna hanyoyin haɗin don ganin lasisinsu:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©Masu Ba da Gudunmawa na OpenStreetMap](https://www.openstreetmap.org/copyright) sun bayar da dukkan bayanan yanki na taswira da sauti da ake amfani da su a Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+Ana amfani da [©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) don samar da tayal-tayal na taswira da muke amfani da su.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+Ana amfani da [Laburaren Steam Audio na ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) don samar da sautin 3D, kuma an samar da shi don amfani ƙarƙashin [lasisin Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+Ana amfani da [Laburaren Oboe na ©The Android Open Source Project](https://github.com/google/oboe) don sake kunna sauti da ƙarancin jinkiri, kuma an samar da shi don amfani ƙarƙashin [lasisin Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+Duk sunayen kayayyaki, kamfanoni da alamun kasuwanci na wasu kamfanoni alamun kasuwanci ne ko kuma alamun kasuwanci da aka yi rijista, kuma su na mallakar masu su ne.
 

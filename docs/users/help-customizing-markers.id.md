@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Menyesuaikan Penanda
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: id
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Menyesuaikan Penanda
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Jika Anda ingin mengganti nama marker yang sebelumnya Anda buat, atau menambahkan anotasi padanya, Anda dapat melakukannya dengan memilih marker tersebut dari tab *\"Marker\"* pada halaman *\"Marker dan Rute\"*, lalu memilih tombol *\"Edit Marker\"*. Anda dapat menggunakan ini untuk memberi marker julukan yang deskriptif atau berguna, serta memberi deskripsi yang lebih panjang menggunakan kolom anotasi.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+Dari layar *Edit* ini, Anda juga dapat menghapus marker jika sudah tidak diperlukan lagi.
 

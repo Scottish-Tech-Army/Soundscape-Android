@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Amri za Sauti
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: sw
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Amri za Sauti
 
-## What is it?
+## Ni nini?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Unaweza kumwomba Gemini afanye mambo katika Soundscape bila kugusa simu yako: kusikia tangazo la sauti, kuanzisha mojawapo ya njia zako, au kuweka beacon ya sauti kwenye mojawapo ya alama zako. Msaidizi mwingine yeyote anayeunga mkono vipengele vya programu za Android anaweza kufanya vivyo hivyo.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape hujibu kwa sauti yake yenyewe, kwa matangazo ya sauti na sauti za beacon unazozijua tayari, badala ya msaidizi kusoma muhtasari. Kwa njia hiyo, unachosikia bado kinatoka upande ule unaoelezwa.
 
-## When would I use it?
+## Ni lini nitaitumia?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Amri za sauti husaidia wakati simu yako iko mfukoni, mikono yako imejaa, au hutaki kusimama ili ubonyeze kitufe. Zinafanya kazi wakati Soundscape iko nyuma na wakati simu yako imefungwa, na kuomba tangazo la sauti hakufungui programu.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Anayesikiliza ni msaidizi wako, si Soundscape, hivyo programu haichukui kamwe maikrofoni yako na vipokea sauti vyako vya Bluetooth hubaki katika hali ya sauti ya ubora wa juu badala ya kubadilika kwenda hali ya ubora wa chini inayotumika kwa simu.
 
-## How does it work?
+## Inafanyaje kazi?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Hakuna misemo maalum ya kukariri. Omba unachotaka kwa maneno yako mwenyewe na msaidizi ataliunganisha na mojawapo ya vitendo vilivyo hapa chini. Majina ya njia na alama hulinganishwa kwa ulegevu, hivyo sehemu ya jina kwa kawaida inatosha.
 
-You can ask Soundscape to:
+Unaweza kuiomba Soundscape:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Ieleze *\"Mahali Nilipo\"*, kilichopo *\"Karibu Nami\"*, au kilichopo *\"Mbele Yangu\"*.
 
-Call out the saved markers near you.
+Itangaze alama zilizohifadhiwa zilizo karibu nawe.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Ianzishe mojawapo ya njia zako zilizohifadhiwa kwa jina, isogee hadi kituo kinachofuata, irudi kwenye kituo kilichotangulia, izime sauti ya beacon, au isimamishe njia.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Iweke beacon ya sauti kwenye mojawapo ya alama zako zilizohifadhiwa kwa jina, au izime beacon.
 
-Read back the names of your saved routes or your saved markers.
+Iweke kiwango cha matangazo kuwa *\"Kimya\"*, *\"Chache\"*, *\"Wastani\"* au *\"Kwa Kina\"*, ili kubadilisha kiasi ambacho Soundscape husema unapotembea. Kimya huzima matangazo ya kiotomatiki.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Isome majina ya njia zako zilizohifadhiwa au alama zako zilizohifadhiwa.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Kila kitu isipokuwa orodha hizo mbili kinahitaji Soundscape iwe inafanya kazi. Kama haifanyi kazi, msaidizi atakuambia ufungue Soundscape kwanza. Kuorodhesha njia zako na alama zako hufanya kazi vyovyote vile, kwa sababu husoma tu ulichokwisha hifadhi.
+
+Amri za sauti zinahitaji simu yenye Android 16 au mpya zaidi, na msaidizi anayeunga mkono vipengele vya programu.
 

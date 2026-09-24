@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: మీడియా నియంత్రణలను ఉపయోగించడం
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,33 +7,35 @@ lang: te
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# మీడియా నియంత్రణలను ఉపయోగించడం
 
-## What is it?
+## ఇది ఏమిటి?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+మీ హెడ్‌ఫోన్‌లలోని మీడియా కంట్రోల్ బటన్ల సహాయంతో Soundscape లోని కొన్ని ఫీచర్‌లను మీరు యాక్సెస్ చేయవచ్చు. Play, Pause, Next, Previous వంటి మీడియా కంట్రోల్ బటన్లు ఉన్న ఏదైనా వైర్డ్ లేదా బ్లూటూత్ హెడ్‌ఫోన్‌లతో ఈ ఫీచర్ పనిచేస్తుంది. వేర్వేరు హెడ్‌ఫోన్‌లలో వేర్వేరు బటన్లు ఉండవచ్చు కాబట్టి, మీకు ఏవి అందుబాటులో ఉన్నాయో తెలుసుకోవడానికి దయచేసి కింది చర్యల జాబితాను చూడండి.
 
-## When would I use it?
+## దీన్ని నేను ఎప్పుడు ఉపయోగించాలి?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Soundscape నడుస్తున్నప్పుడు హెడ్‌ఫోన్ మీడియా కంట్రోల్‌లను ఉపయోగించవచ్చు — మీరు యాప్‌ను ఉపయోగిస్తున్నా, అది బ్యాక్‌గ్రౌండ్‌లో ఉన్నా, లేదా మీ పరికరం లాక్ చేయబడి ఉన్నా. అయితే, మీరు వేరే యాప్‌తో సంగీతం, పాడ్‌కాస్ట్‌లు లేదా వీడియోల వంటి ఆడియోను ప్లే చేస్తున్నట్లయితే, హెడ్‌ఫోన్ మీడియా కంట్రోల్ బటన్లు Soundscapeతో పని చేయవు.
 
-## How does it work?
+## ఇది ఎలా పని చేస్తుంది?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+మీడియా కంట్రోల్‌లకు 2 ఆపరేషన్ మోడ్‌లు ఉన్నాయి. మోడ్‌ను *సెట్టింగ్‌లు* *మీడియా కంట్రోల్‌లు* విభాగంలో ఎంచుకోవచ్చు. మోడ్‌లు:
 
- Original mode. 
+ అసలు మోడ్. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ ప్లే/పాజ్: బీకాన్ ఆడియోను ఆన్ మరియు ఆఫ్ చేస్తుంది. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ తదుపరి: ఏదైనా రూట్ ప్లే అవుతుంటే, ఆడియో బీకాన్‌ను రూట్‌లోని తదుపరి వేపాయింట్‌కు తరలిస్తుంది. ఏ రూట్ ప్లే కాకపోతే *నా చుట్టూ* కాలౌట్ చేస్తుంది.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ మునుపటి: ఏదైనా రూట్ ప్లే అవుతుంటే, ఆడియో బీకాన్‌ను రూట్‌లోని మునుపటి వేపాయింట్‌కు తరలిస్తుంది. ఏ రూట్ ప్లే కాకపోతే, ప్రతి నొక్కుతోనూ *కాలౌట్ వివరాలు* ఒక అంచె నిశ్శబ్దంగా మారతాయి: *వివరణాత్మకం*, *సమతుల్యం*, *క్లుప్తం*, *నిశ్శబ్దం*, ఆపై తిరిగి *వివరణాత్మకం*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+ఆడియో మెను. 
+
+
+
+⏭ తదుపరి బటన్, యాప్ టెక్స్ట్-టు-స్పీచ్ ద్వారా వివరించే మెను ఎంపికల శ్రేణిలో కదులుతుంది, చివరిది దాటాక మళ్లీ మొదటిదానికి వస్తుంది. ఆ తర్వాత ⏯ ప్లే/పాజ్ నొక్కితే యాప్ ఆ వివరించిన ఎంపికను అమలు చేస్తుంది. అత్యున్నత స్థాయిలో ఒకే ఒక మెను ఉంటుంది, దానిలో ఎంపికలుగా ఉప-మెనూలు మాత్రమే ఉంటాయి. ప్రతి ఉప-మెనూలో ఒకే రకమైన చర్యల సమూహం ఉంటుంది.
+
+⏮ మునుపటి బటన్ మెనూలో కదలదు. బదులుగా అది అసలు మోడ్‌లో లాగానే *కాలౌట్ వివరాలు* ను మారుస్తుంది, కాబట్టి మీరు ఏ మోడ్ ఉపయోగించినా అదే బటన్ యాప్‌ను నిశ్శబ్దం చేస్తుంది.
 

@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Consells
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ca
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Consells
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Podeu trobar les parades d'autobús properes seleccionant el filtre *\"Transport públic\"* a la llista de *\"Llocs propers\"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Podeu definir una balisa en qualsevol adreça. Des de la pantalla principal de Soundscape, cerqueu l'adreça. Seleccioneu l'adreça als resultats de la cerca per obrir la pantalla *"Detalls de la ubicació"*. Aquesta pantalla té una opció per *"Iniciar la balisa sonora"* a l'adreça. D'aquesta manera, podeu definir una balisa en negocis, llocs, punts d'interès i habitatges que no es troben a OpenStreetMap.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Si agafeu una línia d'autobús regularment, deseu les vostres parades de pujada i baixada com a marcadors. Així es desen i les podeu tornar a trobar fàcilment. Aneu a *"Marcadors i rutes"* des de la pantalla principal i després trobeu-les a la pàgina *"Marcadors"*. Podeu definir-hi una balisa per rebre actualitzacions periòdiques de com d'a prop us trobeu de la vostra parada de baixada. Nota: podeu desactivar el so rítmic i continuar rebent actualitzacions de distància pel camí.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Si us poseu el telèfon a la butxaca i us atureu, el so de la balisa es torna més fluix perquè Soundscape no pot saber cap a on esteu orientats. Per solucionar-ho, torneu a caminar, o traieu el telèfon i sostingueu-lo pla.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape funciona millor quan sosteniu el telèfon pla amb la pantalla mirant cap al cel i la part superior del telèfon apuntant lluny de vosaltres.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Podeu activar i desactivar el so rítmic de la balisa mitjançant el botó de silenci a la pantalla principal. Si la balisa està silenciada, encara rebreu actualitzacions sobre la vostra distància fins a la destinació aproximadament cada 50 metres.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Per continuar utilitzant Soundscape sense sentir avisos de veu automàtics, poseu *\"Detall dels avisos de veu\"* a *\"Silenciós\"* a la secció *\"Gestiona els avisos de veu\"* de la pantalla *\"Configuració\"* des del menú. Si no utilitzareu Soundscape durant una estona, podeu posar-lo en mode de repòs o en mode de repòs amb represa automàtica utilitzant el botó *\"Repòs\"* a la pantalla principal.
 

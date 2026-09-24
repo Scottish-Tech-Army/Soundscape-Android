@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: メディアコントロールの使用
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,33 +7,35 @@ lang: ja
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# メディアコントロールの使用
 
-## What is it?
+## どのようなものですか?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+ヘッドホンのメディアコントロール ボタンを使用して、Soundscape の特定の機能にアクセスできます。この機能は、再生、一時停止、次へ、前へなどのメディアコントロール ボタンのある有線または Bluetooth のヘッドホンで使用できます。ヘッドホンによって使用できるボタンが異なる場合があるため、使用できる機能については、以下の動作の一覧を参照してください。
 
-## When would I use it?
+## どのような場合に使用できますか?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+ヘッドホンのメディアコントロールは、Soundscape の実行中に使用できます。アプリを操作しているとき、バックグラウンドで動作しているとき、端末がロックされているときのいずれでも使用できます。ただし、他のアプリで音楽やポッドキャスト、動画などの音声を再生している場合は、Soundscape でヘッドホンのメディアコントロール ボタンを使用することはできません。
 
-## How does it work?
+## どのような仕組みですか?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+メディアコントロールには 2 つの動作モードがあります。モードは *「設定」* の *「メディアコントロール」* セクションで選択できます。モードは次のとおりです：
 
- Original mode. 
+ オリジナルモード。 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ 再生/一時停止: ビーコンの音声をオン／オフに切り替えます。 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ 次へ: ルートが再生中の場合は、音声ビーコンをルート内の次のウェイポイントに移動します。ルートが再生されていない場合は *「周辺」* をコールアウトします。
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ 前へ: ルートが再生中の場合は、音声ビーコンをルート内の前のウェイポイントに移動します。ルートが再生されていない場合は、押すたびに *「コールアウトの詳細度」* が一段階静かになります。*「詳細」*、*「バランス」*、*「控えめ」*、*「無音」* の順で、次は *「詳細」* に戻ります。
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+音声メニューモード。 
+
+
+
+⏭ 次へ は、アプリがテキスト読み上げで案内する一連のメニュー項目を順に移動し、最後の項目の次は最初に戻ります。⏯ 再生/一時停止 を押すと、読み上げられている項目が実行されます。最上位にメニューが一つあり、その下にサブメニューが並び、各サブメニューには類似した操作がグループ化されています。
+
+⏮ 前へ はメニューの移動には使いません。代わりにオリジナルモードと同じように *「コールアウトの詳細度」* を変更するので、どちらのモードでも同じボタンでアプリを静かにできます。
 

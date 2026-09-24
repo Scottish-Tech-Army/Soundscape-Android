@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Kutumia Vidhibiti vya Media
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: sw
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Kutumia Vidhibiti vya Media
 
-## What is it?
+## Ni nini?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Unaweza kufikia baadhi ya vipengele katika Soundscape kwa msaada wa vitufe vya kudhibiti sauti vilivyo kwenye vipokea sauti vyako. Kipengele hiki hufanya kazi na vipokea sauti vyovyote vyenye waya au Bluetooth vyenye vitufe vya kudhibiti kama Cheza, Simamisha, Ifuatayo, Iliyotangulia na vingine. Vipokea sauti tofauti vinaweza kuwa na vitufe tofauti, hivyo tafadhali rejelea orodha ya vitendo hapa chini ili kubaini ni vipi vinavyopatikana kwako.
 
-## When would I use it?
+## Ni lini nitaitumia?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Vitufe vya kudhibiti sauti vya vipokea sauti vinaweza kutumika wakati Soundscape inafanya kazi — iwe unatumia programu moja kwa moja, iko nyuma, au simu yako imefungwa. Hata hivyo, vitufe vya kudhibiti sauti vya vipokea sauti havitafanya kazi na Soundscape ikiwa unacheza sauti, kama muziki, podikasti au video, kwa programu nyingine.
 
-## How does it work?
+## Inafanyaje kazi?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Kuna hali 2 za uendeshaji za vitufe vya kudhibiti sauti. Hali inaweza kuchaguliwa katika sehemu ya *Mipangilio* *Vidhibiti vya Sauti*. Hali hizo ni:
 
- Original mode. 
+ Hali ya Awali. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Cheza/Simamisha: Hubadilisha kuwasha na kuzima sauti ya beacon. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Ifuatayo: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kinachofuata katika njia hiyo. Ikiwa hakuna njia inayochezwa, hutangaza *Karibu Nami*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Iliyotangulia: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kilichotangulia katika njia hiyo. Ikiwa hakuna njia inayochezwa, hubadilisha *Kiwango cha Matangazo*, kikiwa kimya zaidi kwa kiwango kimoja kila unapobonyeza: *Kwa Kina*, *Wastani*, *Chache*, *Kimya*, kisha kurudi kwenye *Kwa Kina*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menyu ya Sauti. 
+
+
+
+⏭ Ifuatayo husogea kupitia mfululizo wa chaguo za menyu ambazo programu huzieleza kwa maandishi kwenda sauti, na hurudi kwenye chaguo la kwanza baada ya la mwisho. ⏯ Cheza/Simamisha kisha huamsha programu kutekeleza chaguo lililoelezwa. Kuna menyu moja ya ngazi ya juu ambayo ina menyu ndogo tu kama chaguo. Kila menyu ndogo ina kundi la vitendo vinavyofanana.
+
+⏮ Iliyotangulia haisogei kupitia menyu. Badala yake hubadilisha *Kiwango cha Matangazo*, sawasawa na inavyofanya katika Hali ya Awali, hivyo kitufe kilekile hupunguza sauti ya programu katika hali yoyote unayotumia.
 

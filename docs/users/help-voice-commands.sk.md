@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Hlasové príkazy
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: sk
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Hlasové príkazy
 
-## What is it?
+## Čo to je?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Gemini môžete požiadať, aby v Soundscape niečo urobil bez toho, aby ste sa dotkli telefónu: prehral hlásenie, spustil niektorú z vašich trás alebo nastavil zvukový maják na niektorú z vašich značiek. To isté zvládne aj každý iný asistent, ktorý podporuje funkcie aplikácií v Androide.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape odpovedá vlastným hlasom, hláseniami a zvukmi majáka, ktoré už poznáte, namiesto toho, aby asistent prečítal zhrnutie. Vďaka tomu to, čo počujete, stále prichádza zo smeru, ktorý opisuje.
 
-## When would I use it?
+## Kedy by som to použil(a)?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Hlasové príkazy sa hodia, keď máte telefón vo vrecku, plné ruky alebo sa vám nechce zastavovať kvôli stlačeniu tlačidla. Fungujú, aj keď Soundscape beží na pozadí a keď je telefón zamknutý, a vyžiadanie hlásenia aplikáciu neotvorí.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Počúva váš asistent, nie Soundscape, takže aplikácia nikdy nezaberá mikrofón a vaše bluetooth slúchadlá zostávajú v režime s vysokou kvalitou zvuku namiesto prepnutia do horšieho režimu používaného pri telefonátoch.
 
-## How does it work?
+## Ako to funguje?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Netreba sa učiť žiadne presné frázy. Povedzte vlastnými slovami, čo chcete, a asistent to priradí k niektorej z akcií uvedených nižšie. Názvy trás a značiek sa porovnávajú voľne, takže zvyčajne stačí časť názvu.
 
-You can ask Soundscape to:
+Soundscape môžete požiadať, aby:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Opísal *\"Moja poloha\"*, čo je *\"Okolo mňa\"* alebo čo je *\"Predo mnou\"*.
 
-Call out the saved markers near you.
+Ohlásil uložené značky vo vašom okolí.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Spustil niektorú z vašich uložených trás podľa názvu, prešiel na ďalší bod trasy, vrátil sa na predchádzajúci, stlmil maják alebo trasu zastavil.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Nastavil zvukový maják na niektorú z vašich uložených značiek podľa názvu alebo maják vypol.
 
-Read back the names of your saved routes or your saved markers.
+Nastavil podrobnosť hlásení na *\"Bez zvuku\"*, *\"Tichý\"*, *\"Vyvážený\"* alebo *\"Podrobný\"*, čím sa zmení, koľko toho Soundscape hovorí, keď kráčate. Bez zvuku vypne automatické hlásenia.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Prečítal názvy vašich uložených trás alebo vašich uložených značiek.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Všetko okrem oboch zoznamov vyžaduje, aby Soundscape bežal. Ak nebeží, asistent vám povie, aby ste Soundscape najprv otvorili. Vypísanie vašich trás a značiek funguje tak či tak, pretože iba prečíta to, čo už máte uložené.
+
+Hlasové príkazy vyžadujú telefón s Androidom 16 alebo novším a asistenta, ktorý podporuje funkcie aplikácií.
 

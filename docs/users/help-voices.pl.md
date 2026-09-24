@@ -1,5 +1,5 @@
 ---
-title: Voices
+title: Wybór głosu TTS
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: pl
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Wybór głosu TTS
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape może korzystać z dowolnych głosów, które pobrałeś na telefon z Androidem w ustawieniach syntezy mowy (TTS). W aplikacji Soundscape, aby wybrać głos inny niż domyślny głos Androida, przejdź z menu głównego do *„Ustawienia”*, rozwiń sekcję *„Dźwięk”*, a następnie wybierz *„Wybór głosu TTS”*.
 

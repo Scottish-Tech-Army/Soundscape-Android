@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: Soundscape பற்றி
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ta
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Soundscape பற்றி
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape, மக்கள் தங்கள் சுற்றுப்புறத்தைப் பற்றிய ஆழமான விழிப்புணர்வை வளர்த்துக் கொள்ள உதவும் வகையில் புதுமையான ஆடியோ அடிப்படையிலான தொழில்நுட்பத்தைப் பயன்படுத்துகிறது. இதனால் மக்கள் அதிக நம்பிக்கையுடன், தாமாகவே நகர முடிகிறது.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape இந்த சிறந்த மூன்றாம் தரப்பு நூலகங்கள் மற்றும் தரவை நம்பியுள்ளது. அவற்றின் உரிமங்களைக் காண இணைப்புகளைக் கிளிக் செய்யவும்:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©OpenStreetMap பங்களிப்பாளர்கள்](https://www.openstreetmap.org/copyright) Soundscape-இல் பயன்படுத்தப்படும் வரைபடம் மற்றும் ஆடியோவிற்கான அனைத்து புவித் தரவையும் வழங்குகின்றனர்.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) நாங்கள் பயன்படுத்தும் வரைபட டைல்களை உருவாக்கப் பயன்படுத்தப்படுகிறது.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio நூலகம் ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) 3D ஆடியோவை உருவாக்கப் பயன்படுத்தப்படுகிறது, மேலும் இது [Apache 2.0 உரிமத்தின்](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) கீழ் பயன்பாட்டிற்குக் கிடைக்கிறது.
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+[Oboe நூலகம் ©The Android Open Source Project](https://github.com/google/oboe) குறைந்த தாமதத்துடன் ஆடியோவை இயக்கப் பயன்படுத்தப்படுகிறது, மேலும் இது [Apache 2.0 உரிமத்தின்](https://github.com/google/oboe/blob/main/LICENSE) கீழ் பயன்பாட்டிற்குக் கிடைக்கிறது.
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+அனைத்து மூன்றாம் தரப்பு தயாரிப்பு, நிறுவனப் பெயர்கள் மற்றும் லோகோக்கள் வர்த்தக முத்திரைகள் அல்லது பதிவு செய்யப்பட்ட வர்த்தக முத்திரைகள் ஆகும், மேலும் அவை அந்தந்த உரிமையாளர்களின் சொத்தாகவே உள்ளன.
 

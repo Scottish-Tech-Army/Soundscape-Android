@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: मार्कर तयार करणे
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
@@ -7,9 +7,9 @@ lang: mr
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# मार्कर तयार करणे
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+तुम्ही तीन प्रकारे मार्कर तयार करू शकता: शोध बार वापरून तुम्हाला जतन करायचे असलेले ठिकाण शोधून, *"जवळपासची ठिकाणे"* बटण वापरून एखादे ठिकाण शोधून, किंवा *"सध्याचे स्थान वापरा"* बटण वापरून - हे सर्व Soundscape मुख्य स्क्रीनवर सापडतील. तुम्हाला हवे असलेले ठिकाण सापडल्यावर, ते निवडल्यास तुम्ही *"स्थान तपशील"* स्क्रीनवर जाल. या स्क्रीनवर, *"मार्कर म्हणून जतन करा"* बटण निवडा.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+आता तुम्हाला हे मार्कर सानुकूलित करण्याचा पर्याय मिळेल. तुम्ही मार्करचे नाव बदलू शकता, आणि अतिरिक्त माहिती देण्यासाठी मार्करसोबत सांगितली जाणारी एक टिप्पणीही जोडू शकता. पूर्ण झाल्यावर, तुमचे मार्कर जतन करण्यासाठी *पूर्ण झाले* बटण निवडा.
 

@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Personalitzar marcadors
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ca
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Personalitzar marcadors
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Si vols canviar el nom d'un marcador que has creat anteriorment, o afegir-hi una anotació, pots fer-ho seleccionant el marcador des de la pestanya *"Marcadors"* de la pàgina *"Marcadors i rutes"*, i tot seguit seleccionant el botó *"Edita el marcador"*. Pots utilitzar això per donar als marcadors sobrenoms descriptius o útils, així com donar-los una descripció més llarga mitjançant el camp d'anotació.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+Des d'aquesta pantalla *Edita* també pots suprimir un marcador si ja no el necessites.
 

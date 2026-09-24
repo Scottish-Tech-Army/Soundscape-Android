@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Tùy chỉnh điểm đánh dấu
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: vi
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Tùy chỉnh điểm đánh dấu
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Nếu bạn muốn đổi tên một điểm đánh dấu đã tạo trước đó, hoặc thêm ghi chú cho nó, bạn có thể làm điều này bằng cách chọn điểm đánh dấu đó từ thẻ *\"Điểm đánh dấu\"* của trang *\"Điểm đánh dấu và Lộ trình\"*, sau đó chọn nút *\"Chỉnh sửa Điểm đánh dấu\"*. Bạn có thể dùng cách này để đặt cho các điểm đánh dấu những biệt danh dễ hiểu hoặc hữu ích, cũng như thêm mô tả dài hơn bằng trường ghi chú.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+Từ màn hình *Chỉnh sửa* này, bạn cũng có thể xóa một điểm đánh dấu nếu không còn cần đến nó nữa.
 

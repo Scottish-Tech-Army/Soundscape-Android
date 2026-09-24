@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Minu ümber
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,17 +7,17 @@ lang: et
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Minu ümber
 
-## What is it?
+## Mis see on?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+Nupp *Minu ümber* räägib teile ühest asjast igas neljast teid ümbritsevast veerandist (ees, paremal, taga ja vasakul). *Minu ümber* on mõeldud aitama teil oma ümbruses orienteeruda.
 
-## When would I use it?
+## Millal seda kasutada?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Kui üritate orienteeruda ja oma ümbruses kohaneda, kasutage *Minu ümber*, et kuulda teid ümbritsevatest asjadest.
 
-## How does it work?
+## Kuidas see töötab?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Nagu kõigi nelja avakuva allosas oleva nupu puhul, hoidke enne nupu *Minu ümber* vajutamist telefoni tasapinnaliselt (ekraan taeva poole) ja telefoni ülaosa suunatuna sinnapoole, kuhu vaatate. See toimib kompassina, mis ütleb rakendusele, millises suunas te vaatate. Puudutage lihtsalt nuppu *Minu ümber* ja kuulete nelja teid ümbritsevat huvipunkti.
 

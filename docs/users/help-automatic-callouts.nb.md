@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Automatiske meldinger
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: nb
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Automatiske meldinger
 
-## What is it?
+## Hva er det?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape kan fortelle deg om ting rundt deg når du nærmer deg dem ved å lese opp navnet deres fra den retningen de befinner seg i. Appen gjør dette automatisk for ulike typer steder, som virksomheter, busstopp og til og med veikryss. Du kan konfigurere hva appen leser opp automatisk i seksjonen *\"Administrer meldinger\"* på *\"Innstillinger\"*-skjermen, og du kan slå av alle meldinger når du vil at appen skal være stille.
 
-## When would I use it?
+## Når skal jeg bruke den?
 
-**Exploring a new area :**
+**Utforsk et nytt område**:
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Slå på automatiske meldinger og gå rundt for å høre alt om de ulike butikkene, restaurantene og lignende når du går forbi dem.
 
-**Walking to a specific location :**
+**Gå til et bestemt sted**:
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Når du er på vei til et bestemt sted, kan automatiske meldinger for veikryss være svært nyttige. Veikryssmeldinger kan fortelle deg om oppsettet til veikryss når du nærmer deg, og bekrefte veien du er på, når du forlater dem.
 
-**When you need silence :**
+**Når du trenger stillhet**:
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Når du er i ferd med å krysse en vei eller bare vil at appen skal være stille, kan du slå av meldinger. Når meldinger er av, forteller appen bare informasjonen hvis du manuelt trykker på en knappene *Min posisjon*, *Markører i nærheten*, *Rundt meg* eller *Foran meg*.
 
-## How does it work?
+## Hvordan fungerer den?
 
-**Turning callouts on or off :**
+**Slå meldinger av eller på :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Å slå av meldinger gjør appen stille. Meldinger kan slås av i seksjonen *\"Administrer meldinger\"* på *\"Innstillinger\"*-skjermen ved å sette *\"Detaljnivå for meldinger\"* til *\"Lydløs\"*, og slås på igjen ved å velge et hvilket som helst annet nivå. Du kan gjøre det samme ved å be Siri eller Gemini om det. Du kan også gjøre Soundscape stillere ett trinn om gangen med mediekontrollknappene på hodetelefonene dine: hvert trykk på *\"forrige\"* går ett trinn ned gjennom *\"Detaljert\"*, *\"Balansert\"*, *\"Stille\"* og *\"Lydløs\"*, og enda et trykk går tilbake til *\"Detaljert\"*. Se hjelpeemnet *\"Bruk mediekontroller\"*. Alternativt kan du bruke knappen *\"Sett i dvalemodus\"* øverst til høyre på startskjermen for å stoppe Soundscape fra å lese opp meldinger til du velger å vekke appen igjen.
 
-**Managing which callouts you hear :**
+**Administrere hvilke meldinger du hører :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ For å velge hvilke typer ting Soundscape automatisk skal lese opp, gå til skjermen *\"Innstillinger\"* via menyen på *\"Start\"*-skjermen. I seksjonen *\"Administrer meldinger\"* på *\"Innstillinger\"*-skjermen velger du hvor mye appen sier med *\"Detaljnivå for meldinger\"*, om den leser opp *\"Gater og veikryss\"*, og hvilke *\"Steder som skal leses opp\"*. Hvis du ønsker å slå av alle meldinger, setter du *\"Detaljnivå for meldinger\"* til *\"Lydløs\"*.
 

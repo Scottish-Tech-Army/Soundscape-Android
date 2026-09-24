@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: mín staðsetning
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: is
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# mín staðsetning
 
-## What is it?
+## hvað er það?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Hnappurinn *Mín staðsetning* gefur þér fljótt upplýsingar sem hjálpa þér að átta þig á því hvar þú ert, meðal annars hvaða átt þú snýrð, hvar nálægar götur eða gatnamót eru og hvar áhugaverðir staðir eru í kring.
 
-## When would I use it?
+## Hvenær ætti að nota það?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*Mín staðsetning* er gagnleg þegar þú þarft að átta þig á því hvar þú ert eða í hvaða höfuðátt þú snýrð.
 
-## How does it work?
+## hvernig virkar það?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn upp að himni) og toppinn á símanum í þá átt sem þú snýrð, áður en þú ýtir á *Mín staðsetning* hnappinn. Þetta virkar eins og áttaviti og segir forritinu hvaða átt þú snýrð. Ýttu einfaldlega á hnappinn og hlustaðu.
 

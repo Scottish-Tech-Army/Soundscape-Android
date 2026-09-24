@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Comandos de Voz
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: pt
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Comandos de Voz
 
-## What is it?
+## O que é?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Pode pedir ao Gemini para fazer coisas no Soundscape sem tocar no telemóvel: ouvir um aviso, iniciar uma das suas rotas ou colocar um sinal de áudio num dos seus marcos. Qualquer outro assistente compatível com as funções de aplicação do Android pode fazer o mesmo.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+O Soundscape responde com a sua própria voz, com os avisos e os sons de sinal que já conhece, em vez de o assistente ler um resumo. Assim, o que ouve continua a vir da direção que está a ser descrita.
 
-## When would I use it?
+## Quando devo utilizá-lo?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Os comandos de voz são úteis quando tem o telemóvel no bolso, quando tem as mãos ocupadas ou quando prefere não parar para carregar num botão. Funcionam enquanto o Soundscape está em segundo plano e enquanto o telemóvel está bloqueado, e pedir um aviso não abre a aplicação.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Quem ouve é o seu assistente, não o Soundscape, por isso a aplicação nunca ocupa o microfone e os seus auscultadores Bluetooth mantêm-se no modo de áudio de alta qualidade em vez de mudarem para o modo de menor qualidade usado nas chamadas.
 
-## How does it work?
+## Como funciona?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Não há frases exatas para decorar. Peça o que quiser pelas suas próprias palavras e o assistente associa-o a uma das ações indicadas abaixo. Os nomes de rotas e de marcos são reconhecidos de forma aproximada, pelo que normalmente basta parte do nome.
 
-You can ask Soundscape to:
+Pode pedir ao Soundscape para:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Descrever *\"A Minha Localização\"*, o que está *\"Em Meu Redor\"* ou o que está *\"À Minha Frente\"*.
 
-Call out the saved markers near you.
+Anunciar os marcos guardados perto de si.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Iniciar uma das suas rotas guardadas pelo nome, avançar para o Ponto de Passagem seguinte, voltar ao anterior, desativar o som do sinal ou parar a rota.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Colocar um sinal de áudio num dos seus marcos guardados pelo nome, ou desligar o sinal.
 
-Read back the names of your saved routes or your saved markers.
+Definir o detalhe dos avisos como *\"Silencioso\"*, *\"Discreto\"*, *\"Equilibrado\"* ou *\"Detalhado\"*, para alterar quanto o Soundscape diz enquanto caminha. Silencioso desativa os avisos automáticos.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Ler os nomes das suas rotas guardadas ou dos seus marcos guardados.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Tudo, exceto as duas listas, exige que o Soundscape esteja em execução. Se não estiver, o assistente diz-lhe para abrir primeiro o Soundscape. Listar as suas rotas e os seus marcos funciona de qualquer forma, porque só lê aquilo que já guardou.
+
+Os comandos de voz exigem um telemóvel com Android 16 ou posterior e um assistente compatível com as funções de aplicação.
 

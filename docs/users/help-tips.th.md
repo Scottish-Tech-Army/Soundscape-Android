@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: เคล็ดลับ
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: th
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# เคล็ดลับ
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+คุณสามารถค้นหาป้ายรถประจำทางใกล้เคียงได้โดยเลือกตัวกรอง *"ขนส่งสาธารณะ"* ในรายการ *"สถานที่ใกล้เคียง"*
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+คุณสามารถตั้งบีคอนที่ที่อยู่ใดก็ได้ จากหน้าจอหลักของ Soundscape ให้ค้นหาที่อยู่ หลังจากเลือกที่อยู่จากผลการค้นหาแล้ว หน้าจอ *"รายละเอียดสถานที่"* จะแสดงขึ้น และมีตัวเลือก *"เริ่มบีคอนเสียง"* สำหรับที่อยู่นั้น ด้วยวิธีนี้ คุณสามารถตั้งบีคอนที่ร้านค้า สถานที่ สถานที่น่าสนใจ และที่อยู่อาศัยที่ไม่มีอยู่ใน Open Street Map ได้
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+หากมีเส้นทางรถประจำทางที่คุณใช้เป็นประจำ ให้ตั้งป้ายขึ้นรถและป้ายลงรถของคุณเป็นหมุด ด้วยวิธีนี้ ป้ายเหล่านั้นจะถูกบันทึกไว้เพื่อให้คุณค้นหาได้ง่ายอีกครั้ง เพียงไปที่ *"หมุดและเส้นทาง"* จากหน้าจอหลัก แล้วค้นหาในหน้า *"หมุด"* คุณสามารถตั้งบีคอนที่ป้ายเหล่านั้นได้ และคุณจะได้รับการอัปเดตเป็นระยะเกี่ยวกับระยะทางที่เหลือไปยังป้ายลงรถของคุณ หมายเหตุ: คุณสามารถปิดเสียงจังหวะได้ และคุณจะยังคงได้รับการอัปเดตระยะทางระหว่างทาง
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+หากคุณเก็บโทรศัพท์ไว้ในกระเป๋าเสื้อและหยุดเคลื่อนไหว เสียงบีคอนจะเงียบลง เนื่องจาก Soundscape ไม่สามารถบอกได้ว่าคุณกำลังหันหน้าไปทางทิศใด แก้ไขได้โดยเริ่มเดินอีกครั้ง หรือหยิบโทรศัพท์ออกมาแล้วถือในแนวราบ
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape ทำงานได้ดีที่สุดเมื่อคุณถือโทรศัพท์ในแนวราบ โดยให้หน้าจอหันขึ้นฟ้าและด้านบนของโทรศัพท์ชี้ออกจากตัวคุณ
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+คุณสามารถเปิดและปิดเสียงจังหวะของบีคอนได้โดยใช้ปุ่มปิดเสียงบนหน้าจอหลัก แม้ปิดเสียงบีคอนไว้ คุณก็จะยังคงได้รับข้อมูลอัปเดตระยะทางไปยังจุดหมายของคุณทุก ๆ 50 เมตรโดยประมาณ
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+หากต้องการใช้งาน Soundscape ต่อไปโดยไม่ฟังการแจ้งเตือนอัตโนมัติ ให้ตั้ง *ระดับรายละเอียดการแจ้งเตือน* เป็น *เงียบสนิท* ในส่วน *จัดการการแจ้งเตือนด้วยเสียง* ของหน้าจอ *การตั้งค่า* จากเมนู หากคุณจะไม่ใช้งาน Soundscape สักระยะ คุณสามารถให้แอปเข้าสู่โหมดสลีปหรือโหมดเลื่อนเวลาแทนได้ โดยใช้ปุ่ม *โหมดสลีป* บนหน้าจอหลัก
 

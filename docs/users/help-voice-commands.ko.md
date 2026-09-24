@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: 음성 명령
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
@@ -7,37 +7,39 @@ lang: ko
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# 음성 명령
 
-## What is it?
+## 이것은 무엇인가요?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+휴대전화를 만지지 않고도 Gemini에게 Soundscape에서 할 일을 요청할 수 있습니다. 안내를 듣거나, 저장한 경로 중 하나를 시작하거나, 저장한 마커 중 하나에 오디오 비콘을 설정할 수 있습니다. Android 앱 기능을 지원하는 다른 어시스턴트도 같은 일을 할 수 있습니다.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape는 어시스턴트가 요약을 읽어 주는 대신, 이미 익숙한 안내와 비콘 소리로 자신의 목소리로 응답합니다. 그래서 들리는 소리는 여전히 그 소리가 가리키는 방향에서 들려옵니다.
 
-## When would I use it?
+## 언제 사용하나요?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+음성 명령은 휴대전화가 주머니에 있을 때, 손이 자유롭지 않을 때, 버튼을 누르려고 멈춰 서고 싶지 않을 때 유용합니다. Soundscape가 백그라운드에 있을 때와 휴대전화가 잠겨 있을 때도 작동하며, 안내를 요청해도 앱이 열리지 않습니다.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+듣는 쪽은 Soundscape가 아니라 어시스턴트이므로 앱이 마이크를 차지하는 일이 없고, 블루투스 헤드폰도 통화에 쓰이는 낮은 품질 모드로 전환되지 않고 고음질 오디오 모드를 유지합니다.
 
-## How does it work?
+## 어떻게 작동하나요?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+외워야 할 정해진 표현은 없습니다. 원하는 것을 자기 말로 이야기하면 어시스턴트가 아래 동작 중 하나와 연결해 줍니다. 경로와 마커 이름은 느슨하게 대조되므로 보통 이름의 일부만으로도 충분합니다.
 
-You can ask Soundscape to:
+Soundscape에 다음을 요청할 수 있습니다.
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+*\"내 위치\"* 설명, *\"내 주변\"*에 무엇이 있는지, *\"내 앞쪽\"*에 무엇이 있는지.
 
-Call out the saved markers near you.
+가까이 있는 저장된 마커 안내.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+저장한 경로를 이름으로 시작하기, 다음 경유지로 이동하기, 이전 경유지로 돌아가기, 비콘 음소거하기, 경로 중지하기.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+저장한 마커에 이름으로 오디오 비콘 설정하기, 또는 비콘 끄기.
 
-Read back the names of your saved routes or your saved markers.
+안내 상세도를 *\"무음\"*, *\"간략\"*, *\"균형\"*, *\"상세\"*로 설정하여 걷는 동안 Soundscape가 얼마나 말할지 바꾸기. 무음으로 설정하면 자동 안내가 꺼집니다.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+저장한 경로 이름이나 저장한 마커 이름 읽어 주기.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+두 가지 목록을 제외한 모든 기능은 Soundscape가 실행 중이어야 합니다. 실행 중이 아니면 어시스턴트가 먼저 Soundscape를 열라고 알려 줍니다. 경로와 마커 목록은 어느 쪽이든 작동합니다. 이미 저장해 둔 내용만 읽기 때문입니다.
+
+음성 명령에는 Android 16 이상 휴대전화와 앱 기능을 지원하는 어시스턴트가 필요합니다.
 

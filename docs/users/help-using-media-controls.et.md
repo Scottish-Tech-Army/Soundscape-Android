@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Meedianuppude kasutamine
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,33 +7,35 @@ lang: et
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Meedianuppude kasutamine
 
-## What is it?
+## Mis see on?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Teatud Soundscape'i funktsioonidele pääsete ligi oma kõrvaklappide meediumijuhtnuppude abil. See funktsioon töötab iga juhtme või Bluetoothiga ühendatud kõrvaklapiga, millel on meediumijuhtnupud, näiteks Esita, Paus, Järgmine, Eelmine ja teised. Erinevatel kõrvaklappidel võivad olla erinevad nupud, seega vaadake allolevat toimingute loendit, et teada saada, millised on teile saadaval.
 
-## When would I use it?
+## Millal seda kasutada?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Kõrvaklappide meediumijuhtnuppe saab kasutada, kui Soundscape töötab — olenemata sellest, kas kasutate rakendust parasjagu aktiivselt, kas see töötab taustal või kas teie seade on lukustatud. Kõrvaklappide meediumijuhtnupud ei tööta Soundscape'iga siiski siis, kui mängite teise rakendusega heli, näiteks muusikat, taskuhäälinguid või videoid.
 
-## How does it work?
+## Kuidas see töötab?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Meediumijuhtnuppudel on 2 töörežiimi. Režiimi saab valida jaotises *Seadistused* *Meediumijuhtnupud*. Režiimid on:
 
- Original mode. 
+ Algne režiim. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Esita/Paus: lülitab helimajaka heli sisse ja välja. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Järgmine: kui marsruuti esitatakse, liigutab helimajaka marsruudi järgmisele teekonnapunktile. Kui marsruuti ei esitata, teatab *Minu ümber*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Eelmine: kui marsruuti esitatakse, liigutab helimajaka marsruudi eelmisele teekonnapunktile. Kui marsruuti ei esitata, muudab *Häälteadete detailsust* iga vajutusega ühe taseme võrra vaiksemaks: *Üksikasjalik*, *Tasakaalustatud*, *Vaikne*, *Hääletu* ja tagasi tasemele *Üksikasjalik*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Helimenüü. 
+
+
+
+⏭ Järgmine liigub läbi menüüvalikute seeria, mida rakendus kirjeldab teksti kõneks muutmise abil, ja naaseb pärast viimast esimese juurde. ⏯ Esita/Paus paneb seejärel rakenduse täitma kirjeldatud valikut. On üks ülataseme menüü, millel on valikutena ainult alammenüüd. Igal alammenüül on rühm sarnaseid võimalikke toiminguid.
+
+⏮ Eelmine ei liigu menüüs. Selle asemel muudab see *Häälteadete detailsust* täpselt nagu algses režiimis, nii et sama nupp vaigistab rakendust kummaski režiimis.
 

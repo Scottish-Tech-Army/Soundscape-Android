@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Χρήση στοιχείων ελέγχου πολυμέσων
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: el
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Χρήση στοιχείων ελέγχου πολυμέσων
 
-## What is it?
+## Τι είναι;
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Μπορείτε να αποκτήσετε πρόσβαση σε ορισμένες λειτουργίες του Soundscape με τη βοήθεια των κουμπιών ελέγχου πολυμέσων στα ακουστικά σας. Αυτή η λειτουργία λειτουργεί με ενσύρματα ακουστικά ή ακουστικά Bluetooth που έχουν κουμπιά χειριστήριων πολυμέσων όπως Αναπαραγωγή, Παύση, Επόμενο, Προηγούμενο και άλλα. Διαφορετικά ακουστικά μπορεί να περιλαμβάνουν διαφορετικά κουμπιά, οπότε ανατρέξτε στη λίστα των παρακάτω ενεργειών για να προσδιορίσετε ποια είναι διαθέσιμα σε εσάς.
 
-## When would I use it?
+## Πότε θα το χρησιμοποιούσα;
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Τα χειριστήρια πολυμέσων των ακουστικών μπορούν να χρησιμοποιηθούν όσο εκτελείται το Soundscape — είτε χρησιμοποιείτε ενεργά την εφαρμογή, είτε αυτή εκτελείται στο παρασκήνιο, είτε η συσκευή σας είναι κλειδωμένη. Ωστόσο, τα κουμπιά χειριστηρίων πολυμέσων των ακουστικών δεν θα λειτουργούν με το Soundscape αν αναπαράγετε ήχο, όπως μουσική, podcast ή βίντεο, με άλλη εφαρμογή.
 
-## How does it work?
+## Πώς λειτουργεί;
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Υπάρχουν 2 λειτουργίες για τα στοιχεία ελέγχου πολυμέσων. Η λειτουργία μπορεί να επιλεγεί στην ενότητα *Ρυθμίσεις* *Στοιχεία ελέγχου πολυμέσων*. Οι λειτουργίες είναι:
 
- Original mode. 
+ Αρχική λειτουργία. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Αναπαραγωγή/Παύση: Εναλλάσσει τον ήχο του ηχητικού σήματος (ενεργοποίηση/απενεργοποίηση). 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Επόμενο: Εάν αναπαράγεται μια διαδρομή, μετατοπίζει το ηχητικό σήμα στο επόμενο σημείο πορείας της διαδρομής. Εάν δεν αναπαράγεται καμία διαδρομή, ανακοινώνει *Γύρω μου*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Προηγούμενο: Εάν αναπαράγεται μια διαδρομή, μετατοπίζει το ηχητικό σήμα στο προηγούμενο σημείο πορείας της διαδρομής. Εάν δεν αναπαράγεται καμία διαδρομή, αλλάζει τη *Λεπτομέρεια επεξηγήσεων*, ένα επίπεδο πιο ήσυχα με κάθε πάτημα: *Λεπτομερές*, *Ισορροπημένο*, *Ήσυχο*, *Σιωπηλό*, και πάλι στο *Λεπτομερές*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Ηχητικό μενού. 
+
+
+
+⏭ Επόμενο μετακινείται σε μια σειρά επιλογών μενού που η εφαρμογή περιγράφει με σύνθεση ομιλίας, και μετά την τελευταία επιστρέφει στην πρώτη. ⏯ Αναπαραγωγή/Παύση εκτελεί στη συνέχεια την επιλογή που περιγράφεται. Υπάρχει ένα κορυφαίο μενού που περιέχει μόνο υπο-μενού ως επιλογές. Κάθε υπο-μενού περιέχει μια ομάδα συναφών ενεργειών.
+
+⏮ Προηγούμενο δεν μετακινείται στο μενού. Αντ' αυτού αλλάζει τη *Λεπτομέρεια επεξηγήσεων*, ακριβώς όπως στην Αρχική λειτουργία, ώστε το ίδιο κουμπί να κάνει την εφαρμογή πιο ήσυχη σε όποια λειτουργία κι αν βρίσκεστε.
 

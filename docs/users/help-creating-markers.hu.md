@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: Jelölők létrehozása
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,9 +7,9 @@ lang: hu
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# Jelölők létrehozása
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+Jelölőket háromféleképpen hozhat létre: a keresősáv segítségével rákereshet a menteni kívánt helyre, megkeresheti a *\"Közeli helyek\"* gombbal, vagy használhatja a *\"Jelenlegi hely használata\"* gombot – ezek mindegyike megtalálható a Soundscape kezdőképernyőjén. Miután megtalálta a kívánt helyet, a kiválasztása a *\"Hely részletei\"* képernyőre viszi. Ezen a képernyőn válassza ki a *\"Mentés jelölőként\"* gombot.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+Ekkor lehetősége lesz testre szabni ezt a jelölőt. Módosíthatja a jelölő nevét, és megjegyzést is hozzáadhat, amelyet a jelölővel együtt fog bemondani a rendszer, hogy további információt nyújtson. Ha végzett, válassza a *Kész* gombot a jelölő mentéséhez.
 

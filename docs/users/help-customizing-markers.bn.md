@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: মার্কার কাস্টমাইজ করা
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
@@ -7,9 +7,9 @@ lang: bn
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# মার্কার কাস্টমাইজ করা
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+আপনি যদি আগে তৈরি করা কোনো মার্কারের নাম পরিবর্তন করতে চান, বা এতে একটি টীকা যোগ করতে চান, তাহলে *"মার্কার এবং রুট"* পৃষ্ঠার *"মার্কার"* ট্যাব থেকে মার্কারটি নির্বাচন করে, তারপর *"মার্কার সম্পাদনা করুন"* বোতাম নির্বাচন করে তা করতে পারেন। এটি ব্যবহার করে আপনি মার্কারগুলিকে বর্ণনামূলক বা উপযোগী ডাকনাম দিতে পারেন, পাশাপাশি টীকা ফিল্ড ব্যবহার করে একটি দীর্ঘ বিবরণও দিতে পারেন।
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+এই *সম্পাদনা* স্ক্রিন থেকে আপনি প্রয়োজন না হলে একটি মার্কার মুছেও ফেলতে পারেন।
 

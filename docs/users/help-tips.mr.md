@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: टिप्स
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
@@ -7,19 +7,19 @@ lang: mr
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# टिप्स
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+*"जवळपासची ठिकाणे"* सूचीमध्ये *"सार्वजनिक वाहतूक"* फिल्टर निवडून तुम्ही जवळचे बस थांबे शोधू शकता.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+तुम्ही कोणत्याही पत्त्यावर बीकन सेट करू शकता. मुख्य Soundscape स्क्रीनवरून, पत्ता शोधा. शोध निकालांमध्ये पत्ता निवडल्यानंतर, *"स्थान तपशील"* स्क्रीन दिसेल आणि त्यात त्या पत्त्यावर *"ऑडिओ बीकन सुरू करा"* हा पर्याय असेल. अशा प्रकारे, ओपन स्ट्रीट मॅपमध्ये नसलेल्या व्यवसायांवर, ठिकाणांवर, आवडीच्या ठिकाणांवर आणि निवासस्थानांवर तुम्ही बीकन सेट करू शकता.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+जर तुम्ही एखादा बस मार्ग नियमितपणे वापरत असाल, तर तुमचे चढण्याचे आणि उतरण्याचे थांबे मार्कर म्हणून सेट करा. अशा प्रकारे ते सेव्ह केले जातील आणि तुम्हाला ते सहज पुन्हा सापडतील, फक्त होम स्क्रीनवरून *"मार्कर आणि मार्ग"* वर जा आणि *"मार्कर"* पानावर ते शोधा. तुम्ही त्यांच्यावर बीकन सेट करू शकता आणि तुमचे उतरण्याचे थांबे किती जवळ आले आहे याबद्दल तुम्हाला वेळोवेळी माहिती मिळेल. टीप: तुम्ही तालबद्ध आवाज बंद करू शकता आणि तरीही तुम्हाला वाटेत अंतराची माहिती मिळत राहील.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+जर तुम्ही फोन खिशात ठेवला आणि चालणे थांबवले, तर बीकनचा आवाज कमी होतो कारण Soundscape ला तुम्ही कोणत्या दिशेला तोंड करून आहात हे कळू शकत नाही. हे दुरुस्त करण्यासाठी पुन्हा चालायला सुरुवात करा, किंवा फोन बाहेर काढून तो सपाट धरा.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+जेव्हा तुम्ही फोन सपाट धरता, स्क्रीन आकाशाकडे तोंड करून असते आणि फोनचा वरचा भाग तुमच्यापासून दूर दिशेला असतो, तेव्हा Soundscape सर्वोत्तम काम करते.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+होम स्क्रीनवरील म्यूट बटण वापरून तुम्ही बीकनचा तालबद्ध आवाज चालू किंवा बंद करू शकता. बीकन म्यूट केले असले तरीही तुम्हाला दर सुमारे ५० मीटरने तुमच्या गंतव्यस्थानापर्यंतच्या अंतराबद्दल माहिती मिळत राहील.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+आपोआप येणाऱ्या ध्वनी सूचना न ऐकता Soundscape वापरत राहण्यासाठी, मेनूमधील *सेटिंग्ज* स्क्रीनच्या *ध्वनी सूचना व्यवस्थापित करा* विभागात *ध्वनी सूचना तपशील* हा *निःशब्द* वर ठेवा. काही काळ तुम्ही Soundscape वापरणार नसाल, तर त्याऐवजी होम स्क्रीनवरील *झोप* बटण वापरून तुम्ही ते झोप मोड किंवा स्नूझ मोडमध्ये ठेवू शकता.
 

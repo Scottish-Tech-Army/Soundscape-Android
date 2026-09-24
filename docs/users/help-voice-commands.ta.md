@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: குரல் கட்டளைகள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,37 +7,39 @@ lang: ta
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# குரல் கட்டளைகள்
 
-## What is it?
+## இது என்ன?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+தொலைபேசியைத் தொடாமலேயே Soundscape இல் செயல்களைச் செய்யுமாறு Gemini ஐக் கேட்கலாம்: ஓர் அறிவிப்பைக் கேட்பது, உங்கள் பாதைகளில் ஒன்றைத் தொடங்குவது, அல்லது உங்கள் குறிப்பான்களில் ஒன்றில் ஒலி பீக்கனை அமைப்பது. Android ஆப்ஸ் செயல்பாடுகளை ஆதரிக்கும் வேறு எந்த உதவியாளராலும் இதையே செய்ய முடியும்.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+உதவியாளர் ஒரு சுருக்கத்தை வாசிப்பதற்குப் பதிலாக, Soundscape தனது சொந்தக் குரலில், உங்களுக்கு ஏற்கெனவே பழக்கமான அறிவிப்புகளுடனும் பீக்கன் ஒலிகளுடனும் பதிலளிக்கிறது. அதனால் நீங்கள் கேட்பது அது விவரிக்கும் திசையிலிருந்தே தொடர்ந்து வருகிறது.
 
-## When would I use it?
+## இதை எப்போது பயன்படுத்துவேன்?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+தொலைபேசி பாக்கெட்டில் இருக்கும்போது, கைகள் நிரம்பியிருக்கும்போது, அல்லது பொத்தானை அழுத்த நிற்க விரும்பாதபோது குரல் கட்டளைகள் பயனுள்ளவை. Soundscape பின்னணியில் இயங்கும்போதும், தொலைபேசி பூட்டியிருக்கும்போதும் அவை வேலை செய்கின்றன; அறிவிப்பைக் கேட்பது ஆப்ஸைத் திறக்காது.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+கேட்கும் வேலையைச் செய்வது உங்கள் உதவியாளர், Soundscape அல்ல. எனவே ஆப்ஸ் உங்கள் மைக்ரோஃபோனை ஒருபோதும் எடுத்துக்கொள்வதில்லை, உங்கள் புளூடூத் ஹெட்ஃபோன்களும் அழைப்புகளுக்குப் பயன்படும் தரம் குறைந்த முறைக்கு மாறாமல் உயர் தர ஒலி முறையிலேயே இருக்கும்.
 
-## How does it work?
+## இது எப்படி வேலை செய்கிறது?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+மனப்பாடம் செய்ய வேண்டிய குறிப்பிட்ட சொற்றொடர்கள் எதுவும் இல்லை. உங்களுக்கு வேண்டியதை உங்கள் சொற்களில் கேளுங்கள்; உதவியாளர் அதைக் கீழே உள்ள செயல்களில் ஒன்றுடன் பொருத்தும். பாதை மற்றும் குறிப்பான் பெயர்கள் தளர்வாகப் பொருத்தப்படுகின்றன, எனவே பொதுவாகப் பெயரின் ஒரு பகுதியே போதும்.
 
-You can ask Soundscape to:
+Soundscape ஐ இவற்றைச் செய்யக் கேட்கலாம்:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+*\"எனது இருப்பிடம்\"* பற்றி விவரிக்க, *\"எனைச் சுற்றி\"* என்ன உள்ளது, அல்லது *\"எனக்கு முன்னால்\"* என்ன உள்ளது என்று சொல்ல.
 
-Call out the saved markers near you.
+உங்களுக்கு அருகிலுள்ள சேமித்த குறிப்பான்களை அறிவிக்க.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+சேமித்த பாதைகளில் ஒன்றைப் பெயரால் தொடங்க, அடுத்த வழிப்புள்ளிக்குச் செல்ல, முந்தையதற்குத் திரும்ப, பீக்கனை முடக்க, அல்லது பாதையை நிறுத்த.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+சேமித்த குறிப்பான்களில் ஒன்றில் பெயரால் ஒலி பீக்கனை அமைக்க, அல்லது பீக்கனை அணைக்க.
 
-Read back the names of your saved routes or your saved markers.
+அறிவிப்பு விவரத்தை *\"மௌனம்\"*, *\"அமைதி\"*, *\"சமநிலை\"* அல்லது *\"விரிவு\"* என அமைக்க, இதனால் நீங்கள் நடக்கும்போது Soundscape எவ்வளவு சொல்லும் என்பது மாறும். மௌனம் தானியங்கு அறிவிப்புகளை அணைக்கும்.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+உங்கள் சேமித்த பாதைகளின் அல்லது சேமித்த குறிப்பான்களின் பெயர்களை வாசிக்க.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+அந்த இரண்டு பட்டியல்களைத் தவிர மற்ற அனைத்திற்கும் Soundscape இயங்கிக்கொண்டிருக்க வேண்டும். இயங்கவில்லை எனில், முதலில் Soundscape ஐத் திறக்குமாறு உதவியாளர் சொல்லும். உங்கள் பாதைகளையும் குறிப்பான்களையும் பட்டியலிடுவது இரண்டு நிலையிலும் வேலை செய்யும், ஏனெனில் அது நீங்கள் ஏற்கெனவே சேமித்ததை மட்டுமே வாசிக்கிறது.
+
+குரல் கட்டளைகளுக்கு Android 16 அல்லது அதற்குப் பிந்தைய தொலைபேசியும், ஆப்ஸ் செயல்பாடுகளை ஆதரிக்கும் உதவியாளரும் தேவை.
 

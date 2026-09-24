@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Mærker i nærheden
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: da
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Mærker i nærheden
 
-## What is it?
+## Hvad er det?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+Knappen *"Mærker i nærheden"* fortæller dig om op til fire mærker, der er tættest på dig. *"Mærker i nærheden"* er beregnet til at hjælpe dig med at orientere dig ved hjælp af steder, du allerede kender til.
 
-## When would I use it?
+## Hvornår ville jeg bruge det?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Når du forsøger at få styr på din retning og orientere dig i forhold til dine omgivelser, skal du bruge *Mærker i nærheden* for at høre om placeringen af steder, du kender til.
 
-## How does it work?
+## Hvordan virker det?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Som med alle fire knapper nederst på startskærmen skal du holde telefonen med skærmen vandret (så den vender mod himlen), og toppen af telefonen skal pege i den retning, du vender, før du trykker på knappen *"Mærker i nærheden"*. Dette fungerer som et kompas, der fortæller appen, i hvilken retning du vender. Du skal blot trykke på *"Mærker i nærheden"*, så vil du høre om fire mærker i nærheden af dig.
 

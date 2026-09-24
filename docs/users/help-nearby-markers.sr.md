@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Оближњи маркери
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sr
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Оближњи маркери
 
-## What is it?
+## Шта је то?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+Дугме *Оближњи маркери* вам говори о до четири маркера који су вам најближи. *Оближњи маркери* треба да вам помогну да се снађете користећи места која већ познајете.
 
-## When would I use it?
+## Када бих то користио/ла?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Када покушавате да се оријентишете и снађете у околини, користите *Оближње маркере* да чујете о локацијама места која познајете.
 
-## How does it work?
+## Како то функционише?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Као и код свих четири дугмади на дну почетног екрана, држите телефон равно (екраном окренутим ка небу) и врхом телефона усмереним у правцу у коме сте окренути пре него што притиснете дугме *Оближњи маркери*. Ово делује као компас који апликацији говори у ком сте правцу окренути. Једноставно додирните дугме *Оближњи маркери* и чућете до четири маркера у близини.
 

@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: Informacje o aplikacji Soundscape
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: pl
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Informacje o aplikacji Soundscape
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape wykorzystuje innowacyjną technologię opartą na dźwięku, aby pomóc ludziom zbudować pełniejszą świadomość otoczenia. Dzięki temu ludzie zyskują pewność siebie i mogą samodzielnie się poruszać.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape opiera się na tych znakomitych bibliotekach i danych stron trzecich. Kliknij linki, aby zobaczyć ich licencje:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) dostarczają wszystkie dane geograficzne wykorzystywane do mapowania i generowania dźwięku w Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) jest używany do generowania kafelków mapy, których używamy.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) służy do generowania dźwięku 3D i jest udostępniona do użytku na warunkach [licencji Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) służy do odtwarzania dźwięku z niskim opóźnieniem i jest udostępniona do użytku na warunkach [licencji Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+Wszystkie nazwy produktów i firm oraz logotypy stron trzecich są znakami towarowymi lub zarejestrowanymi znakami towarowymi i pozostają własnością ich odpowiednich właścicieli.
 

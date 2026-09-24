@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: 使用技巧
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: zh-CN
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# 使用技巧
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+您可以在*\"附近地点\"*列表中选择*\"公共交通\"*筛选器来查找附近的公交站点。
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+您可以在任何地址上设置信标。从 Soundscape 主屏幕搜索该地址。在搜索结果中选择地址即可打开*"位置详情"*页面，其中有在该地址*"启动音频信标"*的选项。通过这种方式，您可以在 OpenStreetMap 中没有的商家、地点、兴趣点和住宅上设置信标。
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+如果有您经常乘坐的公交线路，可将上下车站点保存为标记点。这样它们会被保存下来，方便您再次查找：在主屏幕进入*"标记点和路线"*，在*"标记点"*页面找到它们。您可以在这些标记点上设置信标，以获得关于距下车站还有多远的定期更新。注意：即使关闭节奏声，沿途仍会收到距离更新。
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+如果您将手机放在口袋里并停止移动，信标声音会安静下来，因为 Soundscape 无法判断您面朝的方向。解决方法是重新开始走动，或拿出手机平放。
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape在您将手机平放、屏幕朝向天空、手机顶部指向远离您的方向时效果最佳。
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+您可以使用主屏幕上的静音按钮开启和关闭信标的节奏声。即使信标已静音，您仍会每隔约 50 米收到一次到目的地距离的更新。
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+若要继续使用 Soundscape 但不听自动播报，请从菜单进入*\"设置\"*屏幕的*\"管理提示\"*部分，把*\"提示详细程度\"*设为*\"静音\"*。如果您一段时间内不会使用 Soundscape，可以改用主屏幕上的*\"休眠\"*按钮，将其设为休眠或小睡模式。
 

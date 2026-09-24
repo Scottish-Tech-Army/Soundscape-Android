@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Kubinafsisha Alama
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: sw
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Kubinafsisha Alama
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Ikiwa unataka kubadilisha jina la alama uliyoiunda hapo awali, au kuongeza maelezo ya ziada kwake, unaweza kufanya hivyo kwa kuchagua alama kutoka kwenye kichupo cha *"Alama"* cha ukurasa wa *"Alama na Njia"*, kisha kuchagua kitufe cha *"Hariri Alama"*. Unaweza kutumia hii kuzipa alama majina mafupi yenye maelezo au manufaa, na pia kuzipa maelezo marefu zaidi kwa kutumia sehemu ya maelezo ya ziada.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+Kutoka kwenye skrini hii ya *Hariri* unaweza pia kufuta alama ikiwa huihitaji tena.
 

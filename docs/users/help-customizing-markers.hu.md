@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Jelölők testreszabása
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,9 +7,9 @@ lang: hu
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Jelölők testreszabása
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Ha át szeretné nevezni egy korábban létrehozott jelölőjét, vagy megjegyzést szeretne hozzáadni, ezt megteheti úgy, hogy kiválasztja a jelölőt a *\"Jelölők és útvonalak\"* oldal *\"Jelölők\"* lapján, majd kiválasztja a *\"Jelölő szerkesztése\"* gombot. Ezzel leíró vagy hasznos becenevet adhat a jelölőknek, valamint hosszabb leírást is fűzhet hozzájuk a megjegyzés mezőben.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+Ezen a *Szerkesztés* képernyőn a jelölőt is törölheti, ha már nincs rá szüksége.
 

@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions
+title: Maswali Yanayoulizwa Mara kwa Mara
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,123 +7,123 @@ lang: sw
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# Frequently Asked Questions
+# Maswali Yanayoulizwa Mara kwa Mara
 
-## What is Soundscape and how should I use it?
+## Soundscape ni nini na ninapaswa kuitumiaje?
 
-### When should I use Soundscape?
-Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
+### Ni lini ninapaswa kutumia Soundscape?
+Soundscape ina vipengele na manufaa yanayohusisha hali mbalimbali na vipindi tofauti vya wakati. Thamani ya Soundscape kwako inaweza pia kubadilika kadiri muda unavyopita, hivyo jinsi unavyoitumia leo inaweza kutofautiana na jinsi utakavyoitumia baada ya miezi mitatu. Watu mara nyingi hufikiria kuhusu programu kwa mtazamo wa *tatizo gani programu hii ni nzuri katika kulitatua?* Soundscape kwa hakika inaweza kutumika kwa mahitaji maalum – kama vile kufuatilia mahali unapoenda njiani, kukusaidia kujielekeza unapotoka kituo cha treni ya chini ya ardhi, kujijua ulipo unapotoka kwenye gari, au kutafuta majina ya barabara au umbali hadi makutano yanayofuata. Hata hivyo, falsafa iliyo nyuma ya Soundscape ni ile ya *kuangazia dunia yako kwa sauti* – imeundwa kutumika wakati wowote uko nje, ili kukupa ufahamu wa mazingira yanayokuzunguka, kama vile majina ya barabara ulizopo, upande unaoelekea, na majina ya biashara unazozipita. Katika hali hii ya matumizi, watumiaji wetu wamekuwa wakiiita Soundscape kuwa *programu nzuri ya kuandamana*, inayosaidia *bahati njema ya kugundua*, husaidia *kuziba mapengo katika ramani yako ya kiakili* na hutoa *ujasiri zaidi unapotembea*. Hii hapa mifano mingine ya jinsi watumiaji wetu wanavyotumia Soundscape katika maisha yao:
 
-"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
+Soundscape ilinisaidia kurudi kwenye mkondo sahihi baada ya kushuka basi na kuelekea upande usiofaa.
 
-"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
+Hata katika mji ambao nimeishi kwa miaka 3, nimejenga picha iliyoboreshwa ya kile kinachonizunguka [kwa msaada wa Soundscape].
 
-"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
+Sauti ya pande tatu huboresha uzoefu wangu wa matembezi, kwani ninajisikia kuunganishwa zaidi na mazingira yangu…Nina uwezekano mkubwa zaidi wa kujaribu njia mpya sasa kwa kuwa nina programu ya kutumia.
 
-"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
+Ninakosa bahati njema ya kutembea na kugundua vitu. Kuwa na Soundscape ni jambo zuri – hakuhitaji juhudi yoyote kusikia kuhusu vitu vinavyonizunguka. Taarifa za uhusiano ni muhimu na ni programu nzuri kwa ufahamu wa hali na kuchunguza maeneo ya kibiashara.
 
-"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
+[Nilitumia Soundscape] kutafuta baa katikati ya York. [Nilitumia] chaguo mbalimbali za programu ili kwanza kuipata kisha hatimaye kuifikia. Iliniongoza hadi mita 3 kutoka mlangoni – nzuri sana!
 
-### What are Markers and how do I get the most out of them?
-Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
+### Alama ni nini na ninawezaje kuzitumia vizuri zaidi?
+Alama ni mahali ulipoyahifadhi. Yanaweza kuwa mahali yanayoweza kupatikana ndani ya programu, au yanaweza kuwa mahali mapya kabisa uliyoongeza mwenyewe. Unaweza kuhifadhi mahali ulipo sasa kama alama kwa kuchagua kitufe cha *"Mahali Nilipo Sasa"* kwenye skrini ya mwanzo kisha kuchagua *"Hifadhi kama Alama"*. Unaweza kuhifadhi mahali mengine kama alama kwa kutafuta mahali unayotaka kuhifadhi kwa kutumia upau wa utafutaji, au kutafuta mahali kwa kutumia kitufe cha *"Sehemu za Karibu"*, ambavyo vyote vinapatikana kwenye skrini ya mwanzo ya Soundscape. Ukishapata mahali unayotaka, kuyachagua kutakupeleka kwenye skrini ya *"Maelezo ya Mahali"*. Kwenye skrini hii, chagua kitufe kinachoitwa *"Hifadhi kama Alama"*.
 
-## How do I get the best out of Soundscape?
+## Ninawezaje kupata manufaa zaidi kutoka kwa Soundscape?
 
-### What can I set as a beacon?
-You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+### Ni nini ninachoweza kukiweka kama beacon?
+Unaweza kuweka beacon ya sauti kwenye biashara yoyote, mahali, sehemu ya kuvutia, anwani, au makutano ya barabara. Kuna njia chache za kuongeza beacon kwenye mahali fulani. Kwanza, tazama maelezo ya mahali kwa kutumia upau wa utafutaji kutafuta mahali, au kwa kugusa moja ya vitufe vya *"Sehemu za Karibu"*, *"Alama na Njia"*, au *"Mahali Nilipo Sasa"* kisha uchague mahali. Kutoka kwenye skrini ya *"Maelezo ya Mahali"* unaweza kuchagua kitufe cha *"Anzisha Beacon ya Sauti"*. Kugusa hii kutakurudisha kwenye skrini ya mwanzo na kuwasha beacon inayosikika ikitoka upande wa mahali ulipochagua. Jina la mahali ulipochagua pamoja na umbali wake na anwani yake ya kimwili, ikiwa inajulikana, sasa vitaonyeshwa kwenye skrini kuu ya programu.
 
-### How do I get the most out of a beacon?
-You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
+### Ninawezaje kunufaika zaidi na beacon?
+Unaweza kufikiria beacon inayosikika kama *"taa ya mnara wa bahari kwa masikio"*, ikikujulisha mahali unapoenda ulivyo kulingana na mahali ulipo, kama ndege anavyoruka moja kwa moja. Kama taa ya mnara wa bahari, haikuambii jinsi ya kufika huko – huenda ukahitaji kufanya maamuzi mengi ya usafiri njiani, kama vile mashua ya tanga itakavyohitaji kufanya *"mizunguko"* mingi ya kimkakati ili kukaribia taa ya mnara wa bahari. Sauti endelevu yenye mdundo ya beacon inayosikika hutolewa kwa mtindo wa anga kutoka upande wa mahali unapoenda, na hukusaidia kubaki na ufahamu wa mahali unapoenda kulingana na wewe unapotembea. Unapotembea moja kwa moja kuelekea mahali unapoenda, au unapoelekeza simu kuelekea mahali hapo, sauti ya *"kengele"* yenye mlio wa juu zaidi itasikika. Kipengele hiki hukuruhusu kubaini kwa usahihi upande wa mahali unapoenda kwa kuwa upande wa sauti yenye mdundo wakati mwingine unaweza kuwa mgumu kuutambua katika mazingira yenye kelele. Unapotafuta sauti ya *"kengele"* yenye mlio wa juu zaidi, shikilia simu ikiwa gorofa na uisogeze taratibu; kugeuza kichwa chako kuelekeza upande sawa na simu kutahakikisha unapata uzoefu bora wa sauti ya anga.
 
-This design has a few natural results:
+Mfano wa taa ya mnara wa bahari kwa muundo wa beacon una maana kadhaa za asili:
 
-1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
+1. Hakuna upande *"sahihi"* wa kusafiri unapotumia beacon, badala yake, kwa Soundscape wewe huchagua jinsi ya kufika huko;
 
-2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
+2. Sauti ya *"kengele"* yenye mlio wa juu zaidi hukusaidia kubaini upande wa mahali unapoenda tu – si dalili ya jinsi unavyopaswa kufika huko;
 
-3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
+3. Ikiwa kwa ujumla unajua jinsi ya kufika mahali unapoenda, unaweza kutaka kunyamazisha beacon kwa sehemu kubwa ya safari yako na kuiwasha tu unapokaribia mahali unapoenda.
 
-### Why does the audible beacon disappear sometimes?
-Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
+### Kwa nini beacon inayosikika hutoweka wakati mwingine?
+Beacon inayosikika ya Soundscape kimsingi ni ishara ya kuelekeza, inayokujulisha mahali unapoenda ulivyo kulingana na upande unaoelekea. Soundscape inapokuwa haina uhakika wa upande unaoelekea, hupunguza kiwango cha sauti ya beacon. Mara nyingi hii hutokea ikiwa umekuwa ukitembea na simu ikiwa mfukoni au kwenye mkoba, kisha ukasimama, kama vile kuvuka barabara. Beacon itapata sauti kubwa zaidi mara utakapoanza kutembea tena, au ukishikilia simu gorofa na kuielekeza upande unaoelekea.
 
-### Can I set a beacon on an address?
-Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
+### Naweza kuweka beacon kwenye anwani?
+Ndiyo, unaweza. Anwani hazionyeshwi kwenye orodha kwa chaguo-msingi lakini zinaweza kupatikana kwa kutumia sehemu ya utafutaji. Ili kuhifadhi anwani hii ili usihitaji kuitafuta tena, unaweza kuiongeza kama alama kutoka kwenye skrini ya *"Maelezo ya Mahali"* kwa kuchagua kitufe cha *"Hifadhi kama Alama"*.
 
-### How do I set a beacon on my home?
-Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
+### Ninawezaje kuweka beacon kwenye nyumbani kwangu?
+Soundscape inaruhusu kuweka beacon kwenye anwani. Ili kuweka beacon nyumbani kwako, au anwani nyingine yoyote, tafuta mahali kutoka skrini kuu ya Soundscape. Kwenye skrini ya *Maelezo ya Mahali*, gusa kitufe cha *Anzisha Beacon ya Sauti*.
 
-### When I set a beacon on a destination, how close will Soundscape get me to the destination?
-Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
+### Ninapoweka beacon kwenye mahali ninapoenda, Soundscape itanikaribisha kiasi gani hadi mahali hapo?
+Soundscape inaweza kubaini mahali unapoenda kwa usahihi wa mita chache, lakini si zaidi ya hapo. Soundscape inapobaini kuwa uko karibu na mahali unapoenda, utasikia tangazo la mwisho kuwa mahali unapoenda ni karibu, na beacon itazimika.
 
-### Can I turn the beacon back on when I am close to my destination?
-Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
+### Naweza kuiwasha tena beacon ninapokuwa karibu na mahali ninapoenda?
+Ndiyo, unaweza kuiwasha tena beacon baada ya Soundscape kuizima kwa kuchagua *kitufe cha kuwasha sauti ya beacon*; hata hivyo, kwa kuwa Huduma za Mahali zina usahihi wa mita 10 hivi tu, hatuwezi kuhakikisha jinsi beacon itakavyofanya kazi ukiwa umebaki mita chache kufikia mahali unapoenda.
 
-### Why does Soundscape call out road names twice when I approach an intersection?
-To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
+### Kwa nini Soundscape hutangaza majina ya barabara mara mbili ninapokaribia makutano ya barabara?
+Ili kukabiliana na aina mbalimbali za muundo wa makutano ya barabara, Soundscape huelezea makutano kama vipande vya barabara vinavyotoka sehemu moja ya pamoja. Soundscape hutumia sauti ya anga kuonyesha jina la barabara inayoelekea kushoto, jina la barabara inayoendelea moja kwa moja mbele, na jina la barabara inayoelekea kulia, kwa mpangilio huo. Ikiwa maelezo ya makutano yanaanza na barabara uliyopo badala ya moja iliyo kushoto, basi makutano hayo ni ya umbo la T ambapo barabara uliyopo inaendelea mbele na barabara inayoungana kutoka kulia. Vivyo hivyo, ikiwa maelezo yanajumuisha tu barabara iliyo kushoto na kulia, utajua kuwa barabara uliyopo inaishia kwenye umbo la T mbele yako. Njia hii ya kuelezea makutano pia hufanya kazi wakati barabara inabadilisha jina kwenye makutano.
 
-### Why doesn’t Soundscape announce every business that I pass?
-Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
+### Kwa nini Soundscape haitangazi kila biashara ninayopita?
+Soundscape imeundwa ili isikupe matangazo mengi kupita kiasi. Pia inatumia OpenStreetMap kama chanzo chake cha data. OpenStreetMap (OSM, https://www.openstreetmap.org/) ni ramani ya dunia inayojengwa na kuhaririwa na jamii ya wachangiaji binafsi. Ikiwa Soundscape haitangazi biashara au sehemu ya kuvutia, sababu inayowezekana zaidi ni kwamba mwanajamii wa OSM hajaiongeza bado biashara hiyo kwenye data, au katika baadhi ya matukio hajaisasisha.
 
-### Why do some callouts stop when I'm in a vehicle?
-In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
+### Kwa nini baadhi ya matangazo husimama nikiwa kwenye gari?
+Ili kuzuia idadi ya matangazo kuwa nyingi kupita kiasi, baadhi ya makundi, kama vile makutano ya barabara, hayatangazwi kiotomatiki unapokuwa unasafiri kwa gari.
 
-### What if I don't understand a callout or miss it because of ambient noise?
-Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
+### Nifanye nini ikiwa sielewi tangazo au ninalikosa kwa sababu ya kelele za mazingira?
+Soundscape ina orodha ya matangazo yako ya hivi karibuni ili uweze kurudi kuyaangalia matangazo ambayo huenda uliyakosa. Ili kuipata, gusa upau wa utafutaji kwenye skrini ya mwanzo ya Soundscape. Chini ya skrini hii, kuna sehemu ya *Matangazo ya Hivi Karibuni* ambapo tangazo ulilolikosa litaorodheshwa.
 
-## How does Soundscape work?
+## Soundscape inafanya kazi vipi?
 
-### What phone does Soundscape run on?
-Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
+### Soundscape inafanya kazi kwenye simu gani?
+Kwa sasa, Soundscape inapatikana kwa simu za iPhone zinazotumia iOS 16 au toleo jipya zaidi, na kwa simu za Android zinazotumia Android 11 au toleo jipya zaidi.
 
-### What headphones should I use with Soundscape?
-Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
+### Ni vipokea sauti gani ninapaswa kutumia na Soundscape?
+Vipokea sauti gani unavyotumia na Soundscape ni suala la upendeleo wa kibinafsi, na kila chaguo lina manufaa na hasara zake. Sharti pekee mahususi ni kutumia jozi ya vipokea sauti vya stereo ili uweze kunufaika na matangazo ya sauti ya anga ya pande tatu ya Soundscape.
 
-### How does Soundscape impact my phone’s battery?
-Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
+### Soundscape inaathiri vipi betri ya simu yangu?
+Muda wa matumizi ya betri hutofautiana kwa kiasi kikubwa kutegemea aina ya simu unayomiliki na umri wake. Kinachotumia betri zaidi ni skrini ikiwa imewashwa, hivyo ili kuongeza muda wa matumizi ya betri ya simu yako, unapaswa kuweka skrini ikiwa imefungwa inapowezekana. Ili kusaidia kupunguza athari kwenye betri ya simu yako, Soundscape sasa ina Hali ya Kulala. Ili kupunguza zaidi kiasi cha betri unachotumia, usipokuwa unatumia Soundscape, unapaswa kuifunga kwa nguvu kupitia Kibadilisha Programu cha simu yako.
 
-### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
+### Ninawezaje kutumia Hali ya Kulala ili kupunguza athari ya Soundscape kwenye betri ya simu yangu?
+Ili kuiweka Soundscape katika Hali ya Kulala, chagua kitufe cha *Lala* kilichopo kona ya juu kulia ya skrini. Ukichagua hii, Soundscape itaacha kutumia Huduma za Mahali na data ya simu mpaka utakapoichagua kuiamsha tena.
 
-### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
+### Ninawezaje kutumia Hali ya Kusinzia ili kupunguza athari ya Soundscape kwenye betri ya simu yangu?
+Ili kuiweka Soundscape katika Hali ya Kusinzia, chagua kitufe cha *Lala* kilichopo kona ya juu kulia ya skrini. Soundscape ikishakuwa katika Hali ya Kulala, chagua kitufe cha *Amka Nitakapoondoka* na Soundscape itaingia katika hali ya matumizi ya chini ya nishati mpaka utakapoondoka mahali ulipo sasa.
 
-### How does my choice of headphones affect the battery life of my phone?
-In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
+### Uchaguzi wangu wa vipokea sauti unaathiri vipi muda wa matumizi ya betri ya simu yangu?
+Katika majaribio yetu, matumizi ya betri ya vipokea sauti vya Bluetooth yanalingana na vile vya waya na haipaswi kuwa sababu kubwa ya kuzingatia unapochagua vipokea sauti.
 
-### How does running Soundscape in the background impact battery life of my phone?
-Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
+### Kuendesha Soundscape nyuma kunaathiri vipi muda wa matumizi ya betri ya simu yangu?
+Soundscape ni programu inayotegemea mahali na hutumia Huduma za Mahali kubaini mahali ulipo. Katika majaribio yetu, Soundscape haitumii betri zaidi kuliko programu za kawaida za ramani; lakini ikiwa una wasiwasi kuhusu matumizi ya betri unapotumia simu yako, hivi hapa ni vidokezo vichache vitakavyosaidia kupunguza matumizi:
 
-1. Turn the screen display off as much as possible when you are not interacting with the app.
+1. Zima onyesho la skrini kadiri inavyowezekana usipokuwa unaingiliana na programu.
 
-2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
+2. Usipokuwa unatumia programu, ifunge. Soundscape hutumia huduma za mahali mfululizo inapokuwa inafanya kazi ili ijue mahali ulipo daima, hata usipokuwa unasogea. Usisahau kuianzisha upya programu unapoendelea na safari yako.
 
-3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
+3. Wakati wa hali ya hewa ya baridi, weka simu yako yenye joto kwani betri hufanya kazi vibaya zaidi katika joto la chini.
 
-### How much mobile data does Soundscape use?
-The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
+### Soundscape hutumia data kiasi gani cha simu?
+Kiasi cha data ya simu kinachotumika hutegemea jinsi unavyotumia Soundscape. Tumeiunda Soundscape itumie kiasi kidogo tu cha data unapokuwa nje kwa kufanya mambo kama kuhifadhi sehemu unapotembea ili usihitaji kuzipakua tena kila unaporudi mahali ulipokwishafika. Ili kupunguza kiasi cha data ya simu unachotumia, hakikisha umeunganishwa na Wi-Fi inapowezekana, hasa unapopakua programu. Usipokuwa unatumia Soundscape, unapaswa kutumia kitufe cha *Lala* ili kuiweka Soundscape kulala au kuifunga kwa nguvu programu.
 
-### How is Soundscape different from other map apps?
-Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
+### Soundscape inatofautianaje na programu nyingine za ramani?
+Soundscape hutoa maelezo ya mazingira yanayokuzunguka ili kusaidia uchunguzi na utafutaji wa njia. Kwa kutumia sauti ya anga, Soundscape itatangaza sehemu za kuvutia, bustani, barabara, na makutano ya barabara kutoka upande zilipo kimwili katika mazingira yako ya karibu unapotembea. Kwa mfano, ukipita duka lililo upande wako wa kulia, utasikia jina la duka hilo likitoka upande wako wa kulia. Unapokaribia makutano ya barabara, utasikia kila jina la barabara likitoka upande unaoelekea, kuanzia kushoto kwako, mbele na kulia.
 
-Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
+Badala ya maelekezo ya hatua kwa hatua kama yanavyotolewa mara nyingi na programu nyingine za ramani, Soundscape itacheza beacon inayosikika kuelekea upande wa mahali unapoenda, ikikuwezesha kufika huko kwa njia inayokufaa zaidi, ukitumia ufahamu wako ulioongezeka wa mazingira yanayokuzunguka na mahali unapoenda. Soundscape imeundwa kufanya kazi nyuma, ikikuwezesha kutumia programu ya maelekezo ya hatua kwa hatua, huku ikiendelea kutoa ufahamu wa mazingira wakati unafika mahali unapoenda.
 
-### How do I use Soundscape with a wayfinding app?
-Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
+### Ninawezaje kutumia Soundscape pamoja na programu ya kutafuta njia?
+Soundscape imeundwa kama programu ya ufahamu ili kusaidia kuziba maelezo kuhusu mazingira yako ambayo huenda usingekuwa nayo vinginevyo. Ingawa haikuundwa kama programu ya maelekezo ya hatua kwa hatua, inaweza kutumika pamoja na programu kama hizo kutoa taarifa za ziada. Ili kutumia Soundscape pamoja na programu hizo, anzisha kwanza programu yako ya usafiri. Kisha, hamia kwenye Soundscape na uweke beacon kwenye mahali panapoenda sawa na kile kilichopo kwenye programu ya usafiri. Kwa wakati huo, programu zote mbili zitakuwa zinafanya kazi nawe utasikia maelekezo ya kutembea kutoka kwenye programu yako ya usafiri, huku ukipata masasisho kuhusu sehemu za kuvutia, makutano ya barabara, na umbali wako hadi mahali unapoenda kutoka Soundscape.
 
-### How do I control what I hear and when I hear it in Soundscape?
-Soundscape provides several ways to control what you hear and when:
+### Ninawezaje kudhibiti ninachosikia na wakati ninachosikia kwenye Soundscape?
+Soundscape hutoa njia kadhaa za kudhibiti unachosikia na wakati gani:
 
-1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
+1. Kusimamisha sauti zote papo hapo: Gusa skrini mara mbili kwa vidole viwili ili kuzima papo hapo sauti zote, ikiwemo tangazo lolote linalochezwa kwa sasa na beacon ikiwa imewashwa. Matangazo yataendelea kiotomatiki utakapokaribia makutano au sehemu ya kuvutia inayofuata, lakini beacon inayosikika haitaendelea. Chagua *kitufe cha kuwasha sauti ya beacon* kwenye skrini kuu ili kuendelea kusikia beacon.
 
-2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
+2. Kusimamisha matangazo ya kiotomatiki: Usipokuwa unasafiri au umeshafika mahali unapoenda, huenda usihitaji Soundscape iendelee kukujulisha kuhusu vitu vinavyokuzunguka. Badala ya kutoka kwenye programu, unaweza kuiweka Soundscape katika Hali ya Kusinzia nayo itaamka tena utakapoondoka, au unaweza kuiweka Soundscape katika Hali ya Kulala nayo itabaki imezimwa mpaka utakapochagua kuiwasha tena. Vinginevyo, unaweza kuchagua *Mipangilio* kutoka kwenye menyu na kuweka *Kiwango cha Matangazo* kuwa *Kimya* katika sehemu ya *Dhibiti Matangazo*.
 
-3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
+3. Kusimamisha beacon: Kuna hali kadhaa ambapo unaweza kuweka mahali unapoenda lakini usihitaji beacon inayosikika iwe imewashwa. Kwa mfano, huenda unajua kwa usahihi jinsi ya kufika mahali unapoenda lakini bado unataka masasisho ya kiotomatiki kuhusu umbali ulionao. Au huenda ukahitaji beacon ya sauti tu unapokaribia mahali unapoenda. Iwe ni hali gani, unaweza kuchagua wakati wa kusikia beacon kwa kubadilisha kitufe cha *nyamazisha beacon*/*washa sauti ya beacon* kwenye skrini kuu.
 
-If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
+Ikiwa bado unataka kuingiliana na Soundscape lakini hutaki kusikia matangazo ya kiotomatiki, unaweza kuweka *Kiwango cha Matangazo* kuwa *Kimya* katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio* kutoka kwenye menyu. Au, ikiwa hutaenda kutumia Soundscape, unaweza kuiweka katika Hali ya Kulala au Kusinzia kwa kutumia kitufe cha *Lala* kwenye skrini ya mwanzo.
 
-### Do I need to hold the phone in my hand all the time?
-No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
+### Je, ninahitaji kushikilia simu mkononi mwangu wakati wote?
+Hapana! Unapotembea unaweza kuweka simu kwenye mkoba au mfukoni au popote inapofaa. Soundscape itatumia upande unaotembea kubaini matangazo ya kutangaza kushoto na kulia kwako. Unaposimama, Soundscape haijui upande unaoelekea. Ikiwa beacon inayosikika imewashwa, utagundua inapungua sauti mpaka uanze kutembea tena. Unaweza kutoa simu wakati wowote ili kubonyeza vitufe vya mahali na uchunguzi vilivyo chini ya skrini, lakini hakikisha unashikilia simu ikiwa sehemu ya juu ya simu inaelekeza upande unaoelekea na skrini ikielekeza angani. Katika hali hii ya *"gorofa"*, Soundscape itatumia dira ya simu kubaini upande unaoelekea na kutoa matangazo sahihi ya anga. Ikiwa beacon imewashwa, utagundua pia inarudi kwenye sauti kamili.
 
-### What is OpenStreetMap and why do we use it for Soundscape?
-Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
+### OpenStreetMap ni nini na kwa nini tunaitumia kwa Soundscape?
+Soundscape hutumia data ya ramani kutengeneza matangazo yake ya sauti. Chanzo kikuu cha ramani tunachotumia ni OpenStreetMap (www.openstreetmap.org). Hili ni jukwaa la ramani lililoundwa na jamii ya wachangiaji. Mashirika na watu binafsi wanaweza kutumia zana za OpenStreetMap kuboresha data na kufanya maeneo yao yafikike zaidi.
 

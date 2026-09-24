@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: أمامي
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ar
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# أمامي
 
-## What is it?
+## ما هو؟
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+يخبرك زر *"أمامي"* بما يصل إلى خمسة أشياء أمامك. يهدف *"أمامي"* إلى مساعدتك على استكشاف الطريق أمامك عند تعرفك على منطقة جديدة.
 
-## When would I use it?
+## متى أستخدمه؟
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+عندما تسير في الشارع، جرّب استخدام *أمامي* لاكتشاف الأماكن والأشياء القادمة على جانبي الشارع أمامك.
 
-## How does it work?
+## كيف يعمل؟
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+كما هو الحال مع جميع الأزرار الأربعة أسفل الشاشة الرئيسية، أمسك هاتفك بحيث تكون الشاشة أفقية (متجهة نحو السماء) وأعلى الهاتف يشير إلى الاتجاه الذي تواجهه قبل الضغط على زر *أمامي*. يعمل هذا كبوصلة تخبر التطبيق بالاتجاه الذي تواجهه. ببساطة، انقر على زر *أمامي* وستسمع عدة نقاط اهتمام تقع تقريبًا أمامك.
 

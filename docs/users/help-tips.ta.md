@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: குறிப்புகள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ta
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# குறிப்புகள்
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+*\"அருகிலுள்ள இடங்கள்\"* பட்டியலில் *\"பொது போக்குவரத்து\"* வடிகட்டியைத் தேர்ந்தெடுப்பதன் மூலம் அருகிலுள்ள பேருந்து நிறுத்தங்களைக் கண்டறியலாம்.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+எந்த முகவரியிலும் நீங்கள் ஒரு பீக்கனை அமைக்கலாம். முதன்மை Soundscape திரையில் இருந்து, முகவரியைத் தேடவும். *"இருப்பிட விவரங்கள்"* திரையைத் திறக்க தேடல் முடிவுகளில் முகவரியைத் தேர்ந்தெடுக்கவும். இந்தத் திரையில் அந்த முகவரியில் *"ஒலி பீக்கனைத் தொடங்கு"* என்ற விருப்பம் உள்ளது. இந்த வழியில், OpenStreetMap இல் இல்லாத வணிகங்கள், இடங்கள், சுவாரஸ்யமான இடங்கள் மற்றும் குடியிருப்புகளில் நீங்கள் ஒரு பீக்கனை அமைக்கலாம்.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+நீங்கள் தவறாமல் பயன்படுத்தும் ஒரு பேருந்து பாதை இருந்தால், உங்கள் ஏறும் மற்றும் இறங்கும் நிறுத்தங்களை குறிப்பான்களாகச் சேமிக்கவும். இந்த வழியில் அவை சேமிக்கப்படும், நீங்கள் அவற்றை எளிதாக மீண்டும் கண்டறியலாம். முகப்புத் திரையிலிருந்து *"குறிப்பான்கள் மற்றும் பாதைகள்"* க்குச் சென்று, பின்னர் *"குறிப்பான்கள்"* பக்கத்தில் அவற்றைக் கண்டறியவும். உங்கள் இறங்கும் நிறுத்தத்திற்கு நீங்கள் எவ்வளவு அருகில் இருக்கிறீர்கள் என்பது பற்றிய அவ்வப்போதைய புதுப்பிப்புகளைப் பெற அவற்றில் ஒரு பீக்கனை அமைக்கலாம். குறிப்பு: தாள ஒலியை அணைத்தாலும், வழியில் தொலைவு புதுப்பிப்புகளைத் தொடர்ந்து பெறுவீர்கள்.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+நீங்கள் உங்கள் தொலைபேசியை பாக்கெட்டில் வைத்துவிட்டு நகர்வதை நிறுத்தினால், நீங்கள் எந்தத் திசையை நோக்கி இருக்கிறீர்கள் என்பதை Soundscape கண்டறிய முடியாததால் பீக்கன் ஒலி அமைதியாகும். இதைச் சரிசெய்ய, மீண்டும் நடக்கத் தொடங்குங்கள், அல்லது தொலைபேசியை வெளியே எடுத்து தட்டையாக வைத்திருங்கள்.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+திரை வானத்தை நோக்கியும், தொலைபேசியின் மேற்பகுதி உங்களிடமிருந்து விலகியும் இருக்கும்படி தொலைபேசியை தட்டையாக வைத்திருக்கும்போது Soundscape சிறப்பாக செயல்படும்.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+முகப்புத் திரையில் உள்ள முடக்கு பொத்தானைப் பயன்படுத்தி பீக்கனின் தாள ஒலியை இயக்கவோ அணைக்கவோ முடியும். பீக்கன் முடக்கப்பட்டிருந்தாலும், சுமார் ஒவ்வொரு 50 மீட்டருக்கும் உங்கள் இலக்கிற்கான தொலைவு பற்றிய புதுப்பிப்புகளை நீங்கள் தொடர்ந்து பெறுவீர்கள்.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+தானியங்கு அறிவிப்புகளைக் கேட்காமல் Soundscape ஐத் தொடர்ந்து பயன்படுத்த, மெனுவிலிருந்து *\"அமைப்புகள்\"* திரையின் *\"அறிவிப்புகளை நிர்வகி\"* பிரிவில் *\"அறிவிப்பு விவரம்\"* ஐ *\"மௌனம்\"* என அமைக்கவும். சிறிது காலத்திற்கு Soundscape ஐப் பயன்படுத்தப் போவதில்லை என்றால், அதற்குப் பதிலாக முகப்புத் திரையில் உள்ள *\"உறக்கம்\"* பொத்தானைப் பயன்படுத்தி அதை உறக்கம் அல்லது ஸ்னூஸ் பயன்முறையில் வைக்கலாம்.
 

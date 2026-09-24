@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Автоматические уточнения
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: ru
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Автоматические уточнения
 
-## What is it?
+## Что это такое?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape может сообщать о предметах вокруг вас по мере приближения, озвучивая их названия с того направления, где они находятся. Приложение будет делать это автоматически для самых разных объектов — например, для заведений, автобусных остановок и даже перекрёстков. Вы можете настроить, что именно приложение озвучивает автоматически, в разделе *\"Управление уточнениями\"* на экране *\"Настройки\"*, а также отключить все уточнения, когда вам нужно, чтобы приложение молчало.
 
-## When would I use it?
+## Когда использовать Soundscape?
 
-**Exploring a new area :**
+**Исследование новой местности:**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+Включите автоматические уточнения и прогуляйтесь, чтобы услышать обо всех разных магазинах, ресторанах и тому подобном, мимо которых вы проходите.
 
-**Walking to a specific location :**
+**Пешая прогулка к конкретному месту:**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+Когда вы направляетесь в определённое место, автоматические уточнения перекрёстков могут быть особенно полезны. Уточнения перекрёстков сообщают о планировке перекрёстков по мере приближения и подтверждают дорогу, на которой вы находитесь, когда вы покидаете перекрёсток.
 
-**When you need silence :**
+**Когда вам нужна тишина:**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+Если вы собираетесь переходить дорогу или вам просто нужно, чтобы приложение молчало, вы можете отключить уточнения. Когда уточнения отключены, приложение будет сообщать информацию только если вы вручную нажмёте одну из кнопок «Моё местоположение», «Отметки рядом», «Вокруг меня» или «Передо мной».
 
-## How does it work?
+## Как оно работает?
 
-**Turning callouts on or off :**
+**Включение и отключение уточнений:**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Отключение уточнений приостановит озвучивание приложения. Уточнения можно отключить в разделе *\"Управление уточнениями\"* на экране *\"Настройки\"*, установив для параметра *\"Подробность уточнений\"* значение *\"Беззвучный\"*, и снова включить, выбрав любой другой уровень. То же самое можно сделать, попросив об этом Siri или Gemini. Кроме того, вы можете постепенно приглушать Soundscape кнопками управления мультимедиа на наушниках: каждое нажатие *\"предыдущий\"* опускает на один уровень по цепочке *\"Подробный\"*, *\"Сбалансированный\"*, *\"Тихий\"*, *\"Беззвучный\"*, а следующее нажатие возвращает к *\"Подробный\"*. См. раздел справки *\"Использование элементов управления мультимедиа\"*. Также вы можете использовать кнопку *\"Сон\"* в правом верхнем углу главного экрана, чтобы приостановить озвучивания Soundscape до тех пор, пока вы сами не разбудите приложение.
 
-**Managing which callouts you hear :**
+**Управление теми уточнениями, которые вы слышите:**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Чтобы выбрать типы объектов, которые Soundscape будет озвучивать автоматически, откройте экран *\"Настройки\"* через меню на экране *\"Главный\"*. Именно в разделе *\"Управление уточнениями\"* на экране *\"Настройки\"* вы выбираете, сколько приложение говорит, с помощью параметра *\"Подробность уточнений\"*, озвучивает ли оно *\"Улицы и перекрёстки\"* и какие заданы *\"Места для озвучивания\"*. Если вы хотите отключить все уточнения, установите для параметра *\"Подробность уточнений\"* значение *\"Беззвучный\"*.
 

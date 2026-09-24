@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: Kuunda Alama
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: sw
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# Kuunda Alama
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+Unaweza kuunda alama kwa njia tatu: kutafuta mahali unayotaka kuhifadhi kwa kutumia upau wa utafutaji, kutafuta mahali kwa kutumia kitufe cha *"Sehemu za Karibu"*, au kutumia kitufe cha *"Tumia Mahali Nilipo Sasa"*, ambavyo vyote vinapatikana kwenye skrini ya mwanzo ya Soundscape. Ukishapata mahali unayotaka, kuyachagua kutakupeleka kwenye skrini ya *"Maelezo ya Mahali"*. Kwenye skrini hii, chagua kitufe cha *"Hifadhi kama Alama"*.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+Sasa utakuwa na chaguo la kubinafsisha alama hii. Unaweza kubadilisha jina la alama, na pia kuongeza maelezo ya ziada ambayo yatatangazwa pamoja na alama ili kutoa taarifa za ziada. Ukimaliza, chagua kitufe cha *Nimemaliza* ili kuhifadhi Alama yako.
 

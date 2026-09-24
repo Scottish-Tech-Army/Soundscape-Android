@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: মার্কার তৈরি করা
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
@@ -7,9 +7,9 @@ lang: bn
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# মার্কার তৈরি করা
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+আপনি তিনটি উপায়ে মার্কার তৈরি করতে পারেন: সার্চ বার ব্যবহার করে আপনি যে স্থানটি সংরক্ষণ করতে চান তা খুঁজে, *"কাছাকাছি স্থানসমূহ"* বোতাম ব্যবহার করে কোথাও খুঁজে বের করে, বা *"বর্তমান অবস্থান ব্যবহার করুন"* বোতাম ব্যবহার করে, এই সবগুলিই Soundscape হোম স্ক্রিনে পাওয়া যায়। আপনি যে স্থানটি চান সেটি খুঁজে পাওয়ার পর, সেটি নির্বাচন করলে আপনাকে *"অবস্থানের বিবরণ"* স্ক্রিনে নিয়ে যাবে। এই স্ক্রিনে, *"মার্কার হিসেবে সংরক্ষণ করুন"* বোতামটি নির্বাচন করুন।
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+এখন আপনার কাছে এই মার্কারটি কাস্টমাইজ করার অপশন থাকবে। আপনি মার্কারের নাম পরিবর্তন করতে পারেন, এবং অতিরিক্ত তথ্য দেওয়ার জন্য মার্কারের সাথে ঘোষণা করা হবে এমন একটি টীকাও যোগ করতে পারেন। কাজ শেষ হলে, আপনার মার্কার সংরক্ষণ করতে *সম্পন্ন* বোতামটি নির্বাচন করুন।
 

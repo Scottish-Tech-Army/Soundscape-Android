@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: মার্কার
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
@@ -7,11 +7,11 @@ lang: bn
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# মার্কার
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Soundscape দিয়ে, আপনি আপনার জগৎ এবং আপনার কাছে গুরুত্বপূর্ণ যেকোনো কিছু চিহ্নিত করতে পারেন, ম্যাপে পিনের মতো।
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+আপনি এমন স্থান চিহ্নিত করতে পারেন যেগুলো আপনার ব্যক্তিগত এবং প্রাসঙ্গিক, যেমন আপনার বাড়ি, আপনার অফিস বা আপনার পছন্দের মুদি দোকান। আপনি যেকোনো স্থান বা ঠিকানা চিহ্নিত করতে পারেন, আবার এমন জিনিসও চিহ্নিত করতে পারেন যা সাধারণত মানচিত্রে দেখানো হয় না, যেমন: ভবন বা পার্কের প্রবেশপথ, পথচারী পারাপারের বোতাম, পথচারী পারাপার, সেতু, বাস স্টপ, এমনকি আপনার কুকুরের প্রিয় গাছ। আপনার হাঁটার পথে এই চিহ্নগুলো নির্দেশক হিসেবে ব্যবহার করুন।
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+চিহ্নিত স্থানগুলি অনুভব করতে, আপনি যখন সেগুলির পাশ দিয়ে হাঁটবেন বা কাছে যাবেন তখন Soundscape স্বয়ংক্রিয়ভাবে চিহ্নিত স্থানগুলি ঘোষণা করবে, অথবা আপনি আপনার চারপাশের চিহ্নিত স্থানগুলির একটি স্প্যাশিয়াল কলআউট শুনতে Soundscape হোম স্ক্রিনের নিচে থাকা *"কাছাকাছি মার্কার"* বোতামও ব্যবহার করতে পারেন। এছাড়াও, আপনার যেকোনো চিহ্নিত স্থানে অডিও বীকন সেট করার ক্ষমতা রয়েছে। এটি করলে, আপনার পরিচিত Soundscape অডিও বীকন শোনা যাবে এবং আপনি এটি স্বাভাবিকভাবে পরিচালনা করতে পারবেন।
 

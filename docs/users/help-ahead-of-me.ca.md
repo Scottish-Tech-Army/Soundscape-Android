@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: Davant meu
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ca
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Davant meu
 
-## What is it?
+## Què és?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+El botó *"Davant meu"* t'informa sobre fins a cinc coses que hi ha davant teu. *"Davant meu"* té la finalitat d'ajudar-te a explorar el camí que tens al davant quan estàs coneixent una zona nova.
 
-## When would I use it?
+## Quan l'hauria d'utilitzar?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Quan caminis pel carrer, prova d'utilitzar *Davant meu* per descobrir els llocs i coses que trobaràs a banda i banda del carrer més endavant.
 
-## How does it work?
+## Com funciona?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Com passa amb els quatre botons de la part inferior de la pantalla principal, sostén el telèfon amb la pantalla plana (mirant cap al cel) i la part superior del telèfon apuntant en la direcció cap a la qual estàs orientat abans de prémer el botó *Davant meu*. Això funciona com una brúixola que indica a l'aplicació cap a quina direcció estàs orientat. Simplement, toca el botó *Davant meu* i escoltaràs diversos punts d'interès situats aproximadament davant teu.
 

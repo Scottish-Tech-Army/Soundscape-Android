@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Penanda
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: id
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Penanda
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Dengan Soundscape, Anda dapat menandai dunia Anda dan apa pun yang Anda pedulikan, seperti pin di peta.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Anda dapat menandai tempat-tempat yang bersifat pribadi dan relevan bagi Anda, seperti rumah, kantor, atau toko kelontong favorit Anda. Anda dapat menandai tempat atau alamat apa pun, dan juga hal-hal yang biasanya tidak ditampilkan di peta, misalnya: pintu masuk gedung atau taman, tombol penyeberangan, zebra cross, jembatan, halte bus, atau bahkan pohon favorit anjing Anda. Gunakan penanda-penanda ini sebagai acuan sepanjang perjalanan Anda.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Untuk merasakan tempat yang ditandai, Soundscape akan secara otomatis menyebutkan tempat yang ditandai saat Anda melewati atau mendekatinya, atau Anda juga dapat menggunakan tombol *\"Marker Terdekat\"* di bagian bawah layar utama Soundscape untuk mendengar pemberitahuan spasial tentang tempat yang ditandai di sekitar Anda. Selain itu, Anda dapat mengatur audio beacon pada tempat yang ditandai mana pun. Saat Anda melakukan ini, audio beacon Soundscape yang sudah Anda kenal akan terdengar dan dapat Anda gunakan seperti biasa.
 

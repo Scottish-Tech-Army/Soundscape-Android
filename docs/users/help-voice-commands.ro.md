@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Comenzi vocale
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: ro
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Comenzi vocale
 
-## What is it?
+## Ce este?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Îi poți cere lui Gemini să facă lucruri în Soundscape fără să atingi telefonul: să auzi un anunț, să pornești una dintre rutele tale sau să pui o baliză audio pe unul dintre marcajele tale. Orice alt asistent care acceptă funcțiile de aplicație Android poate face același lucru.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape răspunde cu propria voce, cu anunțurile și sunetele de baliză pe care le știi deja, în loc ca asistentul să citească un rezumat. Astfel, ceea ce auzi vine în continuare din direcția pe care o descrie.
 
-## When would I use it?
+## Când aș folosi această funcție?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Comenzile vocale sunt utile când ai telefonul în buzunar, când ai mâinile ocupate sau când preferi să nu te oprești din mers ca să apeși un buton. Funcționează cât timp Soundscape rulează în fundal și cât timp telefonul este blocat, iar cererea unui anunț nu deschide aplicația.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Asistentul tău este cel care ascultă, nu Soundscape, așa că aplicația nu îți ocupă niciodată microfonul, iar căștile tale Bluetooth rămân în modul audio de calitate înaltă în loc să treacă în modul de calitate mai slabă folosit la apeluri.
 
-## How does it work?
+## Cum funcționează?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Nu există formulări exacte de memorat. Cere ce vrei cu propriile cuvinte, iar asistentul o va potrivi cu una dintre acțiunile de mai jos. Numele rutelor și ale marcajelor sunt potrivite aproximativ, așa că de obicei o parte din nume este de ajuns.
 
-You can ask Soundscape to:
+Îi poți cere lui Soundscape:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Să descrie *\"Locația mea\"*, ce se află *\"În jurul meu\"* sau ce se află *\"Înaintea mea\"*.
 
-Call out the saved markers near you.
+Să anunțe marcajele salvate din apropierea ta.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Să pornească una dintre rutele tale salvate după nume, să treacă la punctul de traseu următor, să revină la cel anterior, să dezactiveze sunetul balizei sau să oprească ruta.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Să pună o baliză audio pe unul dintre marcajele tale salvate după nume sau să oprească baliza.
 
-Read back the names of your saved routes or your saved markers.
+Să seteze detaliul anunțurilor pe *\"Silențios\"*, *\"Discret\"*, *\"Echilibrat\"* sau *\"Detaliat\"*, pentru a schimba cât de mult vorbește Soundscape în timp ce mergi. Silențios dezactivează anunțurile automate.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Să citească numele rutelor tale salvate sau ale marcajelor tale salvate.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Tot, în afară de cele două liste, are nevoie ca Soundscape să ruleze. Dacă nu rulează, asistentul îți va spune să deschizi mai întâi Soundscape. Enumerarea rutelor și a marcajelor tale funcționează în ambele cazuri, pentru că doar citește ce ai salvat deja.
+
+Comenzile vocale au nevoie de un telefon cu Android 16 sau mai nou și de un asistent care acceptă funcțiile de aplicație.
 

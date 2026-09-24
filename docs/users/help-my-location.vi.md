@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Vị trí của tôi
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: vi
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Vị trí của tôi
 
-## What is it?
+## Đây là gì?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Nút *Vị trí của tôi* nhanh chóng cung cấp thông tin giúp bạn xác định vị trí hiện tại của mình. *Vị trí của tôi* cho bạn biết về vị trí hiện tại của bạn, bao gồm những thứ như hướng bạn đang nhìn về, các con đường hoặc giao lộ gần đó ở đâu, và các địa điểm quan tâm gần đó ở đâu.
 
-## When would I use it?
+## Khi nào tôi nên dùng tính năng này?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*Vị trí của tôi* hữu ích khi bạn cần xác định mình đang ở đâu hoặc đang hướng mặt về phương nào.
 
-## How does it work?
+## Tính năng này hoạt động như thế nào?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Cũng như với cả bốn nút ở dưới cùng màn hình chính, hãy giữ điện thoại nằm ngang (màn hình hướng lên trời) với đầu điện thoại chỉ về hướng bạn đang nhìn trước khi nhấn nút *Vị trí của tôi*. Cách cầm này hoạt động như một chiếc la bàn, cho ứng dụng biết bạn đang hướng mặt về phía nào. Chỉ cần nhấn nút *Vị trí của tôi* và lắng nghe.
 

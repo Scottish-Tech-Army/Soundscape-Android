@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Mein Standort
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,17 +7,17 @@ lang: de
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Mein Standort
 
-## What is it?
+## Was ist es?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Über *„Mein Standort“* können Sie einfach ermitteln, wo Sie sich gerade befinden. *„Mein Standort“* bietet Ihnen Informationen zu Ihrem aktuellen Standort, Ihrer Blickrichtung und den Orten, Kreuzungen oder Points-of-Interest in der Nähe.
 
-## When would I use it?
+## Wann würde ich es verwenden?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*„Mein Standort“* ist nützlich, wenn Sie wissen möchten, wo Sie sich befinden oder in welche Himmelsrichtung Sie schauen.
 
-## How does it work?
+## Wie funktioniert es?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Wie bei allen vier Schaltflächen am unteren Rand des Startbildschirms halten Sie das Telefon mit dem Bildschirm flach (zum Himmel zeigend) und mit der Oberseite in die Richtung, in die Sie schauen, bevor Sie die Schaltfläche *„Mein Standort“* antippen. Dies wirkt wie ein Kompass, der der App mitteilt, in welche Richtung Sie blicken. Tippen Sie einfach auf die Taste *„Mein Standort“*, und hören Sie zu.
 

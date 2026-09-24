@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: حول Soundscape
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: ar
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# حول Soundscape
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+يستخدم Soundscape تقنية صوتية مبتكرة لمساعدة الأشخاص على بناء وعي أغنى بمحيطهم. وهذا يجعل الأشخاص أكثر ثقة وقدرة على التنقل باستقلالية.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+يعتمد Soundscape على هذه المكتبات والبيانات الممتازة من أطراف ثالثة. انقر على الروابط للاطلاع على تراخيصها:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+يوفر [©مساهمو OpenStreetMap](https://www.openstreetmap.org/copyright) جميع البيانات الجغرافية للخرائط والصوت المستخدمة في Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+يُستخدم [©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) لإنشاء بلاطات الخرائط التي نستخدمها.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+تُستخدم [مكتبة Steam Audio ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) لإنشاء الصوت ثلاثي الأبعاد، وهي متاحة للاستخدام بموجب [ترخيص Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+تُستخدم [مكتبة Oboe ©The Android Open Source Project](https://github.com/google/oboe) لتشغيل الصوت بزمن استجابة منخفض، وهي متاحة للاستخدام بموجب [ترخيص Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+جميع أسماء المنتجات والشركات والشعارات الخاصة بأطراف ثالثة هي علامات تجارية أو علامات تجارية مسجلة وتظل ملكًا لأصحابها.
 

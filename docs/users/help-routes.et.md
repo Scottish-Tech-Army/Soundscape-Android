@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Marsruudid
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,27 +7,27 @@ lang: et
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Marsruudid
 
-## What is it?
+## Mis see on?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Marsruudid on teekonnapunktide jada. Teid teavitatakse iga teekonnapunkti saabumisel ja helimajakas liigub automaatselt järgmisele teekonnapunktile.
 
-## When would I use it?
+## Millal seda kasutada?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Võite soovida luua ja kasutada marsruuti kohas, mida juba tunnete, et püsida õigel teel. Või võite soovida kasutada marsruuti selleks, et õppida tundma uut teekonda.
 
-## How does it work?
+## Kuidas see töötab?
 
-**Creating a route :**
+**Marsruudi loomine:**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Kõigepealt minge lehele *Markerid ja marsruudid*, valige vahekaart *Marsruudid* ja seejärel nupp *Uus marsruut*. Andke marsruudile nimi ja soovi korral kirjeldus, seejärel lisage teekonnapunkte, kas liikudes või valides neid oma markerite loendist. Teekonnapunktide järjekorda marsruudil saate igal ajal muuta, muutes marsruuti.
 
-**Editing a route :**
+**Marsruudi muutmine:**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Valige oma marsruut ekraanil *"Markerid ja marsruudid"* ja seejärel valige *"Muuda marsruuti"*. Siit saate lisada ja eemaldada teekonnapunkte ning muuta marsruudi nime ja kirjeldust.
 
-**Sharing a route :**
+**Marsruudi jagamine:**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Valige oma marsruut ekraanil *Markerid ja marsruudid* ja seejärel valige suvand *Jaga*, kasutades kõiki teile tavapäraselt saadaolevaid jagamisvõimalusi.
 

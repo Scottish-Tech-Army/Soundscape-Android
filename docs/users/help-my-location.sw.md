@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Mahali Nilipo
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sw
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Mahali Nilipo
 
-## What is it?
+## Ni nini?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Kitufe cha *Mahali Nilipo* hukupa haraka taarifa zinazokusaidia kujua ulipo sasa. *Mahali Nilipo* hukujulisha kuhusu mahali ulipo sasa ikiwemo mambo kama upande unaoelekea, mahali barabara au makutano ya karibu yalipo, na mahali sehemu za kuvutia za karibu zilipo.
 
-## When would I use it?
+## Ni lini nitaitumia?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*Mahali Nilipo* ni muhimu unapohitaji kujua ulipo au upande gani wa dira unaoelekea.
 
-## How does it work?
+## Inafanyaje kazi?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Kama ilivyo kwa vitufe vyote vinne vilivyo chini ya skrini ya mwanzo, shikilia simu yako ikiwa gorofa (ikielekeza juu angani) na sehemu ya juu ya simu ikielekeza upande unaoelekea kabla ya kubonyeza kitufe cha *Mahali Nilipo*. Hii hufanya kazi kama dira inayoijulisha programu upande unaoelekea. Gusa tu kitufe cha *Mahali Nilipo* kisha sikiliza.
 

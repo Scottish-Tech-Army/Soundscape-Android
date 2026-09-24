@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: কাছাকাছি মার্কার
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
@@ -7,17 +7,17 @@ lang: bn
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# কাছাকাছি মার্কার
 
-## What is it?
+## এটি কী?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+*কাছাকাছি মার্কার* বোতামটি আপনার সবচেয়ে কাছের চারটি পর্যন্ত মার্কার সম্পর্কে আপনাকে জানায়। *কাছাকাছি মার্কার* আপনার আগে থেকে জানা স্থানগুলি ব্যবহার করে আপনাকে দিকনির্ণয় করতে সাহায্য করার জন্য তৈরি।
 
-## When would I use it?
+## কখন এটি ব্যবহার করব?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+আপনি যখন আপনার অবস্থান বুঝতে এবং চারপাশের সাথে নিজেকে খাপ খাওয়াতে চেষ্টা করছেন, তখন আপনার জানা স্থানগুলির অবস্থান সম্পর্কে শুনতে *কাছাকাছি মার্কার* ব্যবহার করুন।
 
-## How does it work?
+## এটি কীভাবে কাজ করে?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+হোম স্ক্রিনের নিচের চারটি বোতামের ক্ষেত্রেই যেমন, *কাছাকাছি মার্কার* বোতাম চাপার আগে আপনার ফোনটি সমতলভাবে (স্ক্রিন আকাশের দিকে মুখ করে) এবং ফোনের উপরের অংশ আপনি যেদিকে মুখ করে আছেন সেদিকে রেখে ধরুন। এটি একটি কম্পাসের মতো কাজ করে অ্যাপটিকে জানায় যে আপনি কোন দিকে মুখ করে আছেন। শুধু, *কাছাকাছি মার্কার* বোতামে ট্যাপ করুন এবং আপনি আপনার কাছাকাছি চারটি পর্যন্ত মার্কার সম্পর্কে শুনতে পাবেন।
 

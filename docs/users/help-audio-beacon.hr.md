@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: Zvučni svjetionik
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: hr
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Zvučni svjetionik
 
-## What is it?
+## Što je to?
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+Postavljanje svjetionika na obližnju lokaciju omogućuje Soundscapeu da vas obavještava puštanjem zvučnog signala svjetionika koji dolazi iz smjera te lokacije. Ovaj svjetionik možete utišati ili uključiti na početnom zaslonu. Osim toga, Soundscape prikazuje informacije o lokaciji na početnom zaslonu, uključujući udaljenost do nje i njezinu adresu, ako je poznata.
 
-## When would I use it?
+## Kada se ovo koristi?
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+Postavljanje svjetionika korisno je kada želite pratiti poznatu znamenitost dok istražujete novo područje ili kada idete nekamo i želite biti obaviješteni o svojoj okolini usput. Značajka svjetionika ne daje vam upute korak po korak, ali daje vam neprekidan zvučni signal koji vam govori smjer prema svjetioniku, u odnosu na vaš trenutni položaj. Uz pomoć zvučnog svjetionika, vlastitih vještina snalaženja, pa čak i omiljene aplikacije za navigaciju, sami možete odlučiti kako doći do obližnjih lokacija.
 
-## How does it work?
+## Kako to funkcionira?
 
-**To set a beacon :**
+**Postavljanje svjetionika:**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ Najprije pogledajte detalje lokacije koristeći traku za pretraživanje kako biste pronašli mjesto, ili dodirom na gumb *"Mjesta u blizini"*, *"Oznake i rute"* ili *"Trenutna lokacija"* i odabirom lokacije. Na zaslonu *"Detalji lokacije"* možete odabrati gumb *"Pokreni zvučni svjetionik"*. Dodirom na njega vratit ćete se na početni zaslon i uključiti zvučni svjetionik koji dolazi iz smjera odabranog mjesta. Naziv odabranog mjesta, zajedno s udaljenošću i fizičkom adresom, ako je dostupna, sada će biti prikazani na glavnom zaslonu aplikacije.
 
-**To remove the current beacon :**
+**Uklanjanje trenutnog svjetionika:**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ Jednostavno pritisnite gumb *"Zaustavi rutu"* na početnom zaslonu.
 
-**To mute the audible beacon :**
+**Utišavanje zvučnog svjetionika:**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ Dodirnite gumb *"Utišaj svjetionik"* pored gumba *"Zaustavi rutu"* na početnom zaslonu.
 

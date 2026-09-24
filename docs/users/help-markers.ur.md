@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: مارکرز
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
@@ -7,11 +7,11 @@ lang: ur
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# مارکرز
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Soundscape کے ساتھ، آپ اپنی دنیا اور جس چیز کی بھی آپ کو پرواہ ہے اسے، نقشے پر پنز کی طرح، نشان زد کر سکتے ہیں۔
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+آپ ایسی جگہیں نشان زد کر سکتے ہیں جو آپ کے لیے ذاتی طور پر اہم ہیں، جیسے آپ کا گھر، آپ کا دفتر یا آپ کا پسندیدہ گروسری اسٹور۔ آپ کسی بھی جگہ یا پتے کو نشان زد کر سکتے ہیں، اور ایسی چیزیں بھی جو عام طور پر نقشوں پر دستیاب نہیں ہوتیں، مثلاً: عمارتوں یا پارکوں کے دروازے، پیدل چلنے والوں کے بٹن، پیدل کراسنگ، پل، بس اسٹاپس، یا یہاں تک کہ آپ کے کتے کا پسندیدہ درخت۔ ان مارکرز کو اپنی سیر کے دوران حوالے کے طور پر استعمال کریں۔
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+نشان زد جگہوں کا تجربہ کرنے کے لیے، Soundscape خودکار طور پر نشان زد جگہوں کا اعلان کرے گا جب آپ ان کے قریب سے گزریں یا ان کے قریب پہنچیں، یا آپ اپنے ارد گرد موجود نشان زد جگہوں کا مکانی کالآؤٹ سننے کے لیے Soundscape ہوم اسکرین کے نیچے موجود *\"قریبی مارکرز\"* بٹن بھی استعمال کر سکتے ہیں۔ اس کے علاوہ، آپ کسی بھی نشان زد جگہ پر آڈیو بیکن سیٹ کر سکتے ہیں۔ ایسا کرنے پر، آپ کا مانوس Soundscape آڈیو بیکن سنائی دے گا اور آپ اسے حسبِ معمول چلا سکتے ہیں۔
 

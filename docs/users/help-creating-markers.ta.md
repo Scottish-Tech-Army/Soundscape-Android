@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: மார்க்கர்களை உருவாக்குதல்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ta
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# மார்க்கர்களை உருவாக்குதல்
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+நீங்கள் மூன்று வழிகளில் குறியிடங்களை உருவாக்கலாம்: தேடல் பட்டியைப் பயன்படுத்தி நீங்கள் சேமிக்க விரும்பும் இடத்தைத் தேடுவது, *\"அருகிலுள்ள இடங்கள்\"* பொத்தானைப் பயன்படுத்தி ஓர் இடத்தைக் கண்டறிவது, அல்லது *\"தற்போதைய இருப்பிடத்தைப் பயன்படுத்து\"* பொத்தானைப் பயன்படுத்துவது - இவை அனைத்தும் Soundscape முகப்புத் திரையில் காணப்படும். நீங்கள் விரும்பிய இடத்தைக் கண்டறிந்தவுடன், அதைத் தேர்ந்தெடுப்பது உங்களை *\"இருப்பிட விவரங்கள்\"* திரைக்கு அழைத்துச் செல்லும். இந்தத் திரையில், *\"குறியிடமாகச் சேமி\"* பொத்தானைத் தேர்ந்தெடுக்கவும்.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+இப்போது இந்தக் குறியிடத்தைத் தனிப்பயனாக்க உங்களுக்கு விருப்பம் இருக்கும். குறியிடத்தின் பெயரை மாற்றலாம், மேலும் கூடுதல் தகவலை வழங்க குறியிடத்துடன் அறிவிக்கப்படும் ஒரு குறிப்பையும் சேர்க்கலாம். முடிந்ததும், உங்கள் குறியிடத்தைச் சேமிக்க *முடிந்தது* பொத்தானைத் தேர்ந்தெடுக்கவும்.
 

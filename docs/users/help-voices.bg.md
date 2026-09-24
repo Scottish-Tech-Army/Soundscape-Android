@@ -1,5 +1,5 @@
 ---
-title: Voices
+title: Гласове
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: bg
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Гласове
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape може да използва всеки от гласовете, които сте изтеглили на своя Android телефон в настройките за извеждане на говор (Text-to-speech). В приложението Soundscape, за да изберете глас, различен от стандартния за Android, отидете на *"Настройки"* от основното меню, разгънете секцията *"Аудио"* и след това изберете *"Гласове"*.
 

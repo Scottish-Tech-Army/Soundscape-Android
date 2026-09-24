@@ -1,5 +1,5 @@
 ---
-title: Why is Soundscape working offline?
+title: Soundscape がオフラインになるのはなぜですか?
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ja
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Why is Soundscape working offline?
+# Soundscape がオフラインになるのはなぜですか?
 
-## Why is Soundscape working offline?
+## Soundscape がオフラインになるのはなぜですか?
 
-When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
+インターネットに接続されていない場合や Soundscape サービスが停止している場合、Soundscape はオフライン モードに切り替わります。引き続き動作しますが、一部の機能が制限される可能性があります。
 
-## Limitations
+## 制限
 
-Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
+以前に歩いたことのある地域では、Soundscape がコールアウトの履歴に情報を保存しているため、引き続きコールアウトが機能します。また、コールアウトの履歴に既に保存されている場所には、音声ビーコンを設定したりマーカーを作成したりできます。
 
-## What can you do?
+## 何ができますか?
 
-Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
+スマートフォンが Wi-Fi または携帯データ ネットワークで良好なインターネット接続を得られると、Soundscape は通常モードに戻ろうとします。接続が良好であるにもかかわらず Soundscape が通常モードに戻らない場合は、Soundscape サービスが停止している可能性があります。
 

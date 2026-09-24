@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: आवाजी आदेश
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
@@ -7,37 +7,39 @@ lang: mr
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# आवाजी आदेश
 
-## What is it?
+## हे काय आहे?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+फोनला स्पर्श न करता तुम्ही Gemini ला Soundscape मध्ये गोष्टी करायला सांगू शकता: एखादी ध्वनी सूचना ऐकणे, तुमचा एखादा मार्ग सुरू करणे, किंवा तुमच्या एखाद्या मार्करवर ऑडिओ बीकन ठेवणे. Android ॲप फंक्शनना पाठिंबा देणारा इतर कोणताही सहाय्यक हेच करू शकतो.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+सहाय्यकाने सारांश वाचून दाखवण्याऐवजी Soundscape स्वतःच्या आवाजात, तुम्हाला आधीच माहीत असलेल्या ध्वनी सूचना आणि बीकन आवाजांसह उत्तर देते. त्यामुळे तुम्ही जे ऐकता ते ज्या दिशेचे वर्णन आहे त्याच दिशेकडून येत राहते.
 
-## When would I use it?
+## मी हे केव्हा वापरावे?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+फोन खिशात असताना, हात भरलेले असताना, किंवा बटण दाबण्यासाठी थांबायचे नसताना आवाजी आदेश उपयोगी पडतात. Soundscape पार्श्वभूमीत चालू असतानाही आणि फोन लॉक असतानाही ते चालतात, आणि ध्वनी सूचना मागितल्याने ॲप उघडत नाही.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+ऐकण्याचे काम तुमचा सहाय्यक करतो, Soundscape नाही. त्यामुळे ॲप कधीही तुमचा मायक्रोफोन ताब्यात घेत नाही आणि तुमचे ब्लूटूथ हेडफोन फोन कॉलसाठी वापरल्या जाणाऱ्या कमी दर्जाच्या मोडमध्ये न जाता उच्च दर्जाच्या ऑडिओ मोडमध्येच राहतात.
 
-## How does it work?
+## हे कसे काम करते?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+पाठ करावी अशी कोणतीही ठराविक वाक्ये नाहीत. तुम्हाला जे हवे ते तुमच्या शब्दांत सांगा आणि सहाय्यक ते खालीलपैकी एका कृतीशी जुळवेल. मार्ग आणि मार्करची नावे ढोबळमानाने जुळवली जातात, त्यामुळे नावाचा काही भाग सहसा पुरेसा असतो.
 
-You can ask Soundscape to:
+तुम्ही Soundscape ला सांगू शकता:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+*\"माझे स्थान\"* वर्णन करायला, *\"माझ्याभोवती\"* काय आहे, किंवा *\"माझ्यापुढे\"* काय आहे.
 
-Call out the saved markers near you.
+तुमच्या जवळचे जतन केलेले मार्कर सांगायला.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+तुमचा एखादा जतन केलेला मार्ग नावाने सुरू करायला, पुढच्या मार्ग बिंदूकडे जायला, मागच्याकडे परतायला, बीकन म्यूट करायला, किंवा मार्ग थांबवायला.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+तुमच्या एखाद्या जतन केलेल्या मार्करवर नावाने ऑडिओ बीकन ठेवायला, किंवा बीकन बंद करायला.
 
-Read back the names of your saved routes or your saved markers.
+ध्वनी सूचना तपशील *\"निःशब्द\"*, *\"संक्षिप्त\"*, *\"संतुलित\"* किंवा *\"तपशीलवार\"* वर ठेवायला, जेणेकरून तुम्ही चालत असताना Soundscape किती सांगेल हे बदलते. निःशब्द केल्यास स्वयंचलित ध्वनी सूचना बंद होतात.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+तुमच्या जतन केलेल्या मार्गांची किंवा जतन केलेल्या मार्करची नावे वाचून दाखवायला.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+या दोन याद्या वगळता बाकी सर्वांसाठी Soundscape चालू असणे आवश्यक आहे. ते चालू नसेल, तर सहाय्यक तुम्हाला आधी Soundscape उघडायला सांगेल. तुमचे मार्ग आणि मार्कर यांची यादी दोन्ही परिस्थितींत चालते, कारण त्यात तुम्ही आधीच जतन केलेलेच वाचले जाते.
+
+आवाजी आदेशांसाठी Android 16 किंवा नवीन असलेला फोन आणि ॲप फंक्शनना पाठिंबा देणारा सहाय्यक लागतो.
 

@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: Um Soundscape
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: is
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Um Soundscape
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape notar nýstárlega hljóðtækni til að hjálpa fólki að byggja upp ríkari meðvitund um umhverfi sitt. Þetta eykur sjálfstraust fólks og gerir því kleift að ferðast sjálfstætt.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape byggir á þessum frábæru bókasöfnum og gögnum frá þriðja aðila. Smelltu á tenglana til að skoða leyfin þeirra:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) veita öll landfræðileg gögn sem notuð eru við kortlagningu og hljóð í Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) er notað til að búa til þær kortaflísur sem við notum.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) er notað til að búa til þrívíddarhljóð og er aðgengilegt til notkunar undir [Apache 2.0 leyfinu](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) er notað til að spila hljóðið með lítilli töf og er aðgengilegt til notkunar undir [Apache 2.0 leyfinu](https://github.com/google/oboe/blob/main/LICENSE).
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+Öll vörumerki, fyrirtækjanöfn og lógó þriðja aðila eru vörumerki eða skráð vörumerki og eru áfram eign þeirra sem eiga þau.
 

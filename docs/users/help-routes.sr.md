@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Руте
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: sr
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Руте
 
-## What is it?
+## Шта је то?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Руте су низ путних тачака. Бићете обавештени по доласку до сваке путне тачке, а звучни бакен ће аутоматски прећи на следећу путну тачку.
 
-## When would I use it?
+## Када бих то користио/ла?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Можда ћете желети да направите и користите руту на месту које већ познајете, како бисте остали на правом путу. Или можда желите да користите руту да бисте научили нови пут.
 
-## How does it work?
+## Како то функционише?
 
-**Creating a route :**
+**Прављење руте:**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Прво, идите на *Маркери и руте*, изаберите картицу *Руте*, а затим изаберите дугме *Нова рута*. Дајте рути назив и по жељи опис, а затим додајте путне тачке успут или их изаберите са ваше листе маркера. Редослед путних тачака у рути можете у сваком тренутку променити уређивањем руте.
 
-**Editing a route :**
+**Уређивање руте:**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Изаберите своју руту на екрану *\"Маркери и руте\"*, а затим изаберите *\"Уреди руту\"*. Одавде можете додавати и уклањати путне тачке, као и мењати назив и опис руте.
 
-**Sharing a route :**
+**Дељење руте:**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Изаберите своју руту на екрану *Маркери и руте*, а затим изаберите опцију *Дели*, користећи све уобичајене опције дељења које су вам доступне.
 

@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: Teave Soundscape'i kohta
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,19 +7,19 @@ lang: et
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Teave Soundscape'i kohta
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape kasutab uuenduslikku helipõhist tehnoloogiat, mis aitab inimestel oma ümbrusest paremini teadlik olla. See muudab inimesed enesekindlamaks ja võimaldab neil iseseisvalt liikuda.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape tugineb nendele suurepärastele kolmandate osapoolte teekidele ja andmetele. Klõpsa linkidel, et vaadata nende litsentse:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) pakuvad kõiki geoandmeid, mida Soundscape kaartide ja heli jaoks kasutab.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) abil genereeritakse meie kasutatavad kaardiplaadid.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) abil genereeritakse 3D-heli ning see on kasutamiseks saadaval [Apache 2.0 litsentsi](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) alusel.
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) abil esitatakse heli väikese latentsusega ning see on kasutamiseks saadaval [Apache 2.0 litsentsi](https://github.com/google/oboe/blob/main/LICENSE) alusel.
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+Kõik kolmandate osapoolte toodete ja ettevõtete nimed ning logod on kaubamärgid või registreeritud kaubamärgid ja jäävad nende vastavate omanike omandiks.
 

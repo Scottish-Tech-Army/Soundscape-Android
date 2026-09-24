@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: Nasveti
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: sl
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# Nasveti
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Postajališča avtobusov v bližini najdete tako, da v seznamu *"Kraji v bližini"* izberete filter *"Javni prevoz"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Svetilnik lahko nastavite na kateri koli naslov. Na glavnem zaslonu aplikacije Soundscape poiščite naslov. Ko naslov izberete med rezultati iskanja, se prikaže zaslon *"Podrobnosti lokacije"*, na katerem lahko izberete možnost *"Zaženi zvočni svetilnik"* za ta naslov. Na ta način lahko svetilnik nastavite na podjetja, kraje, zanimivosti in bivališča, ki jih ni v Open Street Map.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Če redno uporabljate določeno avtobusno linijo, postajališče vstopa in izstopa shranite kot oznaki. Tako bosta shranjeni in ju boste zlahka spet našli – z začetnega zaslona odprite *"Oznake in poti"* ter ju poiščite na strani *"Oznake"*. Nanju lahko nastavite svetilnik in redno boste prejemali posodobitve o tem, kako blizu ste postajališču izstopa. Opomba: ritmični zvok lahko izklopite, posodobitve o razdalji pa boste še vedno prejemali med potjo.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Če telefon spravite v žep in obstanete, zvok svetilnika postane tišji, ker Soundscape ne more ugotoviti, v katero smer ste obrnjeni. To odpravite tako, da spet začnete hoditi ali pa vzamete telefon v roke in ga držite vodoravno.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape deluje najbolje, kadar telefon držite vodoravno, z zaslonom obrnjenim proti nebu in zgornjim robom telefona obrnjenim stran od vas.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Ritmični zvok svetilnika lahko vklopite in izklopite z gumbom za izklop zvoka na začetnem zaslonu. Če je svetilnik utišan, boste še vedno prejemali posodobitve o razdalji do cilja približno vsakih 50 metrov.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Če želite Soundscape uporabljati še naprej, vendar ne želite slišati samodejnih zvočnih obvestil, nastavite *Raven podrobnosti obvestil* na *Brez zvoka* v razdelku *Upravljanje zvočnih obvestil* na zaslonu *Nastavitve*, do katerega dostopate prek menija. Če aplikacije Soundscape nekaj časa ne boste uporabljali, jo lahko namesto tega z gumbom *Spanje* na začetnem zaslonu preklopite v način spanja ali dremeža.
 

@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: Прављење маркера
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: sr
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# Прављење маркера
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+Маркере можете направити на три начина: претраживањем места које желите да сачувате помоћу траке за претрагу, проналажењем места помоћу дугмета *\"Оближња места\"*, или коришћењем дугмета *\"Користи тренутну локацију\"*, а сва ова дугмад се налазе на почетном екрану Soundscape-а. Када пронађете жељено место, избором тог места отвориће се екран *\"Детаљи локације\"*. На овом екрану изаберите дугме *\"Сачувај као маркер\"*.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+Сада ћете имати могућност да прилагодите овај маркер. Можете променити назив маркера, а можете и додати напомену која ће се најавити заједно са маркером и пружити додатне информације. Када завршите, изаберите дугме *Готово* да сачувате маркер.
 

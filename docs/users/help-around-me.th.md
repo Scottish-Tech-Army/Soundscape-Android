@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: รอบตัวฉัน
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: th
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# รอบตัวฉัน
 
-## What is it?
+## คืออะไร
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+ปุ่ม *รอบตัวฉัน* จะบอกคุณเกี่ยวกับสิ่งหนึ่งในแต่ละจตุภาคทั้งสี่รอบตัวคุณ (ข้างหน้า ขวา ข้างหลัง และซ้าย) *รอบตัวฉัน* มีไว้เพื่อช่วยให้คุณปรับตัวให้เข้ากับสภาพแวดล้อมรอบตัว
 
-## When would I use it?
+## ควรใช้เมื่อใด
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+เมื่อคุณกำลังพยายามกำหนดทิศทางและปรับตัวให้เข้ากับสภาพแวดล้อมรอบตัว ให้ใช้ *รอบตัวฉัน* เพื่อฟังเกี่ยวกับสิ่งต่างๆ รอบตัวคุณ
 
-## How does it work?
+## ทำงานอย่างไร
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+เช่นเดียวกับปุ่มทั้งสี่ที่อยู่ด้านล่างของหน้าจอหลัก ให้ถือโทรศัพท์โดยวางหน้าจอในแนวราบ (หันขึ้นฟ้า) และด้านบนของโทรศัพท์ชี้ไปในทิศทางที่คุณหันหน้าไป ก่อนที่จะกดปุ่ม *รอบตัวฉัน* วิธีนี้ทำหน้าที่เหมือนเข็มทิศบอกแอปว่าคุณกำลังหันหน้าไปทางทิศใด เพียงแตะปุ่ม *รอบตัวฉัน* แล้วคุณจะได้ยินสถานที่น่าสนใจสี่แห่งที่จัดเรียงอยู่รอบตัวคุณ
 

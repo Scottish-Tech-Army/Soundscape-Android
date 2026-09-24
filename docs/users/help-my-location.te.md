@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: నా స్థానం
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,17 +7,17 @@ lang: te
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# నా స్థానం
 
-## What is it?
+## ఇది ఏమిటి?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+*నా స్థానం* బటన్, మీరు ప్రస్తుతం ఎక్కడ ఉన్నారో తెలుసుకోవడానికి సహాయపడే సమాచారాన్ని త్వరగా అందిస్తుంది. మీరు ఎదుర్కొంటున్న దిశ, సమీప రోడ్లు లేదా కూడళ్లు ఎక్కడ ఉన్నాయి, మరియు సమీప ఆసక్తికరమైన ప్రదేశాలు ఎక్కడ ఉన్నాయి వంటి వాటితో సహా మీ ప్రస్తుత స్థానం గురించి *నా స్థానం* తెలియజేస్తుంది.
 
-## When would I use it?
+## దీన్ని నేను ఎప్పుడు ఉపయోగించాలి?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+మీరు ఎక్కడ ఉన్నారో లేదా ఏ దిక్కుకు ఎదురుగా ఉన్నారో తెలుసుకోవాల్సి వచ్చినప్పుడు *నా స్థానం* ఉపయోగకరంగా ఉంటుంది.
 
-## How does it work?
+## ఇది ఎలా పని చేస్తుంది?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *నా స్థానం* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ఎదుర్కొంటున్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *నా స్థానం* బటన్‌ను నొక్కి వినండి.
 

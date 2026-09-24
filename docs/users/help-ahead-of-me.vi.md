@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: Phía trước tôi
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: vi
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Phía trước tôi
 
-## What is it?
+## Đây là gì?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+Nút *\"Phía trước tôi\"* cho bạn biết về tối đa năm thứ ở phía trước bạn. *\"Phía trước tôi\"* được thiết kế để giúp bạn khám phá con đường phía trước khi bạn đang tìm hiểu về một khu vực mới.
 
-## When would I use it?
+## Khi nào tôi nên dùng tính năng này?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Khi bạn đang đi bộ trên phố, hãy thử dùng *Phía trước tôi* để khám phá những địa điểm và sự vật sắp xuất hiện ở cả hai bên con phố phía trước.
 
-## How does it work?
+## Tính năng này hoạt động như thế nào?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Cũng như với cả bốn nút ở dưới cùng màn hình chính, hãy giữ điện thoại nằm ngang (màn hình hướng lên trời) với đầu điện thoại chỉ về hướng bạn đang nhìn trước khi nhấn nút *Phía trước tôi*. Cách cầm này hoạt động như một chiếc la bàn, cho ứng dụng biết bạn đang hướng mặt về phía nào. Chỉ cần nhấn nút *Phía trước tôi* và bạn sẽ nghe được vài địa điểm quan tâm nằm gần như ở phía trước bạn.
 

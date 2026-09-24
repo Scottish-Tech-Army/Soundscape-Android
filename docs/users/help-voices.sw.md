@@ -1,5 +1,5 @@
 ---
-title: Voices
+title: Sauti
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: sw
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Sauti
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+...panua sehemu ya *"Sauti"*, kisha chagua *"Sauti"*.
 

@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: góð ráð
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: is
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# góð ráð
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Þú getur fundið nálæg strætóstopp með því að velja síuna *\"Almenningssamgöngur\"* í listanum *\"Nálægir staðir\"*.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Þú getur sett hljóðvita á hvaða heimilisfang sem er. Á aðalskjánum í Soundscape leitarðu að heimilisfanginu. Veldu heimilisfangið í leitarniðurstöðunum til að opna skjáinn *"Upplýsingar um staðsetningu"*. Á þessum skjá er valkosturinn *"Kveikja á hljóðvita"* fyrir heimilisfangið. Með þessum hætti geturðu sett hljóðvita á fyrirtæki, staði, áhugaverða staði og heimili sem eru ekki í OpenStreetMap.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Ef þú tekur reglulega ákveðna strætisvagnaleið skaltu vista uppstignings- og niðurstigningarstaðina sem merki. Þá verða þeir vistaðir svo þú finnur þá auðveldlega aftur. Farðu í *"Merki og leiðir"* frá heimaskjánum og finndu þá síðan á síðunni *"Merki"*. Þú getur sett hljóðvita á þá til að fá reglulegar uppfærslur um hversu nálægt þú ert niðurstigningarstaðnum. Athugið: þú getur slökkt á taktfasta hljóðinu og færð samt fjarlægðaruppfærslur á leiðinni.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Ef þú setur símann í vasann og hættir að hreyfa þig dofnar hljóðvitinn því Soundscape getur ekki greint í hvaða átt þú snýrð. Til að laga þetta skaltu byrja aftur að ganga, eða taka símann upp og halda honum flötum.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape virkar best þegar þú heldur símanum flötum með skjáinn snúinn upp að himni og topp síma snúinn frá þér.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+Þú getur kveikt og slökkt á taktfasta hljóði hljóðvitans með þögunarhnappnum á heimaskjánum. Ef hljóðvitinn er þaggaður færðu samt uppfærslur um fjarlægðina að áfangastaðnum um það bil á 50 metra fresti.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Til að halda áfram að nota Soundscape án þess að heyra sjálfvirkar tilkynningar skaltu stilla *\"Nákvæmni tilkynninga\"* á *\"Þögult\"* í kaflanum *\"Stjórna tilkynningum\"* á skjánum *\"Stillingar\"* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape um stund geturðu í staðinn sett það í dvalaham eða lúra-ham með hnappnum *\"fara í dvala\"* á heimaskjánum.
 

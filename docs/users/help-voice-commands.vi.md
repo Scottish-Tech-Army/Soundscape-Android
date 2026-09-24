@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Lệnh thoại
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: vi
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Lệnh thoại
 
-## What is it?
+## Đây là gì?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Bạn có thể nhờ Gemini làm các việc trong Soundscape mà không cần chạm vào điện thoại: nghe một thông báo âm thanh, bắt đầu một trong các lộ trình của bạn, hoặc đặt đèn hiệu âm thanh lên một trong các điểm đánh dấu của bạn. Bất kỳ trợ lý nào khác hỗ trợ chức năng ứng dụng của Android đều làm được như vậy.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape trả lời bằng giọng nói của chính nó, với những thông báo âm thanh và tiếng đèn hiệu mà bạn đã quen, thay vì để trợ lý đọc một bản tóm tắt. Nhờ đó, điều bạn nghe vẫn phát ra từ đúng hướng mà nó đang mô tả.
 
-## When would I use it?
+## Khi nào tôi nên dùng tính năng này?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Lệnh thoại hữu ích khi điện thoại của bạn đang ở trong túi, khi tay bạn bận, hoặc khi bạn không muốn dừng lại để bấm nút. Chúng hoạt động khi Soundscape chạy nền và khi điện thoại của bạn đang khóa, và việc yêu cầu một thông báo âm thanh không mở ứng dụng.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Trợ lý của bạn mới là bên lắng nghe, không phải Soundscape, nên ứng dụng không bao giờ chiếm micrô của bạn và tai nghe Bluetooth vẫn ở chế độ âm thanh chất lượng cao thay vì chuyển sang chế độ chất lượng thấp hơn dùng cho cuộc gọi.
 
-## How does it work?
+## Tính năng này hoạt động như thế nào?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Không có câu chữ cố định nào phải học thuộc. Hãy nói điều bạn muốn bằng lời của mình và trợ lý sẽ khớp nó với một trong các hành động dưới đây. Tên lộ trình và điểm đánh dấu được khớp một cách linh hoạt, nên thường chỉ cần một phần của tên là đủ.
 
-You can ask Soundscape to:
+Bạn có thể yêu cầu Soundscape:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Mô tả *\"Vị trí của tôi\"*, những gì đang ở *\"Xung quanh tôi\"*, hoặc những gì đang ở *\"Phía trước tôi\"*.
 
-Call out the saved markers near you.
+Thông báo các điểm đánh dấu đã lưu ở gần bạn.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Bắt đầu một trong các lộ trình đã lưu theo tên, chuyển sang điểm dừng tiếp theo, quay lại điểm dừng trước, tắt tiếng đèn hiệu, hoặc dừng lộ trình.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Đặt đèn hiệu âm thanh lên một trong các điểm đánh dấu đã lưu theo tên, hoặc tắt đèn hiệu.
 
-Read back the names of your saved routes or your saved markers.
+Đặt mức chi tiết thông báo thành *\"Im lặng\"*, *\"Yên tĩnh\"*, *\"Cân bằng\"* hoặc *\"Chi tiết\"*, để thay đổi mức độ Soundscape nói khi bạn đi bộ. Im lặng sẽ tắt thông báo tự động.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Đọc lại tên các lộ trình đã lưu hoặc các điểm đánh dấu đã lưu của bạn.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Mọi thứ trừ hai danh sách đều cần Soundscape đang chạy. Nếu không, trợ lý sẽ bảo bạn mở Soundscape trước. Việc liệt kê lộ trình và điểm đánh dấu vẫn hoạt động trong cả hai trường hợp, vì nó chỉ đọc những gì bạn đã lưu.
+
+Lệnh thoại cần điện thoại chạy Android 16 trở lên, cùng một trợ lý hỗ trợ chức năng ứng dụng.
 

@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: ルート
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ja
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# ルート
 
-## What is it?
+## どのようなものですか?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+ルートは複数のウェイポイントです。各ウェイポイントに到着するたびに通知され、音声ビーコンが次のウェイポイントを自動的に案内します。
 
-## When would I use it?
+## どのような場合に使用できますか?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+すでに知っている場所でルートを作成して使用すると、正しい進路を進んでいることを確認できます。また、初めての道筋を覚えるためにルートを使うこともできます。
 
-## How does it work?
+## どのような仕組みですか?
 
-**Creating a route :**
+**ルートを作成する：**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ まず、*「マーカーおよびルート」* に移動して *「ルート」* タブを選択し、*「新しいルート」* ボタンを選択します。ルート名を指定して、オプションで説明を入力します。その後、ルートを進みながらウェイポイントを追加するか、マーカーのリストから選択します。ウェイポイントの順序は、ルートを編集することでいつでも変更できます。
 
-**Editing a route :**
+**ルートを編集する：**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ *「マーカーおよびルート」* 画面でルートを選択し、*「ルートを編集」* を選択します。ここからウェイポイントの追加・削除や、ルート名および説明の編集ができます。
 
-**Sharing a route :**
+**ルートを共有する**:
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+[マーカーおよびルート] 画面でルートを選択し、通常の共有オプションを使って [共有する] を選択します。
 

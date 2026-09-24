@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Minu asukoht
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,17 +7,17 @@ lang: et
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Minu asukoht
 
-## What is it?
+## Mis see on?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Nupp *Minu asukoht* annab kiiresti teavet, mis aitab teil välja selgitada, kus te praegu olete. *Minu asukoht* räägib teile teie praegusest asukohast, sealhulgas sellest, millises suunas te vaatate, kus on lähedal asuvad teed või ristmikud ja kus on lähedal asuvad huvipunktid.
 
-## When would I use it?
+## Millal seda kasutada?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*Minu asukoht* on kasulik, kui vajate teada, kus te olete või millises ilmakaares te seisate.
 
-## How does it work?
+## Kuidas see töötab?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Nagu kõigi nelja avakuva allosas oleva nupu puhul, hoidke enne nupu *Minu asukoht* vajutamist telefoni tasapinnaliselt (ekraan taeva poole) ja telefoni ülaosa suunatuna sinnapoole, kuhu vaatate. See toimib kompassina, mis ütleb rakendusele, millises suunas te vaatate. Puudutage lihtsalt nuppu *Minu asukoht* ja kuulake.
 

@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Anunțuri automate
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: ro
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Anunțuri automate
 
-## What is it?
+## Ce este?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape te poate informa despre lucrurile din jur pe măsură ce te apropii de ele, anunțându-le numele din direcția în care se află. Aplicația va face acest lucru automat pentru tot felul de elemente, cum ar fi afaceri, stații de autobuz și chiar intersecții. Poți configura ce anunță aplicația în mod automat în secțiunea *\"Gestionare anunțuri\"* din ecranul *\"Setări\"*, iar poți dezactiva toate anunțurile când dorești ca aplicația să fie silențioasă.
 
-## When would I use it?
+## Când aș folosi această funcție?
 
-**Exploring a new area :**
+**Explorarea unei zone noi:**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Activează anunțurile automate și plimbă-te pentru a auzi despre toate magazinele, restaurantele și altele asemenea pe măsură ce treci pe lângă ele.
 
-**Walking to a specific location :**
+**Deplasarea către o locație specifică:**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Când te îndrepți către un anumit loc, anunțurile automate pentru intersecții pot fi deosebit de utile. Anunțurile pentru intersecții te informează despre configurația intersecțiilor pe măsură ce te apropii de ele și confirmă strada pe care te afli când le părăsești.
 
-**When you need silence :**
+**Când ai nevoie de liniște:**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Când ești pe punctul de a traversa o stradă sau pur și simplu ai nevoie ca aplicația să fie silențioasă, poți dezactiva anunțurile. Când anunțurile sunt dezactivate, aplicația te va informa doar dacă apeși manual unul dintre butoanele *"Locația mea"*, *"Marcaje din apropiere"*, *"În jurul meu"* sau *"Înaintea mea"*.
 
-## How does it work?
+## Cum funcționează?
 
-**Turning callouts on or off :**
+**Activarea sau dezactivarea anunțurilor:**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Dezactivarea anunțurilor va face aplicația silențioasă. Anunțurile pot fi dezactivate în secțiunea *\"Gestionare anunțuri\"* din ecranul *\"Setări\"*, setând *\"Detaliul anunțurilor\"* pe *\"Silențios\"*, și pot fi reactivate alegând orice alt nivel. Poți face același lucru cerându-i lui Siri sau lui Gemini. Poți totodată să faci Soundscape mai discret treptat, cu butoanele de control media de pe căști: fiecare apăsare pe *\"anterior\"* coboară cu un nivel prin *\"Detaliat\"*, *\"Echilibrat\"*, *\"Discret\"* și *\"Silențios\"*, iar încă o apăsare revine la *\"Detaliat\"*. Vezi subiectul de ajutor *\"Utilizarea comenzilor media\"*. Alternativ, poți folosi butonul *\"Repaus\"* din colțul din dreapta sus al ecranului principal pentru ca Soundscape să nu mai facă anunțuri până când alegi să îl trezești din nou.
 
-**Managing which callouts you hear :**
+**Gestionarea anunțurilor pe care le auzi:**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Pentru a alege tipurile de elemente pe care Soundscape le va anunța automat, accesează ecranul *\"Setări\"* din meniul de pe ecranul *\"Principal\"*. În secțiunea *\"Gestionare anunțuri\"* din ecranul *\"Setări\"* alegi cât de mult vorbește aplicația, cu *\"Detaliul anunțurilor\"*, dacă anunță *\"Străzi și intersecții\"* și care sunt *\"Locuri de anunțat\"*. Dacă dorești să dezactivezi toate anunțurile, setează *\"Detaliul anunțurilor\"* pe *\"Silențios\"*.
 

@@ -1,5 +1,5 @@
 ---
-title: Tips
+title: İpuçları
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,19 +7,19 @@ lang: tr
 permalink: /users/help-tips.html
 ---
 
-# Tips
+# İpuçları
 
-You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
+Yakındaki otobüs duraklarını *\"Yakındaki Yerler\"* listesindeki *\"Toplu Taşıma\"* filtresini seçerek bulabilirsiniz.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+Herhangi bir adrese işaret ayarlayabilirsiniz. Ana Soundscape ekranından adresi arayın. *"Konum Ayrıntıları"* ekranını açmak için arama sonuçlarında adresi seçin. Bu ekranda, o adres için *"Sesli İşareti Başlat"* seçeneği bulunur. Bu şekilde, OpenStreetMap'te bulunmayan işletmelere, yerlere, ilgi noktalarına ve konutlara da işaret ayarlayabilirsiniz.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+Düzenli olarak kullandığınız bir otobüs hattı varsa, bindiğiniz ve indiğiniz durakları kayıtlı nokta olarak kaydedin. Böylece kaydedilmiş olurlar ve onları kolayca yeniden bulabilirsiniz; ana ekrandan *"Kayıtlı Noktalar ve Rotalar"*'a gidip *"Kayıtlı Noktalar"* sayfasında bulabilirsiniz. Onlara bir işaret ayarlayarak iniş durağınıza ne kadar yaklaştığınız hakkında düzenli güncellemeler alabilirsiniz. Not: ritmik sesi kapatsanız bile yol boyunca mesafe güncellemelerini almaya devam edersiniz.
 
-If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
+Telefonunuzu cebinize koyup hareketsiz kalırsanız, Soundscape hangi yöne baktığınızı belirleyemediği için işaret sesi susar. Bunu düzeltmek için tekrar yürümeye başlayın veya telefonu çıkarıp düz tutun.
 
-Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
+Soundscape, telefonu ekran gökyüzüne bakacak şekilde ve telefonun üst kısmı sizden uzağa işaret edecek şekilde düz tuttuğunuzda en iyi şekilde çalışır.
 
-You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
+İşaretin ritmik sesini ana ekrandaki sessize alma düğmesiyle açıp kapatabilirsiniz. İşaret sessize alınmış olsa bile, yaklaşık her 50 metrede bir hedefinize olan mesafe hakkında güncelleme almaya devam edersiniz.
 
-To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
+Otomatik anonsları duymadan Soundscape'i kullanmaya devam etmek için, menüden *\"Ayarlar\"* ekranındaki *\"Anonsları yönet\"* bölümünde *\"Anons Ayrıntısı\"* ayarını *\"Sessiz\"* yapın. Bir süre Soundscape'i kullanmayacaksanız, bunun yerine ana ekrandaki *\"Uyku Modu\"* düğmesini kullanarak uygulamayı uyku veya erteleme moduna alabilirsiniz.
 

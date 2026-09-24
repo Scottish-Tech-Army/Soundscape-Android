@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: میری لوکیشن
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ur
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# میری لوکیشن
 
-## What is it?
+## یہ کیا ہے؟
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+*میرا مقام* بٹن آپ کو فوری طور پر ایسی معلومات فراہم کرتا ہے جو یہ جاننے میں مدد دیتی ہیں کہ آپ فی الحال کہاں ہیں۔ *میرا مقام* آپ کو آپ کے موجودہ مقام کے بارے میں بتاتا ہے جس میں آپ کا رخ، قریبی سڑکوں یا چوراہوں کا مقام، اور قریبی دلچسپی کے مقامات شامل ہیں۔
 
-## When would I use it?
+## میں اسے کب استعمال کروں گا؟
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*میرا مقام* اس وقت مفید ہے جب آپ کو یہ جاننے کی ضرورت ہو کہ آپ کہاں ہیں یا آپ کس سمت کا رخ کیے ہوئے ہیں۔
 
-## How does it work?
+## یہ کیسے کام کرتا ہے؟
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+ہوم اسکرین کے نیچے موجود تمام چار بٹنوں کی طرح، *میرا مقام* بٹن دبانے سے پہلے اپنے فون کو چپٹا (آسمان کی طرف رخ کیے ہوئے) پکڑیں اور فون کا اوپری حصہ اسی سمت میں رکھیں جس طرف آپ کا رخ ہے۔ یہ ایک کمپاس کی طرح کام کرتا ہے جو ایپ کو بتاتا ہے کہ آپ کس سمت کا رخ کیے ہوئے ہیں۔ بس *میرا مقام* بٹن پر ٹیپ کریں اور سنیں۔
 

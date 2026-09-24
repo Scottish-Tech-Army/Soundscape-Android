@@ -1,5 +1,5 @@
 ---
-title: Why is Soundscape working offline?
+title: Kwa nini Soundscape inafanya kazi nje ya mtandao?
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sw
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Why is Soundscape working offline?
+# Kwa nini Soundscape inafanya kazi nje ya mtandao?
 
-## Why is Soundscape working offline?
+## Kwa nini Soundscape inafanya kazi nje ya mtandao?
 
-When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
+Wakati hakuna muunganisho wa intaneti, au huduma za Soundscape zikiwa hazifanyi kazi, Soundscape hubadilika na kuingia katika hali ya nje ya mtandao. Itaendelea kufanya kazi, lakini baadhi ya vipengele vinaweza kuwa na vikwazo.
 
-## Limitations
+## Vikwazo
 
-Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
+Matangazo yanaendelea kufanya kazi katika maeneo uliyopita hapo awali, kwa sababu Soundscape huyahifadhi katika historia yako ya matangazo. Pia unaweza kuweka beacon ya sauti au kuunda alama kwenye maeneo yaliyokwisha hifadhiwa katika historia yako ya matangazo.
 
-## What can you do?
+## Unaweza kufanya nini?
 
-Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
+Soundscape itajaribu kurejea kufanya kazi kama kawaida mara tu simu yako itakapokuwa na muunganisho mzuri wa intaneti, iwe kwa Wi-Fi au data ya simu. Ikiwa simu yako ina muunganisho mzuri lakini Soundscape bado hairejei kufanya kazi kama kawaida, huenda kuna hitilafu katika huduma za Soundscape.
 

@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: Soundscape সম্পর্কে
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
@@ -7,19 +7,19 @@ lang: bn
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Soundscape সম্পর্কে
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape উদ্ভাবনী অডিও-ভিত্তিক প্রযুক্তি ব্যবহার করে মানুষকে তাদের চারপাশ সম্পর্কে আরও সমৃদ্ধ সচেতনতা গড়ে তুলতে সাহায্য করে। এর ফলে মানুষ আরও আত্মবিশ্বাসী হয় এবং স্বাধীনভাবে চলাফেরা করতে পারে।
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape এই চমৎকার তৃতীয় পক্ষের লাইব্রেরি ও ডেটার উপর নির্ভর করে। তাদের লাইসেন্স দেখতে লিঙ্কগুলিতে ক্লিক করুন:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©OpenStreetMap অবদানকারীরা](https://www.openstreetmap.org/copyright) Soundscape-এ ব্যবহৃত মানচিত্র ও অডিওর জন্য সমস্ত ভৌগোলিক ডেটা সরবরাহ করেন।
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+আমরা যে ম্যাপিং টাইলগুলি ব্যবহার করি তা তৈরি করতে [©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) ব্যবহার করা হয়।
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+৩ডি অডিও তৈরি করতে [Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) ব্যবহার করা হয়, এবং এটি [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md)-এর অধীনে ব্যবহারের জন্য উপলব্ধ।
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+কম লেটেন্সিতে অডিও চালাতে [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) ব্যবহার করা হয়, এবং এটি [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE)-এর অধীনে ব্যবহারের জন্য উপলব্ধ।
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+সমস্ত তৃতীয় পক্ষের পণ্য, কোম্পানির নাম এবং লোগো হল ট্রেডমার্ক বা নিবন্ধিত ট্রেডমার্ক এবং তা তাদের নিজ নিজ মালিকদের সম্পত্তি।
 

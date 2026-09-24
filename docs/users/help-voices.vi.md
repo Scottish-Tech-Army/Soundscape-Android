@@ -1,5 +1,5 @@
 ---
-title: Voices
+title: Giọng đọc
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: vi
 permalink: /users/help-voices.html
 ---
 
-# Voices
+# Giọng đọc
 
-Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
+Soundscape có thể sử dụng bất kỳ giọng đọc nào bạn đã tải xuống điện thoại Android của mình trong phần cài đặt đầu ra Chuyển văn bản thành giọng nói. Trong ứng dụng Soundscape, để chọn một giọng đọc khác với giọng mặc định của Android, hãy vào *"Cài đặt"* từ menu chính, mở rộng phần *"Âm thanh"*, rồi chọn *"Giọng đọc"*.
 

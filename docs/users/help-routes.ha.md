@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Tafarkuna
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ha
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Tafarkuna
 
-## What is it?
+## Menene wannan?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Hanyoyi jerin tashoshi ne. Za a sanar da ku idan kun isa kowace tasha, kuma Alamar Sauti za ta ci gaba zuwa tashar gaba kai tsaye.
 
-## When would I use it?
+## Yaushe zan yi amfani da shi?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Kuna iya son ƙirƙira da amfani da tafarki a wani wuri da kuka riga kuka sani, domin ya taimaka muku ku kasance kan hanya madaidaiciya. Ko kuma kuna iya son amfani da tafarki domin ya taimaka muku ku koyi sabuwar tafiya.
 
-## How does it work?
+## Yaya yake aiki?
 
-**Creating a route :**
+**Ƙirƙirar hanya :**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Da farko, je zuwa *Alamomi da Hanyoyi*, zaɓi shafin *Hanyoyi*, sannan ku zaɓi maɓallin *Sabuwar Hanya*. Ku ba hanyar suna da kuma bayanin da ba dole ba ne, sannan ku ƙara tashoshi yayin da kuke ci gaba ko ku zaɓe su daga jerin Alamominku. Za ku iya sake tsara jerin tashoshi a kan hanya a kowane lokaci ta hanyar gyara hanyar.
 
-**Editing a route :**
+**Gyara hanya :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Zaɓi hanyarku a allon *\"Alamomi da Hanyoyi\"* sannan ku zaɓi *\"Gyara Hanya\"*. Daga nan za ku iya ƙarawa da cire tashoshi, da kuma gyara sunan da bayanin hanyar.
 
-**Sharing a route :**
+**Raba hanya :**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Zaɓi hanyarku a allon *Alamomi da Hanyoyi* sannan ku zaɓi zaɓin *Raba* ta amfani da duk zaɓuɓɓukan rabawa na yau da kullum da ke akwai gare ku.
 

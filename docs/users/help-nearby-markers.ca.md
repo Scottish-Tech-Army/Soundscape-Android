@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Marcadors propers
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ca
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Marcadors propers
 
-## What is it?
+## Què és?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+El botó *Marcadors propers* t'informa sobre fins a quatre marcadors que són els més propers a tu. *Marcadors propers* té la finalitat d'ajudar-te a orientar-te utilitzant llocs que ja coneixes.
 
-## When would I use it?
+## Quan l'hauria d'utilitzar?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Quan intentis orientar-te i situar-te respecte al teu entorn, utilitza *Marcadors propers* per escoltar informació sobre la ubicació de llocs que coneixes.
 
-## How does it work?
+## Com funciona?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Com passa amb els quatre botons de la part inferior de la pantalla principal, sostén el telèfon amb la pantalla plana (mirant cap al cel) i la part superior del telèfon apuntant en la direcció cap a la qual estàs orientat abans de prémer el botó *Marcadors propers*. Això funciona com una brúixola que indica a l'aplicació cap a quina direcció estàs orientat. Simplement, toca el botó *Marcadors propers* i escoltaràs fins a quatre marcadors propers a tu.
 

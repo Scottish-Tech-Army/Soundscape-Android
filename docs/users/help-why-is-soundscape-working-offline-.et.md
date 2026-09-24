@@ -1,5 +1,5 @@
 ---
-title: Why is Soundscape working offline?
+title: Miks Soundscape töötab võrguühenduseta?
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,17 +7,17 @@ lang: et
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Why is Soundscape working offline?
+# Miks Soundscape töötab võrguühenduseta?
 
-## Why is Soundscape working offline?
+## Miks Soundscape töötab võrguühenduseta?
 
-When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
+Kui internetiühendus puudub või Soundscape'i teenused ei tööta, lülitub Soundscape võrguühenduseta režiimile. Rakendus töötab edasi, kuid mõned funktsioonid võivad olla piiratud.
 
-## Limitations
+## Piirangud
 
-Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
+Häälteated töötavad endiselt piirkondades, kust oled varem läbi käinud, kuna Soundscape salvestab need sinu häälteadete ajalukku. Samuti saad seada helimajaka või luua markeri kohtadesse, mis on juba sinu häälteadete ajalukku salvestatud.
 
-## What can you do?
+## Mida saad teha?
 
-Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
+Soundscape üritab tavapärase töö taastada kohe, kui su telefonil on hea internetiühendus kas Wi-Fi või mobiilse andmeside kaudu. Kui telefonil on hea ühendus, kuid Soundscape ikkagi ei taasta tavapärast tööd, võib Soundscape'i teenustes esineda katkestus.
 

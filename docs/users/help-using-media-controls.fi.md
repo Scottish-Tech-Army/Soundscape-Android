@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Mediasäädinten käyttö
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
@@ -7,33 +7,35 @@ lang: fi
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Mediasäädinten käyttö
 
-## What is it?
+## Mikä se on?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Voit käyttää joitakin Soundscapen toimintoja kuulokkeidesi mediaohjauspainikkeiden avulla. Tämä toimii millä tahansa langallisilla tai Bluetooth-kuulokkeilla, joissa on mediaohjauspainikkeet, kuten Toista, Pysäytä, Seuraava, Edellinen ja niin edelleen. Eri kuulokkeissa voi olla erilaiset painikkeet, joten tarkista alla olevasta toimintoluettelosta, mitkä niistä ovat käytettävissäsi.
 
-## When would I use it?
+## Milloin käyttäisin sitä?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Kuulokkeiden mediasäätimiä voidaan käyttää, kun Soundscape on päällä — riippumatta siitä, käytätkö sovellusta aktiivisesti, onko se taustalla vai onko laitteesi lukittu. Kuulokkeiden mediasäätimet eivät kuitenkaan toimi Soundscapen kanssa, jos toistat toisella sovelluksella ääntä, kuten musiikkia, podcasteja tai videoita.
 
-## How does it work?
+## Kuinka se toimii?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Mediasäätimille on kaksi toimintatilaa. Tilan voi valita *Asetukset* -> *Mediasäätimet* -osiosta. Tilat ovat:
 
- Original mode. 
+ Alkuperäinen tila. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Toista/Pysäytä: Kytkee äänimajakan äänen päälle ja pois. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Seuraava: Jos reittiä toistetaan, siirtää äänimajakan reitin seuraavaan reittipisteeseen. Jos reittiä ei toisteta, antaa ilmoituksen *Lähiympäristö*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Edellinen: Jos reittiä toistetaan, siirtää äänimajakan reitin edelliseen reittipisteeseen. Jos reittiä ei toisteta, muuttaa asetusta *Ilmoitusten tarkkuus* yhden askeleen hiljaisemmaksi joka painalluksella: *Yksityiskohtainen*, *Tasapainoinen*, *Hiljainen*, *Äänetön*, ja takaisin tasolle *Yksityiskohtainen*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Äänivalikko. 
+
+
+
+⏭ Seuraava selaa valikkovaihtoehtoja, jotka sovellus kuvailee tekstistä puheeksi -äänellä, ja palaa viimeisen jälkeen ensimmäiseen. ⏯ Toista/Pysäytä saa sovelluksen suorittamaan kuvatun vaihtoehdon. On yksi ylätason valikko, jonka vaihtoehtoina ovat alivalikot. Jokaisella alivalikolla on joukko samankaltaisia toimintoja.
+
+⏮ Edellinen ei selaa valikkoa. Sen sijaan se muuttaa asetusta *Ilmoitusten tarkkuus* täsmälleen kuten alkuperäisessä tilassa, joten sama painike hiljentää sovellusta kummassa tahansa tilassa.
 

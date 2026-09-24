@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: எனைச் சுற்றி
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ta
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# எனைச் சுற்றி
 
-## What is it?
+## இது என்ன?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+*எனைச் சுற்றி* பொத்தான், உங்களைச் சுற்றியுள்ள நான்கு பகுதிகளில் (முன்னால், வலதுபுறம், பின்னால், மற்றும் இடதுபுறம்) ஒவ்வொன்றிலும் உள்ள ஒரு விஷயத்தைப் பற்றி உங்களுக்குத் தெரிவிக்கும். உங்கள் சுற்றுப்புறத்தில் உங்களை நோக்குநிலைப்படுத்த உதவும் வகையில் *எனைச் சுற்றி* வடிவமைக்கப்பட்டுள்ளது.
 
-## When would I use it?
+## இதை எப்போது பயன்படுத்துவேன்?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+நீங்கள் உங்கள் திசையறிவைப் பெற்று உங்கள் சுற்றுப்புறத்தில் உங்களை நோக்குநிலைப்படுத்த முயலும்போது, உங்களைச் சுற்றியுள்ள விஷயங்களைப் பற்றி கேட்க *எனைச் சுற்றி* ஐப் பயன்படுத்தவும்.
 
-## How does it work?
+## இது எப்படி வேலை செய்கிறது?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+முகப்புத் திரையின் அடிப்பகுதியில் உள்ள நான்கு பொத்தான்களைப் போலவே, *எனைச் சுற்றி* பொத்தானை அழுத்துவதற்கு முன், உங்கள் தொலைபேசியைத் தட்டையாக (வானத்தை நோக்கி) வைத்து, தொலைபேசியின் மேற்பகுதி நீங்கள் எதிர்நோக்கும் திசையில் இருக்கும்படி வையுங்கள். இது ஒரு திசைகாட்டியைப் போல செயல்பட்டு, நீங்கள் எந்தத் திசையை நோக்கி இருக்கிறீர்கள் என்பதைப் பயன்பாட்டிற்குத் தெரிவிக்கும். வெறுமனே, *எனைச் சுற்றி* பொத்தானைத் தட்டினால், உங்களைச் சுற்றி வரிசைப்படுத்தப்பட்ட நான்கு சுவாரஸ்யமான இடங்களைக் கேட்பீர்கள்.
 

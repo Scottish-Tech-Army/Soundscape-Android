@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: مسیرها
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,27 +7,27 @@ lang: fa
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# مسیرها
 
-## What is it?
+## این چیست؟
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+هر مسیر از یک رشته نقطه‌ی بین‌راهی تشکیل می‌گردد. هنگامی که در امتداد مسیر به هر یک از نقاط بین‌راهی می‌رسید، ساند‌اسکیپ شما را از این موضوع مطلع خواهد ساخت و جهت‌نمای صوتی به‌طور خودکار روی نقطه‌ی بین‌راهی بعدی تنظیم می‌شود.
 
-## When would I use it?
+## چه زمانی از آن استفاده کنم؟
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+شاید بخواهید در جایی که از پیش می‌شناسید مسیری ایجاد و از آن استفاده کنید تا در راه درست بمانید. یا شاید بخواهید از یک مسیر برای یادگیری یک راه تازه استفاده نمایید.
 
-## How does it work?
+## چگونه کار می‌کند؟
 
-**Creating a route :**
+**ایجاد یک مسیر جدید:**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ابتدا به صفحه‌ی *«نشانه‌ها و مسیرها»* بروید. در این صفحه، سربرگ *«مسیرها»* را انتخاب نموده و سپس روی دکمه‌ی *«مسیر جدید»* ضربه بزنید. مسیر جدید را نام‌گذاری کنید و در صورت تمایل برای آن توضیحی نیز بنویسید. سپس نقاط بین‌راهی را هنگام حرکت در امتداد مسیر به آن اضافه کنید یا از نشانه‌هایی که قبلاً ایجاد کرده‌اید برای این منظور استفاده نمایید. شما همواره می‌توانید با استفاده از گزینه‌ی ویرایش مسیر ترتیب نقاط بین‌راهی را تغییر دهید.
 
-**Editing a route :**
+**ویرایش یک مسیر:**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+مسیر خود را در صفحهٔ *«نشانه‌ها و مسیرها»* انتخاب کرده و سپس *«ویرایش مسیر»* را انتخاب کنید. از اینجا می‌توانید نقطه‌های بین‌راهی را اضافه یا حذف نموده و همچنین نام و توضیحات مسیر را ویرایش کنید.
 
-**Sharing a route :**
+**اشتراک‌گذاری یک مسیر:**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+مسیر خود را در صفحه‌ی *«نشانه‌ها و مسیرها»* مشخص نموده و سپس گزینه‌ی *«اشتراک‌گذاری»* را با استفاده از تمام گزینه‌های اشتراک‌گذاری معمول که در اختیار شما قرار دارد انتخاب کنید.
 

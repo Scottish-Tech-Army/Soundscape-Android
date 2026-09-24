@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Automatiska informationsljud
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: sv
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Automatiska informationsljud
 
-## What is it?
+## Vad är det?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape kan berätta om saker i din omgivning när du närmar dig dem genom att läsa upp deras namn från den riktning där de befinner sig. Appen gör detta automatiskt för många olika typer av objekt, till exempel företag, busshållplatser och till och med vägkorsningar. Du kan konfigurera vad appen automatiskt läser upp i *\"Hantera informationsljud\"*-avsnittet på skärmen *\"Inställningar\"*, och du kan stänga av alla informationsljud när du vill att appen ska vara tyst.
 
-## When would I use it?
+## När ska jag använda det?
 
-**Exploring a new area :**
+**Utforska ett nytt område**:
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Aktivera automatiska informationsljud om du vill höra om olika butiker, restauranger och annat medan du passerar dem.
 
-**Walking to a specific location :**
+**Gå till en viss plats**:
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ När du är på väg till en viss plats kan det vara användbart med automatiska informationsljud för vägkorsningar. Sådana informationsljud berättar om vilka vägar som finns i vägkorsningen medan du närmar dig, och berättar vilken väg du går på när du lämnat korsningen.
 
-**When you need silence :**
+**När du vill att det ska vara tyst**:
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ När du ska korsa en väg eller bara vill att appen ska vara tyst kan du inaktivera informationsljuden. När de är inaktiverade får du bara information från appen om du manuellt trycker på någon av knapparna *"Min plats"*, *"Platsmarkörer i närheten"*, *"Omkring mig"* eller *"Framför mig"*.
 
-## How does it work?
+## Hur fungerar det?
 
-**Turning callouts on or off :**
+**Aktivera eller inaktivera informationsljud:**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Att stänga av informationsljuden gör appen tyst. Du kan stänga av informationsljuden i avsnittet *\"Hantera informationsljud\"* på skärmen *\"Inställningar\"* genom att ställa in *\"Detaljnivå för informationsljud\"* på *\"Tyst\"*, och slå på dem igen genom att välja vilken annan nivå som helst. Du kan göra samma sak genom att be Siri eller Gemini om det. Du kan också göra Soundscape tystare ett steg i taget med mediereglageknapparna på dina hörlurar: varje tryck på *\"föregående\"* går ett steg nedåt genom *\"Detaljerad\"*, *\"Balanserad\"*, *\"Lågmäld\"* och *\"Tyst\"*, och ytterligare ett tryck går tillbaka till *\"Detaljerad\"*. Se hjälpavsnittet *\"Använda mediereglage\"*. Alternativt kan du använda knappen *\"Viloläge\"* uppe till höger på startskärmen för att förhindra att Soundscape spelar upp informationsljud tills du väljer att väcka appen igen.
 
-**Managing which callouts you hear :**
+**Hantera vilka informationsljud du hör:**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ För att välja vilka typer av saker Soundscape automatiskt ska läsa upp, gå till skärmen *\"Inställningar\"* via menyn på skärmen *\"Start\"*. I avsnittet *\"Hantera informationsljud\"* på skärmen *\"Inställningar\"* väljer du hur mycket appen säger med *\"Detaljnivå för informationsljud\"*, om den läser upp *\"Gator och vägkorsningar\"* och vilka *\"Platser att läsa upp\"* som gäller. Om du vill stänga av alla informationsljud ställer du in *\"Detaljnivå för informationsljud\"* på *\"Tyst\"*.
 

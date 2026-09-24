@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Utilizzo dei controlli di riproduzione
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: it
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Utilizzo dei controlli di riproduzione
 
-## What is it?
+## Cos'è?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+È possibile accedere a determinate funzioni in Soundscape con l'aiuto dei pulsanti dei controlli di riproduzione degli auricolari. Questa opzione funziona con auricolari cablati o Bluetooth dotati di pulsanti dei controlli di riproduzione come Riproduci, Pausa, Avanti, Indietro e così via. Altri auricolari potrebbero includere pulsanti diversi, quindi fai riferimento al seguente elenco di azioni per determinare quali sono disponibili.
 
-## When would I use it?
+## Quando si usa?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+I controlli di riproduzione degli auricolari possono essere utilizzati mentre Soundscape è in esecuzione, sia che tu stia usando attivamente l'app, sia che questa sia in background, sia che il dispositivo sia bloccato. Tuttavia, i pulsanti dei controlli di riproduzione degli auricolari non funzionano con Soundscape se stai riproducendo audio, come musica, podcast o video, con un'altra app.
 
-## How does it work?
+## Come funziona?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Esistono 2 modalità di funzionamento per i controlli multimediali. La modalità può essere selezionata nella sezione *Impostazioni* > *Controlli multimediali*. Le modalità sono:
 
- Original mode. 
+ Modalità originale. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Riproduci/Pausa: Attiva o disattiva l'audio dell'audiofaro. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Avanti: Se è in riproduzione un percorso, sposta l'audiofaro al Waypoint successivo del percorso. Se non è in riproduzione alcun percorso, fa annunciare *Intorno a me*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Indietro: Se è in riproduzione un percorso, sposta l'audiofaro al Waypoint precedente del percorso. Se non è in riproduzione alcun percorso, cambia il *Dettaglio delle notifiche*, di un livello più discreto a ogni pressione: *Dettagliato*, *Bilanciato*, *Discreto*, *Silenzioso*, e di nuovo *Dettagliato*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menu audio. 
+
+
+
+⏭ Avanti scorre una serie di opzioni di menu che l'app descrive tramite sintesi vocale, tornando alla prima dopo l'ultima. ⏯ Riproduci/Pausa attiva quindi l'esecuzione dell'opzione descritta. Esiste un unico menu di primo livello che contiene solo sotto-menu come opzioni. Ciascun sotto-menu raggruppa un insieme di azioni simili.
+
+⏮ Indietro non scorre il menu. Cambia invece il *Dettaglio delle notifiche*, esattamente come nella modalità originale, così lo stesso pulsante rende l'app più discreta in entrambe le modalità.
 

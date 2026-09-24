@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: การปรับแต่งหมุด
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: th
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# การปรับแต่งหมุด
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+หากคุณต้องการเปลี่ยนชื่อหมุดที่สร้างไว้ก่อนหน้านี้ หรือเพิ่มคำอธิบายประกอบให้กับหมุดนั้น คุณสามารถทำได้โดยเลือกหมุดจากแท็บ *"หมุด"* ในหน้า *"หมุดและเส้นทาง"* จากนั้นเลือกปุ่ม *"แก้ไขหมุด"* คุณสามารถใช้วิธีนี้เพื่อตั้งชื่อเล่นที่สื่อความหมายหรือมีประโยชน์ให้กับหมุด รวมถึงเพิ่มคำอธิบายที่ยาวขึ้นโดยใช้ช่องคำอธิบายประกอบ
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+จากหน้าจอ *แก้ไข* นี้ คุณยังสามารถลบหมุดได้หากไม่ต้องการอีกต่อไป
 

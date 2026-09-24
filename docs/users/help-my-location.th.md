@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: ตำแหน่งของฉัน
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: th
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# ตำแหน่งของฉัน
 
-## What is it?
+## คืออะไร
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+ปุ่ม *ตำแหน่งของฉัน* ให้ข้อมูลอย่างรวดเร็วที่ช่วยให้คุณทราบว่าขณะนี้คุณอยู่ที่ไหน *ตำแหน่งของฉัน* จะบอกข้อมูลเกี่ยวกับตำแหน่งปัจจุบันของคุณ เช่น ทิศทางที่คุณหันหน้าไป ถนนหรือทางแยกใกล้เคียงอยู่ที่ไหน และสถานที่น่าสนใจใกล้เคียงอยู่ที่ไหน
 
-## When would I use it?
+## ควรใช้เมื่อใด
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*ตำแหน่งของฉัน* มีประโยชน์เมื่อคุณต้องการทราบว่าคุณอยู่ที่ไหนหรือกำลังหันหน้าไปทางทิศใด
 
-## How does it work?
+## ทำงานอย่างไร
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+เช่นเดียวกับปุ่มทั้งสี่ที่อยู่ด้านล่างของหน้าจอหลัก ให้ถือโทรศัพท์โดยวางหน้าจอในแนวราบ (หันขึ้นฟ้า) และด้านบนของโทรศัพท์ชี้ไปในทิศทางที่คุณหันหน้าไป ก่อนที่จะกดปุ่ม *ตำแหน่งของฉัน* วิธีนี้ทำหน้าที่เหมือนเข็มทิศบอกแอปว่าคุณกำลังหันหน้าไปทางทิศใด เพียงแตะปุ่ม *ตำแหน่งของฉัน* แล้วฟัง
 

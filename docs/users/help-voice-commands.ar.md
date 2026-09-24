@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: الأوامر الصوتية
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: ar
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# الأوامر الصوتية
 
-## What is it?
+## ما هو؟
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+يمكنك أن تطلب من Gemini تنفيذ أشياء في Soundscape دون لمس هاتفك: سماع نداء صوتي، أو بدء أحد مساراتك، أو ضبط منارة صوتية على إحدى علاماتك. ويستطيع أي مساعد آخر يدعم وظائف تطبيقات Android فعل الشيء نفسه.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+يردّ Soundscape بصوته الخاص، بالنداءات الصوتية وأصوات المنارة التي تعرفها بالفعل، بدلاً من أن يقرأ المساعد ملخصاً. وبهذه الطريقة يظل ما تسمعه قادماً من الاتجاه الذي يصفه.
 
-## When would I use it?
+## متى أستخدمه؟
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+الأوامر الصوتية مفيدة عندما يكون هاتفك في جيبك، أو تكون يداك مشغولتين، أو تفضّل ألا تتوقف عن المشي للضغط على زر. وهي تعمل بينما يعمل Soundscape في الخلفية وبينما يكون هاتفك مقفلاً، كما أن طلب نداء صوتي لا يفتح التطبيق.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+المساعد هو من يستمع وليس Soundscape، لذا لا يستحوذ التطبيق أبداً على الميكروفون، وتبقى سماعاتك اللاسلكية في وضع الصوت عالي الجودة بدلاً من التحول إلى وضع الجودة الأقل المستخدم في المكالمات.
 
-## How does it work?
+## كيف يعمل؟
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+لا توجد عبارات محددة لحفظها. اطلب ما تريد بكلماتك الخاصة وسيربطه المساعد بأحد الإجراءات أدناه. تُطابَق أسماء المسارات والعلامات بشكل تقريبي، لذا يكفي عادةً جزء من الاسم.
 
-You can ask Soundscape to:
+يمكنك أن تطلب من Soundscape:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+وصف *\"موقعي\"*، أو ما يوجد *\"حولي\"*، أو ما يوجد *\"أمامي\"*.
 
-Call out the saved markers near you.
+الإعلان عن العلامات المحفوظة القريبة منك.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+بدء أحد مساراتك المحفوظة بالاسم، أو الانتقال إلى نقطة المسار التالية، أو العودة إلى السابقة، أو كتم المنارة، أو إيقاف المسار.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+ضبط منارة صوتية على إحدى علاماتك المحفوظة بالاسم، أو إيقاف المنارة.
 
-Read back the names of your saved routes or your saved markers.
+ضبط تفاصيل النداءات الصوتية على *\"صامت\"* أو *\"هادئ\"* أو *\"متوازن\"* أو *\"مفصّل\"*، لتغيير مقدار ما يقوله Soundscape أثناء سيرك. ويؤدي وضع صامت إلى إيقاف النداءات الصوتية التلقائية.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+قراءة أسماء مساراتك المحفوظة أو علاماتك المحفوظة.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+كل شيء عدا القائمتين يتطلب أن يكون Soundscape قيد التشغيل. وإن لم يكن كذلك، فسيطلب منك المساعد فتح Soundscape أولاً. أما سرد مساراتك وعلاماتك فيعمل في الحالتين، لأنه يقرأ ما سبق أن حفظته فقط.
+
+تتطلب الأوامر الصوتية هاتفاً يعمل بنظام Android 16 أو أحدث، ومساعداً يدعم وظائف التطبيقات.
 

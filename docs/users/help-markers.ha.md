@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Alamomi
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: ha
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Alamomi
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Da Soundscape, za ku iya yiwa duniyar ku alama tare da duk abin da kuke damuwa da shi, kamar alamomi a taswira.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Za ku iya yiwa wuraren da suka shafe ku kai tsaye alama, kamar gidanku, ofishinku, ko kantin sayar da kayan abinci da kuka fi so. Za ku iya yiwa kowane wuri ko adireshi alama, kuma za ku iya yiwa abubuwan da ba a saba nunawa a taswira ba alama, misali: ƙofofin gine-gine ko wuraren shakatawa, maɓallan neman ƙetare hanya, wuraren ƙetarawa na masu tafiya da ƙasa, gadoji, tashoshin bas, ko ma bishiyar da karenku ya fi so. Ku yi amfani da waɗannan alamomin a matsayin abin lura a tafiyarku.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Domin jin daɗin wuraren da aka yiwa alama, Soundscape zai sanar da wuraren da aka yiwa alama kai tsaye yayin da kuke wucewa ko kusantowa gare su, ko kuma za ku iya amfani da maɓallin *\"Alamomin kusa\"* da ke ƙasan babban allon Soundscape don jin sanarwar sararin samaniya ta wuraren da aka yiwa alama a kewaye da ku. Bugu da ƙari, kuna da ikon kafa alamar sauti a kan duk wani wurin da aka yiwa alama. Idan kuka yi haka, alamar sautin Soundscape da kuka saba da ita za ta kunna kuma za ku iya sarrafa ta kamar yadda aka saba.
 

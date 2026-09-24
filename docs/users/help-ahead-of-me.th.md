@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: ข้างหน้าฉัน
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: th
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# ข้างหน้าฉัน
 
-## What is it?
+## คืออะไร
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+ปุ่ม *"ข้างหน้าฉัน"* จะบอกคุณเกี่ยวกับสิ่งต่างๆ สูงสุดห้าอย่างที่อยู่ข้างหน้าคุณ *"ข้างหน้าฉัน"* มีไว้เพื่อช่วยให้คุณสำรวจเส้นทางข้างหน้าเมื่อคุณกำลังเรียนรู้เกี่ยวกับพื้นที่ใหม่
 
-## When would I use it?
+## ควรใช้เมื่อใด
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+เมื่อคุณกำลังเดินไปตามถนน ลองใช้ *ข้างหน้าฉัน* เพื่อค้นพบสถานที่และสิ่งต่างๆ ที่อยู่ทั้งสองข้างของถนนข้างหน้า
 
-## How does it work?
+## ทำงานอย่างไร
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+เช่นเดียวกับปุ่มทั้งสี่ที่อยู่ด้านล่างของหน้าจอหลัก ให้ถือโทรศัพท์โดยวางหน้าจอในแนวราบ (หันขึ้นฟ้า) และด้านบนของโทรศัพท์ชี้ไปในทิศทางที่คุณหันหน้าไป ก่อนที่จะกดปุ่ม *ข้างหน้าฉัน* วิธีนี้ทำหน้าที่เหมือนเข็มทิศบอกแอปว่าคุณกำลังหันหน้าไปทางทิศใด เพียงแตะปุ่ม *ข้างหน้าฉัน* แล้วคุณจะได้ยินสถานที่น่าสนใจหลายแห่งที่อยู่ข้างหน้าคุณโดยประมาณ
 

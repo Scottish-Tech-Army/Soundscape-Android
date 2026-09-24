@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: రూట్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,27 +7,27 @@ lang: te
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# రూట్‌లు
 
-## What is it?
+## ఇది ఏమిటి?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+రూట్‌లు అనేవి వేపాయింట్‌ల శ్రేణి. మీరు ప్రతి వేపాయింట్‌కు చేరుకున్నప్పుడు మీకు తెలియజేయబడుతుంది, మరియు ఆడియో బీకాన్ స్వయంచాలకంగా తదుపరి వేపాయింట్‌కు ముందుకు వెళ్తుంది.
 
-## When would I use it?
+## దీన్ని నేను ఎప్పుడు ఉపయోగించాలి?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+మీకు ఇప్పటికే తెలిసిన ప్రదేశంలో మీరు సరైన దారిలో ఉండేలా ఒక రూట్‌ను సృష్టించి ఉపయోగించాలని మీరు అనుకోవచ్చు. లేదా ఒక కొత్త ప్రయాణాన్ని నేర్చుకోవడానికి ఒక రూట్‌ను ఉపయోగించాలని అనుకోవచ్చు.
 
-## How does it work?
+## ఇది ఎలా పని చేస్తుంది?
 
-**Creating a route :**
+**రూట్‌ను సృష్టించడం :**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ ముందుగా, *మార్కర్‌లు మరియు రూట్‌లు* కు వెళ్లి, *రూట్‌లు* ట్యాబ్‌ను ఎంచుకుని, తర్వాత *కొత్త రూట్* బటన్‌ను ఎంచుకోండి. రూట్‌కు ఒక పేరు మరియు ఐచ్ఛిక వివరణ ఇవ్వండి, తర్వాత మీరు వెళ్తున్న కొద్దీ వేపాయింట్‌లను జోడించండి లేదా మీ మార్కర్‌ల జాబితా నుండి వాటిని ఎంచుకోండి. రూట్‌ను సవరించడం ద్వారా, రూట్ వెంబడి వేపాయింట్‌ల క్రమాన్ని మీరు ఎప్పుడైనా మార్చుకోవచ్చు.
 
-**Editing a route :**
+**రూట్‌ను సవరించడం :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ *\"మార్కర్‌లు మరియు రూట్‌లు\"* స్క్రీన్‌లో మీ రూట్‌ను ఎంచుకుని, తర్వాత *\"రూట్‌ను సవరించండి\"* ఎంచుకోండి. ఇక్కడ నుండి మీరు వేపాయింట్‌లను జోడించవచ్చు మరియు తొలగించవచ్చు, అలాగే రూట్ పేరు మరియు వివరణను సవరించవచ్చు.
 
-**Sharing a route :**
+**రూట్‌ను షేర్ చేయడం :**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ *మార్కర్‌లు మరియు రూట్‌లు* స్క్రీన్‌లో మీ రూట్‌ను ఎంచుకుని, తర్వాత మీకు అందుబాటులో ఉన్న అన్ని సాధారణ షేర్ ఆప్షన్‌లను ఉపయోగించి *షేర్* చేసే ఆప్షన్‌ను ఎంచుకోండి.
 

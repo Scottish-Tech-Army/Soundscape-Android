@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Φωνητικές εντολές
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: el
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Φωνητικές εντολές
 
-## What is it?
+## Τι είναι;
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Μπορείτε να ζητήσετε από το Gemini να κάνει πράγματα στο Soundscape χωρίς να αγγίξετε το τηλέφωνό σας: να ακούσετε μια επεξήγηση, να ξεκινήσετε μία από τις διαδρομές σας ή να ορίσετε ένα ηχητικό σήμα σε έναν από τους δείκτες σας. Το ίδιο μπορεί να κάνει και οποιοσδήποτε άλλος βοηθός υποστηρίζει τις λειτουργίες εφαρμογών του Android.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Το Soundscape απαντά με τη δική του φωνή, με τις επεξηγήσεις και τους ήχους σήματος που ήδη γνωρίζετε, αντί ο βοηθός να διαβάζει μια περίληψη. Έτσι, αυτό που ακούτε εξακολουθεί να έρχεται από την κατεύθυνση που περιγράφει.
 
-## When would I use it?
+## Πότε θα το χρησιμοποιούσα;
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Οι φωνητικές εντολές είναι χρήσιμες όταν το τηλέφωνό σας είναι στην τσέπη σας, όταν τα χέρια σας είναι γεμάτα ή όταν προτιμάτε να μη σταματήσετε για να πατήσετε ένα κουμπί. Λειτουργούν όσο το Soundscape βρίσκεται στο παρασκήνιο και όσο το τηλέφωνό σας είναι κλειδωμένο, ενώ το αίτημα για μια επεξήγηση δεν ανοίγει την εφαρμογή.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Ακούει ο βοηθός σας, όχι το Soundscape, οπότε η εφαρμογή δεν καταλαμβάνει ποτέ το μικρόφωνό σας και τα ακουστικά Bluetooth σας παραμένουν στη λειτουργία ήχου υψηλής ποιότητας αντί να μεταβούν στη λειτουργία χαμηλότερης ποιότητας που χρησιμοποιείται για τις κλήσεις.
 
-## How does it work?
+## Πώς λειτουργεί;
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Δεν υπάρχουν συγκεκριμένες φράσεις να απομνημονεύσετε. Ζητήστε αυτό που θέλετε με δικά σας λόγια και ο βοηθός θα το αντιστοιχίσει σε μία από τις παρακάτω ενέργειες. Τα ονόματα διαδρομών και δεικτών αντιστοιχίζονται χαλαρά, οπότε συνήθως αρκεί ένα μέρος του ονόματος.
 
-You can ask Soundscape to:
+Μπορείτε να ζητήσετε από το Soundscape να:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Περιγράψει *\"Η τοποθεσία μου\"*, τι υπάρχει *\"Γύρω μου\"* ή τι υπάρχει *\"Μπροστά μου\"*.
 
-Call out the saved markers near you.
+Αναγγείλει τους αποθηκευμένους δείκτες κοντά σας.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Ξεκινήσει μία από τις αποθηκευμένες διαδρομές σας με το όνομά της, να προχωρήσει στο επόμενο σημείο πορείας, να επιστρέψει στο προηγούμενο, να θέσει σε σίγαση το ηχητικό σήμα ή να διακόψει τη διαδρομή.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Ορίσει ένα ηχητικό σήμα σε έναν από τους αποθηκευμένους δείκτες σας με το όνομά του, ή να απενεργοποιήσει το σήμα.
 
-Read back the names of your saved routes or your saved markers.
+Ορίσει τη λεπτομέρεια επεξηγήσεων σε *\"Σιωπηλό\"*, *\"Ήσυχο\"*, *\"Ισορροπημένο\"* ή *\"Λεπτομερές\"*, για να αλλάξει πόσα λέει το Soundscape καθώς περπατάτε. Το Σιωπηλό απενεργοποιεί τις αυτόματες επεξηγήσεις.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Διαβάσει τα ονόματα των αποθηκευμένων διαδρομών ή των αποθηκευμένων δεικτών σας.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Όλα εκτός από τις δύο λίστες απαιτούν να εκτελείται το Soundscape. Αν δεν εκτελείται, ο βοηθός θα σας πει να ανοίξετε πρώτα το Soundscape. Η παράθεση των διαδρομών και των δεικτών σας λειτουργεί ούτως ή άλλως, επειδή απλώς διαβάζει όσα έχετε ήδη αποθηκεύσει.
+
+Οι φωνητικές εντολές απαιτούν τηλέφωνο με Android 16 ή νεότερο και βοηθό που υποστηρίζει λειτουργίες εφαρμογών.
 

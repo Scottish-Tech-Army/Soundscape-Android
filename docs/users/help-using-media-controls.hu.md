@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Médiavezérlők használata
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,33 +7,35 @@ lang: hu
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Médiavezérlők használata
 
-## What is it?
+## Mi ez?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+A Soundscape bizonyos funkcióihoz a fülhallgató médiavezérlő gombjaival is hozzáférhet. Ez a funkció minden olyan vezetékes vagy Bluetooth-os fülhallgatóval működik, amelyen médiavezérlő gombok találhatók, például Lejátszás, Szünet, Következő, Előző és mások. A különböző fülhallgatók eltérő gombokat tartalmazhatnak, ezért az alábbi műveletlistából állapítsa meg, melyek érhetők el az Ön eszközén.
 
-## When would I use it?
+## Mikor használnám?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+A fülhallgató médiavezérlő gombjai akkor használhatók, amikor a Soundscape fut – akár éppen aktívan használja az alkalmazást, akár a háttérben fut, akár zárolva van az eszköze. A fülhallgató médiavezérlő gombjai azonban nem működnek a Soundscape-pel, ha egy másik alkalmazásban hangot, például zenét, podcastot vagy videót játszik le.
 
-## How does it work?
+## Hogyan működik?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+A médiavezérlőknek 2 üzemmódja van. Az üzemmód a *Beállítások* *Médiavezérlők* részében választható ki. Az üzemmódok a következők:
 
- Original mode. 
+ Eredeti mód. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Lejátszás/Szünet: Be- vagy kikapcsolja a hangjelző hangját. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Következő: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal következő útpontjára mozgatja. Ha nincs útvonal lejátszás alatt, bemondja a *Körülöttem* adatait.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Előző: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal előző útpontjára mozgatja. Ha nincs útvonal lejátszás alatt, minden egyes megnyomással egy szinttel halkabbra állítja a *Közlések részletessége* beállítást: *Részletes*, *Kiegyensúlyozott*, *Csendes*, *Néma*, majd vissza a *Részletes* szintre.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Hangmenü. 
+
+
+
+⏭ Következő végiglépked egy sor menüopción, amelyeket az alkalmazás szövegfelolvasással ismertet, és az utolsó után visszatér az elsőhöz. Az ⏯ Lejátszás/Szünet ezután elindítja az ismertetett opció végrehajtását. Van egy egyetlen felső szintű menü, amelynek csak almenük az opciói. Minden almenü hasonló lehetséges műveletek egy csoportját tartalmazza.
+
+⏮ Előző nem lépked végig a menün. Ehelyett a *Közlések részletessége* beállítást módosítja, pontosan úgy, mint Eredeti módban, így ugyanaz a gomb halkítja az alkalmazást bármelyik módot is használja.
 

@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Moja lokacija
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hr
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Moja lokacija
 
-## What is it?
+## Što je to?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Gumb *Moja lokacija* brzo vam daje informacije koje vam pomažu da otkrijete gdje se trenutno nalazite. *Moja lokacija* govori vam o vašoj trenutnoj lokaciji, uključujući smjer u kojem ste okrenuti, gdje se nalaze obližnje ceste ili raskrižja te gdje se nalaze obližnje zanimljive točke.
 
-## When would I use it?
+## Kada se ovo koristi?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*Moja lokacija* korisna je kada trebate otkriti gdje se nalazite ili u koju ste stranu svijeta okrenuti.
 
-## How does it work?
+## Kako to funkcionira?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Kao i sa svim ostala četiri gumba na dnu početnog zaslona, prije nego što pritisnete gumb *Moja lokacija*, držite telefon tako da mu je zaslon ravan (okrenut prema nebu), a vrh telefona usmjeren u smjeru u kojem ste okrenuti. To djeluje poput kompasa koji aplikaciji govori u kojem ste smjeru okrenuti. Jednostavno dodirnite gumb *Moja lokacija* i slušajte.
 

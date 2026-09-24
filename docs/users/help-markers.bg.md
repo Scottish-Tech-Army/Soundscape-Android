@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Маркери
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: bg
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Маркери
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Със Soundscape можете да маркирате света си и всичко, което е важно за Вас, подобно на карфички на карта.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Можете да маркирате места, които са лични и важни за Вас, като дома си, офиса си или предпочитания от Вас магазин за хранителни стоки. Можете да маркирате всяко място или адрес, а също и неща, които обикновено не са показани на картите, например: входове на сгради или паркове, бутони за пешеходци на светофари, пешеходни пътеки, мостове, спирки на градския транспорт или дори любимото дърво на кучето Ви. Използвайте тези маркери като ориентири по време на разходката си.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+За да изживеете маркираните места, Soundscape автоматично ще ги съобщава, докато минавате покрай тях или се приближавате до тях, или можете също да използвате бутона *"Близки маркери"* в долната част на началния екран на Soundscape, за да чуете пространствено съобщение за маркираните места около Вас. Освен това имате възможност да зададете аудио маяк на всяко маркирано място. Когато направите това, ще чуете познатия аудио маяк на Soundscape и можете да го управлявате както обикновено.
 

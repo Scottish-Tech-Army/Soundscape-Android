@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: Gaba da Ni
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ha
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Gaba da Ni
 
-## What is it?
+## Menene wannan?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+Maɓallin *\"Abin da ke Gabana\"* yana gaya muku game da abubuwa har guda biyar da ke gabanku. An ƙirƙiri *\"Abin da ke Gabana\"* domin taimaka muku bincikar hanyar da ke gabanku yayin da kuke koyon sabon yanki.
 
-## When would I use it?
+## Yaushe zan yi amfani da shi?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Idan kuna tafiya a kan titi, gwada amfani da *Abin da ke Gabana* don gano wurare da abubuwan da ke zuwa a ɓangarorin biyu na titin da ke gabanku.
 
-## How does it work?
+## Yaya yake aiki?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Kamar sauran dukkan maɓallai huɗu da ke ƙasan babban allo, riƙe wayarku a kwance (fuska sama zuwa sama) tare da saman wayar yana nuni da alkiblar da kuke fuskanta kafin ku danna maɓallin *Abin da ke Gabana*. Wannan yana aiki kamar kamfas wanda ke gaya wa manhajar alkiblar da kuke fuskanta. Kawai, danna maɓallin *Abin da ke Gabana* kuma za ku ji wurare masu ban sha'awa da dama, kusan duk suna gabanku.
 

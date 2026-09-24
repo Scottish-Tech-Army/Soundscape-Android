@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: A Soundscape névjegye
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,19 +7,19 @@ lang: hu
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# A Soundscape névjegye
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+A Soundscape innovatív, hangalapú technológiát használ, hogy segítsen az embereknek gazdagabb tudatosságot kialakítani a környezetükről. Ettől az emberek magabiztosabbá válnak, és önállóan tudnak közlekedni.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+A Soundscape ezekre a kiváló, harmadik féltől származó könyvtárakra és adatokra épül. Kattintson a linkekre a licenceik megtekintéséhez:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©OpenStreetMap közreműködők](https://www.openstreetmap.org/copyright) biztosítják a Soundscape-ben használt térképészeti és hangos adatok teljes geoadatkészletét.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+Az [©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) szolgál az általunk használt térképcsempék előállítására.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+A [Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) szolgál a 3D hang előállítására, és az [Apache 2.0 licenc](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) alapján érhető el használatra.
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+Az [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) szolgál a hang alacsony késleltetésű lejátszására, és az [Apache 2.0 licenc](https://github.com/google/oboe/blob/main/LICENSE) alapján érhető el használatra.
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+Minden harmadik féltől származó termék, cégnév és embléma védjegy vagy bejegyzett védjegy, és a megfelelő jogtulajdonosok tulajdonában marad.
 

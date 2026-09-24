@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: 경로
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ko
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# 경로
 
-## What is it?
+## 이것은 무엇인가요?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+경로는 일련의 경유지로 구성됩니다. 각 경유지에 도착하면 안내를 받으며, 오디오 비콘은 자동으로 다음 경유지로 이동합니다.
 
-## When would I use it?
+## 언제 사용하나요?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+이미 잘 아는 장소에서 경로를 만들어 사용하면 올바른 길을 유지하는 데 도움이 됩니다. 또는 새로운 여정을 익히는 데 경로를 활용할 수도 있습니다.
 
-## How does it work?
+## 어떻게 작동하나요?
 
-**Creating a route :**
+**경로 만들기 :**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ 먼저 *마커 및 경로*로 이동하여 *경로* 탭을 선택한 다음 *새 경로* 버튼을 선택합니다. 경로 이름을 지정하고 원하는 경우 설명을 추가한 다음, 이동하면서 경유지를 추가하거나 마커 목록에서 선택합니다. 경로를 편집하면 언제든지 경유지의 순서를 재배열할 수 있습니다.
 
-**Editing a route :**
+**경로 편집하기 :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ *\"마커 및 경로\"* 화면에서 경로를 선택한 다음 *\"경로 편집\"*을 선택합니다. 여기서 경유지를 추가 및 삭제하고, 경로의 이름과 설명을 편집할 수 있습니다.
 
-**Sharing a route :**
+**경로 공유하기 :**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ *마커 및 경로* 화면에서 경로를 선택한 다음 평소 사용하는 공유 옵션을 통해 *공유* 옵션을 선택합니다.
 

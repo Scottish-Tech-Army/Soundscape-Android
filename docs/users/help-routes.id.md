@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Rute
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: id
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Rute
 
-## What is it?
+## Apa itu?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Rute adalah serangkaian waypoint. Anda akan diberi tahu saat tiba di setiap waypoint, dan Audio Beacon akan secara otomatis berpindah ke waypoint berikutnya.
 
-## When would I use it?
+## Kapan saya menggunakannya?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Anda mungkin ingin membuat dan menggunakan rute di tempat yang sudah Anda kenal, agar Anda tetap berada di jalur yang benar. Atau Anda mungkin ingin menggunakan rute untuk membantu Anda mempelajari perjalanan baru.
 
-## How does it work?
+## Bagaimana cara kerjanya?
 
-**Creating a route :**
+**Membuat rute :**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Pertama, buka *Marker dan Rute*, pilih tab *Rute*, lalu pilih tombol *Rute Baru*. Beri nama rute dan deskripsi opsional, lalu tambahkan waypoint sambil berjalan atau pilih dari daftar Marker Anda. Anda dapat menyusun ulang urutan waypoint di sepanjang rute kapan saja dengan mengedit rute tersebut.
 
-**Editing a route :**
+**Mengedit rute :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Pilih rute Anda di layar *\"Marker dan Rute\"* lalu pilih *\"Edit Rute\"*. Dari sini Anda dapat menambah dan menghapus waypoint, serta mengedit nama dan deskripsi rute.
 
-**Sharing a route :**
+**Membagikan rute :**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Pilih rute Anda di layar *Marker dan Rute* lalu pilih opsi *Bagikan* menggunakan semua opsi berbagi biasa yang tersedia untuk Anda.
 

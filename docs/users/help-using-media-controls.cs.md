@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Používání ovládacích prvků médií
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: cs
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Používání ovládacích prvků médií
 
-## What is it?
+## Co to je?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+K určitým funkcím aplikace Soundscape máte přístup pomocí tlačítek pro ovládání médií na svých sluchátkách. Tato funkce funguje s jakýmikoli drátovými nebo Bluetooth sluchátky, které mají tlačítka pro ovládání médií, jako je Přehrát, Pozastavit, Další, Předchozí a další. Různá sluchátka mohou mít různá tlačítka, proto si prosím prostudujte seznam akcí níže, abyste zjistili, která tlačítka máte k dispozici.
 
-## When would I use it?
+## Kdy to použít?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Tlačítka pro ovládání médií na sluchátkách lze používat, když je Soundscape spuštěný – ať už aplikaci právě aktivně používáte, běží na pozadí, nebo je zařízení uzamčené. Tlačítka pro ovládání médií na sluchátkách však s aplikací Soundscape nebudou fungovat, pokud v jiné aplikaci přehráváte zvuk, například hudbu, podcasty nebo videa.
 
-## How does it work?
+## Jak to funguje?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+K dispozici jsou 2 režimy ovládání médií. Režim lze vybrat v části *Nastavení* *Ovládání médií*. Režimy jsou:
 
- Original mode. 
+ Původní režim. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Přehrát/Pozastavit: Zapne nebo vypne zvuk majáku. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Další: Pokud se přehrává trasa, přesune zvukový maják na další bod trasy. Pokud se nepřehrává žádná trasa, oznámí *Co je kolem mě*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Předchozí: Pokud se přehrává trasa, přesune zvukový maják na předchozí bod trasy. Pokud se nepřehrává žádná trasa, změní *Podrobnost hlášení* o jednu úroveň tišeji při každém stisknutí: *Podrobný*, *Vyvážený*, *Tichý*, *Bez zvuku* a zpět na *Podrobný*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Zvukové menu. 
+
+
+
+⏭ Další prochází řadou možností nabídky, které aplikace popisuje pomocí převodu textu na řeč, a po poslední se vrací k první. ⏯ Přehrát/Pozastavit poté spustí provedení popsané možnosti. Existuje jediná hlavní nabídka, která má jako možnosti pouze podnabídky. Každá podnabídka obsahuje skupinu podobných možných akcí.
+
+⏮ Předchozí nabídkou neprochází. Místo toho mění *Podrobnost hlášení* přesně tak jako v původním režimu, takže stejné tlačítko aplikaci ztišuje v obou režimech.
 

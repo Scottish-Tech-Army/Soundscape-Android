@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: เส้นทาง
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: th
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# เส้นทาง
 
-## What is it?
+## คืออะไร
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+เส้นทางประกอบด้วยชุดของจุดผ่านทาง คุณจะได้รับแจ้งเมื่อมาถึงจุดผ่านทางแต่ละจุด และบีคอนเสียงจะเลื่อนไปยังจุดผ่านทางถัดไปโดยอัตโนมัติ
 
-## When would I use it?
+## ควรใช้เมื่อใด
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+คุณอาจต้องการสร้างและใช้เส้นทางในสถานที่ที่คุณรู้จักอยู่แล้ว เพื่อให้แน่ใจว่าคุณอยู่ในเส้นทางที่ถูกต้อง หรืออาจใช้เส้นทางเพื่อเรียนรู้การเดินทางเส้นใหม่
 
-## How does it work?
+## ทำงานอย่างไร
 
-**Creating a route :**
+**การสร้างเส้นทาง :**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ ก่อนอื่น ให้ไปที่ *หมุดและเส้นทาง* เลือกแท็บ *เส้นทาง* จากนั้นเลือกปุ่ม *เส้นทางใหม่* ตั้งชื่อเส้นทางและใส่คำอธิบาย (ไม่บังคับ) จากนั้นเพิ่มจุดผ่านทางระหว่างเดิน หรือเลือกจากรายการหมุดของคุณ คุณสามารถจัดเรียงลำดับจุดผ่านทางในเส้นทางใหม่ได้ทุกเมื่อโดยการแก้ไขเส้นทาง
 
-**Editing a route :**
+**การแก้ไขเส้นทาง :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ เลือกเส้นทางของคุณบนหน้าจอ *"หมุดและเส้นทาง"* จากนั้นเลือก *"แก้ไขเส้นทาง"* จากที่นี่คุณสามารถเพิ่มและลบจุดผ่านทาง รวมถึงแก้ไขชื่อและคำอธิบายของเส้นทางได้
 
-**Sharing a route :**
+**การแชร์เส้นทาง :**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ เลือกเส้นทางของคุณบนหน้าจอ *หมุดและเส้นทาง* จากนั้นเลือกตัวเลือก *แชร์* โดยใช้ตัวเลือกการแชร์ตามปกติที่คุณมี
 

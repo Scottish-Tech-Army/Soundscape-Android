@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Oznake
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: hr
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Oznake
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Uz Soundscape možete označiti svoj svijet i sve do čega vam je stalo, poput pribadača na karti.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Možete označiti mjesta koja su vam osobna i važna, poput vašeg doma, ureda ili omiljene trgovine. Možete označiti bilo koje mjesto ili adresu, a možete označiti i stvari koje se obično ne prikazuju na kartama, primjerice: ulaze u zgrade ili parkove, gumbe za prelazak ceste, pješačke prijelaze, mostove, autobusna stajališta, pa čak i omiljeno stablo vašeg psa. Koristite te oznake kao referentne točke tijekom šetnje.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Kako biste doživjeli označena mjesta, Soundscape će automatski najavljivati označena mjesta dok prolazite pored njih ili im se približavate, ili možete koristiti gumb *"Oznake u blizini"* na dnu početnog zaslona Soundscapea kako biste čuli prostornu najavu označenih mjesta oko vas. Osim toga, imate mogućnost postaviti zvučni svjetionik na bilo koje označeno mjesto. Kada to učinite, čut ćete poznati zvučni svjetionik Soundscapea i moći ćete njime upravljati kao inače.
 

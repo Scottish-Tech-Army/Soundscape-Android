@@ -23,9 +23,9 @@ There are 2 modes of operation for the media controls. The mode can be selected 
 
 ⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *"Callout Detail"*, one step quieter with each press: *"Detailed"*, *"Balanced"*, *"Quiet"*, *"Silent"*, and back to *"Detailed"*.
 
 
 
@@ -33,5 +33,7 @@ Audio menu.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+
+⏮ Previous does not move through the menu. Instead it changes the *"Callout Detail"*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.
 

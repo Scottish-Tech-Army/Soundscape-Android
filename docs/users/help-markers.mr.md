@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: मार्कर
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
@@ -7,11 +7,11 @@ lang: mr
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# मार्कर
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Soundscape सह, तुम्ही तुमचे जग आणि तुम्हाला महत्त्वाच्या वाटणाऱ्या कोणत्याही गोष्टी नकाशावरील पिनप्रमाणे मार्क करू शकता.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+तुम्ही तुमचे घर, तुमचे ऑफिस किंवा तुमचे आवडते किराणा दुकान यांसारखी तुमच्यासाठी वैयक्तिक आणि महत्त्वाची ठिकाणे मार्क करू शकता. तुम्ही कोणतेही ठिकाण किंवा पत्ता मार्क करू शकता, आणि साधारणपणे नकाशांवर न दिसणाऱ्या गोष्टीही मार्क करू शकता, उदाहरणार्थ: इमारती किंवा उद्यानांची प्रवेशद्वारे, पुश-टू-वॉक बटणे, पादचारी क्रॉसिंग, पूल, बस स्टॉप, किंवा अगदी तुमच्या कुत्र्याचे आवडते झाड. तुमच्या चालण्याच्या वाटेवर या मार्करचा संदर्भ म्हणून वापर करा.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+मार्क केलेल्या ठिकाणांचा अनुभव घेण्यासाठी, तुम्ही त्यांच्याजवळून जाताच किंवा त्यांच्या जवळ पोहोचताच Soundscape आपोआप त्यांच्याबद्दल ध्वनी सूचना देईल, किंवा तुम्ही तुमच्याभोवतीच्या मार्क केलेल्या ठिकाणांची स्पेशियल ध्वनी सूचना ऐकण्यासाठी Soundscape मुख्य स्क्रीनच्या खाली असलेले *"जवळचे मार्कर"* बटणही वापरू शकता. याशिवाय, तुम्ही कोणत्याही मार्क केलेल्या ठिकाणावर ऑडिओ बीकन सेट करू शकता. असे केल्यावर, तुम्हाला परिचित असलेला Soundscape ऑडिओ बीकन ऐकू येईल आणि तुम्ही तो नेहमीप्रमाणे वापरू शकता.
 

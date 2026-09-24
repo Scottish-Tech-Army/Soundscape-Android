@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Etrafımda
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,17 +7,17 @@ lang: tr
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Etrafımda
 
-## What is it?
+## Bu nedir?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+*"Etrafımda"* düğmesi, çevrenizdeki dört çeyrekte (önünüzde, sağınızda, arkanızda ve solunuzda) birer şey hakkında bilgi verir. *"Etrafımda"*, çevrenize göre kendinizi yönlendirmenize yardımcı olmak için tasarlanmıştır.
 
-## When would I use it?
+## Ne zaman kullanırım?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Çevrenize göre yönünüzü bulmaya çalıştığınızda, etrafınızdaki şeyleri duymak için *"Etrafımda"* kullanın.
 
-## How does it work?
+## Nasıl çalışır?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *"Etrafımda"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *"Etrafımda"* düğmesine dokunun; etrafınızda düzenlenmiş dört ilgi noktasını duyacaksınız.
 

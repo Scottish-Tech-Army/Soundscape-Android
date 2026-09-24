@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Голосовые команды
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: ru
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Голосовые команды
 
-## What is it?
+## Что это такое?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Вы можете попросить Gemini сделать что-то в Soundscape, не прикасаясь к телефону: услышать уточнение, запустить один из ваших маршрутов или установить звуковой маяк на одну из ваших отметок. То же самое может любой другой ассистент, поддерживающий функции приложений в Android.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape отвечает собственным голосом, теми уточнениями и звуками маяка, которые вам уже знакомы, а не пересказом от ассистента. Благодаря этому то, что вы слышите, по-прежнему звучит с той стороны, о которой идёт речь.
 
-## When would I use it?
+## Когда использовать Soundscape?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Голосовые команды удобны, когда телефон лежит в кармане, руки заняты или не хочется останавливаться, чтобы нажать кнопку. Они работают, пока Soundscape работает в фоне и пока телефон заблокирован, а запрос уточнения не открывает приложение.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Слушает ваш ассистент, а не Soundscape, поэтому приложение никогда не занимает микрофон, а Bluetooth-наушники остаются в режиме высокого качества звука и не переключаются на режим пониженного качества, который используется для звонков.
 
-## How does it work?
+## Как оно работает?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Никаких точных фраз запоминать не нужно. Попросите то, что вам нужно, своими словами, и ассистент сопоставит это с одним из действий ниже. Названия маршрутов и отметок распознаются приблизительно, поэтому обычно достаточно части названия.
 
-You can ask Soundscape to:
+Вы можете попросить Soundscape:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Описать *\"Моё местоположение\"*, что находится *\"Вокруг меня\"* или что находится *\"Передо мной\"*.
 
-Call out the saved markers near you.
+Объявить сохранённые отметки рядом с вами.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Запустить один из сохранённых маршрутов по названию, перейти к следующей путевой точке, вернуться к предыдущей, отключить маяк или остановить маршрут.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Установить звуковой маяк на одну из сохранённых отметок по названию или выключить маяк.
 
-Read back the names of your saved routes or your saved markers.
+Установить подробность уточнений на *\"Беззвучный\"*, *\"Тихий\"*, *\"Сбалансированный\"* или *\"Подробный\"*, чтобы изменить, сколько Soundscape говорит во время ходьбы. Беззвучный отключает автоматические уточнения.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Зачитать названия ваших сохранённых маршрутов или ваших сохранённых отметок.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Всё, кроме двух списков, требует, чтобы Soundscape был запущен. Если это не так, ассистент попросит сначала открыть Soundscape. Перечисление ваших маршрутов и отметок работает в любом случае, потому что при этом только зачитывается то, что вы уже сохранили.
+
+Для голосовых команд нужен телефон с Android 16 или новее и ассистент, поддерживающий функции приложений.
 

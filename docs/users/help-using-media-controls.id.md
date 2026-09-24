@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Menggunakan Kontrol Media
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: id
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Menggunakan Kontrol Media
 
-## What is it?
+## Apa itu?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Anda dapat mengakses fitur tertentu di Soundscape dengan bantuan tombol kontrol media di headphone Anda. Fungsi ini bekerja dengan headphone berkabel maupun Bluetooth apa pun yang memiliki tombol kontrol media seperti Putar, Jeda, Berikutnya, Sebelumnya, dan lainnya. Headphone yang berbeda mungkin memiliki tombol yang berbeda pula, jadi silakan lihat daftar aksi di bawah ini untuk mengetahui mana yang tersedia untuk Anda.
 
-## When would I use it?
+## Kapan saya menggunakannya?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Kontrol media headphone dapat digunakan selama Soundscape berjalan — baik saat Anda sedang aktif menggunakan aplikasi, saat aplikasi berjalan di latar belakang, maupun saat perangkat Anda terkunci. Namun, tombol kontrol media headphone tidak akan berfungsi dengan Soundscape jika Anda sedang memutar audio, seperti musik, podcast, atau video, dengan aplikasi lain.
 
-## How does it work?
+## Bagaimana cara kerjanya?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Ada 2 mode pengoperasian untuk kontrol media. Mode dapat dipilih di bagian *Pengaturan* *Kontrol Media*. Mode-mode tersebut adalah:
 
- Original mode. 
+ Mode asli. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Putar/Jeda: Mengaktifkan atau menonaktifkan audio suar. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Berikutnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute berikutnya dalam rute. Jika tidak ada rute yang sedang diputar, bacakan *Di Sekitar Saya*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Sebelumnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute sebelumnya dalam rute. Jika tidak ada rute yang sedang diputar, ubah *Tingkat Detail Pemberitahuan* satu tingkat lebih senyap pada setiap penekanan: *Rinci*, *Seimbang*, *Ringkas*, *Senyap*, lalu kembali ke *Rinci*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menu audio. 
+
+
+
+⏭ Berikutnya berpindah melalui serangkaian opsi menu yang dijelaskan aplikasi melalui text-to-speech, dan kembali ke opsi pertama setelah yang terakhir. ⏯ Putar/Jeda kemudian memicu aplikasi untuk menjalankan opsi yang dijelaskan tersebut. Ada satu menu tingkat atas tunggal yang hanya memiliki submenu sebagai opsi. Setiap submenu memiliki sekelompok aksi serupa yang mungkin dilakukan.
+
+⏮ Sebelumnya tidak berpindah melalui menu. Sebagai gantinya, tombol ini mengubah *Tingkat Detail Pemberitahuan*, persis seperti pada mode asli, sehingga tombol yang sama membuat aplikasi lebih senyap pada mode mana pun yang Anda gunakan.
 

@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: మార్కర్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,11 +7,11 @@ lang: te
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# మార్కర్‌లు
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Soundscape తో, మీరు మ్యాప్‌లో పిన్‌ల మాదిరిగా, మీ ప్రపంచాన్ని మరియు మీకు ముఖ్యమైన దేనినైనా మార్క్ చేయవచ్చు.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+మీ ఇల్లు, మీ కార్యాలయం లేదా మీకు ఇష్టమైన కిరాణా దుకాణం వంటి మీకు వ్యక్తిగతంగా ముఖ్యమైన ప్రదేశాలను మీరు గుర్తు పెట్టుకోవచ్చు. మీరు ఏ ప్రదేశాన్ని లేదా చిరునామాను అయినా గుర్తు పెట్టుకోవచ్చు, అలాగే సాధారణంగా మ్యాప్‌లలో కనిపించని వాటిని కూడా, ఉదాహరణకు: భవనాలు లేదా పార్కుల ప్రవేశద్వారాలు, పుష్-టు-వాక్ బటన్లు, పాదచారుల క్రాసింగ్‌లు, వంతెనలు, బస్ స్టాప్‌లు, లేదా మీ కుక్కకు ఇష్టమైన చెట్టు కూడా. ఈ మార్కర్‌లను మీ నడకలో మీ రిఫరెన్స్‌లుగా ఉపయోగించుకోండి.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+మార్క్ చేసిన ప్రదేశాలను అనుభవించడానికి, మీరు వాటి పక్కనుండి నడుస్తున్నప్పుడు లేదా వాటిని సమీపిస్తున్నప్పుడు Soundscape స్వయంచాలకంగా మార్క్ చేసిన ప్రదేశాలను కాలౌట్ చేస్తుంది, లేదా మీ చుట్టూ ఉన్న మార్క్ చేసిన ప్రదేశాల స్పేషియల్ కాలౌట్‌ను వినడానికి Soundscape హోమ్ స్క్రీన్ దిగువన ఉన్న *\"సమీప మార్కర్‌లు\"* బటన్‌ను కూడా మీరు ఉపయోగించవచ్చు. అదనంగా, ఏ మార్క్ చేసిన ప్రదేశంపైనైనా ఆడియో బీకాన్‌ను సెట్ చేయగల సామర్థ్యం మీకు ఉంటుంది. మీరు దీన్ని చేసినప్పుడు, మీకు తెలిసిన Soundscape ఆడియో బీకాన్ వినిపిస్తుంది మరియు మీరు దాన్ని మామూలుగా ఆపరేట్ చేయవచ్చు.
 

@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Използване на медийните контроли
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: bg
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Използване на медийните контроли
 
-## What is it?
+## Какво представлява?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Можете да достъпите определени функции в Soundscape с помощта на бутоните за медийно управление на слушалките си. Тази функционалност работи с всякакви кабелни или Bluetooth слушалки, които имат бутони за медийно управление като „Възпроизвеждане“, „Пауза“, „Напред“, „Назад“ и други. Различните слушалки може да включват различни бутони, затова, моля, вижте списъка с действия по-долу, за да определите кои от тях са налични за Вас.
 
-## When would I use it?
+## Кога да го използвам?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Медийните контроли на слушалките могат да се използват, докато Soundscape работи — независимо дали активно използвате приложението, дали то работи във фонов режим, или устройството Ви е заключено. Бутоните за медийно управление на слушалките обаче няма да работят със Soundscape, ако възпроизвеждате аудио, като музика, подкасти или видеоклипове, с друго приложение.
 
-## How does it work?
+## Как работи?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Има 2 режима на работа за медийните контроли. Режимът може да бъде избран в секцията *Настройки* *Мултимедийни контроли*. Режимите са:
 
- Original mode. 
+ Оригинален режим. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Възпроизвеждане/Пауза: Превключва звука на маяка включен и изключен. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Напред: Ако се възпроизвежда маршрут, премества аудио маяка към следващата пътна точка в маршрута. Ако не се възпроизвежда маршрут, съобщава *Какво е около мен*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Назад: Ако се възпроизвежда маршрут, премества аудио маяка към предишната пътна точка в маршрута. Ако не се възпроизвежда маршрут, променя *Детайлност на съобщенията* с едно ниво по-тихо при всяко натискане: *Подробно*, *Балансирано*, *Тихо*, *Без звук* и обратно към *Подробно*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Аудио меню. 
+
+
+
+⏭ Напред преминава през поредица от опции в менюто, които приложението описва чрез синтезиран говор, и след последната се връща към първата. ⏯ Възпроизвеждане/Пауза след това кара приложението да изпълни описаната опция. Има единствено меню от най-високо ниво, което съдържа само подменюта като опции. Всяко подменю има група от подобни възможни действия.
+
+⏮ Назад не преминава през менюто. Вместо това променя *Детайлност на съобщенията* точно както в оригиналния режим, така че същият бутон заглушава приложението и в двата режима.
 

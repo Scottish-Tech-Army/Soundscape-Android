@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: Înaintea mea
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ro
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Înaintea mea
 
-## What is it?
+## Ce este?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+Butonul *\"Înaintea mea\"* îți spune despre până la cinci lucruri aflate în fața ta. *\"Înaintea mea\"* este conceput pentru a te ajuta să explorezi calea din fața ta atunci când te familiarizezi cu o zonă nouă.
 
-## When would I use it?
+## Când aș folosi această funcție?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Când mergi pe stradă, încearcă să folosești *"Înaintea mea"* pentru a descoperi locurile și lucrurile care urmează de ambele părți ale străzii din față.
 
-## How does it work?
+## Cum funcționează?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *"Înaintea mea"*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *"Înaintea mea"* și vei auzi mai multe puncte de interes aflate aproximativ în fața ta.
 

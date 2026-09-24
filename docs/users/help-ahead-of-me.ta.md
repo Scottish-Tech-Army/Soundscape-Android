@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: எனக்கு முன்னால்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ta
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# எனக்கு முன்னால்
 
-## What is it?
+## இது என்ன?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+*\"எனக்கு முன்னால்\"* பொத்தான், உங்களுக்கு முன்னால் உள்ள ஐந்து விஷயங்கள் வரை உங்களுக்குத் தெரிவிக்கும். நீங்கள் ஒரு புதிய பகுதியைப் பற்றி அறிந்துகொள்ளும்போது உங்களுக்கு முன்னால் உள்ள வழியை ஆராய உதவும் வகையில் *\"எனக்கு முன்னால்\"* வடிவமைக்கப்பட்டுள்ளது.
 
-## When would I use it?
+## இதை எப்போது பயன்படுத்துவேன்?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+நீங்கள் தெருவில் நடந்து செல்லும்போது, முன்னால் உள்ள தெருவின் இருபுறமும் வரும் இடங்களையும் விஷயங்களையும் கண்டறிய *எனக்கு முன்னால்* ஐப் பயன்படுத்தி முயற்சிக்கவும்.
 
-## How does it work?
+## இது எப்படி வேலை செய்கிறது?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+முகப்புத் திரையின் அடிப்பகுதியில் உள்ள நான்கு பொத்தான்களைப் போலவே, *எனக்கு முன்னால்* பொத்தானை அழுத்துவதற்கு முன், உங்கள் தொலைபேசியைத் தட்டையாக (வானத்தை நோக்கி) வைத்து, தொலைபேசியின் மேற்பகுதி நீங்கள் எதிர்நோக்கும் திசையில் இருக்கும்படி வையுங்கள். இது ஒரு திசைகாட்டியைப் போல செயல்பட்டு, நீங்கள் எந்தத் திசையை நோக்கி இருக்கிறீர்கள் என்பதைப் பயன்பாட்டிற்குத் தெரிவிக்கும். வெறுமனே, *எனக்கு முன்னால்* பொத்தானைத் தட்டினால், உங்களுக்கு தோராயமாக முன்னால் உள்ள பல சுவாரஸ்யமான இடங்களைக் கேட்பீர்கள்.
 

@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Perintah Suara
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: id
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Perintah Suara
 
-## What is it?
+## Apa itu?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Anda dapat meminta Gemini melakukan hal-hal di Soundscape tanpa menyentuh ponsel: mendengar pemberitahuan, memulai salah satu rute Anda, atau memasang suar audio pada salah satu penanda Anda. Asisten lain yang mendukung fungsi aplikasi Android juga bisa melakukan hal yang sama.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape menjawab dengan suaranya sendiri, dengan pemberitahuan dan suara suar yang sudah Anda kenal, bukan asisten yang membacakan ringkasan. Dengan begitu, apa yang Anda dengar tetap datang dari arah yang digambarkannya.
 
-## When would I use it?
+## Kapan saya menggunakannya?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Perintah suara berguna saat ponsel ada di saku, tangan Anda penuh, atau Anda tidak ingin berhenti berjalan untuk menekan tombol. Perintah ini bekerja saat Soundscape berjalan di latar belakang dan saat ponsel terkunci, dan meminta pemberitahuan tidak membuka aplikasi.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Yang mendengarkan adalah asisten Anda, bukan Soundscape, jadi aplikasi tidak pernah mengambil alih mikrofon dan headphone Bluetooth Anda tetap dalam mode audio berkualitas tinggi, bukan beralih ke mode berkualitas lebih rendah yang dipakai untuk panggilan telepon.
 
-## How does it work?
+## Bagaimana cara kerjanya?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Tidak ada kalimat baku yang perlu dihafal. Mintalah apa yang Anda inginkan dengan kata-kata Anda sendiri, dan asisten akan mencocokkannya dengan salah satu tindakan di bawah ini. Nama rute dan penanda dicocokkan secara longgar, jadi sebagian nama biasanya sudah cukup.
 
-You can ask Soundscape to:
+Anda dapat meminta Soundscape untuk:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Menjelaskan *\"Lokasi Saya\"*, apa yang ada *\"Di Sekitar Saya\"*, atau apa yang ada *\"Di Depan Saya\"*.
 
-Call out the saved markers near you.
+Mengumumkan penanda tersimpan di dekat Anda.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Memulai salah satu rute tersimpan Anda berdasarkan nama, berpindah ke titik rute berikutnya, kembali ke titik sebelumnya, menonaktifkan suara suar, atau menghentikan rute.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Memasang suar audio pada salah satu penanda tersimpan Anda berdasarkan nama, atau mematikan suar.
 
-Read back the names of your saved routes or your saved markers.
+Mengatur tingkat detail pemberitahuan ke *\"Senyap\"*, *\"Ringkas\"*, *\"Seimbang\"*, atau *\"Rinci\"*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. Senyap mematikan pemberitahuan otomatis.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Membacakan nama rute tersimpan atau penanda tersimpan Anda.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Semuanya kecuali kedua daftar itu memerlukan Soundscape yang sedang berjalan. Jika tidak, asisten akan meminta Anda membuka Soundscape terlebih dahulu. Menyebutkan daftar rute dan penanda Anda tetap bisa dilakukan, karena hanya membacakan apa yang sudah Anda simpan.
+
+Perintah suara memerlukan ponsel dengan Android 16 atau yang lebih baru, serta asisten yang mendukung fungsi aplikasi.
 

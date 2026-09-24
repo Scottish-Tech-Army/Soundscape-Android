@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: Crear marcadors
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ca
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# Crear marcadors
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+Pots crear marcadors de tres maneres: cercant el lloc que vols desar amb la barra de cerca, trobant-lo amb el botó *"Llocs propers"*, o utilitzant el botó *"Utilitza la ubicació actual"*, tots ells disponibles a la pantalla principal de Soundscape. Un cop hagis trobat el lloc que vols, seleccionar-lo et portarà a la pantalla *"Detalls de la ubicació"*. En aquesta pantalla, selecciona el botó *"Desa com a marcador"*.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+Ara tindràs l'opció de personalitzar aquest marcador. Pots canviar el nom del marcador i també afegir una anotació que s'anunciarà juntament amb el marcador per proporcionar informació addicional. Un cop hagis acabat, selecciona el botó *Fet* per desar el teu marcador.
 

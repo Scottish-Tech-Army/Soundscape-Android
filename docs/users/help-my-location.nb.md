@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Min posisjon
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: nb
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Min posisjon
 
-## What is it?
+## Hva er det?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Knappen *Min posisjon* gir deg raskt informasjon som hjelper deg med å finne ut hvor du er. *Min posisjon* forteller deg om nåværende posisjon deriblant ting som retningen du er vendt mot, hvor veier og veikryss i nærheten er og hvor interessepunkter i nærheten er.
 
-## When would I use it?
+## Når skal jeg bruke den?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*Min posisjon* er nyttig når du må finne ut hvor du er eller hvilken himmelretning du er vendt mot.
 
-## How does it work?
+## Hvordan fungerer den?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Min posisjon*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Min posisjon* og lytt.
 

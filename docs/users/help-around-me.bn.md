@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: আমার চারপাশ
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
@@ -7,17 +7,17 @@ lang: bn
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# আমার চারপাশ
 
-## What is it?
+## এটি কী?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+*আমার চারপাশে* বোতামটি আপনার চারপাশের চারটি কোয়াড্রান্টের (সামনে, ডানদিকে, পিছনে এবং বাঁদিকে) প্রতিটিতে একটি করে জিনিস সম্পর্কে আপনাকে জানায়। *আমার চারপাশে* আপনার চারপাশের সাথে নিজেকে খাপ খাওয়াতে সাহায্য করার জন্য তৈরি।
 
-## When would I use it?
+## কখন এটি ব্যবহার করব?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+আপনি যখন আপনার অবস্থান বুঝতে এবং চারপাশের সাথে নিজেকে খাপ খাওয়াতে চেষ্টা করছেন, তখন আপনার চারপাশের জিনিসগুলি সম্পর্কে শুনতে *আমার চারপাশে* ব্যবহার করুন।
 
-## How does it work?
+## এটি কীভাবে কাজ করে?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+হোম স্ক্রিনের নিচের চারটি বোতামের ক্ষেত্রেই যেমন, *আমার চারপাশে* বোতাম চাপার আগে আপনার ফোনটি সমতলভাবে (স্ক্রিন আকাশের দিকে মুখ করে) এবং ফোনের উপরের অংশ আপনি যেদিকে মুখ করে আছেন সেদিকে রেখে ধরুন। এটি একটি কম্পাসের মতো কাজ করে অ্যাপটিকে জানায় যে আপনি কোন দিকে মুখ করে আছেন। শুধু, *আমার চারপাশে* বোতামে ট্যাপ করুন এবং আপনি আপনার চারপাশে সাজানো চারটি আগ্রহের স্থান সম্পর্কে শুনতে পাবেন।
 

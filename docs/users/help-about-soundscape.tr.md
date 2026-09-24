@@ -1,5 +1,5 @@
 ---
-title: About Soundscape
+title: Soundscape Hakkında
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,19 +7,19 @@ lang: tr
 permalink: /users/help-about-soundscape.html
 ---
 
-# About Soundscape
+# Soundscape Hakkında
 
-Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
+Soundscape, insanların çevrelerini daha derinlemesine kavramalarına yardımcı olmak için yenilikçi ses tabanlı teknolojiyi kullanır; böylece daha özgüvenli ve bağımsız biçimde dolaşabilirler.
 
-Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
+Soundscape bu harika üçüncü taraf kütüphanelere ve verilere dayanır. Lisanslarını görmek için bağlantılara tıklayın:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) Soundscape'te haritalama ve ses için kullanılan tüm coğrafi verileri sağlar.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) kullandığımız harita karolarını oluşturmak için kullanılır.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) 3D sesi oluşturmak için kullanılır ve [Apache 2.0 lisansı](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) kapsamında kullanıma sunulmuştur.
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) sesi düşük gecikmeyle çalmak için kullanılır ve [Apache 2.0 lisansı](https://github.com/google/oboe/blob/main/LICENSE) kapsamında kullanıma sunulmuştur.
 
-All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+Tüm üçüncü taraf ürün, şirket adları ve logolar ticari marka veya tescilli ticari markalardır ve ilgili sahiplerinin mülkiyetinde kalır.
 

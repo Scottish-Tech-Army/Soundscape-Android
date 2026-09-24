@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Min placering
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: da
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Min placering
 
-## What is it?
+## Hvad er det?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+Knappen *"Min placering"* giver dig hurtigt oplysninger, der hjælper dig med at finde ud af, hvor du er i øjeblikket. *"Min placering"* fortæller dig om din aktuelle placering, herunder ting som den retning, du vender mod, hvor veje eller kryds i nærheden er, og hvor der er interessepunkter i nærheden.
 
-## When would I use it?
+## Hvornår ville jeg bruge det?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*"Min placering"* er nyttig, når du skal finde ud af, hvor du er, eller i hvilken kardinalretning du vender.
 
-## How does it work?
+## Hvordan virker det?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Som med alle fire knapper nederst på startskærmen skal du holde telefonen med skærmen vandret (så den vender mod himlen), og toppen af telefonen skal pege i den retning, du vender, før du trykker på knappen *"Min placering"*. Dette fungerer som et kompas, der fortæller appen, i hvilken retning du vender. Du skal blot trykke på knappen *"Min placering"* og lytte.
 

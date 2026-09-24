@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Oznake v bližini
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sl
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Oznake v bližini
 
-## What is it?
+## Kaj je to?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+Gumb *Oznake v bližini* vam pove o do štirih oznakah, ki so vam najbližje. *Oznake v bližini* vam pomagajo pri orientaciji z uporabo krajev, ki jih že poznate.
 
-## When would I use it?
+## Kdaj naj to uporabim?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Kadar se poskušate orientirati in seznaniti s svojo okolico, uporabite *Oznake v bližini*, da slišite o lokacijah krajev, ki jih poznate.
 
-## How does it work?
+## Kako deluje?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Kot pri vseh štirih gumbih na dnu domačega zaslona telefon držite tako, da je zaslon vodoraven (obrnjen proti nebu), vrh telefona pa naj kaže v smer, v katero ste obrnjeni, preden pritisnete gumb *Oznake v bližini*. To deluje kot kompas, ki aplikaciji pove, v katero smer ste obrnjeni. Preprosto tapnite gumb *Oznake v bližini* in slišali boste do štirih oznak v vaši bližini.
 

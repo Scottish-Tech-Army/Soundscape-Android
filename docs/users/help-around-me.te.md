@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: నా చుట్టూ
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
@@ -7,17 +7,17 @@ lang: te
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# నా చుట్టూ
 
-## What is it?
+## ఇది ఏమిటి?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+*నా చుట్టూ* బటన్, మీ చుట్టూ ఉన్న నాలుగు దిక్కులలో (ముందు, కుడివైపు, వెనుక, మరియు ఎడమవైపు) ప్రతి దానిలో ఒక్కో విషయం గురించి తెలియజేస్తుంది. మీ పరిసరాలకు అనుగుణంగా మిమ్మల్ని మీరు ఓరియంట్ చేసుకోవడంలో సహాయపడటానికి *నా చుట్టూ* ఉద్దేశించబడింది.
 
-## When would I use it?
+## దీన్ని నేను ఎప్పుడు ఉపయోగించాలి?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+మీరు మీ దిశను తెలుసుకోవడానికి మరియు మీ పరిసరాలకు అనుగుణంగా మిమ్మల్ని మీరు ఓరియంట్ చేసుకోవడానికి ప్రయత్నిస్తున్నప్పుడు, మీ చుట్టూ ఉన్న వాటి గురించి వినడానికి *నా చుట్టూ* ఉపయోగించండి.
 
-## How does it work?
+## ఇది ఎలా పని చేస్తుంది?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+హోమ్ స్క్రీన్ దిగువన ఉన్న నాలుగు బటన్లలో ఏదైనా వాడేటప్పుడు మాదిరిగానే, *నా చుట్టూ* బటన్‌ను నొక్కే ముందు మీ ఫోన్‌ను స్క్రీన్ చదునుగా (ఆకాశం వైపు) ఉంచి, ఫోన్ పైభాగం మీరు ఎదుర్కొంటున్న దిశలో ఉండేలా పట్టుకోండి. ఇది మీరు ఏ దిశలో ఉన్నారో యాప్‌కు తెలియజేసే దిక్సూచిలా పనిచేస్తుంది. కేవలం *నా చుట్టూ* బటన్‌ను నొక్కితే, మీ చుట్టూ అమర్చిన నాలుగు ఆసక్తికరమైన ప్రదేశాలు మీకు వినిపిస్తాయి.
 

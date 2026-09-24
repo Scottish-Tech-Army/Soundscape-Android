@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Poti
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: sl
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Poti
 
-## What is it?
+## Kaj je to?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Poti so zaporedje točk poti. Ob prihodu na vsako točko poti boste obveščeni, zvočni svetilnik pa se bo samodejno premaknil na naslednjo točko poti.
 
-## When would I use it?
+## Kdaj naj to uporabim?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Pot morda želite ustvariti in uporabiti na kraju, ki ga že poznate, da ostanete na pravi poti. Ali pa želite pot uporabiti, da se naučite nove poti.
 
-## How does it work?
+## Kako deluje?
 
-**Creating a route :**
+**Ustvarjanje poti :**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Najprej odprite *Oznake in poti*, izberite zavihek *Poti* in nato izberite gumb *Nova pot*. Poti dajte ime in neobvezen opis, nato pa dodajajte točke poti sproti ali jih izberite s seznama oznak. Vrstni red točk poti lahko kadar koli spremenite z urejanjem poti.
 
-**Editing a route :**
+**Urejanje poti :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Izberite svojo pot na zaslonu *"Oznake in poti"* in nato izberite *"Uredi pot"*. Od tu lahko dodajate in odstranjujete točke poti ter urejate ime in opis poti.
 
-**Sharing a route :**
+**Deljenje poti :**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Izberite svojo pot na zaslonu *Oznake in poti* in nato izberite možnost *Deli* z vsemi običajnimi možnostmi deljenja, ki so vam na voljo.
 

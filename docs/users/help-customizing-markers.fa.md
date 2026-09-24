@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: شخصی‌سازی نشانه‌ها
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,9 +7,9 @@ lang: fa
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# شخصی‌سازی نشانه‌ها
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+اگر می‌خواهید نام نشانه‌ای را که قبلاً ایجاد کرده‌اید تغییر دهید یا برای آن یادداشتی اضافه کنید، نشانه را از سربرگ *«نشانه‌ها»* در صفحهٔ *«نشانه‌ها و مسیرها»* انتخاب نموده و سپس دکمهٔ *«ویرایش نشانه»* را بزنید. می‌توانید از این قابلیت برای دادن نام‌های توصیفی یا مفید به نشانه‌ها استفاده کنید و در فیلد یادداشت، توضیح طولانی‌تری نیز برای آن‌ها وارد نمایید.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+از صفحه‌ی *«ویرایش»* می‌توانید در صورتی که دیگر به آن نیاز ندارید، نشانه را حذف کنید.
 

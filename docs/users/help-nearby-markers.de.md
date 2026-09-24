@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Markierungen in der Nähe
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,17 +7,17 @@ lang: de
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Markierungen in der Nähe
 
-## What is it?
+## Was ist es?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+*„Markierungen in der Nähe“* informiert Sie über bis zu vier Markierungen, die sich in der Nähe befinden. *„Markierungen in der Nähe“* soll Ihnen helfen, sich anhand von Orten zu orientieren, die Sie bereits kennen.
 
-## When would I use it?
+## Wann würde ich es verwenden?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Wenn Sie versuchen, sich in Ihrer Umgebung zu orientieren, verwenden Sie *„Markierungen in der Nähe“*, um die Standorte von Ihnen bekannten Orten zu erfahren.
 
-## How does it work?
+## Wie funktioniert es?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Wie bei allen vier Schaltflächen am unteren Rand des Startbildschirms halten Sie das Telefon mit dem Bildschirm flach (zum Himmel zeigend) und mit der Oberseite in die Richtung, in die Sie schauen, bevor Sie die Schaltfläche *„Markierungen in der Nähe“* antippen. Dies wirkt wie ein Kompass, der der App mitteilt, in welche Richtung Sie blicken. Tippen Sie einfach auf die Taste *„Markierungen in der Nähe“*, und Sie hören bis zu vier Markierungen in Ihrer Nähe.
 

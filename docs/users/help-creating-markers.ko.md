@@ -1,5 +1,5 @@
 ---
-title: Creating Markers
+title: 마커 만들기
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ko
 permalink: /users/help-creating-markers.html
 ---
 
-# Creating Markers
+# 마커 만들기
 
-You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
+마커는 세 가지 방법으로 만들 수 있습니다. 검색창을 사용하여 저장하고 싶은 장소를 검색하거나, *\"주변 장소\"* 버튼을 사용하여 장소를 찾거나, *\"현재 위치 사용\"* 버튼을 사용하는 것으로, 모두 Soundscape 홈 화면에서 찾을 수 있습니다. 원하는 장소를 찾으면 이를 선택하여 *\"위치 세부정보\"* 화면으로 이동합니다. 이 화면에서 *\"마커로 저장\"* 버튼을 선택하세요.
 
-You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+이제 이 마커를 원하는 대로 설정할 수 있습니다. 마커의 이름을 변경할 수 있으며, 마커와 함께 안내될 추가 정보를 제공하는 메모를 추가할 수도 있습니다. 설정을 마쳤으면 *완료* 버튼을 선택하여 마커를 저장하세요.
 

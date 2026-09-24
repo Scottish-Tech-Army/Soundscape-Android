@@ -1,5 +1,5 @@
 ---
-title: Ahead of Me
+title: Ispred mene
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hr
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Ahead of Me
+# Ispred mene
 
-## What is it?
+## Što je to?
 
-The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
+Gumb *"Ispred mene"* govori vam o najviše pet stvari ispred vas. *"Ispred mene"* namijenjen je tome da vam pomogne istražiti put ispred sebe kada upoznajete novo područje.
 
-## When would I use it?
+## Kada se ovo koristi?
 
-When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
+Dok hodate ulicom, isprobajte *Ispred mene* kako biste otkrili mjesta i stvari koje se pojavljuju s obje strane ulice ispred vas.
 
-## How does it work?
+## Kako to funkcionira?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
+Kao i sa svim ostala četiri gumba na dnu početnog zaslona, prije nego što pritisnete gumb *Ispred mene*, držite telefon tako da mu je zaslon ravan (okrenut prema nebu), a vrh telefona usmjeren u smjeru u kojem ste okrenuti. To djeluje poput kompasa koji aplikaciji govori u kojem ste smjeru okrenuti. Jednostavno dodirnite gumb *Ispred mene* i čut ćete nekoliko zanimljivih točaka koje se nalaze otprilike ispred vas.
 

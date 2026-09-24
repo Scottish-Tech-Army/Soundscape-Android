@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: Markerid
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,11 +7,11 @@ lang: et
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# Markerid
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+Soundscape'iga saate märkida oma maailma ja kõike, mis teile korda läheb, nagu nõelu kaardil.
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+Saate märkida kohti, mis on teile isiklikud ja olulised, näiteks oma kodu, kontori või lemmik toidupoe. Saate märkida iga koha või aadressi ning ka asju, mida tavaliselt kaartidel ei näidata, näiteks: hoonete või parkide sissepääsud, jalakäijate ülekäigunupud, ülekäigurajad, sillad, bussipeatused või isegi oma koera lemmikpuu. Kasutage neid märgiseid teekonnal orientiiridena.
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+Märgitud kohtade kogemiseks teatab Soundscape automaatselt märgitud kohtadest, kui te neist mööda kõnnite või neile lähenete, või saate kasutada Soundscape'i avakuva allosas olevat nuppu *"Lähedal asuvad markerid"*, et kuulda enda ümber olevate märgitud kohtade ruumilist häälteadet. Lisaks saate seada helimajaka igale märgitud kohale. Kui teete seda, kuulete teile tuttavat Soundscape'i helimajakat ning saate seda tavapäraselt kasutada.
 

@@ -9,25 +9,25 @@ permalink: /users/help-routes.html
 
 # Routes
 
-## What is it?
+## Wat is het?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Routes zijn een reeks routepunten. U krijgt een melding als u bij een routepunt arriveert en het audiobaken gaat automatisch naar het volgende routepunt.
 
-## When would I use it?
+## Wanneer zou ik het moeten gebruiken?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Mogelijk wilt u een route maken en gebruiken op een plek die u al kent, zodat u op het juiste pad blijft. Of u wilt een route gebruiken om een nieuw traject te leren kennen.
 
-## How does it work?
+## Hoe werkt het?
 
-**Creating a route :**
+**Een route maken :**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Ga eerst naar Markeringen en routes, selecteer het tabblad Routes en de knop Nieuwe route. Geef de route een naam en een optionele beschrijving, voeg vervolgens routepunten toe of selecteer ze uit uw lijst met Markeringen. U kunt de volgorde van de routepunten op een route altijd wijzigen door de route te bewerken.
 
-**Editing a route :**
+**Een route bewerken :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Selecteer uw route op het scherm *\"Markeringen en routes\"* en kies vervolgens *\"Route bewerken\"*. Vanaf daar kunt u routepunten toevoegen en verwijderen, en de naam en beschrijving van de route bewerken.
 
-**Sharing a route :**
+**Een route delen :**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Selecteer uw route op het scherm *Markeringen en routes* en kies vervolgens de optie *Delen* met de gebruikelijke deelopties die voor u beschikbaar zijn.
 

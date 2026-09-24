@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Itinéraires
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: fr-CA
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# Itinéraires
 
-## What is it?
+## De quoi s’agit-il?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Un Itinéraire correspond à une série de points de cheminement. Vous êtes informé quand vous arrivez à chaque point de cheminement, et la balise audio avance automatiquement jusqu’au point de cheminement suivant.
 
-## When would I use it?
+## Quand l’utiliser?
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+Vous pouvez créer et utiliser un Itinéraire dans un endroit que vous connaissez déjà, pour vous aider à rester sur la bonne voie. Ou vous pouvez utiliser un Itinéraire pour vous aider à apprendre un nouveau trajet.
 
-## How does it work?
+## Fonctionnement
 
-**Creating a route :**
+**Création d’un Itinéraire** :
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ Tout d’abord, atteignez Marqueurs et Itinéraires, sélectionnez l’onglet Itinéraires...
 
-**Editing a route :**
+**Modifier un Itinéraire :**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Sélectionnez votre itinéraire sur l’écran *« Marqueurs et Itinéraires »* puis sélectionnez *« Modifier l’itinéraire »*. À partir de là, vous pouvez ajouter et supprimer des points de repère, ainsi que modifier le nom et la description de l’itinéraire.
 
-**Sharing a route :**
+**Partage d’un itinéraire** :
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ Sélectionnez votre itinéraire sur la page « Marqueurs et Itinéraires », puis sélectionnez l’option « Partager »...
 

@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: النداءات الصوتية التلقائية
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: ar
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# النداءات الصوتية التلقائية
 
-## What is it?
+## ما هو؟
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+يمكن لـ Soundscape إخبارك بالأشياء من حولك عند اقترابك منها من خلال نداء اسمها من الاتجاه الذي تقع فيه. يقوم التطبيق بذلك تلقائيًا لجميع أنواع الأشياء مثل المحال التجارية ومحطات الحافلات وحتى التقاطعات. يمكنك تخصيص ما يناديه التطبيق تلقائيًا من قسم *"إدارة النداءات الصوتية"* في شاشة *"الإعدادات"*، ويمكنك إيقاف جميع النداءات الصوتية عندما تريد أن يظل التطبيق صامتًا.
 
-## When would I use it?
+## متى أستخدمه؟
 
-**Exploring a new area :**
+**استكشاف منطقة جديدة:**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ فعّل النداءات الصوتية التلقائية وتجوّل لسماع معلومات عن مختلف المتاجر والمطاعم وما شابهها أثناء مرورك بها.
 
-**Walking to a specific location :**
+**التوجه سيرًا إلى مكان محدد:**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ عندما تكون في طريقك إلى مكان معين، يمكن أن تكون النداءات الصوتية التلقائية للتقاطعات مفيدة بشكل خاص. تخبرك نداءات التقاطعات بتخطيط التقاطعات عند اقترابك منها، وتؤكد لك اسم الطريق الذي تسير عليه عند مغادرتها.
 
-**When you need silence :**
+**عندما تحتاج إلى الصمت:**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ عندما تكون على وشك عبور طريق أو تحتاج فقط إلى أن يكون التطبيق صامتًا، يمكنك إيقاف النداءات الصوتية. عند إيقاف النداءات الصوتية، لن يخبرك التطبيق بأي معلومات إلا إذا نقرت يدويًا على أحد أزرار *موقعي* أو *العلامات القريبة* أو *حولي* أو *أمامي*.
 
-## How does it work?
+## كيف يعمل؟
 
-**Turning callouts on or off :**
+**تفعيل النداءات الصوتية أو إيقافها:**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ سيؤدي إيقاف النداءات الصوتية إلى إسكات التطبيق. يمكن إيقاف النداءات الصوتية من قسم *إدارة النداءات الصوتية* في شاشة *الإعدادات* بضبط *تفاصيل النداءات الصوتية* على *صامت*، وإعادة تفعيلها باختيار أي مستوى آخر. ويمكنك فعل الشيء نفسه بأن تطلب ذلك من Siri أو Gemini. كما يمكنك خفض كلام Soundscape درجة بدرجة باستخدام أزرار التحكم بالوسائط في سماعاتك: كل ضغطة على *السابق* تنزل درجة واحدة عبر *مفصّل* و*متوازن* و*هادئ* و*صامت*، وضغطة أخرى تعود إلى *مفصّل*. راجع موضوع المساعدة *استخدام أزرار التحكم بالوسائط*. بدلًا من ذلك، يمكنك استخدام زر *نوم* في الزاوية العلوية اليمنى من الشاشة الرئيسية لإيقاف Soundscape عن إصدار النداءات الصوتية حتى تختار إيقاظه مجددًا.
 
-**Managing which callouts you hear :**
+**إدارة النداءات الصوتية التي تسمعها:**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ لاختيار أنواع الأشياء التي سينادي بها Soundscape تلقائيًا، انتقل إلى شاشة *الإعدادات* باستخدام القائمة في شاشة *الرئيسية*. من قسم *إدارة النداءات الصوتية* في شاشة *الإعدادات* تختار مقدار ما يقوله التطبيق عبر *تفاصيل النداءات الصوتية*، وما إذا كان ينادي بـ *الشوارع والتقاطعات*، وما هي *الأماكن التي يُنادى بها*. إذا كنت ترغب في إيقاف جميع النداءات الصوتية، اضبط *تفاصيل النداءات الصوتية* على *صامت*.
 

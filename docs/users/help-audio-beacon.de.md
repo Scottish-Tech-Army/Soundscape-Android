@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: Audiobeacon
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,27 +7,27 @@ lang: de
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# Audiobeacon
 
-## What is it?
+## Was ist es?
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+Platzieren eines Beacons an einem nahegelegenen Ort ermöglicht es Soundscape, Sie auf dem Laufenden zu halten, indem es einen Audiobeacon-Ton aus der Richtung dieses Standorts abspielt. Das Beacon kann auf dem Startbildschirm stummgeschaltet werden bzw. seine Stummschaltung kann aufgehoben werden. Außerdem zeigt Soundscape auf dem Startbildschirm Informationen über den Standort an einschließlich der Entfernung zu ihm und seiner Adresse, falls sie bekannt ist.
 
-## When would I use it?
+## Wann würde ich es verwenden?
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+Das Platzieren eines Beacons ist nützlich, wenn Sie bei der Erkundung eines neuen Gebiets einen vertrauten Orientierungspunkt im Auge behalten möchten, oder wenn Sie irgendwo hingehen und unterwegs über Ihre Umgebung informiert werden möchten. Mit der Beacon-Funktion erhalten Sie keine Navigationsanweisungen, sondern hören einen kontinuierlichen Ton, der Ihnen die Richtung zum Beacon relativ zu Ihrer aktuellen Position angibt. Mithilfe des Audiobeacons, Ihrer vorhandenen Wegfindungsfähigkeiten und sogar Ihrer bevorzugten Navigations-App können Sie selbst entscheiden, wie Sie zu Orten in der Nähe gelangen möchten.
 
-## How does it work?
+## Wie funktioniert es?
 
-**To set a beacon :**
+**Zum Platzieren eines Beacons:**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+Zuerst zeigen Sie die Details eines Ortes an, indem Sie entweder die Suchleiste verwenden, um nach einem Ort zu suchen, oder auf eine der Schaltflächen *„Orte in der Nähe“*, *„Markierungen und Routen“* oder *„Aktueller Standort“* tippen und einen Ort auswählen. Auf dem Bildschirm *„Standortdetails“* können Sie die Schaltfläche *„Audiobeacon starten“* auswählen. Wenn Sie diese antippen, kehren Sie zum Startbildschirm zurück und ein hörbares Beacon wird aus der Richtung des ausgewählten Ortes abgespielt. Der Name des ausgewählten Ortes sowie seine Entfernung und gegebenenfalls seine physische Adresse werden nun auf dem Hauptbildschirm der App angezeigt.
 
-**To remove the current beacon :**
+**Zum Entfernen des aktuellen Beacons:**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ Drücken Sie einfach die Schaltfläche *„Route anhalten“* auf dem Startbildschirm.
 
-**To mute the audible beacon :**
+**Zum Stummschalten des Audiobeacons:**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ Tippen Sie auf die Schaltfläche *„Beacon stummschalten“* neben der Schaltfläche *„Route anhalten“* auf dem Startbildschirm.
 

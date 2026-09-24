@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: 语音命令
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: zh-CN
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# 语音命令
 
-## What is it?
+## 这是什么？
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+你可以让 Gemini 在 Soundscape 中替你做事，无需触碰手机：听一条提示、启动你的某条路线，或在你的某个标记点上设置音频信标。任何支持 Android 应用功能的助手都能做到同样的事。
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape 会用它自己的声音回应，用你已经熟悉的提示和信标声，而不是由助手读出一段摘要。这样一来，你听到的声音仍然来自它所描述的那个方向。
 
-## When would I use it?
+## 什么时候使用？
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+当手机放在口袋里、双手腾不出来，或者你不想停下脚步去按按钮时，语音命令就很有用。Soundscape 在后台运行时和手机锁屏时它们都能用，而且请求一条提示并不会打开应用。
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+负责聆听的是你的助手，不是 Soundscape，因此应用永远不会占用你的麦克风，你的蓝牙耳机也会保持高音质模式，而不会切换到通话所用的较低音质模式。
 
-## How does it work?
+## 如何使用？
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+没有需要背下来的固定说法。用你自己的话说出想要什么，助手就会把它对应到下面的某项操作。路线和标记点的名称是宽松匹配的，所以通常说出名称的一部分就够了。
 
-You can ask Soundscape to:
+你可以让 Soundscape：
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+描述*\"我的位置\"*、*\"周围\"*有什么，或*\"前方\"*有什么。
 
-Call out the saved markers near you.
+播报你附近已保存的标记点。
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+按名称启动你已保存的某条路线、前往下一个航点、返回上一个航点、静音信标，或停止路线。
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+按名称在你已保存的某个标记点上设置音频信标，或关闭信标。
 
-Read back the names of your saved routes or your saved markers.
+把提示详细程度设为*\"静音\"*、*\"简略\"*、*\"平衡\"*或*\"详细\"*，以改变 Soundscape 在你行走时说多少内容。静音会关闭自动播报。
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+读出你已保存的路线名称或已保存的标记点名称。
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+除了这两份清单之外，其余功能都需要 Soundscape 正在运行。如果没有运行，助手会让你先打开 Soundscape。列出你的路线和标记点在两种情况下都可以用，因为它只是读出你已经保存的内容。
+
+语音命令需要一部运行 Android 16 或更高版本的手机，以及一个支持应用功能的助手。
 

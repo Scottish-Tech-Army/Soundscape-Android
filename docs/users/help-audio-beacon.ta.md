@@ -1,5 +1,5 @@
 ---
-title: Audio Beacon
+title: ஒலி பீக்கன்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ta
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audio Beacon
+# ஒலி பீக்கன்
 
-## What is it?
+## இது என்ன?
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+அருகிலுள்ள ஓர் இடத்தில் பீக்கனை அமைப்பது, அந்த இடத்தின் திசையில் இருந்து வரும் ஒலி பீக்கன் சத்தத்தை இயக்குவதன் மூலம் Soundscape உங்களுக்குத் தொடர்ந்து தகவல் தெரிவிக்க உதவுகிறது. இந்தப் பீக்கனை முகப்புத் திரையில் முடக்கவோ இயக்கவோ செய்யலாம். மேலும், அந்த இடத்திற்கான தொலைவு மற்றும் தெரிந்தால் அதன் தெரு முகவரி உள்ளிட்ட தகவல்களை Soundscape முகப்புத் திரையில் காட்டுகிறது.
 
-## When would I use it?
+## இதை எப்போது பயன்படுத்துவேன்?
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+நீங்கள் ஒரு புதிய பகுதியை ஆராயும்போது பரிச்சயமான ஒரு அடையாளத்தைக் கண்காணிக்க விரும்பும்போது அல்லது எங்காவது செல்லும்போது வழியில் உங்கள் சுற்றுப்புறத்தைப் பற்றி அறிந்துகொள்ள விரும்பும்போது பீக்கனை அமைப்பது பயனுள்ளதாக இருக்கும். இந்தப் பீக்கன் அம்சம் திருப்பம் திருப்பமான வழிகாட்டுதலை வழங்காது, ஆனால் நீங்கள் தற்போது இருக்கும் இடத்திலிருந்து பீக்கனுக்கான திசையைத் தொடர்ந்து தெரிவிக்கும் ஒரு தொடர்ச்சியான ஒலியை வழங்குகிறது. ஒலி பீக்கன், உங்கள் தற்போதைய வழி கண்டறியும் திறன்கள், மற்றும் உங்களுக்குப் பிடித்த வழிசெலுத்தல் பயன்பாட்டைப் பயன்படுத்தி, அருகிலுள்ள இடங்களுக்கு எவ்வாறு செல்வது என்பதை நீங்களே தேர்ந்தெடுக்கலாம்.
 
-## How does it work?
+## இது எப்படி வேலை செய்கிறது?
 
-**To set a beacon :**
+**பீக்கனை அமைக்க:**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+ முதலில், தேடல் பட்டியைப் பயன்படுத்தி ஓர் இடத்தைத் தேடுவதன் மூலம் அல்லது *\"அருகிலுள்ள இடங்கள்\"*, *\"மார்க்கர்கள் மற்றும் பாதைகள்\"*, அல்லது *\"தற்போதைய இருப்பிடம்\"* பொத்தான்களில் ஒன்றைத் தட்டி ஓர் இடத்தைத் தேர்ந்தெடுப்பதன் மூலம் அந்த இடத்தின் விவரங்களைப் பார்க்கவும். *\"இருப்பிட விவரங்கள்\"* திரையில் இருந்து *\"ஒலி பீக்கனைத் தொடங்கு\"* பொத்தானைத் தேர்ந்தெடுக்கலாம். இதைத் தட்டினால் நீங்கள் முகப்புத் திரைக்குத் திரும்புவீர்கள், மேலும் நீங்கள் தேர்ந்தெடுத்த இடத்தின் திசையில் இருந்து ஒலி பீக்கன் இயங்கத் தொடங்கும். நீங்கள் தேர்ந்தெடுத்த இடத்தின் பெயருடன், அதன் தொலைவு மற்றும் கிடைத்தால் அதன் இயற்பியல் முகவரியும் இப்போது முதன்மைப் பயன்பாட்டுத் திரையில் காட்டப்படும்.
 
-**To remove the current beacon :**
+**தற்போதைய பீக்கனை அகற்ற:**
 
- Simply press the *\"Stop Route\"* button on the home screen.
+ முகப்புத் திரையில் உள்ள *\"பாதையை நிறுத்து\"* பொத்தானை அழுத்தினால் போதும்.
 
-**To mute the audible beacon :**
+**ஒலி பீக்கனை முடக்க:**
 
- Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
+ முகப்புத் திரையில் *\"பாதையை நிறுத்து\"* பொத்தானுக்கு அருகில் உள்ள *\"பீக்கனை முடக்கு\"* பொத்தானைத் தட்டவும்.
 

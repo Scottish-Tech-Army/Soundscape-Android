@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Pemberitahuan Otomatis
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: id
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Pemberitahuan Otomatis
 
-## What is it?
+## Apa itu?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape dapat memberi tahu Anda tentang hal-hal di sekitar Anda saat Anda mendekatinya, dengan menyebutkan namanya dari arah tempat tersebut berada. Aplikasi akan melakukan ini secara otomatis untuk berbagai hal seperti bisnis, halte bus, dan bahkan persimpangan. Anda dapat mengatur apa saja yang secara otomatis disebutkan aplikasi di bagian *\"Kelola Pemberitahuan\"* pada layar *\"Pengaturan\"*, dan Anda dapat mematikan semua pemberitahuan saat Anda ingin aplikasi diam.
 
-## When would I use it?
+## Kapan saya menggunakannya?
 
-**Exploring a new area :**
+**Menjelajahi area baru :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Aktifkan pemberitahuan otomatis dan berjalanlah untuk mendengar tentang berbagai toko, restoran, dan sejenisnya saat Anda melewatinya.
 
-**Walking to a specific location :**
+**Berjalan menuju lokasi tertentu :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Saat Anda sedang menuju suatu lokasi tertentu, pemberitahuan otomatis untuk persimpangan bisa sangat berguna. Pemberitahuan persimpangan memberi tahu Anda tentang tata letak persimpangan saat Anda mendekatinya, dan menegaskan jalan yang sedang Anda lalui saat Anda meninggalkannya.
 
-**When you need silence :**
+**Saat Anda membutuhkan keheningan :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Saat Anda akan menyeberang jalan atau hanya ingin aplikasi diam, Anda dapat mematikan pemberitahuan. Ketika pemberitahuan dimatikan, aplikasi hanya akan memberikan informasi jika Anda menekan salah satu tombol *Lokasi Saya*, *Penanda Terdekat*, *Di Sekitar Saya*, atau *Di Depan Saya*.
 
-## How does it work?
+## Bagaimana cara kerjanya?
 
-**Turning callouts on or off :**
+**Mengaktifkan atau menonaktifkan pemberitahuan :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Menonaktifkan pemberitahuan akan membuat aplikasi diam. Pemberitahuan dapat dinonaktifkan di bagian *\"Kelola Pemberitahuan\"* pada layar *\"Pengaturan\"* dengan mengatur *\"Tingkat Detail Pemberitahuan\"* ke *\"Senyap\"*, dan diaktifkan kembali dengan memilih tingkat mana pun yang lain. Anda dapat melakukan hal yang sama dengan meminta bantuan Siri atau Gemini. Anda juga dapat membuat Soundscape lebih senyap setahap demi setahap dengan tombol kontrol media pada headphone Anda: setiap penekanan *\"sebelumnya\"* turun satu tingkat melalui *\"Rinci\"*, *\"Seimbang\"*, *\"Ringkas\"*, dan *\"Senyap\"*, lalu satu penekanan lagi kembali ke *\"Rinci\"*. Lihat topik bantuan *\"Menggunakan Kontrol Media\"*. Sebagai alternatif, Anda dapat menggunakan tombol *\"Tidur\"* di pojok kanan atas layar utama untuk menghentikan Soundscape memberikan pemberitahuan sampai Anda memilih untuk membangunkannya kembali.
 
-**Managing which callouts you hear :**
+**Mengelola pemberitahuan yang Anda dengar :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Untuk memilih jenis hal yang akan secara otomatis disebutkan Soundscape, buka layar *\"Pengaturan\"* menggunakan menu di layar *\"Beranda\"*. Di bagian *\"Kelola Pemberitahuan\"* pada layar *\"Pengaturan\"* itulah Anda memilih seberapa banyak yang dikatakan aplikasi dengan *\"Tingkat Detail Pemberitahuan\"*, apakah aplikasi menyebutkan *\"Jalan dan Persimpangan\"*, dan apa saja *\"Tempat yang Diberitahukan\"*. Jika Anda ingin menonaktifkan semua pemberitahuan, atur *\"Tingkat Detail Pemberitahuan\"* ke *\"Senyap\"*.
 

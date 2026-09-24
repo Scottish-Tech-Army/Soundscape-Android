@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Alamomi na Kusa
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ha
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Alamomi na Kusa
 
-## What is it?
+## Menene wannan?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+Maɓallin *Alamomin Kusa* yana gaya muku game da alamomi har guda huɗu waɗanda suka fi kusanci da ku. An ƙirƙiri *Alamomin Kusa* domin taimaka muku daidaita kanku ta amfani da wurare da kuka riga kuka sani.
 
-## When would I use it?
+## Yaushe zan yi amfani da shi?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Idan kuna ƙoƙarin gane inda kuke da kuma daidaita kanku da abin da ke kewaye da ku, yi amfani da *Alamomin Kusa* don jin wurin da wuraren da kuka sani suke.
 
-## How does it work?
+## Yaya yake aiki?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Kamar sauran dukkan maɓallai huɗu da ke ƙasan babban allo, riƙe wayarku a kwance (fuska sama zuwa sama) tare da saman wayar yana nuni da alkiblar da kuke fuskanta kafin ku danna maɓallin *Alamomin Kusa*. Wannan yana aiki kamar kamfas wanda ke gaya wa manhajar alkiblar da kuke fuskanta. Kawai, danna maɓallin *Alamomin Kusa* kuma za ku ji alamomi har guda huɗu kusa da ku.
 

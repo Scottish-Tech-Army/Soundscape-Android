@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Utilizarea comenzilor media
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: ro
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Utilizarea comenzilor media
 
-## What is it?
+## Ce este?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Poți accesa anumite funcții din Soundscape cu ajutorul butoanelor de control media de pe căști. Această funcționalitate funcționează cu orice căști cu fir sau Bluetooth care au butoane de control media precum Redare, Pauză, Următorul, Anteriorul și altele. Diferitele căști pot include butoane diferite, așa că te rugăm să consulți lista de acțiuni de mai jos pentru a determina care sunt disponibile pentru tine.
 
-## When would I use it?
+## Când aș folosi această funcție?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Butoanele de control media de pe căști pot fi folosite în timp ce Soundscape rulează — fie că folosești activ aplicația, fie că aceasta rulează în fundal, fie că dispozitivul tău este blocat. Totuși, butoanele de control media de pe căști nu vor funcționa cu Soundscape dacă redai conținut audio, precum muzică, podcasturi sau videoclipuri, cu altă aplicație.
 
-## How does it work?
+## Cum funcționează?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Există 2 moduri de operare pentru controalele media. Modul poate fi selectat în secțiunea *Setări* -> *Controale media*. Modurile sunt:
 
- Original mode. 
+ Mod original. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Redare/Pauză: Comută sunetul balizei audio pornit/oprit. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Următorul: Dacă o rută este redată, mută baliza audio la punctul de traseu următor din rută. Dacă nicio rută nu este redată, anunță *În jurul meu*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Anterior: Dacă o rută este redată, mută baliza audio la punctul de traseu anterior din rută. Dacă nicio rută nu este redată, schimbă *Detaliul anunțurilor*, cu un nivel mai discret la fiecare apăsare: *Detaliat*, *Echilibrat*, *Discret*, *Silențios*, apoi înapoi la *Detaliat*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Meniu audio. 
+
+
+
+⏭ Următorul parcurge o serie de opțiuni dintr-un meniu pe care aplicația le descrie prin text în vorbire, revenind la prima după ultima. ⏯ Redare/Pauză declanșează apoi aplicația să execute opțiunea descrisă. Există un singur meniu de nivel superior care are doar submeniuri ca opțiuni. Fiecare submeniu conține un grup de acțiuni similare.
+
+⏮ Anterior nu parcurge meniul. În schimb, schimbă *Detaliul anunțurilor*, exact ca în modul original, astfel încât același buton face aplicația mai discretă în oricare dintre moduri.
 

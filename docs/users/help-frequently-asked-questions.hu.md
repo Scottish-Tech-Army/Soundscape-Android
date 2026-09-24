@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions
+title: Gyakran ismételt kérdések
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,123 +7,123 @@ lang: hu
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# Frequently Asked Questions
+# Gyakran ismételt kérdések
 
-## What is Soundscape and how should I use it?
+## Mi az a Soundscape, és hogyan használjam?
 
-### When should I use Soundscape?
-Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
+### Mikor használjam a Soundscape-et?
+A Soundscape-nek számos funkciója és előnye van, amelyek sokféle helyzetet és időtávot ölelnek fel. A Soundscape értéke idővel változhat is az Ön számára, így ahogyan ma használja, eltérhet attól, ahogyan három hónap múlva fogja használni. Az emberek gyakran úgy gondolnak az alkalmazásokra, hogy *milyen problémát old meg jól ez az alkalmazás?* A Soundscape kétségtelenül használható konkrét igényekre – például egy célpont nyomon követésére útközben, tájékozódásra, amikor kilép egy metróállomásról, tájékozódásra, amikor kiszáll egy autóból, vagy a következő kereszteződés utcaneveinek vagy távolságának megállapítására. A Soundscape mögötti filozófia azonban az, hogy *hanggal világítsa meg a világát* – arra tervezték, hogy bármikor használható legyen, amikor útközben van, hogy folyamatos tájékozódási érzetet nyújtson a környezetéről, például azoknak az utcáknak a nevét, amelyeken jár, az irányt, amerre halad, és azoknak az üzleteknek a nevét, amelyek mellett elhalad. Ebben a használati módban felhasználóink a Soundscape-et *kellemes társalkalmazásnak* nevezték, amely támogatja a *véletlen felfedezéseket*, segít *kitölteni a mentális térkép hiányosságait*, és nagyobb *magabiztosságot ad séta közben*. Íme néhány további példa arra, hogyan használják felhasználóink a Soundscape-et az életükben:
 
-"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
+A Soundscape segített visszatalálnom a helyes útra, miután leszálltam a buszról, és rossz irányba indultam el.
 
-"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
+Még abban a városban is, ahol már 3 éve élek, jobb képet alkottam magamnak arról, mi van körülöttem [a Soundscape-pel].
 
-"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
+A 3D hang javítja a séta élményét, mert jobban kapcsolódom a környezetemhez… nagyobb eséllyel próbálok ki új útvonalat, most hogy van erre az alkalmazásom.
 
-"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
+Hiányzik a séta közbeni véletlen felfedezés élménye. Jó, hogy megvan a Soundscape – nem igényel erőfeszítést, hogy halljak a körülöttem lévő dolgokról. A kapcsolati információk hasznosak, és remek alkalmazás a helyzettudatossághoz és az üzleti negyedek felfedezéséhez.
 
-"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
+[A Soundscape-et arra használtam], hogy megtaláljak egy kocsmát York belvárosában. [Számos] lehetőségét kihasználtam, hogy először behatároljam, majd ténylegesen megtaláljam. 3 méteren belülre vitt az ajtajához – zseniális!
 
-### What are Markers and how do I get the most out of them?
-Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
+### Mik azok a jelölők, és hogyan hozhatom ki belőlük a legtöbbet?
+A jelölők olyan helyek, amelyeket elmentett. Lehetnek olyan helyek, amelyek megtalálhatók az alkalmazásban, vagy lehetnek teljesen új helyek, amelyeket Ön maga adott hozzá. A jelenlegi helyét jelölőként elmentheti a *\"Jelenlegi hely\"* gomb kiválasztásával a kezdőképernyőn, majd a *\"Mentés jelölőként\"* kiválasztásával. Más helyeket úgy menthet el jelölőként, hogy a keresősávval rákeres a menteni kívánt helyre, vagy megkeresi a *\"Közeli helyek\"* gombbal – mindkettő megtalálható a Soundscape kezdőképernyőjén. Miután megtalálta a kívánt helyet, a kiválasztása a *\"Hely részletei\"* képernyőre viszi. Ezen a képernyőn válassza ki a *\"Mentés jelölőként\"* nevű gombot.
 
-## How do I get the best out of Soundscape?
+## Hogyan hozhatom ki a legtöbbet a Soundscape-ből?
 
-### What can I set as a beacon?
-You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+### Mit állíthatok be hangjelzőnek?
+Hangjelzőt állíthat be bármely üzletre, helyre, érdekes helyre, címre vagy kereszteződésre. Néhány módon adhat hangjelzőt egy helyhez. Először tekintse meg egy hely adatait: használja a keresősávot egy hely kereséséhez, vagy koppintson a *\"Közeli helyek\"*, a *\"Jelölők és útvonalak\"*, vagy a *\"Jelenlegi hely\"* gombok egyikére, majd válasszon egy helyet. A *\"Hely részletei\"* képernyőn kiválaszthatja a *\"Hangjelző indítása\"* gombot. Ha erre koppint, visszatér a kezdőképernyőre, és bekapcsol egy hallható hangjelző a kiválasztott hely irányából. A kiválasztott hely neve, valamint – ha elérhető – a távolsága és a fizikai címe mostantól megjelenik az alkalmazás főképernyőjén.
 
-### How do I get the most out of a beacon?
-You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
+### Hogyan hozhatom ki a legtöbbet a hangjelzőből?
+A hallható hangjelzőt úgy is felfoghatja, mint a *"fülei világítótornyát"*: megmondja, hol van a célpontja, egyenes vonalban a jelenlegi helyétől. Akárcsak egy világítótorony, ez sem mondja meg, hogyan jusson el oda – útközben még mindig navigációs döntéseket kell hoznia, hogy megkerülje az akadályokat. A hallható hangjelző folyamatos, ritmikus hangja a célpont irányából érkezik, és segít tudatában tartani, hol van a célpont Önhöz képest, miközben sétál. Amikor közvetlenül a célpont felé sétál, vagy a telefont a célpont felé irányítja, egy magasabb hangmagasságú *"csengő"* hangot fog hallani. Ez segít pontosan meghatározni a célpont irányát, mivel a ritmikus hang irányát néha nehéz meghallani zajos környezetben. A magasabb hangmagasságú *"csengő"* hang megtalálásához tartsa a telefont vízszintesen, és lassan forduljon körbe; ha a fejét is abba az irányba fordítja, amerre a telefon mutat, azzal éri el a legjobb térbeli hangélményt.
 
-This design has a few natural results:
+Ennek a kialakításnak néhány természetes következménye van:
 
-1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
+1. Nincs *"helyes"* irány, amerre haladni kell a hangjelző használatakor – a Soundscape-pel Ön dönti el, hogyan jut el oda;
 
-2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
+2. A magasabb hangmagasságú *"csengő"* csak a célpont irányának pontos meghatározásában segít – nem mondja meg, hogyan jusson oda;
 
-3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
+3. Ha általában tudja, hogyan jusson el a célpontjához, elnémíthatja a hangjelzőt az út nagy részére, és csak akkor kapcsolhatja vissza, amikor közeledik a célponthoz.
 
-### Why does the audible beacon disappear sometimes?
-Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
+### Miért tűnik el néha a hallható hangjelző?
+A Soundscape hallható hangjelzője alapvetően egy irányjelzés, amely megmutatja, hol van a célpontja ahhoz az irányhoz képest, amerre néz. Amikor a Soundscape bizonytalan abban, hogy merre néz, csökkenti a hangjelző hangerejét. Ez leggyakrabban akkor fordul elő, ha zsebben vagy táskában tartott telefonnal sétált, és megáll, például hogy átkeljen egy úton. A hangjelző ismét hangosabb lesz, amint újra elindul, vagy ha vízszintesen tartja a telefont, és abba az irányba mutat vele, amerre néz.
 
-### Can I set a beacon on an address?
-Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
+### Beállíthatok hangjelzőt egy címre?
+Igen, ez lehetséges. A címek alapértelmezés szerint nincsenek felsorolva, de a keresőmező segítségével megtalálhatók. Ha el szeretné menteni ezt a címet, hogy ne kelljen újra rákeresnie, hozzáadhatja jelölőként a *\"Hely részletei\"* képernyőn a *\"Mentés jelölőként\"* gomb kiválasztásával.
 
-### How do I set a beacon on my home?
-Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
+### Hogyan állítsak be hangjelzőt az otthonomra?
+A Soundscape támogatja a hangjelzők beállítását címekre. Ha hangjelzőt szeretne beállítani az otthonára vagy bármely más címre, keressen rá egy helyre a Soundscape főképernyőjén. A *Hely részletei* képernyőn koppintson a *Hangjelző indítása* gombra.
 
-### When I set a beacon on a destination, how close will Soundscape get me to the destination?
-Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
+### Ha hangjelzőt állítok be egy célpontra, milyen közel visz a Soundscape a célponthoz?
+A Soundscape néhány méteres pontossággal képes meghatározni a célpont helyét, ennél pontosabban nem. Amikor a Soundscape megállapítja, hogy közel van a célpontjához, egy utolsó közlést fog hallani arról, hogy a célpontja a közelben van, majd a hangjelző kikapcsol.
 
-### Can I turn the beacon back on when I am close to my destination?
-Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
+### Visszakapcsolhatom a hangjelzőt, amikor közel vagyok a célpontomhoz?
+Igen, miután a Soundscape kikapcsolta a hangjelzőt, visszakapcsolhatja a *hangjelző némításának feloldása gomb* kiválasztásával; mivel azonban a Helyszolgáltatások pontossága csak körülbelül 10 méter, nem tudjuk garantálni a hangjelző viselkedését, amikor néhány méteren belül van a célpontjához.
 
-### Why does Soundscape call out road names twice when I approach an intersection?
-To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
+### Miért mondja be a Soundscape kétszer az utcaneveket, amikor egy kereszteződéshez közeledem?
+A kereszteződések sokféle elrendezésének kezelésére a Soundscape a kereszteződéseket egy közös pontból induló útszakaszokként írja le. A Soundscape térbeli hangot használ, hogy jelezze a balra vezető út nevét, az egyenesen tovább vezető út nevét, majd a jobbra vezető út nevét, ebben a sorrendben. Ha a kereszteződés leírása azzal az úttal kezdődik, amelyen éppen van, nem pedig egy balra lévővel, akkor a kereszteződés T alakú, az Ön útja egyenesen folytatódik, és egy út csatlakozik hozzá jobbról. Hasonlóképpen, ha a leírás csak egy balra és egy jobbra lévő utat tartalmaz, akkor tudni fogja, hogy az útja T alakban ér véget Ön előtt. Ez a kereszteződés-leírási módszer akkor is működik, amikor egy út neve megváltozik a kereszteződésnél.
 
-### Why doesn’t Soundscape announce every business that I pass?
-Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
+### Miért nem mond be a Soundscape minden üzletet, amely mellett elhaladok?
+A Soundscape-et úgy tervezték, hogy ne adjon túl sok közlést. Emellett az OpenStreetMapet használja adatforrásként. Az OpenStreetMap (OSM, https://www.openstreetmap.org/) a világ térképe, amelyet egyéni közreműködők közössége épít és szerkeszt. Ha a Soundscape nem mond be egy üzletet vagy érdekes helyet, a legvalószínűbb ok az, hogy az OSM közösség egyik tagja még nem adta hozzá az adatokhoz, vagy egyes esetekben nem frissítette azt.
 
-### Why do some callouts stop when I'm in a vehicle?
-In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
+### Miért állnak le egyes közlések, amikor járműben vagyok?
+Annak érdekében, hogy a közlések száma ne legyen elárasztó, bizonyos kategóriákat, például a kereszteződéseket, nem mondja be automatikusan az alkalmazás, amikor járműben utazik.
 
-### What if I don't understand a callout or miss it because of ambient noise?
-Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
+### Mi van, ha nem értek meg egy közlést, vagy lemaradok róla a környezeti zaj miatt?
+A Soundscape rendelkezik a legutóbbi közlések listájával, hogy visszatérhessen azokhoz a közlésekhez, amelyekről esetleg lemaradt. Ennek megtekintéséhez koppintson a keresősávra a Soundscape kezdőképernyőjén. Ennek a képernyőnek az alján található egy *Legutóbbi közlések* rész, ahol a kihagyott közlés szerepelni fog.
 
-## How does Soundscape work?
+## Hogyan működik a Soundscape?
 
-### What phone does Soundscape run on?
-Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
+### Milyen telefonon fut a Soundscape?
+A Soundscape jelenleg elérhető iOS 16-ot vagy újabb verziót futtató iPhone-okhoz, valamint Android 11-et vagy újabb verziót futtató Android-telefonokhoz.
 
-### What headphones should I use with Soundscape?
-Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
+### Milyen fülhallgatót használjak a Soundscape-hez?
+Hogy melyik fülhallgatót használja a Soundscape-hez, egyéni preferencia kérdése, és minden lehetőségnek megvannak a maga előnyei és hátrányai. Az egyetlen konkrét követelmény, hogy egy sztereó fülhallgatót használjon, hogy kihasználhassa a Soundscape 3D térbeli hangközléseinek előnyeit.
 
-### How does Soundscape impact my phone’s battery?
-Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
+### Hogyan hat a Soundscape a telefonom akkumulátorára?
+Az akkumulátor élettartama jelentősen változik attól függően, milyen telefonja van, és milyen régi. A legnagyobb terhelést a bekapcsolt képernyő jelenti, ezért a telefon akkumulátor-élettartamának maximalizálásához tartsa zárolva a képernyőt, amikor csak lehetséges. Az akkumulátorra gyakorolt hatás csökkentése érdekében a Soundscape mostantól rendelkezik Alvó móddal. Az akkumulátorhasználat további csökkentéséhez, amikor nem használja a Soundscape-et, zárja be teljesen a telefon Alkalmazásváltójával.
 
-### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
+### Hogyan használjam az Alvó módot, hogy minimalizáljam a Soundscape hatását a telefonom akkumulátorára?
+Ahhoz, hogy a Soundscape-et Alvó módba állítsa, válassza az *Alvás* gombot a képernyő jobb felső sarkában. Ha ezt kiválasztja, a Soundscape leállítja a Helyszolgáltatások és a mobiladatok használatát, amíg úgy nem dönt, hogy újra felébreszti.
 
-### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
+### Hogyan használjam a Szundi módot, hogy minimalizáljam a Soundscape hatását a telefonom akkumulátorára?
+Ahhoz, hogy a Soundscape-et Szundi módba állítsa, válassza az *Alvás* gombot a képernyő jobb felső sarkában. Miután a Soundscape Alvó módban van, válassza az *Ébresztés, amikor elindulok* gombot, és a Soundscape alacsony fogyasztású állapotba kerül, amíg el nem hagyja a jelenlegi helyét.
 
-### How does my choice of headphones affect the battery life of my phone?
-In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
+### Hogyan befolyásolja a fülhallgató-választásom a telefonom akkumulátor-élettartamát?
+Teszteink szerint a Bluetooth-os fülhallgatók akkumulátor-fogyasztása hasonló a vezetékes fülhallgatókéhoz, így ez nem jelent jelentős szempontot a fülhallgató kiválasztásakor.
 
-### How does running Soundscape in the background impact battery life of my phone?
-Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
+### Hogyan hat a telefonom akkumulátor-élettartamára, ha a Soundscape a háttérben fut?
+A Soundscape egy helyalapú alkalmazás, amely a Helyszolgáltatásokat használja a helyzete meghatározásához. Teszteink szerint a Soundscape nem fogyaszt több akkumulátort, mint egy átlagos térképalkalmazás; de ha aggódik a telefonja akkumulátor-fogyasztása miatt, az alábbi néhány tipp segít csökkenteni a használatot:
 
-1. Turn the screen display off as much as possible when you are not interacting with the app.
+1. Kapcsolja ki a képernyőt, amikor csak lehetséges, ha éppen nem használja az alkalmazást.
 
-2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
+2. Amikor nem használja az alkalmazást, zárja be. A Soundscape futás közben folyamatosan használja a helyszolgáltatásokat, hogy mindig tudja a helyzetét, még akkor is, ha nem mozog. Ne felejtse el újraindítani az alkalmazást, amikor folytatja az útját.
 
-3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
+3. Hideg időben tartsa melegen a telefonját, mivel az akkumulátorok rosszabbul teljesítenek alacsonyabb hőmérsékleten.
 
-### How much mobile data does Soundscape use?
-The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
+### Mennyi mobiladatot használ a Soundscape?
+A felhasznált mobiladat mennyisége attól függ, hogyan használja a Soundscape-et. A Soundscape-et úgy terveztük, hogy csak kis mennyiségű adatot használjon, amikor úton van, például úgy, hogy elmenti a pontokat séta közben, így nem kell azokat újra letöltenie minden alkalommal, amikor visszatér egy már meglátogatott helyre. A felhasznált mobiladat mennyiségének csökkentéséhez lehetőleg mindig csatlakozzon Wi-Fi hálózathoz, különösen az alkalmazás letöltésekor. Amikor nem használja a Soundscape-et, használja az *Alvás* gombot, hogy elaltassa a Soundscape-et, vagy zárja be teljesen az alkalmazást.
 
-### How is Soundscape different from other map apps?
-Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
+### Miben különbözik a Soundscape más térképalkalmazásoktól?
+A Soundscape a felfedezés és a tájékozódás elősegítésére a környezet folyamatos leírását nyújtja. Térbeli hang segítségével a Soundscape bemondja az érdekes helyeket, parkokat, utakat és kereszteződéseket abból az irányból, ahol azok fizikailag találhatók a közvetlen környezetében, séta közben. Ha például elhalad egy üzlet mellett a jobb oldalán, az üzlet nevét a jobb oldaláról fogja hallani. Amikor egy kereszteződéshez közeledik, az egyes utcaneveket abból az irányból fogja hallani, amerre vezetnek, kezdve a bal oldalával, majd egyenesen előre és jobbra.
 
-Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
+A más térképalkalmazások által gyakran nyújtott lépésről lépésre navigáció helyett a Soundscape hallható hangjelzőt játszik le a célpontja irányából, lehetővé téve, hogy úgy jusson el oda, ahogy Önnek a legjobban megfelel, kihasználva a környezetéről és a célpontja helyéről szerzett fokozott tudatosságát. A Soundscape-et úgy tervezték, hogy a háttérben fusson, lehetővé téve, hogy egy lépésről lépésre navigáló alkalmazást is használjon, miközben továbbra is folyamatos tájékozódási érzetet nyújt, ahogy a célpontja felé halad.
 
-### How do I use Soundscape with a wayfinding app?
-Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
+### Hogyan használjam a Soundscape-et egy navigációs alkalmazással együtt?
+A Soundscape egy tájékozódást segítő alkalmazásként lett megtervezve, amely segít kitölteni a környezetéről szóló olyan részleteket, amelyekről egyébként nem lenne tudomása. Bár nem lépésről lépésre navigáló alkalmazásnak tervezték, más ilyen alkalmazások mellett is használható, hogy kiegészítő információt nyújtson. Ha ezekkel az alkalmazásokkal együtt szeretné használni a Soundscape-et, először indítsa el a navigációs alkalmazást. Ezután váltson át a Soundscape-re, és állítson be hangjelzőt ugyanarra a célpontra, mint amit a navigációs alkalmazásban beállított. Ekkor mindkét alkalmazás futni fog, és a navigációs alkalmazástól gyalogos útvonalutasításokat fog hallani, miközben a Soundscape-től frissítéseket kap az érdekes helyekről, kereszteződésekről és a célpontjától mért távolságáról.
 
-### How do I control what I hear and when I hear it in Soundscape?
-Soundscape provides several ways to control what you hear and when:
+### Hogyan szabályozhatom, hogy mit és mikor hallok a Soundscape-ben?
+A Soundscape több módot is kínál arra, hogy szabályozza, mit és mikor hall:
 
-1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
+1. Minden hang azonnali leállítása: Koppintson duplán a képernyőre két ujjal, hogy azonnal kikapcsoljon minden hangot, beleértve az éppen lejátszott közlést és a hangjelzőt, ha az be van kapcsolva. A közlések automatikusan folytatódnak, amikor a következő kereszteződéshez vagy érdekes helyhez közeledik, de a hallható hangjelző nem. Válassza a *\"hangjelző némításának feloldása\"* gombot a főképernyőn, hogy ismét hallja a hangjelzőt.
 
-2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
+2. Automatikus közlések leállítása: Amikor nem utazik, vagy elérte a célpontját, valószínűleg nincs szüksége arra, hogy a Soundscape továbbra is tájékoztassa a környezetében lévő dolgokról. Ahelyett, hogy kilépne az alkalmazásból, Szundi módba állíthatja a Soundscape-et, amely újra felébred, amikor elindul, vagy Alvó módba állíthatja, amely kikapcsolva marad, amíg úgy nem dönt, hogy visszakapcsolja. Ehelyett kiválaszthatja a *\"Beállítások\"* menüpontot, és a *\"Közlések kezelése\"* részben a *\"Közlések részletessége\"* beállítást *\"Néma\"* értékre állíthatja.
 
-3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
+3. A hangjelző leállítása: Számos olyan helyzet van, amikor beállíthat egy célpontot, de nincs szüksége bekapcsolt hallható hangjelzőre. Előfordulhat például, hogy pontosan tudja, hogyan jusson el a célpontjához, de mégis szeretne automatikus frissítéseket kapni arról, milyen messze van tőle. Vagy csak akkor van szüksége a hangjelzőre, amikor közeledik a célpontjához. Bármelyik esetről is legyen szó, a főképernyőn a *\"hangjelző némítása\"*/*\"hangjelző némításának feloldása\"* gomb átváltásával döntheti el, mikor hallja a hangjelzőt.
 
-If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
+Ha továbbra is szeretne interakcióba lépni a Soundscape-pel, de nem szeretne automatikus közléseket hallani, a menüből elérhető *\"Beállítások\"* képernyő *\"Közlések kezelése\"* részében a *\"Közlések részletessége\"* beállítást *\"Néma\"* értékre állíthatja. Vagy ha nem fogja használni a Soundscape-et, Alvó vagy Szundi módba állíthatja a kezdőképernyőn található *\"Alvás\"* gombbal.
 
-### Do I need to hold the phone in my hand all the time?
-No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
+### Végig a kezemben kell tartanom a telefont?
+Nem! Séta közben eltehet a telefont egy táskába, zsebbe, vagy bárhová, ahol kényelmes. A Soundscape a haladási irányát fogja használni annak megállapítására, hogy mely közléseket mondja be a bal, illetve a jobb oldaláról. Amikor megáll, a Soundscape nem tudja, merre néz. Ha a hallható hangjelző be van kapcsolva, észre fogja venni, hogy elhalkul, amíg újra el nem indul. Bármikor előveheti a telefont, hogy megnyomja a képernyő alján található helyzet- és felfedezőgombokat, de ilyenkor ügyeljen arra, hogy a telefon teteje abba az irányba mutasson, amerre néz, a képernyő pedig az ég felé nézzen. Ebben a *\"vízszintes\"* helyzetben a Soundscape a telefon iránytűjét használja annak meghatározására, merre néz, és pontos térbeli közléseket ad. Ha a hangjelző be van kapcsolva, azt is észre fogja venni, hogy visszaáll a teljes hangerőre.
 
-### What is OpenStreetMap and why do we use it for Soundscape?
-Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
+### Mi az az OpenStreetMap, és miért ezt használjuk a Soundscape-hez?
+A Soundscape térképadatokat használ a hangközlései létrehozásához. Fő térképforrásunk az OpenStreetMap (www.openstreetmap.org). Ez egy térképészeti platform, amelyet közreműködők közössége hozott létre. Szervezetek és magánszemélyek az OpenStreetMap eszközeivel javíthatják az adatokat, és akadálymentesebbé tehetik a tereiket.
 

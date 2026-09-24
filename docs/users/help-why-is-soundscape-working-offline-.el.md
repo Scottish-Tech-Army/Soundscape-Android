@@ -1,5 +1,5 @@
 ---
-title: Why is Soundscape working offline?
+title: Γιατί το Soundscape λειτουργεί εκτός σύνδεσης;
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: el
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Why is Soundscape working offline?
+# Γιατί το Soundscape λειτουργεί εκτός σύνδεσης;
 
-## Why is Soundscape working offline?
+## Γιατί το Soundscape λειτουργεί εκτός σύνδεσης;
 
-When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
+Όταν δεν υπάρχει σύνδεση στο διαδίκτυο ή όταν οι υπηρεσίες Soundscape είναι εκτός λειτουργίας, το Soundscape μεταβαίνει σε λειτουργία εκτός σύνδεσης. Θα συνεχίσει να λειτουργεί, αλλά ορισμένες λειτουργίες μπορεί να είναι περιορισμένες.
 
-## Limitations
+## Περιορισμοί
 
-Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
+Οι επεξηγήσεις εξακολουθούν να λειτουργούν σε περιοχές από τις οποίες έχετε περάσει στο παρελθόν, καθώς το Soundscape τις αποθηκεύει στο ιστορικό επεξηγήσεών σας. Μπορείτε επίσης να τοποθετήσετε ένα ηχητικό σήμα ή να δημιουργήσετε έναν δείκτη σε μέρη που είναι ήδη αποθηκευμένα στο ιστορικό επεξηγήσεών σας.
 
-## What can you do?
+## Τι μπορείτε να κάνετε;
 
-Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
+Το Soundscape θα προσπαθήσει να συνεχίσει την κανονική λειτουργία μόλις το τηλέφωνό σας έχει καλή σύνδεση στο διαδίκτυο, είτε μέσω Wi-Fi είτε μέσω δεδομένων κινητής τηλεφωνίας. Εάν το τηλέφωνό σας έχει καλή σύνδεση αλλά το Soundscape εξακολουθεί να μη συνεχίζει την κανονική λειτουργία, ενδέχεται να υπάρχει διακοπή στις υπηρεσίες Soundscape.
 

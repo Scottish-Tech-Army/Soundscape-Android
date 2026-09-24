@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Notifiche automatiche
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: it
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Notifiche automatiche
 
-## What is it?
+## Cos'è?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape può informarti su ciò che ti circonda mentre ti avvicini, annunciando il nome dalla direzione in cui si trova. L'app lo fa automaticamente per vari elementi, come attività commerciali, fermate dell'autobus e persino incroci. Puoi configurare cosa l'app annuncia automaticamente nella sezione *\"Gestisci notifiche\"* della schermata *\"Impostazioni\"*, e puoi disattivare tutte le notifiche quando vuoi che l'app resti silenziosa.
 
-## When would I use it?
+## Quando si usa?
 
-**Exploring a new area :**
+**Esplorazione di una nuova area :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Attiva le notifiche automatiche e cammina per ascoltare tutti i negozi, ristoranti e cose simili mentre li incontri.
 
-**Walking to a specific location :**
+**Percorso verso una posizione specifica :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Quando ti stai dirigendo verso una determinata posizione, le notifiche automatiche per gli incroci possono essere particolarmente utili. Le notifiche degli incroci ti informano sulla disposizione degli incroci man mano che ti avvicini e ti indicano la strada in cui ti trovi quando li lasci.
 
-**When you need silence :**
+**Necessità di silenzio :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Quando stai per attraversare una strada o hai solo bisogno che l'app sia silenziosa, puoi disattivare le notifiche. Quando le notifiche sono disattivate, l'app ti fornirà informazioni solo se tocchi manualmente uno dei pulsanti *La mia posizione*, *Indicatori nelle vicinanze*, *Intorno a me* o *Davanti a me*.
 
-## How does it work?
+## Come funziona?
 
-**Turning callouts on or off :**
+**Attivare o disattivare le notifiche :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Disattivando le notifiche l'app resta in silenzio. Puoi disattivare le notifiche nella sezione *\"Gestisci notifiche\"* della schermata *\"Impostazioni\"* impostando *\"Dettaglio delle notifiche\"* su *\"Silenzioso\"*, e riattivarle scegliendo un qualsiasi altro livello. Puoi fare lo stesso chiedendolo a Siri o a Gemini. Puoi anche rendere Soundscape più discreto un passo alla volta con i comandi multimediali dei tuoi auricolari: ogni pressione di *\"indietro\"* scende di un livello tra *\"Dettagliato\"*, *\"Bilanciato\"*, *\"Discreto\"* e *\"Silenzioso\"*, e un'ulteriore pressione torna a *\"Dettagliato\"*. Consulta l'argomento della guida *\"Utilizzo dei controlli di riproduzione\"*. In alternativa, puoi usare il pulsante *\"Sospendi\"* nell'angolo in alto a destra della schermata principale per impedire a Soundscape di riprodurre notifiche finché non deciderai di riattivarlo.
 
-**Managing which callouts you hear :**
+**Gestione delle notifiche che senti :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Per scegliere i tipi di elementi che Soundscape annuncerà automaticamente, vai alla schermata *\"Impostazioni\"* usando il menu nella schermata *\"Home\"*. Nella sezione *\"Gestisci notifiche\"* della schermata *\"Impostazioni\"* scegli quanto dice l'app con *\"Dettaglio delle notifiche\"*, se annunciare *\"Strade e incroci\"* e quali *\"Luoghi da annunciare\"*. Se desideri disattivare tutte le notifiche, imposta *\"Dettaglio delle notifiche\"* su *\"Silenzioso\"*.
 

@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: หมุดใกล้เคียง
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: th
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# หมุดใกล้เคียง
 
-## What is it?
+## คืออะไร
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+ปุ่ม *หมุดใกล้เคียง* จะบอกคุณเกี่ยวกับหมุดสูงสุดสี่จุดที่อยู่ใกล้คุณที่สุด *หมุดใกล้เคียง* มีไว้เพื่อช่วยให้คุณกำหนดทิศทางตัวเองโดยใช้สถานที่ที่คุณรู้จักอยู่แล้ว
 
-## When would I use it?
+## ควรใช้เมื่อใด
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+เมื่อคุณกำลังพยายามกำหนดทิศทางและปรับตัวให้เข้ากับสภาพแวดล้อมรอบตัว ให้ใช้ *หมุดใกล้เคียง* เพื่อฟังตำแหน่งของสถานที่ที่คุณรู้จัก
 
-## How does it work?
+## ทำงานอย่างไร
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+เช่นเดียวกับปุ่มทั้งสี่ที่อยู่ด้านล่างของหน้าจอหลัก ให้ถือโทรศัพท์โดยวางหน้าจอในแนวราบ (หันขึ้นฟ้า) และด้านบนของโทรศัพท์ชี้ไปในทิศทางที่คุณหันหน้าไป ก่อนที่จะกดปุ่ม *หมุดใกล้เคียง* วิธีนี้ทำหน้าที่เหมือนเข็มทิศบอกแอปว่าคุณกำลังหันหน้าไปทางทิศใด เพียงแตะปุ่ม *หมุดใกล้เคียง* แล้วคุณจะได้ยินหมุดสูงสุดสี่จุดที่อยู่ใกล้คุณ
 

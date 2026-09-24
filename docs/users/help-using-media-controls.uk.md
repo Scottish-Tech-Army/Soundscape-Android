@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Використання елементів керування медіа
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: uk
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Використання елементів керування медіа
 
-## What is it?
+## Що це?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Ви можете отримати доступ до певних функцій у Soundscape за допомогою кнопок керування мультимедіа на ваших навушниках. Ця функціональність працює з будь-якими дротовими або Bluetooth-навушниками, які мають кнопки керування мультимедіа, такі як «Відтворити», «Пауза», Наступний трек», «Попередній трек» та інші. Різні навушники можуть мати різні кнопки, тому, будь ласка, зверніться до списку дій нижче, щоб визначити, які з них вам доступні.
 
-## When would I use it?
+## Коли б я міг це використати?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Кнопками керування медіа на навушниках можна користуватися, доки працює Soundscape — незалежно від того, чи ви зараз у програмі, чи вона працює у фоновому режимі, чи ваш пристрій заблоковано. Проте кнопки керування медіа на навушниках не працюватимуть із Soundscape, якщо ви відтворюєте аудіо, наприклад музику, подкасти чи відео, за допомогою іншої програми.
 
-## How does it work?
+## Як це працює?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Існує 2 режими роботи кнопок керування медіа. Режим можна вибрати в розділі *Налаштування* *Керування медіа*. Режими:
 
- Original mode. 
+ Оригінальний режим. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Відтворити/Пауза: вмикає або вимикає звук маячка. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Далі: якщо відтворюється маршрут — перемістити звуковий маячок до наступної зупинки в маршруті. Якщо маршрут не відтворюється — оголосити *Навколо Мене*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Назад: якщо відтворюється маршрут — перемістити звуковий маячок до попередньої зупинки в маршруті. Якщо маршрут не відтворюється — змінити *Деталізацію оголошень* на один рівень тихіше з кожним натисканням: *Докладний*, *Збалансований*, *Тихий*, *Беззвучний* і знову *Докладний*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Аудіо-меню. 
+
+
+
+⏭ Далі переміщує вас по списку пунктів меню, які додаток зачитує голосом, і після останнього повертається до першого. ⏯ Відтворити/Пауза потім змушує додаток виконати описаний пункт. Є один верхній рівень меню, у якому опціями є лише підменю. Кожне підменю групує набір подібних дій.
+
+⏮ Назад не переміщує вас по меню. Натомість вона змінює *Деталізацію оголошень* так само, як в оригінальному режимі, тож та сама кнопка стишує додаток у будь-якому з режимів.
 

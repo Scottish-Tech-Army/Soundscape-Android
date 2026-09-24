@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: Saját helyzetem
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hu
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# Saját helyzetem
 
-## What is it?
+## Mi ez?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+A *Saját helyzet* gomb gyorsan olyan információkat ad, amelyek segítenek kideríteni, hol tartózkodik éppen. A *Saját helyzet* tájékoztatja a jelenlegi helyéről, például arról, hogy merre néz, hol vannak a közeli utak vagy kereszteződések, és hol találhatók a közeli érdekes helyek.
 
-## When would I use it?
+## Mikor használnám?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+*Saját helyzet* akkor hasznos, ha ki kell derítenie, hol van, vagy hogy melyik égtáj felé néz.
 
-## How does it work?
+## Hogyan működik?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+Mint a kezdőképernyő alján található mind a négy gomb esetében, tartsa a telefonját vízszintesen (a képernyővel az ég felé), és a telefon teteje mutasson abba az irányba, amerre néz, mielőtt megnyomja a *Saját helyzet* gombot. Ez iránytűként működik, és megmondja az alkalmazásnak, merre néz. Egyszerűen koppintson a *Saját helyzet* gombra, és hallgassa meg.
 

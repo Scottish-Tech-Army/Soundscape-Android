@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: روٹس
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ur
 permalink: /users/help-routes.html
 ---
 
-# Routes
+# روٹس
 
-## What is it?
+## یہ کیا ہے؟
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+روٹس ویپوائنٹس کا ایک سلسلہ ہیں۔ ہر ویپوائنٹ پر پہنچنے پر آپ کو مطلع کیا جائے گا، اور آڈیو بیکن خودکار طور پر اگلے ویپوائنٹ کی طرف بڑھ جائے گا۔
 
-## When would I use it?
+## میں اسے کب استعمال کروں گا؟
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+آپ کسی ایسی جگہ پر روٹ بنا کر استعمال کرنا چاہ سکتے ہیں جو آپ پہلے سے جانتے ہیں، تاکہ یقینی بنا سکیں کہ آپ صحیح راستے پر ہیں۔ یا آپ کوئی نیا سفر سیکھنے کے لیے روٹ استعمال کر سکتے ہیں۔
 
-## How does it work?
+## یہ کیسے کام کرتا ہے؟
 
-**Creating a route :**
+**روٹ بنانا:**
 
- First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+ سب سے پہلے، *مارکرز اور روٹس* پر جائیں، *روٹس* ٹیب منتخب کریں، اور پھر *نیا روٹ* بٹن منتخب کریں۔ روٹ کو ایک نام اور اختیاری تفصیل دیں، پھر چلتے چلتے ویپوائنٹس شامل کریں یا انہیں اپنی مارکرز کی فہرست سے منتخب کریں۔ آپ روٹ میں ترمیم کر کے کسی بھی وقت روٹ کے ساتھ ویپوائنٹس کی ترتیب تبدیل کر سکتے ہیں۔
 
-**Editing a route :**
+**روٹ میں ترمیم کرنا:**
 
- Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ *\"مارکرز اور روٹس\"* اسکرین پر اپنا روٹ منتخب کریں اور پھر *\"روٹ میں ترمیم کریں\"* منتخب کریں۔ یہاں سے آپ ویپوائنٹس شامل اور حذف کر سکتے ہیں، اور روٹ کا نام اور تفصیل بھی تبدیل کر سکتے ہیں۔
 
-**Sharing a route :**
+**روٹ شیئر کرنا:**
 
- Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
+ *مارکرز اور روٹس* اسکرین پر اپنا روٹ منتخب کریں اور پھر آپ کو دستیاب تمام معمول کے شیئر اختیارات کا استعمال کرتے ہوئے *شیئر کریں* کا اختیار منتخب کریں۔
 

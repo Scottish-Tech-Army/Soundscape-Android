@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: การแจ้งเตือนด้วยเสียงอัตโนมัติ
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: th
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# การแจ้งเตือนด้วยเสียงอัตโนมัติ
 
-## What is it?
+## คืออะไร
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape สามารถบอกคุณเกี่ยวกับสิ่งต่างๆ รอบตัวเมื่อคุณเข้าใกล้ โดยแจ้งเตือนด้วยเสียงบอกชื่อจากทิศทางที่สิ่งนั้นตั้งอยู่ แอปจะทำสิ่งนี้โดยอัตโนมัติสำหรับสิ่งต่างๆ มากมาย เช่น ร้านค้า ป้ายรถประจำทาง และแม้แต่ทางแยก คุณสามารถกำหนดค่าสิ่งที่แอปจะแจ้งเตือนโดยอัตโนมัติได้ในส่วน *"จัดการการแจ้งเตือนด้วยเสียง"* ของหน้าจอ *"การตั้งค่า"* และคุณสามารถปิดการแจ้งเตือนทั้งหมดได้เมื่อต้องการให้แอปเงียบ
 
-## When would I use it?
+## ควรใช้เมื่อใด
 
-**Exploring a new area :**
+**การสำรวจพื้นที่ใหม่ :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ เปิดการแจ้งเตือนอัตโนมัติแล้วเดินไปรอบๆ เพื่อฟังเกี่ยวกับร้านค้า ร้านอาหาร และสถานที่ต่างๆ ขณะที่คุณผ่าน
 
-**Walking to a specific location :**
+**การเดินไปยังตำแหน่งที่ระบุ :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ เมื่อคุณกำลังเดินทางไปยังตำแหน่งใดตำแหน่งหนึ่ง การแจ้งเตือนอัตโนมัติสำหรับทางแยกจะมีประโยชน์อย่างมาก การแจ้งเตือนทางแยกจะบอกคุณเกี่ยวกับลักษณะของทางแยกเมื่อคุณเข้าใกล้ และยืนยันถนนที่คุณอยู่เมื่อคุณออกจากทางแยกนั้น
 
-**When you need silence :**
+**เมื่อคุณต้องการความเงียบ :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ เมื่อคุณกำลังจะข้ามถนนหรือเพียงต้องการให้แอปเงียบ คุณสามารถปิดการแจ้งเตือนได้ เมื่อปิดการแจ้งเตือนแล้ว แอปจะบอกข้อมูลให้คุณทราบก็ต่อเมื่อคุณแตะปุ่ม *ตำแหน่งของฉัน*, *หมุดใกล้เคียง*, *รอบตัวฉัน* หรือ *ข้างหน้าฉัน* ด้วยตนเอง
 
-## How does it work?
+## ทำงานอย่างไร
 
-**Turning callouts on or off :**
+**การเปิดหรือปิดการแจ้งเตือน :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ การปิดการแจ้งเตือนจะทำให้แอปเงียบ คุณสามารถปิดการแจ้งเตือนได้ในส่วน *จัดการการแจ้งเตือนด้วยเสียง* ของหน้าจอ *การตั้งค่า* โดยตั้ง *ระดับรายละเอียดการแจ้งเตือน* เป็น *เงียบสนิท* และเปิดกลับมาอีกครั้งโดยเลือกระดับอื่นใดก็ได้ คุณยังทำแบบเดียวกันได้ด้วยการขอให้ Siri หรือ Gemini ทำให้ นอกจากนี้คุณยังลดเสียง Soundscape ทีละขั้นได้ด้วยปุ่มควบคุมสื่อบนหูฟัง โดยการกด *ก่อนหน้า* แต่ละครั้งจะลดลงทีละขั้นตาม *ละเอียด*, *สมดุล*, *เงียบ* และ *เงียบสนิท* และการกดอีกครั้งจะกลับไปที่ *ละเอียด* ดูหัวข้อวิธีใช้ *การใช้ปุ่มควบคุมสื่อ* หรืออีกวิธีหนึ่งคือใช้ปุ่ม *โหมดสลีป* ที่มุมขวาบนของหน้าจอหลัก เพื่อหยุด Soundscape ไม่ให้แจ้งเตือนจนกว่าคุณจะเลือกปลุกแอปอีกครั้ง
 
-**Managing which callouts you hear :**
+**การจัดการประเภทการแจ้งเตือนที่คุณจะได้ยิน :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ หากต้องการเลือกประเภทของสิ่งที่ Soundscape จะแจ้งเตือนโดยอัตโนมัติ ให้ไปที่หน้าจอ *การตั้งค่า* ผ่านเมนูบนหน้าจอ *หน้าหลัก* ในส่วน *จัดการการแจ้งเตือนด้วยเสียง* ของหน้าจอ *การตั้งค่า* คุณจะเลือกได้ว่าแอปจะพูดมากแค่ไหนด้วย *ระดับรายละเอียดการแจ้งเตือน* จะแจ้ง *ถนนและทางแยก* หรือไม่ และมี *สถานที่ที่จะแจ้งเตือน* ใดบ้าง หากต้องการปิดการแจ้งเตือนทั้งหมด ให้ตั้ง *ระดับรายละเอียดการแจ้งเตือน* เป็น *เงียบสนิท*
 

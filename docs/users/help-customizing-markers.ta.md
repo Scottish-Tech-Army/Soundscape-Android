@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: மார்க்கர்களைத் தனிப்பயனாக்குதல்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ta
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# மார்க்கர்களைத் தனிப்பயனாக்குதல்
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+நீங்கள் முன்பு உருவாக்கிய ஒரு குறியிடத்தை மறுபெயரிட விரும்பினால், அல்லது அதற்கு ஒரு குறிப்பைச் சேர்க்க விரும்பினால், *\"குறியிடங்கள் மற்றும் பாதைகள்\"* பக்கத்தின் *\"குறியிடங்கள்\"* தாவலில் இருந்து குறியிடத்தைத் தேர்ந்தெடுத்து, பின்னர் *\"குறியிடத்தைத் திருத்து\"* பொத்தானைத் தேர்ந்தெடுத்து அதைச் செய்யலாம். குறியிடங்களுக்கு விளக்கமான அல்லது பயனுள்ள செல்லப்பெயர்களை வழங்கவும், குறிப்பு புலத்தைப் பயன்படுத்தி நீண்ட விளக்கத்தை வழங்கவும் இதைப் பயன்படுத்தலாம்.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+இந்த *திருத்து* திரையில் இருந்து, உங்களுக்கு இனி தேவையில்லாத ஒரு குறியிடத்தை நீக்கவும் முடியும்.
 

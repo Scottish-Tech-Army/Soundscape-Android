@@ -1,5 +1,5 @@
 ---
-title: My Location
+title: எனது இருப்பிடம்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ta
 permalink: /users/help-my-location.html
 ---
 
-# My Location
+# எனது இருப்பிடம்
 
-## What is it?
+## இது என்ன?
 
-The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
+*எனது இருப்பிடம்* பொத்தான், நீங்கள் தற்போது எங்கு இருக்கிறீர்கள் என்பதைக் கண்டறிய உதவும் தகவலை விரைவாக வழங்குகிறது. நீங்கள் எதிர்நோக்கும் திசை, அருகிலுள்ள சாலைகள் அல்லது சந்திப்புகள் எங்கு உள்ளன, மற்றும் அருகிலுள்ள சுவாரஸ்யமான இடங்கள் எங்கு உள்ளன போன்ற விஷயங்கள் உள்ளிட்ட உங்கள் தற்போதைய இருப்பிடத்தைப் பற்றி *எனது இருப்பிடம்* தெரிவிக்கும்.
 
-## When would I use it?
+## இதை எப்போது பயன்படுத்துவேன்?
 
-*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
+நீங்கள் எங்கு இருக்கிறீர்கள் அல்லது எந்தத் திசையை நோக்கி இருக்கிறீர்கள் என்பதை நீங்கள் கண்டறிய வேண்டியிருக்கும்போது *எனது இருப்பிடம்* பயனுள்ளதாக இருக்கும்.
 
-## How does it work?
+## இது எப்படி வேலை செய்கிறது?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
+முகப்புத் திரையின் அடிப்பகுதியில் உள்ள நான்கு பொத்தான்களைப் போலவே, *எனது இருப்பிடம்* பொத்தானை அழுத்துவதற்கு முன், உங்கள் தொலைபேசியைத் தட்டையாக (வானத்தை நோக்கி) வைத்து, தொலைபேசியின் மேற்பகுதி நீங்கள் எதிர்நோக்கும் திசையில் இருக்கும்படி வையுங்கள். இது ஒரு திசைகாட்டியைப் போல செயல்பட்டு, நீங்கள் எந்தத் திசையை நோக்கி இருக்கிறீர்கள் என்பதைப் பயன்பாட்டிற்குத் தெரிவிக்கும். வெறுமனே, *எனது இருப்பிடம்* பொத்தானைத் தட்டிக் கேளுங்கள்.
 

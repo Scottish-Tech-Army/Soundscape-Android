@@ -1,5 +1,5 @@
 ---
-title: Markers
+title: หมุด
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: th
 permalink: /users/help-markers.html
 ---
 
-# Markers
+# หมุด
 
-With Soundscape, you can mark your world and anything you care about, like pins in a map.
+ด้วย Soundscape คุณสามารถทำเครื่องหมายโลกของคุณและสิ่งต่างๆ ที่คุณใส่ใจได้ เหมือนกับหมุดบนแผนที่
 
-You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
+คุณสามารถปักหมุดสถานที่ที่มีความหมายกับคุณเป็นการส่วนตัว เช่น บ้าน ที่ทำงาน หรือร้านขายของชำที่คุณชอบ คุณสามารถปักหมุดสถานที่หรือที่อยู่ใดก็ได้ รวมถึงสิ่งที่โดยทั่วไปไม่ปรากฏบนแผนที่ เช่น ทางเข้าอาคารหรือสวนสาธารณะ ปุ่มกดข้ามถนน ทางม้าลาย สะพาน ป้ายรถประจำทาง หรือแม้แต่ต้นไม้ที่สุนัขของคุณชื่นชอบ แล้วใช้หมุดเหล่านี้เป็นจุดอ้างอิงระหว่างการเดินของคุณ
 
-To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
+หากต้องการรับรู้สถานที่ที่ทำเครื่องหมายไว้ Soundscape จะแจ้งเตือนสถานที่เหล่านั้นโดยอัตโนมัติเมื่อคุณเดินผ่านหรือเข้าใกล้ หรือคุณสามารถใช้ปุ่ม *"หมุดใกล้เคียง"* ที่ด้านล่างของหน้าจอหลัก Soundscape เพื่อฟังการแจ้งเตือนเชิงพื้นที่ของสถานที่ที่ทำเครื่องหมายไว้รอบตัวคุณ นอกจากนี้ คุณยังสามารถตั้งบีคอนเสียงที่สถานที่ที่ทำเครื่องหมายไว้ได้ทุกแห่ง เมื่อคุณทำเช่นนี้ คุณจะได้ยินบีคอนเสียงของ Soundscape ที่คุณคุ้นเคย และสามารถใช้งานได้ตามปกติ
 

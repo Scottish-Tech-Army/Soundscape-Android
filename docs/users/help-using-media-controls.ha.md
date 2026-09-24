@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Amfani da Maɓallan Sarrafa Sauti
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: ha
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Amfani da Maɓallan Sarrafa Sauti
 
-## What is it?
+## Menene wannan?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Za ku iya samun damar wasu fasalulluka a cikin Soundscape ta amfani da maɓallan sarrafa kafofin watsa labarai da ke a belun kunnenku. Wannan aikin yana aiki tare da kowace irin belun kunne, ko waya ko Bluetooth, da ke da maɓallan sarrafa kamar Kunna, Dakata, Na Gaba, Na Baya da sauransu. Belun kunne daban-daban na iya samun maɓallai daban-daban saboda haka a duba jerin ayyukan da ke ƙasa domin sanin waɗanda ke akwai a gare ku.
 
-## When would I use it?
+## Yaushe zan yi amfani da shi?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Ana iya amfani da maɓallan sarrafa kafofin watsa labarai na belun kunne yayin da Soundscape ke aiki — ko kuna amfani da manhajar kai tsaye, ko tana aiki a bango, ko na'urarku tana kulle. Duk da haka, maɓallan sarrafa kafofin watsa labarai na belun kunne ba za su yi aiki da Soundscape ba idan kuna kunna sauti, kamar waƙa, podcast ko bidiyo, ta wata manhajar daban.
 
-## How does it work?
+## Yaya yake aiki?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sashen *Saitunan* *Sarrafa Kafofin Watsa Labarai*. Yanayoyin sune:
 
- Original mode. 
+ Yanayin Asali. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Kunna/Dakata: Yana kunna ko kashe sautin alama. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Na Gaba: Idan ana kunna hanya, yana matsar da alamar sauti zuwa tashar gaba a hanyar. Idan ba a kunna wata hanya ba, yana sanar da *Kewaye da Ni*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Na Baya: Idan ana kunna hanya, yana matsar da alamar sauti zuwa tashar da ta gabata a hanyar. Idan ba a kunna wata hanya ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Daidaito*, *Kaɗan*, *Shiru*, sannan ya koma *Cikakke*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Menu na Sauti. 
+
+
+
+⏭ Na Gaba yana motsawa cikin jerin zaɓuɓɓukan menu waɗanda manhajar ke bayyanawa ta rubutu-zuwa-murya, kuma yana komawa na farko bayan na ƙarshe. Sannan ⏯ Kunna/Dakata yana sa manhajar ta gudanar da zaɓin da aka bayyana. Akwai babban menu guda ɗaya wanda kawai ke da ƙananan menu a matsayin zaɓuɓɓuka. Kowane ƙaramin menu yana da ƙungiyar ayyuka masu kama da juna.
+
+⏮ Na Baya ba ya motsawa cikin menu. Maimakon haka yana canza *Matakin Sanarwa*, kamar yadda yake yi a Yanayin Asali, don haka maɓalli ɗaya yana rage maganar manhajar a kowane yanayi da kuke amfani da shi.
 

@@ -1,5 +1,5 @@
 ---
-title: Using Media Controls
+title: Notkun fjölmiðlastýringa
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,33 +7,35 @@ lang: is
 permalink: /users/help-using-media-controls.html
 ---
 
-# Using Media Controls
+# Notkun fjölmiðlastýringa
 
-## What is it?
+## hvað er það?
 
-You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
+Þú getur nálgast ákveðna eiginleika í Soundscape með hjálp fjölmiðlastýringahnappa á heyrnartólunum þínum. Þetta virkar með bæði snúru- og Bluetooth-heyrnartólum sem hafa hnappa eins og Spila, Hlé, Næsta, Fyrra o.s.frv. Mismunandi heyrnartól geta haft mismunandi hnappa, svo skoðaðu listann yfir aðgerðir hér að neðan til að sjá hvaða hnöppum þú hefur aðgang að.
 
-## When would I use it?
+## Hvenær ætti að nota það?
 
-Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
+Fjölmiðlastýringar á heyrnartólum er hægt að nota á meðan Soundscape er í gangi — hvort sem þú ert að nota forritið, það keyrir í bakgrunni eða tækið er læst. Fjölmiðlahnappar á heyrnartólum virka hins vegar ekki fyrir Soundscape ef annað forrit er að spila hljóð, til dæmis tónlist, hlaðvörp eða myndbönd.
 
-## How does it work?
+## hvernig virkar það?
 
-There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Það eru 2 rekstrarhamir fyrir fjölmiðlastýringar. Hamurinn er valinn í kaflanum *Stillingar* » *Fjölmiðlastýringar*. Hamirnir eru:
 
- Original mode. 
+ Upprunalegur hamur. 
 
-⏯ Play/Pause: Toggles the beacon audio on and off. 
+⏯ Spila/Hlé: Kveikir og slekkur á hljóði hljóðvita. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏭ Næsta: Ef leið er í spilun færist hljóðviti á næsta leiðarpunkt í leiðinni. Ef engin leið er í spilun segir forritið *Í kringum mig*.
 
-⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
-
-
-
-Audio menu. 
+⏮ Fyrri: Ef leið er í spilun færist hljóðviti á fyrri leiðarpunkt í leiðinni. Ef engin leið er í spilun breytist *Nákvæmni tilkynninga* um eitt þrep niður við hverja ýtingu: *Ítarlegt*, *Jafnvægi*, *Hljóðlátt*, *Þögult*, og aftur í *Ítarlegt*.
 
 
 
-⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
+Hljóðvalmynd. 
+
+
+
+⏭ Næsta færist í gegnum röð valkosta í valmynd sem forritið lýsir með talgervli og fer aftur á þann fyrsta eftir þann síðasta. ⏯ Spila/Hlé lætur forritið síðan framkvæma þann valkost sem lýst var. Það er ein yfirvalmynd sem inniheldur aðeins undirvalmyndir sem valkosti. Hver undirvalmynd inniheldur hóp af svipuðum aðgerðum.
+
+⏮ Fyrri færist ekki í gegnum valmyndina. Í staðinn breytir hún *Nákvæmni tilkynninga*, nákvæmlega eins og í upprunalega hamnum, þannig að sami hnappur lækkar í forritinu í hvorum hamnum sem er.
 

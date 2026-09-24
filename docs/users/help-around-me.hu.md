@@ -1,5 +1,5 @@
 ---
-title: Around Me
+title: Körülöttem
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hu
 permalink: /users/help-around-me.html
 ---
 
-# Around Me
+# Körülöttem
 
-## What is it?
+## Mi ez?
 
-The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
+A *Körülöttem* gomb egy-egy dologról tájékoztat az Ön körüli négy negyedben (elöl, jobbra, hátul és balra). A *Körülöttem* célja, hogy segítsen tájékozódni a környezetéhez képest.
 
-## When would I use it?
+## Mikor használnám?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
+Amikor tájékozódni próbál, és el szeretné helyezni magát a környezetéhez képest, használja a *Körülöttem* funkciót, hogy meghallja, mi van a közelében.
 
-## How does it work?
+## Hogyan működik?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
+Mint a kezdőképernyő alján található mind a négy gomb esetében, tartsa a telefonját vízszintesen (a képernyővel az ég felé), és a telefon teteje mutasson abba az irányba, amerre néz, mielőtt megnyomja a *Körülöttem* gombot. Ez iránytűként működik, és megmondja az alkalmazásnak, merre néz. Egyszerűen koppintson a *Körülöttem* gombra, és négy, az Ön körül elhelyezkedő érdekes helyet fog hallani.
 

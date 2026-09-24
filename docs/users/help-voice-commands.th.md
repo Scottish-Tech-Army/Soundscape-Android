@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: คำสั่งเสียง
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: th
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# คำสั่งเสียง
 
-## What is it?
+## คืออะไร
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+คุณสามารถขอให้ Gemini ทำสิ่งต่าง ๆ ใน Soundscape ได้โดยไม่ต้องแตะโทรศัพท์ เช่น ฟังการแจ้งเตือนด้วยเสียง เริ่มเส้นทางใดเส้นทางหนึ่งของคุณ หรือตั้งบีคอนเสียงไว้ที่หมุดใดหมุดหนึ่งของคุณ ผู้ช่วยรายอื่นที่รองรับฟังก์ชันแอปของ Android ก็ทำแบบเดียวกันได้
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape ตอบด้วยเสียงของตัวเอง ด้วยการแจ้งเตือนด้วยเสียงและเสียงบีคอนที่คุณคุ้นเคยอยู่แล้ว แทนที่จะให้ผู้ช่วยอ่านสรุปให้ฟัง ด้วยวิธีนี้ สิ่งที่คุณได้ยินจึงยังคงมาจากทิศทางที่กำลังบรรยายถึง
 
-## When would I use it?
+## ควรใช้เมื่อใด
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+คำสั่งเสียงมีประโยชน์เมื่อโทรศัพท์อยู่ในกระเป๋า เมื่อมือคุณไม่ว่าง หรือเมื่อคุณไม่อยากหยุดเดินเพื่อกดปุ่ม คำสั่งเหล่านี้ทำงานได้ขณะที่ Soundscape อยู่เบื้องหลังและขณะที่โทรศัพท์ล็อกอยู่ และการขอการแจ้งเตือนด้วยเสียงก็ไม่ได้เปิดแอปขึ้นมา
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+ผู้ที่ฟังคือผู้ช่วยของคุณ ไม่ใช่ Soundscape แอปจึงไม่เคยยึดไมโครโฟนของคุณ และหูฟังบลูทูธของคุณก็ยังคงอยู่ในโหมดเสียงคุณภาพสูง แทนที่จะสลับไปโหมดคุณภาพต่ำกว่าที่ใช้สำหรับการโทร
 
-## How does it work?
+## ทำงานอย่างไร
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+ไม่มีวลีตายตัวที่ต้องท่องจำ เพียงบอกสิ่งที่คุณต้องการด้วยคำพูดของคุณเอง แล้วผู้ช่วยจะจับคู่กับการกระทำอย่างใดอย่างหนึ่งด้านล่าง ชื่อเส้นทางและหมุดจะถูกจับคู่แบบหลวม ๆ ดังนั้นบอกชื่อเพียงบางส่วนก็มักจะเพียงพอ
 
-You can ask Soundscape to:
+คุณสามารถขอให้ Soundscape:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+บอก *\"ตำแหน่งของฉัน\"* บอกว่ามีอะไร *\"รอบตัวฉัน\"* หรือมีอะไร *\"ข้างหน้าฉัน\"*
 
-Call out the saved markers near you.
+แจ้งหมุดที่บันทึกไว้ซึ่งอยู่ใกล้คุณ
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+เริ่มเส้นทางที่บันทึกไว้เส้นใดเส้นหนึ่งด้วยชื่อ ไปยังจุดผ่านทางถัดไป ย้อนกลับไปจุดก่อนหน้า ปิดเสียงบีคอน หรือหยุดเส้นทาง
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+ตั้งบีคอนเสียงไว้ที่หมุดที่บันทึกไว้หมุดใดหมุดหนึ่งด้วยชื่อ หรือปิดบีคอน
 
-Read back the names of your saved routes or your saved markers.
+ตั้งระดับรายละเอียดการแจ้งเตือนเป็น *\"เงียบสนิท\"*, *\"เงียบ\"*, *\"สมดุล\"* หรือ *\"ละเอียด\"* เพื่อเปลี่ยนว่า Soundscape จะพูดมากแค่ไหนขณะคุณเดิน เงียบสนิทจะปิดการแจ้งเตือนอัตโนมัติ
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+อ่านชื่อเส้นทางที่บันทึกไว้หรือหมุดที่บันทึกไว้ของคุณ
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+ทุกอย่างยกเว้นรายการทั้งสองนั้นต้องให้ Soundscape ทำงานอยู่ หากไม่ได้ทำงานอยู่ ผู้ช่วยจะบอกให้คุณเปิด Soundscape ก่อน ส่วนการอ่านรายชื่อเส้นทางและหมุดของคุณนั้นใช้ได้ทั้งสองกรณี เพราะเป็นเพียงการอ่านสิ่งที่คุณบันทึกไว้แล้ว
+
+คำสั่งเสียงต้องใช้โทรศัพท์ที่ใช้ Android 16 ขึ้นไป พร้อมผู้ช่วยที่รองรับฟังก์ชันแอป
 

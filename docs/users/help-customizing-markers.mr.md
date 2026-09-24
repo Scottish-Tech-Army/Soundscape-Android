@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: मार्कर सानुकूलित करणे
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
@@ -7,9 +7,9 @@ lang: mr
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# मार्कर सानुकूलित करणे
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+तुम्ही आधी तयार केलेल्या मार्करचे नाव बदलायचे असेल, किंवा त्यात टिप्पणी जोडायची असेल, तर तुम्ही *"मार्कर आणि मार्ग"* पानाच्या *"मार्कर"* टॅबमधून तो मार्कर निवडून, नंतर *"मार्कर संपादित करा"* बटण निवडून हे करू शकता. यामुळे तुम्ही मार्करना वर्णनात्मक किंवा उपयुक्त टोपणनावे देऊ शकता, तसेच टिप्पणी क्षेत्र वापरून त्यांना अधिक तपशीलवार वर्णनही देऊ शकता.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+या *संपादन* स्क्रीनवरून तुम्ही एखादा मार्कर आवश्यक नसल्यास हटवूही शकता.
 

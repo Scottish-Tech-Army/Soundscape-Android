@@ -1,5 +1,5 @@
 ---
-title: Customizing Markers
+title: Prispôsobenie značiek
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: sk
 permalink: /users/help-customizing-markers.html
 ---
 
-# Customizing Markers
+# Prispôsobenie značiek
 
-If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
+Ak chcete premenovať už vytvorenú značku alebo k nej pridať poznámku, môžete tak urobiť výberom značky na karte *\"Značky\"* na stránke *\"Značky a trasy\"* a následným výberom tlačidla *\"Upraviť značku\"*. Vďaka tomu môžete značkám dávať výstižné alebo užitočné prezývky a tiež im pomocou poľa poznámky priradiť podrobnejší popis.
 
-From this *"Edit"* screen you can also delete a marker if you no longer need it.
+Na tejto obrazovke *Upraviť* môžete značku aj odstrániť, ak ju už nepotrebujete.
 

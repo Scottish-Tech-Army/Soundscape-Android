@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Lähedal asuvad markerid
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
@@ -7,17 +7,17 @@ lang: et
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Lähedal asuvad markerid
 
-## What is it?
+## Mis see on?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+Nupp *Lähedal asuvad markerid* räägib teile kuni neljast teile kõige lähemal asuvast markerist. *Lähedal asuvad markerid* on mõeldud aitama teil orienteeruda, kasutades kohti, mida te juba tunnete.
 
-## When would I use it?
+## Millal seda kasutada?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Kui üritate orienteeruda ja oma ümbruses kohaneda, kasutage *Lähedal asuvad markerid*, et kuulda teile tuttavate kohtade asukohtadest.
 
-## How does it work?
+## Kuidas see töötab?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Nagu kõigi nelja avakuva allosas oleva nupu puhul, hoidke enne nupu *Lähedal asuvad markerid* vajutamist telefoni tasapinnaliselt (ekraan taeva poole) ja telefoni ülaosa suunatuna sinnapoole, kuhu vaatate. See toimib kompassina, mis ütleb rakendusele, millises suunas te vaatate. Puudutage lihtsalt nuppu *Lähedal asuvad markerid* ja kuulete kuni nelja teie lähedal asuvat markerit.
 

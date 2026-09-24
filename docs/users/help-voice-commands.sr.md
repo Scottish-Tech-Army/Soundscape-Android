@@ -1,5 +1,5 @@
 ---
-title: Voice Commands
+title: Гласовне команде
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
@@ -7,37 +7,39 @@ lang: sr
 permalink: /users/help-voice-commands.html
 ---
 
-# Voice Commands
+# Гласовне команде
 
-## What is it?
+## Шта је то?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Од Gemini можете затражити да уради нешто у Soundscape-у без додиривања телефона: да чујете најаву, покренете једну од својих рута или поставите звучни бакен на један од својих маркера. Исто може и сваки други асистент који подржава функције апликација у Android-у.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape одговара сопственим гласом, најавама и звуцима бакена које већ познајете, уместо да асистент прочита сажетак. Тако оно што чујете и даље долази из правца који описује.
 
-## When would I use it?
+## Када бих то користио/ла?
 
-Voice commands are useful when your phone is in your pocket, your hands are full, or you would rather not stop walking to press a button. They work while Soundscape is in the background and while your phone is locked, and asking for a callout does not open the app.
+Гласовне команде су корисне када вам је телефон у џепу, када су вам руке пуне или када не желите да застанете да бисте притиснули дугме. Раде док Soundscape ради у позадини и док је телефон закључан, а тражење најаве не отвара апликацију.
 
-Your assistant does the listening, not Soundscape, so the app never takes over your microphone and your Bluetooth headphones stay in their high quality audio mode instead of switching to the lower quality mode used for phone calls.
+Слуша ваш асистент, а не Soundscape, па апликација никада не заузима микрофон, а ваше Bluetooth слушалице остају у режиму високог квалитета звука уместо да пређу на слабији режим који се користи за телефонске позиве.
 
-## How does it work?
+## Како то функционише?
 
-There are no exact phrases to memorise. Ask for what you want in your own words and the assistant matches it to one of the actions below. Route and marker names are matched loosely, so part of a name is usually enough.
+Нема тачних фраза које треба запамтити. Тражите оно што желите својим речима и асистент ће то повезати са једном од радњи наведених испод. Називи рута и маркера се препознају оквирно, па је обично довољан део назива.
 
-You can ask Soundscape to:
+Од Soundscape-а можете тражити да:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Опише *\"Моја локација\"*, шта је *\"Око мене\"* или шта је *\"Испред мене\"*.
 
-Call out the saved markers near you.
+Најави сачуване маркере у вашој близини.
 
-Start one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.
+Покрене једну од ваших сачуваних рута по називу, пређе на следећу путну тачку, врати се на претходну, утиша бакен или заустави руту.
 
-Set an audio beacon on one of your saved markers by name, or switch the beacon off.
+Постави звучни бакен на један од ваших сачуваних маркера по називу или искључи бакен.
 
-Read back the names of your saved routes or your saved markers.
+Постави ниво детаља најава на *\"Без звука\"*, *\"Тихо\"*, *\"Уравнотежено\"* или *\"Детаљно\"*, чиме се мења колико Soundscape говори док ходате. Без звука искључује аутоматске најаве.
 
-Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
+Прочита називе ваших сачуваних рута или ваших сачуваних маркера.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Све осим два списка захтева да Soundscape буде покренут. Ако није, асистент ће вам рећи да прво отворите Soundscape. Набрајање ваших рута и ваших маркера ради у оба случаја, јер само чита оно што сте већ сачували.
+
+Гласовне команде захтевају телефон са Android-ом 16 или новијим и асистента који подржава функције апликација.
 

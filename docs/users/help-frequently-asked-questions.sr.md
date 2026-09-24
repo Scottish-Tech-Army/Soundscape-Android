@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions
+title: Најчешће постављана питања
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
@@ -7,123 +7,123 @@ lang: sr
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# Frequently Asked Questions
+# Најчешће постављана питања
 
-## What is Soundscape and how should I use it?
+## Шта је Soundscape и како треба да га користим?
 
-### When should I use Soundscape?
-Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
+### Када треба да користим Soundscape?
+Soundscape има функције и предности које обухватају разне ситуације и временске оквире. Вредност коју вам Soundscape пружа такође се може временом мењати, тако да начин на који га користите данас може бити другачији од начина на који ћете га користити за три месеца. Људи често размишљају о апликацијама у смислу *који проблем ова апликација добро решава?* Soundscape свакако можете користити за одређене потребе – на пример, праћење одредишта док идете ка њему, помоћ у оријентацији када изађете из станице метроа, сналажење када изађете из аутомобила, или проналажење назива улица за следећу раскрсницу или удаљености до ње. Међутим, филозофија на којој почива Soundscape јесте *осветљавање вашег света звуком* – осмишљена је да се користи кад год сте напољу, како би вам пружила свест о околини, попут назива улица којима се крећете, правца у коме идете и назива продавница поред којих пролазите. У овом начину коришћења, наши корисници су Soundscape описивали као *пријатну апликацију-пратиоца*, која подржава *срећне случајности*, помаже да *попуните празнине у својој менталној мапи* и пружа већу *сигурност приликом ходања*. Ево неколико других примера како наши корисници користе Soundscape у свом животу:
 
-"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
+Soundscape ми је помогао да се вратим на прави пут пошто сам изашао из аутобуса и кренуо у погрешном правцу.
 
-"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
+Чак и у граду у коме живим већ 3 године, изградио сам бољу представу о томе шта ме окружује [уз помоћ Soundscape-а].
 
-"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
+3D звук унапређује мој доживљај шетње, јер се осећам повезаније са својом околином… Спремнији сам да испробам нову руту сада када имам ову апликацију.
 
-"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
+Недостаје ми та срећна случајност шетње и запажања ствари. Лепо је имати Soundscape – не захтева никакав труд да чујем шта ме окружује. Информације о међусобним односима су корисне, а апликација је одлична за ситуациону свест и истраживање пословних четврти.
 
-"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
+[Користио сам Soundscape] да пронађем паб у центру Јорка. Користио сам низ његових опција да га прво лоцирам, а потом и заиста пронађем. Довео ме је на само 3 метра од врата – одлично!
 
-### What are Markers and how do I get the most out of them?
-Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
+### Шта су маркери и како да их најбоље искористим?
+Маркери су места која сте сачували. То могу бити места која се могу пронаћи унутар апликације, или потпуно нова места која сте сами додали. Своју тренутну локацију можете сачувати као маркер тако што ћете изабрати дугме *\"Тренутна локација\"* на почетном екрану, а затим изабрати *\"Сачувај као маркер\"*. Друге локације можете сачувати као маркер тако што ћете претражити место које желите да сачувате помоћу траке за претрагу, или га пронаћи помоћу дугмета *\"Оближња места\"*, а обе ове опције се налазе на почетном екрану Soundscape-а. Када пронађете жељено место, избором тог места отвориће се екран *\"Детаљи локације\"*. На овом екрану изаберите дугме под називом *\"Сачувај као маркер\"*.
 
-## How do I get the best out of Soundscape?
+## Како да извучем максимум из Soundscape-а?
 
-### What can I set as a beacon?
-You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+### Шта могу поставити као бакен?
+Звучни бакен можете поставити на било коју продавницу, место, тачку од интереса, адресу или раскрсницу. Постоји неколико начина да додате бакен на локацију. Прво, погледајте детаље локације тако што ћете користити траку за претрагу да пронађете место, или додиром на дугме *\"Оближња места\"*, *\"Маркери и руте\"* или *\"Тренутна локација\"* и избором локације. На екрану *\"Детаљи локације\"* можете изабрати дугме *\"Покрени звучни бакен\"*. Додиром на ово дугме вратићете се на почетни екран и укључити звучни бакен који долази из правца изабраног места. Назив изабраног места, заједно са удаљеношћу и физичком адресом, ако је доступна, сада ће бити приказани на главном екрану апликације.
 
-### How do I get the most out of a beacon?
-You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
+### Како да извучем највише из бакена?
+Звучни бакен можете замислити као *"светионик за ваше уши"*: он вам говори где се налази ваше одредиште, у правој линији од ваше тренутне локације. Као и светионик, он вам не говори како да стигнете тамо – можда ће вам успут и даље бити потребно да доносите навигационе одлуке како бисте заобишли препреке. Непрекидни ритмични звук звучног бакена долази из правца одредишта и помаже вам да будете свесни где се одредиште налази у односу на вас док ходате. Када ходате директно ка одредишту, или када усмерите телефон ка одредишту, чућете виши звук налик *"звону"*. Ово вам помаже да прецизно одредите правац одредишта, јер правац ритмичног звука понекад може бити тешко чути у бучној околини. Да бисте пронашли виши звук *"звона"*, држите телефон равно и полако се окрените у круг; окретањем главе у истом правцу у коме је усмерен телефон добићете најбољи доживљај просторног звука.
 
-This design has a few natural results:
+Овакво решење има неколико природних последица:
 
-1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
+1. Не постоји *"тачан"* правац кретања када користите бакен – уз Soundscape сами бирате како ћете стићи тамо;
 
-2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
+2. Виши звук *"звона"* вам помаже само да прецизно одредите правац одредишта – он вам не говори како да стигнете тамо;
 
-3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
+3. Ако углавном знате како да стигнете до свог одредишта, можда ћете желети да утишате бакен за већи део путовања и укључите га тек када се приближите одредишту.
 
-### Why does the audible beacon disappear sometimes?
-Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
+### Зашто звучни бакен понекад нестане?
+Звучни бакен у Soundscape-у је у основи усмерени сигнал, који вам говори где се ваше одредиште налази у односу на правац у коме сте окренути. Када Soundscape није сигуран у ком сте правцу окренути, смањује јачину звука бакена. Ово се најчешће дешава ако сте ходали са телефоном у џепу или торби, а затим престанете да се крећете, на пример да пређете улицу. Бакен ће поново постати гласнији када наставите да се крећете, или ако држите телефон равно и усмерите га у правцу у коме сте окренути.
 
-### Can I set a beacon on an address?
-Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
+### Могу ли поставити бакен на адресу?
+Да, можете. Адресе се подразумевано не приказују на листи, али их можете пронаћи помоћу поља за претрагу. Да бисте сачували ову адресу како не бисте морали поново да је тражите, можете је додати као маркер са екрана *\"Детаљи локације\"* избором дугмета *\"Сачувај као маркер\"*.
 
-### How do I set a beacon on my home?
-Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
+### Како да поставим бакен на своју кућу?
+Soundscape подржава постављање бакена на адресе. Да бисте поставили бакен на своју кућу, или било коју другу адресу, потражите локацију са главног екрана Soundscape-а. На екрану *Детаљи локације* додирните дугме *Покрени звучни бакен*.
 
-### When I set a beacon on a destination, how close will Soundscape get me to the destination?
-Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
+### Када поставим бакен на одредиште, колико близу одредишта ће ме Soundscape довести?
+Soundscape може одредити локацију вашег одредишта са тачношћу од неколико метара, али не мање. Када Soundscape утврди да сте близу свог одредишта, чућете завршну најаву да је ваше одредиште у близини, а бакен ће се искључити.
 
-### Can I turn the beacon back on when I am close to my destination?
-Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
+### Могу ли поново укључити бакен када сам близу свог одредишта?
+Да, бакен можете поново укључити након што га Soundscape искључи тако што ћете изабрати *дугме за укључивање звука бакена*; међутим, пошто су услуге локације тачне само до отприлике 10 метара, не можемо гарантовати понашање бакена када сте на само неколико метара од свог одредишта.
 
-### Why does Soundscape call out road names twice when I approach an intersection?
-To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
+### Зашто Soundscape двапут најављује називе улица када се приближавам раскрсници?
+Да би обухватио разне облике раскрсница, Soundscape описује раскрснице као сегменте путева који полазе из једне заједничке тачке. Soundscape користи просторни звук да означи назив улице која иде лево, назив улице која се наставља право напред и назив улице која иде десно, тим редоследом. Ако опис раскрснице почиње улицом на којој се налазите, а не оном лево, онда је раскрсница у облику слова Т, при чему се улица на којој се налазите наставља право напред, а улица се укршта са десне стране. Слично, ако опис садржи само улицу лево и улицу десно, знаћете да се улица на којој се налазите завршава раскрсницом у облику слова Т испред вас. Овај начин описивања раскрсница функционише и када улица мења назив на раскрсници.
 
-### Why doesn’t Soundscape announce every business that I pass?
-Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
+### Зашто Soundscape не најављује сваку продавницу поред које прођем?
+Soundscape је осмишљен тако да вам не даје превише најава. Поред тога, користи OpenStreetMap као свој извор података. OpenStreetMap (OSM, https://www.openstreetmap.org/) је мапа света коју гради и уређује заједница појединачних сарадника. Ако Soundscape не најави продавницу или тачку од интереса, најчешћи разлог је тај што је нико из OSM заједнице још није додао у податке, а понекад ни ажурирао.
 
-### Why do some callouts stop when I'm in a vehicle?
-In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
+### Зашто неке најаве престају када сам у возилу?
+Да би се спречило да број најава постане превелик, неке категорије, попут раскрсница, се не најављују аутоматски када путујете возилом.
 
-### What if I don't understand a callout or miss it because of ambient noise?
-Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
+### Шта ако не разумем најаву или је пропустим због буке из околине?
+Soundscape чува списак ваших недавних најава, тако да можете поново чути најаве које сте можда пропустили. Да бисте их пронашли, додирните траку за претрагу на почетном екрану Soundscape-а. На дну овог екрана налази се одељак *Недавне најаве* у коме ће бити наведена најава коју сте пропустили.
 
-## How does Soundscape work?
+## Како Soundscape функционише?
 
-### What phone does Soundscape run on?
-Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
+### На ком телефону ради Soundscape?
+Soundscape је тренутно доступан за iPhone уређаје са iOS 16 или новијим, и за Android телефоне са Android 11 или новијим.
 
-### What headphones should I use with Soundscape?
-Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
+### Које слушалице треба да користим са Soundscape-ом?
+Које ћете слушалице користити са Soundscape-ом је ствар личног укуса, а свака опција има своје предности и недостатке. Једини посебан захтев је да користите стерео слушалице, како бисте могли да искористите Soundscape-ове 3D просторне звучне најаве.
 
-### How does Soundscape impact my phone’s battery?
-Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
+### Како Soundscape утиче на батерију мог телефона?
+Трајање батерије се значајно разликује у зависности од тога који телефон имате и колико је стар. Највише батерије троши укључен екран, тако да, да бисте продужили трајање батерије телефона, треба да држите екран закључан кад год је то могуће. Да би се смањио утицај на батерију телефона, Soundscape сада има Режим спавања. Да бисте додатно смањили потрошњу батерије, када не користите Soundscape, требало би да га принудно затворите преко прегледа апликација на телефону.
 
-### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
+### Како да користим Режим спавања да бих смањио утицај Soundscape-а на батерију мог телефона?
+Да бисте пребацили Soundscape у Режим спавања, изаберите дугме *Успавај* у горњем десном углу екрана. Када ово изаберете, Soundscape ће престати да користи услуге локације и мобилне податке док не одлучите да га поново пробудите.
 
-### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
+### Како да користим Режим дремања да бих смањио утицај Soundscape-а на батерију мог телефона?
+Да бисте пребацили Soundscape у Режим дремања, изаберите дугме *Успавај* у горњем десном углу екрана. Када је Soundscape у Режиму спавања, изаберите дугме *Пробуди ме када одем* и Soundscape ће прећи у режим ниске потрошње док не напустите тренутну локацију.
 
-### How does my choice of headphones affect the battery life of my phone?
-In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
+### Како мој избор слушалица утиче на трајање батерије мог телефона?
+У нашим тестовима, потрошња батерије код Bluetooth слушалица упоредива је са жичаним слушалицама и не би требало да буде значајан фактор приликом избора слушалица.
 
-### How does running Soundscape in the background impact battery life of my phone?
-Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
+### Како рад Soundscape-а у позадини утиче на трајање батерије мог телефона?
+Soundscape је апликација заснована на локацији и користи услуге локације да би одредила где се налазите. У нашим тестовима, Soundscape не троши више батерије од просечне апликације за мапе; али ако вас брине потрошња батерије приликом коришћења телефона, ево неколико савета који ће вам помоћи да је смањите:
 
-1. Turn the screen display off as much as possible when you are not interacting with the app.
+1. Искључите екран што је чешће могуће када не користите апликацију.
 
-2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
+2. Када не користите апликацију, затворите је. Soundscape непрекидно користи услуге локације док ради, како би увек знао где се налазите, чак и када мирујете. Не заборавите да поново покренете апликацију када наставите путовање.
 
-3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
+3. По хладном времену, држите телефон на топлом, јер батерије слабије раде на нижим температурама.
 
-### How much mobile data does Soundscape use?
-The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
+### Колико мобилних података Soundscape користи?
+Количина искоришћених мобилних података зависи од тога како користите Soundscape. Осмислили смо Soundscape тако да користи само малу количину података док сте напољу, на пример чувањем тачака док шетате, тако да их не морате поново преузимати сваки пут када се вратите на место на коме сте већ били. Да бисте смањили количину мобилних података које користите, повежите се на Wi-Fi кад год је то могуће, посебно приликом преузимања апликације. Када не користите Soundscape, требало би да користите дугме *Успавај* да пребаците Soundscape у стање мировања или да принудно затворите апликацију.
 
-### How is Soundscape different from other map apps?
-Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
+### Како се Soundscape разликује од других апликација за мапе?
+Soundscape пружа амбијентални опис ваше околине који вам помаже у истраживању и сналажењу. Уз помоћ просторног звука, Soundscape ће најављивати тачке од интереса, паркове, улице и раскрснице из правца у коме се физички налазе у вашој непосредној околини док ходате. На пример, ако прођете поред продавнице са десне стране, чућете назив те продавнице како долази са ваше десне стране. Када се приближавате раскрсници, чућете назив сваке улице како долази из правца у коме та улица иде, почевши од леве стране, преко правца напред, до десне стране.
 
-Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
+Уместо навигације корак по корак, каква се често пружа у другим апликацијама за мапе, Soundscape ће пуштати звучни бакен у правцу вашег одредишта, омогућавајући вам да стигнете тамо на начин који вам највише одговара, користећи повећану свест о својој околини и локацији свог одредишта. Soundscape је осмишљен да ради у позадини, омогућавајући вам да истовремено користите апликацију за навигацију корак по корак, док вам Soundscape и даље пружа свест о околини на путу до одредишта.
 
-### How do I use Soundscape with a wayfinding app?
-Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
+### Како да користим Soundscape уз апликацију за сналажење?
+Soundscape је осмишљен као апликација за подизање свести, која вам помаже да сазнате детаље о својој околини за које можда иначе не бисте знали. Иако није осмишљена као апликација за навигацију корак по корак, може се користити заједно са таквим апликацијама да пружи допунске информације. Да бисте користили Soundscape уз ове апликације, прво покрените своју навигациону апликацију. Затим пређите на Soundscape и поставите бакен на исто одредиште као у навигационој апликацији. У том тренутку, обе апликације ће радити истовремено и чућете упутства за ходање из ваше навигационе апликације, док ћете од Soundscape-а добијати ажурирања о тачкама од интереса, раскрсницама и удаљености до одредишта.
 
-### How do I control what I hear and when I hear it in Soundscape?
-Soundscape provides several ways to control what you hear and when:
+### Како да контролишем шта чујем и када то чујем у Soundscape-у?
+Soundscape пружа неколико начина да контролишете шта и када чујете:
 
-1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
+1. Тренутно заустављање целог звука: Двапут додирните екран са два прста да бисте тренутно искључили сав звук, укључујући сваку најаву која се тренутно пушта и бакен, ако је укључен. Најаве ће се аутоматски наставити када се приближите следећој раскрсници или тачки од интереса, али звучни бакен неће. Изаберите *\"дугме за укључивање звука бакена\"* на главном екрану да бисте поново чули бакен.
 
-2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
+2. Заустављање аутоматских најава: Када не путујете или сте стигли до одредишта, вероватно вам неће бити потребно да вас Soundscape и даље обавештава о стварима у околини. Уместо да затворите апликацију, можете пребацити Soundscape у Режим дремања, па ће се поново пробудити када кренете даље, или га можете пребацити у Режим спавања, па ће остати искључен док не одлучите да га поново укључите. Алтернативно, можете изабрати *\"Подешавања\"* из менија и поставити *\"Ниво детаља најава\"* на *\"Без звука\"* у одељку *\"Управљање најавама\"*.
 
-3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
+3. Заустављање бакена: Постоји неколико ситуација у којима бисте могли поставити одредиште, али вам не треба укључен звучни бакен. На пример, можда тачно знате како да стигнете до одредишта, али и даље желите аутоматска обавештења о томе колико сте далеко. Или вам је можда потребан звучни бакен само када се приближавате одредишту. У сваком случају, можете изабрати када ћете чути бакен тако што ћете укључити или искључити дугме *\"утишај бакен\"*/*\"укључи звук бакена\"* на главном екрану.
 
-If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
+Ако и даље желите да користите Soundscape, али не желите да чујете аутоматске најаве, можете поставити *\"Ниво детаља најава\"* на *\"Без звука\"* у одељку *\"Управљање најавама\"* на екрану *\"Подешавања\"* из менија. Или, ако нећете користити Soundscape, можете га пребацити у Режим спавања или Режим дремања помоћу дугмета *\"Успавај\"* на почетном екрану.
 
-### Do I need to hold the phone in my hand all the time?
-No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
+### Да ли морам стално да држим телефон у руци?
+Не! Док ходате, можете одложити телефон у торбу, џеп или било где вам одговара. Soundscape ће користити правац у коме ходате да би утврдио које најаве да вам најави са леве, а које са десне стране. Када престанете да се крећете, Soundscape не зна у ком сте правцу окренути. Ако је звучни бакен укључен, приметићете да постаје тиши док поново не кренете. Телефон можете извадити да бисте у сваком тренутку притиснули дугмад за локацију и истраживање на дну екрана, али водите рачуна да телефон држите тако да врх телефона буде усмерен у правцу у коме сте окренути, а екран ка небу. У овом *\"равном\"* положају, Soundscape ће користити компас телефона да одреди у ком сте правцу окренути и пружи тачне просторне најаве. Ако је бакен укључен, приметићете и да се врати на пуну јачину звука.
 
-### What is OpenStreetMap and why do we use it for Soundscape?
-Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
+### Шта је OpenStreetMap и зашто га користимо за Soundscape?
+Soundscape користи податке о мапама да би направио своје звучне најаве. Наш главни извор мапа је OpenStreetMap (www.openstreetmap.org). То је платформа за мапирање коју је створила заједница сарадника. Организације и појединци могу да користе алате OpenStreetMap-а како би побољшали податке и учинили своје просторе приступачнијим.
 

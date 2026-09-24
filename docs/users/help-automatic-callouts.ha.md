@@ -1,5 +1,5 @@
 ---
-title: Automatic Callouts
+title: Sanarwowi Kai Tsaye
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: ha
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatic Callouts
+# Sanarwowi Kai Tsaye
 
-## What is it?
+## Menene wannan?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape na iya gaya muku game da abubuwan da ke kewaye da ku yayin da kuke kusantowa gare su, ta hanyar sanar da sunayensu daga wajen da suke. Manhajar za ta yi wannan kai tsaye ga kowane irin abu kamar shaguna, tashoshin bas, har ma da mahadar hanyoyi. Za ku iya daidaita irin abin da manhajar ke sanarwa kai tsaye a sashen *\"Sarrafa Sanarwa\"* na allon *\"Saitunan\"*, kuma za ku iya kashe dukkan sanarwa idan kuna son manhajar ta yi shiru.
 
-## When would I use it?
+## Yaushe zan yi amfani da shi?
 
-**Exploring a new area :**
+**Binciken sabon yanki :**
 
- Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
+ Kunna sanarwa ta atomatik sannan ku yi tafiya don jin labarin shaguna daban-daban, gidajen abinci, da makamantansu yayin da kuke wucewa ta wurinsu.
 
-**Walking to a specific location :**
+**Tafiya zuwa wani takamaiman wuri :**
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+ Idan kuna kan hanyarku zuwa wani takamaiman wuri, sanarwar mahadar hanyoyi ta atomatik na iya zama da amfani sosai. Sanarwar mahadar hanyoyi tana gaya muku tsarin mahadar yayin da kuke kusantowa, kuma tana tabbatar muku da titin da kuke kai idan kuka bar mahadar.
 
-**When you need silence :**
+**Idan kuna bukatar shiru :**
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
+ Idan kuna gab da ƙetare titi ko kuna bukatar manhajar ta yi shiru kawai, za ku iya kashe sanarwa. Idan an kashe sanarwa, manhajar za ta ba ku bayani ne kawai idan kuka danna ɗaya daga cikin maɓallan *Inda Nake*, *Alamomin Kusa*, *Kewaye da Ni*, ko *Abin da ke Gabana* da kanku.
 
-## How does it work?
+## Yaya yake aiki?
 
-**Turning callouts on or off :**
+**Kunna ko kashe sanarwa :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Kashe sanarwa zai sa manhajar ta yi shiru. Ana iya kashe sanarwa a sashen *\"Sarrafa Sanarwa\"* na allon *\"Saitunan\"* ta hanyar sanya *\"Matakin Sanarwa\"* ya zama *\"Shiru\"*, kuma ana sake kunna su ta zaɓar kowane mataki na daban. Hakanan za ku iya yin haka ta hanyar neman Siri ko Gemini su yi muku. Bugu da ƙari, za ku iya rage yawan maganar Soundscape mataki-mataki ta maɓallan sarrafa sauti na belun kunnenku: kowane danna *\"na baya\"* yana sauka mataki ɗaya ta *\"Cikakke\"*, *\"Daidaito\"*, *\"Kaɗan\"* da *\"Shiru\"*, sannan ƙarin danna ɗaya yana komawa *\"Cikakke\"*. Duba batun taimako na *\"Amfani da Maɓallan Sarrafa Sauti\"*. Ko kuma, za ku iya amfani da maɓallin *\"Barci\"* da ke a saman dama na babban allo don dakatar da Soundscape daga yin sanarwa har sai kun zaɓi farkar da ita.
 
-**Managing which callouts you hear :**
+**Sarrafa irin sanarwar da kuke ji :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
+ Don zaɓar irin abubuwan da Soundscape zai riƙa sanarwa kai tsaye, je zuwa allon *\"Saitunan\"* ta amfani da menu a allon *\"Gida\"*. A sashen *\"Sarrafa Sanarwa\"* na allon *\"Saitunan\"* ne kuke zaɓar yawan maganar manhajar da *\"Matakin Sanarwa\"*, ko za ta sanar da *\"Titina da Mahaɗun Hanyoyi\"*, da kuma waɗanne ne *\"Wuraren da za a Sanar\"*. Idan kuna son kashe dukkan sanarwa, sanya *\"Matakin Sanarwa\"* ya zama *\"Shiru\"*.
 

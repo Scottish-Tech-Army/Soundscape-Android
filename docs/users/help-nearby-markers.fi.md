@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Lähellä olevat merkinnät
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fi
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Lähellä olevat merkinnät
 
-## What is it?
+## Mikä se on?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+*Merkinnät* -painike kertoo sinulle enintään neljästä merkinnästä, jotka ovat sinua lähinnä. *Merkinnät* on tarkoitettu auttamaan sinua perehtymään ympäristöösi käyttäen paikkoja, jotka jo tunnet.
 
-## When would I use it?
+## Milloin käyttäisin sitä?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Kun haluat päästä jyvälle siitä, missä olet, ja perehtyä ympäristöösi, käytä *"Merkinnät"*-toimintoa kuullaksesi tuntemistasi paikoista.
 
-## How does it work?
+## Kuinka se toimii?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Kuten kaikkien aloitusnäytön alaosassa olevien painikkeiden tapauksessa, pidä puhelintasi näyttö vaakatasossa (osoittaen taivasta kohti) ja puhelimen yläosa kohti sitä suuntaa, johon olet kääntyneenä, ennen kuin painat *"Merkinnät"*-painiketta. Tämä toimii kompassin tapaan kertoen sovellukselle, mihin suuntaan olet kääntynyt. Napauta yksinkertaisesti *"Merkinnät"* -painiketta ja kuulet useita kiinnostavia kohteita, jotka ovat suunnilleen edessäsi.
 

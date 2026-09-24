@@ -1,5 +1,5 @@
 ---
-title: Why is Soundscape working offline?
+title: Miért offline módban működik a Soundscape?
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hu
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Why is Soundscape working offline?
+# Miért offline módban működik a Soundscape?
 
-## Why is Soundscape working offline?
+## Miért offline módban működik a Soundscape?
 
-When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
+Amikor nincs internetkapcsolat, vagy a Soundscape szolgáltatásai nem működnek, a Soundscape offline módba vált. Az alkalmazás továbbra is működik, de néhány funkció korlátozott lehet.
 
-## Limitations
+## Korlátozások
 
-Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
+A közlések továbbra is működnek azokon a területeken, amelyeken korábban már átmentél, mivel a Soundscape elmenti őket a közlési előzményeidbe. Hangjelzőt is elhelyezhetsz, vagy jelölőt hozhatsz létre olyan helyeken, amelyek már szerepelnek a közlési előzményeidben.
 
-## What can you do?
+## Mit tehetsz?
 
-Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
+A Soundscape megpróbálja folytatni a normál működést, amint a telefonodnak jó internetkapcsolata lesz, akár Wi-Fi-n, akár mobiladaton keresztül. Ha a telefonodnak jó a kapcsolata, de a Soundscape mégsem tér vissza a normál működéshez, akkor lehetséges, hogy üzemzavar van a Soundscape szolgáltatásaiban.
 

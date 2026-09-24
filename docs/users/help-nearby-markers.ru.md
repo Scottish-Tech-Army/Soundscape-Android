@@ -1,5 +1,5 @@
 ---
-title: Nearby Markers
+title: Ближайшие отметки
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ru
 permalink: /users/help-nearby-markers.html
 ---
 
-# Nearby Markers
+# Ближайшие отметки
 
-## What is it?
+## Что это такое?
 
-The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
+Кнопка «Отметки рядом» сообщает не более чем о четырёх ближайших к вам отметках. «Отметки рядом» предназначена помочь вам сориентироваться, используя места, которые вам уже знакомы.
 
-## When would I use it?
+## Когда использовать Soundscape?
 
-When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
+Когда вы пытаетесь сориентироваться и понять своё окружение, используйте «Отметки рядом», чтобы услышать о расположении знакомых вам мест.
 
-## How does it work?
+## Как оно работает?
 
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
+Как и для всех четырёх кнопок внизу главного экрана, держите телефон ровно (экран вверх, к небу) и направьте верх телефона в ту сторону, куда вы смотрите, прежде чем нажать кнопку «Отметки рядом». Это действует как компас, указывая приложению направление, в котором вы смотрите. Просто нажмите кнопку «Отметки рядом», и вы услышите до четырёх отметок рядом с вами.
 
