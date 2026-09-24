@@ -1378,16 +1378,46 @@
     </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">दशमलव</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s बाइट</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s किलोबाइट</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s मेगाबाइट</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s गीगाबाइट</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s टेराबाइट</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s बाइट</item>
+        <item quantity="other">%1$s बाइट</item>
+    </plurals>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s किलोबाइट</item>
+        <item quantity="other">%1$s किलोबाइट</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s मेगाबाइट</item>
+        <item quantity="other">%1$s मेगाबाइट</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s गीगाबाइट</item>
+        <item quantity="other">%1$s गीगाबाइट</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s टेराबाइट</item>
+        <item quantity="other">%1$s टेराबाइट</item>
+    </plurals>
     <string name="help_config_voices_content_ios">Soundscape आपके iOS डिवाइस पर Settings ऐप में डाउनलोड की गई किसी भी आवाज़ का उपयोग कर सकता है, सिवाय Siri की आवाज़ों के, जो Soundscape के लिए उपलब्ध नहीं हैं। हम *Enhanced* आवाज़ों में से किसी एक को चुनने की सलाह देते हैं क्योंकि उनकी आवाज़ गुणवत्ता काफी बेहतर होती है; लेकिन ऐसा करने के लिए पहले आपको एक Enhanced आवाज़ डाउनलोड करनी होगी। आप iOS Settings ऐप में Accessibility &gt; Spoken Content &gt; Voices पर जाकर किसी आवाज़ पर टैप करके आवाज़ डाउनलोड कर सकते हैं। Soundscape ऐप के भीतर, आप जिस आवाज़ का उपयोग करना चाहते हैं उसे चुनने के लिए मुख्य मेनू से सेटिंग्स पर जाएँ और फिर *आवाज़ें* चुनें।</string>
     <string name="settings_mix_audio">अन्य ऐप्स के साथ ऑडियो मिलाएँ</string>
     <string name="settings_mix_audio_description">यदि अक्षम किया गया है, तो अन्य ऑडियो ऐप्स पॉज़ हो जाएंगे और लॉक‑स्क्रीन मीडिया नियंत्रण उपलब्ध होंगे।</string>
@@ -1540,4 +1570,5 @@
     <string name="siri_short_detail">विवरण</string>
     <string name="siri_param_level">स्तर</string>
     <string name="siri_desc_callout_detail">यह सेट करता है कि चलते समय Soundscape कितना बोलेगा।</string>
+    <string name="intersection_approaching_intersection_distance">चौराहा %1$s दूर</string>
 </resources>
