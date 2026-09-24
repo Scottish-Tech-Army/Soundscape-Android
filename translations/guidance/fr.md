@@ -26,8 +26,8 @@ gives the first reviewers something to react to. Nearly everything is
 `unconfirmed`, and nothing should be swept from it.
 
 Two entries are `agreed` because neither is a matter of taste. FR-G1 is a
-grammar defect you can check against `WayGenerator.kt`. FR-B1 is a missing
-space that turns two words into one. In FR-G1 the *replacement wording* stays
+grammar defect you can check against `WayGenerator.kt`. FR-B1 was a missing
+space that turned two words into one, and is now fixed. In FR-G1 the *replacement wording* stays
 `unconfirmed`.
 
 The questions for reviewers are in `translations/review/fr.md`. Feedback will
@@ -97,19 +97,29 @@ option is an all-Romance-languages decision (Italian, Spanish and Portuguese
 have the same contractions), so it belongs in `_common.md` once a speaker
 confirms how much it grates. See Q5.
 
-### FR-B1 — `talkback_double_tap_template` is missing its space (`agreed`, affects 30 languages)
+### FR-B1 — `talkback_double_tap_template` was missing its space (`confirmed` fixed, 20 languages, 2026-09-24)
 
-French is «Appuyez deux fois pour%1$s». The fragment is substituted without a
-leading space (`TalkbackHelpers.ios.kt:activationHint`), so VoiceOver reads
+French was «Appuyez deux fois pour%1$s». The fragment is substituted without a
+leading space (`TalkbackHelpers.ios.kt:activationHint`), so VoiceOver read
 «Appuyez deux fois **pourmettre** Soundscape en veille». The space was lost
-in the Weblate translation itself (`cd99e018d`, 2026-08-21). **29 other
-languages** have the same defect, among them de «um%1$s», es «para%1$s»
-and da «for at%1$s». Only iOS is affected, because TalkBack writes its own
-hint. The fix is mechanical: one space per language.
+in the Weblate translation itself (`cd99e018d`, 2026-08-21). Only iOS is
+affected, because TalkBack writes its own hint.
 
-Watch out for verb-final languages when sweeping. Commit `de8a39bab` built
-this template to allow `%1$s` mid-sentence, so check each language's space on
-*both* sides of the placeholder, not only before it.
+**19 other languages** had the same defect: da, de, el, es, fa, fi, fr_CA, hi,
+is, it, nb_NO, nl, pl, pt, pt_BR, ro, ru, sv, uk. All 20 now have the space,
+uploaded and verified live on 2026-09-24.
+
+These are correct *without* a space and must not be "fixed": ja «ダブルタップして%1$s»,
+zh_Hans «双击以%1$s» and th «แตะสองครั้งเพื่อ%1$s» (scripts written without word
+spaces), and ko «%1$s하려면…» and mr «%1$sसाठी…» (verb-final languages where a
+particle attaches directly to the fragment, per commit `de8a39bab`). A naive
+`[^ ]%1$s` grep counts all five of these, plus the three with `%1$s` at the
+start, which is how an earlier draft of this entry arrived at "30".
+
+Still open, for those languages' reviewers: fi «Kaksoisnapauta %1$s» and hi
+«दो बार टैप करें %1$s» have the space now, but neither has a connective
+("to" / "in order to") before the fragment, so the sentence may still read
+badly.
 
 ### FR-R1 — Formal «vous» throughout (`unconfirmed`)
 
@@ -239,4 +249,12 @@ question sheet from a read of the local `values-fr/strings.xml` (the same
 content as Weblate, 1522 units). Found FR-G1 by checking `confect_name_to`'s
 call site in `WayGenerator.kt`, and FR-B1 by checking
 `talkback_double_tap_template`'s call site, then grepping every language for
-the same defect (30 hits). Nothing was uploaded or changed in Weblate.
+the same defect. Nothing was uploaded in that pass.
+
+**2026-09-24 — FR-B1 applied, across 20 languages.** Dave asked for the space
+fix in every affected language. The first count said 30, but that included
+false positives (see FR-B1), so the real total was 20. Fetched each live value
+first (all matched the repo), uploaded one key per language with
+`--skip-validate` (the revision path, see [[weblate-revising-existing-translations]]),
+checked French round-tripped before doing the other 19, then re-fetched all 20
+and confirmed each ends in « %1$s».
