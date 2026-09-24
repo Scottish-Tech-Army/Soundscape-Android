@@ -309,8 +309,18 @@
     </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">vejica</string>
-    <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s bajtov</string>
+    <plurals name="bytes_format_b">
+        <item quantity="one">%1$s B</item>
+        <item quantity="two">%1$s B</item>
+        <item quantity="few">%1$s B</item>
+        <item quantity="other">%1$s B</item>
+    </plurals>
+    <plurals name="bytes_format_b_a11y">
+        <item quantity="one">%1$s bajtov</item>
+        <item quantity="two">bajta</item>
+        <item quantity="few">bajti</item>
+        <item quantity="other">%1$s bajtov</item>
+    </plurals>
     <string name="route_beacon_progress">Svetilnik pri %1$s</string>
     <string name="home_screen_title">Soundscape – domov</string>
     <string name="settings_reset_button">Ponastavi nastavitve na privzete vrednosti</string>
@@ -1163,14 +1173,54 @@
     <string name="loading_indicator_content_description">Nalaganje</string>
     <string name="menu_exit_app">Zapri Soundscape</string>
     <string name="offline_map_details_update">Posodobi zemljevid brez povezave</string>
-    <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilobajtov</string>
-    <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megabajtov</string>
-    <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigabajtov</string>
-    <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s terabajtov</string>
+    <plurals name="bytes_format_kb">
+        <item quantity="one">%1$s kB</item>
+        <item quantity="two">%1$s kB</item>
+        <item quantity="few">%1$s kB</item>
+        <item quantity="other">%1$s kB</item>
+    </plurals>
+    <plurals name="bytes_format_kb_a11y">
+        <item quantity="one">%1$s kilobajtov</item>
+        <item quantity="two">kilobajta</item>
+        <item quantity="few">kilobajti</item>
+        <item quantity="other">%1$s kilobajtov</item>
+    </plurals>
+    <plurals name="bytes_format_mb">
+        <item quantity="one">%1$s MB</item>
+        <item quantity="two">%1$s MB</item>
+        <item quantity="few">%1$s MB</item>
+        <item quantity="other">%1$s MB</item>
+    </plurals>
+    <plurals name="bytes_format_mb_a11y">
+        <item quantity="one">%1$s megabajtov</item>
+        <item quantity="two">megabajta</item>
+        <item quantity="few">megabajti</item>
+        <item quantity="other">%1$s megabajtov</item>
+    </plurals>
+    <plurals name="bytes_format_gb">
+        <item quantity="one">%1$s GB</item>
+        <item quantity="two">%1$s GB</item>
+        <item quantity="few">%1$s GB</item>
+        <item quantity="other">%1$s GB</item>
+    </plurals>
+    <plurals name="bytes_format_gb_a11y">
+        <item quantity="one">%1$s gigabajtov</item>
+        <item quantity="two">gigabajta</item>
+        <item quantity="few">gigabajti</item>
+        <item quantity="other">%1$s gigabajtov</item>
+    </plurals>
+    <plurals name="bytes_format_tb">
+        <item quantity="one">%1$s TB</item>
+        <item quantity="two">%1$s TB</item>
+        <item quantity="few">%1$s TB</item>
+        <item quantity="other">%1$s TB</item>
+    </plurals>
+    <plurals name="bytes_format_tb_a11y">
+        <item quantity="one">%1$s terabajtov</item>
+        <item quantity="two">terabajta</item>
+        <item quantity="few">terabajti</item>
+        <item quantity="other">%1$s terabajtov</item>
+    </plurals>
     <string name="ui_action_button_my_location">Moja\nlokacija</string>
     <string name="ui_action_button_my_location_acc_hint">izvedeti podatke o svoji trenutni lokaciji</string>
     <string name="ui_action_button_nearby_markers">Oznake\nv bližini</string>
@@ -1550,4 +1600,5 @@
     <string name="siri_short_detail">Podrobnost</string>
     <string name="siri_param_level">Raven</string>
     <string name="siri_desc_callout_detail">Nastavi, koliko Soundscape pove med hojo.</string>
+    <string name="intersection_approaching_intersection_distance">Križišče oddaljeno %1$s</string>
 </resources>
