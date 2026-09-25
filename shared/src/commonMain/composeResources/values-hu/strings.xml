@@ -1218,7 +1218,7 @@
     <string name="faq_sleep_mode_battery_question">Hogyan használjam az Alvó módot, hogy minimalizáljam a Soundscape hatását a telefonom akkumulátorára?</string>
     <string name="faq_sleep_mode_battery_answer">Ahhoz, hogy a Soundscape-et Alvó módba állítsa, válassza az *Alvás* gombot a képernyő jobb felső sarkában. Ha ezt kiválasztja, a Soundscape leállítja a Helyszolgáltatások és a mobiladatok használatát, amíg úgy nem dönt, hogy újra felébreszti.</string>
     <string name="faq_snooze_mode_battery_question">Hogyan használjam a Szundi módot, hogy minimalizáljam a Soundscape hatását a telefonom akkumulátorára?</string>
-    <string name="faq_snooze_mode_battery_answer">Ahhoz, hogy a Soundscape-et Szundi módba állítsa, válassza az *Alvás* gombot a képernyő jobb felső sarkában. Miután a Soundscape Alvó módban van, válassza az *Ébresztés, amikor elindulok* gombot, és a Soundscape alacsony fogyasztású állapotba kerül, amíg el nem hagyja a jelenlegi helyét.</string>
+    <string name="faq_snooze_mode_battery_answer">Ahhoz, hogy a Soundscape-et Szundi módba állítsa, válassza az *Alvás* gombot a képernyő jobb felső sarkában. Miután a Soundscape Alvó módban van, válassza a *Felébredés távozáskor* gombot, és a Soundscape alacsony fogyasztású állapotba kerül, amíg el nem hagyja a jelenlegi helyét.</string>
     <string name="faq_headset_battery_impact_question">Hogyan befolyásolja a fülhallgató-választásom a telefonom akkumulátor-élettartamát?</string>
     <string name="faq_headset_battery_impact_answer">Teszteink szerint a Bluetooth-os fülhallgatók akkumulátor-fogyasztása hasonló a vezetékes fülhallgatókéhoz, így ez nem jelent jelentős szempontot a fülhallgató kiválasztásakor.</string>
     <string name="faq_background_battery_impact_question">Hogyan hat a telefonom akkumulátor-élettartamára, ha a Soundscape a háttérben fut?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">Szint</string>
     <string name="siri_desc_callout_detail">Beállítja, mennyit mond a Soundscape séta közben.</string>
     <string name="intersection_approaching_intersection_distance">Kereszteződés %1$s távolságra</string>
+    <string name="microsoft_copyright">Az [eredeti Soundscape alkalmazás ©Microsoft Corporation](https://github.com/microsoft/soundscape) biztosította a hangjelző hangjait és a fordítások nagy részét, és az [MIT licenc](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) alapján érhető el használatra.</string>
+    <string name="soundscape_community_copyright">A [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) önkéntesei több fordítást is javítottak, amelyek az [MIT licenc](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) alapján érhetők el használatra.</string>
 </resources>
