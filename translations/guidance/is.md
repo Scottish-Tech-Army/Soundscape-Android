@@ -31,7 +31,7 @@ file's sense: "confirmed then, not re-checked since." Everything else is
 `unconfirmed`.
 
 The questions for reviewers are in `docs/translation-questions/questions-is.md`, numbered
-Q1…Q11 to match the Open questions below.
+Q1…Q10 to match the Open questions below.
 
 ---
 
@@ -103,15 +103,20 @@ The fix is probably to rephrase all of these so they don't agree («Allt er
 tilbúið!», «Velkomið í…» / «Gott að sjá þig»), rather than picking a gender.
 That wording needs a speaker. See Q4.
 
-### IS-S1 — 151 labels are lowercase where the English is capitalised (`unconfirmed`, likely `agreed`)
+### IS-S1 — Labels start with a capital, like English (`agreed`, fixed 2026-09-25)
 
-A carry-over from Þorkell's first pass: «hætta við», «lokið», «upphaf leiðar»,
-«slökkva á hljóðvita», and even full sentences like «illa gengur að finna
-staðsetningu.». The later AI strings are capitalised, so the app now mixes
-the two from one screen to the next. Icelandic capitalises the first word of
-a sentence or button like English does, so this looks like haste rather than
-a style choice. It is invisible to speech, so low priority, but it is a
-mechanical fix once a speaker says yes. See Q9.
+147 strings started lowercase where the English is capitalised, a carry-over from
+the first pass («hætta við», «lokið», «upphaf leiðar», even full sentences like
+«illa gengur að finna staðsetningu.»). The maintainer confirmed this was a
+mistake, and all 147 were capitalised on Weblate on 2026-09-25. **New strings
+start with a capital wherever the English does.**
+
+Exceptions, deliberately left lowercase:
+- `directions_cardinal_*` («norður», «suðaustur»…): the app only ever appends
+  them after a comma («Kaffihús, 50 m, norður»), and Icelandic doesn't
+  capitalise compass points mid-sentence.
+- Hint strings (`*_hint`, `*_acc_hint`), which are lowercase in English too
+  because they follow «Tvíbankaðu til að…».
 
 ### IS-T1 — Snooze is «Í lúra-ham» (`unconfirmed`)
 
@@ -162,9 +167,10 @@ These are the questions in `docs/translation-questions/questions-is.md`, in the 
    adjectives, and are they distinct by ear? «Hljóðlátt» may also be heard as volume
    rather than fewer callouts.
 8. **«Tvíbankaðu» or «Ýttu tvisvar»?** (IS-T2)
-9. **Capitalise the 151 lowercase labels?** (IS-S1)
-10. **Siri phrases stay English:** OK? (IS-C1)
-11. **Anything else.**
+9. **Siri phrases stay English:** OK? (IS-C1)
+10. **Anything else.**
+
+*Settled 2026-09-25: labels start with a capital (IS-S1).*
 
 ---
 
