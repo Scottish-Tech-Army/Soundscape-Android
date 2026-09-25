@@ -4,7 +4,7 @@
 |---|---|
 | Weblate component | `androidkmp` |
 | Corpus at last sweep | 1495 translated units (2026-09-21) |
-| Last native-speaker input | 2026-09-21 |
+| Last native-speaker input | 2026-09-25 |
 | Reporter platform | iOS v2.0.49 (strings are shared KMP — see rule C6) |
 
 Read with [`_common.md`](_common.md).
@@ -15,11 +15,12 @@ Read with [`_common.md`](_common.md).
 
 | English | Ukrainian | Status | Not | Why |
 |---|---|---|---|---|
-| Audio Beacon | звуковий маячок | `confirmed` | — | Already in use across 73 strings; native speaker confirmed it unchanged |
-| Marker | мітка | `confirmed` | — | Already in use across 80 strings; native speaker confirmed it unchanged |
+| Audio Beacon | звуковий маячок | `confirmed` | — | Already in use across 73 strings; native speaker confirmed it unchanged, and again as final on 2026-09-25 |
+| Marker | мітка | `confirmed` | — | Already in use across 80 strings; native speaker confirmed it unchanged, and again as final on 2026-09-25 |
 | Waypoint | зупинка | `agreed` | ~~маршрутна точка~~ | Google Maps Ukrainian uses «зупинка» for a stop added to a route. «маршрутна точка» was a calque of our own doc's "route point" gloss (rule C1) |
 | Callout | оголошення | `confirmed` | ~~підказка~~ | Kept unchanged on the reporter's second look — see "Rejected". Ukrainian has no good word for this; «оголошення» is the settled least-bad choice, not an oversight |
 | Guided tutorial | Інтерактивний тур | `agreed` | ~~Керований навчальний посібник~~, ~~Навчання~~ | Reporter proposed it 2026-09-18 as provisional ("cannot find any real examples of usage in Ukrainian applications"), confirmed OK 2026-09-21. Also replaces «Навчання» in `tour_finish` |
+| Detail levels | Докладний / Збалансований / Тихий / Беззвучний | `confirmed` | — | `callouts_verbosity_level_*`. Reporter, 2026-09-25: "easy to understand and distinguish" as currently translated |
 | Dead end | тупик | `agreed` | ~~кінець дороги~~ | «кінець дороги» is "end of the road", not the street type. Reporter, 2026-09-21. See UK-G1 for the case it must take |
 
 ### Waypoint declension map (`agreed`, mechanical)
@@ -103,7 +104,7 @@ it's in scope (C4). «через %3$s» stays, because %3$s only ever receives
 «Сходи», «Міст» or «Тунель», which are inanimate, so their accusative is the
 same as the nominative.
 
-### UK-G3 — The same problem in every other preposition + map-name template (`unconfirmed`, inventory only)
+### UK-G3 — The same problem in every other preposition + map-name template (`agreed` defect, fixes pending the reporter's notes)
 
 A sweep found **54 more templates** where a map name (road, POI, settlement or
 marker) follows a case-governing preposition and so arrives nominative. For
@@ -111,9 +112,15 @@ example `directions_on_road` «На %1$s» → «На вулиця Шевчен�
 `directions_near_name` «Поблизу %1$s» (genitive), the 24
 `directions_along_*` «по/вздовж %1$s», `street_description_*` «між / до / після
 %2$s», `directions_approaching_name` «до %1$s», `directions_at_poi` «У %1$s».
-These are the main callouts, so this matters more than the four above. The
-reporter's rule was stated for the «у напрямку» type only, so these are
-inventory: `/tmp/weblate-review/uk-findings.json` rule UK-G3. See question 1.
+These are the main callouts, so this matters more than the four above.
+
+On 2026-09-25 the reporter confirmed that other templates do need changing,
+and said they are testing and noting the callouts that sound unnatural or
+unclear. **Don't apply the label form across the 54 yet.** Wait for those
+notes, which will say which templates are wrong and what they should become.
+Some may be fine as they are, and the fix may not always be a label. The
+inventory is in `/tmp/weblate-review/uk-findings.json`, rule UK-G3; regenerate
+it if it's gone.
 
 ### UK-T4 — Callout stays «оголошення» (`confirmed`, closed)
 29 strings carry «оголошення» and all of them stay as they are. See "Rejected"
@@ -154,17 +161,12 @@ change was never the mechanical swap it appeared to be (rule C3).
 
 ## Open questions for the next native-speaker round
 
-1. **The other 54 map-name templates (UK-G3).** Should the label form extend to
-   them too? For example «На %1$s» → «Вулиця: %1$s»? «Поблизу %1$s» →
-   «Поблизу: %1$s»? Or are some acceptable as they are? The biggest groups are
-   `directions_on_road*` («На …»), the `directions_along_*` family («по / вздовж
-   …») and `street_description_*` («між / до / після …»).
-2. **Confirm the two locked terms.** «звуковий маячок» and «мітка» are
-   `confirmed`. Say if either should move.
-   3. **The four detail levels** (Докладний / Збалансований / Тихий / Беззвучний):
-      distinct by ear?
+1. **The other 54 map-name templates (UK-G3).** The reporter is collecting
+   notes on the callouts that sound wrong (2026-09-25). Apply those when they
+   arrive, then ask about any of the 54 their notes don't cover.
+2. Anything else.
 
-*Answered and closed: undeclined destination names → the label form (UK-G2, 2026-09-25). The two callout questions, see "Rejected"; the guided-tutorial term, confirmed OK 2026-09-21; register, formal «ви» confirmed 2026-09-21.*
+*Answered and closed: the two locked terms, confirmed final, and the four detail levels, confirmed distinct (both 2026-09-25); undeclined destination names → the label form (UK-G2, 2026-09-25); the two callout questions, see "Rejected"; the guided-tutorial term, confirmed OK 2026-09-21; register, formal «ви» confirmed 2026-09-21.*
 
 ---
 
@@ -222,3 +224,9 @@ found no «маршрутна точка» or «посібник» left anywhere
 **2026-09-25 — reporter answered question 1 (undeclined destinations).** Chose approach (c), the label form. Recorded as UK-G2 (4 units), with UK-G1's genitive dead end rejected. The sweep found 54 more preposition + map-name templates (UK-G3), now question 1.
 
 **2026-09-25 — UK-G2 applied.** The 4 units uploaded and verified live: `confect_name_to`, `confect_name_to_via`, `directions_towards_settlement`, `confect_name_dead_end` («тупик»).
+
+**2026-09-25 — reporter answered the questionnaire.** Q1: yes, other
+templates need changing too, and they are taking notes while testing (UK-G3
+moves to an `agreed` defect, with fixes pending). Q2: «звуковий маячок» and
+«мітка» are fine and stay. Q3: the four detail levels are easy to understand
+and to tell apart, so they are now in the glossary as `confirmed`. Nothing uploaded.
