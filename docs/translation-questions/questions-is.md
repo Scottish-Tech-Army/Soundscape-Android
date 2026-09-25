@@ -23,7 +23,7 @@ móðurmáli hafi lesið það yfir. Þitt álit skiptir okkur því miklu máli
 kemur fram hvenær textinn heyrist, hvað hann segir á ensku og hvernig hann
 hljómar núna.
 
-Hér fyrir neðan eru **ellefu spurningar** um þau atriði sem hafa áhrif á
+Hér fyrir neðan eru **tíu spurningar** um þau atriði sem hafa áhrif á
 flesta texta. Eitt rangt orð getur birst í tugum setninga.
 
 ## Hvað er Soundscape?
@@ -186,16 +186,7 @@ fingrum…“), en aðrir textar segja bara „Ýttu á…“ („Ýttu á hnapp
 **Spurningin:** hvort er eðlilegra, „Tvíbankaðu til að…“ eða „Ýttu tvisvar til
 að…“?
 
-### Q9 — Hástafir *(Capitalise the 151 lowercase labels?)*
-
-**Hvenær það heyrist:** heyrist ekki, en sést á skjánum.
-
-**Hvernig það er núna:** margir hnappar og titlar byrja á litlum staf („hætta
-við“, „lokið“, „upphaf leiðar“, „leiðir“), en aðrir á stórum.
-
-**Spurningin:** á að byrja þá alla á stórum staf?
-
-### Q10 — Siri-skipanir á ensku *(Siri phrases stay in English: OK?)*
+### Q9 — Siri-skipanir á ensku *(Siri phrases stay in English: OK?)*
 
 **Hvenær það heyrist:** aldrei; þessar skipanir *segir* þú sjálf/ur. Á iPhone er
 hægt að stýra Soundscape með Siri án þess að snerta símann.
@@ -206,7 +197,7 @@ hægt að stýra Soundscape með Siri án þess að snerta símann.
 
 **Spurningin:** er það í lagi?
 
-### Q11 — Eitthvað annað? *(Anything else)*
+### Q10 — Eitthvað annað? *(Anything else)*
 
 Eru setningar sem hljóma eins og þær séu þýddar úr ensku, eru of langar, eða sem
 þú skildir ekki? Allar ábendingar eru vel þegnar, líka án númers.
