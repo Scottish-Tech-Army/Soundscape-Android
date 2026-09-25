@@ -27,14 +27,16 @@ Questions: `translations/review/sv.md` (Q1…Q5).
 | Marker | platsmarkör | `confirmed` | Microsoft |
 | Waypoint | brytpunkt | `confirmed` | Microsoft |
 | Intersection | vägkorsning | `confirmed` | Microsoft |
-| Sleep / Snooze | Viloläge / I viloläge ; Snoozeläge | `unconfirmed` | Status aligned 2026-09-24. See SV-T1 |
+| Sleep / Snooze | Inaktivera / Inaktiverad ; Snoozar | `confirmed` | Microsoft, restored 2026-09-25 (C14 parity). See SV-T1 |
 | Traveling / Heading | Reser / På väg norrut | `confirmed` | Microsoft |
 | Detail levels | Detaljerad / Balanserad / Lågmäld / Tyst | `unconfirmed` | AI. Distinct, and «Lågmäld» is a nice choice for "fewer" |
 | dead end | återvändsgata | `unconfirmed` | AI |
 
 ## Rules
 
-### SV-T1 — The Sleep button and its status no longer match (`confirmed` fixed 2026-09-24)
+### SV-T1 — The Sleep button and its status no longer match (`confirmed` fixed; **superseded 2026-09-25**)
+
+**Superseded 2026-09-25:** under Dave's iOS-parity policy (C14), the whole family went back to Microsoft's «Inaktivera» (button) / «Inaktiverad» (status) / «Snoozar» (snooze), and the three help/FAQ strings that quote the button (*"Viloläge"* → *"Inaktivera"*) followed. Unquoted «viloläge» still names the mode, which Microsoft did too. The 2026-09-24 fix below («I viloläge») is kept for the record but no longer ships.
 
 **Fixed 2026-09-24:** `sleep_sleeping` «Inaktiverad» → «I viloläge», uploaded and verified live. «I viloläge» (status) stays distinct from the button «Viloläge». Serbian SR-T1 shows why that matters.
 
@@ -56,9 +58,7 @@ Nothing yet.
 
 ## Open questions
 
-1. Sleep: the button is «Viloläge» and the status is now «I viloläge»
-   (changed from «Inaktiverad»). Right? (SV-T1)
-2. Snooze «Snoozeläge»: natural?
+2. Sleep/Snooze are back to Microsoft's «Inaktivera» / «Inaktiverad» / «Snoozar». OK?
 3. «Stig till återvändsgata»: natural, or with «en»?
 4. Siri phrases «Soundscape omgivning / rutt / ljudfyr / stoppa ljudfyr…»: natural?
 5. Anything else.
@@ -70,3 +70,5 @@ Nothing yet.
 **2026-09-24 — corpus sweep** with a Microsoft comparison. Nothing uploaded.
 
 **2026-09-24 — SV-T1 applied.** `sleep_sleeping` → «I viloläge», uploaded and verified live.
+
+**2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_sleep` → «Inaktivera», `sleep_sleeping` → «Inaktiverad», `sleep_snoozing` → «Snoozar», plus the quoted button name in `help_text_automatic_callouts_how_1`, `faq_controlling_what_you_hear_answer` and `faq_tip_turning_off_auto_callouts`. 6 units, verified live.

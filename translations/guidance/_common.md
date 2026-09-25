@@ -250,6 +250,17 @@ translation for no source reason. Counts: da 73, fr_CA 69, es 34, nl 29,
 fr 27, ja 27, nb 26, fi 24, el 21, de 20, sv 15, it 8, pt_BR 8, pt 7,
 en_GB 2.
 
+**Dave's policy (2026-09-25):** *"We want iOS users to have as few
+differences as possible."* Legacy iOS users are moving to this app, so in
+the Microsoft-origin languages **Microsoft's wording is the target, not just
+a default**. A drift away from it needs a reason: a real error in Microsoft's
+text (like the ones below), or a string whose English has changed. First
+applied to the whole Sleep/Snooze family (`sleep_sleep`, `sleep_sleeping`,
+`sleep_snoozing`): 13 units in da, de, el, es, fi, fr, fr_CA and sv were
+restored to Microsoft's wording and verified live. **pt_BR is the one
+exception:** Microsoft's «Em Ociosidade» ("idle") doesn't describe the mode,
+so «Em Soneca» stays.
+
 How to use this:
 
 - **Microsoft's term is the default** when a term is disputed and no native

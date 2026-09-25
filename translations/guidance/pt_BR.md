@@ -26,7 +26,7 @@ correctly. The Siri phrases (`pt-BR.lproj`) match the help text. Questions:
 | Marker | **Favoritos** | `confirmed` | Microsoft. See PTBR-T1 |
 | Waypoint | **Localizador** | `confirmed` | Microsoft ("locator"). See PTBR-T1 |
 | Intersection | cruzamento | `confirmed` | Microsoft |
-| Sleep / Snooze | Suspensão ; Soneca | `unconfirmed` | Snooze drifted from Microsoft's «Em Ociosidade» ("idle") to «Em Soneca», which is the alarm-clock word and probably better |
+| Sleep / Snooze | Suspensão ; Soneca | `agreed` (exception to C14 parity, Dave 2026-09-25) | Snooze drifted from Microsoft's «Em Ociosidade» ("idle") to «Em Soneca», which is the alarm-clock word and probably better |
 | dead end | sem saída | `unconfirmed` | AI. See PTBR-G1 |
 
 ## Rules
@@ -77,3 +77,5 @@ screen reader reads the brackets aloud. «Boas-vindas!» or «Olá!» avoids bot
 
 **2024-12 — Microsoft baseline** (`pt-BR.lproj`). **2025 → 2026 — AI
 passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-25 — Sleep/Snooze iOS parity.** Dave kept «Em Soneca» as the one exception to the Microsoft-parity restore, because «Em Ociosidade» doesn't describe the mode.

@@ -26,12 +26,6 @@ Les étapes d'un itinéraire s'appellent « points de cheminement », et les
 courts messages vocaux sur les environs (« Café », « Rue Sainte-Catherine à
 gauche ») s'appellent « annonces ». Ces mots vous semblent-ils justes ?
 
-**Q2 — « En veille » deux fois** *(Sleep and Snooze statuses identical)*
-L'application a deux modes d'économie de batterie. Le premier s'arrête
-complètement. Le second **se réveille tout seul** quand vous quittez
-l'endroit. Les deux affichent « En veille », donc on ne peut pas les
-distinguer. Comment appelleriez-vous le second ?
-
 **Q3 — « Sentier vers impasse »** *(Dead-end way description)*
 Pour un sentier sans issue, l'application dit « Sentier vers impasse ». « Sentier
 vers une impasse » est-il mieux ?

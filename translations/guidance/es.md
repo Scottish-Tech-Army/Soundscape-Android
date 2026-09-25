@@ -132,8 +132,6 @@ These are from `translations/review/es.md`. JJ answered Q1 and Q2 on
 4. **«¡Bienvenido!» / «Bienvenido al tutorial» are masculine, and «¡Ya está
    listo!» is ambiguous** under tú (C15). Candidates: «¡Te damos la
    bienvenida!», «¡Todo listo!».
-5. **`sleep_sleeping` «Suspendiendo»** sounds in-progress. Candidate: «En
-   suspensión».
 
 *Answered and closed:* **Q1 «Pulsa»**, confirmed (ES-R2). **Q2, the FAQ
 button name** (`faq_snooze_mode_battery_answer`): JJ explained that
@@ -223,3 +221,5 @@ live (`talkback_double_tap_template`, `faq_how_to_use_beacon_answer`,
 `legacy_migration_complete` all confirmed correct). Corpus stays at
 1522/1522, untranslated=0 — these were corrections to existing translations,
 not new strings.
+
+**2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «En modo de aplazamiento» → Microsoft's «Posponiendo», so the status pair is Microsoft's «Suspendiendo» / «Posponiendo» again. That **closes Q5**: «Suspendiendo» is Microsoft's own wording and stays under the parity policy. The FAQ and help text still say «modo de aplazamiento» for the *mode*, which is fine, since only the status label changed.

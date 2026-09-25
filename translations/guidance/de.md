@@ -30,7 +30,7 @@ Questions: `translations/review/de.md` (Q1…Q6).
 | Marker | Markierung | `confirmed` | Microsoft |
 | Waypoint | Wegpunkt | `confirmed` | Microsoft |
 | Intersection | Kreuzung | `confirmed` | Microsoft |
-| Sleep / Snooze | Ruhemodus / Standbymodus | `confirmed` | Microsoft. `sleep_sleep` was shortened from «Ruhemodus aktivieren» to «Ruhemodus», so it no longer says what the button does. See Q4 |
+| Sleep / Snooze | Ruhemodus / Standbymodus | `confirmed` | Microsoft. Button restored to «Ruhemodus aktivieren» 2026-09-25 (C14 parity) |
 | Traveling / Heading | Nach Norden fahrend / Richtung Norden | `confirmed` | Microsoft. Matches the vehicle/walking split |
 | Detail levels | Ausführlich / Ausgewogen / Leise / Stumm | `unconfirmed` | AI. Distinct |
 | Landmarks | Orientierungspunkte | `unconfirmed` | AI |
@@ -73,7 +73,6 @@ Microsoft's files.
 2. «Fußweg nach Sackgasse»: better as «Fußweg zur Sackgasse» or «Fußweg
    Richtung Moor Road»? (DE-G1)
 3. The four detail levels (Ausführlich / Ausgewogen / Leise / Stumm): clear?
-4. Sleep button «Ruhemodus»: should it say «Ruhemodus aktivieren» again?
 5. Siri phrases «Soundscape Umgebung / Route / Beacon / stoppe Beacon…»: natural?
 6. Anything else.
 
@@ -83,3 +82,5 @@ Microsoft's files.
 **2025 → 2026-09 — AI passes**, plus Weblate bulk operations ("Anonymous").
 **2026-09-24 — corpus sweep** including a comparison against Microsoft's
 file. Nothing uploaded.
+
+**2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_sleep` «Ruhemodus» → Microsoft's «Ruhemodus aktivieren». This closes Q4.
