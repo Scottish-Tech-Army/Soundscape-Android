@@ -367,4 +367,43 @@ class GrammarMarkersTest {
     fun finnishMarkerLeavesOtherBracesAlone() {
         assertEquals("{Jotain muuta}", fi("{Jotain muuta}"))
     }
+
+    // --- Estonian (names from the Tallinn extract) ------------------------------------------
+
+    private fun et(text: String) = resolveGrammarMarkers(text)
+
+    @Test
+    fun estonianStreetWordTakesTheAdessive() {
+        assertEquals("Pärnu maanteel ja Kesklinna lähedal", et("{Teel Pärnu maantee} ja Kesklinna lähedal"))
+        assertEquals("Järvevana teel", et("{Teel Järvevana tee}"))
+        assertEquals("Kalda põigul, A ja B vahel", et("{Tänaval Kalda põik}, A ja B vahel"))
+        assertEquals("Ei liigu Kadrioru kivisillal", et("Ei liigu {teel Kadrioru kivisild}"))
+        assertEquals("Pirita kergliiklusteel", et("{Teel Pirita kergliiklustee}"))
+        assertEquals("Nõmme terviserajal", et("{Teel Nõmme terviserada}"))
+        assertEquals("Vabaduse väljakul", et("{Tänaval Vabaduse väljak}"))
+    }
+
+    @Test
+    fun estonianAbbreviationsAreReadInFull() {
+        assertEquals("Pärnu maanteel", et("{Teel Pärnu mnt}"))
+        assertEquals("Kadrioru puiesteel", et("{Tänaval Kadrioru pst}"))
+    }
+
+    @Test
+    fun estonianSingleWordNamesAreTanavStreets() {
+        assertEquals("Metsa tänaval", et("{Tänaval Metsa}"))
+        assertEquals("Ei liigu Tisleri tänaval", et("Ei liigu {teel Tisleri}"))
+        assertEquals("Kahala-Hirvli tänaval", et("{Teel Kahala-Hirvli}"))
+    }
+
+    @Test
+    fun estonianUnnamedWayClassKeepsItsCapital() {
+        assertEquals("Rajal", et("{Teel Rada}"))
+    }
+
+    @Test
+    fun estonianOtherNamesKeepTheLabel() {
+        assertEquals("Teel Tallinn–Tartu 2", et("{Teel Tallinn–Tartu 2}"))
+        assertEquals("Tänaval E20", et("{Tänaval E20}"))
+    }
 }

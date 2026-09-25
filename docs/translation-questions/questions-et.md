@@ -123,7 +123,23 @@ praegusest kohast lahkute (näiteks kodust).
 
 **Küsimus:** kas see on arusaadav? Kas ütleksite teisiti?
 
-### Q6 — Midagi muud? *(Anything else)*
+### Q6 — Tänavanimed teadetes *(Street names now inflected)*
+
+**Millal see kõlab:** peaaegu igas kõndimise ajal kõlavas teates.
+
+**Inglise keeles:** „On Pärnu maantee“, „On Metsa between …“.
+
+**Kuidas see praegu kõlab:** varem ütles rakendus „Teel Pärnu maantee“ ja
+„Tänaval Metsa“, sest ta ei osanud nimesid käänata. Nüüd käänab ta nime lõppu:
+„Pärnu maanteel“, „Kalda põigul“, „Kadrioru puiesteel“. Kaardiandmetes on
+tänavanimed ilma sõnata „tänav“ („Metsa“), nii et ühesõnalise nime puhul ütleb
+rakendus „Metsa tänaval“. Kui nime ei saa käänata (nt „E20“), jääb „Teel E20“.
+
+**Mis meid kahtlema paneb:** kas iga ühesõnaline nimi on tõesti tänav.
+
+**Küsimus:** kas see kõlab õigesti? Kas teate nimesid, mida see valesti käänab?
+
+### Q7 — Midagi muud? *(Anything else)*
 
 Kui mõni lause kõlab nagu tõlge inglise keelest, on liiga pikk või ebaselge,
 andke teada.
