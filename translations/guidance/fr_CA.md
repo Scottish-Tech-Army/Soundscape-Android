@@ -81,10 +81,7 @@ Nothing yet.
 
 ## Open questions
 
-1. Waypoint «point de cheminement» and Callout «annonce»: right? (These are
-   what fr is considering too.)
 3. «Sentier vers une impasse»? (FRCA-G1)
-4. Beacon: «balise audio» or «balise sonore»?
 5. «Tout est prêt!» instead of «Vous êtes prêt!»? (FRCA-R1)
 6. Anything else.
 
