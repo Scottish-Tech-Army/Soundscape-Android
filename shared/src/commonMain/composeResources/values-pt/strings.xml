@@ -391,7 +391,7 @@
     <string name="faq_sleep_mode_battery_question">Como posso utilizar o Modo de Suspensão para minimizar o impacto do Soundscape na bateria do meu telemóvel?</string>
     <string name="faq_sleep_mode_battery_answer">Para colocar o Soundscape em Modo de Suspensão, selecione o botão *\"Suspender\"* no canto superior direito do ecrã. Ao fazê‑lo, o Soundscape deixará de utilizar os Serviços de localização e os dados móveis até que escolha reativá‑lo.\n</string>
     <string name="faq_snooze_mode_battery_question">Como posso utilizar o Modo de Pausa para minimizar o impacto do Soundscape na bateria do meu telemóvel?</string>
-    <string name="faq_snooze_mode_battery_answer">Para colocar o Soundscape em Modo de Pausa, selecione o botão *\\"Suspender\\"* no canto superior direito do ecrã. Depois de o Soundscape estar em Modo de Suspensão, selecione o botão *\\"Reativar quando eu sair\\"* e o Soundscape entrará num estado de baixo consumo até que se afaste da sua localização atual.\n</string>
+    <string name="faq_snooze_mode_battery_answer">Para colocar o Soundscape em Modo de Pausa, selecione o botão *\\"Suspender\\"* no canto superior direito do ecrã. Depois de o Soundscape estar em Modo de Suspensão, selecione o botão *\\"Reativar ao sair\\"* e o Soundscape entrará num estado de baixo consumo até que se afaste da sua localização atual.</string>
     <string name="faq_headset_battery_impact_question">Como é que a minha escolha de auscultadores afeta a duração da bateria do telemóvel?</string>
     <string name="faq_headset_battery_impact_answer">Nos nossos testes, o consumo de bateria dos auscultadores Bluetooth foi comparável ao de auscultadores com fios e não deverá ser um fator significativo a tomar em consideração para a escolha dos auscultadores.</string>
     <string name="faq_background_battery_impact_question">Qual é o impacto da execução do Soundscape em segundo plano na duração da bateria do meu telemóvel?</string>
@@ -1586,4 +1586,6 @@
     <string name="siri_param_level">Nível</string>
     <string name="siri_desc_callout_detail">Define quanto o Soundscape diz enquanto caminha.</string>
     <string name="intersection_approaching_intersection_distance">Cruzamento a %1$s de distância</string>
+    <string name="microsoft_copyright">[A aplicação Soundscape original ©Microsoft Corporation](https://github.com/microsoft/soundscape) forneceu os sons do Sinal de Áudio e muitas das traduções, e encontra‑se disponível para utilização ao abrigo da [licença MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Os voluntários da [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) melhoraram várias das traduções, que se encontram disponíveis para utilização ao abrigo da [licença MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
