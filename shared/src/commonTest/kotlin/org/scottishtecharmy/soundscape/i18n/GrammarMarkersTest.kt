@@ -174,4 +174,108 @@ class GrammarMarkersTest {
             ko("논현로과(와) 강남대로을(를) 연결하는 테헤란로"),
         )
     }
+
+    // --- Turkish -------------------------------------------------------------------------
+
+    private fun tr(text: String) = resolveGrammarMarkers(text)
+
+    @Test
+    fun turkishLocativeFollowsHarmonyAndHardening() {
+        assertEquals("İstanbul'da", tr("İstanbul'{DA}"))
+        assertEquals("Kadıköy'de", tr("Kadıköy'{DA}"))
+        assertEquals("Park'ta", tr("Park'{DA}"))
+        assertEquals("Beşiktaş'ta", tr("Beşiktaş'{DA}"))
+        assertEquals("Üsküdar'dan", tr("Üsküdar'{DAn}"))
+        assertEquals("Bebek'ten", tr("Bebek'{DAn}"))
+    }
+
+    @Test
+    fun turkishVowelFinalNamesTakeABufferConsonant() {
+        assertEquals("Ankara'ya", tr("Ankara'{A}"))
+        assertEquals("İzmir'e", tr("İzmir'{A}"))
+        assertEquals("Bursa'yı", tr("Bursa'{I}"))
+        assertEquals("Ankara'nın", tr("Ankara'{In}"))
+        assertEquals("İzmir'in", tr("İzmir'{In}"))
+        assertEquals("Konya'da", tr("Konya'{DA}"))
+    }
+
+    @Test
+    fun turkishDottedAndDotlessIAreKeptApart() {
+        assertEquals("Isparta'ya", tr("Isparta'{A}"))
+        assertEquals("Iğdır'ın", tr("Iğdır'{In}"))
+        assertEquals("İnebolu'nun", tr("İnebolu'{In}"))
+    }
+
+    @Test
+    fun turkishPossessivePlaceNamesTakeTheExtraN() {
+        assertEquals("Atatürk Caddesi'nde", tr("Atatürk Caddesi'{DA}"))
+        assertEquals("Bağdat Caddesi'ne", tr("Bağdat Caddesi'{A}"))
+        assertEquals("Moda Parkı'ndan", tr("Moda Parkı'{DAn}"))
+        assertEquals("Kadıköy Mahallesi'nin", tr("Kadıköy Mahallesi'{In}"))
+        assertEquals("İstiklal Sokağı'nı", tr("İstiklal Sokağı'{I}"))
+        assertEquals("Galata Köprüsü'nde", tr("Galata Köprüsü'{DA}"))
+        assertEquals("İstanbul Havalimanı'na", tr("İstanbul Havalimanı'{A}"))
+        assertEquals("Taksim Meydanı'nda", tr("Taksim Meydanı'{DA}"))
+    }
+
+    @Test
+    fun turkishStreetAbbreviationsAreReadInFull() {
+        assertEquals("Bağdat Cd.'nde", tr("Bağdat Cd.'{DA}"))
+        assertEquals("Moda Sk.'na", tr("Moda Sk.'{A}"))
+    }
+
+    @Test
+    fun turkishNumbersGoByTheirLastSpokenWord() {
+        assertEquals("saat 3'te", tr("saat 3'{DA}"))   // üç
+        assertEquals("saat 4'te", tr("saat 4'{DA}"))   // dört
+        assertEquals("saat 5'te", tr("saat 5'{DA}"))   // beş
+        assertEquals("saat 6'da", tr("saat 6'{DA}"))   // altı
+        assertEquals("saat 9'da", tr("saat 9'{DA}"))   // dokuz
+        assertEquals("saat 10'da", tr("saat 10'{DA}")) // on
+        assertEquals("saat 12'de", tr("saat 12'{DA}")) // on iki
+        assertEquals("40'ta", tr("40'{DA}"))           // kırk
+        assertEquals("60'ta", tr("60'{DA}"))           // altmış
+        assertEquals("100'de", tr("100'{DA}"))         // yüz
+        assertEquals("2000'de", tr("2000'{DA}"))       // iki bin
+        assertEquals("0'da", tr("0'{DA}"))             // sıfır
+        assertEquals("3'ün", tr("3'{In}"))
+        assertEquals("5'in", tr("5'{In}"))
+        assertEquals("2'nin", tr("2'{In}"))
+        assertEquals("6'nın", tr("6'{In}"))
+        assertEquals("10'un", tr("10'{In}"))
+        assertEquals("D100'e", tr("D100'{A}"))
+        assertEquals("E5'te", tr("E5'{DA}"))
+    }
+
+    @Test
+    fun turkishAbbreviationsGoByLetterName() {
+        assertEquals("TRT'ye", tr("TRT'{A}"))  // te
+        assertEquals("ABD'de", tr("ABD'{DA}")) // de
+        assertEquals("THY'nin", tr("THY'{In}")) // ye
+        assertEquals("AVM'den", tr("AVM'{DAn}"))
+    }
+
+    @Test
+    fun turkishRealTemplatesResolve() {
+        assertEquals(
+            "Moda Caddesi üzerinden Kadıköy İskelesi'nden Bağdat Caddesi'ne",
+            tr("Moda Caddesi üzerinden Kadıköy İskelesi'{DAn} Bağdat Caddesi'{A}"),
+        )
+        assertEquals(
+            "İş rotası: 5'in 2. ara noktasında",
+            tr("İş rotası: 5'{In} 2. ara noktasında"),
+        )
+        assertEquals("Kadıköy'den uzaklaşıyorsunuz", tr("Kadıköy'{DAn} uzaklaşıyorsunuz"))
+    }
+
+    @Test
+    fun turkishCurlyApostropheIsKept() {
+        assertEquals("Ankara’ya", tr("Ankara’{A}"))
+    }
+
+    @Test
+    fun turkishFallsBackToTheFrontForm() {
+        assertEquals("★'de", tr("★'{DA}"))
+        assertEquals("'e yakın", tr("'{A} yakın"))
+    }
 }

@@ -170,8 +170,8 @@ nominative is natural.
 > The dead-end string then went back to the nominative «тупик».
 
 The same problem is recorded, unresolved, as IS-G2 (Icelandic), PL-G1's open
-side (Polish), FR-G2 (French contractions) and TR-G1 (Turkish suffixes).
-HU-A1 (Hungarian «a(z)») is now resolved in code, see C18. The label form is the candidate fix to put to each
+side (Polish) and FR-G2 (French contractions). HU-A1 (Hungarian «a(z)») and
+TR-G1 (Turkish suffixes) are now resolved in code, see C18. The label form is the candidate fix to put to each
 language's reviewer. It isn't a rule to apply unasked, because it changes
 how the callout sounds. Finnish already dodges it with «kohteeseen %2$s».
 Remember C9: if a template changes, strings substituted into it may need
@@ -190,6 +190,7 @@ screens.
 |---|---|---|
 | hu | «a(z)», «A(z)» | first sound of the next word: vowel → «az»; letter names (az M7, az SZTE) and numbers (az 1, az 5, a 12) by how they're said |
 | ko | 을(를), 이(가), 은(는), 과(와) and the reversed forms, (으)로, (이) | final consonant of the preceding syllable; ㄹ takes 로; numbers in Sino-Korean, Latin by letter name or spelling |
+| tr | '{DA} '{DAn} '{A} '{I} '{In} (locative, ablative, dative, accusative, genitive) | last vowel (harmony) and final sound of the preceding word: İstanbul'da, Park'ta, Ankara'ya; the possessive ending of «Caddesi», «Parkı», «Mahallesi»… adds n (Caddesi'nde); numbers by their last spoken word (3'te, 40'ta, 5'in); abbreviations by letter name (TRT'ye) |
 
 So **keep** these markers in translations and never replace them with one
 fixed form: a bare «와» or «a» is wrong for some names. A marker that isn't

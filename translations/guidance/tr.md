@@ -34,25 +34,40 @@ phrases (`tr.lproj`) match the help text. Questions:
 
 ## Rules
 
-### TR-G1 — Suffixes hard-coded onto placeholders (`agreed` defect, design needed)
+### TR-G1 — Suffixes on placeholders are resolved in code (`fixed`, 2026-09-25)
 
-17 strings attach a fixed case suffix to a substituted name or number:
-«%1$s'de», «%2$s'e yakın», «%1$s'den uzaklaşıyorsunuz», «%1$s'ın yanındaki
-kaldırım», and route progress «%3$s'ın %2$s. ara noktasında» with a
-*number*. Turkish suffixes follow vowel harmony and consonant changes
-determined by the word they attach to. A fixed «'de» is wrong for roughly
-half of all names («İstanbul'de» should be «İstanbul'da»), and for numbers
-it depends on how the number is pronounced («3'ın» should be «3'ün»).
+18 strings attached a fixed case suffix to a substituted name or number
+(«%1$s'de», «%2$s'e yakın», «%3$s'ın %2$s. ara noktasında»). Turkish
+suffixes follow the vowel harmony and final sound of the word they attach
+to, so a fixed form was wrong for about half of all names («İstanbul'de»,
+«3'ın»).
 
-This can't be fixed per string by translation. The options are:
-- Restructure each template so the name is never suffixed: postpositions
-  after a nominative («%1$s yakınında» already works), or a colon/comma
-  frame («Konum: %1$s»).
-- Add code that picks the suffix from the substituted word's last vowel.
-  That's a real feature, but it's what Turkish apps do.
+On 2026-09-25 all 18 were rewritten on Weblate into archiphoneme markers,
+'{DA} '{DAn} '{A} '{I} '{In}, which `resolveGrammarMarkers()` (C18) resolves
+once the name is known. **New strings must use the markers**, never a
+fixed suffix:
 
-It's also a C10 case: `confect_name_to` «%1$s'tan %2$s'a» means "from X to
-Y". Ask a speaker which templates can be restructured before touching code.
+| Case | Write | Becomes |
+|---|---|---|
+| Locative | `%1$s'{DA}` | 'de 'da 'te 'ta, 'nde 'nda |
+| Ablative | `%1$s'{DAn}` | 'den 'dan 'ten 'tan, 'nden 'ndan |
+| Dative | `%1$s'{A}` | 'e 'a 'ye 'ya, 'ne 'na |
+| Accusative | `%1$s'{I}` | 'ı 'i 'u 'ü, 'yı…, 'nı… |
+| Genitive | `%1$s'{In}` | 'ın 'in 'un 'ün, 'nın… |
+
+Known limits, for the reviewer to judge:
+- Place names ending in a possessive («Atatürk Caddesi», «Moda Parkı»,
+  «Havalimanı») take the extra n. They're recognised by a list of common
+  generic nouns plus the -sı/-si ending, so an unusual one («Eminönü») gets
+  the plain form.
+- Loanwords with front-vowel suffixes («Kemal'e», «saat'e») follow the
+  spelling instead, so they'd get «Kemal'a».
+- Non-Turkish names go by spelling («Moor Road'a»).
+- The apostrophe is kept even where TDK would drop it for an institution
+  name. It isn't heard.
+
+`confect_name_to` «%1$s'{DAn} %2$s'{A}» still means "from X to Y", which is
+a separate C10 question (open question 2).
 
 ### TR-B1 — Mixed hint forms (`agreed` defect, `unconfirmed` wording)
 
@@ -74,8 +89,8 @@ Nothing yet.
 
 ## Open questions
 
-1. Place names with fixed suffixes («İstanbul'de»): how bad does it sound,
-   and which sentences could be rephrased so the name takes no suffix? (TR-G1)
+1. The automatic suffixes (TR-G1): do they sound right, especially after
+   «Caddesi»-type names, numbers and abbreviations?
 2. «Moor Road'a giden patika» for "path to Moor Road"? (TR-G1, C10)
 3. VoiceOver: «sesli işareti sessize almak için çift dokunun»? (TR-B1)
 4. Beacon «Sesli İşaret»: natural?
@@ -86,6 +101,10 @@ Nothing yet.
 
 **2026-02-09 — Toro Inoue** added Turkish and made small edits. **2026-08-21
 — Oğuz Ersen**, one line. **2026 — AI passes.** **2026-09-24 — corpus
-sweep.** Nothing uploaded.
+sweep.**
 
 **2026-09-25 — truncation repaired (C16).** `faq_why_does_beacon_disappear_answer`, `faq_turn_beacon_back_on_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.
+
+**2026-09-25 — TR-G1 resolved in code.** All 18 suffixed templates rewritten to
+'{DA}/'{DAn}/'{A}/'{I}/'{In} markers, uploaded and verified live, together with
+the resolver in `GrammarMarkers.kt`.

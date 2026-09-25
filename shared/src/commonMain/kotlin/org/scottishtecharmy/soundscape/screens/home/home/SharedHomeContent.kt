@@ -59,6 +59,7 @@ import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.resolveGrammarMarkers
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.beacon_action_mute_beacon
@@ -275,19 +276,21 @@ fun SharedHomeContent(
                         Card(modifier = Modifier.smallPadding()) {
                             Row {
                                 Text(
-                                    text = if (currentRoute.markers.size > 1) {
-                                        stringResource(
-                                            Res.string.route_waypoint_progress,
-                                            currentRoute.route.name,
-                                            routePlayerState.currentWaypoint + 1,
-                                            currentRoute.markers.size,
-                                        )
-                                    } else {
-                                        stringResource(
-                                            Res.string.route_beacon_progress,
-                                            currentRoute.route.name,
-                                        )
-                                    },
+                                    text = resolveGrammarMarkers(
+                                        if (currentRoute.markers.size > 1) {
+                                            stringResource(
+                                                Res.string.route_waypoint_progress,
+                                                currentRoute.route.name,
+                                                routePlayerState.currentWaypoint + 1,
+                                                currentRoute.markers.size,
+                                            )
+                                        } else {
+                                            stringResource(
+                                                Res.string.route_beacon_progress,
+                                                currentRoute.route.name,
+                                            )
+                                        }
+                                    ),
                                     style = MaterialTheme.typography.labelLarge,
                                     modifier = Modifier.smallPadding(),
                                 )

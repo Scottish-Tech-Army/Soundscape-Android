@@ -30,11 +30,13 @@ En önemlisi, *dinlerken* açık ve doğal olmasıdır.
 
 ---
 
-**Q1 — Yer adlarına eklenen ekler** *(Hard-coded suffixes on names)*
-Uygulama sokak ve yer adlarına sabit ekler takıyor, örneğin "İstanbul'de" ya
-da "3'ın". Doğrusu "İstanbul'da" ve "3'ün" olmalı, ama uygulama adı
-önceden bilemiyor. Bu kulağa ne kadar kötü geliyor? Hangi cümleler adın ek
-almayacağı şekilde yeniden yazılabilir (örneğin "Konum: İstanbul")?
+**Q1 — Yer adlarına eklenen ekler** *(Automatic suffixes on names)*
+Uygulama artık sokak ve yer adlarına eklenen eki adın kendisine göre seçiyor:
+"İstanbul'da", "Kadıköy'de", "Park'ta", "Ankara'ya". "Caddesi", "Parkı",
+"Mahallesi" gibi adlarda "n" ekleniyor ("Atatürk Caddesi'nde", "Moda
+Parkı'ndan"). Sayılarda okunuşa göre ("saat 3'te", "40'ta", "5'in 2. ara
+noktası"), kısaltmalarda harf adına göre ("TRT'ye", "ABD'de") seçiyor.
+Bunlar doğru mu? Yanlış ek aldığını duyduğunuz bir ad olursa bize yazın.
 
 **Q2 — "Patika'tan Moor Road'a"** *(Path to X)*
 Başka bir yola giden patika için uygulama "Patika'tan Moor Road'a" diyor (yani

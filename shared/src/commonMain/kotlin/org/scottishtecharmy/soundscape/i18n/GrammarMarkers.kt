@@ -2,7 +2,8 @@ package org.scottishtecharmy.soundscape.i18n
 
 /**
  * Resolves the "either form" markers that translators write when a word's form depends on the
- * text a placeholder is replaced with, e.g. Hungarian «a(z) %1$s» or Korean «%1$s을(를)».
+ * text a placeholder is replaced with, e.g. Hungarian «a(z) %1$s», Korean «%1$s을(를)» or
+ * Turkish «%1$s'{DA}».
  *
  * A translation can't pick the right form because it doesn't know the street or place name that
  * will be filled in, so it writes both. On screen that's merely awkward, but a screen reader
@@ -13,8 +14,8 @@ package org.scottishtecharmy.soundscape.i18n
  * leaves every other language untouched.
  */
 fun resolveGrammarMarkers(text: String): String {
-    if ('(' !in text) return text
-    return resolveKoreanParticles(resolveHungarianArticles(text))
+    if ('(' !in text && '{' !in text) return text
+    return resolveTurkishSuffixes(resolveKoreanParticles(resolveHungarianArticles(text)))
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -163,5 +164,148 @@ private fun latinFinalSound(word: String): FinalSound {
         'm', 'n' -> FinalSound.Consonant
         'g' -> if (word.lowercase().endsWith("ng")) FinalSound.Consonant else FinalSound.Vowel
         else -> FinalSound.Vowel
+    }
+}
+
+// ---------------------------------------------------------------------------------------------
+// Turkish: case suffixes follow the vowel harmony and final sound of the word they attach to.
+// ---------------------------------------------------------------------------------------------
+
+// Translators write the suffix in the archiphoneme notation Turkish grammars use, where the
+// capitals are the letters that change: '{DA} (locative), '{DAn} (ablative), '{A} (dative),
+// '{I} (accusative) and '{In} (genitive).
+private val turkishSuffix = Regex("(['’])\\{(DAn|DA|A|In|I)\\}")
+
+private const val TURKISH_VOWELS = "aeıioöuü"
+private const val TURKISH_BACK_VOWELS = "aıou"
+private const val TURKISH_VOICELESS = "fstkçşhp"
+
+/** Lowercases with Turkish dotted and dotless i, which the default lowercase() gets wrong. */
+private fun turkishLowercase(text: String): String =
+    text.replace('I', 'ı').replace('İ', 'i').lowercase()
+
+internal fun resolveTurkishSuffixes(text: String): String =
+    turkishSuffix.replace(text) { match ->
+        val apostrophe = match.groupValues[1]
+        val stem = turkishStem(text, match.range.first)
+        apostrophe + turkishSuffixFor(match.groupValues[2], stem)
+    }
+
+/**
+ * What the suffix attaches to, as Turkish would say it: [spoken] is the word whose sounds decide
+ * the suffix, and [possessive] is set for names like «Atatürk Caddesi», whose final possessive
+ * ending takes an extra n («Caddesi'nde», not «Caddesi'de»).
+ */
+private class TurkishStem(val spoken: String, val possessive: Boolean)
+
+private fun turkishStem(text: String, end: Int): TurkishStem? {
+    var i = end
+    while (i > 0 && text[i - 1] in CLOSING_PUNCTUATION) i--
+    val before = text.substring(0, i)
+    // A street-type abbreviation is read in full: «Bağdat Cd.» is «Bağdat Caddesi».
+    if (before.endsWith('.')) {
+        val abbreviation = before.dropLast(1).takeLastWhile { it.isLetter() }
+        val full = turkishStreetAbbreviations[turkishLowercase(abbreviation)]
+        if (full != null) return TurkishStem(full, possessive = true)
+    }
+    val digits = before.takeLastWhile { it.isDigit() }
+    if (digits.isNotEmpty()) return TurkishStem(turkishNumberLastWord(digits), possessive = false)
+    val word = before.takeLastWhile { it.isLetter() }
+    if (word.isEmpty()) return null
+    val lower = turkishLowercase(word)
+    // An abbreviation is read letter by letter: TRT'ye (te), ABD'de (de).
+    if (word.length == 1 || (word.length <= 4 && word.all { it.isUpperCase() })) {
+        return TurkishStem(turkishLetterName(lower.last()), possessive = false)
+    }
+    return TurkishStem(lower, possessive = isTurkishPossessive(lower))
+}
+
+/**
+ * The last word of a number as spoken: 3 üç, 40 kırk, 100 yüz, 2000 iki bin. Only that word
+ * matters to the suffix («40'ta», «2000'de»).
+ */
+private fun turkishNumberLastWord(digits: String): String {
+    val number = digits.trimStart('0')
+    if (number.isEmpty()) return "sıfır"
+    val units = listOf("bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz")
+    val tens = listOf("on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan")
+    val last = number.last() - '0'
+    if (last != 0) return units[last - 1]
+    if (number.length >= 2 && number[number.length - 2] != '0') {
+        return tens[number[number.length - 2] - '1']
+    }
+    if (number.length >= 3 && number[number.length - 3] != '0') return "yüz"
+    // Ends in 000: the last non-zero group of three names the power.
+    val trailingZeros = number.length - number.trimEnd('0').length
+    return when (trailingZeros / 3) {
+        1 -> "bin"
+        2 -> "milyon"
+        3 -> "milyar"
+        else -> "trilyon"
+    }
+}
+
+/** Letter names: be, ce, de… end in e; vowels are their own name; X is iks. */
+private fun turkishLetterName(letter: Char): String = when (letter) {
+    in TURKISH_VOWELS -> letter.toString()
+    'x' -> "iks"
+    'q' -> "kü"
+    else -> "${letter}e"
+}
+
+// Generic nouns that end a place name in their possessive form («Bağdat Caddesi», «Moda
+// Parkı»). Matched as word endings, so compounds such as «Havalimanı» and «Otoyolu» count too.
+private val turkishPossessiveEndings = listOf(
+    "parkı", "yolu", "sokağı", "bulvarı", "meydanı", "durağı", "limanı", "alanı", "istasyonu",
+    "okulu", "camii", "merkezi", "tüneli", "gölü", "garı", "ormanı", "sarayı", "oteli", "plajı",
+    "kavşağı", "geçidi", "mezarlığı", "anıtı", "terminali", "otogarı", "stadı", "stadyumu",
+    "kampüsü", "pazarı", "evleri", "konutları", "tesisleri", "köyü", "hanı", "hamamı",
+)
+
+private val turkishStreetAbbreviations = mapOf(
+    "cd" to "caddesi", "cad" to "caddesi", "sk" to "sokağı", "sok" to "sokağı",
+    "blv" to "bulvarı", "bul" to "bulvarı", "mah" to "mahallesi", "mh" to "mahallesi",
+)
+
+private fun isTurkishPossessive(word: String): Boolean {
+    if (turkishPossessiveEndings.any { word.endsWith(it) }) return true
+    // -sı/-si/-su/-sü after a vowel is the possessive of a vowel-final noun: Caddesi, Mahallesi,
+    // Müzesi, Köprüsü, Çarşısı. Personal names rarely end this way.
+    return word.length >= 4 &&
+        word[word.length - 1] in "ıiuü" &&
+        word[word.length - 2] == 's' &&
+        word[word.length - 3] in TURKISH_VOWELS
+}
+
+private fun turkishSuffixFor(archiphoneme: String, stem: TurkishStem?): String {
+    // Nothing to go on (a symbol, or no text at all): the plain front-vowel, consonant-final form.
+    val spoken = stem?.spoken ?: "e"
+    val lastVowel = spoken.lastOrNull { it in TURKISH_VOWELS } ?: 'e'
+    val back = lastVowel in TURKISH_BACK_VOWELS
+    val a = if (back) "a" else "e"
+    val i = when (lastVowel) {
+        'a', 'ı' -> "ı"
+        'e', 'i' -> "i"
+        'o', 'u' -> "u"
+        else -> "ü"
+    }
+    val endsInVowel = stem != null && spoken.last() in TURKISH_VOWELS
+    val voiceless = spoken.last() in TURKISH_VOICELESS
+    val possessive = stem?.possessive == true
+    val d = if (voiceless) "t" else "d"
+    return when (archiphoneme) {
+        "DA" -> if (possessive) "nd$a" else "$d$a"
+        "DAn" -> if (possessive) "nd${a}n" else "$d${a}n"
+        "A" -> when {
+            possessive -> "n$a"
+            endsInVowel -> "y$a"
+            else -> a
+        }
+        "I" -> when {
+            possessive -> "n$i"
+            endsInVowel -> "y$i"
+            else -> i
+        }
+        else -> if (possessive || endsInVowel) "n${i}n" else "${i}n" // In
     }
 }
