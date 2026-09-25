@@ -103,6 +103,13 @@ change was never the mechanical swap it appeared to be (rule C3).
 
 ## Open questions for the next native-speaker round
 
+These are the questions in `translations/review/uk.md` (Q1…Q4). The
+2026-09-24 cross-language sweep found nothing new for Ukrainian: «Все
+готово!» / «Вітаємо!» are gender-free (C15), «Двічі торкніться, щоб %1$s»
+composes with the infinitive hints (C13), «йде ліворуч» is descriptive
+(C11), and «Ви їдете» / «Ви ідете» match the vehicle/walking split. Q3 (the
+detail levels) is the only new question.
+
 1. **Undeclined destination names.** `confect_name_to` also receives
    destination names straight from OpenStreetMap, in the nominative — e.g.
    «Стежка у напрямку вулиця Шевченка». Is that acceptable to a listener, or
@@ -113,6 +120,8 @@ change was never the mechanical swap it appeared to be (rule C3).
    `confirmed` on the strength of the 2026-09-18 glossary note — please say
    explicitly if either should move, because future passes will now actively
    defend them.
+3. **The four detail levels** (Докладний / Збалансований / Тихий / Беззвучний):
+   distinct by ear?
 
 *Answered and closed: the two callout questions — see "Rejected"; the guided-tutorial term — confirmed OK 2026-09-21; register — formal «ви» confirmed 2026-09-21.*
 
