@@ -387,7 +387,7 @@
     <string name="faq_sleep_mode_battery_question">Hvordan bruker jeg dvalemodus til å redusere Soundscapes påvirkning på telefonbatteriet?</string>
     <string name="faq_sleep_mode_battery_answer">For å sette Soundscape i dvalemodus velger du knappen *\"Sett i dvalemodus\"* øverst til høyre på skjermen. Når du gjør dette, vil Soundscape slutte å bruke Stedstjenester og mobildata inntil du velger å vekke den igjen.\n</string>
     <string name="faq_snooze_mode_battery_question">Hvordan bruker jeg pausemodus til å redusere Soundscapes påvirkning på telefonbatteriet?</string>
-    <string name="faq_snooze_mode_battery_answer">For å sette Soundscape i pausemodus velger du knappen *\\"Sett i dvalemodus\\"* øverst til høyre på skjermen. Når Soundscape er i dvalemodus, velger du knappen *\\"Vekk når jeg forlater stedet\\"* og Soundscape går i en lavenergitilstand til du forlater din nåværende posisjon.\n</string>
+    <string name="faq_snooze_mode_battery_answer">For å sette Soundscape i pausemodus velger du knappen *\\"Sett i dvalemodus\\"* øverst til høyre på skjermen. Når Soundscape er i dvalemodus, velger du knappen *\\"Vekk meg når jeg forlater stedet\\"* og Soundscape går i en lavenergitilstand til du forlater din nåværende posisjon.</string>
     <string name="faq_headset_battery_impact_question">Hvordan påvirker mitt valg av hodetelefoner batteritiden til telefonen?</string>
     <string name="faq_headset_battery_impact_answer">I våre tester var batteriforbruket til Bluetooth-hodetelefoner sammenlignbart med kablede hodetelefoner, og bør ikke være en vesentlig faktor når du velger hodetelefoner.</string>
     <string name="faq_background_battery_impact_question">Hvordan påvirkes telefonens batteritid av at Soundscape kjører i bakgrunnen?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">Nivå</string>
     <string name="siri_desc_callout_detail">Angir hvor mye Soundscape sier mens du går.</string>
     <string name="intersection_approaching_intersection_distance">Veikryss %1$s unna</string>
+    <string name="microsoft_copyright">[Den opprinnelige Soundscape-appen ©Microsoft Corporation](https://github.com/microsoft/soundscape) leverte lydene til lydsignalet og mange av oversettelsene, og er gjort tilgjengelig for bruk under [MIT-lisensen](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Frivillige i [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) har forbedret flere av oversettelsene, som er gjort tilgjengelige for bruk under [MIT-lisensen](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
