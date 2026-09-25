@@ -137,6 +137,21 @@ class GrammarMarkersTest {
         assertEquals("Nem mozogsz a Rákóczi úton", hu("Nem mozogsz a(z) Rákóczi út{úton}"))
     }
 
+    @Test
+    fun hungarianTerminativeAttachesToTheName() {
+        assertEquals(
+            "A Rákóczi úton, 120 méter a Váci utcáig",
+            hu("A(z) Rákóczi út{úton}, 120 méter a(z) Váci utca{-ig}"),
+        )
+        assertEquals("a Hősök teréig", hu("a(z) Hősök tere{-ig}"))
+        assertEquals("az Astoriáig", hu("a(z) Astoria{-ig}"))
+        assertEquals("a Deák Ferenc térig", hu("a(z) Deák Ferenc tér{-ig}"))
+        assertEquals("az Erzsébet körútig", hu("a(z) Erzsébet körút{-ig}"))
+        assertEquals("a Kazinczy közig", hu("a(z) Kazinczy köz{-ig}"))
+        assertEquals("az M7-ig", hu("a(z) M7{-ig}"))
+        assertEquals("a BKV-ig", hu("a(z) BKV{-ig}"))
+    }
+
     // --- Korean --------------------------------------------------------------------------
 
     @Test
