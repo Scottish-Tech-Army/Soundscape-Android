@@ -394,7 +394,7 @@
     <string name="faq_sleep_mode_battery_question">मैं अपने फ़ोन की बैटरी पर Soundscape के प्रभाव को कम करने के लिए स्लीप मोड का उपयोग कैसे करूँ?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape को *\"स्लीप\"* मोड में डालने के लिए स्क्रीन के ऊपर‑दाएँ कोने में स्थित *\"स्लीप\"* बटन चुनें। जब आप इसे चुनते हैं, तो Soundscape स्थान सेवाओं और मोबाइल डेटा का उपयोग करना बंद कर देगा जब तक आप इसे फिर से जगाना न चुनें।\n</string>
     <string name="faq_snooze_mode_battery_question">मैं अपने फ़ोन की बैटरी पर Soundscape के प्रभाव को कम करने के लिए स्नूज़ मोड का उपयोग कैसे करूँ?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape को *\\"स्नूज़\\"* मोड में डालने के लिए स्क्रीन के ऊपर‑दाएँ कोने में स्थित *\\"स्लीप\\"* बटन चुनें। एक बार जब Soundscape स्लीप मोड में हो जाए, तो *\\"जब मैं निकलूँ तब जगाएँ\\"* बटन चुनें और Soundscape तब तक लो‑पावर स्थिति में चला जाएगा जब तक आप अपने वर्तमान स्थान को नहीं छोड़ते।\n</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape को *\\"स्नूज़\\"* मोड में डालने के लिए स्क्रीन के ऊपर‑दाएँ कोने में स्थित *\\"स्लीप\\"* बटन चुनें। एक बार जब Soundscape स्लीप मोड में हो जाए, तो *\\"जब मैं निकलूँ तब जगाएँ\\"* बटन चुनें और Soundscape तब तक लो‑पावर स्थिति में चला जाएगा जब तक आप अपने वर्तमान स्थान को नहीं छोड़ते।</string>
     <string name="faq_headset_battery_impact_question">मेरे हेडफ़ोन का चयन मेरे फ़ोन की बैटरी जीवन को कैसे प्रभावित करता है?</string>
     <string name="faq_headset_battery_impact_answer">हमारे परीक्षणों में, ब्लूटूथ हेडफ़ोन की बैटरी खपत वायर्ड हेडफ़ोन के तुलनीय है और हेडफ़ोन चुनते समय यह कोई महत्वपूर्ण कारक नहीं होना चाहिए।</string>
     <string name="faq_background_battery_impact_question">Soundscape को बैकग्राउंड में चलाने से मेरे फ़ोन की बैटरी जीवन पर क्या प्रभाव पड़ता है?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">स्तर</string>
     <string name="siri_desc_callout_detail">यह सेट करता है कि चलते समय Soundscape कितना बोलेगा।</string>
     <string name="intersection_approaching_intersection_distance">चौराहा %1$s दूर</string>
+    <string name="microsoft_copyright">[मूल Soundscape ऐप ©Microsoft Corporation](https://github.com/microsoft/soundscape) ने ऑडियो बीकन की ध्वनियाँ और कई अनुवाद उपलब्ध कराए, और इसे उपयोग के लिए [MIT लाइसेंस](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) के अंतर्गत उपलब्ध कराया गया है।</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) के स्वयंसेवकों ने कई अनुवादों में सुधार किया, जिन्हें उपयोग के लिए [MIT लाइसेंस](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) के अंतर्गत उपलब्ध कराया गया है।</string>
 </resources>
