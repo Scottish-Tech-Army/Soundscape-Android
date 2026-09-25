@@ -1586,4 +1586,6 @@
     <string name="siri_param_level">Livello</string>
     <string name="siri_desc_callout_detail">Imposta quanto Soundscape dice mentre cammini.</string>
     <string name="intersection_approaching_intersection_distance">Incrocio a %1$s</string>
+    <string name="microsoft_copyright">[L'app Soundscape originale ©Microsoft Corporation](https://github.com/microsoft/soundscape) ha fornito i suoni dell'audiofaro e molte delle traduzioni, ed è resa disponibile per l'uso sotto la [licenza MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">I volontari di [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) hanno migliorato diverse traduzioni, rese disponibili per l'uso sotto la [licenza MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
