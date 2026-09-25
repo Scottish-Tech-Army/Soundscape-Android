@@ -55,6 +55,12 @@ and sweep, noting that «読み上げ» also means screen-reader output.
 
 The same coupling as FR-C1.
 
+### JA-S2 — "On X" said the user was driving (`fixed`, 2026-09-25)
+
+The four `directions_on_road*` strings («On %1$s», also heard on foot) said
+«%1$s を走行中» ("driving on X"). Now «%1$s にいます», and the variants follow. The
+`directions_traveling_*` strings keep «走行中»: they are only used in a vehicle.
+
 ## Rejected
 
 Nothing yet.
