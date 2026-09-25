@@ -1388,7 +1388,7 @@
     <string name="faq_sleep_mode_battery_question">Kako uporabljam način spanja za zmanjšanje vpliva aplikacije Soundscape na baterijo telefona?</string>
     <string name="faq_sleep_mode_battery_answer">Če želite aplikacijo Soundscape preklopiti v način spanja, izberite gumb *Spanje* v zgornjem desnem kotu zaslona. Ko to izberete, Soundscape preneha uporabljati Lokacijske storitve in mobilne podatke, dokler je ne prebudite.</string>
     <string name="faq_snooze_mode_battery_question">Kako uporabljam način dremeža za zmanjšanje vpliva aplikacije Soundscape na baterijo telefona?</string>
-    <string name="faq_snooze_mode_battery_answer">Če želite aplikacijo Soundscape preklopiti v način dremeža, izberite gumb *Spanje* v zgornjem desnem kotu zaslona. Ko je Soundscape v načinu spanja, izberite gumb *Prebudi, ko odidem* in Soundscape bo prešel v način nizke porabe, dokler ne zapustite trenutne lokacije.</string>
+    <string name="faq_snooze_mode_battery_answer">Če želite aplikacijo Soundscape preklopiti v način dremeža, izberite gumb *Spanje* v zgornjem desnem kotu zaslona. Ko je Soundscape v načinu spanja, izberite gumb *Prebudi ob odhodu* in Soundscape bo prešel v način nizke porabe, dokler ne zapustite trenutne lokacije.</string>
     <string name="faq_headset_battery_impact_question">Kako izbira slušalk vpliva na trajanje baterije mojega telefona?</string>
     <string name="faq_headset_battery_impact_answer">V naših testih je bila poraba baterije pri slušalkah Bluetooth primerljiva z žičnimi slušalkami, zato to pri izbiri slušalk ne bi smel biti pomemben dejavnik.</string>
     <string name="faq_background_battery_impact_question">Kako delovanje aplikacije Soundscape v ozadju vpliva na trajanje baterije mojega telefona?</string>
@@ -1601,4 +1601,6 @@
     <string name="siri_param_level">Raven</string>
     <string name="siri_desc_callout_detail">Nastavi, koliko Soundscape pove med hojo.</string>
     <string name="intersection_approaching_intersection_distance">Križišče oddaljeno %1$s</string>
+    <string name="microsoft_copyright">[Izvirna aplikacija Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) je prispevala zvoke zvočnega svetilnika in veliko prevodov ter je na voljo za uporabo pod licenco [MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Prostovoljci [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) so izboljšali več prevodov, ki so na voljo za uporabo pod licenco [MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
