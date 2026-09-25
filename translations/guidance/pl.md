@@ -25,7 +25,10 @@ replacement *wording* stays `unconfirmed`.
 
 A review pack was prepared for the first reviewer:
 
-- `docs/translation-questions/questions-pl.md` — the 27 strings added 2026-09-23, with context.
+- `docs/translation-questions/questions-pl.md` — the numbered open questions below
+  (Q1…Q9), in the same layout as every other language (converted 2026-09-25).
+- `translations/review/pl-full/07-nowe-teksty.md` — the per-text review of the 27
+  strings added 2026-09-23, which was the published sheet until 2026-09-25.
 - `translations/review/pl-full/` — the whole corpus split by area, plus
   `_numbering.tsv` mapping each number back to its Weblate key. Feedback will
   arrive citing those numbers.
@@ -131,22 +134,25 @@ the evidence that made it attractive** — otherwise the next pass reinstates it
 
 ## Open questions for the first native-speaker round
 
-These are the questions put to the reviewer in `translations/review/pl-full/00-przeczytaj-najpierw.md`.
+Numbered as on `docs/translation-questions/questions-pl.md`. The full-corpus pack
+(`pl-full/00-przeczytaj-najpierw.md`) asks five of these in its own order (its 1–5 are
+Q1, Q2, Q3, Q5 and Q8 here), so map a reply by the pack it cites.
 
-1. **Do *Cichy* and *Wyciszony* differ enough spoken aloud?** They are separate
-   levels chosen by ear. (PL-T1)
+1. **Do *Cichy* and *Wyciszony* differ enough spoken aloud?** (PL-T1)
 2. **Is «powiadomienie» right for *callout*?** On a phone the word means a system
-   notification; here it is a spoken description of the surroundings. If it misleads,
-   what replaces it — and note the verb forms, since a term that has no natural verb
-   is a rewrite rather than a swap (rule C3).
-3. **Is «dźwięk naprowadzający» too long for *beacon*?** It appears in many strings
-   and is often spoken. Is there something shorter that stays clear?
+   notification. If it misleads, what replaces it, with a natural verb (rule C3)?
+   (AI-only term, asked for confirmation)
+3. **Is «dźwięk naprowadzający» too long for *beacon*?** (AI-only term, asked for
+   confirmation)
 4. **Informal «ty» or formal «Pan/Pani»?** (PL-R1)
 5. **«Znaczniki» or «pinezki»?** (PL-I1)
-6. **Is «ślepa uliczka» the right register for a dead-end street,** or should it be
-   «ślepa ulica» / «droga bez przejazdu»? (PL-G1)
-7. **Directions and distances** — `directions_*` is 108 strings spoken many times a
+6. **«ślepa uliczka», «ślepa ulica» or «droga bez przejazdu»?** (PL-G1)
+7. **Map names after «do», «na», «wzdłuż» arrive undeclined** («wzdłuż
+   Marszałkowska»): how bad, and would C17's label form be better? (PL-G1's open
+   side)
+8. **Directions and distances**: `directions_*` is 108 strings spoken many times a
    day. Can they be shorter without losing clarity?
+9. Anything else.
 
 ---
 
