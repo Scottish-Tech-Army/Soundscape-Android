@@ -15,13 +15,27 @@ permalink: /translation-questions/questions-pl/
 
 Cześć i dziękujemy, że zgodziłeś/aś się na to zerknąć.
 
-Soundscape to aplikacja dla osób niewidomych i słabowidzących: opisuje głosem, co jest dookoła, w trakcie chodzenia. Polskie tłumaczenie powstało bez udziału native speakera, więc Twoja opinia jest dla nas naprawdę cenna.
+Polskie tłumaczenie powstało bez udziału native speakera, więc Twoja opinia jest dla nas naprawdę cenna. **Nie musisz znać ani instalować aplikacji:** przy każdym tekście jest napisane, gdzie się pojawia i jak brzmi po angielsku.
+
+## Czym jest Soundscape?
+
+Soundscape to bezpłatna aplikacja na telefon dla osób niewidomych i słabowidzących. Używa się jej w trakcie chodzenia, ze słuchawkami, często z telefonem w kieszeni. Nie prowadzi krok po kroku jak nawigacja („skręć w lewo”), tylko mówi na głos, co jest w pobliżu, żeby można było samemu się zorientować.
+
+Kilka pojęć, które pojawiają się niżej:
+
+- **Powiadomienie** *(callout)*: krótki komunikat głosowy o czymś, obok czego przechodzisz, np. „Kawiarnia” albo „Ulica Główna w lewo”. Słychać go przestrzennie, z kierunku, w którym to coś jest.
+- **Dźwięk naprowadzający** *(audio beacon)*: gdy wybierzesz cel, w słuchawkach słychać regularny, powtarzający się dźwięk dobiegający z kierunku celu. Gdy się obrócisz, dźwięk „przesuwa się”, więc do celu można dojść na słuch.
+- **Znacznik** i **trasa** *(marker, route)*: zapisane miejsca i ich kolejność, przez którą dźwięk naprowadzający prowadzi po kolei.
+
+Osoby niewidome obsługują telefon za pomocą **czytnika ekranu** (TalkBack na Androidzie, VoiceOver na iPhonie): każdy przycisk i tekst czyta syntetyczny głos. Teksty aplikacji są więc prawie zawsze *słuchane*, a nie czytane, i to często w ulicznym hałasie. Najważniejsze, żeby były krótkie, jasne i naturalne w odbiorze na słuch.
+
+Pojęcia są dokładniej opisane (po angielsku) [na tej stronie]({{ "/developers/translation-terminology.html" | relative_url }}).
 
 Poniżej są **nowe teksty**, które właśnie dodaliśmy — nikt ich jeszcze nie sprawdzał. Na początku jest też **słowniczek** kluczowych pojęć, których używamy w całej aplikacji.
 
 ## Jak odpowiedzieć
 
-Najprościej: **dopisz swoje uwagi pod danym tekstem, w linijce „Uwagi:”** i odeślij ten plik. Nie przejmuj się formatowaniem ani tym, że nie skomentujesz wszystkiego — nawet kilka uwag bardzo pomoże.
+Najprościej: **odpisz mailem, podając numer tekstu i swoją uwagę** (np. „Tekst 3: lepiej brzmiałoby…”). Nie przejmuj się formatowaniem ani tym, że nie skomentujesz wszystkiego — nawet kilka uwag bardzo pomoże.
 
 Przydatne nam rzeczy:
 
@@ -32,7 +46,7 @@ Przydatne nam rzeczy:
 
 Jeśli coś jest po prostu dobre — też warto napisać „OK”. Wtedy wiemy, że tego nie ruszać.
 
-Teksty są ponumerowane („Tekst 1”, „Tekst 2”…), więc możesz też po prostu odpisać mailem, powołując się na numery — nie musisz edytować pliku.
+Teksty są ponumerowane („Tekst 1”, „Tekst 2”…), a pojęcia ze słowniczka możesz wskazać po nazwie.
 
 Dwie rzeczy, które można pominąć:
 
