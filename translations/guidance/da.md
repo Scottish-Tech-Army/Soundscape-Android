@@ -62,10 +62,10 @@ Nothing yet.
 
 ## Open questions
 
-1. Beacon sound names: Microsoft's («Hammer», «Dråbe», «Glitre») or the new
+1. ~~Beacon sound names~~ — settled 2026-09-25: Microsoft's names restored (C14 drift pass). Was: Microsoft's («Hammer», «Dråbe», «Glitre») or the new
    ones («Kølle», «Drop», «Glimmer»)? (DA-T1)
 2. «Sti til blindvej»? (DA-G1)
-3. «Kører mod nord» vs Microsoft's «Kører nord»: which is more natural?
+3. ~~Compass phrasing~~ — settled 2026-09-25: Microsoft's «Kører nord» restored (C14 drift pass).
 4. The four detail levels (Detaljeret / Balanceret / Stille / Lydløs): clear?
 5. Siri phrases «Soundscape omgivelser / rute / lydfyr / stop lydfyr…»: natural?
 6. Anything else.

@@ -222,7 +222,11 @@ Soundscape is a navigation aid and should not be used in lieu of mobility skills
 **Polski:**
 
 ```
-...ponieważ dane mapowe użyte w programie Soundscape pochodzą od podmiotu trzeciego...
+Przyjmujesz do wiadomości, że Soundscape (1) nie jest zaprojektowany, przeznaczony ani udostępniony jako urządzenie medyczne oraz (2) nie jest zaprojektowany ani przeznaczony do zastąpienia profesjonalnej porady medycznej, diagnozy, leczenia ani oceny i nie powinien być używany jako zamiennik profesjonalnej porady medycznej, diagnozy, leczenia ani oceny.
+
+Ostrzeżenie dotyczące bezpieczeństwa
+
+Soundscape jest narzędziem nawigacyjnym i nie powinien być używany zamiast umiejętności poruszania się, świadomości otoczenia oraz zdrowego rozsądku. Zachowaj ostrożność podczas poruszania się w swoim otoczeniu, ponieważ dane mapowe użyte programie Soundscape pochodzą od podmiotu trzeciego i mogą mieć ograniczoną dokładność.
 ```
 
 **Uwagi:**

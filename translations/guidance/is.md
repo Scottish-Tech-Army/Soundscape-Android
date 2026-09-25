@@ -155,7 +155,7 @@ These are the questions in `translations/review/is.md`, in the same order.
 3. **Snooze name.** (IS-T1)
 4. **Gender:** how to rephrase «tilbúin/n», «Velkomin/n». (IS-G3)
 5. **Street names in the nominative** («Á Laugavegur»): how bad is it? (IS-G2)
-6. **«til blindgötu»:** confirm. (IS-G1)
+6. **«til blindgötu»:** confirm what now ships (applied 2026-09-24). (IS-G1)
 7. **The four detail levels:** is «Jafnvægi» (a noun) OK next to three
    adjectives, and are they distinct by ear?
 8. **«Tvíbankaðu» or «Ýttu tvisvar»?** (IS-T2)

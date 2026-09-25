@@ -88,9 +88,9 @@ setningarnar öðruvísi svo að nafnið standi eitt og sér (til dæmis
 
 *Dead end: confirm the genitive.*
 
-Fyrir stíg sem endar í blindgötu segir appið núna „Stígur til **blindgata**“.
-Við teljum að það eigi að vera „til **blindgötu**“. Er það rétt, eða er til
-betra orðalag?
+Fyrir stíg sem endar í blindgötu sagði appið „Stígur til **blindgata**“. Við
+höfum breytt því í „Stígur til **blindgötu**“. Er það rétt, eða er til betra
+orðalag?
 
 ## Q7 — Fjögur stig nákvæmni
 

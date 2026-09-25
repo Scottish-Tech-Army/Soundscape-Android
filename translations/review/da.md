@@ -19,18 +19,13 @@ vigtigste er, at det er tydeligt og naturligt *at lytte til*.
 
 ---
 
-**Q1 — Navnene på lydfyrenes lyde** *(Beacon sound names)*
-Man kan vælge mellem forskellige lyde til lydfyret. Nogle navne er blevet
-ændret siden Microsoft-appen: "Hammer" → "Kølle", "Dråbe" → "Drop", "Glitre" →
-"Glimmer". Hvilke navne er bedst?
+*(Q1 og Q3 er udgået: lydfyrenes navne ("Hammer", "Dråbe", "Glitre" …) og
+retningerne ("Kører nord", "På vej nord") bruger nu igen ordlyden fra den
+oprindelige iOS-app. Sig endelig til, hvis noget af det lyder forkert.)*
 
 **Q2 — "Sti til Blind vej"** *(Dead-end way description)*
 For en sti, der ender blindt, siger appen "Sti til Blind vej". Er "Sti til
 blindvej" bedre?
-
-**Q3 — "Kører mod nord" eller "Kører nord"?** *(Compass phrasing)*
-Appen siger nu "Kører mod nord" og "På vej mod nord". Microsoft-appen sagde
-"Kører nord". Hvad lyder mest naturligt?
 
 **Q4 — De fire detaljeniveauer** *(Four detail levels)*
 Man vælger efter gehør, hvor meget appen siger: **Detaljeret / Balanceret /
