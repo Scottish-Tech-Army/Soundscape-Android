@@ -19,7 +19,7 @@ Read with [`_common.md`](_common.md).
 - Formal Slovenian takes plural agreement, so «Pripravljeni ste!» is correct
   and gender-neutral.
 
-Questions: `translations/review/sl.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-sl.md` (Q1…Q6).
 
 ## Glossary
 

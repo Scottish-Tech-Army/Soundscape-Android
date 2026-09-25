@@ -16,7 +16,7 @@ Turkish has two small human contributions (Toro Inoue added the language in
 is AI. The corpus has **the most serious structural problem found in any
 language**: suffixes hard-coded onto placeholders (TR-G1). The authored Siri
 phrases (`tr.lproj`) match the help text. Questions:
-`translations/review/tr.md` (Q1…Q6).
+`docs/translation-questions/questions-tr.md` (Q1…Q6).
 
 ## Glossary
 

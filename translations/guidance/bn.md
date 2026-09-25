@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. Structurally sound: the VoiceOver hints are «-তে» infinitives
 that compose correctly with «%1$s ডাবল ট্যাপ করুন», and `confect_name_to`
 «%2$s পর্যন্ত %1$s» avoids the C10 misreading. The open items are term
-choices. Questions: `translations/review/bn.md` (Q1…Q7).
+choices. Questions: `docs/translation-questions/questions-bn.md` (Q1…Q7).
 
 ## Glossary
 

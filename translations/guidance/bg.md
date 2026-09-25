@@ -25,7 +25,7 @@ hints are verbal nouns («изключване на звука на аудио �
 grammatically into «Двукратно докосване за %1$s». There is no defect
 to fix. The open items are all term choices.
 
-The questions for reviewers are in `translations/review/bg.md`, numbered
+The questions for reviewers are in `docs/translation-questions/questions-bg.md`, numbered
 Q1…Q9 to match the Open questions below.
 
 ---
@@ -118,7 +118,7 @@ Nothing yet (rule C8 when there is).
 
 ## Open questions for the first native-speaker round
 
-These are the questions in `translations/review/bg.md`, in the same order.
+These are the questions in `docs/translation-questions/questions-bg.md`, in the same order.
 
 1. **Callout:** «аудио съобщение», «съобщение» or something else? (BG-T1)
 2. **Beacon:** «аудио маяк» or «звуков маяк»? (BG-T2)

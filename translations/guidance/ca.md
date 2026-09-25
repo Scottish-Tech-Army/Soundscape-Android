@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Catalan.** It has been AI-only since
 2026-08-23. The hints compose with «Fes doble toc per %1$s». There is no
 `ca.lproj`, so the Siri phrases stay in English. Questions:
-`translations/review/ca.md` (Q1…Q6).
+`docs/translation-questions/questions-ca.md` (Q1…Q6).
 
 ## Glossary
 

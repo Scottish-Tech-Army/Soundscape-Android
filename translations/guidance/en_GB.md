@@ -17,7 +17,7 @@ en_GB is a spelling-and-vocabulary layer over the US source: «Metres»,
 shape, with only «program» ×2 and «license» ×3 remaining, and all three
 «license» hits are GitHub URLs, which are correct. The one real question is
 vocabulary Microsoft itself left American (EN-T1). Questions:
-`translations/review/en_GB.md` (Q1…Q4).
+`docs/translation-questions/questions-en_GB.md` (Q1…Q4).
 
 ## Rules
 

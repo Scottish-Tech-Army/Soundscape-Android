@@ -22,7 +22,7 @@ are the default when a term is disputed. Everything Microsoft never had is
 AI. Treat everything as `unconfirmed` until a speaker weighs in.
 
 The authored Siri phrases (`ja.lproj`) match the help text. Questions:
-`translations/review/ja.md` (Q1…Q7).
+`docs/translation-questions/questions-ja.md` (Q1…Q7).
 
 ## Glossary
 

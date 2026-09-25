@@ -22,7 +22,7 @@ drifted the most, but on inspection the drift is mostly tidying:
 
 The VoiceOver template composes correctly («Dobbelttryk for at slå lydfyret
 fra»). The Siri phrases (`da.lproj`) match the help text. Questions:
-`translations/review/da.md` (Q1…Q6).
+`docs/translation-questions/questions-da.md` (Q1…Q6).
 
 ## Glossary
 

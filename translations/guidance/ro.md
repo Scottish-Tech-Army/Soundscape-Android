@@ -19,7 +19,7 @@ Read with [`_common.md`](_common.md).
 - «continuă la stânga» is descriptive (C11).
 - There is no `ro.lproj`, so the Siri phrases stay in English (PL-C1).
 
-Questions: `translations/review/ro.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-ro.md` (Q1…Q6).
 
 ## Glossary
 

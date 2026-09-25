@@ -15,7 +15,7 @@ There is one native-speaker touch. Benjamin Lin (`cecc87ab4`, 2026-02-17)
 made a small edit: he tightened `settings_explanation` and rewrote the three
 intersection-direction strings (ZH-G1). Everything else comes from AI passes
 since 2026-02-08. The authored Siri phrases (`zh-Hans.lproj`) match the help
-text. Questions: `translations/review/zh_Hans.md` (Q1…Q7).
+text. Questions: `docs/translation-questions/questions-zh_Hans.md` (Q1…Q7).
 
 ## Glossary
 

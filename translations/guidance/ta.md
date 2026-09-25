@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-22. Callout is consistently the native «அறிவிப்பு» (65). The
 VoiceOver hints are «-க்க» infinitives that compose correctly with «%1$s
 இரட்டை தட்டவும்». One `agreed` grammar defect: TA-G1. Questions:
-`translations/review/ta.md` (Q1…Q7).
+`docs/translation-questions/questions-ta.md` (Q1…Q7).
 
 ## Glossary
 

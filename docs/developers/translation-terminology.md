@@ -1,7 +1,7 @@
 ---
 title: Translation terminology
 layout: page
-parent: Information for developers
+parent: Help translate Soundscape
 has_toc: false
 ---
 

@@ -29,7 +29,9 @@ default_lang: "en"
 # greedy `(?!.*\.svg)` lookaheads that break link relativization for any link
 # earlier on the same (minified) line as an image. Exclude image *directories*
 # instead; all binary assets live under assets/, dokka/ or documentationScreens/.
-exclude_from_localization: ["assets", "dokka", "documentationScreens", "javascript", "generate-beacons.py"]
+# translation-questions/: each questionnaire is already in its own language, so it is
+# built once rather than copied under every /<lang>/ prefix.
+exclude_from_localization: ["assets", "dokka", "documentationScreens", "javascript", "generate-beacons.py", "translation-questions"]
 # Keep serial for now: just-the-docs nav generation can race under polyglot's
 # parallel mode. Revisit only if build time becomes a problem.
 parallel_localization: false

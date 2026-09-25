@@ -30,7 +30,7 @@ native speaker actually chose. They are marked `confirmed` in the Spanish
 file's sense: "confirmed then, not re-checked since." Everything else is
 `unconfirmed`.
 
-The questions for reviewers are in `translations/review/is.md`, numbered
+The questions for reviewers are in `docs/translation-questions/questions-is.md`, numbered
 Q1…Q11 to match the Open questions below.
 
 ---
@@ -147,7 +147,7 @@ attractive (rule C8).
 
 ## Open questions for the next native-speaker round
 
-These are the questions in `translations/review/is.md`, in the same order.
+These are the questions in `docs/translation-questions/questions-is.md`, in the same order.
 
 1. **Callout «tilkynning»:** does it get confused with phone notifications?
    (glossary)

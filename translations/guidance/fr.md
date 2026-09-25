@@ -42,7 +42,7 @@ grammar defect you can check against `WayGenerator.kt`. FR-B1 was a missing
 space that turned two words into one, and is now fixed. In FR-G1 the *replacement wording* stays
 `unconfirmed`.
 
-The questions for reviewers are in `translations/review/fr.md`. Feedback will
+The questions for reviewers are in `docs/translation-questions/questions-fr.md`. Feedback will
 cite its numbered questions (Q1…Q11), which match the Open questions list below.
 
 ---
@@ -231,7 +231,7 @@ evidence that made it attractive**. Otherwise the next pass reinstates it
 
 ## Open questions for the first native-speaker round
 
-These are the questions in `translations/review/fr.md`, in the same order.
+These are the questions in `docs/translation-questions/questions-fr.md`, in the same order.
 
 1. **Callout: «notification» or «annonce»?** (FR-T1)
 2. **Waypoint vs Landmark:** does «point de repère» for a route stop clash

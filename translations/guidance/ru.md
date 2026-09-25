@@ -19,7 +19,7 @@ Yurt Page's terms still ship and are marked `confirmed` in the Spanish-file
 sense: "confirmed then, not re-checked since." Everything newer is AI.
 
 The authored Siri phrases (`ru.lproj`) match the help text. Questions:
-`translations/review/ru.md` (Q1…Q7).
+`docs/translation-questions/questions-ru.md` (Q1…Q7).
 
 ## Glossary
 

@@ -16,7 +16,7 @@ A well-preserved Microsoft baseline. Microsoft's Title Case style («Sinal de
 Áudio», «Ponto de Passagem») is carried through, which is a house style and
 not an error. The hints compose correctly («Toque duas vezes para desativar
 o Sinal de Áudio»), and the Siri phrases (`pt.lproj`) match the help text.
-Questions: `translations/review/pt.md` (Q1…Q5).
+Questions: `docs/translation-questions/questions-pt.md` (Q1…Q5).
 
 ## Glossary
 

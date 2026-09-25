@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 
 Dutch started from Microsoft's professional translation (C14). One core
 term has **changed** away from Microsoft (NL-T1). The Siri phrases (`nl.lproj`)
-match the help text. Questions: `translations/review/nl.md` (Q1…Q6).
+match the help text. Questions: `docs/translation-questions/questions-nl.md` (Q1…Q6).
 
 ## Glossary
 

@@ -19,7 +19,7 @@ Microsoft never had (callout detail, confected way names, voice commands,
 travel mode, ~410 keys) is AI. The 20 drifted strings look like
 improvements: they fix Microsoft errors such as «Endpunkt» for "Done" and
 «Wie verwenden ich». The Siri phrases (`de.lproj`) match the help text.
-Questions: `translations/review/de.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-de.md` (Q1…Q6).
 
 ## Glossary
 

@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Telugu.** It has been AI-only since
 2026-08-21. Structurally sound: `confect_name_to` «%2$sకు వెళ్ళే %1$s» is
 correct under C10, and «%1$s చేయడానికి రెండుసార్లు నొక్కండి» composes well.
-It leans heavily on loanwords. Questions: `translations/review/te.md`
+It leans heavily on loanwords. Questions: `docs/translation-questions/questions-te.md`
 (Q1…Q6).
 
 ## Glossary

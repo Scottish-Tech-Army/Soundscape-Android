@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 Italian is the best-preserved Microsoft baseline. The hints compose
 correctly («Tocca due volte per disattivare l'audiofaro»), «è sulla
 sinistra» is descriptive (C11), and the Siri phrases (`it.lproj`) match the
-help text. Questions: `translations/review/it.md` (Q1…Q6).
+help text. Questions: `docs/translation-questions/questions-it.md` (Q1…Q6).
 
 ## Glossary
 

@@ -20,7 +20,7 @@ Read with [`_common.md`](_common.md).
 - The Siri phrases (`ko.lproj`) match the help text.
 
 The questions are confirmation, not repair. Questions:
-`translations/review/ko.md` (Q1…Q6).
+`docs/translation-questions/questions-ko.md` (Q1…Q6).
 
 ## Glossary
 

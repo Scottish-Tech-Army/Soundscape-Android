@@ -13,7 +13,7 @@ Read with [`_common.md`](_common.md).
 
 **No native speaker has reviewed Vietnamese.** It has been AI-only since
 2026-08-21. There is one `agreed` meaning defect (VI-G1) and one term with
-the wrong sense (VI-T1). Questions: `translations/review/vi.md` (Q1…Q7).
+the wrong sense (VI-T1). Questions: `docs/translation-questions/questions-vi.md` (Q1…Q7).
 
 ## Glossary
 

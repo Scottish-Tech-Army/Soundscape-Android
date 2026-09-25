@@ -19,7 +19,7 @@ core term is still Microsoft's. There are no defects:
 - «blindvei» is lowercase and reads naturally in «Sti til blindvei».
 - The Siri phrases (`nb.lproj`) match the help text.
 
-Questions are confirmations. Questions: `translations/review/nb_NO.md`
+Questions are confirmations. Questions: `docs/translation-questions/questions-nb_NO.md`
 (Q1…Q4).
 
 ## Glossary

@@ -17,7 +17,7 @@ Read with [`_common.md`](_common.md).
 - `confect_name_to` «%2$s कडे जाणारा %1$s» is the model C10 answer.
 - The VoiceOver template «%1$sसाठी डबल टॅप करा» composes correctly.
 
-Questions: `translations/review/mr.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-mr.md` (Q1…Q6).
 
 ## Glossary
 

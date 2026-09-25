@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 A Microsoft baseline. There is no `el.lproj`, so the Siri phrases stay in
 English (PL-C1). The formal plural «Είστε έτοιμοι!» is Microsoft's and
 gender-neutral enough. There is one VoiceOver defect (EL-B1). Questions:
-`translations/review/el.md` (Q1…Q5).
+`docs/translation-questions/questions-el.md` (Q1…Q5).
 
 ## Glossary
 

@@ -21,7 +21,7 @@ already work:
 - The «ku»-infinitive hints compose with «Gusa mara mbili %1$s».
 - There is no `sw.lproj`, so the Siri phrases stay in English.
 
-Questions: `translations/review/sw.md` (Q1…Q5).
+Questions: `docs/translation-questions/questions-sw.md` (Q1…Q5).
 
 ## Glossary
 

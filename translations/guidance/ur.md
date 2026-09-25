@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. Structurally sound: «%1$s کے لیے دو بار تھپتھپائیں» with «-نے»
 infinitive hints composes correctly, and `confect_name_to` «%1$s %2$s تک»
 is acceptable under C10. The main open item is a split term. Questions:
-`translations/review/ur.md` (Q1…Q6).
+`docs/translation-questions/questions-ur.md` (Q1…Q6).
 
 ## Glossary
 

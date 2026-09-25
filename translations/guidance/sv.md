@@ -16,7 +16,7 @@ Swedish started from Microsoft's professional translation (C14) and has
 drifted the least of the Nordic languages. The VoiceOver template composes
 correctly («Dubbeltryck för att stänga av ljudfyren»). The Siri phrases
 (`sv.lproj`) match the help text. There is one real inconsistency (SV-T1).
-Questions: `translations/review/sv.md` (Q1…Q5).
+Questions: `docs/translation-questions/questions-sv.md` (Q1…Q5).
 
 ## Glossary
 

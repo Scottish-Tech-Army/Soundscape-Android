@@ -15,7 +15,7 @@ Priit Jõerüüt added Estonian in Weblate (2025-11-08) and made a few edits,
 including Beacon = «Helimajakas», which is `confirmed`. Everything else is
 AI. The hints are «da»-infinitives («summutada helimajakas») that compose
 correctly with «Topeltkoputa, et %1$s». There is no `et.lproj`, so the Siri
-phrases stay in English. Questions: `translations/review/et.md` (Q1…Q6).
+phrases stay in English. Questions: `docs/translation-questions/questions-et.md` (Q1…Q6).
 
 ## Glossary
 

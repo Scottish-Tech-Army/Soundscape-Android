@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Slovak.** It has been AI-only since
 2026-08-21. There are two `agreed` defects: the C9 dead-end case, and an
 iOS-only VoiceOver template that doesn't fit the hints (SK-B1, the case
-that produced rule C13). Questions: `translations/review/sk.md` (Q1…Q6).
+that produced rule C13). Questions: `docs/translation-questions/questions-sk.md` (Q1…Q6).
 
 ## Glossary
 

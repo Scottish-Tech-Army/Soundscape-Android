@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Arabic.** It has been AI-only since
 2026-08-22. The verbal-noun hints («كتم صوت المنارة الصوتية») compose with
 «انقر نقرًا مزدوجًا لـ %1$s». The authored Siri phrases (`ar.lproj`) match the
-help text. Questions: `translations/review/ar.md` (Q1…Q6).
+help text. Questions: `docs/translation-questions/questions-ar.md` (Q1…Q6).
 
 ## Glossary
 

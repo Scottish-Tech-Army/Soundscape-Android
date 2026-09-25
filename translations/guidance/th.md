@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Thai.** It has been AI-only since
 2026-08-22. The authored Siri phrases (`iosApp/iosApp/th.lproj/AppShortcuts.strings`)
 match the help text. The main risk is two detail levels that sound too alike.
-Questions: `translations/review/th.md` (Q1…Q7).
+Questions: `docs/translation-questions/questions-th.md` (Q1…Q7).
 
 ## Glossary
 

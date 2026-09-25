@@ -25,7 +25,7 @@ Things that already work:
 - «مختصر» (brief) for Quiet keeps it apart from «بی‌صدا» (silent).
 - There is no `fa.lproj`, so the Siri phrases stay in English.
 
-Questions: `translations/review/fa.md` (Q1…Q5).
+Questions: `docs/translation-questions/questions-fa.md` (Q1…Q5).
 
 ## Glossary
 

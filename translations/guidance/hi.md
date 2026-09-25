@@ -16,7 +16,7 @@ is all AI passes plus five "Anonymous" Weblate commits, which are mechanical
 (copyright placeholders, whitespace). Everything is `unconfirmed` except the
 two grammar defects, HI-B1 and HI-G1, whose *diagnosis* is `agreed`.
 
-Questions for reviewers: `translations/review/hi.md` (Q1…Q8).
+Questions for reviewers: `docs/translation-questions/questions-hi.md` (Q1…Q8).
 
 ## Glossary
 

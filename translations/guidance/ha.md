@@ -17,7 +17,7 @@ idiomaticity, because Hausa is the language here where machine translation
 is least reliable. **Treat every term as a guess until a speaker has seen
 it.** The template «Danna sau biyu don %1$s» composes with the hints. There
 is no `ha.lproj`, so the Siri phrases stay in English. Questions:
-`translations/review/ha.md` (Q1…Q6).
+`docs/translation-questions/questions-ha.md` (Q1…Q6).
 
 ## Glossary
 

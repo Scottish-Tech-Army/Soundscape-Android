@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 A well-preserved Microsoft baseline, but Microsoft made two unusual term
 choices (PTBR-T1) that are worth putting to a speaker. The hints compose
 correctly. The Siri phrases (`pt-BR.lproj`) match the help text. Questions:
-`translations/review/pt_BR.md` (Q1…Q7).
+`docs/translation-questions/questions-pt_BR.md` (Q1…Q7).
 
 ## Glossary
 

@@ -25,7 +25,7 @@ replacement *wording* stays `unconfirmed`.
 
 A review pack was prepared for the first reviewer:
 
-- `translations/review/pl.md` — the 27 strings added 2026-09-23, with context.
+- `docs/translation-questions/questions-pl.md` — the 27 strings added 2026-09-23, with context.
 - `translations/review/pl-full/` — the whole corpus split by area, plus
   `_numbering.tsv` mapping each number back to its Weblate key. Feedback will
   arrive citing those numbers.

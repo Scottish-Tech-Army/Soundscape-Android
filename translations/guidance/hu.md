@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. The VoiceOver template «Duplán koppintva: %1$s» with verbal-noun
 hints is already the colon frame that C13 recommends. There is no
 `hu.lproj`, so the Siri phrases stay in English. Questions:
-`translations/review/hu.md` (Q1…Q5).
+`docs/translation-questions/questions-hu.md` (Q1…Q5).
 
 ## Glossary
 

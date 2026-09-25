@@ -19,7 +19,7 @@ Read with [`_common.md`](_common.md).
   split (see `bg.md` BG-T4).
 - «%1$s, vede doleva» is descriptive (C11).
 
-One `agreed` defect. Questions: `translations/review/cs.md` (Q1…Q6).
+One `agreed` defect. Questions: `docs/translation-questions/questions-cs.md` (Q1…Q6).
 
 ## Glossary
 

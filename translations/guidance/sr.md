@@ -16,7 +16,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. The VoiceOver template «Двапут додирните да %1$s» with
 present-tense hints («утишате») composes correctly. Traveling/Heading are
 «Путовање»/«Ходање», the correct vehicle/walking split. Questions:
-`translations/review/sr.md` (Q1…Q7).
+`docs/translation-questions/questions-sr.md` (Q1…Q7).
 
 ## Glossary
 

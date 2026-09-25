@@ -17,7 +17,7 @@ An earlier note (FR-B1 in `fr.md`) worried that «Kaksoisnapauta %1$s» lacked
 a connective, but the hints are translative infinitives («hiljentääksesi
 äänimajakan», "in order to mute the beacon"), which carry the "to" meaning
 themselves. The Siri phrases (`fi.lproj`) match the help text. Questions:
-`translations/review/fi.md` (Q1…Q5).
+`docs/translation-questions/questions-fi.md` (Q1…Q5).
 
 ## Glossary
 

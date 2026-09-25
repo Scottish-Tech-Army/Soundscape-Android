@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. The VoiceOver template «Dvaput dodirnite da biste %1$s» with
 conditional participle hints («utišali») composes correctly. There is one
 `agreed` case defect (C9) and one TTS-audible defect (HR-G2). Questions:
-`translations/review/hr.md` (Q1…Q7).
+`docs/translation-questions/questions-hr.md` (Q1…Q7).
 
 ## Glossary
 
