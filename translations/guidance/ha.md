@@ -49,7 +49,7 @@ Nothing yet.
 2. Waypoint «matsayi»: does it mean a stop on a route?
 3. Callout «sanarwa» and Beacon «Siginar Sauti»: natural?
 4. «Titin X, ta juya hagu»: a description, or an instruction? (HA-S1)
-5. Is the respectful plural register right?
+5. Register: respectful plural «ku» or singular «ka»? The app mixes them («Kun shirya!» vs «Yanzu kana iya jin…»).
 6. Anything else.
 
 ## Provenance
