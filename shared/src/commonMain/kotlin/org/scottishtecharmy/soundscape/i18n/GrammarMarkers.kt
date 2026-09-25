@@ -15,7 +15,7 @@ package org.scottishtecharmy.soundscape.i18n
  */
 fun resolveGrammarMarkers(text: String): String {
     if ('(' !in text && '{' !in text) return text
-    val hungarian = resolveHungarianArticles(resolveHungarianRoadCase(text))
+    val hungarian = resolveHungarianArticles(resolveHungarianTerminative(resolveHungarianRoadCase(text)))
     val finnic = resolveEstonianRoadCase(resolveFinnishRoadCase(hungarian))
     return resolveTurkishSuffixes(resolveKoreanParticles(finnic))
 }
@@ -117,6 +117,30 @@ internal fun resolveHungarianRoadCase(text: String): String {
                 form = form.replaceFirstChar { it.uppercaseChar() }
             }
             out.append(stem).append(form)
+        }
+        last = match.range.last + 1
+    }
+    return out.append(text.substring(last)).toString()
+}
+
+// «%3$s{-ig}» is the terminative ("as far as X"), which Hungarian writes onto the name itself:
+// a final a/e lengthens («Váci utcáig», «Hősök teréig», «Astoriáig»), any other letter just
+// takes «ig» («Deák Ferenc térig»), and only a number or abbreviation keeps the hyphen («M7-ig»).
+private val hungarianTerminative = Regex("\\{-ig\\}")
+
+internal fun resolveHungarianTerminative(text: String): String {
+    if ("{-ig}" !in text) return text
+    val out = StringBuilder()
+    var last = 0
+    for (match in hungarianTerminative.findAll(text)) {
+        val before = text.substring(last, match.range.first)
+        val word = before.takeLastWhile { it.isLetterOrDigit() }
+        val abbreviation = word.length >= 2 && word.all { it.isUpperCase() || it.isDigit() }
+        when {
+            word.isEmpty() || word.last().isDigit() || abbreviation -> out.append(before).append("-ig")
+            word.last() == 'a' -> out.append(before.dropLast(1)).append("áig")
+            word.last() == 'e' -> out.append(before.dropLast(1)).append("éig")
+            else -> out.append(before).append("ig")
         }
         last = match.range.last + 1
     }

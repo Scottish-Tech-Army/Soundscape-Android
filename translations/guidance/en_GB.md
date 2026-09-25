@@ -40,10 +40,10 @@ There is no general «store» → «shop» swap. The UK words are:
   match);
 - «App Store» / «Play Store» and the verb «store» stay.
 
-Open: whether «Convenience Store» (`osm_convenience_store`, and
-`filter_groceries` «Groceries and Convenience Stores») should become «Corner
-Shop». It is the OSM `shop=convenience` category, which in the UK covers
-corner shops but also chain convenience stores. Not changed.
+«Convenience Store» stays (`osm_convenience_store`, and `filter_groceries`
+«Groceries and Convenience Stores»): decided 2026-09-25. It is the OSM
+`shop=convenience` category, which covers chain convenience stores as well as
+corner shops, so the wider term is right.
 
 ### EN-T3 — «pavement», never «sidewalk»; «transit» is fine (`confirmed`, 2026-09-25)
 

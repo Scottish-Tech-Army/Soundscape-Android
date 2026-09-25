@@ -54,6 +54,13 @@ was measured against the Budapest extract and covers 95% of its 16,094 street
 names; the rest (route numbers, Slovak names) keep « úton». **New road templates
 must use `{úton}`**, never a literal «úton» after a name.
 
+### HU-G2 — «-ig» on a name is resolved in code (`fixed` in code, 2026-09-25)
+
+`street_description_until` wrote «a(z) %3$s-ig», giving «a Váci utca-ig» where
+Hungarian writes «a Váci utcáig». It now writes «a(z) %3$s{-ig}» (C18): a final a/e
+lengthens, other letters take «ig», numbers and abbreviations keep «-ig» («az
+M7-ig»). Use `{-ig}` for any new "as far as X" template.
+
 ### HU-R1 — «te» vs «Ön» (`unconfirmed`)
 
 The UI says «Készen állsz!» (te), while ~14 strings, mostly `help_text_*`
