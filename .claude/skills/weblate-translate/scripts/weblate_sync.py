@@ -48,6 +48,21 @@ PAUSE_SECONDS = 10
 # at format time, and reordering them silently swaps the arguments round.
 PLACEHOLDER_RE = re.compile(r"%\d+\$[a-zA-Z]")
 
+# The component's cmp-resource format stores text verbatim, and Compose Resources
+# only unescapes \n, \t, \uXXXX and \\ - so an Android-style \" or \' reaches both
+# Weblate and the app as a literal backslash. Quotes and apostrophes go in bare.
+ESCAPED_QUOTE_RE = re.compile(r"""\\["']""")
+
+
+def escaped_quote_errors(translations: Any) -> list[str]:
+    if not isinstance(translations, dict):
+        return []
+    return [
+        f"{key}: escaped quote (write \" and ' without a backslash) -> {value!r}"
+        for key, value in sorted(translations.items())
+        if isinstance(value, str) and ESCAPED_QUOTE_RE.search(value)
+    ]
+
 
 def client() -> wlc.Weblate:
     cfg = WeblateConfig()
@@ -269,6 +284,7 @@ def validate_translations(
             errors.append(f"{key}: placeholder {ph} is not in the source string -> {value!r}")
         if source.count("\n") != value.count("\n"):
             errors.append(f"{key}: line-break count differs from the source")
+    errors.extend(escaped_quote_errors(translations))
     return errors, warnings
 
 
@@ -361,6 +377,22 @@ def cmd_upload(args: argparse.Namespace) -> None:
             print("Pass --lang and --file, or --all with --out-dir.", file=sys.stderr)
             sys.exit(1)
         jobs = [(args.lang, args.file)]
+
+    # Escaped quotes are refused even with --skip-validate: that flag exists to
+    # get past the stale-cache check when revising strings, not to let a literal
+    # backslash into the live translation.
+    escape_errors = {}
+    for lang, file in jobs:
+        errors = escaped_quote_errors(json.loads(Path(file).read_text()))
+        if errors:
+            escape_errors[lang] = errors
+    if escape_errors:
+        print("Refusing to upload - escaped quotes found:", file=sys.stderr)
+        for lang, errors in sorted(escape_errors.items()):
+            print(f"  {lang}:", file=sys.stderr)
+            for e in errors:
+                print(f"    - {e}", file=sys.stderr)
+        sys.exit(1)
 
     # Validate everything before uploading anything. Uploads land as live
     # translations with no review queue, so a batch that is going to be
