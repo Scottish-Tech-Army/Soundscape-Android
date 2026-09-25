@@ -1601,4 +1601,6 @@
     <string name="siri_param_level">Úroveň</string>
     <string name="siri_desc_callout_detail">Nastaví, kolik toho Soundscape říká, když jdete.</string>
     <string name="intersection_approaching_intersection_distance">Křižovatka %1$s daleko</string>
+    <string name="microsoft_copyright">[Původní aplikace Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) poskytla zvuky zvukového majáku a mnoho překladů a je zpřístupněna k použití pod [licencí MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Dobrovolníci z [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) vylepšili několik překladů, které jsou zpřístupněny k použití pod [licencí MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
