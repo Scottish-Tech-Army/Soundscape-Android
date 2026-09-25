@@ -79,3 +79,5 @@ screen reader reads the brackets aloud. «Boas-vindas!» or «Olá!» avoids bot
 passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 
 **2026-09-25 — Sleep/Snooze iOS parity.** Dave kept «Em Soneca» as the one exception to the Microsoft-parity restore, because «Em Ociosidade» doesn't describe the mode.
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 4 were restored to Microsoft's wording and 4 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 4 uploaded and verified live.

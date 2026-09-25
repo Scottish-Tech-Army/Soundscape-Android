@@ -84,3 +84,5 @@ Microsoft's files.
 file. Nothing uploaded.
 
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_sleep` «Ruhemodus» → Microsoft's «Ruhemodus aktivieren». This closes Q4.
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 11 were restored to Microsoft's wording and 6 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 11 uploaded and verified live.

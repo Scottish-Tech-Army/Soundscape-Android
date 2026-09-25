@@ -3107,7 +3107,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Merkintä"
+            "value": "Merkitsin"
           }
         },
         "fr": {
@@ -3381,7 +3381,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Merkinnät"
+            "value": "Merkitsimet"
           }
         },
         "fr": {
@@ -4203,7 +4203,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lähellä olevat merkinnät"
+            "value": "Lähellä olevat merkitsimet"
           }
         },
         "fr": {
@@ -5302,7 +5302,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lukee tallennetut reittisi, tallennetut merkintäsi tai komennot, jotka voit sanoa."
+            "value": "Lukee tallennetut reittisi, tallennetut merkitsimesi tai komennot, jotka voit sanoa."
           }
         },
         "fr": {
@@ -6398,7 +6398,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Asettaa äänimajakan johonkin tallennetuista merkinnöistäsi."
+            "value": "Asettaa äänimajakan johonkin tallennetuista merkitsimistäsi."
           }
         },
         "fr": {

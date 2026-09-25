@@ -72,3 +72,5 @@ which moved the core terms (see the table above). **2026-09-24 — corpus
 sweep.** Nothing uploaded.
 
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «En veille» → «Désactivé temporairement».
+
+**2026-09-25 — Microsoft drift pass (C14): on hold.** Dave asked to re-examine fr_CA before anything is applied: 24 restores, 1 fix («de annonces» → «d'annonces») and three whole-language term questions (waypoint «cheminement», callout «annonce», beacon «audio»). Nothing uploaded.

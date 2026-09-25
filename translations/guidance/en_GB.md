@@ -59,3 +59,5 @@ Nothing yet.
 **2026-05 — JJ Gatchalian**, hint casing and trailing periods (VoiceOver
 convention, #889).
 **2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 0 were restored to Microsoft's wording and 2 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). Nothing to upload.

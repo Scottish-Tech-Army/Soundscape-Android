@@ -20,7 +20,7 @@ match the help text. Questions: `translations/review/nl.md` (Q1…Q6).
 
 | English | Dutch | Status | Note |
 |---|---|---|---|
-| Callout | aankondiging | `unconfirmed` | **Microsoft said «waarschuwing»**. See NL-T1 |
+| Callout | aankondiging | `agreed` (Dave, 2026-09-25; see NL-T1) | **Microsoft said «waarschuwing»**. See NL-T1 |
 | Audio Beacon | audiobaken | `confirmed` | Microsoft |
 | Marker | markering | `confirmed` | Microsoft |
 | Waypoint | routepunt | `confirmed` | Microsoft |
@@ -33,7 +33,9 @@ match the help text. Questions: `translations/review/nl.md` (Q1…Q6).
 
 ## Rules
 
-### NL-T1 — Callout moved from «waarschuwing» to «aankondiging» (`unconfirmed`)
+### NL-T1 — Callout moved from «waarschuwing» to «aankondiging» (`agreed`, Dave 2026-09-25)
+
+**Decided 2026-09-25: Dutch keeps «aankondiging».** This was weighed against real counter-evidence. Microsoft's «waarschuwing» is still used 79 times in the Soundscape Community Dutch file, and its native translators (Nathanja and Bram Duvigneau, 2023) kept it in all 21 strings they edited that contain it. Dave's view is that Community edits were piecemeal in Weblate and don't settle a term, and that «waarschuwing» ("warning") frames every callout as an alert. Don't restore «waarschuwing» from Microsoft's or the Community's files (C8).
 
 Microsoft's word was «waarschuwingen» ("warnings"), which frames every
 callout as an alert. A later AI pass switched all of them (70 now, 0 left) to
@@ -61,12 +63,10 @@ The same coupling as FR-C1.
 
 ## Rejected
 
-Nothing yet. If NL-T1 is confirmed, record «waarschuwing» here with
-Microsoft as the evidence for it (C8).
+**«waarschuwing» for Callout** (2026-09-25). It is attractive: it's Microsoft's term, and the Community's native Dutch translators kept it in 21 edited strings. It was rejected because it means "warning", and because piecemeal Weblate edits don't settle a term. See NL-T1.
 
 ## Open questions
 
-1. Callout: «aankondiging» (now) or «waarschuwing» (Microsoft)? (NL-T1)
 2. VoiceOver: «Dubbeltik: het audiobaken dempen»? (NL-B1)
 3. «Pad naar een doodlopende weg» or «Doodlopend pad»? (NL-G1)
 4. The four detail levels (Gedetailleerd / Gebalanceerd / Rustig / Stil): clear?
@@ -78,3 +78,5 @@ Microsoft as the evidence for it (C8).
 **2024-07 → 2024-09 — Microsoft baseline** (`nl-NL.lproj`).
 **2025 → 2026-09 — AI passes**, plus Weblate bulk operations.
 **2026-09-24 — corpus sweep** with a Microsoft comparison. Nothing uploaded.
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 17 were restored to Microsoft's wording and 11 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 17 uploaded and verified live.

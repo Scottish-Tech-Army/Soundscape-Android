@@ -276,3 +276,5 @@ checked French round-tripped before doing the other 19, then re-fetched all 20
 and confirmed each ends in « %1$s».
 
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «Désactivation temporaire» → Microsoft's «Désactivé temporairement». FR-T3 (the mode names in the FAQ) is unaffected and still open.
+
+**2026-09-25 — Microsoft drift pass (C14): declined by Dave.** The sort proposed restoring 10 drifted strings to Microsoft's wording. Dave chose not to take any of them, so French keeps its current wording and nothing was uploaded.
