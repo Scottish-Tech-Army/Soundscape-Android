@@ -41,11 +41,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -58,6 +61,9 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.resolveGrammarMarkers
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
@@ -66,8 +72,11 @@ import org.scottishtecharmy.soundscape.resources.beacon_action_mute_beacon
 import org.scottishtecharmy.soundscape.resources.beacon_action_mute_beacon_acc_hint
 import org.scottishtecharmy.soundscape.resources.beacon_action_unmute_beacon
 import org.scottishtecharmy.soundscape.resources.beacon_action_unmute_beacon_acc_hint
+import org.scottishtecharmy.soundscape.resources.beacon_action_callout_beacon
 import org.scottishtecharmy.soundscape.resources.behavior_experiences_route_nav_title
+import org.scottishtecharmy.soundscape.resources.callouts_action_more_info
 import org.scottishtecharmy.soundscape.resources.general_loading_start
+import org.scottishtecharmy.soundscape.resources.markers_action_add_to_markers
 import org.scottishtecharmy.soundscape.resources.location_detail_full_screen_hint
 import org.scottishtecharmy.soundscape.resources.permissions_button
 import org.scottishtecharmy.soundscape.resources.permissions_required
@@ -174,6 +183,8 @@ fun SharedHomeContent(
     onNavigate: (String) -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
     onShowRouteDetails: (LocationDescription) -> Unit,
+    /** Saves the beacon's location as a marker, for the beacon card's "Add to Markers" action. */
+    onSaveMarker: ((LocationDescription) -> Unit)? = null,
     onMapLongClick: ((LngLatAlt) -> Boolean)?,
     getCurrentLocationDescription: () -> LocationDescription,
     searchBar: @Composable () -> Unit,
@@ -274,26 +285,127 @@ fun SharedHomeContent(
                     val currentRoute = routePlayerState.routeData
                     if (currentRoute != null) {
                         Card(modifier = Modifier.smallPadding()) {
-                            Row {
-                                Text(
-                                    text = resolveGrammarMarkers(
-                                        if (currentRoute.markers.size > 1) {
-                                            stringResource(
-                                                Res.string.route_waypoint_progress,
-                                                currentRoute.route.name,
-                                                routePlayerState.currentWaypoint + 1,
-                                                currentRoute.markers.size,
-                                            )
-                                        } else {
-                                            stringResource(
-                                                Res.string.route_beacon_progress,
-                                                currentRoute.route.name,
-                                            )
-                                        }
-                                    ),
-                                    style = MaterialTheme.typography.labelLarge,
-                                    modifier = Modifier.smallPadding(),
+                            // The waypoint the beacon is currently on. For a beacon (rather than
+                            // a route) this is RoutePlayer's single-waypoint pseudo-route, whose
+                            // marker carries the name the beacon was started with.
+                            val beaconWaypoint =
+                                currentRoute.markers.getOrNull(routePlayerState.currentWaypoint)
+                            val beaconLocation =
+                                beaconWaypoint?.getLngLatAlt() ?: beaconState?.location
+                            val beaconName = beaconWaypoint?.name ?: currentRoute.route.name
+                            // Resolved here rather than at the Text, because the card's semantics
+                            // replace the Text's and the screen reader reads this string directly.
+                            val progressText = resolveGrammarMarkers(
+                                if (currentRoute.markers.size > 1) {
+                                    stringResource(
+                                        Res.string.route_waypoint_progress,
+                                        currentRoute.route.name,
+                                        routePlayerState.currentWaypoint + 1,
+                                        currentRoute.markers.size,
+                                    )
+                                } else {
+                                    stringResource(
+                                        Res.string.route_beacon_progress,
+                                        currentRoute.route.name,
+                                    )
+                                }
+                            )
+
+                            // "700 m, NW" on screen, "700 metres, north west" for the screen
+                            // reader - the same split the original iOS app used, where there is
+                            // room for the word in speech but not in the panel.
+                            val distanceStrings = remember(location, beaconLocation) {
+                                if (beaconLocation == null) {
+                                    "" to ""
+                                } else {
+                                    val ruler = location.createCheapRuler()
+                                    val distance = ruler.distance(location, beaconLocation)
+                                    val bearing = ruler.bearing(location, beaconLocation)
+                                    val localized = ComposeLocalizedStrings()
+                                    formatDistanceAndDirection(
+                                        distance,
+                                        bearing,
+                                        localized,
+                                        abbreviatedDirection = true,
+                                    ) to formatDistanceAndDirection(
+                                        distance,
+                                        bearing,
+                                        localized,
+                                        forAccessibility = true,
+                                    )
+                                }
+                            }
+                            val (distanceString, distanceStringA11y) = distanceStrings
+
+                            val calloutLabel = stringResource(Res.string.beacon_action_callout_beacon)
+                            val moreInfoLabel = stringResource(Res.string.callouts_action_more_info)
+                            val addToMarkersLabel =
+                                stringResource(Res.string.markers_action_add_to_markers)
+                            // Mute and Remove are the buttons below and deliberately aren't
+                            // repeated here - iOS offers both ways and the duplication confuses
+                            // more than it helps (issue #908). Call out and More Info both speak
+                            // through the service's TTS, not the screen reader, so that they can
+                            // be triggered without the screen too.
+                            val beaconActions = buildList {
+                                add(
+                                    CustomAccessibilityAction(calloutLabel) {
+                                        routeFunctions.calloutBeacon()
+                                        true
+                                    }
                                 )
+                                if (beaconLocation != null) {
+                                    add(
+                                        CustomAccessibilityAction(moreInfoLabel) {
+                                            routeFunctions.beaconMoreInfo()
+                                            true
+                                        }
+                                    )
+                                    // Already a saved marker, so nothing to add - the same test
+                                    // the iOS app made before offering this action.
+                                    if (onSaveMarker != null &&
+                                        (beaconWaypoint?.markerId ?: 0L) == 0L
+                                    ) {
+                                        add(
+                                            CustomAccessibilityAction(addToMarkersLabel) {
+                                                onSaveMarker(
+                                                    LocationDescription(
+                                                        name = beaconName,
+                                                        location = beaconLocation,
+                                                    )
+                                                )
+                                                true
+                                            }
+                                        )
+                                    }
+                                }
+                            }
+
+                            Column(
+                                modifier = Modifier
+                                    .smallPadding()
+                                    .testTag("routeBeaconTitle")
+                                    .clearAndSetSemantics {
+                                        contentDescription = listOf(progressText, distanceStringA11y)
+                                            .filter { it.isNotEmpty() }
+                                            .joinToString(", ")
+                                        onClick(label = calloutLabel) {
+                                            routeFunctions.calloutBeacon()
+                                            true
+                                        }
+                                        customActions = beaconActions
+                                    },
+                            ) {
+                                Text(
+                                    text = progressText,
+                                    style = MaterialTheme.typography.labelLarge,
+                                )
+                                if (distanceString.isNotEmpty()) {
+                                    Text(
+                                        text = distanceString,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        modifier = Modifier.testTag("routeBeaconDistance"),
+                                    )
+                                }
                             }
                             if (showMap) {
                                 Row(modifier = Modifier.fillMaxWidth().aspectRatio(2.0f)) {

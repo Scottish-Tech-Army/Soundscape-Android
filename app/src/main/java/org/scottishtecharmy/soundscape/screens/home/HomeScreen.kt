@@ -184,6 +184,8 @@ fun HomeScreen(
             onRouteSkipPrevious = { viewModel.routeSkipPrevious() },
             onRouteSkipNext = { viewModel.routeSkipNext() },
             onRouteMute = { viewModel.routeMute() },
+            onCalloutBeacon = { viewModel.calloutBeacon() },
+            onBeaconMoreInfo = { viewModel.beaconMoreInfo() },
             onRouteStop = { viewModel.routeStop() },
             onSearch = { viewModel.onTriggerSearch(it) },
             onStreetPreviewGo = { viewModel.streetPreviewGo() },

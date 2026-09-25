@@ -24,6 +24,12 @@ sealed class SoundscapeAction {
     data object AheadOfMe : SoundscapeAction()
     data object NearbyMarkers : SoundscapeAction()
 
+    /** How far away the beacon is; "No beacon active" when there isn't one. */
+    data object CalloutBeacon : SoundscapeAction()
+
+    /** The beacon's name, distance, direction and street address. */
+    data object BeaconInfo : SoundscapeAction()
+
     // ── Route control — AudioMenu "Route" submenu ────────────────────────────
     /**
      * [reverse] has no default: default parameter values don't cross into Swift,

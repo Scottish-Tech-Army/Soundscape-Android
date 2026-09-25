@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelAbbreviated
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeClockTime
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeLeftRightLabel
@@ -113,6 +114,8 @@ fun nearestSettlement(
 var metric = true
 
 /**
+ * @param abbreviatedDirection use the abbreviated cardinal ("NW") rather than the word ("north
+ * west"). For text on screen where space is tight; never for speech.
  * @param speed the user's speed in m/s, if known. Above
  * [UserGeometry.BIG_UNIT_SPEED_THRESHOLD_MPS] the distance is always given in big units
  * (kilometres/miles), as metre/foot precision is worthless at that speed. Callers with no idea of
@@ -126,7 +129,8 @@ fun formatDistanceAndDirection(
     userHeading: Double? = null,
     relativeTimeMode: String = "ClockFace",
     forAccessibility: Boolean = false,
-    speed: Double = 0.0
+    speed: Double = 0.0,
+    abbreviatedDirection: Boolean = false
 ): String {
     var units = distance
     var bigUnitDivisor = 100
@@ -183,8 +187,12 @@ fun formatDistanceAndDirection(
     var headingText = ""
     if (heading != null) {
         if (userHeading == null) {
-            if (localized != null)
-                headingText = ", " + localized.get(getCompassLabel(heading.toInt()))
+            if (localized != null) {
+                val key =
+                    if (abbreviatedDirection) getCompassLabelAbbreviated(heading.toInt())
+                    else getCompassLabel(heading.toInt())
+                headingText = ", " + localized.get(key)
+            }
         } else {
             when (relativeTimeMode) {
                 "ClockFace" -> {

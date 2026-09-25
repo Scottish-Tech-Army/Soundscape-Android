@@ -69,7 +69,11 @@ open class HomeViewModel(
             service.locationFlow.collectLatest { value ->
                 if (value != null) {
                     _state.update {
-                        it.copy(location = LngLatAlt(value.longitude, value.latitude))
+                        it.copy(
+                            location = LngLatAlt(value.longitude, value.latitude),
+                            locationAccuracy =
+                                if (value.hasAccuracy) value.accuracy else null,
+                        )
                     }
                 }
             }
@@ -183,6 +187,14 @@ open class HomeViewModel(
 
     fun routeMute() {
         viewModelScope.launch(Dispatchers.Default) { connection.service?.routeMute() }
+    }
+
+    fun calloutBeacon() {
+        viewModelScope.launch(Dispatchers.Default) { connection.service?.calloutBeacon() }
+    }
+
+    fun beaconMoreInfo() {
+        viewModelScope.launch(Dispatchers.Default) { connection.service?.beaconMoreInfo() }
     }
 
     fun routeStop() {

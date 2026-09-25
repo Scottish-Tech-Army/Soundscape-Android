@@ -72,6 +72,20 @@ abstract class BaseSoundscapeAppFunctionService : AppFunctionService() {
     suspend fun nearbyMarkers(): SoundscapeResult = run(SoundscapeAction.NearbyMarkers)
 
     /**
+     * Says how far away the audio beacon is, from the beacon's direction. Says "No beacon
+     * active" when there is no beacon or route playing.
+     */
+    @AppFunction(isDescribedByKDoc = true)
+    suspend fun calloutBeacon(): SoundscapeResult = run(SoundscapeAction.CalloutBeacon)
+
+    /**
+     * Says the audio beacon's name, distance, direction and street address. Says "No beacon
+     * active" when there is no beacon or route playing.
+     */
+    @AppFunction(isDescribedByKDoc = true)
+    suspend fun beaconInfo(): SoundscapeResult = run(SoundscapeAction.BeaconInfo)
+
+    /**
      * Starts one of the user's saved routes, matched by name.
      */
     @AppFunction(isDescribedByKDoc = true)

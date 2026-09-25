@@ -10,6 +10,9 @@ import org.scottishtecharmy.soundscape.services.RoutePlayerState
 data class HomeState(
     val heading: Float = 0f,
     val location: LngLatAlt? = null,
+    /** Horizontal accuracy of [location] in metres, or null when the fix doesn't report one.
+     *  Shown by the "GPS accuracy" help page so a user who suspects bad positioning can check. */
+    val locationAccuracy: Float? = null,
     val beaconState: BeaconState? = null,
     val streetPreviewState: StreetPreviewState = StreetPreviewState(),
     val currentRouteData: RoutePlayerState = RoutePlayerState(),

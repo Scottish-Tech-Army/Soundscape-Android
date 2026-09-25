@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.platform.appNameCollator
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.beacon_action_callout_beacon
 import org.scottishtecharmy.soundscape.resources.beacon_action_mute_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_nearby_markers
 import org.scottishtecharmy.soundscape.resources.callouts_panel_title
@@ -20,6 +21,7 @@ import org.scottishtecharmy.soundscape.resources.directions_my_location
 import org.scottishtecharmy.soundscape.resources.help_explore_page_title
 import org.scottishtecharmy.soundscape.resources.help_orient_page_title
 import org.scottishtecharmy.soundscape.resources.location_detail_action_beacon
+import org.scottishtecharmy.soundscape.resources.menu_beacon_info
 import org.scottishtecharmy.soundscape.resources.menu_main_menu
 import org.scottishtecharmy.soundscape.resources.menu_no_routes
 import org.scottishtecharmy.soundscape.resources.menu_route
@@ -174,6 +176,12 @@ class AudioMenu(
                 },
                 MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.callouts_nearby_markers) }) {
                     service.nearbyMarkers()
+                },
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.beacon_action_callout_beacon) }) {
+                    service.calloutBeacon()
+                },
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.menu_beacon_info) }) {
+                    service.beaconMoreInfo()
                 },
                 mainMenuAction(),
             )

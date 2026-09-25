@@ -16,6 +16,9 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutPoiSelection
 import org.scottishtecharmy.soundscape.geoengine.callouts.CalloutVerbosity
 import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildAheadOfMeCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildBeaconCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildBeaconMoreInfoCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildNoBeaconCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildMyLocationCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildNearbyMarkersCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildWhatsAroundMeCallout
@@ -701,6 +704,40 @@ class GeoEngine {
             hasValidLocation = locationProvider.hasValidLocation(),
             localizedStrings = localizedStrings,
             gridState = gridState,
+        )
+    }
+
+    /**
+     * The beacon's distance on demand, for the "Call out Beacon" action on the home screen's
+     * beacon card. Unlike the automatic updates this ignores the DISTANCE_TO_BEACON preference
+     * and the update throttle - the user just asked for it.
+     */
+    fun calloutBeacon(): TrackedCallout? {
+        analytics.logEvent("calloutBeacon", null)
+        val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
+        return buildBeaconCallout(
+            userGeometry = userGeometry,
+            localizedStrings = localizedStrings,
+        ) ?: buildNoBeaconCallout(userGeometry, localizedStrings)
+    }
+
+    /**
+     * The beacon's name, distance, direction and - when the offline geocoder knows it - street
+     * address, for the "More Info" action on the home screen's beacon card and the audio menu.
+     * [beaconName] is null when nothing is playing, which says "No beacon active".
+     */
+    suspend fun beaconMoreInfo(beaconName: String?): TrackedCallout? {
+        analytics.logEvent("beaconMoreInfo", null)
+        val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
+        val beacon = userGeometry.currentBeacon
+        if (beaconName == null || beacon == null) {
+            return buildNoBeaconCallout(userGeometry, localizedStrings)
+        }
+        return buildBeaconMoreInfoCallout(
+            userGeometry = userGeometry,
+            localizedStrings = localizedStrings,
+            beaconName = beaconName,
+            address = getOfflineAddress(beacon),
         )
     }
 

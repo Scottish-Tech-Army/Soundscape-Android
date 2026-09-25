@@ -215,6 +215,34 @@ class FormatDistanceTest {
         assertEquals("DistanceMiles[1](1)", format(1609.0))
     }
 
+    /**
+     * The beacon panel on the home screen has room for "390 m, SE" but not for the word, while
+     * the screen reader gets the word - a screen reader saying "SE" is worse than one saying
+     * "south east". Both come from the same call, differing only in these two flags.
+     */
+    @Test
+    fun abbreviatedDirectionIsForTheScreenOnly() {
+        assertEquals(
+            "DistanceMeters[390](390), DirectionsCardinalSouthEastAbb()",
+            formatDistanceAndDirection(390.0, 135.0, localized, abbreviatedDirection = true),
+        )
+        assertEquals(
+            "DistanceMeters[390](390), DirectionsCardinalSouthEast()",
+            formatDistanceAndDirection(390.0, 135.0, localized, forAccessibility = true),
+        )
+    }
+
+    /** A relative direction is a phrase either way, so there is nothing to abbreviate. */
+    @Test
+    fun abbreviationDoesNotApplyToRelativeDirections() {
+        assertEquals(
+            formatDistanceAndDirection(390.0, 135.0, localized, userHeading = 90.0),
+            formatDistanceAndDirection(
+                390.0, 135.0, localized, userHeading = 90.0, abbreviatedDirection = true,
+            ),
+        )
+    }
+
     @Test
     fun imperialDistancesRoundTheSameWay() {
         metric = false

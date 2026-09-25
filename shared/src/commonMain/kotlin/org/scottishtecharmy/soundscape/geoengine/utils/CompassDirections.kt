@@ -24,6 +24,23 @@ fun getCompassLabel(degrees: Int): StringKey {
     }
 }
 
+/**
+ * The abbreviated cardinal for [degrees] ("NW"), as used where there isn't room for the word -
+ * the beacon card on the home screen. Speech uses [getCompassLabel] instead, because a screen
+ * reader saying "NW" is worse than one saying "north west".
+ */
+fun getCompassLabelAbbreviated(degrees: Int): StringKey =
+    when (getCompassLabel(degrees)) {
+        StringKey.DirectionsCardinalNorthEast -> StringKey.DirectionsCardinalNorthEastAbb
+        StringKey.DirectionsCardinalEast -> StringKey.DirectionsCardinalEastAbb
+        StringKey.DirectionsCardinalSouthEast -> StringKey.DirectionsCardinalSouthEastAbb
+        StringKey.DirectionsCardinalSouth -> StringKey.DirectionsCardinalSouthAbb
+        StringKey.DirectionsCardinalSouthWest -> StringKey.DirectionsCardinalSouthWestAbb
+        StringKey.DirectionsCardinalWest -> StringKey.DirectionsCardinalWestAbb
+        StringKey.DirectionsCardinalNorthWest -> StringKey.DirectionsCardinalNorthWestAbb
+        else -> StringKey.DirectionsCardinalNorthAbb
+    }
+
 fun getRelativeClockTime(degrees: Int, userDegrees: Int): Int {
     val relative = normalizeHeading(degrees - userDegrees)
     val hour = ((relative + 15) / 30) % 12

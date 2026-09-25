@@ -81,6 +81,10 @@ class SoundscapeActionExecutor(
         SoundscapeAction.AheadOfMe -> callout(service, readyTimeoutMs) { service.aheadOfMe() }
         SoundscapeAction.NearbyMarkers ->
             callout(service, readyTimeoutMs) { service.nearbyMarkers() }
+        SoundscapeAction.CalloutBeacon ->
+            callout(service, readyTimeoutMs) { service.calloutBeacon() }
+        SoundscapeAction.BeaconInfo ->
+            callout(service, readyTimeoutMs) { service.beaconMoreInfo() }
 
         is SoundscapeAction.StartRouteById ->
             routeDao.getRouteById(action.routeId)

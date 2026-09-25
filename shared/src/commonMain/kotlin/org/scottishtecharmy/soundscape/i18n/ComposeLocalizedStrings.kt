@@ -37,6 +37,9 @@ import org.scottishtecharmy.soundscape.resources.bytes_format_tb
 import org.scottishtecharmy.soundscape.resources.bytes_format_tb_a11y
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_distance
+import org.scottishtecharmy.soundscape.resources.callouts_no_beacon_active
+import org.scottishtecharmy.soundscape.resources.directions_name_is_currently
+import org.scottishtecharmy.soundscape.resources.directions_name_is_currently_street_address
 import org.scottishtecharmy.soundscape.resources.callouts_no_nearby_markers
 import org.scottishtecharmy.soundscape.resources.callouts_nothing_to_call_out_now
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_balanced
@@ -85,6 +88,14 @@ import org.scottishtecharmy.soundscape.resources.directions_cardinal_south
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_east
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_west
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_west
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_east_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_east_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_east_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_west_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_west_abb
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_west_abb
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_bound
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_east_bound
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_east_bound
@@ -263,6 +274,10 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ConfectNameNextTo -> Res.string.confect_name_next_to
         StringKey.CalloutsAudioBeacon -> Res.string.callouts_audio_beacon
         StringKey.CalloutsAudioBeaconDistance -> Res.string.callouts_audio_beacon_distance
+        StringKey.CalloutsNoBeaconActive -> Res.string.callouts_no_beacon_active
+        StringKey.DirectionsNameIsCurrently -> Res.string.directions_name_is_currently
+        StringKey.DirectionsNameIsCurrentlyStreetAddress ->
+            Res.string.directions_name_is_currently_street_address
         StringKey.DirectionsAtPoi -> Res.string.directions_at_poi
         StringKey.DirectionsDirectionAhead -> Res.string.directions_direction_ahead
         StringKey.IntersectionApproachingIntersection -> Res.string.intersection_approaching_intersection
@@ -290,6 +305,14 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsCardinalSouthWest -> Res.string.directions_cardinal_south_west
         StringKey.DirectionsCardinalWest -> Res.string.directions_cardinal_west
         StringKey.DirectionsCardinalNorthWest -> Res.string.directions_cardinal_north_west
+        StringKey.DirectionsCardinalNorthAbb -> Res.string.directions_cardinal_north_abb
+        StringKey.DirectionsCardinalNorthEastAbb -> Res.string.directions_cardinal_north_east_abb
+        StringKey.DirectionsCardinalEastAbb -> Res.string.directions_cardinal_east_abb
+        StringKey.DirectionsCardinalSouthEastAbb -> Res.string.directions_cardinal_south_east_abb
+        StringKey.DirectionsCardinalSouthAbb -> Res.string.directions_cardinal_south_abb
+        StringKey.DirectionsCardinalSouthWestAbb -> Res.string.directions_cardinal_south_west_abb
+        StringKey.DirectionsCardinalWestAbb -> Res.string.directions_cardinal_west_abb
+        StringKey.DirectionsCardinalNorthWestAbb -> Res.string.directions_cardinal_north_west_abb
         StringKey.DirectionsCardinalNorthBound -> Res.string.directions_cardinal_north_bound
         StringKey.DirectionsCardinalNorthEastBound -> Res.string.directions_cardinal_north_east_bound
         StringKey.DirectionsCardinalEastBound -> Res.string.directions_cardinal_east_bound

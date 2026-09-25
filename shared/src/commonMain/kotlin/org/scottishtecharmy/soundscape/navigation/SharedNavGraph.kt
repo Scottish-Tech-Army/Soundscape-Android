@@ -199,6 +199,12 @@ fun SharedNavHost(
                             navController, SharedRoutes.ROUTE_DETAILS, desc,
                         )
                     },
+                    onSaveMarker = { desc ->
+                        audioTour?.onMarkerCreateStarted()
+                        navStateHolder.navigateWithLocation(
+                            navController, SharedRoutes.EDIT_MARKER, desc,
+                        )
+                    },
                     preferencesProvider = preferencesProvider,
                     onMapLongClick = callbacks.onMapLongClick,
                     bottomButtonFunctions = org.scottishtecharmy.soundscape.screens.home.home.BottomButtonFunctions(
@@ -212,6 +218,8 @@ fun SharedNavHost(
                         skipNext = callbacks.onRouteSkipNext,
                         mute = callbacks.onRouteMute,
                         stop = callbacks.onRouteStop,
+                        calloutBeacon = callbacks.onCalloutBeacon,
+                        beaconMoreInfo = callbacks.onBeaconMoreInfo,
                     ),
                     streetPreviewFunctions = org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions(
                         go = callbacks.onStreetPreviewGo,
@@ -532,6 +540,11 @@ fun SharedNavHost(
                     onShareRoute = {
                         callbacks.onShareRoute(routeDesc.databaseId)
                     },
+                    onSelectWaypoint = { waypoint ->
+                        navStateHolder.navigateWithLocation(
+                            navController, SharedRoutes.LOCATION_DETAILS, waypoint,
+                        )
+                    },
                 )
             }
         }
@@ -561,8 +574,11 @@ fun SharedNavHost(
 
         composable(SharedRoutes.HELP + "/{topic}") { backStackEntry ->
             val topic = backStackEntry.arguments?.read { getString("topic") } ?: ""
+            val helpHomeState by flows.homeState?.collectAsState()
+                ?: remember { mutableStateOf(HomeState()) }
             SharedHelpScreen(
                 topic = topic,
+                locationAccuracy = helpHomeState.locationAccuracy,
                 onNavigate = { dest -> navController.navigate(dest) },
                 onNavigateUp = { navController.popBackStack() },
                 onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {

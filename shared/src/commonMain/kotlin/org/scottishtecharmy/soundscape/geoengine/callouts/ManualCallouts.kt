@@ -23,6 +23,112 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+
+/**
+ * The "Beacon is currently <distance> away" callout, spoken from the beacon's own direction.
+ *
+ * Shared by the automatic distance updates (see AutoCallout, which decides *when* one is due) and
+ * by the beacon card's "Call out Beacon" accessibility action, which is the user asking for it
+ * now - so this function itself neither checks the DISTANCE_TO_BEACON preference nor throttles.
+ * The legacy iOS app treats the two the same way, issuing a DestinationCallout in both cases.
+ */
+fun buildBeaconCallout(
+    userGeometry: UserGeometry,
+    localizedStrings: LocalizedStrings?,
+): TrackedCallout? {
+    val beacon = userGeometry.currentBeacon ?: return null
+
+    val distance = userGeometry.ruler.distance(userGeometry.location, beacon)
+    val distanceString =
+        formatDistanceAndDirection(distance, null, localizedStrings, speed = userGeometry.speed)
+    val text = localizedStrings?.get(StringKey.CalloutsAudioBeaconDistance, distanceString)
+        ?: "Distance to beacon $distanceString"
+    return TrackedCallout(
+        userGeometry = userGeometry,
+        trackedText = "",
+        location = beacon,
+        isPoint = true,
+        isGeneric = true,
+        filter = false,
+        positionedStrings = List(1) {
+            PositionedString(
+                text = text,
+                location = beacon,
+                type = AudioType.LOCALIZED
+            )
+        }
+    )
+}
+
+/**
+ * "No beacon active", for when the user asks to hear about the beacon - Call out Beacon or More
+ * Info, e.g. from the audio menu - and there isn't one. Better than silence, which on the audio
+ * menu leaves the user wondering whether the selection registered at all.
+ */
+fun buildNoBeaconCallout(
+    userGeometry: UserGeometry,
+    localizedStrings: LocalizedStrings?,
+): TrackedCallout =
+    TrackedCallout(
+        userGeometry = userGeometry,
+        filter = false,
+        positionedStrings = listOf(
+            PositionedString(
+                text = localizedStrings?.get(StringKey.CalloutsNoBeaconActive)
+                    ?: "No beacon active",
+                type = AudioType.STANDARD
+            )
+        )
+    )
+
+/**
+ * The beacon card's "More Info" callout, e.g. "Starbucks is currently 700 metres, north west.
+ * Street address is 123 Main Street.", spoken from the beacon's own direction. The address is
+ * dropped when the offline geocoder has nothing for the location.
+ *
+ * Spoken through TTS rather than announced by the screen reader, as the legacy iOS app did, so
+ * that it can also be triggered where there is no screen at all, e.g. from media controls.
+ */
+fun buildBeaconMoreInfoCallout(
+    userGeometry: UserGeometry,
+    localizedStrings: LocalizedStrings?,
+    beaconName: String,
+    address: LocationDescription?,
+): TrackedCallout? {
+    val beacon = userGeometry.currentBeacon ?: return null
+
+    val distance = userGeometry.ruler.distance(userGeometry.location, beacon)
+    val bearing = userGeometry.ruler.bearing(userGeometry.location, beacon)
+    val distanceString = formatDistanceAndDirection(
+        distance, bearing, localizedStrings, speed = userGeometry.speed
+    )
+    val street = address?.description?.takeIf { it.isNotEmpty() }
+        ?: address?.name?.takeIf { it.isNotEmpty() }
+    val text = if (street != null) {
+        localizedStrings?.get(
+            StringKey.DirectionsNameIsCurrentlyStreetAddress, beaconName, distanceString, street
+        ) ?: "$beaconName is currently $distanceString. Street address is $street."
+    } else {
+        localizedStrings?.get(StringKey.DirectionsNameIsCurrently, beaconName, distanceString)
+            ?: "$beaconName is currently $distanceString."
+    }
+    return TrackedCallout(
+        userGeometry = userGeometry,
+        trackedText = "",
+        location = beacon,
+        isPoint = true,
+        isGeneric = true,
+        filter = false,
+        positionedStrings = List(1) {
+            PositionedString(
+                text = text,
+                location = beacon,
+                type = AudioType.LOCALIZED
+            )
+        }
+    )
+}
 
 @OptIn(ExperimentalCoroutinesApi::class)
 fun buildMyLocationCallout(

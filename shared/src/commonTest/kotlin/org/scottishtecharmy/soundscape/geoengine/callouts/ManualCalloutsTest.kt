@@ -382,4 +382,59 @@ class ManualCalloutsTest {
             assertEquals(AudioType.LOCALIZED, positionedString.type)
         }
     }
+
+    // ---- buildBeaconMoreInfoCallout ------------------------------------------------------
+
+    @Test
+    fun beaconMoreInfo_noBeacon_returnsNull() {
+        val userGeometry = UserGeometry(location = LngLatAlt(-2.657, 51.430))
+        assertNull(buildBeaconMoreInfoCallout(userGeometry, strings, "Library", null))
+    }
+
+    @Test
+    fun beaconMoreInfo_withAddress_namesTheStreetAndIsSpokenFromTheBeacon() {
+        val origin = LngLatAlt(-2.657, 51.430)
+        val beacon = getDestinationCoordinate(origin, 0.0, 100.0)
+        val userGeometry = UserGeometry(location = origin, currentBeacon = beacon)
+        val address = LocationDescription(
+            name = "Library",
+            description = "1 Main Street",
+            location = beacon,
+        )
+
+        val callout = buildBeaconMoreInfoCallout(userGeometry, strings, "Library", address)
+
+        assertNotNull(callout)
+        assertEquals(1, callout.positionedStrings.size)
+        val spoken = callout.positionedStrings[0]
+        assertTrue(spoken.text.startsWith("${StringKey.DirectionsNameIsCurrentlyStreetAddress}(Library, "))
+        assertTrue(spoken.text.contains("${StringKey.DirectionsCardinalNorth}"))
+        assertTrue(spoken.text.endsWith(", 1 Main Street)"))
+        assertEquals(beacon, spoken.location)
+        assertEquals(AudioType.LOCALIZED, spoken.type)
+    }
+
+    @Test
+    fun beaconMoreInfo_noAddress_leavesTheStreetOut() {
+        val origin = LngLatAlt(-2.657, 51.430)
+        val beacon = getDestinationCoordinate(origin, 90.0, 100.0)
+        val userGeometry = UserGeometry(location = origin, currentBeacon = beacon)
+
+        val callout = buildBeaconMoreInfoCallout(userGeometry, strings, "Library", null)
+
+        assertNotNull(callout)
+        assertTrue(
+            callout.positionedStrings[0].text
+                .startsWith("${StringKey.DirectionsNameIsCurrently}(Library, ")
+        )
+    }
+
+    @Test
+    fun noBeacon_saysNoBeaconActive() {
+        val userGeometry = UserGeometry(location = LngLatAlt(-2.657, 51.430))
+        val callout = buildNoBeaconCallout(userGeometry, strings)
+        assertEquals(1, callout.positionedStrings.size)
+        assertEquals(strings.get(StringKey.CalloutsNoBeaconActive), callout.positionedStrings[0].text)
+        assertEquals(AudioType.STANDARD, callout.positionedStrings[0].type)
+    }
 }
