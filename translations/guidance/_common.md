@@ -189,6 +189,7 @@ screens.
 | Language | Marker | Chosen by |
 |---|---|---|
 | hu | «a(z)», «A(z)» | first sound of the next word: vowel → «az»; letter names (az M7, az SZTE) and numbers (az 1, az 5, a 12) by how they're said |
+| fi | «{Tiellä %1$s}», «{Kadulla %1$s}» | the name's street-word ending takes the adessive (-tie → -tiellä, -katu → -kadulla, -mäki → -mäellä), a leading Vanha / Itäinen / Toinen… declines too; a name without a known ending keeps the label («Tiellä Almas väg») |
 | hu | «%1$s{úton}» | the name's own street word takes the "on" case (Andrássy út → úton, Váci utca → utcán, Deák tér → téren, Hősök tere → terén); a name without one gets « úton» |
 | ko | 을(를), 이(가), 은(는), 과(와) and the reversed forms, (으)로, (이) | final consonant of the preceding syllable; ㄹ takes 로; numbers in Sino-Korean, Latin by letter name or spelling |
 | tr | '{DA} '{DAn} '{A} '{I} '{In} (locative, ablative, dative, accusative, genitive) | last vowel (harmony) and final sound of the preceding word: İstanbul'da, Park'ta, Ankara'ya; the possessive ending of «Caddesi», «Parkı», «Mahallesi»… adds n (Caddesi'nde); numbers by their last spoken word (3'te, 40'ta, 5'in); abbreviations by letter name (TRT'ye) |

@@ -2,8 +2,8 @@ package org.scottishtecharmy.soundscape.i18n
 
 /**
  * Resolves the "either form" markers that translators write when a word's form depends on the
- * text a placeholder is replaced with, e.g. Hungarian «a(z) %1$s», Korean «%1$s을(를)» or
- * Turkish «%1$s'{DA}».
+ * text a placeholder is replaced with, e.g. Hungarian «a(z) %1$s», Korean «%1$s을(를)»,
+ * Turkish «%1$s'{DA}» or Finnish «{Tiellä %1$s}».
  *
  * A translation can't pick the right form because it doesn't know the street or place name that
  * will be filled in, so it writes both. On screen that's merely awkward, but a screen reader
@@ -16,7 +16,7 @@ package org.scottishtecharmy.soundscape.i18n
 fun resolveGrammarMarkers(text: String): String {
     if ('(' !in text && '{' !in text) return text
     val hungarian = resolveHungarianArticles(resolveHungarianRoadCase(text))
-    return resolveTurkishSuffixes(resolveKoreanParticles(hungarian))
+    return resolveFinnishRoadCase(resolveTurkishSuffixes(resolveKoreanParticles(hungarian)))
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -364,4 +364,72 @@ private fun turkishSuffixFor(archiphoneme: String, stem: TurkishStem?): String {
         }
         else -> if (possessive || endsInVowel) "n${i}n" else "${i}n" // In
     }
+}
+
+// ---------------------------------------------------------------------------------------------
+// Finnish: "on the road X" is the road name itself in the adessive: «Mannerheimintiellä».
+// ---------------------------------------------------------------------------------------------
+
+// Finnish can't inflect a map name it doesn't know, so templates said «Tiellä %1$s» ("on the road
+// Mannerheimintie"), which names the road type twice. «{Tiellä %1$s}» wraps the name instead: when
+// its last word ends in a known street word, that ending takes the adessive («Mannerheimintiellä»,
+// «Aleksanterinkadulla»); otherwise the label stays («Tiellä Almas väg»), as before. The label is
+// matched case-insensitively and only «tiellä» / «kadulla» count, so no other brace is touched.
+private val finnishRoadCase = Regex("\\{([Tt]iellä|[Kk]adulla) ([^{}]+)\\}")
+
+// Street-word endings and their adessive, consonant gradation included (katu → kadulla,
+// mäki → mäellä). Measured against the Helsinki extract (2026-09): these cover about 94% of the
+// Finnish street names; most of the rest are Swedish names, which keep the label.
+private val finnishStreetEndings = mapOf(
+    "tie" to "tiellä", "katu" to "kadulla", "kuja" to "kujalla", "polku" to "polulla",
+    "rinne" to "rinteellä", "raitti" to "raitilla", "mäki" to "mäellä", "kaari" to "kaarella",
+    "ranta" to "rannalla", "silta" to "sillalla", "portti" to "portilla", "piha" to "pihalla",
+    "aukio" to "aukiolla", "kallio" to "kalliolla", "kulma" to "kulmalla", "tori" to "torilla",
+    "puistikko" to "puistikolla", "väylä" to "väylällä", "rata" to "radalla",
+    "kaarre" to "kaarteella", "kierto" to "kierrolla", "penger" to "penkereellä",
+    "laituri" to "laiturilla", "bulevardi" to "bulevardilla", "esplanadi" to "esplanadilla",
+    "promenadi" to "promenadilla", "reitti" to "reitillä", "lenkki" to "lenkillä",
+    "kenttä" to "kentällä", "puisto" to "puistossa", "niemi" to "niemellä", "linja" to "linjalla",
+    "tanhua" to "tanhualla", "vainio" to "vainiolla", "portaat" to "portailla",
+    "tunneli" to "tunnelissa", "niitty" to "niityllä", "käytävä" to "käytävällä",
+    "taival" to "taipaleella", "mutka" to "mutkalla", "törmä" to "törmällä", "laita" to "laidalla",
+    "reuna" to "reunalla", "pelto" to "pellolla", "suora" to "suoralla", "harju" to "harjulla",
+    "haara" to "haaralla", "varsi" to "varrella", "koukku" to "koukulla",
+    "kierros" to "kierroksella", "ympyrä" to "ympyrällä",
+)
+private val finnishStreetEndingsLongestFirst = finnishStreetEndings.keys.sortedByDescending { it.length }
+
+// A leading adjective or ordinal declines with the street word («Vanhalla Vihdintiellä», «Toisella
+// linjalla»). Anything else before it is a genitive or a person's name, which stays as it is
+// («Ali-Seppälän tiellä», «Toivo Kuulan polulla»).
+private val finnishLeadingWords = mapOf(
+    "vanha" to "vanhalla", "iso" to "isolla", "uusi" to "uudella", "pieni" to "pienellä",
+    "itäinen" to "itäisellä", "läntinen" to "läntisellä", "pohjoinen" to "pohjoisella",
+    "eteläinen" to "eteläisellä", "toinen" to "toisella", "kolmas" to "kolmannella",
+    "neljäs" to "neljännellä", "viides" to "viidennellä", "kuudes" to "kuudennella",
+    "seitsemäs" to "seitsemännellä", "kahdeksas" to "kahdeksannella",
+    "yhdeksäs" to "yhdeksännellä", "kymmenes" to "kymmenennellä",
+)
+
+internal fun resolveFinnishRoadCase(text: String): String {
+    if ('{' !in text) return text
+    return finnishRoadCase.replace(text) { match ->
+        val label = match.groupValues[1]
+        val name = match.groupValues[2]
+        finnishAdessive(name) ?: "$label $name"
+    }
+}
+
+private fun finnishAdessive(name: String): String? {
+    val words = name.split(' ').toMutableList()
+    val last = words.last()
+    val lower = last.lowercase()
+    val ending = finnishStreetEndingsLongestFirst.firstOrNull { lower.endsWith(it) } ?: return null
+    words[words.lastIndex] = last.dropLast(ending.length) + finnishStreetEndings.getValue(ending)
+    if (words.size > 1) {
+        finnishLeadingWords[words[0].lowercase()]?.let { form ->
+            words[0] = if (words[0][0].isUpperCase()) form.replaceFirstChar { it.uppercaseChar() } else form
+        }
+    }
+    return words.joinToString(" ")
 }

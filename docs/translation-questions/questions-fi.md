@@ -119,7 +119,23 @@ ei muista.
 
 **Kysymys:** kuulostavatko ne luontevilta? Sanoisitko jotain muuta?
 
-### Q5 — Jotain muuta? *(Anything else)*
+### Q5 — Kadunnimet ilmoituksissa *(Street names now inflected)*
+
+**Milloin sen kuulee:** melkein jokaisessa kävelyn aikaisessa ilmoituksessa.
+
+**Englanniksi:** "Heading north along Mannerheimintie", "On Aleksanterinkatu
+between …".
+
+**Nyt se kuulostaa tältä:** aiemmin sovellus sanoi "Tiellä Mannerheimintie" ja
+"Kadulla Aleksanterinkatu", koska se ei osannut taivuttaa nimiä. Nyt se taivuttaa
+nimen lopun: "Matkalla pohjoiseen Mannerheimintiellä", "Aleksanterinkadulla,
+välillä …", "Vanhalla Vihdintiellä", "Toisella linjalla". Jos nimi ei pääty
+tuttuun sanaan (esim. ruotsinkielinen nimi tai "E18"), se sanoo edelleen "Tiellä
+Almas väg".
+
+**Kysymys:** kuulostaako tämä oikealta? Keksitkö nimiä, jotka se taivuttaa väärin?
+
+### Q6 — Jotain muuta? *(Anything else)*
 
 Jos jokin lause kuulostaa englannista käännetyltä, liian pitkältä tai
 epäselvältä, kerro meille.

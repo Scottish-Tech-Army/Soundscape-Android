@@ -329,4 +329,42 @@ class GrammarMarkersTest {
         assertEquals("★'de", tr("★'{DA}"))
         assertEquals("'e yakın", tr("'{A} yakın"))
     }
+
+    // --- Finnish (names from the Helsinki extract) ------------------------------------------
+
+    private fun fi(text: String) = resolveGrammarMarkers(text)
+
+    @Test
+    fun finnishRoadNameTakesTheAdessive() {
+        assertEquals("Mannerheimintiellä", fi("{Tiellä Mannerheimintie}"))
+        assertEquals("Aleksanterinkadulla, välillä A ja B", fi("{Kadulla Aleksanterinkatu}, välillä A ja B"))
+        assertEquals("Matkalla pohjoiseen Hämeentiellä", fi("Matkalla pohjoiseen {tiellä Hämeentie}"))
+        assertEquals("Kauppatorilla", fi("{Tiellä Kauppatori}"))
+        assertEquals("Kalliomäellä", fi("{Tiellä Kalliomäki}"))
+        assertEquals("Kirkkopolulla", fi("{Tiellä Kirkkopolku}"))
+        assertEquals("Pitkänsillalla", fi("{Tiellä Pitkänsilta}"))
+        assertEquals("Pohjoisesplanadilla", fi("{Kadulla Pohjoisesplanadi}"))
+        assertEquals("Muurlan kuntoradalla", fi("{Tiellä Muurlan kuntorata}"))
+    }
+
+    @Test
+    fun finnishLeadingAdjectiveDeclinesTooButGenitivesDoNot() {
+        assertEquals("Vanhalla Vihdintiellä", fi("{Tiellä Vanha Vihdintie}"))
+        assertEquals("Itäisellä Harjutiellä", fi("{Tiellä Itäinen Harjutie}"))
+        assertEquals("Toisella linjalla", fi("{Kadulla Toinen linja}"))
+        assertEquals("Ali-Seppälän tiellä", fi("{Tiellä Ali-Seppälän tie}"))
+        assertEquals("Toivo Kuulan polulla", fi("{Tiellä Toivo Kuulan polku}"))
+    }
+
+    @Test
+    fun finnishUnknownNamesKeepTheLabel() {
+        assertEquals("Tiellä Almas väg", fi("{Tiellä Almas väg}"))
+        assertEquals("Tiellä Etelä-Pohjoinen 2", fi("{Tiellä Etelä-Pohjoinen 2}"))
+        assertEquals("matkalla tiellä E18", fi("matkalla {tiellä E18}"))
+    }
+
+    @Test
+    fun finnishMarkerLeavesOtherBracesAlone() {
+        assertEquals("{Jotain muuta}", fi("{Jotain muuta}"))
+    }
 }

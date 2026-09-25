@@ -17,7 +17,7 @@ An earlier note (FR-B1 in `fr.md`) worried that «Kaksoisnapauta %1$s» lacked
 a connective, but the hints are translative infinitives («hiljentääksesi
 äänimajakan», "in order to mute the beacon"), which carry the "to" meaning
 themselves. The Siri phrases (`fi.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-fi.md` (Q1…Q5).
+`docs/translation-questions/questions-fi.md` (Q1…Q6).
 
 ## Glossary
 
@@ -69,13 +69,24 @@ so the help text still names choices Siri recognises (FI-C1).
 
 Nothing yet.
 
+### FI-G2 — Road templates named the road type twice (`fixed` in code, 2026-09-25)
+
+34 templates wrote «Tiellä %1$s» / «Kadulla %1$s» ("on the road X"), a label that
+avoids inflecting the name but doubles it: «Tiellä Mannerheimintie», «Kadulla
+Aleksanterinkatu». They now write «{Tiellä %1$s}» and `resolveGrammarMarkers()`
+(C18) inflects the name itself: «Mannerheimintiellä», «Aleksanterinkadulla»,
+«Vanhalla Vihdintiellä». Measured on the Helsinki extract: 94% of Finnish street
+names are covered; the rest (Swedish names, «E18») keep the label. **New road
+templates must use the wrapped form.**
+
 ## Open questions
 
 1. «Polku kohteeseen umpikuja» or «Polku umpikujaan»? (FI-G1)
 2. Callout «ilmoitus»: confused with phone notifications?
 3. The four detail levels: clear?
 4. Siri phrases «Soundscape ympäristö / reitti / majakka / pysäytä majakka…»: natural?
-5. Anything else.
+5. Street names are now inflected («Mannerheimintiellä», «Vanhalla Vihdintiellä») instead of «Tiellä X». Right? Any names it gets wrong? (FI-G2)
+6. Anything else.
 
 ## Provenance
 
