@@ -1586,4 +1586,6 @@
     <string name="siri_param_level">Niveau</string>
     <string name="siri_desc_callout_detail">Définit la quantité d’informations que Soundscape annonce pendant que vous marchez.</string>
     <string name="intersection_approaching_intersection_distance">Intersection à %1$s</string>
+    <string name="microsoft_copyright">[L’application Soundscape d’origine ©Microsoft Corporation](https://github.com/microsoft/soundscape) a fourni les sons de la balise sonore et de nombreuses traductions, et est mise à disposition sous la licence [MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Des bénévoles de [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) ont amélioré plusieurs traductions, mises à disposition sous la licence [MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
