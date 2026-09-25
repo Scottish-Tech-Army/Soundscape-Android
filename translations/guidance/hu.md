@@ -57,8 +57,8 @@ Nothing yet.
 1. Does the automatic a/az choice sound right, especially before road
    numbers, abbreviations and numbers? (HU-A1)
 2. Register: «te» everywhere, or «Ön» everywhere? (HU-R1)
-3. Beacon «hangjelző»: natural?
-4. Callout «bejelentés»: natural?
+3. Beacon «hangjelző»: natural? In everyday use it means a buzzer, beeper or car horn, so it may not suggest a sound that shows a direction.
+4. Callout «bejelentés»: natural? It can sound official; «bemondás» (a public-transport announcement) was offered as an alternative. «értesítés» was ruled out because it clashes with phone notifications.
 5. Anything else.
 
 ## Provenance
