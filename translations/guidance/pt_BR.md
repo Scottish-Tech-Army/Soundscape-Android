@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 A well-preserved Microsoft baseline, but Microsoft made two unusual term
 choices (PTBR-T1) that are worth putting to a speaker. The hints compose
 correctly. The Siri phrases (`pt-BR.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-pt_BR.md` (Q1…Q7).
+`docs/translation-questions/questions-pt_BR.md` (Q1…Q8).
 
 ## Glossary
 
@@ -58,6 +58,14 @@ Microsoft's «Tudo pronto!» was neutral (C15). Revert.
 `first_launch_welcome_title` «Bem-vindo(a)!» has the same root problem, and a
 screen reader reads the brackets aloud. «Boas-vindas!» or «Olá!» avoids both.
 
+### PTBR-G1 — Article chosen from the name, not fixed feminine (`fixed` in code, 2026-09-25)
+
+Same as PT-G1: «ao longo da %1$s», «Na %1$s» assumed a feminine type. 51 templates
+now wrap the preposition, «{pt:da %1$s}», and `resolveGrammarMarkers()` (C18)
+picks the article from the name: «ao longo do Parque Ibirapuera», «Na Av.
+Paulista», «Próximo ao Mercado Municipal». Unknown names keep the template's
+wording. **New templates must wrap map-name prepositions.**
+
 ## Rejected
 
 «Em Ociosidade» for Snooze (Microsoft). It means "idle" and was replaced by
@@ -71,7 +79,8 @@ screen reader reads the brackets aloud. «Boas-vindas!» or «Olá!» avoids bot
 4. «Tudo pronto!» again? And «Boas-vindas!» instead of «Bem-vindo(a)!»? (PTBR-R1)
 5. Callout «notificação»: confused with phone notifications?
 6. Siri phrases «Soundscape arredores / rota / sinalizador / parar sinalizador…»: natural?
-7. Anything else.
+7. Articles are now chosen from the name («ao longo do Parque Ibirapuera»). Right? (PTBR-G1)
+8. Anything else.
 
 ## Provenance
 

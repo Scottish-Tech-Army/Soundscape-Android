@@ -69,6 +69,15 @@ Los conceptos se describen con más detalle (en inglés)
   aplicación original para iOS, para que quien venga de ella note las mínimas
   diferencias posibles.
 
+## Una novedad: artículos ante los nombres
+
+Hasta ahora, la aplicación insertaba los nombres tal como están en el mapa: «por
+Avenida de Mayo», «cerca de El Corte Inglés». Ahora añade el artículo ella misma:
+«Caminando hacia el norte por la avenida de Mayo», «A punto de llegar al pasaje
+Carabelas», «Cerca del Hospital Italiano», «Cerca del Corte Inglés». Las calles con
+nombre de persona («Juan B. Justo») siguen sin artículo. Si algún nombre te suena
+mal, cuéntanos.
+
 ## ¿Algo más?
 
 Si una frase te suena a traducción del inglés, es demasiado larga o no se

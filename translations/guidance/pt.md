@@ -16,7 +16,7 @@ A well-preserved Microsoft baseline. Microsoft's Title Case style («Sinal de
 Áudio», «Ponto de Passagem») is carried through, which is a house style and
 not an error. The hints compose correctly («Toque duas vezes para desativar
 o Sinal de Áudio»), and the Siri phrases (`pt.lproj`) match the help text.
-Questions: `docs/translation-questions/questions-pt.md` (Q1…Q5).
+Questions: `docs/translation-questions/questions-pt.md` (Q1…Q6).
 
 ## Glossary
 
@@ -45,6 +45,16 @@ Microsoft's «Está tudo pronto!» was neutral. It is now «Está pronto!»
 (masculine), following our English change (C15). Reverting to «Está tudo
 pronto!» is the obvious fix.
 
+### PT-G1 — Article chosen from the name, not fixed feminine (`fixed` in code, 2026-09-25)
+
+Templates wrote «na %1$s» / «da %1$s», right for «Rua», wrong for every masculine
+type («na Largo do Carmo»). 51 templates now wrap the preposition, «{pt:na %1$s}»,
+and `resolveGrammarMarkers()` (C18) picks no/na, do/da, ao/à, pelo/pela from the
+name's first word («no Largo do Carmo», «da Praça do Comércio», «ao Mercado da
+Ribeira»); «Em %1$s» gains its article too («Na Rua Augusta»). A name it doesn't
+recognise keeps the template's wording. **New templates must wrap map-name
+prepositions.**
+
 ## Rejected
 
 Nothing yet.
@@ -55,7 +65,8 @@ Nothing yet.
 2. «Está tudo pronto!» again? (PT-R1)
 3. The four detail levels (Detalhado / Equilibrado / Discreto / Silencioso): clear?
 4. Siri phrases «Soundscape arredores / rota / sinal / parar sinal…»: natural?
-5. Anything else.
+5. Articles are now chosen from the name («no Largo do Carmo», «na Rua Augusta»). Right? (PT-G1)
+6. Anything else.
 
 ## Provenance
 

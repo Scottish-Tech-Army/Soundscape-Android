@@ -3,8 +3,8 @@ package org.scottishtecharmy.soundscape.i18n
 /**
  * Resolves the "either form" markers that translators write when a word's form depends on the
  * text a placeholder is replaced with, e.g. Hungarian «a(z) %1$s», Korean «%1$s을(를)»,
- * Turkish «%1$s'{DA}», Finnish «{Tiellä %1$s}», Estonian «{Tänaval %1$s}» or French
- * «le long {de %1$s}».
+ * Turkish «%1$s'{DA}», Finnish «{Tiellä %1$s}», Estonian «{Tänaval %1$s}», or the Romance
+ * «le long {fr:de %1$s}».
  *
  * A translation can't pick the right form because it doesn't know the street or place name that
  * will be filled in, so it writes both. On screen that's merely awkward, but a screen reader
@@ -17,7 +17,7 @@ package org.scottishtecharmy.soundscape.i18n
 fun resolveGrammarMarkers(text: String): String {
     if ('(' !in text && '{' !in text) return text
     val hungarian = resolveHungarianArticles(resolveHungarianTerminative(resolveHungarianRoadCase(text)))
-    val finnic = resolveEstonianRoadCase(resolveFinnishRoadCase(resolveFrenchArticles(hungarian)))
+    val finnic = resolveEstonianRoadCase(resolveFinnishRoadCase(resolveRomanceArticles(hungarian)))
     return resolveTurkishSuffixes(resolveKoreanParticles(finnic))
 }
 
@@ -517,75 +517,87 @@ private fun estonianAdessive(name: String): String? {
 }
 
 // ---------------------------------------------------------------------------------------------
-// French: articles and contractions around a map name, «le long {de %1$s}».
+// French, Spanish, Italian, Portuguese: articles and contractions around a map name.
 // ---------------------------------------------------------------------------------------------
 
-// French puts an article before a street or place type and contracts it with «de» / «à»: «le
-// long de la rue de Rivoli», «au boulevard Haussmann», «près du Lycée Marie Curie», «aux Halles».
-// A template can't know the name, so it wraps the preposition and the name, «{de %1$s}», and this
-// adds or contracts the article. Only the prepositions below are recognised, so no other brace is
-// touched, and a template with a distance or a count in that slot simply isn't wrapped.
-private val frenchArticle = Regex("\\{(de|De|à|À|sur|Sur|vers|Vers|entre|et|après|avant|depuis) ([^{}]+)\\}")
+// A template can't know the map name it will get, so it can't pick the article or contract it
+// with the preposition before it (French «du», Spanish «del», Italian «alla», Portuguese «no»).
+// It wraps the preposition and the name instead, tagged with the language because «de» and
+// «entre» exist in several of them: «le long {fr:de %1$s}», «{es:por %1$s}», «{it:a %1$s}»,
+// «{pt:na %1$s}». Only a placeholder that holds a place or street name is wrapped, never a
+// distance or a count.
+private val romanceMarker = Regex("\\{(fr|es|it|pt):(\\S+) ([^{}]+)\\}")
 
-private enum class FrenchGender { M, F }
+internal fun resolveRomanceArticles(text: String): String {
+    if ('{' !in text) return text
+    return romanceMarker.replace(text) { match ->
+        val (language, preposition, name) = match.destructured
+        when (language) {
+            "fr" -> frenchPhrase(preposition, name)
+            "es" -> spanishPhrase(preposition, name)
+            "it" -> italianPhrase(preposition, name)
+            else -> portuguesePhrase(preposition, name)
+        }
+    }
+}
 
-private class FrenchType(val gender: FrenchGender, val elides: Boolean, val lowercase: Boolean)
+private enum class Gender { M, F }
+
+/** A street or place word that opens a name, with the article it takes. */
+private class NounType(val gender: Gender, val elides: Boolean = false, val lowercase: Boolean = false)
+
+private fun MutableMap<String, NounType>.words(type: NounType, vararg words: String) =
+    words.forEach { put(it, type) }
+
+private fun capitaliseLike(model: String, text: String) =
+    if (model[0].isUpperCase()) text.replaceFirstChar { it.uppercaseChar() } else text
+
+// --- French ------------------------------------------------------------------------------------
 
 // Road words are written lowercase after the article («la rue de Rivoli»); place words keep the
 // name's capital («le Centre Pompidou»). Measured against the Paris extract (2026-09), road words
 // open 96% of its 73,000 street names. Quebec's rang, côte, montée and croissant are included.
-private val frenchTypes: Map<String, FrenchType> = buildMap {
-    fun road(g: FrenchGender, elides: Boolean, vararg words: String) =
-        words.forEach { put(it, FrenchType(g, elides, lowercase = true)) }
-    fun place(g: FrenchGender, elides: Boolean, vararg words: String) =
-        words.forEach { put(it, FrenchType(g, elides, lowercase = false)) }
-    road(FrenchGender.F, false, "rue", "route", "place", "sente", "villa", "ruelle", "résidence", "voie",
-        "cour", "promenade", "cité", "passerelle", "venelle", "montée", "rampe", "traverse", "piste",
-        "berge", "digue", "galerie", "côte", "terrasse", "boucle")
-    road(FrenchGender.F, true, "allée", "avenue", "impasse", "esplanade", "autoroute")
-    road(FrenchGender.M, false, "chemin", "square", "sentier", "passage", "boulevard", "rond-point",
-        "clos", "quai", "mail", "pont", "hameau", "cours", "carrefour", "tunnel", "parvis", "faubourg",
-        "rang", "croissant", "lotissement", "domaine")
-    place(FrenchGender.F, false, "pharmacie", "maison", "mairie", "crèche", "boucherie", "gare", "salle",
+private val frenchTypes: Map<String, NounType> = buildMap {
+    words(NounType(Gender.F, lowercase = true), "rue", "route", "place", "sente", "villa", "ruelle",
+        "résidence", "voie", "cour", "promenade", "cité", "passerelle", "venelle", "montée", "rampe",
+        "traverse", "piste", "berge", "digue", "galerie", "côte", "terrasse", "boucle")
+    words(NounType(Gender.F, elides = true, lowercase = true), "allée", "avenue", "impasse",
+        "esplanade", "autoroute")
+    words(NounType(Gender.M, lowercase = true), "chemin", "square", "sentier", "passage", "boulevard",
+        "rond-point", "clos", "quai", "mail", "pont", "hameau", "cours", "carrefour", "tunnel", "parvis",
+        "faubourg", "rang", "croissant", "lotissement", "domaine")
+    words(NounType(Gender.F), "pharmacie", "maison", "mairie", "crèche", "boucherie", "gare", "salle",
         "boulangerie", "porte", "bibliothèque", "piscine", "station", "banque", "poste", "clinique")
-    place(FrenchGender.F, true, "école", "église")
-    place(FrenchGender.M, false, "centre", "collège", "gymnase", "lycée", "château", "stade", "café",
+    words(NounType(Gender.F, elides = true), "école", "église")
+    words(NounType(Gender.M), "centre", "collège", "gymnase", "lycée", "château", "stade", "café",
         "cimetière", "marché", "musée", "théâtre", "cinéma", "restaurant", "supermarché", "magasin",
         "parc", "jardin", "parking")
-    place(FrenchGender.M, true, "hôtel", "espace", "institut", "atelier", "hôpital")
+    words(NounType(Gender.M, elides = true), "hôtel", "espace", "institut", "atelier", "hôpital")
 }
 
 private const val FRENCH_VOWELS = "aeiouyàâéèêëîïôûüœAEIOUYÀÂÉÈÊËÎÏÔÛÜŒ"
-
-internal fun resolveFrenchArticles(text: String): String {
-    if ('{' !in text) return text
-    return frenchArticle.replace(text) { match -> frenchPhrase(match.groupValues[1], match.groupValues[2]) }
-}
 
 private fun frenchPhrase(preposition: String, name: String): String {
     val first = name.substringBefore(' ')
     val rest = name.substring(first.length)
     val lower = preposition.lowercase()
-    val capital = preposition[0].isUpperCase()
-    fun cap(s: String) = if (capital) s.replaceFirstChar { it.uppercaseChar() } else s
 
     // «de» + le = du, les = des; «à» + le = au, les = aux. Anything else keeps the article whole.
     fun withArticle(article: String): String = when {
-        lower == "de" && article == "le " -> cap("du ")
-        lower == "de" && article == "les " -> cap("des ")
-        lower == "à" && article == "le " -> cap("au ")
-        lower == "à" && article == "les " -> cap("aux ")
+        lower == "de" && article == "le " -> capitaliseLike(preposition, "du ")
+        lower == "de" && article == "les " -> capitaliseLike(preposition, "des ")
+        lower == "à" && article == "le " -> capitaliseLike(preposition, "au ")
+        lower == "à" && article == "les " -> capitaliseLike(preposition, "aux ")
         else -> "$preposition $article"
     }
 
     frenchTypes[first.lowercase()]?.let { type ->
         val article = when {
             type.elides -> "l’"
-            type.gender == FrenchGender.M -> "le "
+            type.gender == Gender.M -> "le "
             else -> "la "
         }
-        val word = if (type.lowercase) first.lowercase() else first
-        return withArticle(article) + word + rest
+        return withArticle(article) + (if (type.lowercase) first.lowercase() else first) + rest
     }
     // A name that brings its own «Le» / «Les» contracts it («du Bon Marché», «aux Halles»); with
     // any other preposition the article stays as the name writes it («vers Le Havre»).
@@ -593,7 +605,144 @@ private fun frenchPhrase(preposition: String, name: String): String {
         return withArticle(first.lowercase() + " ") + rest.trimStart()
     }
     if (lower == "de" && name.isNotEmpty() && name[0] in FRENCH_VOWELS) {
-        return cap("d’") + name
+        return capitaliseLike(preposition, "d’") + name
     }
+    return "$preposition $name"
+}
+
+// --- Spanish -----------------------------------------------------------------------------------
+
+// Spanish contracts only «el»: de + el = del, a + el = al. Road words go lowercase after the
+// article («por la avenida de Mayo»); place words keep their capital («cerca del Hospital
+// Italiano»). Checked against the Buenos Aires and San Salvador test tiles (2026-09); many
+// Argentine streets are a person's name alone («Juan B. Justo»), which takes no article and is
+// left as it is.
+private val spanishTypes: Map<String, NounType> = buildMap {
+    words(NounType(Gender.F, lowercase = true), "calle", "avenida", "diagonal", "senda", "carretera",
+        "colonia", "prolongación", "entrada", "plaza", "ronda", "travesía", "glorieta", "vía", "rambla",
+        "cuesta", "carrera", "transversal", "autopista", "autovía", "costanera", "plazoleta", "alameda",
+        "rotonda", "cerrada", "privada", "calzada", "ruta", "circunvalación", "bajada", "subida",
+        "vereda", "peatonal", "av.", "avda.")
+    words(NounType(Gender.M, lowercase = true), "pasaje", "camino", "acceso", "puente", "boulevard",
+        "bulevar", "callejón", "redondel", "paseo", "jirón", "sendero", "malecón", "andador",
+        "periférico", "viaducto", "pasadizo", "pje.")
+    words(NounType(Gender.F), "escuela", "farmacia", "iglesia", "comisaría", "estación", "casa",
+        "clínica", "alcaldía", "tienda", "cancha", "universidad", "biblioteca", "catedral", "capilla",
+        "terminal", "ferretería", "parada")
+    words(NounType(Gender.M), "centro", "instituto", "club", "colegio", "supermercado", "hospital",
+        "hotel", "parque", "jardín", "cementerio", "restaurante", "mercado", "museo", "teatro",
+        "estadio", "banco", "aeropuerto", "gimnasio", "parqueo")
+}
+
+private val spanishFeminineOrdinal = Regex("^\\d+[aª]$")
+private val spanishMasculineOrdinal = Regex("^\\d+[oº]$")
+
+private fun spanishPhrase(preposition: String, name: String): String {
+    val first = name.substringBefore(' ')
+    val rest = name.substring(first.length)
+    val lower = preposition.lowercase()
+
+    fun withArticle(article: String): String = when {
+        lower == "de" && article == "el " -> capitaliseLike(preposition, "del ")
+        lower == "a" && article == "el " -> capitaliseLike(preposition, "al ")
+        else -> "$preposition $article"
+    }
+
+    val type = spanishTypes[first.lowercase()]
+    if (type != null) {
+        val article = if (type.gender == Gender.M) "el " else "la "
+        // An abbreviation («Av.», «Pje.») keeps the name's own spelling.
+        val word = if (type.lowercase && !first.endsWith('.')) first.lowercase() else first
+        return withArticle(article) + word + rest
+    }
+    // An ordinal such as «2a Calle Poniente» takes the article of the word it numbers.
+    if (spanishFeminineOrdinal.matches(first)) return withArticle("la ") + name
+    if (spanishMasculineOrdinal.matches(first)) return withArticle("el ") + name
+    // A name's own «El» contracts («del Corte Inglés», «al Cairo»); La, Los and Las never do.
+    if (first == "El" && rest.isNotEmpty() && (lower == "de" || lower == "a")) {
+        return withArticle("el ") + rest.trimStart()
+    }
+    return "$preposition $name"
+}
+
+// --- Italian -----------------------------------------------------------------------------------
+
+// Italian leaves the article out before via, piazza and corso («su via Roma»), so nothing is
+// added there. What it can't do in a template is fuse a preposition with a name's own article:
+// «a La Scala» is «alla Scala», «di Il Vittoriano» is «del Vittoriano».
+private val italianArticulated = mapOf(
+    "a" to listOf("al", "allo", "alla", "all’", "ai", "agli", "alle"),
+    "di" to listOf("del", "dello", "della", "dell’", "dei", "degli", "delle"),
+    "da" to listOf("dal", "dallo", "dalla", "dall’", "dai", "dagli", "dalle"),
+    "in" to listOf("nel", "nello", "nella", "nell’", "nei", "negli", "nelle"),
+    "su" to listOf("sul", "sullo", "sulla", "sull’", "sui", "sugli", "sulle"),
+)
+private val italianArticles = listOf("Il", "Lo", "La", "L’", "I", "Gli", "Le")
+
+private fun italianPhrase(preposition: String, name: String): String {
+    val forms = italianArticulated[preposition.lowercase()] ?: return "$preposition $name"
+    val normalised = name.replace("L'", "L’")
+    if (normalised.startsWith("L’") && normalised.length > 2) {
+        return capitaliseLike(preposition, forms[3]) + normalised.substring(2)
+    }
+    val first = name.substringBefore(' ')
+    val rest = name.substring(first.length).trimStart()
+    val index = italianArticles.indexOf(first)
+    if (index >= 0 && rest.isNotEmpty()) return capitaliseLike(preposition, forms[index]) + " " + rest
+    return "$preposition $name"
+}
+
+// --- Portuguese --------------------------------------------------------------------------------
+
+// Portuguese uses the article before most street and place names and fuses it with em, de, a and
+// por («na Rua Augusta», «no Largo do Carmo», «da Avenida da Liberdade», «ao Parque»). The
+// templates had written a fixed feminine article («na %1$s»), wrong for every masculine type. The
+// marker keeps whatever preposition the template wrote; this picks the article from the name's
+// first word, and a name it doesn't recognise keeps the template's own wording.
+private val portugueseTypes: Map<String, NounType> = buildMap {
+    words(NounType(Gender.F), "rua", "avenida", "praça", "travessa", "estrada", "alameda", "calçada",
+        "rodovia", "ponte", "praceta", "via", "ladeira", "rotunda", "quinta", "viela", "marginal",
+        "autoestrada", "escadaria", "servidão", "vila", "estação", "escola", "igreja", "universidade",
+        "farmácia", "biblioteca", "capela", "clínica", "padaria", "loja", "faculdade",
+        "r.", "av.", "tv.", "trav.", "pç.", "pça.", "estr.", "al.")
+    words(NounType(Gender.M), "largo", "beco", "viaduto", "túnel", "parque", "jardim", "caminho",
+        "bairro", "pátio", "terreiro", "cais", "passeio", "mercado", "hospital", "museu", "centro",
+        "shopping", "teatro", "colégio", "supermercado", "estádio", "cemitério", "aeroporto",
+        "terminal", "posto", "banco", "hotel", "restaurante", "café", "mosteiro", "palácio",
+        "castelo", "convento", "instituto")
+}
+
+// The preposition a template's wording stands for, with its article fused or not.
+private val portugueseBase = mapOf(
+    "em" to "em", "na" to "em", "no" to "em", "nas" to "em", "nos" to "em",
+    "de" to "de", "da" to "de", "do" to "de", "das" to "de", "dos" to "de",
+    "a" to "a", "à" to "a", "ao" to "a", "às" to "a", "aos" to "a",
+    "por" to "por", "pela" to "por", "pelo" to "por",
+)
+private val portugueseFused = mapOf(
+    "em" to listOf("no", "na", "nos", "nas"),
+    "de" to listOf("do", "da", "dos", "das"),
+    "a" to listOf("ao", "à", "aos", "às"),
+    "por" to listOf("pelo", "pela", "pelos", "pelas"),
+)
+
+private fun portuguesePhrase(preposition: String, name: String): String {
+    val first = name.substringBefore(' ')
+    val rest = name.substring(first.length)
+    val base = portugueseBase[preposition.lowercase()] ?: preposition.lowercase()
+
+    // Index into the fused forms: masculine / feminine, singular / plural.
+    fun phrase(index: Int, body: String): String {
+        val fused = portugueseFused[base]?.get(index)
+            ?: "$base ${listOf("o", "a", "os", "as")[index]}"
+        return capitaliseLike(preposition, fused) + " " + body
+    }
+
+    portugueseTypes[first.lowercase()]?.let { type ->
+        return phrase(if (type.gender == Gender.M) 0 else 1, name)
+    }
+    // A name's own article («O Mosteiro», «A Brasileira») fuses the same way.
+    val ownArticle = listOf("O", "A", "Os", "As").indexOf(first)
+    if (ownArticle >= 0 && rest.isNotEmpty()) return phrase(ownArticle, rest.trimStart())
     return "$preposition $name"
 }

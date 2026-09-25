@@ -428,47 +428,131 @@ class GrammarMarkersTest {
 
     @Test
     fun frenchStreetTypesTakeTheirArticle() {
-        assertEquals("En direction du nord le long de la rue de Rivoli", fr("En direction du nord le long {de Rue de Rivoli}"))
-        assertEquals("Sur le boulevard Haussmann", fr("{Sur Boulevard Haussmann}"))
-        assertEquals("Vous approchez de l’avenue des Lys", fr("Vous approchez {de Avenue des Lys}"))
-        assertEquals("Trottoir à côté du chemin du Midi", fr("Trottoir à côté {de Chemin du Midi}"))
-        assertEquals("Sentier au passage des Hirondelles", fr("Sentier {à Passage des Hirondelles}"))
-        assertEquals("Immobile sur l’allée du Bois Ribot", fr("Immobile {sur Allée du Bois Ribot}"))
+        assertEquals("En direction du nord le long de la rue de Rivoli", fr("En direction du nord le long {fr:de Rue de Rivoli}"))
+        assertEquals("Sur le boulevard Haussmann", fr("{fr:Sur Boulevard Haussmann}"))
+        assertEquals("Vous approchez de l’avenue des Lys", fr("Vous approchez {fr:de Avenue des Lys}"))
+        assertEquals("Trottoir à côté du chemin du Midi", fr("Trottoir à côté {fr:de Chemin du Midi}"))
+        assertEquals("Sentier au passage des Hirondelles", fr("Sentier {fr:à Passage des Hirondelles}"))
+        assertEquals("Immobile sur l’allée du Bois Ribot", fr("Immobile {fr:sur Allée du Bois Ribot}"))
     }
 
     @Test
     fun frenchPlaceTypesKeepTheirCapital() {
-        assertEquals("À proximité du Lycée Marie Curie", fr("À proximité {de Lycée Marie Curie}"))
-        assertEquals("À proximité de l’École maternelle Brunet", fr("À proximité {de École maternelle Brunet}"))
-        assertEquals("Au Centre Pompidou", fr("{À Centre Pompidou}"))
+        assertEquals("À proximité du Lycée Marie Curie", fr("À proximité {fr:de Lycée Marie Curie}"))
+        assertEquals("À proximité de l’École maternelle Brunet", fr("À proximité {fr:de École maternelle Brunet}"))
+        assertEquals("Au Centre Pompidou", fr("{fr:À Centre Pompidou}"))
     }
 
     @Test
     fun frenchNamesWithTheirOwnArticleContract() {
-        assertEquals("Vous approchez du Bon Marché", fr("Vous approchez {de Le Bon Marché}"))
-        assertEquals("À proximité des Halles", fr("À proximité {de Les Halles}"))
-        assertEquals("Aux Halles", fr("{À Les Halles}"))
-        assertEquals("vers Le Havre, à 5 km", fr("{vers Le Havre}, à 5 km"))
-        assertEquals("près de La Défense", fr("près {de La Défense}"))
+        assertEquals("Vous approchez du Bon Marché", fr("Vous approchez {fr:de Le Bon Marché}"))
+        assertEquals("À proximité des Halles", fr("À proximité {fr:de Les Halles}"))
+        assertEquals("Aux Halles", fr("{fr:À Les Halles}"))
+        assertEquals("vers Le Havre, à 5 km", fr("{fr:vers Le Havre}, à 5 km"))
+        assertEquals("près de La Défense", fr("près {fr:de La Défense}"))
     }
 
     @Test
     fun frenchDeElidesBeforeAVowel() {
-        assertEquals("près d’Orléans", fr("près {de Orléans}"))
-        assertEquals("près de Montmartre", fr("près {de Montmartre}"))
+        assertEquals("près d’Orléans", fr("près {fr:de Orléans}"))
+        assertEquals("près de Montmartre", fr("près {fr:de Montmartre}"))
     }
 
     @Test
     fun frenchDeadEndGetsItsArticle() {
-        assertEquals("Sentier à l’impasse", fr("Sentier {à impasse}"))
+        assertEquals("Sentier à l’impasse", fr("Sentier {fr:à impasse}"))
     }
 
     @Test
     fun frenchRealTemplatesResolve() {
         assertEquals(
             "Sur la rue de Rivoli entre la rue du Louvre et le boulevard de Sébastopol",
-            fr("{Sur Rue de Rivoli} {entre Rue du Louvre} {et Boulevard de Sébastopol}"),
+            fr("{fr:Sur Rue de Rivoli} {fr:entre Rue du Louvre} {fr:et Boulevard de Sébastopol}"),
         )
-        assertEquals("Sur la rue de Rivoli, 50 m jusqu’à la place du Châtelet", fr("{Sur Rue de Rivoli}, 50 m jusqu’{à Place du Châtelet}"))
+        assertEquals("Sur la rue de Rivoli, 50 m jusqu’à la place du Châtelet", fr("{fr:Sur Rue de Rivoli}, 50 m jusqu’{fr:à Place du Châtelet}"))
+    }
+
+    // --- Spanish (names from the Buenos Aires and San Salvador test tiles) -------------------
+
+    private fun es(text: String) = resolveGrammarMarkers(text)
+
+    @Test
+    fun spanishRoadTypesTakeTheirArticle() {
+        assertEquals("Caminando hacia el norte por la avenida de Mayo", es("Caminando hacia el norte {es:por Avenida de Mayo}"))
+        assertEquals("En la calle Florida", es("{es:En Calle Florida}"))
+        assertEquals("A punto de llegar al pasaje Carabelas", es("A punto de llegar {es:a Pasaje Carabelas}"))
+        assertEquals("cerca del camino General Belgrano", es("cerca {es:de Camino General Belgrano}"))
+        assertEquals("por la Av. Roosevelt", es("{es:por Av. Roosevelt}"))
+        assertEquals("En la 2a Calle Poniente", es("{es:En 2a Calle Poniente}"))
+    }
+
+    @Test
+    fun spanishPlaceTypesKeepTheirCapital() {
+        assertEquals("Cerca del Hospital Italiano", es("Cerca {es:de Hospital Italiano}"))
+        assertEquals("En la Escuela Nº 12", es("{es:En Escuela Nº 12}"))
+    }
+
+    @Test
+    fun spanishOnlyElContracts() {
+        assertEquals("Cerca del Corte Inglés", es("Cerca {es:de El Corte Inglés}"))
+        assertEquals("A punto de llegar al Obelisco", es("A punto de llegar {es:a El Obelisco}"))
+        assertEquals("Cerca de La Boca", es("Cerca {es:de La Boca}"))
+        assertEquals("En El Salvador", es("{es:En El Salvador}"))
+    }
+
+    @Test
+    fun spanishPersonNamedStreetsAreLeftAlone() {
+        assertEquals("por Juan B. Justo", es("{es:por Juan B. Justo}"))
+    }
+
+    // --- Italian ------------------------------------------------------------------------------
+
+    private fun it(text: String) = resolveGrammarMarkers(text)
+
+    @Test
+    fun italianPrepositionFusesWithTheNamesArticle() {
+        assertEquals("Ti stai avvicinando alla Scala", it("Ti stai avvicinando {it:a La Scala}"))
+        assertEquals("Sul Corso", it("{it:Su Il Corso}"))
+        assertEquals("lontano dai Navigli", it("lontano {it:da I Navigli}"))
+        assertEquals("appena prima dell’Aquila", it("appena prima {it:di L'Aquila}"))
+        assertEquals("vicino agli Uffizi", it("vicino {it:a Gli Uffizi}"))
+    }
+
+    @Test
+    fun italianStreetTypesNeedNothing() {
+        assertEquals("Su Via Roma", it("{it:Su Via Roma}"))
+        assertEquals("Ti stai avvicinando a Piazza Navona", it("Ti stai avvicinando {it:a Piazza Navona}"))
+    }
+
+    // --- Portuguese ---------------------------------------------------------------------------
+
+    private fun pt(text: String) = resolveGrammarMarkers(text)
+
+    @Test
+    fun portuguesePicksTheArticleFromTheType() {
+        assertEquals("Na Rua Augusta", pt("{pt:Na Rua Augusta}"))
+        assertEquals("No Largo do Carmo", pt("{pt:Na Largo do Carmo}"))
+        assertEquals("Virado para norte no Cais do Sodré", pt("Virado para norte {pt:na Cais do Sodré}"))
+        assertEquals("ao longo do Parque Ibirapuera", pt("ao longo {pt:da Parque Ibirapuera}"))
+        assertEquals("A aproximar-se da Praça do Comércio", pt("A aproximar-se {pt:de Praça do Comércio}"))
+        assertEquals("Em frente ao Mercado da Ribeira", pt("Em frente {pt:a Mercado da Ribeira}"))
+        assertEquals("Na Av. Paulista", pt("{pt:Na Av. Paulista}"))
+    }
+
+    @Test
+    fun portugueseOtherPrepositionsTakeAPlainArticle() {
+        assertEquals("Trilho para o Largo do Carmo", pt("Trilho {pt:para Largo do Carmo}"))
+        assertEquals("entre a Rua Augusta e o Largo do Chiado", pt("{pt:entre Rua Augusta} {pt:e Largo do Chiado}"))
+    }
+
+    @Test
+    fun portugueseNamesOwnArticleFuses() {
+        assertEquals("perto da Brasileira", pt("perto {pt:de A Brasileira}"))
+    }
+
+    @Test
+    fun portugueseUnknownNamesKeepTheTemplateWording() {
+        assertEquals("Na Marquês de Pombal", pt("{pt:Na Marquês de Pombal}"))
+        assertEquals("Em Lisboa", pt("{pt:Em Lisboa}"))
     }
 }

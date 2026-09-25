@@ -116,6 +116,16 @@ than introducing a third verb.
 
 ---
 
+### ES-G2 — Articles before map names (`fixed` in code, 2026-09-25)
+
+Templates put a raw map name after a preposition: «por Avenida de Mayo», «cerca de
+El Corte Inglés». 51 templates now wrap it, «{es:por %1$s}», and
+`resolveGrammarMarkers()` (C18) adds the article: «por la avenida de Mayo», «al
+pasaje Carabelas», «cerca del Hospital Italiano», «en la 2a Calle Poniente», and a
+name's own «El» contracts («del Corte Inglés»). Streets named after a person alone
+(«Juan B. Justo», most of Buenos Aires) take no article and are left as they are.
+**New templates must wrap map-name prepositions.**
+
 ## Rejected
 
 - **«Te damos la bienvenida» for Welcome** (2026-09-25). It's attractive:
