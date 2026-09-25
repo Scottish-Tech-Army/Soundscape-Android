@@ -142,7 +142,22 @@ ninguém lembra deles.
 
 **A pergunta:** soam naturais? Você diria outra coisa?
 
-### Q7 — Mais alguma coisa? *(Anything else)*
+### Q7 — Artigos antes dos nomes *(Articles now chosen from the name)*
+
+**Quando você ouve:** em muitos avisos, durante a caminhada. O aplicativo insere
+os nomes como estão no mapa.
+
+**Como soa agora:** antes, as frases sempre usavam artigo feminino („ao longo da
+Parque Ibirapuera”). Agora o aplicativo escolhe pelo nome: „ao longo do Parque
+Ibirapuera”, „Na Av. Paulista”, „Próximo ao Mercado Municipal”. Se não reconhece
+o nome, mantém a frase como estava.
+
+**O que nos deixa em dúvida:** a lista de tipos de via e de lugares pode estar
+incompleta.
+
+**A pergunta:** soa bem? Notou algum nome que saia errado?
+
+### Q8 — Mais alguma coisa? *(Anything else)*
 
 Se alguma frase parecer traduzida do inglês, longa demais ou confusa, avise a
 gente.

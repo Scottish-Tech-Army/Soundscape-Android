@@ -94,7 +94,7 @@ can fix it. See FR-G2.
 
 Templates put a raw map name after a preposition, so the app said «près de Le
 Bon Marché», «le long de Rue de Rivoli», «à Boulevard Haussmann». 51 templates
-(50 in fr_CA) now wrap the preposition and the name, «le long {de %1$s}», and
+(50 in fr_CA) now wrap the preposition and the name, «le long {fr:de %1$s}» (tagged with the language, because Spanish and Portuguese share «de» and «entre»), and
 `resolveGrammarMarkers()` (C18) adds and contracts the article:
 - a street type gets its article, lowercased: «de la rue de Rivoli», «au
   boulevard Haussmann», «de l’allée du Bois Ribot»;
@@ -107,7 +107,7 @@ Bon Marché», «le long de Rue de Rivoli», «à Boulevard Haussmann». 51 temp
 Road words open 96% of the 73,000 street names in the Paris extract. Only
 place-name placeholders are wrapped, never distances («à %2$s» stays). **New
 templates must wrap map-name prepositions.** Italian, Spanish and Portuguese have
-the same contractions and are not done yet.
+the same kind of contractions and got the same treatment on 2026-09-25 (ES-G2, IT-G1, PT-G1, PTBR-G1).
 
 ### FR-B1 — `talkback_double_tap_template` was missing its space (`confirmed` fixed, 20 languages, 2026-09-24)
 

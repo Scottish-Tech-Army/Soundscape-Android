@@ -128,7 +128,22 @@ altrimenti nessuno li ricorda.
 
 **La domanda:** suonano naturali? Diresti qualcos'altro?
 
-### Q6 — Altro? *(Anything else)*
+### Q6 — Articoli davanti ai nomi *(Articulated prepositions now automatic)*
+
+**Quando lo senti:** in molti annunci mentre cammini. L'app inserisce i nomi così
+come sono sulla mappa.
+
+**Come suona ora:** prima diceva „Ti stai avvicinando a La Scala”, „Su Il Corso”.
+Ora unisce da sola preposizione e articolo: „Ti stai avvicinando alla Scala”,
+„Sul Corso”, „lontano dai Navigli”, „appena prima dell’Aquila”. Davanti a via,
+piazza e corso non aggiunge nulla („Su Via Roma”).
+
+**Cosa ci lascia in dubbio:** se in qualche caso servirebbe l'articolo anche
+davanti a via o piazza.
+
+**La domanda:** suona giusto? Hai notato un nome che esce male?
+
+### Q7 — Altro? *(Anything else)*
 
 Se una frase sembra tradotta dall'inglese, è troppo lunga o poco chiara,
 faccelo sapere.

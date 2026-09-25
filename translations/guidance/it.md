@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 Italian is the best-preserved Microsoft baseline. The hints compose
 correctly («Tocca due volte per disattivare l'audiofaro»), «è sulla
 sinistra» is descriptive (C11), and the Siri phrases (`it.lproj`) match the
-help text. Questions: `docs/translation-questions/questions-it.md` (Q1…Q6).
+help text. Questions: `docs/translation-questions/questions-it.md` (Q1…Q7).
 
 ## Glossary
 
@@ -42,6 +42,15 @@ article and the wrong preposition, which is FR-G1 again. Candidates:
 
 See C15. «È tutto pronto!» avoids gender.
 
+### IT-G1 — Prepositions fuse with a name's own article (`fixed` in code, 2026-09-25)
+
+«a La Scala», «di Il Vittoriano» should be «alla Scala», «del Vittoriano». 23
+templates with a, di, da, in or su before a map name now wrap it, «{it:a %1$s}»,
+and `resolveGrammarMarkers()` (C18) fuses the article. Nothing is added before
+via, piazza or corso, which Italian says without an article («su Via Roma»).
+**New templates must wrap map-name prepositions.** Separately noticed, not
+changed: `directions_near_name` «Vicino %1$s» lacks the «a» of «vicino a».
+
 ## Rejected
 
 Nothing yet.
@@ -53,7 +62,8 @@ Nothing yet.
 3. «Sentiero verso un vicolo cieco» / «che porta a…»? (IT-G1)
 4. «È tutto pronto!» instead of «Sei pronto!»? (IT-R1)
 5. Siri phrases «Soundscape dintorni / percorso / audiofaro / ferma audiofaro…»: natural?
-6. Anything else.
+6. Articulated prepositions are now automatic («alla Scala», «sul Corso»). Right? (IT-G1)
+7. Anything else.
 
 ## Provenance
 

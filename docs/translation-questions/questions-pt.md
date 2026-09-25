@@ -114,7 +114,22 @@ ninguém os fixa.
 
 **A pergunta:** soam naturais? Diria outra coisa?
 
-### Q5 — Mais alguma coisa? *(Anything else)*
+### Q5 — Artigos antes dos nomes *(Articles now chosen from the name)*
+
+**Quando se ouve:** em muitos avisos, a caminhar. A aplicação insere os nomes
+tal como estão no mapa.
+
+**Como soa agora:** antes, as frases tinham sempre um artigo feminino („na Largo
+do Carmo”). Agora a aplicação escolhe-o pelo nome: „no Largo do Carmo”, „na Rua
+Augusta”, „da Praça do Comércio”, „ao Mercado da Ribeira”. Se não reconhece o
+nome (por exemplo „Marquês de Pombal”), mantém a frase como estava.
+
+**O que nos deixa em dúvida:** a lista de tipos de via e de locais pode estar
+incompleta.
+
+**A pergunta:** soa bem? Notou algum nome que saia mal?
+
+### Q6 — Mais alguma coisa? *(Anything else)*
 
 Se alguma frase soar a tradução do inglês, for demasiado longa ou pouco clara,
 diga-nos.
