@@ -1601,4 +1601,6 @@
     <string name="siri_param_level">Уровень</string>
     <string name="siri_desc_callout_detail">Задаёт, сколько Soundscape говорит во время ходьбы.</string>
     <string name="intersection_approaching_intersection_distance">До перекрёстка %1$s</string>
+    <string name="microsoft_copyright">[Оригинальное приложение Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) предоставило звуки звукового маяка и многие переводы и предоставляется для использования в соответствии с [лицензией MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Волонтёры [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) улучшили ряд переводов, которые предоставляются для использования в соответствии с [лицензией MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
