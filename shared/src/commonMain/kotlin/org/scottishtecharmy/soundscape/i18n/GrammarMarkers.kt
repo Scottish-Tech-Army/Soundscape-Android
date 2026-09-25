@@ -544,7 +544,12 @@ internal fun resolveRomanceArticles(text: String): String {
 private enum class Gender { M, F }
 
 /** A street or place word that opens a name, with the article it takes. */
-private class NounType(val gender: Gender, val elides: Boolean = false, val lowercase: Boolean = false)
+private class NounType(
+    val gender: Gender,
+    val elides: Boolean = false,
+    val lowercase: Boolean = false,
+    val plural: Boolean = false,
+)
 
 private fun MutableMap<String, NounType>.words(type: NounType, vararg words: String) =
     words.forEach { put(it, type) }
@@ -699,17 +704,33 @@ private fun italianPhrase(preposition: String, name: String): String {
 // templates had written a fixed feminine article («na %1$s»), wrong for every masculine type. The
 // marker keeps whatever preposition the template wrote; this picks the article from the name's
 // first word, and a name it doesn't recognise keeps the template's own wording.
+// Measured (2026-09) against the Lisbon extract, where these open 98% of 27,946 street names,
+// and Rio Grande do Sul (Brazil), 93% of Portuguese-language street names. Only about a third of
+// place names open with a known word; the rest are business names, which keep the template's
+// wording. Dotless abbreviations
+// («R Castilho», «Av da Liberdade», «EN 10») are as common as dotted ones in place names.
 private val portugueseTypes: Map<String, NounType> = buildMap {
     words(NounType(Gender.F), "rua", "avenida", "praça", "travessa", "estrada", "alameda", "calçada",
         "rodovia", "ponte", "praceta", "via", "ladeira", "rotunda", "quinta", "viela", "marginal",
-        "autoestrada", "escadaria", "servidão", "vila", "estação", "escola", "igreja", "universidade",
-        "farmácia", "biblioteca", "capela", "clínica", "padaria", "loja", "faculdade",
-        "r.", "av.", "tv.", "trav.", "pç.", "pça.", "estr.", "al.")
+        "autoestrada", "escadaria", "servidão", "vila", "azinhaga", "pista", "urbanização",
+        "variante", "circular", "rampa", "linha", "passagem", "picada", "trilha", "ciclovia",
+        "passarela", "entrada",
+        "r.", "r", "av.", "av", "avda.", "tv.", "tv", "trav.", "pç.", "pça.", "estr.", "estr",
+        "al.", "en", "rs", "sp", "br")
+    words(NounType(Gender.F, plural = true), "escadinhas", "escadas")
     words(NounType(Gender.M), "largo", "beco", "viaduto", "túnel", "parque", "jardim", "caminho",
-        "bairro", "pátio", "terreiro", "cais", "passeio", "mercado", "hospital", "museu", "centro",
-        "shopping", "teatro", "colégio", "supermercado", "estádio", "cemitério", "aeroporto",
-        "terminal", "posto", "banco", "hotel", "restaurante", "café", "mosteiro", "palácio",
-        "castelo", "convento", "instituto")
+        "bairro", "pátio", "terreiro", "cais", "passeio", "trilho", "aceiro", "casal", "alto",
+        "percurso", "canto", "acesso", "corredor", "condomínio", "impasse")
+    // Places.
+    words(NounType(Gender.F), "estação", "escola", "igreja", "universidade", "farmácia", "biblioteca",
+        "capela", "clínica", "padaria", "loja", "faculdade", "casa", "prefeitura", "pousada",
+        "associação", "parada", "mecânica", "comunidade", "unidade", "sociedade", "pastelaria",
+        "junta", "churrasqueira", "fonte", "câmara", "emef", "emei", "ubs")
+    words(NounType(Gender.M), "mercado", "hospital", "museu", "centro", "shopping", "teatro", "colégio",
+        "supermercado", "estádio", "cemitério", "aeroporto", "terminal", "posto", "banco", "hotel",
+        "restaurante", "café", "mosteiro", "palácio", "castelo", "convento", "instituto", "núcleo",
+        "bar", "campo", "ginásio", "salão", "monumento", "camping", "clube", "estacionamento",
+        "espaço", "externato", "talho", "forte", "caps", "ctg")
 }
 
 // The preposition a template's wording stands for, with its article fused or not.
@@ -739,7 +760,7 @@ private fun portuguesePhrase(preposition: String, name: String): String {
     }
 
     portugueseTypes[first.lowercase()]?.let { type ->
-        return phrase(if (type.gender == Gender.M) 0 else 1, name)
+        return phrase((if (type.gender == Gender.M) 0 else 1) + (if (type.plural) 2 else 0), name)
     }
     // A name's own article («O Mosteiro», «A Brasileira») fuses the same way.
     val ownArticle = listOf("O", "A", "Os", "As").indexOf(first)

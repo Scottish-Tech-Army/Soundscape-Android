@@ -540,6 +540,16 @@ class GrammarMarkersTest {
     }
 
     @Test
+    fun portugueseLisbonAndBrazilWords() {
+        assertEquals("Nas Escadinhas de São Cristóvão", pt("{pt:Na Escadinhas de São Cristóvão}"))
+        assertEquals("A aproximar-se da Azinhaga dos Besouros", pt("A aproximar-se {pt:de Azinhaga dos Besouros}"))
+        assertEquals("na Av da Liberdade", pt("{pt:na Av da Liberdade}"))
+        assertEquals("No Acesso Norte", pt("{pt:Na Acesso Norte}"))
+        assertEquals("Próximo à UBS Centro", pt("Próximo {pt:a UBS Centro}"))
+        assertEquals("perto do CTG Rincão", pt("perto {pt:de CTG Rincão}"))
+    }
+
+    @Test
     fun portugueseOtherPrepositionsTakeAPlainArticle() {
         assertEquals("Trilho para o Largo do Carmo", pt("Trilho {pt:para Largo do Carmo}"))
         assertEquals("entre a Rua Augusta e o Largo do Chiado", pt("{pt:entre Rua Augusta} {pt:e Largo do Chiado}"))
