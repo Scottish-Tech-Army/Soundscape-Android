@@ -92,9 +92,11 @@ for the maintainer):
    - **The question**, with options if there are any.
 5. The last question is always "Anything else?". Then thanks.
 
-Spanish (all answered) is a "what we decided" summary instead of questions;
-Icelandic, Ukrainian and Polish keep their own question formats. Each still
-gets the "What is Soundscape?" section.
+Every sheet uses this layout, except Spanish: all its questions are answered, so
+it is a "what we decided" summary, still with the "What is Soundscape?"
+section. (Polish, Icelandic and Ukrainian were converted to it on 2026-09-25; the
+old Polish per-text review lives unpublished in
+`translations/review/pl-full/07-nowe-teksty.md`.)
 
 ## Rules that caught real mistakes
 
