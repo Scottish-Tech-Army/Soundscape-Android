@@ -385,7 +385,7 @@
     <string name="faq_sleep_mode_battery_question">Hvernig nota ég í dvala ham til að spara rafhlöðuna?</string>
     <string name="faq_sleep_mode_battery_answer">Til að setja Soundscape í dvalaham skaltu velja hnappinn *\\"fara í dvala\\"* efst í hægra horni skjásins. Þegar þú gerir það hættir Soundscape að nota Staðsetningarþjónustu og farsímagögn þar til þú velur að vekja það aftur.</string>
     <string name="faq_snooze_mode_battery_question">hvernig nýti ég möguleikann á því að láta Soundscape lura til að spara rafhlöðu?</string>
-    <string name="faq_snooze_mode_battery_answer">Til að setja Soundscape í lúra‑ham (Snooze) skaltu velja hnappinn *\\"fara í dvala\\"* efst í hægra horni skjásins. Þegar Soundscape er í dvalaham skaltu velja hnappinn *\\"Vekja þegar ég fer\\"* og forritið fer þá í lágorkustöðu þar til þú yfirgefur núverandi staðsetningu þína.</string>
+    <string name="faq_snooze_mode_battery_answer">Til að setja Soundscape í lúra‑ham (Snooze) skaltu velja hnappinn *\\"fara í dvala\\"* efst í hægra horni skjásins. Þegar Soundscape er í dvalaham skaltu velja hnappinn *\\"Vakna við brottför\\"* og forritið fer þá í lágorkustöðu þar til þú yfirgefur núverandi staðsetningu þína.</string>
     <string name="faq_headset_battery_impact_question">hvernig hefur val á heyrnartólum áhrif á rafhlöðu?</string>
     <string name="faq_headset_battery_impact_answer">ekki hefur fundist merkjanlegur munur á virkni mismunandi heyrnartóla á endingu rafhlöðu. Sambærilegar niðurstöður sjást hvort sem um er að ræða bluetooth eða snúru.</string>
     <string name="faq_background_battery_impact_question">Hvaða áhrif hefur það á rafhlöðu að keyra Soundscape í bakrunni?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">Stig</string>
     <string name="siri_desc_callout_detail">Stillir hversu mikið Soundscape segir á meðan þú gengur.</string>
     <string name="intersection_approaching_intersection_distance">Gatnamót í %1$s fjarlægð</string>
+    <string name="microsoft_copyright">[Upprunalega Soundscape-forritið ©Microsoft Corporation](https://github.com/microsoft/soundscape) lagði til hljóð hljóðvitans og margar af þýðingunum og er aðgengilegt til notkunar undir [MIT leyfinu](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Sjálfboðaliðar [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) bættu nokkrar af þýðingunum, sem eru aðgengilegar til notkunar undir [MIT leyfinu](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
