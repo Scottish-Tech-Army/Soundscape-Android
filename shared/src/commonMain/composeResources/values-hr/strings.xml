@@ -1229,7 +1229,7 @@
     <string name="faq_supported_headsets_question">Koje bih slušalice trebao/la koristiti uz Soundscape?</string>
     <string name="faq_supported_headsets_answer">Koje ćete slušalice koristiti uz Soundscape stvar je osobnog izbora, a svaka opcija dolazi s prednostima i kompromisima. Jedini poseban zahtjev jest korištenje stereo slušalica kako biste mogli iskoristiti prostorne 3D zvučne najave Soundscapea.</string>
     <string name="faq_battery_impact_question">Kako Soundscape utječe na bateriju mog telefona?</string>
-    <string name="faq_battery_impact_answer">Za dodatno smanjenje potrošnje baterije, kada ne koristite Soundscape, trebali biste ga prisilno zatvoriti putem izbornika nedavnih aplikacija na telefonu.</string>
+    <string name="faq_battery_impact_answer">Trajanje baterije uvelike ovisi o tome koji telefon posjedujete i koliko je star. Najveće trošenje baterije uzrokuje uključen zaslon, pa biste, kako biste produljili trajanje baterije telefona, zaslon trebali držati zaključanim kad god je to moguće. Kako bi se smanjio utjecaj na bateriju telefona, Soundscape sada ima način rada Mirovanje. Za dodatno smanjenje potrošnje baterije, kada ne koristite Soundscape, trebali biste ga prisilno zatvoriti putem preglednika aplikacija na telefonu.</string>
     <string name="faq_sleep_mode_battery_question">Kako da koristim način rada Mirovanje kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?</string>
     <string name="faq_sleep_mode_battery_answer">Kako biste Soundscape prebacili u način rada Mirovanje, odaberite gumb *Mirovanje* u gornjem desnom kutu zaslona. Kada to odaberete, Soundscape će prestati koristiti usluge lociranja i mobilne podatke dok ga ponovno ne probudite.</string>
     <string name="faq_snooze_mode_battery_question">Kako da koristim način rada Odgoda kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?</string>
@@ -1307,7 +1307,7 @@
     <string name="confect_name_via">%1$s preko %2$s</string>
     <string name="confect_name_pavement_next_to">Pločnik pored %1$s</string>
     <string name="confect_name_pavement">Pločnik</string>
-    <string name="confect_name_dead_end">slijepa ulica</string>
+    <string name="confect_name_dead_end">slijepe ulice</string>
     <string name="offline_maps_title">Izvanmrežne karte</string>
     <string name="offline_map_details_title">Detalji izvanmrežne karte</string>
     <string name="offline_maps_loading">Učitavanje…</string>
