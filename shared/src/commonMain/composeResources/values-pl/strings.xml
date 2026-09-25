@@ -255,7 +255,7 @@
     <string name="terms_of_use_message">Korzystanie z Soundscape podlega warunkom %1$s oraz warunkom przedstawionym poniżej (łącznie zwanymi „Warunkami użytkowania”).</string>
     <string name="terms_of_use_service_agreement">Umowa o świadczenie usług Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Akceptuję warunki użytkowania</string>
-    <string name="terms_of_use_medical_safety_disclaimer">...ponieważ dane mapowe użyte w programie Soundscape pochodzą od podmiotu trzeciego...</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Przyjmujesz do wiadomości, że Soundscape (1) nie jest zaprojektowany, przeznaczony ani udostępniony jako urządzenie medyczne oraz (2) nie jest zaprojektowany ani przeznaczony do zastąpienia profesjonalnej porady medycznej, diagnozy, leczenia ani oceny i nie powinien być używany jako zamiennik profesjonalnej porady medycznej, diagnozy, leczenia ani oceny.\n\nOstrzeżenie dotyczące bezpieczeństwa\n\nSoundscape jest narzędziem nawigacyjnym i nie powinien być używany zamiast umiejętności poruszania się, świadomości otoczenia oraz zdrowego rozsądku. Zachowaj ostrożność podczas poruszania się w swoim otoczeniu, ponieważ dane mapowe użyte programie Soundscape pochodzą od podmiotu trzeciego i mogą mieć ograniczoną dokładność.</string>
     <string name="first_launch_soundscape_language">Język Soundscape</string>
     <string name="first_launch_soundscape_language_text">Wybierz język, którego ma używać Soundscape. Zawsze możesz zmienić swój wybór w ustawieniach aplikacji.</string>
     <string name="first_launch_welcome_title">Witamy!</string>
@@ -487,7 +487,7 @@
     <string name="confect_name_via">%1$s przez %2$s</string>
     <string name="confect_name_pavement_next_to">Chodnik obok %1$s</string>
     <string name="confect_name_pavement">Chodnik</string>
-    <string name="confect_name_dead_end">ślepa uliczka</string>
+    <string name="confect_name_dead_end">ślepej uliczki</string>
     <string name="about_soundscape">Soundscape wykorzystuje innowacyjną technologię opartą na dźwięku, aby pomóc ludziom zbudować pełniejszą świadomość otoczenia. Dzięki temu ludzie zyskują pewność siebie i mogą samodzielnie się poruszać.</string>
     <string name="route_detail_action_previous_disabled_hint">Nieaktywne, ponieważ trasa jest już na początku</string>
     <string name="route_detail_action_next_disabled_hint">Nieaktywne, ponieważ trasa jest już na końcu</string>
