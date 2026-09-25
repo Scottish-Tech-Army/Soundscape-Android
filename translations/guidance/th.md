@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Thai.** It has been AI-only since
 2026-08-22. The authored Siri phrases (`iosApp/iosApp/th.lproj/AppShortcuts.strings`)
 match the help text. The main risk is two detail levels that sound too alike.
-Questions: `docs/translation-questions/questions-th.md` (Q1…Q7).
+Questions: `docs/translation-questions/questions-th.md` (Q1…Q8).
 
 ## Glossary
 
@@ -62,7 +62,8 @@ Nothing yet.
 4. Sleep/Snooze «สลีป» / «สนูซ»: understood?
 5. Siri phrases «Soundscape รอบตัว / เส้นทาง / บีคอน…»: natural to say?
 6. Is «คุณ» right?
-7. Anything else.
+7. Beacon «บีคอนเสียง»: natural? (AI-only term, asked for confirmation)
+8. Anything else.
 
 ## Provenance
 

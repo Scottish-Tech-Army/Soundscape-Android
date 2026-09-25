@@ -16,7 +16,7 @@ Turkish has two small human contributions (Toro Inoue added the language in
 is AI. The corpus has **the most serious structural problem found in any
 language**: suffixes hard-coded onto placeholders (TR-G1). The authored Siri
 phrases (`tr.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-tr.md` (Q1…Q6).
+`docs/translation-questions/questions-tr.md` (Q1…Q7).
 
 ## Glossary
 
@@ -95,7 +95,8 @@ Nothing yet.
 3. VoiceOver: «sesli işareti sessize almak için çift dokunun»? (TR-B1)
 4. Beacon «Sesli İşaret»: natural?
 5. Siri phrases: natural?
-6. Anything else.
+6. Callout «anons»: natural? (AI-only term, asked for confirmation)
+7. Anything else.
 
 ## Provenance
 
