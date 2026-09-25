@@ -257,7 +257,8 @@ a default**. A drift away from it needs a reason: a real error in Microsoft's
 text (like the ones below), or a string whose English has changed. First
 applied to the whole Sleep/Snooze family (`sleep_sleep`, `sleep_sleeping`,
 `sleep_snoozing`): 13 units in da, de, el, es, fi, fr, fr_CA and sv were
-restored to Microsoft's wording and verified live. **pt_BR is the one
+restored to Microsoft's wording and verified live. **Spanish uses a newer reference:** JJ's
+Soundscape Community `es-ES`, which supersedes Microsoft's (see `es.md`). **pt_BR is the one
 exception:** Microsoft's «Em Ociosidade» ("idle") doesn't describe the mode,
 so «Em Soneca» stays.
 

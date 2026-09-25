@@ -149,7 +149,32 @@ the new rule.*
 
 ---
 
+## Baseline: Soundscape Community, not Microsoft
+
+**Dave's decision (2026-09-25):** Spanish follows JJ's Soundscape Community
+translation (`github.com/soundscape-community/soundscape`,
+`apps/ios/GuideDogs/Assets/Localization/es-ES.lproj/Localizable.strings`),
+which JJ has maintained since Microsoft's release (latest commit
+2026-07-24). It **replaces Microsoft's es-ES as the reference under C14**.
+Use `es-ES` for our `es`, not `es-419`: JJ keeps the Latin American file
+formal on purpose, and ES-R1 is informal.
+
+Compared 2026-09-25 against our live corpus. 210 shared strings were already
+identical. 13 differed audibly, and all 13 were improvements, including
+formal leftovers ES-R1 had missed (`first_launch_welcome_description`
+«Navegue», `first_launch_headphones_message_1` «desea … tómelos»,
+`first_launch_callouts_message` «le ayuda … se encuentra … va») and
+`general_error_add_marker_error` «Vuelve a intentarlo». **All 13 uploaded and
+verified live.** JJ's «Métrica (metros)» replaces our «Métrico». 136 strings
+couldn't be compared because our English has diverged from the Community's.
+None of the 13 conflicted with ES-R1 (no case of Community-formal over
+our-«tú»). If one ever does, ES-R1 wins.
+
 ## Provenance
+
+**2025-08-27 → 2025-09-22 — Luis Carlos, legacy `android-app` component.**
+Seven Weblate commits: FAQ answers, help text and hints, in the formal
+register. Superseded by JJ's work and ES-R1, but it was human input.
 
 **2026-09-24 — JJ, GitHub #881 (comment 5821176033).** Confirmed ES-R1 (informal
 everywhere) and ES-R2 («Pulsa» on iOS, with «Toca» expected from Android
