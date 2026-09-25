@@ -417,7 +417,7 @@
     <string name="faq_sleep_mode_battery_question">Soundscape'in telefonumun piline etkisini en aza indirmek için Sessiz Mod'u nasıl kullanırım?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape'i Sessiz Mod'a almak için ekranın sağ üst köşesindeki *\"Sessiz Mod\"* düğmesini seçin. Bunu seçtiğinizde Soundscape, tekrar uyandırmayı seçene kadar Konum Servisleri ve hücresel veriyi kullanmayı durduracaktır.\n</string>
     <string name="faq_snooze_mode_battery_question">Soundscape'in telefonumun piline etkisini en aza indirmek için Erteleme modunu nasıl kullanırım?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape'i Erteleme Modu'na almak için ekranın sağ üst köşesindeki *\"Sessiz Mod\"* düğmesini seçin. Soundscape Sessiz Mod'dayken *\"Ayrıldığımda Uyandır\"* düğmesini seçin; Soundscape, mevcut konumunuzu terk edene kadar düşük güç moduna geçecektir.\n</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape'i Erteleme Modu'na almak için ekranın sağ üst köşesindeki *\\"Sessiz Mod\\"* düğmesini seçin. Soundscape Sessiz Mod'dayken *\\"Ayrıldığımda Uyandır\\"* düğmesini seçin; Soundscape, mevcut konumunuzu terk edene kadar düşük güç moduna geçecektir.\n</string>
     <string name="faq_headset_battery_impact_question">Kulaklık tercihim telefonumun pil ömrünü nasıl etkiler?</string>
     <string name="faq_headset_battery_impact_answer">Testlerimizde, Bluetooth kulaklıkların pil tüketimi kablolu kulaklıklarla karşılaştırılabilir düzeydedir ve kulaklık seçerken önemli bir faktör olmayacaktır.</string>
     <string name="faq_background_battery_impact_question">Soundscape'i arka planda çalıştırmak telefonumun pil ömrünü nasıl etkiler?</string>
