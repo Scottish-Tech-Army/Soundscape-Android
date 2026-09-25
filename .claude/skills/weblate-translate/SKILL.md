@@ -132,6 +132,8 @@ Commit in the Weblate UI, then merge the translation branch back into the repo
 
 ## Notes
 
+- **Translate the whole string, never just the part that changed** (rule C16 in `translations/guidance/_common.md`). After a bulk pass, run `python3 .claude/skills/weblate-translate/scripts/truncation_check.py /tmp/weblate-review <code>` and check every flag against the English.
+
 - Component is fixed to `androidkmp`
   (`shared/src/commonMain/composeResources/values-*/strings.xml`). Don't use
   the `android-app` component in the same Weblate project — it points at a

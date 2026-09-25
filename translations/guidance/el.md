@@ -67,3 +67,5 @@ AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «Σε λειτουργία αναβολής» → Microsoft's «Σε αναβολή».
 
 **2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 10 were restored to Microsoft's wording and 8 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 10 uploaded and verified live.
+
+**2026-09-25 — truncation repaired (C16).** `faq_battery_impact_answer`, `faq_background_battery_impact_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.

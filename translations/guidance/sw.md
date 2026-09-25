@@ -60,3 +60,5 @@ Nothing yet.
 
 **2026-08-21 → 2026-09-24 — AI passes only.** **2026-09-24 — corpus sweep.**
 Nothing uploaded.
+
+**2026-09-25 — truncation repaired (C16).** `help_config_voices_content` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.

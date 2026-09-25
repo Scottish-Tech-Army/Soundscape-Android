@@ -85,3 +85,5 @@ Nothing yet.
 **2026-09-24 — corpus sweep.** Found HI-B1 by reading the hint strings
 against the template, and HI-G1 as part of the C10 cross-language check.
 Nothing uploaded.
+
+**2026-09-25 — truncation repaired (C16).** `faq_what_can_I_set_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.
