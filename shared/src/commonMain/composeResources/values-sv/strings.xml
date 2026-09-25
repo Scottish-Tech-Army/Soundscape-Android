@@ -29,10 +29,10 @@
     <string name="beacon_action_unmute_beacon">Sätt på ljudfyr</string>
     <string name="beacon_action_unmute_beacon_acc_hint">sätta på ljudfyren</string>
     <string name="preview_title">Simulera plats</string>
-    <string name="preview_go_title">Gå</string>
+    <string name="preview_go_title">OK</string>
     <string name="preview_include_unnamed_roads_title">Vägar utan namn</string>
     <string name="location_detail_title_default">Platsuppgifter</string>
-    <string name="location_detail_action_beacon">Starta ljudfyr</string>
+    <string name="location_detail_action_beacon">Ställ in ljudfyr</string>
     <string name="location_detail_action_beacon_hint">vägleda dig till den här platsen med ljud</string>
     <string name="location_detail_action_save_hint">spara den här platsen för senare</string>
     <string name="location_detail_action_edit_hint">ändra platsmarkörens namn eller lägg till anteckningar</string>
@@ -65,7 +65,7 @@
     <string name="user_activity_save_marker_title">Spara platsmarkör</string>
     <string name="routes_title">Rutter</string>
     <string name="routes_action_deleted">Rutten har tagits bort</string>
-    <string name="routes_no_routes_title">Kom igång med ruttbrytpunkter</string>
+    <string name="routes_no_routes_title">Kom i gång med ruttbrytpunkter</string>
     <string name="routes_no_routes_hint_1">Skapa en rutt åt dig själv eller åt någon annan. Lägg till en uppsättning platsmarkörer som brytpunkter för att bygga upp rutten.</string>
     <string name="routes_no_routes_hint_2">När du går din rutt läser Soundscape upp varje brytpunkt när du kommer fram. Ljudfyren flyttas sedan automatiskt till nästa brytpunkt.</string>
     <string name="routes_sort_by_name">Sortera efter namn</string>
@@ -76,7 +76,7 @@
     <string name="markers_sort_button_sort_by_name_voiceover">Sorterat efter namn</string>
     <string name="markers_sort_button_sort_by_distance">Avstånd</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">Sorterat efter avstånd</string>
-    <string name="markers_no_markers_title">Kom igång med platsmarkörer</string>
+    <string name="markers_no_markers_title">Kom i gång med platsmarkörer</string>
     <string name="markers_no_markers_hint_1">Skapa platsmarkörer för dina favoritmål, brytpunkter längs en rutt eller andra platser som du vill ska läsas upp. Välj en plats, eller din aktuella plats, på startskärmen och välj *Spara som platsmarkör*.</string>
     <string name="markers_no_markers_hint_2">Prova att markera ditt hem, ingången till ditt arbete eller din favoritplats i parken.</string>
     <string name="markers_edit_screen_title_edit">Redigera platsmarkör</string>
@@ -104,7 +104,7 @@
     <string name="callouts_automatic_callouts">Automatiska informationsljud</string>
     <string name="callouts_nothing_to_call_out_now">Det finns inget att läsa upp just nu</string>
     <string name="callouts_nearby_markers">Platsmarkörer i närheten</string>
-    <string name="sleep_sleep">Viloläge</string>
+    <string name="sleep_sleep">Inaktivera</string>
     <string name="sleep_sleeping">Inaktiverad</string>
     <string name="sleep_sleeping_message">Soundscape är i viloläge. I viloläget kan Soundscape inte använda Platstjänster eller ladda ned data. Du sparar på batteriet när du inte använder Soundscape. Tryck på knappen nedan om du vill aktivera Soundscape.</string>
     <string name="sleep_sleep_acc_hint">sätta Soundscape i viloläge</string>
@@ -183,7 +183,7 @@
     </plurals>
     <string name="ui_action_button_my_location">Min\nplats</string>
     <string name="ui_action_button_my_location_acc_hint">höra information om din aktuella plats</string>
-    <string name="ui_action_button_nearby_markers">Plats-\nmarkörer</string>
+    <string name="ui_action_button_nearby_markers">Markörer\nnära</string>
     <string name="ui_action_button_nearby_markers_acc_hint">höra om platsmarkörer i närheten som du har sparat</string>
     <string name="ui_action_button_around_me">Omkring\nmig</string>
     <string name="ui_action_button_around_me_acc_hint">höra om platser i de fyra kvadranterna runt dig</string>
@@ -258,11 +258,11 @@
     <string name="help_text_automatic_callouts_when_1">**Utforska ett nytt område**:\n\n Aktivera automatiska informationsljud om du vill höra om olika butiker, restauranger och annat medan du passerar dem.</string>
     <string name="help_text_automatic_callouts_when_2">**Gå till en viss plats**:\n\n När du är på väg till en viss plats kan det vara användbart med automatiska informationsljud för vägkorsningar. Sådana informationsljud berättar om vilka vägar som finns i vägkorsningen medan du närmar dig, och berättar vilken väg du går på när du lämnat korsningen.</string>
     <string name="help_text_automatic_callouts_when_3">**När du vill att det ska vara tyst**:\n\n När du ska korsa en väg eller bara vill att appen ska vara tyst kan du inaktivera informationsljuden. När de är inaktiverade får du bara information från appen om du manuellt trycker på någon av knapparna *"Min plats"*, *"Platsmarkörer i närheten"*, *"Omkring mig"* eller *"Framför mig"*.</string>
-    <string name="help_text_automatic_callouts_how_1">**Aktivera eller inaktivera informationsljud:**\n\n Att stänga av informationsljuden gör appen tyst. Du kan stänga av informationsljuden i avsnittet *\\"Hantera informationsljud\\"* på skärmen *\\"Inställningar\\"* genom att ställa in *\\"Detaljnivå för informationsljud\\"* på *\\"Tyst\\"*, och slå på dem igen genom att välja vilken annan nivå som helst. Du kan göra samma sak genom att be Siri eller Gemini om det. Du kan också göra Soundscape tystare ett steg i taget med mediereglageknapparna på dina hörlurar: varje tryck på *\\"föregående\\"* går ett steg nedåt genom *\\"Detaljerad\\"*, *\\"Balanserad\\"*, *\\"Lågmäld\\"* och *\\"Tyst\\"*, och ytterligare ett tryck går tillbaka till *\\"Detaljerad\\"*. Se hjälpavsnittet *\\"Använda mediereglage\\"*. Alternativt kan du använda knappen *\\"Viloläge\\"* uppe till höger på startskärmen för att förhindra att Soundscape spelar upp informationsljud tills du väljer att väcka appen igen.</string>
+    <string name="help_text_automatic_callouts_how_1">**Aktivera eller inaktivera informationsljud:**\n\n Att stänga av informationsljuden gör appen tyst. Du kan stänga av informationsljuden i avsnittet *\\"Hantera informationsljud\\"* på skärmen *\\"Inställningar\\"* genom att ställa in *\\"Detaljnivå för informationsljud\\"* på *\\"Tyst\\"*, och slå på dem igen genom att välja vilken annan nivå som helst. Du kan göra samma sak genom att be Siri eller Gemini om det. Du kan också göra Soundscape tystare ett steg i taget med mediereglageknapparna på dina hörlurar: varje tryck på *\\"föregående\\"* går ett steg nedåt genom *\\"Detaljerad\\"*, *\\"Balanserad\\"*, *\\"Lågmäld\\"* och *\\"Tyst\\"*, och ytterligare ett tryck går tillbaka till *\\"Detaljerad\\"*. Se hjälpavsnittet *\\"Använda mediereglage\\"*. Alternativt kan du använda knappen *\\"Inaktivera\\"* uppe till höger på startskärmen för att förhindra att Soundscape spelar upp informationsljud tills du väljer att väcka appen igen.</string>
     <string name="help_text_automatic_callouts_how_2">**Hantera vilka informationsljud du hör:**\n\n För att välja vilka typer av saker Soundscape automatiskt ska läsa upp, gå till skärmen *\\"Inställningar\\"* via menyn på skärmen *\\"Start\\"*. I avsnittet *\\"Hantera informationsljud\\"* på skärmen *\\"Inställningar\\"* väljer du hur mycket appen säger med *\\"Detaljnivå för informationsljud\\"*, om den läser upp *\\"Gator och vägkorsningar\\"* och vilka *\\"Platser att läsa upp\\"* som gäller. Om du vill stänga av alla informationsljud ställer du in *\\"Detaljnivå för informationsljud\\"* på *\\"Tyst\\"*.</string>
-    <string name="help_text_my_location_what">*Min plats* berättar om den aktuella platsen, bland annat vilken riktning du går i och vilka vägar, vägkorsningar eller intressepunkter som finns i närheten.</string>
+    <string name="help_text_my_location_what">Med knappen *"Min plats"* får du snabbt information som hjälper dig att komma på var du befinner dig. *"Min plats"* berättar om den aktuella platsen, bland att vilken riktning du går i och vilka vägar, vägkorsningar eller intressepunkter som finns i närheten.</string>
     <string name="help_text_my_location_when">*"Min plats"* är användbar när du behöver ta reda på var du är eller i vilken riktning du går.</string>
-    <string name="help_text_my_location_how">Tryck på knappen *Min plats* och lyssna.</string>
+    <string name="help_text_my_location_how">Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonen i färdriktningen innan du trycker på knappen *"Min plats"*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *"Min plats mig"* och lyssna.</string>
     <string name="help_text_nearby_markers_what">Knappen *"Platsmarkörer i närheten"* berättar om upp till fyra platsmarkörer som finns närmast dig. *"Platsmarkörer i närheten"* hjälper dig att orientera dig med hjälp av platser du redan känner till.</string>
     <string name="help_text_nearby_markers_when">När du försöker orientera dig i omgivningarna kan du använda *"Platsmarkörer i närheten"* för att höra om platser som du känner till.</string>
     <string name="help_text_nearby_markers_how">Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonen i färdriktningen innan du trycker på knappen *"Platsmarkörer i närheten"*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *"Platsmarkörer i närheten"* så hör du upp till fyra platsmarkörer i närheten.</string>
@@ -399,7 +399,7 @@
     <string name="faq_use_with_wayfinding_apps_question">Hur använder jag Soundscape tillsammans med en navigeringsapp?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape är tänkt att fungera som en "kunskapsapp" som fyller i detaljer om din omgivning som du annars inte skulle vara medveten om. Det är inte tänkt att du ska kunna navigera sväng för sväng med den. Den kan dock användas för att komplettera sådana navigeringsappar. Om du vill använda Soundscape med sådana appar ska du först starta navigeringsappen. Sedan går du över till Soundscape och ställer in en ljudfyr på samma mål som navigeringsappen. Nu körs båda apparna och du kommer att höra vägvisningar från navigeringsappen samtidigt som du får uppdateringar om intressepunkter, vägkorsningar och avståndet från ditt mål från Soundscape.</string>
     <string name="faq_controlling_what_you_hear_question">Hur styr jag vad jag hör och när jag hör det i Soundscape?</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape ger flera sätt att styra vad du hör och när:\n\n1. Stoppa allt ljud omedelbart: Dubbeltryck på skärmen med två fingrar för att omedelbart stänga av allt ljud, inklusive eventuella informationsljud som spelas upp och ljudfyren om den är på. Informationsljuden återupptas automatiskt när du närmar dig nästa vägkorsning eller intressepunkt, men den hörbara ljudfyren gör det inte. Välj knappen *\\"Sätt på ljudfyr\\"* på huvudskärmen för att börja höra ljudfyren igen.\n\n2. Stoppa automatiska informationsljud: När du inte är på väg någonstans eller har nått ditt mål behöver Soundscape förmodligen inte fortsätta meddela dig om vad som finns omkring dig. I stället för att avsluta appen kan du sätta Soundscape i snoozeläge – då väcks den när du lämnar platsen – eller sätta Soundscape i viloläge, då den förblir avstängd tills du själv aktiverar den igen. Alternativt kan du välja *\\"Inställningar\\"* i menyn och ställa in *\\"Detaljnivå för informationsljud\\"* på *\\"Tyst\\"* i avsnittet *\\"Hantera informationsljud\\"*.\n\n3. Stoppa ljudfyren: Det finns flera situationer där du kan ställa in ett mål men inte behöva ljudfyren på. Du kanske till exempel vet exakt hur du ska ta dig till målet men ändå vill ha automatiska uppdateringar om hur långt det är kvar, eller så behöver du ljudfyren bara när du närmar dig målet. I båda fallen kan du välja när du vill höra ljudfyren genom att växla knappen *\\"Stäng av ljudfyr\\"*/*\\"Sätt på ljudfyr\\"* på huvudskärmen.\n\nOm du fortfarande vill interagera med Soundscape men inte vill höra automatiska informationsljud kan du ställa in *\\"Detaljnivå för informationsljud\\"* på *\\"Tyst\\"* i avsnittet *\\"Hantera informationsljud\\"* på skärmen *\\"Inställningar\\"* i menyn. Om du inte tänker använda Soundscape kan du istället sätta appen i viloläge eller snoozeläge med knappen *\\"Viloläge\\"* på startskärmen.</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape ger flera sätt att styra vad du hör och när:\n\n1. Stoppa allt ljud omedelbart: Dubbeltryck på skärmen med två fingrar för att omedelbart stänga av allt ljud, inklusive eventuella informationsljud som spelas upp och ljudfyren om den är på. Informationsljuden återupptas automatiskt när du närmar dig nästa vägkorsning eller intressepunkt, men den hörbara ljudfyren gör det inte. Välj knappen *\\"Sätt på ljudfyr\\"* på huvudskärmen för att börja höra ljudfyren igen.\n\n2. Stoppa automatiska informationsljud: När du inte är på väg någonstans eller har nått ditt mål behöver Soundscape förmodligen inte fortsätta meddela dig om vad som finns omkring dig. I stället för att avsluta appen kan du sätta Soundscape i snoozeläge – då väcks den när du lämnar platsen – eller sätta Soundscape i viloläge, då den förblir avstängd tills du själv aktiverar den igen. Alternativt kan du välja *\\"Inställningar\\"* i menyn och ställa in *\\"Detaljnivå för informationsljud\\"* på *\\"Tyst\\"* i avsnittet *\\"Hantera informationsljud\\"*.\n\n3. Stoppa ljudfyren: Det finns flera situationer där du kan ställa in ett mål men inte behöva ljudfyren på. Du kanske till exempel vet exakt hur du ska ta dig till målet men ändå vill ha automatiska uppdateringar om hur långt det är kvar, eller så behöver du ljudfyren bara när du närmar dig målet. I båda fallen kan du välja när du vill höra ljudfyren genom att växla knappen *\\"Stäng av ljudfyr\\"*/*\\"Sätt på ljudfyr\\"* på huvudskärmen.\n\nOm du fortfarande vill interagera med Soundscape men inte vill höra automatiska informationsljud kan du ställa in *\\"Detaljnivå för informationsljud\\"* på *\\"Tyst\\"* i avsnittet *\\"Hantera informationsljud\\"* på skärmen *\\"Inställningar\\"* i menyn. Om du inte tänker använda Soundscape kan du istället sätta appen i viloläge eller snoozeläge med knappen *\\"Inaktivera\\"* på startskärmen.</string>
     <string name="faq_holding_phone_flat_question">Måste jag hålla telefonen i handen hela tiden?</string>
     <string name="faq_holding_phone_flat_answer">Nej! När du går kan du ha telefonen i en väska eller ficka eller där det är praktiskt. Soundscape använder den riktning du går i för att avgöra vilka informationsljud som ska läsas upp till din vänster respektive höger. När du står still vet inte Soundscape vilken riktning du är vänd åt. Om ljudfyren är på blir den tystare tills du börjar gå igen. Du kan ta upp telefonen när som helst för att trycka på knapparna för plats och utforskning längst ner på skärmen, men se till att hålla telefonen plant med överkanten pekande i den riktning du står vänd och skärmen mot himlen. I denna *\"platta\"* position använder Soundscape telefonens kompass för att avgöra vilken riktning du pekar åt och ge korrekta rumsbestämda uppläsningar. Om ljudfyren är på märker du också att den återgår till full volym.</string>
     <string name="faq_what_is_osm_question">Vad är OpenStreetMap och varför använder vi det för Soundscape?</string>
@@ -408,13 +408,13 @@
     <string name="faq_tip_setting_beacon_on_address">Du kan ställa in en ljudfyr på vilken adress som helst. Från Soundscapes huvudskärm söker du efter adressen. Välj adressen i sökresultaten för att öppna skärmen *"Platsuppgifter"*. Den här skärmen har alternativet *"Starta ljudfyr"* för adressen. På så vis kan du ställa in en ljudfyr på företag, platser, intressepunkter och bostäder som inte finns i OpenStreetMap.</string>
     <string name="faq_tip_finding_bus_stops">Du kan hitta busshållplatser i närheten genom att välja filtret *\"Kollektivtrafik\"* i listan *\"Platser i närheten\"*.</string>
     <string name="faq_tip_turning_beacon_off">Du kan aktivera och inaktivera ljudfyrens rytmiska ljud med ljudavstängningsknappen på startskärmen. Om ljudfyren är avstängd får du ändå uppdateringar om avståndet till ditt mål ungefär var 50:e meter.</string>
-    <string name="faq_tip_turning_off_auto_callouts">Om du vill fortsätta använda Soundscape utan att höra automatiska informationsljud ställer du in *\\"Detaljnivå för informationsljud\\"* på *\\"Tyst\\"* i avsnittet *\\"Hantera informationsljud\\"* på skärmen *\\"Inställningar\\"* i menyn. Om du inte tänker använda Soundscape på ett tag kan du istället sätta appen i viloläge eller snoozeläge med knappen *\\"Viloläge\\"* på startskärmen.</string>
+    <string name="faq_tip_turning_off_auto_callouts">Om du vill fortsätta använda Soundscape utan att höra automatiska informationsljud ställer du in *\\"Detaljnivå för informationsljud\\"* på *\\"Tyst\\"* i avsnittet *\\"Hantera informationsljud\\"* på skärmen *\\"Inställningar\\"* i menyn. Om du inte tänker använda Soundscape på ett tag kan du istället sätta appen i viloläge eller snoozeläge med knappen *\\"Inaktivera\\"* på startskärmen.</string>
     <string name="faq_tip_hold_phone_flat">Soundscape fungerar bäst när du håller telefonen plant med skärmen riktad upp mot himlen och telefonens överkant riktad från dig.</string>
     <string name="faq_tip_create_marker_at_bus_stop">Om du regelbundet åker en viss busslinje kan du spara dina påstignings‑ och avstigningshållplatser som platsmarkörer. Då sparas de så att du enkelt hittar dem igen. Gå till *"Platsmarkörer och rutter"* från startskärmen och hitta dem sedan på sidan *"Platsmarkörer"*. Du kan ställa in en ljudfyr på dem för att få regelbundna uppdateringar om hur nära du är din avstigningshållplats. Obs: du kan stänga av det rytmiska ljudet och ändå få avståndsuppdateringar under resans gång.</string>
     <string name="first_launch_permissions_notification">Meddelanden</string>
     <string name="no_language_selected">Inget språk valt</string>
     <string name="settings_section_units">Måttenheter</string>
-    <string name="settings_units_imperial">Imperial (fot)</string>
+    <string name="settings_units_imperial">Brittisk (fot)</string>
     <string name="settings_units_metric">Metrisk (meter)</string>
     <string name="voice_engine">Text-till-tal-motor</string>
     <string name="preview_go_nearest_intersection">Gå till närmaste korsning</string>
@@ -424,7 +424,7 @@
     <string name="directions_near_road_and_settlement">Nära %1$s och i närheten av %2$s</string>
     <string name="directions_cardinal_north">Norr</string>
     <string name="directions_cardinal_north_east">Nordost</string>
-    <string name="directions_cardinal_east">Öster</string>
+    <string name="directions_cardinal_east">Öst</string>
     <string name="directions_cardinal_south_east">Sydost</string>
     <string name="directions_cardinal_south">Söder</string>
     <string name="directions_cardinal_south_west">Sydväst</string>
@@ -432,7 +432,7 @@
     <string name="directions_cardinal_north_west">Nordväst</string>
     <string name="directions_cardinal_north_abb">N</string>
     <string name="directions_cardinal_north_east_abb">NO</string>
-    <string name="directions_cardinal_east_abb">O</string>
+    <string name="directions_cardinal_east_abb">Ö</string>
     <string name="directions_cardinal_south_east_abb">SO</string>
     <string name="directions_cardinal_south_abb">S</string>
     <string name="directions_cardinal_south_west_abb">SV</string>
@@ -1234,7 +1234,7 @@
     <string name="tour_nearby_markers">Sista knappen är Platsmarkörer i närheten, som läser upp sparade platser runt dig. Tryck på Platsmarkörer i närheten för att prova.</string>
     <string name="tour_markers_and_routes">Du har nu skapat en platsmarkör. Vi ska spela upp en ljudfyr som vägleder oss till den platsen. Tryck på Platsmarkörer och rutter, precis under Platser i närheten.</string>
     <string name="tour_markers">Skärmen Platsmarkörer och rutter har två flikar. En flik listar rutter, som är spellistor av platsmarkörer. Den andra listar enskilda platsmarkörer. Tryck på Platsmarkörer för att byta till den fliken och hitta den platsmarkör du skapade.</string>
-    <string name="tour_start_beacon">trycker du på Starta ljudfyr</string>
+    <string name="tour_start_beacon">Du är nu på fliken Platsmarkörer som visar alla dina sparade platsmarkörer. Välj en platsmarkör och när skärmen Platsuppgifter visas trycker du på Ställ in ljudfyr.</string>
     <string name="tour_beacon_demo">Nu kan du höra ljudfyren. Den spelas upp från målets riktning. När du vrider på telefonen hör du hur ljudfyren rör sig och ändrar karaktär. Prova nu.</string>
     <string name="tour_beacon_demo_locked">När telefonen är låst fortsätter ljudfyren att spelas. Om du går eller färdas i ett fordon använder appen din färdriktning för att spela upp ljudfyren. Även när telefonen är låst kan du hålla den plant framför dig som en kompass. Då använder ljudfyren den riktning som telefonen pekar mot. Prova nu.</string>
     <string name="tour_stop_beacon">När du vill stoppa ljudfyren trycker du på knappen Stoppa rutten.</string>
@@ -1423,7 +1423,7 @@
     <string name="settings_mix_audio_description">När det är inaktiverat pausas andra ljudappar och mediereglagen på låsskärmen blir tillgängliga</string>
     <string name="settings_head_tracking">Aktivera huvudspårning</string>
     <string name="settings_head_tracking_description">Positionera det rumsbestämda ljudet i förhållande till vart ditt huvud pekar, med hjälp av rörelsedata från kompatibla AirPods, Bose Frames eller en extern Bluetooth‑IMU. Kalibreras automatiskt medan du går.</string>
-    <string name="sleep_snoozing">Snoozeläge</string>
+    <string name="sleep_snoozing">Snoozar</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape är för närvarande i snoozeläge. När du lämnar din nuvarande plats vaknar Soundscape automatiskt. Snoozeläget använder Platstjänster i ett lågeffektsläge för att spara telefonens batteri. Tryck på knappen nedan för att väcka Soundscape nu.</string>
     <string name="sleep_wake_on_leave">Väck Soundscape när jag lämnar</string>
     <string name="osm_motorway">Motorväg</string>
@@ -1533,7 +1533,7 @@
     <string name="legacy_migration_continue">Fortsätt</string>
     <string name="callouts_bus_and_tram_stops">Buss- och spårvagnshållplatser</string>
     <string name="callouts_bus_and_tram_stops_description">Meddela busshållplatser och spårvagnshållplatser när du passerar dem</string>
-    <string name="directions_approaching_name">Du närmar dig %1$s</string>
+    <string name="directions_approaching_name">Snart framme vid %1$s</string>
     <string name="directions_generic_tram">spårvagn</string>
     <string name="ios_permission_location_when_in_use">Soundscape behöver din plats för att kunna ge ljudnavigering och beskriva dina omgivningar.</string>
     <string name="ios_permission_location_always">Soundscape behöver din plats för att kunna ge ljudnavigering även när appen körs i bakgrunden.</string>
