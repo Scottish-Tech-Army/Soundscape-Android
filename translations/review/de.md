@@ -36,10 +36,6 @@ Wäre „Fußweg zur Sackgasse“ bzw. „Fußweg Richtung Moor Road“ besser?
 Man wählt nach Gehör, wie viel die App sagt: **Ausführlich / Ausgewogen /
 Leise / Stumm**. Sind sie gut zu unterscheiden?
 
-**Q4 — Die Taste „Ruhemodus“** *(Sleep button)*
-Die Taste zum Stromsparen heißt „Ruhemodus“. Früher hieß sie „Ruhemodus
-aktivieren“. Was ist besser für eine Taste?
-
 **Q5 — Siri-Befehle** *(Siri phrases)*
 Auf dem iPhone kann man zu Siri sagen: „Soundscape Umgebung“, „Soundscape
 Route“, „Soundscape starte Route“, „Soundscape Beacon“, „Soundscape stoppe

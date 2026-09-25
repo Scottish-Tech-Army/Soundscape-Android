@@ -28,7 +28,9 @@ decide, decide it for both, or record why they differ. Questions:
 
 ## Rules
 
-### FRCA-T1 — Sleep and Snooze statuses are both «En veille» (`agreed` defect, `unconfirmed` wording)
+### FRCA-T1 — Sleep and Snooze statuses are both «En veille» (`confirmed` fixed 2026-09-25)
+
+**Fixed 2026-09-25:** `sleep_snoozing` restored to Microsoft's «Désactivé temporairement» (C14 parity), which also ends the collision.
 
 `sleep_sleeping` and `sleep_snoozing` are both «En veille». The user can't
 tell whether Soundscape will wake by itself. This is the same kind of
@@ -58,7 +60,6 @@ Nothing yet.
 
 1. Waypoint «point de cheminement» and Callout «annonce»: right? (These are
    what fr is considering too.)
-2. Sleep and Snooze both say «En veille». What should Snooze say? (FRCA-T1)
 3. «Sentier vers une impasse»? (FRCA-G1)
 4. Beacon: «balise audio» or «balise sonore»?
 5. «Tout est prêt!» instead of «Vous êtes prêt!»? (FRCA-R1)
@@ -69,3 +70,5 @@ Nothing yet.
 **2024-12 — Microsoft baseline** (`fr-CA.lproj`). **2025 → 2026 — AI passes**,
 which moved the core terms (see the table above). **2026-09-24 — corpus
 sweep.** Nothing uploaded.
+
+**2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «En veille» → «Désactivé temporairement».

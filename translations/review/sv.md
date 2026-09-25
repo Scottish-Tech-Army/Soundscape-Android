@@ -19,13 +19,10 @@ viktigaste är att det är tydligt och naturligt *att lyssna på*.
 
 ---
 
-**Q1 — Viloläge** *(Sleep button vs status mismatch)*
-Knappen för att spara batteri heter "Viloläge", och när appen vilar säger den
-nu "I viloläge" (tidigare "Inaktiverad"). Låter det rätt?
-
-**Q2 — "Snoozeläge"** *(Snooze)*
-Läget som **vaknar av sig självt** när du lämnar platsen heter "Snoozeläge".
-Låter det naturligt?
+**Q2 — Viloläge och snooze** *(Sleep/Snooze now match the original iOS app)*
+Vi har gått tillbaka till orden från den ursprungliga iOS-appen: knappen heter
+"Inaktivera", statusen "Inaktiverad", och läget som **vaknar av sig självt**
+när du lämnar platsen heter "Snoozar". Låter det bra?
 
 **Q3 — "Stig till återvändsgata"** *(Dead-end way description)*
 För en stig som slutar blint säger appen "Stig till återvändsgata". Låter det

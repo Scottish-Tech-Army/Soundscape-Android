@@ -25,6 +25,11 @@ unas pocas dudas, casi todas pequeñas.
   botón, «Reactivar al salir». Por eso hemos corregido el texto en inglés de
   la pregunta frecuente, y la versión en español dirá «Reactivar al salir».
 
+- **Q5 — «Suspendiendo»:** lo dejamos como en la app original de Microsoft.
+  Para que el par coincida, «En modo de aplazamiento» vuelve a ser
+  «**Posponiendo**», también como en Microsoft. Queremos que quien venga de
+  la app de iOS original note las mínimas diferencias posibles.
+
 ## Pendientes *(Still open)*
 
 **Q3 — «Sendero a Callejón sin salida»** *(Dead-end way description)*
@@ -37,10 +42,6 @@ La pantalla de inicio dice «¡Bienvenido!» y el tutorial «Bienvenido al
 tutorial guiado», ambos en masculino. Al final dice «¡Ya está listo!», que
 con el tuteo suena a «ya está listo (algo)». ¿Serían mejores «¡Te damos la
 bienvenida!» y «¡Todo listo!»?
-
-**Q5 — «Suspendiendo»** *(Sleep status sounds in-progress)*
-Cuando Soundscape está en modo de suspensión, el estado dice «Suspendiendo»,
-que suena a algo que está pasando todavía. ¿Es mejor «En suspensión»?
 
 **Q6 — ¿Algo más?** *(Anything else)*
 

@@ -63,3 +63,5 @@ Nothing yet.
 
 **2024-07 → 2024-09 — Microsoft baseline** (`el-GR.lproj`). **2025 → 2026 —
 AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «Σε λειτουργία αναβολής» → Microsoft's «Σε αναβολή».

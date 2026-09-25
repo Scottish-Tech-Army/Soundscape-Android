@@ -33,7 +33,7 @@ fra»). The Siri phrases (`da.lproj`) match the help text. Questions:
 | Marker | mærke | `confirmed` | Microsoft's majority form, now consistent |
 | Waypoint | vejpunkt | `unconfirmed` | Microsoft mixed «vejpunkt» and «waypoint». Now consistent |
 | Intersection | (vej)kryds | `confirmed` | Microsoft said «kryds», and some strings now say «vejkryds» |
-| Sleep / Snooze | Dvale / I dvale ; I slumretilstand | `confirmed` | Microsoft («Slumrer» → «I slumretilstand») |
+| Sleep / Snooze | Dvale / I dvale ; Slumrer | `confirmed` | Microsoft. Snooze restored from «I slumretilstand» 2026-09-25 (C14 parity) |
 | Detail levels | Detaljeret / Balanceret / Stille / Lydløs | `unconfirmed` | AI. Distinct |
 | dead end | Blind vej | `unconfirmed` | AI. See DA-G1 |
 
@@ -75,3 +75,5 @@ Nothing yet.
 **2024-07 → 2024-09 — Microsoft baseline** (`da-DK.lproj`).
 **2025 → 2026-09 — AI passes**, plus Weblate bulk operations.
 **2026-09-24 — corpus sweep** with a Microsoft comparison. Nothing uploaded.
+
+**2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` → «Slumrer».
