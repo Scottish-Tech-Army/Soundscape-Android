@@ -1,4 +1,4 @@
-**# Traducción al español de Soundscape — unas preguntas más
+# Traducción al español de Soundscape — unas preguntas más
 
 *Spanish translation — follow-up questions for JJ (and any other native
 reviewer). English glosses in italics are for the maintainer.*
