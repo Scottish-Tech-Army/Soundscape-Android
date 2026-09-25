@@ -16,6 +16,10 @@ Read with [`_common.md`](_common.md).
 - Callout is consistently «안내» (128) with no loanword split.
 - Waypoint is the native map term «경유지».
 - `confect_name_to` «%2$s(으)로 이어지는 %1$s» is the model C10 answer.
+- Particle markers such as «을(를)», «(으)로» and «(이)라» are resolved in code
+  (C18). Keep writing them. `street_description_between` hard-coded
+  «%2$s와», which is wrong after a consonant; it was changed to «%2$s과(와)» on
+  Weblate on 2026-09-25.
 - «%1$s하려면 두 번 탭하세요» composes correctly (C9-safe, verb-final).
 - The Siri phrases (`ko.lproj`) match the help text.
 

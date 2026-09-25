@@ -33,14 +33,15 @@ hints is already the colon frame that C13 recommends. There is no
 
 ## Rules
 
-### HU-A1 — «a(z)» is read aloud (`agreed` defect, `unconfirmed` wording)
+### HU-A1 — «a(z)» is resolved in code (`fixed`, 2026-09-25)
 
-42 strings write the article as «a(z)» before a placeholder («%1$s a(z)
-%2$s felé»), because the right form (a/az) depends on the substituted word.
-A screen reader either reads the brackets or spells out «a z», and neither is an article. (How exactly depends on the TTS engine. Ask a user.) Fixes, per
-string: restructure so no article is needed, or pick «a» or «az» where the
-following word is known. It can also be done in code, by choosing «a»/«az»
-from the first letter of the substituted text. Ask before sweeping.
+47 strings write the article as «a(z)», because a/az depends on the name
+that is filled in, and screen readers read the brackets out. Since
+2026-09-25 `resolveGrammarMarkers()` (C18) picks «a» or «az» from the
+substituted text, so translators should **keep writing «a(z)»**. Don't
+restructure strings to avoid it, and don't pick one form. Still worth
+confirming with a native speaker: the letter-name rule (az M7, az SZTE,
+a BKV) and the number rule (az 1, az 5, az 1000, a 12, a 100).
 
 ### HU-R1 — «te» vs «Ön» (`unconfirmed`)
 
@@ -53,8 +54,8 @@ Nothing yet.
 
 ## Open questions
 
-1. How does «a(z)» sound when a screen reader reads it? How should it be
-   removed? (HU-A1)
+1. Does the automatic a/az choice sound right, especially before road
+   numbers, abbreviations and numbers? (HU-A1)
 2. Register: «te» everywhere, or «Ön» everywhere? (HU-R1)
 3. Beacon «hangjelző»: natural?
 4. Callout «bejelentés»: natural?

@@ -170,12 +170,32 @@ nominative is natural.
 > The dead-end string then went back to the nominative «тупик».
 
 The same problem is recorded, unresolved, as IS-G2 (Icelandic), PL-G1's open
-side (Polish), FR-G2 (French contractions), TR-G1 (Turkish suffixes) and
-HU-A1 (Hungarian «a(z)»). The label form is the candidate fix to put to each
+side (Polish), FR-G2 (French contractions) and TR-G1 (Turkish suffixes).
+HU-A1 (Hungarian «a(z)») is now resolved in code, see C18. The label form is the candidate fix to put to each
 language's reviewer. It isn't a rule to apply unasked, because it changes
 how the callout sounds. Finnish already dodges it with «kohteeseen %2$s».
 Remember C9: if a template changes, strings substituted into it may need
 their case changed back.
+
+## C18 — Either-form markers are resolved in code; keep writing them
+
+Some languages have a form that depends only on the sound of the name that
+follows or precedes it. Translators write both forms, and
+`resolveGrammarMarkers()` (`shared/.../i18n/GrammarMarkers.kt`) keeps the
+right one once the name has been filled in. It covers text formatted
+through `LocalizedStrings` (all callouts) and the offline-maps and Terms
+screens.
+
+| Language | Marker | Chosen by |
+|---|---|---|
+| hu | «a(z)», «A(z)» | first sound of the next word: vowel → «az»; letter names (az M7, az SZTE) and numbers (az 1, az 5, a 12) by how they're said |
+| ko | 을(를), 이(가), 은(는), 과(와) and the reversed forms, (으)로, (이) | final consonant of the preceding syllable; ㄹ takes 로; numbers in Sino-Korean, Latin by letter name or spelling |
+
+So **keep** these markers in translations and never replace them with one
+fixed form: a bare «와» or «a» is wrong for some names. A marker that isn't
+in the table is read aloud as written. Add it to the code (with a test)
+before translations start using it. Anything shared rather than shown or
+spoken (the share-location message) is left as written.
 
 ## C10 — `confect_name_to` means "a path that leads to", not "from … to"
 

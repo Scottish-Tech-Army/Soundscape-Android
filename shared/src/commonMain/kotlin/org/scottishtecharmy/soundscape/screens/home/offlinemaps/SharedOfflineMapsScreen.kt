@@ -44,6 +44,7 @@ import androidx.compose.ui.text.style.TextAlign
 import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.i18n.resolveGrammarMarkers
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.general_alert_cancel
@@ -220,10 +221,12 @@ fun OfflineMapsScreenContent(
                     verticalArrangement = Arrangement.Center,
                 ) {
                     Text(
-                        text = stringResource(
-                            if (caching) Res.string.offline_maps_caching
-                            else Res.string.offline_maps_downloading,
-                            uiState.downloadingExtractName,
+                        text = resolveGrammarMarkers(
+                            stringResource(
+                                if (caching) Res.string.offline_maps_caching
+                                else Res.string.offline_maps_downloading,
+                                uiState.downloadingExtractName,
+                            )
                         ),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineLarge,
@@ -280,10 +283,12 @@ private fun OfflineMapsList(
         for (storage in uiState.storages) {
             if (storage.path == uiState.currentPath) {
                 Text(
-                    text = stringResource(
-                        Res.string.offline_maps_storage,
-                        storage.description,
-                        storage.availableString,
+                    text = resolveGrammarMarkers(
+                        stringResource(
+                            Res.string.offline_maps_storage,
+                            storage.description,
+                            storage.availableString,
+                        )
                     ),
                     modifier = Modifier
                         .fillMaxWidth()

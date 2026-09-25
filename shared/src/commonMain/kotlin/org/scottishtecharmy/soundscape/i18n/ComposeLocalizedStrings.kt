@@ -209,14 +209,18 @@ private val singularFractionLanguages = setOf("bn", "fa", "fr", "hi", "mr", "pt"
 
 class ComposeLocalizedStrings : LocalizedStrings {
     override fun get(key: StringKey, vararg args: Any?): String =
-        runBlocking { getString(resId(key), *args.map { it ?: "" }.toTypedArray()) }
+        runBlocking {
+            resolveGrammarMarkers(getString(resId(key), *args.map { it ?: "" }.toTypedArray()))
+        }
 
     override fun getOrNull(key: StringKey, vararg args: Any?): String? =
         runCatching { get(key, *args) }.getOrNull()
 
     override fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String =
         runBlocking {
-            getPluralString(pluralResId(key), quantity, *args.map { it ?: "" }.toTypedArray())
+            resolveGrammarMarkers(
+                getPluralString(pluralResId(key), quantity, *args.map { it ?: "" }.toTypedArray())
+            )
         }
 
     override val fractionalPluralQuantity: Int

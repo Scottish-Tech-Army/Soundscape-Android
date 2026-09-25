@@ -29,10 +29,13 @@ legfontosabb, hogy *hallgatva* érthető és természetes legyen.
 
 ---
 
-**Q1 — „a(z)”** *(«a(z)» read aloud)*
-Sok mondatban „a(z)” áll egy név előtt, például „Ösvény a(z) Fő utca felé”.
-Hogyan hangzik ez, amikor a képernyőolvasó felolvassa? Hogyan lehetne jobban
-megfogalmazni?
+**Q1 — „a” vagy „az”** *(automatic a/az)*
+A fordításokban „a(z)” áll a nevek előtt, mert a helyes névelő a névtől függ.
+Az alkalmazás most a behelyettesített név alapján maga választ: „az Andrássy
+úton”, „a Rákóczi úton”. Rövidítéseknél és útszámoknál a betű kiejtését
+követi („az M7”, „az SZTE”, „a BKV”), számoknál a kimondott alakot („az 1-es”,
+„az 5”, „az 1000”, „a 12”, „a 100”). Helyesek ezek a szabályok? Tud olyan esetet,
+ahol rossz névelőt választana?
 
 **Q2 — Tegezés vagy magázás?** *(Mixed register)*
 Az alkalmazás nagyrészt tegez („Készen állsz!”), de a súgóoldalak magáznak
