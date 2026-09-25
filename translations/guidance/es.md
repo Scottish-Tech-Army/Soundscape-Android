@@ -120,22 +120,25 @@ Nothing yet — no feedback in this thread was proposed and then turned down.
 
 ## Open questions for the reporter (JJ / next native-speaker round)
 
-1. **Confirm «Pulsa» over «Toca» for the double-tap verb** — see ES-R2. The
-   existing `tour_*` strings already use «Pulsa», so that's the default
-   unless you say otherwise.
-2. **`first_launch_callouts_listen` has a redundant preposition**: "Escuche
-   un ejemplo sobre **de** lo que Soundscape podría avisar..." — "sobre de"
-   isn't standard; should be "sobre" alone. Folded into that string's
-   register fix but flagging separately since it's a distinct grammar
-   issue, not a register one.
-3. **`faq_snooze_mode_battery_answer` names a button that doesn't match its
-   live label**: the FAQ text says *"seleccione el botón 'Reactivar cuando
-   salga'"* but the actual button string (`sleep_wake_on_leave`) reads
-   "Reactivar al salir". Converted to «salgas» for register consistency
-   either way, but the name mismatch itself is a separate, unresolved bug —
-   worth a source-string check (rule C7 in `_common.md`).
+These are the questions in `translations/review/es.md` (Q1…Q6), refreshed
+2026-09-25 against the live corpus.
 
-*Answered and closed: the two-register question — Dave decided informal
+1. **Confirm «Pulsa» over «Toca»** for the double-tap verb (ES-R2).
+2. **`faq_snooze_mode_battery_answer` names a button that doesn't exist**:
+   «Reactivar cuando salgas» vs the real `sleep_wake_on_leave` «Reactivar al
+   salir». **This is a source bug (C7):** the English FAQ says *Wake up when I
+   leave* but the English button is "Wake On Leave", so every language
+   inherited the mismatch. Fix the English FAQ text, then this string.
+3. **«Sendero a Callejón sin salida»**: a capital mid-sentence and no article
+   (the FR-G1 pattern). Candidate: «hacia un callejón sin salida».
+4. **«¡Bienvenido!» / «Bienvenido al tutorial» are masculine, and «¡Ya está
+   listo!» is ambiguous** under tú (C15). Candidates: «¡Te damos la
+   bienvenida!», «¡Todo listo!».
+5. **`sleep_sleeping` «Suspendiendo»** sounds in-progress. Candidate: «En
+   suspensión».
+6. Anything else.
+
+*Answered and closed: «sobre de» in `first_launch_callouts_listen`, fixed in the 2026-09-24 upload («sobre lo que»). The two-register question — Dave decided informal
 everywhere, no FAQ exception (2026-09-24, see ES-R1). The
 `help_text_assistant_*` register — already informal, already correct under
 the new rule.*
