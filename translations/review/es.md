@@ -5,28 +5,27 @@ reviewer). English glosses in italics are for the maintainer.*
 
 ¡Hola! Gracias de nuevo por todo el trabajo de mayo.
 
-*(Actualizado el 25 de septiembre: JJ ya respondió a Q1 y Q2 en #881. ¡Gracias! Quedan Q3–Q5.)*
-
 Seguimos tu criterio: ahora **toda** la aplicación usa «tú», incluidas las
 preguntas frecuentes (se cambiaron 95 textos el 24 de septiembre). Quedan
 unas pocas dudas, casi todas pequeñas.
 
-**Cómo responder:** contesta por correo con el número de la pregunta («Q2:
-yo diría…»). No hace falta responder a todo, y un «OK» también ayuda.
+**Cómo responder:** contesta por correo o en #881 con el número de la pregunta
+(«Q3: yo diría…»). No hace falta responder a todo, y un «OK» también ayuda.
 
 ---
 
-**Q1 — «Pulsa» o «Toca»** *(Double-tap verb)*
-Los tutoriales y las pistas de VoiceOver dicen «**Pulsa** dos veces para…».
-En mayo mencionaste que TalkBack en español dice «Toca dos veces», pero que
-preferías «Pulsa». ¿Lo dejamos en «Pulsa»?
+## Ya respondidas — ¡gracias! *(Answered by JJ in #881, 2026-09-24)*
 
-**Q2 — El nombre del botón en las preguntas frecuentes** *(FAQ names a button that doesn't exist)*
-La respuesta sobre el modo de aplazamiento dice «selecciona el botón
-*"Reactivar cuando salgas"*», pero el botón real se llama «**Reactivar al
-salir**». (El error viene del texto en inglés, que también nombra mal el
-botón.) ¿«Reactivar al salir» te parece bien como
-nombre del botón?
+- **Q1 — «Pulsa»:** se queda «Pulsa» en iOS. En Android, TalkBack seguirá
+  diciendo «Toca», y eso está bien.
+- **Q2 — El botón «Reactivar al salir»:** tenías razón en que la app original
+  de Microsoft tenía una etiqueta de VoiceOver distinta («Wake Up When I
+  Leave») de la que se veía en pantalla («Wake On Leave»). En esta versión de
+  Soundscape **no hay etiqueta aparte**: VoiceOver y TalkBack leen el texto del
+  botón, «Reactivar al salir». Por eso hemos corregido el texto en inglés de
+  la pregunta frecuente, y la versión en español dirá «Reactivar al salir».
+
+## Pendientes *(Still open)*
 
 **Q3 — «Sendero a Callejón sin salida»** *(Dead-end way description)*
 Para un sendero que termina en un callejón sin salida, la aplicación dice
