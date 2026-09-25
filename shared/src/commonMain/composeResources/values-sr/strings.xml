@@ -1233,7 +1233,7 @@
     <string name="faq_sleep_mode_battery_question">Како да користим Режим спавања да бих смањио утицај Soundscape-а на батерију мог телефона?</string>
     <string name="faq_sleep_mode_battery_answer">Да бисте пребацили Soundscape у Режим спавања, изаберите дугме *Успавај* у горњем десном углу екрана. Када ово изаберете, Soundscape ће престати да користи услуге локације и мобилне податке док не одлучите да га поново пробудите.</string>
     <string name="faq_snooze_mode_battery_question">Како да користим Режим дремања да бих смањио утицај Soundscape-а на батерију мог телефона?</string>
-    <string name="faq_snooze_mode_battery_answer">Да бисте пребацили Soundscape у Режим дремања, изаберите дугме *Успавај* у горњем десном углу екрана. Када је Soundscape у Режиму спавања, изаберите дугме *Пробуди ме када одем* и Soundscape ће прећи у режим ниске потрошње док не напустите тренутну локацију.</string>
+    <string name="faq_snooze_mode_battery_answer">Да бисте пребацили Soundscape у Режим дремања, изаберите дугме *Спавање* у горњем десном углу екрана. Када је Soundscape у Режиму спавања, изаберите дугме *Пробуди при поласку* и Soundscape ће прећи у режим ниске потрошње док не напустите тренутну локацију.</string>
     <string name="faq_headset_battery_impact_question">Како мој избор слушалица утиче на трајање батерије мог телефона?</string>
     <string name="faq_headset_battery_impact_answer">У нашим тестовима, потрошња батерије код Bluetooth слушалица упоредива је са жичаним слушалицама и не би требало да буде значајан фактор приликом избора слушалица.</string>
     <string name="faq_background_battery_impact_question">Како рад Soundscape-а у позадини утиче на трајање батерије мог телефона?</string>
@@ -1586,4 +1586,6 @@
     <string name="siri_param_level">Ниво</string>
     <string name="siri_desc_callout_detail">Подешава колико Soundscape говори док ходате.</string>
     <string name="intersection_approaching_intersection_distance">Раскрсница удаљена %1$s</string>
+    <string name="microsoft_copyright">[Оригинална апликација Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) обезбедила је звуке звучног бакена и многе преводе и доступна је за коришћење под [MIT лиценцом](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Волонтери пројекта [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) побољшали су неколико превода, који су доступни за коришћење под [MIT лиценцом](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
