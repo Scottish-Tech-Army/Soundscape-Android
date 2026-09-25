@@ -1248,7 +1248,7 @@
     <string name="faq_sleep_mode_battery_question">Ako môžem pomocou Režimu spánku minimalizovať vplyv aplikácie Soundscape na batériu telefónu?</string>
     <string name="faq_sleep_mode_battery_answer">Ak chcete Soundscape prepnúť do Režimu spánku, vyberte tlačidlo *Spánok* v pravom hornom rohu obrazovky. Po jeho výbere Soundscape prestane používať služby polohy a mobilné dáta, kým sa ho sami nerozhodnete znova zobudiť.</string>
     <string name="faq_snooze_mode_battery_question">Ako môžem pomocou režimu Driemanie minimalizovať vplyv aplikácie Soundscape na batériu telefónu?</string>
-    <string name="faq_snooze_mode_battery_answer">Ak chcete Soundscape prepnúť do režimu Driemanie, vyberte tlačidlo *Spánok* v pravom hornom rohu obrazovky. Keď je Soundscape v Režime spánku, vyberte tlačidlo *Zobudiť pri odchode* a Soundscape prejde do stavu s nízkou spotrebou energie, kým neopustíte svoju aktuálnu polohu.</string>
+    <string name="faq_snooze_mode_battery_answer">Ak chcete Soundscape prepnúť do režimu Driemanie, vyberte tlačidlo *Spánok* v pravom hornom rohu obrazovky. Keď je Soundscape v Režime spánku, vyberte tlačidlo *Prebudiť pri odchode* a Soundscape prejde do stavu s nízkou spotrebou energie, kým neopustíte svoju aktuálnu polohu.</string>
     <string name="faq_headset_battery_impact_question">Ako výber slúchadiel ovplyvňuje výdrž batérie môjho telefónu?</string>
     <string name="faq_headset_battery_impact_answer">V našich testoch bola spotreba batérie pri Bluetooth slúchadlách porovnateľná s káblovými slúchadlami, takže by to nemal byť pri výbere slúchadiel podstatný faktor.</string>
     <string name="faq_background_battery_impact_question">Ako beh aplikácie Soundscape na pozadí ovplyvňuje výdrž batérie môjho telefónu?</string>
@@ -1601,4 +1601,6 @@
     <string name="siri_param_level">Úroveň</string>
     <string name="siri_desc_callout_detail">Nastaví, koľko toho Soundscape hovorí, keď kráčate.</string>
     <string name="intersection_approaching_intersection_distance">Križovatka vzdialená %1$s</string>
+    <string name="microsoft_copyright">[Pôvodná aplikácia Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) poskytla zvuky zvukového majáka a mnohé preklady a je dostupná na použitie pod [licenciou MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Dobrovoľníci zo [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) vylepšili niekoľko prekladov, ktoré sú dostupné na použitie pod [licenciou MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
