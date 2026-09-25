@@ -1381,7 +1381,7 @@
     <string name="faq_sleep_mode_battery_question">Làm sao để sử dụng Chế độ Ngủ nhằm giảm thiểu tác động của Soundscape đến pin điện thoại của tôi?</string>
     <string name="faq_sleep_mode_battery_answer">Để đưa Soundscape vào Chế độ Ngủ, hãy chọn nút *Ngủ* ở góc trên bên phải màn hình. Khi bạn chọn nút này, Soundscape sẽ ngừng sử dụng Dịch vụ vị trí và dữ liệu di động cho đến khi bạn chọn đánh thức nó trở lại.</string>
     <string name="faq_snooze_mode_battery_question">Làm sao để sử dụng Chế độ Tạm nghỉ nhằm giảm thiểu tác động của Soundscape đến pin điện thoại của tôi?</string>
-    <string name="faq_snooze_mode_battery_answer">Để đưa Soundscape vào Chế độ Tạm nghỉ, hãy chọn nút *Ngủ* ở góc trên bên phải màn hình. Khi Soundscape đã ở Chế độ Ngủ, hãy chọn nút *Đánh thức khi tôi rời đi* và Soundscape sẽ chuyển sang trạng thái tiết kiệm năng lượng cho đến khi bạn rời khỏi vị trí hiện tại.</string>
+    <string name="faq_snooze_mode_battery_answer">Để đưa Soundscape vào Chế độ Tạm nghỉ, hãy chọn nút *Ngủ* ở góc trên bên phải màn hình. Khi Soundscape đã ở Chế độ Ngủ, hãy chọn nút *Thức dậy khi rời đi* và Soundscape sẽ chuyển sang trạng thái tiết kiệm năng lượng cho đến khi bạn rời khỏi vị trí hiện tại.</string>
     <string name="faq_headset_battery_impact_question">Việc lựa chọn tai nghe ảnh hưởng đến thời lượng pin điện thoại của tôi như thế nào?</string>
     <string name="faq_headset_battery_impact_answer">Trong các thử nghiệm của chúng tôi, mức tiêu thụ pin của tai nghe Bluetooth tương đương với tai nghe có dây, và không nên là yếu tố quan trọng cần cân nhắc khi chọn tai nghe.</string>
     <string name="faq_background_battery_impact_question">Việc chạy Soundscape ở chế độ nền ảnh hưởng đến thời lượng pin điện thoại của tôi như thế nào?</string>
@@ -1556,4 +1556,6 @@
     <string name="siri_param_level">Mức</string>
     <string name="siri_desc_callout_detail">Đặt mức độ Soundscape nói khi bạn đi bộ.</string>
     <string name="intersection_approaching_intersection_distance">Giao lộ cách %1$s</string>
+    <string name="microsoft_copyright">[Ứng dụng Soundscape gốc ©Microsoft Corporation](https://github.com/microsoft/soundscape) đã cung cấp âm thanh của đèn hiệu âm thanh và nhiều bản dịch, và được cung cấp để sử dụng theo [giấy phép MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Các tình nguyện viên của [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) đã cải thiện một số bản dịch, được cung cấp để sử dụng theo [giấy phép MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
