@@ -118,20 +118,22 @@ than introducing a third verb.
 
 ## Rejected
 
+- **«Te damos la bienvenida» for Welcome** (2026-09-25). It's attractive:
+  it's gender-neutral (C15), and it's close to Microsoft's VoiceOver label
+  «Le damos la bienvenida». JJ rejected it after asking native speakers, as
+  less "fun and snappy" than «¡Bienvenido!», whose masculine form most
+  speakers don't mind. See ES-W1.
+- **«¡Todo listo!» for "You're ready!"** (2026-09-25). Microsoft's phrase,
+  and gender-neutral, but JJ says it means "all done", not "you're ready".
+
 Nothing yet — no feedback in this thread was proposed and then turned down.
 
 ---
 
 ## Open questions for the reporter (JJ / next native-speaker round)
 
-These are from `translations/review/es.md`. JJ answered Q1 and Q2 on
-2026-09-24 (#881). Q3–Q5 are still open.
-
-3. **«Sendero a Callejón sin salida»**: a capital mid-sentence and no article
-   (the FR-G1 pattern). Candidate: «hacia un callejón sin salida».
-4. **«¡Bienvenido!» / «Bienvenido al tutorial» are masculine, and «¡Ya está
-   listo!» is ambiguous** under tú (C15). Candidates: «¡Te damos la
-   bienvenida!», «¡Todo listo!».
+None open. JJ answered Q3–Q5 on 2026-09-25 (see ES-G1, ES-W1 and the
+Rejected section).
 
 *Answered and closed:* **Q1 «Pulsa»**, confirmed (ES-R2). **Q2, the FAQ
 button name** (`faq_snooze_mode_battery_answer`): JJ explained that
@@ -148,6 +150,30 @@ everywhere, no FAQ exception (2026-09-24, see ES-R1). The
 the new rule.*
 
 ---
+
+## ES-G1 — Dead end: «Sendero hacia un callejón sin salida» (`confirmed`, JJ 2026-09-25)
+
+JJ: *"For the first case about dead ends, let's go with the AI. A
+capitalization in the middle doesn't follow the conventional Spanish
+rules."* `confect_name_dead_end` → «un callejón sin salida» (lowercase, with
+the article). `confect_name_to` / `_to_via` → «%1$s hacia %2$s» / «%1$s
+hacia %2$s vía %3$s». «hacia» also reads naturally with the map names that
+fill the same slot («Sendero hacia Calle Mayor»).
+
+## ES-W1 — «¡Bienvenido!» stays masculine; «¡Ya estás listo!» (`confirmed`, JJ 2026-09-25)
+
+A deliberate exception to C15. In JJ's words: *"I think I wrote
+'Bienvenido' because it sounds catchier to native speakers … 'Te damos la
+bienvenida' isn't as fun and snappy. Although the shorter 'bienvenido' is
+masculine, and the user could be female, most native speakers wouldn't
+really care."* He also updated Soundscape Community's audio label to
+«Bienvenido» to match the visual one. `first_launch_welcome_title` and
+`tour_welcome` keep «Bienvenido».
+
+`first_launch_prompt_title` becomes **«¡Ya estás listo!»**. The English
+changed from "You're all set!" to "You're ready!", and the AI then produced
+«¡Ya está listo!» without converting it to «tú». «Todo listo» was rejected,
+because it means "all done" rather than "you're ready".
 
 ## ES-R1 exception: the Terms of Use screen is formal
 
@@ -259,3 +285,14 @@ not new strings.
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «En modo de aplazamiento» → Microsoft's «Posponiendo», so the status pair is Microsoft's «Suspendiendo» / «Posponiendo» again. That **closes Q5**: «Suspendiendo» is Microsoft's own wording and stays under the parity policy. The FAQ and help text still say «modo de aplazamiento» for the *mode*, which is fine, since only the status label changed.
 
 **2026-09-25 — truncation repaired (C16).** `terms_of_use_medical_safety_disclaimer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.
+
+**2026-09-25 — JJ's second reply (#881 follow-up, via Dave).** Answered Q3
+(dead end, ES-G1), Q4 (welcome and ready, ES-W1). His note that the AI had
+skipped «¡Ya está listo!» prompted a sweep for more ES-R1 leftovers: **21 more** strings still addressed the user formally, all added
+after JJ's May pass (settings descriptions, dialogs, voice-command replies,
+the legacy-migration messages, and three iOS permission prompts that also
+live in `iosApp/iosApp/InfoPlist.xcstrings`). The Terms of Use screen stays
+formal (see above). Findings are in `/tmp/weblate-review/es-findings.json`
+(25 uploadable). JJ also asked to join both the Android and iOS beta
+programmes, and will compare the informal Spanish here against his formal
+Latin American Spanish in Soundscape Community.
