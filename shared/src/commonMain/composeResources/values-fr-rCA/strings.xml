@@ -389,7 +389,7 @@
     <string name="faq_sleep_mode_battery_question">Comment utiliser le mode Mettre en veille de manière à réduire l’impact de Soundscape sur la batterie de mon téléphone?</string>
     <string name="faq_sleep_mode_battery_answer">Pour mettre Soundscape en mode « Mettre en veille », sélectionnez le bouton *« Mettre en veille »* dans le coin supérieur droit de l’écran. Une fois activé, Soundscape cessera d’utiliser les Services de localisation et les données cellulaires jusqu’à ce que vous choisissiez de le réveiller.\n</string>
     <string name="faq_snooze_mode_battery_question">Comment utiliser le mode Désactiver temporairement de manière à réduire l’impact de Soundscape sur la batterie de mon téléphone?</string>
-    <string name="faq_snooze_mode_battery_answer">Pour activer le mode « Désactiver temporairement », appuyez sur le bouton *« Mettre en veille »* dans le coin supérieur droit de l’écran. Une fois Soundscape en mode Mettre en veille, sélectionnez le bouton *« Sortir de veille lorsque je pars »* et Soundscape passera en mode basse consommation jusqu’à ce que vous quittiez votre emplacement actuel.\n</string>
+    <string name="faq_snooze_mode_battery_answer">Pour activer le mode « Désactiver temporairement », appuyez sur le bouton *« Mettre en veille »* dans le coin supérieur droit de l’écran. Une fois Soundscape en mode Mettre en veille, sélectionnez le bouton *« Sortir de veille quand je m’éloigne »* et Soundscape passera en mode basse consommation jusqu’à ce que vous quittiez votre emplacement actuel.</string>
     <string name="faq_headset_battery_impact_question">En quoi le choix du casque affecte-t-il l’autonomie de la batterie de mon téléphone?</string>
     <string name="faq_headset_battery_impact_answer">Dans nos tests, la consommation d’énergie des casques Bluetooth est comparable à celle d’un casque filaire et ne doit pas être un facteur important à prendre en compte lors de la sélection d’un casque.</string>
     <string name="faq_background_battery_impact_question">Quel est l’impact de l’exécution de Soundscape en arrière-plan sur l’autonomie de la batterie de mon téléphone?</string>
@@ -1574,4 +1574,6 @@
     <string name="siri_param_level">Niveau</string>
     <string name="siri_desc_callout_detail">Définit la quantité d’informations que Soundscape annonce pendant que vous marchez.</string>
     <string name="intersection_approaching_intersection_distance">Intersection à %1$s</string>
+    <string name="microsoft_copyright">[L’appli Soundscape d’origine ©Microsoft Corporation](https://github.com/microsoft/soundscape) a fourni les sons de la balise sonore et de nombreuses traductions, et est mise à disposition sous la licence [MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Des bénévoles de [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) ont amélioré plusieurs traductions, mises à disposition sous la licence [MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
