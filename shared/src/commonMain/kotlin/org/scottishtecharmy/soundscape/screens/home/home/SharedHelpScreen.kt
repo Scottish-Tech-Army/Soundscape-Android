@@ -174,6 +174,7 @@ import org.scottishtecharmy.soundscape.resources.help_text_section_title_when
 import org.scottishtecharmy.soundscape.resources.markers_title
 import org.scottishtecharmy.soundscape.resources.menu_help
 import org.scottishtecharmy.soundscape.resources.menu_open_source_licenses
+import org.scottishtecharmy.soundscape.resources.microsoft_copyright
 import org.scottishtecharmy.soundscape.resources.openmaptiles_copyright
 import org.scottishtecharmy.soundscape.resources.oboe_copyright
 import org.scottishtecharmy.soundscape.resources.osm_copyright
@@ -182,6 +183,7 @@ import org.scottishtecharmy.soundscape.resources.search_view_markers
 import org.scottishtecharmy.soundscape.resources.settings_about_app
 import org.scottishtecharmy.soundscape.resources.settings_help_section_beacons_and_pois
 import org.scottishtecharmy.soundscape.resources.settings_help_section_home_screen_buttons
+import org.scottishtecharmy.soundscape.resources.soundscape_community_copyright
 import org.scottishtecharmy.soundscape.resources.steam_copyright
 import org.scottishtecharmy.soundscape.resources.trademark_disclaimer
 import org.scottishtecharmy.soundscape.resources.ui_back_button_title
@@ -642,6 +644,8 @@ val helpPages = listOf(
             Section(Res.string.openmaptiles_copyright, SectionType.Paragraph),
             Section(Res.string.steam_copyright, SectionType.Paragraph),
             Section(Res.string.oboe_copyright, SectionType.Paragraph),
+            Section(Res.string.microsoft_copyright, SectionType.Paragraph),
+            Section(Res.string.soundscape_community_copyright, SectionType.Paragraph),
             Section(Res.string.trademark_disclaimer, SectionType.Paragraph),
         )
     )
