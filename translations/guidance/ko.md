@@ -46,6 +46,13 @@ The questions are confirmation, not repair. Questions:
 
 The same coupling as FR-C1.
 
+### KO-S1 — "On X" said the user was driving (`fixed`, 2026-09-25)
+
+The four `directions_on_road*` strings («On %1$s», also heard on foot) said
+«%1$s에서 주행 중» ("driving on X"). Now «%1$s에 있음», matching the terse
+«…움직이지 않음» style. The `*_traveling_*` strings keep «주행 중»: they are only
+used in a vehicle.
+
 ## Rejected
 
 Nothing yet.

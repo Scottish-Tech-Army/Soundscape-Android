@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. The VoiceOver template «Dvaput dodirnite da biste %1$s» with
 conditional participle hints («utišali») composes correctly. There is one
 `agreed` case defect (C9) and one TTS-audible defect (HR-G2). Questions:
-`docs/translation-questions/questions-hr.md` (Q1…Q7).
+`docs/translation-questions/questions-hr.md` (Q1…Q8).
 
 ## Glossary
 
@@ -57,6 +57,14 @@ slash by using the masculine only («смањио»), which is a different trade
 
 See PL-C1.
 
+### HR-G3 — Map names after «cestom» / «Na» (`agreed` defect, fix `unconfirmed`)
+
+24 `directions_along_*` strings say «…cestom %1$s» ("by road X"), which doubles
+the street word for names like «Savska cesta», and every «Na %1$s» template
+leaves the name undeclined («Na Ilica»). Croatian names carry «ulica», «cesta» or
+«trg» at either end and decline with their adjective, so a resolver can't fix
+it. Candidate fix is C17's label form; asked as questionnaire Q7.
+
 ## Rejected
 
 Nothing yet.
@@ -69,7 +77,11 @@ Nothing yet.
 4. Snooze «Odgođeno»: clear?
 5. Landmarks «znamenitosti»: too touristy?
 6. Is «Vi» right?
-7. Anything else.
+7. Map names after «cestom» / «Na» (HR-G3): «cestom Savska cesta» doubles the
+   street word, and «Na Ilica» is undeclined. Would a label form («…, ulica:
+   Ilica») sound better? Not fixable in code: the street word sits at either end
+   of the name and the adjective declines with it. See C17.
+8. Anything else.
 
 ## Provenance
 

@@ -132,7 +132,26 @@ Misli se na parkove, crkve i druge točke po kojima se orijentirate.
 
 **Pitanje:** je li to u redu?
 
-### Q7 — Još nešto? *(Anything else)*
+### Q7 — Nazivi ulica u najavama *(Map names after «cestom» / «Na»)*
+
+**Kada se čuje:** stalno, dok hodate. Aplikacija umeće naziv ulice točno onako
+kako piše na karti, u nominativu, jer ga ne zna deklinirati.
+
+**Na engleskom:** „Walking north along Savska cesta”, „On Ilica between …”.
+
+**Kako sada zvuči:** „Krećete se prema sjeveru cestom Savska cesta” (riječ
+„cesta” dvaput), „Krećete se prema sjeveru cestom Ilica”, „Na Ilica između …”
+(umjesto „Na Ilici”), „Na Trg bana Jelačića …”.
+
+**Što nas brine:** nazivi ulica u Hrvatskoj imaju riječ „ulica”, „cesta” ili
+„trg” na početku ili na kraju, a uz nju se deklinira i pridjev („Savskom
+cestom”), pa to ne možemo sigurno riješiti automatski. U ukrajinskom smo slične
+rečenice riješili oznakom, npr. „Krećete se prema sjeveru, ulica: Ilica”.
+
+**Pitanje:** koliko to smeta na sluh? Bi li oblik s oznakom („…, ulica: Ilica”,
+„Ulica: Ilica, između …”) zvučao prirodnije, ili biste predložili nešto drugo?
+
+### Q8 — Još nešto? *(Anything else)*
 
 Ako neka rečenica zvuči kao prijevod s engleskog, predugačka je ili nejasna,
 javite nam.
