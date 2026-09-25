@@ -415,7 +415,7 @@
     <string name="faq_sleep_mode_battery_question">چگونه از حالت خواب برای به حد‌اقل رساندن تأثیر ساند‌اسکیپ روی باتری گوشی خود استفاده کنم؟</string>
     <string name="faq_sleep_mode_battery_answer">برای قرار دادن ساند‌اسکیپ در حالت خواب، روی دکمهٔ *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه ضربه بزنید. با انتخاب این گزینه، ساند‌اسکیپ تا زمانی که خودتان آن را دوباره بیدار نکنید از خدمات مکان‌یابی و دادهٔ تلفن همراه استفاده نخواهد کرد.\n</string>
     <string name="faq_snooze_mode_battery_question">چگونه از حالت چرت برای به حد‌اقل رساندن تأثیر ساند‌اسکیپ روی باتری گوشی خود استفاده کنم؟</string>
-    <string name="faq_snooze_mode_battery_answer">برای قرار دادن ساند‌اسکیپ در حالت چرت، روی دکمهٔ *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه ضربه بزنید. پس از قرار گرفتن ساند‌اسکیپ در حالت خواب، دکمهٔ *«بیدار شدن هنگام ترک محل»* را انتخاب کنید؛ در این صورت ساند‌اسکیپ در حالت کم‌مصرف قرار می‌گیرد تا زمانی که محل فعلی خود را ترک کنید.\n</string>
+    <string name="faq_snooze_mode_battery_answer">برای قرار دادن ساند‌اسکیپ در حالت چرت، روی دکمهٔ *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه ضربه بزنید. پس از قرار گرفتن ساند‌اسکیپ در حالت خواب، دکمهٔ *«بیدار شدن هنگام ترک محل»* را انتخاب کنید؛ در این صورت ساند‌اسکیپ در حالت کم‌مصرف قرار می‌گیرد تا زمانی که محل فعلی خود را ترک کنید.</string>
     <string name="faq_headset_battery_impact_question">انتخاب نوع هندزفری چه تأثیری روی عمر باتری گوشی من دارد؟</string>
     <string name="faq_headset_battery_impact_answer">در تست‌های ما، هندزفری‌های بلوتوثی از لحاظ مصرف باتری تفاوت چندانی با هندزفری‌های سیمی نشان نداده‌اند. در نتیجه، این امر نباید عامل مهمی در تصمیم‌گیری شما برای انتخاب هندزفری باشد.</string>
     <string name="faq_background_battery_impact_question">اجرای ساند‌اسکیپ در پس‌زمینه چه تأثیری روی عمر باتری گوشی من می‌گذارد؟</string>
@@ -1572,4 +1572,6 @@
     <string name="siri_param_level">سطح</string>
     <string name="siri_desc_callout_detail">تعیین می‌کند ساند‌اسکیپ هنگام راه رفتن چقدر بگوید.</string>
     <string name="intersection_approaching_intersection_distance">تقاطع در %1$s</string>
+    <string name="microsoft_copyright">[برنامه اصلی Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) صداهای جهت‌نمای صوتی و بسیاری از ترجمه‌ها را فراهم کرده است و تحت [مجوز MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) برای استفاده در دسترس قرار گرفته است.</string>
+    <string name="soundscape_community_copyright">داوطلبان [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) چندین ترجمه را بهبود داده‌اند که تحت [مجوز MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) برای استفاده در دسترس قرار گرفته‌اند.</string>
 </resources>
