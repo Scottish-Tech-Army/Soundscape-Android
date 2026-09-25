@@ -19,7 +19,7 @@ Read with [`_common.md`](_common.md).
   split (see `bg.md` BG-T4).
 - «%1$s, vede doleva» is descriptive (C11).
 
-One `agreed` defect. Questions: `docs/translation-questions/questions-cs.md` (Q1…Q6).
+One `agreed` defect. Questions: `docs/translation-questions/questions-cs.md` (Q1…Q7).
 
 ## Glossary
 
@@ -66,7 +66,8 @@ Nothing yet.
 3. «Jste připraveni!»: OK, or «Vše je připraveno!»? (CS-R1)
 4. Snooze «Dřímá»: clear?
 5. Is vykání right?
-6. Anything else.
+6. Beacon «zvukový maják»: natural? (AI-only term, asked for confirmation)
+7. Anything else.
 
 ## Provenance
 

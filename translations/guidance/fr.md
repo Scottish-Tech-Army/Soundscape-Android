@@ -43,7 +43,7 @@ space that turned two words into one, and is now fixed. In FR-G1 the *replacemen
 `unconfirmed`.
 
 The questions for reviewers are in `docs/translation-questions/questions-fr.md`. Feedback will
-cite its numbered questions (Q1…Q11), which match the Open questions list below.
+cite its numbered questions (Q1…Q12), which match the Open questions list below.
 
 ---
 
@@ -250,7 +250,8 @@ These are the questions in `docs/translation-questions/questions-fr.md`, in the 
 10. **The Siri phrases** «Soundscape environs / itinéraire / balise / liste /
     détails / démarre l'itinéraire / arrête la balise»: would you say them
     naturally? (FR-C1)
-11. **Anything that sounds translated** — free-form.
+11. **Beacon «balise sonore»:** natural? (AI-only term, asked for confirmation)
+12. **Anything that sounds translated** — free-form.
 
 ---
 
