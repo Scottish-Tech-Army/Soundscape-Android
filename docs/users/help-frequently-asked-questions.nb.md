@@ -86,8 +86,7 @@ For å sette Soundscape i dvalemodus velger du knappen *\"Sett i dvalemodus\"* �
 
 
 ### Hvordan bruker jeg pausemodus til å redusere Soundscapes påvirkning på telefonbatteriet?
-For å sette Soundscape i pausemodus velger du knappen *\"Sett i dvalemodus\"* øverst til høyre på skjermen. Når Soundscape er i dvalemodus, velger du knappen *\"Vekk når jeg forlater stedet\"* og Soundscape går i en lavenergitilstand til du forlater din nåværende posisjon.
-
+For å sette Soundscape i pausemodus velger du knappen *\"Sett i dvalemodus\"* øverst til høyre på skjermen. Når Soundscape er i dvalemodus, velger du knappen *\"Vekk meg når jeg forlater stedet\"* og Soundscape går i en lavenergitilstand til du forlater din nåværende posisjon.
 
 ### Hvordan påvirker mitt valg av hodetelefoner batteritiden til telefonen?
 I våre tester var batteriforbruket til Bluetooth-hodetelefoner sammenlignbart med kablede hodetelefoner, og bør ikke være en vesentlig faktor når du velger hodetelefoner.

@@ -21,5 +21,9 @@ Soundscape спирається на ці чудові сторонні бібл
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) використовується для відтворення звуку з низькою затримкою і надається для використання відповідно до [ліцензії Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
+[Оригінальний застосунок Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) надав звуки звукового маячка та багато перекладів і надається для використання відповідно до [ліцензії MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Волонтери [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) покращили кілька перекладів, які надаються для використання відповідно до [ліцензії MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Усі назви сторонніх продуктів, компаній та логотипи є торговельними марками або зареєстрованими торговельними марками й належать їхнім відповідним правовласникам.
 

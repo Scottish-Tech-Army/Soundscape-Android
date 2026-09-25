@@ -21,5 +21,9 @@ Soundscape ఈ అద్భుతమైన థర్డ్ పార్టీ �
 
 తక్కువ లేటెన్సీతో ఆడియోను ప్లే చేయడానికి [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) ఉపయోగించబడుతుంది, మరియు ఇది [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE) కింద ఉపయోగం కోసం అందుబాటులో ఉంచబడింది.
 
+[అసలు Soundscape యాప్ ©Microsoft Corporation](https://github.com/microsoft/soundscape) ఆడియో బీకాన్ శబ్దాలను మరియు అనేక అనువాదాలను అందించింది, మరియు ఇది [MIT license](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) కింద ఉపయోగం కోసం అందుబాటులో ఉంచబడింది.
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) స్వచ్ఛంద సేవకులు అనేక అనువాదాలను మెరుగుపరిచారు, అవి [MIT license](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) కింద ఉపయోగం కోసం అందుబాటులో ఉంచబడ్డాయి.
+
 అన్ని థర్డ్-పార్టీ ఉత్పత్తులు, కంపెనీ పేర్లు మరియు లోగోలు ట్రేడ్‌మార్క్‌లు లేదా రిజిస్టర్డ్ ట్రేడ్‌మార్క్‌లు మరియు వాటి సంబంధిత హక్కుదారుల ఆస్తిగా కొనసాగుతాయి.
 

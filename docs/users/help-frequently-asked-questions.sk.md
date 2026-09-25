@@ -85,7 +85,7 @@ Výdrž batérie sa výrazne líši v závislosti od toho, aký telefón vlastn�
 Ak chcete Soundscape prepnúť do Režimu spánku, vyberte tlačidlo *Spánok* v pravom hornom rohu obrazovky. Po jeho výbere Soundscape prestane používať služby polohy a mobilné dáta, kým sa ho sami nerozhodnete znova zobudiť.
 
 ### Ako môžem pomocou režimu Driemanie minimalizovať vplyv aplikácie Soundscape na batériu telefónu?
-Ak chcete Soundscape prepnúť do režimu Driemanie, vyberte tlačidlo *Spánok* v pravom hornom rohu obrazovky. Keď je Soundscape v Režime spánku, vyberte tlačidlo *Zobudiť pri odchode* a Soundscape prejde do stavu s nízkou spotrebou energie, kým neopustíte svoju aktuálnu polohu.
+Ak chcete Soundscape prepnúť do režimu Driemanie, vyberte tlačidlo *Spánok* v pravom hornom rohu obrazovky. Keď je Soundscape v Režime spánku, vyberte tlačidlo *Prebudiť pri odchode* a Soundscape prejde do stavu s nízkou spotrebou energie, kým neopustíte svoju aktuálnu polohu.
 
 ### Ako výber slúchadiel ovplyvňuje výdrž batérie môjho telefónu?
 V našich testoch bola spotreba batérie pri Bluetooth slúchadlách porovnateľná s káblovými slúchadlami, takže by to nemal byť pri výbere slúchadiel podstatný faktor.

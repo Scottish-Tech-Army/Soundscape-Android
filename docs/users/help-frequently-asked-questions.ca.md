@@ -85,7 +85,7 @@ La durada de la bateria varia significativament segons el telèfon que tingueu i
 Per posar Soundscape en mode de repòs, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla. En seleccionar-lo, Soundscape deixarà d'utilitzar els Serveis d'ubicació i les dades mòbils fins que torneu a activar-lo.
 
 ### Com utilitzo el mode de repòs amb represa automàtica per minimitzar l'impacte de Soundscape en la bateria del meu telèfon?
-Per posar Soundscape en mode de repòs amb represa automàtica, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla. Un cop Soundscape estigui en mode de repòs, seleccioneu el botó *Desperta quan marxi* i Soundscape passarà a un estat de baix consum fins que abandoneu la vostra ubicació actual.
+Per posar Soundscape en mode de repòs amb represa automàtica, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla. Un cop Soundscape estigui en mode de repòs, seleccioneu el botó *Desperta en sortir* i Soundscape passarà a un estat de baix consum fins que abandoneu la vostra ubicació actual.
 
 ### Com afecta la meva elecció d'auriculars la durada de la bateria del meu telèfon?
 En les nostres proves, el consum de bateria dels auriculars Bluetooth és comparable al dels auriculars amb cable i no hauria de ser un factor significatiu a tenir en compte a l'hora de triar auriculars.

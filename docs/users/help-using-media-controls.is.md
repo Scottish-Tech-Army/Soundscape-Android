@@ -9,7 +9,7 @@ permalink: /users/help-using-media-controls.html
 
 # Notkun fjölmiðlastýringa
 
-## hvað er það?
+## Hvað er það?
 
 Þú getur nálgast ákveðna eiginleika í Soundscape með hjálp fjölmiðlastýringahnappa á heyrnartólunum þínum. Þetta virkar með bæði snúru- og Bluetooth-heyrnartólum sem hafa hnappa eins og Spila, Hlé, Næsta, Fyrra o.s.frv. Mismunandi heyrnartól geta haft mismunandi hnappa, svo skoðaðu listann yfir aðgerðir hér að neðan til að sjá hvaða hnöppum þú hefur aðgang að.
 
@@ -17,7 +17,7 @@ permalink: /users/help-using-media-controls.html
 
 Fjölmiðlastýringar á heyrnartólum er hægt að nota á meðan Soundscape er í gangi — hvort sem þú ert að nota forritið, það keyrir í bakgrunni eða tækið er læst. Fjölmiðlahnappar á heyrnartólum virka hins vegar ekki fyrir Soundscape ef annað forrit er að spila hljóð, til dæmis tónlist, hlaðvörp eða myndbönd.
 
-## hvernig virkar það?
+## Hvernig virkar það?
 
 Það eru 2 rekstrarhamir fyrir fjölmiðlastýringar. Hamurinn er valinn í kaflanum *Stillingar* » *Fjölmiðlastýringar*. Hamirnir eru:
 

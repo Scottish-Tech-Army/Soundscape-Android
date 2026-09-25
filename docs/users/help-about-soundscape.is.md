@@ -21,5 +21,9 @@ Soundscape byggir á þessum frábæru bókasöfnum og gögnum frá þriðja að
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) er notað til að spila hljóðið með lítilli töf og er aðgengilegt til notkunar undir [Apache 2.0 leyfinu](https://github.com/google/oboe/blob/main/LICENSE).
 
+[Upprunalega Soundscape-forritið ©Microsoft Corporation](https://github.com/microsoft/soundscape) lagði til hljóð hljóðvitans og margar af þýðingunum og er aðgengilegt til notkunar undir [MIT leyfinu](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Sjálfboðaliðar [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) bættu nokkrar af þýðingunum, sem eru aðgengilegar til notkunar undir [MIT leyfinu](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Öll vörumerki, fyrirtækjanöfn og lógó þriðja aðila eru vörumerki eða skráð vörumerki og eru áfram eign þeirra sem eiga þau.
 

@@ -85,7 +85,7 @@ Muda wa matumizi ya betri hutofautiana kwa kiasi kikubwa kutegemea aina ya simu 
 Ili kuiweka Soundscape katika Hali ya Kulala, chagua kitufe cha *Lala* kilichopo kona ya juu kulia ya skrini. Ukichagua hii, Soundscape itaacha kutumia Huduma za Mahali na data ya simu mpaka utakapoichagua kuiamsha tena.
 
 ### Ninawezaje kutumia Hali ya Kusinzia ili kupunguza athari ya Soundscape kwenye betri ya simu yangu?
-Ili kuiweka Soundscape katika Hali ya Kusinzia, chagua kitufe cha *Lala* kilichopo kona ya juu kulia ya skrini. Soundscape ikishakuwa katika Hali ya Kulala, chagua kitufe cha *Amka Nitakapoondoka* na Soundscape itaingia katika hali ya matumizi ya chini ya nishati mpaka utakapoondoka mahali ulipo sasa.
+Ili kuiweka Soundscape katika Hali ya Kusinzia, chagua kitufe cha *Lala* kilichopo kona ya juu kulia ya skrini. Soundscape ikishakuwa katika Hali ya Kulala, chagua kitufe cha *Amka Ukiondoka* na Soundscape itaingia katika hali ya matumizi ya chini ya nishati mpaka utakapoondoka mahali ulipo sasa.
 
 ### Uchaguzi wangu wa vipokea sauti unaathiri vipi muda wa matumizi ya betri ya simu yangu?
 Katika majaribio yetu, matumizi ya betri ya vipokea sauti vya Bluetooth yanalingana na vile vya waya na haipaswi kuwa sababu kubwa ya kuzingatia unapochagua vipokea sauti.

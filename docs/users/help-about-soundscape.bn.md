@@ -21,5 +21,9 @@ Soundscape এই চমৎকার তৃতীয় পক্ষের ল�
 
 কম লেটেন্সিতে অডিও চালাতে [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) ব্যবহার করা হয়, এবং এটি [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE)-এর অধীনে ব্যবহারের জন্য উপলব্ধ।
 
+[মূল Soundscape অ্যাপ ©Microsoft Corporation](https://github.com/microsoft/soundscape) অডিও বীকনের শব্দ এবং অনেক অনুবাদ সরবরাহ করেছে, এবং এটি [MIT license](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt)-এর অধীনে ব্যবহারের জন্য উপলব্ধ।
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape)-এর স্বেচ্ছাসেবকেরা বেশ কয়েকটি অনুবাদ উন্নত করেছেন, যেগুলো [MIT license](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt)-এর অধীনে ব্যবহারের জন্য উপলব্ধ।
+
 সমস্ত তৃতীয় পক্ষের পণ্য, কোম্পানির নাম এবং লোগো হল ট্রেডমার্ক বা নিবন্ধিত ট্রেডমার্ক এবং তা তাদের নিজ নিজ মালিকদের সম্পত্তি।
 

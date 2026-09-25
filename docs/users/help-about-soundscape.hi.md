@@ -21,5 +21,9 @@ Soundscape इन शानदार तृतीय‑पक्ष लाइब
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) का उपयोग कम विलंबता के साथ ऑडियो चलाने के लिए किया जाता है, और इसे उपयोग के लिए [Apache 2.0 लाइसेंस](https://github.com/google/oboe/blob/main/LICENSE) के अंतर्गत उपलब्ध कराया गया है।
 
+[मूल Soundscape ऐप ©Microsoft Corporation](https://github.com/microsoft/soundscape) ने ऑडियो बीकन की ध्वनियाँ और कई अनुवाद उपलब्ध कराए, और इसे उपयोग के लिए [MIT लाइसेंस](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) के अंतर्गत उपलब्ध कराया गया है।
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) के स्वयंसेवकों ने कई अनुवादों में सुधार किया, जिन्हें उपयोग के लिए [MIT लाइसेंस](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) के अंतर्गत उपलब्ध कराया गया है।
+
 सभी तृतीय‑पक्ष उत्पादों, कंपनी नामों और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।
 

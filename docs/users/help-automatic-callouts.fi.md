@@ -25,7 +25,7 @@ Soundscape voi kertoa sinulle ympärilläsi olevista kohteista, kun lähestyt ni
 
 **Kun tarvitset hiljaisuutta :**
 
- Kun olet aikeissa ylittää tien tai sinun tarvitsee muusta syystä hiljentää sovellus, voit ottaa ilmoitukset pois käytöstä. Kun ilmoitukset ovat pois käytöstä, sovellus kertoo sinulle tietoja ainoastaan, jos valitset manuaalisesti jonkin seuraavista painikkeista: *Oma sijaintini*, *Merkinnät*, *Lähiympäristö* tai *Edessäpäin*.
+ Kun olet aikeissa ylittää tien tai sinun tarvitsee muusta syystä hiljentää sovellus, voit ottaa ilmoitukset pois käytöstä. Kun ilmoitukset ovat pois käytöstä, sovellus kertoo sinulle tietoja ainoastaan, jos valitset manuaalisesti jonkin seuraavista painikkeista: *Oma sijaintini*, *Merkitsimet*, *Lähiympäristö* tai *Edessäpäin*.
 
 ## Kuinka se toimii?
 

@@ -21,5 +21,9 @@ Soundscape bergantung pada pustaka dan data pihak ketiga yang luar biasa ini. Kl
 
 [Pustaka Oboe ©The Android Open Source Project](https://github.com/google/oboe) digunakan untuk memutar audio dengan latensi rendah, dan disediakan untuk digunakan di bawah [lisensi Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
+[Aplikasi Soundscape asli ©Microsoft Corporation](https://github.com/microsoft/soundscape) menyediakan suara Suar Audio dan banyak terjemahan, dan disediakan untuk digunakan di bawah [lisensi MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Para sukarelawan [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) menyempurnakan beberapa terjemahan, yang disediakan untuk digunakan di bawah [lisensi MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Semua nama produk, nama perusahaan, dan logo pihak ketiga merupakan merek dagang atau merek dagang terdaftar dan tetap menjadi milik masing-masing pemiliknya.
 

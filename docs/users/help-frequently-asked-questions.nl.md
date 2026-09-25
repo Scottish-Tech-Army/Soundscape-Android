@@ -86,8 +86,7 @@ Om Soundscape in de slaapstand te zetten, selecteert u de knop *\"Slapen\"* rech
 
 
 ### Hoe gebruik ik de sluimerstand om het gebruik van de batterij van mijn telefoon door Soundscape te minimaliseren?
-Om Soundscape in de sluimerstand te zetten, selecteert u de knop *\"Slapen\"* rechtsboven in het scherm. Zodra Soundscape in de slaapstand staat, selecteert u de knop *\"Wek mij wanneer ik vertrek\"* en Soundscape schakelt over naar een laag stroomverbruik totdat u uw huidige locatie verlaat.
-
+Om Soundscape in de sluimerstand te zetten, selecteert u de knop *\"Slapen\"* rechtsboven in het scherm. Zodra Soundscape in de slaapstand staat, selecteert u de knop *\"Wek bij vertrek\"* en Soundscape schakelt over naar een laag stroomverbruik totdat u uw huidige locatie verlaat.
 
 ### Wat betekent mijn keuze van koptelefoon voor de levensduur van de batterij van mijn telefoon?
 In onze tests is het batterijverbruik van Bluetooth-koptelefoons vergelijkbaar met dat van bedrade koptelefoons en zou dit geen belangrijke factor moeten zijn bij het kiezen van een koptelefoon.

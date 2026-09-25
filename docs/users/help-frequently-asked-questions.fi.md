@@ -24,13 +24,13 @@ Soundscapessa on ominaisuuksia ja hyötyjä, jotka kattavat monenlaisia tilantei
 
 "[Käytin Soundscapea] löytääkseni pubin keskeltä Yorkia. [Käytin] useita sen vaihtoehtoja ensin paikantaakseni sen ja sitten todella löytääkseni sen. Se vei minut 3 metrin päähän ovesta – loistavaa!"
 
-### Mitä ovat merkinnät ja kuinka saan niistä parhaan hyödyn?
-Merkinnät ovat paikkoja, jotka olet tallentanut. Ne voivat olla sovelluksesta löydettäviä paikkoja tai täysin uusia paikkoja, jotka olet itse lisännyt. Voit tallentaa nykyisen sijaintisi merkinnäksi napauttamalla aloitusnäytöllä *\"Nykyinen sijainti\"* -painiketta ja valitsemalla sitten *\"Tallenna merkintänä\"*. Voit tallentaa muita sijainteja merkinnäksi etsimällä tallennettavan paikan hakupalkin avulla tai etsimällä paikkoja *\"Lähiympäristön paikat\"* -painikkeella, jotka molemmat löytyvät Soundscapen aloitusnäytöltä. Kun olet löytänyt haluamasi paikan, sen valitseminen vie sinut *\"Sijainnin tiedot\"* -näytölle. Tältä näytöltä valitse *\"Tallenna merkintänä\"* -painike.
+### Mitä ovat merkitsimet ja kuinka saan niistä parhaan hyödyn?
+Merkitsimet ovat paikkoja, jotka olet tallentanut. Ne voivat olla sovelluksesta löydettäviä paikkoja tai täysin uusia paikkoja, jotka olet itse lisännyt. Voit tallentaa nykyisen sijaintisi merkitsimeksi napauttamalla aloitusnäytöllä *\"Nykyinen sijainti\"* -painiketta ja valitsemalla sitten *\"Tallenna merkitsimenä\"*. Voit tallentaa muita sijainteja merkitsimeksi etsimällä tallennettavan paikan hakupalkin avulla tai etsimällä paikkoja *\"Lähiympäristön paikat\"* -painikkeella, jotka molemmat löytyvät Soundscapen aloitusnäytöltä. Kun olet löytänyt haluamasi paikan, sen valitseminen vie sinut *\"Sijainnin tiedot\"* -näytölle. Tältä näytöltä valitse *\"Tallenna merkitsimenä\"* -painike.
 
 ## Kuinka saan Soundscapen parhaat ominaisuudet käyttööni?
 
 ### Minkä voin määrittää majakaksi?
-Voit asettaa äänimajakan mihin tahansa yritykseen, paikkaan, kiinnostavaan kohteeseen, osoitteeseen tai risteykseen. Majakan lisäämiseen on useita tapoja. Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin aloitusnäytön painikkeista *\"Lähiympäristön paikat\"*, *\"Merkinnät ja reitit\"* tai *\"Nykyinen sijainti\"* ja valitsemalla sijainti. *\"Sijainnin tiedot\"* -näytöltä voit valita *\"Käynnistä äänimajakka\"* -painikkeen. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Valitsemasi paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt sovelluksen pääruudulla.
+Voit asettaa äänimajakan mihin tahansa yritykseen, paikkaan, kiinnostavaan kohteeseen, osoitteeseen tai risteykseen. Majakan lisäämiseen on useita tapoja. Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin aloitusnäytön painikkeista *\"Lähiympäristön paikat\"*, *\"Merkitsimet ja reitit\"* tai *\"Nykyinen sijainti\"* ja valitsemalla sijainti. *\"Sijainnin tiedot\"* -näytöltä voit valita *\"Käynnistä äänimajakka\"* -painikkeen. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Valitsemasi paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt sovelluksen pääruudulla.
 
 ### Miten saan majakasta kaiken irti?
 Voit ajatella kuultavaa majakkaa *"korviesi majakkana"*: se kertoo, missä määränpääsi on suorassa linjassa nykyisestä sijainnistasi. Kuten majakka, se ei kerro, miten sinne pääsee – saatat silti joutua tekemään reittivalintoja matkan varrella kiertääksesi esteitä. Kuultavan majakan jatkuva rytminen ääni tulee määränpään suunnasta, ja se auttaa sinua hahmottamaan, missä määränpää on suhteessa sinuun kävellessäsi. Kun kävelet suoraan määränpäätä kohti tai osoitat puhelimen määränpäähän, kuulet korkeamman *"ring"*-äänen. Tämä auttaa paikantamaan määränpään suunnan, koska rytmisen äänen suuntaa voi meluisassa ympäristössä olla joskus vaikea kuulla. Löytääksesi korkeamman *"ring"*-äänen pidä puhelinta vaakatasossa ja käänny hitaasti ympäri; kun käännät pääsi samaan suuntaan kuin puhelin, saat parhaan tilaäänikokemuksen.
@@ -47,7 +47,7 @@ Tästä suunnittelusta seuraa luonnostaan muutama asia:
 Soundscapen äänimajakka on pohjimmiltaan suuntavihje, joka kertoo, missä suunnassa määränpääsi on suhteessa suuntaan, johon olet kääntyneenä. Kun Soundscape ei ole varma siitä, mihin suuntaan olet kääntyneenä, se vaimentaa majakan ääntä. Useimmiten tämä tapahtuu, kun olet kävellyt puhelin taskussa tai laukussa ja lakkaat liikkumasta esimerkiksi kadun ylitystä varten. Majakan ääni voimistuu, kun alat liikkua jälleen tai pitelet puhelinta vaakatasossa ja osoitat sillä suuntaan, johon olet kääntyneenä.
 
 ### Voinko asettaa majakan osoitteeseen?
-Kyllä voit. Osoitteet eivät ole oletuksena listattuna, mutta ne löytyvät hakukentän kautta. Tallentaaksesi osoitteen niin, että sinun ei tarvitse etsiä sitä uudelleen, voit lisätä sen merkinnäksi *\"Sijainnin tiedot\"* -näytöltä valitsemalla *\"Tallenna merkintänä\"* -painikkeen.
+Kyllä voit. Osoitteet eivät ole oletuksena listattuna, mutta ne löytyvät hakukentän kautta. Tallentaaksesi osoitteen niin, että sinun ei tarvitse etsiä sitä uudelleen, voit lisätä sen merkitsimeksi *\"Sijainnin tiedot\"* -näytöltä valitsemalla *\"Tallenna merkitsimenä\"* -painikkeen.
 
 ### Kuinka määritän majakan kotiini?
 Soundscape tukee majakoiden asettamista osoitteisiin. Asettaaksesi majakan kotiisi tai mihin tahansa muuhun osoitteeseen, etsi sijainti Soundscapen pääruudulta. *"Sijainnin tiedot"* -näytöllä napauta *"Käynnistä äänimajakka"* -painiketta.
@@ -86,8 +86,7 @@ Laita Soundscape lepotilaan valitsemalla näytön oikeassa yläkulmassa oleva *\
 
 
 ### Kuinka käytän odotustilaa, jotta Soundscape vaikuttaisi mahdollisimman vähän akun kestoon?
-Laita Soundscape odotustilaan valitsemalla näytön oikeassa yläkulmassa oleva *\"Siirry lepotilaan\"* -painike. Kun Soundscape on lepotilassa, valitse *\"Herää kun lähden\"* -painike, jolloin Soundscape siirtyy vähävirtaiseen tilaan siihen asti, kunnes poistut nykyisestä sijainnistasi.
-
+Laita Soundscape odotustilaan valitsemalla näytön oikeassa yläkulmassa oleva *\"Siirry lepotilaan\"* -painike. Kun Soundscape on lepotilassa, valitse *\"Herää kun poistut\"* -painike, jolloin Soundscape siirtyy vähävirtaiseen tilaan siihen asti, kunnes poistut nykyisestä sijainnistasi.
 
 ### Kuinka kuulokevalinta vaikuttaa puhelimen akun kestoon?
 Testiemme mukaan Bluetooth-kuulokkeiden akunkulutus on verrattavissa langallisiin kuulokkeisiin, eikä sen pitäisi olla merkittävä tekijä kuulokkeita valittaessa.
@@ -110,7 +109,7 @@ Soundscape antaa ympäristöstä ääneen luonnehdinnan, joka auttaa alueeseen t
 Sen sijaan että annettaisiin askel‑askelelta toimivia käännösohjeita, kuten monissa muissa karttasovelluksissa, Soundscape soittaa äänimajakkaa määränpääsi suunnasta. Se antaa sinulle mahdollisuuden edetä sinulle parhaiten sopivalla tavalla hyödyntäen parempaa ympäristötietoisuuttasi ja käsitystä määränpään sijainnista. Soundscape on suunniteltu toimimaan taustalla, joten voit käyttää samanaikaisesti askel‑askelelta ohjeita antavaa navigaattoria, samalla kun Soundscape jatkaa ympäristön tiedottamista matkallasi.
 
 ### Kuinka Soundscapea käytetään opastussovelluksen kanssa?
-Soundscape on suunniteltu parantamaan tietoisuutta ympäristöstäsi ja antamaan lisätietoja sen yksityiskohdista, joita et ehkä muuten huomaisi. Sitä ei ole suunniteltu käännösohjeita antavaksi navigointisovellukseksi, mutta sitä voidaan käyttää sellaisten rinnalla antamaan täydentäviä tietoja. Jos haluat käyttää Soundscapea näiden sovellusten rinnalla, käynnistä ensin navigointisovellus. Siirry sitten Soundscapeen ja määritä äänimajakka samaan määränpäähän kuin navigointisovelluksessa. Tässä vaiheessa molemmat sovellukset ovat käynnissä ja kuulet kävelyohjeita navigointisovelluksestasi samalla, kun saat päivityksiä mielenkiintoisista kohteista, risteyksistä ja etäisyydestäsi määränpäähän Soundscapesta.
+Soundscape on suunniteltu parantamaan tietoisuutta ympäristöstäsi ja antamaan lisätietoja sen yksityiskohdista, joita et ehkä muuten huomaisi. Sitä ei ole suunniteltu kääntymisohjeita antavaksi navigointisovellukseksi, mutta sitä voidaan käyttää sellaisten rinnalla antamaan täydentäviä tietoja. Jos haluat käyttää Soundscapea näiden sovellusten rinnalla, käynnistä ensin navigointisovellus. Siirry sitten Soundscapeen ja määritä äänimajakka samaan määränpäähän kuin navigointisovelluksessa. Tässä vaiheessa molemmat sovellukset ovat käynnissä ja kuulet kävelyohjeita navigointisovelluksestasi samalla, kun saat päivityksiä mielenkiintoisista kohteista, risteyksistä ja etäisyydestäsi määränpäähän Soundscapesta.
 
 ### Kuinka hallitsen sitä, mitä kuulen, ja milloin kuulen sen Soundscapessa?
 Soundscape tarjoaa useita tapoja hallita, mitä kuulet ja milloin:

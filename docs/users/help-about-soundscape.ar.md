@@ -21,5 +21,9 @@ permalink: /users/help-about-soundscape.html
 
 تُستخدم [مكتبة Oboe ©The Android Open Source Project](https://github.com/google/oboe) لتشغيل الصوت بزمن استجابة منخفض، وهي متاحة للاستخدام بموجب [ترخيص Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
+وفّر [تطبيق Soundscape الأصلي ©Microsoft Corporation](https://github.com/microsoft/soundscape) أصوات المنارة الصوتية والكثير من الترجمات، وهو متاح للاستخدام بموجب [ترخيص MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+حسّن متطوعو [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) عددًا من الترجمات، وهي متاحة للاستخدام بموجب [ترخيص MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 جميع أسماء المنتجات والشركات والشعارات الخاصة بأطراف ثالثة هي علامات تجارية أو علامات تجارية مسجلة وتظل ملكًا لأصحابها.
 

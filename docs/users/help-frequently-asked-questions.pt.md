@@ -86,8 +86,7 @@ Para colocar o Soundscape em Modo de Suspensão, selecione o botão *\"Suspender
 
 
 ### Como posso utilizar o Modo de Pausa para minimizar o impacto do Soundscape na bateria do meu telemóvel?
-Para colocar o Soundscape em Modo de Pausa, selecione o botão *\"Suspender\"* no canto superior direito do ecrã. Depois de o Soundscape estar em Modo de Suspensão, selecione o botão *\"Reativar quando eu sair\"* e o Soundscape entrará num estado de baixo consumo até que se afaste da sua localização atual.
-
+Para colocar o Soundscape em Modo de Pausa, selecione o botão *\"Suspender\"* no canto superior direito do ecrã. Depois de o Soundscape estar em Modo de Suspensão, selecione o botão *\"Reativar ao sair\"* e o Soundscape entrará num estado de baixo consumo até que se afaste da sua localização atual.
 
 ### Como é que a minha escolha de auscultadores afeta a duração da bateria do telemóvel?
 Nos nossos testes, o consumo de bateria dos auscultadores Bluetooth foi comparável ao de auscultadores com fios e não deverá ser um fator significativo a tomar em consideração para a escolha dos auscultadores.
@@ -102,7 +101,7 @@ O Soundscape é uma aplicação baseada na localização que utiliza os Serviço
 3. Mantenha o telemóvel quente quando o tempo estiver frio; o desempenho das baterias piora com temperaturas mais frias.
 
 ### Que quantidade de dados móveis utiliza o Soundscape?
-Quando não estiver a utilizar o Soundscape, deverá utilizar o botão *Suspender* para colocar o Soundscape em Modo de Suspensão; alternativamente, feche a aplicação.
+A quantidade de dados móveis utilizada depende da forma como utiliza o Soundscape. Concebemos o Soundscape para utilizar apenas uma pequena quantidade de dados quando efetua tarefas como guardar pontos à medida que caminha, para que não tenha de os transferir novamente sempre que voltar a um local onde já tenha estado. Para reduzir a quantidade de dados móveis utilizada, certifique-se de que está ligado a uma rede Wi-Fi sempre que possível, especialmente para transferir a aplicação. Quando não estiver a utilizar o Soundscape, deverá utilizar o botão *"Suspender"* parar colocar o Soundscape em modo de suspensão; alternativamente, feche a aplicação.
 
 ### Qual é a diferença entre o Soundscape e as outras aplicações de mapas?
 O Soundscape fornece uma descrição do ambiente que o rodeia para ajudar na exploração e na orientação. Utilizando áudio espacial, o Soundscape anunciará pontos de interesse, parques, ruas e cruzamentos a partir da direção em que se encontram fisicamente no seu ambiente imediato enquanto caminha. Por exemplo, se passar por uma loja à sua direita, ouvirá o nome da loja vindo da sua direita. Ao aproximar‑se de um cruzamento, ouvirá o nome de cada rua proveniente da direção para onde ela segue, começando pela esquerda, depois em frente e à direita.

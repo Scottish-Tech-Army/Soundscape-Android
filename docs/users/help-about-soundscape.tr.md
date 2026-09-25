@@ -21,5 +21,9 @@ Soundscape bu harika üçüncü taraf kütüphanelere ve verilere dayanır. Lisa
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) sesi düşük gecikmeyle çalmak için kullanılır ve [Apache 2.0 lisansı](https://github.com/google/oboe/blob/main/LICENSE) kapsamında kullanıma sunulmuştur.
 
+[Orijinal Soundscape uygulaması ©Microsoft Corporation](https://github.com/microsoft/soundscape) sesli işaret seslerini ve çevirilerin çoğunu sağlamıştır ve [MIT lisansı](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) kapsamında kullanıma sunulmuştur.
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) gönüllüleri çevirilerin birkaçını iyileştirmiştir; bu çeviriler [MIT lisansı](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) kapsamında kullanıma sunulmuştur.
+
 Tüm üçüncü taraf ürün, şirket adları ve logolar ticari marka veya tescilli ticari markalardır ve ilgili sahiplerinin mülkiyetinde kalır.
 

@@ -85,7 +85,7 @@ Aku kestvus on väga erinev sõltuvalt sellest, millist telefoni omate ja kui va
 Soundscape'i unerežiimi lülitamiseks valige ekraani paremas ülanurgas nupp *Unerežiim*. Selle valimisel lõpetab Soundscape asukohateenuste ja mobiilse andmeside kasutamise, kuni otsustate selle uuesti äratada.
 
 ### Kuidas kasutada uinakurežiimi, et vähendada Soundscape'i mõju mu telefoni akule?
-Soundscape'i uinakurežiimi lülitamiseks valige ekraani paremas ülanurgas nupp *Unerežiim*. Kui Soundscape on unerežiimis, valige nupp *Ärata, kui lahkun* ning Soundscape läheb madala energiatarbega olekusse, kuni lahkute oma praegusest asukohast.
+Soundscape'i uinakurežiimi lülitamiseks valige ekraani paremas ülanurgas nupp *Unerežiim*. Kui Soundscape on unerežiimis, valige nupp *Ärka lahkumisel* ning Soundscape läheb madala energiatarbega olekusse, kuni lahkute oma praegusest asukohast.
 
 ### Kuidas mõjutab kõrvaklappide valik mu telefoni aku kestvust?
 Meie testide põhjal on Bluetooth-kõrvaklappide akukulu võrreldav juhtmega kõrvaklappide omaga ning see ei tohiks olla kõrvaklappide valimisel oluline tegur.

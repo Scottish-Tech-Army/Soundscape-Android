@@ -85,7 +85,7 @@ Rayuwar batir tana bambanta sosai dangane da irin wayar da kuke da ita da kuma t
 Domin sanya Soundscape a Yanayin Barci, zaɓi maɓallin *Barci* da ke a saman dama na allo. Idan kuka zaɓi wannan, Soundscape za ta daina amfani da Sabis na Wuri da bayanan waya har sai kun zaɓi farkar da ita.
 
 ### Ta yaya zan yi amfani da Yanayin Jinkirtawa don rage tasirin Soundscape a kan batirin wayata?
-Domin sanya Soundscape a Yanayin Jinkirtawa, zaɓi maɓallin *Barci* da ke a saman dama na allo. Da zarar Soundscape ta shiga Yanayin Barci, zaɓi maɓallin *Farka ni idan na tafi* sannan Soundscape za ta shiga yanayin ƙarancin wutar lantarki har sai kun bar wurinku na yanzu.
+Domin sanya Soundscape a Yanayin Jinkirtawa, zaɓi maɓallin *Barci* da ke a saman dama na allo. Da zarar Soundscape ta shiga Yanayin Barci, zaɓi maɓallin *Farka Idan Na Tafi* sannan Soundscape za ta shiga yanayin ƙarancin wutar lantarki har sai kun bar wurinku na yanzu.
 
 ### Ta yaya zaɓina na belun kunne ke shafar rayuwar batirin wayata?
 A gwaje-gwajenmu, cin batirin belun kunnen Bluetooth yana kama da na belun kunnen waya kuma bai kamata ya zama babban abin la'akari ba idan ana zaɓar belun kunne.

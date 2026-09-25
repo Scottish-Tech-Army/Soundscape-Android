@@ -85,7 +85,7 @@ Daya tahan baterai sangat bervariasi tergantung pada jenis ponsel yang Anda mili
 Untuk mengaktifkan Mode Tidur di Soundscape, pilih tombol *Tidur* di pojok kanan atas layar. Saat Anda memilih ini, Soundscape akan berhenti menggunakan Layanan Lokasi dan data seluler sampai Anda memilih untuk membangunkannya kembali.
 
 ### Bagaimana cara menggunakan Mode Tunda untuk meminimalkan dampak Soundscape pada baterai ponsel saya?
-Untuk mengaktifkan Mode Tunda di Soundscape, pilih tombol *Tidur* di pojok kanan atas layar. Setelah Soundscape berada dalam Mode Tidur, pilih tombol *Bangunkan saat saya pergi* dan Soundscape akan masuk ke keadaan hemat daya sampai Anda meninggalkan lokasi Anda saat ini.
+Untuk mengaktifkan Mode Tunda di Soundscape, pilih tombol *Tidur* di pojok kanan atas layar. Setelah Soundscape berada dalam Mode Tidur, pilih tombol *Bangun Saat Pergi* dan Soundscape akan masuk ke keadaan hemat daya sampai Anda meninggalkan lokasi Anda saat ini.
 
 ### Bagaimana pengaruh pilihan headphone saya terhadap daya tahan baterai ponsel saya?
 Dalam pengujian kami, konsumsi baterai headphone Bluetooth sebanding dengan headphone berkabel dan tidak seharusnya menjadi faktor penting saat memilih headphone.

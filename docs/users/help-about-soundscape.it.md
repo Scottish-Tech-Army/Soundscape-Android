@@ -21,5 +21,9 @@ Soundscape si basa su queste eccellenti librerie e dati di terze parti. Tocca i 
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) viene utilizzata per riprodurre l'audio con bassa latenza ed è resa disponibile per l'uso sotto la [licenza Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
+[L'app Soundscape originale ©Microsoft Corporation](https://github.com/microsoft/soundscape) ha fornito i suoni dell'audiofaro e molte delle traduzioni, ed è resa disponibile per l'uso sotto la [licenza MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+I volontari di [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) hanno migliorato diverse traduzioni, rese disponibili per l'uso sotto la [licenza MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Tutti i nomi e i loghi di prodotti e aziende di terze parti sono marchi commerciali o marchi registrati e restano di proprietà dei rispettivi titolari.
 

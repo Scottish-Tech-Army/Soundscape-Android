@@ -1,5 +1,5 @@
 ---
-title: sjálfvirkar tilkynningar
+title: Sjálfvirkar tilkynningar
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: is
 permalink: /users/help-automatic-callouts.html
 ---
 
-# sjálfvirkar tilkynningar
+# Sjálfvirkar tilkynningar
 
-## hvað er það?
+## Hvað er það?
 
 Soundscape getur sagt þér frá hlutum í kringum þig þegar þú nálgast þá með því að kalla upp nöfn þeirra úr þeirri átt sem þeir eru í. Forritið gerir þetta sjálfkrafa fyrir alls konar hluti, eins og fyrirtæki, strætóstopp og jafnvel gatnamót. Þú getur stillt hvað forritið kallar upp sjálfkrafa í kaflanum *\"Stjórna tilkynningum\"* á skjánum *\"Stillingar\"*, og þú getur slökkt á öllum tilkynningum þegar þú vilt að forritið verði hljótt.
 
@@ -27,7 +27,7 @@ Kveiktu á sjálfvirkum tilkynningum og gakktu um til að heyra um mismunandi ve
 
 Þegar þú ætlar að fara yfir veg eða þarft einfaldlega að forritið sé hljótt, geturðu slökkt á tilkynningum. Þegar tilkynningar eru slökktar mun forritið aðeins gefa þér upplýsingar ef þú ýtir sjálfur á einn af hnöppunum *Mín staðsetning*, *Nálæg merki*, *Í kringum mig* eða *Fyrir framan mig*.
 
-## hvernig virkar það?
+## Hvernig virkar það?
 
 **Kveikja eða slökkva á tilkynningum:**
 

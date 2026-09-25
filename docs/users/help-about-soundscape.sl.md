@@ -21,5 +21,9 @@ Soundscape temelji na teh odličnih zunanjih knjižnicah in podatkih. Kliknite p
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) se uporablja za predvajanje zvoka z nizko zakasnitvijo in je na voljo za uporabo pod licenco [Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
+[Izvirna aplikacija Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) je prispevala zvoke zvočnega svetilnika in veliko prevodov ter je na voljo za uporabo pod licenco [MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Prostovoljci [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) so izboljšali več prevodov, ki so na voljo za uporabo pod licenco [MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Vsa imena izdelkov, podjetij in logotipi tretjih oseb so blagovne znamke ali registrirane blagovne znamke in ostajajo v lasti svojih lastnikov.
 

@@ -85,7 +85,7 @@ L’autonomie de la batterie varie considérablement selon le téléphone que vo
 Pour mettre Soundscape en mode Mettre en veille, sélectionnez le bouton *Mettre en veille* dans le coin supérieur droit de l’écran. Lorsque vous activez cette option, Soundscape cesse d’utiliser les Services de localisation et les données mobiles jusqu’à ce que vous choisissiez de le sortir de veille.
 
 ### Comment utiliser le mode Désactiver temporairement de manière à réduire l’impact de Soundscape sur la batterie de mon téléphone ?
-Pour mettre Soundscape en mode Désactiver temporairement, sélectionnez le bouton *"Mettre en veille"* dans le coin supérieur droit de l’écran. Une fois Soundscape en mode Mettre en veille, sélectionnez le bouton *"Sortir de veille quand je m’éloigne"* et Soundscape passera en état de faible consommation jusqu’à ce que vous quittiez votre emplacement actuel.
+Pour mettre Soundscape en mode Désactiver temporairement, sélectionnez le bouton *Mettre en veille* dans le coin supérieur droit de l’écran. Une fois Soundscape en mode Mettre en veille, sélectionnez le bouton *Sortir de veille quand je m’éloigne* et Soundscape passera en état de faible consommation jusqu’à ce que vous quittiez votre emplacement actuel.
 
 ### En quoi le choix du casque affecte-t-il l’autonomie de la batterie de mon téléphone ?
 Dans nos tests, la consommation d’énergie des casques Bluetooth est comparable à celle d’un casque filaire et ne doit pas être un facteur important à prendre en compte lors de la sélection d’un casque.

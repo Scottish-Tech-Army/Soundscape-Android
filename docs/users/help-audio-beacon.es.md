@@ -15,7 +15,7 @@ Establecer una señal en una ubicación cercana permite a Soundscape mantenerte 
 
 ## ¿Cuándo lo usaría?
 
-Establecer una señal es útil cuando deseas realizar un seguimiento de un punto de referencia conocido cuando exploras una zona nueva o cuando vas a algún lugar y deseas que te informen sobre tu entorno por el camino. La característica de señal no te ofrece indicaciones paso a paso, sino que te proporciona un sonido audible continuo que te indica la dirección hasta la señal, en relación con el lugar donde te encuentras actualmente. Con la señal de audio, tus capacidades de orientación existentes, e incluso tu aplicación de navegación favorita, puedes elegir cómo deseas llegar a las ubicaciones cercanas.
+Establecer una señal es útil cuando deseas realizar un seguimiento de un punto de referencia conocido mientras exploras una zona nueva o cuando vas a algún lugar y deseas estar informado sobre tu entorno por el camino. La característica de señal no te ofrece indicaciones paso a paso, sino que te proporciona un sonido audible continuo que te indica la dirección hasta la señal, en relación con el lugar donde te encuentras actualmente. Con la señal de audio, tus capacidades de orientación existentes e incluso tu aplicación de navegación favorita, puedes elegir cómo deseas llegar a las ubicaciones cercanas.
 
 ## ¿Cómo funciona?
 

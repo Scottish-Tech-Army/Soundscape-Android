@@ -19,5 +19,9 @@ Soundscape depends on these excellent third-party libraries and data. Click the 
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
 
+[The original Soundscape app ©Microsoft Corporation](https://github.com/microsoft/soundscape) provided the audio beacon sounds and many of the translations, and is made available for use under the [MIT license](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) volunteers improved several of the translations, which are made available for use under the [MIT license](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
 

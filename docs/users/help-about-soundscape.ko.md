@@ -21,5 +21,9 @@ Soundscape는 이 훌륭한 타사 라이브러리와 데이터를 기반으로 
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe)는 낮은 지연 시간으로 오디오를 재생하는 데 사용되며, [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE)에 따라 사용할 수 있습니다.
 
+[원래 Soundscape 앱 ©Microsoft Corporation](https://github.com/microsoft/soundscape)은 오디오 비콘 소리와 많은 번역을 제공했으며, [MIT 라이선스](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt)에 따라 사용할 수 있습니다.
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) 자원봉사자들이 여러 번역을 개선했으며, 이 번역은 [MIT 라이선스](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt)에 따라 사용할 수 있습니다.
+
 모든 타사 제품명, 회사명 및 로고는 각 소유권자의 상표 또는 등록 상표이며, 해당 소유권자의 자산입니다.
 

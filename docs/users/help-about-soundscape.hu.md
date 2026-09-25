@@ -21,5 +21,9 @@ A [Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/ste
 
 Az [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) szolgál a hang alacsony késleltetésű lejátszására, és az [Apache 2.0 licenc](https://github.com/google/oboe/blob/main/LICENSE) alapján érhető el használatra.
 
+Az [eredeti Soundscape alkalmazás ©Microsoft Corporation](https://github.com/microsoft/soundscape) biztosította a hangjelző hangjait és a fordítások nagy részét, és az [MIT licenc](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) alapján érhető el használatra.
+
+A [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) önkéntesei több fordítást is javítottak, amelyek az [MIT licenc](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) alapján érhetők el használatra.
+
 Minden harmadik féltől származó termék, cégnév és embléma védjegy vagy bejegyzett védjegy, és a megfelelő jogtulajdonosok tulajdonában marad.
 

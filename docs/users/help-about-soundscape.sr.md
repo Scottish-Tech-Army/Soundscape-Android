@@ -21,5 +21,9 @@ Soundscape се ослања на ове одличне библиотеке и 
 
 [Oboe библиотека ©The Android Open Source Project](https://github.com/google/oboe) се користи за репродукцију звука са малим кашњењем и доступна је за коришћење под [Apache 2.0 лиценцом](https://github.com/google/oboe/blob/main/LICENSE).
 
+[Оригинална апликација Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) обезбедила је звуке звучног бакена и многе преводе и доступна је за коришћење под [MIT лиценцом](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Волонтери пројекта [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) побољшали су неколико превода, који су доступни за коришћење под [MIT лиценцом](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Сви називи производа, компанија и логотипи трећих страна су заштитни знакови или регистровани заштитни знакови и остају у власништву својих носилаца права.
 

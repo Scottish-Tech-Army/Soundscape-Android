@@ -1,5 +1,5 @@
 ---
-title: góð ráð
+title: Góð ráð
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: is
 permalink: /users/help-tips.html
 ---
 
-# góð ráð
+# Góð ráð
 
 Þú getur fundið nálæg strætóstopp með því að velja síuna *\"Almenningssamgöngur\"* í listanum *\"Nálægir staðir\"*.
 

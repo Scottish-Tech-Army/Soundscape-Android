@@ -21,5 +21,9 @@ Soundscape は、これらの優れたサードパーティ製のライブラリ
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) は低遅延でのオーディオ再生に使用されており、[Apache 2.0 ライセンス](https://github.com/google/oboe/blob/main/LICENSE) のもとで利用可能です。
 
+[オリジナルの Soundscape アプリ ©Microsoft Corporation](https://github.com/microsoft/soundscape) は音声ビーコンのサウンドと多くの翻訳を提供しており、[MIT ライセンス](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) のもとで利用可能です。
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) のボランティアが翻訳の一部を改善しており、それらは [MIT ライセンス](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) のもとで利用可能です。
+
 第三者の製品名、会社名およびロゴは各社の商標または登録商標であり、それぞれの権利所有者に帰属します。
 

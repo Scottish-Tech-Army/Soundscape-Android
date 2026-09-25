@@ -21,5 +21,9 @@ Soundscape bouwt voort op deze uitstekende bibliotheken en gegevens van derden. 
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) wordt gebruikt om de audio met lage latentie af te spelen en is beschikbaar voor gebruik onder de [Apache 2.0-licentie](https://github.com/google/oboe/blob/main/LICENSE).
 
+[De oorspronkelijke Soundscape-app ©Microsoft Corporation](https://github.com/microsoft/soundscape) leverde de geluiden van het audiobaken en veel van de vertalingen, en is beschikbaar voor gebruik onder de [MIT-licentie](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Vrijwilligers van [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) hebben verschillende vertalingen verbeterd, die beschikbaar zijn voor gebruik onder de [MIT-licentie](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Alle product- en bedrijfsnamen en logo's van derden zijn handelsmerken of geregistreerde handelsmerken en blijven het eigendom van de betreffende houders.
 

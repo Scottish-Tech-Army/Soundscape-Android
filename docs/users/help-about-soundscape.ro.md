@@ -21,5 +21,9 @@ Soundscape se bazează pe aceste biblioteci și date terțe excelente. Apasă pe
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) este folosită pentru redarea audio cu latență redusă și este pusă la dispoziție pentru utilizare sub [licența Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
+[Aplicația Soundscape originală ©Microsoft Corporation](https://github.com/microsoft/soundscape) a furnizat sunetele balizei audio și multe dintre traduceri și este pusă la dispoziție pentru utilizare sub [licența MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Voluntarii [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) au îmbunătățit mai multe dintre traduceri, care sunt puse la dispoziție pentru utilizare sub [licența MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Toate denumirile și logourile produselor și companiilor terțe sunt mărci comerciale sau mărci înregistrate și rămân proprietatea titularilor lor.
 

@@ -85,7 +85,7 @@ Thời lượng pin thay đổi đáng kể tùy thuộc vào loại điện tho
 Để đưa Soundscape vào Chế độ Ngủ, hãy chọn nút *Ngủ* ở góc trên bên phải màn hình. Khi bạn chọn nút này, Soundscape sẽ ngừng sử dụng Dịch vụ vị trí và dữ liệu di động cho đến khi bạn chọn đánh thức nó trở lại.
 
 ### Làm sao để sử dụng Chế độ Tạm nghỉ nhằm giảm thiểu tác động của Soundscape đến pin điện thoại của tôi?
-Để đưa Soundscape vào Chế độ Tạm nghỉ, hãy chọn nút *Ngủ* ở góc trên bên phải màn hình. Khi Soundscape đã ở Chế độ Ngủ, hãy chọn nút *Đánh thức khi tôi rời đi* và Soundscape sẽ chuyển sang trạng thái tiết kiệm năng lượng cho đến khi bạn rời khỏi vị trí hiện tại.
+Để đưa Soundscape vào Chế độ Tạm nghỉ, hãy chọn nút *Ngủ* ở góc trên bên phải màn hình. Khi Soundscape đã ở Chế độ Ngủ, hãy chọn nút *Thức dậy khi rời đi* và Soundscape sẽ chuyển sang trạng thái tiết kiệm năng lượng cho đến khi bạn rời khỏi vị trí hiện tại.
 
 ### Việc lựa chọn tai nghe ảnh hưởng đến thời lượng pin điện thoại của tôi như thế nào?
 Trong các thử nghiệm của chúng tôi, mức tiêu thụ pin của tai nghe Bluetooth tương đương với tai nghe có dây, và không nên là yếu tố quan trọng cần cân nhắc khi chọn tai nghe.

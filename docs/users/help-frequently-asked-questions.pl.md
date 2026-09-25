@@ -88,7 +88,6 @@ Aby przełączyć Soundscape w Tryb uśpienia, wybierz przycisk *„Tryb uśpien
 ### Jak użyć Trybu drzemki, aby zminimalizować wpływ Soundscape na baterię telefonu?
 Aby włączyć Tryb drzemki, wybierz przycisk *„Tryb uśpienia”* w prawym górnym rogu ekranu. Gdy Soundscape znajdzie się w Trybie uśpienia, wybierz przycisk *„Obudź mnie, gdy opuszczę to miejsce”*, a aplikacja przejdzie w stan niskiego zużycia energii, dopóki nie opuścisz swojej bieżącej lokalizacji.
 
-
 ### Jak wybór słuchawek wpływa na czas pracy baterii w moim telefonie?
 W naszych testach zużycie baterii przez słuchawki Bluetooth jest porównywalne z słuchawkami przewodowymi i nie powinno być istotnym czynnikiem przy wyborze słuchawek.
 

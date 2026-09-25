@@ -21,5 +21,9 @@ Soundscape staví na těchto vynikajících knihovnách a datech třetích stran
 
 [Knihovna Oboe ©The Android Open Source Project](https://github.com/google/oboe) se používá k přehrávání zvuku s nízkou latencí a je zpřístupněna k použití pod [licencí Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
+[Původní aplikace Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) poskytla zvuky zvukového majáku a mnoho překladů a je zpřístupněna k použití pod [licencí MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Dobrovolníci z [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) vylepšili několik překladů, které jsou zpřístupněny k použití pod [licencí MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Všechny produkty, názvy společností a loga třetích stran jsou ochranné známky nebo registrované ochranné známky a zůstávají majetkem svých příslušných vlastníků.
 

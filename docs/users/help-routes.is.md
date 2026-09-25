@@ -1,5 +1,5 @@
 ---
-title: leiðir
+title: Leiðir
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: is
 permalink: /users/help-routes.html
 ---
 
-# leiðir
+# Leiðir
 
-## hvað er það?
+## Hvað er það?
 
 Leið er röð af leiðarpunktum. Þér verður tilkynnt þegar þú kemur að hverjum leiðarpunkti og hljóðvitinn færist þá sjálfkrafa á næsta leiðarpunkt.
 
@@ -17,7 +17,7 @@ Leið er röð af leiðarpunktum. Þér verður tilkynnt þegar þú kemur að h
 
 Þú gætir viljað búa til og nota leið á stað sem þú þekkir nú þegar, til að halda þér á réttri leið. Eða þú gætir viljað nota leið til að læra nýja leið.
 
-## hvernig virkar það?
+## Hvernig virkar það?
 
 **Að búa til leið:**
 

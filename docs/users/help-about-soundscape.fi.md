@@ -21,5 +21,9 @@ Soundscape nojaa näihin erinomaisiin kolmannen osapuolen kirjastoihin ja tietoi
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe)a käytetään äänen toistamiseen pienellä viiveellä, ja se on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/google/oboe/blob/main/LICENSE) nojalla.
 
+[Alkuperäinen Soundscape-sovellus ©Microsoft Corporation](https://github.com/microsoft/soundscape) tarjosi äänimajakan äänet ja monet käännöksistä, ja se on saatavilla käytettäväksi [MIT-lisenssin](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) nojalla.
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) -yhteisön vapaaehtoiset paransivat useita käännöksiä, jotka ovat saatavilla käytettäväksi [MIT-lisenssin](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) nojalla.
+
 Kaikki kolmansien osapuolten tuotteiden ja yritysten nimet sekä logot ovat tavaramerkkejä tai rekisteröityjä tavaramerkkejä, ja ne säilyvät niiden omistajien omaisuutena.
 

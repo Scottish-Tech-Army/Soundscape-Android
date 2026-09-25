@@ -15,7 +15,7 @@ Kun Internet-yhteyttä ei ole tai Soundscape-palvelut ovat poissa käytöstä, S
 
 ## Rajoitukset
 
-Ilmoitukset toimivat edelleen alueilla, joiden läpi olet kulkenut aiemmin, koska Soundscape tallentaa ne ilmoitushistoriaasi. Voit myös sijoittaa äänimajakan tai luoda merkinnän paikkoihin, jotka on jo tallennettu ilmoitushistoriaasi.
+Ilmoitukset toimivat edelleen alueilla, joiden läpi olet kulkenut aiemmin, koska Soundscape tallentaa ne ilmoitushistoriaasi. Voit myös sijoittaa äänimajakan tai luoda merkitsimen paikkoihin, jotka on jo tallennettu ilmoitushistoriaasi.
 
 ## Mitä voit tehdä?
 

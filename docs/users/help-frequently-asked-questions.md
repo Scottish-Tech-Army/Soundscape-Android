@@ -83,7 +83,7 @@ Battery life varies significantly depending on which phone you own and how old i
 To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
 
 ### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
-To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
+To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake On Leave"* button and Soundscape will go in to a low power state until you leave your current location.
 
 ### How does my choice of headphones affect the battery life of my phone?
 In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.

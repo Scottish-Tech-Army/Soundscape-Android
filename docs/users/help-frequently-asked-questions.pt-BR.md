@@ -86,7 +86,7 @@ Para colocar o Soundscape em modo Colocar em Suspensão, selecione o botão *\"C
 
 
 ### Como usar o modo Colocar em Soneca para minimizar o impacto do Soundscape na bateria do meu telefone?
-Para colocar o Soundscape em modo Colocar em Soneca, selecione o botão *"Colocar em Suspensão"* no canto superior direito da tela. Uma vez que o Soundscape estiver em modo Colocar em Suspensão, selecione o botão *"Despertar quando eu sair"* e o Soundscape entrará em um estado de baixo consumo até que você deixe sua localização atual.
+Para colocar o Soundscape em modo Colocar em Soneca, selecione o botão *Colocar em Suspensão* no canto superior direito da tela. Uma vez que o Soundscape estiver em modo Colocar em Suspensão, selecione o botão *Despertar quando eu sair* e o Soundscape entrará em um estado de baixo consumo até que você deixe sua localização atual.
 
 ### Como a minha opção de fones de ouvido afeta a duração da bateria do meu telefone?
 Em nossos testes, o consumo de bateria de fones de ouvido Bluetooth é comparável a fones de ouvido com fio e não deve ser um fator significativo a ser considerado na seleção de um fone de ouvido.
@@ -109,7 +109,7 @@ O Soundscape fornece uma descrição ambiente dos seus arredores para auxiliar n
 Em vez de instruções passo a passo, como costumam fornecer outros aplicativos de mapas, o Soundscape reproduz um sinalizador sonoro na direção do seu destino, permitindo que você chegue lá da maneira que funcionar melhor para você, usando a maior consciência do ambiente e da localização do destino. O Soundscape foi projetado para rodar em segundo plano, permitindo que você use um aplicativo de navegação passo a passo enquanto ele continua a fornecer percepção ambiental durante o seu deslocamento até o destino.
 
 ### Como usar o Soundscape com um aplicativo de wayfinding?
-Para usar o Soundscape com esses aplicativos, inicie seu aplicativo de navegação primeiro.
+O Soundscape foi projetado como um aplicativo de percepção para ajudar a preencher os detalhes sobre seu ambiente que talvez você não tivesse percebido de outra forma. Embora não tenha sido projetado como um aplicativo de navegação passo a passo, ele pode ser usado em conjunto com tais aplicativos para fornecer informações complementares. Para usar o Soundscape com esses aplicativos, inicie se aplicativo de navegação primeiro. Em seguida, vá para o Soundscape e defina um sinalizador no mesmo destino do aplicativo de navegação. Nesse ponto, ambos os aplicativos estarão em execução e você ouvirá instruções de caminhada do seu aplicativo de navegação, obtendo atualizações sobre os pontos de interesse, os cruzamentos e sua distância até o destino do Soundscape.
 
 ### Como controlar o que escuto quando ouço no Soundscape?
 O Soundscape oferece várias formas de controlar o que você ouve e quando:
@@ -123,7 +123,7 @@ O Soundscape oferece várias formas de controlar o que você ouve e quando:
 Se ainda quiser interagir com o Soundscape, mas não quiser ouvir as notificações automáticas, defina *\"Detalhe das Notificações\"* como *\"Silencioso\"* na seção *\"Gerenciar Notificações\"* da tela *\"Ajustes\"* do menu. Ou, se não for usar o Soundscape, coloque-o em modo Colocar em Suspensão ou em modo Soneca usando o botão *\"Colocar em Suspensão\"* na tela inicial.
 
 ### Preciso ficar com o telefone nas mãos o tempo todo?
-Nessa posição *\"plana\"*, o Soundscape usará a bússola do telefone para determinar para onde você está voltado e fornecer notificações espaciais precisas.
+Não! Ao caminhar, você pode guardar o telefone em uma bolsa, bolso ou onde for mais conveniente. O Soundscape usará a direção do seu deslocamento para determinar quais notificações anunciar à sua esquerda e à sua direita. Quando você parar de se mover, o Soundscape não saberá em que direção você está voltado. Se o sinalizador audível estiver ligado, você perceberá que o som diminui até que você comece a se mover novamente. Você pode tirar o telefone para pressionar os botões de localização e exploração na parte inferior da tela a qualquer momento, mas certifique‑se de segurá‑lo com a parte superior apontando para a direção em que você está voltado e com a tela voltada para o céu. Nessa posição *\"plana\"*, o Soundscape usará a bússola do telefone para determinar para onde você está voltado e fornecer chamadas espaciais precisas. Se o sinalizador estiver ligado, você também notará que ele volta ao volume total.
 
 ### O que é o OpenStreetMap e por que usá-lo para o Soundscape?
 O Soundscape usa dados de mapas para criar suas notificações de áudio. Nossa principal fonte de mapas é o OpenStreetMap (www.openstreetmap.org). É uma plataforma de mapeamento criada por uma comunidade de colaboradores. Organizações e pessoas físicas podem usar as ferramentas do OpenStreetMap para melhorar os dados e tornar seus espaços mais acessíveis.

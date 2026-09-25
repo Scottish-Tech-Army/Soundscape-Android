@@ -21,5 +21,9 @@ Soundscape พึ่งพาไลบรารีและข้อมูลข
 
 [ไลบรารี Oboe ©The Android Open Source Project](https://github.com/google/oboe) ถูกใช้ในการเล่นเสียงโดยมีความหน่วงต่ำ และเปิดให้ใช้งานได้ภายใต้ [ใบอนุญาต Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE)
 
+[แอป Soundscape ต้นฉบับ ©Microsoft Corporation](https://github.com/microsoft/soundscape) เป็นผู้จัดหาเสียงของบีคอนเสียงและคำแปลจำนวนมาก และเปิดให้ใช้งานได้ภายใต้ [ใบอนุญาต MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt)
+
+อาสาสมัครของ [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) ได้ปรับปรุงคำแปลหลายรายการ ซึ่งเปิดให้ใช้งานได้ภายใต้ [ใบอนุญาต MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt)
+
 ผลิตภัณฑ์ ชื่อบริษัท และโลโก้ของบุคคลที่สามทั้งหมดเป็นเครื่องหมายการค้าหรือเครื่องหมายการค้าจดทะเบียน และยังคงเป็นทรัพย์สินของเจ้าของแต่ละราย
 

@@ -21,5 +21,9 @@ Ana amfani da [Laburaren Steam Audio na ©Valve Corporation](https://github.com/
 
 Ana amfani da [Laburaren Oboe na ©The Android Open Source Project](https://github.com/google/oboe) don sake kunna sauti da ƙarancin jinkiri, kuma an samar da shi don amfani ƙarƙashin [lasisin Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
+[Asalin manhajar Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) ta samar da sautukan Siginar Sauti da yawancin fassarorin, kuma an samar da ita don amfani ƙarƙashin [lasisin MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Masu sa kai na [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) sun inganta wasu daga cikin fassarorin, waɗanda aka samar don amfani ƙarƙashin [lasisin MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Duk sunayen kayayyaki, kamfanoni da alamun kasuwanci na wasu kamfanoni alamun kasuwanci ne ko kuma alamun kasuwanci da aka yi rijista, kuma su na mallakar masu su ne.
 

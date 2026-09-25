@@ -56,7 +56,7 @@ Soundscape permite setarea balizelor pe adrese. Pentru a seta o baliză pe casa 
 Soundscape poate determina locația destinației tale cu o precizie de câțiva metri, dar nu mai puțin. Când Soundscape determină că ești aproape de destinație, vei auzi un anunț final că destinația ta este în apropiere, iar baliza se va opri.
 
 ### Pot reporni baliza când sunt aproape de destinație?
-Da, poți reporni baliza după ce Soundscape o oprește selectând butonul *\"Activează sunetul balizei\"*...
+Da, poți reporni baliza după ce Soundscape o oprește selectând *"butonul de activare a sunetului balizei"*; totuși, deoarece Serviciile de localizare au o precizie de doar aproximativ 10 metri, nu putem garanta comportamentul balizei când te afli la câțiva metri de destinație.
 
 ### De ce anunță Soundscape numele străzilor de două ori când mă apropii de o intersecție?
 Pentru a se adapta unei varietăți de configurații de intersecții, Soundscape descrie intersecțiile ca segmente de drumuri care pornesc dintr-un punct comun. Soundscape folosește audio spațial pentru a indica numele drumului care merge la stânga, numele drumului care continuă drept înainte și numele drumului care merge la dreapta, în această ordine. Dacă descrierea intersecției începe cu drumul pe care te afli în loc de unul la stânga, atunci intersecția este un T cu drumul tău continuând înainte și un drum care intersectează din dreapta. În mod similar, dacă descrierea include doar un drum la stânga și la dreapta, vei ști că drumul pe care te afli se termină într-un T în fața ta. Această metodă de descriere a intersecțiilor funcționează și atunci când un drum își schimbă numele la o intersecție.
@@ -85,7 +85,7 @@ Durata bateriei variază semnificativ în funcție de modelul și de vechimea te
 Pentru a pune Soundscape în modul Repaus, selectează butonul *Repaus* din colțul din dreapta sus al ecranului. Când faci acest lucru, Soundscape va înceta să utilizeze Serviciile de localizare și datele mobile până când alegi să îl trezești din nou.
 
 ### Cum folosesc modul Amânare pentru a minimiza impactul Soundscape asupra bateriei telefonului?
-Pentru a pune Soundscape în modul Amânare, selectează butonul *Repaus* din colțul din dreapta sus al ecranului. Odată ce Soundscape este în modul Repaus, selectează butonul *Trezire când plec* și Soundscape va intra într‑o stare de consum redus până când părăsești locația curentă.
+Pentru a pune Soundscape în modul Amânare, selectează butonul *Repaus* din colțul din dreapta sus al ecranului. Odată ce Soundscape este în modul Repaus, selectează butonul *Trezire la plecare* și Soundscape va intra într‑o stare de consum redus până când părăsești locația curentă.
 
 ### Cum afectează alegerea căștilor durata de viață a bateriei telefonului meu?
 În testele noastre, consumul de baterie al căștilor Bluetooth este comparabil cu cel al căștilor cu fir și nu ar trebui să fie un factor semnificativ de luat în considerare la alegerea căștilor.

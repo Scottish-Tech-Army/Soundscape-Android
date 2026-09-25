@@ -88,7 +88,6 @@ For at sætte Soundscape i dvaletilstand skal du vælge knappen *\"Dvale\"* i ø
 ### Hvordan bruger jeg slumretilstand til at minimere indvirkningen fra Soundscape på mit telefonbatteri?
 For at sætte Soundscape i slumretilstand skal du vælge knappen *\"Dvale\"* i øverste højre hjørne af skærmen. Når Soundscape er i dvaletilstand, vælg knappen *\"Væk, når jeg forlader stedet\"*, så går Soundscape i en lavenergitilstand, indtil du forlader din nuværende placering.
 
-
 ### Hvordan påvirker mit valg af hovedtelefoner batterilevetiden på min telefon?
 I vores tests er batteriforbruget i Bluetooth-hovedtelefoner sammenligneligt med kablede hovedtelefoner og bør ikke være en væsentlig faktor at overveje, når man vælger hovedtelefoner.
 

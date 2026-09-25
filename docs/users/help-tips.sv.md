@@ -21,5 +21,5 @@ Soundscape fungerar bäst när du håller telefonen plant med skärmen riktad up
 
 Du kan aktivera och inaktivera ljudfyrens rytmiska ljud med ljudavstängningsknappen på startskärmen. Om ljudfyren är avstängd får du ändå uppdateringar om avståndet till ditt mål ungefär var 50:e meter.
 
-Om du vill fortsätta använda Soundscape utan att höra automatiska informationsljud ställer du in *\"Detaljnivå för informationsljud\"* på *\"Tyst\"* i avsnittet *\"Hantera informationsljud\"* på skärmen *\"Inställningar\"* i menyn. Om du inte tänker använda Soundscape på ett tag kan du istället sätta appen i viloläge eller snoozeläge med knappen *\"Viloläge\"* på startskärmen.
+Om du vill fortsätta använda Soundscape utan att höra automatiska informationsljud ställer du in *\"Detaljnivå för informationsljud\"* på *\"Tyst\"* i avsnittet *\"Hantera informationsljud\"* på skärmen *\"Inställningar\"* i menyn. Om du inte tänker använda Soundscape på ett tag kan du istället sätta appen i viloläge eller snoozeläge med knappen *\"Inaktivera\"* på startskärmen.
 

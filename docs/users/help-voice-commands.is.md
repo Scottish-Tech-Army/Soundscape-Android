@@ -9,7 +9,7 @@ permalink: /users/help-voice-commands.html
 
 # Raddskipanir
 
-## hvað er það?
+## Hvað er það?
 
 Þú getur beðið Gemini um að gera hluti í Soundscape án þess að snerta símann: heyra tilkynningu, ræsa eina af leiðunum þínum eða setja hljóðvita á eitt af merkjunum þínum. Allir aðrir aðstoðarmenn sem styðja forritsaðgerðir í Android geta gert það sama.
 
@@ -21,7 +21,7 @@ Raddskipanir eru gagnlegar þegar síminn er í vasanum, þegar þú ert með fu
 
 Það er aðstoðarmaðurinn þinn sem hlustar, ekki Soundscape, svo forritið tekur aldrei yfir hljóðnemann og Bluetooth-heyrnartólin þín haldast í hágæða hljóðstillingu í stað þess að skipta yfir í lakari stillinguna sem notuð er fyrir símtöl.
 
-## hvernig virkar það?
+## Hvernig virkar það?
 
 Það eru engin nákvæm orðasambönd til að læra utan að. Biddu um það sem þú vilt með þínum eigin orðum og aðstoðarmaðurinn parar það við eina af aðgerðunum hér að neðan. Heiti leiða og merkja eru pöruð lauslega, svo hluti af heiti dugar yfirleitt.
 

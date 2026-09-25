@@ -21,5 +21,9 @@ Soundscape bygger på disse fremragende tredjepartsbiblioteker og data. Klik på
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) bruges til at afspille lyden med lav latenstid og stilles til rådighed under [Apache 2.0-licensen](https://github.com/google/oboe/blob/main/LICENSE).
 
+[Den oprindelige Soundscape-app ©Microsoft Corporation](https://github.com/microsoft/soundscape) leverede lydfyrets lyde og mange af oversættelserne og stilles til rådighed under [MIT-licensen](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Frivillige fra [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) har forbedret flere af oversættelserne, som stilles til rådighed under [MIT-licensen](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Alle tredjeparts produkt- og firmanavne samt logoer er varemærker eller registrerede varemærker og forbliver deres respektive ejeres ejendom.
 

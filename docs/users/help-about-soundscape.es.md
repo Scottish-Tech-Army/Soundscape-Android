@@ -21,5 +21,9 @@ Soundscape se apoya en estas excelentes bibliotecas y datos de terceros. Haz cli
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) se utiliza para reproducir el audio con baja latencia y está disponible para su uso bajo la [licencia Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).
 
+[La aplicación original de Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) proporcionó los sonidos de la señal de audio y muchas de las traducciones, y está disponible para su uso bajo la [licencia MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).
+
+Los voluntarios de [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) mejoraron varias de las traducciones, que están disponibles para su uso bajo la [licencia MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).
+
 Todos los nombres y logotipos de productos y empresas de terceros son marcas comerciales o marcas registradas y siguen siendo propiedad de sus respectivos titulares.
 

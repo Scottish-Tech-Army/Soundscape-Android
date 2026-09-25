@@ -11,7 +11,7 @@ permalink: /users/help-my-location.html
 
 ## Vad är det?
 
-*Min plats* berättar om den aktuella platsen, bland annat vilken riktning du går i och vilka vägar, vägkorsningar eller intressepunkter som finns i närheten.
+Med knappen *"Min plats"* får du snabbt information som hjälper dig att komma på var du befinner dig. *"Min plats"* berättar om den aktuella platsen, bland att vilken riktning du går i och vilka vägar, vägkorsningar eller intressepunkter som finns i närheten.
 
 ## När ska jag använda det?
 
@@ -19,5 +19,5 @@ permalink: /users/help-my-location.html
 
 ## Hur fungerar det?
 
-Tryck på knappen *Min plats* och lyssna.
+Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonen i färdriktningen innan du trycker på knappen *"Min plats"*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *"Min plats mig"* och lyssna.
 

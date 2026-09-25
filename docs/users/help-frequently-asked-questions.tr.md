@@ -44,7 +44,7 @@ Bu tasarımın birkaç doğal sonucu vardır:
 3. Hedefinize genel olarak nasıl gideceğinizi biliyorsanız, yolculuğun büyük bölümünde işareti sessize alıp yalnızca hedefe yaklaştığınızda açmayı tercih edebilirsiniz.
 
 ### Sesli işaret neden bazen kayboluyor?
-Tekrar yürümeye başladığınızda veya telefonu düz tutup baktığınız yöne doğrulttuğunuzda işaret daha yüksek sesle çalacaktır.
+Soundscape'in sesli işareti, temelde baktığınız yöne göre hedefinizin nerede olduğunu söyleyen yönsel bir ipucudur. Soundscape, hangi yöne baktığınızdan emin olmadığında işaretin sesini kısar. Bu durum çoğunlukla, telefonu cebinizde veya çantanızda taşırken yürürken durduğunuzda, örneğin bir yolu geçmek için beklediğinizde yaşanır. Tekrar yürümeye başladığınızda veya telefonu düz tutup baktığınız yöne doğrulttduğunuzda işaret daha yüksek sesle çalacaktır.
 
 ### Bir adrese işaret ayarlayabilir miyim?
 Evet, ayarlayabilirsiniz. Adresler varsayılan olarak listelenmez ancak arama alanı kullanılarak bulunabilir. Bu adresi tekrar aramak zorunda kalmamak için *\"Konum Ayrıntıları\"* ekranından *\"Kayıtlı Nokta Olarak Kaydet\"* düğmesini seçerek onu bir kayıtlı nokta olarak ekleyebilirsiniz.
@@ -56,7 +56,7 @@ Soundscape, adreslere işaret ayarlamayı destekler. Evinize veya başka herhang
 Soundscape, hedefinizin konumunu birkaç metre içinde belirleyebilir, ancak daha az değil. Soundscape, hedefinize yakın olduğunuzu belirlediğinde, hedefinizin yakında olduğunu söyleyen son bir anons duyacaksınız ve işaret kapanacak.
 
 ### Hedefime yakınken işareti tekrar açabilir miyim?
-Evet, *İşaretin Sesini Aç* düğmesini seçerek Soundscape'in kapattığı işareti tekrar açabilirsiniz
+Evet, *"işaret sesini aç düğmesini"* seçerek Soundscape'in kapattığı işareti tekrar açabilirsiniz; ancak Konum Servisleri yalnızca yaklaşık 10 metreye kadar doğru olduğundan, hedefinize birkaç metre içindeyken işaretin davranışını garanti edemeyiz.
 
 ### Soundscape neden bir kavşağa yaklaştığımda yol adlarını iki kez anons ediyor?
 Çeşitli kavşak yapılandırmalarına uyum sağlamak için Soundscape, kavşakları ortak bir noktadan ayrılan yol segmentleri olarak tanımlar. Soundscape, sola giden yolun adını, düz devam eden yolun adını ve sağa giden yolun adını bu sırayla belirtmek için mekansal ses kullanır. Kavşak açıklaması solunuzdaki bir yol yerine üzerinde olduğunuz yolla başlıyorsa, kavşak üzerinde olduğunuz yolun düz devam ettiği ve sağdan bir yolun kesiştiği bir T kavşağıdır. Benzer şekilde, açıklama yalnızca sola ve sağa giden bir yol içeriyorsa, üzerinde olduğunuz yolun önünüzde bir T kavşağında sona erdiğini anlarsınız. Bu kavşak tanımlama yöntemi, bir yolun kavşakta adını değiştirdiği durumlarda da doğru çalışır.
@@ -87,7 +87,6 @@ Soundscape'i Sessiz Mod'a almak için ekranın sağ üst köşesindeki *\"Sessiz
 
 ### Soundscape'in telefonumun piline etkisini en aza indirmek için Erteleme modunu nasıl kullanırım?
 Soundscape'i Erteleme Modu'na almak için ekranın sağ üst köşesindeki *\"Sessiz Mod\"* düğmesini seçin. Soundscape Sessiz Mod'dayken *\"Ayrıldığımda Uyandır\"* düğmesini seçin; Soundscape, mevcut konumunuzu terk edene kadar düşük güç moduna geçecektir.
-
 
 ### Kulaklık tercihim telefonumun pil ömrünü nasıl etkiler?
 Testlerimizde, Bluetooth kulaklıkların pil tüketimi kablolu kulaklıklarla karşılaştırılabilir düzeydedir ve kulaklık seçerken önemli bir faktör olmayacaktır.

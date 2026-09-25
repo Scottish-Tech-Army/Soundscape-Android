@@ -85,7 +85,7 @@ Trajanje baterije se precej razlikuje glede na to, kateri telefon imate in kako 
 Če želite aplikacijo Soundscape preklopiti v način spanja, izberite gumb *Spanje* v zgornjem desnem kotu zaslona. Ko to izberete, Soundscape preneha uporabljati Lokacijske storitve in mobilne podatke, dokler je ne prebudite.
 
 ### Kako uporabljam način dremeža za zmanjšanje vpliva aplikacije Soundscape na baterijo telefona?
-Če želite aplikacijo Soundscape preklopiti v način dremeža, izberite gumb *Spanje* v zgornjem desnem kotu zaslona. Ko je Soundscape v načinu spanja, izberite gumb *Prebudi, ko odidem* in Soundscape bo prešel v način nizke porabe, dokler ne zapustite trenutne lokacije.
+Če želite aplikacijo Soundscape preklopiti v način dremeža, izberite gumb *Spanje* v zgornjem desnem kotu zaslona. Ko je Soundscape v načinu spanja, izberite gumb *Prebudi ob odhodu* in Soundscape bo prešel v način nizke porabe, dokler ne zapustite trenutne lokacije.
 
 ### Kako izbira slušalk vpliva na trajanje baterije mojega telefona?
 V naših testih je bila poraba baterije pri slušalkah Bluetooth primerljiva z žičnimi slušalkami, zato to pri izbiri slušalk ne bi smel biti pomemben dejavnik.

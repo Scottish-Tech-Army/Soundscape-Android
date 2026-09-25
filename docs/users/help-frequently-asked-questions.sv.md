@@ -85,8 +85,7 @@ Batteritiden varierar mycket beroende på vilken telefon du har och hur gammal d
 För att sätta Soundscape i viloläge väljer du knappen *"Inaktivera"* uppe till höger på skärmen. När du gör det kommer Soundscape att sluta använda Platstjänster och mobildata tills du själv väljer att väcka den igen.
 
 ### Hur minskar jag Soundscapes påverkan på telefonens batteri genom att använda snoozeläget?
-För att sätta Soundscape i snoozeläge väljer du knappen *\"Inaktivera\"* uppe till höger på skärmen. När Soundscape är i viloläge trycker du på knappen *\"Väck mig när jag lämnar\"* så går Soundscape ner i ett lågeffekttillstånd tills du lämnar din nuvarande plats.
-
+För att sätta Soundscape i snoozeläge väljer du knappen *\"Inaktivera\"* uppe till höger på skärmen. När Soundscape är i viloläge trycker du på knappen *\"Väck Soundscape när jag lämnar\"* så går Soundscape ner i ett lågeffekttillstånd tills du lämnar din nuvarande plats.
 
 ### Påverkar valet av hörlurar telefonens batteritid?
 Enligt våra tester är Bluetooth-hörlurarnas batteriförbrukning jämförbar med sladdförsedda hörlurar och detta bör inte vara något du behöver ta hänsyn till när du väljer hörlurar.
@@ -120,7 +119,7 @@ Soundscape ger flera sätt att styra vad du hör och när:
 
 3. Stoppa ljudfyren: Det finns flera situationer där du kan ställa in ett mål men inte behöva ljudfyren på. Du kanske till exempel vet exakt hur du ska ta dig till målet men ändå vill ha automatiska uppdateringar om hur långt det är kvar, eller så behöver du ljudfyren bara när du närmar dig målet. I båda fallen kan du välja när du vill höra ljudfyren genom att växla knappen *\"Stäng av ljudfyr\"*/*\"Sätt på ljudfyr\"* på huvudskärmen.
 
-Om du fortfarande vill interagera med Soundscape men inte vill höra automatiska informationsljud kan du ställa in *\"Detaljnivå för informationsljud\"* på *\"Tyst\"* i avsnittet *\"Hantera informationsljud\"* på skärmen *\"Inställningar\"* i menyn. Om du inte tänker använda Soundscape kan du istället sätta appen i viloläge eller snoozeläge med knappen *\"Viloläge\"* på startskärmen.
+Om du fortfarande vill interagera med Soundscape men inte vill höra automatiska informationsljud kan du ställa in *\"Detaljnivå för informationsljud\"* på *\"Tyst\"* i avsnittet *\"Hantera informationsljud\"* på skärmen *\"Inställningar\"* i menyn. Om du inte tänker använda Soundscape kan du istället sätta appen i viloläge eller snoozeläge med knappen *\"Inaktivera\"* på startskärmen.
 
 ### Måste jag hålla telefonen i handen hela tiden?
 Nej! När du går kan du ha telefonen i en väska eller ficka eller där det är praktiskt. Soundscape använder den riktning du går i för att avgöra vilka informationsljud som ska läsas upp till din vänster respektive höger. När du står still vet inte Soundscape vilken riktning du är vänd åt. Om ljudfyren är på blir den tystare tills du börjar gå igen. Du kan ta upp telefonen när som helst för att trycka på knapparna för plats och utforskning längst ner på skärmen, men se till att hålla telefonen plant med överkanten pekande i den riktning du står vänd och skärmen mot himlen. I denna *\"platta\"* position använder Soundscape telefonens kompass för att avgöra vilken riktning du pekar åt och ge korrekta rumsbestämda uppläsningar. Om ljudfyren är på märker du också att den återgår till full volym.

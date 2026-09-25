@@ -21,5 +21,9 @@ Soundscape இந்த சிறந்த மூன்றாம் தரப்
 
 [Oboe நூலகம் ©The Android Open Source Project](https://github.com/google/oboe) குறைந்த தாமதத்துடன் ஆடியோவை இயக்கப் பயன்படுத்தப்படுகிறது, மேலும் இது [Apache 2.0 உரிமத்தின்](https://github.com/google/oboe/blob/main/LICENSE) கீழ் பயன்பாட்டிற்குக் கிடைக்கிறது.
 
+[அசல் Soundscape செயலி ©Microsoft Corporation](https://github.com/microsoft/soundscape) ஒலி பீக்கனின் ஒலிகளையும் பல மொழிபெயர்ப்புகளையும் வழங்கியது, மேலும் இது [MIT உரிமத்தின்](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) கீழ் பயன்பாட்டிற்குக் கிடைக்கிறது.
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) தன்னார்வலர்கள் பல மொழிபெயர்ப்புகளை மேம்படுத்தினர், அவை [MIT உரிமத்தின்](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) கீழ் பயன்பாட்டிற்குக் கிடைக்கின்றன.
+
 அனைத்து மூன்றாம் தரப்பு தயாரிப்பு, நிறுவனப் பெயர்கள் மற்றும் லோகோக்கள் வர்த்தக முத்திரைகள் அல்லது பதிவு செய்யப்பட்ட வர்த்தக முத்திரைகள் ஆகும், மேலும் அவை அந்தந்த உரிமையாளர்களின் சொத்தாகவே உள்ளன.
 

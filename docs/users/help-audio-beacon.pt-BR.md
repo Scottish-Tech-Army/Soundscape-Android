@@ -15,7 +15,7 @@ A definição de um sinalizador em uma localização nas proximidades permite qu
 
 ## Quando eu o usaria?
 
-Usando o sinalizador sonoro, suas habilidades de orientação existentes e até mesmo seu aplicativo de navegação favorito, você poderá escolher como deseja chegar sozinho aos locais nas proximidades.
+A definição de um sinalizador será útil quando você quiser rastrear um ponto de referência familiar enquanto explora uma nova área ou quando for a algum lugar e quiser ser informado sobre os arredores ao longo do caminho. O recurso de sinalizador não dá a você instruções passo a passo, mas oferece um som audível contínuo que mostra a direção do sinalizador em relação à sua localização atual. Usando o sinalizador sonoro, suas habilidades de wayfinding existentes e até mesmo seu aplicativo de navegação favorito, você poderá escolher como deseja obter as localizações nas proximidades por conta própria.
 
 ## Como ele funciona?
 

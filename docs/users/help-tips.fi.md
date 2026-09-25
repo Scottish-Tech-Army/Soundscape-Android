@@ -13,7 +13,7 @@ Voit löytää lähellä olevat linja‑autopysäkit valitsemalla *\"Julkinen li
 
 Voit asettaa majakan mihin tahansa osoitteeseen. Etsi osoite Soundscapen pääruudulta hakutoiminnolla. Valitse osoite hakutuloksista, jolloin avautuu *"Sijainnin tiedot"* -näyttö. Tässä näytössä on vaihtoehto *"Käynnistä äänimajakka"* kyseiselle osoitteelle. Näin voit asettaa majakan yrityksiin, paikkoihin, kiinnostaviin kohteisiin ja asuntoihin, joita ei ole OpenStreetMapissa.
 
-Jos käytät jotakin bussireittiä säännöllisesti, tallenna nousu- ja poistumispysäkkisi merkinnöiksi. Näin ne tallentuvat ja löydät ne helposti uudelleen. Siirry aloitusnäytöltä kohtaan *"Merkinnät ja reitit"* ja etsi ne sitten *"Merkinnät"*-sivulta. Voit asettaa niihin majakan saadaksesi säännöllisiä päivityksiä siitä, kuinka lähellä poistumispysäkkiäsi olet. Huom: voit kytkeä rytmisen äänen pois päältä ja saat silti etäisyyspäivityksiä matkan aikana.
+Jos käytät jotakin bussireittiä säännöllisesti, tallenna nousu- ja poistumispysäkkisi merkitsimiksi. Näin ne tallentuvat ja löydät ne helposti uudelleen. Siirry aloitusnäytöltä kohtaan *Merkitsimet ja reitit* ja etsi ne sitten *Merkitsimet*-sivulta. Voit asettaa niihin majakan saadaksesi säännöllisiä päivityksiä siitä, kuinka lähellä poistumispysäkkiäsi olet. Huom: voit kytkeä rytmisen äänen pois päältä ja saat silti etäisyyspäivityksiä matkan aikana.
 
 Jos laitat puhelimen taskuusi ja lakkaat liikkumasta, majakan ääni hiljenee, koska Soundscape ei pysty päättelemään, mihin suuntaan olet kääntyneenä. Korjaa tämä lähtemällä uudelleen liikkeelle tai ottamalla puhelin esiin ja pitelemällä sitä vaakatasossa.
 

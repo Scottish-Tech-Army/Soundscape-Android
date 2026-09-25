@@ -21,5 +21,9 @@ Soundscape 依赖于这些出色的第三方库和数据。点击链接查看它
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) 用于以低延迟播放音频，并在 [Apache 2.0 许可证](https://github.com/google/oboe/blob/main/LICENSE) 下提供使用。
 
+[原版 Soundscape 应用 ©Microsoft Corporation](https://github.com/microsoft/soundscape) 提供了音频信标的声音和许多翻译，并在 [MIT 许可证](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) 下提供使用。
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) 的志愿者改进了其中一些翻译，这些翻译在 [MIT 许可证](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) 下提供使用。
+
 所有第三方产品、公司名称和徽标均为其各自所有者的商标或注册商标，且仍归其各自所有者所有。
 

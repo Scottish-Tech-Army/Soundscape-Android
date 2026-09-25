@@ -21,5 +21,9 @@ Soundscape tugineb nendele suurepärastele kolmandate osapoolte teekidele ja and
 
 [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) abil esitatakse heli väikese latentsusega ning see on kasutamiseks saadaval [Apache 2.0 litsentsi](https://github.com/google/oboe/blob/main/LICENSE) alusel.
 
+[Algne Soundscape'i rakendus ©Microsoft Corporation](https://github.com/microsoft/soundscape) andis helimajaka helid ja paljud tõlked ning see on kasutamiseks saadaval [MIT litsentsi](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) alusel.
+
+[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) vabatahtlikud täiustasid mitut tõlget, mis on kasutamiseks saadaval [MIT litsentsi](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) alusel.
+
 Kõik kolmandate osapoolte toodete ja ettevõtete nimed ning logod on kaubamärgid või registreeritud kaubamärgid ja jäävad nende vastavate omanike omandiks.
 

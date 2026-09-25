@@ -85,7 +85,7 @@ Az akkumulátor élettartama jelentősen változik attól függően, milyen tele
 Ahhoz, hogy a Soundscape-et Alvó módba állítsa, válassza az *Alvás* gombot a képernyő jobb felső sarkában. Ha ezt kiválasztja, a Soundscape leállítja a Helyszolgáltatások és a mobiladatok használatát, amíg úgy nem dönt, hogy újra felébreszti.
 
 ### Hogyan használjam a Szundi módot, hogy minimalizáljam a Soundscape hatását a telefonom akkumulátorára?
-Ahhoz, hogy a Soundscape-et Szundi módba állítsa, válassza az *Alvás* gombot a képernyő jobb felső sarkában. Miután a Soundscape Alvó módban van, válassza az *Ébresztés, amikor elindulok* gombot, és a Soundscape alacsony fogyasztású állapotba kerül, amíg el nem hagyja a jelenlegi helyét.
+Ahhoz, hogy a Soundscape-et Szundi módba állítsa, válassza az *Alvás* gombot a képernyő jobb felső sarkában. Miután a Soundscape Alvó módban van, válassza a *Felébredés távozáskor* gombot, és a Soundscape alacsony fogyasztású állapotba kerül, amíg el nem hagyja a jelenlegi helyét.
 
 ### Hogyan befolyásolja a fülhallgató-választásom a telefonom akkumulátor-élettartamát?
 Teszteink szerint a Bluetooth-os fülhallgatók akkumulátor-fogyasztása hasonló a vezetékes fülhallgatókéhoz, így ez nem jelent jelentős szempontot a fülhallgató kiválasztásakor.

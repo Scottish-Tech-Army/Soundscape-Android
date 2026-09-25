@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Wat is het?
 
-Dit baken kan op het hoofdscherm worden gedempt of weer ingeschakeld.
+Als u een baken instelt op een locatie in de buurt kan Soundscape u op de hoogte houden door een audiobaken te laten klinken vanuit de richting van die locatie. Dit baken kan al dan niet worden gedempt op het hoofdscherm. Bovendien geeft Soundscape informatie over de locatie weer op het hoofdscherm met de afstand en het adres, indien bekend.
 
 ## Wanneer zou ik het moeten gebruiken?
 

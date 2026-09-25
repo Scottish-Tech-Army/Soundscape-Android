@@ -79,13 +79,13 @@ Soundscape je trenutačno dostupan za iPhone uređaje s iOS-om 16 ili novijim te
 Koje ćete slušalice koristiti uz Soundscape stvar je osobnog izbora, a svaka opcija dolazi s prednostima i kompromisima. Jedini poseban zahtjev jest korištenje stereo slušalica kako biste mogli iskoristiti prostorne 3D zvučne najave Soundscapea.
 
 ### Kako Soundscape utječe na bateriju mog telefona?
-Za dodatno smanjenje potrošnje baterije, kada ne koristite Soundscape, trebali biste ga prisilno zatvoriti putem izbornika nedavnih aplikacija na telefonu.
+Trajanje baterije uvelike ovisi o tome koji telefon posjedujete i koliko je star. Najveće trošenje baterije uzrokuje uključen zaslon, pa biste, kako biste produljili trajanje baterije telefona, zaslon trebali držati zaključanim kad god je to moguće. Kako bi se smanjio utjecaj na bateriju telefona, Soundscape sada ima način rada Mirovanje. Za dodatno smanjenje potrošnje baterije, kada ne koristite Soundscape, trebali biste ga prisilno zatvoriti putem preglednika aplikacija na telefonu.
 
 ### Kako da koristim način rada Mirovanje kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?
 Kako biste Soundscape prebacili u način rada Mirovanje, odaberite gumb *Mirovanje* u gornjem desnom kutu zaslona. Kada to odaberete, Soundscape će prestati koristiti usluge lociranja i mobilne podatke dok ga ponovno ne probudite.
 
 ### Kako da koristim način rada Odgoda kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?
-Kako biste Soundscape prebacili u način rada Odgoda, odaberite gumb *Mirovanje* u gornjem desnom kutu zaslona. Kada je Soundscape u načinu rada Mirovanje, odaberite gumb *Probudi kad odem* i Soundscape će prijeći u stanje niske potrošnje energije dok ne napustite trenutnu lokaciju.
+Kako biste Soundscape prebacili u način rada Odgoda, odaberite gumb *Mirovanje* u gornjem desnom kutu zaslona. Kada je Soundscape u načinu rada Mirovanje, odaberite gumb *Probudi pri odlasku* i Soundscape će prijeći u stanje niske potrošnje energije dok ne napustite trenutnu lokaciju.
 
 ### Kako izbor slušalica utječe na trajanje baterije mog telefona?
 U našim testovima, potrošnja baterije kod Bluetooth slušalica usporediva je sa žičanim slušalicama i ne bi trebala biti značajan čimbenik pri odabiru slušalica.

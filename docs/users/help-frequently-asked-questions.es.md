@@ -68,7 +68,7 @@ Soundscape está diseñado para no darte demasiados avisos. Además, usa OpenStr
 Para que el número de avisos no resulte abrumador, algunas categorías, como los cruces, no se anuncian automáticamente al viajar en un vehículo.
 
 ### ¿Qué ocurre si no entiendo un aviso o si no lo oigo por el ruido?
-Soundscape tiene una lista de avisos recientes para que pueda volver a visitar avisos que se haya perdido. Para encontrarla, toca en la barra de búsqueda en la pantalla principal de Soundscape. En la parte inferior de esta página, hay una sección *\"Avisos recientes\"*, donde aparecerá el aviso que se ha perdido.
+Soundscape tiene una lista de avisos recientes para que puedas volver a visitar avisos que te hayas perdido. Para encontrarla, toca en la barra de búsqueda en la pantalla principal de Soundscape. En la parte inferior de esta página, hay una sección *\"Avisos recientes\"*, donde aparecerá el aviso que te has perdido.
 
 ## ¿Cómo funciona Soundscape?
 
@@ -85,7 +85,7 @@ La duración de la batería varía significativamente dependiendo del teléfono 
 Para poner Soundscape en modo de suspensión, selecciona el botón *"Suspender"* en la esquina superior derecha de la pantalla. Al hacerlo, Soundscape dejará de usar los servicios de localización y los datos móviles hasta que decidas reactivarlo.
 
 ### ¿Cómo uso el modo de aplazamiento para minimizar el impacto de Soundscape en la batería del teléfono?
-Para poner Soundscape en modo de aplazamiento, selecciona el botón *"Suspender"* en la esquina superior derecha de la pantalla. Una vez que Soundscape esté en modo de suspensión, selecciona el botón *"Reactivar cuando salgas"* y Soundscape entrará en un estado de bajo consumo hasta que salgas de tu ubicación actual.
+Para poner Soundscape en modo de aplazamiento, selecciona el botón *Suspender* en la esquina superior derecha de la pantalla. Una vez que Soundscape esté en modo de suspensión, selecciona el botón *Reactivar al salir* y Soundscape entrará en un estado de bajo consumo hasta que salgas de tu ubicación actual.
 
 ### ¿En qué afecta los auriculares que elijas a la duración de la batería del teléfono?
 En nuestras pruebas, el consumo de la batería de los auriculares Bluetooth es comparable al de los auriculares con cable, y no debería ser un factor importante que se debe tener en cuenta al seleccionar unos auriculares.
@@ -100,7 +100,7 @@ Soundscape es una aplicación basada en ubicación y usa los Servicios de Locali
 3. Con tiempo frío, mantén el teléfono en una temperatura cálida ya que el rendimiento de las baterías empeora con temperaturas bajas.
 
 ### ¿Cuántos datos móviles usa Soundscape?
-La cantidad de datos móviles que use dependerá de cómo utilice Soundscape. Hemos diseñado Soundscape para que utilice solo una pequeña cantidad de datos cuando esté fuera; por ejemplo, guardando puntos mientras camina, a fin de que no tenga que volver a descargarlos cada vez que regrese a un sitio donde ya haya estado. Para usar menos datos móviles, conéctese siempre que pueda a Wi-Fi, en especial cuando descargue la aplicación. Cuando no use Soundscape, presione el botón *"Suspender"* para poner Soundscape en suspensión, o bien cierre totalmente la aplicación.
+La cantidad de datos móviles que uses dependerá de cómo utilices Soundscape. Hemos diseñado Soundscape para que utilice solo una pequeña cantidad de datos cuando estés fuera; por ejemplo, guardando puntos mientras caminas, a fin de que no tengas que volver a descargarlos cada vez que regreses a un sitio donde ya hayas estado. Para usar menos datos móviles, conéctate siempre que puedas a Wi-Fi, en especial cuando descargues la aplicación. Cuando no uses Soundscape, pulsa el botón *Suspender* para poner Soundscape en suspensión, o bien cierra totalmente la aplicación.
 
 ### ¿En qué se diferencia Soundscape de otras aplicaciones de mapas?
 Soundscape ofrece una descripción de tu entorno mediante la exploración y la orientación. Usando el sonido espacial, Soundscape avisará de puntos de interés, parques, carreteras y cruces desde la dirección en la que se encuentran físicamente en tu entorno inmediato mientras caminas. Por ejemplo, si pasas por una tienda que se encuentre a tu derecha, oirás el nombre de la tienda sonando a tu derecha. Cuando te acerques a un cruce, oirás el sonido del nombre de cada carretera proveniente de la dirección a la que te diriges, comenzando por la izquierda, adelante y a la derecha.
