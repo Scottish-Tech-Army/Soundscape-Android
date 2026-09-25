@@ -43,6 +43,17 @@ restructure strings to avoid it, and don't pick one form. Still worth
 confirming with a native speaker: the letter-name rule (az M7, az SZTE,
 a BKV) and the number rule (az 1, az 5, az 1000, a 12, a 100).
 
+### HU-G1 — Road templates said the street type twice (`fixed` in code, 2026-09-25)
+
+35 templates wrote «a(z) %1$s úton» (one «vonalon»), but Hungarian street names
+already end in their type, so callouts said «az Andrássy út úton», «a Váci utca
+úton». The templates now write «a(z) %1$s{úton}» and `resolveGrammarMarkers()`
+(C18) puts the name's own street word into the case: «az Andrássy úton», «a Váci
+utcán», «a Deák téren», «a Hősök terén», «a Dunakeszi alagútban». The word list
+was measured against the Budapest extract and covers 95% of its 16,094 street
+names; the rest (route numbers, Slovak names) keep « úton». **New road templates
+must use `{úton}`**, never a literal «úton» after a name.
+
 ### HU-R1 — «te» vs «Ön» (`unconfirmed`)
 
 The UI says «Készen állsz!» (te), while ~14 strings, mostly `help_text_*`

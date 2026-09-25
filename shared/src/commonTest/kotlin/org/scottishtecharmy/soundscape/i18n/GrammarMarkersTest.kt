@@ -86,6 +86,57 @@ class GrammarMarkersTest {
         assertEquals("Pizza(z) Bar", hu("Pizza(z) Bar"))
     }
 
+    // Road names below are real ones from the Budapest extract.
+    @Test
+    fun hungarianRoadCaseInflectsTheNamesOwnStreetWord() {
+        assertEquals("Gyaloglás észak felé az Andrássy úton", hu("Gyaloglás észak felé a(z) Andrássy út{úton}"))
+        assertEquals("Gyaloglás észak felé a Váci utcán", hu("Gyaloglás észak felé a(z) Váci utca{úton}"))
+        assertEquals("A Deák Ferenc téren", hu("A(z) Deák Ferenc tér{úton}"))
+        assertEquals("A Hősök terén", hu("A(z) Hősök tere{úton}"))
+        assertEquals("Az Erzsébet körúton", hu("A(z) Erzsébet körút{úton}"))
+        assertEquals("Az Árpád fejedelem útján", hu("A(z) Árpád fejedelem útja{úton}"))
+        assertEquals("A Budai alsó rakparton", hu("A(z) Budai alsó rakpart{úton}"))
+        assertEquals("A Liszt Ferenc sétányon", hu("A(z) Liszt Ferenc sétány{úton}"))
+        assertEquals("A Kazinczy közön", hu("A(z) Kazinczy köz{úton}"))
+        assertEquals("A Margit hídon", hu("A(z) Margit híd{úton}"))
+    }
+
+    @Test
+    fun hungarianRoadCaseMatchesCompoundsLongestFirst() {
+        assertEquals("A Nagykörúton", hu("A(z) Nagykörút{úton}"))
+        assertEquals("A Bajcsy-Zsilinszky úton", hu("A(z) Bajcsy-Zsilinszky út{úton}"))
+        assertEquals("A Duna-korzón", hu("A(z) Duna-korzó{úton}"))
+        assertEquals("A Pincesoron", hu("A(z) Pincesor{úton}"))
+        assertEquals("A Dunakeszi alagútban", hu("A(z) Dunakeszi alagút{úton}")) // not «alagúton»
+        assertEquals("A Városligeti fasoron", hu("A(z) Városligeti fasor{úton}"))
+    }
+
+    @Test
+    fun hungarianRoadCaseCoversUnnamedWayClassNames() {
+        assertEquals("Az Ösvényen", hu("A(z) Ösvény{úton}"))
+        assertEquals("Az Úton", hu("A(z) Út{úton}"))
+        assertEquals("A Gyalogúton", hu("A(z) Gyalogút{úton}"))
+        assertEquals("Az Autópályán", hu("A(z) Autópálya{úton}"))
+        assertEquals("A Főútvonalon", hu("A(z) Főútvonal{úton}"))
+        assertEquals("A Lépcsőn", hu("A(z) Lépcső{úton}"))
+    }
+
+    @Test
+    fun hungarianRoadCaseFallsBackToUtonForOtherNames() {
+        assertEquals("Az M7 úton", hu("A(z) M7{úton}"))
+        assertEquals("A Rudas fürdő úton", hu("A(z) Rudas fürdő{úton}"))
+        assertEquals("Az M1 (Bécsi út) úton", hu("A(z) M1 (Bécsi út){úton}"))
+    }
+
+    @Test
+    fun hungarianRoadCaseWorksInRealTemplates() {
+        assertEquals(
+            "A Kossuth Lajos utcán, az Astoria és a Ferenciek tere között",
+            hu("A(z) Kossuth Lajos utca{úton}, a(z) Astoria és a(z) Ferenciek tere között"),
+        )
+        assertEquals("Nem mozogsz a Rákóczi úton", hu("Nem mozogsz a(z) Rákóczi út{úton}"))
+    }
+
     // --- Korean --------------------------------------------------------------------------
 
     @Test

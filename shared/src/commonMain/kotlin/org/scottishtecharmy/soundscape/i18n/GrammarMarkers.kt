@@ -15,7 +15,8 @@ package org.scottishtecharmy.soundscape.i18n
  */
 fun resolveGrammarMarkers(text: String): String {
     if ('(' !in text && '{' !in text) return text
-    return resolveTurkishSuffixes(resolveKoreanParticles(resolveHungarianArticles(text)))
+    val hungarian = resolveHungarianArticles(resolveHungarianRoadCase(text))
+    return resolveTurkishSuffixes(resolveKoreanParticles(hungarian))
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -64,6 +65,61 @@ private fun hungarianNumberStartsWithVowel(digits: String): Boolean {
     if (digits.isEmpty() || digits[0] == '0') return false
     val leadingGroup = digits.take((digits.length - 1) % 3 + 1)
     return leadingGroup == "1" || leadingGroup[0] == '5'
+}
+
+// Hungarian street names carry their street type («Andrássy út», «Váci utca», «Deák tér»), so a
+// template can't add its own «úton» ("on the road") without saying it twice: «az Andrássy út úton».
+// «%1$s{úton}» puts the name's own street word into the case the sentence needs instead
+// («az Andrássy úton», «a Váci utcán», «a Deák téren»). A name without a known street word (a
+// route number such as «M7», a foreign name) keeps the plain « úton», which is what the templates
+// said before, so nothing reads worse than it did.
+private val hungarianRoadCase = Regex("\\{úton\\}")
+
+// Street words as they end a name, with the form "on/in it" takes. Matched against the end of the
+// name's last word, longest first, so compounds work too («Nagykörút», «Kőhíd», «Pincesor») and
+// «alagút» (a tunnel: in it, not on it) wins over «út». Measured against the Budapest extract
+// (2026-09): these cover 95% of the 16,094 distinct street names, and most of the rest are Slovak
+// names across the border. Unnamed ways get the class name («Ösvény», «Gyalogút», «Autópálya»,
+// «Főútvonal», «Lakóterület»), which is covered too.
+private val hungarianStreetWords = mapOf(
+    "utca" to "utcán", "út" to "úton", "útja" to "útján", "körút" to "körúton",
+    "sugárút" to "sugárúton", "alagút" to "alagútban", "tér" to "téren", "tere" to "terén",
+    "köz" to "közön", "sor" to "soron", "fasor" to "fasoron", "sétány" to "sétányon",
+    "dűlő" to "dűlőn", "lépcső" to "lépcsőn", "lejtő" to "lejtőn", "híd" to "hídon",
+    "hídja" to "hídján", "rakpart" to "rakparton", "part" to "parton", "park" to "parkban",
+    "lakópark" to "lakóparkban", "liget" to "ligetben", "kert" to "kertben", "udvar" to "udvarban",
+    "telep" to "telepen", "negyed" to "negyedben", "terület" to "területen", "hely" to "helyen",
+    "ösvény" to "ösvényen", "ösvénye" to "ösvényén", "járó" to "járón", "körönd" to "köröndön",
+    "pálya" to "pályán", "vonal" to "vonalon", "korzó" to "korzón", "sziget" to "szigeten",
+    "gát" to "gáton", "domb" to "dombon", "hegy" to "hegyen", "szél" to "szélen",
+    "terasz" to "teraszon", "csapás" to "csapáson", "tanya" to "tanyán", "major" to "majorban",
+    "völgy" to "völgyben", "rév" to "réven", "összekötő" to "összekötőn",
+)
+private val hungarianStreetWordsLongestFirst = hungarianStreetWords.keys.sortedByDescending { it.length }
+
+internal fun resolveHungarianRoadCase(text: String): String {
+    if ("{úton}" !in text) return text
+    val out = StringBuilder()
+    var last = 0
+    for (match in hungarianRoadCase.findAll(text)) {
+        val before = text.substring(last, match.range.first)
+        val word = before.takeLastWhile { it.isLetter() }
+        val lower = word.lowercase()
+        val key = hungarianStreetWordsLongestFirst.firstOrNull { lower.endsWith(it) }
+        if (key == null) {
+            out.append(before).append(" úton")
+        } else {
+            val stem = before.dropLast(key.length)
+            var form = hungarianStreetWords.getValue(key)
+            // A whole-word match keeps the name's capital: an unnamed «Ösvény» becomes «Ösvényen».
+            if (key.length == word.length && word[0].isUpperCase()) {
+                form = form.replaceFirstChar { it.uppercaseChar() }
+            }
+            out.append(stem).append(form)
+        }
+        last = match.range.last + 1
+    }
+    return out.append(text.substring(last)).toString()
 }
 
 // ---------------------------------------------------------------------------------------------

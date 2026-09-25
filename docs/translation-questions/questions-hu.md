@@ -81,8 +81,12 @@ választ a behelyettesített név alapján:
 - számoknál a kimondott alak: az 1-es (egy), az 5 (öt), az 1000 (ezer), de
   a 12 (tizenkettő), a 100 (száz).
 
+Hasonlóan az utcanév végét is ragozza: korábban „az Andrássy út úton”
+hangzott el, most „az Andrássy úton”, „a Váci utcán”, „a Deák téren”, „a Hősök
+terén”. Ha a névben nincs ilyen szó (például „M7”), marad „az M7 úton”.
+
 **A kérdés:** helyesek ezek a szabályok? Tudsz olyan esetet, ahol rossz
-névelőt választana?
+névelőt vagy rossz ragot választana?
 
 ### Q2 — Tegezés vagy magázás? *(Mixed register)*
 
