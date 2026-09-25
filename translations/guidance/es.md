@@ -292,7 +292,7 @@ skipped «¡Ya está listo!» prompted a sweep for more ES-R1 leftovers: **21 mo
 after JJ's May pass (settings descriptions, dialogs, voice-command replies,
 the legacy-migration messages, and three iOS permission prompts that also
 live in `iosApp/iosApp/InfoPlist.xcstrings`). The Terms of Use screen stays
-formal (see above). Findings are in `/tmp/weblate-review/es-findings.json`
-(25 uploadable). JJ also asked to join both the Android and iOS beta
+formal (see above). All 25 were uploaded and verified live, and the 3 iOS prompts were changed in
+`InfoPlist.xcstrings` at the same time. JJ also asked to join both the Android and iOS beta
 programmes, and will compare the informal Spanish here against his formal
 Latin American Spanish in Soundscape Community.
