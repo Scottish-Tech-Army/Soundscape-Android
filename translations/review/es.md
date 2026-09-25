@@ -5,6 +5,8 @@ reviewer). English glosses in italics are for the maintainer.*
 
 ¡Hola! Gracias de nuevo por todo el trabajo de mayo.
 
+*(Actualizado el 25 de septiembre: JJ ya respondió a Q1 y Q2 en #881. ¡Gracias! Quedan Q3–Q5.)*
+
 Seguimos tu criterio: ahora **toda** la aplicación usa «tú», incluidas las
 preguntas frecuentes (se cambiaron 95 textos el 24 de septiembre). Quedan
 unas pocas dudas, casi todas pequeñas.
