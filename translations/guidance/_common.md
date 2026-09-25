@@ -153,6 +153,28 @@ warn any of them.
 > ru «тупику») was uploaded and verified live in all eight. uk was fixed earlier
 > (see `uk.md`). fr FR-G1 is still open, because it needs a wording decision.
 
+## C17 — When a runtime name can't be declined, use a label instead of a preposition
+
+Names from the map (roads, POIs, settlements) arrive in the nominative. In a
+case-inflecting language, a template that puts one after a preposition
+(«до %2$s», «Á %1$s», «%1$s'de») is always wrong for some names, and no
+string edit can fix it. The fix a native speaker chose is to drop the
+preposition and introduce the name with a **label**, after which the
+nominative is natural.
+
+> **Case (uk, 2026-09-25):** «Стежка у напрямку вулиця Шевченка» → «Стежка,
+> напрямок: вулиця Шевченка». In the reporter's words: "Formation of genitive
+> case is different for different words, there is no predictable pattern."
+> The dead-end string then went back to the nominative «тупик».
+
+The same problem is recorded, unresolved, as IS-G2 (Icelandic), PL-G1's open
+side (Polish), FR-G2 (French contractions), TR-G1 (Turkish suffixes) and
+HU-A1 (Hungarian «a(z)»). The label form is the candidate fix to put to each
+language's reviewer. It isn't a rule to apply unasked, because it changes
+how the callout sounds. Finnish already dodges it with «kohteeseen %2$s».
+Remember C9: if a template changes, strings substituted into it may need
+their case changed back.
+
 ## C10 — `confect_name_to` means "a path that leads to", not "from … to"
 
 `confect_name_to` («%1$s to %2$s») and `confect_name_to_via` put a **way

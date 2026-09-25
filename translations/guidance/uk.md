@@ -58,7 +58,7 @@ A sweep on 2026-09-21 found no informal forms in the 1495 translated units
 («ти»/«тебе»/«твій» and common singular imperatives): the rule confirms what
 ships. Its job now is to keep new strings in line.
 
-### UK-G1 — Strings slotted into a template take the template's case (`agreed`)
+### UK-G1 — Strings slotted into a template take the template's case (`agreed` as a principle; **the dead-end application is superseded by UK-G2**)
 Some strings are never shown on their own; the code substitutes them into a
 template. They must be translated in the grammatical case that template's
 preposition governs, not in the dictionary form.
@@ -72,6 +72,49 @@ preposition governs, not in the dictionary form.
 Open side: the same `%2$s` slot is also filled with destination names from map
 data, which arrive undeclined (question 1 below).
 
+### UK-G2 — Direction callouts use the label form «напрямок: X» (`agreed`, reporter 2026-09-25)
+
+The reporter, answering the open question about undeclined destinations:
+
+> String «Стежка у напрямку вулиця Шевченка» does not work, it is
+> grammatically incorrect and sounds broken. In Ukrainian, if we use
+> prepositional phrase "у напрямку" we must put "вулиця" in the correct case
+> (genitive, instead of nominative) - "вулиці". … Formation of genitive case is
+> different for different words, there is no predictable pattern. … The best
+> option for all these callouts of such type, including "тупик" is to use
+> approach (c) «%1$s, напрямок: %2$s». … Here nominative case sounds natural.
+
+Their second live example was «Далі дорога у напрямку парковка південь». («Далі»
+is the Street Preview "Go" button, and «парковка південь» is a map name.)
+
+The genitive can't be generated for runtime map names, so the preposition
+goes and the name stands in the nominative after a label:
+
+| Key | Was | Now |
+|---|---|---|
+| `confect_name_to` | «%1$s у напрямку %2$s» | «%1$s, напрямок: %2$s» |
+| `confect_name_to_via` | «%1$s у напрямку %2$s через %3$s» | «%1$s, напрямок: %2$s, через %3$s» |
+| `directions_towards_settlement` | «у напрямку %1$s, за %2$s» | «напрямок: %1$s, за %2$s» |
+| `confect_name_dead_end` | «тупика» | «тупик» (nominative again, since there is no preposition to govern it) |
+
+`directions_towards_settlement` wasn't named by the reporter, but it is the
+same «у напрямку + map name» construction ("…, towards Kyiv, 5 km away"), so
+it's in scope (C4). «через %3$s» stays, because %3$s only ever receives
+«Сходи», «Міст» or «Тунель», which are inanimate, so their accusative is the
+same as the nominative.
+
+### UK-G3 — The same problem in every other preposition + map-name template (`unconfirmed`, inventory only)
+
+A sweep found **54 more templates** where a map name (road, POI, settlement or
+marker) follows a case-governing preposition and so arrives nominative. For
+example `directions_on_road` «На %1$s» → «На вулиця Шевченка» (needs «вулиці»),
+`directions_near_name` «Поблизу %1$s» (genitive), the 24
+`directions_along_*` «по/вздовж %1$s», `street_description_*` «між / до / після
+%2$s», `directions_approaching_name` «до %1$s», `directions_at_poi` «У %1$s».
+These are the main callouts, so this matters more than the four above. The
+reporter's rule was stated for the «у напрямку» type only, so these are
+inventory: `/tmp/weblate-review/uk-findings.json` rule UK-G3. See question 1.
+
 ### UK-T4 — Callout stays «оголошення» (`confirmed`, closed)
 29 strings carry «оголошення» and all of them stay as they are. See "Rejected"
 below for why, and read that before proposing anything in this area.
@@ -79,6 +122,14 @@ below for why, and read that before proposing anything in this area.
 ---
 
 ## Rejected
+
+### Genitive dead end «тупика» — rejected 2026-09-25, superseded by UK-G2
+
+It was the obvious fix, and a correct one in isolation: «у напрямку» governs
+the genitive (UK-G1, C9), and the 2026-09-18 feedback asked for it. It was
+rejected because the same slot also takes map names that can't be declined.
+The label form fixes both at once and is the reporter's choice. Don't put
+«тупика» back while `confect_name_to` uses the label form.
 
 ### Callout → «підказка» — rejected 2026-09-18 by the reporter who proposed it
 
@@ -103,27 +154,17 @@ change was never the mechanical swap it appeared to be (rule C3).
 
 ## Open questions for the next native-speaker round
 
-These are the questions in `translations/review/uk.md` (Q1…Q4). The
-2026-09-24 cross-language sweep found nothing new for Ukrainian: «Все
-готово!» / «Вітаємо!» are gender-free (C15), «Двічі торкніться, щоб %1$s»
-composes with the infinitive hints (C13), «йде ліворуч» is descriptive
-(C11), and «Ви їдете» / «Ви ідете» match the vehicle/walking split. Q3 (the
-detail levels) is the only new question.
-
-1. **Undeclined destination names.** `confect_name_to` also receives
-   destination names straight from OpenStreetMap, in the nominative — e.g.
-   «Стежка у напрямку вулиця Шевченка». Is that acceptable to a listener, or
-   should the template change so it works with a nominative name? Options:
-   (a) leave it; (b) «%1$s до %2$s»; (c) «%1$s, напрямок: %2$s». If (b) or
-   (c), «тупика» may need to change to match.
-2. **Confirm the two locked terms.** «звуковий маячок» and «мітка» are marked
-   `confirmed` on the strength of the 2026-09-18 glossary note — please say
-   explicitly if either should move, because future passes will now actively
-   defend them.
+1. **The other 54 map-name templates (UK-G3).** Should the label form extend to
+   them too? For example «На %1$s» → «Вулиця: %1$s»? «Поблизу %1$s» →
+   «Поблизу: %1$s»? Or are some acceptable as they are? The biggest groups are
+   `directions_on_road*` («На …»), the `directions_along_*` family («по / вздовж
+   …») and `street_description_*` («між / до / після …»).
+2. **Confirm the two locked terms.** «звуковий маячок» and «мітка» are
+   `confirmed`. Say if either should move.
 3. **The four detail levels** (Докладний / Збалансований / Тихий / Беззвучний):
    distinct by ear?
 
-*Answered and closed: the two callout questions — see "Rejected"; the guided-tutorial term — confirmed OK 2026-09-21; register — formal «ви» confirmed 2026-09-21.*
+*Answered and closed: undeclined destination names → the label form (UK-G2, 2026-09-25). The two callout questions, see "Rejected"; the guided-tutorial term, confirmed OK 2026-09-21; register, formal «ви» confirmed 2026-09-21.*
 
 ---
 
@@ -177,3 +218,5 @@ Waypoint → «зупинка» (26), Guided tutorial → «Інтерактив
 found no «маршрутна точка» or «посібник» left anywhere in the corpus.
 
 **2026-09-25 — truncation repaired (C16).** `faq_background_battery_impact_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.
+
+**2026-09-25 — reporter answered question 1 (undeclined destinations).** Chose approach (c), the label form. Recorded as UK-G2 (4 units ready in `/tmp/weblate-review/uk-findings.json`, not uploaded), with UK-G1's genitive dead end rejected. The sweep found 54 more preposition + map-name templates (UK-G3), now question 1.
