@@ -52,35 +52,15 @@ helps too.
 
 ---
 
-### Q1 — "Intersection" or "junction"?
+*Already settled: "intersection" stays, because a path meeting a road isn't a
+junction; "grocery store" stays, with supermarket, corner shop and grocer's used
+by size and kind; "pavement" always, never "sidewalk"; "transit" is fine.*
 
-**When you hear it:** constantly while walking, whenever you approach a place
-where roads meet.
+### Q1 — Anything else American?
 
-**What it says now:** "Approaching intersection", "Intersection in 20 metres".
+Words, spellings or phrases that still sound American to a UK ear.
 
-**What we're unsure about:** UK pedestrians usually say "junction", but
-Microsoft's original UK English kept "intersection" too, and changing it would
-touch every crossing callout.
-
-**The question:** would you say "junction"? Does it matter to you?
-
-### Q2 — "Store" or "shop"?
-
-**When you hear it:** in help text and general descriptions, for example "see a
-list of nearby grocery stores".
-
-**What we're unsure about:** "store" is American; "shop" is what most UK
-speakers would say. (App Store and Play Store stay as they are.)
-
-**The question:** does "store" jar?
-
-### Q3 — Anything else American?
-
-Words, spellings or phrases that sound American to a UK ear: "sidewalk",
-"transit", "downtown", that kind of thing.
-
-### Q4 — Anything else?
+### Q2 — Anything else?
 
 Anything that's unclear, too long, or awkward to listen to.
 
