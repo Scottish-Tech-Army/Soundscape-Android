@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.audio.EARCON_MODE_ENTER
 import org.scottishtecharmy.soundscape.audio.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.platform.appNameCollator
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.beacon_action_mute_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_nearby_markers
@@ -210,9 +211,10 @@ class AudioMenu(
 
     // ── Feature implementations ───────────────────────────────────────────────
 
+    // Both lists are in the same order as the Markers & Routes screens when sorted by name, A to Z.
     private suspend fun loadRouteMenuItems(): List<MenuItem> =
         withContext(Dispatchers.Default) {
-            routeDao.getAllRoutes().map { route ->
+            routeDao.getAllRoutes().sortedWith(compareBy(appNameCollator()) { it.name }).map { route ->
                 MenuItem.Action(route.name) {
                     service.routeStartById(route.routeId)
                     popToRoot()
@@ -222,7 +224,7 @@ class AudioMenu(
 
     private suspend fun loadMarkerMenuItems(): List<MenuItem> =
         withContext(Dispatchers.Default) {
-            routeDao.getAllMarkers().map { marker ->
+            routeDao.getAllMarkers().sortedWith(compareBy(appNameCollator()) { it.name }).map { marker ->
                 MenuItem.Action(marker.name) {
                     val location = LngLatAlt(marker.longitude, marker.latitude)
                     service.startBeacon(location, marker.name)
