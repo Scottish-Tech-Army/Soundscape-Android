@@ -521,7 +521,7 @@
     <string name="faq_sleep_mode_battery_question">Com utilitzo el mode de repòs per minimitzar l'impacte de Soundscape en la bateria del meu telèfon?</string>
     <string name="faq_sleep_mode_battery_answer">Per posar Soundscape en mode de repòs, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla. En seleccionar-lo, Soundscape deixarà d'utilitzar els Serveis d'ubicació i les dades mòbils fins que torneu a activar-lo.</string>
     <string name="faq_snooze_mode_battery_question">Com utilitzo el mode de repòs amb represa automàtica per minimitzar l'impacte de Soundscape en la bateria del meu telèfon?</string>
-    <string name="faq_snooze_mode_battery_answer">Per posar Soundscape en mode de repòs amb represa automàtica, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla. Un cop Soundscape estigui en mode de repòs, seleccioneu el botó *Desperta quan marxi* i Soundscape passarà a un estat de baix consum fins que abandoneu la vostra ubicació actual.</string>
+    <string name="faq_snooze_mode_battery_answer">Per posar Soundscape en mode de repòs amb represa automàtica, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla. Un cop Soundscape estigui en mode de repòs, seleccioneu el botó *Desperta en sortir* i Soundscape passarà a un estat de baix consum fins que abandoneu la vostra ubicació actual.</string>
     <string name="faq_headset_battery_impact_question">Com afecta la meva elecció d'auriculars la durada de la bateria del meu telèfon?</string>
     <string name="faq_headset_battery_impact_answer">En les nostres proves, el consum de bateria dels auriculars Bluetooth és comparable al dels auriculars amb cable i no hauria de ser un factor significatiu a tenir en compte a l'hora de triar auriculars.</string>
     <string name="faq_background_battery_impact_question">Com afecta la bateria del meu telèfon que Soundscape s'executi en segon pla?</string>
@@ -1586,4 +1586,6 @@
     <string name="siri_param_level">Nivell</string>
     <string name="siri_desc_callout_detail">Estableix quant diu Soundscape mentre camines.</string>
     <string name="intersection_approaching_intersection_distance">Cruïlla a %1$s</string>
+    <string name="microsoft_copyright">[L'aplicació original Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) va proporcionar els sons de la balisa sonora i moltes de les traduccions, i es posa a disposició per al seu ús sota la [llicència MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Els voluntaris de [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) van millorar diverses de les traduccions, que es posen a disposició per al seu ús sota la [llicència MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
