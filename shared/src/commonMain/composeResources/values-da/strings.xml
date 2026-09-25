@@ -387,7 +387,7 @@
     <string name="faq_sleep_mode_battery_question">Hvordan bruger jeg dvaletilstand til at minimere indvirkningen fra Soundscape på mit telefonbatteri?</string>
     <string name="faq_sleep_mode_battery_answer">For at sætte Soundscape i dvaletilstand skal du vælge knappen *\"Dvale\"* i øverste højre hjørne af skærmen. Når du vælger denne, stopper Soundscape med at bruge lokalitetstjenester og mobildata, indtil du vælger at vække den igen.\n</string>
     <string name="faq_snooze_mode_battery_question">Hvordan bruger jeg slumretilstand til at minimere indvirkningen fra Soundscape på mit telefonbatteri?</string>
-    <string name="faq_snooze_mode_battery_answer">For at sætte Soundscape i slumretilstand skal du vælge knappen *\\"Dvale\\"* i øverste højre hjørne af skærmen. Når Soundscape er i dvaletilstand, vælg knappen *\\"Væk, når jeg forlader stedet\\"*, så går Soundscape i en lavenergitilstand, indtil du forlader din nuværende placering.\n</string>
+    <string name="faq_snooze_mode_battery_answer">For at sætte Soundscape i slumretilstand skal du vælge knappen *\\"Dvale\\"* i øverste højre hjørne af skærmen. Når Soundscape er i dvaletilstand, vælg knappen *\\"Væk, når jeg forlader stedet\\"*, så går Soundscape i en lavenergitilstand, indtil du forlader din nuværende placering.</string>
     <string name="faq_headset_battery_impact_question">Hvordan påvirker mit valg af hovedtelefoner batterilevetiden på min telefon?</string>
     <string name="faq_headset_battery_impact_answer">I vores tests er batteriforbruget i Bluetooth-hovedtelefoner sammenligneligt med kablede hovedtelefoner og bør ikke være en væsentlig faktor at overveje, når man vælger hovedtelefoner.</string>
     <string name="faq_background_battery_impact_question">Hvordan påvirker det min telefons batterilevetid, at Soundscape kører i baggrunden?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">Niveau</string>
     <string name="siri_desc_callout_detail">Angiver, hvor meget Soundscape siger, mens du går.</string>
     <string name="intersection_approaching_intersection_distance">Vejkryds %1$s væk</string>
+    <string name="microsoft_copyright">[Den oprindelige Soundscape-app ©Microsoft Corporation](https://github.com/microsoft/soundscape) leverede lydfyrets lyde og mange af oversættelserne og stilles til rådighed under [MIT-licensen](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Frivillige fra [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) har forbedret flere af oversættelserne, som stilles til rådighed under [MIT-licensen](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
