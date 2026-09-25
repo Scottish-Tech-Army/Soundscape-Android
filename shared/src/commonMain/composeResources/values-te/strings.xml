@@ -1396,7 +1396,7 @@
     <string name="faq_sleep_mode_battery_question">నా ఫోన్ బ్యాటరీపై Soundscape ప్రభావాన్ని తగ్గించడానికి నిద్ర మోడ్‌ను నేను ఎలా ఉపయోగించాలి?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape ను నిద్ర మోడ్‌లో పెట్టడానికి, స్క్రీన్ ఎగువ-కుడి మూలలో ఉన్న *నిద్ర* బటన్‌ను ఎంచుకోండి. దీన్ని ఎంచుకున్నప్పుడు, మీరు దాన్ని మళ్లీ మేల్కొల్పే వరకు Soundscape లొకేషన్ సర్వీసెస్ మరియు మొబైల్ డేటాను ఉపయోగించడం ఆపేస్తుంది.</string>
     <string name="faq_snooze_mode_battery_question">నా ఫోన్ బ్యాటరీపై Soundscape ప్రభావాన్ని తగ్గించడానికి స్నూజ్ మోడ్‌ను నేను ఎలా ఉపయోగించాలి?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape ను స్నూజ్ మోడ్‌లో పెట్టడానికి, స్క్రీన్ ఎగువ-కుడి మూలలో ఉన్న *నిద్ర* బటన్‌ను ఎంచుకోండి. Soundscape నిద్ర మోడ్‌లో ఉన్న తర్వాత, *నేను వెళ్లిపోయినప్పుడు మేల్కొల్పు* బటన్‌ను ఎంచుకోండి, అప్పుడు మీరు మీ ప్రస్తుత స్థానాన్ని వదిలిపెట్టే వరకు Soundscape తక్కువ శక్తి స్థితిలోకి వెళ్తుంది.</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape ను స్నూజ్ మోడ్‌లో పెట్టడానికి, స్క్రీన్ ఎగువ-కుడి మూలలో ఉన్న *నిద్ర* బటన్‌ను ఎంచుకోండి. Soundscape నిద్ర మోడ్‌లో ఉన్న తర్వాత, *వెళ్ళినప్పుడు మేల్కొల్పు* బటన్‌ను ఎంచుకోండి, అప్పుడు మీరు మీ ప్రస్తుత స్థానాన్ని వదిలిపెట్టే వరకు Soundscape తక్కువ శక్తి స్థితిలోకి వెళ్తుంది.</string>
     <string name="faq_headset_battery_impact_question">నేను ఎంచుకున్న హెడ్‌ఫోన్‌లు నా ఫోన్ బ్యాటరీ జీవితకాలాన్ని ఎలా ప్రభావితం చేస్తాయి?</string>
     <string name="faq_headset_battery_impact_answer">మా పరీక్షలలో, బ్లూటూత్ హెడ్‌ఫోన్‌ల బ్యాటరీ వినియోగం వైర్డ్ హెడ్‌ఫోన్‌లతో పోల్చదగినది మరియు హెడ్‌ఫోన్‌లను ఎంచుకునేటప్పుడు పరిగణించవలసిన ముఖ్యమైన అంశం కాదు.</string>
     <string name="faq_background_battery_impact_question">Soundscape ను బ్యాక్‌గ్రౌండ్‌లో నడపడం నా ఫోన్ బ్యాటరీ జీవితకాలంపై ఎలా ప్రభావం చూపుతుంది?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">స్థాయి</string>
     <string name="siri_desc_callout_detail">మీరు నడుస్తున్నప్పుడు Soundscape ఎంత చెబుతుందో సెట్ చేస్తుంది.</string>
     <string name="intersection_approaching_intersection_distance">కూడలి %1$s దూరంలో</string>
+    <string name="microsoft_copyright">[అసలు Soundscape యాప్ ©Microsoft Corporation](https://github.com/microsoft/soundscape) ఆడియో బీకాన్ శబ్దాలను మరియు అనేక అనువాదాలను అందించింది, మరియు ఇది [MIT license](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) కింద ఉపయోగం కోసం అందుబాటులో ఉంచబడింది.</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) స్వచ్ఛంద సేవకులు అనేక అనువాదాలను మెరుగుపరిచారు, అవి [MIT license](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) కింద ఉపయోగం కోసం అందుబాటులో ఉంచబడ్డాయి.</string>
 </resources>
