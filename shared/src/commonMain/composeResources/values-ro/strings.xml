@@ -398,7 +398,7 @@
     <string name="faq_sleep_mode_battery_question">Cum folosesc modul Repaus pentru a minimiza impactul Soundscape asupra bateriei telefonului?</string>
     <string name="faq_sleep_mode_battery_answer">Pentru a pune Soundscape în modul Repaus, selectează butonul *Repaus* din colțul din dreapta sus al ecranului. Când faci acest lucru, Soundscape va înceta să utilizeze Serviciile de localizare și datele mobile până când alegi să îl trezești din nou.</string>
     <string name="faq_snooze_mode_battery_question">Cum folosesc modul Amânare pentru a minimiza impactul Soundscape asupra bateriei telefonului?</string>
-    <string name="faq_snooze_mode_battery_answer">Pentru a pune Soundscape în modul Amânare, selectează butonul *Repaus* din colțul din dreapta sus al ecranului. Odată ce Soundscape este în modul Repaus, selectează butonul *Trezire când plec* și Soundscape va intra într‑o stare de consum redus până când părăsești locația curentă.</string>
+    <string name="faq_snooze_mode_battery_answer">Pentru a pune Soundscape în modul Amânare, selectează butonul *Repaus* din colțul din dreapta sus al ecranului. Odată ce Soundscape este în modul Repaus, selectează butonul *Trezire la plecare* și Soundscape va intra într‑o stare de consum redus până când părăsești locația curentă.</string>
     <string name="faq_headset_battery_impact_question">Cum afectează alegerea căștilor durata de viață a bateriei telefonului meu?</string>
     <string name="faq_headset_battery_impact_answer">În testele noastre, consumul de baterie al căștilor Bluetooth este comparabil cu cel al căștilor cu fir și nu ar trebui să fie un factor semnificativ de luat în considerare la alegerea căștilor.</string>
     <string name="faq_background_battery_impact_question">Cum afectează rularea Soundscape în fundal durata de viață a bateriei telefonului meu?</string>
@@ -1586,4 +1586,6 @@
     <string name="siri_param_level">Nivel</string>
     <string name="siri_desc_callout_detail">Stabilește cât de mult vorbește Soundscape în timp ce mergi.</string>
     <string name="intersection_approaching_intersection_distance">Intersecție la %1$s</string>
+    <string name="microsoft_copyright">[Aplicația Soundscape originală ©Microsoft Corporation](https://github.com/microsoft/soundscape) a furnizat sunetele balizei audio și multe dintre traduceri și este pusă la dispoziție pentru utilizare sub [licența MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Voluntarii [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) au îmbunătățit mai multe dintre traduceri, care sunt puse la dispoziție pentru utilizare sub [licența MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
