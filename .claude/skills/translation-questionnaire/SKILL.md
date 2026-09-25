@@ -133,5 +133,6 @@ guidance "(Q1…Qn)" range. Then build the site from `docs/`
 at `translation-questions/questions-<code>/index.html`, contains no `{{`, and
 links to the terminology page.
 
-Commit with the guidance changes. The pages go live when main is pushed
-upstream; ask before pushing.
+Commit with the guidance changes. The pages go live once the change is merged
+upstream, which happens only through a GitHub pull request the maintainer
+reviews: never push to the upstream remote yourself. "Push" means origin.
