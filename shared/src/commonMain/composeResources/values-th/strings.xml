@@ -1381,7 +1381,7 @@
     <string name="faq_sleep_mode_battery_question">จะใช้โหมดสลีปเพื่อลดผลกระทบของ Soundscape ต่อแบตเตอรี่โทรศัพท์ได้อย่างไร?</string>
     <string name="faq_sleep_mode_battery_answer">หากต้องการให้ Soundscape เข้าสู่โหมดสลีป ให้เลือกปุ่ม *โหมดสลีป* ที่มุมขวาบนของหน้าจอ เมื่อคุณเลือกปุ่มนี้ Soundscape จะหยุดใช้บริการตำแหน่งที่ตั้งและข้อมูลมือถือจนกว่าคุณจะเลือกปลุกแอปอีกครั้ง</string>
     <string name="faq_snooze_mode_battery_question">จะใช้โหมดเลื่อนเวลาเพื่อลดผลกระทบของ Soundscape ต่อแบตเตอรี่โทรศัพท์ได้อย่างไร?</string>
-    <string name="faq_snooze_mode_battery_answer">หากต้องการให้ Soundscape เข้าสู่โหมดเลื่อนเวลา ให้เลือกปุ่ม *โหมดสลีป* ที่มุมขวาบนของหน้าจอ เมื่อ Soundscape อยู่ในโหมดสลีปแล้ว ให้เลือกปุ่ม *ปลุกเมื่อฉันออกจากที่นี่* และ Soundscape จะเข้าสู่สถานะประหยัดพลังงานจนกว่าคุณจะออกจากตำแหน่งปัจจุบัน</string>
+    <string name="faq_snooze_mode_battery_answer">หากต้องการให้ Soundscape เข้าสู่โหมดเลื่อนเวลา ให้เลือกปุ่ม *โหมดสลีป* ที่มุมขวาบนของหน้าจอ เมื่อ Soundscape อยู่ในโหมดสลีปแล้ว ให้เลือกปุ่ม *ปลุกเมื่อออกจากพื้นที่* และ Soundscape จะเข้าสู่สถานะประหยัดพลังงานจนกว่าคุณจะออกจากตำแหน่งปัจจุบัน</string>
     <string name="faq_headset_battery_impact_question">การเลือกหูฟังส่งผลต่ออายุการใช้งานแบตเตอรี่ของโทรศัพท์อย่างไร?</string>
     <string name="faq_headset_battery_impact_answer">จากการทดสอบของเรา การใช้พลังงานแบตเตอรี่ของหูฟังบลูทูธใกล้เคียงกับหูฟังแบบมีสาย จึงไม่ควรเป็นปัจจัยสำคัญที่ต้องพิจารณาในการเลือกหูฟัง</string>
     <string name="faq_background_battery_impact_question">การให้ Soundscape ทำงานเบื้องหลังส่งผลต่ออายุการใช้งานแบตเตอรี่ของโทรศัพท์อย่างไร?</string>
@@ -1556,4 +1556,6 @@
     <string name="siri_param_level">ระดับ</string>
     <string name="siri_desc_callout_detail">ตั้งค่าว่า Soundscape จะพูดมากแค่ไหนขณะคุณเดิน</string>
     <string name="intersection_approaching_intersection_distance">ทางแยกห่างออกไป %1$s</string>
+    <string name="microsoft_copyright">[แอป Soundscape ต้นฉบับ ©Microsoft Corporation](https://github.com/microsoft/soundscape) เป็นผู้จัดหาเสียงของบีคอนเสียงและคำแปลจำนวนมาก และเปิดให้ใช้งานได้ภายใต้ [ใบอนุญาต MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt)</string>
+    <string name="soundscape_community_copyright">อาสาสมัครของ [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) ได้ปรับปรุงคำแปลหลายรายการ ซึ่งเปิดให้ใช้งานได้ภายใต้ [ใบอนุญาต MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt)</string>
 </resources>
