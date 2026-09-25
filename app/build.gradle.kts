@@ -308,7 +308,10 @@ abstract class GenerateShortcutStringsTask @javax.inject.Inject constructor(
                 sb.append("    <string name=\"app_name\" translatable=\"false\">Soundscape</string>\n")
             }
             for ((key, value) in extracted) {
-                sb.append("    <string name=\"$key\">$value</string>\n")
+                // composeResources strings are never quote-escaped, but aapt rejects a bare
+                // apostrophe and drops bare double quotes, so escape them for Android here.
+                val escaped = value.replace("'", "\\'").replace("\"", "\\\"")
+                sb.append("    <string name=\"$key\">$escaped</string>\n")
             }
             sb.append("</resources>\n")
 
