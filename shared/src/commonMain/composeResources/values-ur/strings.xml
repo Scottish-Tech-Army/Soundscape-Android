@@ -1396,7 +1396,7 @@
     <string name="faq_sleep_mode_battery_question">میں اپنے فون کی بیٹری پر Soundscape کے اثر کو کم کرنے کے لیے سلیپ موڈ کیسے استعمال کروں؟</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape کو سلیپ موڈ میں ڈالنے کے لیے، اسکرین کے اوپری دائیں کونے میں موجود *سلیپ* بٹن منتخب کریں۔ اسے منتخب کرنے پر، Soundscape لوکیشن سروسز اور موبائل ڈیٹا کا استعمال بند کر دے گا جب تک آپ اسے دوبارہ جگانے کا انتخاب نہ کریں۔</string>
     <string name="faq_snooze_mode_battery_question">میں اپنے فون کی بیٹری پر Soundscape کے اثر کو کم کرنے کے لیے اسنوز موڈ کیسے استعمال کروں؟</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape کو اسنوز موڈ میں ڈالنے کے لیے، اسکرین کے اوپری دائیں کونے میں موجود *سلیپ* بٹن منتخب کریں۔ ایک بار جب Soundscape سلیپ موڈ میں آ جائے، تو *جب میں یہاں سے جاؤں تو جگائیں* بٹن منتخب کریں اور Soundscape ایک کم بجلی والی حالت میں چلا جائے گا جب تک آپ اپنا موجودہ مقام نہ چھوڑ دیں۔</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape کو اسنوز موڈ میں ڈالنے کے لیے، اسکرین کے اوپری دائیں کونے میں موجود *نیند* بٹن منتخب کریں۔ ایک بار جب Soundscape سلیپ موڈ میں آ جائے، تو *روانگی پر جاگیں* بٹن منتخب کریں اور Soundscape ایک کم بجلی والی حالت میں چلا جائے گا جب تک آپ اپنا موجودہ مقام نہ چھوڑ دیں۔</string>
     <string name="faq_headset_battery_impact_question">میرے ہیڈفونز کا انتخاب میرے فون کی بیٹری کی مدت پر کیا اثر ڈالتا ہے؟</string>
     <string name="faq_headset_battery_impact_answer">ہمارے ٹیسٹوں میں، بلوٹوتھ ہیڈفونز کی بیٹری کھپت وائرڈ ہیڈفونز کے مقابل ہے اور ہیڈفونز منتخب کرتے وقت اسے کوئی اہم عنصر نہیں سمجھا جانا چاہیے۔</string>
     <string name="faq_background_battery_impact_question">پس منظر میں Soundscape چلانا میرے فون کی بیٹری کی مدت پر کیا اثر ڈالتا ہے؟</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">سطح</string>
     <string name="siri_desc_callout_detail">طے کرتا ہے کہ چلتے ہوئے Soundscape کتنا بولے گا۔</string>
     <string name="intersection_approaching_intersection_distance">چوراہا %1$s دور</string>
+    <string name="microsoft_copyright">[اصل Soundscape ایپ ©Microsoft Corporation](https://github.com/microsoft/soundscape) نے آڈیو بیکن کی آوازیں اور بہت سے تراجم فراہم کیے، اور اسے [MIT license](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) کے تحت استعمال کے لیے دستیاب کیا گیا ہے۔</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) کے رضاکاروں نے کئی تراجم کو بہتر بنایا، جنہیں [MIT license](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) کے تحت استعمال کے لیے دستیاب کیا گیا ہے۔</string>
 </resources>
