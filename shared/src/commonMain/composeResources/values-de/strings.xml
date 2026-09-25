@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">Stufe</string>
     <string name="siri_desc_callout_detail">Legt fest, wie viel Soundscape beim Gehen sagt.</string>
     <string name="intersection_approaching_intersection_distance">Kreuzung %1$s entfernt</string>
+    <string name="microsoft_copyright">[Die ursprüngliche Soundscape-App ©Microsoft Corporation](https://github.com/microsoft/soundscape) lieferte die Audiobeacon-Klänge und viele der Übersetzungen und steht unter der [MIT-Lizenz](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) zur Nutzung bereit.</string>
+    <string name="soundscape_community_copyright">Freiwillige von [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) haben mehrere Übersetzungen verbessert, die unter der [MIT-Lizenz](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) zur Nutzung bereitstehen.</string>
 </resources>
