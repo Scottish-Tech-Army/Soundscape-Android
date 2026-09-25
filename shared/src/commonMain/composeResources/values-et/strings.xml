@@ -1444,7 +1444,7 @@
     <string name="faq_sleep_mode_battery_question">Kuidas kasutada unerežiimi, et vähendada Soundscape'i mõju mu telefoni akule?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape'i unerežiimi lülitamiseks valige ekraani paremas ülanurgas nupp *Unerežiim*. Selle valimisel lõpetab Soundscape asukohateenuste ja mobiilse andmeside kasutamise, kuni otsustate selle uuesti äratada.</string>
     <string name="faq_snooze_mode_battery_question">Kuidas kasutada uinakurežiimi, et vähendada Soundscape'i mõju mu telefoni akule?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape'i uinakurežiimi lülitamiseks valige ekraani paremas ülanurgas nupp *Unerežiim*. Kui Soundscape on unerežiimis, valige nupp *Ärata, kui lahkun* ning Soundscape läheb madala energiatarbega olekusse, kuni lahkute oma praegusest asukohast.</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape'i uinakurežiimi lülitamiseks valige ekraani paremas ülanurgas nupp *Unerežiim*. Kui Soundscape on unerežiimis, valige nupp *Ärka lahkumisel* ning Soundscape läheb madala energiatarbega olekusse, kuni lahkute oma praegusest asukohast.</string>
     <string name="faq_headset_battery_impact_question">Kuidas mõjutab kõrvaklappide valik mu telefoni aku kestvust?</string>
     <string name="faq_headset_battery_impact_answer">Meie testide põhjal on Bluetooth-kõrvaklappide akukulu võrreldav juhtmega kõrvaklappide omaga ning see ei tohiks olla kõrvaklappide valimisel oluline tegur.</string>
     <string name="faq_background_battery_impact_question">Kuidas mõjutab Soundscape'i taustal töötamine mu telefoni aku kestvust?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">Tase</string>
     <string name="siri_desc_callout_detail">Määrab, kui palju Soundscape kõndides räägib.</string>
     <string name="intersection_approaching_intersection_distance">Ristmik %1$s kaugusel</string>
+    <string name="microsoft_copyright">[Algne Soundscape'i rakendus ©Microsoft Corporation](https://github.com/microsoft/soundscape) andis helimajaka helid ja paljud tõlked ning see on kasutamiseks saadaval [MIT litsentsi](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) alusel.</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) vabatahtlikud täiustasid mitut tõlget, mis on kasutamiseks saadaval [MIT litsentsi](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) alusel.</string>
 </resources>
