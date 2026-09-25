@@ -128,7 +128,9 @@ These are the questions in `translations/review/es.md` (Q1…Q6), refreshed
    «Reactivar cuando salgas» vs the real `sleep_wake_on_leave` «Reactivar al
    salir». **This is a source bug (C7):** the English FAQ says *Wake up when I
    leave* but the English button is "Wake On Leave", so every language
-   inherited the mismatch. Fix the English FAQ text, then this string.
+   inherited the mismatch. **English fixed 2026-09-25** (now *Wake On Leave*).
+   Weblate will flag this FAQ answer in every language once it pulls the new
+   source. JJ's answer decides the Spanish button wording.
 3. **«Sendero a Callejón sin salida»**: a capital mid-sentence and no article
    (the FR-G1 pattern). Candidate: «hacia un callejón sin salida».
 4. **«¡Bienvenido!» / «Bienvenido al tutorial» are masculine, and «¡Ya está
