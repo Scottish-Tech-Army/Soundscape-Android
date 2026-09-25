@@ -121,10 +121,12 @@ it does, since it wakes automatically when you move off. Five strings. See Q3.
 
 ### IS-T2 — Two different verbs for "double tap" (`unconfirmed`)
 
-`talkback_double_tap_template` is «Tvíbankaðu til að %1$s». Seventeen other
-strings use «Ýttu tvisvar» (Þorkell's own phrasing, e.g. the route hints), and
-«tvíbanka» is not a common verb. Aligning the template with «Ýttu tvisvar til
-að %1$s» looks right, but ask first. See Q8.
+`talkback_double_tap_template` is «Tvíbankaðu til að %1$s», and
+`faq_controlling_what_you_hear_answer` also says «Tvíbankaðu skjánum með tveimur
+fingrum». *(Corrected 2026-09-25: an earlier note said seventeen strings use
+«Ýttu tvisvar»; none do. The seventeen are plain «Ýttu á…», "press".)*
+«tvíbanka» is not a common verb, so «Ýttu tvisvar til að %1$s» is the candidate,
+but ask first. See Q8.
 
 (The missing space in this template was fixed in Weblate on 2026-09-24, see
 FR-B1 in `fr.md`. The local file catches up on the next Weblate merge.)
@@ -157,7 +159,8 @@ These are the questions in `docs/translation-questions/questions-is.md`, in the 
 5. **Street names in the nominative** («Á Laugavegur»): how bad is it? (IS-G2)
 6. **«til blindgötu»:** confirm what now ships (applied 2026-09-24). (IS-G1)
 7. **The four detail levels:** is «Jafnvægi» (a noun) OK next to three
-   adjectives, and are they distinct by ear?
+   adjectives, and are they distinct by ear? «Hljóðlátt» may also be heard as volume
+   rather than fewer callouts.
 8. **«Tvíbankaðu» or «Ýttu tvisvar»?** (IS-T2)
 9. **Capitalise the 151 lowercase labels?** (IS-S1)
 10. **Siri phrases stay English:** OK? (IS-C1)
