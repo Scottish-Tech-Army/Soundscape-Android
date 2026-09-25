@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">நிலை</string>
     <string name="siri_desc_callout_detail">நீங்கள் நடக்கும்போது Soundscape எவ்வளவு சொல்லும் என்பதை அமைக்கும்.</string>
     <string name="intersection_approaching_intersection_distance">சந்திப்பு %1$s தொலைவில்</string>
+    <string name="microsoft_copyright">[அசல் Soundscape செயலி ©Microsoft Corporation](https://github.com/microsoft/soundscape) ஒலி பீக்கனின் ஒலிகளையும் பல மொழிபெயர்ப்புகளையும் வழங்கியது, மேலும் இது [MIT உரிமத்தின்](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) கீழ் பயன்பாட்டிற்குக் கிடைக்கிறது.</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) தன்னார்வலர்கள் பல மொழிபெயர்ப்புகளை மேம்படுத்தினர், அவை [MIT உரிமத்தின்](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) கீழ் பயன்பாட்டிற்குக் கிடைக்கின்றன.</string>
 </resources>
