@@ -319,3 +319,39 @@ brackets. The welcome title had the same problem: es «¡Bienvenido!», pt
 puts brackets in front of a screen reader. it «Salve!» is the model. Existing
 translations aren't re-flagged by a comment change, so fix them through each
 language's reviewer.
+
+## C16 — A pass must translate the whole string, not the part that changed
+
+When an English string is edited, Weblate flags every translation of it.
+A pass that then translates only the *changed fragment*, and saves that
+fragment as the whole translation, silently deletes the rest of a correct
+translation. It often marks the gap with «...». The English is fine and
+Weblate shows the string as translated, so nothing else catches it.
+
+> **Case (2026-09-25 check):** 19 strings in 16 languages, all from AI
+> passes on 2026-08-19 → 22. The medical-safety disclaimer in the Terms of
+> Use was cut down in pl («...ponieważ dane mapowe użyte w programie
+> Soundscape pochodzą od podmiotu trzeciego...», 86 of 728 characters), pt
+> and es. Six battery/data FAQ answers kept one sentence (uk stopped at
+> "here are a few tips:"). sv's «Min plats» help went from 354 to 38
+> characters. One pass (`03968a047`) touched 56 Polish strings.
+
+**Always translate the full English string**, even when only one sentence
+changed. After any bulk pass, run the check:
+
+```
+python3 .claude/skills/weblate-translate/scripts/truncation_check.py /tmp/weblate-review [<code> ...]
+```
+
+It compares each translation's length with its language's own median ratio
+(so ja/zh/ko aren't flagged wholesale), counts sentences, and looks for a
+leading or trailing «...». Check every flag against the English: Thai has no
+sentence punctuation, and a human's concise wording can look short (the
+three Icelandic flags are Þorkell's). **To repair one, look in git history
+first.** In all 19 cases, the complete pre-damage translation was still in
+the repo with its English unchanged, so it was restored instead of
+retranslated. The repo XML writes a line break as `\n` and doubles a
+backslash before a quote, where Weblate stores a real newline and `\"`.
+Convert before uploading.
+
+Applied 2026-09-25: all 19 restored, uploaded and verified live.

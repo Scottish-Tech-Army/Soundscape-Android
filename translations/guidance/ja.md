@@ -76,3 +76,5 @@ commits, then AI passes. No recorded translator.
 **2026-09-24 — corpus sweep.** Nothing uploaded.
 
 **2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 22 were restored to Microsoft's wording and 5 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 22 uploaded and verified live.
+
+**2026-09-25 — truncation repaired (C16).** `help_text_automatic_callouts_what` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.

@@ -207,6 +207,8 @@ sent in this turn, naming what to apply — e.g. "apply the French fixes",
 
 ## Notes
 
+- **Translate the whole string, never just the part that changed** (rule C16 in `translations/guidance/_common.md`). After a bulk pass, run `python3 .claude/skills/weblate-translate/scripts/truncation_check.py /tmp/weblate-review <code>` and check every flag against the English.
+
 - Component is fixed to `androidkmp`, same as `weblate-translate`. Don't use
   the `android-app` component — it's stale (pre-KMP-migration).
 - The review step (`languages`/`fetch`) never runs `weblate_sync.py upload`

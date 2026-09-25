@@ -196,3 +196,5 @@ uncontroversial (no reviewer decision needed), so PL-N1 was removed from
 Rules rather than kept as `fixed` — this entry is the record of it.
 
 **2026-09-24 — dead-end case fix applied.** `confect_name_dead_end` → «ślepej uliczki» (the C9 batch fix across ru, cs, sk, hr, sr, sl, pl and is).
+
+**2026-09-25 — truncation repaired (C16).** `terms_of_use_medical_safety_disclaimer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.

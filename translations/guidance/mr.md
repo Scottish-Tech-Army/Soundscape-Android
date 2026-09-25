@@ -62,3 +62,5 @@ Nothing yet.
 
 **2026-08-22 → 2026-09-24 — AI passes only.**
 **2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-25 — truncation repaired (C16).** `faq_mobile_data_use_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.

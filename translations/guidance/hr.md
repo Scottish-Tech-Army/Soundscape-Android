@@ -77,3 +77,5 @@ Nothing yet.
 **2026-09-24 — corpus sweep.** Nothing uploaded.
 
 **2026-09-24 — dead-end case fix applied.** `confect_name_dead_end` → «slijepe ulice» (the C9 batch fix across ru, cs, sk, hr, sr, sl, pl and is).
+
+**2026-09-25 — truncation repaired (C16).** `faq_battery_impact_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.

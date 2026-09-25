@@ -63,3 +63,5 @@ Nothing yet.
 AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 
 **2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 4 were restored to Microsoft's wording and 2 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 4 uploaded and verified live.
+
+**2026-09-25 — truncation repaired (C16).** `terms_of_use_medical_safety_disclaimer`, `faq_mobile_data_use_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.

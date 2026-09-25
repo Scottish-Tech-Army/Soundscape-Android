@@ -74,3 +74,5 @@ Nothing yet.
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_sleep` → «Inaktivera», `sleep_sleeping` → «Inaktiverad», `sleep_snoozing` → «Snoozar», plus the quoted button name in `help_text_automatic_callouts_how_1`, `faq_controlling_what_you_hear_answer` and `faq_tip_turning_off_auto_callouts`. 6 units, verified live.
 
 **2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 9 were restored to Microsoft's wording and 4 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 9 uploaded and verified live.
+
+**2026-09-25 — truncation repaired (C16).** `help_text_my_location_what`, `help_text_my_location_how`, `tour_start_beacon` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.

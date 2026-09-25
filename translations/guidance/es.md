@@ -149,6 +149,15 @@ the new rule.*
 
 ---
 
+## ES-R1 exception: the Terms of Use screen is formal
+
+The legal screen (`terms_of_use_message`, `terms_of_use_medical_safety_disclaimer`,
+and the rest of `terms_of_use_*`) is formal «usted», in both our app and
+JJ's Soundscape Community translation (e.g. «Confirma que Soundscape…»,
+«Tenga cuidado…»). It was kept formal when the truncated disclaimer was
+restored on 2026-09-25. Legal text in formal register is normal, and it
+matches the Community baseline. Don't convert it to «tú» without asking Dave.
+
 ## Baseline: Soundscape Community, not Microsoft
 
 **Dave's decision (2026-09-25):** Spanish follows JJ's Soundscape Community
@@ -248,3 +257,5 @@ live (`talkback_double_tap_template`, `faq_how_to_use_beacon_answer`,
 not new strings.
 
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «En modo de aplazamiento» → Microsoft's «Posponiendo», so the status pair is Microsoft's «Suspendiendo» / «Posponiendo» again. That **closes Q5**: «Suspendiendo» is Microsoft's own wording and stays under the parity policy. The FAQ and help text still say «modo de aplazamiento» for the *mode*, which is fine, since only the status label changed.
+
+**2026-09-25 — truncation repaired (C16).** `terms_of_use_medical_safety_disclaimer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.

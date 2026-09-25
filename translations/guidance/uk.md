@@ -175,3 +175,5 @@ throughout. UK-R1 moves to `confirmed`. The sweep found nothing to change.
 Waypoint → «зупинка» (26), Guided tutorial → «Інтерактивний тур» (6), the «нове
 оновлення» tautology (2) and dead end → «тупика» (1). A re-sweep afterwards
 found no «маршрутна точка» or «посібник» left anywhere in the corpus.
+
+**2026-09-25 — truncation repaired (C16).** `faq_background_battery_impact_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.
