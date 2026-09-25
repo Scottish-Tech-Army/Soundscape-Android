@@ -58,3 +58,5 @@ Nothing yet.
 **2024-07 → 2024-09 — Microsoft baseline** (`nb-NO.lproj`).
 **2025 → 2026-09 — AI passes**, plus Weblate bulk operations.
 **2026-09-24 — corpus sweep** with a Microsoft comparison. Nothing uploaded.
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 22 were restored to Microsoft's wording and 3 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 22 uploaded and verified live.

@@ -77,3 +77,5 @@ Nothing yet.
 **2026-09-24 — corpus sweep** with a Microsoft comparison. Nothing uploaded.
 
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` → «Slumrer».
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 63 were restored to Microsoft's wording and 8 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 63 uploaded and verified live.

@@ -25,7 +25,7 @@ themselves. The Siri phrases (`fi.lproj`) match the help text. Questions:
 |---|---|---|---|
 | Callout | ilmoitus | `confirmed` | Microsoft. Also Android's word for notifications |
 | Audio Beacon | äänimajakka | `confirmed` | Microsoft |
-| Marker | merkintä | `confirmed` | Microsoft |
+| Marker | merkitsin | `agreed` (Dave, 2026-09-25) | Ricky Tigg's term in the Soundscape Community (2025), now used everywhere. It replaced Microsoft's «merkintä» in 83 Weblate strings and 5 `Localizable.xcstrings` Siri strings. See FI-T1 |
 | Waypoint | reittipiste | `confirmed` | Microsoft |
 | Intersection | risteys | `confirmed` | Microsoft |
 | Sleep / Snooze | lepotila ; odotustila | `confirmed` | Microsoft |
@@ -47,6 +47,24 @@ get its own phrasing.
 
 The same coupling as FR-C1.
 
+### FI-T1 — Soundscape Community is the Finnish reference for Ricky Tigg's edits (`agreed`, Dave 2026-09-25)
+
+Ricky Tigg edited 108 Finnish strings in the Soundscape Community app
+(2025-01 → 2025-02, `sc/fi-FI.lproj`). Only 7 of them apply to our app with
+the same English. All 7 were adopted, including his «käännösohjeita» in
+`help_text_destination_beacons_when`. That overturns this file's earlier
+"ambiguous" objection to the word, because a native speaker chose it.
+
+He also began switching Marker from «merkintä» to «merkitsin» but reached
+only 22 strings. The Community file uses both (32/38). **Dave's decision:
+apply «merkitsin» everywhere.** The case forms follow Ricky's own usage:
+merkinnät→merkitsimet, merkintöjä→merkitsimiä, merkinnän→merkitsimen,
+merkinnäksi→merkitsimeksi, merkinnöistäsi→merkitsimistäsi, and so on.
+**«merkinnyt» is the verb "has marked", not the noun (C3), and stays.**
+The Siri strings in `iosApp/iosApp/Localizable.xcstrings` ("Marker",
+"Markers", "Nearby Markers" and two descriptions) switched in the same step,
+so the help text still names choices Siri recognises (FI-C1).
+
 ## Rejected
 
 Nothing yet.
@@ -65,3 +83,5 @@ Nothing yet.
 AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «Odotustilassa» → Microsoft's «Odotustila».
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 15 were restored to Microsoft's wording, 90 fixed or term-changed and 4 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 105 uploaded and verified live.

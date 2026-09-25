@@ -20,11 +20,6 @@ natuurlijk klinkt.
 
 ---
 
-**Q1 — „Aankondiging” of „waarschuwing”?** *(Callout term)*
-De korte gesproken berichten over de omgeving („Café”, „Hoofdstraat links”)
-heten nu „aankondigingen”. In de oorspronkelijke Microsoft-app heetten ze
-„waarschuwingen”. Welk woord past beter?
-
 **Q2 — VoiceOver op de iPhone** *(VoiceOver template)*
 VoiceOver zegt nu: „Dubbel tik om het audiobaken dempen”. Dat is niet correct.
 Is „**Dubbeltik: het audiobaken dempen**” goed?

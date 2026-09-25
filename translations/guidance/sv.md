@@ -72,3 +72,5 @@ Nothing yet.
 **2026-09-24 — SV-T1 applied.** `sleep_sleeping` → «I viloläge», uploaded and verified live.
 
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_sleep` → «Inaktivera», `sleep_sleeping` → «Inaktiverad», `sleep_snoozing` → «Snoozar», plus the quoted button name in `help_text_automatic_callouts_how_1`, `faq_controlling_what_you_hear_answer` and `faq_tip_turning_off_auto_callouts`. 6 units, verified live.
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 9 were restored to Microsoft's wording and 4 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 9 uploaded and verified live.

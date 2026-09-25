@@ -262,6 +262,20 @@ Soundscape Community `es-ES`, which supersedes Microsoft's (see `es.md`). **pt_B
 exception:** Microsoft's «Em Ociosidade» ("idle") doesn't describe the mode,
 so «Em Soneca» stays.
 
+**Drift pass applied (2026-09-25).** Every drifted string in the 14 remaining
+languages was sorted into restore, keep or fix, and Dave approved da, de, el,
+en_GB, fi, it, ja, nb_NO, nl, pt, pt_BR and sv (269 units, verified live).
+**French: Dave declined all of its drift restores**, so French keeps its
+current wording. **fr_CA is pending re-examination.** The sort also found six
+help/FAQ strings (el, nl, pt_BR, fr_CA) truncated to a single sentence of
+their English, which the restores fixed for el, nl and pt_BR. Rules that
+came out of it: restoring only the drifted strings of a term that has been
+changed throughout a language would split the corpus, so those are
+whole-language decisions (nl «aankondiging» kept, fr_CA pending); and a
+Soundscape Community translation by a native speaker is a stronger
+reference than Microsoft's where it exists (Spanish; Finnish, for Ricky
+Tigg's edits).
+
 How to use this:
 
 - **Microsoft's term is the default** when a term is disputed and no native

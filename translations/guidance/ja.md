@@ -74,3 +74,5 @@ Nothing yet.
 **2024-07-21 → 2026-09-24.** Prototype strings (source unknown), developer
 commits, then AI passes. No recorded translator.
 **2026-09-24 — corpus sweep.** Nothing uploaded.
+
+**2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 22 were restored to Microsoft's wording and 5 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 22 uploaded and verified live.
