@@ -491,7 +491,7 @@
     <string name="faq_sleep_mode_battery_question">Soundscape가 휴대폰 배터리에 미치는 영향을 최소화하기 위해 잠자기 모드를 어떻게 사용하나요?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape를 잠자기 모드로 전환하려면 화면 오른쪽 상단에 있는 *잠자기* 버튼을 선택하세요. 이를 선택하면 다시 깨우기 전까지 Soundscape는 위치 서비스와 모바일 데이터 사용을 중지합니다.</string>
     <string name="faq_snooze_mode_battery_question">Soundscape가 휴대폰 배터리에 미치는 영향을 최소화하기 위해 스누즈 모드를 어떻게 사용하나요?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape를 스누즈 모드로 전환하려면 화면 오른쪽 상단에 있는 *잠자기* 버튼을 선택하세요. Soundscape가 잠자기 모드에 들어가면 *떠날 때 깨우기* 버튼을 선택하면, 현재 위치를 벗어날 때까지 Soundscape가 저전력 상태로 전환됩니다.</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape를 스누즈 모드로 전환하려면 화면 오른쪽 상단에 있는 *잠자기* 버튼을 선택하세요. Soundscape가 잠자기 모드에 들어가면 *벗어나면 깨우기* 버튼을 선택하면, 현재 위치를 벗어날 때까지 Soundscape가 저전력 상태로 전환됩니다.</string>
     <string name="faq_headset_battery_impact_question">헤드폰 선택이 휴대폰 배터리 수명에 어떤 영향을 미치나요?</string>
     <string name="faq_headset_battery_impact_answer">저희 테스트 결과, 블루투스 헤드폰의 배터리 소모량은 유선 헤드폰과 비슷하므로 헤드폰을 선택할 때 크게 고려할 요소는 아닙니다.</string>
     <string name="faq_background_battery_impact_question">Soundscape를 백그라운드에서 실행하면 휴대폰 배터리 수명에 어떤 영향을 미치나요?</string>
@@ -1556,4 +1556,6 @@
     <string name="siri_param_level">수준</string>
     <string name="siri_desc_callout_detail">걷는 동안 Soundscape가 얼마나 말할지 설정합니다.</string>
     <string name="intersection_approaching_intersection_distance">교차로까지 %1$s</string>
+    <string name="microsoft_copyright">[원래 Soundscape 앱 ©Microsoft Corporation](https://github.com/microsoft/soundscape)은 오디오 비콘 소리와 많은 번역을 제공했으며, [MIT 라이선스](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt)에 따라 사용할 수 있습니다.</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) 자원봉사자들이 여러 번역을 개선했으며, 이 번역은 [MIT 라이선스](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt)에 따라 사용할 수 있습니다.</string>
 </resources>
