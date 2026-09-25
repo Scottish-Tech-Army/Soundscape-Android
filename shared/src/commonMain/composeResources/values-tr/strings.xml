@@ -417,7 +417,7 @@
     <string name="faq_sleep_mode_battery_question">Soundscape'in telefonumun piline etkisini en aza indirmek için Sessiz Mod'u nasıl kullanırım?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape'i Sessiz Mod'a almak için ekranın sağ üst köşesindeki *\"Sessiz Mod\"* düğmesini seçin. Bunu seçtiğinizde Soundscape, tekrar uyandırmayı seçene kadar Konum Servisleri ve hücresel veriyi kullanmayı durduracaktır.\n</string>
     <string name="faq_snooze_mode_battery_question">Soundscape'in telefonumun piline etkisini en aza indirmek için Erteleme modunu nasıl kullanırım?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape'i Erteleme Modu'na almak için ekranın sağ üst köşesindeki *\\"Sessiz Mod\\"* düğmesini seçin. Soundscape Sessiz Mod'dayken *\\"Ayrıldığımda Uyandır\\"* düğmesini seçin; Soundscape, mevcut konumunuzu terk edene kadar düşük güç moduna geçecektir.\n</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape'i Erteleme Modu'na almak için ekranın sağ üst köşesindeki *\\"Sessiz Mod\\"* düğmesini seçin. Soundscape Sessiz Mod'dayken *\\"Ayrıldığımda Uyandır\\"* düğmesini seçin; Soundscape, mevcut konumunuzu terk edene kadar düşük güç moduna geçecektir.</string>
     <string name="faq_headset_battery_impact_question">Kulaklık tercihim telefonumun pil ömrünü nasıl etkiler?</string>
     <string name="faq_headset_battery_impact_answer">Testlerimizde, Bluetooth kulaklıkların pil tüketimi kablolu kulaklıklarla karşılaştırılabilir düzeydedir ve kulaklık seçerken önemli bir faktör olmayacaktır.</string>
     <string name="faq_background_battery_impact_question">Soundscape'i arka planda çalıştırmak telefonumun pil ömrünü nasıl etkiler?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">Düzey</string>
     <string name="siri_desc_callout_detail">Yürürken Soundscape'in ne kadar konuşacağını ayarlar.</string>
     <string name="intersection_approaching_intersection_distance">Kavşak %1$s uzaklıkta</string>
+    <string name="microsoft_copyright">[Orijinal Soundscape uygulaması ©Microsoft Corporation](https://github.com/microsoft/soundscape) sesli işaret seslerini ve çevirilerin çoğunu sağlamıştır ve [MIT lisansı](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) kapsamında kullanıma sunulmuştur.</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) gönüllüleri çevirilerin birkaçını iyileştirmiştir; bu çeviriler [MIT lisansı](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) kapsamında kullanıma sunulmuştur.</string>
 </resources>
