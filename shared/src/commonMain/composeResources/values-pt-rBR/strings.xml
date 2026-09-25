@@ -1586,4 +1586,6 @@
     <string name="siri_param_level">Nível</string>
     <string name="siri_desc_callout_detail">Define quanto o Soundscape fala enquanto você caminha.</string>
     <string name="intersection_approaching_intersection_distance">Cruzamento a %1$s de distância</string>
+    <string name="microsoft_copyright">[O aplicativo Soundscape original ©Microsoft Corporation](https://github.com/microsoft/soundscape) forneceu os sons do sinalizador sonoro e muitas das traduções, e está disponível para uso sob a [licença MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Voluntários da [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) melhoraram várias das traduções, que estão disponíveis para uso sob a [licença MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
