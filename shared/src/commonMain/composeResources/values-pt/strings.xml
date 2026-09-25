@@ -12,7 +12,7 @@
     <string name="beacon_settings_style">Estilos do Sinal de Áudio</string>
     <string name="beacon_styles_current">Atual</string>
     <string name="beacon_styles_original">Original</string>
-    <string name="beacon_styles_flare">Clarão</string>
+    <string name="beacon_styles_flare">Chama</string>
     <string name="beacon_styles_shimmer">Cintilação</string>
     <string name="beacon_styles_tactile">Tátil</string>
     <string name="beacon_styles_ping">Ping</string>
@@ -185,9 +185,9 @@
         <item quantity="many">%1$s milhas</item>
         <item quantity="other">%1$s milhas</item>
     </plurals>
-    <string name="ui_action_button_my_location">A Minha\nPosição</string>
+    <string name="ui_action_button_my_location">A Minha\nLocalização</string>
     <string name="ui_action_button_my_location_acc_hint">ouvir informações sobre a sua localização atual</string>
-    <string name="ui_action_button_nearby_markers">Marcos\nPróximos</string>
+    <string name="ui_action_button_nearby_markers">Marcos nas\nProximidades</string>
     <string name="ui_action_button_nearby_markers_acc_hint">ouvir informações sobre locais nas proximidades que marcou</string>
     <string name="ui_action_button_around_me">Em Meu\nRedor</string>
     <string name="ui_action_button_around_me_acc_hint">ouvir informações sobre locais nos quatro quadrantes à sua volta</string>
@@ -200,7 +200,7 @@
     <string name="menu_manage_callouts">Gerir Avisos</string>
     <string name="menu_help_and_tutorials">Ajuda e Tutoriais</string>
     <string name="menu_rate">Classificar</string>
-    <string name="ui_back_button_title">Voltar</string>
+    <string name="ui_back_button_title">Anterior</string>
     <string name="behavior_experiences_route_nav_title">Detalhes da Rota</string>
     <string name="behavior_scavenger_hunt_callout_next_flag">Sinal definido em %1$s, %2$s de distância, %3$s de %4$s</string>
     <string name="help_configuration_section_title">Configurar o Soundscape</string>
@@ -225,7 +225,7 @@
     <string name="terms_of_use_message">A sua utilização do Soundscape está sujeita aos termos do %1$s e aos termos estabelecidos abaixo (conjuntamente, os *"Termos de Utilização"*).</string>
     <string name="terms_of_use_service_agreement">Contrato de Serviços da Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Aceitar Termos de Utilização</string>
-    <string name="terms_of_use_medical_safety_disclaimer">...Soundscape é um auxiliar de navegação e não deve ser utilizado em substituição de competências de mobilidade, estar ciente do ambiente que o rodeia e bom senso...</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Aceita que o Soundscape (1) não foi concebido, não se destina nem foi disponibilizado como dispositivo médico, e (2) não foi concebido nem se destina a substituir conselhos, diagnósticos ou tratamentos médicos profissionais e não deve ser utilizado para substituir conselhos, diagnósticos ou tratamentos médicos profissionais.\n\nAviso de Segurança\n\nO Soundscape é um auxiliar de navegação e não deve ser utilizado em substituição de competências de mobilidade, estar ciente do ambiente que o rodeia e senso comum. Tome cuidado quando navegar, visto que os dados de mapeamento incorporados no Soundscape são capturados a partir de um programa de terceiros e, consequentemente, poderão existir limitações relativas à exatidão das informações apresentadas.</string>
     <string name="first_launch_soundscape_language">Idioma do Soundscape</string>
     <string name="first_launch_soundscape_language_text">Selecione o idioma que pretende que o Soundscape utilize. Poderá alterar a sua seleção nas definições da aplicação.</string>
     <string name="first_launch_welcome_title">Bem-vindo!</string>
@@ -397,7 +397,7 @@
     <string name="faq_background_battery_impact_question">Qual é o impacto da execução do Soundscape em segundo plano na duração da bateria do meu telemóvel?</string>
     <string name="faq_background_battery_impact_answer">O Soundscape é uma aplicação baseada na localização que utiliza os Serviços de localização para determinar a sua localização. Nos nossos testes, o Soundscape não consumiu mais bateria do que uma aplicação de mapas normal; no entanto, se estiver preocupado com o consumo da bateria durante a utilização do telemóvel, as sugestões seguintes ajudarão a reduzir a utilização:\n\n1. Desligue o ecrã sempre que puder quando não estiver a interagir com a aplicação.\n\n2. Quando não estiver a utilizar a aplicação, encerre-a. O Soundscape utiliza os serviços de localização continuamente quando está em execução para saber sempre a sua localização, mesmo quando está imóvel. Não se esqueça de reiniciar a aplicação quando retomar caminho.\n\n3. Mantenha o telemóvel quente quando o tempo estiver frio; o desempenho das baterias piora com temperaturas mais frias.</string>
     <string name="faq_mobile_data_use_question">Que quantidade de dados móveis utiliza o Soundscape?</string>
-    <string name="faq_mobile_data_use_answer">Quando não estiver a utilizar o Soundscape, deverá utilizar o botão *Suspender* para colocar o Soundscape em Modo de Suspensão; alternativamente, feche a aplicação.</string>
+    <string name="faq_mobile_data_use_answer">A quantidade de dados móveis utilizada depende da forma como utiliza o Soundscape. Concebemos o Soundscape para utilizar apenas uma pequena quantidade de dados quando efetua tarefas como guardar pontos à medida que caminha, para que não tenha de os transferir novamente sempre que voltar a um local onde já tenha estado. Para reduzir a quantidade de dados móveis utilizada, certifique-se de que está ligado a uma rede Wi-Fi sempre que possível, especialmente para transferir a aplicação. Quando não estiver a utilizar o Soundscape, deverá utilizar o botão *"Suspender"* parar colocar o Soundscape em modo de suspensão; alternativamente, feche a aplicação.</string>
     <string name="faq_difference_from_map_apps_question">Qual é a diferença entre o Soundscape e as outras aplicações de mapas?</string>
     <string name="faq_difference_from_map_apps_answer">O Soundscape fornece uma descrição do ambiente que o rodeia para ajudar na exploração e na orientação. Utilizando áudio espacial, o Soundscape anunciará pontos de interesse, parques, ruas e cruzamentos a partir da direção em que se encontram fisicamente no seu ambiente imediato enquanto caminha. Por exemplo, se passar por uma loja à sua direita, ouvirá o nome da loja vindo da sua direita. Ao aproximar‑se de um cruzamento, ouvirá o nome de cada rua proveniente da direção para onde ela segue, começando pela esquerda, depois em frente e à direita.\n\nEm vez de direções curva‑a‑curva, como as que fornecem muitas outras aplicações de mapas, o Soundscape reproduz um sinal audível na direção do seu destino, permitindo‑lhe ir até lá da forma que melhor lhe convier, apoiando‑se numa maior perceção do ambiente e da localização do destino. O Soundscape foi concebido para funcionar em segundo plano, permitindo‑lhe usar uma aplicação de direções curva‑a‑curva enquanto continua a fornecer informação ambiental durante o seu percurso.</string>
     <string name="faq_use_with_wayfinding_apps_question">Posso utilizar o Soundscape com uma aplicação de navegação?</string>
