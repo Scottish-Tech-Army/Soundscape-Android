@@ -30,19 +30,10 @@ unas pocas dudas, casi todas pequeñas.
   «**Posponiendo**», también como en Microsoft. Queremos que quien venga de
   la app de iOS original note las mínimas diferencias posibles.
 
-## Pendientes *(Still open)*
+## Todo respondido *(All answered by JJ, 2026-09-25)*
 
-**Q3 — «Sendero a Callejón sin salida»** *(Dead-end way description)*
-Para un sendero que termina en un callejón sin salida, la aplicación dice
-«Sendero a Callejón sin salida», con mayúscula en medio de la frase y sin
-artículo. ¿Es mejor «Sendero hacia un callejón sin salida»?
+- **Q3:** «Sendero hacia un callejón sin salida», sin mayúscula.
+- **Q4:** se queda «¡Bienvenido!», y «¡Ya estás listo!» con «estás».
+- **Q5:** «Suspendiendo» / «Posponiendo», como en Microsoft.
 
-**Q4 — «¡Bienvenido!» y «¡Ya está listo!»** *(Gendered welcome, ambiguous "ready")*
-La pantalla de inicio dice «¡Bienvenido!» y el tutorial «Bienvenido al
-tutorial guiado», ambos en masculino. Al final dice «¡Ya está listo!», que
-con el tuteo suena a «ya está listo (algo)». ¿Serían mejores «¡Te damos la
-bienvenida!» y «¡Todo listo!»?
-
-**Q6 — ¿Algo más?** *(Anything else)*
-
-¡Muchas gracias!**
+¡Muchas gracias!
