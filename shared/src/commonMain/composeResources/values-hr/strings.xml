@@ -1233,7 +1233,7 @@
     <string name="faq_sleep_mode_battery_question">Kako da koristim način rada Mirovanje kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?</string>
     <string name="faq_sleep_mode_battery_answer">Kako biste Soundscape prebacili u način rada Mirovanje, odaberite gumb *Mirovanje* u gornjem desnom kutu zaslona. Kada to odaberete, Soundscape će prestati koristiti usluge lociranja i mobilne podatke dok ga ponovno ne probudite.</string>
     <string name="faq_snooze_mode_battery_question">Kako da koristim način rada Odgoda kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?</string>
-    <string name="faq_snooze_mode_battery_answer">Kako biste Soundscape prebacili u način rada Odgoda, odaberite gumb *Mirovanje* u gornjem desnom kutu zaslona. Kada je Soundscape u načinu rada Mirovanje, odaberite gumb *Probudi kad odem* i Soundscape će prijeći u stanje niske potrošnje energije dok ne napustite trenutnu lokaciju.</string>
+    <string name="faq_snooze_mode_battery_answer">Kako biste Soundscape prebacili u način rada Odgoda, odaberite gumb *Mirovanje* u gornjem desnom kutu zaslona. Kada je Soundscape u načinu rada Mirovanje, odaberite gumb *Probudi pri odlasku* i Soundscape će prijeći u stanje niske potrošnje energije dok ne napustite trenutnu lokaciju.</string>
     <string name="faq_headset_battery_impact_question">Kako izbor slušalica utječe na trajanje baterije mog telefona?</string>
     <string name="faq_headset_battery_impact_answer">U našim testovima, potrošnja baterije kod Bluetooth slušalica usporediva je sa žičanim slušalicama i ne bi trebala biti značajan čimbenik pri odabiru slušalica.</string>
     <string name="faq_background_battery_impact_question">Kako rad Soundscapea u pozadini utječe na trajanje baterije mog telefona?</string>
@@ -1586,4 +1586,6 @@
     <string name="siri_param_level">Razina</string>
     <string name="siri_desc_callout_detail">Postavlja koliko Soundscape govori dok hodate.</string>
     <string name="intersection_approaching_intersection_distance">Raskrižje udaljeno %1$s</string>
+    <string name="microsoft_copyright">[Izvorna aplikacija Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) pružila je zvukove zvučnog svjetionika i mnoge prijevode, a dostupna je za korištenje pod [MIT licencom](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Volonteri projekta [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) poboljšali su nekoliko prijevoda, koji su dostupni za korištenje pod [MIT licencom](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
