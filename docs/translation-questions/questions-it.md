@@ -14,43 +14,122 @@ permalink: /translation-questions/questions-it/
 *Italian translation — questions for native-speaker reviewers. English
 glosses in italics are for the maintainer.*
 
-Ciao, e grazie per la disponibilità.
+Ciao, e grazie per aver accettato di darci un'occhiata.
 
-Soundscape è un'app per persone cieche e ipovedenti: mentre cammini, descrive
-ad alta voce ciò che hai intorno. La traduzione italiana viene in parte
-dall'app originale di Microsoft, ma molto è nuovo e non è mai stato rivisto da
-un madrelingua.
+La traduzione italiana viene in parte dall'app originale di Microsoft, ma molti
+testi sono nuovi e non sono mai stati controllati da un madrelingua. **Non serve
+conoscere né installare l'app:** per ogni domanda trovi qui quando si sente il
+testo, cosa dice in inglese e come suona oggi in italiano.
 
-**Come rispondere:** rispondi via email indicando il numero della domanda
-("Q2: direi…"). Non serve rispondere a tutto. Se qualcosa va già bene, anche
-un semplice "OK" aiuta.
+## Che cos'è Soundscape?
 
-Quasi tutto viene **letto da una sintesi vocale**, spesso mentre si cammina.
-Conta soprattutto che suoni chiaro e naturale *all'ascolto*.
+Soundscape è un'app gratuita per persone cieche e ipovedenti. Si usa mentre si
+cammina, con le cuffie, spesso con il telefono in tasca. Non dà indicazioni
+passo passo come un navigatore ("svolta a sinistra"): dice ad alta voce cosa c'è
+nei dintorni, perché chi la usa possa orientarsi da solo.
+
+Alcuni concetti che tornano nelle domande:
+
+- **Notifica** *(callout)*: un breve messaggio vocale su qualcosa davanti a cui
+  passi, per esempio "Bar", "Marciapiede accanto a Via Roma" o "Sei diretto verso
+  nord lungo Via Roma". Si sente in audio 3D, dalla direzione in cui si trova la
+  cosa nominata.
+- **Audiofaro** *(audio beacon)*: quando scegli una destinazione, nelle cuffie
+  suona un suono regolare e ripetuto che arriva dalla direzione della
+  destinazione. Quando ti giri, il suono "si sposta", così puoi raggiungere la
+  destinazione a orecchio.
+- **Indicatore** e **percorso** *(marker, route)*: luoghi salvati e una sequenza
+  di questi, attraverso cui l'audiofaro ti guida uno alla volta.
+
+Le persone cieche usano il telefono con uno **screen reader** (TalkBack su
+Android, VoiceOver su iPhone): ogni pulsante e ogni testo viene letto da una
+voce sintetica. I testi dell'app quindi si *ascoltano* quasi sempre, non si
+leggono, e spesso nel rumore della strada. La cosa più importante è che siano
+brevi, chiari e naturali all'ascolto.
+
+I concetti sono descritti più in dettaglio (in inglese)
+[in questa pagina]({{ "/developers/translation-terminology.html" | relative_url }}).
+
+## Come rispondere
+
+Rispondi semplicemente via e-mail indicando il numero della domanda ("Q1: io
+direi…"). Non serve rispondere a tutto. Se qualcosa va già bene, anche un breve
+"OK" è utile.
 
 ---
 
-**Q1 — "Notifica"** *(Callout vs phone notifications)*
-I brevi messaggi vocali sull'ambiente ("Bar", "Via Roma a sinistra") si
-chiamano "notifiche". Si confondono con le notifiche del telefono?
+### Q1 — "Notifica" *(Callout vs phone notifications)*
 
-**Q2 — "Waypoint"** *(Waypoint: English word)*
-I punti di un percorso si chiamano "waypoint" (in inglese). Va bene, o è
-meglio "tappa" o "punto di passaggio"?
+**Quando lo senti:** è il nome dei brevi messaggi vocali descritti sopra.
+Compare soprattutto nelle impostazioni, per esempio "Notifiche automatiche".
 
-**Q3 — "Sentiero a vicolo cieco"** *(Dead-end way description)*
-Per un sentiero senza uscita l'app dice "Sentiero a vicolo cieco". È meglio
-"Sentiero verso un vicolo cieco" o "Sentiero che porta a un vicolo cieco"?
+**In inglese:** "Callout", "Automatic Callouts".
 
-**Q4 — "Sei pronto!"** *(Gendered "you're ready")*
-"Sei pronto!" è al maschile. "È tutto pronto!" sarebbe meglio?
+**Come suona ora:** "Notifica", "Notifiche automatiche".
 
-**Q5 — Comandi Siri** *(Siri phrases)*
-Su iPhone si può dire a Siri: "Soundscape dintorni", "Soundscape percorso",
-"Soundscape avvia percorso", "Soundscape audiofaro", "Soundscape ferma
-audiofaro", "Soundscape elenco", "Soundscape dettagli". Suonano naturali?
+**Cosa ci lascia in dubbio:** "notifica" è anche il nome delle notifiche del
+telefono (messaggi, e-mail…).
 
-**Q6 — Altro?** *(Anything else)*
+**La domanda:** si confonde con le notifiche del telefono? Sarebbe meglio
+"annuncio" o un'altra parola?
+
+### Q2 — "Waypoint" *(Waypoint: English word)*
+
+**Quando lo senti:** mentre segui un percorso e nei pulsanti per crearne uno.
+Un percorso è una serie di tappe, e l'audiofaro ti porta dall'una all'altra.
+
+**In inglese:** "Waypoint", per esempio "Route Casa at waypoint 2 of 5".
+
+**Come suona ora:** "Percorso Casa al waypoint 2 di 5", "aggiungere questo
+indicatore come waypoint nel tuo percorso".
+
+**Cosa ci lascia in dubbio:** la parola è rimasta in inglese.
+
+**La domanda:** va bene "waypoint", o è meglio "tappa" o "punto di passaggio"?
+
+### Q3 — "Sentiero a vicolo cieco" *(Dead-end way description)*
+
+**Quando lo senti:** mentre cammini e passi davanti a una diramazione. L'app dice
+dove porta.
+
+**In inglese:** "Path to Moor Road", "Path to dead end".
+
+**Come suona ora:** "Sentiero a Moor Road", "Sentiero a vicolo cieco".
+
+**Cosa ci lascia in dubbio:** "a" davanti al nome di una via o a "vicolo cieco"
+non suona naturale.
+
+**La domanda:** è meglio "Sentiero verso un vicolo cieco", "Sentiero che porta a
+un vicolo cieco", o altro?
+
+### Q4 — "Sei pronto!" *(Gendered "you're ready")*
+
+**Quando lo senti:** alla fine della configurazione, al primo avvio.
+
+**In inglese:** "You're ready!".
+
+**Come suona ora:** "Sei pronto!" (al maschile).
+
+**Cosa ci lascia in dubbio:** l'app non conosce il genere di chi la usa.
+
+**La domanda:** "È tutto pronto!" sarebbe meglio?
+
+### Q5 — Comandi Siri *(Siri phrases)*
+
+**Quando lo senti:** mai; queste frasi le *dici* tu. Su iPhone puoi comandare
+Soundscape con Siri senza toccare il telefono.
+
+**Come suona ora:** "Soundscape dintorni", "Soundscape percorso", "Soundscape
+avvia percorso", "Soundscape audiofaro", "Soundscape ferma audiofaro",
+"Soundscape elenco", "Soundscape dettagli".
+
+**Cosa ci lascia in dubbio:** i comandi devono essere naturali da dire,
+altrimenti nessuno li ricorda.
+
+**La domanda:** suonano naturali? Diresti qualcos'altro?
+
+### Q6 — Altro? *(Anything else)*
+
 Se una frase sembra tradotta dall'inglese, è troppo lunga o poco chiara,
 faccelo sapere.
 

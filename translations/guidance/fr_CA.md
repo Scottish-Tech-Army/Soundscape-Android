@@ -81,9 +81,14 @@ Nothing yet.
 
 ## Open questions
 
+Numbered as on the questionnaire.
+
+1. Callout «notification»: natural, or «annonce»? It clashes with the phone's
+   own notifications. The term came over from French, which is AI-only.
+2. Beacon «balise sonore»: natural? Also from French, AI-only.
 3. «Sentier vers une impasse»? (FRCA-G1)
-5. «Tout est prêt!» instead of «Vous êtes prêt!»? (FRCA-R1)
-6. Anything else.
+4. «Tout est prêt!» instead of «Vous êtes prêt!»? (FRCA-R1)
+5. Anything else.
 
 ## Provenance
 

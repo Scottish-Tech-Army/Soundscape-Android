@@ -19,7 +19,7 @@ Microsoft never had (callout detail, confected way names, voice commands,
 travel mode, ~410 keys) is AI. The 20 drifted strings look like
 improvements: they fix Microsoft errors such as «Endpunkt» for "Done" and
 «Wie verwenden ich». The Siri phrases (`de.lproj`) match the help text.
-Questions: `docs/translation-questions/questions-de.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-de.md` (Q1…Q5).
 
 ## Glossary
 
@@ -73,8 +73,9 @@ Microsoft's files.
 2. «Fußweg nach Sackgasse»: better as «Fußweg zur Sackgasse» or «Fußweg
    Richtung Moor Road»? (DE-G1)
 3. The four detail levels (Ausführlich / Ausgewogen / Leise / Stumm): clear?
-5. Siri phrases «Soundscape Umgebung / Route / Beacon / stoppe Beacon…»: natural?
-6. Anything else.
+   «Leise» may be heard as volume rather than fewer callouts.
+4. Siri phrases «Soundscape Umgebung / Route / Beacon / stoppe Beacon…»: natural?
+5. Anything else.
 
 ## Provenance
 

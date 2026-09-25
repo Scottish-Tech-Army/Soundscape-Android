@@ -22,7 +22,7 @@ drifted the most, but on inspection the drift is mostly tidying:
 
 The VoiceOver template composes correctly («Dobbelttryk for at slå lydfyret
 fra»). The Siri phrases (`da.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-da.md` (Q1…Q6).
+`docs/translation-questions/questions-da.md` (Q1…Q4).
 
 ## Glossary
 
@@ -62,13 +62,17 @@ Nothing yet.
 
 ## Open questions
 
-1. ~~Beacon sound names~~ — settled 2026-09-25: Microsoft's names restored (C14 drift pass). Was: Microsoft's («Hammer», «Dråbe», «Glitre») or the new
-   ones («Kølle», «Drop», «Glimmer»)? (DA-T1)
-2. «Sti til blindvej»? (DA-G1)
-3. ~~Compass phrasing~~ — settled 2026-09-25: Microsoft's «Kører nord» restored (C14 drift pass).
-4. The four detail levels (Detaljeret / Balanceret / Stille / Lydløs): clear?
-5. Siri phrases «Soundscape omgivelser / rute / lydfyr / stop lydfyr…»: natural?
-6. Anything else.
+Numbered as on the questionnaire.
+
+1. «Sti til blindvej»? (DA-G1)
+2. The four detail levels (Detaljeret / Balanceret / Stille / Lydløs): clear?
+   «Stille» and «Lydløs» sit close together.
+3. Siri phrases «Soundscape omgivelser / rute / lydfyr / stop lydfyr…»: natural?
+4. Anything else.
+
+*Settled 2026-09-25 (C14 drift pass): beacon sound names restored to
+Microsoft's («Hammer», «Dråbe», «Glitre»), DA-T1; compass phrasing restored to
+Microsoft's «Kører nord».*
 
 ## Provenance
 

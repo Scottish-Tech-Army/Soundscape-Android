@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 
 Dutch started from Microsoft's professional translation (C14). One core
 term has **changed** away from Microsoft (NL-T1). The Siri phrases (`nl.lproj`)
-match the help text. Questions: `docs/translation-questions/questions-nl.md` (Q1…Q6).
+match the help text. Questions: `docs/translation-questions/questions-nl.md` (Q1…Q5).
 
 ## Glossary
 
@@ -67,11 +67,14 @@ The same coupling as FR-C1.
 
 ## Open questions
 
-2. VoiceOver: «Dubbeltik: het audiobaken dempen»? (NL-B1)
-3. «Pad naar een doodlopende weg» or «Doodlopend pad»? (NL-G1)
-4. The four detail levels (Gedetailleerd / Gebalanceerd / Rustig / Stil): clear?
-5. Siri phrases «Soundscape omgeving / route / baken / stop baken…»: natural?
-6. Anything else.
+Numbered as on the questionnaire.
+
+1. VoiceOver: «Dubbeltik: het audiobaken dempen»? (NL-B1)
+2. «Pad naar een doodlopende weg» or «Doodlopend pad»? (NL-G1)
+3. The four detail levels (Gedetailleerd / Gebalanceerd / Rustig / Stil): clear?
+   «Gebalanceerd» may be an anglicism; «Rustig» and «Stil» sit close together.
+4. Siri phrases «Soundscape omgeving / route / baken / stop baken…»: natural?
+5. Anything else.
 
 ## Provenance
 
