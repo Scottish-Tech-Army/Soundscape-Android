@@ -187,7 +187,7 @@
     </plurals>
     <string name="ui_action_button_my_location">La mia\nposizione</string>
     <string name="ui_action_button_my_location_acc_hint">ascoltare informazioni sulla tua posizione attuale</string>
-    <string name="ui_action_button_nearby_markers">Indicatori\nvicini</string>
+    <string name="ui_action_button_nearby_markers">Indicatori\nnelle vicinanze</string>
     <string name="ui_action_button_nearby_markers_acc_hint">ascoltare i luoghi nelle vicinanze che hai contrassegnato</string>
     <string name="ui_action_button_around_me">Intorno\na me</string>
     <string name="ui_action_button_around_me_acc_hint">ascoltare i luoghi nei quattro quadranti intorno a te</string>
@@ -471,7 +471,7 @@
     <string name="confect_name_dead_end">vicolo cieco</string>
     <string name="about_soundscape">Soundscape utilizza tecnologie innovative basate sull'audio per aiutare le persone a costruire una consapevolezza più ricca di ciò che le circonda. Questo le rende più sicure di sé e in grado di spostarsi in autonomia.</string>
     <string name="settings_section_units">Unità di misura</string>
-    <string name="settings_units_imperial">Imperiale (Piedi)</string>
+    <string name="settings_units_imperial">Britannico (piedi)</string>
     <string name="settings_units_metric">Metrico (Metri)</string>
     <string name="voice_engine">Motore di sintesi vocale</string>
     <string name="menu_contact_support">Contatta l'assistenza</string>
