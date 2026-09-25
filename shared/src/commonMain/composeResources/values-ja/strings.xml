@@ -383,7 +383,7 @@
     <string name="faq_sleep_mode_battery_question">Soundscape によるスマートフォンのバッテリーへの影響を最小限に抑えるためにスリープ モードを使用するにはどうしたらよいですか?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape をスリープ モードにするには、画面右上の *「スリープ」* ボタンを選択してください。これを選択すると、再びスリープを解除するまで Soundscape は位置情報サービスや携帯データの使用を停止します。\n</string>
     <string name="faq_snooze_mode_battery_question">Soundscape によるスマートフォンのバッテリーへの影響を最小限に抑えるためにスヌーズ モードを使用するにはどうしたらよいですか?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape をスヌーズ モードにするには、画面右上の *「スリープ」* ボタンを選択してください。Soundscape がスリープ モードになったら、*「離れたらスリープ解除」* ボタンを選択します。これにより、現在地から離れるまで Soundscape は低消費電力の状態に入ります。\n</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape をスヌーズ モードにするには、画面右上の *「スリープ」* ボタンを選択してください。Soundscape がスリープ モードになったら、*「離れたらスリープ解除」* ボタンを選択します。これにより、現在地から離れるまで Soundscape は低消費電力の状態に入ります。</string>
     <string name="faq_headset_battery_impact_question">使用するヘッドホンによってスマートフォンのバッテリー駆動時間にどのような影響がありますか?</string>
     <string name="faq_headset_battery_impact_answer">当社のテストでは、Bluetooth ヘッドホンのバッテリー消費は有線ヘッドホンとほぼ同等であり、ヘッドホン選びの大きな要因にはならないはずです。</string>
     <string name="faq_background_battery_impact_question">Soundscape をバックグラウンドで実行していると、スマートフォンのバッテリー駆動時間にどのような影響がありますか?</string>
@@ -1556,4 +1556,6 @@
     <string name="siri_param_level">レベル</string>
     <string name="siri_desc_callout_detail">歩行中に Soundscape がどれだけ話すかを設定します。</string>
     <string name="intersection_approaching_intersection_distance">交差点まで%1$s</string>
+    <string name="microsoft_copyright">[オリジナルの Soundscape アプリ ©Microsoft Corporation](https://github.com/microsoft/soundscape) は音声ビーコンのサウンドと多くの翻訳を提供しており、[MIT ライセンス](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) のもとで利用可能です。</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) のボランティアが翻訳の一部を改善しており、それらは [MIT ライセンス](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) のもとで利用可能です。</string>
 </resources>
