@@ -858,6 +858,11 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     override fun nearbyMarkers() = calloutController.nearbyMarkers()
 
+    override fun calloutBeacon() = calloutController.calloutBeacon()
+
+    override fun beaconMoreInfo() =
+        calloutController.beaconMoreInfo(routePlayer.currentWaypointName())
+
     override fun cancelCallout() = calloutController.cancel()
 
     override suspend fun searchResult(query: String): List<LocationDescription>? {

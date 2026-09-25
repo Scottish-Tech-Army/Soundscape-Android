@@ -16,13 +16,16 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.hideFromAccessibility
+import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -32,6 +35,8 @@ import org.intellij.markdown.parser.CancellationToken
 import org.intellij.markdown.parser.MarkdownParser
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.platform.isIos
 import org.scottishtecharmy.soundscape.resources.Res
@@ -41,6 +46,13 @@ import org.scottishtecharmy.soundscape.resources.callouts_automatic_callouts
 import org.scottishtecharmy.soundscape.resources.callouts_nearby_markers
 import org.scottishtecharmy.soundscape.resources.copyright_notices
 import org.scottishtecharmy.soundscape.resources.directions_my_location
+import org.scottishtecharmy.soundscape.resources.help_gps_accuracy_current
+import org.scottishtecharmy.soundscape.resources.help_gps_accuracy_description
+import org.scottishtecharmy.soundscape.resources.help_gps_accuracy_good
+import org.scottishtecharmy.soundscape.resources.help_gps_accuracy_ok
+import org.scottishtecharmy.soundscape.resources.help_gps_accuracy_page_title
+import org.scottishtecharmy.soundscape.resources.help_gps_accuracy_poor
+import org.scottishtecharmy.soundscape.resources.help_gps_accuracy_waiting
 import org.scottishtecharmy.soundscape.resources.faq_background_battery_impact_answer
 import org.scottishtecharmy.soundscape.resources.faq_background_battery_impact_question
 import org.scottishtecharmy.soundscape.resources.faq_battery_impact_answer
@@ -199,7 +211,8 @@ enum class SectionType {
     Title,          // A non-clickable title of a group of other text
     Link,           // A clickable text link
     Paragraph,      // A paragraph of text
-    Faq             // A FAQ question with its answer in the section
+    Faq,            // A FAQ question with its answer in the section
+    GpsAccuracy     // The phone's current GPS accuracy, updating as it changes
 }
 
 data class Section(
@@ -465,6 +478,15 @@ val helpPages = listOf(
     ),
 
     Sections(
+        Res.string.help_gps_accuracy_page_title,
+        listOf(
+            Section(Res.string.help_gps_accuracy_page_title, SectionType.Title),
+            Section(Res.string.help_gps_accuracy_description, SectionType.Paragraph),
+            Section(Res.string.help_gps_accuracy_current, SectionType.GpsAccuracy),
+        )
+    ),
+
+    Sections(
         Res.string.menu_help,
         listOf(
             Section(Res.string.help_configuration_section_title, SectionType.Title),
@@ -492,6 +514,7 @@ val helpPages = listOf(
             Section(Res.string.faq_title, SectionType.Link),
             Section(Res.string.faq_tips_title, SectionType.Link),
             Section(Res.string.help_offline_page_title, SectionType.Link),
+            Section(Res.string.help_gps_accuracy_page_title, SectionType.Link),
         )
     ),
 
@@ -657,6 +680,8 @@ fun SharedHelpScreen(
     onNavigate: (String) -> Unit,
     onNavigateUp: () -> Unit,
     onOpenSourceLicenses: (() -> Unit)? = null,
+    /** Horizontal accuracy of the current position in metres, for the GPS accuracy page. */
+    locationAccuracy: Float? = null,
     modifier: Modifier = Modifier,
 ) {
     var sections = Sections(Res.string.menu_help, emptyList())
@@ -742,6 +767,13 @@ fun SharedHelpScreen(
                                     )
                                 }
 
+                                SectionType.GpsAccuracy -> {
+                                    GpsAccuracyText(
+                                        accuracyMetres = locationAccuracy,
+                                        template = section.textId,
+                                    )
+                                }
+
                                 SectionType.Link, SectionType.Faq -> {
                                     Button(
                                         onClick = {
@@ -794,5 +826,47 @@ fun SharedHelpScreen(
                 }
             }
         }
+    )
+}
+
+/**
+ * The phone's current GPS accuracy, as a line of text which updates as the fix changes.
+ *
+ * The thresholds are the ones the original Soundscape documentation quoted - 10 metres (30 feet)
+ * or better is good, up to 20 metres (60 feet) is ok, worse than that is poor - and are applied to
+ * the raw metres, while the figure itself is formatted in whatever units the user has chosen.
+ *
+ * A polite live region, so a screen reader reads new values while this page is open without
+ * interrupting whatever it is saying.
+ */
+@Composable
+private fun GpsAccuracyText(
+    accuracyMetres: Float?,
+    template: StringResource,
+) {
+    val quality = when {
+        accuracyMetres == null -> null
+        accuracyMetres <= 10f -> stringResource(Res.string.help_gps_accuracy_good)
+        accuracyMetres <= 20f -> stringResource(Res.string.help_gps_accuracy_ok)
+        else -> stringResource(Res.string.help_gps_accuracy_poor)
+    }
+    val waiting = stringResource(Res.string.help_gps_accuracy_waiting)
+    val formatted = remember(accuracyMetres) {
+        accuracyMetres?.let {
+            formatDistanceAndDirection(it.toDouble(), null, ComposeLocalizedStrings())
+        }
+    }
+    val text = if ((formatted != null) && (quality != null)) {
+        stringResource(template, formatted, quality)
+    } else {
+        waiting
+    }
+    Text(
+        text = text,
+        style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.onSurface,
+        modifier = Modifier
+            .semantics { liveRegion = LiveRegionMode.Polite }
+            .testTag("helpScreenGpsAccuracy"),
     )
 }

@@ -668,6 +668,11 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     override fun nearbyMarkers() = calloutController.nearbyMarkers()
 
+    override fun calloutBeacon() = calloutController.calloutBeacon()
+
+    override fun beaconMoreInfo() =
+        calloutController.beaconMoreInfo(routePlayer.currentWaypointName())
+
     override fun cancelCallout() = calloutController.cancel()
 
     override fun setCalloutVerbosity(verbosity: CalloutVerbosity) {

@@ -110,12 +110,34 @@
     <string name="beacon_styles_mallet_very_slow">Mallet (Very Slow)</string>
     <!-- Title for section in settings for audio beacons -->
     <string name="beacon_audio_beacon">Audio Beacon</string>
+    <!-- Title of the help page which shows how accurate the phone's current GPS position is. -->
+    <string name="help_gps_accuracy_page_title">GPS accuracy</string>
+    <!-- Body of the GPS accuracy help page, explaining what the figure below it means. Markdown. -->
+    <string name="help_gps_accuracy_description">Soundscape can only describe your surroundings as well as your phone knows where you are. Accuracy of 10 meters (30 feet) or better is good, up to 20 meters (60 feet) is workable, and anything more than that means callouts may name the wrong side of the street or arrive late.\n\nAccuracy is usually worst indoors, among tall buildings, and in the first minute or so after you go outside. If the figure below stays poor while you are outdoors in the open, try turning your phone's location services off and on again.</string>
+    <!-- The current GPS accuracy, %1$s is an already-formatted distance such as "10 metres" and %2$s is one of help_gps_accuracy_good, _ok or _poor, "Current accuracy: 10 metres (good)" -->
+    <string name="help_gps_accuracy_current">Current accuracy: %1$s (%2$s)</string>
+    <!-- Describes a GPS accuracy of 10 metres or better. Appears in help_gps_accuracy_current. -->
+    <string name="help_gps_accuracy_good">good</string>
+    <!-- Describes a GPS accuracy between 10 and 20 metres. Appears in help_gps_accuracy_current. -->
+    <string name="help_gps_accuracy_ok">ok</string>
+    <!-- Describes a GPS accuracy worse than 20 metres. Appears in help_gps_accuracy_current. -->
+    <string name="help_gps_accuracy_poor">poor</string>
+    <!-- Shown on the GPS accuracy help page when the phone has not yet reported a position, or reports one with no accuracy figure. -->
+    <string name="help_gps_accuracy_waiting">Waiting for a position from your phone…</string>
     <!-- Mute Beacon text description -->
     <string name="beacon_action_mute_beacon">Mute Beacon</string>
     <!-- Talkback hint for the mute button which sets the volume on the audio beacon to zero. This is always preceded by "Double tap to " -->
     <string name="beacon_action_mute_beacon_acc_hint">mute the audio beacon</string>
     <!-- Unmute Beacon text description -->
     <string name="beacon_action_unmute_beacon">Unmute Beacon</string>
+    <!-- Makes the app say how far away the beacon is. A screen reader action on the beacon panel of the home screen, an item in the audio menu's "Hear My Surroundings" submenu, and a choice Siri offers. -->
+    <string name="beacon_action_callout_beacon">Call out Beacon</string>
+    <!-- Screen reader action on the beacon panel of the home screen, which makes the app say the beacon's name, distance and street address. -->
+    <string name="callouts_action_more_info">More Info</string>
+    <!-- Item in the audio menu's "Hear My Surroundings" submenu, and a choice Siri offers, which makes the app say the audio beacon's name, distance, direction and street address. The same thing as callouts_action_more_info, but named for the beacon because the menu and Siri are not on the beacon panel. -->
+    <string name="menu_beacon_info">Beacon Info</string>
+    <!-- Screen reader action on the beacon panel of the home screen, which saves the place the beacon is on as one of the user's markers. -->
+    <string name="markers_action_add_to_markers">Add to Markers</string>
     <!-- Talkback hint for the mute button which sets the volume on the audio beacon to 100%. This is always preceded by "Double tap to " -->
     <string name="beacon_action_unmute_beacon_acc_hint">unmute the audio beacon</string>
     <!-- This is the title for functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
@@ -340,6 +362,8 @@
     <string name="callouts_audio_beacon_description">Updates about distance to the audio beacon when it's set</string>
     <!-- Callout text for the distance to the currently playing beacon. %1$s contains the distance in metres e.g. "Beacon is currently 105 metres away". -->
     <string name="callouts_audio_beacon_distance">Beacon is currently %1$s away</string>
+    <!-- Spoken when the user asks to hear about the audio beacon (Call out Beacon, or More Info) from the audio menu, but no beacon or route is currently playing. -->
+    <string name="callouts_no_beacon_active">No beacon active</string>
     <!-- Settings option under Manage Callouts which chooses how much the automatic callouts say while walking. -->
     <string name="callouts_verbosity">Callout Detail</string>
     <!-- A description for the callout detail setting, naming each of the four levels the slider below it chooses between. Translate the level names the same as callouts_verbosity_level_*. -->
@@ -402,6 +426,10 @@
     <string name="intersection_approaching_intersection_distance">Intersection in %1$s</string>
     <!-- Notification, %s is a point of interest, "At Starbucks" -->
     <string name="directions_at_poi">At %1$s</string>
+    <!-- Spoken aloud when the user asks for more information about the audio beacon. %1$s is the name of the place the beacon is on, %2$s is an already-formatted distance and direction such as "700 metres, north west", %3$s is a street address, "Starbucks is currently 700 metres, north west. Street address is 123 Main Street." -->
+    <string name="directions_name_is_currently_street_address">%1$s is currently %2$s. Street address is %3$s.</string>
+    <!-- Spoken aloud when the user asks for more information about the audio beacon and no street address is known for it. %1$s is the name of the place the beacon is on, %2$s is an already-formatted distance and direction such as "700 metres, north west". Keep this consistent with directions_name_is_currently_street_address, which is the same sentence with an address added. -->
+    <string name="directions_name_is_currently">%1$s is currently %2$s.</string>
     <!-- Text for button on home page that callous the current user location -->
     <string name="directions_my_location">My Location</string>
     <!-- Notification announced to the user that they are near a location, %s is a physical address or the name of a place, examples: "Near 123 Columbia Street", "Near Starbucks" -->

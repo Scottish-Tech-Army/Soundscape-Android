@@ -16,7 +16,6 @@ import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
@@ -251,7 +250,7 @@ class AutoCallout(
     private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
 
         // Check that we have a destination
-        val beacon = userGeometry.currentBeacon ?: return null
+        userGeometry.currentBeacon ?: return null
 
         // ...and that the user wants to hear how far away it is
         if (preferences?.getBoolean(
@@ -265,26 +264,7 @@ class AutoCallout(
             return null
         }
 
-        val distance = userGeometry.ruler.distance(userGeometry.location, beacon)
-        val distanceString =
-            formatDistanceAndDirection(distance, null, localized, speed = userGeometry.speed)
-        val text = localized?.get(StringKey.CalloutsAudioBeaconDistance, distanceString)
-            ?: "Distance to beacon $distanceString"
-        return TrackedCallout(
-            userGeometry = userGeometry,
-            trackedText = "",
-            location = beacon,
-            isPoint = true,
-            isGeneric = true,
-            filter = false,
-            positionedStrings = List(1) {
-                PositionedString(
-                    text = text,
-                    location = beacon,
-                    type = AudioType.LOCALIZED
-                )
-            }
-        )
+        return buildBeaconCallout(userGeometry, localized)
     }
 
     private fun buildCalloutForRoadSense(

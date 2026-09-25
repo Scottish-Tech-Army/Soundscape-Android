@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
@@ -80,6 +81,12 @@ fun SharedRouteDetailsScreen(
     onStopRoute: () -> Unit,
     onEditRoute: () -> Unit,
     onShareRoute: (() -> Unit)? = null,
+    /**
+     * Opens the location details for a waypoint. The original iOS app allowed this too, though
+     * it greyed out most of the actions there; a waypoint here is an ordinary marker, so its
+     * details screen is fully functional. Null leaves the rows unclickable.
+     */
+    onSelectWaypoint: ((LocationDescription) -> Unit)? = null,
 ) {
     val showMap by rememberBooleanPreference(
         preferencesProvider,
@@ -255,15 +262,19 @@ fun SharedRouteDetailsScreen(
                             modifier = Modifier.weight(2f)
                         ) {
                             itemsIndexed(waypoints) { index, waypoint ->
+                                // Pass the waypoint itself rather than a copy: it carries the
+                                // marker's databaseId, which the details screen needs to offer
+                                // "Edit marker" rather than "Save as marker".
                                 LocationItem(
-                                    item = LocationDescription(
-                                        name = waypoint.name,
-                                        location = waypoint.location,
-                                    ),
+                                    item = waypoint,
                                     decoration = LocationItemDecoration(
                                         location = false,
                                         index = index,
                                         indexDescription = stringResource(Res.string.waypoint_title),
+                                        details = EnabledFunction(
+                                            enabled = onSelectWaypoint != null,
+                                            functionLocation = { onSelectWaypoint?.invoke(it) },
+                                        ),
                                     ),
                                     userLocation = userLocation
                                 )

@@ -109,6 +109,8 @@ private class FakeService : MediaControllableService {
     override fun whatsAroundMe() { calls.add("whatsAroundMe") }
     override fun aheadOfMe() { calls.add("aheadOfMe") }
     override fun nearbyMarkers() { calls.add("nearbyMarkers") }
+    override fun calloutBeacon() { calls.add("calloutBeacon") }
+    override fun beaconMoreInfo() { calls.add("beaconMoreInfo") }
     override fun cancelCallout() { calls.add("cancelCallout") }
 
     override fun routeMute(): Boolean {
@@ -265,6 +267,8 @@ class SoundscapeActionExecutorTest {
             SoundscapeAction.AroundMe to "whatsAroundMe",
             SoundscapeAction.AheadOfMe to "aheadOfMe",
             SoundscapeAction.NearbyMarkers to "nearbyMarkers",
+            SoundscapeAction.CalloutBeacon to "calloutBeacon",
+            SoundscapeAction.BeaconInfo to "beaconMoreInfo",
         )
         for ((action, expected) in cases) {
             val service = FakeService()
@@ -514,6 +518,8 @@ class SoundscapeActionExecutorTest {
             SoundscapeAction.AroundMe,
             SoundscapeAction.AheadOfMe,
             SoundscapeAction.NearbyMarkers,
+            SoundscapeAction.CalloutBeacon,
+            SoundscapeAction.BeaconInfo,
             SoundscapeAction.StartRouteById(1, reverse = false),
             SoundscapeAction.StartRouteNamed("Commute"),
             SoundscapeAction.StopRoute,

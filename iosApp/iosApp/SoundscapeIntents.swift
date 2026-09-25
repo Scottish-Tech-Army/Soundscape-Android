@@ -101,16 +101,21 @@ enum CalloutKind: String, AppEnum, CaseIterable {
     case aroundMe
     case aheadOfMe
     case nearbyMarkers
+    case calloutBeacon
+    case beaconInfo
 
     static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "Callout")
 
     /// Wording matches the app's own buttons: directions_my_location,
-    /// help_orient_page_title, help_explore_page_title, callouts_nearby_markers.
+    /// help_orient_page_title, help_explore_page_title, callouts_nearby_markers,
+    /// beacon_action_callout_beacon, menu_beacon_info - as in AudioMenu's submenu.
     static var caseDisplayRepresentations: [CalloutKind: DisplayRepresentation] = [
         .myLocation: "My Location",
         .aroundMe: "Around Me",
         .aheadOfMe: "Ahead of Me",
         .nearbyMarkers: "Nearby Markers",
+        .calloutBeacon: "Call out Beacon",
+        .beaconInfo: "Beacon Info",
     ]
 
     var action: SoundscapeAction {
@@ -119,6 +124,8 @@ enum CalloutKind: String, AppEnum, CaseIterable {
         case .aroundMe: return SoundscapeAction.AroundMe.shared
         case .aheadOfMe: return SoundscapeAction.AheadOfMe.shared
         case .nearbyMarkers: return SoundscapeAction.NearbyMarkers.shared
+        case .calloutBeacon: return SoundscapeAction.CalloutBeacon.shared
+        case .beaconInfo: return SoundscapeAction.BeaconInfo.shared
         }
     }
 }

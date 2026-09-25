@@ -53,6 +53,8 @@ data class AppCallbacks(
     val onRouteSkipPrevious: () -> Unit = {},
     val onRouteMute: () -> Unit = {},
     val onRouteStop: () -> Unit = {},
+    val onCalloutBeacon: () -> Unit = {},
+    val onBeaconMoreInfo: () -> Unit = {},
     val onSearch: (String) -> Unit = {},
     val onSaveMarker: (LocationDescription) -> Unit = {},
     val onDeleteMarker: (Long) -> Unit = {},

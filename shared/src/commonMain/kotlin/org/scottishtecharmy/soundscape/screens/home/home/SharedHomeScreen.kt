@@ -52,6 +52,8 @@ fun SharedHomeScreen(
     onNavigate: (String) -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
     onShowRouteDetails: (LocationDescription) -> Unit = {},
+    /** Saves the beacon's location as a marker, for the beacon card's "Add to Markers" action. */
+    onSaveMarker: ((LocationDescription) -> Unit)? = null,
     preferencesProvider: PreferencesProvider?,
     onMapLongClick: ((LngLatAlt) -> Boolean)?,
     bottomButtonFunctions: BottomButtonFunctions,
@@ -180,6 +182,7 @@ fun SharedHomeScreen(
                     onNavigate = onNavigate,
                     onSelectLocation = onSelectLocation,
                     onShowRouteDetails = onShowRouteDetails,
+                    onSaveMarker = onSaveMarker,
                     getCurrentLocationDescription = getCurrentLocationDescription,
                     searchBar = {
                         MainSearchBar(

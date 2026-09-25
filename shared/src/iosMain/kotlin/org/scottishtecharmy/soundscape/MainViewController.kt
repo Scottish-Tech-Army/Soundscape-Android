@@ -210,6 +210,8 @@ fun MainViewController() = ComposeUIViewController {
             onRouteSkipNext = { service.routeSkipNext() },
             onRouteSkipPrevious = { service.routeSkipPrevious() },
             onRouteMute = { service.routeMute() },
+            onCalloutBeacon = { service.calloutBeacon() },
+            onBeaconMoreInfo = { service.beaconMoreInfo() },
             onSearch = { query -> homeViewModel.onTriggerSearch(query) },
             onSaveMarker = { desc ->
                 service.saveMarker(desc)

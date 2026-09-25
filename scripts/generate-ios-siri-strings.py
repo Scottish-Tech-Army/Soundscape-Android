@@ -41,6 +41,8 @@ MAPPING = {
     "Around Me": "help_orient_page_title",
     "Ahead of Me": "help_explore_page_title",
     "Nearby Markers": "callouts_nearby_markers",
+    "Call out Beacon": "beacon_action_callout_beacon",
+    "Beacon Info": "menu_beacon_info",
     # Route control choices
     "Next Waypoint": "menu_route_next_waypoint",
     "Previous Waypoint": "menu_route_previous_waypoint",

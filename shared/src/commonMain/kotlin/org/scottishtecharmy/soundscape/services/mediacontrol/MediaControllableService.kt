@@ -61,6 +61,20 @@ interface MediaControllableService {
     fun nearbyMarkers()
 
     /**
+     * Says how far away the current beacon is. The beacon card's "Call out Beacon"
+     * accessibility action and the audio menu's; says "No beacon active" when there is none.
+     */
+    fun calloutBeacon() {}
+
+    /**
+     * Speaks the current beacon's name, distance, direction and street address. The beacon
+     * card's "More Info" accessibility action; spoken through TTS rather than the screen reader
+     * so that it can be triggered without the screen too. Says "No beacon active" when there is
+     * none.
+     */
+    fun beaconMoreInfo() {}
+
+    /**
      * Cancels any in-flight user-initiated callout without starting another.
      * Defaults to a no-op for implementations with no callout pipeline of their
      * own; the real services delegate to CalloutController.cancel().

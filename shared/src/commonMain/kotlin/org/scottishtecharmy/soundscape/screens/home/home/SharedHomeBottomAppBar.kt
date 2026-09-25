@@ -71,6 +71,10 @@ data class RouteFunctions(
     val skipNext: () -> Unit = {},
     val mute: () -> Unit = {},
     val stop: () -> Unit = {},
+    /** "Call out Beacon" - says how far away the beacon is, on demand. */
+    val calloutBeacon: () -> Unit = {},
+    /** "More Info" - speaks the beacon's name, distance, direction and address. */
+    val beaconMoreInfo: () -> Unit = {},
 )
 
 data class SearchFunctions(
