@@ -32,7 +32,7 @@ lähellä on, jotta käyttäjä voi itse suunnistaa.
 Muutama käsite, joka toistuu kysymyksissä:
 
 - **Ilmoitus** *(callout)*: lyhyt puhuttu viesti jostakin, jonka ohi kuljet,
-  esimerkiksi "Kahvila", "Jalkakäytävä Mannerheimintien vieressä" tai "Matkalla
+  esimerkiksi "Kahvila", "Jalkakäytävä Mannerheimintie:n vieressä" tai "Matkalla
   pohjoiseen tiellä Mannerheimintie". Se kuuluu tilaäänenä siitä suunnasta,
   jossa kohde on.
 - **Äänimajakka** *(audio beacon)*: kun valitset määränpään, kuulokkeissa

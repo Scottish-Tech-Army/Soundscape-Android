@@ -37,8 +37,8 @@ la personne s'oriente elle-même.
 Quelques notions qui reviennent dans les questions :
 
 - **Notification** *(callout)* : un court message parlé sur ce devant quoi on
-  passe, par exemple « Boulangerie », « Trottoir à côté de la rue de la
-  République » ou « En direction du nord le long de la rue de la République ».
+  passe, par exemple « Boulangerie », « Trottoir à côté de Rue de la
+  République » ou « En direction du nord le long de Rue de la République ».
   On l'entend en son 3D, depuis la direction où se trouve l'endroit.
 - **Balise sonore** *(audio beacon)* : quand on choisit une destination, un son
   régulier et répété se fait entendre dans les écouteurs depuis la direction de

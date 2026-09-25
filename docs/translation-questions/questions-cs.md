@@ -31,7 +31,7 @@ Několik pojmů, které se v otázkách objevují:
 
 - **Hlášení** *(callout)*: krátká mluvená zpráva o něčem, kolem čeho právě jdete,
   například „Kavárna“, „Chodník u Hlavní ulice“ nebo „Chůze na sever po Hlavní
-  ulici“. Zní prostorově, ze směru, kde se daná věc nachází.
+  ulice“. Zní prostorově, ze směru, kde se daná věc nachází.
 - **Zvukový maják** *(audio beacon)*: když si zvolíte cíl, ve sluchátkách zní
   pravidelný, opakující se zvuk ze směru cíle. Když se otočíte, zvuk se „posune“,
   takže k cíli můžete dojít po sluchu.

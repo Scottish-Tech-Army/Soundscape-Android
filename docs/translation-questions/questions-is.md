@@ -16,15 +16,40 @@ glosses in italics are for the maintainer; reviewers can ignore them.*
 
 Halló, og kærar þakkir fyrir að vilja líta á þetta.
 
-Soundscape er app fyrir blint og sjónskert fólk. Á meðan þú gengur segir
-það upphátt frá því sem er í kringum þig.
-
 Grunnurinn að íslensku þýðingunni kom frá sjálfboðaliða með íslensku að
 móðurmáli haustið 2025. Síðan hefur mikið bæst við án þess að nokkur með íslensku að
 móðurmáli hafi lesið það yfir. Þitt álit skiptir okkur því miklu máli.
+**Þú þarft hvorki að þekkja appið né setja það upp:** við hverja spurningu
+kemur fram hvar textinn heyrist og hvernig hann hljómar núna.
 
 Hér fyrir neðan eru **ellefu spurningar** um þau atriði sem hafa áhrif á
 flesta texta. Eitt rangt orð getur birst í tugum setninga.
+
+## Hvað er Soundscape?
+
+Soundscape er ókeypis símaapp fyrir blint og sjónskert fólk. Það er notað á
+gangi, með heyrnartól, og síminn er oft í vasanum. Appið vísar ekki veginn
+skref fyrir skref eins og leiðsögutæki („beygðu til vinstri“), heldur segir
+upphátt frá því sem er í nágrenninu svo að fólk geti sjálft áttað sig.
+
+Nokkur hugtök sem koma fyrir í spurningunum:
+
+- **Tilkynning** *(callout)*: stutt töluð skilaboð um eitthvað sem þú gengur
+  fram hjá, til dæmis „Kaffihús“ eða „Gangstétt við Laugavegur“. Þau heyrast í
+  þrívíðu hljóði úr þeirri átt þar sem hluturinn er.
+- **Hljóðviti** *(audio beacon)*: þegar þú velur áfangastað heyrist jafnt,
+  endurtekið hljóð í heyrnartólunum úr átt að áfangastaðnum. Þegar þú snýrð þér
+  „færist“ hljóðið með, svo hægt er að rata á áfangastaðinn eftir eyranu.
+- **Merki** og **leið** *(marker, route)*: vistaðir staðir og röð þeirra, sem
+  hljóðvitinn leiðir þig um einn af öðrum.
+
+Blint fólk notar símann með **skjálesara** (TalkBack á Android, VoiceOver á
+iPhone): gervirödd les hvern hnapp og hvern texta. Textar appsins eru því nær
+alltaf *heyrðir*, ekki lesnir, og oft í götuhávaða. Mestu skiptir að þeir séu
+stuttir, skýrir og eðlilegir að hlusta á.
+
+Hugtökunum er lýst nánar (á ensku)
+[á þessari síðu]({{ "/developers/translation-terminology.html" | relative_url }}).
 
 ## Hvernig á að svara
 
@@ -137,7 +162,7 @@ Siri skilur ekki íslensku, svo raddskipanirnar á iPhone eru á ensku
 
 *Anything else.*
 
-Ef þú notar appið: eru setningar sem hljóma eins og þær séu þýddar úr
+Eru setningar sem hljóma eins og þær séu þýddar úr
 ensku, eru of langar, eða sem þú skildir ekki? Allar ábendingar eru vel
 þegnar, líka án númers.
 

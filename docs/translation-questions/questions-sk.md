@@ -31,8 +31,8 @@ v blízkosti, aby sa človek mohol orientovať sám.
 Niekoľko pojmov, ktoré sa v otázkach objavujú:
 
 - **Hlásenie** *(callout)*: krátka hovorená správa o niečom, okolo čoho práve
-  idete, napríklad „Kaviareň“, „Chodník vedľa Hlavnej ulice“ alebo „Smerujete na
-  sever po Hlavnej ulici“. Znie priestorovo, zo smeru, kde sa daná vec nachádza.
+  idete, napríklad „Kaviareň“, „Chodník vedľa Hlavná ulica“ alebo „Smerujete na
+  sever po Hlavná ulica“. Znie priestorovo, zo smeru, kde sa daná vec nachádza.
 - **Zvukový maják** *(audio beacon)*: keď si zvolíte cieľ, v slúchadlách znie
   pravidelný, opakujúci sa zvuk zo smeru cieľa. Keď sa otočíte, zvuk sa „posunie“,
   takže k cieľu môžete dôjsť podľa sluchu.

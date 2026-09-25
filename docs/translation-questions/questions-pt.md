@@ -31,7 +31,7 @@ que há por perto, para que quem a usa se oriente sozinho.
 Alguns conceitos que aparecem nas perguntas:
 
 - **Aviso** *(callout)*: uma mensagem falada curta sobre algo por onde passa,
-  por exemplo «Café», «Passeio ao lado da Rua Augusta» ou «A caminhar em direção
+  por exemplo «Café», «Passeio ao lado de Rua Augusta» ou «A caminhar em direção
   a norte na Rua Augusta». Ouve-se em som 3D, a partir da direção onde está
   aquilo que é referido.
 - **Sinal de áudio** *(audio beacon)*: quando escolhe um destino, ouve-se nos

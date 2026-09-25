@@ -32,8 +32,8 @@ si mateixa.
 Alguns conceptes que surten a les preguntes:
 
 - **Avís de veu** *(callout)*: un missatge parlat breu sobre alguna cosa per
-  davant de la qual passes, per exemple "Cafeteria", "Vorera al costat del Carrer
-  Major" o "Caminant cap al nord pel Carrer Major". Se sent en so 3D, des de la
+  davant de la qual passes, per exemple "Cafeteria", "Vorera al costat de Carrer
+  Major" o "Caminant cap al nord per Carrer Major". Se sent en so 3D, des de la
   direcció on hi ha allò que s'anomena.
 - **Balisa sonora** *(audio beacon)*: quan tries una destinació, als auriculars
   sona un so regular i repetit que ve de la direcció de la destinació. Quan et

@@ -31,7 +31,7 @@ govori što je u blizini, kako bi se osoba sama snašla.
 Nekoliko pojmova koji se pojavljuju u pitanjima:
 
 - **Najava** *(callout)*: kratka izgovorena poruka o nečemu pokraj čega prolazite,
-  npr. „Kafić”, „Pločnik pored Ilice” ili „Krećete se prema sjeveru cestom
+  npr. „Kafić”, „Pločnik pored Ilica” ili „Krećete se prema sjeveru cestom
   Ilica”. Čuje se prostorno, iz smjera u kojem se to nalazi.
 - **Zvučni svjetionik** *(audio beacon)*: kad odaberete odredište, u slušalicama
   se čuje ravnomjeran, ponavljajući zvuk iz smjera odredišta. Kad se okrenete,

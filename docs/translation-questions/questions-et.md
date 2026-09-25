@@ -31,8 +31,8 @@ lähedal, et inimene saaks ise orienteeruda.
 Mõned mõisted, mis küsimustes korduvad:
 
 - **Häälteade** *(callout)*: lühike suuline teade millegi kohta, millest
-  möödute, näiteks „Kohvik“, „Kõnnitee Viru tänava kõrval“ või „Kõnnib põhja
-  suunas mööda Viru tänavat“. See kõlab ruumiliselt sellest suunast, kus asi on.
+  möödute, näiteks „Kohvik“, „Kõnnitee Viru tänav kõrval“ või „Kõnnib põhja
+  suunas mööda Viru tänav“. See kõlab ruumiliselt sellest suunast, kus asi on.
 - **Helimajakas** *(audio beacon)*: kui valite sihtkoha, kõlab kõrvaklappides
   ühtlane korduv heli sihtkoha suunast. Kui pöörate, heli „liigub“ kaasa, nii et
   sihtkohta saab minna kuulmise järgi.
@@ -89,7 +89,7 @@ sõidusuuna.
 **Inglise keeles:** „Traveling north“, „Traveling north along Viru tänav“.
 
 **Kuidas see praegu kõlab:** „Liigub põhja suunas“, „Liigub põhja suunas mööda
-Viru tänavat“.
+Viru tänav“.
 
 **Mis meid kahtlema paneb:** lausel pole alust („liigub“ – kes?).
 

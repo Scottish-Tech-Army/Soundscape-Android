@@ -31,8 +31,8 @@ da se človek lahko sam orientira.
 Nekaj pojmov, ki se pojavljajo v vprašanjih:
 
 - **Zvočno obvestilo** *(callout)*: kratko govorjeno sporočilo o nečem, mimo česar
-  greste, na primer „Kavarna“, „Pločnik ob Slovenski cesti“ ali „Hoja proti severu
-  po Slovenski cesti“. Sliši se prostorsko, iz smeri, kjer je ta stvar.
+  greste, na primer „Kavarna“, „Pločnik ob Slovenska cesta“ ali „Hoja proti severu
+  po Slovenska cesta“. Sliši se prostorsko, iz smeri, kjer je ta stvar.
 - **Zvočni svetilnik** *(audio beacon)*: ko izberete cilj, se v slušalkah oglaša
   enakomeren, ponavljajoč se zvok iz smeri cilja. Ko se obrnete, se zvok
   „premakne“, tako da lahko do cilja pridete po sluhu.

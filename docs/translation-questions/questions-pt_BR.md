@@ -31,7 +31,7 @@ diz em voz alta o que há por perto, para que a pessoa se oriente sozinha.
 Alguns conceitos que aparecem nas perguntas:
 
 - **Notificação** *(callout)*: uma mensagem falada curta sobre algo pelo qual
-  você passa, por exemplo "Café", "Calçada ao lado da Rua Augusta" ou "Indo
+  você passa, por exemplo "Café", "Calçada ao lado de Rua Augusta" ou "Indo
   para norte ao longo da Rua Augusta". Ela é ouvida em som 3D, vindo da direção
   onde está aquilo que foi citado.
 - **Sinalizador sonoro** *(audio beacon)*: quando você escolhe um destino, um
