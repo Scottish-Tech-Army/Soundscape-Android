@@ -72,7 +72,7 @@ preposition governs, not in the dictionary form.
 Open side: the same `%2$s` slot is also filled with destination names from map
 data, which arrive undeclined (question 1 below).
 
-### UK-G2 — Direction callouts use the label form «напрямок: X» (`agreed`, reporter 2026-09-25)
+### UK-G2 — Direction callouts use the label form «напрямок: X» (`confirmed`, reporter 2026-09-25; live 2026-09-25)
 
 The reporter, answering the open question about undeclined destinations:
 
@@ -161,8 +161,8 @@ change was never the mechanical swap it appeared to be (rule C3).
    …») and `street_description_*` («між / до / після …»).
 2. **Confirm the two locked terms.** «звуковий маячок» and «мітка» are
    `confirmed`. Say if either should move.
-3. **The four detail levels** (Докладний / Збалансований / Тихий / Беззвучний):
-   distinct by ear?
+   3. **The four detail levels** (Докладний / Збалансований / Тихий / Беззвучний):
+      distinct by ear?
 
 *Answered and closed: undeclined destination names → the label form (UK-G2, 2026-09-25). The two callout questions, see "Rejected"; the guided-tutorial term, confirmed OK 2026-09-21; register, formal «ви» confirmed 2026-09-21.*
 
@@ -219,4 +219,6 @@ found no «маршрутна точка» or «посібник» left anywhere
 
 **2026-09-25 — truncation repaired (C16).** `faq_background_battery_impact_answer` had been cut down to a fragment by an AI pass on 2026-08-19 → 22. Restored from the complete pre-damage translation in git history (English unchanged since), uploaded and verified live.
 
-**2026-09-25 — reporter answered question 1 (undeclined destinations).** Chose approach (c), the label form. Recorded as UK-G2 (4 units ready in `/tmp/weblate-review/uk-findings.json`, not uploaded), with UK-G1's genitive dead end rejected. The sweep found 54 more preposition + map-name templates (UK-G3), now question 1.
+**2026-09-25 — reporter answered question 1 (undeclined destinations).** Chose approach (c), the label form. Recorded as UK-G2 (4 units), with UK-G1's genitive dead end rejected. The sweep found 54 more preposition + map-name templates (UK-G3), now question 1.
+
+**2026-09-25 — UK-G2 applied.** The 4 units uploaded and verified live: `confect_name_to`, `confect_name_to_via`, `directions_towards_settlement`, `confect_name_dead_end` («тупик»).

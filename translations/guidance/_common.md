@@ -143,6 +143,8 @@ warn any of them.
 > and sl «do slepa ulica» (all need the genitive). The English comment said
 > only "Dead end road description".
 >
+> **Update (2026-09-25):** uk no longer uses the genitive here. Its templates switched to the label form «%1$s, напрямок: %2$s», and the dead end is the nominative «тупик» again (C17, `uk.md` UK-G2).
+>
 > **Addendum (2026-09-24):** Icelandic has it too. «til blindgata» should be
 > genitive «til blindgötu» (`is.md` IS-G1). Bulgarian is correctly absent,
 > since it has no noun case (`bg.md` BG-G1). A non-inflecting language can
