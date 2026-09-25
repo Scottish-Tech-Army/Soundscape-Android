@@ -387,7 +387,7 @@
     <string name="faq_sleep_mode_battery_question">Hur minskar jag Soundscapes påverkan på telefonens batteri genom att använda viloläget?</string>
     <string name="faq_sleep_mode_battery_answer">För att sätta Soundscape i viloläge väljer du knappen *"Inaktivera"* uppe till höger på skärmen. När du gör det kommer Soundscape att sluta använda Platstjänster och mobildata tills du själv väljer att väcka den igen.</string>
     <string name="faq_snooze_mode_battery_question">Hur minskar jag Soundscapes påverkan på telefonens batteri genom att använda snoozeläget?</string>
-    <string name="faq_snooze_mode_battery_answer">För att sätta Soundscape i snoozeläge väljer du knappen *\"Inaktivera\"* uppe till höger på skärmen. När Soundscape är i viloläge trycker du på knappen *\"Väck mig när jag lämnar\"* så går Soundscape ner i ett lågeffekttillstånd tills du lämnar din nuvarande plats.\n</string>
+    <string name="faq_snooze_mode_battery_answer">För att sätta Soundscape i snoozeläge väljer du knappen *\\"Inaktivera\\"* uppe till höger på skärmen. När Soundscape är i viloläge trycker du på knappen *\\"Väck mig när jag lämnar\\"* så går Soundscape ner i ett lågeffekttillstånd tills du lämnar din nuvarande plats.\n</string>
     <string name="faq_headset_battery_impact_question">Påverkar valet av hörlurar telefonens batteritid?</string>
     <string name="faq_headset_battery_impact_answer">Enligt våra tester är Bluetooth-hörlurarnas batteriförbrukning jämförbar med sladdförsedda hörlurar och detta bör inte vara något du behöver ta hänsyn till när du väljer hörlurar.</string>
     <string name="faq_background_battery_impact_question">Hur påverkas telefonens batteri när jag kör Soundscape i bakgrunden?</string>
