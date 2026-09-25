@@ -254,6 +254,10 @@ These are the questions in `translations/review/fr.md`, in the same order.
 
 ---
 
+## fr_CA is derived from this file
+
+Since 2026-09-25, Canadian French is built from our French plus a Canadian layer (see `fr_CA.md`). Any change decided here (FR-T1, FR-T2, FR-G1) should be carried to fr_CA in the same pass.
+
 ## Provenance
 
 **2026-04 → 2026-09-24 — AI translation passes only.** Every commit to
