@@ -425,7 +425,7 @@
     <string name="faq_sleep_mode_battery_question">Jak użyć Trybu uśpienia, aby zminimalizować wpływ Soundscape na baterię telefonu?</string>
     <string name="faq_sleep_mode_battery_answer">Aby przełączyć Soundscape w Tryb uśpienia, wybierz przycisk *„Tryb uśpienia”* w prawym górnym rogu ekranu. Po wybraniu tej opcji Soundscape przestanie korzystać z Usług lokalizacji oraz z danych komórkowych, aż do momentu, gdy zdecydujesz się ją ponownie obudzić.\n</string>
     <string name="faq_snooze_mode_battery_question">Jak użyć Trybu drzemki, aby zminimalizować wpływ Soundscape na baterię telefonu?</string>
-    <string name="faq_snooze_mode_battery_answer">Aby włączyć Tryb drzemki, wybierz przycisk *„Tryb uśpienia”* w prawym górnym rogu ekranu. Gdy Soundscape znajdzie się w Trybie uśpienia, wybierz przycisk *„Obudź mnie, gdy opuszczę to miejsce”*, a aplikacja przejdzie w stan niskiego zużycia energii, dopóki nie opuścisz swojej bieżącej lokalizacji.\n</string>
+    <string name="faq_snooze_mode_battery_answer">Aby włączyć Tryb drzemki, wybierz przycisk *„Tryb uśpienia”* w prawym górnym rogu ekranu. Gdy Soundscape znajdzie się w Trybie uśpienia, wybierz przycisk *„Obudź mnie, gdy opuszczę to miejsce”*, a aplikacja przejdzie w stan niskiego zużycia energii, dopóki nie opuścisz swojej bieżącej lokalizacji.</string>
     <string name="faq_headset_battery_impact_question">Jak wybór słuchawek wpływa na czas pracy baterii w moim telefonie?</string>
     <string name="faq_headset_battery_impact_answer">W naszych testach zużycie baterii przez słuchawki Bluetooth jest porównywalne z słuchawkami przewodowymi i nie powinno być istotnym czynnikiem przy wyborze słuchawek.</string>
     <string name="faq_background_battery_impact_question">Jak uruchomienie Soundscape w tle wpływa na czas pracy baterii mojego telefonu?</string>
@@ -1601,4 +1601,6 @@
     <string name="siri_param_level">Poziom</string>
     <string name="siri_desc_callout_detail">Ustawia, jak dużo Soundscape mówi podczas chodzenia.</string>
     <string name="intersection_approaching_intersection_distance">Skrzyżowanie za %1$s</string>
+    <string name="microsoft_copyright">[Oryginalna aplikacja Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) dostarczyła dźwięki naprowadzające i wiele tłumaczeń i jest udostępniona do użytku na warunkach [licencji MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Wolontariusze [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) ulepszyli kilka tłumaczeń, które są udostępnione do użytku na warunkach [licencji MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
