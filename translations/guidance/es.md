@@ -47,7 +47,9 @@ since May; treat `confirmed` as "confirmed then, unswept since" rather than
 
 ## Rules
 
-### ES-R1 — Informal «tú» everywhere, no exceptions (`agreed`, Dave's decision overrides JJ's stated rationale)
+### ES-R1 — Informal «tú» everywhere, no exceptions (`confirmed` by JJ, 2026-09-24)
+
+**JJ, #881 (2026-09-24):** *"thanks for making the entire text informal. I liked your decision because the default Android Spain Spanish hints are written with informal Spanish."* The original rationale follows.
 
 JJ's stated plan (issue #881, opening comment): convert the app from formal to
 informal/friendly pronouns and conjugations "to match the more friendly tone
@@ -96,7 +98,9 @@ help)** was already informal before this sweep, despite living under `help_*`
 — it just happened to already match where the rule ended up. No longer an
 inconsistency to flag; left as-is.
 
-### ES-R2 — The informal "tap" verb is «Pulsa», not «Toca» (`agreed`, evidenced by corpus consistency)
+### ES-R2 — The informal "tap" verb is «Pulsa», not «Toca» (`confirmed` by JJ, 2026-09-24)
+
+**JJ, #881:** *"it was a good thing you chose 'pulsa' to match the Microsoft heritage. Toca will still be the default in Android because that's what TalkBack uses, and we can't change that. It doesn't matter if iOS doesn't match Android as long as everyone can understand."* So iOS VoiceOver (our template) says «Pulsa» and Android TalkBack (its own frame, C13) says «Toca». That divergence is **expected**, so don't "align" it.
 
 JJ's messages about this are genuinely ambiguous on their own: he discusses
 matching Android's own TalkBack Spanish ("Toca dos veces para", informal
@@ -120,17 +124,9 @@ Nothing yet — no feedback in this thread was proposed and then turned down.
 
 ## Open questions for the reporter (JJ / next native-speaker round)
 
-These are the questions in `translations/review/es.md` (Q1…Q6), refreshed
-2026-09-25 against the live corpus.
+These are from `translations/review/es.md`. JJ answered Q1 and Q2 on
+2026-09-24 (#881). Q3–Q5 are still open.
 
-1. **Confirm «Pulsa» over «Toca»** for the double-tap verb (ES-R2).
-2. **`faq_snooze_mode_battery_answer` names a button that doesn't exist**:
-   «Reactivar cuando salgas» vs the real `sleep_wake_on_leave` «Reactivar al
-   salir». **This is a source bug (C7):** the English FAQ says *Wake up when I
-   leave* but the English button is "Wake On Leave", so every language
-   inherited the mismatch. **English fixed 2026-09-25** (now *Wake On Leave*).
-   Weblate will flag this FAQ answer in every language once it pulls the new
-   source. JJ's answer decides the Spanish button wording.
 3. **«Sendero a Callejón sin salida»**: a capital mid-sentence and no article
    (the FR-G1 pattern). Candidate: «hacia un callejón sin salida».
 4. **«¡Bienvenido!» / «Bienvenido al tutorial» are masculine, and «¡Ya está
@@ -138,9 +134,17 @@ These are the questions in `translations/review/es.md` (Q1…Q6), refreshed
    bienvenida!», «¡Todo listo!».
 5. **`sleep_sleeping` «Suspendiendo»** sounds in-progress. Candidate: «En
    suspensión».
-6. Anything else.
 
-*Answered and closed: «sobre de» in `first_launch_callouts_listen`, fixed in the 2026-09-24 upload («sobre lo que»). The two-register question — Dave decided informal
+*Answered and closed:* **Q1 «Pulsa»**, confirmed (ES-R2). **Q2, the FAQ
+button name** (`faq_snooze_mode_battery_answer`): JJ explained that
+Microsoft's FAQ said «Reactivar cuando salga» because Microsoft's iOS button
+had a *separate VoiceOver label*, `sleep_wake_up_when_i_leave` ("Wake Up When
+I Leave"), while sighted users saw `sleep_ui_wake_on_leave` ("Wake On\nLeave").
+That's true of Microsoft's app and of Soundscape Community. **It isn't true
+of ours:** `SharedSleepScreen.kt` puts `sleep_wake_on_leave` on the button as
+plain text, so VoiceOver and TalkBack both read «Reactivar al salir». The
+English FAQ was corrected to match (2026-09-25), and the Spanish FAQ should
+say «Reactivar al salir» (`agreed`, to be done when Weblate flags the string). *Also closed:* «sobre de» in `first_launch_callouts_listen`, fixed in the 2026-09-24 upload («sobre lo que»). The two-register question — Dave decided informal
 everywhere, no FAQ exception (2026-09-24, see ES-R1). The
 `help_text_assistant_*` register — already informal, already correct under
 the new rule.*
@@ -148,6 +152,17 @@ the new rule.*
 ---
 
 ## Provenance
+
+**2026-09-24 — JJ, GitHub #881 (comment 5821176033).** Confirmed ES-R1 (informal
+everywhere) and ES-R2 («Pulsa» on iOS, with «Toca» expected from Android
+TalkBack). Said «sobre de» was a Microsoft error that he had also fixed in
+Soundscape Community, and explained Microsoft's separate VoiceOver label for
+the Wake On Leave button (see the closed Q2). For context, he maintains a
+**formal** Latin American Spanish translation in Soundscape Community, both to
+match Microsoft's usual style (Soundscape, Seeing AI, Teams) and to avoid
+clashing with Android's Latin American hints. That concerns a different
+project and a different locale, so it doesn't reopen ES-R1 for our `es`. If
+this project ever adds `es_419`, that's where his reasoning applies.
 
 **2024-07 → 2024-09 — Microsoft baseline.** The oldest ~360 strings were
 copied from Microsoft's professional es-ES localisation of the iOS app (see
