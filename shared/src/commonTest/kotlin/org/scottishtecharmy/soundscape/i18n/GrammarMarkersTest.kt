@@ -421,4 +421,54 @@ class GrammarMarkersTest {
         assertEquals("Teel Tallinn–Tartu 2", et("{Teel Tallinn–Tartu 2}"))
         assertEquals("Tänaval E20", et("{Tänaval E20}"))
     }
+
+    // --- French (names from the Paris extract) ----------------------------------------------
+
+    private fun fr(text: String) = resolveGrammarMarkers(text)
+
+    @Test
+    fun frenchStreetTypesTakeTheirArticle() {
+        assertEquals("En direction du nord le long de la rue de Rivoli", fr("En direction du nord le long {de Rue de Rivoli}"))
+        assertEquals("Sur le boulevard Haussmann", fr("{Sur Boulevard Haussmann}"))
+        assertEquals("Vous approchez de l’avenue des Lys", fr("Vous approchez {de Avenue des Lys}"))
+        assertEquals("Trottoir à côté du chemin du Midi", fr("Trottoir à côté {de Chemin du Midi}"))
+        assertEquals("Sentier au passage des Hirondelles", fr("Sentier {à Passage des Hirondelles}"))
+        assertEquals("Immobile sur l’allée du Bois Ribot", fr("Immobile {sur Allée du Bois Ribot}"))
+    }
+
+    @Test
+    fun frenchPlaceTypesKeepTheirCapital() {
+        assertEquals("À proximité du Lycée Marie Curie", fr("À proximité {de Lycée Marie Curie}"))
+        assertEquals("À proximité de l’École maternelle Brunet", fr("À proximité {de École maternelle Brunet}"))
+        assertEquals("Au Centre Pompidou", fr("{À Centre Pompidou}"))
+    }
+
+    @Test
+    fun frenchNamesWithTheirOwnArticleContract() {
+        assertEquals("Vous approchez du Bon Marché", fr("Vous approchez {de Le Bon Marché}"))
+        assertEquals("À proximité des Halles", fr("À proximité {de Les Halles}"))
+        assertEquals("Aux Halles", fr("{À Les Halles}"))
+        assertEquals("vers Le Havre, à 5 km", fr("{vers Le Havre}, à 5 km"))
+        assertEquals("près de La Défense", fr("près {de La Défense}"))
+    }
+
+    @Test
+    fun frenchDeElidesBeforeAVowel() {
+        assertEquals("près d’Orléans", fr("près {de Orléans}"))
+        assertEquals("près de Montmartre", fr("près {de Montmartre}"))
+    }
+
+    @Test
+    fun frenchDeadEndGetsItsArticle() {
+        assertEquals("Sentier à l’impasse", fr("Sentier {à impasse}"))
+    }
+
+    @Test
+    fun frenchRealTemplatesResolve() {
+        assertEquals(
+            "Sur la rue de Rivoli entre la rue du Louvre et le boulevard de Sébastopol",
+            fr("{Sur Rue de Rivoli} {entre Rue du Louvre} {et Boulevard de Sébastopol}"),
+        )
+        assertEquals("Sur la rue de Rivoli, 50 m jusqu’à la place du Châtelet", fr("{Sur Rue de Rivoli}, 50 m jusqu’{à Place du Châtelet}"))
+    }
 }

@@ -128,22 +128,26 @@ naturels et bien distincts ?
 **La question :** ça vous convient pour ce type d'application, ou le tutoiement
 serait-il plus naturel ?
 
-## Q5 — Les noms de lieux après « de » et « à »
+## Q5 — Les articles devant les noms de lieux
 
 **Quand on l'entend :** dans de nombreuses annonces en marchant.
 L'application insère les noms de lieux tels qu'ils sont dans la carte.
 
-**Ce que dit l'application :** elle ne sait pas faire les contractions, ce qui
-donne par exemple :
+**Ce que dit l'application :** jusqu'ici, elle ne savait pas ajouter ni contracter
+l'article (« Vous approchez de **Le Bon Marché** », « le long de **Rue de
+Rivoli** »). Elle le fait désormais elle-même :
 
-- « Vous approchez de **Le Bon Marché** » (au lieu de « du Bon Marché »)
-- « À proximité de **Les Halles** » (au lieu de « des Halles »)
+- « Vous approchez **du Bon Marché** », « À proximité **des Halles** »
+- « En direction du nord le long **de la rue de Rivoli** », « Sur **le boulevard
+  Haussmann** », « Trottoir à côté **de l’allée** du Bois Ribot »
+- « À proximité **du Lycée** Marie Curie », « près **d’Orléans** »
+- mais « vers Le Havre », « près de La Défense » (l'article du nom reste tel quel)
 
-**Ce qui nous fait hésiter :** le corriger demande du travail de programmation ;
-nous voulons savoir si ça en vaut la peine.
+**Ce qui nous fait hésiter :** les règles viennent d'une liste de types de voies
+et de lieux ; certains cas nous échappent peut-être.
 
-**La question :** à l'écoute, est-ce gênant au point qu'il faudrait le corriger,
-ou est-ce que ça passe ?
+**La question :** est-ce que ça sonne juste ? Avez-vous remarqué un nom qui sort
+mal ?
 
 ## Q6 — « Intersection » ou « carrefour » ?
 
@@ -175,7 +179,7 @@ L'application dit où mène ce chemin.
 
 **En anglais :** « Path to Moor Road », « Path to dead end ».
 
-**Ce que dit l'application :** « Chemin à Moor Road », « Chemin à impasse ».
+**Ce que dit l'application :** « Chemin à Moor Road », « Chemin à l’impasse ».
 
 **Ce qui nous fait hésiter :** nous pensons que ce n'est pas correct.
 

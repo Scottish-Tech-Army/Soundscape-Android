@@ -3,7 +3,8 @@ package org.scottishtecharmy.soundscape.i18n
 /**
  * Resolves the "either form" markers that translators write when a word's form depends on the
  * text a placeholder is replaced with, e.g. Hungarian «a(z) %1$s», Korean «%1$s을(를)»,
- * Turkish «%1$s'{DA}», Finnish «{Tiellä %1$s}» or Estonian «{Tänaval %1$s}».
+ * Turkish «%1$s'{DA}», Finnish «{Tiellä %1$s}», Estonian «{Tänaval %1$s}» or French
+ * «le long {de %1$s}».
  *
  * A translation can't pick the right form because it doesn't know the street or place name that
  * will be filled in, so it writes both. On screen that's merely awkward, but a screen reader
@@ -16,7 +17,7 @@ package org.scottishtecharmy.soundscape.i18n
 fun resolveGrammarMarkers(text: String): String {
     if ('(' !in text && '{' !in text) return text
     val hungarian = resolveHungarianArticles(resolveHungarianTerminative(resolveHungarianRoadCase(text)))
-    val finnic = resolveEstonianRoadCase(resolveFinnishRoadCase(hungarian))
+    val finnic = resolveEstonianRoadCase(resolveFinnishRoadCase(resolveFrenchArticles(hungarian)))
     return resolveTurkishSuffixes(resolveKoreanParticles(finnic))
 }
 
@@ -513,4 +514,86 @@ private fun estonianAdessive(name: String): String? {
         return "$last tänaval"
     }
     return null
+}
+
+// ---------------------------------------------------------------------------------------------
+// French: articles and contractions around a map name, «le long {de %1$s}».
+// ---------------------------------------------------------------------------------------------
+
+// French puts an article before a street or place type and contracts it with «de» / «à»: «le
+// long de la rue de Rivoli», «au boulevard Haussmann», «près du Lycée Marie Curie», «aux Halles».
+// A template can't know the name, so it wraps the preposition and the name, «{de %1$s}», and this
+// adds or contracts the article. Only the prepositions below are recognised, so no other brace is
+// touched, and a template with a distance or a count in that slot simply isn't wrapped.
+private val frenchArticle = Regex("\\{(de|De|à|À|sur|Sur|vers|Vers|entre|et|après|avant|depuis) ([^{}]+)\\}")
+
+private enum class FrenchGender { M, F }
+
+private class FrenchType(val gender: FrenchGender, val elides: Boolean, val lowercase: Boolean)
+
+// Road words are written lowercase after the article («la rue de Rivoli»); place words keep the
+// name's capital («le Centre Pompidou»). Measured against the Paris extract (2026-09), road words
+// open 96% of its 73,000 street names. Quebec's rang, côte, montée and croissant are included.
+private val frenchTypes: Map<String, FrenchType> = buildMap {
+    fun road(g: FrenchGender, elides: Boolean, vararg words: String) =
+        words.forEach { put(it, FrenchType(g, elides, lowercase = true)) }
+    fun place(g: FrenchGender, elides: Boolean, vararg words: String) =
+        words.forEach { put(it, FrenchType(g, elides, lowercase = false)) }
+    road(FrenchGender.F, false, "rue", "route", "place", "sente", "villa", "ruelle", "résidence", "voie",
+        "cour", "promenade", "cité", "passerelle", "venelle", "montée", "rampe", "traverse", "piste",
+        "berge", "digue", "galerie", "côte", "terrasse", "boucle")
+    road(FrenchGender.F, true, "allée", "avenue", "impasse", "esplanade", "autoroute")
+    road(FrenchGender.M, false, "chemin", "square", "sentier", "passage", "boulevard", "rond-point",
+        "clos", "quai", "mail", "pont", "hameau", "cours", "carrefour", "tunnel", "parvis", "faubourg",
+        "rang", "croissant", "lotissement", "domaine")
+    place(FrenchGender.F, false, "pharmacie", "maison", "mairie", "crèche", "boucherie", "gare", "salle",
+        "boulangerie", "porte", "bibliothèque", "piscine", "station", "banque", "poste", "clinique")
+    place(FrenchGender.F, true, "école", "église")
+    place(FrenchGender.M, false, "centre", "collège", "gymnase", "lycée", "château", "stade", "café",
+        "cimetière", "marché", "musée", "théâtre", "cinéma", "restaurant", "supermarché", "magasin",
+        "parc", "jardin", "parking")
+    place(FrenchGender.M, true, "hôtel", "espace", "institut", "atelier", "hôpital")
+}
+
+private const val FRENCH_VOWELS = "aeiouyàâéèêëîïôûüœAEIOUYÀÂÉÈÊËÎÏÔÛÜŒ"
+
+internal fun resolveFrenchArticles(text: String): String {
+    if ('{' !in text) return text
+    return frenchArticle.replace(text) { match -> frenchPhrase(match.groupValues[1], match.groupValues[2]) }
+}
+
+private fun frenchPhrase(preposition: String, name: String): String {
+    val first = name.substringBefore(' ')
+    val rest = name.substring(first.length)
+    val lower = preposition.lowercase()
+    val capital = preposition[0].isUpperCase()
+    fun cap(s: String) = if (capital) s.replaceFirstChar { it.uppercaseChar() } else s
+
+    // «de» + le = du, les = des; «à» + le = au, les = aux. Anything else keeps the article whole.
+    fun withArticle(article: String): String = when {
+        lower == "de" && article == "le " -> cap("du ")
+        lower == "de" && article == "les " -> cap("des ")
+        lower == "à" && article == "le " -> cap("au ")
+        lower == "à" && article == "les " -> cap("aux ")
+        else -> "$preposition $article"
+    }
+
+    frenchTypes[first.lowercase()]?.let { type ->
+        val article = when {
+            type.elides -> "l’"
+            type.gender == FrenchGender.M -> "le "
+            else -> "la "
+        }
+        val word = if (type.lowercase) first.lowercase() else first
+        return withArticle(article) + word + rest
+    }
+    // A name that brings its own «Le» / «Les» contracts it («du Bon Marché», «aux Halles»); with
+    // any other preposition the article stays as the name writes it («vers Le Havre»).
+    if ((first == "Le" || first == "Les") && rest.isNotEmpty() && (lower == "de" || lower == "à")) {
+        return withArticle(first.lowercase() + " ") + rest.trimStart()
+    }
+    if (lower == "de" && name.isNotEmpty() && name[0] in FRENCH_VOWELS) {
+        return cap("d’") + name
+    }
+    return "$preposition $name"
 }
