@@ -48,8 +48,10 @@ See C15. «È tutto pronto!» avoids gender.
 templates with a, di, da, in or su before a map name now wrap it, «{it:a %1$s}»,
 and `resolveGrammarMarkers()` (C18) fuses the article. Nothing is added before
 via, piazza or corso, which Italian says without an article («su Via Roma»).
-**New templates must wrap map-name prepositions.** Separately noticed, not
-changed: `directions_near_name` «Vicino %1$s» lacks the «a» of «vicino a».
+**New templates must wrap map-name prepositions.** `directions_near_name` and
+`directions_near_road_and_settlement` said «Vicino %1$s», without the «a» of
+«vicino a»; fixed 2026-09-25 as «Vicino {it:a %1$s}» («Vicino a Via Roma»,
+«Vicino alla Scala»).
 
 ## Rejected
 
