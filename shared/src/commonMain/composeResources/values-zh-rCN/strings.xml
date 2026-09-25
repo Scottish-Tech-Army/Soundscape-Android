@@ -929,7 +929,7 @@
     <string name="faq_sleep_mode_battery_question">如何使用休眠模式来减少Soundscape对手机电池的影响？</string>
     <string name="faq_sleep_mode_battery_answer">要将 Soundscape 设为休眠模式，请点击屏幕右上角的*\"休眠\"*按钮。选择此项后，Soundscape 将停止使用定位服务和移动数据，直到您选择再次唤醒它。\n</string>
     <string name="faq_snooze_mode_battery_question">如何使用小睡模式来减少Soundscape对手机电池的影响？</string>
-    <string name="faq_snooze_mode_battery_answer">要将 Soundscape 设为小睡模式，请点击屏幕右上角的*\"休眠\"*按钮。进入休眠模式后，选择*\"离开时唤醒\"*按钮，Soundscape 将进入低功耗状态，直到您离开当前位置时再唤醒。\n</string>
+    <string name="faq_snooze_mode_battery_answer">要将 Soundscape 设为小睡模式，请点击屏幕右上角的*\\"休眠\\"*按钮。进入休眠模式后，选择*\\"离开时唤醒\\"*按钮，Soundscape 将进入低功耗状态，直到您离开当前位置时再唤醒。\n</string>
     <string name="faq_headset_battery_impact_question">耳机的选择如何影响手机的电池续航？</string>
     <string name="faq_headset_battery_impact_answer">在我们的测试中，蓝牙耳机的电池消耗与有线耳机相当，在选择耳机时不应将其视为重要考虑因素。</string>
     <string name="faq_background_battery_impact_question">在后台运行Soundscape对手机电池续航有什么影响？</string>
