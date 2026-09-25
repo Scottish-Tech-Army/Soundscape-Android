@@ -86,9 +86,12 @@ Numbered as on the questionnaire.
 1. Callout «notification»: natural, or «annonce»? It clashes with the phone's
    own notifications. The term came over from French, which is AI-only.
 2. Beacon «balise sonore»: natural? Also from French, AI-only.
-3. «Sentier vers une impasse»? (FRCA-G1)
+3. «Sentier vers une impasse»? The app now says «Sentier vers l’impasse» (FR-G2
+   adds the article). (FRCA-G1)
 4. «Tout est prêt!» instead of «Vous êtes prêt!»? (FRCA-R1)
-5. Anything else.
+5. Articles now added before street names («sur la rue Sainte-Catherine», «le long
+   du boulevard Saint-Laurent»). Right for Quebec? (FR-G2)
+6. Anything else.
 
 ## Provenance
 

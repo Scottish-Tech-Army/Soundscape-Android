@@ -170,7 +170,7 @@ nominative is natural.
 > The dead-end string then went back to the nominative «тупик».
 
 The same problem is recorded, unresolved, as IS-G2 (Icelandic), PL-G1's open
-side (Polish) and FR-G2 (French contractions). HU-A1 (Hungarian «a(z)») and
+side (Polish). FR-G2 (French contractions), HU-A1 (Hungarian «a(z)») and
 TR-G1 (Turkish suffixes) are now resolved in code, see C18. The label form is the candidate fix to put to each
 language's reviewer. It isn't a rule to apply unasked, because it changes
 how the callout sounds. Finnish already dodges it with «kohteeseen %2$s».
@@ -191,6 +191,7 @@ screens.
 | hu | «a(z)», «A(z)» | first sound of the next word: vowel → «az»; letter names (az M7, az SZTE) and numbers (az 1, az 5, a 12) by how they're said |
 | fi | «{Tiellä %1$s}», «{Kadulla %1$s}» | the name's street-word ending takes the adessive (-tie → -tiellä, -katu → -kadulla, -mäki → -mäellä), a leading Vanha / Itäinen / Toinen… declines too; a name without a known ending keeps the label («Tiellä Almas väg») |
 | et | «{Teel %1$s}», «{Tänaval %1$s}» | the name's street word takes the adessive (maantee → maanteel, põik → põigul, mnt → maanteel); a single-word name is a «tänav» street, so «Metsa» → «Metsa tänaval»; anything else keeps the label |
+| fr, fr_CA | «{de %1$s}», «{à %1$s}», «{sur %1$s}», «{vers %1$s}», «{entre %2$s}», «{et %3$s}», «{après / avant / depuis %2$s}» | a street or place type gets its article, contracted with de/à (le long de la rue de Rivoli, au boulevard Haussmann, près du Lycée Marie Curie, l’impasse); a name's own Le/Les contracts (du Bon Marché, aux Halles); «de» elides before a vowel (d’Orléans) |
 | hu | «%3$s{-ig}» | terminative written onto the name: a/e lengthen (utcáig, teréig, Astoriáig), else «ig» (térig); numbers and abbreviations take «-ig» (M7-ig) |
 | hu | «%1$s{úton}» | the name's own street word takes the "on" case (Andrássy út → úton, Váci utca → utcán, Deák tér → téren, Hősök tere → terén); a name without one gets « úton» |
 | ko | 을(를), 이(가), 은(는), 과(와) and the reversed forms, (으)로, (이) | final consonant of the preceding syllable; ㄹ takes 로; numbers in Sino-Korean, Latin by letter name or spelling |

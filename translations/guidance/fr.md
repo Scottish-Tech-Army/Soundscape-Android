@@ -90,24 +90,24 @@ The same `%2$s` slot also receives destination names straight from
 OpenStreetMap. «Sentier à Rue de la Paix» has the same problem and no article
 can fix it. See FR-G2.
 
-### FR-G2 — Place names from OpenStreetMap can't contract with «de» / «à» (`unconfirmed`, inventory only)
+### FR-G2 — Articles and contractions around map names (`fixed` in code, 2026-09-25)
 
-Many templates put a raw OSM name after a preposition: `directions_near_name`
-«À proximité de %1$s», `directions_approaching_name` «Vous approchez de
-%1$s», `directions_on_road_at_junction` «Sur %1$s à %2$s», the
-`directions_along_*` family «le long de %1$s», and `confect_name_to`. Names
-that start with an article or a vowel then come out uncontracted:
+Templates put a raw map name after a preposition, so the app said «près de Le
+Bon Marché», «le long de Rue de Rivoli», «à Boulevard Haussmann». 51 templates
+(50 in fr_CA) now wrap the preposition and the name, «le long {de %1$s}», and
+`resolveGrammarMarkers()` (C18) adds and contracts the article:
+- a street type gets its article, lowercased: «de la rue de Rivoli», «au
+  boulevard Haussmann», «de l’allée du Bois Ribot»;
+- a place type gets its article and keeps its capital: «du Lycée Marie Curie»,
+  «de l’École maternelle Brunet»;
+- a name's own «Le» / «Les» contracts with de/à: «du Bon Marché», «aux Halles»,
+  and stays whole otherwise («vers Le Havre»);
+- «de» elides before a vowel: «d’Orléans».
 
-- «près de **Le** Bon Marché» (should be «du Bon Marché»)
-- «à **Le** Mans» (should be «au Mans»)
-- «de **A**venue Foch» (should be «d'Avenue Foch», or better «de l'avenue Foch»)
-
-No string edit can fix this, because the name only arrives at runtime. The
-options are code (contraction at substitution time) or restructuring
-templates so the name isn't directly governed («Près de : %1$s»). The code
-option is an all-Romance-languages decision (Italian, Spanish and Portuguese
-have the same contractions), so it belongs in `_common.md` once a speaker
-confirms how much it grates. See Q5.
+Road words open 96% of the 73,000 street names in the Paris extract. Only
+place-name placeholders are wrapped, never distances («à %2$s» stays). **New
+templates must wrap map-name prepositions.** Italian, Spanish and Portuguese have
+the same contractions and are not done yet.
 
 ### FR-B1 — `talkback_double_tap_template` was missing its space (`confirmed` fixed, 20 languages, 2026-09-24)
 
@@ -239,8 +239,8 @@ These are the questions in `docs/translation-questions/questions-fr.md`, in the 
    stop: «étape», «point de passage», something else? (FR-T2)
 3. **Sleep / Snooze names** — what would you call the two modes? (FR-T3)
 4. **«vous» or «tu»?** (FR-R1)
-5. **Place names after «de»/«à»** — how bad is «près de Le Bon Marché»
-   spoken aloud? Tolerable, or worth code changes? (FR-G2)
+5. **Articles before place names** are now added in code («près du Bon Marché»,
+   «le long de la rue de Rivoli»). Do they sound right? (FR-G2)
 6. **«intersection» or «carrefour»?**
 7. **«Se déplaçant vers le nord»** — natural, or how would you say it? (FR-S2)
 8. **Dead-end way:** «Sentier menant à une impasse», «Sentier sans issue», or

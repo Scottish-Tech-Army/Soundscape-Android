@@ -102,12 +102,12 @@ L'application dit où mène ce chemin.
 **En anglais :** « Path to Moor Road », « Path to dead end ».
 
 **Ce que dit l'application :** « Sentier vers Moor Road », « Sentier vers
-impasse ».
+l’impasse » (l'article est maintenant ajouté automatiquement).
 
-**Ce qui nous fait hésiter :** il manque un article devant « impasse ».
+**Ce qui nous fait hésiter :** « vers l’impasse » est peut-être moins naturel
+que « Sentier vers une impasse » ou « Sentier sans issue ».
 
-**La question :** « Sentier vers une impasse » est-il mieux, ou diriez-vous
-autre chose (« Sentier sans issue »…)?
+**La question :** lequel préférez-vous ?
 
 ### Q4 — « Vous êtes prêt! » *(Gendered "you're ready")*
 
@@ -122,7 +122,25 @@ personne, et le masculin ne convient pas à tout le monde.
 
 **La question :** « Tout est prêt! » serait-il mieux?
 
-### Q5 — Autre chose? *(Anything else)*
+### Q5 — Les articles devant les noms de lieux *(Articles now added in code)*
+
+**Quand on l'entend :** dans de nombreuses annonces en marchant.
+L'application insère les noms tels qu'ils sont dans la carte.
+
+**Ce que dit l'application :** elle ajoute maintenant l'article elle-même :
+« Sur **la rue** Sainte-Catherine », « le long **du boulevard** Saint-Laurent »,
+« près **de l’avenue** du Parc », « Trottoir à côté **du chemin** de la
+Côte-des-Neiges ». Un nom qui a son propre article le contracte (« près **du**
+Vieux-Port » pour « Le Vieux-Port »).
+
+**Ce qui nous fait hésiter :** les règles viennent d'une liste de types de voies
+faite surtout avec des noms de France ; des termes québécois (rang, montée, côte,
+croissant) y sont, mais il en manque peut-être.
+
+**La question :** est-ce que ça sonne juste au Québec ? Voyez-vous un type de voie
+qui sort mal ?
+
+### Q6 — Autre chose? *(Anything else)*
 
 Si une phrase sonne comme une traduction de l'anglais, est trop longue ou peu
 claire, dites-le-nous.
