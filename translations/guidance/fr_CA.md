@@ -12,19 +12,42 @@ Read with [`_common.md`](_common.md) and [`fr.md`](fr.md).
 
 ## Status of this file
 
-fr_CA has drifted a long way from both Microsoft's fr-CA and from fr, and the
-drift is interesting: it has **already made the changes `fr.md` asks French
-reviewers about**:
+**Baseline decided 2026-09-25 (Dave): fr_CA = our French + a Canadian layer,
+with Microsoft's fr-CA wherever it applies.** Before this, fr_CA had drifted
+into a second, independent AI translation: 272 of 769 interface strings
+differed from fr, only 8 of them because Microsoft's professional
+translators had made them differ. The rule now:
 
-| | Microsoft fr-CA | fr_CA now | fr now |
-|---|---|---|---|
-| Waypoint | Point de repère | **Point de cheminement** | Point de repère |
-| Callout | notifications | **annonces** | notifications (mostly) |
-| Beacon | Balise sonore | Balise audio | Balise sonore |
+1. **Interface and help strings Microsoft's fr-CA had, with the same
+   English** → Microsoft's fr-CA text (iOS parity, C14), except where a
+   Microsoft error was already identified.
+2. **Every other interface string** → our French, plus the Canadian layer:
+   - no space before ? ! ; (a space stays before : and »), as Microsoft's
+     fr-CA did
+   - «appli(s)» for "app(s)" (≈60 uses in Microsoft's fr-CA)
+   - «dépanneur(s)» for «supérette(s)», «guichet(s) automatique(s)
+     bancaire(s)» for «distributeur(s) de billets», «balado(s)» for
+     «podcast(s)»
+3. **POI names (`osm_*`) are left as they are.** They already carry
+   Québec usage that French lacks («Dépanneur», «Stationnement», «Hôtel de
+   ville», «Guichet automatique bancaire», «Centre de jardinage»).
+4. **Terms follow French** (Dave): «point de repère» (Waypoint), «balise
+   sonore» (Beacon), and French's Callout usage. fr_CA's own «point de
+   cheminement», «annonce» and «balise audio» are gone. «balise sonore» is
+   unified even where Microsoft's fr-CA said «balise audio», matching what
+   French did.
 
-So FR-T1 and FR-T2 have a live precedent. Whatever the French reviewers
-decide, decide it for both, or record why they differ. Questions:
-`translations/review/fr_CA.md` (Q1…Q6).
+**Rule for future passes:** translate fr first, then derive fr_CA by the
+layer above. Don't translate fr_CA independently, or the two drift apart
+again. Open French questions (FR-T1 callout, FR-T2 waypoint/landmark, FR-G1
+dead end) now apply to both, and should be decided once for both.
+
+Applied 2026-09-25: 277 + 3 units uploaded and verified live. Held back:
+`faq_sleep_mode_battery_answer` and `faq_snooze_mode_battery_answer` (their
+paragraph breaks differ from Microsoft's; the snooze one is re-flagged by
+the English button-name fix anyway), and `confect_name_to` /
+`confect_name_to_via`, which keep fr_CA's «vers» because French's «à» is
+the FR-G1 defect.
 
 ## Rules
 
@@ -74,3 +97,5 @@ sweep.** Nothing uploaded.
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_snoozing` «En veille» → «Désactivé temporairement».
 
 **2026-09-25 — Microsoft drift pass (C14): on hold.** Dave asked to re-examine fr_CA before anything is applied: 24 restores, 1 fix («de annonces» → «d'annonces») and three whole-language term questions (waypoint «cheminement», callout «annonce», beacon «audio»). Nothing uploaded.
+
+**2026-09-25 — rebuilt on the French baseline (Dave's decision).** 277 interface strings uploaded (54 Microsoft fr-CA restores, 223 our French + Canadian layer), plus 3 «balise audio» → «balise sonore». All verified live. This supersedes the drift-pass rows that were on hold.

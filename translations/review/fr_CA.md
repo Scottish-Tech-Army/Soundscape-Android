@@ -21,18 +21,9 @@ l'écoute*.
 
 ---
 
-**Q1 — « Point de cheminement » et « annonce »** *(Waypoint, Callout)*
-Les étapes d'un itinéraire s'appellent « points de cheminement », et les
-courts messages vocaux sur les environs (« Café », « Rue Sainte-Catherine à
-gauche ») s'appellent « annonces ». Ces mots vous semblent-ils justes ?
-
 **Q3 — « Sentier vers impasse »** *(Dead-end way description)*
 Pour un sentier sans issue, l'application dit « Sentier vers impasse ». « Sentier
 vers une impasse » est-il mieux ?
-
-**Q4 — « Balise audio » ou « balise sonore » ?** *(Beacon)*
-Le son continu qui vient de la direction de votre destination s'appelle
-« balise audio ». Préférez-vous « balise sonore » ?
 
 **Q5 — « Vous êtes prêt! »** *(Gendered "you're ready")*
 L'écran d'accueil dit « Vous êtes prêt! » (masculin). « Tout est prêt! »
