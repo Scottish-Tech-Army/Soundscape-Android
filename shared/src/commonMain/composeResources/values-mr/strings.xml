@@ -1454,7 +1454,7 @@
     <string name="faq_sleep_mode_battery_question">माझ्या फोनच्या बॅटरीवरील Soundscape चा परिणाम कमी करण्यासाठी मी झोप मोड कसा वापरू?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape ला झोप मोडमध्ये ठेवण्यासाठी, स्क्रीनच्या वरच्या उजव्या कोपऱ्यातील *झोप* बटण निवडा. हे निवडल्यावर, तुम्ही पुन्हा जागे करण्याचे ठरवेपर्यंत Soundscape Location Services आणि मोबाइल डेटा वापरणे बंद करेल.</string>
     <string name="faq_snooze_mode_battery_question">माझ्या फोनच्या बॅटरीवरील Soundscape चा परिणाम कमी करण्यासाठी मी स्नूझ मोड कसा वापरू?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape ला स्नूझ मोडमध्ये ठेवण्यासाठी, स्क्रीनच्या वरच्या उजव्या कोपऱ्यातील *झोप* बटण निवडा. Soundscape झोप मोडमध्ये गेल्यावर, *मी निघेन तेव्हा जागे करा* बटण निवडा आणि तुम्ही तुमचे सध्याचे स्थान सोडेपर्यंत Soundscape कमी-पॉवर स्थितीत जाईल.</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape ला स्नूझ मोडमध्ये ठेवण्यासाठी, स्क्रीनच्या वरच्या उजव्या कोपऱ्यातील *झोप मोड* बटण निवडा. Soundscape झोप मोडमध्ये गेल्यावर, *सोडल्यावर जागे व्हा* बटण निवडा आणि तुम्ही तुमचे सध्याचे स्थान सोडेपर्यंत Soundscape कमी-पॉवर स्थितीत जाईल.</string>
     <string name="faq_headset_battery_impact_question">माझ्या हेडफोनच्या निवडीचा माझ्या फोनच्या बॅटरी लाइफवर कसा परिणाम होतो?</string>
     <string name="faq_headset_battery_impact_answer">आमच्या चाचण्यांमध्ये, ब्लूटूथ हेडफोनचा बॅटरी वापर वायर्ड हेडफोनशी तुलना करण्याजोगा आहे आणि हेडफोन निवडताना विचारात घेण्यासारखा तो महत्त्वाचा घटक नसावा.</string>
     <string name="faq_background_battery_impact_question">Soundscape बॅकग्राउंडमध्ये चालवल्याने माझ्या फोनच्या बॅटरी लाइफवर कसा परिणाम होतो?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">स्तर</string>
     <string name="siri_desc_callout_detail">तुम्ही चालत असताना Soundscape किती सांगेल हे ठरवते.</string>
     <string name="intersection_approaching_intersection_distance">चौक %1$s अंतरावर</string>
+    <string name="microsoft_copyright">[मूळ Soundscape अ‍ॅप ©Microsoft Corporation](https://github.com/microsoft/soundscape) ने ऑडिओ बीकनचे आवाज आणि अनेक भाषांतरे पुरवली, आणि ते [MIT license](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) अंतर्गत वापरासाठी उपलब्ध करून दिले आहे.</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) च्या स्वयंसेवकांनी अनेक भाषांतरे सुधारली, जी [MIT license](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) अंतर्गत वापरासाठी उपलब्ध करून दिली आहेत.</string>
 </resources>
