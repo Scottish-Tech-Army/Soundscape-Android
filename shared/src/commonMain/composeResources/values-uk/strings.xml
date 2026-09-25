@@ -423,7 +423,7 @@
     <string name="faq_headset_battery_impact_question">Як вибір навушників впливає на час роботи акумулятора мого телефона?</string>
     <string name="faq_headset_battery_impact_answer">В наших тестах, споживання акумулятора при підключенні Bluetooth-навушників відповідає споживанню дротових навушників і не повинно бути значним фактором, який слід враховувати при виборі навушників.</string>
     <string name="faq_background_battery_impact_question">Як запуск Soundscape у фоновому режимі впливає на час роботи акумулятора мого телефона?</string>
-    <string name="faq_background_battery_impact_answer">Soundscape — це програма, що використовує служби геолокації для визначення вашого місцезнаходження. Згідно з нашими тестами, Soundscape споживає не більше заряду акумулятора, ніж звичайний картографічний застосунок; але якщо ви стурбовані споживанням заряду акумулятора під час використання телефона, ось кілька порад, які допоможуть зменшити використання:</string>
+    <string name="faq_background_battery_impact_answer">Soundscape — це програма, що використовує служби геолокації для визначення вашого місцезнаходження. Згідно з нашими тестами, Soundscape споживає не більше заряду акумулятора, ніж звичайна навігаційна програма; але якщо ви стурбовані споживанням заряду акумулятора під час використання телефона, ось кілька порад, які допоможуть зменшити використання:\n\n1. Вимикайте екран якомога частіше, коли ви не взаємодієте з програмою.\n\n2. Коли ви не використовуєте програму, закрийте її. Soundscape постійно використовує служби геолокації, коли програма працює, щоб завжди знати ваше місцезнаходження, навіть коли ви не рухаєтесь. Не забудьте перезапустити програму, коли відновите подорож.\n\n3. У холодну погоду тримайте телефон у теплі, оскільки акумулятори гірше працюють за низьких температур.</string>
     <string name="faq_mobile_data_use_question">Скільки мобільних даних використовує Soundscape?</string>
     <string name="faq_mobile_data_use_answer">Обсяг використаних мобільних даних залежить від того, як ви використовуєте Soundscape. Ми розробили Soundscape таким чином, щоб програма використовувала лише невелику кількість даних, коли ви перебуваєте поза домом, Програма зберігає завантажені під час прогулянки точки, щоб вам не потрібно було завантажувати їх знову кожного разу, коли ви повертаєтеся кудись, де вже були. Щоб зменшити обсяг використаних мобільних даних, переконайтеся, що ваш пристрій підключено до Wi-Fi, коли це можливо, особливо для завантаження програми. Коли ви не використовуєте Soundscape, вам слід використовувати кнопку "Сон", щоб перевести Soundscape у режим сну або примусово закрити програму.</string>
     <string name="faq_difference_from_map_apps_question">Чим Soundscape відрізняється від інших картографічних програм?</string>
@@ -473,13 +473,13 @@
     <string name="settings_travel_recording">Увімкнути запис подорожі</string>
     <string name="settings_debug_heading">Параметри налагодження</string>
     <string name="menu_share_recorded_route">Поділитися записом подорожі</string>
-    <string name="confect_name_to_via">%1$s у напрямку %2$s через %3$s</string>
-    <string name="confect_name_to">%1$s у напрямку %2$s</string>
+    <string name="confect_name_to_via">%1$s, напрямок: %2$s, через %3$s</string>
+    <string name="confect_name_to">%1$s, напрямок: %2$s</string>
     <string name="confect_name_joins">%1$s, що приєднується до %2$s і %3$s</string>
     <string name="confect_name_via">%1$s через %2$s</string>
     <string name="confect_name_pavement_next_to">Тротуар поруч із %1$s</string>
     <string name="confect_name_pavement">Тротуар</string>
-    <string name="confect_name_dead_end">тупика</string>
+    <string name="confect_name_dead_end">тупик</string>
     <string name="about_soundscape">Soundscape використовує інноваційні аудіотехнології, щоб допомогти людям глибше розуміти своє оточення й завдяки цьому пересуватися впевненіше та самостійніше.</string>
     <string name="first_launch_change_language_hint">змінити мову, яку використовує програма</string>
     <string name="voice_engine">Синтезатор мовлення</string>
@@ -1478,7 +1478,7 @@
     <string name="directions_on_road_at_junction">На %1$s біля %2$s</string>
     <string name="directions_at_junction_inline">біля %1$s</string>
     <string name="directions_on_road_and_settlement_since">На %1$s і поблизу %2$s, %3$s від %4$s</string>
-    <string name="directions_towards_settlement">у напрямку %1$s, за %2$s</string>
+    <string name="directions_towards_settlement">напрямок: %1$s, за %2$s</string>
     <string name="directions_away_from_settlement">віддаляєтеся від %1$s, %2$s позаду вас</string>
     <string name="directions_near_settlement_inline">поблизу %1$s</string>
     <string name="directions_close_to_settlement_inline">поблизу %1$s</string>
