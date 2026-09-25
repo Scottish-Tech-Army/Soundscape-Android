@@ -1396,7 +1396,7 @@
     <string name="faq_sleep_mode_battery_question">আমার ফোনের ব্যাটারিতে Soundscape-এর প্রভাব কমাতে আমি কীভাবে স্লিপ মোড ব্যবহার করব?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape-কে স্লিপ মোডে নিতে, স্ক্রিনের উপরের ডান কোণে থাকা *স্লিপ* বোতাম নির্বাচন করুন। এটি নির্বাচন করলে, আপনি নিজে আবার জাগানোর সিদ্ধান্ত না নেওয়া পর্যন্ত Soundscape লোকেশন সার্ভিস এবং মোবাইল ডেটা ব্যবহার বন্ধ করে দেবে।</string>
     <string name="faq_snooze_mode_battery_question">আমার ফোনের ব্যাটারিতে Soundscape-এর প্রভাব কমাতে আমি কীভাবে স্নুজ মোড ব্যবহার করব?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape-কে স্নুজ মোডে নিতে, স্ক্রিনের উপরের ডান কোণে থাকা *স্লিপ* বোতাম নির্বাচন করুন। Soundscape স্লিপ মোডে গেলে, *আমি চলে গেলে জাগিয়ে দিন* বোতাম নির্বাচন করুন এবং আপনি আপনার বর্তমান অবস্থান ত্যাগ না করা পর্যন্ত Soundscape একটি লো-পাওয়ার অবস্থায় চলে যাবে।</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape-কে স্নুজ মোডে নিতে, স্ক্রিনের উপরের ডান কোণে থাকা *ঘুম* বোতাম নির্বাচন করুন। Soundscape স্লিপ মোডে গেলে, *চলে গেলে জাগান* বোতাম নির্বাচন করুন এবং আপনি আপনার বর্তমান অবস্থান ত্যাগ না করা পর্যন্ত Soundscape একটি লো-পাওয়ার অবস্থায় চলে যাবে।</string>
     <string name="faq_headset_battery_impact_question">আমার হেডফোনের পছন্দ আমার ফোনের ব্যাটারি লাইফকে কীভাবে প্রভাবিত করে?</string>
     <string name="faq_headset_battery_impact_answer">আমাদের পরীক্ষায় দেখা গেছে, ব্লুটুথ হেডফোনের ব্যাটারি খরচ তারযুক্ত হেডফোনের সাথে তুলনীয়, এবং হেডফোন বেছে নেওয়ার সময় এটি একটি গুরুত্বপূর্ণ বিবেচ্য বিষয় হওয়া উচিত নয়।</string>
     <string name="faq_background_battery_impact_question">ব্যাকগ্রাউন্ডে Soundscape চালানো আমার ফোনের ব্যাটারি লাইফকে কীভাবে প্রভাবিত করে?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">স্তর</string>
     <string name="siri_desc_callout_detail">আপনি হাঁটার সময় Soundscape কতটা বলবে তা নির্ধারণ করে।</string>
     <string name="intersection_approaching_intersection_distance">মোড় %1$s দূরে</string>
+    <string name="microsoft_copyright">[মূল Soundscape অ্যাপ ©Microsoft Corporation](https://github.com/microsoft/soundscape) অডিও বীকনের শব্দ এবং অনেক অনুবাদ সরবরাহ করেছে, এবং এটি [MIT license](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt)-এর অধীনে ব্যবহারের জন্য উপলব্ধ।</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape)-এর স্বেচ্ছাসেবকেরা বেশ কয়েকটি অনুবাদ উন্নত করেছেন, যেগুলো [MIT license](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt)-এর অধীনে ব্যবহারের জন্য উপলব্ধ।</string>
 </resources>
