@@ -25,7 +25,7 @@ Trasu možná budete chtít vytvořit a použít na místě, které už znáte, 
 
 **Úprava trasy:**
 
- Vyberte svou trasu na obrazovce *\"Značky a trasy\"* a poté vyberte *\"Upravit trasu\"*. Odtud můžete přidávat a odebírat body trasy a také upravovat název a popis trasy.
+ Vyberte svou trasu na obrazovce *Značky a trasy* a poté vyberte *Upravit trasu*. Odtud můžete přidávat a odebírat body trasy a také upravovat název a popis trasy.
 
 **Sdílení trasy:**
 

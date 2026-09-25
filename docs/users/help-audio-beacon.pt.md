@@ -21,13 +21,13 @@ A definição de um sinal é útil quando pretende monitorizar um marco familiar
 
 **Para definir um sinal :**
 
- Primeiro, visualize os detalhes de uma localização, usando a barra de pesquisa para procurar um local ou tocando num dos botões *\"Locais nas Proximidades\"*, *\"Marcos e Rotas\"* ou *\"Localização Atual\"* e selecionando uma localização. No ecrã *\"Detalhes da Localização\"* pode selecionar o botão *\"Iniciar Sinal de Áudio\"*. Ao tocar neste botão será retornado ao ecrã principal e será ativado um sinal audível vindo da direção do local selecionado. O nome do local selecionado, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal da aplicação.
+ Primeiro, visualize os detalhes de uma localização, usando a barra de pesquisa para procurar um local ou tocando num dos botões *Locais nas Proximidades*, *Marcos e Rotas* ou *Localização Atual* e selecionando uma localização. No ecrã *Detalhes da Localização* pode selecionar o botão *Iniciar Sinal de Áudio*. Ao tocar neste botão será retornado ao ecrã principal e será ativado um sinal audível vindo da direção do local selecionado. O nome do local selecionado, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal da aplicação.
 
 **Para remover o sinal atual:**
 
-Basta tocar no botão *\"Parar Rota\"* no ecrã principal.
+Basta tocar no botão *Parar Rota* no ecrã principal.
 
 **Para silenciar o sinal audível:**
 
-Toque no botão *\"Silenciar Sinal\"* ao lado do botão *\"Parar Rota\"* no ecrã principal.
+Toque no botão *Silenciar Sinal* ao lado do botão *Parar Rota* no ecrã principal.
 

@@ -25,7 +25,7 @@ Saatat haluta luoda reitin ja käyttää sitä paikassa, jonka jo tunnet, jotta 
 
 **Reitin muokkaaminen :**
 
- Valitse reittisi *\"Merkitsimet ja reitit\"* -näytössä ja valitse sitten *\"Muokkaa reittiä\"*. Täältä voit lisätä ja poistaa reittipisteitä sekä muokata reitin nimeä ja kuvausta.
+ Valitse reittisi *Merkitsimet ja reitit* -näytössä ja valitse sitten *Muokkaa reittiä*. Täältä voit lisätä ja poistaa reittipisteitä sekä muokata reitin nimeä ja kuvausta.
 
 **Reitin jakaminen:**
 

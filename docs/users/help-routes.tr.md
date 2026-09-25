@@ -25,7 +25,7 @@ Zaten bildiğiniz bir yerde doğru yolda kaldığınızdan emin olmak için bir 
 
 **Bir rotayı düzenleme :**
 
- *\"Kayıtlı Noktalar ve Rotalar\"* ekranında rotanızı seçin ve ardından *\"Rotayı Düzenle\"*'yi seçin. Buradan ara noktalar ekleyip kaldırabilir, ayrıca rotanın adını ve açıklamasını düzenleyebilirsiniz.
+ *Kayıtlı Noktalar ve Rotalar* ekranında rotanızı seçin ve ardından *Rotayı Düzenle*'yi seçin. Buradan ara noktalar ekleyip kaldırabilir, ayrıca rotanın adını ve açıklamasını düzenleyebilirsiniz.
 
 **Rota paylaşmak:**
 

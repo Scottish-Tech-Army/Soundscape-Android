@@ -27,7 +27,7 @@ Non ci sono frasi esatte da imparare a memoria. Chiedi ciò che vuoi con parole 
 
 Puoi chiedere a Soundscape di:
 
-Descrivere *\"La mia posizione\"*, che cosa c’è *\"Intorno a me\"* o che cosa c’è *\"Davanti a me\"*.
+Descrivere *La mia posizione*, che cosa c’è *Intorno a me* o che cosa c’è *Davanti a me*.
 
 Annunciare gli indicatori salvati vicino a te.
 
@@ -35,7 +35,7 @@ Avviare uno dei tuoi percorsi salvati chiamandolo per nome, passare al waypoint 
 
 Impostare un audiofaro su uno dei tuoi indicatori salvati chiamandolo per nome, oppure spegnere l’audiofaro.
 
-Impostare il dettaglio delle notifiche su *\"Silenzioso\"*, *\"Discreto\"*, *\"Bilanciato\"* o *\"Dettagliato\"*, per cambiare quanto Soundscape dice mentre cammini. Silenzioso disattiva le notifiche automatiche.
+Impostare il dettaglio delle notifiche su *Silenzioso*, *Discreto*, *Bilanciato* o *Dettagliato*, per cambiare quanto Soundscape dice mentre cammini. Silenzioso disattiva le notifiche automatiche.
 
 Leggere i nomi dei tuoi percorsi salvati o dei tuoi indicatori salvati.
 

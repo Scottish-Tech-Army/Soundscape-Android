@@ -25,7 +25,7 @@ Poderá pretender criar e utilizar uma rota num local que já conhece, para o aj
 
 **Editar uma rota :**
 
- Selecione a sua rota no ecrã *\"Marcos e Rotas\"* e, em seguida, selecione *\"Editar Rota\"*. A partir daqui pode adicionar e remover pontos de passagem, bem como editar o nome e a descrição da rota.
+ Selecione a sua rota no ecrã *Marcos e Rotas* e, em seguida, selecione *Editar Rota*. A partir daqui pode adicionar e remover pontos de passagem, bem como editar o nome e a descrição da rota.
 
 **Partilhar uma rota :**
 

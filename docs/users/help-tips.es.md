@@ -9,7 +9,7 @@ permalink: /users/help-tips.html
 
 # Sugerencias
 
-Puedes encontrar paradas de autobús cercanas seleccionando el filtro *"Transporte público"* en la lista *"Lugares cercanos"*.
+Puedes encontrar paradas de autobús cercanas seleccionando el filtro *Transporte público* en la lista *Lugares cercanos*.
 
 Puedes establecer una señal en cualquier dirección. Desde la pantalla principal de Soundscape, busca la dirección. Selecciona la dirección en los resultados de búsqueda para abrir la pantalla *Detalles de la ubicación*. Esta pantalla incluye la opción *Iniciar señal de audio* para esa dirección. De este modo, puedes colocar una señal en negocios, lugares, puntos de interés y viviendas que no estén en OpenStreetMap.
 
@@ -21,5 +21,5 @@ Soundscape funciona mejor cuando mantienes el teléfono en posición horizontal 
 
 Puedes activar y desactivar el sonido rítmico de la señal con el botón de silencio de la pantalla principal. Si la señal está silenciada, seguirás recibiendo actualizaciones de la distancia a tu destino aproximadamente cada 50 metros.
 
-Para seguir usando Soundscape sin oír avisos automáticos, ajusta *"Detalle de los avisos"* a *"Silencioso"* en la sección *"Administrar avisos"* de la pantalla *"Ajustes"* del menú. Si no vas a usar Soundscape durante un tiempo, puedes ponerlo en modo de suspensión o de aplazamiento con el botón *"Suspender"* de la pantalla principal.
+Para seguir usando Soundscape sin oír avisos automáticos, ajusta *Detalle de los avisos* a *Silencioso* en la sección *Administrar avisos* de la pantalla *Ajustes* del menú. Si no vas a usar Soundscape durante un tiempo, puedes ponerlo en modo de suspensión o de aplazamiento con el botón *Suspender* de la pantalla principal.
 

@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Hvað er það?
 
-Hnappurinn *\"Fyrir framan mig\"* segir þér frá allt að fimm hlutum fyrir framan þig. *\"Fyrir framan mig\"* er ætlaður til að hjálpa þér að kanna það sem er framundan þegar þú ert að kynnast nýju svæði.
+Hnappurinn *Fyrir framan mig* segir þér frá allt að fimm hlutum fyrir framan þig. *Fyrir framan mig* er ætlaður til að hjálpa þér að kanna það sem er framundan þegar þú ert að kynnast nýju svæði.
 
 ## Hvenær ætti að nota það?
 

@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Ce este?
 
-Butonul *\"Înaintea mea\"* îți spune despre până la cinci lucruri aflate în fața ta. *\"Înaintea mea\"* este conceput pentru a te ajuta să explorezi calea din fața ta atunci când te familiarizezi cu o zonă nouă.
+Butonul *Înaintea mea* îți spune despre până la cinci lucruri aflate în fața ta. *Înaintea mea* este conceput pentru a te ajuta să explorezi calea din fața ta atunci când te familiarizezi cu o zonă nouă.
 
 ## Când aș folosi această funcție?
 

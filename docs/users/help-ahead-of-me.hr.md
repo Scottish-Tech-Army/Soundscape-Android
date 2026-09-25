@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Što je to?
 
-Gumb *"Ispred mene"* govori vam o najviše pet stvari ispred vas. *"Ispred mene"* namijenjen je tome da vam pomogne istražiti put ispred sebe kada upoznajete novo područje.
+Gumb *Ispred mene* govori vam o najviše pet stvari ispred vas. *Ispred mene* namijenjen je tome da vam pomogne istražiti put ispred sebe kada upoznajete novo područje.
 
 ## Kada se ovo koristi?
 

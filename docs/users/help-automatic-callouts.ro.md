@@ -11,7 +11,7 @@ permalink: /users/help-automatic-callouts.html
 
 ## Ce este?
 
-Soundscape te poate informa despre lucrurile din jur pe măsură ce te apropii de ele, anunțându-le numele din direcția în care se află. Aplicația va face acest lucru automat pentru tot felul de elemente, cum ar fi afaceri, stații de autobuz și chiar intersecții. Poți configura ce anunță aplicația în mod automat în secțiunea *\"Gestionare anunțuri\"* din ecranul *\"Setări\"*, iar poți dezactiva toate anunțurile când dorești ca aplicația să fie silențioasă.
+Soundscape te poate informa despre lucrurile din jur pe măsură ce te apropii de ele, anunțându-le numele din direcția în care se află. Aplicația va face acest lucru automat pentru tot felul de elemente, cum ar fi afaceri, stații de autobuz și chiar intersecții. Poți configura ce anunță aplicația în mod automat în secțiunea *Gestionare anunțuri* din ecranul *Setări*, iar poți dezactiva toate anunțurile când dorești ca aplicația să fie silențioasă.
 
 ## Când aș folosi această funcție?
 
@@ -31,9 +31,9 @@ Soundscape te poate informa despre lucrurile din jur pe măsură ce te apropii d
 
 **Activarea sau dezactivarea anunțurilor:**
 
- Dezactivarea anunțurilor va face aplicația silențioasă. Anunțurile pot fi dezactivate în secțiunea *\"Gestionare anunțuri\"* din ecranul *\"Setări\"*, setând *\"Detaliul anunțurilor\"* pe *\"Silențios\"*, și pot fi reactivate alegând orice alt nivel. Poți face același lucru cerându-i lui Siri sau lui Gemini. Poți totodată să faci Soundscape mai discret treptat, cu butoanele de control media de pe căști: fiecare apăsare pe *\"anterior\"* coboară cu un nivel prin *\"Detaliat\"*, *\"Echilibrat\"*, *\"Discret\"* și *\"Silențios\"*, iar încă o apăsare revine la *\"Detaliat\"*. Vezi subiectul de ajutor *\"Utilizarea comenzilor media\"*. Alternativ, poți folosi butonul *\"Repaus\"* din colțul din dreapta sus al ecranului principal pentru ca Soundscape să nu mai facă anunțuri până când alegi să îl trezești din nou.
+ Dezactivarea anunțurilor va face aplicația silențioasă. Anunțurile pot fi dezactivate în secțiunea *Gestionare anunțuri* din ecranul *Setări*, setând *Detaliul anunțurilor* pe *Silențios*, și pot fi reactivate alegând orice alt nivel. Poți face același lucru cerându-i lui Siri sau lui Gemini. Poți totodată să faci Soundscape mai discret treptat, cu butoanele de control media de pe căști: fiecare apăsare pe *anterior* coboară cu un nivel prin *Detaliat*, *Echilibrat*, *Discret* și *Silențios*, iar încă o apăsare revine la *Detaliat*. Vezi subiectul de ajutor *Utilizarea comenzilor media*. Alternativ, poți folosi butonul *Repaus* din colțul din dreapta sus al ecranului principal pentru ca Soundscape să nu mai facă anunțuri până când alegi să îl trezești din nou.
 
 **Gestionarea anunțurilor pe care le auzi:**
 
- Pentru a alege tipurile de elemente pe care Soundscape le va anunța automat, accesează ecranul *\"Setări\"* din meniul de pe ecranul *\"Principal\"*. În secțiunea *\"Gestionare anunțuri\"* din ecranul *\"Setări\"* alegi cât de mult vorbește aplicația, cu *\"Detaliul anunțurilor\"*, dacă anunță *\"Străzi și intersecții\"* și care sunt *\"Locuri de anunțat\"*. Dacă dorești să dezactivezi toate anunțurile, setează *\"Detaliul anunțurilor\"* pe *\"Silențios\"*.
+ Pentru a alege tipurile de elemente pe care Soundscape le va anunța automat, accesează ecranul *Setări* din meniul de pe ecranul *Principal*. În secțiunea *Gestionare anunțuri* din ecranul *Setări* alegi cât de mult vorbește aplicația, cu *Detaliul anunțurilor*, dacă anunță *Străzi și intersecții* și care sunt *Locuri de anunțat*. Dacă dorești să dezactivezi toate anunțurile, setează *Detaliul anunțurilor* pe *Silențios*.
 

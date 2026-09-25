@@ -27,7 +27,7 @@ No hi ha frases exactes per memoritzar. Demana el que vulguis amb les teves para
 
 Pots demanar a Soundscape que:
 
-Descrigui *\"La meva ubicació\"*, què hi ha *\"Al meu voltant\"* o què hi ha *\"Davant meu\"*.
+Descrigui *La meva ubicació*, què hi ha *Al meu voltant* o què hi ha *Davant meu*.
 
 Anunciï els marcadors desats que tens a prop.
 
@@ -35,7 +35,7 @@ Iniciï una de les teves rutes desades pel seu nom, passi al punt de ruta següe
 
 Posi una balisa sonora en un dels teus marcadors desats pel seu nom, o apagui la balisa.
 
-Posi el detall dels avisos de veu a *\"Silenciós\"*, *\"Discret\"*, *\"Equilibrat\"* o *\"Detallat\"*, per canviar quant diu Soundscape mentre camines. Silenciós desactiva els avisos de veu automàtics.
+Posi el detall dels avisos de veu a *Silenciós*, *Discret*, *Equilibrat* o *Detallat*, per canviar quant diu Soundscape mentre camines. Silenciós desactiva els avisos de veu automàtics.
 
 Llegeixi els noms de les teves rutes desades o dels teus marcadors desats.
 

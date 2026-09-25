@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Co to je?
 
-Tlačítko *\"Přede mnou\"* vás informuje až o pěti věcech před vámi. Cílem funkce *\"Přede mnou\"* je pomoci vám prozkoumat cestu před sebou, když poznáváte novou oblast.
+Tlačítko *Přede mnou* vás informuje až o pěti věcech před vámi. Cílem funkce *Přede mnou* je pomoci vám prozkoumat cestu před sebou, když poznáváte novou oblast.
 
 ## Kdy to použít?
 

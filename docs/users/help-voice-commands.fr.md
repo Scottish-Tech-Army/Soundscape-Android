@@ -27,7 +27,7 @@ Il n’y a aucune formule exacte à mémoriser. Demandez ce que vous voulez avec
 
 Vous pouvez demander à Soundscape de :
 
-Décrire *\"Mon emplacement\"*, ce qui se trouve *\"Autour de moi\"* ou ce qui se trouve *\"Devant moi\"*.
+Décrire *Mon emplacement*, ce qui se trouve *Autour de moi* ou ce qui se trouve *Devant moi*.
 
 Annoncer les marqueurs enregistrés près de vous.
 
@@ -35,7 +35,7 @@ Démarrer l’un de vos itinéraires enregistrés en le nommant, passer au point
 
 Placer une balise sonore sur l’un de vos marqueurs enregistrés en le nommant, ou désactiver la balise.
 
-Régler le détail des notifications sur *\"Silencieux\"*, *\"Discret\"*, *\"Équilibré\"* ou *\"Détaillé\"*, pour modifier la quantité d’informations que Soundscape annonce pendant que vous marchez. Silencieux désactive les notifications automatiques.
+Régler le détail des notifications sur *Silencieux*, *Discret*, *Équilibré* ou *Détaillé*, pour modifier la quantité d’informations que Soundscape annonce pendant que vous marchez. Silencieux désactive les notifications automatiques.
 
 Lire les noms de vos itinéraires enregistrés ou de vos marqueurs enregistrés.
 

@@ -25,7 +25,7 @@ Trasu si možno budete chcieť vytvoriť a použiť na mieste, ktoré už pozná
 
 **Úprava trasy:**
 
- Vyberte svoju trasu na obrazovke *\"Značky a trasy\"* a potom vyberte *\"Upraviť trasu\"*. Odtiaľto môžete pridávať a odstraňovať body trasy, ako aj upravovať názov a popis trasy.
+ Vyberte svoju trasu na obrazovke *Značky a trasy* a potom vyberte *Upraviť trasu*. Odtiaľto môžete pridávať a odstraňovať body trasy, ako aj upravovať názov a popis trasy.
 
 **Zdieľanie trasy:**
 

@@ -9,11 +9,11 @@ permalink: /users/help-tips.html
 
 # Vidokezo
 
-Unaweza kupata vituo vya mabasi vya karibu kwa kuchagua kichujio cha *"Usafiri wa Umma"* katika orodha ya *"Sehemu za Karibu"*.
+Unaweza kupata vituo vya mabasi vya karibu kwa kuchagua kichujio cha *Usafiri wa Umma* katika orodha ya *Sehemu za Karibu*.
 
-Unaweza kuweka beacon kwenye anwani yoyote. Kutoka skrini kuu ya Soundscape, tafuta anwani hiyo. Baada ya kuchagua anwani katika matokeo ya utafutaji, skrini ya *"Maelezo ya Mahali"* itaonyeshwa na ina chaguo la *"Anzisha Beacon ya Sauti"* kwenye anwani hiyo. Kwa njia hii, unaweza kuweka beacon kwenye biashara, mahali, sehemu za kuvutia, na makazi ambayo hayapo kwenye Open Street Map.
+Unaweza kuweka beacon kwenye anwani yoyote. Kutoka skrini kuu ya Soundscape, tafuta anwani hiyo. Baada ya kuchagua anwani katika matokeo ya utafutaji, skrini ya *Maelezo ya Mahali* itaonyeshwa na ina chaguo la *Anzisha Beacon ya Sauti* kwenye anwani hiyo. Kwa njia hii, unaweza kuweka beacon kwenye biashara, mahali, sehemu za kuvutia, na makazi ambayo hayapo kwenye Open Street Map.
 
-Ikiwa kuna njia ya basi unayoitumia mara kwa mara, weka vituo vyako vya kupanda na kushuka kama Alama. Kwa njia hii vitahifadhiwa ili uweze kuvipata tena kwa urahisi, nenda tu kwenye *"Alama na Njia"* kutoka skrini ya mwanzo na uvipate kwenye ukurasa wa *"Alama"*. Unaweza kuweka beacon juu yake nawe utapata masasisho ya mara kwa mara kuhusu umbali wako hadi kituo chako cha kushukia. Kumbuka: unaweza kuzima sauti yenye mdundo nawe bado utapata masasisho ya umbali njiani.
+Ikiwa kuna njia ya basi unayoitumia mara kwa mara, weka vituo vyako vya kupanda na kushuka kama Alama. Kwa njia hii vitahifadhiwa ili uweze kuvipata tena kwa urahisi, nenda tu kwenye *Alama na Njia* kutoka skrini ya mwanzo na uvipate kwenye ukurasa wa *Alama*. Unaweza kuweka beacon juu yake nawe utapata masasisho ya mara kwa mara kuhusu umbali wako hadi kituo chako cha kushukia. Kumbuka: unaweza kuzima sauti yenye mdundo nawe bado utapata masasisho ya umbali njiani.
 
 Ukiweka simu yako mfukoni na kusimama, sauti ya beacon hupungua kwa sababu Soundscape haiwezi kujua upande unaoelekea. Ili kurekebisha hili, anza kutembea tena, au toa simu yako na uishikilie ikiwa gorofa.
 

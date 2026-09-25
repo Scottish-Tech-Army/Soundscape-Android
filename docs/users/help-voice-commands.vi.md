@@ -27,7 +27,7 @@ Không có câu chữ cố định nào phải học thuộc. Hãy nói điều 
 
 Bạn có thể yêu cầu Soundscape:
 
-Mô tả *\"Vị trí của tôi\"*, những gì đang ở *\"Xung quanh tôi\"*, hoặc những gì đang ở *\"Phía trước tôi\"*.
+Mô tả *Vị trí của tôi*, những gì đang ở *Xung quanh tôi*, hoặc những gì đang ở *Phía trước tôi*.
 
 Thông báo các điểm đánh dấu đã lưu ở gần bạn.
 
@@ -35,7 +35,7 @@ Bắt đầu một trong các lộ trình đã lưu theo tên, chuyển sang đi
 
 Đặt đèn hiệu âm thanh lên một trong các điểm đánh dấu đã lưu theo tên, hoặc tắt đèn hiệu.
 
-Đặt mức chi tiết thông báo thành *\"Im lặng\"*, *\"Yên tĩnh\"*, *\"Cân bằng\"* hoặc *\"Chi tiết\"*, để thay đổi mức độ Soundscape nói khi bạn đi bộ. Im lặng sẽ tắt thông báo tự động.
+Đặt mức chi tiết thông báo thành *Im lặng*, *Yên tĩnh*, *Cân bằng* hoặc *Chi tiết*, để thay đổi mức độ Soundscape nói khi bạn đi bộ. Im lặng sẽ tắt thông báo tự động.
 
 Đọc lại tên các lộ trình đã lưu hoặc các điểm đánh dấu đã lưu của bạn.
 

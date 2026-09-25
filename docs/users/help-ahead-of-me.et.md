@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Mis see on?
 
-Nupp *"Minu ees"* räägib teile kuni viiest teie ees olevast asjast. *"Minu ees"* on mõeldud aitama teil uut piirkonda tundma õppides uurida enda ees olevat teed.
+Nupp *Minu ees* räägib teile kuni viiest teie ees olevast asjast. *Minu ees* on mõeldud aitama teil uut piirkonda tundma õppides uurida enda ees olevat teed.
 
 ## Millal seda kasutada?
 

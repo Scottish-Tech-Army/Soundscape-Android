@@ -27,7 +27,7 @@ Não há frases exatas para decorar. Peça o que quiser pelas suas próprias pal
 
 Pode pedir ao Soundscape para:
 
-Descrever *\"A Minha Localização\"*, o que está *\"Em Meu Redor\"* ou o que está *\"À Minha Frente\"*.
+Descrever *A Minha Localização*, o que está *Em Meu Redor* ou o que está *À Minha Frente*.
 
 Anunciar os marcos guardados perto de si.
 
@@ -35,7 +35,7 @@ Iniciar uma das suas rotas guardadas pelo nome, avançar para o Ponto de Passage
 
 Colocar um sinal de áudio num dos seus marcos guardados pelo nome, ou desligar o sinal.
 
-Definir o detalhe dos avisos como *\"Silencioso\"*, *\"Discreto\"*, *\"Equilibrado\"* ou *\"Detalhado\"*, para alterar quanto o Soundscape diz enquanto caminha. Silencioso desativa os avisos automáticos.
+Definir o detalhe dos avisos como *Silencioso*, *Discreto*, *Equilibrado* ou *Detalhado*, para alterar quanto o Soundscape diz enquanto caminha. Silencioso desativa os avisos automáticos.
 
 Ler os nomes das suas rotas guardadas ou dos seus marcos guardados.
 

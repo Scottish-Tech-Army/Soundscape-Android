@@ -11,7 +11,7 @@ permalink: /users/help-automatic-callouts.html
 
 ## Què és?
 
-Soundscape et pot informar sobre les coses del teu voltant a mesura que t'hi acostes, anunciant el seu nom des de la direcció on es troben. L'aplicació ho farà automàticament per a tota mena de coses, com ara negocis, parades d'autobús i fins i tot cruïlles. Pots configurar què anuncia automàticament l'aplicació a la secció *"Gestiona els avisos de veu"* de la pantalla *"Configuració"*, i pots desactivar tots els avisos de veu quan vulguis que l'aplicació estigui en silenci.
+Soundscape et pot informar sobre les coses del teu voltant a mesura que t'hi acostes, anunciant el seu nom des de la direcció on es troben. L'aplicació ho farà automàticament per a tota mena de coses, com ara negocis, parades d'autobús i fins i tot cruïlles. Pots configurar què anuncia automàticament l'aplicació a la secció *Gestiona els avisos de veu* de la pantalla *Configuració*, i pots desactivar tots els avisos de veu quan vulguis que l'aplicació estigui en silenci.
 
 ## Quan l'hauria d'utilitzar?
 

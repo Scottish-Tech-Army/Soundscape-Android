@@ -21,13 +21,13 @@ L'impostazione di un audiofaro è utile quando desideri tenere traccia di un pun
 
 **Per impostare un audiofaro :**
 
- Per prima cosa, visualizza i dettagli di una posizione cercandola con la barra di ricerca oppure toccando uno dei pulsanti *\"Luoghi nelle vicinanze\"*, *\"Indicatori e Percorsi\"* o *\"Posizione attuale\"* e selezionando una posizione. Dalla schermata *\"Dettagli posizione\"* puoi selezionare il pulsante *\"Avvia audiofaro\"*. Toccandolo verrai riportato alla schermata principale e verrà attivato un audiofaro udibile dalla direzione del luogo selezionato. Nella schermata principale verranno ora mostrati il nome del luogo selezionato, la distanza e l'indirizzo fisico, se disponibili.
+ Per prima cosa, visualizza i dettagli di una posizione cercandola con la barra di ricerca oppure toccando uno dei pulsanti *Luoghi nelle vicinanze*, *Indicatori e Percorsi* o *Posizione attuale* e selezionando una posizione. Dalla schermata *Dettagli posizione* puoi selezionare il pulsante *Avvia audiofaro*. Toccandolo verrai riportato alla schermata principale e verrà attivato un audiofaro udibile dalla direzione del luogo selezionato. Nella schermata principale verranno ora mostrati il nome del luogo selezionato, la distanza e l'indirizzo fisico, se disponibili.
 
 **Per rimuovere l'audiofaro corrente :**
 
-Basta premere il pulsante *\"Interrompi Percorso\"* nella schermata iniziale.
+Basta premere il pulsante *Interrompi Percorso* nella schermata iniziale.
 
 **Per disattivare l'audiofaro :**
 
-Tocca il pulsante *\"Disattiva audio audiofaro\"* accanto al pulsante *\"Interrompi Percorso\"* nella schermata iniziale.
+Tocca il pulsante *Disattiva audio audiofaro* accanto al pulsante *Interrompi Percorso* nella schermata iniziale.
 

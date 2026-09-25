@@ -11,7 +11,7 @@ permalink: /users/help-automatic-callouts.html
 
 ## Mis see on?
 
-Soundscape saab teile rääkida ümbritsevatest asjadest, kui neile lähenete, teatades nende nime selle suunast, kus need asuvad. Rakendus teeb seda automaatselt igasuguste asjade puhul, näiteks ettevõtete, bussipeatuste ja isegi ristmike puhul. Saate seadistada, mida rakendus automaatselt teatab, ekraani *"Seadistused"* jaotises *"Halda häälteateid"*, ning saate kõik häälteated välja lülitada, kui soovite, et rakendus oleks vait.
+Soundscape saab teile rääkida ümbritsevatest asjadest, kui neile lähenete, teatades nende nime selle suunast, kus need asuvad. Rakendus teeb seda automaatselt igasuguste asjade puhul, näiteks ettevõtete, bussipeatuste ja isegi ristmike puhul. Saate seadistada, mida rakendus automaatselt teatab, ekraani *Seadistused* jaotises *Halda häälteateid*, ning saate kõik häälteated välja lülitada, kui soovite, et rakendus oleks vait.
 
 ## Millal seda kasutada?
 

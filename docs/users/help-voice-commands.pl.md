@@ -27,7 +27,7 @@ Nie ma żadnych dokładnych zwrotów do zapamiętania. Poproś o to, czego chces
 
 Możesz poprosić Soundscape, aby:
 
-Opisał *\"Moja lokalizacja\"*, co jest *\"Wokół mnie\"* albo co jest *\"Przede mną\"*.
+Opisał *Moja lokalizacja*, co jest *Wokół mnie* albo co jest *Przede mną*.
 
 Ogłosił zapisane znaczniki w twoim pobliżu.
 
@@ -35,7 +35,7 @@ Uruchomił jedną z twoich zapisanych tras po nazwie, przeszedł do następnego 
 
 Ustawił dźwięk naprowadzający na jednym z twoich zapisanych znaczników po nazwie albo go wyłączył.
 
-Ustawił szczegółowość powiadomień na *\"Wyciszony\"*, *\"Cichy\"*, *\"Zrównoważony\"* albo *\"Szczegółowy\"*, aby zmienić, jak dużo Soundscape mówi podczas chodzenia. Wyciszony wyłącza automatyczne powiadomienia.
+Ustawił szczegółowość powiadomień na *Wyciszony*, *Cichy*, *Zrównoważony* albo *Szczegółowy*, aby zmienić, jak dużo Soundscape mówi podczas chodzenia. Wyciszony wyłącza automatyczne powiadomienia.
 
 Odczytał nazwy twoich zapisanych tras albo twoich zapisanych znaczników.
 

@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Ni nini?
 
-Kitufe cha *"Mbele Yangu"* hukujulisha kuhusu hadi vitu vitano vilivyo mbele yako. *"Mbele Yangu"* imekusudiwa kukusaidia kuchunguza njia iliyo mbele yako unapojifunza kuhusu eneo jipya.
+Kitufe cha *Mbele Yangu* hukujulisha kuhusu hadi vitu vitano vilivyo mbele yako. *Mbele Yangu* imekusudiwa kukusaidia kuchunguza njia iliyo mbele yako unapojifunza kuhusu eneo jipya.
 
 ## Ni lini nitaitumia?
 

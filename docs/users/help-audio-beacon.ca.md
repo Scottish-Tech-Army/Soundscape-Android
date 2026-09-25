@@ -21,13 +21,13 @@ Establir una balisa és útil quan vols fer un seguiment d'un punt de referènci
 
 **Per establir una balisa:**
 
- Primer, visualitza els detalls d'una ubicació utilitzant la barra de cerca per cercar un lloc, o tocant un dels botons *"Llocs propers"*, *"Marcadors i rutes"* o *"Ubicació actual"* i seleccionant una ubicació. Des de la pantalla *"Detalls de la ubicació"* pots seleccionar el botó *"Inicia la balisa sonora"*. En tocar-lo tornaràs a la pantalla principal i s'activarà una balisa audible que prové de la direcció del lloc que has seleccionat. El nom del lloc que has seleccionat, juntament amb la seva distància i adreça física, si està disponible, es mostrarà ara a la pantalla principal de l'aplicació.
+ Primer, visualitza els detalls d'una ubicació utilitzant la barra de cerca per cercar un lloc, o tocant un dels botons *Llocs propers*, *Marcadors i rutes* o *Ubicació actual* i seleccionant una ubicació. Des de la pantalla *Detalls de la ubicació* pots seleccionar el botó *Inicia la balisa sonora*. En tocar-lo tornaràs a la pantalla principal i s'activarà una balisa audible que prové de la direcció del lloc que has seleccionat. El nom del lloc que has seleccionat, juntament amb la seva distància i adreça física, si està disponible, es mostrarà ara a la pantalla principal de l'aplicació.
 
 **Per eliminar la balisa actual:**
 
- Simplement prem el botó *"Atura la ruta"* a la pantalla principal.
+ Simplement prem el botó *Atura la ruta* a la pantalla principal.
 
 **Per silenciar la balisa audible:**
 
- Toca el botó *"Silencia la balisa"* al costat del botó *"Atura la ruta"* a la pantalla principal.
+ Toca el botó *Silencia la balisa* al costat del botó *Atura la ruta* a la pantalla principal.
 

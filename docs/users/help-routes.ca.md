@@ -25,7 +25,7 @@ Les rutes són una sèrie de punts de ruta. Se t'informarà en arribar a cada pu
 
 **Editar una ruta:**
 
- Selecciona la teva ruta a la pantalla *"Marcadors i rutes"* i tot seguit selecciona *"Edita la ruta"*. Des d'aquí pots afegir i eliminar punts de ruta, així com editar el nom i la descripció de la ruta.
+ Selecciona la teva ruta a la pantalla *Marcadors i rutes* i tot seguit selecciona *Edita la ruta*. Des d'aquí pots afegir i eliminar punts de ruta, així com editar el nom i la descripció de la ruta.
 
 **Compartir una ruta:**
 

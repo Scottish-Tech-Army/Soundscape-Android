@@ -25,7 +25,7 @@ Unaweza kutaka kuunda na kutumia njia mahali unapopafahamu tayari, ili ikusaidie
 
 **Kuhariri njia :**
 
- Chagua njia yako kwenye skrini ya *"Alama na Njia"* kisha chagua *"Hariri Njia"*. Kutoka hapa unaweza kuongeza na kuondoa vituo, pamoja na kuhariri jina na maelezo ya njia.
+ Chagua njia yako kwenye skrini ya *Alama na Njia* kisha chagua *Hariri Njia*. Kutoka hapa unaweza kuongeza na kuondoa vituo, pamoja na kuhariri jina na maelezo ya njia.
 
 **Kushiriki njia :**
 

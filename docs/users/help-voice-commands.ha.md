@@ -27,7 +27,7 @@ Babu takamaiman jimloli da za a haddace. Ka nemi abin da kake so da kalmominka, 
 
 Kana iya gaya wa Soundscape:
 
-Ya bayyana *\"Wurina\"*, abin da ke *\"Kewaye da Ni\"*, ko abin da ke *\"Gaba da Ni\"*.
+Ya bayyana *Wurina*, abin da ke *Kewaye da Ni*, ko abin da ke *Gaba da Ni*.
 
 Ya sanar da alamomin da aka ajiye kusa da kai.
 
@@ -35,7 +35,7 @@ Ya fara ɗaya daga cikin tafarkunka da aka ajiye da suna, ya matsa zuwa matsayi 
 
 Ya saita siginar sauti a kan ɗaya daga cikin alamominka da aka ajiye da suna, ko ya kashe siginar.
 
-Ya sanya matakin sanarwa ya zama *\"Shiru\"*, *\"Kaɗan\"*, *\"Daidaito\"* ko *\"Cikakke\"*, don canza yawan abin da Soundscape ke faɗa yayin tafiyarka. Shiru yana kashe sanarwa ta atomatik.
+Ya sanya matakin sanarwa ya zama *Shiru*, *Kaɗan*, *Daidaito* ko *Cikakke*, don canza yawan abin da Soundscape ke faɗa yayin tafiyarka. Shiru yana kashe sanarwa ta atomatik.
 
 Ya karanta sunayen tafarkunka da aka ajiye ko alamominka da aka ajiye.
 

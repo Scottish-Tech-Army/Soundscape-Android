@@ -9,7 +9,7 @@ has_toc: false
 
 ## What is it?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *"Manage Callouts"* section of the *"Settings"* screen, and you can turn all callouts off when you want the app to be silent.
 
 ## When would I use it?
 
@@ -29,9 +29,9 @@ Soundscape can tell you about things around you as you approach them by calling 
 
 **Turning callouts on or off :**
 
- Turning callouts off will silence the app. Callouts can be turned off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen by setting *\"Callout Detail\"* to *\"Silent\"*, and turned back on by choosing any other level. You can do the same by asking Siri or Gemini. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *\"previous\"* moves down through *\"Detailed\"*, *\"Balanced\"*, *\"Quiet\"* and *\"Silent\"*, and one more press goes back to *\"Detailed\"*. See the *\"Using Media Controls\"* help topic. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Turning callouts off will silence the app. Callouts can be turned off in the *"Manage Callouts"* section of the *"Settings"* screen by setting *"Callout Detail"* to *"Silent"*, and turned back on by choosing any other level. You can do the same by asking Siri or Gemini. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *"previous"* moves down through *"Detailed"*, *"Balanced"*, *"Quiet"* and *"Silent"*, and one more press goes back to *"Detailed"*. See the *"Using Media Controls"* help topic. Alternatively, you can use the *"Sleep"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
 
 **Managing which callouts you hear :**
 
- To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen is where you choose how much the app says with *\"Callout Detail\"*, whether it calls out *\"Streets and Junctions\"*, and which *\"Places to Call Out\"*. If you wish to turn off all callouts, set *\"Callout Detail\"* to *\"Silent\"*.
+ To choose the types of things Soundscape will automatically call out, go to the *"Settings"* screen using the menu on the *"Home"* screen. The *"Manage Callouts"* section of the *"Settings"* screen is where you choose how much the app says with *"Callout Detail"*, whether it calls out *"Streets and Junctions"*, and which *"Places to Call Out"*. If you wish to turn off all callouts, set *"Callout Detail"* to *"Silent"*.
 

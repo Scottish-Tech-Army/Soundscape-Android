@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Apa itu?
 
-Tombol *\"Di Depan Saya\"* memberi tahu Anda tentang hingga lima hal di depan Anda. *\"Di Depan Saya\"* dimaksudkan untuk membantu Anda menjelajahi jalan di depan saat Anda sedang mengenal area baru.
+Tombol *Di Depan Saya* memberi tahu Anda tentang hingga lima hal di depan Anda. *Di Depan Saya* dimaksudkan untuk membantu Anda menjelajahi jalan di depan saat Anda sedang mengenal area baru.
 
 ## Kapan saya menggunakannya?
 

@@ -25,7 +25,7 @@ Kuna iya son ƙirƙira da amfani da tafarki a wani wuri da kuka riga kuka sani, 
 
 **Gyara hanya :**
 
- Zaɓi hanyarku a allon *\"Alamomi da Hanyoyi\"* sannan ku zaɓi *\"Gyara Hanya\"*. Daga nan za ku iya ƙarawa da cire tashoshi, da kuma gyara sunan da bayanin hanyar.
+ Zaɓi hanyarku a allon *Alamomi da Hanyoyi* sannan ku zaɓi *Gyara Hanya*. Daga nan za ku iya ƙarawa da cire tashoshi, da kuma gyara sunan da bayanin hanyar.
 
 **Raba hanya :**
 

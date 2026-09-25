@@ -27,7 +27,7 @@ Pähe õppida pole vaja ühtki kindlat fraasi. Küsi seda, mida soovid, oma sõn
 
 Võid paluda Soundscape'il:
 
-Kirjeldada *\"Minu asukoht\"*, mis on *\"Minu ümber\"* või mis on *\"Minu ees\"*.
+Kirjeldada *Minu asukoht*, mis on *Minu ümber* või mis on *Minu ees*.
 
 Teatada sinu lähedal olevad salvestatud markerid.
 
@@ -35,7 +35,7 @@ Käivitada mõne oma salvestatud marsruudi nime järgi, liikuda järgmisele teek
 
 Seada helimajaka mõnele oma salvestatud markerile nime järgi või majakas välja lülitada.
 
-Seada häälteadete detailsuse tasemele *\"Hääletu\"*, *\"Vaikne\"*, *\"Tasakaalustatud\"* või *\"Üksikasjalik\"*, et muuta, kui palju Soundscape kõndides räägib. Hääletu lülitab automaatsed häälteated välja.
+Seada häälteadete detailsuse tasemele *Hääletu*, *Vaikne*, *Tasakaalustatud* või *Üksikasjalik*, et muuta, kui palju Soundscape kõndides räägib. Hääletu lülitab automaatsed häälteated välja.
 
 Lugeda ette sinu salvestatud marsruutide või salvestatud markerite nimed.
 

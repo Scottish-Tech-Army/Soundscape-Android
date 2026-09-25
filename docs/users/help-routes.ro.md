@@ -25,7 +25,7 @@ Este posibil să dorești să creezi și să folosești o rută într-un loc pe 
 
 **Editarea unei rute :**
 
- Selectează ruta pe ecranul *\"Marcaje și rute\"* și apoi selectează *\"Editează ruta\"*. De aici poți adăuga și elimina puncte de traseu, precum și edita numele și descrierea rutei.
+ Selectează ruta pe ecranul *Marcaje și rute* și apoi selectează *Editează ruta*. De aici poți adăuga și elimina puncte de traseu, precum și edita numele și descrierea rutei.
 
 **Partajarea unei rute:**
 

@@ -25,7 +25,7 @@ Võite soovida luua ja kasutada marsruuti kohas, mida juba tunnete, et püsida �
 
 **Marsruudi muutmine:**
 
- Valige oma marsruut ekraanil *"Markerid ja marsruudid"* ja seejärel valige *"Muuda marsruuti"*. Siit saate lisada ja eemaldada teekonnapunkte ning muuta marsruudi nime ja kirjeldust.
+ Valige oma marsruut ekraanil *Markerid ja marsruudid* ja seejärel valige *Muuda marsruuti*. Siit saate lisada ja eemaldada teekonnapunkte ning muuta marsruudi nime ja kirjeldust.
 
 **Marsruudi jagamine:**
 

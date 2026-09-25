@@ -21,13 +21,13 @@ Nastavenie majáka je užitočné, keď si chcete udržiavať prehľad o známom
 
 **Nastavenie majáka:**
 
- Najprv zobrazte podrobnosti o mieste – buď vyhľadaním miesta pomocou vyhľadávacieho poľa, alebo ťuknutím na jedno z tlačidiel *\"Miesta v okolí\"*, *\"Značky a trasy\"* alebo *\"Aktuálna poloha\"* a výberom miesta. Na obrazovke *\"Podrobnosti o mieste\"* môžete vybrať tlačidlo *\"Spustiť zvukový maják\"*. Ťuknutím naň sa vrátite na domovskú obrazovku a zapne sa zvukový maják prichádzajúci zo smeru vybraného miesta. Na hlavnej obrazovke aplikácie sa teraz zobrazí názov vybraného miesta spolu s jeho vzdialenosťou a fyzickou adresou, ak je k dispozícii.
+ Najprv zobrazte podrobnosti o mieste – buď vyhľadaním miesta pomocou vyhľadávacieho poľa, alebo ťuknutím na jedno z tlačidiel *Miesta v okolí*, *Značky a trasy* alebo *Aktuálna poloha* a výberom miesta. Na obrazovke *Podrobnosti o mieste* môžete vybrať tlačidlo *Spustiť zvukový maják*. Ťuknutím naň sa vrátite na domovskú obrazovku a zapne sa zvukový maják prichádzajúci zo smeru vybraného miesta. Na hlavnej obrazovke aplikácie sa teraz zobrazí názov vybraného miesta spolu s jeho vzdialenosťou a fyzickou adresou, ak je k dispozícii.
 
 **Odstránenie aktuálneho majáka:**
 
- Jednoducho stlačte tlačidlo *\"Zastaviť trasu\"* na domovskej obrazovke.
+ Jednoducho stlačte tlačidlo *Zastaviť trasu* na domovskej obrazovke.
 
 **Stlmenie zvukového majáka:**
 
- Ťuknite na tlačidlo *\"Stlmiť maják\"* vedľa tlačidla *\"Zastaviť trasu\"* na domovskej obrazovke.
+ Ťuknite na tlačidlo *Stlmiť maják* vedľa tlačidla *Zastaviť trasu* na domovskej obrazovke.
 

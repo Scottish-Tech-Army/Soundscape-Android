@@ -21,13 +21,13 @@ A definição de um sinalizador será útil quando você quiser rastrear um pont
 
 **Para definir um sinalizador :**
 
- Primeiro, visualize os detalhes de uma localização usando a barra de pesquisa para procurar um lugar, ou tocando em um dos botões *\"Locais Próximos\"*, *\"Favoritos e Rotas\"* ou *\"Localização Atual\"* e selecionando uma localização. Na tela *\"Detalhes da Localização\"* você pode selecionar o botão *\"Iniciar Sinalizador Sonoro\"*. Ao tocar nele, você retornará à tela inicial e será ativado um sinalizador audível vindo da direção do local selecionado. O nome do local selecionado, juntamente com sua distância e endereço físico, se disponível, será exibido na tela principal do aplicativo.
+ Primeiro, visualize os detalhes de uma localização usando a barra de pesquisa para procurar um lugar, ou tocando em um dos botões *Locais Próximos*, *Favoritos e Rotas* ou *Localização Atual* e selecionando uma localização. Na tela *Detalhes da Localização* você pode selecionar o botão *Iniciar Sinalizador Sonoro*. Ao tocar nele, você retornará à tela inicial e será ativado um sinalizador audível vindo da direção do local selecionado. O nome do local selecionado, juntamente com sua distância e endereço físico, se disponível, será exibido na tela principal do aplicativo.
 
 **Para remover o sinalizador atual :**
 
- Basta pressionar o botão *\"Interromper Rota\"* na tela inicial.
+ Basta pressionar o botão *Interromper Rota* na tela inicial.
 
 **Para silenciar o sinalizador audível :**
 
- Toque no botão *\"Ativar Mudo do Sinalizador\"* ao lado do botão *\"Interromper Rota\"* na tela inicial.
+ Toque no botão *Ativar Mudo do Sinalizador* ao lado do botão *Interromper Rota* na tela inicial.
 

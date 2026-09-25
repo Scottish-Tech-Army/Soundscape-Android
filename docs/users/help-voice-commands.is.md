@@ -27,7 +27,7 @@ Raddskipanir eru gagnlegar þegar síminn er í vasanum, þegar þú ert með fu
 
 Þú getur beðið Soundscape um að:
 
-Lýsa *\"mín staðsetning\"*, hvað er *\"í kringum mig\"* eða hvað er *\"fyrir framan mig\"*.
+Lýsa *mín staðsetning*, hvað er *í kringum mig* eða hvað er *fyrir framan mig*.
 
 Lesa upp vistuðu merkin nálægt þér.
 
@@ -35,7 +35,7 @@ Ræsa eina af vistuðu leiðunum þínum eftir heiti, fara á næsta leiðarpunk
 
 Setja hljóðvita á eitt af vistuðu merkjunum þínum eftir heiti, eða slökkva á hljóðvitanum.
 
-Stilla nákvæmni tilkynninga á *\"Þögult\"*, *\"Hljóðlátt\"*, *\"Jafnvægi\"* eða *\"Ítarlegt\"*, til að breyta því hversu mikið Soundscape segir á meðan þú gengur. Þögult slekkur á sjálfvirkum tilkynningum.
+Stilla nákvæmni tilkynninga á *Þögult*, *Hljóðlátt*, *Jafnvægi* eða *Ítarlegt*, til að breyta því hversu mikið Soundscape segir á meðan þú gengur. Þögult slekkur á sjálfvirkum tilkynningum.
 
 Lesa upp heiti vistuðu leiðanna þinna eða vistuðu merkjanna þinna.
 

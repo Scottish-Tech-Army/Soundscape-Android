@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Menene wannan?
 
-Maɓallin *\"Abin da ke Gabana\"* yana gaya muku game da abubuwa har guda biyar da ke gabanku. An ƙirƙiri *\"Abin da ke Gabana\"* domin taimaka muku bincikar hanyar da ke gabanku yayin da kuke koyon sabon yanki.
+Maɓallin *Abin da ke Gabana* yana gaya muku game da abubuwa har guda biyar da ke gabanku. An ƙirƙiri *Abin da ke Gabana* domin taimaka muku bincikar hanyar da ke gabanku yayin da kuke koyon sabon yanki.
 
 ## Yaushe zan yi amfani da shi?
 

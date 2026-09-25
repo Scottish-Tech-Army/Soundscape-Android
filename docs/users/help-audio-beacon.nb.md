@@ -21,13 +21,13 @@ Det kan være nyttig å angi et lydsignal når du vil følge med på et kjent la
 
 **For å angi et lydsignal :**
 
- Først, vis detaljene for et sted enten ved å bruke søkefeltet for å søke etter et sted, eller ved å trykke på en av knappene *\"Steder i nærheten\"*, *\"Markører og ruter\"* eller *\"Nåværende posisjon\"* og velge et sted. På skjermen *\"Posisjonsinformasjon\"* kan du velge knappen *\"Start lydsignal\"*. Når du trykker på denne, kommer du tilbake til startskjermen og et hørbart lydsignal som kommer fra retningen til det valgte stedet slås på. Navnet på stedet du har valgt, sammen med avstanden og gateadressen hvis tilgjengelig, vises nå på hovedskjermen.
+ Først, vis detaljene for et sted enten ved å bruke søkefeltet for å søke etter et sted, eller ved å trykke på en av knappene *Steder i nærheten*, *Markører og ruter* eller *Nåværende posisjon* og velge et sted. På skjermen *Posisjonsinformasjon* kan du velge knappen *Start lydsignal*. Når du trykker på denne, kommer du tilbake til startskjermen og et hørbart lydsignal som kommer fra retningen til det valgte stedet slås på. Navnet på stedet du har valgt, sammen med avstanden og gateadressen hvis tilgjengelig, vises nå på hovedskjermen.
 
 **For å fjerne det nåværende lydsignalet:**
 
-Trykk bare på knappen *\"Stopp rute\"* på startskjermen.
+Trykk bare på knappen *Stopp rute* på startskjermen.
 
 **For å dempe lydsignalet:**
 
-Trykk på knappen *\"Slå av lydsignal\"* ved siden av knappen *\"Stopp rute\"* på startskjermen.
+Trykk på knappen *Slå av lydsignal* ved siden av knappen *Stopp rute* på startskjermen.
 

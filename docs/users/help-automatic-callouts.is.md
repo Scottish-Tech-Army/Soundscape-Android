@@ -11,7 +11,7 @@ permalink: /users/help-automatic-callouts.html
 
 ## Hvað er það?
 
-Soundscape getur sagt þér frá hlutum í kringum þig þegar þú nálgast þá með því að kalla upp nöfn þeirra úr þeirri átt sem þeir eru í. Forritið gerir þetta sjálfkrafa fyrir alls konar hluti, eins og fyrirtæki, strætóstopp og jafnvel gatnamót. Þú getur stillt hvað forritið kallar upp sjálfkrafa í kaflanum *\"Stjórna tilkynningum\"* á skjánum *\"Stillingar\"*, og þú getur slökkt á öllum tilkynningum þegar þú vilt að forritið verði hljótt.
+Soundscape getur sagt þér frá hlutum í kringum þig þegar þú nálgast þá með því að kalla upp nöfn þeirra úr þeirri átt sem þeir eru í. Forritið gerir þetta sjálfkrafa fyrir alls konar hluti, eins og fyrirtæki, strætóstopp og jafnvel gatnamót. Þú getur stillt hvað forritið kallar upp sjálfkrafa í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar*, og þú getur slökkt á öllum tilkynningum þegar þú vilt að forritið verði hljótt.
 
 ## Hvenær ætti að nota það?
 
@@ -31,9 +31,9 @@ Kveiktu á sjálfvirkum tilkynningum og gakktu um til að heyra um mismunandi ve
 
 **Kveikja eða slökkva á tilkynningum:**
 
- Ef slökkt er á tilkynningum verður forritið hljótt. Hægt er að slökkva á tilkynningum í kaflanum *\"Stjórna tilkynningum\"* á skjánum *\"Stillingar\"* með því að stilla *\"Nákvæmni tilkynninga\"* á *\"Þögult\"*, og kveikja aftur á þeim með því að velja hvaða annað stig sem er. Þú getur gert það sama með því að biðja Siri eða Gemini um það. Þú getur einnig lækkað í Soundscape eitt þrep í einu með fjölmiðlahnöppunum á heyrnartólunum þínum: hver ýting á *\"fyrri\"* færir þig niður um eitt þrep í gegnum *\"Ítarlegt\"*, *\"Jafnvægi\"*, *\"Hljóðlátt\"* og *\"Þögult\"*, og enn ein ýting fer aftur í *\"Ítarlegt\"*. Sjá hjálparefnið *\"Notkun fjölmiðlastýringa\"*. Að öðrum kosti geturðu notað hnappinn *\"fara í dvala\"* efst í hægra horni heimaskjásins til að stöðva tilkynningar Soundscape þar til þú velur að vekja forritið aftur.
+ Ef slökkt er á tilkynningum verður forritið hljótt. Hægt er að slökkva á tilkynningum í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* með því að stilla *Nákvæmni tilkynninga* á *Þögult*, og kveikja aftur á þeim með því að velja hvaða annað stig sem er. Þú getur gert það sama með því að biðja Siri eða Gemini um það. Þú getur einnig lækkað í Soundscape eitt þrep í einu með fjölmiðlahnöppunum á heyrnartólunum þínum: hver ýting á *fyrri* færir þig niður um eitt þrep í gegnum *Ítarlegt*, *Jafnvægi*, *Hljóðlátt* og *Þögult*, og enn ein ýting fer aftur í *Ítarlegt*. Sjá hjálparefnið *Notkun fjölmiðlastýringa*. Að öðrum kosti geturðu notað hnappinn *fara í dvala* efst í hægra horni heimaskjásins til að stöðva tilkynningar Soundscape þar til þú velur að vekja forritið aftur.
 
 **Stjórna því hvaða tilkynningar þú heyrir:**
 
- Til að velja hvaða tegundir hluta Soundscape tilkynnir sjálfkrafa skaltu fara í skjáinn *\"Stillingar\"* í valmyndinni á *\"Heimaskjánum\"*. Í kaflanum *\"Stjórna tilkynningum\"* á skjánum *\"Stillingar\"* velur þú hversu mikið forritið segir með *\"Nákvæmni tilkynninga\"*, hvort það tilkynnir *\"Götur og gatnamót\"* og hvaða *\"Staðir til að tilkynna\"* eru valdir. Ef þú vilt slökkva á öllum tilkynningum skaltu stilla *\"Nákvæmni tilkynninga\"* á *\"Þögult\"*.
+ Til að velja hvaða tegundir hluta Soundscape tilkynnir sjálfkrafa skaltu fara í skjáinn *Stillingar* í valmyndinni á *Heimaskjánum*. Í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* velur þú hversu mikið forritið segir með *Nákvæmni tilkynninga*, hvort það tilkynnir *Götur og gatnamót* og hvaða *Staðir til að tilkynna* eru valdir. Ef þú vilt slökkva á öllum tilkynningum skaltu stilla *Nákvæmni tilkynninga* á *Þögult*.
 

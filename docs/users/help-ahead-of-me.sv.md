@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Vad är det?
 
-Knappen *\"Framför mig\"* berättar om upp till fem saker som finns framför dig. *\"Framför mig\"* är avsedd att hjälpa dig utforska vad som kommer i din väg när du lär dig känna ett nytt område.
+Knappen *Framför mig* berättar om upp till fem saker som finns framför dig. *Framför mig* är avsedd att hjälpa dig utforska vad som kommer i din väg när du lär dig känna ett nytt område.
 
 ## När ska jag använda det?
 

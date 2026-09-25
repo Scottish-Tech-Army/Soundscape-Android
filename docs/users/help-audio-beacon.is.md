@@ -21,13 +21,13 @@ Með því að setja hljóðvita á nálægan stað getur Soundscape haldið þ�
 
 **Til að setja hljóðvita :**
 
-Fyrst skoðaðu upplýsingar um stað með því að nota leitarstikuna eða velja einn af hnöppunum *\"Nálægir staðir\"*, *\"Merki og leiðir\"* eða *\"staðsetning\"* og velja staðinn. Á skjánum *\"Upplýsingar um staðsetningu\"* geturðu valið hnappinn *\"Hljóðviti\"*. Með því að ýta á hann snýrðu aftur á heimaskjáinn og kveikir á heyranlegum hljóðvita sem heyrist úr þeirri átt sem staðurinn er. Nafn staðarins sem þú valdir, ásamt fjarlægð og heimilisfangi ef það er tiltækt, verður nú sýnt á aðalskjánum.
+Fyrst skoðaðu upplýsingar um stað með því að nota leitarstikuna eða velja einn af hnöppunum *Nálægir staðir*, *Merki og leiðir* eða *staðsetning* og velja staðinn. Á skjánum *Upplýsingar um staðsetningu* geturðu valið hnappinn *Hljóðviti*. Með því að ýta á hann snýrðu aftur á heimaskjáinn og kveikir á heyranlegum hljóðvita sem heyrist úr þeirri átt sem staðurinn er. Nafn staðarins sem þú valdir, ásamt fjarlægð og heimilisfangi ef það er tiltækt, verður nú sýnt á aðalskjánum.
 
 **Til að fjarlægja núverandi hljóðvita :**
 
- Ýttu einfaldlega á hnappinn *\"Ljúka leið\"* á heimaskjánum.
+ Ýttu einfaldlega á hnappinn *Ljúka leið* á heimaskjánum.
 
 **Til að þagga hljóðvitann :**
 
- Ýttu á hnappinn *\"Þagga hljóðvita\"* við hliðina á hnappnum *\"Ljúka leið\"* á heimaskjánum.
+ Ýttu á hnappinn *Þagga hljóðvita* við hliðina á hnappnum *Ljúka leið* á heimaskjánum.
 

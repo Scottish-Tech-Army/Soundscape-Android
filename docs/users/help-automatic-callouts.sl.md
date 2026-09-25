@@ -11,7 +11,7 @@ permalink: /users/help-automatic-callouts.html
 
 ## Kaj je to?
 
-Soundscape vam lahko pove o stvareh v vaši okolici, ko se jim približujete, tako da izgovori njihovo ime iz smeri, kjer se nahajajo. Aplikacija to samodejno počne za najrazličnejše stvari, kot so podjetja, avtobusne postaje in celo križišča. Kaj naj aplikacija samodejno oznanja, lahko nastavite v razdelku *"Upravljanje zvočnih obvestil"* na zaslonu *"Nastavitve"*, vsa zvočna obvestila pa lahko tudi izklopite, kadar želite, da je aplikacija tiha.
+Soundscape vam lahko pove o stvareh v vaši okolici, ko se jim približujete, tako da izgovori njihovo ime iz smeri, kjer se nahajajo. Aplikacija to samodejno počne za najrazličnejše stvari, kot so podjetja, avtobusne postaje in celo križišča. Kaj naj aplikacija samodejno oznanja, lahko nastavite v razdelku *Upravljanje zvočnih obvestil* na zaslonu *Nastavitve*, vsa zvočna obvestila pa lahko tudi izklopite, kadar želite, da je aplikacija tiha.
 
 ## Kdaj naj to uporabim?
 

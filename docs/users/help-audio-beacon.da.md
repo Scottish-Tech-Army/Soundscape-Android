@@ -21,13 +21,13 @@ Det er nyttigt at sætte et lydfyr, når du vil holde styr på et velkendt lande
 
 **For at sætte et lydfyr:**
 
- Først skal du se oplysningerne for en placering ved enten at søge efter et sted i søgefeltet eller ved at trykke på en af knapperne *\"Steder i nærheden\"*, *\"Mærker og Ruter\"* eller *\"Aktuel placering\"* og vælge en placering. På skærmen *\"Oplysninger om placering\"* kan du vælge knappen *\"Start lydfyr\"*. Når du trykker på denne, vender du tilbage til startskærmen, og et hørbart lydfyr fra den valgte placering tændes. Navnet på det valgte sted samt dets afstand og fysiske adresse, hvis tilgængelig, vises nu på appens hovedskærm.
+ Først skal du se oplysningerne for en placering ved enten at søge efter et sted i søgefeltet eller ved at trykke på en af knapperne *Steder i nærheden*, *Mærker og Ruter* eller *Aktuel placering* og vælge en placering. På skærmen *Oplysninger om placering* kan du vælge knappen *Start lydfyr*. Når du trykker på denne, vender du tilbage til startskærmen, og et hørbart lydfyr fra den valgte placering tændes. Navnet på det valgte sted samt dets afstand og fysiske adresse, hvis tilgængelig, vises nu på appens hovedskærm.
 
 **For at fjerne det aktuelle lydfyr:**
 
- Tryk blot på knappen *\"Stop rute\"* på startskærmen.
+ Tryk blot på knappen *Stop rute* på startskærmen.
 
 **For at slå det hørbare lydfyr fra:**
 
- Tryk på knappen *\"Slå lydfyr fra\"* ved siden af knappen *\"Stop rute\"* på startskærmen.
+ Tryk på knappen *Slå lydfyr fra* ved siden af knappen *Stop rute* på startskærmen.
 

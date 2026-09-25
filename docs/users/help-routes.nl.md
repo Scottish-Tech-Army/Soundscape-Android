@@ -25,7 +25,7 @@ Mogelijk wilt u een route maken en gebruiken op een plek die u al kent, zodat u 
 
 **Een route bewerken :**
 
-Selecteer uw route op het scherm *\"Markeringen en routes\"* en kies vervolgens *\"Route bewerken\"*. Vanaf daar kunt u routepunten toevoegen en verwijderen, en de naam en beschrijving van de route bewerken.
+Selecteer uw route op het scherm *Markeringen en routes* en kies vervolgens *Route bewerken*. Vanaf daar kunt u routepunten toevoegen en verwijderen, en de naam en beschrijving van de route bewerken.
 
 **Een route delen :**
 

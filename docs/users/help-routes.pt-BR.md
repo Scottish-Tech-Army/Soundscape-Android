@@ -25,7 +25,7 @@ Talvez você queira criar e usar uma rota em um lugar que já conhece, para ajud
 
 **Editando uma rota :**
 
- Selecione sua rota na tela *\"Favoritos e Rotas\"* e então selecione *\"Editar Rota\"*. A partir daqui, você pode adicionar e remover localizadores, além de editar o nome e a descrição da rota.
+ Selecione sua rota na tela *Favoritos e Rotas* e então selecione *Editar Rota*. A partir daqui, você pode adicionar e remover localizadores, além de editar o nome e a descrição da rota.
 
 **Compartilhando uma rota:**
 

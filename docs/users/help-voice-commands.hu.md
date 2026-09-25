@@ -27,7 +27,7 @@ Nincsenek pontos, megjegyzendő kifejezések. Kérje a saját szavaival, amit sz
 
 Megkérheti a Soundscape-et, hogy:
 
-Írja le a *\"Saját helyzetem\"* pontot, azt, hogy mi van *\"Körülöttem\"*, vagy azt, hogy mi van *\"Előttem\"*.
+Írja le a *Saját helyzetem* pontot, azt, hogy mi van *Körülöttem*, vagy azt, hogy mi van *Előttem*.
 
 Jelentse be a közelében lévő mentett jelölőket.
 
@@ -35,7 +35,7 @@ Indítsa el valamelyik mentett útvonalát név szerint, lépjen a következő �
 
 Állítson be hangjelzőt valamelyik mentett jelölőjén név szerint, vagy kapcsolja ki a hangjelzőt.
 
-Állítsa a közlések részletességét *\"Néma\"*, *\"Csendes\"*, *\"Kiegyensúlyozott\"* vagy *\"Részletes\"* értékre, hogy módosuljon, mennyit mond a Soundscape séta közben. A Néma kikapcsolja az automatikus közléseket.
+Állítsa a közlések részletességét *Néma*, *Csendes*, *Kiegyensúlyozott* vagy *Részletes* értékre, hogy módosuljon, mennyit mond a Soundscape séta közben. A Néma kikapcsolja az automatikus közléseket.
 
 Olvassa fel a mentett útvonalai vagy a mentett jelölői nevét.
 

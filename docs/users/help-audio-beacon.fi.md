@@ -21,13 +21,13 @@ Majakan määrittäminen on hyödyllistä, kun haluat seurata tuttua maamerkkiä
 
 **Majakan asettaminen :**
 
- Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin seuraavista painikkeista: *\"Lähiympäristön paikat\"*, *\"Merkitsimet ja reitit\"* tai *\"Nykyinen sijainti\"* ja valitsemalla haluamasi sijainti. *\"Sijainnin tiedot\"* -näytöltä voit valita *\"Käynnistä äänimajakka\"* -painikkeen. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Valitsemasi paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt sovelluksen pääruudulla.
+ Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin seuraavista painikkeista: *Lähiympäristön paikat*, *Merkitsimet ja reitit* tai *Nykyinen sijainti* ja valitsemalla haluamasi sijainti. *Sijainnin tiedot* -näytöltä voit valita *Käynnistä äänimajakka* -painikkeen. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Valitsemasi paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt sovelluksen pääruudulla.
 
 **Majakan poistaminen :**
 
- Paina aloitusnäytöllä yksinkertaisesti *\"Pysäytä reitti\"* -painiketta.
+ Paina aloitusnäytöllä yksinkertaisesti *Pysäytä reitti* -painiketta.
 
 **Äänimajakan hiljentäminen :**
 
- Napauta aloitusnäytöllä *\"Pysäytä reitti\"* -painikkeen vieressä olevaa *\"Hiljennä majakka\"* -painiketta.
+ Napauta aloitusnäytöllä *Pysäytä reitti* -painikkeen vieressä olevaa *Hiljennä majakka* -painiketta.
 

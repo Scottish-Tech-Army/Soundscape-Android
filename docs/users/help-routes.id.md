@@ -25,7 +25,7 @@ Anda mungkin ingin membuat dan menggunakan rute di tempat yang sudah Anda kenal,
 
 **Mengedit rute :**
 
- Pilih rute Anda di layar *\"Marker dan Rute\"* lalu pilih *\"Edit Rute\"*. Dari sini Anda dapat menambah dan menghapus waypoint, serta mengedit nama dan deskripsi rute.
+ Pilih rute Anda di layar *Marker dan Rute* lalu pilih *Edit Rute*. Dari sini Anda dapat menambah dan menghapus waypoint, serta mengedit nama dan deskripsi rute.
 
 **Membagikan rute :**
 

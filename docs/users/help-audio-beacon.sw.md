@@ -21,13 +21,13 @@ Kuweka beacon ni muhimu unapotaka kufuatilia alama unayoifahamu wakati unachungu
 
 **Kuweka beacon :**
 
- Kwanza, tazama maelezo ya mahali kwa kutumia upau wa utafutaji kutafuta mahali, au kwa kugusa moja ya vitufe vya *"Sehemu za Karibu"*, *"Alama na Njia"*, au *"Mahali Nilipo Sasa"* kisha uchague mahali. Kutoka kwenye skrini ya *"Maelezo ya Mahali"* unaweza kuchagua kitufe cha *"Anzisha Beacon ya Sauti"*. Kugusa hii kutakurudisha kwenye skrini ya mwanzo na kuwasha beacon inayosikika ikitoka upande wa mahali ulipochagua. Jina la mahali ulipochagua pamoja na umbali wake na anwani yake ya kimwili, ikiwa inajulikana, sasa vitaonyeshwa kwenye skrini kuu ya programu.
+ Kwanza, tazama maelezo ya mahali kwa kutumia upau wa utafutaji kutafuta mahali, au kwa kugusa moja ya vitufe vya *Sehemu za Karibu*, *Alama na Njia*, au *Mahali Nilipo Sasa* kisha uchague mahali. Kutoka kwenye skrini ya *Maelezo ya Mahali* unaweza kuchagua kitufe cha *Anzisha Beacon ya Sauti*. Kugusa hii kutakurudisha kwenye skrini ya mwanzo na kuwasha beacon inayosikika ikitoka upande wa mahali ulipochagua. Jina la mahali ulipochagua pamoja na umbali wake na anwani yake ya kimwili, ikiwa inajulikana, sasa vitaonyeshwa kwenye skrini kuu ya programu.
 
 **Kuondoa beacon ya sasa :**
 
- Bonyeza tu kitufe cha *"Simamisha Njia"* kwenye skrini ya mwanzo.
+ Bonyeza tu kitufe cha *Simamisha Njia* kwenye skrini ya mwanzo.
 
 **Kunyamazisha beacon inayosikika :**
 
- Gusa kitufe cha *"Nyamazisha Beacon"* kilicho karibu na kitufe cha *"Simamisha Njia"* kwenye skrini ya mwanzo.
+ Gusa kitufe cha *Nyamazisha Beacon* kilicho karibu na kitufe cha *Simamisha Njia* kwenye skrini ya mwanzo.
 

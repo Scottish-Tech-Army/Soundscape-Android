@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Kaj je to?
 
-Gumb *"Pred menoj"* vam pove o do petih stvareh pred vami. *"Pred menoj"* vam pomaga raziskovati pot pred seboj, ko spoznavate novo območje.
+Gumb *Pred menoj* vam pove o do petih stvareh pred vami. *Pred menoj* vam pomaga raziskovati pot pred seboj, ko spoznavate novo območje.
 
 ## Kdaj naj to uporabim?
 

@@ -11,7 +11,7 @@ permalink: /users/help-automatic-callouts.html
 
 ## Ni nini?
 
-Soundscape inaweza kukujulisha kuhusu vitu vinavyokuzunguka unapovikaribia kwa kutangaza jina lake kutoka upande vilipo. Programu hii hufanya hivi kiotomatiki kwa aina zote za vitu kama biashara, vituo vya mabasi, na hata makutano ya barabara. Unaweza kupanga programu itangaze nini kiotomatiki katika sehemu ya *"Dhibiti Matangazo"* ya skrini ya *"Mipangilio"*, na unaweza kuzima matangazo yote unapotaka programu ikae kimya.
+Soundscape inaweza kukujulisha kuhusu vitu vinavyokuzunguka unapovikaribia kwa kutangaza jina lake kutoka upande vilipo. Programu hii hufanya hivi kiotomatiki kwa aina zote za vitu kama biashara, vituo vya mabasi, na hata makutano ya barabara. Unaweza kupanga programu itangaze nini kiotomatiki katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio*, na unaweza kuzima matangazo yote unapotaka programu ikae kimya.
 
 ## Ni lini nitaitumia?
 

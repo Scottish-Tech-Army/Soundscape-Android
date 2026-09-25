@@ -21,13 +21,13 @@ Nastavitev svetilnika je uporabna, kadar želite slediti znani orientacijski to�
 
 **Nastavitev svetilnika :**
 
- Najprej si oglejte podrobnosti lokacije, tako da uporabite iskalno vrstico za iskanje kraja ali tapnete enega od gumbov *"Kraji v bližini"*, *"Oznake in poti"* ali *"Trenutna lokacija"* in izberete lokacijo. Na zaslonu *"Podrobnosti lokacije"* lahko izberete gumb *"Zaženi zvočni svetilnik"*. S tapom se boste vrnili na domači zaslon, vklopil pa se bo zvočni svetilnik, ki prihaja iz smeri izbranega kraja. Ime izbranega kraja skupaj z razdaljo do njega in fizičnim naslovom, če je na voljo, bo zdaj prikazano na glavnem zaslonu aplikacije.
+ Najprej si oglejte podrobnosti lokacije, tako da uporabite iskalno vrstico za iskanje kraja ali tapnete enega od gumbov *Kraji v bližini*, *Oznake in poti* ali *Trenutna lokacija* in izberete lokacijo. Na zaslonu *Podrobnosti lokacije* lahko izberete gumb *Zaženi zvočni svetilnik*. S tapom se boste vrnili na domači zaslon, vklopil pa se bo zvočni svetilnik, ki prihaja iz smeri izbranega kraja. Ime izbranega kraja skupaj z razdaljo do njega in fizičnim naslovom, če je na voljo, bo zdaj prikazano na glavnem zaslonu aplikacije.
 
 **Odstranitev trenutnega svetilnika :**
 
- Preprosto pritisnite gumb *"Ustavi pot"* na domačem zaslonu.
+ Preprosto pritisnite gumb *Ustavi pot* na domačem zaslonu.
 
 **Utišanje zvočnega svetilnika :**
 
- Tapnite gumb *"Utišaj svetilnik"* poleg gumba *"Ustavi pot"* na domačem zaslonu.
+ Tapnite gumb *Utišaj svetilnik* poleg gumba *Ustavi pot* na domačem zaslonu.
 

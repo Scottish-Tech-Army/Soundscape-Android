@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Mikä se on?
 
-*\"Edessäpäin\"*‑painike kertoo enintään viidestä edessäsi olevasta asiasta. *\"Edessäpäin\"* on tarkoitettu auttamaan sinua selvittämään, mitä on edessäsi, kun tutustut uuteen alueeseen.
+*Edessäpäin*‑painike kertoo enintään viidestä edessäsi olevasta asiasta. *Edessäpäin* on tarkoitettu auttamaan sinua selvittämään, mitä on edessäsi, kun tutustut uuteen alueeseen.
 
 ## Milloin käyttäisin sitä?
 

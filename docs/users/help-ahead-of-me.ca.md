@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Què és?
 
-El botó *"Davant meu"* t'informa sobre fins a cinc coses que hi ha davant teu. *"Davant meu"* té la finalitat d'ajudar-te a explorar el camí que tens al davant quan estàs coneixent una zona nova.
+El botó *Davant meu* t'informa sobre fins a cinc coses que hi ha davant teu. *Davant meu* té la finalitat d'ajudar-te a explorar el camí que tens al davant quan estàs coneixent una zona nova.
 
 ## Quan l'hauria d'utilitzar?
 

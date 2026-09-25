@@ -27,7 +27,7 @@ Tidak ada kalimat baku yang perlu dihafal. Mintalah apa yang Anda inginkan denga
 
 Anda dapat meminta Soundscape untuk:
 
-Menjelaskan *\"Lokasi Saya\"*, apa yang ada *\"Di Sekitar Saya\"*, atau apa yang ada *\"Di Depan Saya\"*.
+Menjelaskan *Lokasi Saya*, apa yang ada *Di Sekitar Saya*, atau apa yang ada *Di Depan Saya*.
 
 Mengumumkan penanda tersimpan di dekat Anda.
 
@@ -35,7 +35,7 @@ Memulai salah satu rute tersimpan Anda berdasarkan nama, berpindah ke titik rute
 
 Memasang suar audio pada salah satu penanda tersimpan Anda berdasarkan nama, atau mematikan suar.
 
-Mengatur tingkat detail pemberitahuan ke *\"Senyap\"*, *\"Ringkas\"*, *\"Seimbang\"*, atau *\"Rinci\"*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. Senyap mematikan pemberitahuan otomatis.
+Mengatur tingkat detail pemberitahuan ke *Senyap*, *Ringkas*, *Seimbang*, atau *Rinci*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. Senyap mematikan pemberitahuan otomatis.
 
 Membacakan nama rute tersimpan atau penanda tersimpan Anda.
 

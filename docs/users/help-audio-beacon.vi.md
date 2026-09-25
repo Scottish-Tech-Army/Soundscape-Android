@@ -21,13 +21,13 @@ Việc đặt đèn hiệu rất hữu ích khi bạn muốn theo dõi một m�
 
 **Để đặt đèn hiệu :**
 
- Trước tiên, hãy xem chi tiết của một địa điểm bằng cách dùng thanh tìm kiếm để tìm một nơi, hoặc nhấn vào một trong các nút *\"Địa điểm gần đây\"*, *\"Điểm đánh dấu và Lộ trình\"*, hoặc *\"Vị trí hiện tại\"* rồi chọn một địa điểm. Từ màn hình *\"Chi tiết địa điểm\"*, bạn có thể chọn nút *\"Bật đèn hiệu âm thanh\"*. Nhấn vào nút này sẽ đưa bạn trở về màn hình chính và bật đèn hiệu âm thanh phát ra từ hướng của địa điểm bạn đã chọn. Tên của địa điểm bạn đã chọn cùng với khoảng cách và địa chỉ đường phố (nếu có) giờ đây sẽ được hiển thị trên màn hình chính của ứng dụng.
+ Trước tiên, hãy xem chi tiết của một địa điểm bằng cách dùng thanh tìm kiếm để tìm một nơi, hoặc nhấn vào một trong các nút *Địa điểm gần đây*, *Điểm đánh dấu và Lộ trình*, hoặc *Vị trí hiện tại* rồi chọn một địa điểm. Từ màn hình *Chi tiết địa điểm*, bạn có thể chọn nút *Bật đèn hiệu âm thanh*. Nhấn vào nút này sẽ đưa bạn trở về màn hình chính và bật đèn hiệu âm thanh phát ra từ hướng của địa điểm bạn đã chọn. Tên của địa điểm bạn đã chọn cùng với khoảng cách và địa chỉ đường phố (nếu có) giờ đây sẽ được hiển thị trên màn hình chính của ứng dụng.
 
 **Để gỡ bỏ đèn hiệu hiện tại :**
 
- Chỉ cần nhấn nút *\"Dừng lộ trình\"* trên màn hình chính.
+ Chỉ cần nhấn nút *Dừng lộ trình* trên màn hình chính.
 
 **Để tắt tiếng đèn hiệu âm thanh :**
 
- Nhấn nút *\"Tắt tiếng đèn hiệu\"* bên cạnh nút *\"Dừng lộ trình\"* trên màn hình chính.
+ Nhấn nút *Tắt tiếng đèn hiệu* bên cạnh nút *Dừng lộ trình* trên màn hình chính.
 

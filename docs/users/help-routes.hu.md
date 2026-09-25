@@ -25,7 +25,7 @@ Létrehozhat és használhat egy útvonalat egy Önnek már ismerős helyen, hog
 
 **Útvonal szerkesztése:**
 
- Válassza ki az útvonalát a *\"Jelölők és útvonalak\"* képernyőn, majd válassza az *\"Útvonal szerkesztése\"* lehetőséget. Innen hozzáadhat és eltávolíthat útpontokat, valamint szerkesztheti az útvonal nevét és leírását.
+ Válassza ki az útvonalát a *Jelölők és útvonalak* képernyőn, majd válassza az *Útvonal szerkesztése* lehetőséget. Innen hozzáadhat és eltávolíthat útpontokat, valamint szerkesztheti az útvonal nevét és leírását.
 
 **Útvonal megosztása:**
 

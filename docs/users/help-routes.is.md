@@ -25,7 +25,7 @@ Fyrst skaltu fara í *"Merki og leiðir"*, velja flipann *"Leiðir"* og síðan 
 
 **Að breyta leið :**
 
-Veldu leiðina þína á skjánum *\"Merki og leiðir\"* og veldu síðan *\"Uppfæra Leið\"*. Héðan geturðu bætt við og fjarlægt leiðarpunkta og breytt nafni og lýsingu leiðarinnar.
+Veldu leiðina þína á skjánum *Merki og leiðir* og veldu síðan *Uppfæra Leið*. Héðan geturðu bætt við og fjarlægt leiðarpunkta og breytt nafni og lýsingu leiðarinnar.
 
 **Deila leið :**
 

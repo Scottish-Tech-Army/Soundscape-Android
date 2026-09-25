@@ -25,7 +25,7 @@ Es posible que quieras crear y usar una ruta en un lugar que ya conoces, para ay
 
 **Edición de una ruta**:
 
- selecciona tu ruta en la página *"Marcadores y rutas"* y, a continuación, *"Editar ruta"*. Desde aquí, puedes agregar y eliminar puntos de ruta, así como editar el nombre y la descripción de la ruta.
+ selecciona tu ruta en la página *Marcadores y rutas* y, a continuación, *Editar ruta*. Desde aquí, puedes agregar y eliminar puntos de ruta, así como editar el nombre y la descripción de la ruta.
 
 **Uso compartido de una ruta**:
 

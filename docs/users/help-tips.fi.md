@@ -9,9 +9,9 @@ permalink: /users/help-tips.html
 
 # Vinkkejä
 
-Voit löytää lähellä olevat linja‑autopysäkit valitsemalla *\"Julkinen liikenne\"* -suodattimen *\"Lähiympäristön paikat\"* -listasta.
+Voit löytää lähellä olevat linja‑autopysäkit valitsemalla *Julkinen liikenne* -suodattimen *Lähiympäristön paikat* -listasta.
 
-Voit asettaa majakan mihin tahansa osoitteeseen. Etsi osoite Soundscapen pääruudulta hakutoiminnolla. Valitse osoite hakutuloksista, jolloin avautuu *"Sijainnin tiedot"* -näyttö. Tässä näytössä on vaihtoehto *"Käynnistä äänimajakka"* kyseiselle osoitteelle. Näin voit asettaa majakan yrityksiin, paikkoihin, kiinnostaviin kohteisiin ja asuntoihin, joita ei ole OpenStreetMapissa.
+Voit asettaa majakan mihin tahansa osoitteeseen. Etsi osoite Soundscapen pääruudulta hakutoiminnolla. Valitse osoite hakutuloksista, jolloin avautuu *Sijainnin tiedot* -näyttö. Tässä näytössä on vaihtoehto *Käynnistä äänimajakka* kyseiselle osoitteelle. Näin voit asettaa majakan yrityksiin, paikkoihin, kiinnostaviin kohteisiin ja asuntoihin, joita ei ole OpenStreetMapissa.
 
 Jos käytät jotakin bussireittiä säännöllisesti, tallenna nousu- ja poistumispysäkkisi merkitsimiksi. Näin ne tallentuvat ja löydät ne helposti uudelleen. Siirry aloitusnäytöltä kohtaan *Merkitsimet ja reitit* ja etsi ne sitten *Merkitsimet*-sivulta. Voit asettaa niihin majakan saadaksesi säännöllisiä päivityksiä siitä, kuinka lähellä poistumispysäkkiäsi olet. Huom: voit kytkeä rytmisen äänen pois päältä ja saat silti etäisyyspäivityksiä matkan aikana.
 
@@ -21,5 +21,5 @@ Soundscape toimii parhaiten, kun pitelet puhelinta vaakatasossa siten, että sen
 
 Voit kytkeä majakan rytmikkään äänen päälle ja pois aloitusnäytön hiljennyspainikkeella. Jos majakka on hiljennetty, saat silti päivityksiä etäisyydestäsi määränpäähän noin 50 metrin välein.
 
-Jos haluat jatkaa Soundscapen käyttöä kuulematta automaattisia ilmoituksia, aseta *\"Ilmoitusten tarkkuus\"* arvoon *\"Äänetön\"* valikon *\"Asetukset\"*-näytön *\"Ilmoitusten hallinta\"* -osiossa. Jos et aio käyttää Soundscapea hetkeen, voit sen sijaan asettaa sen lepotilaan tai odotustilaan aloitusnäytön *\"Siirry lepotilaan\"* -painikkeella.
+Jos haluat jatkaa Soundscapen käyttöä kuulematta automaattisia ilmoituksia, aseta *Ilmoitusten tarkkuus* arvoon *Äänetön* valikon *Asetukset*-näytön *Ilmoitusten hallinta* -osiossa. Jos et aio käyttää Soundscapea hetkeen, voit sen sijaan asettaa sen lepotilaan tai odotustilaan aloitusnäytön *Siirry lepotilaan* -painikkeella.
 

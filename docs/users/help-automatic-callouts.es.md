@@ -11,7 +11,7 @@ permalink: /users/help-automatic-callouts.html
 
 ## ¿Qué es?
 
-Soundscape puede indicarte los elementos a tu alrededor conforme te acercas a ellos llamándolos por su nombre desde la dirección en la que se encuentran. La aplicación hará esto automáticamente para todo tipo de elementos, como negocios, paradas de autobús e incluso cruces. Puedes configurar de qué avisa la aplicación automáticamente en la sección *"Administrar avisos"* de la pantalla *"Ajustes"*, y podrás desactivar todos los avisos cuando desees que la aplicación esté en silencio.
+Soundscape puede indicarte los elementos a tu alrededor conforme te acercas a ellos llamándolos por su nombre desde la dirección en la que se encuentran. La aplicación hará esto automáticamente para todo tipo de elementos, como negocios, paradas de autobús e incluso cruces. Puedes configurar de qué avisa la aplicación automáticamente en la sección *Administrar avisos* de la pantalla *Ajustes*, y podrás desactivar todos los avisos cuando desees que la aplicación esté en silencio.
 
 ## ¿Cuándo lo usaría?
 
@@ -31,9 +31,9 @@ Soundscape puede indicarte los elementos a tu alrededor conforme te acercas a el
 
 **Activar o desactivar los avisos:**
 
- desactivar los avisos silenciará la aplicación. Los avisos se pueden desactivar en la sección *"Administrar avisos"* de la pantalla *"Ajustes"* ajustando *"Detalle de los avisos"* a *"Silencioso"*, y se vuelven a activar eligiendo cualquier otro nivel. Puedes hacer lo mismo pidiéndoselo a Siri o a Gemini. También puedes hacer que Soundscape hable menos paso a paso con los botones de control multimedia de tus auriculares: cada pulsación de *"anterior"* baja un nivel por *"Detallado"*, *"Equilibrado"*, *"Discreto"* y *"Silencioso"*, y una pulsación más vuelve a *"Detallado"*. Consulta el tema de ayuda *"Uso de controles multimedia"*. Alternativamente, puedes usar el botón *"Suspender"* en la esquina superior derecha de la pantalla principal para que Soundscape deje de realizar avisos hasta que elijas reactivarlo.
+ desactivar los avisos silenciará la aplicación. Los avisos se pueden desactivar en la sección *Administrar avisos* de la pantalla *Ajustes* ajustando *Detalle de los avisos* a *Silencioso*, y se vuelven a activar eligiendo cualquier otro nivel. Puedes hacer lo mismo pidiéndoselo a Siri o a Gemini. También puedes hacer que Soundscape hable menos paso a paso con los botones de control multimedia de tus auriculares: cada pulsación de *anterior* baja un nivel por *Detallado*, *Equilibrado*, *Discreto* y *Silencioso*, y una pulsación más vuelve a *Detallado*. Consulta el tema de ayuda *Uso de controles multimedia*. Alternativamente, puedes usar el botón *Suspender* en la esquina superior derecha de la pantalla principal para que Soundscape deje de realizar avisos hasta que elijas reactivarlo.
 
 **Administrar qué avisos oyes:**
 
- para elegir los tipos de elementos de los que avisará Soundscape automáticamente, ve a la pantalla *"Ajustes"* desde el menú de la pantalla *"Inicio"*. En la sección *"Administrar avisos"* de la pantalla *"Ajustes"* es donde eliges cuánto dice la aplicación con *"Detalle de los avisos"*, si avisa de *"Calles y cruces"* y qué *"Lugares de los que avisar"*. Si deseas desactivar todos los avisos, ajusta *"Detalle de los avisos"* a *"Silencioso"*.
+ para elegir los tipos de elementos de los que avisará Soundscape automáticamente, ve a la pantalla *Ajustes* desde el menú de la pantalla *Inicio*. En la sección *Administrar avisos* de la pantalla *Ajustes* es donde eliges cuánto dice la aplicación con *Detalle de los avisos*, si avisa de *Calles y cruces* y qué *Lugares de los que avisar*. Si deseas desactivar todos los avisos, ajusta *Detalle de los avisos* a *Silencioso*.
 

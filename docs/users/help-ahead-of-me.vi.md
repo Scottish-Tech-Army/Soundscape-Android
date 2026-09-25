@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Đây là gì?
 
-Nút *\"Phía trước tôi\"* cho bạn biết về tối đa năm thứ ở phía trước bạn. *\"Phía trước tôi\"* được thiết kế để giúp bạn khám phá con đường phía trước khi bạn đang tìm hiểu về một khu vực mới.
+Nút *Phía trước tôi* cho bạn biết về tối đa năm thứ ở phía trước bạn. *Phía trước tôi* được thiết kế để giúp bạn khám phá con đường phía trước khi bạn đang tìm hiểu về một khu vực mới.
 
 ## Khi nào tôi nên dùng tính năng này?
 

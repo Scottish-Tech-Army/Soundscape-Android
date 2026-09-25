@@ -27,7 +27,7 @@ Netreba sa učiť žiadne presné frázy. Povedzte vlastnými slovami, čo chcet
 
 Soundscape môžete požiadať, aby:
 
-Opísal *\"Moja poloha\"*, čo je *\"Okolo mňa\"* alebo čo je *\"Predo mnou\"*.
+Opísal *Moja poloha*, čo je *Okolo mňa* alebo čo je *Predo mnou*.
 
 Ohlásil uložené značky vo vašom okolí.
 
@@ -35,7 +35,7 @@ Spustil niektorú z vašich uložených trás podľa názvu, prešiel na ďalš�
 
 Nastavil zvukový maják na niektorú z vašich uložených značiek podľa názvu alebo maják vypol.
 
-Nastavil podrobnosť hlásení na *\"Bez zvuku\"*, *\"Tichý\"*, *\"Vyvážený\"* alebo *\"Podrobný\"*, čím sa zmení, koľko toho Soundscape hovorí, keď kráčate. Bez zvuku vypne automatické hlásenia.
+Nastavil podrobnosť hlásení na *Bez zvuku*, *Tichý*, *Vyvážený* alebo *Podrobný*, čím sa zmení, koľko toho Soundscape hovorí, keď kráčate. Bez zvuku vypne automatické hlásenia.
 
 Prečítal názvy vašich uložených trás alebo vašich uložených značiek.
 

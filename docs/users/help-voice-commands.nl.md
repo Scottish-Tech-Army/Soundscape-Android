@@ -27,7 +27,7 @@ Er zijn geen vaste zinnen om uit uw hoofd te leren. Vraag in uw eigen woorden om
 
 U kunt Soundscape vragen om:
 
-*\"Mijn locatie\"* te beschrijven, wat er *\"Om me heen\"* is, of wat er *\"Vóór me\"* is.
+*Mijn locatie* te beschrijven, wat er *Om me heen* is, of wat er *Vóór me* is.
 
 De opgeslagen markeringen bij u in de buurt aan te kondigen.
 
@@ -35,7 +35,7 @@ Een van uw opgeslagen routes op naam te starten, door te gaan naar het volgende 
 
 Een audiobaken op een van uw opgeslagen markeringen op naam in te stellen, of het baken uit te zetten.
 
-Het detailniveau van de aankondigingen op *\"Stil\"*, *\"Rustig\"*, *\"Gebalanceerd\"* of *\"Gedetailleerd\"* te zetten, om te wijzigen hoeveel Soundscape zegt terwijl u loopt. Stil zet de automatische aankondigingen uit.
+Het detailniveau van de aankondigingen op *Stil*, *Rustig*, *Gebalanceerd* of *Gedetailleerd* te zetten, om te wijzigen hoeveel Soundscape zegt terwijl u loopt. Stil zet de automatische aankondigingen uit.
 
 De namen van uw opgeslagen routes of uw opgeslagen markeringen voor te lezen.
 

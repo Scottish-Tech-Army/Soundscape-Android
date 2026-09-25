@@ -25,7 +25,7 @@ Puoi creare e usare un percorso in un luogo che già conosci, per aiutarti a rim
 
 **Modifica di un percorso :**
 
- Seleziona il percorso nella schermata *\"Indicatori e Percorsi\"* e poi scegli *\"Modifica percorso\"*. Da qui puoi aggiungere o rimuovere waypoint, oltre a modificare il nome e la descrizione del percorso.
+ Seleziona il percorso nella schermata *Indicatori e Percorsi* e poi scegli *Modifica percorso*. Da qui puoi aggiungere o rimuovere waypoint, oltre a modificare il nome e la descrizione del percorso.
 
 **Condivisione di un percorso**:
 

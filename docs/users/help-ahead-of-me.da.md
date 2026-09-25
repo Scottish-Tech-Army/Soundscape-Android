@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Hvad er det?
 
-Knappen *\"Foran mig\"* fortæller dig om op til fem ting foran dig. *\"Foran mig\"* er beregnet til at hjælpe dig med at udforske det, der ligger foran dig, når du skal lære et nyt område at kende.
+Knappen *Foran mig* fortæller dig om op til fem ting foran dig. *Foran mig* er beregnet til at hjælpe dig med at udforske det, der ligger foran dig, når du skal lære et nyt område at kende.
 
 ## Hvornår ville jeg bruge det?
 

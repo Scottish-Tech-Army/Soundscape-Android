@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Cos'è?
 
-Il pulsante *\"Davanti a me\"* ti indica fino a cinque elementi che si trovano davanti a te. *\"Davanti a me\"* serve ad aiutarti a esplorare ciò che c'è più avanti mentre impari a conoscere una nuova area.
+Il pulsante *Davanti a me* ti indica fino a cinque elementi che si trovano davanti a te. *Davanti a me* serve ad aiutarti a esplorare ciò che c'è più avanti mentre impari a conoscere una nuova area.
 
 ## Quando si usa?
 

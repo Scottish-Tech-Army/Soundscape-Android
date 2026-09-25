@@ -27,7 +27,7 @@ Nu există formulări exacte de memorat. Cere ce vrei cu propriile cuvinte, iar 
 
 Îi poți cere lui Soundscape:
 
-Să descrie *\"Locația mea\"*, ce se află *\"În jurul meu\"* sau ce se află *\"Înaintea mea\"*.
+Să descrie *Locația mea*, ce se află *În jurul meu* sau ce se află *Înaintea mea*.
 
 Să anunțe marcajele salvate din apropierea ta.
 
@@ -35,7 +35,7 @@ Să pornească una dintre rutele tale salvate după nume, să treacă la punctul
 
 Să pună o baliză audio pe unul dintre marcajele tale salvate după nume sau să oprească baliza.
 
-Să seteze detaliul anunțurilor pe *\"Silențios\"*, *\"Discret\"*, *\"Echilibrat\"* sau *\"Detaliat\"*, pentru a schimba cât de mult vorbește Soundscape în timp ce mergi. Silențios dezactivează anunțurile automate.
+Să seteze detaliul anunțurilor pe *Silențios*, *Discret*, *Echilibrat* sau *Detaliat*, pentru a schimba cât de mult vorbește Soundscape în timp ce mergi. Silențios dezactivează anunțurile automate.
 
 Să citească numele rutelor tale salvate sau ale marcajelor tale salvate.
 

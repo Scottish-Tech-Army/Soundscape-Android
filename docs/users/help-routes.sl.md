@@ -25,7 +25,7 @@ Pot morda želite ustvariti in uporabiti na kraju, ki ga že poznate, da ostanet
 
 **Urejanje poti :**
 
- Izberite svojo pot na zaslonu *"Oznake in poti"* in nato izberite *"Uredi pot"*. Od tu lahko dodajate in odstranjujete točke poti ter urejate ime in opis poti.
+ Izberite svojo pot na zaslonu *Oznake in poti* in nato izberite *Uredi pot*. Od tu lahko dodajate in odstranjujete točke poti ter urejate ime in opis poti.
 
 **Deljenje poti :**
 

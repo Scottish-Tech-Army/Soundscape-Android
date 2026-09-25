@@ -25,7 +25,7 @@ Rutu možda želite stvoriti i koristiti na mjestu koje već poznajete, kako bis
 
 **Uređivanje rute:**
 
- Odaberite svoju rutu na zaslonu *"Oznake i rute"*, a zatim odaberite *"Uredi rutu"*. Ovdje možete dodavati i uklanjati točke rute, kao i uređivati naziv i opis rute.
+ Odaberite svoju rutu na zaslonu *Oznake i rute*, a zatim odaberite *Uredi rutu*. Ovdje možete dodavati i uklanjati točke rute, kao i uređivati naziv i opis rute.
 
 **Dijeljenje rute:**
 

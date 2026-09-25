@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Čo to je?
 
-Tlačidlo *\"Predo mnou\"* vám povie o až piatich veciach pred vami. *\"Predo mnou\"* má za cieľ pomôcť vám preskúmať cestu pred sebou, keď sa oboznamujete s novou oblasťou.
+Tlačidlo *Predo mnou* vám povie o až piatich veciach pred vami. *Predo mnou* má za cieľ pomôcť vám preskúmať cestu pred sebou, keď sa oboznamujete s novou oblasťou.
 
 ## Kedy by som to použil(a)?
 

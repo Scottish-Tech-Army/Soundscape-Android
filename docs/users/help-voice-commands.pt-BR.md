@@ -27,7 +27,7 @@ Não há frases exatas para decorar. Peça o que quiser com suas próprias palav
 
 Você pode pedir ao Soundscape para:
 
-Descrever *\"Minha Localização\"*, o que está *\"Ao Meu Redor\"* ou o que está *\"À Minha Frente\"*.
+Descrever *Minha Localização*, o que está *Ao Meu Redor* ou o que está *À Minha Frente*.
 
 Anunciar os favoritos salvos perto de você.
 
@@ -35,7 +35,7 @@ Iniciar uma das suas rotas salvas pelo nome, avançar para o localizador seguint
 
 Colocar um sinalizador sonoro em um dos seus favoritos salvos pelo nome, ou desligar o sinalizador.
 
-Definir o detalhe das notificações como *\"Silencioso\"*, *\"Discreto\"*, *\"Equilibrado\"* ou *\"Detalhado\"*, para mudar quanto o Soundscape fala enquanto você caminha. Silencioso desativa as notificações automáticas.
+Definir o detalhe das notificações como *Silencioso*, *Discreto*, *Equilibrado* ou *Detalhado*, para mudar quanto o Soundscape fala enquanto você caminha. Silencioso desativa as notificações automáticas.
 
 Ler os nomes das suas rotas salvas ou dos seus favoritos salvos.
 

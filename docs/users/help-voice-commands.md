@@ -25,7 +25,7 @@ There are no exact phrases to memorise. Ask for what you want in your own words 
 
 You can ask Soundscape to:
 
-Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
+Describe *"My Location"*, what is *"Around Me"*, or what is *"Ahead of Me"*.
 
 Call out the saved markers near you.
 
@@ -33,7 +33,7 @@ Start one of your saved routes by name, move on to the next waypoint, go back to
 
 Set an audio beacon on one of your saved markers by name, or switch the beacon off.
 
-Set the callout detail to *\"Silent\"*, *\"Quiet\"*, *\"Balanced\"* or *\"Detailed\"*, to change how much Soundscape says as you walk. Silent turns automatic callouts off.
+Set the callout detail to *"Silent"*, *"Quiet"*, *"Balanced"* or *"Detailed"*, to change how much Soundscape says as you walk. Silent turns automatic callouts off.
 
 Read back the names of your saved routes or your saved markers.
 

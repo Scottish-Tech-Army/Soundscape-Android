@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Bu nedir?
 
-*\"Önümde\"* düğmesi, önünüzdeki en fazla beş şey hakkında bilgi verir. *\"Önümde\"* yeni bir bölgeyi keşfederken önünüzdeki yolu incelemenize yardımcı olmak için tasarlanmıştır.
+*Önümde* düğmesi, önünüzdeki en fazla beş şey hakkında bilgi verir. *Önümde* yeni bir bölgeyi keşfederken önünüzdeki yolu incelemenize yardımcı olmak için tasarlanmıştır.
 
 ## Ne zaman kullanırım?
 

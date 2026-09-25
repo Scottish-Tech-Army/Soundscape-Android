@@ -27,7 +27,7 @@ Nema točnih izraza koje treba zapamtiti. Zatražite što želite svojim riječi
 
 Soundscape možete zatražiti da:
 
-Opiše *\"Moja lokacija\"*, što je *\"Oko mene\"* ili što je *\"Ispred mene\"*.
+Opiše *Moja lokacija*, što je *Oko mene* ili što je *Ispred mene*.
 
 Najavi spremljene oznake u vašoj blizini.
 
@@ -35,7 +35,7 @@ Pokrene jednu od vaših spremljenih ruta po nazivu, prijeđe na sljedeću putnu 
 
 Postavi zvučni svjetionik na jednu od vaših spremljenih oznaka po nazivu ili isključi svjetionik.
 
-Postavi razinu detalja najava na *\"Bez zvuka\"*, *\"Tiho\"*, *\"Uravnoteženo\"* ili *\"Detaljno\"*, čime se mijenja koliko Soundscape govori dok hodate. Bez zvuka isključuje automatske najave.
+Postavi razinu detalja najava na *Bez zvuka*, *Tiho*, *Uravnoteženo* ili *Detaljno*, čime se mijenja koliko Soundscape govori dok hodate. Bez zvuka isključuje automatske najave.
 
 Pročita nazive vaših spremljenih ruta ili vaših spremljenih oznaka.
 

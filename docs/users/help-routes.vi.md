@@ -25,7 +25,7 @@ Bạn có thể muốn tạo và sử dụng một lộ trình ở nơi bạn đ
 
 **Chỉnh sửa một lộ trình :**
 
- Chọn lộ trình của bạn trên màn hình *\"Điểm đánh dấu và Lộ trình\"* rồi chọn *\"Chỉnh sửa Lộ trình\"*. Từ đây bạn có thể thêm và xóa các điểm dừng, cũng như chỉnh sửa tên và mô tả của lộ trình.
+ Chọn lộ trình của bạn trên màn hình *Điểm đánh dấu và Lộ trình* rồi chọn *Chỉnh sửa Lộ trình*. Từ đây bạn có thể thêm và xóa các điểm dừng, cũng như chỉnh sửa tên và mô tả của lộ trình.
 
 **Chia sẻ một lộ trình :**
 

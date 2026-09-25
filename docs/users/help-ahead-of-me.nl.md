@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Wat is het?
 
-De knop *\"Vóór me\"* vertelt u over maximaal vijf dingen die zich voor u bevinden. *\"Vóór me\"* is bedoeld om u te helpen de weg voor u te verkennen wanneer u een nieuw gebied leert kennen.
+De knop *Vóór me* vertelt u over maximaal vijf dingen die zich voor u bevinden. *Vóór me* is bedoeld om u te helpen de weg voor u te verkennen wanneer u een nieuw gebied leert kennen.
 
 ## Wanneer zou ik het moeten gebruiken?
 

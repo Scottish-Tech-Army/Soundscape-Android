@@ -25,7 +25,7 @@ Vous pouvez créer et utiliser un Itinéraire dans un endroit que vous connaisse
 
 **Modification d’un Itinéraire :**
 
-Sélectionnez votre Itinéraire sur l’écran *\"Marqueurs et Itinéraires\"* puis choisissez *\"Modifier l’itinéraire\"*. À partir d’ici, vous pouvez ajouter ou supprimer des points de repère, ainsi que modifier le nom et la description de l’itinéraire.
+Sélectionnez votre Itinéraire sur l’écran *Marqueurs et Itinéraires* puis choisissez *Modifier l’itinéraire*. À partir d’ici, vous pouvez ajouter ou supprimer des points de repère, ainsi que modifier le nom et la description de l’itinéraire.
 
 **Partage d’un Itinéraire** :
 

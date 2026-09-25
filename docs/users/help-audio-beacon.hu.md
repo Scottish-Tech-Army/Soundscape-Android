@@ -21,13 +21,13 @@ A hangjelző beállítása akkor hasznos, ha egy ismerős tereptárgyat szeretne
 
 **Hangjelző beállítása:**
 
- Először tekintse meg egy hely adatait: használja a keresősávot egy hely kereséséhez, vagy koppintson a *\"Közeli helyek\"*, a *\"Jelölők és útvonalak\"*, vagy a *\"Jelenlegi hely\"* gombok egyikére, majd válasszon egy helyet. A *\"Hely részletei\"* képernyőn kiválaszthatja a *\"Hangjelző indítása\"* gombot. Ha erre koppint, visszatér a kezdőképernyőre, és bekapcsol egy hallható hangjelző a kiválasztott hely irányából. A kiválasztott hely neve, valamint – ha elérhető – a távolsága és a fizikai címe mostantól megjelenik az alkalmazás főképernyőjén.
+ Először tekintse meg egy hely adatait: használja a keresősávot egy hely kereséséhez, vagy koppintson a *Közeli helyek*, a *Jelölők és útvonalak*, vagy a *Jelenlegi hely* gombok egyikére, majd válasszon egy helyet. A *Hely részletei* képernyőn kiválaszthatja a *Hangjelző indítása* gombot. Ha erre koppint, visszatér a kezdőképernyőre, és bekapcsol egy hallható hangjelző a kiválasztott hely irányából. A kiválasztott hely neve, valamint – ha elérhető – a távolsága és a fizikai címe mostantól megjelenik az alkalmazás főképernyőjén.
 
 **A jelenlegi hangjelző eltávolítása:**
 
- Egyszerűen nyomja meg az *\"Útvonal leállítása\"* gombot a kezdőképernyőn.
+ Egyszerűen nyomja meg az *Útvonal leállítása* gombot a kezdőképernyőn.
 
 **A hallható hangjelző némítása:**
 
- Koppintson a *\"Hangjelző némítása\"* gombra, amely az *\"Útvonal leállítása\"* gomb mellett található a kezdőképernyőn.
+ Koppintson a *Hangjelző némítása* gombra, amely az *Útvonal leállítása* gomb mellett található a kezdőképernyőn.
 

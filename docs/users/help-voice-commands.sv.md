@@ -27,7 +27,7 @@ Det finns inga exakta fraser att lära sig utantill. Be om det du vill ha med di
 
 Du kan be Soundscape att:
 
-Beskriva *\"Min plats\"*, vad som finns *\"Omkring mig\"* eller vad som finns *\"Framför mig\"*.
+Beskriva *Min plats*, vad som finns *Omkring mig* eller vad som finns *Framför mig*.
 
 Läsa upp de sparade platsmarkörerna nära dig.
 
@@ -35,7 +35,7 @@ Starta en av dina sparade rutter med namn, gå vidare till nästa brytpunkt, gå
 
 Ställa in ett ljudfyr på en av dina sparade platsmarkörer med namn, eller stänga av ljudfyret.
 
-Ställa in detaljnivån för informationsljuden på *\"Tyst\"*, *\"Lågmäld\"*, *\"Balanserad\"* eller *\"Detaljerad\"*, för att ändra hur mycket Soundscape säger medan du går. Tyst stänger av de automatiska informationsljuden.
+Ställa in detaljnivån för informationsljuden på *Tyst*, *Lågmäld*, *Balanserad* eller *Detaljerad*, för att ändra hur mycket Soundscape säger medan du går. Tyst stänger av de automatiska informationsljuden.
 
 Läsa upp namnen på dina sparade rutter eller dina sparade platsmarkörer.
 

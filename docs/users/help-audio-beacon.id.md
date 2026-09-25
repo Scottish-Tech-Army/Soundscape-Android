@@ -21,13 +21,13 @@ Mengatur beacon berguna saat Anda ingin memantau tempat yang familiar ketika men
 
 **Untuk mengatur beacon :**
 
- Pertama, lihat detail suatu lokasi dengan menggunakan bilah pencarian untuk mencari tempat, atau ketuk salah satu tombol *\"Tempat di Sekitar\"*, *\"Penanda dan Rute\"*, atau *\"Lokasi Saat Ini\"* lalu pilih lokasi. Dari layar *\"Detail Lokasi\"* Anda dapat memilih tombol *\"Mulai Audio Beacon\"*. Mengetuk tombol ini akan membawa Anda kembali ke layar utama dan mengaktifkan beacon yang terdengar dari arah tempat yang Anda pilih. Nama tempat yang Anda pilih beserta jaraknya dan alamat fisiknya, jika tersedia, kini akan ditampilkan di layar utama aplikasi.
+ Pertama, lihat detail suatu lokasi dengan menggunakan bilah pencarian untuk mencari tempat, atau ketuk salah satu tombol *Tempat di Sekitar*, *Penanda dan Rute*, atau *Lokasi Saat Ini* lalu pilih lokasi. Dari layar *Detail Lokasi* Anda dapat memilih tombol *Mulai Audio Beacon*. Mengetuk tombol ini akan membawa Anda kembali ke layar utama dan mengaktifkan beacon yang terdengar dari arah tempat yang Anda pilih. Nama tempat yang Anda pilih beserta jaraknya dan alamat fisiknya, jika tersedia, kini akan ditampilkan di layar utama aplikasi.
 
 **Untuk menghapus beacon saat ini :**
 
- Cukup tekan tombol *\"Hentikan Rute\"* di layar utama.
+ Cukup tekan tombol *Hentikan Rute* di layar utama.
 
 **Untuk membisukan beacon :**
 
- Ketuk tombol *\"Bisukan Beacon\"* di sebelah tombol *\"Hentikan Rute\"* di layar utama.
+ Ketuk tombol *Bisukan Beacon* di sebelah tombol *Hentikan Rute* di layar utama.
 

@@ -25,7 +25,7 @@ Du kanske vill skapa och använda en rutt på en plats som du redan känner till
 
 **Redigera en rutt:**
 
-Välj din rutt på skärmen *\"Platsmarkörer och rutter\"* och välj sedan *\"Redigera rutt\"*. Här kan du lägga till och ta bort brytpunkter samt ändra ruttnamn och beskrivning.
+Välj din rutt på skärmen *Platsmarkörer och rutter* och välj sedan *Redigera rutt*. Här kan du lägga till och ta bort brytpunkter samt ändra ruttnamn och beskrivning.
 
 **Dela en rutt :**
 

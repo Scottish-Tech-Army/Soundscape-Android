@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## Mi ez?
 
-Az *\"Előttem\"* gomb legfeljebb öt, Ön előtt található dologról tájékoztat. Az *\"Előttem\"* célja, hogy segítsen felfedezni az Ön előtt lévő utat, amikor egy új területet ismer meg.
+Az *Előttem* gomb legfeljebb öt, Ön előtt található dologról tájékoztat. Az *Előttem* célja, hogy segítsen felfedezni az Ön előtt lévő utat, amikor egy új területet ismer meg.
 
 ## Mikor használnám?
 

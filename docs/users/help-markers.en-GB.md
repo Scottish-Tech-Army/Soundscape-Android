@@ -13,5 +13,5 @@ With Soundscape, you can mark your world and anything you care about, like pins 
 
 You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery shop. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favourite tree. Use these marks as references along your walk.
 
-To experience marked places, Soundscape will automatically call out markers as you walk by or approach them, or you can use the *\"Nearby Markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. You can also set an audio beacon on any marked place. When you do this, the familiar Soundscape audio beacon will be heard and you can operate it as usual.
+To experience marked places, Soundscape will automatically call out markers as you walk by or approach them, or you can use the *Nearby Markers* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. You can also set an audio beacon on any marked place. When you do this, the familiar Soundscape audio beacon will be heard and you can operate it as usual.
 

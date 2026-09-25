@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## O que é?
 
-O botão *\"À Minha Frente\"* informa sobre até cinco itens à sua frente. *\"À Minha Frente\"* destina‑se a ajudar você a explorar o caminho à sua frente quando estiver se familiarizando com uma nova área.
+O botão *À Minha Frente* informa sobre até cinco itens à sua frente. *À Minha Frente* destina‑se a ajudar você a explorar o caminho à sua frente quando estiver se familiarizando com uma nova área.
 
 ## Quando eu o usaria?
 

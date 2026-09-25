@@ -25,7 +25,7 @@ Gå først til "Mærker og Ruter", vælg fanen "Ruter", og vælg derefter knappe
 
 **Redigering af en rute:**
 
- Vælg din rute på skærmen *\"Mærker og Ruter\"* og vælg derefter *\"Rediger rute\"*. Herfra kan du tilføje og fjerne vejpunkter samt redigere rutens navn og beskrivelse.
+ Vælg din rute på skærmen *Mærker og Ruter* og vælg derefter *Rediger rute*. Herfra kan du tilføje og fjerne vejpunkter samt redigere rutens navn og beskrivelse.
 
 **Deling af en rute :**
 

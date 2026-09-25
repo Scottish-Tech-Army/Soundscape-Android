@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## De quoi s’agit-il?
 
-Le bouton *\"Devant moi\"* vous indique jusqu’à cinq éléments se trouvant devant vous. *\"Devant moi\"* est conçu pour vous aider à explorer ce qui se présente devant vous lorsque vous découvrez une nouvelle zone.
+Le bouton *Devant moi* vous indique jusqu’à cinq éléments se trouvant devant vous. *Devant moi* est conçu pour vous aider à explorer ce qui se présente devant vous lorsque vous découvrez une nouvelle zone.
 
 ## Utilisation
 

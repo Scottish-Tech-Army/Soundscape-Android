@@ -25,7 +25,7 @@ Det kan hende du vil opprette og bruke en rute på et sted du allerede kjenner, 
 
 **Redigere en rute :**
 
- Velg ruten på skjermen *\"Markører og ruter\"* og deretter *\"Rediger rute\"*. Herfra kan du legge til og fjerne veipunkter, samt redigere rutens navn og beskrivelse.
+ Velg ruten på skjermen *Markører og ruter* og deretter *Rediger rute*. Herfra kan du legge til og fjerne veipunkter, samt redigere rutens navn og beskrivelse.
 
 **Del en rute :**
 

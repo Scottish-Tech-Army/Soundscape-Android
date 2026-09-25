@@ -27,7 +27,7 @@ Ni natančnih besednih zvez, ki bi se jih morali naučiti na pamet. Povejte s sv
 
 Soundscapu lahko naročite, naj:
 
-Opiše *\"Moja lokacija\"*, kaj je *\"Okoli mene\"* ali kaj je *\"Pred menoj\"*.
+Opiše *Moja lokacija*, kaj je *Okoli mene* ali kaj je *Pred menoj*.
 
 Izgovori shranjene oznake v vaši bližini.
 
@@ -35,7 +35,7 @@ Zažene eno od vaših shranjenih poti po imenu, se pomakne na naslednjo točko p
 
 Nastavi zvočni svetilnik na eno od vaših shranjenih oznak po imenu ali svetilnik izklopi.
 
-Nastavi raven podrobnosti obvestil na *\"Brez zvoka\"*, *\"Tiho\"*, *\"Uravnoteženo\"* ali *\"Podrobno\"*, s čimer se spremeni, koliko Soundscape pove med hojo. Brez zvoka izklopi samodejna zvočna obvestila.
+Nastavi raven podrobnosti obvestil na *Brez zvoka*, *Tiho*, *Uravnoteženo* ali *Podrobno*, s čimer se spremeni, koliko Soundscape pove med hojo. Brez zvoka izklopi samodejna zvočna obvestila.
 
 Prebere imena vaših shranjenih poti ali vaših shranjenih oznak.
 

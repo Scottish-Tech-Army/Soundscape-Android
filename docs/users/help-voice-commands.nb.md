@@ -27,7 +27,7 @@ Det finnes ingen faste uttrykk du må lære utenat. Be om det du vil ha med dine
 
 Du kan be Soundscape om å:
 
-Beskrive *\"Min posisjon\"*, hva som er *\"Rundt meg\"*, eller hva som er *\"Foran meg\"*.
+Beskrive *Min posisjon*, hva som er *Rundt meg*, eller hva som er *Foran meg*.
 
 Lese opp de lagrede markørene i nærheten av deg.
 
@@ -35,7 +35,7 @@ Starte en av de lagrede rutene dine ved navn, gå videre til neste veipunkt, gå
 
 Sette et lydsignal på en av de lagrede markørene dine ved navn, eller slå av lydsignalet.
 
-Sette detaljnivået for meldinger til *\"Lydløs\"*, *\"Stille\"*, *\"Balansert\"* eller *\"Detaljert\"*, for å endre hvor mye Soundscape sier mens du går. Lydløs slår av de automatiske meldingene.
+Sette detaljnivået for meldinger til *Lydløs*, *Stille*, *Balansert* eller *Detaljert*, for å endre hvor mye Soundscape sier mens du går. Lydløs slår av de automatiske meldingene.
 
 Lese opp navnene på de lagrede rutene eller de lagrede markørene dine.
 

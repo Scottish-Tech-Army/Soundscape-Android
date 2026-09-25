@@ -13,5 +13,5 @@ Með Soundscape geturðu merkt heiminn þinn og það sem þér þykir mikilvæg
 
 Þú getur merkt staði sem eru persónulegir og þér mikilvægir, eins og heimilið þitt, vinnustaðinn eða uppáhalds matvöruverslunina þína. Þú getur merkt hvaða stað eða heimilisfang sem er, og einnig hluti sem venjulega eru ekki á kortum, til dæmis: innganga að byggingum eða görðum, hnappa fyrir gangbrautarljós, gangbrautir, brýr, strætóstopp eða jafnvel uppáhaldstré hundsins þíns. Notaðu þessi merki sem viðmiðun á göngunni þinni.
 
-Til að upplifa vistuð merki mun Soundscape sjálfkrafa tilkynna vistuð merki þegar þú gengur framhjá þeim eða nálgast þau. Þú getur líka notað hnappinn *\"Nálæg merki\"* neðst á heimaskjánum til að heyra rúmsnertilega tilkynningu um vistuð merki í kringum þig. Að auki geturðu sett hljóðvita á hvaða vistað merki sem er. Þá munt þú heyra hljóðvitann úr Soundscape eins og venjulega og geta notað hann á sama hátt.
+Til að upplifa vistuð merki mun Soundscape sjálfkrafa tilkynna vistuð merki þegar þú gengur framhjá þeim eða nálgast þau. Þú getur líka notað hnappinn *Nálæg merki* neðst á heimaskjánum til að heyra rúmsnertilega tilkynningu um vistuð merki í kringum þig. Að auki geturðu sett hljóðvita á hvaða vistað merki sem er. Þá munt þú heyra hljóðvitann úr Soundscape eins og venjulega og geta notað hann á sama hátt.
 

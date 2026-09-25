@@ -27,7 +27,7 @@ Hakuna misemo maalum ya kukariri. Omba unachotaka kwa maneno yako mwenyewe na ms
 
 Unaweza kuiomba Soundscape:
 
-Ieleze *\"Mahali Nilipo\"*, kilichopo *\"Karibu Nami\"*, au kilichopo *\"Mbele Yangu\"*.
+Ieleze *Mahali Nilipo*, kilichopo *Karibu Nami*, au kilichopo *Mbele Yangu*.
 
 Itangaze alama zilizohifadhiwa zilizo karibu nawe.
 
@@ -35,7 +35,7 @@ Ianzishe mojawapo ya njia zako zilizohifadhiwa kwa jina, isogee hadi kituo kinac
 
 Iweke beacon ya sauti kwenye mojawapo ya alama zako zilizohifadhiwa kwa jina, au izime beacon.
 
-Iweke kiwango cha matangazo kuwa *\"Kimya\"*, *\"Chache\"*, *\"Wastani\"* au *\"Kwa Kina\"*, ili kubadilisha kiasi ambacho Soundscape husema unapotembea. Kimya huzima matangazo ya kiotomatiki.
+Iweke kiwango cha matangazo kuwa *Kimya*, *Chache*, *Wastani* au *Kwa Kina*, ili kubadilisha kiasi ambacho Soundscape husema unapotembea. Kimya huzima matangazo ya kiotomatiki.
 
 Isome majina ya njia zako zilizohifadhiwa au alama zako zilizohifadhiwa.
 
