@@ -620,7 +620,7 @@
     <string name="location_item_not_selected">선택되지 않음</string>
     <string name="location_item_move_up">목록에서 위로 이동</string>
     <string name="location_item_move_down">목록에서 아래로 이동</string>
-    <string name="street_description_between">%1$s, %2$s와 %3$s 사이</string>
+    <string name="street_description_between">%1$s, %2$s과(와) %3$s 사이</string>
     <string name="street_description_until">%1$s, %3$s까지 %2$s 남음</string>
     <string name="street_description_since">%1$s, %3$s부터 %2$s 지남</string>
     <string name="street_description_relative_before">%1$s, %2$s 바로 전</string>
