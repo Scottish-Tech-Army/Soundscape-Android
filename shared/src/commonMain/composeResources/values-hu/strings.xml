@@ -1348,7 +1348,7 @@
     <string name="location_item_move_up">Feljebb a listában</string>
     <string name="location_item_move_down">Lejjebb a listában</string>
     <string name="street_description_between">A(z) %1$s{úton}, a(z) %2$s és a(z) %3$s között</string>
-    <string name="street_description_until">A(z) %1$s{úton}, %2$s a(z) %3$s-ig</string>
+    <string name="street_description_until">A(z) %1$s{úton}, %2$s a(z) %3$s{-ig}</string>
     <string name="street_description_since">A(z) %1$s{úton}, %2$s a(z) %3$s óta</string>
     <string name="street_description_relative_before">A(z) %1$s{úton}, közvetlenül a(z) %2$s előtt</string>
     <string name="street_description_relative_after">A(z) %1$s{úton}, közvetlenül a(z) %2$s után</string>
