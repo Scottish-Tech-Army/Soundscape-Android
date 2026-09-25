@@ -387,7 +387,7 @@
     <string name="faq_sleep_mode_battery_question">Kuinka käytän lepotilaa, jotta Soundscape vaikuttaisi mahdollisimman vähän akun kestoon?</string>
     <string name="faq_sleep_mode_battery_answer">Laita Soundscape lepotilaan valitsemalla näytön oikeassa yläkulmassa oleva *\"Siirry lepotilaan\"* -painike. Valitsemalla tämän Soundscape lopettaa Sijaintipalveluiden ja mobiilidatan käytön siihen asti, kunnes herätät sen uudelleen.\n</string>
     <string name="faq_snooze_mode_battery_question">Kuinka käytän odotustilaa, jotta Soundscape vaikuttaisi mahdollisimman vähän akun kestoon?</string>
-    <string name="faq_snooze_mode_battery_answer">Laita Soundscape odotustilaan valitsemalla näytön oikeassa yläkulmassa oleva *\\"Siirry lepotilaan\\"* -painike. Kun Soundscape on lepotilassa, valitse *\\"Herää kun lähden\\"* -painike, jolloin Soundscape siirtyy vähävirtaiseen tilaan siihen asti, kunnes poistut nykyisestä sijainnistasi.\n</string>
+    <string name="faq_snooze_mode_battery_answer">Laita Soundscape odotustilaan valitsemalla näytön oikeassa yläkulmassa oleva *\\"Siirry lepotilaan\\"* -painike. Kun Soundscape on lepotilassa, valitse *\\"Herää kun poistut\\"* -painike, jolloin Soundscape siirtyy vähävirtaiseen tilaan siihen asti, kunnes poistut nykyisestä sijainnistasi.</string>
     <string name="faq_headset_battery_impact_question">Kuinka kuulokevalinta vaikuttaa puhelimen akun kestoon?</string>
     <string name="faq_headset_battery_impact_answer">Testiemme mukaan Bluetooth-kuulokkeiden akunkulutus on verrattavissa langallisiin kuulokkeisiin, eikä sen pitäisi olla merkittävä tekijä kuulokkeita valittaessa.</string>
     <string name="faq_background_battery_impact_question">Kuinka Soundscapen suorittaminen taustalla vaikuttaa puhelimen akun kestoon?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">Taso</string>
     <string name="siri_desc_callout_detail">Määrittää, kuinka paljon Soundscape puhuu kävellessäsi.</string>
     <string name="intersection_approaching_intersection_distance">Risteys %1$s päässä</string>
+    <string name="microsoft_copyright">[Alkuperäinen Soundscape-sovellus ©Microsoft Corporation](https://github.com/microsoft/soundscape) tarjosi äänimajakan äänet ja monet käännöksistä, ja se on saatavilla käytettäväksi [MIT-lisenssin](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) nojalla.</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) -yhteisön vapaaehtoiset paransivat useita käännöksiä, jotka ovat saatavilla käytettäväksi [MIT-lisenssin](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) nojalla.</string>
 </resources>
