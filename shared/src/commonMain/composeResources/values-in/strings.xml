@@ -1381,7 +1381,7 @@
     <string name="faq_sleep_mode_battery_question">Bagaimana cara menggunakan Mode Tidur untuk meminimalkan dampak Soundscape pada baterai ponsel saya?</string>
     <string name="faq_sleep_mode_battery_answer">Untuk mengaktifkan Mode Tidur di Soundscape, pilih tombol *Tidur* di pojok kanan atas layar. Saat Anda memilih ini, Soundscape akan berhenti menggunakan Layanan Lokasi dan data seluler sampai Anda memilih untuk membangunkannya kembali.</string>
     <string name="faq_snooze_mode_battery_question">Bagaimana cara menggunakan Mode Tunda untuk meminimalkan dampak Soundscape pada baterai ponsel saya?</string>
-    <string name="faq_snooze_mode_battery_answer">Untuk mengaktifkan Mode Tunda di Soundscape, pilih tombol *Tidur* di pojok kanan atas layar. Setelah Soundscape berada dalam Mode Tidur, pilih tombol *Bangunkan saat saya pergi* dan Soundscape akan masuk ke keadaan hemat daya sampai Anda meninggalkan lokasi Anda saat ini.</string>
+    <string name="faq_snooze_mode_battery_answer">Untuk mengaktifkan Mode Tunda di Soundscape, pilih tombol *Tidur* di pojok kanan atas layar. Setelah Soundscape berada dalam Mode Tidur, pilih tombol *Bangun Saat Pergi* dan Soundscape akan masuk ke keadaan hemat daya sampai Anda meninggalkan lokasi Anda saat ini.</string>
     <string name="faq_headset_battery_impact_question">Bagaimana pengaruh pilihan headphone saya terhadap daya tahan baterai ponsel saya?</string>
     <string name="faq_headset_battery_impact_answer">Dalam pengujian kami, konsumsi baterai headphone Bluetooth sebanding dengan headphone berkabel dan tidak seharusnya menjadi faktor penting saat memilih headphone.</string>
     <string name="faq_background_battery_impact_question">Bagaimana pengaruh menjalankan Soundscape di latar belakang terhadap daya tahan baterai ponsel saya?</string>
@@ -1556,4 +1556,6 @@
     <string name="siri_param_level">Tingkat</string>
     <string name="siri_desc_callout_detail">Mengatur seberapa banyak yang dikatakan Soundscape saat Anda berjalan.</string>
     <string name="intersection_approaching_intersection_distance">Persimpangan berjarak %1$s</string>
+    <string name="microsoft_copyright">[Aplikasi Soundscape asli ©Microsoft Corporation](https://github.com/microsoft/soundscape) menyediakan suara Suar Audio dan banyak terjemahan, dan disediakan untuk digunakan di bawah [lisensi MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">Para sukarelawan [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) menyempurnakan beberapa terjemahan, yang disediakan untuk digunakan di bawah [lisensi MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
