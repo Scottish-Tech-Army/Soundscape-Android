@@ -386,7 +386,7 @@
     <string name="faq_sleep_mode_battery_question">How do I use Sleep Mode to minimise Soundscape’s impact on my phone battery?</string>
     <string name="faq_sleep_mode_battery_answer">To put Soundscape into Sleep Mode, select the *\\"Sleep\\"* button in the top-right corner of the screen. When you do this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.</string>
     <string name="faq_snooze_mode_battery_question">How do I use Snooze mode to minimise Soundscape’s impact on my phone battery?</string>
-    <string name="faq_snooze_mode_battery_answer">To put Soundscape into Snooze Mode, select the *\\"Sleep\\"* button in the top-right corner of the screen. Once Soundscape is in Sleep Mode, select the *\\"Wake up when I leave\\"* button and Soundscape will enter a low‑power state until you leave your current location.</string>
+    <string name="faq_snooze_mode_battery_answer">To put Soundscape into Snooze Mode, select the *\\"Sleep\\"* button in the top-right corner of the screen. Once Soundscape is in Sleep Mode, select the *\\"Wake on Leave\\"* button and Soundscape will enter a low‑power state until you leave your current location.</string>
     <string name="faq_headset_battery_impact_question">How does my choice of headphones affect the battery life of my phone?</string>
     <string name="faq_headset_battery_impact_answer">In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.</string>
     <string name="faq_background_battery_impact_question">How does running Soundscape in the background impact battery life of my phone?</string>
@@ -1571,4 +1571,6 @@
     <string name="siri_param_level">Level</string>
     <string name="siri_desc_callout_detail">Sets how much Soundscape says as you walk.</string>
     <string name="intersection_approaching_intersection_distance">Intersection in %1$s</string>
+    <string name="microsoft_copyright">[The original Soundscape app ©Microsoft Corporation](https://github.com/microsoft/soundscape) provided the audio beacon sounds and many of the translations, and is made available for use under the [MIT licence](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
+    <string name="soundscape_community_copyright">[Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) volunteers improved several of the translations, which are made available for use under the [MIT licence](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
 </resources>
