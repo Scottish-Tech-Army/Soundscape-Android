@@ -1428,11 +1428,11 @@
     <string name="directions_transit_stop_with_landmark">%2$s 付近の %1$s</string>
     <string name="directions_junction_with_ref">ジャンクション %1$s</string>
     <string name="directions_junction_with_ref_and_name">ジャンクション %1$s、%2$s</string>
-    <string name="directions_on_road">%1$s を走行中</string>
-    <string name="directions_on_road_and_settlement">%1$s を走行中、%2$s の近く</string>
-    <string name="directions_on_road_at_junction">%1$s を走行中、%2$s</string>
+    <string name="directions_on_road">%1$s にいます</string>
+    <string name="directions_on_road_and_settlement">%1$s にいます、%2$s の近く</string>
+    <string name="directions_on_road_at_junction">%1$s にいます、%2$s</string>
     <string name="directions_at_junction_inline">%1$s で</string>
-    <string name="directions_on_road_and_settlement_since">%1$s を走行中、%2$s の近く、%4$s から %3$s</string>
+    <string name="directions_on_road_and_settlement_since">%1$s にいます、%2$s の近く、%4$s から %3$s</string>
     <string name="directions_towards_settlement">%1$s 方向、%2$s 先</string>
     <string name="directions_away_from_settlement">%1$s から離れて、%2$s 後方</string>
     <string name="directions_near_settlement_inline">%1$s 付近</string>
