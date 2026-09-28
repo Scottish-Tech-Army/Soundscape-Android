@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">kirjakauppa, kirjat</string>
     <string name="search_synonyms_phone_shop">puhelinkauppa, puhelinliike, matkapuhelimet</string>
     <string name="search_no_offline_maps">Haku toimii offline-tilassa, mutta sijainnistasi ei ole ladattu offline-karttaa.</string>
+    <string name="location_detail_adjust_marker_location">Muokkaa sijaintia</string>
+    <string name="location_detail_adjust_marker_location_instructions">Siirrä merkitsimen sijaintia vetämällä karttaa. Säilytä uusi sijainti napauttamalla Valmis tai jätä sijainti ennalleen napauttamalla Peruuta.</string>
 </resources>
