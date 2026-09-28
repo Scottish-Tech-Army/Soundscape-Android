@@ -83,7 +83,7 @@ class SearchCategoryMatcher(phrases: List<Pair<String, SearchCategory>>) {
             val text = normalizeForSearch(phrase)
             Phrase(text, text.split(" ").filter { it.isNotEmpty() }, category)
         }
-        .filter { it.text.length >= MIN_PHRASE_LENGTH }
+        .filter { it.text.length >= minimumLength(it.text) }
 
     /**
      * The category which [query] names, as a whole or with a name before or after it. The whole
@@ -116,7 +116,7 @@ class SearchCategoryMatcher(phrases: List<Pair<String, SearchCategory>>) {
      * "shop" - is too vague to be a category at all.
      */
     private fun categoryFor(span: String): SearchCategory? {
-        if (span.length < MIN_PHRASE_LENGTH) return null
+        if (span.length < minimumLength(span)) return null
 
         val whole = bestCategories(phrases.asSequence().map { span.fuzzyCompare(it.text, false) to it.category })
         if (whole.isNotEmpty()) return combine(whole)
@@ -161,8 +161,15 @@ class SearchCategoryMatcher(phrases: List<Pair<String, SearchCategory>>) {
         )
     }
 
+    /**
+     * The shortest phrase which can name a category. Two letters is too few to mean anything in
+     * most scripts, but in Chinese, Japanese and Korean it's how long most of the words are: 药店,
+     * 薬局, 약국.
+     */
+    private fun minimumLength(text: String) =
+        if (text.isNotEmpty() && isUnspacedScript(codePointAt(text, 0))) 2 else 3
+
     companion object {
-        private const val MIN_PHRASE_LENGTH = 3
         private const val MATCH_THRESHOLD = 0.2
 
         // The most categories a match on part of a phrase can be for before it's too vague to use
