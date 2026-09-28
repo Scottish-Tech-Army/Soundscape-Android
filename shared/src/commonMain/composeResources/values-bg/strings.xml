@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">книжарница, книги</string>
     <string name="search_synonyms_phone_shop">магазин за телефони, GSM магазин, мобилни телефони</string>
     <string name="search_no_offline_maps">Търсенето работи офлайн, но няма изтеглена офлайн карта за мястото, където се намирате.</string>
+    <string name="location_detail_adjust_marker_location">Редактирай местоположение</string>
+    <string name="location_detail_adjust_marker_location_instructions">Плъзнете картата, за да преместите местоположението на маркера. Докоснете Готово, за да запазите новото местоположение, или Отказ, за да го оставите непроменено.</string>
 </resources>
