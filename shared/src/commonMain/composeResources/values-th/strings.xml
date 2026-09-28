@@ -258,7 +258,6 @@
     <string name="location_detail_full_screen_hint">แสดงแผนที่แบบเต็มหน้าจอ</string>
     <string name="location_detail_exit_full_screen_hint">ออกจากแผนที่แบบเต็มหน้าจอ</string>
     <string name="location_detail_full_screen_for_edit_hint">แสดงแผนที่แบบเต็มหน้าจอและแก้ไขตำแหน่งหมุด</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">ออกจากโหมดแก้ไขตำแหน่งหมุด</string>
     <string name="route_detail_action_start_route">เริ่มเส้นทาง</string>
     <string name="route_detail_action_stop_route">หยุดเส้นทาง</string>
     <string name="route_detail_action_edit">แก้ไขเส้นทาง</string>

@@ -64,7 +64,6 @@
     <string name="location_detail_full_screen_hint">मानचित्र को पूर्ण स्क्रीन बनाएँ</string>
     <string name="location_detail_exit_full_screen_hint">पूर्ण स्क्रीन मानचित्र से बाहर निकलें</string>
     <string name="location_detail_full_screen_for_edit_hint">मानचित्र को पूर्ण स्क्रीन बनाएँ और मार्कर का स्थान संपादित करें</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">मार्कर स्थान संपादन मोड से बाहर निकलें</string>
     <string name="route_detail_action_start_route">मार्ग शुरू करें</string>
     <string name="route_detail_action_stop_route">मार्ग रोकें</string>
     <string name="route_detail_action_edit">मार्ग संपादित करें</string>

@@ -64,7 +64,6 @@
     <string name="location_detail_full_screen_hint">将地图全屏显示</string>
     <string name="location_detail_exit_full_screen_hint">退出全屏地图</string>
     <string name="location_detail_full_screen_for_edit_hint">将地图全屏显示并编辑标记点位置</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">退出标记点位置编辑模式</string>
     <string name="route_detail_action_start_route">开始路线</string>
     <string name="route_detail_action_stop_route">停止路线</string>
     <string name="route_detail_action_edit">编辑路线</string>

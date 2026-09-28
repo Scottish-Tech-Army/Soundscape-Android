@@ -79,7 +79,6 @@
     <string name="location_detail_full_screen_hint">Kuva kaart täisekraanil</string>
     <string name="location_detail_exit_full_screen_hint">väljuda kaardi täisekraanvaatest</string>
     <string name="location_detail_full_screen_for_edit_hint">Kuva kaart täisekraanil ja muuda markeri asukohta</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Välju markeri asukoha muutmise režiimist</string>
     <string name="route_detail_action_start_route">Alusta marsruuti</string>
     <string name="route_detail_action_stop_route">Peata marsruut</string>
     <string name="route_detail_action_edit">Muuda marsruuti</string>

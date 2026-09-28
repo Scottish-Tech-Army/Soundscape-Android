@@ -80,7 +80,6 @@
     <string name="location_detail_full_screen_hint">మ్యాప్‌ను పూర్తి తెరగా చేయడానికి</string>
     <string name="location_detail_exit_full_screen_hint">పూర్తి తెర మ్యాప్ నుండి నిష్క్రమించడానికి</string>
     <string name="location_detail_full_screen_for_edit_hint">మ్యాప్‌ను పూర్తి తెరగా చేసి మార్కర్ స్థానాన్ని సవరించడానికి</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">మార్కర్ స్థాన సవరణ మోడ్ నుండి నిష్క్రమించడానికి</string>
     <string name="route_detail_action_start_route">రూట్‌ను ప్రారంభించు</string>
     <string name="route_detail_action_stop_route">రూట్‌ను ఆపివేయి</string>
     <string name="route_detail_action_edit">రూట్‌ను సవరించు</string>

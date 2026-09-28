@@ -11,7 +11,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
@@ -91,7 +94,8 @@ fun FullScreenMapFab(
  * @param beaconLocation An optional location to show a beacon marker
  * @param routeData Optional route data to display route waypoint markers
  * @param modifier Modifier for the map container
- * @param editBeaconLocation If true, the beacon location tracks the camera center
+ * @param onBeaconLocationEdited If non-null, the beacon marker is pinned to the camera center so
+ * that panning the map moves it, and each new location is reported through this callback
  * @param currentBeaconWaypointIndex The waypoint index the beacon marker currently represents
  * (0-based); shown as a 1-based number label on the beacon marker, matching route waypoint markers
  * @param onMapLongClick Callback when the map is long-pressed, receives the location
@@ -119,7 +123,7 @@ fun MapContainerLibre(
     beaconLocation: LngLatAlt?,
     routeData: RouteWithMarkers?,
     modifier: Modifier = Modifier,
-    editBeaconLocation: Boolean = false,
+    onBeaconLocationEdited: ((LngLatAlt) -> Unit)? = null,
     currentBeaconWaypointIndex: Int = 0,
     onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
     baseStyle: BaseStyle,
@@ -154,9 +158,20 @@ fun MapContainerLibre(
     }
     val styleState = rememberStyleState()
 
-    if (editBeaconLocation && (beaconLocation != null)) {
-        beaconLocation.longitude = cameraState.position.target.longitude
-        beaconLocation.latitude = cameraState.position.target.latitude
+    val editingBeacon = onBeaconLocationEdited != null
+    val currentOnBeaconLocationEdited by rememberUpdatedState(onBeaconLocationEdited)
+    if (editingBeacon) {
+        LaunchedEffect(cameraState) {
+            snapshotFlow { cameraState.position.target }.collect { target ->
+                currentOnBeaconLocationEdited?.invoke(LngLatAlt(target.longitude, target.latitude))
+            }
+        }
+    }
+    val drawnBeaconLocation = if (editingBeacon) {
+        val target = cameraState.position.target
+        LngLatAlt(target.longitude, target.latitude)
+    } else {
+        beaconLocation
     }
 
     val navigationMarker = painterResource(Res.drawable.navigation)
@@ -285,10 +300,10 @@ fun MapContainerLibre(
             }
 
             // Draw beacon location marker last to prevent waypoint marker being drawn on top.
-            if (beaconLocation != null) {
+            if (drawnBeaconLocation != null) {
                 val position = Position(
-                    latitude = beaconLocation.latitude,
-                    longitude = beaconLocation.longitude
+                    latitude = drawnBeaconLocation.latitude,
+                    longitude = drawnBeaconLocation.longitude
                 )
                 val beaconLocationGeoJson =
                     rememberGeoJsonSource(

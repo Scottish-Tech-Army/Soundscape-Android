@@ -837,7 +837,6 @@
     <string name="location_detail_full_screen_hint">Fanya ramani ionekane kwenye skrini nzima</string>
     <string name="location_detail_exit_full_screen_hint">kutoka kwenye ramani ya skrini nzima</string>
     <string name="location_detail_full_screen_for_edit_hint">Fanya ramani ionekane kwenye skrini nzima na uhariri mahali pa alama</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Toka kwenye hali ya kuhariri mahali pa alama</string>
     <string name="route_detail_action_start_route">Anzisha Njia</string>
     <string name="route_detail_action_stop_route">Simamisha Njia</string>
     <string name="route_detail_action_edit">Hariri Njia</string>

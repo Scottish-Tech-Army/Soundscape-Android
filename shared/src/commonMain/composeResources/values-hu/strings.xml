@@ -792,7 +792,6 @@
     <string name="location_detail_full_screen_hint">Térkép teljes képernyőre állítása</string>
     <string name="location_detail_exit_full_screen_hint">kilépj a teljes képernyős térképből</string>
     <string name="location_detail_full_screen_for_edit_hint">Térkép teljes képernyőre állítása és a jelölő helyzetének szerkesztése</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Kilépés a jelölő helyzetének szerkesztési módjából</string>
     <string name="route_detail_action_start_route">Útvonal indítása</string>
     <string name="route_detail_action_stop_route">Útvonal leállítása</string>
     <string name="route_detail_action_edit">Útvonal szerkesztése</string>

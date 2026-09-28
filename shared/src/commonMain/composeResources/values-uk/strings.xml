@@ -1265,7 +1265,6 @@
     <string name="tour_continue_hint">закрити спливаюче вікно і продовжити інтерактивний тур</string>
     <string name="location_detail_action_beacon_from_markers">Запустити звуковий маячок на цій мітці</string>
     <string name="location_detail_full_screen_for_edit_hint">Розгорнути карту на весь екран та відредагувати місцезнаходження мітки</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Вийти з режиму редагування місцезнаходження мітки</string>
     <string name="street_description_relative_before">На %1$s, одразу перед %2$s</string>
     <string name="street_description_relative_after">На %1$s, одразу після %2$s</string>
     <string name="street_description_intersection">Поблизу перехрестя %1$s</string>

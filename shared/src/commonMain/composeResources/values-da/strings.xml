@@ -1257,7 +1257,6 @@
     <string name="tour_continue_hint">lukke popuppen og fortsætte tutorialen</string>
     <string name="location_detail_action_beacon_from_markers">Start lydfyr ved dette mærke</string>
     <string name="location_detail_full_screen_for_edit_hint">Vis kortet i fuld skærm, og rediger mærkets placering</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Afslut redigering af mærkets placering</string>
     <string name="street_description_relative_before">På %1$s lige før %2$s</string>
     <string name="street_description_relative_after">På %1$s lige efter %2$s</string>
     <string name="street_description_intersection">Nær krydset ved %1$s</string>

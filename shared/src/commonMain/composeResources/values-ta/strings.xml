@@ -80,7 +80,6 @@
     <string name="location_detail_full_screen_hint">வரைபடத்தை முழுத்திரையாக்கு</string>
     <string name="location_detail_exit_full_screen_hint">முழுத்திரை வரைபடத்திலிருந்து வெளியேற</string>
     <string name="location_detail_full_screen_for_edit_hint">வரைபடத்தை முழுத்திரையாக்கி குறிப்பானின் இருப்பிடத்தைத் திருத்து</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">குறிப்பான் இருப்பிடத் திருத்த முறையிலிருந்து வெளியேறு</string>
     <string name="route_detail_action_start_route">பாதையைத் தொடங்கு</string>
     <string name="route_detail_action_stop_route">பாதையை நிறுத்து</string>
     <string name="route_detail_action_edit">பாதையைத் திருத்து</string>

@@ -186,8 +186,10 @@
     <string name="location_detail_exit_full_screen_hint">Exit the full-screen map</string>
     <!-- Talkback hint for button that makes map full screen to enable editing of the location -->
     <string name="location_detail_full_screen_for_edit_hint">Make the map full screen and edit the marker location</string>
-    <!-- Talkback hint for button that stops map editing mode -->
-    <string name="location_detail_exit_full_screen_for_edit_hint">Exit marker location editing mode</string>
+    <!-- Title of the full-screen map used to move a marker. Marker - A location that has been marked as important by the user or application. -->
+    <string name="location_detail_adjust_marker_location">Edit location</string>
+    <!-- Instructions shown above the full-screen map while adjusting a marker's location. The marker stays in the middle of the map, so dragging the map moves the marker. UI names: *Done* is `general_alert_done`; *Cancel* is `general_alert_cancel`. -->
+    <string name="location_detail_adjust_marker_location_instructions">Drag the map to move the marker's location. Tap on Done to keep the new location, or Cancel to leave it unchanged.</string>
     <!-- Title for the action to start playing the audio for a route -->
     <string name="route_detail_action_start_route">Start Route</string>
     <!-- Title for the action to stop playing the audio for a route -->

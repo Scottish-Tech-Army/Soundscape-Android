@@ -86,7 +86,6 @@
     <string name="location_detail_full_screen_hint">Haritayı tam ekran yapın</string>
     <string name="location_detail_exit_full_screen_hint">Tam ekran haritadan çıkın</string>
     <string name="location_detail_full_screen_for_edit_hint">Haritayı tam ekran yapın ve kayıtlı nokta konumunu düzenleyin</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Kayıtlı nokta konumu düzenleme modundan çıkın</string>
     <string name="route_detail_action_start_route">Rotayı Başlat</string>
     <string name="route_detail_action_stop_route">Rotayı Durdur</string>
     <string name="route_detail_action_edit">Rotayı Düzenle</string>

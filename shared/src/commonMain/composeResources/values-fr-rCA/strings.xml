@@ -1261,7 +1261,6 @@
     <string name="tour_continue_hint">fermer la fenêtre contextuelle et continuer le tutoriel</string>
     <string name="location_detail_action_beacon_from_markers">Démarrer la balise sonore sur ce marqueur</string>
     <string name="location_detail_full_screen_for_edit_hint">Afficher la carte en plein écran et modifier l’emplacement du marqueur</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Quitter le mode d’édition de l’emplacement du marqueur</string>
     <string name="street_description_relative_before">{fr:Sur %1$s} juste {fr:avant %2$s}</string>
     <string name="street_description_relative_after">{fr:Sur %1$s} juste {fr:après %2$s}</string>
     <string name="street_description_intersection">Près de l’intersection de %1$s</string>

@@ -792,7 +792,6 @@
     <string name="location_detail_full_screen_hint">Prikaži kartu preko cijelog zaslona</string>
     <string name="location_detail_exit_full_screen_hint">izašli iz karte preko cijelog zaslona</string>
     <string name="location_detail_full_screen_for_edit_hint">Prikaži kartu preko cijelog zaslona i uredi lokaciju oznake</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Izađi iz načina uređivanja lokacije oznake</string>
     <string name="route_detail_action_start_route">Pokreni rutu</string>
     <string name="route_detail_action_stop_route">Zaustavi rutu</string>
     <string name="route_detail_action_edit">Uredi rutu</string>

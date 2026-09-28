@@ -1257,7 +1257,6 @@
     <string name="tour_continue_hint">loka sprettiglugga og halda áfram með leiðsögunámskeiðið</string>
     <string name="location_detail_action_beacon_from_markers">Kveikja á hljóðvita á þessu merki</string>
     <string name="location_detail_full_screen_for_edit_hint">Gera kortið fullskjá og breyta staðsetningu merkisins</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Hætta að breyta staðsetningu merkisins</string>
     <string name="street_description_relative_before">Á %1$s rétt fyrir %2$s</string>
     <string name="street_description_relative_after">Á %1$s rétt eftir %2$s</string>
     <string name="street_description_intersection">Nálægt gatnamótum %1$s</string>

@@ -1015,7 +1015,6 @@
     <string name="location_detail_full_screen_hint">মানচিত্রটি পূর্ণ পর্দা করুন</string>
     <string name="location_detail_exit_full_screen_hint">পূর্ণ পর্দার মানচিত্র থেকে বের হতে</string>
     <string name="location_detail_full_screen_for_edit_hint">মানচিত্রটি পূর্ণ পর্দা করুন এবং মার্কারের অবস্থান সম্পাদনা করুন</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">মার্কার অবস্থান সম্পাদনা মোড থেকে প্রস্থান করুন</string>
     <string name="route_detail_action_start_route">রুট শুরু করুন</string>
     <string name="route_detail_action_stop_route">রুট বন্ধ করুন</string>
     <string name="route_detail_action_edit">রুট সম্পাদনা করুন</string>

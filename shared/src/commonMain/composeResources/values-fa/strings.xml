@@ -1258,7 +1258,6 @@
     <string name="tour_continue_hint">پنجره‌ی پاپ‌آپ را ببندید و آموزش را ادامه دهید</string>
     <string name="location_detail_action_beacon_from_markers">فعال‌سازی جهت‌نمای صوتی روی این نشانه</string>
     <string name="location_detail_full_screen_for_edit_hint">نقشه را در حالت تمام‌صفحه قرار دهید و مکان نشانه را ویرایش کنید</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">از حالت ویرایش مکان نشانه خارج شوید</string>
     <string name="street_description_relative_before">در %1$s درست قبل از %2$s</string>
     <string name="street_description_relative_after">در %1$s درست بعد از %2$s</string>
     <string name="street_description_intersection">نزدیک تقاطع %1$s</string>
