@@ -1611,4 +1611,5 @@
     <string name="search_synonyms_bicycle_shop">toko sepeda, bengkel sepeda</string>
     <string name="search_synonyms_book_shop">toko buku, buku</string>
     <string name="search_synonyms_phone_shop">toko HP, toko ponsel, konter HP</string>
+    <string name="search_no_offline_maps">Pencarian sedang berjalan secara offline, tetapi tidak ada peta offline yang diunduh untuk lokasi Anda.</string>
 </resources>
