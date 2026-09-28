@@ -649,9 +649,10 @@ class SearchTest {
     @Test
     fun categorySearchNamesAnUnnamedPlaceByItsType() {
         runBlocking {
-            // The toilets by Milngavie station (OSM way 218224201) are an unnamed building. They
-            // used to be listed as "Milngavie" - their address - with nothing to say they were
-            // toilets, and twice, because the building crosses a tile boundary.
+            // The toilets near the James Gale Memorial in Milngavie (OSM way 218224201) are an
+            // unnamed building. They used to be listed as "Milngavie" - their address - with
+            // nothing to say they were toilets, and twice, because the building crosses a tile
+            // boundary.
             val currentLocation = LngLatAlt(-4.3092376, 55.9497288)
             val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
             val settlementState = getGridStateForLocation(currentLocation, 12, 3)
