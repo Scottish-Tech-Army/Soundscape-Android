@@ -1641,4 +1641,6 @@
     <string name="search_synonyms_book_shop">llibreria, llibres</string>
     <string name="search_synonyms_phone_shop">botiga de mòbils, botiga de telefonia, mòbils</string>
     <string name="search_no_offline_maps">La cerca funciona fora de línia, però no hi ha cap mapa fora de línia baixat per al lloc on ets.</string>
+    <string name="location_detail_adjust_marker_location">Edita la ubicació</string>
+    <string name="location_detail_adjust_marker_location_instructions">Arrossega el mapa per moure la ubicació del marcador. Toca Fet per conservar la nova ubicació, o Cancel·la per deixar-la sense canvis.</string>
 </resources>
