@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">کتابوں کی دکان، کتاب گھر، کتابیں</string>
     <string name="search_synonyms_phone_shop">موبائل کی دکان، موبائل شاپ، فون کی دکان</string>
     <string name="search_no_offline_maps">تلاش آف لائن کام کر رہی ہے، لیکن آپ جہاں ہیں اس جگہ کا کوئی آف لائن نقشہ ڈاؤن لوڈ نہیں کیا گیا۔</string>
+    <string name="location_detail_adjust_marker_location">مقام میں ترمیم کریں</string>
+    <string name="location_detail_adjust_marker_location_instructions">مارکر کا مقام منتقل کرنے کے لیے نقشے کو گھسیٹیں۔ نیا مقام برقرار رکھنے کے لیے ‘ہو گیا’ پر، یا مقام کو بغیر تبدیلی کے چھوڑنے کے لیے ‘منسوخ کریں’ پر تھپتھپائیں۔</string>
 </resources>
