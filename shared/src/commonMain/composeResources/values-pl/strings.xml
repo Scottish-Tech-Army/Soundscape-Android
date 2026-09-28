@@ -1656,4 +1656,6 @@
     <string name="search_synonyms_book_shop">księgarnia, książki</string>
     <string name="search_synonyms_phone_shop">sklep z telefonami, salon komórkowy, telefony komórkowe</string>
     <string name="search_no_offline_maps">Wyszukiwanie działa offline, ale nie pobrano mapy offline dla miejsca, w którym jesteś.</string>
+    <string name="location_detail_adjust_marker_location">Edytuj lokalizację</string>
+    <string name="location_detail_adjust_marker_location_instructions">Przeciągnij mapę, aby przesunąć lokalizację znacznika. Stuknij „Gotowe”, aby zachować nową lokalizację, lub „Anuluj”, aby pozostawić ją bez zmian.</string>
 </resources>
