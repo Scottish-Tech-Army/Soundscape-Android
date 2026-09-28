@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">duka la vitabu, vitabu</string>
     <string name="search_synonyms_phone_shop">duka la simu, simu</string>
     <string name="search_no_offline_maps">Utafutaji unafanya kazi nje ya mtandao, lakini hakuna ramani ya nje ya mtandao iliyopakuliwa kwa mahali ulipo.</string>
+    <string name="location_detail_adjust_marker_location">Hariri Mahali</string>
+    <string name="location_detail_adjust_marker_location_instructions">Buruta ramani ili kusogeza mahali pa alama. Gusa Imekamilika ili kuhifadhi mahali papya, au Ghairi ili kupaacha bila kubadilika.</string>
 </resources>
