@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">books, bookshop, bookseller</string>
     <string name="search_synonyms_phone_shop">phone shop, mobile phone shop</string>
     <string name="search_no_offline_maps">Search is working offline, but there’s no offline map downloaded for where you are.</string>
+    <string name="location_detail_adjust_marker_location">Edit location</string>
+    <string name="location_detail_adjust_marker_location_instructions">Drag the map to move the marker's location. Tap on Done to keep the new location, or Cancel to leave it unchanged.</string>
 </resources>
