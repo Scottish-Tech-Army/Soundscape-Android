@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">సైకిల్ షాప్, సైకిల్ దుకాణం</string>
     <string name="search_synonyms_book_shop">పుస్తకాల దుకాణం, బుక్ షాప్, పుస్తకాలు</string>
     <string name="search_synonyms_phone_shop">మొబైల్ షాప్, సెల్ ఫోన్ దుకాణం, ఫోన్ దుకాణం</string>
+    <string name="search_no_offline_maps">శోధన ఆఫ్‌లైన్‌లో పనిచేస్తోంది, కానీ మీరు ఉన్న ప్రాంతానికి ఆఫ్‌లైన్ మ్యాప్ ఏదీ డౌన్‌లోడ్ చేయబడలేదు.</string>
 </resources>
