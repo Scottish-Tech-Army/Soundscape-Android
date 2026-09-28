@@ -374,7 +374,7 @@
     <string name="faq_callouts_stopping_in_vehicle_question">Hvers vegna hætta sumar tilkynningar þegar ég er í bíl?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">Til að koma í veg fyrir of miklar upplýsingar greinir Soundscape á milli þess þegar notandi er í bíl eða á gangi. og miðlar upplýsingum eftir því.</string>
     <string name="faq_miss_a_callout_question">Hvað geri ég ef ég missi af tilkynningu eða skil hana ekki?</string>
-    <string name="faq_miss_a_callout_answer">Soundscape geymir lista yfir nýlegar tilkynningar svo þú getir farið yfir tilkynningar sem þú missti af. Til að finna þetta, bankaðu á leitarstikuna á heimaskjánum í Soundscape. Neðst á þessum skjá er hluti sem heitir *"Nýlegar tilkynningar"* þar sem tilkynningin sem þú missti af verður skráð.</string>
+    <string name="faq_miss_a_callout_answer">Soundscape geymir lista yfir nýlegar tilkynningar svo þú getir farið yfir tilkynningar sem þú missti af. Til að finna þetta, bankaðu á leitarstikuna á heimaskjánum í Soundscape. Neðst á þessum skjá er hluti sem heitir *Nýlegar tilkynningar* þar sem tilkynningin sem þú missti af verður skráð.</string>
     <string name="faq_section_how_soundscape_works">Hvernig virkar Soundscape?</string>
     <string name="faq_supported_phones_question">Hvernig síma keyrir Soundscape á?</string>
     <string name="faq_supported_phones_answer">Soundscape fyrir Android er hægt að nota með símum sem keyra Android 11 eða nýlegri útgáfur.</string>
@@ -383,9 +383,9 @@
     <string name="faq_battery_impact_question">Hvaða áhrif hefur Soundscape á rafhlöðu símans?</string>
     <string name="faq_battery_impact_answer">Endingu rafhlöðu ræðst mjög af því hvaða síma þú átt og hversu gamall hann er. Mest dregur úr rafhlöðu að hafa skjáinn á, svo til að hámarka endingu skaltu hafa skjáinn læstan eins og kostur er. Til að draga úr áhrifum á rafhlöðu síman þíns hefur Soundscape nú dvalaham. Til að minnka rafhlöðunotkun enn frekar ættir þú að loka forritinu í forritaskiptum símans (App Switcher) þegar þú notar það ekki.</string>
     <string name="faq_sleep_mode_battery_question">Hvernig nota ég í dvala ham til að spara rafhlöðuna?</string>
-    <string name="faq_sleep_mode_battery_answer">Til að setja Soundscape í dvalaham skaltu velja hnappinn *"fara í dvala"* efst í hægra horni skjásins. Þegar þú gerir það hættir Soundscape að nota Staðsetningarþjónustu og farsímagögn þar til þú velur að vekja það aftur.</string>
+    <string name="faq_sleep_mode_battery_answer">Til að setja Soundscape í dvalaham skaltu velja hnappinn *fara í dvala* efst í hægra horni skjásins. Þegar þú gerir það hættir Soundscape að nota Staðsetningarþjónustu og farsímagögn þar til þú velur að vekja það aftur.</string>
     <string name="faq_snooze_mode_battery_question">Hvernig nýti ég möguleikann á því að láta Soundscape lura til að spara rafhlöðu?</string>
-    <string name="faq_snooze_mode_battery_answer">Til að setja Soundscape í lúra‑ham (Snooze) skaltu velja hnappinn *"fara í dvala"* efst í hægra horni skjásins. Þegar Soundscape er í dvalaham skaltu velja hnappinn *"Vakna við brottför"* og forritið fer þá í lágorkustöðu þar til þú yfirgefur núverandi staðsetningu þína.</string>
+    <string name="faq_snooze_mode_battery_answer">Til að setja Soundscape í lúra‑ham (Snooze) skaltu velja hnappinn *fara í dvala* efst í hægra horni skjásins. Þegar Soundscape er í dvalaham skaltu velja hnappinn *Vakna við brottför* og forritið fer þá í lágorkustöðu þar til þú yfirgefur núverandi staðsetningu þína.</string>
     <string name="faq_headset_battery_impact_question">Hvernig hefur val á heyrnartólum áhrif á rafhlöðu?</string>
     <string name="faq_headset_battery_impact_answer">Ekki hefur fundist merkjanlegur munur á virkni mismunandi heyrnartóla á endingu rafhlöðu. Sambærilegar niðurstöður sjást hvort sem um er að ræða bluetooth eða snúru.</string>
     <string name="faq_background_battery_impact_question">Hvaða áhrif hefur það á rafhlöðu að keyra Soundscape í bakrunni?</string>
