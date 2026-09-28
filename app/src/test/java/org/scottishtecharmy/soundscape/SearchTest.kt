@@ -645,4 +645,27 @@ class SearchTest {
             assertTrue(boots.all { it.name == "Boots" })
         }
     }
+
+    @Test
+    fun categorySearchOfTheGridOnly() {
+        runBlocking {
+            // With no offline maps the category search falls back to the POIs in the loaded grid.
+            // A supermarket mapped as a building with entrances is in there as its outline and as
+            // each of its entrances, and it used to be listed twice - once at its entrance, and
+            // once at 0,0 because an outline has no location of its own.
+            val currentLocation = LngLatAlt(-4.3159285, 55.9420645)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
+            val offlineGeocoder = OfflineGeocoder(gridState, settlementState, null)
+            val supermarket = SearchCategory("supermarket", listOf(OsmTag(null, "supermarket")))
+
+            val results = offlineGeocoder.searchByCategory(supermarket, null, currentLocation, null)
+            for (result in results)
+                println("${(result.feature as MvtFeature?)?.name} ${result.location} ${gridState.ruler.distance(currentLocation, result.location)}")
+            assertTrue(results.isNotEmpty())
+            assertTrue(results.all { gridState.ruler.distance(currentLocation, it.location) < 2000.0 })
+            val names = results.mapNotNull { (it.feature as MvtFeature?)?.name }
+            assertEquals(names.distinct(), names)
+        }
+    }
 }
