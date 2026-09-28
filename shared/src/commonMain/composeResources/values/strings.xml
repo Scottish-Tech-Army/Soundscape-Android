@@ -70,7 +70,7 @@
     <string name="settings_expanded">Expanded</string>
     <!-- Text shown when no search results were found -->
     <string name="search_no_results">No search results found</string>
-    <!-- Shown in place of search_no_results when the search found nothing because it was made offline - there's no internet connection, or search is set to work offline - and none of the downloaded offline maps covers where the user is, so it could only look through their saved markers. *Offline maps* is `offline_maps_title`, the item in the main menu where maps are downloaded. -->
+    <!-- Shown in place of search_no_results when the search found nothing because it was made offline - there's no internet connection, or search is set to work offline - and none of the downloaded offline maps covers where the user is, so it could only look through their saved markers. -->
     <string name="search_no_offline_maps">Search is working offline, but there’s no offline map downloaded for where you are.</string>
     <!-- Text shown when no search in progress -->
     <string name="search_searching">Searching…</string>
