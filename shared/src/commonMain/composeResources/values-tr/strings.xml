@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">bisikletçi, bisiklet dükkanı</string>
     <string name="search_synonyms_book_shop">kitapçı, kitabevi, kitaplar</string>
     <string name="search_synonyms_phone_shop">telefoncu, cep telefonu mağazası, telefon mağazası</string>
+    <string name="search_no_offline_maps">Arama çevrimdışı çalışıyor, ancak bulunduğunuz yer için indirilmiş bir çevrimdışı harita yok.</string>
 </resources>
