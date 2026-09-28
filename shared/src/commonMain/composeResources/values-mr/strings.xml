@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">पुस्तकांचे दुकान, पुस्तक भांडार, पुस्तके</string>
     <string name="search_synonyms_phone_shop">मोबाईल दुकान, मोबाईल शॉप, फोनचे दुकान</string>
     <string name="search_no_offline_maps">शोध ऑफलाइन चालू आहे, पण तुम्ही जिथे आहात त्या भागाचा कोणताही ऑफलाइन नकाशा डाउनलोड केलेला नाही.</string>
+    <string name="location_detail_adjust_marker_location">स्थान संपादित करा</string>
+    <string name="location_detail_adjust_marker_location_instructions">मार्करचे स्थान हलवण्यासाठी नकाशा ड्रॅग करा. नवीन स्थान ठेवण्यासाठी ‘पूर्ण झाले’ वर टॅप करा, किंवा स्थान न बदलता ठेवण्यासाठी ‘रद्द करा’ वर टॅप करा.</string>
 </resources>
