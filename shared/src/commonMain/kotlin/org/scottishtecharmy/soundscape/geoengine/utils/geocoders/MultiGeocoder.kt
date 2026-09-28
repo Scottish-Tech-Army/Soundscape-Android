@@ -61,6 +61,9 @@ class MultiGeocoder(
             offlineGeocoder
     }
 
+    /** Whether a search would be made offline - with no network, or the setting says so */
+    fun searchesOffline(): Boolean = pickGeocoder() == offlineGeocoder
+
     override suspend fun getAddressFromLocationName(
         locationName: String,
         nearbyLocation: LngLatAlt,

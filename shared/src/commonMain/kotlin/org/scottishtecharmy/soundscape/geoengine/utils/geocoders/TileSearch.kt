@@ -26,6 +26,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.network.GeoJsonParser
+import org.scottishtecharmy.soundscape.network.featureContainsLocation
+import org.scottishtecharmy.soundscape.platform.systemFileSystem
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
@@ -591,6 +594,35 @@ class TileSearch(
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
+    /**
+     * Whether one of the offline maps covers [location] - having some downloaded is no use for a
+     * search in a city none of them are of. An extract's area is in the sidecar written next to it
+     * when it was downloaded. One from before sidecars were written is asked for the tile at
+     * [location] instead, which misses only a tile it left out for being empty.
+     */
+    fun hasOfflineMapAt(location: LngLatAlt): Boolean {
+        val (tileX, tileY) = getXYTile(location, MAX_ZOOM_LEVEL)
+        for (extract in findExtractPaths(offlineExtractPath)) {
+            val area = try {
+                GeoJsonParser.parseFeature(systemFileSystem.read("$extract.geojson".toPath()) { readUtf8() })
+            } catch (_: Exception) {
+                null
+            }
+            if (area?.geometry != null) {
+                if (featureContainsLocation(area, location)) return true
+                continue
+            }
+            val reader = try { PmTilesReader(extract.toPath()) } catch (_: Exception) { continue }
+            try {
+                if (reader.getTile(MAX_ZOOM_LEVEL, tileX, tileY) != null) return true
+            } catch (_: Exception) {
+            } finally {
+                try { reader.close() } catch (_: Exception) {}
+            }
+        }
+        return false
+    }
+
     /**
      * A reader for the offline extract which has the tile at [tileLocation] - or failing that, the
      * last extract which could be read - or null if there are none. The caller closes it.

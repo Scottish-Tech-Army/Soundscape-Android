@@ -838,6 +838,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         return geoEngine.searchResult(query)
     }
 
+    override fun searchIsOfflineWithoutMaps(): Boolean = geoEngine.searchIsOfflineWithoutMaps()
+
     // --- Recording ---
 
     @OptIn(

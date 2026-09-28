@@ -12,7 +12,6 @@ import org.scottishtecharmy.soundscape.geoengine.nearestSettlement
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geoengine.utils.bestPoiForSpeech
-import org.scottishtecharmy.soundscape.geoengine.utils.featureHasEntrances
 import org.scottishtecharmy.soundscape.geoengine.utils.address.JapaneseAddress
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -25,7 +24,6 @@ import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.addressCountryCode
 import org.scottishtecharmy.soundscape.utils.deferredToLocationDescription
-import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 
 /**
  * The OfflineGeocoder class abstracts away the use of map tile data on the phone for geocoding and
@@ -126,67 +124,16 @@ class OfflineGeocoder(
     ): List<LocationDescription> {
         analyticsLogger("offlineCategorySearch")
 
-        val values = category.values
-        val tileResults = tileSearch?.searchByCategory(
+        // Only the offline maps are searched. Without them, the search bar says there are none,
+        // rather than giving an answer from the small area loaded around the user which looks
+        // like a complete one.
+        return tileSearch?.searchByCategory(
             nearbyLocation,
-            values,
+            category.values,
             name,
             localizedStrings,
             CATEGORY_SEARCH_LIMIT
-        )
-        if (!tileResults.isNullOrEmpty()) return tileResults
-
-        // With no offline maps to search there's still the grid that's loaded around the user. As
-        // in Places Nearby, a POI with entrances is found by its entrances rather than by its
-        // outline, which would otherwise be a second result for the same place. More than one of
-        // its entrances can be found too, so each place is only listed once.
-        val nameNeedle = name?.let { normalizeForSearch(it) }
-        return withContext(gridState.treeContext) {
-            val ruler = gridState.ruler
-            gridState.getFeatureTree(TreeId.POIS).getNearestCollection(
-                nearbyLocation,
-                CATEGORY_SEARCH_GRID_DISTANCE,
-                Int.MAX_VALUE,
-                ruler
-            ) { feature -> isGridCategoryMatch(feature as MvtFeature, values, nameNeedle) }
-                .features
-                .map { feature ->
-                    // Only a point has a location of its own; anything else is found at its
-                    // nearest point, or it would be placed at 0,0. The feature's text is what
-                    // names an unnamed place by its type ("Restroom"), and says what type a named
-                    // one is.
-                    (feature as MvtFeature).deferredToLocationDescription(
-                        LocationSource.OfflineGeocoder,
-                        getDistanceToFeature(nearbyLocation, feature, ruler).point,
-                        feature.getText(localizedStrings, includeTransitTypeSuffix = false)
-                    )
-                }
-                .fold(mutableListOf<LocationDescription>()) { accumulator, result ->
-                    val name = (result.feature as? MvtFeature)?.name
-                    val samePlace = (name != null) && accumulator.any {
-                        ((it.feature as? MvtFeature)?.name == name) &&
-                            (ruler.distance(it.location, result.location) < 100.0)
-                    }
-                    if (!samePlace) accumulator.add(result)
-                    accumulator
-                }
-                .take(CATEGORY_SEARCH_LIMIT)
-                .onEach(processor)
-                .onEach { result ->
-                    // An unnamed place with an address would be named by its address, which
-                    // doesn't say what it is. Its type names it instead.
-                    result.typeDescription?.takeIf { it.generic }?.let { result.name = it.text }
-                }
-        }
-    }
-
-    /** Whether [mvt] from the grid is one of [values], called [nameNeedle] if that isn't null */
-    private fun isGridCategoryMatch(mvt: MvtFeature, values: Set<String>, nameNeedle: String?): Boolean {
-        if (featureHasEntrances(mvt)) return false
-        if ((mvt.featureSubClass !in values) && (mvt.featureClass !in values)) return false
-        if (nameNeedle == null) return true
-        val name = mvt.name ?: return false
-        return normalizeForSearch(name).fuzzyCompare(nameNeedle, true) < 0.25
+        ).orEmpty()
     }
 
     private fun getNearestPointOnFeature(
@@ -546,8 +493,5 @@ class OfflineGeocoder(
         const val TAG = "OfflineGeocoder"
 
         private const val CATEGORY_SEARCH_LIMIT = 10
-
-        // The loaded grid only reaches a little over a km from the user anyway
-        private const val CATEGORY_SEARCH_GRID_DISTANCE = 2000.0
     }
 }

@@ -869,6 +869,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         return geoEngine.searchResult(query)
     }
 
+    override fun searchIsOfflineWithoutMaps(): Boolean = geoEngine.searchIsOfflineWithoutMaps()
+
     override fun getLocationDescription(location: LngLatAlt): LocationDescription {
         return geoEngine.getLocationDescription(location)
     }

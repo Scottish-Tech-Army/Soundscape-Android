@@ -192,6 +192,7 @@ fun SharedHomeScreen(
                             hint = stringResource(Res.string.search_bar_hint),
                             userLocation = state.location,
                             isSearching = state.searchInProgress,
+                            withoutOfflineMaps = state.searchWithoutOfflineMaps,
                             onExpandedChange = { searchExpanded = it },
                         )
                     },

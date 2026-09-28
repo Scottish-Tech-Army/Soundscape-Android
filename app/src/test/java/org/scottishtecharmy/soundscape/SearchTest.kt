@@ -647,29 +647,6 @@ class SearchTest {
     }
 
     @Test
-    fun categorySearchOfTheGridOnly() {
-        runBlocking {
-            // With no offline maps the category search falls back to the POIs in the loaded grid.
-            // A supermarket mapped as a building with entrances is in there as its outline and as
-            // each of its entrances, and it used to be listed twice - once at its entrance, and
-            // once at 0,0 because an outline has no location of its own.
-            val currentLocation = LngLatAlt(-4.3159285, 55.9420645)
-            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
-            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
-            val offlineGeocoder = OfflineGeocoder(gridState, settlementState, null)
-            val supermarket = SearchCategory("supermarket", listOf(OsmTag(null, "supermarket")))
-
-            val results = offlineGeocoder.searchByCategory(supermarket, null, currentLocation, null)
-            for (result in results)
-                println("${(result.feature as MvtFeature?)?.name} ${result.location} ${gridState.ruler.distance(currentLocation, result.location)}")
-            assertTrue(results.isNotEmpty())
-            assertTrue(results.all { gridState.ruler.distance(currentLocation, it.location) < 2000.0 })
-            val names = results.mapNotNull { (it.feature as MvtFeature?)?.name }
-            assertEquals(names.distinct(), names)
-        }
-    }
-
-    @Test
     fun categorySearchNamesAnUnnamedPlaceByItsType() {
         runBlocking {
             // The toilets by Milngavie station (OSM way 218224201) are an unnamed building. They
@@ -680,30 +657,33 @@ class SearchTest {
             val settlementState = getGridStateForLocation(currentLocation, 12, 3)
             val toilets = SearchCategory("toilets", listOf(OsmTag(null, "toilets")))
 
-            // From the offline tiles, and from the grid when there are no offline tiles
-            val tileGeocoder = OfflineGeocoder(
+            val offlineGeocoder = OfflineGeocoder(
                 gridState,
                 settlementState,
                 TileSearch(offlineExtractPath, gridState, settlementState),
                 processor = { it.process() })
-            val gridGeocoder = OfflineGeocoder(
-                gridState,
-                settlementState,
-                null,
-                processor = { it.process() })
 
-            for (geocoder in listOf(tileGeocoder, gridGeocoder)) {
-                val results = geocoder.searchByCategory(toilets, null, currentLocation, null)
-                for (result in results)
-                    println("toilets: '${result.name}' ${result.description} ${result.location}")
-                val nearest = results.first()
-                assertTrue(gridState.ruler.distance(currentLocation, nearest.location) < 20.0)
-                assertEquals(nearest.typeDescription?.text, nearest.name)
-                assertTrue(results.none { it.name == "Milngavie" })
-                assertTrue(
-                    results.drop(1).none { gridState.ruler.distance(nearest.location, it.location) < 20.0 }
-                )
-            }
+            val results = offlineGeocoder.searchByCategory(toilets, null, currentLocation, null)
+            for (result in results)
+                println("toilets: '${result.name}' ${result.description} ${result.location}")
+            val nearest = results.first()
+            assertTrue(gridState.ruler.distance(currentLocation, nearest.location) < 20.0)
+            assertEquals(nearest.typeDescription?.text, nearest.name)
+            assertTrue(results.none { it.name == "Milngavie" })
+            assertTrue(
+                results.drop(1).none { gridState.ruler.distance(nearest.location, it.location) < 20.0 }
+            )
         }
+    }
+
+    @Test
+    fun offlineMapCoverage() {
+        // Having offline maps downloaded is no use to a search somewhere none of them cover
+        val milngavie = LngLatAlt(-4.3159285, 55.9420645)
+        val gridState = getGridStateForLocation(milngavie, MAX_ZOOM_LEVEL, GRID_SIZE)
+        val tileSearch = TileSearch(offlineExtractPath, gridState, gridState)
+        assertTrue(tileSearch.hasOfflineMapAt(milngavie))
+        assertTrue(!tileSearch.hasOfflineMapAt(LngLatAlt(19.0402, 47.4979)))   // Budapest
+        assertTrue(!TileSearch("/nonexistent", gridState, gridState).hasOfflineMapAt(milngavie))
     }
 }
