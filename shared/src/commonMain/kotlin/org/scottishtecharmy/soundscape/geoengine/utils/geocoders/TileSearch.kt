@@ -1050,9 +1050,11 @@ class TileSearch(
 
                 val featureLocation = featureLocation(feature, x, y, location, ruler) ?: continue
                 val properties = featureProperties(layer, feature)
-                // A polygon which crosses tiles is found in each of them
+                // A polygon which crosses tiles is found in each of them. Its rank is an ordinal
+                // within each tile, so it's the one property which differs between them.
                 if (results.any {
-                        (it.properties == properties) &&
+                        (it.properties.filterKeys { key -> key != "rank" } ==
+                            properties.filterKeys { key -> key != "rank" }) &&
                             (ruler.distance(it.location, featureLocation.location) < 100.0)
                     }
                 ) continue
@@ -1085,10 +1087,14 @@ class TileSearch(
                         nearestSettlementName(result.location)?.let { mvt.properties?.set("city", it) }
                     }
                 }
-                mvt.toLocationDescription(
-                    LocationSource.OfflineGeocoder,
-                    featureName = mvt.getText(localizedStrings)
-                )
+                val featureName = mvt.getText(localizedStrings)
+                mvt.toLocationDescription(LocationSource.OfflineGeocoder, featureName = featureName)
+                    .also {
+                        // An unnamed place would otherwise be named by its address, and a list of
+                        // toilets would read "Milngavie", "Milngavie" with nothing to say what
+                        // they are. Its type names it instead, with the address below.
+                        if (mvt.name == null) it.name = featureName.text
+                    }
             }
     }
 

@@ -152,10 +152,13 @@ class OfflineGeocoder(
                 .features
                 .map { feature ->
                     // Only a point has a location of its own; anything else is found at its
-                    // nearest point, or it would be placed at 0,0
+                    // nearest point, or it would be placed at 0,0. The feature's text is what
+                    // names an unnamed place by its type ("Restroom"), and says what type a named
+                    // one is.
                     (feature as MvtFeature).deferredToLocationDescription(
                         LocationSource.OfflineGeocoder,
-                        getDistanceToFeature(nearbyLocation, feature, ruler).point
+                        getDistanceToFeature(nearbyLocation, feature, ruler).point,
+                        feature.getText(localizedStrings, includeTransitTypeSuffix = false)
                     )
                 }
                 .fold(mutableListOf<LocationDescription>()) { accumulator, result ->
@@ -169,6 +172,11 @@ class OfflineGeocoder(
                 }
                 .take(CATEGORY_SEARCH_LIMIT)
                 .onEach(processor)
+                .onEach { result ->
+                    // An unnamed place with an address would be named by its address, which
+                    // doesn't say what it is. Its type names it instead.
+                    result.typeDescription?.takeIf { it.generic }?.let { result.name = it.text }
+                }
         }
     }
 

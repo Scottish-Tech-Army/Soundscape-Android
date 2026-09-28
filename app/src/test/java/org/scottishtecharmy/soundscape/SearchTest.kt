@@ -668,4 +668,42 @@ class SearchTest {
             assertEquals(names.distinct(), names)
         }
     }
+
+    @Test
+    fun categorySearchNamesAnUnnamedPlaceByItsType() {
+        runBlocking {
+            // The toilets by Milngavie station (OSM way 218224201) are an unnamed building. They
+            // used to be listed as "Milngavie" - their address - with nothing to say they were
+            // toilets, and twice, because the building crosses a tile boundary.
+            val currentLocation = LngLatAlt(-4.3092376, 55.9497288)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
+            val toilets = SearchCategory("toilets", listOf(OsmTag(null, "toilets")))
+
+            // From the offline tiles, and from the grid when there are no offline tiles
+            val tileGeocoder = OfflineGeocoder(
+                gridState,
+                settlementState,
+                TileSearch(offlineExtractPath, gridState, settlementState),
+                processor = { it.process() })
+            val gridGeocoder = OfflineGeocoder(
+                gridState,
+                settlementState,
+                null,
+                processor = { it.process() })
+
+            for (geocoder in listOf(tileGeocoder, gridGeocoder)) {
+                val results = geocoder.searchByCategory(toilets, null, currentLocation, null)
+                for (result in results)
+                    println("toilets: '${result.name}' ${result.description} ${result.location}")
+                val nearest = results.first()
+                assertTrue(gridState.ruler.distance(currentLocation, nearest.location) < 20.0)
+                assertEquals(nearest.typeDescription?.text, nearest.name)
+                assertTrue(results.none { it.name == "Milngavie" })
+                assertTrue(
+                    results.drop(1).none { gridState.ruler.distance(nearest.location, it.location) < 20.0 }
+                )
+            }
+        }
+    }
 }
