@@ -182,4 +182,40 @@ class PhotonSearchClientTest {
 
         assertNull(client.reverseGeocodeJson(latitude = 55.86, longitude = -4.25))
     }
+
+    // ----- nearbyByTagJson() -----
+
+    @Test
+    fun nearbyByTagJson_sendsEachTagAndTheFilters() = runTest {
+        val client = clientReturning(HttpStatusCode.OK, "{}")
+
+        client.nearbyByTagJson(
+            latitude = 55.94,
+            longitude = -4.31,
+            osmTags = listOf(":pharmacy", "shop:chemist", "!building"),
+            radius = 5.0,
+            limit = 10U,
+            nameFilter = "boots",
+        )
+
+        val request = capturedRequest!!
+        assertEquals("/reverse/", request.url.encodedPath)
+        val params = request.url.parameters
+        assertEquals(listOf(":pharmacy", "shop:chemist", "!building"), params.getAll("osm_tag"))
+        assertEquals("5.0", params.get("radius"))
+        assertEquals("10", params.get("limit"))
+        assertEquals("boots", params.get("query_string_filter"))
+    }
+
+    @Test
+    fun nearbyByTagJson_omitsOptionalParametersWhenNull() = runTest {
+        val client = clientReturning(HttpStatusCode.OK, "{}")
+
+        client.nearbyByTagJson(latitude = 55.94, longitude = -4.31, osmTags = listOf(":cafe"))
+
+        val params = capturedRequest!!.url.parameters
+        assertTrue(params.contains("radius") == false)
+        assertTrue(params.contains("limit") == false)
+        assertTrue(params.contains("query_string_filter") == false)
+    }
 }

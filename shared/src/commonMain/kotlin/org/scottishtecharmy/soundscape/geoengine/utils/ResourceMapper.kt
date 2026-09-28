@@ -1537,6 +1537,9 @@ class ResourceMapper {
 
         fun hasResource(key: String?): Boolean = getStringResource(key) != null
 
+        /** Every OSM value which has a translated name, with that name. */
+        fun entries(): Map<String, StringResource> = resourceMap
+
         fun getUnfoundKeys(): Set<String> {
             return unfoundKeys
         }

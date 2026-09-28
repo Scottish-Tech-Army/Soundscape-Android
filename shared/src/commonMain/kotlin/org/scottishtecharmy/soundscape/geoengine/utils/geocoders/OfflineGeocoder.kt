@@ -24,6 +24,7 @@ import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.addressCountryCode
 import org.scottishtecharmy.soundscape.utils.deferredToLocationDescription
+import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 
 /**
  * The OfflineGeocoder class abstracts away the use of map tile data on the phone for geocoding and
@@ -114,6 +115,45 @@ class OfflineGeocoder(
             getSettlementNames()
         }
         return tileSearch?.search(nearbyLocation, locationName, localizedStrings, settlementNames)
+    }
+
+    override suspend fun searchByCategory(
+        category: SearchCategory,
+        name: String?,
+        nearbyLocation: LngLatAlt,
+        localizedStrings: LocalizedStrings?
+    ): List<LocationDescription> {
+        analyticsLogger("offlineCategorySearch")
+
+        val values = category.values
+        val tileResults = tileSearch?.searchByCategory(
+            nearbyLocation,
+            values,
+            name,
+            localizedStrings,
+            CATEGORY_SEARCH_LIMIT
+        )
+        if (!tileResults.isNullOrEmpty()) return tileResults
+
+        // With no offline maps to search there's still the grid that's loaded around the user
+        val nameNeedle = name?.let { normalizeForSearch(it) }
+        return withContext(gridState.treeContext) {
+            gridState.getFeatureTree(TreeId.POIS).getNearestCollection(
+                nearbyLocation,
+                CATEGORY_SEARCH_GRID_DISTANCE,
+                CATEGORY_SEARCH_LIMIT,
+                gridState.ruler
+            ) { feature ->
+                val mvt = feature as MvtFeature
+                ((mvt.featureSubClass in values) || (mvt.featureClass in values)) &&
+                    ((nameNeedle == null) || (mvt.name?.let {
+                        normalizeForSearch(it).fuzzyCompare(nameNeedle, true) < 0.25
+                    } == true))
+            }.features.map { feature ->
+                (feature as MvtFeature).deferredToLocationDescription(LocationSource.OfflineGeocoder)
+                    .also(processor)
+            }
+        }
     }
 
     private fun getNearestPointOnFeature(
@@ -471,5 +511,10 @@ class OfflineGeocoder(
 
     companion object {
         const val TAG = "OfflineGeocoder"
+
+        private const val CATEGORY_SEARCH_LIMIT = 10
+
+        // The loaded grid only reaches a little over a km from the user anyway
+        private const val CATEGORY_SEARCH_GRID_DISTANCE = 2000.0
     }
 }

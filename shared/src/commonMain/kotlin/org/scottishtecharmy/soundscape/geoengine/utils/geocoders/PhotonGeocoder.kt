@@ -38,8 +38,51 @@ class PhotonGeocoder(
 
         if (searchResult == null) return null
 
+        return deduplicate(searchResult.features, nearbyLocation).map { feature ->
+            feature.toPhotonLocationDescription(localizedStrings).also(processor)
+        }
+    }
+
+    override suspend fun searchByCategory(
+        category: SearchCategory,
+        name: String?,
+        nearbyLocation: LngLatAlt,
+        localizedStrings: LocalizedStrings?
+    ): List<LocationDescription>? {
+        // A value-only tag - ":school" - would also find every building=school, which is the
+        // same school again
+        val osmTags = category.tags.map { it.toPhoton() } + "!building"
+        var features: List<Feature>? = null
+        // Photon only looks 1km away by default, which in a town is plenty but in the country can
+        // find nothing, so look further if there's not much nearby
+        for (radius in CATEGORY_SEARCH_RADII_KM) {
+            val searchResult = try {
+                photonSearch.getNearbyByTag(
+                    latitude = nearbyLocation.latitude,
+                    longitude = nearbyLocation.longitude,
+                    osmTags = osmTags,
+                    radius = radius,
+                    limit = CATEGORY_SEARCH_LIMIT,
+                    nameFilter = name,
+                    language = languageProvider(),
+                )
+            } catch (e: Exception) {
+                null
+            } ?: return null
+            features = searchResult.features
+            if (searchResult.features.size >= CATEGORY_SEARCH_ENOUGH_RESULTS) break
+        }
+        analyticsLogger("photonCategorySearch")
+
+        return deduplicate(features.orEmpty(), nearbyLocation).map { feature ->
+            feature.toPhotonLocationDescription(localizedStrings).also(processor)
+        }
+    }
+
+    /** [features] without those with the same name as one nearby, which are the same place */
+    private fun deduplicate(features: List<Feature>, nearbyLocation: LngLatAlt): List<Feature> {
         val ruler = CheapRuler(nearbyLocation.latitude)
-        val deduplicate = searchResult.features
+        return features
             .fold(mutableListOf<Feature>()) { accumulator, result ->
                 val point = (result.geometry as? Point)
                 var isDuplicate = false
@@ -60,10 +103,6 @@ class PhotonGeocoder(
                 }
                 accumulator
             }
-
-        return deduplicate.map { feature ->
-            feature.toPhotonLocationDescription(localizedStrings).also(processor)
-        }
     }
 
     /**
@@ -108,5 +147,11 @@ class PhotonGeocoder(
         return searchResult?.features?.firstNotNullOfOrNull { feature ->
             feature.toPhotonLocationDescription(localizedStrings).also(processor)
         }
+    }
+
+    companion object {
+        private val CATEGORY_SEARCH_RADII_KM = listOf(5.0, 25.0)
+        private const val CATEGORY_SEARCH_LIMIT = 10U
+        private const val CATEGORY_SEARCH_ENOUGH_RESULTS = 3
     }
 }
