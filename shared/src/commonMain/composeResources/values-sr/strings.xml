@@ -1641,4 +1641,5 @@
     <string name="search_synonyms_bicycle_shop">продавница бицикала, бицикли</string>
     <string name="search_synonyms_book_shop">књижара, књиге</string>
     <string name="search_synonyms_phone_shop">продавница мобилних телефона, мобилни телефони</string>
+    <string name="search_no_offline_maps">Претрага ради офлајн, али за место на ком се налазите није преузета ниједна офлајн мапа.</string>
 </resources>
