@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">Fahrradladen, Fahrradgeschäft, Radladen, Fahrräder</string>
     <string name="search_synonyms_book_shop">Buchhandlung, Bücher, Buchladen</string>
     <string name="search_synonyms_phone_shop">Handyladen, Handygeschäft, Handyshop, Mobilfunkladen</string>
+    <string name="search_no_offline_maps">Die Suche funktioniert offline, aber für Ihren Standort ist keine Offline-Karte heruntergeladen.</string>
 </resources>
