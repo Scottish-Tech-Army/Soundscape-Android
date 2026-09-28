@@ -90,4 +90,13 @@ class SearchCategoryMatcherTest {
     fun partOfTooManyPhrasesIsNotACategory() {
         assertNull(matcher.match("shop"))
     }
+
+    @Test
+    fun twoCharacterWordsMatchInChineseJapaneseAndKorean() {
+        val cjk = SearchCategoryMatcher(listOf("药店" to pharmacy, "薬局" to pharmacy, "약국" to pharmacy, "ab" to bar))
+        assertEquals(CategoryMatch(pharmacy, null), cjk.match("药店"))
+        assertEquals(CategoryMatch(pharmacy, null), cjk.match("薬局"))
+        assertEquals(CategoryMatch(pharmacy, null), cjk.match("약국"))
+        assertNull(cjk.match("ab"))
+    }
 }

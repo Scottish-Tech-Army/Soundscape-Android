@@ -360,19 +360,6 @@ class TileSearch(
         (string[index] == ' ') && (index > 0) && (index + 1 < string.length) &&
             isUnspacedScript(codePointBefore(string, index)) && isUnspacedScript(codePointAt(string, index + 1))
 
-    /**
-     * Whether [codePoint] is in a script which doesn't put spaces between its words, or doesn't
-     * always: Chinese and Japanese kanji/hanzi, hiragana and katakana, Korean hangul, and Thai.
-     */
-    private fun isUnspacedScript(codePoint: Int): Boolean =
-        (codePoint in 0x0E00..0x0E7F) ||     // Thai
-            (codePoint in 0x3040..0x30FF) ||  // Hiragana and Katakana, including the voicing marks
-            (codePoint in 0x3400..0x4DBF) ||  // CJK Unified Ideographs Extension A
-            (codePoint in 0x4E00..0x9FFF) ||  // CJK Unified Ideographs
-            (codePoint in 0xAC00..0xD7A3) ||  // Hangul syllables
-            (codePoint in 0xF900..0xFAFF) ||  // CJK Compatibility Ideographs
-            (codePoint in 0x20000..0x3FFFF)   // CJK Unified Ideographs Extensions B onwards
-
     /** A layer of a tile which the search looks in, with its strings normalized to compare with a match. */
     private class SearchedLayer(
         val layer: Tile.Layer,
