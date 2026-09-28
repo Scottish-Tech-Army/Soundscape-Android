@@ -1641,4 +1641,6 @@
     <string name="search_synonyms_book_shop">књижара, књиге</string>
     <string name="search_synonyms_phone_shop">продавница мобилних телефона, мобилни телефони</string>
     <string name="search_no_offline_maps">Претрага ради офлајн, али за место на ком се налазите није преузета ниједна офлајн мапа.</string>
+    <string name="location_detail_adjust_marker_location">Уреди локацију</string>
+    <string name="location_detail_adjust_marker_location_instructions">Превуците мапу да бисте померили локацију маркера. Додирните Готово да бисте задржали нову локацију или Откажи да бисте је оставили непромењеном.</string>
 </resources>
