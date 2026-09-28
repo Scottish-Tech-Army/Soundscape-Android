@@ -1656,4 +1656,5 @@
     <string name="search_synonyms_bicycle_shop">predajňa bicyklov, cykloobchod, bicykle</string>
     <string name="search_synonyms_book_shop">kníhkupectvo, knihy</string>
     <string name="search_synonyms_phone_shop">predajňa mobilov, obchod s mobilmi, mobily</string>
+    <string name="search_no_offline_maps">Vyhľadávanie funguje offline, ale pre miesto, kde sa nachádzate, nie je stiahnutá žiadna offline mapa.</string>
 </resources>
