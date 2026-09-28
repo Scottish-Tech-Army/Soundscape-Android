@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">магазин за велосипеди, веломагазин</string>
     <string name="search_synonyms_book_shop">книжарница, книги</string>
     <string name="search_synonyms_phone_shop">магазин за телефони, GSM магазин, мобилни телефони</string>
+    <string name="search_no_offline_maps">Търсенето работи офлайн, но няма изтеглена офлайн карта за мястото, където се намирате.</string>
 </resources>
