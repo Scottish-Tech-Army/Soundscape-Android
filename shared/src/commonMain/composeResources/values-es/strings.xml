@@ -1641,4 +1641,5 @@
     <string name="search_synonyms_bicycle_shop">tienda de bicicletas, bicicletería, bicis</string>
     <string name="search_synonyms_book_shop">librería, libros</string>
     <string name="search_synonyms_phone_shop">tienda de móviles, tienda de celulares, tienda de telefonía, móviles</string>
+    <string name="search_no_offline_maps">La búsqueda funciona sin conexión, pero no hay ningún mapa sin conexión descargado del lugar donde te encuentras.</string>
 </resources>
