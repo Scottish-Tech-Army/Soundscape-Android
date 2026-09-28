@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">sykkelbutikk, sykkelforretning</string>
     <string name="search_synonyms_book_shop">bokhandel, bøker</string>
     <string name="search_synonyms_phone_shop">mobilbutikk, telefonbutikk, mobiltelefoner</string>
+    <string name="search_no_offline_maps">Søket fungerer offline, men det er ikke lastet ned noe offline-kart for stedet der du er.</string>
 </resources>
