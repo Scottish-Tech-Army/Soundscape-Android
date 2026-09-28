@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">किताबों की दुकान, पुस्तक भंडार, किताबें</string>
     <string name="search_synonyms_phone_shop">मोबाइल की दुकान, मोबाइल शॉप, फ़ोन की दुकान</string>
     <string name="search_no_offline_maps">खोज ऑफ़लाइन चल रही है, लेकिन आप जहाँ हैं उसके लिए कोई ऑफ़लाइन मानचित्र डाउनलोड नहीं किया गया है।</string>
+    <string name="location_detail_adjust_marker_location">स्थान संपादित करें</string>
+    <string name="location_detail_adjust_marker_location_instructions">मार्कर का स्थान बदलने के लिए मानचित्र को खींचें। नया स्थान रखने के लिए ‘हो गया’ पर टैप करें, या स्थान को अपरिवर्तित छोड़ने के लिए ‘रद्द करें’ पर टैप करें।</string>
 </resources>
