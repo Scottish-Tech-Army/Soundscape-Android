@@ -1656,4 +1656,5 @@
     <string name="search_synonyms_bicycle_shop">trgovina s kolesi, kolesarska trgovina, kolesa</string>
     <string name="search_synonyms_book_shop">knjigarna, knjige</string>
     <string name="search_synonyms_phone_shop">trgovina z mobilnimi telefoni, mobilni telefoni, mobiteli</string>
+    <string name="search_no_offline_maps">Iskanje deluje brez povezave, vendar za kraj, kjer ste, ni prenesen noben zemljevid brez povezave.</string>
 </resources>
