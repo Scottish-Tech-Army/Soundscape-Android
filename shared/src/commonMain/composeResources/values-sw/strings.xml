@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">duka la baiskeli, baiskeli</string>
     <string name="search_synonyms_book_shop">duka la vitabu, vitabu</string>
     <string name="search_synonyms_phone_shop">duka la simu, simu</string>
+    <string name="search_no_offline_maps">Utafutaji unafanya kazi nje ya mtandao, lakini hakuna ramani ya nje ya mtandao iliyopakuliwa kwa mahali ulipo.</string>
 </resources>
