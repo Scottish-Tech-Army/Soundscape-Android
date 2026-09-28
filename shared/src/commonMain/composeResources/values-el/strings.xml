@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">βιβλιοπωλείο, βιβλία</string>
     <string name="search_synonyms_phone_shop">κατάστημα κινητών, κινητά τηλέφωνα, κινητά</string>
     <string name="search_no_offline_maps">Η αναζήτηση λειτουργεί εκτός σύνδεσης, αλλά δεν έχει γίνει λήψη χάρτη εκτός σύνδεσης για την περιοχή όπου βρίσκεστε.</string>
+    <string name="location_detail_adjust_marker_location">Επεξεργασία θέσης</string>
+    <string name="location_detail_adjust_marker_location_instructions">Σύρετε τον χάρτη για να μετακινήσετε τη θέση του δείκτη. Πατήστε Έτοιμο για να διατηρήσετε τη νέα θέση ή Ακύρωση για να την αφήσετε αμετάβλητη.</string>
 </resources>
