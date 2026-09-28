@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">kerékpárbolt, biciklibolt, bringabolt</string>
     <string name="search_synonyms_book_shop">könyvesbolt, könyvek, antikvárium</string>
     <string name="search_synonyms_phone_shop">telefonbolt, mobilbolt, mobiltelefon-bolt</string>
+    <string name="search_no_offline_maps">A keresés offline működik, de a tartózkodási helyedről nincs letöltött offline térkép.</string>
 </resources>
