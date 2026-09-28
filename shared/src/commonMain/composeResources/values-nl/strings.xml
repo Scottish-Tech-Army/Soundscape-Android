@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">fietsenwinkel, fietsenmaker, rijwielhandel</string>
     <string name="search_synonyms_book_shop">boekhandel, boekwinkel, boeken</string>
     <string name="search_synonyms_phone_shop">telefoonwinkel, gsm-winkel, mobiele telefoons</string>
+    <string name="search_no_offline_maps">Zoeken werkt offline, maar er is geen offline kaart gedownload van de plek waar u bent.</string>
 </resources>
