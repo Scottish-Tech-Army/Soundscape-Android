@@ -1611,4 +1611,6 @@
     <string name="search_synonyms_book_shop">nhà sách, hiệu sách, tiệm sách, sách</string>
     <string name="search_synonyms_phone_shop">cửa hàng điện thoại, tiệm điện thoại, điện thoại di động</string>
     <string name="search_no_offline_maps">Tìm kiếm đang hoạt động ngoại tuyến, nhưng chưa tải xuống bản đồ ngoại tuyến nào cho nơi bạn đang ở.</string>
+    <string name="location_detail_adjust_marker_location">Chỉnh sửa vị trí</string>
+    <string name="location_detail_adjust_marker_location_instructions">Kéo bản đồ để di chuyển vị trí điểm đánh dấu. Nhấn Xong để giữ vị trí mới, hoặc Hủy để giữ nguyên vị trí cũ.</string>
 </resources>
