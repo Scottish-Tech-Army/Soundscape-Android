@@ -560,7 +560,6 @@
     <string name="location_detail_full_screen_hint">عرض الخريطة بملء الشاشة</string>
     <string name="location_detail_exit_full_screen_hint">الخروج من الخريطة بملء الشاشة</string>
     <string name="location_detail_full_screen_for_edit_hint">عرض الخريطة بملء الشاشة وتعديل موقع العلامة</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">الخروج من وضع تعديل موقع العلامة</string>
     <string name="route_detail_action_start_route">بدء المسار</string>
     <string name="route_detail_action_stop_route">إيقاف المسار</string>
     <string name="route_detail_action_edit">تعديل المسار</string>

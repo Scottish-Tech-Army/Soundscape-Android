@@ -80,7 +80,6 @@
     <string name="location_detail_full_screen_hint">Mostra el mapa a pantalla completa</string>
     <string name="location_detail_exit_full_screen_hint">sortir del mapa a pantalla completa</string>
     <string name="location_detail_full_screen_for_edit_hint">Mostra el mapa a pantalla completa i edita la ubicació del marcador</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Surt del mode d'edició de la ubicació del marcador</string>
     <string name="route_detail_action_start_route">Inicia la ruta</string>
     <string name="route_detail_action_stop_route">Atura la ruta</string>
     <string name="route_detail_action_edit">Edita la ruta</string>

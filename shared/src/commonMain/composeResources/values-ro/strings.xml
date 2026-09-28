@@ -64,7 +64,6 @@
     <string name="location_detail_full_screen_hint">Afișează harta pe tot ecranul</string>
     <string name="location_detail_exit_full_screen_hint">ieși din harta pe tot ecranul</string>
     <string name="location_detail_full_screen_for_edit_hint">Afișează harta pe tot ecranul și editează locația marcajului</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Ieși din modul de editare a locației marcajului</string>
     <string name="route_detail_action_start_route">Pornește ruta</string>
     <string name="route_detail_action_stop_route">Oprește ruta</string>
     <string name="route_detail_action_edit">Editează ruta</string>

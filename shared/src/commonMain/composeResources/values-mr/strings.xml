@@ -1028,7 +1028,6 @@
     <string name="location_detail_full_screen_hint">नकाशा पूर्णस्क्रीन करा</string>
     <string name="location_detail_exit_full_screen_hint">पूर्णस्क्रीन नकाशामधून बाहेर पडा</string>
     <string name="location_detail_full_screen_for_edit_hint">नकाशा पूर्णस्क्रीन करा आणि मार्करचे स्थान संपादित करा</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">मार्कर स्थान संपादन मोडमधून बाहेर पडा</string>
     <string name="route_detail_action_start_route">मार्ग सुरू करा</string>
     <string name="route_detail_action_stop_route">मार्ग थांबवा</string>
     <string name="route_detail_action_edit">मार्ग संपादित करा</string>

@@ -1265,7 +1265,6 @@
     <string name="tour_continue_hint">закрыть всплывающее окно и продолжить руководство</string>
     <string name="location_detail_action_beacon_from_markers">Включить звуковой маяк на этой отметке</string>
     <string name="location_detail_full_screen_for_edit_hint">Развернуть карту на весь экран и отредактировать местоположение отметки</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Выйти из режима редактирования местоположения отметки</string>
     <string name="street_description_relative_before">На %1$s, прямо перед %2$s</string>
     <string name="street_description_relative_after">На %1$s, сразу после %2$s</string>
     <string name="street_description_intersection">Рядом с перекрёстком %1$s</string>

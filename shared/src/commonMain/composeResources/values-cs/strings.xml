@@ -792,7 +792,6 @@
     <string name="location_detail_full_screen_hint">Zobrazit mapu na celou obrazovku</string>
     <string name="location_detail_exit_full_screen_hint">ukončit zobrazení mapy na celou obrazovku</string>
     <string name="location_detail_full_screen_for_edit_hint">Zobrazit mapu na celou obrazovku a upravit polohu značky</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Ukončit režim úpravy polohy značky</string>
     <string name="route_detail_action_start_route">Spustit trasu</string>
     <string name="route_detail_action_stop_route">Zastavit trasu</string>
     <string name="route_detail_action_edit">Upravit trasu</string>

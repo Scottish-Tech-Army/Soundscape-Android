@@ -1261,7 +1261,6 @@
     <string name="tour_continue_hint">cerrar la ventana emergente y continuar el tutorial</string>
     <string name="location_detail_action_beacon_from_markers">Iniciar la señal de audio en este marcador</string>
     <string name="location_detail_full_screen_for_edit_hint">Poner el mapa en pantalla completa y editar la ubicación del marcador</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Salir del modo de edición de la ubicación del marcador</string>
     <string name="street_description_relative_before">{es:En %1$s}, justo antes {es:de %2$s}</string>
     <string name="street_description_relative_after">{es:En %1$s}, justo después {es:de %2$s}</string>
     <string name="street_description_intersection">Cerca de la intersección de %1$s</string>

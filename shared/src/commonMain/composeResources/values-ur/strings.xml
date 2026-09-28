@@ -614,7 +614,6 @@
     <string name="location_detail_full_screen_hint">نقشے کو مکمل اسکرین بنائیں</string>
     <string name="location_detail_exit_full_screen_hint">مکمل اسکرین نقشے سے باہر نکلیں</string>
     <string name="location_detail_full_screen_for_edit_hint">نقشے کو مکمل اسکرین بنائیں اور مارکر کا مقام ترمیم کریں</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">مارکر مقام ترمیمی موڈ سے باہر نکلیں</string>
     <string name="route_detail_action_start_route">روٹ شروع کریں</string>
     <string name="route_detail_action_stop_route">روٹ روکیں</string>
     <string name="route_detail_action_edit">روٹ میں ترمیم کریں</string>

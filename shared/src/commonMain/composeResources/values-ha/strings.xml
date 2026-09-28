@@ -258,7 +258,6 @@
     <string name="location_detail_full_screen_hint">Faɗaɗa taswira zuwa cikakken allo</string>
     <string name="location_detail_exit_full_screen_hint">fita daga taswirar cikakken allo</string>
     <string name="location_detail_full_screen_for_edit_hint">Faɗaɗa taswira zuwa cikakken allo don gyara wurin alama</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Fita daga yanayin gyara wurin alama</string>
     <string name="route_detail_action_start_route">Fara Tafarki</string>
     <string name="route_detail_action_stop_route">Tsayar da Tafarki</string>
     <string name="route_detail_action_edit">Gyara Tafarki</string>

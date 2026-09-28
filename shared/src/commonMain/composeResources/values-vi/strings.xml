@@ -614,7 +614,6 @@
     <string name="location_detail_full_screen_hint">Xem bản đồ toàn màn hình</string>
     <string name="location_detail_exit_full_screen_hint">Thoát bản đồ toàn màn hình</string>
     <string name="location_detail_full_screen_for_edit_hint">Xem bản đồ toàn màn hình và chỉnh sửa vị trí điểm đánh dấu</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Thoát chế độ chỉnh sửa vị trí điểm đánh dấu</string>
     <string name="route_detail_action_start_route">Bắt đầu lộ trình</string>
     <string name="route_detail_action_stop_route">Dừng lộ trình</string>
     <string name="route_detail_action_edit">Chỉnh sửa lộ trình</string>

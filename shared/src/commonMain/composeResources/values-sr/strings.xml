@@ -436,7 +436,6 @@
     <string name="location_detail_full_screen_hint">Прикажи мапу преко целог екрана</string>
     <string name="location_detail_exit_full_screen_hint">изађете из мапе преко целог екрана</string>
     <string name="location_detail_full_screen_for_edit_hint">Прикажи мапу преко целог екрана и уреди локацију маркера</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Изађи из режима уређивања локације маркера</string>
     <string name="route_detail_action_start_route">Покрени руту</string>
     <string name="route_detail_action_stop_route">Заустави руту</string>
     <string name="route_detail_action_edit">Уреди руту</string>

@@ -1257,7 +1257,6 @@
     <string name="tour_continue_hint">close the popup and continue the tutorial</string>
     <string name="location_detail_action_beacon_from_markers">Start audio beacon at this marker</string>
     <string name="location_detail_full_screen_for_edit_hint">Make the map full screen and edit the marker location</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Exit marker location editing mode</string>
     <string name="street_description_relative_before">On %1$s, just before %2$s</string>
     <string name="street_description_relative_after">On %1$s, just after %2$s</string>
     <string name="street_description_intersection">Near the intersection of %1$s</string>

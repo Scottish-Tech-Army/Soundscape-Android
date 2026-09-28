@@ -28,6 +28,7 @@ actual fun PlatformMapContainer(
     extractGeometry: Geometry?,
     forceOnlineTiles: Boolean,
     onInteractionChanged: (Boolean) -> Unit,
+    onBeaconLocationEdited: ((LngLatAlt) -> Unit)?,
 ) {
     val context = LocalContext.current
 
@@ -109,5 +110,6 @@ actual fun PlatformMapContainer(
         baseStyle = baseStyle,
         extractGeometry = extractGeometry,
         onInteractionChanged = onInteractionChanged,
+        onBeaconLocationEdited = onBeaconLocationEdited,
     )
 }

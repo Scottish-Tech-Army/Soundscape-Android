@@ -1261,7 +1261,6 @@
     <string name="tour_continue_hint">chiudi il popup e continua il tutorial</string>
     <string name="location_detail_action_beacon_from_markers">Avviare l'audiofaro su questo indicatore</string>
     <string name="location_detail_full_screen_for_edit_hint">Mettere la mappa a schermo intero e modificare la posizione dell'indicatore</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Uscire dalla modalità di modifica della posizione dell'indicatore</string>
     <string name="street_description_relative_before">{it:Su %1$s} appena prima {it:di %2$s}</string>
     <string name="street_description_relative_after">{it:Su %1$s} appena dopo %2$s</string>
     <string name="street_description_intersection">Nei pressi dell'incrocio tra %1$s</string>

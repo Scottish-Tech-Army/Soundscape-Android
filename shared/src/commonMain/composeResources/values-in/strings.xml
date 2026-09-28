@@ -792,7 +792,6 @@
     <string name="location_detail_full_screen_hint">Menampilkan peta dalam layar penuh</string>
     <string name="location_detail_exit_full_screen_hint">keluar dari peta layar penuh</string>
     <string name="location_detail_full_screen_for_edit_hint">Menampilkan peta dalam layar penuh dan mengedit lokasi penanda</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint">Keluar dari mode pengeditan lokasi penanda</string>
     <string name="route_detail_action_start_route">Mulai Rute</string>
     <string name="route_detail_action_stop_route">Hentikan Rute</string>
     <string name="route_detail_action_edit">Edit Rute</string>
