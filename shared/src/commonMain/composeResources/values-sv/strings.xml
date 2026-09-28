@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">bokhandel, bokaffär, böcker</string>
     <string name="search_synonyms_phone_shop">mobilbutik, telefonbutik, mobiltelefoner</string>
     <string name="search_no_offline_maps">Sökningen fungerar offline, men ingen offlinekarta är nedladdad för platsen där du är.</string>
+    <string name="location_detail_adjust_marker_location">Redigera plats</string>
+    <string name="location_detail_adjust_marker_location_instructions">Dra i kartan för att flytta platsmarkören. Tryck på Klart för att behålla den nya platsen eller på Avbryt för att lämna den oförändrad.</string>
 </resources>
