@@ -289,7 +289,7 @@
     <string name="osm_survey_point">सर्वेक्षण बिंदू</string>
     <string name="osm_snow_net">बर्फ जाळी</string>
     <string name="osm_silo">धान्य कोठार</string>
-    <string name="osm_mast">मनोरा</string>
+    <string name="osm_mast">मास्ट</string>
     <string name="osm_bird_hide">पक्षी निरीक्षण कक्ष</string>
     <string name="osm_transformer_tower">रोहित्र मनोरा</string>
     <string name="osm_generic_object">सर्वसाधारण वस्तू</string>
@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">सायकल दुकान, सायकलचे दुकान</string>
     <string name="search_synonyms_book_shop">पुस्तकांचे दुकान, पुस्तक भांडार, पुस्तके</string>
     <string name="search_synonyms_phone_shop">मोबाईल दुकान, मोबाईल शॉप, फोनचे दुकान</string>
+    <string name="search_no_offline_maps">शोध ऑफलाइन चालू आहे, पण तुम्ही जिथे आहात त्या भागाचा कोणताही ऑफलाइन नकाशा डाउनलोड केलेला नाही.</string>
 </resources>
