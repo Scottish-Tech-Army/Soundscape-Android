@@ -1686,4 +1686,5 @@
     <string name="search_synonyms_bicycle_shop">محل دراجات، متجر دراجات</string>
     <string name="search_synonyms_book_shop">مكتبة، متجر كتب، محل كتب</string>
     <string name="search_synonyms_phone_shop">محل هواتف، محل جوالات، محل موبايلات</string>
+    <string name="search_no_offline_maps">البحث يعمل بدون اتصال، لكن لا توجد خريطة بدون اتصال منزّلة لموقعك الحالي.</string>
 </resources>
