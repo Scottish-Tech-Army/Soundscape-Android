@@ -124,21 +124,32 @@ class MultiGeocoder(
     }
 
     /**
-     * Photon searches for a type of place worldwide, so it's used whenever it would be for a name,
-     * and the offline maps when it isn't or can't be reached.
+     * The offline maps are always searched, and Photon too whenever it would be for a name. Photon
+     * reaches further, but only has places with a name - it has almost no toilets, benches or
+     * post boxes - so the two are merged, nearest first.
      */
     override suspend fun searchByCategory(
         category: SearchCategory,
         name: String?,
         nearbyLocation: LngLatAlt,
         localizedStrings: LocalizedStrings?
-    ): List<LocationDescription>? {
-        if (pickGeocoder() == fusedGeocoder) {
-            val photonResults =
-                photonGeocoder.searchByCategory(category, name, nearbyLocation, localizedStrings)
-            if (photonResults != null) return photonResults
+    ): List<LocationDescription> = coroutineScope {
+        val photonSearch = if (pickGeocoder() == fusedGeocoder) {
+            async { photonGeocoder.searchByCategory(category, name, nearbyLocation, localizedStrings) }
+        } else null
+        val offlineResults =
+            offlineGeocoder.searchByCategory(category, name, nearbyLocation, localizedStrings)
+        val photonResults = photonSearch?.await().orEmpty()
+
+        val ruler = gridState.ruler
+        val merged = offlineResults.toMutableList()
+        for (result in photonResults) {
+            val isDuplicate = offlineResults.any {
+                (it.name == result.name) && (ruler.distance(it.location, result.location) < 100.0)
+            }
+            if (!isDuplicate) merged.add(result)
         }
-        return offlineGeocoder.searchByCategory(category, name, nearbyLocation, localizedStrings)
+        merged.sortedBy { ruler.distance(nearbyLocation, it.location) }
     }
 
     override suspend fun getAddressFromLngLat(
