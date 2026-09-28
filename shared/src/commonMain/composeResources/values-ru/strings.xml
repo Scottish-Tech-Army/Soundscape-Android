@@ -1656,4 +1656,5 @@
     <string name="search_synonyms_bicycle_shop">веломагазин, магазин велосипедов, велосипеды</string>
     <string name="search_synonyms_book_shop">книжный магазин, книжный, книги</string>
     <string name="search_synonyms_phone_shop">салон связи, магазин телефонов, телефоны</string>
+    <string name="search_no_offline_maps">Поиск работает офлайн, но для места, где вы находитесь, не загружена офлайн‑карта.</string>
 </resources>
