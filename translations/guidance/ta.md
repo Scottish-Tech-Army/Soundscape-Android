@@ -69,3 +69,5 @@ Nothing yet.
 **2026-09-24 — corpus sweep.** Nothing uploaded.
 
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 27 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
+
+**2026-09-28 — Weblate checks pass.** `osm_optician` → «கண் கண்ணாடிக் கடை» (it had been the same as glazier). Full stop added to `settings_reset_button_hint`. Uploaded live.
