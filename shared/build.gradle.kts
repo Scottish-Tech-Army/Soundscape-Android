@@ -120,16 +120,35 @@ room {
     schemaDirectory("$projectDir/schemas")
 }
 
+// This copies the resources the app is built from, with two fixes Weblate can't hold.
+//
 // Indonesian has two language codes: the legacy "in", which Weblate and Android's resource
 // folders use, and "id", which is what java.util.Locale reports from Android 14 and NSLocale
 // always has. Compose Resources matches the code exactly, so strings only in values-in were never
-// found and Indonesian users saw English. This copies the resources with values-in duplicated as
-// values-id, so either code finds them, while Weblate goes on writing the one folder.
-val composeResourcesWithIndonesianAlias = tasks.register<Sync>("composeResourcesWithIndonesianAlias") {
+// found and Indonesian users saw English. values-in is duplicated as values-id, so either code
+// finds them, while Weblate goes on writing the one folder.
+//
+// French puts a space before : ; ? ! and inside « », and it has to be a no-break space so a line
+// never starts with the punctuation. Weblate turns U+00A0 and U+202F into plain spaces when it
+// reads the files, so every string saved there loses them. They are put back here: U+00A0 before
+// : and inside « », and the narrow U+202F before ; ? !. Only text outside XML tags is changed.
+val composeResourcesForBuild = tasks.register<Sync>("composeResourcesForBuild") {
     val source = layout.projectDirectory.dir("src/commonMain/composeResources")
+    val tagBoundary = Regex("(?=<)|(?<=>)")
+    val wideSpace = Regex(" (?=[:»])|(?<=«) ")
+    val narrowSpace = Regex(" (?=[;?!])")
     from(source)
     from(source.dir("values-in")) { into("values-id") }
-    into(layout.buildDirectory.dir("generated/composeResourcesWithIndonesianAlias"))
+    into(layout.buildDirectory.dir("generated/composeResourcesForBuild"))
+    filteringCharset = "UTF-8"
+    filesMatching("values-fr*/strings.xml") {
+        filter { line ->
+            line.split(tagBoundary).joinToString("") { part ->
+                if (part.startsWith("<")) part
+                else part.replace(wideSpace, "\u00A0").replace(narrowSpace, "\u202F")
+            }
+        }
+    }
 }
 
 compose.resources {
@@ -137,6 +156,6 @@ compose.resources {
     packageOfResClass = "org.scottishtecharmy.soundscape.resources"
     customDirectory(
         sourceSetName = "commonMain",
-        directoryProvider = layout.dir(composeResourcesWithIndonesianAlias.map { it.destinationDir }),
+        directoryProvider = layout.dir(composeResourcesForBuild.map { it.destinationDir }),
     )
 }
