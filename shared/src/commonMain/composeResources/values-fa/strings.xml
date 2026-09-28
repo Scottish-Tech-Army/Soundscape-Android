@@ -1627,4 +1627,5 @@
     <string name="search_synonyms_bicycle_shop">دوچرخه‌فروشی، فروشگاه دوچرخه</string>
     <string name="search_synonyms_book_shop">کتاب‌فروشی، کتابفروشی، کتاب</string>
     <string name="search_synonyms_phone_shop">موبایل‌فروشی، فروشگاه موبایل، موبایل</string>
+    <string name="search_no_offline_maps">جستجو به‌صورت آفلاین کار می‌کند، اما هیچ نقشه‌ی آفلاینی برای جایی که هستید دانلود نشده است.</string>
 </resources>
