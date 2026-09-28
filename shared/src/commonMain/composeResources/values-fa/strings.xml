@@ -1627,4 +1627,6 @@
     <string name="search_synonyms_book_shop">کتاب‌فروشی، کتابفروشی، کتاب</string>
     <string name="search_synonyms_phone_shop">موبایل‌فروشی، فروشگاه موبایل، موبایل</string>
     <string name="search_no_offline_maps">جستجو به‌صورت آفلاین کار می‌کند، اما هیچ نقشه‌ی آفلاینی برای جایی که هستید دانلود نشده است.</string>
+    <string name="location_detail_adjust_marker_location">ویرایش مکان</string>
+    <string name="location_detail_adjust_marker_location_instructions">نقشه را بکشید تا مکان نشانه جابه‌جا شود. برای نگه داشتن مکان جدید روی «تمام» و برای بدون تغییر ماندن آن روی «لغو» ضربه بزنید.</string>
 </resources>
