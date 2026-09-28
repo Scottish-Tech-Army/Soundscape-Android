@@ -16,6 +16,7 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.network.createFileDownloader
 import org.scottishtecharmy.soundscape.utils.DownloadState
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader
+import org.scottishtecharmy.soundscape.utils.deleteOrphanedSidecars
 import java.io.File
 
 /**
@@ -114,12 +115,11 @@ class OfflineDownloaderTest {
             val unrelatedExtract = File(tempDir, "glasgow-gbx.bin").apply { writeText("unrelated") }
 
             val newOutputFile = File(tempDir, "glasgow-gb.v2000.bin")
-            // AndroidOfflineMapsManager.startDownload() writes this sidecar *before* calling
-            // startDownload - it must survive the post-publish cleanup, which previously deleted
-            // it (it starts with the logical prefix and its name isn't *exactly*
-            // newOutputFile.name), silently hiding every freshly downloaded extract from the
-            // offline-maps UI.
-            val newSidecar = File(tempDir, "glasgow-gb.v2000.bin.geojson").apply { writeText("{}") }
+            // The download writes its own sidecar once published, and it must survive the
+            // post-publish cleanup, which once deleted it (it starts with the logical prefix and
+            // its name isn't *exactly* newOutputFile.name), silently hiding every freshly
+            // downloaded extract from the offline-maps UI.
+            val newSidecar = File(tempDir, "glasgow-gb.v2000.bin.geojson")
 
             val fake = FakeResponses(listOf({ body(1000) }))
             val downloader = OfflineDownloader(fakeFileDownloader(fake))
@@ -128,6 +128,7 @@ class OfflineDownloaderTest {
                 newOutputFile.path,
                 extractSize = 1000.0,
                 logicalBaseName = "glasgow-gb",
+                metadataJson = "{}",
             )
 
             val state = runBlocking {
@@ -164,7 +165,7 @@ class OfflineDownloaderTest {
             val unrelatedExtract = File(tempDir, "glasgow-gbx.bin").apply { writeText("unrelated") }
 
             val newOutputFile = File(tempDir, "glasgow-gb.v2000.bin")
-            val newSidecar = File(tempDir, "glasgow-gb.v2000.bin.geojson").apply { writeText("{}") }
+            val newSidecar = File(tempDir, "glasgow-gb.v2000.bin.geojson")
             val fake = FakeResponses(listOf({ body(1000) }))
             val downloader = OfflineDownloader(fakeFileDownloader(fake))
             downloader.startDownload(
@@ -172,6 +173,7 @@ class OfflineDownloaderTest {
                 newOutputFile.path,
                 extractSize = 1000.0,
                 logicalBaseName = "glasgow-gb",
+                metadataJson = "{}",
             )
 
             val state = runBlocking {
@@ -254,6 +256,62 @@ class OfflineDownloaderTest {
             assertEquals(1000L, file.length())
         } finally {
             file.parentFile?.deleteRecursively()
+        }
+    }
+
+    /**
+     * A download that fails must leave nothing behind - its metadata sidecar used to be written
+     * before the download started, and stayed on the phone forever with no extract next to it.
+     */
+    @Test
+    fun failedDownloadLeavesNoSidecar() {
+        val tempDir = File(System.getProperty("java.io.tmpdir"), "offline-dl-${System.nanoTime()}")
+        tempDir.mkdirs()
+        try {
+            val outputFile = File(tempDir, "helsinki-fi.v2000.bin")
+            val fake = FakeResponses(listOf({ truncatedBody(advertised = 1000L, actual = 500) }))
+            val downloader = OfflineDownloader(fakeFileDownloader(fake))
+            downloader.startDownload(
+                "https://example.test/extract",
+                outputFile.path,
+                extractSize = 1000.0,
+                logicalBaseName = "helsinki-fi",
+                metadataJson = "{}",
+            )
+
+            val state = runBlocking {
+                withTimeout(10_000) {
+                    downloader.downloadState.first {
+                        it is DownloadState.Success || it is DownloadState.Error
+                    }
+                }
+            }
+
+            assertTrue("expected Error but was $state", state is DownloadState.Error)
+            assertTrue("no sidecar for a failed download", tempDir.listFiles().isNullOrEmpty())
+        } finally {
+            tempDir.deleteRecursively()
+        }
+    }
+
+    @Test
+    fun orphanedSidecarsAreDeleted() {
+        val tempDir = File(System.getProperty("java.io.tmpdir"), "offline-dl-${System.nanoTime()}")
+        tempDir.mkdirs()
+        try {
+            val extract = File(tempDir, "glasgow-gb.v1000.pmtiles").apply { writeText("x") }
+            val sidecar = File(tempDir, "glasgow-gb.v1000.pmtiles.geojson").apply { writeText("{}") }
+            val orphan = File(tempDir, "helsinki-fi.v2000.pmtiles.geojson").apply { writeText("{}") }
+            val download = File(tempDir, "budapest-hu.v3000.pmtiles.downloading").apply { writeText("x") }
+
+            deleteOrphanedSidecars(tempDir)
+
+            assertTrue(extract.exists())
+            assertTrue("an extract's own sidecar must survive", sidecar.exists())
+            assertTrue("a sidecar with no extract should be deleted", !orphan.exists())
+            assertTrue("a download in progress isn't touched", download.exists())
+        } finally {
+            tempDir.deleteRecursively()
         }
     }
 }
