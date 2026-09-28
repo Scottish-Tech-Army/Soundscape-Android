@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">shagon littattafai, kantin littattafai, littattafai</string>
     <string name="search_synonyms_phone_shop">shagon waya, kantin waya, shagon wayoyi</string>
     <string name="search_no_offline_maps">Bincike yana aiki ba tare da intanet ba, amma babu taswirar offline da aka sauke ta wurin da kuke.</string>
+    <string name="location_detail_adjust_marker_location">Gyara Wuri</string>
+    <string name="location_detail_adjust_marker_location_instructions">Ja taswirar don matsar da wurin alama. Danna An Gama don ajiye sabon wurin, ko Soke don barin wurin yadda yake.</string>
 </resources>
