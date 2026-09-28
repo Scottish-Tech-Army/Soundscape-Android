@@ -1641,4 +1641,5 @@
     <string name="search_synonyms_bicycle_shop">magazin de biciclete, biciclete</string>
     <string name="search_synonyms_book_shop">librărie, cărți</string>
     <string name="search_synonyms_phone_shop">magazin de telefoane, telefoane mobile</string>
+    <string name="search_no_offline_maps">Căutarea funcționează offline, dar nu este descărcată nicio hartă offline pentru locul în care te afli.</string>
 </resources>
