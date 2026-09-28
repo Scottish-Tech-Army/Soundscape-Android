@@ -11,7 +11,7 @@ permalink: /users/help-using-media-controls.html
 
 ## ¿Qué es?
 
-Puedes obtener acceso a determinadas características de Soundscape con la ayuda de los botones de control multimedia de tus auriculares. Esta funcionalidad funciona con auriculares Bluetooth o por cable que tenga botones de control multimedia, como Reproducir, Pausa, Siguiente, Anterior y otros. Distintos modelos de auriculares con micrófono pueden incluir diferentes botones; consulta la lista de acciones a continuación para determinar cuáles están disponibles para ti.
+Puedes obtener acceso a determinadas características de Soundscape con la ayuda de los botones de control multimedia de tus auriculares. Esta funcionalidad funciona con auriculares Bluetooth o por cable que tenga botones de control multimedia, como Reproducir, Pausa, Siguiente, Anterior y otros. Distintos modelos de auriculares pueden incluir diferentes botones; consulta la lista de acciones a continuación para determinar cuáles están disponibles para ti.
 
 ## ¿Cuándo lo usaría?
 

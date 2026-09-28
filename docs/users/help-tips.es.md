@@ -15,7 +15,7 @@ Puedes establecer una señal en cualquier dirección. Desde la pantalla principa
 
 Si usas una línea de autobús con regularidad, guarda tus paradas de subida y bajada como Marcadores. Así quedarán guardadas y podrás encontrarlas fácilmente. Ve a *Marcadores y rutas* desde la pantalla principal y búscalas después en la página *Marcadores*. Puedes establecer una señal en ellas para recibir actualizaciones periódicas sobre lo cerca que estás de tu parada de bajada. Nota: puedes desactivar el sonido rítmico y seguir recibiendo actualizaciones de la distancia durante el recorrido.
 
-Si te metes el teléfono en el bolsillo y dejas de moverte, el sonido de la señal baja de volumen porque Soundscape no puede saber hacia qué dirección estás orientado. Para solucionarlo, empieza a andar de nuevo, o saca el teléfono y mantenlo en posición horizontal.
+Si metes el teléfono en el bolsillo y dejas de moverte, el sonido de la señal baja de volumen porque Soundscape no puede saber hacia qué dirección estás orientado. Para solucionarlo, empieza a andar de nuevo, o saca el teléfono y mantenlo en posición horizontal.
 
 Soundscape funciona mejor cuando mantienes el teléfono en posición horizontal con la pantalla hacia arriba y la parte superior del teléfono apuntando al lado contrario de ti.
 
