@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">raamatupood, raamatud</string>
     <string name="search_synonyms_phone_shop">telefonipood, mobiilipood, mobiiltelefonid</string>
     <string name="search_no_offline_maps">Otsing töötab võrguühenduseta, kuid sinu asukoha kohta pole ühtegi võrguühenduseta kaarti alla laaditud.</string>
+    <string name="location_detail_adjust_marker_location">Muuda asukohta</string>
+    <string name="location_detail_adjust_marker_location_instructions">Lohista kaarti, et markeri asukohta liigutada. Puuduta nuppu Valmis, et uus asukoht alles jätta, või nuppu Katkesta, et jätta asukoht muutmata.</string>
 </resources>
