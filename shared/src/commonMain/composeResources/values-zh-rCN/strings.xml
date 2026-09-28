@@ -1611,4 +1611,6 @@
     <string name="search_synonyms_book_shop">书店，书城</string>
     <string name="search_synonyms_phone_shop">手机店，手机专卖店，营业厅</string>
     <string name="search_no_offline_maps">搜索正在离线运行，但尚未下载您所在位置的离线地图。</string>
+    <string name="location_detail_adjust_marker_location">编辑位置</string>
+    <string name="location_detail_adjust_marker_location_instructions">拖动地图即可移动标记点的位置。点击“完成”保留新位置，或点击“取消”保持原位置不变。</string>
 </resources>
