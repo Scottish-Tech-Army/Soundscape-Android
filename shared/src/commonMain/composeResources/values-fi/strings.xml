@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">pyöräkauppa, polkupyöräliike, pyöräliike</string>
     <string name="search_synonyms_book_shop">kirjakauppa, kirjat</string>
     <string name="search_synonyms_phone_shop">puhelinkauppa, puhelinliike, matkapuhelimet</string>
+    <string name="search_no_offline_maps">Haku toimii offline-tilassa, mutta sijainnistasi ei ole ladattu offline-karttaa.</string>
 </resources>
