@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">shagon keke, kantin keke</string>
     <string name="search_synonyms_book_shop">shagon littattafai, kantin littattafai, littattafai</string>
     <string name="search_synonyms_phone_shop">shagon waya, kantin waya, shagon wayoyi</string>
+    <string name="search_no_offline_maps">Bincike yana aiki ba tare da intanet ba, amma babu taswirar offline da aka sauke ta wurin da kuke.</string>
 </resources>
