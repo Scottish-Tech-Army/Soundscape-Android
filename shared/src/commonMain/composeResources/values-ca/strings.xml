@@ -1641,4 +1641,5 @@
     <string name="search_synonyms_bicycle_shop">botiga de bicicletes, botiga de bicis, bicicletes</string>
     <string name="search_synonyms_book_shop">llibreria, llibres</string>
     <string name="search_synonyms_phone_shop">botiga de mòbils, botiga de telefonia, mòbils</string>
+    <string name="search_no_offline_maps">La cerca funciona fora de línia, però no hi ha cap mapa fora de línia baixat per al lloc on ets.</string>
 </resources>
