@@ -1641,4 +1641,6 @@
     <string name="search_synonyms_book_shop">livraria, livros</string>
     <string name="search_synonyms_phone_shop">loja de celulares, loja de celular, celulares</string>
     <string name="search_no_offline_maps">A pesquisa está funcionando offline, mas não há nenhum mapa offline baixado para o lugar onde você está.</string>
+    <string name="location_detail_adjust_marker_location">Editar localização</string>
+    <string name="location_detail_adjust_marker_location_instructions">Arraste o mapa para mover a localização do favorito. Toque em Concluído para manter a nova localização ou em Cancelar para deixá-la inalterada.</string>
 </resources>
