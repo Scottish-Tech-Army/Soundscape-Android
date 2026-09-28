@@ -1611,4 +1611,5 @@
     <string name="search_synonyms_bicycle_shop">cửa hàng xe đạp, tiệm xe đạp</string>
     <string name="search_synonyms_book_shop">nhà sách, hiệu sách, tiệm sách, sách</string>
     <string name="search_synonyms_phone_shop">cửa hàng điện thoại, tiệm điện thoại, điện thoại di động</string>
+    <string name="search_no_offline_maps">Tìm kiếm đang hoạt động ngoại tuyến, nhưng chưa tải xuống bản đồ ngoại tuyến nào cho nơi bạn đang ở.</string>
 </resources>
