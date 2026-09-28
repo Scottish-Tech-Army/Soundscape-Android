@@ -1656,4 +1656,6 @@
     <string name="search_synonyms_book_shop">kníhkupectvo, knihy</string>
     <string name="search_synonyms_phone_shop">predajňa mobilov, obchod s mobilmi, mobily</string>
     <string name="search_no_offline_maps">Vyhľadávanie funguje offline, ale pre miesto, kde sa nachádzate, nie je stiahnutá žiadna offline mapa.</string>
+    <string name="location_detail_adjust_marker_location">Upraviť polohu</string>
+    <string name="location_detail_adjust_marker_location_instructions">Potiahnutím mapy presuniete polohu značky. Ťuknutím na Hotovo novú polohu uložíte, ťuknutím na Zrušiť zostane poloha nezmenená.</string>
 </resources>
