@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">সাইকেলের দোকান, সাইকেল শপ</string>
     <string name="search_synonyms_book_shop">বইয়ের দোকান, বই</string>
     <string name="search_synonyms_phone_shop">মোবাইলের দোকান, মোবাইল শপ, ফোনের দোকান</string>
+    <string name="search_no_offline_maps">অনুসন্ধান অফলাইনে চলছে, কিন্তু আপনি যেখানে আছেন তার জন্য কোনো অফলাইন মানচিত্র ডাউনলোড করা নেই।</string>
 </resources>
