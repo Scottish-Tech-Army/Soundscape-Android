@@ -1626,4 +1626,5 @@
     <string name="search_synonyms_bicycle_shop">சைக்கிள் கடை, மிதிவண்டிக் கடை</string>
     <string name="search_synonyms_book_shop">புத்தகக் கடை, புத்தகக்கடை, புத்தகங்கள்</string>
     <string name="search_synonyms_phone_shop">மொபைல் கடை, செல்போன் கடை, கைபேசிக் கடை</string>
+    <string name="search_no_offline_maps">தேடல் ஆஃப்லைனில் இயங்குகிறது, ஆனால் நீங்கள் இருக்கும் இடத்திற்கான ஆஃப்லைன் வரைபடம் எதுவும் பதிவிறக்கப்படவில்லை.</string>
 </resources>
