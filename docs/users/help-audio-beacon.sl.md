@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Kaj je to?
 
-Nastavitev svetilnika na bližnji lokaciji omogoča, da vas Soundscape obvešča s predvajanjem zvoka svetilnika, ki prihaja iz smeri te lokacije. Ta svetilnik lahko na domačem zaslonu utišate ali vklopite zvok. Poleg tega Soundscape na domačem zaslonu prikazuje podatke o lokaciji, vključno z razdaljo do nje in njenim naslovom, če je znan.
+Nastavitev svetilnika na bližnji lokaciji omogoča, da vas Soundscape obvešča s predvajanjem zvoka, ki prihaja iz smeri te lokacije. Ta svetilnik lahko na domačem zaslonu utišate ali vklopite zvok. Poleg tega Soundscape na domačem zaslonu prikazuje podatke o lokaciji, vključno z razdaljo do nje in njenim naslovom, če je znan.
 
 ## Kdaj naj to uporabim?
 
@@ -21,7 +21,7 @@ Nastavitev svetilnika je uporabna, kadar želite slediti znani orientacijski to�
 
 **Nastavitev svetilnika :**
 
- Najprej si oglejte podrobnosti lokacije, tako da uporabite iskalno vrstico za iskanje kraja ali tapnete enega od gumbov *Kraji v bližini*, *Oznake in poti* ali *Trenutna lokacija* in izberete lokacijo. Na zaslonu *Podrobnosti lokacije* lahko izberete gumb *Zaženi zvočni svetilnik*. S tapom se boste vrnili na domači zaslon, vklopil pa se bo zvočni svetilnik, ki prihaja iz smeri izbranega kraja. Ime izbranega kraja skupaj z razdaljo do njega in fizičnim naslovom, če je na voljo, bo zdaj prikazano na glavnem zaslonu aplikacije.
+ Najprej si oglejte podrobnosti lokacije, tako da uporabite iskalno vrstico za iskanje kraja ali tapnete enega od gumbov *Kraji v bližini*, *Oznake in poti* ali *Trenutna lokacija* in izberete lokacijo. Nato na zaslonu *Podrobnosti lokacije* izberite gumb *Zaženi zvočni svetilnik*. S tapom se boste vrnili na domači zaslon, vklopil pa se bo zvočni svetilnik, ki prihaja iz smeri izbranega kraja. Ime kraja skupaj z razdaljo do njega in fizičnim naslovom, če je na voljo, bo zdaj prikazano na glavnem zaslonu.
 
 **Odstranitev trenutnega svetilnika :**
 

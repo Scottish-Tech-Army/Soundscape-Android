@@ -21,7 +21,7 @@ Die Mediensteuerung Ihrer Kopfhörer kann verwendet werden, während Soundscape 
 
 Es gibt zwei Betriebsmodi für die Mediensteuerungen. Den Modus können Sie im Abschnitt *Einstellungen* *Mediensteuerungen* auswählen. Die Modi sind:
 
- Originalmodus. 
+ *Originalmodus*. 
 
 ⏯ Wiedergabe/Pause: Schaltet den Ton des Beacons ein und aus. 
 
@@ -31,7 +31,7 @@ Es gibt zwei Betriebsmodi für die Mediensteuerungen. Den Modus können Sie im A
 
 
 
-Audio-Menü. 
+*Audio-Menü*. 
 
 
 

@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Mi ez?
 
-Ha hangjelzőt állít be egy közeli helyre, a Soundscape folyamatosan tájékoztatja Önt azáltal, hogy hallható hangjelzést játszik le az adott hely irányából. Ez a hangjelző a kezdőképernyőn némítható vagy visszakapcsolható. Emellett a Soundscape megjeleníti a hely adatait a kezdőképernyőn, beleértve a távolságát és – ha ismert – az utcacímét.
+Ha hangjelzőt állít be egy közeli helyre, a Soundscape folyamatosan tájékoztatja Önt azáltal, hogy hangot játszik le az adott hely irányából. Ez a hangjelző a kezdőképernyőn némítható vagy visszakapcsolható. Emellett a Soundscape megjeleníti a hely adatait a kezdőképernyőn, beleértve a távolságát és – ha ismert – az utcacímét.
 
 ## Mikor használnám?
 
@@ -21,7 +21,7 @@ A hangjelző beállítása akkor hasznos, ha egy ismerős tereptárgyat szeretne
 
 **Hangjelző beállítása:**
 
- Először tekintse meg egy hely adatait: használja a keresősávot egy hely kereséséhez, vagy koppintson a *Közeli helyek*, a *Jelölők és útvonalak*, vagy a *Jelenlegi hely* gombok egyikére, majd válasszon egy helyet. A *Hely részletei* képernyőn kiválaszthatja a *Hangjelző indítása* gombot. Ha erre koppint, visszatér a kezdőképernyőre, és bekapcsol egy hallható hangjelző a kiválasztott hely irányából. A kiválasztott hely neve, valamint – ha elérhető – a távolsága és a fizikai címe mostantól megjelenik az alkalmazás főképernyőjén.
+ Először tekintse meg egy hely adatait: használja a keresősávot egy hely kereséséhez, vagy koppintson a *Közeli helyek*, a *Jelölők és útvonalak*, vagy a *Jelenlegi hely* gombok egyikére, majd válasszon egy helyet. Ezután a *Helyszín adatai* képernyőn válassza a *Hangjelző indítása* gombot. Ha erre koppint, visszatér a kezdőképernyőre, és bekapcsol egy hallható hangjelző a kiválasztott hely irányából. A hely neve, valamint – ha elérhető – a távolsága és a fizikai címe mostantól megjelenik a főképernyőn.
 
 **A jelenlegi hangjelző eltávolítása:**
 

@@ -35,7 +35,7 @@ Avviare uno dei tuoi percorsi salvati chiamandolo per nome, passare al waypoint 
 
 Impostare un audiofaro su uno dei tuoi indicatori salvati chiamandolo per nome, oppure spegnere l’audiofaro.
 
-Impostare il dettaglio delle notifiche su *Silenzioso*, *Discreto*, *Bilanciato* o *Dettagliato*, per cambiare quanto Soundscape dice mentre cammini. Silenzioso disattiva le notifiche automatiche.
+Impostare il dettaglio delle notifiche su *Silenzioso*, *Discreto*, *Bilanciato* o *Dettagliato*, per cambiare quanto Soundscape dice mentre cammini. *Silenzioso* disattiva le notifiche automatiche.
 
 Leggere i nomi dei tuoi percorsi salvati o dei tuoi indicatori salvati.
 

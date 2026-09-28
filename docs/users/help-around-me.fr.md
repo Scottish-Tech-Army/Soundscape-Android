@@ -13,11 +13,11 @@ permalink: /users/help-around-me.html
 
 Le bouton *"Autour de moi"* vous indique un lieu à chacun des quatre points cardinaux autour de vous (devant, à droite, derrière et à gauche). *"Autour de moi"* est conçu pour vous aider à vous orienter dans votre environnement.
 
-## Quand l’utiliser ?
+## Quand l’utiliser ?
 
 Lorsque vous essayez de trouver vos repères et de vous orienter dans votre environnement, utilisez *"Autour de moi"* pour entendre ce qui vous entoure.
 
-## Comment ça fonctionne ?
+## Comment ça fonctionne ?
 
 Comme avec les quatre boutons situés en bas de l’écran d’accueil, tenez votre téléphone à plat (écran face au ciel) et le haut de votre téléphone pointé vers la direction face à vous avant d’appuyer sur le bouton *Autour de moi*. Cette opération agit comme une boussole et indique à l’application la direction face à vous. Appuyez simplement sur le bouton *Autour de moi* et vous entendrez quatre points d’intérêt autour de vous.
 

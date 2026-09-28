@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Mikä se on?
 
-Majakan asettaminen lähiympäristön kohteeseen mahdollistaa sen, että Soundscape voi pitää sinut ajan tasalla toistamalla äänimajakan ääntä, joka tulee kyseisen kohteen suunnasta. Tämä majakka voidaan hiljentää tai sen hiljentäminen poistaa aloitusnäytöllä. Lisäksi Soundscape näyttää tietoja sijainnista aloitusnäytöllä, mukaan lukien etäisyyden siihen ja sen katuosoitteen, jos se on tiedossa.
+Majakan asettaminen lähiympäristön kohteeseen mahdollistaa sen, että Soundscape voi pitää sinut ajan tasalla toistamalla ääntä, joka tulee kyseisen kohteen suunnasta. Tämä majakka voidaan hiljentää tai sen hiljentäminen poistaa aloitusnäytöllä. Lisäksi Soundscape näyttää tietoja sijainnista aloitusnäytöllä, mukaan lukien etäisyyden siihen ja sen katuosoitteen, jos se on tiedossa.
 
 ## Milloin käyttäisin sitä?
 
@@ -21,7 +21,7 @@ Majakan määrittäminen on hyödyllistä, kun haluat seurata tuttua maamerkkiä
 
 **Majakan asettaminen :**
 
- Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin seuraavista painikkeista: *Lähiympäristön paikat*, *Merkitsimet ja reitit* tai *Nykyinen sijainti* ja valitsemalla haluamasi sijainti. *Sijainnin tiedot* -näytöltä voit valita *Käynnistä äänimajakka* -painikkeen. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Valitsemasi paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt sovelluksen pääruudulla.
+ Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin seuraavista painikkeista: *Lähiympäristön paikat*, *Merkitsimet ja reitit* tai *Nykyinen sijainti* ja valitsemalla haluamasi sijainti. Valitse sitten *Sijainnin yksityiskohdat* -näytöltä *Käynnistä äänimajakka* -painike. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt pääruudulla.
 
 **Majakan poistaminen :**
 

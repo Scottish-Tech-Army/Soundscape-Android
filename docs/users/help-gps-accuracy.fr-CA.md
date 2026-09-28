@@ -15,5 +15,5 @@ Soundscape ne peut décrire votre environnement qu’avec la précision avec laq
 
 La précision est généralement la plus mauvaise à l’intérieur, entre les grands immeubles et pendant la première minute environ après votre sortie. Si le chiffre ci-dessous reste mauvais alors que vous êtes dehors, dans un espace dégagé, essayez de désactiver puis de réactiver les services de localisation de votre téléphone.
 
-Précision actuelle : %1$s (%2$s)
+Précision actuelle : %1$s (%2$s)
 

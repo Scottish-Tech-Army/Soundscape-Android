@@ -21,7 +21,7 @@ Fjölmiðlastýringar á heyrnartólum er hægt að nota á meðan Soundscape er
 
 Það eru 2 rekstrarhamir fyrir fjölmiðlastýringar. Hamurinn er valinn í kaflanum *Stillingar* » *Fjölmiðlastýringar*. Hamirnir eru:
 
- Upprunalegur hamur. 
+ *Upprunalegur hamur*. 
 
 ⏯ Spila/Hlé: Kveikir og slekkur á hljóði hljóðvita. 
 
@@ -31,7 +31,7 @@ Fjölmiðlastýringar á heyrnartólum er hægt að nota á meðan Soundscape er
 
 
 
-Hljóðvalmynd. 
+*Hljóðvalmynd*. 
 
 
 

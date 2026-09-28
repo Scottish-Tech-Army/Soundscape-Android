@@ -35,7 +35,7 @@ Starte en af dine gemte ruter ved navn, gå videre til næste vejpunkt, gå tilb
 
 Sætte et lydfyr på et af dine gemte mærker ved navn eller slukke for lydfyret.
 
-Sætte detaljeniveauet for lydbeskeder til *Lydløs*, *Stille*, *Balanceret* eller *Detaljeret* for at ændre, hvor meget Soundscape siger, mens du går. Lydløs slår de automatiske lydbeskeder fra.
+Sætte detaljeniveauet for lydbeskeder til *Lydløs*, *Stille*, *Balanceret* eller *Detaljeret* for at ændre, hvor meget Soundscape siger, mens du går. *Lydløs* slår de automatiske lydbeskeder fra.
 
 Læse navnene på dine gemte ruter eller dine gemte mærker op.
 

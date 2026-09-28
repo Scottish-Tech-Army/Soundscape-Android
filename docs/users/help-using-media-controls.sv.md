@@ -21,7 +21,7 @@ Du kan använda hörlurarnas mediereglage medan Soundscape körs – oavsett om 
 
 Det finns 2 driftlägen för mediereglagen. Läget väljs i *Inställningar*-avsnittet *Mediereglage*. Lägena är:
 
- Originalläge. 
+ *Originalläge*. 
 
 ⏯ Spela/pausa: Växlar ljudfyrens ljud mellan på och av. 
 
@@ -31,7 +31,7 @@ Det finns 2 driftlägen för mediereglagen. Läget väljs i *Inställningar*-avs
 
 
 
-Ljudmeny. 
+*Ljudmeny*. 
 
 
 

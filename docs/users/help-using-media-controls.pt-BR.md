@@ -21,7 +21,7 @@ Os controles de mídia dos fones de ouvido podem ser usados enquanto o Soundscap
 
 Existem 2 modos de operação para os controles de mídia. O modo pode ser selecionado em *Ajustes* → *Controles de Mídia*. Os modos são:
 
- Modo Original. 
+ *Modo Original*. 
 
 ⏯ Reproduzir/Pausar: Alterna o áudio do sinalizador sonoro (liga/desliga). 
 
@@ -31,7 +31,7 @@ Existem 2 modos de operação para os controles de mídia. O modo pode ser selec
 
 
 
-Modo Menu de Áudio. 
+*Modo Menu de Áudio*. 
 
 
 

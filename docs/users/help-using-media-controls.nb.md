@@ -21,7 +21,7 @@ Du kan bruke hodetelefonenes mediekontroller mens Soundscape kjører — enten d
 
 Det finnes to driftsmoduser for mediekontrollene. Modus velges i seksjonen *Innstillinger* > *Mediekontroller*. Modusene er:
 
- Originalmodus. 
+ *Originalmodus*. 
 
 ⏯ Spill av/Stans midlertidig: Veksler lydsignalet av og på. 
 
@@ -31,7 +31,7 @@ Det finnes to driftsmoduser for mediekontrollene. Modus velges i seksjonen *Inns
 
 
 
-Lydmeny. 
+*Lydmeny*. 
 
 
 

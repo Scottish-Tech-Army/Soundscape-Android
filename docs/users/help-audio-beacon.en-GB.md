@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## What is it?
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing a sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
 ## When would I use it?
 
@@ -21,7 +21,7 @@ Setting a beacon is useful when you want to keep track of a familiar landmark as
 
 **To set a beacon:**
 
-First, view the details of a location by either using the search bar to look for a place, or by tapping one of the *Places Nearby*, *Markers and Routes* or *Current Location* buttons and selecting a location. From the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this returns you to the home screen and turns on an audible beacon coming from the direction of the place you selected. The name of the place you have chosen, along with its distance and physical address (if available), will now be displayed on the main app screen.
+First, view the details of a location by either using the search bar to look for a place, or by tapping one of the *Places Nearby*, *Markers and Routes* or *Current Location* buttons and selecting a location. From the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this returns you to the home screen and turns on an audible beacon coming from the direction of the place you selected. The name of the place, along with its distance and physical address (if available), will now be displayed on the main screen.
 
 **To remove the current beacon**:
 

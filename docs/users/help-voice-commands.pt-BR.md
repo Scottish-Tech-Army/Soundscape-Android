@@ -35,7 +35,7 @@ Iniciar uma das suas rotas salvas pelo nome, avançar para o localizador seguint
 
 Colocar um sinalizador sonoro em um dos seus favoritos salvos pelo nome, ou desligar o sinalizador.
 
-Definir o detalhe das notificações como *Silencioso*, *Discreto*, *Equilibrado* ou *Detalhado*, para mudar quanto o Soundscape fala enquanto você caminha. Silencioso desativa as notificações automáticas.
+Definir o detalhe das notificações como *Silencioso*, *Discreto*, *Equilibrado* ou *Detalhado*, para mudar quanto o Soundscape fala enquanto você caminha. *Silencioso* desativa as notificações automáticas.
 
 Ler os nomes das suas rotas salvas ou dos seus favoritos salvos.
 

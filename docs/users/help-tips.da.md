@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 Du kan finde busstoppesteder i nærheden ved at vælge filteret *Offentlig transport* i listen *Steder i nærheden*.
 
-Du kan sætte et lydfyr på enhver adresse. Fra Soundscapes hovedskærm søger du efter adressen. Vælg adressen i søgeresultaterne for at åbne skærmen *Oplysninger om placering*. Denne skærm har en mulighed for at *Start lydfyr* på adressen. På den måde kan du sætte et lydfyr på virksomheder, steder, interessepunkter og boliger, som ikke findes i OpenStreetMap.
+Du kan sætte et lydfyr på enhver adresse. Fra hovedskærmen søger du efter adressen med søgefeltet. Vælg derefter adressen i søgeresultaterne for at åbne skærmen *Oplysninger om placering*. Denne skærm har muligheden *Start lydfyr* for adressen. På den måde kan du sætte et lydfyr på virksomheder, steder, interessepunkter og boliger, som ikke findes i OpenStreetMap.
 
 Hvis du ofte tager en bestemt busrute, kan du gemme dine på- og afstigningsstoppesteder som mærker. På den måde bliver de gemt, så du nemt kan finde dem igen. Gå til *Mærker og Ruter* fra startskærmen, og find dem derefter på siden *Mærker*. Du kan sætte et lydfyr på dem for at få periodiske opdateringer om, hvor tæt du er på dit udstigningsstop. Bemærk: du kan slå den rytmiske lyd fra og stadig få afstandsopdateringer undervejs.
 

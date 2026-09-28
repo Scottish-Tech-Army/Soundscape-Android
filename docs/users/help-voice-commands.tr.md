@@ -35,7 +35,7 @@ Kayıtlı rotalarınızdan biri adıyla başlatılsın, sonraki ara noktaya geç
 
 Kayıtlı noktalarınızdan birine adıyla sesli işaret konsun ya da işaret kapatılsın.
 
-Anons ayrıntısı *Sessiz*, *Sakin*, *Dengeli* ya da *Ayrıntılı* yapılsın; böylece yürürken Soundscape'in ne kadar konuşacağı değişir. Sessiz, otomatik anonsları kapatır.
+Anons ayrıntısı *Sessiz*, *Sakin*, *Dengeli* ya da *Ayrıntılı* yapılsın; böylece yürürken Soundscape'in ne kadar konuşacağı değişir. *Sessiz*, otomatik anonsları kapatır.
 
 Kayıtlı rotalarınızın ya da kayıtlı noktalarınızın adları okunsun.
 

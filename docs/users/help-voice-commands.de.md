@@ -35,7 +35,7 @@ Eine Ihrer gespeicherten Routen mit Namen zu starten, zum nächsten Wegpunkt zu 
 
 Ein Audiobeacon auf eine Ihrer gespeicherten Markierungen mit Namen zu setzen oder das Beacon auszuschalten.
 
-Den Detailgrad der Hinweise auf *Stumm*, *Leise*, *Ausgewogen* oder *Ausführlich* zu setzen, um zu ändern, wie viel Soundscape beim Gehen sagt. Stumm schaltet die automatischen Hinweise aus.
+Den Detailgrad der Hinweise auf *Stumm*, *Leise*, *Ausgewogen* oder *Ausführlich* zu setzen, um zu ändern, wie viel Soundscape beim Gehen sagt. *Stumm* schaltet die automatischen Hinweise aus.
 
 Die Namen Ihrer gespeicherten Routen oder Ihrer gespeicherten Markierungen vorzulesen.
 

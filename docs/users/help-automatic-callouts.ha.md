@@ -31,7 +31,7 @@ Soundscape na iya gaya muku game da abubuwan da ke kewaye da ku yayin da kuke ku
 
 **Kunna ko kashe sanarwa :**
 
- Kashe sanarwa zai sa manhajar ta yi shiru. Ana iya kashe sanarwa a sashen *Sarrafa Sanarwa* na allon *Saitunan* ta hanyar sanya *Matakin Sanarwa* ya zama *Shiru*, kuma ana sake kunna su ta zaɓar kowane mataki na daban. Hakanan za ku iya yin haka ta hanyar neman Siri ko Gemini su yi muku. Bugu da ƙari, za ku iya rage yawan maganar Soundscape mataki-mataki ta maɓallan sarrafa sauti na belun kunnenku: kowane danna *na baya* yana sauka mataki ɗaya ta *Cikakke*, *Daidaito*, *Kaɗan* da *Shiru*, sannan ƙarin danna ɗaya yana komawa *Cikakke*. Duba batun taimako na *Amfani da Maɓallan Sarrafa Sauti*. Ko kuma, za ku iya amfani da maɓallin *Barci* da ke a saman dama na babban allo don dakatar da Soundscape daga yin sanarwa har sai kun zaɓi farkar da ita.
+ Kashe sanarwa zai sa manhajar ta yi shiru. Ana iya kashe sanarwa a sashen *Sarrafa Sanarwa* na allon *Saitunan* ta hanyar sanya *Matakin Sanarwa* ya zama *Shiru*, kuma ana sake kunna su ta zaɓar kowane mataki na daban. Hakanan za ku iya yin haka ta hanyar neman Siri ko Gemini su yi muku. Bugu da ƙari, za ku iya rage yawan maganar Soundscape mataki-mataki ta maɓallan sarrafa sauti na belun kunnenku: kowane danna *na baya* yana sauka mataki ɗaya ta *Cikakke*, *Daidaito*, *Kaɗan* da *Shiru*, sannan ƙarin danna ɗaya yana komawa *Cikakke*. Duba batun taimako na *Amfani da Maɓallan Sarrafa Sauti*. Ko kuma, za ku iya amfani da maɓallin *Barci* da ke a saman dama na babban allo don dakatar da Soundscape daga yin sanarwa har sai kun farkar da ita.
 
 **Sarrafa irin sanarwar da kuke ji :**
 

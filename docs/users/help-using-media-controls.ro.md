@@ -21,7 +21,7 @@ Butoanele de control media de pe căști pot fi folosite în timp ce Soundscape 
 
 Există 2 moduri de operare pentru controalele media. Modul poate fi selectat în secțiunea *Setări* -> *Controale media*. Modurile sunt:
 
- Mod original. 
+ *Mod original*. 
 
 ⏯ Redare/Pauză: Comută sunetul balizei audio pornit/oprit. 
 
@@ -31,7 +31,7 @@ Există 2 moduri de operare pentru controalele media. Modul poate fi selectat î
 
 
 
-Meniu audio. 
+*Meniu audio*. 
 
 
 

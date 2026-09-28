@@ -21,7 +21,7 @@ Kontrol media headphone dapat digunakan selama Soundscape berjalan — baik saat
 
 Ada 2 mode pengoperasian untuk kontrol media. Mode dapat dipilih di bagian *Pengaturan* *Kontrol Media*. Mode-mode tersebut adalah:
 
- Mode asli. 
+ *Mode asli*. 
 
 ⏯ Putar/Jeda: Mengaktifkan atau menonaktifkan audio suar. 
 
@@ -31,7 +31,7 @@ Ada 2 mode pengoperasian untuk kontrol media. Mode dapat dipilih di bagian *Peng
 
 
 
-Menu audio. 
+*Menu audio*. 
 
 
 

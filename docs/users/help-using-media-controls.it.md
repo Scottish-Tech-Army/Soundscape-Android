@@ -21,7 +21,7 @@ I controlli di riproduzione degli auricolari possono essere utilizzati mentre So
 
 Esistono 2 modalità di funzionamento per i controlli multimediali. La modalità può essere selezionata nella sezione *Impostazioni* > *Controlli multimediali*. Le modalità sono:
 
- Modalità originale. 
+ *Modalità originale*. 
 
 ⏯ Riproduci/Pausa: Attiva o disattiva l'audio dell'audiofaro. 
 
@@ -31,7 +31,7 @@ Esistono 2 modalità di funzionamento per i controlli multimediali. La modalità
 
 
 
-Menu audio. 
+*Menu audio*. 
 
 
 

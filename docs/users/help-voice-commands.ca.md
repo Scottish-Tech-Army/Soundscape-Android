@@ -35,7 +35,7 @@ Iniciï una de les teves rutes desades pel seu nom, passi al punt de ruta següe
 
 Posi una balisa sonora en un dels teus marcadors desats pel seu nom, o apagui la balisa.
 
-Posi el detall dels avisos de veu a *Silenciós*, *Discret*, *Equilibrat* o *Detallat*, per canviar quant diu Soundscape mentre camines. Silenciós desactiva els avisos de veu automàtics.
+Posi el detall dels avisos de veu a *Silenciós*, *Discret*, *Equilibrat* o *Detallat*, per canviar quant diu Soundscape mentre camines. *Silenciós* desactiva els avisos de veu automàtics.
 
 Llegeixi els noms de les teves rutes desades o dels teus marcadors desats.
 

@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 Du finner busstopp i nærheten ved å velge filteret *Offentlig transport* i listen *Steder i nærheten*.
 
-Du kan angi et lydsignal på hvilken som helst adresse. Fra hovedskjermen i Soundscape søker du etter adressen. Velg adressen i søkeresultatene for å åpne skjermen *Posisjonsinformasjon*. Denne skjermen har et alternativ for å *Start lydsignal* på adressen. På denne måten kan du angi et lydsignal på virksomheter, steder, interessepunkter og boliger som ikke finnes i OpenStreetMap.
+Du kan angi et lydsignal på hvilken som helst adresse. Fra hovedskjermen søker du etter adressen med søkefeltet. Velg deretter adressen i søkeresultatene for å åpne skjermen *Posisjonsinformasjon*. Denne skjermen har alternativet *Start lydsignal* for adressen. På denne måten kan du angi et lydsignal på virksomheter, steder, interessepunkter og boliger som ikke finnes i OpenStreetMap.
 
 Hvis du bruker en bussrute regelmessig, kan du lagre påstignings‑ og avstigningsstoppene som markører. Da blir de lagret, og du finner dem enkelt igjen. Gå til *Markører og ruter* fra startskjermen, og finn dem deretter på siden *Markører*. Du kan angi et lydsignal på dem for å få periodiske oppdateringer om hvor nær du er avstigningsstedet. Merk: du kan slå av den rytmiske lyden og fortsatt få avstandsoppdateringer underveis.
 

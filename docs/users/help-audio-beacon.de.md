@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Was ist es?
 
-Platzieren eines Beacons an einem nahegelegenen Ort ermöglicht es Soundscape, Sie auf dem Laufenden zu halten, indem es einen Audiobeacon-Ton aus der Richtung dieses Standorts abspielt. Das Beacon kann auf dem Startbildschirm stummgeschaltet werden bzw. seine Stummschaltung kann aufgehoben werden. Außerdem zeigt Soundscape auf dem Startbildschirm Informationen über den Standort an einschließlich der Entfernung zu ihm und seiner Adresse, falls sie bekannt ist.
+Platzieren eines Beacons an einem nahegelegenen Ort ermöglicht es Soundscape, Sie auf dem Laufenden zu halten, indem es einen Ton aus der Richtung dieses Standorts abspielt. Das Beacon kann auf dem Startbildschirm stummgeschaltet werden bzw. seine Stummschaltung kann aufgehoben werden. Außerdem zeigt Soundscape auf dem Startbildschirm Informationen über den Standort an einschließlich der Entfernung zu ihm und seiner Adresse, falls sie bekannt ist.
 
 ## Wann würde ich es verwenden?
 
@@ -21,7 +21,7 @@ Das Platzieren eines Beacons ist nützlich, wenn Sie bei der Erkundung eines neu
 
 **Zum Platzieren eines Beacons:**
 
-Zuerst zeigen Sie die Details eines Ortes an, indem Sie entweder die Suchleiste verwenden, um nach einem Ort zu suchen, oder auf eine der Schaltflächen *„Orte in der Nähe“*, *„Markierungen und Routen“* oder *„Aktueller Standort“* tippen und einen Ort auswählen. Auf dem Bildschirm *„Standortdetails“* können Sie die Schaltfläche *„Audiobeacon starten“* auswählen. Wenn Sie diese antippen, kehren Sie zum Startbildschirm zurück und ein hörbares Beacon wird aus der Richtung des ausgewählten Ortes abgespielt. Der Name des ausgewählten Ortes sowie seine Entfernung und gegebenenfalls seine physische Adresse werden nun auf dem Hauptbildschirm der App angezeigt.
+Zuerst zeigen Sie die Details eines Ortes an, indem Sie entweder die Suchleiste verwenden, um nach einem Ort zu suchen, oder auf eine der Schaltflächen *„Orte in der Nähe“*, *„Markierungen und Routen“* oder *„Aktueller Standort“* tippen und einen Ort auswählen. Wählen Sie dann auf dem Bildschirm *„Standortdetails“* die Schaltfläche *„Audiobeacon starten“* aus. Wenn Sie diese antippen, kehren Sie zum Startbildschirm zurück und ein hörbares Beacon wird aus der Richtung des ausgewählten Ortes abgespielt. Der Name des Ortes sowie seine Entfernung und gegebenenfalls seine physische Adresse werden nun auf dem Hauptbildschirm angezeigt.
 
 **Zum Entfernen des aktuellen Beacons:**
 

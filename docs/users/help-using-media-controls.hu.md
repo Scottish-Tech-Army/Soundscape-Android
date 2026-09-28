@@ -21,7 +21,7 @@ A fülhallgató médiavezérlő gombjai akkor használhatók, amikor a Soundscap
 
 A médiavezérlőknek 2 üzemmódja van. Az üzemmód a *Beállítások* *Médiavezérlők* részében választható ki. Az üzemmódok a következők:
 
- Eredeti mód. 
+ *Eredeti mód*. 
 
 ⏯ Lejátszás/Szünet: Be- vagy kikapcsolja a hangjelző hangját. 
 
@@ -31,7 +31,7 @@ A médiavezérlőknek 2 üzemmódja van. Az üzemmód a *Beállítások* *Média
 
 
 
-Hangmenü. 
+*Hangmenü*. 
 
 
 

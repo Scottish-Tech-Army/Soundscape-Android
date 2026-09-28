@@ -15,13 +15,13 @@ Vous pouvez demander à Gemini d’effectuer des actions dans Soundscape sans to
 
 Soundscape répond avec sa propre voix, avec les notifications et les sons de balise que vous connaissez déjà, plutôt que de laisser l’assistant lire un résumé. Ainsi, ce que vous entendez provient toujours de la direction qu’il décrit.
 
-## Quand l’utiliser ?
+## Quand l’utiliser ?
 
 Les commandes vocales sont utiles lorsque votre téléphone est dans votre poche, que vous avez les mains prises ou que vous préférez ne pas vous arrêter pour appuyer sur un bouton. Elles fonctionnent lorsque Soundscape est en arrière-plan et lorsque votre téléphone est verrouillé, et demander une notification n’ouvre pas l’application.
 
 C’est votre assistant qui écoute, pas Soundscape : l’application ne monopolise donc jamais votre microphone et votre casque Bluetooth reste en mode audio haute qualité au lieu de basculer vers le mode de moindre qualité utilisé pour les appels téléphoniques.
 
-## Comment ça fonctionne ?
+## Comment ça fonctionne ?
 
 Il n’y a aucune formule exacte à mémoriser. Demandez ce que vous voulez avec vos propres mots et l’assistant l’associera à l’une des actions ci-dessous. Les noms d’itinéraires et de marqueurs sont reconnus de façon approximative : une partie du nom suffit généralement.
 
@@ -35,7 +35,7 @@ Démarrer l’un de vos itinéraires enregistrés en le nommant, passer au point
 
 Placer une balise sonore sur l’un de vos marqueurs enregistrés en le nommant, ou désactiver la balise.
 
-Régler le détail des notifications sur *Silencieux*, *Discret*, *Équilibré* ou *Détaillé*, pour modifier la quantité d’informations que Soundscape annonce pendant que vous marchez. Silencieux désactive les notifications automatiques.
+Régler le détail des notifications sur *Silencieux*, *Discret*, *Équilibré* ou *Détaillé*, pour modifier la quantité d’informations que Soundscape annonce pendant que vous marchez. *Silencieux* désactive les notifications automatiques.
 
 Lire les noms de vos itinéraires enregistrés ou de vos marqueurs enregistrés.
 

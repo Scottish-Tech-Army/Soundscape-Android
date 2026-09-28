@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 U kunt nabijgelegen bushaltes vinden door in de lijst *Plaatsen in de buurt* het filter *Openbaar vervoer* te selecteren.
 
-U kunt een baken instellen op elk adres. Zoek vanaf het hoofdscherm van Soundscape naar het adres. Selecteer het adres in de zoekresultaten om het scherm *Locatiedetails* te openen. Op dit scherm staat de optie *Audiobaken starten* voor dat adres. Op deze manier kunt u een baken instellen op bedrijven, plaatsen, referentiepunten en woningen die niet in OpenStreetMap staan.
+U kunt een baken instellen op elk adres. Zoek vanaf het hoofdscherm met de zoekbalk naar het adres. Selecteer vervolgens het adres in de zoekresultaten om het scherm *Locatiedetails* te openen. Op dit scherm staat de optie *Audiobaken starten* voor dat adres. Op deze manier kunt u een baken instellen op bedrijven, plaatsen, referentiepunten en woningen die niet in OpenStreetMap staan.
 
 Als u regelmatig een buslijn neemt, slaat u uw instap‑ en uitstaphaltes op als Markeringen. Zo worden ze opgeslagen en vindt u ze later gemakkelijk terug. Ga vanaf het startscherm naar *Markeringen en routes* en zoek ze vervolgens op de pagina *Markeringen*. U kunt er een audiobaken op instellen om periodieke updates te krijgen over hoe dicht u bij uw uitstaphalte bent. Opmerking: u kunt het ritmische geluid uitschakelen en toch afstandsupdates onderweg ontvangen.
 

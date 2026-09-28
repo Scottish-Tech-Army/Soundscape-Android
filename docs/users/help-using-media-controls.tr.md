@@ -21,7 +21,7 @@ Soundscape çalışırken kulaklık medya kontrollerini kullanabilirsiniz; uygul
 
 Medya kontrolleri için 2 çalışma modu vardır. Mod, *Ayarlar* ekranının *Medya Kontrolleri* bölümünden seçilebilir. Modlar şunlardır:
 
- Orijinal Mod. 
+ *Orijinal Mod*. 
 
 ⏯ Oynat/Duraklat: İşaret sesini açar veya kapatır. 
 
@@ -31,7 +31,7 @@ Medya kontrolleri için 2 çalışma modu vardır. Mod, *Ayarlar* ekranının *M
 
 
 
-Sesli Menü. 
+*Sesli Menü*. 
 
 
 

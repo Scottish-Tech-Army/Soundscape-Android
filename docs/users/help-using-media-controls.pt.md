@@ -21,7 +21,7 @@ Pode aceder a determinadas funcionalidades do Soundscape com a ajuda dos botões
 
 Existem 2 modos de funcionamento para os controlos multimédia. O modo pode ser selecionado na secção *Definições* *Controlos Multimédia*. Os modos são:
 
- Modo original. 
+ *Modo original*. 
 
 ⏯ Reproduzir/Pausa: Liga e desliga o som do sinal. 
 
@@ -31,7 +31,7 @@ Existem 2 modos de funcionamento para os controlos multimédia. O modo pode ser 
 
 
 
-Menu áudio. 
+*Menu áudio*. 
 
 
 

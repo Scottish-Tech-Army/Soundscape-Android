@@ -35,7 +35,7 @@ Inicie una de tus rutas guardadas por su nombre, pase al siguiente punto de ruta
 
 Ponga una señal de audio en uno de tus marcadores guardados por su nombre, o apague la señal.
 
-Ajuste el detalle de los avisos a *Silencioso*, *Discreto*, *Equilibrado* o *Detallado*, para cambiar cuánto dice Soundscape mientras caminas. Silencioso desactiva los avisos automáticos.
+Ajuste el detalle de los avisos a *Silencioso*, *Discreto*, *Equilibrado* o *Detallado*, para cambiar cuánto dice Soundscape mientras caminas. *Silencioso* desactiva los avisos automáticos.
 
 Lea los nombres de tus rutas guardadas o de tus marcadores guardados.
 

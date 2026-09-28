@@ -35,7 +35,7 @@ Ianzishe mojawapo ya njia zako zilizohifadhiwa kwa jina, isogee hadi kituo kinac
 
 Iweke beacon ya sauti kwenye mojawapo ya alama zako zilizohifadhiwa kwa jina, au izime beacon.
 
-Iweke kiwango cha matangazo kuwa *Kimya*, *Chache*, *Wastani* au *Kwa Kina*, ili kubadilisha kiasi ambacho Soundscape husema unapotembea. Kimya huzima matangazo ya kiotomatiki.
+Iweke kiwango cha matangazo kuwa *Kimya*, *Chache*, *Wastani* au *Kwa Kina*, ili kubadilisha kiasi ambacho Soundscape husema unapotembea. *Kimya* huzima matangazo ya kiotomatiki.
 
 Isome majina ya njia zako zilizohifadhiwa au alama zako zilizohifadhiwa.
 

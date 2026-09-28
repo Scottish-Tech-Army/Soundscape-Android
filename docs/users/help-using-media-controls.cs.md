@@ -21,7 +21,7 @@ Tlačítka pro ovládání médií na sluchátkách lze používat, když je Sou
 
 K dispozici jsou 2 režimy ovládání médií. Režim lze vybrat v části *Nastavení* *Ovládání médií*. Režimy jsou:
 
- Původní režim. 
+ *Původní režim*. 
 
 ⏯ Přehrát/Pozastavit: Zapne nebo vypne zvuk majáku. 
 
@@ -31,7 +31,7 @@ K dispozici jsou 2 režimy ovládání médií. Režim lze vybrat v části *Nas
 
 
 
-Zvukové menu. 
+*Zvukové menu*. 
 
 
 

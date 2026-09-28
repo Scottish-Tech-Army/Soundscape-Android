@@ -31,7 +31,7 @@ Soundscape voi kertoa sinulle ympärilläsi olevista kohteista, kun lähestyt ni
 
 **Ilmoitusten kytkeminen päälle tai pois :**
 
- Ilmoitusten pois kytkeminen hiljentää sovelluksen. Ilmoitukset voi kytkeä pois *Asetukset*-näytön *Ilmoitusten hallinta* -osiosta asettamalla *Ilmoitusten tarkkuus* arvoon *Äänetön*, ja takaisin päälle valitsemalla minkä tahansa muun tason. Voit tehdä saman pyytämällä sitä Siriltä tai Geminiltä. Voit myös hiljentää Soundscapea askel kerrallaan kuulokkeidesi mediasäätöpainikkeilla: jokainen *edellinen*-painallus laskee tasoa järjestyksessä *Yksityiskohtainen*, *Tasapainoinen*, *Hiljainen* ja *Äänetön*, ja vielä yksi painallus palaa tasolle *Yksityiskohtainen*. Katso ohjeaihe *Mediasäädinten käyttö*. Vaihtoehtoisesti voit käyttää aloitusnäytön oikeassa yläkulmassa olevaa *Siirry lepotilaan* -painiketta estääksesi Soundscapea tekemästä ilmoituksia, kunnes herätät sen uudelleen.
+ Ilmoitusten pois kytkeminen hiljentää sovelluksen. Ilmoitukset voi kytkeä pois *Asetukset*-näytön *Ilmoitusten hallinta* -osiosta asettamalla *Ilmoitusten tarkkuus* arvoon *Äänetön*, ja takaisin päälle valitsemalla minkä tahansa muun tason. Voit tehdä saman pyytämällä sitä Siriltä tai Geminiltä. Voit myös hiljentää Soundscapea askel kerrallaan kuulokkeidesi mediasäätöpainikkeilla: jokainen *edellinen*-painallus laskee tasoa järjestyksessä *Yksityiskohtainen*, *Tasapainoinen*, *Hiljainen* ja *Äänetön*, ja vielä yksi painallus palaa tasolle *Yksityiskohtainen*. Katso ohjeaihe *Mediasäädinten käyttö*. Vaihtoehtoisesti voit käyttää aloitusnäytön oikeassa yläkulmassa olevaa *Siirry lepotilaan* -painiketta estääksesi Soundscapea tekemästä ilmoituksia, kunnes herätät sen.
 
 **Ilmoitusten kuuntelemisen hallinta :**
 

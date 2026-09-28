@@ -21,7 +21,7 @@ Gumbe za upravljanje predvajanja na slušalkah lahko uporabljate, ko Soundscape 
 
 Za predstavnostne kontrolnike sta na voljo 2 načina delovanja. Način lahko izberete v razdelku *Nastavitve* *Kontrolniki za predstavnost*. Načina sta:
 
- Izvirni način. 
+ *Izvirni način*. 
 
 ⏯ Predvajaj/Premor: vklopi in izklopi zvok svetilnika. 
 
@@ -31,7 +31,7 @@ Za predstavnostne kontrolnike sta na voljo 2 načina delovanja. Način lahko izb
 
 
 
-Zvočni meni. 
+*Zvočni meni*. 
 
 
 

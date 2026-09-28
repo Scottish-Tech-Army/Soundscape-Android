@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 Você pode encontrar pontos de ônibus próximos selecionando o filtro *Transporte Público* na lista *Locais Próximos*.
 
-Você pode definir um sinalizador em qualquer endereço. Na tela principal do Soundscape, pesquise o endereço. Selecione o endereço nos resultados da pesquisa para abrir a tela *Detalhes da Localização*. Essa tela oferece a opção *Iniciar Sinalizador Sonoro* para esse endereço. Dessa forma, você pode configurar um sinalizador em comércios, locais, pontos de interesse e residências que não estão no OpenStreetMap.
+Você pode definir um sinalizador em qualquer endereço. Na tela principal, pesquise o endereço usando a barra de pesquisa. Em seguida, selecione o endereço nos resultados da pesquisa para abrir a tela *Detalhes da Localização*. Essa tela oferece a opção *Iniciar Sinalizador Sonoro* para esse endereço. Dessa forma, você pode configurar um sinalizador em comércios, locais, pontos de interesse e residências que não estão no OpenStreetMap.
 
 Se você usa uma linha de ônibus regularmente, salve suas paradas de embarque e desembarque como Favoritos. Assim, elas ficam salvas e você as encontra facilmente. Vá para *Favoritos e Rotas* na tela inicial e depois localize‑as na página *Favoritos*. Você pode configurar um sinalizador nelas para receber atualizações periódicas sobre o quão perto está da sua parada de saída. Observação: você pode desativar o som rítmico e ainda assim receber as atualizações de distância ao longo do percurso.
 

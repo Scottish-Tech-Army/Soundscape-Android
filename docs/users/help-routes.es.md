@@ -21,7 +21,7 @@ Es posible que quieras crear y usar una ruta en un lugar que ya conoces, para ay
 
 **Creación de una ruta**:
 
- en primer lugar, ve a *"Marcadores y rutas"*, y selecciona la pestaña *"Rutas"* y el botón *"Nueva ruta"*. Asigna un nombre y una descripción opcional a la ruta, luego agrega puntos de ruta a medida que avanzas o elígelos en tu lista de marcadores. Puedes reorganizar el orden de los puntos de ruta a lo largo de una ruta en cualquier momento editando la ruta.
+ en primer lugar, ve a *Marcadores y rutas*, y selecciona la pestaña *Rutas* y el botón *Nueva ruta*. Asigna un nombre y una descripción opcional a la ruta, luego agrega puntos de ruta a medida que avances o elígelos en tu lista de marcadores. Puedes reorganizar el orden de los puntos de ruta a lo largo de una ruta en cualquier momento editando la ruta.
 
 **Edición de una ruta**:
 

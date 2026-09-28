@@ -35,7 +35,7 @@ Starta en av dina sparade rutter med namn, gå vidare till nästa brytpunkt, gå
 
 Ställa in ett ljudfyr på en av dina sparade platsmarkörer med namn, eller stänga av ljudfyret.
 
-Ställa in detaljnivån för informationsljuden på *Tyst*, *Lågmäld*, *Balanserad* eller *Detaljerad*, för att ändra hur mycket Soundscape säger medan du går. Tyst stänger av de automatiska informationsljuden.
+Ställa in detaljnivån för informationsljuden på *Tyst*, *Lågmäld*, *Balanserad* eller *Detaljerad*, för att ändra hur mycket Soundscape säger medan du går. *Tyst* stänger av de automatiska informationsljuden.
 
 Läsa upp namnen på dina sparade rutter eller dina sparade platsmarkörer.
 

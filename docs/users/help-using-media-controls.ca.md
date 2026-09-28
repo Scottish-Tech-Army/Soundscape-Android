@@ -21,7 +21,7 @@ Els controls multimèdia dels auriculars es poden utilitzar mentre Soundscape s'
 
 Hi ha 2 modes de funcionament per als controls multimèdia. El mode es pot seleccionar a la secció *Configuració* *Controls multimèdia*. Els modes són:
 
- Mode original. 
+ *Mode original*. 
 
 ⏯ Reprodueix/Pausa: Activa o desactiva l'àudio de la balisa. 
 
@@ -31,7 +31,7 @@ Hi ha 2 modes de funcionament per als controls multimèdia. El mode es pot selec
 
 
 
-Menú d'àudio. 
+*Menú d'àudio*. 
 
 
 

@@ -21,7 +21,7 @@ Kuulokkeiden mediasäätimiä voidaan käyttää, kun Soundscape on päällä �
 
 Mediasäätimille on kaksi toimintatilaa. Tilan voi valita *Asetukset* -> *Mediasäätimet* -osiosta. Tilat ovat:
 
- Alkuperäinen tila. 
+ *Alkuperäinen tila*. 
 
 ⏯ Toista/Pysäytä: Kytkee äänimajakan äänen päälle ja pois. 
 
@@ -31,7 +31,7 @@ Mediasäätimille on kaksi toimintatilaa. Tilan voi valita *Asetukset* -> *Media
 
 
 
-Äänivalikko. 
+*Äänivalikko*. 
 
 
 

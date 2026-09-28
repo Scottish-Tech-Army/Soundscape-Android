@@ -21,7 +21,7 @@ Mediaregelaars op de koptelefoon kunnen worden gebruikt terwijl Soundscape actie
 
 Er zijn 2 modi voor de mediaregelaars. De modus kan worden geselecteerd in de *Instellingen*-sectie *Mediaregelaars*. De modi zijn:
 
- Originele modus. 
+ *Originele modus*. 
 
 ⏯ Afspelen/Pauzeren: Zet het audiobaken aan of uit. 
 
@@ -31,7 +31,7 @@ Er zijn 2 modi voor de mediaregelaars. De modus kan worden geselecteerd in de *I
 
 
 
-Audiomenu. 
+*Audiomenu*. 
 
 
 

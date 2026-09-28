@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 Vous pouvez trouver les arrêts de bus à proximité en sélectionnant le filtre *Transport public* dans la liste *Emplacements à proximité*.
 
-Vous pouvez définir une balise sur n’importe quelle adresse. Depuis l’écran principal de Soundscape, recherchez l’adresse. Sélectionnez l’adresse dans les résultats de recherche pour ouvrir un écran *Détails de l’emplacement*. Cet écran comporte une option *Démarrer la Balise sonore* pour cette adresse. De cette façon, vous pouvez définir une balise sur des commerces, lieux, points d’intérêt et habitations qui ne figurent pas dans OpenStreetMap.
+Vous pouvez définir une balise sur n’importe quelle adresse. Depuis l’écran principal, recherchez l’adresse à l’aide de la barre de recherche. Sélectionnez ensuite l’adresse dans les résultats de recherche pour ouvrir l’écran *Détails de l’emplacement*. Cet écran comporte une option *Démarrer la Balise sonore* pour cette adresse. De cette façon, vous pouvez définir une balise sur des commerces, lieux, points d’intérêt et habitations qui ne figurent pas dans OpenStreetMap.
 
 Si vous empruntez régulièrement une ligne de bus, enregistrez vos arrêts d’embarquement et de descente comme Marqueurs. Ils seront ainsi sauvegardés et faciles à retrouver. Allez sur *Marqueurs et Itinéraires* depuis l’écran d’accueil, puis trouvez‑les dans la page *Marqueurs*. Vous pouvez y définir une balise pour recevoir des mises à jour périodiques sur la distance qui vous sépare de votre arrêt de sortie. Remarque : vous pouvez couper le son rythmique et continuer à recevoir des mises à jour de distance en cours de route.
 

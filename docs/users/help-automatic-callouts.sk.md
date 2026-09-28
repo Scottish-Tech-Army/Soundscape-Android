@@ -31,7 +31,7 @@ Soundscape vám môže povedať o veciach vo vašom okolí, keď sa k nim pribl�
 
 **Zapnutie alebo vypnutie hlásení:**
 
- Vypnutím hlásení stlmíte aplikáciu. Hlásenia môžete vypnúť v časti *Správa hlásení* na obrazovke *Nastavenia* nastavením položky *Podrobnosť hlásení* na *Bez zvuku* a znova ich zapnúť výberom ktorejkoľvek inej úrovne. To isté môžete urobiť aj tak, že o to požiadate Siri alebo Gemini. Soundscape môžete tiež postupne stlmovať tlačidlami na ovládanie médií na slúchadlách: každé stlačenie *predchádzajúce* posunie o úroveň nižšie cez *Podrobný*, *Vyvážený*, *Tichý* a *Bez zvuku* a ďalšie stlačenie sa vráti na *Podrobný*. Pozrite si tému pomocníka *Používanie ovládacích prvkov médií*. Prípadne môžete použiť tlačidlo *Spánok* v pravom hornom rohu domovskej obrazovky, čím zastavíte hlásenia aplikácie Soundscape, kým sa ju sami nerozhodnete znova zobudiť.
+ Vypnutím hlásení stlmíte aplikáciu. Hlásenia môžete vypnúť v časti *Správa hlásení* na obrazovke *Nastavenia* nastavením položky *Podrobnosť hlásení* na *Bez zvuku* a znova ich zapnúť výberom ktorejkoľvek inej úrovne. To isté môžete urobiť aj tak, že o to požiadate Siri alebo Gemini. Soundscape môžete tiež postupne stlmovať tlačidlami na ovládanie médií na slúchadlách: každé stlačenie *predchádzajúce* posunie o úroveň nižšie cez *Podrobný*, *Vyvážený*, *Tichý* a *Bez zvuku* a ďalšie stlačenie sa vráti na *Podrobný*. Pozrite si tému pomocníka *Používanie ovládacích prvkov médií*. Prípadne môžete použiť tlačidlo *Spánok* v pravom hornom rohu domovskej obrazovky, čím zastavíte hlásenia aplikácie Soundscape, kým ju nezobudíte.
 
 **Správa toho, aké hlásenia počujete:**
 

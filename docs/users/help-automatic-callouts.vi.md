@@ -31,7 +31,7 @@ Soundscape có thể cho bạn biết về những thứ xung quanh khi bạn đ
 
 **Bật hoặc tắt thông báo :**
 
- Tắt thông báo sẽ khiến ứng dụng im lặng. Bạn có thể tắt thông báo trong phần *Quản lý thông báo thoại* của màn hình *Cài đặt* bằng cách đặt *Mức chi tiết thông báo* thành *Im lặng*, và bật lại bằng cách chọn bất kỳ mức nào khác. Bạn cũng có thể làm điều tương tự bằng cách nhờ Siri hoặc Gemini. Ngoài ra, bạn có thể giảm dần độ nói của Soundscape bằng các nút điều khiển media trên tai nghe: mỗi lần nhấn *trước đó* sẽ hạ xuống một mức theo thứ tự *Chi tiết*, *Cân bằng*, *Yên tĩnh* và *Im lặng*, nhấn thêm một lần nữa sẽ quay lại *Chi tiết*. Xem chủ đề trợ giúp *Sử dụng nút điều khiển media*. Ngoài ra, bạn có thể dùng nút *Ngủ* ở góc trên bên phải màn hình chính để ngừng Soundscape đưa ra thông báo cho đến khi bạn chọn đánh thức lại.
+ Tắt thông báo sẽ khiến ứng dụng im lặng. Bạn có thể tắt thông báo trong phần *Quản lý thông báo thoại* của màn hình *Cài đặt* bằng cách đặt *Mức chi tiết thông báo* thành *Im lặng*, và bật lại bằng cách chọn bất kỳ mức nào khác. Bạn cũng có thể làm điều tương tự bằng cách nhờ Siri hoặc Gemini. Ngoài ra, bạn có thể giảm dần độ nói của Soundscape bằng các nút điều khiển media trên tai nghe: mỗi lần nhấn *trước đó* sẽ hạ xuống một mức theo thứ tự *Chi tiết*, *Cân bằng*, *Yên tĩnh* và *Im lặng*, nhấn thêm một lần nữa sẽ quay lại *Chi tiết*. Xem chủ đề trợ giúp *Sử dụng nút điều khiển media*. Ngoài ra, bạn có thể dùng nút *Ngủ* ở góc trên bên phải màn hình chính để ngừng Soundscape đưa ra thông báo cho đến khi bạn đánh thức nó.
 
 **Quản lý những thông báo bạn nghe :**
 

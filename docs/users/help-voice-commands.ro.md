@@ -35,7 +35,7 @@ Să pornească una dintre rutele tale salvate după nume, să treacă la punctul
 
 Să pună o baliză audio pe unul dintre marcajele tale salvate după nume sau să oprească baliza.
 
-Să seteze detaliul anunțurilor pe *Silențios*, *Discret*, *Echilibrat* sau *Detaliat*, pentru a schimba cât de mult vorbește Soundscape în timp ce mergi. Silențios dezactivează anunțurile automate.
+Să seteze detaliul anunțurilor pe *Silențios*, *Discret*, *Echilibrat* sau *Detaliat*, pentru a schimba cât de mult vorbește Soundscape în timp ce mergi. *Silențios* dezactivează anunțurile automate.
 
 Să citească numele rutelor tale salvate sau ale marcajelor tale salvate.
 

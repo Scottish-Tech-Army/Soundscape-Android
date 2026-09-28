@@ -11,7 +11,7 @@ permalink: /users/help-routes.html
 
 ## Vad är det?
 
-Rutter är en serie brytpunkter. Du kommer att bli informerad när du kommer till en brytpunkt och ljudfyren kommer automatiskt att fortsätta till nästa brytpunkt.
+Rutter är en serie brytpunkter. Du kommer att bli informerad när du kommer till varje brytpunkt och ljudfyren kommer automatiskt att fortsätta till nästa brytpunkt.
 
 ## När ska jag använda det?
 

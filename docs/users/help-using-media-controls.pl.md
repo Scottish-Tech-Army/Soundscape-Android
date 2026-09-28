@@ -21,7 +21,7 @@ Przycisków sterowania mediami w słuchawkach można używać, gdy Soundscape dz
 
 Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w sekcji *Ustawienia* *Sterowanie multimediami*. Tryby to:
 
- Tryb oryginalny. 
+ *Tryb oryginalny*. 
 
 ⏯ Odtwórz/Pauza: włącza i wyłącza dźwięk naprowadzający. 
 
@@ -31,7 +31,7 @@ Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w
 
 
 
-Menu dźwiękowe. 
+*Menu dźwiękowe*. 
 
 
 

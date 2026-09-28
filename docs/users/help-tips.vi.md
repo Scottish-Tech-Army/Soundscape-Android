@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 Bạn có thể tìm các điểm dừng xe buýt gần đó bằng cách chọn bộ lọc *Giao thông công cộng* trong danh sách *Địa điểm gần đây*.
 
-Bạn có thể đặt đèn hiệu trên bất kỳ địa chỉ nào. Từ màn hình chính của Soundscape, hãy tìm kiếm địa chỉ đó. Chọn địa chỉ trong kết quả tìm kiếm để mở màn hình *Chi tiết vị trí*. Màn hình này có tùy chọn *Bắt đầu đèn hiệu âm thanh* tại địa chỉ đó. Bằng cách này, bạn có thể đặt đèn hiệu trên các cửa hàng, địa điểm, địa điểm quan tâm và nhà ở không có trong OpenStreetMap.
+Bạn có thể đặt đèn hiệu trên bất kỳ địa chỉ nào. Từ màn hình chính, hãy tìm kiếm địa chỉ đó bằng thanh tìm kiếm. Sau đó chọn địa chỉ trong kết quả tìm kiếm để mở màn hình *Chi tiết vị trí*. Màn hình này có tùy chọn *Bắt đầu đèn hiệu âm thanh* tại địa chỉ đó. Bằng cách này, bạn có thể đặt đèn hiệu trên các cửa hàng, địa điểm, địa điểm quan tâm và nhà ở không có trong OpenStreetMap.
 
 Nếu có một tuyến xe buýt bạn thường xuyên đi, hãy lưu điểm lên và điểm xuống của bạn làm điểm đánh dấu. Bằng cách này, chúng sẽ được lưu lại để bạn dễ dàng tìm lại: vào *Điểm đánh dấu và Lộ trình* từ màn hình chính và tìm chúng trong trang *Điểm đánh dấu*. Bạn có thể đặt đèn hiệu trên chúng để nhận cập nhật định kỳ về khoảng cách còn lại đến điểm xuống của mình. Lưu ý: ngay cả khi tắt âm thanh nhịp điệu, bạn vẫn nhận được cập nhật khoảng cách trong suốt hành trình.
 

@@ -21,7 +21,7 @@ Ana iya amfani da maɓallan sarrafa kafofin watsa labarai na belun kunne yayin d
 
 Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sashen *Saitunan* *Sarrafa Kafofin Watsa Labarai*. Yanayoyin sune:
 
- Yanayin Asali. 
+ *Yanayin Asali*. 
 
 ⏯ Kunna/Dakata: Yana kunna ko kashe sautin alama. 
 
@@ -31,7 +31,7 @@ Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sas
 
 
 
-Menu na Sauti. 
+*Menu na Sauti*. 
 
 
 

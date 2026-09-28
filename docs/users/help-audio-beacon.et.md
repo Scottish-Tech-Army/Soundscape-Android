@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Mis see on?
 
-Helimajaka seadmine lähedal asuvale asukohale võimaldab Soundscape'il hoida teid kursis, mängides kuuldavat helimajaka heli selle asukoha suunast. Seda helimajakat saab avakuval vaigistada või vaigistuse tühistada. Lisaks kuvab Soundscape avakuval teavet asukoha kohta, sealhulgas kaugust ja tänavaaadressi, kui see on teada.
+Helimajaka seadmine lähedal asuvale asukohale võimaldab Soundscape'il hoida teid kursis, mängides heli selle asukoha suunast. Seda helimajakat saab avakuval vaigistada või vaigistuse tühistada. Lisaks kuvab Soundscape avakuval teavet asukoha kohta, sealhulgas kaugust ja tänavaaadressi, kui see on teada.
 
 ## Millal seda kasutada?
 
@@ -21,7 +21,7 @@ Helimajaka seadmine on kasulik, kui soovite jälgida tuttavat maamärki uue piir
 
 **Helimajaka seadmine:**
 
- Kõigepealt vaadake asukoha üksikasju, kasutades kas otsinguriba koha otsimiseks või puudutades ühte nuppudest *Lähedal asuvad kohad*, *Markerid ja marsruudid* või *Praegune asukoht* ja valides asukoha. Ekraanilt *Asukoha üksikasjad* saate valida nupu *Käivita helimajakas*. Selle puudutamine viib teid tagasi avakuvale ja lülitab sisse kuuldava helimajaka valitud koha suunast. Valitud koha nimi koos selle kauguse ja füüsilise aadressiga, kui see on saadaval, kuvatakse nüüd rakenduse põhikuval.
+ Kõigepealt vaadake asukoha üksikasju, kasutades kas otsinguriba koha otsimiseks või puudutades ühte nuppudest *Lähedal asuvad kohad*, *Markerid ja marsruudid* või *Praegune asukoht* ja valides asukoha. Seejärel valige ekraanil *Asukoha üksikasjad* nupp *Käivita helimajakas*. Selle puudutamine viib teid tagasi avakuvale ja lülitab sisse kuuldava helimajaka valitud koha suunast. Koha nimi koos selle kauguse ja füüsilise aadressiga, kui see on saadaval, kuvatakse nüüd põhikuval.
 
 **Praeguse helimajaka eemaldamine:**
 

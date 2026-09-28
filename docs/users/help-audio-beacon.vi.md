@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Đây là gì?
 
-Đặt đèn hiệu tại một địa điểm gần đó cho phép Soundscape liên tục thông báo cho bạn bằng cách phát âm thanh đèn hiệu từ hướng của địa điểm đó. Đèn hiệu này có thể được tắt tiếng hoặc bật tiếng lại trên màn hình chính. Ngoài ra, Soundscape còn hiển thị thông tin về địa điểm đó trên màn hình chính, bao gồm khoảng cách đến đó và địa chỉ đường phố nếu có.
+Đặt đèn hiệu tại một địa điểm gần đó cho phép Soundscape liên tục thông báo cho bạn bằng cách phát âm thanh từ hướng của địa điểm đó. Đèn hiệu này có thể được tắt tiếng hoặc bật tiếng lại trên màn hình chính. Ngoài ra, Soundscape còn hiển thị thông tin về địa điểm đó trên màn hình chính, bao gồm khoảng cách đến đó và địa chỉ đường phố nếu có.
 
 ## Khi nào tôi nên dùng tính năng này?
 
@@ -21,7 +21,7 @@ Việc đặt đèn hiệu rất hữu ích khi bạn muốn theo dõi một m�
 
 **Để đặt đèn hiệu :**
 
- Trước tiên, hãy xem chi tiết của một địa điểm bằng cách dùng thanh tìm kiếm để tìm một nơi, hoặc nhấn vào một trong các nút *Địa điểm gần đây*, *Điểm đánh dấu và Lộ trình*, hoặc *Vị trí hiện tại* rồi chọn một địa điểm. Từ màn hình *Chi tiết địa điểm*, bạn có thể chọn nút *Bật đèn hiệu âm thanh*. Nhấn vào nút này sẽ đưa bạn trở về màn hình chính và bật đèn hiệu âm thanh phát ra từ hướng của địa điểm bạn đã chọn. Tên của địa điểm bạn đã chọn cùng với khoảng cách và địa chỉ đường phố (nếu có) giờ đây sẽ được hiển thị trên màn hình chính của ứng dụng.
+ Trước tiên, hãy xem chi tiết của một địa điểm bằng cách dùng thanh tìm kiếm để tìm một nơi, hoặc nhấn vào một trong các nút *Địa điểm gần đây*, *Điểm đánh dấu và lộ trình*, hoặc *Vị trí hiện tại* rồi chọn một địa điểm. Sau đó, từ màn hình *Chi tiết vị trí*, hãy chọn nút *Bắt đầu đèn hiệu âm thanh*. Nhấn vào nút này sẽ đưa bạn trở về màn hình chính và bật đèn hiệu âm thanh phát ra từ hướng của địa điểm bạn đã chọn. Tên của địa điểm cùng với khoảng cách và địa chỉ đường phố (nếu có) giờ đây sẽ được hiển thị trên màn hình chính.
 
 **Để gỡ bỏ đèn hiệu hiện tại :**
 

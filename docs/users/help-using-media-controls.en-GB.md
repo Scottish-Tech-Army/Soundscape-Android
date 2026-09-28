@@ -21,7 +21,7 @@ Headphone media controls can be used while Soundscape is running — whether you
 
 There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:
 
- Original mode. 
+ *Original mode*. 
 
 ⏯ Play/Pause: Toggles the beacon audio on and off. 
 
@@ -31,7 +31,7 @@ There are 2 modes of operation for the media controls. The mode can be selected 
 
 
 
-Audio menu. 
+*Audio menu*. 
 
 
 

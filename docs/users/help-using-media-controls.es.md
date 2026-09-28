@@ -21,7 +21,7 @@ Los controles multimedia de los auriculares se pueden usar mientras Soundscape s
 
 Existen 2 modos de funcionamiento para los controles multimedia. El modo se puede seleccionar en la sección *Ajustes* *Controles multimedia*. Los modos son:
 
- Modo Original. 
+ *Modo Original*. 
 
 ⏯ Reproducir/Pausa: Activa o desactiva el audio de la señal. 
 
@@ -31,7 +31,7 @@ Existen 2 modos de funcionamiento para los controles multimedia. El modo se pued
 
 
 
-Menú de audio. 
+*Menú de audio*. 
 
 
 

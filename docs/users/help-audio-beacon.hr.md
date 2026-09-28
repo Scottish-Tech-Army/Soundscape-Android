@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Što je to?
 
-Postavljanje svjetionika na obližnju lokaciju omogućuje Soundscapeu da vas obavještava puštanjem zvučnog signala svjetionika koji dolazi iz smjera te lokacije. Ovaj svjetionik možete utišati ili uključiti na početnom zaslonu. Osim toga, Soundscape prikazuje informacije o lokaciji na početnom zaslonu, uključujući udaljenost do nje i njezinu adresu, ako je poznata.
+Postavljanje svjetionika na obližnju lokaciju omogućuje Soundscapeu da vas obavještava puštanjem zvuka koji dolazi iz smjera te lokacije. Ovaj svjetionik možete utišati ili uključiti na početnom zaslonu. Osim toga, Soundscape prikazuje informacije o lokaciji na početnom zaslonu, uključujući udaljenost do nje i njezinu adresu, ako je poznata.
 
 ## Kada se ovo koristi?
 
@@ -21,7 +21,7 @@ Postavljanje svjetionika korisno je kada želite pratiti poznatu znamenitost dok
 
 **Postavljanje svjetionika:**
 
- Najprije pogledajte detalje lokacije koristeći traku za pretraživanje kako biste pronašli mjesto, ili dodirom na gumb *Mjesta u blizini*, *Oznake i rute* ili *Trenutna lokacija* i odabirom lokacije. Na zaslonu *Detalji lokacije* možete odabrati gumb *Pokreni zvučni svjetionik*. Dodirom na njega vratit ćete se na početni zaslon i uključiti zvučni svjetionik koji dolazi iz smjera odabranog mjesta. Naziv odabranog mjesta, zajedno s udaljenošću i fizičkom adresom, ako je dostupna, sada će biti prikazani na glavnom zaslonu aplikacije.
+ Najprije pogledajte detalje lokacije koristeći traku za pretraživanje kako biste pronašli mjesto, ili dodirom na gumb *Mjesta u blizini*, *Oznake i rute* ili *Trenutačna lokacija* i odabirom lokacije. Zatim na zaslonu *Pojedinosti o lokaciji* odaberite gumb *Postavi zvučni svjetionik*. Dodirom na njega vratit ćete se na početni zaslon i uključiti zvučni svjetionik koji dolazi iz smjera odabranog mjesta. Naziv mjesta, zajedno s udaljenošću i fizičkom adresom, ako je dostupna, sada će biti prikazani na glavnom zaslonu.
 
 **Uklanjanje trenutnog svjetionika:**
 

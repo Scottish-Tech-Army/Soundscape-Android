@@ -19,19 +19,19 @@ Les boutons de commandes multimédias des casques peuvent être utilisés lorsqu
 
 ## Fonctionnement
 
-Il existe 2 modes de fonctionnement pour les contrôles multimédias. Le mode se sélectionne dans la section *Réglages* *Contrôles multimédias*. Les modes sont :
+Il existe 2 modes de fonctionnement pour les contrôles multimédias. Le mode se sélectionne dans la section *Réglages* *Contrôles multimédias*. Les modes sont :
 
- Mode original. 
+ *Mode original*. 
 
-⏯ Lecture/Pause : active ou désactive le son de la balise. 
+⏯ Lecture/Pause : active ou désactive le son de la balise. 
 
-⏭ Suivant : si un itinéraire est en cours de lecture, déplace la balise sonore vers le point de repère suivant de l’itinéraire. Si aucun itinéraire n’est en cours, annonce *Autour de moi*.
+⏭ Suivant : si un itinéraire est en cours de lecture, déplace la balise sonore vers le point de repère suivant de l’itinéraire. Si aucun itinéraire n’est en cours, annonce *Autour de moi*.
 
-⏮ Précédent : si un itinéraire est en cours de lecture, déplace la balise sonore vers le point de repère précédent de l’itinéraire. Si aucun itinéraire n’est en cours, modifie le *Détail des notifications*, d’un niveau plus discret à chaque appui : *Détaillé*, *Équilibré*, *Discret*, *Silencieux*, puis retour à *Détaillé*.
+⏮ Précédent : si un itinéraire est en cours de lecture, déplace la balise sonore vers le point de repère précédent de l’itinéraire. Si aucun itinéraire n’est en cours, modifie le *Détail des notifications*, d’un niveau plus discret à chaque appui : *Détaillé*, *Équilibré*, *Discret*, *Silencieux*, puis retour à *Détaillé*.
 
 
 
-Menu audio. 
+*Menu audio*. 
 
 
 

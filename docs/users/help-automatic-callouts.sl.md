@@ -31,7 +31,7 @@ Soundscape vam lahko pove o stvareh v vaši okolici, ko se jim približujete, ta
 
 **Vklop ali izklop zvočnih obvestil :**
 
- Izklop zvočnih obvestil utiša aplikacijo. Obvestila lahko izklopite v razdelku *Upravljanje zvočnih obvestil* na zaslonu *Nastavitve* tako, da *Raven podrobnosti obvestil* nastavite na *Brez zvoka*, znova pa jih vklopite z izbiro katere koli druge ravni. Isto lahko naredite tudi tako, da za to prosite Siri ali Gemini. Soundscape lahko postopoma utišate tudi z gumbi za upravljanje predvajanja na slušalkah: vsak pritisk na *nazaj* se pomakne eno raven navzdol po *Podrobno*, *Uravnoteženo*, *Tiho* in *Brez zvoka*, še en pritisk pa se vrne na *Podrobno*. Glejte temo pomoči *Uporaba kontrolnikov predstavnosti*. Prav tako lahko uporabite gumb *Spanje* v zgornjem desnem kotu domačega zaslona, da Soundscape preneha podajati zvočna obvestila, dokler ga ne prebudite znova.
+ Izklop zvočnih obvestil utiša aplikacijo. Obvestila lahko izklopite v razdelku *Upravljanje zvočnih obvestil* na zaslonu *Nastavitve* tako, da *Raven podrobnosti obvestil* nastavite na *Brez zvoka*, znova pa jih vklopite z izbiro katere koli druge ravni. Isto lahko naredite tudi tako, da za to prosite Siri ali Gemini. Soundscape lahko postopoma utišate tudi z gumbi za upravljanje predvajanja na slušalkah: vsak pritisk na *nazaj* se pomakne eno raven navzdol po *Podrobno*, *Uravnoteženo*, *Tiho* in *Brez zvoka*, še en pritisk pa se vrne na *Podrobno*. Glejte temo pomoči *Uporaba kontrolnikov predstavnosti*. Prav tako lahko uporabite gumb *Spanje* v zgornjem desnem kotu domačega zaslona, da Soundscape preneha podajati zvočna obvestila, dokler ga ne prebudite.
 
 **Upravljanje, katera zvočna obvestila slišite :**
 

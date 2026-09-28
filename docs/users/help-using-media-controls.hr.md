@@ -21,7 +21,7 @@ Gumbi za upravljanje medijima na slušalicama mogu se koristiti dok Soundscape r
 
 Postoje 2 načina rada gumba za upravljanje medijima. Način rada može se odabrati u odjeljku *Postavke* *Upravljanje medijima*. Načini rada su:
 
- Izvorni način. 
+ *Izvorni način*. 
 
 ⏯ Play/Pause: Uključuje ili isključuje zvuk svjetionika. 
 
@@ -31,7 +31,7 @@ Postoje 2 načina rada gumba za upravljanje medijima. Način rada može se odabr
 
 
 
-Zvučni izbornik. 
+*Zvučni izbornik*. 
 
 
 

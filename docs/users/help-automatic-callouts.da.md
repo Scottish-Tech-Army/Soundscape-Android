@@ -31,7 +31,7 @@ Soundscape kan fortælle dig om ting omkring dig, når du nærmer dig dem, ved a
 
 **Slå lydbeskeder til eller fra:**
 
- Hvis du slår lydbeskeder fra, vil appen være tavs. Du kan slå lydbeskeder fra i afsnittet *Administrer lydbeskeder* på skærmen *Indstillinger* ved at sætte *Detaljeniveau for lydbeskeder* til *Lydløs*, og slå dem til igen ved at vælge et hvilket som helst andet niveau. Du kan gøre det samme ved at bede Siri eller Gemini om det. Du kan også gøre Soundscape mere stille et trin ad gangen med medieknapperne på dine hovedtelefoner: hvert tryk på *forrige* går et trin ned gennem *Detaljeret*, *Balanceret*, *Stille* og *Lydløs*, og endnu et tryk vender tilbage til *Detaljeret*. Se hjælpeemnet *Brug af mediebetjeningsknapper*. Alternativt kan du bruge knappen *Dvale* i øverste højre hjørne af startskærmen for at få Soundscape til at stoppe med at lave lydbeskeder, indtil du vælger at vække den igen.
+ Hvis du slår lydbeskeder fra, vil appen være tavs. Du kan slå lydbeskeder fra i afsnittet *Administrer lydbeskeder* på skærmen *Indstillinger* ved at sætte *Detaljeniveau for lydbeskeder* til *Lydløs*, og slå dem til igen ved at vælge et hvilket som helst andet niveau. Du kan gøre det samme ved at bede Siri eller Gemini om det. Du kan også gøre Soundscape mere stille et trin ad gangen med medieknapperne på dine hovedtelefoner: hvert tryk på *forrige* går et trin ned gennem *Detaljeret*, *Balanceret*, *Stille* og *Lydløs*, og endnu et tryk vender tilbage til *Detaljeret*. Se hjælpeemnet *Brug af mediebetjeningsknapper*. Alternativt kan du bruge knappen *Dvale* i øverste højre hjørne af startskærmen for at få Soundscape til at stoppe med at lave lydbeskeder, indtil du vækker den.
 
 **Administrer hvilke lydbeskeder du hører:**
 

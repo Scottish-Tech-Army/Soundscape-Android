@@ -11,7 +11,7 @@ permalink: /users/help-routes.html
 
 ## Was ist es?
 
-Routen bestehen aus einer Reihe von Wegpunkten. Sie werden bei der Ankunft an einem Wegpunkt informiert. Dann springt das Audiobeacon automatisch zum nächsten Wegpunkt.
+Routen bestehen aus einer Reihe von Wegpunkten. Sie werden bei der Ankunft an jedem Wegpunkt informiert, und das Audiobeacon springt automatisch zum nächsten Wegpunkt.
 
 ## Wann würde ich es verwenden?
 

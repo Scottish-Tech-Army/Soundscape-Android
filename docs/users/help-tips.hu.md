@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 A közeli buszmegállókat megtalálhatja a *Közösségi közlekedés* szűrő kiválasztásával a *Közeli helyek* listában.
 
-Bármely címre beállíthat hangjelzőt. A Soundscape főképernyőjén keressen rá a címre. Válassza ki a címet a keresési találatok közül a *Helyszín adatai* képernyő megnyitásához. Ezen a képernyőn megtalálja a *Hangjelző indítása* lehetőséget az adott címhez. Így hangjelzőt állíthat be olyan üzletekre, helyekre, érdekes helyekre és lakóépületekre is, amelyek nem szerepelnek az OpenStreetMapben.
+Bármely címre beállíthat hangjelzőt. A főképernyőn keressen rá a címre a keresősávval. Ezután válassza ki a címet a keresési találatok közül a *Helyszín adatai* képernyő megnyitásához. Ezen a képernyőn megtalálja a *Hangjelző indítása* lehetőséget az adott címhez. Így hangjelzőt állíthat be olyan üzletekre, helyekre, érdekes helyekre és lakóépületekre is, amelyek nem szerepelnek az OpenStreetMapben.
 
 Ha rendszeresen igénybe vesz egy buszjáratot, mentse el jelölőként a felszállási és leszállási megállóit. Így elmentődnek, és könnyen megtalálhatja őket. Lépjen a *Jelölők és útvonalak* menübe a kezdőképernyőről, majd keresse meg őket a *Jelölők* oldalon. Hangjelzőt állíthat be rájuk, hogy rendszeres frissítéseket kapjon arról, mennyire közel van a leszállási megállójához. Megjegyzés: kikapcsolhatja a ritmikus hangot, és útközben akkor is kap távolsági frissítéseket.
 

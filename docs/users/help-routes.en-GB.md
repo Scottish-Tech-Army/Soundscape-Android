@@ -11,7 +11,7 @@ permalink: /users/help-routes.html
 
 ## What is it?
 
-Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Routes are a series of waypoints. You will be informed on arrival at each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
 ## When would I use it?
 

@@ -21,7 +21,7 @@ permalink: /users/help-using-media-controls.html
 
 미디어 제어에는 2가지 작동 모드가 있습니다. 모드는 *설정*의 *미디어 제어* 섹션에서 선택할 수 있습니다. 모드는 다음과 같습니다:
 
- 기본 모드. 
+ *기본 모드*. 
 
 ⏯ 재생/일시정지: 비콘 오디오를 켜거나 끕니다. 
 
@@ -31,7 +31,7 @@ permalink: /users/help-using-media-controls.html
 
 
 
-오디오 메뉴. 
+*오디오 메뉴*. 
 
 
 

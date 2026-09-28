@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 You can find nearby bus stops by selecting the *Public Transport* filter in the *Places Nearby* list.
 
-You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *Location Details* screen. This screen has an option to *Start Audio Beacon* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
+You can set a beacon on any address. From the main screen, search for the address using the search bar. Then select the address in the search results to open a *Location Details* screen. This screen has an option to *Start Audio Beacon* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
 If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 

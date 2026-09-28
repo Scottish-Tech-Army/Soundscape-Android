@@ -21,7 +21,7 @@ Vitufe vya kudhibiti sauti vya vipokea sauti vinaweza kutumika wakati Soundscape
 
 Kuna hali 2 za uendeshaji za vitufe vya kudhibiti sauti. Hali inaweza kuchaguliwa katika sehemu ya *Mipangilio* *Vidhibiti vya Sauti*. Hali hizo ni:
 
- Hali ya Awali. 
+ *Hali ya Awali*. 
 
 ⏯ Cheza/Simamisha: Hubadilisha kuwasha na kuzima sauti ya beacon. 
 
@@ -31,7 +31,7 @@ Kuna hali 2 za uendeshaji za vitufe vya kudhibiti sauti. Hali inaweza kuchaguliw
 
 
 
-Menyu ya Sauti. 
+*Menyu ya Sauti*. 
 
 
 

@@ -35,7 +35,7 @@ Aloittamaan jonkin tallennetuista reiteistäsi nimeltä, siirtymään seuraavaan
 
 Asettamaan äänimajakan johonkin tallennetuista merkitsimistäsi nimeltä tai kytkemään majakan pois.
 
-Asettamaan ilmoitusten tarkkuudeksi *Äänetön*, *Hiljainen*, *Tasapainoinen* tai *Yksityiskohtainen*, jolloin muuttuu, kuinka paljon Soundscape puhuu kävellessäsi. Äänetön kytkee automaattiset ilmoitukset pois.
+Asettamaan ilmoitusten tarkkuudeksi *Äänetön*, *Hiljainen*, *Tasapainoinen* tai *Yksityiskohtainen*, jolloin muuttuu, kuinka paljon Soundscape puhuu kävellessäsi. *Äänetön* kytkee automaattiset ilmoitukset pois.
 
 Lukemaan tallennettujen reittiesi tai tallennettujen merkitsimiesi nimet.
 

@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Co to je?
 
-Nastavením majáku na blízkém místě umožníte aplikaci Soundscape informovat vás pomocí slyšitelného zvuku majáku, který jako by přicházel ze směru daného místa. Tento maják lze na domovské obrazovce ztlumit nebo zapnout zpět. Soundscape navíc na domovské obrazovce zobrazuje informace o daném místě, včetně vzdálenosti k němu a jeho adresy, pokud je známa.
+Nastavením majáku na blízkém místě umožníte aplikaci Soundscape informovat vás pomocí zvuku, který jako by přicházel ze směru daného místa. Tento maják lze na domovské obrazovce ztlumit nebo zapnout zpět. Soundscape navíc na domovské obrazovce zobrazuje informace o daném místě, včetně vzdálenosti k němu a jeho adresy, pokud je známa.
 
 ## Kdy to použít?
 
@@ -21,7 +21,7 @@ Nastavení majáku je užitečné, když si chcete udržet přehled o známém o
 
 **Nastavení majáku:**
 
- Nejprve si zobrazte podrobnosti o místě, a to buď vyhledáním místa pomocí vyhledávacího pole, nebo klepnutím na jedno z tlačítek *Místa v okolí*, *Značky a trasy* nebo *Aktuální poloha* a výběrem místa. Na obrazovce *Podrobnosti o místě* můžete vybrat tlačítko *Spustit zvukový maják*. Klepnutím na něj se vrátíte na domovskou obrazovku a zapne se slyšitelný maják přicházející ze směru vybraného místa. Na hlavní obrazovce aplikace se nyní zobrazí název vybraného místa spolu s jeho vzdáleností a fyzickou adresou, pokud je k dispozici.
+ Nejprve si zobrazte podrobnosti o místě, a to buď vyhledáním místa pomocí vyhledávacího pole, nebo klepnutím na jedno z tlačítek *Místa v okolí*, *Značky a trasy* nebo *Aktuální poloha* a výběrem místa. Poté na obrazovce *Podrobnosti o místě* vyberte tlačítko *Spustit zvukový maják*. Klepnutím na něj se vrátíte na domovskou obrazovku a zapne se slyšitelný maják přicházející ze směru vybraného místa. Na hlavní obrazovce se nyní zobrazí název místa spolu s jeho vzdáleností a fyzickou adresou, pokud je k dispozici.
 
 **Odstranění aktuálního majáku:**
 

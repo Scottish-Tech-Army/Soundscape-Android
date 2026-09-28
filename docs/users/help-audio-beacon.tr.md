@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Bu nedir?
 
-Yakın bir konuma işaret ayarlamak, Soundscape'in o konumun yönünden gelen sesli işaret sesi çalarak sizi bilgilendirmesini sağlar. Bu işaret, ana ekranda sessize alınabilir veya sesi açılabilir. Ayrıca Soundscape, ana ekranda konum hakkında bilgi gösterir; buna konuma olan mesafe ve biliniyorsa sokak adresi dahildir.
+Yakın bir konuma işaret ayarlamak, Soundscape'in o konumun yönünden gelen bir ses çalarak sizi bilgilendirmesini sağlar. Bu işaret, ana ekranda sessize alınabilir veya sesi açılabilir. Ayrıca Soundscape, ana ekranda konum hakkında bilgi gösterir; buna konuma olan mesafe ve biliniyorsa sokak adresi dahildir.
 
 ## Ne zaman kullanırım?
 
@@ -21,7 +21,7 @@ Yakın bir konuma işaret ayarlamak, Soundscape'in o konumun yönünden gelen se
 
 **Sesli İşaret ayarlamak için :**
 
- Önce, arama çubuğunu kullanarak bir yer arayarak ya da *Yakındaki Yerler*, *Kayıtlı Noktalar ve Rotalar* veya *Mevcut Konum* düğmelerinden birine dokunup bir konum seçerek o konumun ayrıntılarını görüntüleyin. *Konum Ayrıntıları* ekranından *Sesli İşareti Başlat* düğmesini seçebilirsiniz. Buna dokunduğunuzda ana ekrana dönecek ve seçtiğiniz yerin bulunduğu yönden gelen duyulabilir bir işaret açılacaktır. Seçtiğiniz yerin adı ile birlikte mesafesi ve biliniyorsa fiziksel adresi artık ana ekranda gösterilecektir.
+ Önce, arama çubuğunu kullanarak bir yer arayarak ya da *Yakındaki Yerler*, *Kayıtlı Noktalar ve Rotalar* veya *Mevcut Konum* düğmelerinden birine dokunup bir konum seçerek o konumun ayrıntılarını görüntüleyin. Ardından *Konum Ayrıntıları* ekranından *Sesli İşareti Başlat* düğmesini seçin. Buna dokunduğunuzda ana ekrana dönecek ve seçtiğiniz yerin bulunduğu yönden gelen duyulabilir bir işaret açılacaktır. Yerin adı ile birlikte mesafesi ve biliniyorsa fiziksel adresi artık ana ekranda gösterilecektir.
 
 **Mevcut işareti kaldırmak için :**
 

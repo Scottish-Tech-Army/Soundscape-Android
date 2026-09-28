@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Menene wannan?
 
-Kafa alamar sauti a wani wuri da ke kusa yana ba wa Soundscape damar ci gaba da sanar da ku ta hanyar kunna sautin alama daga wajen wannan wurin. Ana iya kashe ko kunna sautin wannan alama daga babban allo. Bugu da ƙari, Soundscape yana nuna bayanan wurin a babban allo, wanda ya haɗa da nisan zuwa wurin da adireshin titinsa idan an san shi.
+Kafa alamar sauti a wani wuri da ke kusa yana ba wa Soundscape damar ci gaba da sanar da ku ta hanyar kunna sauti daga wajen wannan wurin. Ana iya kashe ko kunna sautin wannan alama daga babban allo. Bugu da ƙari, Soundscape yana nuna bayanan wurin a babban allo, wanda ya haɗa da nisan zuwa wurin da adireshin titinsa idan an san shi.
 
 ## Yaushe zan yi amfani da shi?
 
@@ -21,7 +21,7 @@ Kafa alamar sauti yana da amfani idan kuna son bin diddigin wani sanannen wuri y
 
 **Don kafa alamar sauti :**
 
- Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko kuma ta danna ɗaya daga cikin maɓallan *Wurare Kusa*, *Alamomi da Hanyoyi*, ko *Wurin Yanzu* sannan ku zaɓi wuri. Daga allon *Cikakkun Bayanan Wuri* za ku iya zaɓar maɓallin *Fara Alamar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna alamar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin da kuka zaɓa tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allon manhajar.
+ Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko kuma ta danna ɗaya daga cikin maɓallan *Wurare na Kusa*, *Alamomi da Tafarkuna*, ko *Wurin da Kake Yanzu* sannan ku zaɓi wuri. Sannan daga allon *Cikakkun Bayanan Wuri*, zaɓi maɓallin *Fara Siginar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna alamar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allo.
 
 **Don cire alamar sauti ta yanzu :**
 

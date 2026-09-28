@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 Postajališča avtobusov v bližini najdete tako, da v seznamu *Kraji v bližini* izberete filter *Javni prevoz*.
 
-Svetilnik lahko nastavite na kateri koli naslov. Na glavnem zaslonu aplikacije Soundscape poiščite naslov. Ko naslov izberete med rezultati iskanja, se prikaže zaslon *Podrobnosti lokacije*, na katerem lahko izberete možnost *Zaženi zvočni svetilnik* za ta naslov. Na ta način lahko svetilnik nastavite na podjetja, kraje, zanimivosti in bivališča, ki jih ni v Open Street Map.
+Svetilnik lahko nastavite na kateri koli naslov. Na glavnem zaslonu poiščite naslov z iskalno vrstico. Ko nato naslov izberete med rezultati iskanja, se prikaže zaslon *Podrobnosti lokacije*, na katerem lahko izberete možnost *Zaženi zvočni svetilnik* za ta naslov. Na ta način lahko svetilnik nastavite na podjetja, kraje, zanimivosti in bivališča, ki jih ni v OpenStreetMap.
 
 Če redno uporabljate določeno avtobusno linijo, postajališče vstopa in izstopa shranite kot oznaki. Tako bosta shranjeni in ju boste zlahka spet našli – z začetnega zaslona odprite *Oznake in poti* ter ju poiščite na strani *Oznake*. Nanju lahko nastavite svetilnik in redno boste prejemali posodobitve o tem, kako blizu ste postajališču izstopa. Opomba: ritmični zvok lahko izklopite, posodobitve o razdalji pa boste še vedno prejemali med potjo.
 

@@ -13,11 +13,11 @@ permalink: /users/help-routes.html
 
 Un Itinéraire correspond à une série de points de repère. Vous êtes informé quand vous arrivez à chaque point de repère, et la balise audio avance automatiquement jusqu’au point de repère suivant.
 
-## Quand l’utiliser ?
+## Quand l’utiliser ?
 
 Vous pouvez créer et utiliser un Itinéraire dans un endroit que vous connaissez déjà, pour vous aider à rester sur la bonne voie. Ou vous pouvez utiliser un Itinéraire pour vous aider à apprendre un nouveau trajet.
 
-## Comment ça fonctionne ?
+## Comment ça fonctionne ?
 
 **Création d’un Itinéraire** :
 

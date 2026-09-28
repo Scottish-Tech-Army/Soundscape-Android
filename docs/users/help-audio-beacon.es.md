@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## ¿Qué es?
 
-Establecer una señal en una ubicación cercana permite a Soundscape mantenerte informado reproduciendo un sonido de señal de audio procedente de la dirección de esa ubicación. Esta señal se puede silenciar o reactivar en la pantalla principal. Además, Soundscape muestra información sobre la ubicación de la pantalla principal incluyendo la distancia hasta ella y la dirección si se conoce.
+Establecer una señal en una ubicación cercana permite a Soundscape mantenerte informado reproduciendo un sonido procedente de la dirección de esa ubicación. Esta señal se puede silenciar o reactivar en la pantalla principal. Además, Soundscape muestra información sobre la ubicación de la pantalla principal incluyendo la distancia hasta ella y la dirección si se conoce.
 
 ## ¿Cuándo lo usaría?
 
@@ -21,13 +21,13 @@ Establecer una señal es útil cuando deseas realizar un seguimiento de un punto
 
 **Para establecer una señal**:
 
- en primer lugar, ve los detalles de una ubicación usando la barra de búsqueda para buscar un lugar, o pulsando en uno de los botones *Lugares cercanos*, *Marcadores y rutas* o *Ubicación actual* y seleccionando una ubicación. En la pantalla *Detalles de la ubicación*, puedes seleccionar el botón *Iniciar señal de audio*. Al pulsar en él, volverás a la pantalla principal y se activará una señal de audio proveniente de la dirección del lugar que has seleccionado. El nombre del lugar que has seleccionado, junto con su distancia y dirección física, si están disponibles, aparecerán ahora en la pantalla principal de la aplicación.
+ en primer lugar, ve los detalles de una ubicación usando la barra de búsqueda para buscar un lugar, o pulsando en uno de los botones *Lugares cercanos*, *Marcadores y rutas* o *Ubicación actual* y seleccionando una ubicación. En la pantalla *Detalles de la ubicación*, selecciona el botón *Iniciar señal de audio*. Al pulsar en él, volverás a la pantalla principal y se activará una señal de audio proveniente de la dirección del lugar que has seleccionado. El nombre del lugar, junto con su distancia y dirección física, si están disponibles, aparecerán ahora en la pantalla principal de la aplicación.
 
 **Para quitar la señal actual**:
 
- solo tiene que presionar el botón *Detener ruta* de la pantalla principal.
+ solo tienes que presionar el botón *Detener ruta* de la pantalla principal.
 
 **Para silenciar la señal de audio**:
 
- pulsa en el botón *Silenciar señal* que se encuentra debajo del botón *Detener ruta* de la pantalla principal.
+ pulsa en el botón *Silenciar señal* junto al botón *Detener ruta* en la pantalla principal.
 

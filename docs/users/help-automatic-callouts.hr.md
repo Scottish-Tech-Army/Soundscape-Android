@@ -31,7 +31,7 @@ Soundscape vam može reći o stvarima u vašoj okolini dok im se približavate t
 
 **Uključivanje ili isključivanje najava:**
 
- Isključivanjem najava utišat ćete aplikaciju. Najave se mogu isključiti u odjeljku *Upravljanje najavama* na zaslonu *Postavke* postavljanjem opcije *Razina detalja najava* na *Bez zvuka*, a ponovno se uključuju odabirom bilo koje druge razine. Isto možete učiniti i tako da to zatražite od Siri ili Geminija. Soundscape možete i postupno utišavati gumbima za upravljanje medijima na slušalicama: svaki pritisak na *prethodno* spušta razinu kroz *Detaljno*, *Uravnoteženo*, *Tiho* i *Bez zvuka*, a još jedan pritisak vraća na *Detaljno*. Pogledajte temu pomoći *Upotreba upravljanja medijima*. Također, možete koristiti gumb *Mirovanje* u gornjem desnom kutu početnog zaslona kako biste zaustavili Soundscape da izgovara najave dok ga ponovno ne probudite.
+ Isključivanjem najava utišat ćete aplikaciju. Najave se mogu isključiti u odjeljku *Upravljanje najavama* na zaslonu *Postavke* postavljanjem opcije *Razina detalja najava* na *Bez zvuka*, a ponovno se uključuju odabirom bilo koje druge razine. Isto možete učiniti i tako da to zatražite od Siri ili Geminija. Soundscape možete i postupno utišavati gumbima za upravljanje medijima na slušalicama: svaki pritisak na *prethodno* spušta razinu kroz *Detaljno*, *Uravnoteženo*, *Tiho* i *Bez zvuka*, a još jedan pritisak vraća na *Detaljno*. Pogledajte temu pomoći *Upotreba upravljanja medijima*. Također, možete koristiti gumb *Mirovanje* u gornjem desnom kutu početnog zaslona kako biste zaustavili Soundscape da izgovara najave dok ga ne probudite.
 
 **Upravljanje najavama koje čujete:**
 

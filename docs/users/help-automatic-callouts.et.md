@@ -31,7 +31,7 @@ Soundscape saab teile rääkida ümbritsevatest asjadest, kui neile lähenete, t
 
 **Häälteadete sisse- või väljalülitamine:**
 
- Häälteadete väljalülitamine muudab rakenduse vaikseks. Häälteateid saab välja lülitada ekraani *Seadistused* jaotises *Halda häälteateid*, seades valiku *Häälteadete detailsus* väärtusele *Hääletu*, ja uuesti sisse lülitada, valides mis tahes muu taseme. Sama saate teha, paludes seda Siril või Geminil. Samuti saate Soundscape'i samm-sammult vaiksemaks muuta kõrvaklappide meediumijuhtnuppudega: iga vajutus nupule *eelmine* liigub ühe taseme võrra allapoole läbi tasemete *Üksikasjalik*, *Tasakaalustatud*, *Vaikne* ja *Hääletu*, ning veel üks vajutus naaseb tasemele *Üksikasjalik*. Vaadake abiteemat *Meedianuppude kasutamine*. Teise võimalusena saate kasutada avakuva paremas ülanurgas olevat nuppu *Unerežiim*, et peatada Soundscape'i häälteated, kuni otsustate selle uuesti äratada.
+ Häälteadete väljalülitamine muudab rakenduse vaikseks. Häälteateid saab välja lülitada ekraani *Seadistused* jaotises *Halda häälteateid*, seades valiku *Häälteadete detailsus* väärtusele *Hääletu*, ja uuesti sisse lülitada, valides mis tahes muu taseme. Sama saate teha, paludes seda Siril või Geminil. Samuti saate Soundscape'i samm-sammult vaiksemaks muuta kõrvaklappide meediumijuhtnuppudega: iga vajutus nupule *eelmine* liigub ühe taseme võrra allapoole läbi tasemete *Üksikasjalik*, *Tasakaalustatud*, *Vaikne* ja *Hääletu*, ning veel üks vajutus naaseb tasemele *Üksikasjalik*. Vaadake abiteemat *Meedianuppude kasutamine*. Teise võimalusena saate kasutada avakuva paremas ülanurgas olevat nuppu *Unerežiim*, et peatada Soundscape'i häälteated, kuni selle äratate.
 
 **Häälteadete haldamine:**
 

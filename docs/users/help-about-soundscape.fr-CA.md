@@ -11,7 +11,7 @@ permalink: /users/help-about-soundscape.html
 
 Soundscape utilise une technologie audio innovante pour aider les gens à mieux connaître leur environnement. Cela leur donne plus de confiance et leur permet de se déplacer de façon autonome.
 
-Soundscape s’appuie sur ces excellentes bibliothèques et données tierces. Cliquez sur les liens pour consulter leurs licences :
+Soundscape s’appuie sur ces excellentes bibliothèques et données tierces. Cliquez sur les liens pour consulter leurs licences :
 
 [©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) fournissent toutes les données géographiques utilisées pour la cartographie et l’audio dans Soundscape.
 

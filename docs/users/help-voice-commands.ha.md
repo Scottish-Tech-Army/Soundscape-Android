@@ -35,7 +35,7 @@ Ya fara ɗaya daga cikin tafarkunka da aka ajiye da suna, ya matsa zuwa matsayi 
 
 Ya saita siginar sauti a kan ɗaya daga cikin alamominka da aka ajiye da suna, ko ya kashe siginar.
 
-Ya sanya matakin sanarwa ya zama *Shiru*, *Kaɗan*, *Daidaito* ko *Cikakke*, don canza yawan abin da Soundscape ke faɗa yayin tafiyarka. Shiru yana kashe sanarwa ta atomatik.
+Ya sanya matakin sanarwa ya zama *Shiru*, *Kaɗan*, *Daidaito* ko *Cikakke*, don canza yawan abin da Soundscape ke faɗa yayin tafiyarka. *Shiru* yana kashe sanarwa ta atomatik.
 
 Ya karanta sunayen tafarkunka da aka ajiye ko alamominka da aka ajiye.
 

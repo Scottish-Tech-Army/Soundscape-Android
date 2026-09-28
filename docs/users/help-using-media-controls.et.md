@@ -21,7 +21,7 @@ Kõrvaklappide meediumijuhtnuppe saab kasutada, kui Soundscape töötab — olen
 
 Meediumijuhtnuppudel on 2 töörežiimi. Režiimi saab valida jaotises *Seadistused* *Meediumijuhtnupud*. Režiimid on:
 
- Algne režiim. 
+ *Algne režiim*. 
 
 ⏯ Esita/Paus: lülitab helimajaka heli sisse ja välja. 
 
@@ -31,7 +31,7 @@ Meediumijuhtnuppudel on 2 töörežiimi. Režiimi saab valida jaotises *Seadistu
 
 
 
-Helimenüü. 
+*Helimenüü*. 
 
 
 

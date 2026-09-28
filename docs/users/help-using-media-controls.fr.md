@@ -13,15 +13,15 @@ permalink: /users/help-using-media-controls.html
 
 Vous pouvez accéder à certaines fonctionnalités de Soundscape grâce aux boutons de commandes multimédias de votre casque. Cette fonctionnalité fonctionne avec tous les casques avec fil ou Bluetooth comportant des boutons de commandes multimédias comme Lecture, Pause, Suivant, Précédent, etc. Les boutons peuvent varier selon les casques, consultez la liste des actions ci-dessous pour déterminer celles qui sont disponibles.
 
-## Quand l’utiliser ?
+## Quand l’utiliser ?
 
 Les boutons de commandes multimédias des casques peuvent être utilisés lorsque Soundscape est en cours d’exécution, que vous utilisiez activement l’application, qu’elle s’exécute en arrière-plan ou que votre appareil soit verrouillé. Toutefois, les boutons de commandes multimédias des casques ne fonctionnent pas avec Soundscape si vous lisez de l’audio, comme de la musique, des podcasts ou des vidéos, avec une autre application.
 
-## Comment ça fonctionne ?
+## Comment ça fonctionne ?
 
 Il existe 2 modes de fonctionnement pour les contrôles multimédias. Le mode se sélectionne dans la section *Réglages* *Contrôles multimédias*. Les modes sont :
 
- Mode original. 
+ *Mode original*. 
 
 ⏯ Lecture/Pause : active ou désactive le son de la balise. 
 
@@ -31,7 +31,7 @@ Il existe 2 modes de fonctionnement pour les contrôles multimédias. Le mode se
 
 
 
-Menu audio. 
+*Menu audio*. 
 
 
 

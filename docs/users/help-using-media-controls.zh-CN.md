@@ -21,7 +21,7 @@ permalink: /users/help-using-media-controls.html
 
 媒体控制有 2 种操作模式。可以在*设置*的*媒体控制*部分选择模式。模式如下：
 
- 原始模式。 
+ *原始模式*。 
 
 ⏯ 播放/暂停：切换音频信标的开/关。 
 
@@ -31,7 +31,7 @@ permalink: /users/help-using-media-controls.html
 
 
 
-音频菜单。 
+*音频菜单*。 
 
 
 

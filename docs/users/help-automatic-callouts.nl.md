@@ -31,7 +31,7 @@ Soundscape kan u vertellen wat er om u heen is terwijl u eraan nadert, door de n
 
 **Aankondigingen in- of uitschakelen :**
 
- Het uitschakelen van aankondigingen zorgt dat de app stil is. U kunt aankondigingen uitschakelen in de sectie *Aankondigingen beheren* op het scherm *Instellingen* door *Detailniveau aankondigingen* op *Stil* te zetten, en weer inschakelen door een ander niveau te kiezen. Hetzelfde kunt u doen door het aan Siri of Gemini te vragen. U kunt Soundscape ook stap voor stap rustiger maken met de mediaknoppen op uw koptelefoon: elke druk op *vorige* gaat een stap omlaag langs *Gedetailleerd*, *Gebalanceerd*, *Rustig* en *Stil*, en nog een druk gaat terug naar *Gedetailleerd*. Zie het helponderwerp *Mediaregelaars gebruiken*. Een andere optie is de knop *Slapen* rechtsboven op het hoofdscherm te gebruiken om te voorkomen dat Soundscape aankondigingen maakt totdat u het weer activeert.
+ Het uitschakelen van aankondigingen zorgt dat de app stil is. U kunt aankondigingen uitschakelen in de sectie *Aankondigingen beheren* op het scherm *Instellingen* door *Detailniveau aankondigingen* op *Stil* te zetten, en weer inschakelen door een ander niveau te kiezen. Hetzelfde kunt u doen door het aan Siri of Gemini te vragen. U kunt Soundscape ook stap voor stap rustiger maken met de mediaknoppen op uw koptelefoon: elke druk op *vorige* gaat een stap omlaag langs *Gedetailleerd*, *Gebalanceerd*, *Rustig* en *Stil*, en nog een druk gaat terug naar *Gedetailleerd*. Zie het helponderwerp *Mediaregelaars gebruiken*. Een andere optie is de knop *Slapen* rechtsboven op het hoofdscherm te gebruiken om te voorkomen dat Soundscape aankondigingen maakt totdat u het wekt.
 
 **Beheren welke aankondigingen u hoort :**
 

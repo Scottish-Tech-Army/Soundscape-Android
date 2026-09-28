@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 Podeu trobar les parades d'autobús properes seleccionant el filtre *Transport públic* a la llista de *Llocs propers*.
 
-Podeu definir una balisa en qualsevol adreça. Des de la pantalla principal de Soundscape, cerqueu l'adreça. Seleccioneu l'adreça als resultats de la cerca per obrir la pantalla *Detalls de la ubicació*. Aquesta pantalla té una opció per *Iniciar la balisa sonora* a l'adreça. D'aquesta manera, podeu definir una balisa en negocis, llocs, punts d'interès i habitatges que no es troben a OpenStreetMap.
+Podeu definir una balisa en qualsevol adreça. Des de la pantalla principal, cerqueu l'adreça amb la barra de cerca. Després, seleccioneu l'adreça als resultats de la cerca per obrir la pantalla *Detalls de la ubicació*. Aquesta pantalla té una opció *Inicia la balisa sonora* a l'adreça. D'aquesta manera, podeu definir una balisa en negocis, llocs, punts d'interès i habitatges que no es troben a OpenStreetMap.
 
 Si agafeu una línia d'autobús regularment, deseu les vostres parades de pujada i baixada com a marcadors. Així es desen i les podeu tornar a trobar fàcilment. Aneu a *Marcadors i rutes* des de la pantalla principal i després trobeu-les a la pàgina *Marcadors*. Podeu definir-hi una balisa per rebre actualitzacions periòdiques de com d'a prop us trobeu de la vostra parada de baixada. Nota: podeu desactivar el so rítmic i continuar rebent actualitzacions de distància pel camí.
 

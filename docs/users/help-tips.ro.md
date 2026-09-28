@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 Poți găsi stațiile de autobuz din apropiere selectând filtrul *Transport public* în lista *Locuri din apropiere*.
 
-Poți seta o baliză pe orice adresă. Din ecranul principal Soundscape, caută adresa. Selectează adresa în rezultatele căutării pentru a deschide ecranul *Detalii locație*. Acest ecran are opțiunea *Pornește baliza audio* pentru acea adresă. În acest fel, poți seta o baliză pe afaceri, locuri, puncte de interes și locuințe care nu se regăsesc în OpenStreetMap.
+Poți seta o baliză pe orice adresă. Din ecranul principal, caută adresa folosind bara de căutare. Apoi selectează adresa în rezultatele căutării pentru a deschide ecranul *Detalii locație*. Acest ecran are opțiunea *Pornește baliza audio* pentru acea adresă. În acest fel, poți seta o baliză pe afaceri, locuri, puncte de interes și locuințe care nu se regăsesc în OpenStreetMap.
 
 Dacă circuli regulat pe o linie de autobuz, salvează stațiile la care urci și cobori ca marcaje. Astfel vor fi salvate și le vei găsi ușor. Accesează *Marcaje și rute* de pe ecranul principal, apoi găsește‑le în pagina *Marcaje*. Poți seta o baliză pe ele pentru a primi actualizări periodice despre cât de aproape ești de stația la care trebuie să cobori. Notă: poți dezactiva sunetul ritmic și vei primi în continuare actualizări despre distanță pe parcurs.
 

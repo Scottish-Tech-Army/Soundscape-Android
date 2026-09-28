@@ -31,7 +31,7 @@ Soundscape kan fortelle deg om ting rundt deg når du nærmer deg dem ved å les
 
 **Slå meldinger av eller på :**
 
- Å slå av meldinger gjør appen stille. Meldinger kan slås av i seksjonen *Administrer meldinger* på *Innstillinger*-skjermen ved å sette *Detaljnivå for meldinger* til *Lydløs*, og slås på igjen ved å velge et hvilket som helst annet nivå. Du kan gjøre det samme ved å be Siri eller Gemini om det. Du kan også gjøre Soundscape stillere ett trinn om gangen med mediekontrollknappene på hodetelefonene dine: hvert trykk på *forrige* går ett trinn ned gjennom *Detaljert*, *Balansert*, *Stille* og *Lydløs*, og enda et trykk går tilbake til *Detaljert*. Se hjelpeemnet *Bruk mediekontroller*. Alternativt kan du bruke knappen *Sett i dvalemodus* øverst til høyre på startskjermen for å stoppe Soundscape fra å lese opp meldinger til du velger å vekke appen igjen.
+ Å slå av meldinger gjør appen stille. Meldinger kan slås av i seksjonen *Administrer meldinger* på *Innstillinger*-skjermen ved å sette *Detaljnivå for meldinger* til *Lydløs*, og slås på igjen ved å velge et hvilket som helst annet nivå. Du kan gjøre det samme ved å be Siri eller Gemini om det. Du kan også gjøre Soundscape stillere ett trinn om gangen med mediekontrollknappene på hodetelefonene dine: hvert trykk på *forrige* går ett trinn ned gjennom *Detaljert*, *Balansert*, *Stille* og *Lydløs*, og enda et trykk går tilbake til *Detaljert*. Se hjelpeemnet *Bruk mediekontroller*. Alternativt kan du bruke knappen *Sett i dvalemodus* øverst til høyre på startskjermen for å stoppe Soundscape fra å lese opp meldinger til du vekker appen.
 
 **Administrere hvilke meldinger du hører :**
 

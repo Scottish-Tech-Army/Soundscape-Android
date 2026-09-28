@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Ni nini?
 
-Kuweka beacon kwenye mahali pa karibu humwezesha Soundscape kukujulisha kwa kucheza sauti ya beacon inayosikika ikitoka upande wa mahali hapo. Beacon hii inaweza kunyamazishwa au kuwashwa tena kwenye skrini ya mwanzo. Zaidi ya hayo, Soundscape huonyesha taarifa kuhusu mahali hapo kwenye skrini ya mwanzo, ikiwemo umbali kufikia mahali hapo na anwani yake ya barabara ikiwa inajulikana.
+Kuweka beacon kwenye mahali pa karibu humwezesha Soundscape kukujulisha kwa kucheza sauti ikitoka upande wa mahali hapo. Beacon hii inaweza kunyamazishwa au kuwashwa tena kwenye skrini ya mwanzo. Zaidi ya hayo, Soundscape huonyesha taarifa kuhusu mahali hapo kwenye skrini ya mwanzo, ikiwemo umbali kufikia mahali hapo na anwani yake ya barabara ikiwa inajulikana.
 
 ## Ni lini nitaitumia?
 
@@ -21,7 +21,7 @@ Kuweka beacon ni muhimu unapotaka kufuatilia alama unayoifahamu wakati unachungu
 
 **Kuweka beacon :**
 
- Kwanza, tazama maelezo ya mahali kwa kutumia upau wa utafutaji kutafuta mahali, au kwa kugusa moja ya vitufe vya *Sehemu za Karibu*, *Alama na Njia*, au *Mahali Nilipo Sasa* kisha uchague mahali. Kutoka kwenye skrini ya *Maelezo ya Mahali* unaweza kuchagua kitufe cha *Anzisha Beacon ya Sauti*. Kugusa hii kutakurudisha kwenye skrini ya mwanzo na kuwasha beacon inayosikika ikitoka upande wa mahali ulipochagua. Jina la mahali ulipochagua pamoja na umbali wake na anwani yake ya kimwili, ikiwa inajulikana, sasa vitaonyeshwa kwenye skrini kuu ya programu.
+ Kwanza, tazama maelezo ya mahali kwa kutumia upau wa utafutaji kutafuta mahali, au kwa kugusa moja ya vitufe vya *Sehemu za Karibu*, *Alama na Njia*, au *Mahali Nilipo Sasa* kisha uchague mahali. Kisha kutoka kwenye skrini ya *Taarifa za Mahali*, chagua kitufe cha *Anzisha Beacon ya Sauti*. Kugusa hii kutakurudisha kwenye skrini ya mwanzo na kuwasha beacon inayosikika ikitoka upande wa mahali ulipochagua. Jina la mahali pamoja na umbali wake na anwani yake ya kimwili, ikiwa inajulikana, sasa vitaonyeshwa kwenye skrini kuu.
 
 **Kuondoa beacon ya sasa :**
 

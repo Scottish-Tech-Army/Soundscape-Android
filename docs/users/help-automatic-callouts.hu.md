@@ -31,7 +31,7 @@ A Soundscape képes tájékoztatni Önt a környezetében lévő dolgokról, ami
 
 **A közlések be- vagy kikapcsolása:**
 
- A közlések kikapcsolása elnémítja az alkalmazást. A közléseket a *Beállítások* képernyő *Közlések kezelése* részében kapcsolhatja ki úgy, hogy a *Közlések részletessége* beállítást *Néma* értékre állítja, és bármely másik szint kiválasztásával kapcsolhatja vissza. Ugyanezt megteheti úgy is, hogy megkéri rá a Sirit vagy a Geminit. A Soundscape-et fokozatosan is halkíthatja a fülhallgatója médiavezérlő gombjaival: a *előző* minden egyes megnyomása egy szinttel lejjebb lép a *Részletes*, *Kiegyensúlyozott*, *Csendes* és *Néma* szinteken, egy további megnyomás pedig visszatér a *Részletes* szintre. Lásd a *Médiavezérlők használata* súgótémakört. Ehelyett használhatja az *Alvás* gombot is a kezdőképernyő jobb felső sarkában, hogy leállítsa a Soundscape közléseit, amíg úgy nem dönt, hogy újra felébreszti.
+ A közlések kikapcsolása elnémítja az alkalmazást. A közléseket a *Beállítások* képernyő *Közlések kezelése* részében kapcsolhatja ki úgy, hogy a *Közlések részletessége* beállítást *Néma* értékre állítja, és bármely másik szint kiválasztásával kapcsolhatja vissza. Ugyanezt megteheti úgy is, hogy megkéri rá a Sirit vagy a Geminit. A Soundscape-et fokozatosan is halkíthatja a fülhallgatója médiavezérlő gombjaival: a *előző* minden egyes megnyomása egy szinttel lejjebb lép a *Részletes*, *Kiegyensúlyozott*, *Csendes* és *Néma* szinteken, egy további megnyomás pedig visszatér a *Részletes* szintre. Lásd a *Médiavezérlők használata* súgótémakört. Ehelyett használhatja az *Alvás* gombot is a kezdőképernyő jobb felső sarkában, hogy leállítsa a Soundscape közléseit, amíg fel nem ébreszti.
 
 **Annak kezelése, hogy milyen közléseket hall :**
 

@@ -21,7 +21,7 @@ Mediebetjeningsknapper på hovedtelefoner kan bruges, mens Soundscape kører —
 
 Der er 2 driftsmåder for mediebetjeningsknapperne. Tilstanden vælges i afsnittet *Indstillinger* > *Mediebetjeninger*. Måderne er:
 
- Originaltilstand. 
+ *Originaltilstand*. 
 
 ⏯ Afspil/Pause: Slår lydfyret til eller fra. 
 
@@ -31,7 +31,7 @@ Der er 2 driftsmåder for mediebetjeningsknapperne. Tilstanden vælges i afsnitt
 
 
 
-Lydmenu. 
+*Lydmenu*. 
 
 
 

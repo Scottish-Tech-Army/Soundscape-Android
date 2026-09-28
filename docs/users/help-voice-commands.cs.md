@@ -35,7 +35,7 @@ Spustil některou z vašich uložených tras podle názvu, přešel na další t
 
 Nastavil zvukový maják na některou z vašich uložených značek podle názvu nebo maják vypnul.
 
-Nastavil podrobnost hlášení na *Bez zvuku*, *Tichý*, *Vyvážený* nebo *Podrobný*, čímž se změní, kolik toho Soundscape říká, když jdete. Bez zvuku vypne automatická hlášení.
+Nastavil podrobnost hlášení na *Bez zvuku*, *Tichý*, *Vyvážený* nebo *Podrobný*, čímž se změní, kolik toho Soundscape říká, když jdete. *Bez zvuku* vypne automatická hlášení.
 
 Přečetl názvy vašich uložených tras nebo vašich uložených značek.
 

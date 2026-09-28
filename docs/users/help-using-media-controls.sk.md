@@ -21,7 +21,7 @@ Ovládacie prvky médií na slúchadlách môžete používať, kým je Soundsca
 
 Existujú 2 režimy fungovania ovládacích prvkov médií. Režim je možné vybrať v časti *Nastavenia* *Ovládanie médií*. Režimy sú:
 
- Pôvodný režim. 
+ *Pôvodný režim*. 
 
 ⏯ Prehrať/Pozastaviť: Zapne alebo vypne zvuk majáka. 
 
@@ -31,7 +31,7 @@ Existujú 2 režimy fungovania ovládacích prvkov médií. Režim je možné vy
 
 
 
-Zvukové menu. 
+*Zvukové menu*. 
 
 
 

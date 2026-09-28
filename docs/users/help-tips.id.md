@@ -11,7 +11,7 @@ permalink: /users/help-tips.html
 
 Anda dapat menemukan halte bus terdekat dengan memilih filter *Transportasi Umum* pada daftar *Tempat di Sekitar*.
 
-Anda dapat mengatur suar pada alamat apa pun. Dari layar utama Soundscape, cari alamat tersebut. Pilih alamat dari hasil pencarian untuk membuka layar *Detail Lokasi*. Layar ini memiliki opsi *Mulai Suar Audio* pada alamat tersebut. Dengan cara ini, Anda dapat mengatur suar pada bisnis, tempat, tempat menarik, dan rumah tinggal yang tidak ada di OpenStreetMap.
+Anda dapat mengatur suar pada alamat apa pun. Dari layar utama, cari alamat tersebut menggunakan bilah pencarian. Lalu pilih alamat dari hasil pencarian untuk membuka layar *Detail Lokasi*. Layar ini memiliki opsi *Mulai Suar Audio* pada alamat tersebut. Dengan cara ini, Anda dapat mengatur suar pada bisnis, tempat, tempat menarik, dan rumah tinggal yang tidak ada di OpenStreetMap.
 
 Jika Anda rutin menggunakan sebuah rute bus, simpan halte naik dan turun Anda sebagai Penanda. Dengan begitu halte-halte tersebut tersimpan dan mudah Anda temukan lagi. Buka *Penanda dan Rute* dari layar utama, lalu temukan di halaman *Penanda*. Anda dapat mengatur suar pada halte tersebut untuk mendapatkan pembaruan berkala tentang seberapa dekat Anda dengan halte turun Anda. Catatan: Anda dapat menonaktifkan suara ritmis dan tetap mendapatkan pembaruan jarak di sepanjang perjalanan.
 

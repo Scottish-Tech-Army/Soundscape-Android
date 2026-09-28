@@ -21,7 +21,7 @@ Bạn có thể dùng các nút điều khiển đa phương tiện trên tai ng
 
 Có 2 chế độ hoạt động cho các nút điều khiển đa phương tiện. Bạn có thể chọn chế độ trong phần *Cài đặt* *Điều khiển Đa phương tiện*. Các chế độ là:
 
- Chế độ gốc. 
+ *Chế độ gốc*. 
 
 ⏯ Phát/Tạm dừng: Bật hoặc tắt âm thanh đèn hiệu. 
 
@@ -31,7 +31,7 @@ Có 2 chế độ hoạt động cho các nút điều khiển đa phương ti�
 
 
 
-Menu âm thanh. 
+*Menu âm thanh*. 
 
 
 
