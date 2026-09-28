@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">বইয়ের দোকান, বই</string>
     <string name="search_synonyms_phone_shop">মোবাইলের দোকান, মোবাইল শপ, ফোনের দোকান</string>
     <string name="search_no_offline_maps">অনুসন্ধান অফলাইনে চলছে, কিন্তু আপনি যেখানে আছেন তার জন্য কোনো অফলাইন মানচিত্র ডাউনলোড করা নেই।</string>
+    <string name="location_detail_adjust_marker_location">অবস্থান সম্পাদনা করুন</string>
+    <string name="location_detail_adjust_marker_location_instructions">মার্কারের অবস্থান সরাতে মানচিত্রটি টেনে আনুন। নতুন অবস্থান রাখতে ‘সম্পন্ন’-এ ট্যাপ করুন, অথবা অবস্থান অপরিবর্তিত রাখতে ‘বাতিল’-এ ট্যাপ করুন।</string>
 </resources>
