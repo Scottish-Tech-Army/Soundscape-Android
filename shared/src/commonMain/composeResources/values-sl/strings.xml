@@ -1656,4 +1656,6 @@
     <string name="search_synonyms_book_shop">knjigarna, knjige</string>
     <string name="search_synonyms_phone_shop">trgovina z mobilnimi telefoni, mobilni telefoni, mobiteli</string>
     <string name="search_no_offline_maps">Iskanje deluje brez povezave, vendar za kraj, kjer ste, ni prenesen noben zemljevid brez povezave.</string>
+    <string name="location_detail_adjust_marker_location">Uredi lokacijo</string>
+    <string name="location_detail_adjust_marker_location_instructions">Povlecite zemljevid, da premaknete lokacijo oznake. Tapnite Končano, da obdržite novo lokacijo, ali Prekliči, da jo pustite nespremenjeno.</string>
 </resources>
