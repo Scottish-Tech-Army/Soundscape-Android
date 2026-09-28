@@ -63,6 +63,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.search_choose_destination
+import org.scottishtecharmy.soundscape.resources.search_no_offline_maps
 import org.scottishtecharmy.soundscape.resources.search_no_results
 import org.scottishtecharmy.soundscape.resources.search_searching
 import org.scottishtecharmy.soundscape.resources.settings_section_search
@@ -82,6 +83,8 @@ fun MainSearchBar(
     onItemClick: (LocationDescription) -> Unit,
     userLocation: LngLatAlt?,
     isSearching: Boolean = false,
+    // The search was made offline with no offline map of where the user is
+    withoutOfflineMaps: Boolean = false,
     onExpandedChange: (Boolean) -> Unit = {},
 ) {
     val shape = RoundedCornerShape(spacing.small)
@@ -253,10 +256,11 @@ fun MainSearchBar(
                         }
                     } else if (results.isEmpty()) {
                         Text(
-                            text = if (query.isBlank())
-                                stringResource(Res.string.search_choose_destination)
-                            else
-                                stringResource(Res.string.search_no_results),
+                            text = when {
+                                query.isBlank() -> stringResource(Res.string.search_choose_destination)
+                                withoutOfflineMaps -> stringResource(Res.string.search_no_offline_maps)
+                                else -> stringResource(Res.string.search_no_results)
+                            },
                             style = MaterialTheme.typography.bodyMedium,
                             color = colors.onSurfaceVariant,
                             modifier = Modifier.padding(spacing.small)

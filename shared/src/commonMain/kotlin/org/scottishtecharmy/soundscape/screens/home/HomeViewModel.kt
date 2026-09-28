@@ -215,10 +215,19 @@ open class HomeViewModel(
     fun onTriggerSearch(text: String) {
         viewModelScope.launch {
             _state.update { it.copy(searchInProgress = true) }
-            val result = withContext(Dispatchers.Default) {
-                connection.service?.searchResult(text)
+            val service = connection.service
+            // Whether there's an offline map of where the user is takes reading the extracts,
+            // so it's found off the main thread along with the results
+            val (result, withoutOfflineMaps) = withContext(Dispatchers.Default) {
+                Pair(service?.searchResult(text), service?.searchIsOfflineWithoutMaps() == true)
             }
-            _state.update { it.copy(searchItems = result, searchInProgress = false) }
+            _state.update {
+                it.copy(
+                    searchItems = result,
+                    searchWithoutOfflineMaps = withoutOfflineMaps,
+                    searchInProgress = false
+                )
+            }
         }
     }
 

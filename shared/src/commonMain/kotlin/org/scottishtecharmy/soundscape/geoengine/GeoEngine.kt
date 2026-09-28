@@ -679,6 +679,14 @@ class GeoEngine {
         )
     }
 
+    /**
+     * Whether a search would be made offline with no offline map of where the user is, so that
+     * all it can find is their markers.
+     */
+    fun searchIsOfflineWithoutMaps(): Boolean =
+        multiGeocoder.searchesOffline() &&
+            !tileSearch.hasOfflineMapAt(getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location)
+
     suspend fun searchResult(searchString: String): List<LocationDescription>? {
         return withContext(org.scottishtecharmy.soundscape.platform.ioDispatcher) {
             return@withContext geocoder.getAddressFromLocationName(

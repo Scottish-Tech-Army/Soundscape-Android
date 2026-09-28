@@ -138,6 +138,9 @@ interface MediaControllableService {
      */
     suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? = null
     suspend fun searchResult(query: String): List<LocationDescription>?
+
+    /** Whether a search would be made offline with no offline maps downloaded to search */
+    fun searchIsOfflineWithoutMaps(): Boolean = false
     fun isAudioEngineBusy(): Boolean
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long
 }
