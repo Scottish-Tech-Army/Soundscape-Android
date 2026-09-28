@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">könyvesbolt, könyvek, antikvárium</string>
     <string name="search_synonyms_phone_shop">telefonbolt, mobilbolt, mobiltelefon-bolt</string>
     <string name="search_no_offline_maps">A keresés offline működik, de a tartózkodási helyedről nincs letöltött offline térkép.</string>
+    <string name="location_detail_adjust_marker_location">Helyzet szerkesztése</string>
+    <string name="location_detail_adjust_marker_location_instructions">Húzza a térképet a jelölő helyzetének áthelyezéséhez. Koppintson a Kész gombra az új helyzet megtartásához, vagy a Mégse gombra, ha változatlanul szeretné hagyni.</string>
 </resources>
