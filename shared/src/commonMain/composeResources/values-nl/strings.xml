@@ -1626,4 +1626,6 @@
     <string name="search_synonyms_book_shop">boekhandel, boekwinkel, boeken</string>
     <string name="search_synonyms_phone_shop">telefoonwinkel, gsm-winkel, mobiele telefoons</string>
     <string name="search_no_offline_maps">Zoeken werkt offline, maar er is geen offline kaart gedownload van de plek waar u bent.</string>
+    <string name="location_detail_adjust_marker_location">Locatie bewerken</string>
+    <string name="location_detail_adjust_marker_location_instructions">Sleep de kaart om de locatie van de markering te verplaatsen. Tik op Gereed om de nieuwe locatie te behouden of op Annuleren om deze ongewijzigd te laten.</string>
 </resources>
