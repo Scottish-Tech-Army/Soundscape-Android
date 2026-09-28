@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
@@ -19,13 +21,18 @@ class MultiGeocoder(
     val gridState: GridState,
     settlementState: GridState,
     tileSearch: TileSearcher?,
-    photonGeocoder: PhotonGeocoder,
+    private val photonGeocoder: PhotonGeocoder,
     platformGeocoder: SoundscapeGeocoder? = null,
     analyticsLogger: (String) -> Unit = {},
     private val processor: (LocationDescription) -> Unit = {},
     private val hasNetwork: () -> Boolean = { false },
     private val geocoderMode: () -> String? = { null },
     poiStrategy: () -> PoiRankStrategy = { PoiRankStrategy.default },
+    /**
+     * Recognises a search for a type of place - "pharmacy" - rather than for a name. Null when
+     * there's nothing to recognise it with, and every search is then for a name.
+     */
+    private val categoryMatcher: suspend () -> SearchCategoryMatcher? = { null },
 ) : SoundscapeGeocoder() {
 
     private val fusedGeocoder = FusedGeocoder(gridState, photonGeocoder, platformGeocoder)
@@ -80,18 +87,58 @@ class MultiGeocoder(
             }
         }
 
-        val geocoderResults = pickGeocoder()?.getAddressFromLocationName(
-            locationName,
-            nearbyLocation,
-            localizedStrings
-        )
-        if (geocoderResults != null) {
-            for (result in geocoderResults) {
-                results.add(result)
+        // A search for a type of place is also searched for as a name, as there may be a place
+        // called that - a bar called "The Pharmacy" - but the places of that type come first
+        val categoryMatch = try {
+            categoryMatcher()?.match(locationName)
+        } catch (e: Exception) {
+            null
+        }
+        val geocoder = pickGeocoder()
+        val (categoryResults, geocoderResults) = coroutineScope {
+            val categorySearch = categoryMatch?.let { match ->
+                async {
+                    searchByCategory(match.category, match.remainder, nearbyLocation, localizedStrings)
+                }
             }
+            val nameSearch = async {
+                geocoder?.getAddressFromLocationName(
+                    locationName,
+                    nearbyLocation,
+                    localizedStrings
+                )
+            }
+            Pair(categorySearch?.await().orEmpty(), nameSearch.await().orEmpty())
+        }
+
+        results.addAll(categoryResults)
+        for (result in geocoderResults) {
+            val isDuplicate = categoryResults.any {
+                (it.name == result.name) &&
+                    (gridState.ruler.distance(it.location, result.location) < 100.0)
+            }
+            if (!isDuplicate) results.add(result)
         }
 
         return results
+    }
+
+    /**
+     * Photon searches for a type of place worldwide, so it's used whenever it would be for a name,
+     * and the offline maps when it isn't or can't be reached.
+     */
+    override suspend fun searchByCategory(
+        category: SearchCategory,
+        name: String?,
+        nearbyLocation: LngLatAlt,
+        localizedStrings: LocalizedStrings?
+    ): List<LocationDescription>? {
+        if (pickGeocoder() == fusedGeocoder) {
+            val photonResults =
+                photonGeocoder.searchByCategory(category, name, nearbyLocation, localizedStrings)
+            if (photonResults != null) return photonResults
+        }
+        return offlineGeocoder.searchByCategory(category, name, nearbyLocation, localizedStrings)
     }
 
     override suspend fun getAddressFromLngLat(

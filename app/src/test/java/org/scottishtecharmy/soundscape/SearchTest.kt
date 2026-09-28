@@ -12,6 +12,8 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OfflineGeocoder
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OsmTag
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SearchCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.StreetDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
@@ -20,6 +22,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.utils.process
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class SearchTest {
 
@@ -613,6 +616,33 @@ class SearchTest {
 
             val result = streetDescription.getLocationFromStreetNumber("21")
             assertEquals("21", result?.second)
+        }
+    }
+
+    @Test
+    fun categorySearch() {
+        runBlocking {
+            // Milngavie town centre, with several pharmacies within a few hundred metres, none of
+            // which would be found by searching for "pharmacy" as a name
+            val currentLocation = LngLatAlt(-4.3159285, 55.9420645)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
+            val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
+            val offlineGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
+            val pharmacy = SearchCategory("pharmacy", listOf(OsmTag(null, "pharmacy"), OsmTag("shop", "chemist")))
+
+            val results = offlineGeocoder.searchByCategory(pharmacy, null, currentLocation, null)
+            for (result in results)
+                println("${result.name} ${gridState.ruler.distance(currentLocation, result.location)}")
+            assertEquals(10, results.size)
+            assertTrue(results.any { it.name == "Boots" })
+            val distances = results.map { gridState.ruler.distance(currentLocation, it.location) }
+            assertEquals(distances.sorted(), distances)
+            assertTrue(distances[0] < 100.0)
+
+            val boots = offlineGeocoder.searchByCategory(pharmacy, "boots", currentLocation, null)
+            assertTrue(boots.isNotEmpty())
+            assertTrue(boots.all { it.name == "Boots" })
         }
     }
 }

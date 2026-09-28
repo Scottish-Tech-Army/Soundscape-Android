@@ -35,6 +35,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.extrapolatePositionForward
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.MultiGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SearchCategories
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
@@ -386,7 +387,8 @@ class GeoEngine {
                         PreferenceDefaults.POI_RANK_STRATEGY
                     )
                 )
-            }
+            },
+            categoryMatcher = { SearchCategories.matcher() }
         )
         geocoder = multiGeocoder
         locationProvider = newLocationProvider
