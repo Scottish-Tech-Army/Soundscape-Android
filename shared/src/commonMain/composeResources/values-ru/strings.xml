@@ -1656,4 +1656,6 @@
     <string name="search_synonyms_book_shop">книжный магазин, книжный, книги</string>
     <string name="search_synonyms_phone_shop">салон связи, магазин телефонов, телефоны</string>
     <string name="search_no_offline_maps">Поиск работает офлайн, но для места, где вы находитесь, не загружена офлайн‑карта.</string>
+    <string name="location_detail_adjust_marker_location">Изменить местоположение</string>
+    <string name="location_detail_adjust_marker_location_instructions">Перетащите карту, чтобы переместить отметку. Нажмите «Готово», чтобы сохранить новое местоположение, или «Отмена», чтобы оставить его без изменений.</string>
 </resources>
