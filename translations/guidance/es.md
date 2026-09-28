@@ -306,3 +306,5 @@ formal (see above). All 25 were uploaded and verified live, and the 3 iOS prompt
 `InfoPlist.xcstrings` at the same time. JJ also asked to join both the Android and iOS beta
 programmes, and will compare the informal Spanish here against his formal
 Latin American Spanish in Soundscape Community.
+
+**2026-09-28 — JJ's English rewording and UI-name markup.** Only 4 strings were flagged (3 changed). The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and verified live.

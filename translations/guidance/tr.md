@@ -109,3 +109,5 @@ sweep.**
 **2026-09-25 — TR-G1 resolved in code.** All 18 suffixed templates rewritten to
 '{DA}/'{DAn}/'{A}/'{I}/'{In} markers, uploaded and verified live, together with
 the resolver in `GrammarMarkers.kt`.
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 26 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.

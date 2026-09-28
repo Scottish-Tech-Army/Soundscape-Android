@@ -192,3 +192,5 @@ looking for slashes, which a speech synthesiser reads aloud. Checked that
 Þorkell's terms still ship and that his typos are gone. Nothing uploaded.
 
 **2026-09-24 — dead-end case fix applied.** `confect_name_dead_end` → «blindgötu» (the C9 batch fix across ru, cs, sk, hr, sr, sl, pl and is).
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 25 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
