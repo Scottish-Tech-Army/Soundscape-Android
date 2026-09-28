@@ -1611,4 +1611,5 @@
     <string name="search_synonyms_bicycle_shop">自転車屋、自転車店、サイクルショップ</string>
     <string name="search_synonyms_book_shop">本屋、書店</string>
     <string name="search_synonyms_phone_shop">携帯ショップ、スマホショップ、携帯電話店</string>
+    <string name="search_no_offline_maps">検索はオフラインで動作していますが、現在地のオフラインマップがダウンロードされていません。</string>
 </resources>
