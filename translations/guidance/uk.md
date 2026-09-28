@@ -230,3 +230,5 @@ templates need changing too, and they are taking notes while testing (UK-G3
 moves to an `agreed` defect, with fixes pending). Q2: «звуковий маячок» and
 «мітка» are fine and stay. Q3: the four detail levels are easy to understand
 and to tell apart, so they are now in the glossary as `confirmed`. Nothing uploaded.
+
+**2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 24 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.

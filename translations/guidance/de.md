@@ -87,3 +87,7 @@ file. Nothing uploaded.
 **2026-09-25 — Sleep/Snooze iOS parity (Dave's decision, C14).** `sleep_sleep` «Ruhemodus» → Microsoft's «Ruhemodus aktivieren». This closes Q4.
 
 **2026-09-25 — Microsoft drift pass (C14), approved by Dave.** Of the strings whose English is unchanged from Microsoft's but whose translation had drifted, 11 were restored to Microsoft's wording and 6 kept (Microsoft errors, recorded decisions, or unifications of Microsoft's own inconsistent terms). 11 uploaded and verified live.
+
+**2026-09-28 — JJ's English rewording (30 FAQ/help strings).** Existing German edited to follow the new English rather than retranslated: 24 changed, 6 already matched. `settings_help_section_home_screen_buttons` is «Standort‑ und Erkundungsschaltflächen», matching `faq_holding_phone_flat_answer`. `help_config_voices_content_ios` keeps «Gesprochene Inhalte» and drops JJ's "(In iOS versions prior to 26…)" note, because German iOS 26 guides still use that name (`unconfirmed`: check on a German iOS 26 device). Uploaded and verified live.
+
+**2026-09-28 — UI-name markup.** The 4 strings flagged again by 2842d5a00 were updated. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and verified live.
