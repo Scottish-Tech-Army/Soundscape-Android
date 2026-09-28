@@ -1611,4 +1611,6 @@
     <string name="search_synonyms_book_shop">서점, 책방</string>
     <string name="search_synonyms_phone_shop">휴대폰 매장, 핸드폰 가게, 휴대폰 대리점</string>
     <string name="search_no_offline_maps">검색이 오프라인으로 작동 중이지만, 현재 위치의 오프라인 지도가 다운로드되어 있지 않습니다.</string>
+    <string name="location_detail_adjust_marker_location">위치 편집</string>
+    <string name="location_detail_adjust_marker_location_instructions">지도를 드래그하여 마커 위치를 옮깁니다. 새 위치를 유지하려면 ‘완료’를, 변경하지 않으려면 ‘취소’를 탭합니다.</string>
 </resources>
