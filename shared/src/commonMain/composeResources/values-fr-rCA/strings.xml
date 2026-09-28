@@ -1641,4 +1641,5 @@
     <string name="search_synonyms_bicycle_shop">magasin de vélos, boutique de vélo, vélos</string>
     <string name="search_synonyms_book_shop">librairie, livres</string>
     <string name="search_synonyms_phone_shop">magasin de cellulaires, boutique de cellulaires, cellulaires</string>
+    <string name="search_no_offline_maps">La recherche fonctionne hors ligne, mais aucune carte hors ligne n’est téléchargée pour l’endroit où vous vous trouvez.</string>
 </resources>
