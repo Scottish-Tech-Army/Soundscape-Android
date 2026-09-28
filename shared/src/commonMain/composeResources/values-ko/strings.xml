@@ -1611,4 +1611,5 @@
     <string name="search_synonyms_bicycle_shop">자전거 가게, 자전거 판매점, 자전거</string>
     <string name="search_synonyms_book_shop">서점, 책방</string>
     <string name="search_synonyms_phone_shop">휴대폰 매장, 핸드폰 가게, 휴대폰 대리점</string>
+    <string name="search_no_offline_maps">검색이 오프라인으로 작동 중이지만, 현재 위치의 오프라인 지도가 다운로드되어 있지 않습니다.</string>
 </resources>
