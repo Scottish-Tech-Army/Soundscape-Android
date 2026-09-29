@@ -52,6 +52,14 @@ the Microsoft ones. Ask whether the renames are improvements or churn.
 letter mid-sentence. Danish usually writes «blindvej» as one word. Candidate:
 «blindvej» (lowercase, one word), with or without «en».
 
+### DA-B1 — Hints are infinitives (`agreed`, fixed 2026-09-29)
+
+Accessibility hints (`*_hint`, `*_acc_hint`) are inserted into «Dobbelttryk for at %1$s» on iOS, and TalkBack builds «…for at <label>» from them on Android. They must be infinitives («gemme», «høre», «åbne»), as Microsoft wrote them, never imperatives («gem», «hør», «åbn»). Check any new hint for this.
+
+### DA-T2 — Shop names end in a shop word (`agreed`, fixed 2026-09-29)
+
+An `osm_*` "… Shop" is announced as a place, so it needs -butik, -forretning, -handel or -forhandler («Isbutik», «Dyrehandel»), not the bare goods («Is», «Kæledyr»), which are heard as the object itself.
+
 ### DA-C1 — Siri phrases are Danish and live outside Weblate (`agreed`)
 
 The same coupling as FR-C1.
@@ -87,3 +95,21 @@ Microsoft's «Kører nord».*
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 28 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** Full stop removed from `location_detail_full_screen_for_edit_hint`. Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 101 fixes uploaded.** The Weblate log shows no human Danish edits. Fixed:
+- **24 accessibility hints** had drifted from Microsoft's infinitives to imperatives, which breaks «Dobbelttryk for at %1$s» (DA-B1).
+- **66 `osm_*` shop names** were bare nouns (DA-T2). These are my coinages, `unconfirmed`: «Isbutik», «Kaffebutik», «Dyrehandel», «Isenkræmmer», «Spiritusbutik», «Urforretning»…
+- **Microsoft errors:**
+  - `first_launch_headphones_message_1`: «skal du bruge dem nu» → «så find dem frem nu».
+  - `first_launch_beacon_message_1`: «det lyd» → «lyden».
+  - `faq_what_can_I_set_question` → «Hvad kan jeg sætte et lydfyr på?».
+  - «råbe op» → «annoncere» in the two `first_launch_callouts_*` strings.
+- **Other:**
+  - `no_language_selected` «Intet sprog».
+  - `settings_theme_dark` «Mørkt».
+  - `voice_cmd_explain_dynamic_markers`: «markører» → «mærker».
+  - `osm_generic_landmark` «Landemærke».
+  - *…* restored in `help_text_routes_content_how_1`.
+  - `osm_tag_ferry_terminal_named` lower-case «færgeterminal».
+
+Uploaded with `--skip-validate`; all 101 re-fetched and matched exactly.
