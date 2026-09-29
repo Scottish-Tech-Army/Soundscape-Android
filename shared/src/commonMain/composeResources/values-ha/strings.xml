@@ -1628,4 +1628,11 @@
     <string name="search_no_offline_maps">Bincike yana aiki ba tare da intanet ba, amma babu taswirar offline da aka sauke ta wurin da kuke.</string>
     <string name="location_detail_adjust_marker_location">Gyara Wuri</string>
     <string name="location_detail_adjust_marker_location_instructions">Ja taswirar don matsar da wurin alama. Danna An Gama don ajiye sabon wurin, ko Soke don barin wurin yadda yake.</string>
+    <string name="location_detail_action_open_in_app">Buɗe a manhajar taswira</string>
+    <string name="location_detail_action_open_in_named_app">Buɗe a %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">duba wannan wuri a wata manhajar taswira ko ta kewayawa</string>
+    <string name="location_detail_action_open_in_named_app_hint">duba wannan wuri a %1$s</string>
+    <string name="open_in_app_dialog_title">Zaɓi manhajar da za a buɗe da ita</string>
+    <string name="open_in_app_remember">Yi amfani da wannan manhaja koyaushe</string>
+    <string name="open_in_app_change">Zaɓi wata manhaja</string>
 </resources>
