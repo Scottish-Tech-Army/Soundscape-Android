@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="general_error_add_marker_error">Bu yeri işaretlerken sorun yaşıyoruz. Lütfen tekrar deneyin.</string>
+    <string name="general_error_add_marker_error">Bu yeri işaretlerken sorun yaşıyoruz. Lütfen daha sonra tekrar deneyin.</string>
     <string name="settings_section_units">Ölçü Birimleri</string>
     <string name="general_loading_start">Hazır hale getiriliyor…</string>
     <string name="settings_units_imperial">İngiliz Ölçü Birimi (Ayak)</string>
@@ -63,9 +63,9 @@
     <string name="beacon_styles_mallet_very_slow">Tokmak (Çok Yavaş)</string>
     <string name="beacon_audio_beacon">Sesli İşaret</string>
     <string name="beacon_action_mute_beacon">İşareti Sessize Al</string>
-    <string name="beacon_action_mute_beacon_acc_hint">sesli işareti sessize al</string>
+    <string name="beacon_action_mute_beacon_acc_hint">sesli işareti sessize almak</string>
     <string name="beacon_action_unmute_beacon">İşaretin Sesini Aç</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">sesli işaretin sesini aç</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">sesli işaretin sesini açmak</string>
     <string name="preview_title">Konum Simülasyonu</string>
     <string name="preview_go_title">Git</string>
     <string name="preview_go_hint">bu yönde bir sonraki kavşağa kadar ilerlemek</string>
@@ -81,21 +81,21 @@
     <string name="location_detail_action_edit_hint">kayıtlı noktanın adını değiştirmek veya ek not eklemek</string>
     <string name="location_detail_action_share_hint">bu konumu başka bir uygulama ile paylaşmak</string>
     <string name="location_detail_action_preview_hint">bu konumda önizlemeyi başlatmak</string>
-    <string name="location_detail_add_waypoint_existing_hint">bu kayıtlı noktayı rotanızdan kaldırın</string>
-    <string name="location_detail_add_waypoint_new_hint">bu kayıtlı noktayı rotanıza ara nokta olarak ekleyin</string>
-    <string name="location_detail_full_screen_hint">Haritayı tam ekran yapın</string>
-    <string name="location_detail_exit_full_screen_hint">Tam ekran haritadan çıkın</string>
-    <string name="location_detail_full_screen_for_edit_hint">Haritayı tam ekran yapın ve kayıtlı nokta konumunu düzenleyin</string>
+    <string name="location_detail_add_waypoint_existing_hint">bu kayıtlı noktayı rotanızdan kaldırmak</string>
+    <string name="location_detail_add_waypoint_new_hint">bu kayıtlı noktayı rotanıza ara nokta olarak eklemek</string>
+    <string name="location_detail_full_screen_hint">haritayı tam ekran yapmak</string>
+    <string name="location_detail_exit_full_screen_hint">tam ekran haritadan çıkmak</string>
+    <string name="location_detail_full_screen_for_edit_hint">haritayı tam ekran yapıp kayıtlı nokta konumunu düzenlemek</string>
     <string name="route_detail_action_start_route">Rotayı Başlat</string>
     <string name="route_detail_action_stop_route">Rotayı Durdur</string>
     <string name="route_detail_action_edit">Rotayı Düzenle</string>
     <string name="route_detail_action_start_route_hint">bu rotayı oynatmaya başlamak</string>
-    <string name="route_detail_action_start_route_disabled_hint">rotayı başlatmadan önce ara noktalar ekleyin</string>
+    <string name="route_detail_action_start_route_disabled_hint">rotayı başlatmadan önce ara noktalar eklemek</string>
     <string name="route_detail_action_stop_route_hint">bu rotayı durdurmak</string>
     <string name="route_detail_action_share_hint">bu rotayı başka bir uygulama ile paylaşmak</string>
     <string name="route_detail_action_edit_hint">rotadaki ara noktaları değiştirmek veya sırasını yeniden düzenlemek</string>
     <string name="route_detail_action_create">Yeni Rota</string>
-    <string name="route_detail_action_create_hint">yeni bir rota oluştur</string>
+    <string name="route_detail_action_create_hint">yeni bir rota oluşturmak</string>
     <string name="route_end_completed_accessibility">Rota Tamamlandı! %1$s</string>
     <string name="route_detail_action_previous">Önceki Ara Nokta</string>
     <string name="route_detail_action_previous_hint">işareti önceki ara noktaya taşımak</string>
@@ -147,7 +147,7 @@
     <string name="groceries_places_nearby_description">yakındaki market ve bakkalların listesini görmek</string>
     <string name="banks_places_nearby_description">yakındaki bankaların listesini görmek</string>
     <string name="intersections_places_nearby_description">yakındaki yol kavşaklarının listesini görmek</string>
-    <string name="places_nearby_selection_description">yakındaki yerler listesinden seçin</string>
+    <string name="places_nearby_selection_description">yakındaki yerler listesinden seçim yapmak</string>
     <string name="filter_transit">Toplu Taşıma</string>
     <string name="filter_food_drink">Yiyecek ve İçecek</string>
     <string name="filter_groceries">Market ve Bakkallar</string>
@@ -259,13 +259,13 @@
         <item quantity="other">%1$s mil</item>
     </plurals>
     <string name="ui_action_button_my_location">Konu\nmum</string>
-    <string name="ui_action_button_my_location_acc_hint">mevcut konumunuz hakkında bilgi alın</string>
+    <string name="ui_action_button_my_location_acc_hint">mevcut konumunuz hakkında bilgi almak</string>
     <string name="ui_action_button_nearby_markers">Yakındaki\nKayıtlı Noktalar</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">işaretlediğiniz yakın yerler hakkında bilgi alın</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">işaretlediğiniz yakın yerler hakkında bilgi almak</string>
     <string name="ui_action_button_around_me">Etra\nfımda</string>
-    <string name="ui_action_button_around_me_acc_hint">etrafınızdaki dört çeyrekteki yerler hakkında bilgi alın</string>
+    <string name="ui_action_button_around_me_acc_hint">etrafınızdaki dört çeyrekteki yerler hakkında bilgi almak</string>
     <string name="ui_action_button_ahead_of_me">Önüm\nde</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">önünüzdeki yerler hakkında bilgi alın</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">önünüzdeki yerler hakkında bilgi almak</string>
     <string name="ui_menu">Menü</string>
     <string name="ui_menu_hint">menüyü açmak</string>
     <string name="ui_menu_close">Menüyü Kapat</string>
@@ -311,7 +311,7 @@
     <string name="first_launch_welcome_description">Soundscape uzamsal sesi ile güvenle gezinin</string>
     <string name="first_launch_welcome_button">Başlayın</string>
     <string name="first_launch_headphones_title">Soundscape'i Dinleme</string>
-    <string name="first_launch_headphones_message_1">Soundscape her türlü kulaklıkla harika çalışır. Kulaklık kullanmak istiyorsanız şimdi alın.</string>
+    <string name="first_launch_headphones_message_1">Soundscape her türlü kulaklıkla harika çalışır. Kulaklık kullanmak istiyorsanız şimdi takın.</string>
     <string name="first_launch_headphones_message_2">Kulaklığa ihtiyacınız yok. Soundscape telefonunuzun hoparlörleriyle de gayet iyi çalışır.</string>
     <string name="first_launch_callouts_title">Çevrenizi Sesli Dinleyin</string>
     <string name="first_launch_callouts_message">Soundscape, yaklaştığınızda yolları, kavşakları ve ilgi noktalarını anons ederek nerede olduğunuzun ve nereye gittiğinizin farkında olmanıza yardımcı olur.</string>
@@ -335,7 +335,7 @@
     <string name="first_launch_prompt_message">Soundscape ile ilk yürüyüşünüze hazırsınız. Başlamak için yakındaki bir hedef seçin ve sesli işareti başlatın; sesi hedefinizin bulunduğu yönden duyacaksınız.</string>
     <string name="first_launch_prompt_button">Bitir</string>
     <string name="first_launch_change_language">Dili Değiştir</string>
-    <string name="first_launch_change_language_hint">uygulamada kullanılan dili değiştirin</string>
+    <string name="first_launch_change_language_hint">uygulamada kullanılan dili değiştirmek</string>
     <string name="help_text_destination_beacons_what">Yakın bir konuma işaret ayarlamak, Soundscape'in o konumun yönünden gelen bir ses çalarak sizi bilgilendirmesini sağlar. Bu işaret, ana ekranda sessize alınabilir veya sesi açılabilir. Ayrıca Soundscape, ana ekranda konum hakkında bilgi gösterir; buna konuma olan mesafe ve biliniyorsa sokak adresi dahildir.</string>
     <string name="help_text_destination_beacons_when">İşaret ayarlamak, yeni bir alanda gezerken tanıdık bir yer işaretini takip etmek istediğinizde ya da bir yere giderken çevreniz hakkında bilgi almak istediğinizde kullanışlıdır. İşaret özelliği adım adım yol tarifi vermez; ancak şu anda bulunduğunuz konuma göre işarete olan yönü sürekli bir sesli sinyal olarak bildirir. Sesli işareti, mevcut yol bulma becerilerinizi ve hatta en sevdiğiniz navigasyon uygulamasını kullanarak yakın konumlara kendi tercihlerinize göre nasıl gideceğinizi seçebilirsiniz.</string>
     <string name="help_text_destination_beacons_how_1">**Sesli İşaret ayarlamak için :**\n\n Önce, arama çubuğunu kullanarak bir yer arayarak ya da *Yakındaki Yerler*, *Kayıtlı Noktalar ve Rotalar* veya *Mevcut Konum* düğmelerinden birine dokunup bir konum seçerek o konumun ayrıntılarını görüntüleyin. Ardından *Konum Ayrıntıları* ekranından *Sesli İşareti Başlat* düğmesini seçin. Buna dokunduğunuzda ana ekrana dönecek ve seçtiğiniz yerin bulunduğu yönden gelen duyulabilir bir işaret açılacaktır. Yerin adı ile birlikte mesafesi ve biliniyorsa fiziksel adresi artık ana ekranda gösterilecektir.</string>
@@ -347,8 +347,8 @@
     <string name="help_text_automatic_callouts_when_3">**Sessizliğe ihtiyaç duyduğunuzda:**\n\n Bir yolu geçmek üzereyken veya uygulamanın sessiz olmasına ihtiyaç duyduğunuzda anonsları kapatabilirsiniz. Anonslar kapalıyken uygulama yalnızca *"Konumum"*, *"Yakındaki Kayıtlı Noktalar"*, *"Etrafımda"* veya *"Önümde"* düğmelerinden birine manuel olarak dokunduğunuzda bilgi verir.</string>
     <string name="help_text_automatic_callouts_how_1">**Anonsları açma veya kapatma :**\n\n Anonsları kapatmak uygulamayı sessiz hale getirir. Anonslar, *Ayarlar* ekranının *Anonsları yönet* bölümünde *Anons Ayrıntısı* ayarını *Sessiz* yaparak kapatılabilir; başka herhangi bir düzey seçildiğinde yeniden açılır. Aynısını Siri'den veya Gemini'den isteyerek de yapabilirsiniz. Ayrıca kulaklığınızdaki medya kontrol düğmeleriyle Soundscape'i adım adım kısabilirsiniz: *geri* düğmesine her basış *Ayrıntılı*, *Dengeli*, *Sakin* ve *Sessiz* düzeyleri arasında bir kademe aşağı iner, bir basış daha *Ayrıntılı* düzeyine döner. *Medya Kontrollerini Kullanma* yardım konusuna bakın. Alternatif olarak, ana ekranın sağ üst köşesindeki *Uyku Modu* düğmesini kullanarak Soundscape'in anons yapmasını, siz uyandırana kadar durdurabilirsiniz.</string>
     <string name="help_text_automatic_callouts_how_2">**Hangi anonsları duyduğunuzu yönetme :**\n\n Soundscape'in otomatik olarak hangi tür öğeleri anons edeceğini seçmek için *Ana Ekran*daki menüyü kullanarak *Ayarlar* ekranına gidin. *Ayarlar* ekranının *Anonsları yönet* bölümünde, *Anons Ayrıntısı* ile uygulamanın ne kadar konuşacağını, *Sokaklar ve Kavşaklar* anonsu yapılıp yapılmayacağını ve hangi *Anons Edilecek Yerler* olduğunu seçersiniz. Tüm anonsları kapatmak isterseniz *Anons Ayrıntısı* ayarını *Sessiz* yapın.</string>
-    <string name="help_text_my_location_what">"Konumum" düğmesi, şu anda nerede olduğunuzu anlamanıza yardımcı olan bilgileri hızla verir. *"Konumum"*, baktığınız yön, yakındaki yollar veya kavşaklar ve yakındaki ilgi noktaları gibi mevcut konumunuz hakkında bilgi verir.</string>
-    <string name="help_text_my_location_when">*"Konumum"*, nerede olduğunuzu veya hangi yönde ilerlediğinizi anlamanız gerektiğinde kullanışlıdır.</string>
+    <string name="help_text_my_location_what">*Konumum* düğmesi, şu anda nerede olduğunuzu anlamanıza yardımcı olan bilgileri hızla verir. *Konumum*, baktığınız yön, yakındaki yollar veya kavşaklar ve yakındaki ilgi noktaları gibi mevcut konumunuz hakkında bilgi verir.</string>
+    <string name="help_text_my_location_when">*Konumum*, nerede olduğunuzu veya hangi yöne baktığınızı anlamanız gerektiğinde kullanışlıdır.</string>
     <string name="help_text_my_location_how">Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *"Konumum"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *"Konumum"* düğmesine dokunun ve dinleyin.</string>
     <string name="help_text_nearby_markers_what">*"Yakındaki Kayıtlı Noktalar"* düğmesi, size en yakın dört kayıtlı nokta hakkında bilgi verir. *"Yakındaki Kayıtlı Noktalar"*, zaten bildiğiniz yerleri kullanarak kendinizi yönlendirmenize yardımcı olmak için tasarlanmıştır.</string>
     <string name="help_text_nearby_markers_when">Çevrenize göre yönünüzü bulmaya çalıştığınızda, bildiğiniz yerlerin konumlarını duymak için *"Yakındaki Kayıtlı Noktalar"* kullanın.</string>
@@ -366,7 +366,7 @@
     <string name="help_text_markers_content_2">Eviniz, ofisiniz veya tercih ettiğiniz market gibi sizin için kişisel olarak önemli yerleri işaretleyebilirsiniz. Herhangi bir yeri veya adresi işaretleyebileceğiniz gibi, genellikle haritalarda bulunmayan şeyleri de işaretleyebilirsiniz: bina veya park girişleri, yaya butonları, yaya geçitleri, köprüler, otobüs durakları, hatta köpeğinizin favori ağacı. Bu kayıtlı noktaları yürüyüşünüz boyunca referans olarak kullanın.</string>
     <string name="help_text_markers_content_3">İşaretlenmiş yerleri deneyimlemek için, Soundscape yürürken veya onlara yaklaşırken işaretlenmiş yerleri otomatik olarak anons eder; ayrıca ana ekranın alt kısmındaki *Yakındaki Kayıtlı Noktalar* düğmesini kullanarak çevrenizdeki işaretlenmiş yerlerin mekânsal anonsunu dinleyebilirsiniz. Hatta herhangi bir işaretlenmiş yerde sesli işaret de ayarlayabilirsiniz. Bunu yaptığınızda, aşina olduğunuz Soundscape sesli işareti çalacak ve onu her zamanki gibi kullanabilirsiniz.</string>
     <string name="help_text_creating_markers_content_1">Kayıtlı nokta üç şekilde oluşturabilirsiniz: ana ekrandaki arama çubuğunu kullanarak kaydetmek istediğiniz yeri arayarak, *Yakındaki Yerler* düğmesini kullanarak bir yer bularak veya *Mevcut Konum* düğmesini kullanarak; bunların hepsi ana ekranda bulunur. İstediğiniz yeri bulduktan sonra seçmeniz sizi *Konum Ayrıntıları* ekranına götürecektir. Bu ekranda *Kayıtlı Nokta Olarak Kaydet* düğmesini seçin.</string>
-    <string name="help_text_creating_markers_content_2">Artık bu kayıtlı noktayı özelleştirme seçeneğiniz olacak. Kayıtlı noktanın adını değiştirebilir ve bazı ekstra bilgiler sağlamak için kayıtlı nokta ile birlikte anons edilecek bir açıklama notu da ekleyebilirsiniz. İşiniz bittiğinde, Kayıtlı Noktanızı kaydetmek için *"Bitti"* düğmesini seçin.</string>
+    <string name="help_text_creating_markers_content_2">Artık bu kayıtlı noktayı özelleştirme seçeneğiniz olacak. Kayıtlı noktanın adını değiştirebilir ve bazı ekstra bilgiler sağlamak için kayıtlı nokta ile birlikte anons edilecek bir açıklama notu da ekleyebilirsiniz. İşiniz bittiğinde, Kayıtlı Noktanızı kaydetmek için *Tamam* düğmesini seçin.</string>
     <string name="help_text_customizing_markers_content_1">Daha önce oluşturduğunuz bir kayıtlı noktayı yeniden adlandırmak veya ona bir açıklama eklemek isterseniz, *Kayıtlı Noktalar ve Rotalar* sayfasının *Kayıtlı Noktalar* sekmesinden kayıtlı noktayı seçin ve ardından *Kayıtlı Noktayı Düzenle* düğmesini seçin. Bunu, kayıtlı noktalara açıklayıcı veya kullanışlı takma adlar vermek ve açıklama alanını kullanarak daha uzun bir açıklama eklemek için kullanabilirsiniz.</string>
     <string name="help_text_customizing_markers_content_2">Bu *"Düzenle"* ekranından artık ihtiyaç duymadığınız bir kayıtlı noktayı da silebilirsiniz.</string>
     <string name="help_text_routes_content_what">Rotalar bir dizi ara noktadan oluşur. Her ara noktaya vardığınızda bilgilendirilirsiniz ve Sesli İşaret otomatik olarak bir sonraki ara noktaya ilerler.</string>
@@ -389,7 +389,7 @@
     <string name="faq_how_to_use_beacon_question">İşaretten en iyi şekilde nasıl yararlanırım?</string>
     <string name="faq_how_to_use_beacon_answer">Sesli işareti *kulaklarınız için bir deniz feneri* olarak düşünebilirsiniz: bulunduğunuz yerden kuş uçuşu doğrultusunda hedefinizin nerede olduğunu bildirir. Bir deniz feneri gibi, oraya nasıl gideceğinizi söylemez — engelleri aşmak için yol boyunca navigasyon tercihleri yapmanız gerekebilir. Sesli işaretin sürekli ritmik sesi hedefin bulunduğu yönden gelir ve yürürken hedefin size göre nerede olduğunu fark etmenize yardımcı olur. Hedefe doğrudan yürürken veya telefonu hedefe doğru yönelttiğinizde daha yüksek perdeli bir *çınlama* sesi duyarsınız. Gürültülü ortamlarda ritmik sesin yönünü algılamak bazen zor olabildiğinden, bu sayede hedefin yönünü tam olarak belirleyebilirsiniz. Daha yüksek perdeli *çınlama*yı ararken telefonu düz tutup yavaşça çevrenizi tarayın; başınızı da telefonun gösterdiği yöne çevirmeniz en iyi mekânsal ses deneyimini verir.\n\nBu tasarımın birkaç doğal sonucu vardır:\n\n1. İşaret kullanılırken *doğru* bir seyahat yönü yoktur — Soundscape ile oraya nasıl ulaşacağınızı siz seçersiniz;\n\n2. Daha yüksek perdeli *çınlama* yalnızca hedefin yönünü belirlemenize yardımcı olur — oraya nasıl ulaşmanız gerektiğini söylemez;\n\n3. Hedefinize genel olarak nasıl gideceğinizi biliyorsanız, yolculuğun büyük bölümünde işareti sessize alıp yalnızca hedefe yaklaştığınızda açmayı tercih edebilirsiniz.</string>
     <string name="faq_why_does_beacon_disappear_question">Sesli işaret neden bazen kayboluyor?</string>
-    <string name="faq_why_does_beacon_disappear_answer">Soundscape'in sesli işareti, temelde baktığınız yöne göre hedefinizin nerede olduğunu söyleyen yönsel bir ipucudur. Soundscape, hangi yöne baktığınızdan emin olmadığında işaretin sesini kısar. Bu durum çoğunlukla, telefonu cebinizde veya çantanızda taşırken yürürken durduğunuzda, örneğin bir yolu geçmek için beklediğinizde yaşanır. Tekrar yürümeye başladığınızda veya telefonu düz tutup baktığınız yöne doğrulttduğunuzda işaret daha yüksek sesle çalacaktır.</string>
+    <string name="faq_why_does_beacon_disappear_answer">Soundscape'in sesli işareti, temelde baktığınız yöne göre hedefinizin nerede olduğunu söyleyen yönsel bir ipucudur. Soundscape, hangi yöne baktığınızdan emin olmadığında işaretin sesini kısar. Bu durum çoğunlukla, telefonu cebinizde veya çantanızda taşırken yürürken durduğunuzda, örneğin bir yolu geçmek için beklediğinizde yaşanır. Tekrar yürümeye başladığınızda veya telefonu düz tutup baktığınız yöne doğrulttuğunuzda işaret daha yüksek sesle çalacaktır.</string>
     <string name="faq_beacon_on_address_question">Bir adrese işaret ayarlayabilir miyim?</string>
     <string name="faq_beacon_on_address_answer">Evet, ayarlayabilirsiniz. Adresler varsayılan olarak listelenmez ancak arama alanı kullanılarak bulunabilir. Bu adresi tekrar aramak zorunda kalmamak için *Konum Ayrıntıları* ekranından *Kayıtlı Nokta Olarak Kaydet* düğmesini seçerek onu bir kayıtlı nokta olarak ekleyebilirsiniz.</string>
     <string name="faq_beacon_on_home_question">Evime nasıl işaret ayarlarım?</string>
@@ -397,7 +397,7 @@
     <string name="faq_how_close_to_destination_question">Bir hedefe işaret ayarladığımda, Soundscape beni ne kadar yakına götürür?</string>
     <string name="faq_how_close_to_destination_answer">Soundscape, hedefinizin konumunu birkaç metre içinde belirleyebilir, ancak daha az değil. Soundscape, hedefinize yakın olduğunuzu belirlediğinde, hedefinizin yakında olduğunu söyleyen son bir anons duyacaksınız ve işaret kapanacak.</string>
     <string name="faq_turn_beacon_back_on_question">Hedefime yakınken işareti tekrar açabilir miyim?</string>
-    <string name="faq_turn_beacon_back_on_answer">Evet, *"işaret sesini aç düğmesini"* seçerek Soundscape'in kapattığı işareti tekrar açabilirsiniz; ancak Konum Servisleri yalnızca yaklaşık 10 metreye kadar doğru olduğundan, hedefinize birkaç metre içindeyken işaretin davranışını garanti edemeyiz.</string>
+    <string name="faq_turn_beacon_back_on_answer">Evet, *İşaretin Sesini Aç* düğmesini seçerek Soundscape'in kapattığı işareti tekrar açabilirsiniz; ancak Konum Servisleri yalnızca yaklaşık 10 metreye kadar doğru olduğundan, hedefinize birkaç metre içindeyken işaretin davranışını garanti edemeyiz.</string>
     <string name="faq_road_names_question">Soundscape neden bir kavşağa yaklaştığımda yol adlarını iki kez anons ediyor?</string>
     <string name="faq_road_names_answer">Çeşitli kavşak düzenlerine uyum sağlamak için Soundscape, kavşakları ortak bir noktadan ayrılan yol segmentleri olarak tanımlar. Soundscape, sola, düz ileri ve sağa giden yolların adlarını bu sırayla belirtmek için mekansal ses kullanır. Kavşak açıklaması solunuzdaki bir yol yerine üzerinde olduğunuz yolla başlıyorsa, kavşak, üzerinde olduğunuz yolun düz devam ettiği ve sağdan bir yolun bağlandığı yan yatmış bir T oluşturur. Benzer şekilde, açıklama yalnızca sola ve sağa giden bir yol içeriyorsa, üzerinde olduğunuz yolun önünüzde bir T kavşağında sona erdiğini anlarsınız. Bu kavşak tanımlama yöntemi, bir yolun kavşakta adını değiştirdiği durumlarda da doğru çalışır.</string>
     <string name="faq_why_not_every_business_question">Soundscape neden yanından geçtiğim her işletmeyi anons etmiyor?</string>
@@ -412,8 +412,8 @@
     <string name="faq_supported_headsets_question">Soundscape ile hangi kulaklıkları kullanmalıyım?</string>
     <string name="faq_supported_headsets_answer">Soundscape ile hangi kulaklıkları kullandığınız kişisel tercihe bağlıdır ve her seçeneğin avantajları ve dezavantajları vardır. Tek gereklilik, Soundscape'in 3D mekansal ses anonslarından yararlanabilmek için bir çift stereo kulaklık kullanmaktır.</string>
     <string name="faq_battery_impact_question">Soundscape telefonumun pilini nasıl etkiler?</string>
-    <string name="faq_battery_impact_answer">Pil ömrü, telefonunuzun modeline ve yaşına bağlı olarak önemli ölçüde değişir. Pilinizin en çok tükenen kısmı ekranın açık olmasıdır; bu nedenle telefonunuzun pil ömrünü en üst düzeye çıkarmak için ekranı mümkün olduğunca kilitli tutmalısınız. Telefonunuzun piline olan etkiyi azaltmaya yardımcı olması için Soundscape'te Uyku Modu ve Erteleme Modu bulunur. Kullanımda olmadığınız zamanlarda pil tüketimini daha da azaltmak için Soundscape'i telefonunuzun Uygulama Geçişi ekranından zorla kapatmalısınız.</string>
-    <string name="faq_sleep_mode_battery_question">Soundscape'in telefonumun piline etkisini en aza indirmek için Sessiz Mod'u nasıl kullanırım?</string>
+    <string name="faq_battery_impact_answer">Pil ömrü, telefonunuzun modeline ve yaşına bağlı olarak önemli ölçüde değişir. Pilinizi en çok tüketen şey ekranın açık olmasıdır; bu nedenle telefonunuzun pil ömrünü en üst düzeye çıkarmak için ekranı mümkün olduğunca kilitli tutmalısınız. Telefonunuzun piline olan etkiyi azaltmaya yardımcı olması için Soundscape'te Uyku Modu ve Erteleme Modu bulunur. Soundscape'i kullanmadığınız zamanlarda pil tüketimini daha da azaltmak için Soundscape'i telefonunuzun Uygulama Geçişi ekranından zorla kapatmalısınız.</string>
+    <string name="faq_sleep_mode_battery_question">Soundscape'in telefonumun piline etkisini en aza indirmek için Uyku Modu'nu nasıl kullanırım?</string>
     <string name="faq_sleep_mode_battery_answer">Soundscape'i Uyku Modu'na almak için ana ekranın sağ üst köşesindeki *Uyku Modu* düğmesini seçin. Bunu seçtiğinizde Soundscape, siz uyandırana kadar Konum Servisleri ve hücresel veriyi kullanmayı durduracaktır.</string>
     <string name="faq_snooze_mode_battery_question">Soundscape'in telefonumun piline etkisini en aza indirmek için Erteleme modunu nasıl kullanırım?</string>
     <string name="faq_snooze_mode_battery_answer">Soundscape'i Erteleme Modu'na almak için ana ekranın sağ üst köşesindeki *Uyku Modu* düğmesini seçin. Soundscape Uyku Modu'ndayken *Ayrıldığımda Uyandır* düğmesini seçin; Soundscape, mevcut konumunuzu terk edene kadar düşük güç moduna geçecektir.</string>
@@ -430,10 +430,10 @@
     <string name="faq_controlling_what_you_hear_question">Soundscape'te ne duyduğumu ve ne zaman duyduğumu nasıl kontrol ederim?</string>
     <string name="faq_controlling_what_you_hear_answer">Soundscape, neyi ve ne zaman duyduğunuzu kontrol etmeniz için birkaç yol sunar:\n\n1. Tüm sesi hemen kapatma: Mevcut olarak çalan herhangi bir anons ve açık olan işaret dahil tüm sesleri anında kapatmak için ekrana iki parmağınızla çift dokunun. Bir sonraki kavşağa veya ilgi noktasına yaklaştığınızda anonslar otomatik olarak yeniden başlar, ancak sesli işaret yeniden başlamaz. İşaretin sesini tekrar duymak için ana ekranda *İşaretin Sesini Aç* düğmesini seçin.\n\n2. Otomatik anonsları durdurma: Seyahat etmiyorsanız veya bir hedefe ulaştıysanız, muhtemelen Soundscape'in çevrenizdekileri bildirmeye devam etmesine gerek yoktur. Uygulamadan çıkmak yerine Soundscape'i Erteleme Modu'na alabilirsiniz; böylece ayrıldığınızda yeniden uyanır. Ya da Soundscape'i Uyku Modu'na alarak, siz onu tekrar açana kadar kapalı kalmasını sağlayabilirsiniz. Alternatif olarak, menüden *Ayarlar*'ı seçip *Anonsları yönet* bölümünde *Anons Ayrıntısı* ayarını *Sessiz* yapabilirsiniz.\n\n3. İşareti durdurma: Hedef belirleyip sesli işarete ihtiyaç duymayabileceğiniz birkaç senaryo olabilir. Örneğin hedefinize tam olarak nasıl gideceğinizi biliyor olabilirsiniz, ancak yine de ne kadar uzakta olduğunuzla ilgili otomatik güncellemeler almak isteyebilirsiniz. Ya da yalnızca hedefinize yaklaşırken sesli işarete ihtiyaç duyabilirsiniz. Her durumda, ana ekrandaki *İşareti Sessize Al*/*İşaretin Sesini Aç* düğmesini açıp kapatarak işareti ne zaman duymak istediğinizi seçebilirsiniz.\n\nSoundscape ile etkileşimde bulunmaya devam etmek istiyor fakat otomatik anonsları duymak istemiyorsanız, menüden *Ayarlar* ekranındaki *Anonsları yönet* bölümünde *Anons Ayrıntısı* ayarını *Sessiz* yapabilirsiniz. Ya da Soundscape'i kullanmayacaksanız, ana ekrandaki *Uyku Modu* düğmesini kullanarak uygulamayı Uyku veya Erteleme Modu'na alabilirsiniz.</string>
     <string name="faq_holding_phone_flat_question">Telefonu her zaman elimde tutmam gerekiyor mu?</string>
-    <string name="faq_holding_phone_flat_answer">Hayır! Yürürken telefonu cebinize, çantanıza veya uygun gördüğünüz herhangi bir yere koyabilirsiniz. Soundscape, hangi anonsları solunuzda ve sağınızda duyuracağını belirlemek için yürüdüğünüz yönü kullanır. Durduğunuzda Soundscape hangi yöne baktığınızı bilemez. Eğer sesli işaret açıksa, tekrar hareket edene kadar sesin kısıldığını fark edersiniz. Herhangi bir zamanda telefonu çıkarıp ana ekranın altındaki konum ve keşif düğmelerine basabilirsiniz; ancak telefonu tutarken üst kısmının baktığınız yöne ve ekranın gökyüzüne bakacak şekilde düz tutmaya dikkat edin. Bu *düz* pozisyonda Soundscape, telefonun pusulasını kullanarak hangi yöne baktığınızı belirler ve doğru mekânsal anonslar sağlar. İşaret açıksa ayrıca sesin tam hacme geri döndüğünü de fark edeceksiniz.</string>
+    <string name="faq_holding_phone_flat_answer">Hayır! Yürürken telefonu cebinize, çantanıza veya uygun gördüğünüz herhangi bir yere koyabilirsiniz. Soundscape, hangi anonsları solunuzda ve sağınızda duyuracağını belirlemek için yürüdüğünüz yönü kullanır. Durduğunuzda Soundscape hangi yöne baktığınızı bilemez. Eğer sesli işaret açıksa, tekrar hareket edene kadar sesin kısıldığını fark edersiniz. Herhangi bir zamanda telefonu çıkarıp ana ekranın altındaki konum ve keşif düğmelerine basabilirsiniz; ancak telefonu tutarken üst kısmının baktığınız yöne ve ekranın gökyüzüne bakacak şekilde düz tutmaya dikkat edin. Bu *düz* pozisyonda Soundscape, telefonun pusulasını kullanarak hangi yöne baktığınızı belirler ve doğru mekânsal anonslar sağlar. İşaret açıksa ayrıca sesin tam ses düzeyine geri döndüğünü de fark edeceksiniz.</string>
     <string name="faq_what_is_osm_question">OpenStreetMap nedir ve Soundscape için neden kullanıyoruz?</string>
     <string name="faq_what_is_osm_answer">Soundscape, sesli anonslarını oluşturmak için harita verilerini kullanır. Birincil harita kaynağımız OpenStreetMap'tir (www.openstreetmap.org); katkıda bulunanlardan oluşan bir topluluk tarafından oluşturulmuş bir haritalama platformudur. Kuruluşlar ve bireyler, OpenStreetMap araçlarını kullanarak verileri iyileştirebilir ve mekânlarını daha erişilebilir hale getirebilir.</string>
-    <string name="faq_tip_beacon_quiet">Telefonunuzu cebinize koyup hareketsiz kalırsanız, Soundscape hangi yöne baktığınızı belirleyemediği için işaret sesi susar. Bunu düzeltmek için tekrar yürümeye başlayın veya telefonu çıkarıp düz tutun.</string>
+    <string name="faq_tip_beacon_quiet">Telefonunuzu cebinize koyup hareketsiz kalırsanız, Soundscape hangi yöne baktığınızı belirleyemediği için işaret sesi kısılır. Bunu düzeltmek için tekrar yürümeye başlayın veya telefonu çıkarıp düz tutun.</string>
     <string name="faq_tip_setting_beacon_on_address">Herhangi bir adrese işaret ayarlayabilirsiniz. Ana ekrandaki arama çubuğunu kullanarak adresi arayın. Ardından *Konum Ayrıntıları* ekranını açmak için arama sonuçlarında adresi seçin. Bu ekranda, o adres için *Sesli İşareti Başlat* seçeneği bulunur. Bu şekilde, OpenStreetMap'te bulunmayan işletmelere, yerlere, ilgi noktalarına ve konutlara da işaret ayarlayabilirsiniz.</string>
     <string name="faq_tip_finding_bus_stops">Yakındaki otobüs duraklarını *Yakındaki Yerler* listesindeki *Toplu Taşıma* filtresini seçerek bulabilirsiniz.</string>
     <string name="faq_tip_turning_beacon_off">İşaretin ritmik sesini ana ekrandaki sessize alma düğmesiyle açıp kapatabilirsiniz. İşaret sessize alınmış olsa bile, yaklaşık her 50 metrede bir hedefinize olan mesafe hakkında güncelleme almaya devam edersiniz.</string>
@@ -483,10 +483,10 @@
     <string name="accessibility_screen_reader_enabled">Ekran okuyucu etkin olduğundan, uygulamadaki grafik haritaları kapatmanızı öneririz. Bu ayarı burada değiştirebilir ya da devam edebilirsiniz.</string>
     <string name="accessibility_screen_reader_disabled">Ekran okuyucu etkin olmadığından, uygulamada grafik haritaların gösterilmesini istediğinizi varsayıyoruz. Bu ayarı burada değiştirebilir ya da devam edebilirsiniz.</string>
     <string name="text_field_clear_text">Metni Temizle</string>
-    <string name="marker_name_description_hint">kayıtlı nokta adını düzenle</string>
-    <string name="annotation_description_hint">bu kayıtlı noktayı daha sonra tanımanıza yardımcı olacak isteğe bağlı bir not ekle</string>
-    <string name="route_name_description_hint">rota adını düzenle</string>
-    <string name="route_description_description_hint">bu rota için isteğe bağlı bir açıklama ekle</string>
+    <string name="marker_name_description_hint">kayıtlı nokta adını düzenlemek</string>
+    <string name="annotation_description_hint">bu kayıtlı noktayı daha sonra tanımanıza yardımcı olacak isteğe bağlı bir not eklemek</string>
+    <string name="route_name_description_hint">rota adını düzenlemek</string>
+    <string name="route_description_description_hint">bu rota için isteğe bağlı bir açıklama eklemek</string>
     <string name="fab_add_item">Öğe Ekle</string>
     <string name="fab_add_route">Rota Ekle</string>
     <string name="route_waypoint_progress">%3$s'{In} %2$s. ara noktasında %1$s rotası</string>
@@ -1272,7 +1272,7 @@
     <string name="tour_nearby_markers">Son düğme, çevrenizdeki kayıtlı yerleri duyuran Yakındaki Kayıtlı Noktalar'dır. Denemek için Yakındaki Kayıtlı Noktalar'a dokunun.</string>
     <string name="tour_markers_and_routes">Bir kayıtlı noktayı başarıyla oluşturdunuz. Şimdi o konuma gitmek için bir sesli işaret çalalım. Yakındaki Yerler'in hemen altındaki Kayıtlı Noktalar ve Rotalar'a dokunun.</string>
     <string name="tour_markers">Kayıtlı Noktalar ve Rotalar ekranında iki sekme vardır. Biri kayıtlı nokta listeleri olan rotaları, diğeri ise tek tek kayıtlı noktaları gösterir. O sekmeye geçip oluşturduğunuz kayıtlı noktayı bulmak için Kayıtlı Noktalar'a dokunun.</string>
-    <string name="tour_start_beacon">Şu anda tüm kayıtlı noktalarınızı listeleyen Kayıtlı Noktalar sekmesindeydiniz. Bir kayıtlı nokta seçin; Konum Ayrıntıları ekranı açıldığında Sesli İşareti Başlat'a dokunun.</string>
+    <string name="tour_start_beacon">Şu anda tüm kayıtlı noktalarınızı listeleyen Kayıtlı Noktalar sekmesindesiniz. Bir kayıtlı nokta seçin; Konum Ayrıntıları ekranı açıldığında Sesli İşareti Başlat'a dokunun.</string>
     <string name="tour_beacon_demo">Sesli işareti artık duyabilirsiniz. Ses, hedefinizin bulunduğu yönden gelir. Telefonunuzu çevirdikçe işaretin hareket ettiğini ve sesinin değiştiğini duyacaksınız. Şimdi deneyin.</string>
     <string name="tour_beacon_demo_locked">Telefonunuz kilitli olsa bile işaret çalmaya devam eder. Yürüyorsanız veya bir araçtaysanız uygulama, sesli işareti çalarken hareket yönünüzü kullanır. Ancak kilitliyken bile telefonu bir pusula gibi önünüzde düz tutabilirsiniz; bu durumda işaret, telefonun gösterdiği yönü kullanır. Şimdi deneyin.</string>
     <string name="tour_stop_beacon">İşareti durdurmaya hazır olduğunuzda Rotayı Durdur düğmesine dokunun.</string>
@@ -1356,8 +1356,8 @@
     <string name="relative_left_right_direction_behind_left">Arka-sol</string>
     <string name="relative_left_right_direction_behind_right">Arka-sağ</string>
     <string name="relative_left_right_direction_behind">Arka</string>
-    <string name="settings_collapse_section">Bölümü daralt</string>
-    <string name="settings_expand_section">Bölümü genişlet</string>
+    <string name="settings_collapse_section">bölümü daraltmak</string>
+    <string name="settings_expand_section">bölümü genişletmek</string>
     <string name="settings_collapsed">Daraltıldı</string>
     <string name="settings_expanded">Genişletildi</string>
     <string name="ui_grant_permission">İzin Ver</string>
@@ -1532,7 +1532,7 @@
     <string name="legacy_migration_continue">Devam Et</string>
     <string name="callouts_bus_and_tram_stops">Otobüs ve Tramvay Durakları</string>
     <string name="callouts_bus_and_tram_stops_description">Yanlarından geçerken otobüs ve tramvay duraklarını duyur</string>
-    <string name="directions_approaching_name">%1$s yaklaşıyor</string>
+    <string name="directions_approaching_name">%1$s'{A} yaklaşılıyor</string>
     <string name="directions_generic_tram">tramvay</string>
     <string name="ios_permission_location_when_in_use">Soundscape, sesli gezinme sağlamak ve çevrenizi betimlemek için konumunuza ihtiyaç duyar.</string>
     <string name="ios_permission_location_always">Soundscape, uygulama arka plandayken bile sesli gezinme sağlamak için konumunuza ihtiyaç duyar.</string>
