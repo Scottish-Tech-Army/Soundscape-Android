@@ -38,6 +38,10 @@ Questions are confirmations. Questions: `docs/translation-questions/questions-nb
 
 ## Rules
 
+### NB-B1 — Hints are infinitives (`agreed`, fixed 2026-09-29)
+
+Accessibility hints go into «Dobbelttrykk for å %1$s» (and TalkBack's «…for å <label>»), so they must be infinitives («dele», «høre», «legge til»), as Microsoft wrote them, never imperatives («del», «hør», «legg til»). Check any new hint. See DA-B1.
+
 ### NB-C1 — Siri phrases are Norwegian and live outside Weblate (`agreed`)
 
 The same coupling as FR-C1.
@@ -64,3 +68,14 @@ Nothing yet.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 26 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** Rugby → «Rugby league-bane» / «Rugby union-bane» (both had been «Rugbybane»). Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 38 fixes uploaded.** The Weblate log shows no human Norwegian edits. Fixed:
+- **30 accessibility hints** had drifted from Microsoft's infinitives to imperatives (NB-B1), including the collapse/expand section hints.
+- **`ui_action_button_nearby_markers`:** «Markører⏎I nærhet» → «Markører⏎i nærheten».
+- **Typos and parse errors:** «en knappene» → «en av knappene»; «alternativet for å *Del*» → «alternativet *Del*».
+- **Markup:** *…* restored in `help_text_routes_content_how_1`.
+- **Tunnel callouts:** «går inn» → «kjører inn» (travel mode).
+- **`menu_open_source_licenses`:** «Lisenser for åpen kildekode» (it read as a command).
+- **`osm_deli`:** «Delikatessebutikk».
+
+Uploaded with `--skip-validate`; all 38 re-fetched and matched exactly.
