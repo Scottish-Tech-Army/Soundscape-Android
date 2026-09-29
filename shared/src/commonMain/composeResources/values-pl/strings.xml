@@ -46,7 +46,7 @@
     <string name="location_detail_action_preview_hint">rozpocząć podgląd tej lokalizacji</string>
     <string name="location_detail_add_waypoint_existing_hint">usunąć ten znacznik z trasy</string>
     <string name="location_detail_add_waypoint_new_hint">dodać ten znacznik jako punkt trasy</string>
-    <string name="location_detail_full_screen_hint">wyświetl mapę na pełnym ekranie</string>
+    <string name="location_detail_full_screen_hint">wyświetlić mapę na pełnym ekranie</string>
     <string name="location_detail_exit_full_screen_hint">zamknąć mapę w trybie pełnoekranowym</string>
     <string name="route_detail_action_start_route">Rozpocznij trasę</string>
     <string name="route_detail_action_stop_route">Zatrzymaj trasę</string>
@@ -217,7 +217,7 @@
     <string name="ui_action_button_my_location">Moja\npozycja</string>
     <string name="ui_action_button_my_location_acc_hint">usłyszeć informacje o swojej bieżącej lokalizacji</string>
     <string name="ui_action_button_nearby_markers">Bliskie\npinezki</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">usłyszeć informacje o pobliskich miejscach, które oznaczyłeś</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">usłyszeć informacje o pobliskich oznaczonych miejscach</string>
     <string name="ui_action_button_around_me">Wokół\nmnie</string>
     <string name="ui_action_button_around_me_acc_hint">usłyszeć o miejscach w czterech ćwiartkach wokół ciebie</string>
     <string name="ui_action_button_ahead_of_me">Przede\nmną</string>
@@ -286,7 +286,7 @@
     <string name="first_launch_prompt_message">Jesteś gotowy na pierwszy spacer z Soundscape. Na początek wybierz pobliskie miejsce docelowe i uruchom dźwięk naprowadzający — usłyszysz go dochodzącego z kierunku Twojego celu.</string>
     <string name="first_launch_prompt_button">Zakończ</string>
     <string name="first_launch_change_language">Zmień język</string>
-    <string name="first_launch_change_language_hint">zmień język używany przez aplikację</string>
+    <string name="first_launch_change_language_hint">zmienić język używany przez aplikację</string>
     <string name="help_text_destination_beacons_what">Ustawienie naprowadzania na pobliską lokalizację pozwala Soundscape prowadzić cię, odtwarzając dźwięk dochodzący z kierunku tej lokalizacji. Ten dźwięk można wyciszyć lub włączyć ponownie na ekranie głównym. Dodatkowo Soundscape wyświetla na ekranie głównym informacje o tej lokalizacji, w tym odległość oraz adres, jeśli jest znany.</string>
     <string name="help_text_destination_beacons_when">Ustawienie naprowadzania dźwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz być informowany(-a) o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.</string>
     <string name="help_text_destination_beacons_how_1">**Aby ustawić dźwięk naprowadzający:**\n\n Najpierw wyświetl szczegóły lokalizacji, wyszukując miejsce w pasku wyszukiwania lub stukając w jeden z przycisków *„Miejsca w pobliżu”*, *„Znaczniki (pinezki) i trasy”* lub *„Bieżąca lokalizacja”* i wybierając lokalizację. Następnie na ekranie *„Szczegóły lokalizacji”* wybierz przycisk *„Uruchom dźwięk naprowadzający”*. Stuknięcie tego przycisku spowoduje powrót do ekranu głównego i włączenie słyszalnego naprowadzania dochodzącego z kierunku wybranej lokalizacji. Nazwa miejsca wraz z jego odległością oraz fizycznym adresem (jeśli dostępny) zostaną teraz wyświetlone na ekranie głównym.</string>
@@ -312,7 +312,7 @@
     <string name="help_text_ahead_of_me_how">Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk „Przede mną”. To działa jak kompas, informując aplikację o kierunku, w którym jesteś zwrócony. Po prostu naciśnij przycisk „Przede mną” i usłyszysz kilka punktów zainteresowania rozmieszczonych mniej więcej przed Tobą.</string>
     <string name="help_text_remote_control_what">Do niektórych funkcji Soundscape możesz uzyskać dostęp za pomocą przycisków sterowania mediami w słuchawkach. Funkcjonalność działa z dowolnymi słuchawkami przewodowymi lub Bluetooth, które mają przyciski sterowania mediami, takie jak Odtwarzaj, Pauza, Dalej, Wstecz i inne. Różne modele słuchawek mogą mieć różny zestaw przycisków — zapoznaj się z poniższą listą akcji, aby sprawdzić, które z nich są dostępne dla Ciebie.</string>
     <string name="help_text_remote_control_when">Przycisków sterowania mediami w słuchawkach można używać, gdy Soundscape działa — niezależnie od tego, czy aktywnie korzystasz z aplikacji, czy działa ona w tle, czy urządzenie jest zablokowane. Przyciski sterowania mediami w słuchawkach nie będą jednak działać ze Soundscape, jeśli w innej aplikacji odtwarzasz dźwięk, na przykład muzykę, podcasty lub filmy.</string>
-    <string name="help_text_remote_control_how">Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w sekcji *Ustawienia* *Sterowanie multimediami*. Tryby to:\n\n *Tryb oryginalny*. \n\n⏯ Odtwórz/Pauza: włącza i wyłącza dźwięk naprowadzający. \n\n⏭ Następny: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do następnego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, ogłasza *Wokół mnie*.\n\n⏮ Poprzedni: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do poprzedniego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, zmienia *Szczegółowość powiadomień* o jeden poziom ciszej przy każdym naciśnięciu: *Szczegółowy*, *Zrównoważony*, *Cichy*, *Wyciszony* i z powrotem *Szczegółowy*.\n\n\n\n*Menu dźwiękowe*. \n\n\n\n⏭ Następny przechodzi przez szereg opcji menu, które aplikacja opisuje za pomocą syntezatora mowy, i po ostatniej wraca do pierwszej. ⏯ Odtwórz/Pauza uruchamia następnie opisaną opcję. Istnieje jedno menu główne, którego elementami są tylko podmenu. Każde podmenu grupuje podobne akcje.\n\n⏮ Poprzedni nie przechodzi przez menu. Zamiast tego zmienia *Szczegółowość powiadomień*, dokładnie tak jak w trybie oryginalnym, więc ten sam przycisk wycisza aplikację niezależnie od używanego trybu.</string>
+    <string name="help_text_remote_control_how">Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w sekcji *Ustawienia* *Tryb sterowania przyciskami multimedialnymi*. Tryby to:\n\n *Tryb oryginalny*. \n\n⏯ Odtwórz/Pauza: włącza i wyłącza dźwięk naprowadzający. \n\n⏭ Następny: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do następnego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, ogłasza *Wokół mnie*.\n\n⏮ Poprzedni: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do poprzedniego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, zmienia *Szczegółowość powiadomień* o jeden poziom ciszej przy każdym naciśnięciu: *Szczegółowy*, *Zrównoważony*, *Cichy*, *Wyciszony* i z powrotem *Szczegółowy*.\n\n\n\n*Menu audio*. \n\n\n\n⏭ Następny przechodzi przez szereg opcji menu, które aplikacja opisuje za pomocą syntezatora mowy, i po ostatniej wraca do pierwszej. ⏯ Odtwórz/Pauza uruchamia następnie opisaną opcję. Istnieje jedno menu główne, którego elementami są tylko podmenu. Każde podmenu grupuje podobne akcje.\n\n⏮ Poprzedni nie przechodzi przez menu. Zamiast tego zmienia *Szczegółowość powiadomień*, dokładnie tak jak w trybie oryginalnym, więc ten sam przycisk wycisza aplikację niezależnie od używanego trybu.</string>
     <string name="help_text_markers_content_1">Dzięki Soundscape możesz oznaczać swój świat i wszystko, co jest dla Ciebie ważne — jak pinezki na mapie.</string>
     <string name="help_text_markers_content_2">Możesz oznaczać miejsca osobiste i ważne dla Ciebie, takie jak dom, biuro czy ulubiony sklep spożywczy. Możesz oznaczyć dowolne miejsce lub adres, a także rzeczy, których zwykle nie ma na mapach, na przykład: wejścia do budynków lub parków, przyciski dla pieszych, przejścia dla pieszych, mosty, przystanki autobusowe, a nawet ulubione drzewo Twojego psa. Używaj tych znaczników jako punktów odniesienia podczas spaceru.</string>
     <string name="help_text_markers_content_3">Aby doświadczyć działania oznaczonych miejsc, Soundscape będzie automatycznie ogłaszał oznaczone miejsca, gdy je mijasz lub się do nich zbliżasz, możesz też użyć przycisku *„Bliskie znaczniki”* na dole ekranu głównego, aby usłyszeć przestrzenne komunikaty o oznaczonych miejscach wokół Ciebie. Możesz nawet ustawić dźwięk naprowadzający na dowolny oznaczony punkt. Wtedy usłyszysz znany dźwięk naprowadzający Soundscape i będziesz mógł nim sterować jak zwykle.</string>
@@ -322,7 +322,7 @@
     <string name="help_text_customizing_markers_content_2">Na tym ekranie *„Edytuj”* możesz także usunąć znacznik, jeśli nie jest już potrzebny.</string>
     <string name="help_text_routes_content_what">Trasy to ciąg punktów trasy. Po dotarciu do każdego punktu zostaniesz poinformowany, a dźwięk naprowadzający automatycznie przełączy się na następny punkt.</string>
     <string name="help_text_routes_content_when">Możesz utworzyć i wykorzystać trasę w miejscu, które już znasz, aby trzymać się właściwej drogi. Możesz też użyć trasy, aby poznać nową drogę.</string>
-    <string name="help_text_routes_content_how_1">**Tworzenie trasy :**\n\nNajpierw przejdź do *Znaczniki (pinezki) i Trasy*, wybierz kartę *Trasy*, a następnie naciśnij przycisk *Nowa trasa*. Nadaj trasie nazwę i opcjonalny opis, a następnie dodawaj punkty trasy w trakcie tworzenia lub wybierz je ze swojej listy Znaczników (pinezek). Kolejność punktów trasy możesz zmienić w dowolnym momencie, edytując trasę.</string>
+    <string name="help_text_routes_content_how_1">**Tworzenie trasy :**\n\nNajpierw przejdź do *Znaczniki (pinezki) i trasy*, wybierz kartę *Trasy*, a następnie naciśnij przycisk *Nowa trasa*. Nadaj trasie nazwę i opcjonalny opis, a następnie dodawaj punkty trasy w trakcie tworzenia lub wybierz je ze swojej listy Znaczników (pinezek). Kolejność punktów trasy możesz zmienić w dowolnym momencie, edytując trasę.</string>
     <string name="help_text_routes_content_how_2">**Edycja trasy:**\n\n Wybierz swoją trasę na ekranie *„Znaczniki (pinezki) i trasy”*, a następnie wybierz *„Edytuj trasę”*. Z tego miejsca możesz dodawać i usuwać punkty trasy oraz edytować nazwę i opis trasy.</string>
     <string name="help_text_routes_content_how_3">**Udostępnianie trasy :**\n\n Wybierz swoją trasę na ekranie *"Znaczniki (pinezki) i trasy"*, a następnie wybierz opcję *"Udostępnij"*, korzystając z dostępnych standardowych opcji udostępniania.</string>
     <string name="osm_crossing">Przejście dla pieszych</string>
@@ -1257,7 +1257,7 @@
     <string name="groceries_places_nearby_description">zobaczyć listę pobliskich sklepów spożywczych</string>
     <string name="banks_places_nearby_description">zobaczyć listę pobliskich banków i bankomatów</string>
     <string name="intersections_places_nearby_description">zobaczyć listę pobliskich skrzyżowań drogowych</string>
-    <string name="places_nearby_selection_description">wybierz z listy pobliskich miejsc</string>
+    <string name="places_nearby_selection_description">wybrać z listy pobliskich miejsc</string>
     <string name="accessibility_title">Ułatwienia dostępu</string>
     <string name="accessibility_screen_reader_enabled">Ponieważ masz włączony czytnik ekranu, zalecamy wyłączenie graficznych map w aplikacji. Możesz zmienić to ustawienie tutaj lub po prostu kontynuować.</string>
     <string name="accessibility_screen_reader_disabled">Ponieważ nie masz włączonego czytnika ekranu, zakładamy, że chcesz widzieć graficzne mapy w aplikacji. Możesz zmienić to ustawienie tutaj lub po prostu kontynuować.</string>
@@ -1364,8 +1364,8 @@
     <string name="relative_left_right_direction_behind_left">Za tobą po lewej</string>
     <string name="relative_left_right_direction_behind_right">Za tobą po prawej</string>
     <string name="relative_left_right_direction_behind">Za tobą</string>
-    <string name="settings_collapse_section">zwiń sekcję</string>
-    <string name="settings_expand_section">rozwiń sekcję</string>
+    <string name="settings_collapse_section">zwinąć sekcję</string>
+    <string name="settings_expand_section">rozwinąć sekcję</string>
     <string name="settings_collapsed">Zwinięte</string>
     <string name="settings_expanded">Rozwinięte</string>
     <string name="ui_grant_permission">Przyznaj uprawnienie</string>
