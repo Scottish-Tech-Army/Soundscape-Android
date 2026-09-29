@@ -1658,4 +1658,11 @@
     <string name="search_no_offline_maps">Поиск работает офлайн, но для места, где вы находитесь, не загружена офлайн‑карта.</string>
     <string name="location_detail_adjust_marker_location">Изменить местоположение</string>
     <string name="location_detail_adjust_marker_location_instructions">Перетащите карту, чтобы переместить отметку. Нажмите «Готово», чтобы сохранить новое местоположение, или «Отмена», чтобы оставить его без изменений.</string>
+    <string name="location_detail_action_open_in_app">Открыть в приложении карт</string>
+    <string name="location_detail_action_open_in_named_app">Открыть в приложении %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">посмотреть это место в другом приложении карт или навигации</string>
+    <string name="location_detail_action_open_in_named_app_hint">посмотреть это место в приложении %1$s</string>
+    <string name="open_in_app_dialog_title">Выберите приложение для открытия</string>
+    <string name="open_in_app_remember">Всегда использовать это приложение</string>
+    <string name="open_in_app_change">Выбрать другое приложение</string>
 </resources>
