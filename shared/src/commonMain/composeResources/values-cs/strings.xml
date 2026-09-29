@@ -1658,4 +1658,11 @@
     <string name="search_no_offline_maps">Hledání funguje offline, ale pro místo, kde se nacházíte, není stažená žádná offline mapa.</string>
     <string name="location_detail_adjust_marker_location">Upravit polohu</string>
     <string name="location_detail_adjust_marker_location_instructions">Přetažením mapy přesunete polohu značky. Klepnutím na Hotovo novou polohu uložíte, klepnutím na Zrušit zůstane poloha beze změny.</string>
+    <string name="location_detail_action_open_in_app">Otevřít v mapové aplikaci</string>
+    <string name="location_detail_action_open_in_named_app">Otevřít v aplikaci %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">zobrazíte toto místo v jiné mapové nebo navigační aplikaci</string>
+    <string name="location_detail_action_open_in_named_app_hint">zobrazíte toto místo v aplikaci %1$s</string>
+    <string name="open_in_app_dialog_title">Vyberte aplikaci, ve které se má otevřít</string>
+    <string name="open_in_app_remember">Vždy používat tuto aplikaci</string>
+    <string name="open_in_app_change">Vybrat jinou aplikaci</string>
 </resources>
