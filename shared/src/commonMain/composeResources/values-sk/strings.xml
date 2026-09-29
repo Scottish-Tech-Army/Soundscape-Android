@@ -779,7 +779,7 @@
     <string name="last_entry_in_list">a %1$s</string>
     <string name="preview_include_unnamed_roads_title">Nepomenované cesty</string>
     <string name="preview_include_unnamed_roads_title_description">Zahrnúť nepomenované cesty počas simulácie polohy</string>
-    <string name="location_detail_title_default">Podrobnosti o polohe</string>
+    <string name="location_detail_title_default">Podrobnosti o mieste</string>
     <string name="location_detail_action_beacon">Spustiť zvukový maják</string>
     <string name="location_detail_action_beacon_from_markers">Spustiť zvukový maják na tejto značke</string>
     <string name="location_detail_action_beacon_hint">navádzať vás zvukom k tomuto miestu</string>
