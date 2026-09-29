@@ -656,7 +656,7 @@
     <string name="tour_nearby_markers">Az utolsó gomb a Közeli jelölők, amely bemondja a közeledben található elmentett helyeket. Koppints a Közeli jelölők gombra, hogy kipróbáld.</string>
     <string name="tour_markers_and_routes">Sikeresen létrehoztál egy jelölőt. Indítsunk el egy hangjelzőt, amely elvezet minket ehhez a helyhez. Koppints a Jelölők és útvonalak lehetőségre, közvetlenül a Közeli helyek alatt.</string>
     <string name="tour_markers">A Jelölők és útvonalak képernyőn két fül található. Az egyik fül az útvonalakat sorolja fel, amelyek jelölőkből álló lejátszási listák. A másik az egyes jelölőket sorolja fel. Koppints a Jelölők fülre, hogy átválts arra a fülre, és megtaláld az általad létrehozott jelölőt.</string>
-    <string name="tour_start_beacon">Most a Jelölők fülön vagy, amely felsorolja az összes elmentett jelölődet. Válassz ki egy jelölőt, és amikor megjelenik a Hely részletei képernyő, koppints a Hangjelző indítása gombra.</string>
+    <string name="tour_start_beacon">Most a Jelölők fülön vagy, amely felsorolja az összes elmentett jelölődet. Válassz ki egy jelölőt, és amikor megjelenik a Helyszín adatai képernyő, koppints a Hangjelző indítása gombra.</string>
     <string name="tour_beacon_demo">Most hallhatod a hangjelzőt. A célod irányából szól. Ahogy elforgatod a telefonodat, hallani fogod, hogy a hangjelző elmozdul, és megváltozik a hangzása. Próbáld ki most.</string>
     <string name="tour_beacon_demo_locked">Amikor a telefonod zárolva van, a hangjelző továbbra is szól. Ha gyalogolsz vagy járműben ülsz, az alkalmazás a haladási irányodat használja a hangjelző lejátszásához. Zárolt állapotban azonban a telefonodat laposan magad elé tarthatod, mint egy iránytűt. Ekkor a hangjelző azt az irányt használja, amerre a telefonod mutat. Próbáld ki most.</string>
     <string name="tour_stop_beacon">Amikor készen állsz a hangjelző leállítására, koppints az Útvonal leállítása gombra.</string>
@@ -665,7 +665,7 @@
     <string name="menu_audio_tutorial">Vezetett bemutató</string>
     <string name="menu_audio_tutorial_cancel">Vezetett bemutató megszakítása</string>
     <string name="tour_continue_button">Folytatás</string>
-    <string name="tour_continue_hint">zárd be a felugró ablakot, és folytasd a bemutatót</string>
+    <string name="tour_continue_hint">a felugró ablak bezárása és a bemutató folytatása</string>
     <string name="voice_cmd_help_response">Elérhető hangparancsok:</string>
     <string name="voice_cmd_listening">Hallgatom…</string>
     <string name="voice_cmd_not_recognized">Sajnálom, nem található a(z) %1$s parancs. A(z) %2$s hangparanccsal listázhatod az elérhető parancsokat.</string>
@@ -789,9 +789,9 @@
     <string name="location_detail_action_preview_hint">előnézet indítása ennél a helyszínnél</string>
     <string name="location_detail_add_waypoint_existing_hint">a jelölő eltávolítása az útvonalról</string>
     <string name="location_detail_add_waypoint_new_hint">a jelölő hozzáadása útvonalpontként az útvonalhoz</string>
-    <string name="location_detail_full_screen_hint">Térkép teljes képernyőre állítása</string>
-    <string name="location_detail_exit_full_screen_hint">kilépj a teljes képernyős térképből</string>
-    <string name="location_detail_full_screen_for_edit_hint">Térkép teljes képernyőre állítása és a jelölő helyzetének szerkesztése</string>
+    <string name="location_detail_full_screen_hint">a térkép teljes képernyőre állítása</string>
+    <string name="location_detail_exit_full_screen_hint">kilépés a teljes képernyős térképből</string>
+    <string name="location_detail_full_screen_for_edit_hint">a térkép teljes képernyőre állítása és a jelölő helyzetének szerkesztése</string>
     <string name="route_detail_action_start_route">Útvonal indítása</string>
     <string name="route_detail_action_stop_route">Útvonal leállítása</string>
     <string name="route_detail_action_edit">Útvonal szerkesztése</string>
@@ -850,13 +850,13 @@
     <string name="search_button_nearby_accessibility_hint">közeli éttermek, tömegközlekedési megállók és egyéb helyek felfedezése</string>
     <string name="search_button_current_location_accessibility_hint">a jelenlegi helyzeted előnézete, megjelölése vagy megosztása egy baráttal</string>
     <string name="filter_all">Minden hely</string>
-    <string name="all_places_nearby_description">megtekintsd az összes közeli hely listáját</string>
+    <string name="all_places_nearby_description">az összes közeli hely listájának megtekintése</string>
     <string name="public_transit_places_nearby_description">a közeli tömegközlekedés listájának megtekintése</string>
     <string name="food_drink_places_nearby_description">a közeli éttermek és bárok listájának megtekintése</string>
     <string name="groceries_places_nearby_description">a közeli élelmiszerboltok listájának megtekintése</string>
     <string name="banks_places_nearby_description">a közeli bankok listájának megtekintése</string>
     <string name="intersections_places_nearby_description">a közeli útkereszteződések listájának megtekintése</string>
-    <string name="places_nearby_selection_description">válassz a közeli helyek listájából</string>
+    <string name="places_nearby_selection_description">választás a közeli helyek listájából</string>
     <string name="filter_transit">Tömegközlekedés</string>
     <string name="filter_food_drink">Étel és ital</string>
     <string name="filter_groceries">Élelmiszerboltok és közértek</string>
@@ -1183,7 +1183,7 @@
     <string name="faq_when_to_use_soundscape_question">Mikor használjam a Soundscape-et?</string>
     <string name="faq_when_to_use_soundscape_answer">A Soundscape-nek számos funkciója és előnye van, amelyek sokféle helyzetet és időtávot ölelnek fel. A Soundscape értéke idővel változhat is az Ön számára, így ahogyan ma használja, eltérhet attól, ahogyan három hónap múlva fogja használni. Az emberek gyakran úgy gondolnak az alkalmazásokra, hogy *milyen problémát old meg jól ez az alkalmazás?* A Soundscape kétségtelenül használható konkrét igényekre – például egy célpont nyomon követésére útközben, tájékozódásra, amikor kilép egy metróállomásról, tájékozódásra, amikor kiszáll egy autóból, vagy a következő kereszteződés utcaneveinek vagy távolságának megállapítására. A Soundscape mögötti filozófia azonban az, hogy *hanggal világítsa meg a világát* – arra tervezték, hogy bármikor használható legyen, amikor útközben van, hogy folyamatos tájékozódási érzetet nyújtson a környezetéről, például azoknak az utcáknak a nevét, amelyeken jár, az irányt, amerre halad, és azoknak az üzleteknek a nevét, amelyek mellett elhalad. Ebben a használati módban felhasználóink a Soundscape-et *kellemes társalkalmazásnak* nevezték, amely támogatja a *véletlen felfedezéseket*, segít *kitölteni a mentális térkép hiányosságait*, és nagyobb *magabiztosságot ad séta közben*. Íme néhány további példa arra, hogyan használják felhasználóink a Soundscape-et az életükben:\n\nA Soundscape segített visszatalálnom a helyes útra, miután leszálltam a buszról, és rossz irányba indultam el.\n\nMég abban a városban is, ahol már 3 éve élek, jobb képet alkottam magamnak arról, mi van körülöttem [a Soundscape-pel].\n\nA 3D hang javítja a séta élményét, mert jobban kapcsolódom a környezetemhez… nagyobb eséllyel próbálok ki új útvonalat, most hogy van erre az alkalmazásom.\n\nHiányzik a séta közbeni véletlen felfedezés élménye. Jó, hogy megvan a Soundscape – nem igényel erőfeszítést, hogy halljak a körülöttem lévő dolgokról. A kapcsolati információk hasznosak, és remek alkalmazás a helyzettudatossághoz és az üzleti negyedek felfedezéséhez.\n\n[A Soundscape-et arra használtam], hogy megtaláljak egy kocsmát York belvárosában. [Számos] lehetőségét kihasználtam, hogy először behatároljam, majd ténylegesen megtaláljam. 3 méteren belülre vitt az ajtajához – zseniális!</string>
     <string name="faq_markers_function_question">Mik azok a jelölők, és hogyan hozhatom ki belőlük a legtöbbet?</string>
-    <string name="faq_markers_function_answer">A jelölők olyan helyek, amelyeket elmentett. Lehetnek olyan helyek, amelyek megtalálhatók az alkalmazásban, vagy lehetnek teljesen új helyek, amelyeket Ön maga adott hozzá. A jelenlegi helyét jelölőként elmentheti a *Jelenlegi hely* gomb kiválasztásával a kezdőképernyőn, majd a *Mentés jelölőként* kiválasztásával. Más helyeket úgy menthet el jelölőként, hogy a keresősávval rákeres a menteni kívánt helyre, vagy megkeresi a *Közeli helyek* gombbal – mindkettő megtalálható a Soundscape kezdőképernyőjén. Miután megtalálta a kívánt helyet, a kiválasztása a *Hely részletei* képernyőre viszi. Ezen a képernyőn válassza ki a *Mentés jelölőként* nevű gombot.</string>
+    <string name="faq_markers_function_answer">A jelölők olyan helyek, amelyeket elmentett. Lehetnek olyan helyek, amelyek megtalálhatók az alkalmazásban, vagy lehetnek teljesen új helyek, amelyeket Ön maga adott hozzá. A jelenlegi helyét jelölőként elmentheti a *Jelenlegi hely* gomb kiválasztásával a kezdőképernyőn, majd a *Mentés jelölőként* kiválasztásával. Más helyeket úgy menthet el jelölőként, hogy a keresősávval rákeres a menteni kívánt helyre, vagy megkeresi a *Közeli helyek* gombbal – mindkettő megtalálható a Soundscape kezdőképernyőjén. Miután megtalálta a kívánt helyet, a kiválasztása a *Helyszín adatai* képernyőre viszi. Ezen a képernyőn válassza ki a *Mentés jelölőként* nevű gombot.</string>
     <string name="faq_section_getting_the_best_experience">Hogyan hozhatom ki a legtöbbet a Soundscape-ből?</string>
     <string name="faq_what_can_I_set_question">Mit állíthatok be hangjelzőnek?</string>
     <string name="faq_what_can_I_set_answer">Hangjelzőt állíthat be bármely üzletre, helyre, érdekes helyre, címre vagy kereszteződésre. Néhány módon adhat hangjelzőt egy helyhez. Először tekintse meg egy hely adatait: használja a keresősávot egy hely kereséséhez, vagy koppintson a *Közeli helyek*, a *Jelölők és útvonalak*, vagy a *Jelenlegi hely* gombok egyikére, majd válasszon egy helyet. Ezután a *Helyszín adatai* képernyőn válassza a *Hangjelző indítása* gombot. Ha erre koppint, visszatér a kezdőképernyőre, és bekapcsol egy hallható hangjelző a kiválasztott hely irányából. A hely neve, valamint – ha elérhető – a távolsága és a fizikai címe mostantól megjelenik a főképernyőn.</string>
@@ -1192,7 +1192,7 @@
     <string name="faq_why_does_beacon_disappear_question">Miért tűnik el néha a hallható hangjelző?</string>
     <string name="faq_why_does_beacon_disappear_answer">A Soundscape hallható hangjelzője alapvetően egy irányjelzés, amely megmutatja, hol van a célpontja ahhoz az irányhoz képest, amerre néz. Amikor a Soundscape bizonytalan abban, hogy merre néz, csökkenti a hangjelző hangerejét. Ez leggyakrabban akkor fordul elő, ha zsebben vagy táskában tartott telefonnal sétált, és megáll, például hogy átkeljen egy úton. A hangjelző ismét hangosabb lesz, amint újra elindul, vagy ha vízszintesen tartja a telefont, és abba az irányba mutat vele, amerre néz.</string>
     <string name="faq_beacon_on_address_question">Beállíthatok hangjelzőt egy címre?</string>
-    <string name="faq_beacon_on_address_answer">Igen, ez lehetséges. A címek alapértelmezés szerint nincsenek felsorolva, de a keresőmező segítségével megtalálhatók. Ha el szeretné menteni ezt a címet, hogy ne kelljen újra rákeresnie, hozzáadhatja jelölőként a *Hely részletei* képernyőn a *Mentés jelölőként* gomb kiválasztásával.</string>
+    <string name="faq_beacon_on_address_answer">Igen, ez lehetséges. A címek alapértelmezés szerint nincsenek felsorolva, de a keresőmező segítségével megtalálhatók. Ha el szeretné menteni ezt a címet, hogy ne kelljen újra rákeresnie, hozzáadhatja jelölőként a *Helyszín adatai* képernyőn a *Mentés jelölőként* gomb kiválasztásával.</string>
     <string name="faq_beacon_on_home_question">Hogyan állítsak be hangjelzőt az otthonomra?</string>
     <string name="faq_beacon_on_home_answer">A Soundscape támogatja a hangjelzők beállítását címekre. Ha hangjelzőt szeretne beállítani az otthonára vagy bármely más címre, keressen rá egy helyre a főképernyő keresősávjával. Ezután a *Helyszín adatai* képernyőn koppintson a *Hangjelző indítása* gombra.</string>
     <string name="faq_how_close_to_destination_question">Ha hangjelzőt állítok be egy célpontra, milyen közel visz oda a Soundscape?</string>
@@ -1236,7 +1236,7 @@
     <string name="faq_what_is_osm_answer">A Soundscape térképadatokat használ a hangközlései létrehozásához. Fő térképforrásunk az OpenStreetMap (www.openstreetmap.org). Ez egy térképészeti platform, amelyet közreműködők közössége hozott létre. Szervezetek és magánszemélyek az OpenStreetMap eszközeivel javíthatják az adatokat, és akadálymentesebbé tehetik a tereiket.</string>
     <string name="faq_tip_beacon_quiet">Ha a telefonját a zsebébe teszi, és megáll, a hangjelző hangja elhalkul, mert a Soundscape nem tudja megállapítani, merre néz. Ennek megoldásához induljon el újra, vagy vegye elő a telefont, és tartsa vízszintesen.</string>
     <string name="faq_tip_setting_beacon_on_address">Bármely címre beállíthat hangjelzőt. A főképernyőn keressen rá a címre a keresősávval. Ezután válassza ki a címet a keresési találatok közül a *Helyszín adatai* képernyő megnyitásához. Ezen a képernyőn megtalálja a *Hangjelző indítása* lehetőséget az adott címhez. Így hangjelzőt állíthat be olyan üzletekre, helyekre, érdekes helyekre és lakóépületekre is, amelyek nem szerepelnek az OpenStreetMapben.</string>
-    <string name="faq_tip_finding_bus_stops">A közeli buszmegállókat megtalálhatja a *Közösségi közlekedés* szűrő kiválasztásával a *Közeli helyek* listában.</string>
+    <string name="faq_tip_finding_bus_stops">A közeli buszmegállókat megtalálhatja a *Tömegközlekedés* szűrő kiválasztásával a *Közeli helyek* listában.</string>
     <string name="faq_tip_turning_beacon_off">A hangjelző ritmikus hangját a kezdőképernyőn található némítógombbal kapcsolhatja be és ki. Ha a hangjelző némítva van, akkor is kap frissítést a célponttól mért távolságáról körülbelül 50 méterenként.</string>
     <string name="faq_tip_turning_off_auto_callouts">Ha úgy szeretné tovább használni a Soundscape-et, hogy ne halljon automatikus közléseket, állítsa a *Közlések részletessége* beállítást *Néma* értékre a menüből elérhető *Beállítások* képernyő *Közlések kezelése* részében. Ha egy ideig nem fogja használni a Soundscape-et, helyette Alvó vagy Szundi módba állíthatja a kezdőképernyőn található *Alvás* gombbal.</string>
     <string name="faq_tip_hold_phone_flat">A Soundscape akkor működik a legjobban, ha a telefont vízszintesen tartja, a képernyővel az ég felé, és a telefon teteje Öntől elfelé mutat.</string>
