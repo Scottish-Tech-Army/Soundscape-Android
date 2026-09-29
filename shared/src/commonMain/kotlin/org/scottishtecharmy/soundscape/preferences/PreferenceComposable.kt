@@ -59,3 +59,28 @@ fun rememberBooleanPreferenceState(
         }
     }
 }
+
+/**
+ * Read-only reactive view of a string preference; the string counterpart of
+ * [rememberBooleanPreference].
+ */
+@Composable
+fun rememberStringPreference(
+    provider: PreferencesProvider?,
+    key: String,
+    default: String,
+): State<String> {
+    val state = remember(provider, key) {
+        mutableStateOf(provider?.getString(key, default) ?: default)
+    }
+    DisposableEffect(provider, key) {
+        val listener = PreferencesListener { changed ->
+            if (changed == key) {
+                state.value = provider?.getString(key, default) ?: default
+            }
+        }
+        provider?.addListener(listener)
+        onDispose { provider?.removeListener(listener) }
+    }
+    return state
+}

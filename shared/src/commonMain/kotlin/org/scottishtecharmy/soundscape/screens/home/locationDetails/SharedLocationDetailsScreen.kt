@@ -81,6 +81,9 @@ fun SharedLocationDetailsScreen(
     onDeleteMarker: ((Long) -> Unit)? = null,
     onEnableStreetPreview: ((LngLatAlt) -> Unit)? = null,
     onShareLocation: ((LocationDescription) -> Unit)? = null,
+    /** Installed apps the location can be opened in; the button is hidden when empty. */
+    mapApps: List<MapApp> = emptyList(),
+    onOpenInMapApp: ((MapApp, LocationDescription) -> Unit)? = null,
     onOfflineMaps: ((LocationDescription) -> Unit)? = null,
     /**
      * Offline-geocodes the location to a full address, used to fill in an address for a place
@@ -147,6 +150,9 @@ fun SharedLocationDetailsScreen(
                     onEditMarker = onEditMarker,
                     onEnableStreetPreview = onEnableStreetPreview,
                     onShareLocation = onShareLocation,
+                    mapApps = mapApps,
+                    preferencesProvider = preferencesProvider,
+                    onOpenInMapApp = onOpenInMapApp,
                     onOfflineMaps = onOfflineMaps,
                 )
 
@@ -275,6 +281,9 @@ private fun LocationDescriptionButtonsSection(
     onEditMarker: ((LocationDescription) -> Unit)?,
     onEnableStreetPreview: ((LngLatAlt) -> Unit)?,
     onShareLocation: ((LocationDescription) -> Unit)?,
+    mapApps: List<MapApp>,
+    preferencesProvider: PreferencesProvider?,
+    onOpenInMapApp: ((MapApp, LocationDescription) -> Unit)?,
     onOfflineMaps: ((LocationDescription) -> Unit)?,
 ) {
     Column(
@@ -360,6 +369,11 @@ private fun LocationDescriptionButtonsSection(
             ) {
                 onShareLocation(locationDescription)
             }
+        }
+
+        // Open in another map app
+        rememberMapAppLauncher(mapApps, preferencesProvider, onOpenInMapApp)?.let { launcher ->
+            OpenInMapAppButton(locationDescription = locationDescription, launcher = launcher)
         }
 
         // Offline maps

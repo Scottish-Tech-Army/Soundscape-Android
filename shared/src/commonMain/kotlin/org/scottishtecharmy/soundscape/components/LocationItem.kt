@@ -55,6 +55,12 @@ data class EnabledFunction(
     var hint: String = ""
 )
 
+/** A screen reader action on a location list item, e.g. "Share". */
+data class LocationItemAction(
+    val label: String,
+    val action: (LocationDescription) -> Unit,
+)
+
 data class LocationItemDecoration(
     val location: Boolean = false,
     val source: LocationSource = LocationSource.UnknownSource,
@@ -65,7 +71,9 @@ data class LocationItemDecoration(
     var reorderable: Boolean = false,
     var moveUp: (Int) -> Boolean = { false },
     var moveDown: (Int) -> Boolean = { false },
-    var startPlayback: EnabledFunction = EnabledFunction()
+    var startPlayback: EnabledFunction = EnabledFunction(),
+    /** Offered after the move and playback actions, in order. */
+    val extraActions: List<LocationItemAction> = emptyList(),
 )
 
 @Composable
@@ -132,29 +140,45 @@ fun LocationItem(
                         action = { false }
                     )
                 }
-                if (decoration.reorderable) {
-                    customActions = listOf(
-                        CustomAccessibilityAction(
-                            label = moveUpLabel,
-                            action = { decoration.moveUp(decoration.index) }
-                        ),
-                        CustomAccessibilityAction(
-                            label = moveUpDown,
-                            action = { decoration.moveDown(decoration.index) }
-                        ),
-                    )
+                val actions = buildList {
+                    if (decoration.reorderable) {
+                        add(
+                            CustomAccessibilityAction(
+                                label = moveUpLabel,
+                                action = { decoration.moveUp(decoration.index) }
+                            )
+                        )
+                        add(
+                            CustomAccessibilityAction(
+                                label = moveUpDown,
+                                action = { decoration.moveDown(decoration.index) }
+                            )
+                        )
+                    }
+                    if (decoration.startPlayback.enabled) {
+                        add(
+                            CustomAccessibilityAction(
+                                label = startPlaybackLabel,
+                                action = {
+                                    decoration.startPlayback.functionLocation(item)
+                                    true
+                                }
+                            )
+                        )
+                    }
+                    decoration.extraActions.forEach { extra ->
+                        add(
+                            CustomAccessibilityAction(
+                                label = extra.label,
+                                action = {
+                                    extra.action(item)
+                                    true
+                                }
+                            )
+                        )
+                    }
                 }
-                if (decoration.startPlayback.enabled) {
-                    customActions = listOf(
-                        CustomAccessibilityAction(
-                            label = startPlaybackLabel,
-                            action = {
-                                decoration.startPlayback.functionLocation(item)
-                                true
-                            }
-                        ),
-                    )
-                }
+                if (actions.isNotEmpty()) customActions = actions
             },
         verticalAlignment = Alignment.CenterVertically
     ) {

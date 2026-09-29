@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.MapApp
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsViewModel
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
@@ -88,6 +89,12 @@ data class AppCallbacks(
     val onShareRecording: () -> Unit = {},
     val onShareRoute: (routeId: Long) -> Unit = {},
     val onShareLocation: (LocationDescription, message: String) -> Unit = { _, _ -> },
+    /**
+     * Lists the installed apps a location can be opened in, and opens one. Location Details
+     * hides its "Open in Maps App" button while [onGetMapApps] is null.
+     */
+    val onGetMapApps: (() -> List<MapApp>)? = null,
+    val onOpenInMapApp: (MapApp, LocationDescription) -> Unit = { _, _ -> },
     val onRateApp: () -> Unit = {},
     val onContactSupport: () -> Unit = {},
     val onToggleAudioTour: () -> Unit = {},

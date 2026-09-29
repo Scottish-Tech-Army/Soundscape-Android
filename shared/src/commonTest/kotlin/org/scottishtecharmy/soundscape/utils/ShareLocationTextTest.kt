@@ -177,4 +177,16 @@ class ShareLocationTextTest {
         // The literal name text stays untouched; only the real template placeholder resolves.
         assertEquals("%2\$s - $actualUrl", result)
     }
+
+    @Test
+    fun formatCoordinate5_neverUsesExponentForm() {
+        // Double.toString gives "-1.0E-4" here; a coordinate near the Greenwich meridian or
+        // the equator must still come out as plain decimal.
+        assertEquals("-0.00010", formatCoordinate5(-0.0001))
+        assertEquals("0.00005", formatCoordinate5(0.00005))
+        assertEquals("0.00000", formatCoordinate5(-0.000001))
+        assertEquals("55.86421", formatCoordinate5(55.864213))
+        assertEquals("-4.25180", formatCoordinate5(-4.2518))
+        assertEquals("180.00000", formatCoordinate5(180.0))
+    }
 }

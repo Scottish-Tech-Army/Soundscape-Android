@@ -291,6 +291,10 @@ fun HomeScreen(
             onShareLocation = { desc, shareMessage ->
                 org.scottishtecharmy.soundscape.utils.shareLocation(context, shareMessage, desc)
             },
+            onGetMapApps = { org.scottishtecharmy.soundscape.utils.getMapApps(context) },
+            onOpenInMapApp = { app, desc ->
+                org.scottishtecharmy.soundscape.utils.openInMapApp(context, app, desc)
+            },
             onShareRoute = { routeId ->
                 callbackScope.launch {
                     val route = runCatching { routeDao.getRouteWithMarkers(routeId) }.getOrNull()

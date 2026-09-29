@@ -42,20 +42,19 @@ fun buildShareLocationText(
     return placeholderPattern.replace(messageTemplate) { match -> replacements.getValue(match.value) }
 }
 
-/** Format a double to exactly 5 decimal places, no locale-specific separators. */
-private fun formatCoordinate5(value: Double): String {
-    val scaled = kotlin.math.round(value * 100000.0) / 100000.0
-    val asString = scaled.toString()
-    val dot = asString.indexOf('.')
-    return when {
-        dot < 0 -> "$asString.00000"
-        asString.length - dot - 1 >= 5 -> asString.substring(0, dot + 6)
-        else -> asString + "0".repeat(5 - (asString.length - dot - 1))
-    }
+/**
+ * Format a double to exactly 5 decimal places, no locale-specific separators. Built from integer
+ * parts because Double.toString switches to exponent form below 1e-3 ("-1.0E-4"), which a
+ * coordinate near the equator or the Greenwich meridian can hit.
+ */
+fun formatCoordinate5(value: Double): String {
+    val scaled = kotlin.math.round(kotlin.math.abs(value) * 100000.0).toLong()
+    val sign = if (value < 0 && scaled != 0L) "-" else ""
+    return "$sign${scaled / 100000}.${(scaled % 100000).toString().padStart(5, '0')}"
 }
 
 /** RFC 3986 percent-encoding of UTF-8 bytes; encodes spaces as `%20`. */
-private fun urlEncodeUtf8(value: String): String {
+internal fun urlEncodeUtf8(value: String): String {
     val bytes = value.encodeToByteArray()
     val builder = StringBuilder(bytes.size)
     for (b in bytes) {

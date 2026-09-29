@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen
 
+import org.scottishtecharmy.soundscape.components.LocationListActions
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,7 +39,8 @@ fun MarkersScreen(
     userLocation: LngLatAlt?,
     onSelectItem: (LocationDescription) -> Unit,
     onShowError: (String) -> Unit = {},
-    onStartBeacon: (LngLatAlt, String) -> Unit = { _, _ -> }
+    onStartBeacon: (LngLatAlt, String) -> Unit = { _, _ -> },
+    itemActions: LocationListActions = LocationListActions(),
 ) {
     Column(
         modifier =
@@ -128,7 +130,8 @@ fun MarkersScreen(
                             onSelect = onSelectItem,
                             onStartBeacon = { desc ->
                                 onStartBeacon(desc.location, desc.name)
-                            }
+                            },
+                            itemActions = itemActions,
                         )
                     }
                 }

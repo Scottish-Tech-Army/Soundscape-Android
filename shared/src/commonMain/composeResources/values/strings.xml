@@ -176,6 +176,20 @@
     <string name="location_detail_action_share_hint">share this location with another app</string>
     <!-- Talkback hint for the action to preview. This is always preceded by "Double tap to " -->
     <string name="location_detail_action_preview_hint">start previewing at this location</string>
+    <!-- Button on Location Details which opens the location in another installed map or navigation app, e.g. Google Maps or Waze. -->
+    <string name="location_detail_action_open_in_app">Open in Maps App</string>
+    <!-- Button on Location Details once the user has chosen to always use one map app. %1$s is that app's name, e.g. Google Maps. -->
+    <string name="location_detail_action_open_in_named_app">Open in %1$s</string>
+    <!-- Talkback hint for the action to open the location in another map app. This is always preceded by "Double tap to " -->
+    <string name="location_detail_action_open_in_app_hint">view this location in another map or navigation app</string>
+    <!-- Talkback hint for the open in map app button once the user has chosen to always use one map app. %1$s is that app's name, e.g. Waze. This is always preceded by "Double tap to " -->
+    <string name="location_detail_action_open_in_named_app_hint">view this location in %1$s</string>
+    <!-- Title of the dialog listing the installed map apps which the location can be opened in. -->
+    <string name="open_in_app_dialog_title">Choose which app to open with</string>
+    <!-- Checkbox in the map app dialog. When ticked, the chosen app is used every time without asking. -->
+    <string name="open_in_app_remember">Always use this app</string>
+    <!-- Long press on the open in map app button, which shows the list of map apps again so the user can change their remembered choice. TalkBack reads it after "Double tap and hold to "; on iOS it is a VoiceOver action. -->
+    <string name="open_in_app_change">Choose a different app</string>
     <!-- Accessibility hint for markers in a list which could be removed from the list. This is always preceded by "Double tap to " -->
     <string name="location_detail_add_waypoint_existing_hint">remove this marker from your route</string>
     <!-- Accessibility hint for markers in a list that can be added to a list. This is always preceded by "Double tap to " -->
