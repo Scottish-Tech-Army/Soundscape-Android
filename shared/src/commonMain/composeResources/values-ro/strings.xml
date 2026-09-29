@@ -61,9 +61,9 @@
     <string name="location_detail_action_preview_hint">a începe previzualizarea acestei locații</string>
     <string name="location_detail_add_waypoint_existing_hint">a elimina acest marcaj din rută</string>
     <string name="location_detail_add_waypoint_new_hint">a adăuga acest marcaj ca punct de traseu pe ruta ta</string>
-    <string name="location_detail_full_screen_hint">Afișează harta pe tot ecranul</string>
-    <string name="location_detail_exit_full_screen_hint">ieși din harta pe tot ecranul</string>
-    <string name="location_detail_full_screen_for_edit_hint">Afișează harta pe tot ecranul și editează locația marcajului</string>
+    <string name="location_detail_full_screen_hint">a afișa harta pe tot ecranul</string>
+    <string name="location_detail_exit_full_screen_hint">a ieși din harta pe tot ecranul</string>
+    <string name="location_detail_full_screen_for_edit_hint">a afișa harta pe tot ecranul și a edita locația marcajului</string>
     <string name="route_detail_action_start_route">Pornește ruta</string>
     <string name="route_detail_action_stop_route">Oprește ruta</string>
     <string name="route_detail_action_edit">Editează ruta</string>
@@ -125,7 +125,7 @@
     <string name="groceries_places_nearby_description">a vedea o listă a magazinelor alimentare din apropiere</string>
     <string name="banks_places_nearby_description">a vedea o listă a băncilor din apropiere</string>
     <string name="intersections_places_nearby_description">a vedea o listă a intersecțiilor din apropiere</string>
-    <string name="places_nearby_selection_description">Alege dintr-o listă de locuri din apropiere</string>
+    <string name="places_nearby_selection_description">a alege dintr-o listă de locuri din apropiere</string>
     <string name="filter_transit">Transport public</string>
     <string name="filter_food_drink">Mâncare și băuturi</string>
     <string name="filter_groceries">Magazine alimentare și de proximitate</string>
@@ -249,7 +249,7 @@
     <string name="ui_action_button_ahead_of_me">Înaintea\nmea</string>
     <string name="ui_action_button_ahead_of_me_acc_hint">a asculta despre locurile din fața ta</string>
     <string name="ui_menu">Meniu</string>
-    <string name="ui_menu_hint">deschide meniul</string>
+    <string name="ui_menu_hint">a deschide meniul</string>
     <string name="ui_menu_close">Închide meniul</string>
     <string name="ui_continue">Continuă</string>
     <string name="menu_manage_callouts">Gestionare anunțuri</string>
@@ -316,7 +316,7 @@
     <string name="first_launch_prompt_message">Ești pregătit pentru prima ta plimbare cu Soundscape. Pentru a începe, alege o destinație din apropiere și pornește baliza audio — o vei auzi din direcția destinației tale.</string>
     <string name="first_launch_prompt_button">Finalizare</string>
     <string name="first_launch_change_language">Schimbă limba</string>
-    <string name="first_launch_change_language_hint">Schimbă limba folosită de aplicație</string>
+    <string name="first_launch_change_language_hint">a schimba limba folosită de aplicație</string>
     <string name="help_text_destination_beacons_what">Setarea unei balize pe o locație din apropiere permite Soundscape să te țină informat prin redarea unui sunet din direcția locației respective. Această baliză poate fi dezactivată sau activată de pe ecranul principal. În plus, Soundscape afișează informații despre locație pe ecranul principal, inclusiv distanța până la aceasta și adresa stradală, dacă este cunoscută.</string>
     <string name="help_text_destination_beacons_when">Setarea unei balize este utilă atunci când vrei să urmărești un reper familiar în timp ce explorezi o zonă nouă sau când te deplasezi undeva și vrei să fii informat despre împrejurimi pe parcurs. Funcția de baliză nu îți oferă indicații pas cu pas, dar îți oferă un sunet audibil continuu care îți indică direcția balizei, relativ la locația ta actuală. Folosind baliza audio, abilitățile tale de orientare existente și chiar aplicația ta preferată de navigare, poți alege singur cum să ajungi la locațiile din apropiere.</string>
     <string name="help_text_destination_beacons_how_1">**Pentru a seta o baliză :**\n\n Mai întâi, vizualizează detaliile unei locații fie folosind bara de căutare pentru a căuta un loc, fie atingând unul din butoanele *Locuri din apropiere*, *Marcaje și rute* sau *Locația curentă* și selectând o locație. Apoi, din ecranul *Detalii locație*, selectează butonul *Pornește baliza audio*. Atingând acest buton vei reveni la ecranul principal și vei activa o baliză audibilă emisă din direcția locului selectat. Numele locului, împreună cu distanța până la acesta și adresa sa fizică, dacă sunt disponibile, vor fi afișate acum pe ecranul principal.</string>
@@ -479,7 +479,7 @@
     <string name="accessibility_screen_reader_disabled">Deoarece nu ai un cititor de ecran activat, presupunem că vrei să vezi hărțile grafice din aplicație. Poți modifica această setare aici sau pur și simplu să continui.</string>
     <string name="text_field_clear_text">Șterge textul</string>
     <string name="marker_name_description_hint">a edita numele marcajului</string>
-    <string name="annotation_description_hint">a adăuga o notă opțională pentru a vă ajuta să recunoașteți acest marcaj mai târziu</string>
+    <string name="annotation_description_hint">a adăuga o notă opțională care să te ajute să recunoști acest marcaj mai târziu</string>
     <string name="route_name_description_hint">a edita numele rutei</string>
     <string name="route_description_description_hint">a adăuga o descriere opțională pentru această rută</string>
     <string name="fab_add_item">Adăugare element</string>
@@ -487,7 +487,7 @@
     <string name="route_waypoint_progress">Ruta %1$s la punctul de traseu %2$s din %3$s</string>
     <string name="home_screen_title">Ecran principal Soundscape</string>
     <string name="settings_reset_button">Resetare setări la valorile implicite</string>
-    <string name="settings_reset_button_hint">resetați setările la valorile implicite și apoi reporniți aplicația.</string>
+    <string name="settings_reset_button_hint">a reseta setările la valorile implicite și apoi a reporni aplicația.</string>
     <string name="settings_reset_dialog_title">Sunteți sigur?</string>
     <string name="settings_reset_dialog_message">Resetarea setărilor va șterge toate setările pe care le-ai configurat în aplicație. Vrei să continui?</string>
     <string name="advanced_markers_and_routes_export_button">Exportă baza de date a marcajelor și rutelor</string>
@@ -1275,7 +1275,7 @@
     <string name="menu_audio_tutorial">Tutorial ghidat</string>
     <string name="menu_audio_tutorial_cancel">Anulează tutorialul ghidat</string>
     <string name="tour_continue_button">Continuă</string>
-    <string name="tour_continue_hint">închide fereastra pop‑up și continuă tutorialul</string>
+    <string name="tour_continue_hint">a închide fereastra pop‑up și a continua tutorialul</string>
     <string name="preview_go_hint">a merge în această direcție până la următoarea intersecție</string>
     <string name="error_message_route_not_found">Nu s-a putut găsi ruta în baza de date.</string>
     <string name="error_message_deleting_route">Ștergerea rutei a eșuat.</string>
@@ -1360,8 +1360,8 @@
     <string name="relative_left_right_direction_behind_left">În spate la stânga</string>
     <string name="relative_left_right_direction_behind_right">În spate la dreapta</string>
     <string name="relative_left_right_direction_behind">În spate</string>
-    <string name="settings_collapse_section">Restrânge secțiunea</string>
-    <string name="settings_expand_section">Extinde secțiunea</string>
+    <string name="settings_collapse_section">a restrânge secțiunea</string>
+    <string name="settings_expand_section">a extinde secțiunea</string>
     <string name="settings_collapsed">Restrânsă</string>
     <string name="settings_expanded">Extinsă</string>
     <string name="ui_grant_permission">Acordă permisiunea</string>
