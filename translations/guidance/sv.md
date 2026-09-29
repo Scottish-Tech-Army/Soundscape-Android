@@ -48,6 +48,14 @@ is now the **status alone**: `sleep_sleeping` → «I viloläge» is a one-strin
 fix. The other «inaktiver-» uses in the corpus mean "turn off" in general
 (C5) and stay. This is the case recorded in `_common.md` C14.
 
+### SV-B1 — Hints are infinitives (`agreed`, fixed 2026-09-29)
+
+Accessibility hints go into «Dubbeltryck för att %1$s» (and TalkBack's «…för att <label>»), so they must be infinitives: «lägga till», «göra», «välja», never «lägg till», «Gör», «välj». Check any new hint. See DA-B1.
+
+### SV-G1 — «ljudfyr» is common gender (`agreed`, fixed 2026-09-29)
+
+«en ljudfyr», «ljudfyren», matching «fyr». The assistant and Siri strings had drifted to «ett ljudfyr» / «ljudfyret».
+
 ### SV-C1 — Siri phrases are Swedish and live outside Weblate (`agreed`)
 
 The same coupling as FR-C1.
@@ -82,3 +90,19 @@ Numbered as on the questionnaire.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 25 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** Loading indicator → «Läser in». Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 31 fixes uploaded.** The Weblate log shows no human Swedish edits. Fixed:
+- **Microsoft errors:**
+  - "facing" rendered as walking / «färdriktningen» in `help_text_my_location_what`/`_when` and the four `help_text_*_how`, plus three times in `faq_why_does_beacon_disappear_answer` → «det håll du är vänd (åt)».
+  - «bland att» → «bland annat»; «*Min plats mig*» → «*Min plats*».
+  - `terms_of_use_medical_safety_disclaimer`: «medicinsk utrustning» → «rådgivning» for "medical advice".
+  - `help_creating_markers_page_title` «Skapa».
+- **Other:**
+  - `faq_supported_phones_answer`: a stale Android-only sentence, now with iOS 16 (C16).
+  - `relative_clock_direction` «på klockan %1$s».
+  - The two travel-mode tunnel callouts: «går in» → «åker in».
+  - 9 imperative hints (SV-B1).
+  - 7 neuter «ljudfyr» slips (SV-G1).
+  - Two OSM name capitals.
+
+Uploaded with `--skip-validate`; all 31 re-fetched and matched exactly.
