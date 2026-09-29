@@ -47,6 +47,10 @@ This lands in `confect_name_to` as «শেষ প্রান্ত পর্�
 
 There is no `bn.lproj`. See PL-C1.
 
+### BN-B1 — Hint form (`agreed`, fixed 2026-09-29)
+
+Hints are «-তে» infinitives to fit «%1$s ডাবল ট্যাপ করুন»; never «…করুন» imperatives. Check any new hint.
+
 ## Rejected
 
 Nothing yet.
@@ -67,3 +71,5 @@ Nothing yet.
 **2026-09-24 — corpus sweep.** Nothing uploaded.
 
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 28 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
+
+**2026-09-29 — Full review of all 1586 units.** 12 fixes uploaded. 5 hints had drifted to «…করুন» imperatives and now use the «-তে» infinitive required by «%1$s ডাবল ট্যাপ করুন» (BN-B1). Help text now uses the real labels «আমার চারপাশ» and «কাছাকাছি স্থান». Uploaded with `--skip-validate` and re-fetched: all matched exactly.

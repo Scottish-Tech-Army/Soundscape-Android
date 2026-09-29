@@ -13,7 +13,7 @@ Read with [`_common.md`](_common.md).
 
 **No native speaker has reviewed Telugu.** It has been AI-only since
 2026-08-21. Structurally sound: `confect_name_to` «%2$sకు వెళ్ళే %1$s» is
-correct under C10, and «%1$s చేయడానికి రెండుసార్లు నొక్కండి» composes well.
+correct under C10, and the double-tap template now composes (fixed 2026-09-29, TE-B1).
 It leans heavily on loanwords. Questions: `docs/translation-questions/questions-te.md`
 (Q1…Q6).
 
@@ -37,6 +37,10 @@ It leans heavily on loanwords. Questions: `docs/translation-questions/questions-
 
 See PL-C1.
 
+### TE-B1 — Hint form (`agreed`, fixed 2026-09-29)
+
+The template is «%1$s రెండుసార్లు నొక్కండి»; the hints carry the «-డానికి» infinitive, so the template must not repeat «చేయడానికి». Check any new hint.
+
 ## Rejected
 
 Nothing yet.
@@ -59,3 +63,5 @@ Nothing yet.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 26 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** Full stop added to `settings_reset_button_hint`. Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units.** 14 fixes uploaded. **The double-tap template was broken:** «%1$s చేయడానికి రెండుసార్లు నొక్కండి» plus hints ending «…చేయడానికి» gave «…చేయడానికి చేయడానికి…». The earlier note in this file that it composed well was wrong. The template is now «%1$s రెండుసార్లు నొక్కండి» (TE-B1), and 2 more hints moved to «-డానికి». 11 help strings now use the real button, filter and mode labels («బీకాన్‌ను మ్యూట్ చేయి», «ప్రజా రవాణా», «ఒరిజినల్ మోడ్», …). Uploaded with `--skip-validate` and re-fetched: all matched exactly.

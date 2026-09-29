@@ -45,6 +45,10 @@ word («बोळ»?, «पुढे रस्ता नाही») is needed. 
 
 There is no `mr.lproj`. See PL-C1.
 
+### MR-B1 — Hint form (`agreed`, fixed 2026-09-29)
+
+Hints end in the «-ण्या» oblique form so the template «%1$sसाठी डबल टॅप करा» reads «…करण्यासाठी»; never imperatives, and no final full stop. Check any new hint.
+
 ## Rejected
 
 Nothing yet.
@@ -73,3 +77,5 @@ Nothing yet.
 - "the lighthouse metaphor … has natural implications", now "This design has a few natural results".
 
 The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
+
+**2026-09-29 — Full review of all 1586 units.** 20 fixes uploaded. 18 hints had drifted to imperatives and now use the «-ण्या» oblique form, which the template «%1$sसाठी डबल टॅप करा» joins with «साठी» (MR-B1). The full stop was dropped from `settings_reset_button_hint`, because it would land before «साठी». Help text now uses «*माझ्या भोवती*» and «*झोप मोड*». Uploaded with `--skip-validate` and re-fetched: all matched exactly.
