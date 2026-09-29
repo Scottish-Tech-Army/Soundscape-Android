@@ -17,7 +17,7 @@ An earlier note (FR-B1 in `fr.md`) worried that «Kaksoisnapauta %1$s» lacked
 a connective, but the hints are translative infinitives («hiljentääksesi
 äänimajakan», "in order to mute the beacon"), which carry the "to" meaning
 themselves. The Siri phrases (`fi.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-fi.md` (Q1…Q6).
+`docs/translation-questions/questions-fi.md` (Q1…Q7).
 
 ## Glossary
 
@@ -94,7 +94,8 @@ templates must use the wrapped form.**
 3. The four detail levels: clear?
 4. Siri phrases «Soundscape ympäristö / reitti / majakka / pysäytä majakka…»: natural?
 5. Street names are now inflected («Mannerheimintiellä», «Vanhalla Vihdintiellä») instead of «Tiellä X». Right? Any names it gets wrong? (FI-G2)
-6. Anything else.
+6. Clock-face directions «kello %1$s»: heard as a time? «kello kolmessa» / «kello kolmen suunnassa»?
+7. Anything else.
 
 ## Provenance
 
