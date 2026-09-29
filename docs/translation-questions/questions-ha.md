@@ -146,7 +146,29 @@ da "ka/kana" ("Yanzu kana iya jin siginar sauti").
 **Tambaya:** Wanne ya kamata a yi amfani da shi ko'ina?
 *Which should be used everywhere?*
 
-### Q6 — Wani abu kuma? *(Anything else)*
+### Q6 — Sunayen maɓallai huɗu *(The four home-screen buttons)*
+
+**Lokacin da ake ji:** a ƙasan babban allo akwai maɓallai huɗu, kuma taimako da
+koyarwa suna ambatonsu da suna.
+*Four buttons at the bottom of the home screen, named in the help and the tutorial.*
+
+**Da Turanci:** "My Location", "Around Me", "Ahead of Me", "Nearby Markers".
+
+**Yadda yake yanzu:** maɓallan suna cewa "Matsayi Na", "Kewaye Na", "Gaba Na",
+"Alamomi Kusa"; taimako yana cewa "Inda Nake", "Kewaye da Ni", "Abin da ke
+Gabana", "Alamomin Kusa"; koyarwa tana cewa "Gaba da Ni", "Alamomi Kusa da Ni".
+*The buttons, the help and the tutorial each use different names.*
+
+**Abin da ke damun mu:** kowane maɓalli ya kamata ya sami suna ɗaya kawai, kuma
+"Matsayi Na" yana amfani da kalmar da muke amfani da ita ga "waypoint".
+*Each button should have one name, and «Matsayi Na» reuses the Waypoint word.*
+
+**Tambaya:** Wadanne sunaye ne suka fi dacewa ga maɓallan huɗu? Kuma ga
+"Snooze", "Hutawa" ko "Jinkirtawa"?
+*Which names are best for the four buttons? And for Snooze, «Hutawa» or
+«Jinkirtawa»?*
+
+### Q7 — Wani abu kuma? *(Anything else)*
 
 Idan wata jimla ta yi kama da fassara daga Turanci, ta yi tsayi, ko ba a fahimce
 ta ba, ku faɗa mana.

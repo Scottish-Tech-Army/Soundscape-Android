@@ -79,11 +79,14 @@ dokunun». This is the rare case where the **hints** should change, to the
 TalkBack user to confirm before sweeping, since the hints feed both
 platforms (C13).
 
-**Swept 2026-09-29** at the maintainer's request: `talkback_double_tap_template`
-is the Android TalkBack frame, so the imperatives were ungrammatical on
-Android whatever iOS does. All 21 imperative hints are now «-mek/-mak» forms.
-**New hints must use that form.** Open question 3 still asks a speaker to
-confirm how it sounds.
+**Swept 2026-09-29** at the maintainer's request. All 21 imperative hints are
+now «-mek/-mak» forms, so the 43 hints are consistent. **Correction:** the
+sweep was justified at the time by saying `talkback_double_tap_template` is the
+Android TalkBack frame. It isn't: it is iOS-only, and Android TalkBack wraps
+the hint in its own Turkish phrasing (C13). The «-mek» form is still the one
+that fits «… için çift dokunun» on iOS, and probably TalkBack's Turkish frame
+too, but that part is unconfirmed. **New hints must use the «-mek» form.**
+Open question 3 still asks a speaker, ideally a TalkBack user, how it sounds.
 
 ### TR-C1 — Siri phrases are Turkish and live outside Weblate (`agreed`)
 

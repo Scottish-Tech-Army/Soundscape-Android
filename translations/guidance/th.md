@@ -78,3 +78,5 @@ Nothing yet.
 - "the lighthouse metaphor … has natural implications", now "This design has a few natural results".
 
 The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
+
+**2026-09-29 — full review.** 5 fixes. «รายละเอียดสถานที่» → «รายละเอียดตำแหน่ง», the screen title (3 strings); «*ปุ่มเปิดเสียงบีคอน*» → «ปุ่ม *เปิดเสียงบีคอน*» (2). Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** TH-T1.

@@ -73,3 +73,5 @@ Nothing uploaded.
 - "the lighthouse metaphor … has natural implications", now "This design has a few natural results".
 
 The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
+
+**2026-09-29 — full review.** 29 fixes. Around Me button «Pande Zangu» → «Karibu Nami», the name used in 12 help and tour strings. Voices «Sauti» collided with the Audio section «Sauti» → «Aina za Sauti» (the Android help already said so; iOS help updated). Beacon «mwongozo wa sauti» / «Kiashiria» (5 strings) → «beacon ya sauti» like everywhere else (SW-T1 still asks whether to replace «beacon»). Help button names now match the labels («Zima/Washa Sauti ya Beacon», «Taarifa za Mahali», «Imekamilika»). 11 hints → ku-infinitives. Four crossing callouts «Inapita» ("it passes") → «Unapita». Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.

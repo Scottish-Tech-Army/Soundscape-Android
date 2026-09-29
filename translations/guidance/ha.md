@@ -17,7 +17,7 @@ idiomaticity, because Hausa is the language here where machine translation
 is least reliable. **Treat every term as a guess until a speaker has seen
 it.** The template «Danna sau biyu don %1$s» composes with the hints. There
 is no `ha.lproj`, so the Siri phrases stay in English. Questions:
-`docs/translation-questions/questions-ha.md` (Q1…Q6).
+`docs/translation-questions/questions-ha.md` (Q1…Q7).
 
 ## Glossary
 
@@ -50,7 +50,8 @@ Nothing yet.
 3. Callout «sanarwa» and Beacon «Siginar Sauti»: natural?
 4. «Titin X, ta juya hagu»: a description, or an instruction? (HA-S1)
 5. Register: respectful plural «ku» or singular «ka»? The app mixes them («Kun shirya!» vs «Yanzu kana iya jin…»).
-6. Anything else.
+6. The four home-screen buttons have three names each (label «Matsayi Na» / help «Inda Nake» / directions «Wurina», and so on); which? Also Snooze «Hutawa» (UI) vs «Jinkirtawa» (FAQ).
+7. Anything else.
 
 ## Provenance
 
@@ -60,3 +61,5 @@ Nothing uploaded.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 25 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** `osm_parking_space` → «Gurbin Ajiye Mota», `osm_clinic` → «Karamin Asibiti» (each had been a copy of a sibling). Uploaded live.
+
+**2026-09-29 — full review.** 56 fixes, all consistency, wording `unconfirmed` like everything in Hausa. Beacon «alamar sauti» (27 strings; «alama» is the Marker word) → «siginar sauti», the UI term; plural «alamomin sauti» avoided with «nau'o'in siginar sauti». Route «hanya/hanyoyi» (road/way) → «tafarki/tafarkuna» in menus, voice commands and the routes help (15). English "beacon" («beacon na murya») left in 4 strings → «siginar sauti». Help button names now match the labels («Tsayar da Tafarki», «Kashe/Kunna Siginar Sauti», «Wurin da Kake Yanzu», «Wurare na Kusa», «An Gama»). `faq_tip_beacon_quiet` «zai yi shiru» → «zai ragu». Two hints lower-cased. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** the four home-button names (Q6); Waypoint «matsayi»/«tasha» (Q2); Snooze «Hutawa»/«Jinkirtawa» (Q6).
