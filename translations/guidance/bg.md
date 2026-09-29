@@ -22,8 +22,8 @@ reviewers to react to. Nothing is swept from it.
 The corpus is in better shape than most AI-only languages. It is consistent
 on register, every UI label starts with a capital, and the accessibility
 hints are verbal nouns («изключване на звука на аудио маяка»), which slot
-grammatically into «Двукратно докосване за %1$s». There is no defect
-to fix. The open items are all term choices.
+grammatically into «Двукратно докосване за %1$s» (BG-B1: 12 that had
+drifted were fixed on 2026-09-29). The open items are all term choices.
 
 The questions for reviewers are in `docs/translation-questions/questions-bg.md`, numbered
 Q1…Q9 to match the Open questions below.
@@ -102,6 +102,10 @@ the verbs match the situations exactly. Don't "fix" «Вървите» into some
 neutral. The same split is worth checking in other languages, which may not
 have noticed it.
 
+### BG-B1 — Hints are verbal nouns (`agreed`, fixed 2026-09-29)
+
+«Двукратно докосване за %1$s» ("double tap for …") needs a verbal noun: «отваряне на менюто», «приспиване на Soundscape», «информация за …». Not a «да»-clause («за чуете», «за отворите», which is missing its «да»), an imperative («изберете») or a finite verb («възстановява»). Check any new hint.
+
 ### BG-C1 — Siri command phrases stay in English (`agreed`)
 
 There is no `bg.lproj/AppShortcuts.strings`, and Siri doesn't support
@@ -144,3 +148,15 @@ Nothing uploaded.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 27 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** `confect_name_to` → «%1$s към %2$s» (and `_to_via`), as its note asks. «до» stays for "next to". Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 21 fixes uploaded.** No human Bulgarian edits in Weblate. Fixed:
+- **12 hints** had drifted from verbal nouns to «да»-clauses without «да», imperatives or a finite verb (BG-B1), plus 2 with a capital «Показване».
+- **`relative_left_right_direction_behind*`:** «Назад» ('backwards') → «Отзад» (3).
+- **Help text now names the real button or filter:** «*Изключи звука на маяка*», «бутона *Включи звука на маяка*», «*Обществен транспорт*».
+- **`faq_how_to_use_beacon_answer`:** retranslated whole. It was translated from an older English with a sailboat-tacking sentence (C16).
+
+Uploaded with `--skip-validate`; all 21 re-fetched and matched exactly.
+
+Not changed, candidates for the questionnaire:
+- "Points of interest" is mostly «забележителности», the landmarks word (one setting says «интересни места»).
+- Button labels use the informal imperative («Спри маршрута», «Чуй околността си») under an otherwise formal «Вие» register (BG-R1).
