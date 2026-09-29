@@ -288,7 +288,7 @@
     <string name="first_launch_change_language">Zmień język</string>
     <string name="first_launch_change_language_hint">zmień język używany przez aplikację</string>
     <string name="help_text_destination_beacons_what">Ustawienie naprowadzania na pobliską lokalizację pozwala Soundscape prowadzić cię, odtwarzając dźwięk dochodzący z kierunku tej lokalizacji. Ten dźwięk można wyciszyć lub włączyć ponownie na ekranie głównym. Dodatkowo Soundscape wyświetla na ekranie głównym informacje o tej lokalizacji, w tym odległość oraz adres, jeśli jest znany.</string>
-    <string name="help_text_destination_beacons_when">Ustawienie naprowadzania dzwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz być informowany(-a) o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.</string>
+    <string name="help_text_destination_beacons_when">Ustawienie naprowadzania dźwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz być informowany(-a) o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.</string>
     <string name="help_text_destination_beacons_how_1">**Aby ustawić dźwięk naprowadzający:**\n\n Najpierw wyświetl szczegóły lokalizacji, wyszukując miejsce w pasku wyszukiwania lub stukając w jeden z przycisków *„Miejsca w pobliżu”*, *„Znaczniki (pinezki) i trasy”* lub *„Bieżąca lokalizacja”* i wybierając lokalizację. Następnie na ekranie *„Szczegóły lokalizacji”* wybierz przycisk *„Uruchom dźwięk naprowadzający”*. Stuknięcie tego przycisku spowoduje powrót do ekranu głównego i włączenie słyszalnego naprowadzania dochodzącego z kierunku wybranej lokalizacji. Nazwa miejsca wraz z jego odległością oraz fizycznym adresem (jeśli dostępny) zostaną teraz wyświetlone na ekranie głównym.</string>
     <string name="help_text_destination_beacons_how_2">**Aby usunąć bieżący dźwięk naprowadzający:**\n\n Po prostu naciśnij przycisk *„Zatrzymaj trasę”* na ekranie głównym.</string>
     <string name="help_text_destination_beacons_how_3">**Aby wyciszyć dźwięk naprowadzający:**\n\n Stuknij przycisk *„Wycisz dźwięk naprowadzający”* obok przycisku *„Zatrzymaj trasę”* na ekranie głównym.</string>
@@ -320,7 +320,7 @@
     <string name="help_text_creating_markers_content_2">Otrzymasz teraz możliwość dostosowania znacznika. Możesz zmienić jego nazwę oraz dodać adnotację, która będzie odtwarzana wraz ze znacznikiem, aby dostarczyć dodatkowych informacji. Po zakończeniu wybierz przycisk *„Gotowe”*, aby zapisać znacznik.</string>
     <string name="help_text_customizing_markers_content_1">Jeśli chcesz zmienić nazwę wcześniej utworzonego znacznika lub dodać do niego adnotację, wybierz znacznik na karcie *„Znaczniki (pinezki)”* na stronie *„Znaczniki (pinezki) i trasy”*, a następnie naciśnij przycisk *„Edytuj znacznik (pinezkę)”.* Możesz nadać znacznikom opisowe lub użyteczne przydomki oraz dłuższy opis, korzystając z pola adnotacji.</string>
     <string name="help_text_customizing_markers_content_2">Na tym ekranie *„Edytuj”* możesz także usunąć znacznik, jeśli nie jest już potrzebny.</string>
-    <string name="help_text_routes_content_what">Trasy to ciąg punktów trasy. Po dotarciu do każdego punktu zostaniesz poinformowany, a Dźwięk naprowadzający automatycznie przełączy się na następny punkt.</string>
+    <string name="help_text_routes_content_what">Trasy to ciąg punktów trasy. Po dotarciu do każdego punktu zostaniesz poinformowany, a dźwięk naprowadzający automatycznie przełączy się na następny punkt.</string>
     <string name="help_text_routes_content_when">Możesz utworzyć i wykorzystać trasę w miejscu, które już znasz, aby trzymać się właściwej drogi. Możesz też użyć trasy, aby poznać nową drogę.</string>
     <string name="help_text_routes_content_how_1">**Tworzenie trasy :**\n\nNajpierw przejdź do *Znaczniki (pinezki) i Trasy*, wybierz kartę *Trasy*, a następnie naciśnij przycisk *Nowa trasa*. Nadaj trasie nazwę i opcjonalny opis, a następnie dodawaj punkty trasy w trakcie tworzenia lub wybierz je ze swojej listy Znaczników (pinezek). Kolejność punktów trasy możesz zmienić w dowolnym momencie, edytując trasę.</string>
     <string name="help_text_routes_content_how_2">**Edycja trasy:**\n\n Wybierz swoją trasę na ekranie *„Znaczniki (pinezki) i trasy”*, a następnie wybierz *„Edytuj trasę”*. Z tego miejsca możesz dodawać i usuwać punkty trasy oraz edytować nazwę i opis trasy.</string>
@@ -1609,9 +1609,9 @@
     <string name="help_gps_accuracy_ok">wystarczająca</string>
     <string name="help_gps_accuracy_poor">słaba</string>
     <string name="help_gps_accuracy_waiting">Oczekiwanie na pozycję z telefonu…</string>
-    <string name="beacon_action_callout_beacon">Powiadom o dźwięku naprowadzającym</string>
+    <string name="beacon_action_callout_beacon">Powiadom o punkcie trasy</string>
     <string name="callouts_action_more_info">Więcej informacji</string>
-    <string name="menu_beacon_info">Informacje o dźwięku naprowadzającym</string>
+    <string name="menu_beacon_info">Informacje o punkcie trasy</string>
     <string name="markers_action_add_to_markers">Dodaj do znaczników</string>
     <string name="callouts_no_beacon_active">Brak aktywnego dźwięku naprowadzającego</string>
     <string name="directions_name_is_currently_street_address">%1$s: obecnie %2$s. Adres: %3$s.</string>
@@ -1658,4 +1658,11 @@
     <string name="search_no_offline_maps">Wyszukiwanie działa offline, ale nie pobrano mapy offline dla miejsca, w którym jesteś.</string>
     <string name="location_detail_adjust_marker_location">Edytuj lokalizację</string>
     <string name="location_detail_adjust_marker_location_instructions">Przeciągnij mapę, aby przesunąć lokalizację znacznika. Stuknij „Gotowe”, aby zachować nową lokalizację, lub „Anuluj”, aby pozostawić ją bez zmian.</string>
+    <string name="location_detail_action_open_in_app">Otwórz w aplikacji z mapami</string>
+    <string name="location_detail_action_open_in_named_app">Otwórz w aplikacji %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">wyświetlić tę lokalizację w innej aplikacji z mapami lub nawigacją</string>
+    <string name="location_detail_action_open_in_named_app_hint">wyświetlić tę lokalizację w aplikacji %1$s</string>
+    <string name="open_in_app_dialog_title">Wybierz aplikację do otwarcia</string>
+    <string name="open_in_app_remember">Zawsze używaj tej aplikacji</string>
+    <string name="open_in_app_change">Wybierz inną aplikację</string>
 </resources>
