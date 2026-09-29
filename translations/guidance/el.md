@@ -73,3 +73,18 @@ AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 25 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** `osm_platform` → «Πλατφόρμα σταθμού», `osm_dock` → «Δεξαμενή» (both had been «Αποβάθρα»), `osm_pavillion` → «Κιόσκι». Full stops removed where the English has none. Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 26 fixes uploaded.** The Weblate log shows no human Greek edits. The hints (EL-B1) were left for the reviewer. Fixed:
+- **Microsoft's «αντιμετωπίζετε»** ('you confront') for "facing" → «κοιτάτε» in 4 help strings.
+- **`faq_supported_phones_answer`:** a stale Android-only sentence, now with iOS 16 (C16).
+- **`faq_battery_impact_answer`:** «Το μεγαλύτερο πρόγραμμα κατανάλωσης» → «Η μεγαλύτερη κατανάλωση».
+- **English word order in 4 named-place templates:** «Σιδηροδρομικός σταθμός %1$s» etc.
+- **`preview_include_unnamed_roads_title`:** «Δρόμοι χωρίς όνομα».
+- **Typos:** «ένα ηχητικό σήμα», «επωφεληθώ», «Πώς», «τοποθετημένο».
+- **Agreement:** «τους προσεγγίζετε».
+- **`markers_marker_created`:** «Ο δείκτης δημιουργήθηκε».
+- **Road templates:** «Στη %1$s» → «Στην %1$s» (4), matching `street_description_*`.
+- **`menu_audio_tutorial`:** «Καθοδηγούμενος οδηγός».
+- **Formatting:** *…* restored in `help_text_routes_content_how_1`; three stray capitals.
+
+Uploaded with `--skip-validate`; all 26 re-fetched and matched exactly.
