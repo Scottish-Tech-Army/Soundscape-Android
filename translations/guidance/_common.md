@@ -255,6 +255,10 @@ Two things still make a term wrong regardless of origin:
 - **a split corpus**: two different words for one concept (bn ঘোষণা/কলআউট,
   ur اعلان/کالآؤٹ, zh 提示/播报, ja コールアウト/読み上げ)
 
+"One concept" means one *meaning*. **Beacon** is several meanings under one
+English word, and splitting it by meaning is correct, not a split corpus
+(see C19).
+
 ## C13 — Accessibility hints serve two platforms; fix the iOS template, not the hints
 
 Every `*_hint` / `*_acc_hint` fragment goes to both platforms:
@@ -405,3 +409,43 @@ backslash before a quote, where Weblate stores a real newline and `\"`.
 Convert before uploading.
 
 Applied 2026-09-25: all 19 restored, uploaded and verified live.
+
+## C19 — "Beacon" names three things; don't force one word on all of them
+
+English uses *beacon* for three meanings, and many languages can't stretch
+one word over all of them:
+
+| Meaning | English examples | What the translation must name |
+|---|---|---|
+| **Sound**: the audio signal | "Audio beacon styles", "mute the beacon", "the beacon gets quieter" | a sound |
+| **Place**: the location the beacon is on | "Distance to the Audio Beacon", "Beacon is currently %1$s away", "Call out Beacon", "Beacon Info" | a place or target (you can be a distance *from* it) |
+| **Feature**: guiding someone to a place | "set a beacon on an address", "Start/Stop Beacon", "No beacon active" | the act or mode of guiding |
+
+A term that names the sound («dźwięk naprowadzający», "guiding sound") turns
+"Distance to the Audio Beacon" into "distance to the guiding sound". That is
+nonsense when spoken, and this app is mostly heard.
+
+> **Case (2026-09-29, pl):** A Polish user reported that one fixed term
+> broke the place and feature strings. They warned that any pass enforcing
+> "Beacon → one term" (a glossary, translation memory, AI normalisation)
+> would bring the problem back. Their words: *"one domain object does not
+> necessarily imply one user-facing noun in every language."*
+
+**How to apply:**
+
+- Before translating or reviewing a beacon string, decide which of the three
+  meanings it is. The translator comment says *"A 'beacon' is an audio
+  signal…"* on about 20 FAQ strings, including ones where the meaning is
+  the place. Don't let that comment decide it.
+- A language may use one word for all three **if it works for all three**.
+  This rule doesn't require a split. It forbids *forcing* one where a
+  reviewer has chosen to split.
+- Never "fix" a beacon string to match another beacon string's wording
+  without first checking that both have the same meaning (C8). Deliberate
+  variation looks exactly like drift.
+- A glossary row for Beacon in `<code>.md` lists one term **per meaning**,
+  not one term.
+- Don't leave "beacon" in English as a workaround. A local speech
+  synthesiser will mispronounce it (unlike C12's loanwords, which the phone
+  itself already uses).
+
