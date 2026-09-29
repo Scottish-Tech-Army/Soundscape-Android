@@ -217,7 +217,7 @@ private fun parseQuery(query: String): Map<String, String> {
     return result
 }
 
-private fun percentDecode(input: String): String {
+internal fun percentDecode(input: String): String {
     if ('%' !in input && '+' !in input) return input
     val out = StringBuilder()
     val bytes = mutableListOf<Byte>()

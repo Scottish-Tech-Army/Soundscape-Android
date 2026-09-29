@@ -38,7 +38,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SearchCategories
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.formatCoordinate
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.parseCoordinateSearch
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
@@ -689,12 +692,37 @@ class GeoEngine {
 
     suspend fun searchResult(searchString: String): List<LocationDescription>? {
         return withContext(org.scottishtecharmy.soundscape.platform.ioDispatcher) {
+            val userLocation = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location
+            val coordinates = parseCoordinateSearch(searchString, userLocation)
+            if (coordinates.isNotEmpty())
+                return@withContext coordinates.map { coordinateSearchResult(it) }
+
             return@withContext geocoder.getAddressFromLocationName(
                 searchString,
-                getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location,
+                userLocation,
                 localizedStrings
             )
         }
+    }
+
+    /**
+     * A search result for a coordinate that was searched for. It's named by the coordinate itself,
+     * so that when both ways round of a pair of numbers are listed they can be told apart, and
+     * described by the address there when the geocoder knows it.
+     */
+    private suspend fun coordinateSearchResult(location: LngLatAlt): LocationDescription {
+        val geocode = withContext(gridState.treeContext) {
+            geocoder.getAddressFromLngLat(UserGeometry(location), localizedStrings, false)
+        }
+        val address = geocode?.takeIf {
+            location.createCheapRuler().distance(it.location, location) <
+                COORDINATE_ADDRESS_RANGE_METERS
+        }?.name
+        return LocationDescription(
+            name = formatCoordinate(location),
+            location = location,
+            description = address,
+        )
     }
 
     fun whatsAroundMe(): TrackedCallout {
@@ -893,6 +921,9 @@ class GeoEngine {
 
     companion object {
         private const val TAG = "GeoEngine"
+
+        // How near a searched-for coordinate the geocoded address must be to describe it
+        private const val COORDINATE_ADDRESS_RANGE_METERS = 200.0
     }
 }
 
