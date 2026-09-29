@@ -1628,4 +1628,11 @@
     <string name="search_no_offline_maps">تلاش آف لائن کام کر رہی ہے، لیکن آپ جہاں ہیں اس جگہ کا کوئی آف لائن نقشہ ڈاؤن لوڈ نہیں کیا گیا۔</string>
     <string name="location_detail_adjust_marker_location">مقام میں ترمیم کریں</string>
     <string name="location_detail_adjust_marker_location_instructions">مارکر کا مقام منتقل کرنے کے لیے نقشے کو گھسیٹیں۔ نیا مقام برقرار رکھنے کے لیے ‘ہو گیا’ پر، یا مقام کو بغیر تبدیلی کے چھوڑنے کے لیے ‘منسوخ کریں’ پر تھپتھپائیں۔</string>
+    <string name="location_detail_action_open_in_app">نقشہ ایپ میں کھولیں</string>
+    <string name="location_detail_action_open_in_named_app">%1$s میں کھولیں</string>
+    <string name="location_detail_action_open_in_app_hint">اس مقام کو کسی دوسری نقشہ یا نیویگیشن ایپ میں دیکھنے</string>
+    <string name="location_detail_action_open_in_named_app_hint">اس مقام کو %1$s میں دیکھنے</string>
+    <string name="open_in_app_dialog_title">منتخب کریں کہ کس ایپ سے کھولنا ہے</string>
+    <string name="open_in_app_remember">ہمیشہ یہ ایپ استعمال کریں</string>
+    <string name="open_in_app_change">دوسری ایپ منتخب کریں</string>
 </resources>
