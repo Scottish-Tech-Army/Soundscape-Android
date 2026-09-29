@@ -16,7 +16,7 @@ Turkish has two small human contributions (Toro Inoue added the language in
 is AI. The corpus has **the most serious structural problem found in any
 language**: suffixes hard-coded onto placeholders (TR-G1). The authored Siri
 phrases (`tr.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-tr.md` (Q1…Q7).
+`docs/translation-questions/questions-tr.md` (Q1…Q8).
 
 ## Glossary
 
@@ -69,7 +69,7 @@ Known limits, for the reviewer to judge:
 `confect_name_to` «%1$s'{DAn} %2$s'{A}» still means "from X to Y", which is
 a separate C10 question (open question 2).
 
-### TR-B1 — Mixed hint forms (`agreed` defect, `unconfirmed` wording)
+### TR-B1 — Mixed hint forms (`agreed` defect, `fixed` 2026-09-29, wording `unconfirmed`)
 
 The template «%1$s için çift dokunun» needs a «-mek/-mak» verbal noun before
 «için», and 21 of the 43 hints have one («ilerlemek»). The others are
@@ -78,6 +78,12 @@ dokunun». This is the rare case where the **hints** should change, to the
 «-mek» form. That form likely also suits Android TalkBack's Turkish frame, but ask a
 TalkBack user to confirm before sweeping, since the hints feed both
 platforms (C13).
+
+**Swept 2026-09-29** at the maintainer's request: `talkback_double_tap_template`
+is the Android TalkBack frame, so the imperatives were ungrammatical on
+Android whatever iOS does. All 21 imperative hints are now «-mek/-mak» forms.
+**New hints must use that form.** Open question 3 still asks a speaker to
+confirm how it sounds.
 
 ### TR-C1 — Siri phrases are Turkish and live outside Weblate (`agreed`)
 
@@ -96,7 +102,8 @@ Nothing yet.
 4. Beacon «Sesli İşaret»: natural?
 5. Siri phrases: natural?
 6. Callout «anons»: natural? (AI-only term, asked for confirmation)
-7. Anything else.
+7. Motorway junctions: «5. Kavşak» reads as "the 5th junction". Better «5 numaralı kavşak» or «Kavşak 5»? Also: is «Vapur İskelesi» or «Feribot İskelesi» right for a ferry terminal, and what is a *rigger* (a craft trade) in Turkish?
+8. Anything else.
 
 ## Provenance
 
@@ -113,3 +120,5 @@ the resolver in `GrammarMarkers.kt`.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 26 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** `help_text_automatic_callouts_when_2` had lost its bold heading; restored as «**Belirli bir konuma yürürken:**». Beacon styles translated (Dave's decision, as for Romanian): Parıltı, Işıltı, Dokunsal, Çınlama, Düşüş, Sinyal, Tokmak, all `unconfirmed`. Uploaded live.
+
+**2026-09-29 — full review.** 34 fixes, live strings re-checked before upload, uploaded with `--skip-validate` and verified live. Meaning: `directions_approaching_name` «%1$s yaklaşıyor» (the place approaching you) → «%1$s'{A} yaklaşılıyor»; `faq_sleep_mode_battery_question` «Sessiz Mod» → «Uyku Modu»; `help_text_my_location_when` "facing" as «ilerlediğinizi» → «baktığınızı»; `faq_battery_impact_answer` («Pilinizin en çok tükenen kısmı», «Kullanımda olmadığınız»); `faq_tip_beacon_quiet` «susar» → «kısılır»; `tour_start_beacon` past tense «sekmesindeydiniz»; `faq_holding_phone_flat_answer` «tam hacme» → «tam ses düzeyine»; `general_error_add_marker_error` dropped "later"; `first_launch_headphones_message_1` «şimdi alın» → «şimdi takın». Also a typo, a lost `*…*`, and two help texts renamed to the real labels («İşaretin Sesini Aç», «Tamam»). 21 hints swept to «-mek» (TR-B1). **Held:** `osm_rigger` still English; `directions_junction_with_ref` «%1$s. Kavşak» turns a junction ref into an ordinal; ferry terminal «Vapur İskelesi» vs «Feribot İskelesi».
