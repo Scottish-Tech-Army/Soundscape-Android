@@ -1610,7 +1610,7 @@
     <string name="search_synonyms_atm">cajero, cajero automático</string>
     <string name="search_synonyms_bank">banco, caja</string>
     <string name="search_synonyms_supermarket">supermercado, hipermercado</string>
-    <string name="search_synonyms_convenience">tienda de alimentación, tienda de conveniencia, colmado, abarrotes, ultramarinos, tienda 24 horas</string>
+    <string name="search_synonyms_convenience">tienda de alimentación, tienda de conveniencia, colmado, abarrotes, ultramarinos, tienda 24 horas, minimercado</string>
     <string name="search_synonyms_bus_stop">parada de autobús, parada de bus, parada, paradero</string>
     <string name="search_synonyms_train_station">estación de tren, estación, estación de ferrocarril, cercanías</string>
     <string name="search_synonyms_post_office">oficina de correos, correos, correo</string>
@@ -1643,4 +1643,11 @@
     <string name="search_no_offline_maps">La búsqueda funciona sin conexión, pero no hay ningún mapa sin conexión descargado del lugar donde te encuentras.</string>
     <string name="location_detail_adjust_marker_location">Editar ubicación</string>
     <string name="location_detail_adjust_marker_location_instructions">Arrastra el mapa para mover la ubicación del marcador. Pulsa Listo para mantener la nueva ubicación o Cancelar para dejarla sin cambios.</string>
+    <string name="location_detail_action_open_in_app">Abrir en aplicación de mapas</string>
+    <string name="location_detail_action_open_in_named_app">Abrir en %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">ver esta ubicación en otra aplicación de mapas o de navegación</string>
+    <string name="location_detail_action_open_in_named_app_hint">ver esta ubicación en %1$s</string>
+    <string name="open_in_app_dialog_title">Elige con qué aplicación abrir</string>
+    <string name="open_in_app_remember">Usar siempre esta aplicación</string>
+    <string name="open_in_app_change">Elegir otra aplicación</string>
 </resources>
