@@ -142,7 +142,29 @@ Nothing yet — no feedback in this thread was proposed and then turned down.
 
 ## Open questions for the reporter (JJ / next native-speaker round)
 
-None open. JJ answered Q3–Q5 on 2026-09-25 (see ES-G1, ES-W1 and the
+Three questions are open. They come from the 2026-09-29 review, where each proposed fix would have
+undone an edit JJ made in Weblate on 2026-09-27/28. They're held in
+`/tmp/weblate-review/es-findings.json` (`suggested` = `current`, the fix is
+in `proposed`) until JJ answers. Don't upload them without him.
+
+- **Q6 `routes_no_routes_hint_1`.** JJ changed «Agrega un conjunto de
+  marcadores como puntos de ruta» to «…como puntos de referencia». The
+  glossary term for Waypoint is «punto de ruta» (`confirmed`, 24
+  occurrences). Elsewhere «punto de referencia» means Landmark
+  (`callouts_places_landmarks`, `osm_generic_landmark`, the Quiet-mode
+  description). Was the change meant as the waypoint term here, or should
+  it go back to «puntos de ruta»?
+- **Q7 `legacy_migration_not_now`.** JJ changed the button from «Ahora no»
+  to «No ahora». To us «Ahora no» reads as the usual phrasing for a "Not now"
+  button. Is «No ahora» preferred?
+- **Q8 `help_text_markers_content_3`.** JJ changed «…y podrás actuar de la
+  manera habitual» to «…y podrá actuar…». The English is "you can operate
+  it as usual", with the user as subject, and «podrá actuar» reads as "it
+  will be able to act". Proposed: «…y podrás usarla de la manera
+  habitual». The same fix would also restore the `*Marcadores cercanos*`
+  markup that the English has, and that part doesn't depend on the answer.
+
+Earlier questions: JJ answered Q3–Q5 on 2026-09-25 (see ES-G1, ES-W1 and the
 Rejected section).
 
 *Answered and closed:* **Q1 «Pulsa»**, confirmed (ES-R2). **Q2, the FAQ
@@ -310,3 +332,7 @@ Latin American Spanish in Soundscape Community.
 **2026-09-28 — JJ's English rewording and UI-name markup.** Only 4 strings were flagged (3 changed). The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and verified live.
 
 **2026-09-28 — Weblate checks pass.** `settings_theme_contrast_regular` → «Normal» («Regular» reads as "so-so"), `osm_dock` → «Dársena», loading indicator → «Cargando». Uploaded live.
+
+**2026-09-29 — full review (1586 units, no speaker involved).** 31 flagged. 30 had a fix, and `osm_signal` («Señal» is also the Beacon term) was left for a human. Before applying, every fix was checked against the Weblate change log. Three would reverse JJ's 2026-09-27/28 edits and are held as Q6–Q8. Four more touch strings JJ edited but not the part he changed (`universal_links_marker_share_message` keeps a formal «Le» next to his «utiliza»; also `preview_go_nearest_intersection`, `help_text_destination_beacons_what`, `help_text_remote_control_what`), so they stay in. Git authorship can't answer "is this JJ's?", because Weblate squashes commits. Use `translations/…/es/changes/` from the API instead. The androidkmp log only starts 2026-08-04, so older edits need `git log -S` on `app/src/main/res/values-es/strings.xml`.
+
+**2026-09-29 — applied.** Dave confirmed the 27 remaining fixes, and all 27 were uploaded (`--skip-validate` ran fine this time) and verified live by re-fetching. The corpus stays at 1586/1586. Still open: Q6–Q8 (held for JJ) and `osm_signal`.
