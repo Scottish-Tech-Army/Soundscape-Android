@@ -76,6 +76,9 @@ Microsoft's files.
    «Leise» may be heard as volume rather than fewer callouts.
 4. Siri phrases «Soundscape Umgebung / Route / Beacon / stoppe Beacon…»: natural?
 5. Anything else.
+6. The *Nearby Markers* button reads «Mark.⏎in Nähe» (Microsoft's wording). TalkBack
+   says "Mark", not "Markierungen". Should the label be spelled out, or should the
+   button get a separate spoken label in code? Unchanged until decided (2026-09-29).
 
 ## Provenance
 
@@ -93,3 +96,11 @@ file. Nothing uploaded.
 **2026-09-28 — UI-name markup.** The 4 strings flagged again by 2842d5a00 were updated. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and verified live.
 
 **2026-09-28 — Weblate checks pass.** Loading indicator → «Wird geladen». Full stops removed from 10 descriptions/hints whose English has none. Uploaded live.
+
+**2026-09-29 — full review (1586 units).** 21 flagged, and 20 were uploaded and verified live.
+Help/FAQ now name the Sleep button *„Ruhemodus aktivieren“* (6 strings), matching the 2026-09-25 C14
+restore. Microsoft itself had mixed «Ruhemodus» and «Ruhemodus aktivieren». Also fixed: «Oberseite zum Himmel»
+→ «Bildschirm nach oben», missing «aus», «wenn Sie sich … entfernt sind», «dieser» → «dieses»
+(Audiobeacon), `confect_name_joins` «verbindet» → «zwischen» (keeps it a name inside callouts), lost
+`*„…“*` in the routes help, «Bildschirm „Startbildschirm“». Also the word order in 4 named
+stations/terminals («Bahnhof %1$s»), and 3 slashes read aloud. Held: Q6 («Mark.» label).
