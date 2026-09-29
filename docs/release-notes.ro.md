@@ -24,6 +24,18 @@ Notele pentru versiunile mai vechi se află pe pagina
   deplasați cu viteză și descrie călătoria în loc de împrejurimile imediate.
 * **Anunț când traversați ape și căi ferate.** Râurile, canalele, golfurile și liniile de cale ferată
   sunt anunțate pe măsură ce le traversați, atât pe jos, cât și în deplasare.
+* **Alegeți cât vă spune Soundscape.** Noua setare *Detaliul anunțurilor* face ca Soundscape să
+  vorbească mai puțin în locurile aglomerate, iar din *Locuri de anunțat* alegeți despre ce tipuri de
+  locuri auziți. Puteți schimba nivelul de detaliu din butoanele căștilor în timp ce mergeți.
+* **Aflați cât de departe este următoarea intersecție.** Intersecțiile sunt anunțate la o distanță
+  constantă pe măsură ce vă apropiați, iar anunțul spune acum cât de departe este bordura.
+* **Căutați un tip de loc sau niște coordonate.** Căutați „farmacie” sau „stație de autobuz” ca să le
+  găsiți pe cele mai apropiate, indiferent cum se numesc, sau lipiți coordonate, un link de hartă sau
+  un Plus Code.
+* **Deschideți un loc în altă aplicație de hărți**, cum ar fi Google Maps, din detaliile locației sau
+  din liste.
+* **Mai mult de la baliza de pe ecranul principal.** Acum arată distanța și direcția și are acțiuni
+  pentru cititorul de ecran care anunță baliza, spun mai multe despre ea sau o salvează ca marcaj.
 * **Adrese și denumiri de locuri mai bune.** Locurile fără adresă proprie primesc acum strada și zona
   în care se află, numerele de casă sunt asociate părții corecte a străzii, iar stațiile de autobuz
   din Marea Britanie folosesc denumirile lor oficiale.
@@ -78,11 +90,87 @@ Anunțurile obișnuite pentru pietoni — magazine din apropiere, treceri de pie
 sunt reținute intenționat în timpul călătoriei, iar distanțele la care lucrurile sunt anunțate au fost
 mult mărite, ca să aflați despre ceva înainte de a-l fi depășit.
 
+### Intersecții
+
+Cea mai frecventă întrebare despre anunțurile de intersecție era cât de departe este de fapt
+intersecția. Acum Soundscape vă spune: „Intersecție la 30 de metri”. Distanța este măsurată până la
+bordura străzii pe care urmează să o traversați, nu până la mijlocul intersecției, pentru că acolo vă
+opriți de fapt.
+
+Anunțul vine și într-un punct mai constant. Înainte putea veni la 45 de metri sau la 10 metri, fără
+nimic care să le deosebească. Acum așteaptă până când intersecția este la aproximativ 30 de metri,
+astfel încât distanța să însemne cam același lucru de fiecare dată.
+
 ### Traversarea apelor și a căilor ferate
 
 Soundscape vă spune acum când traversați un râu, un canal, un golf, o baie sau o linie de cale ferată.
 Funcționează atât pe jos, cât și în deplasare, și acoperă atât trecerea pe dedesubt, cât și pe
 deasupra, astfel încât sunt descrise deopotrivă un pod pietonal și un pasaj subteran.
+
+### Alegeți cât vă spune Soundscape
+
+Cel mai des auzim despre Soundscape că vorbește prea mult în locurile aglomerate, cum ar fi centrul
+orașului. Secțiunea *Gestionare anunțuri* din *Setări* are acum trei setări în locul vechii liste de
+comutatoare:
+
+* **Detaliul anunțurilor** poate fi Silențios, Discret, Echilibrat sau Detaliat. *Detaliat* este ce a
+  făcut Soundscape dintotdeauna și de aici porniți. *Echilibrat* omite potecile mici și drumurile de
+  serviciu și se repetă mai rar. *Discret* anunță doar străzi, intersecții și repere. *Silențios* nu
+  face deloc anunțuri automate, iar balizele, rutele și butoanele de pe ecranul principal continuă să
+  funcționeze. Înlocuiește vechiul comutator *Permite anunțurile*; dacă îl aveați dezactivat, veți
+  găsi Detaliul anunțurilor setat pe Silențios.
+* **Străzi și intersecții** activează sau dezactivează anunțurile despre intersecții și despre strada
+  pe care vă aflați.
+* **Locuri de anunțat** este o listă de bifat: Tot, Repere, Transport public, Mâncare și băuturi,
+  Magazine alimentare și de proximitate, Bănci și bancomate sau Niciun loc. Bifați câte doriți, de
+  exemplu repere și stații de autobuz. Marcajele dvs. sunt anunțate întotdeauna.
+
+Nivelul potrivit de detaliu se schimbă pe măsură ce mergeți, așa că nu trebuie să intrați în Setări ca
+să-l schimbați. Apăsând *Anterior* pe căști, Detaliul anunțurilor coboară câte un nivel, de la Detaliat
+la Echilibrat, Discret și Silențios, apoi din nou la Detaliat. Noul nivel este spus de fiecare dată.
+Funcționează în ambele moduri ale controalelor media, iar asta înseamnă că butoanele căștilor s-au
+schimbat puțin:
+
+* În *Mod original*, *Următorul* anunță acum *În jurul meu* când nu rulează nicio rută, iar *Locația
+  mea* nu mai este pe butoane. Cât timp rulează o rută, *Următorul* și *Anterior* trec în continuare
+  de la un punct de traseu la altul.
+* În modul *Meniu audio*, *Anterior* nu mai merge înapoi prin meniu. *Următorul* îl parcurge în
+  continuare, iar *Redare/Pauză* selectează în continuare. Marcajele și rutele din meniu sunt acum
+  ordonate după nume, iar după ce porniți unul, meniul revine la început în loc să vă lase adânc în
+  listă.
+
+### Căutare
+
+Bara de căutare înțelege acum mai mult decât nume de locuri:
+
+* **Tipuri de locuri.** Căutați „farmacie”, „toaletă”, „bancomat” și așa mai departe, în limba dvs.,
+  iar Soundscape afișează cele mai apropiate locuri de acel tip, indiferent cum se numesc. Locurile
+  fără nume, ca majoritatea toaletelor și băncilor de stat, apar după ce sunt, împreună cu adresa.
+* **Coordonate, linkuri de hărți și Plus Codes.** Lipiți o pereche de numere, grade și minute, un link
+  din Google Maps, Apple Maps sau OpenStreetMap ori un Plus Code, iar Soundscape vă dă exact acel
+  punct. O simplă pereche de numere poate fi citită în ambele sensuri, așa că, dacă ambele au sens, vi
+  se oferă amândouă, cel mai apropiat primul.
+* **Căutare offline.** Căutarea caută acum întotdeauna și în hărțile descărcate, nu doar online, și
+  găsește astfel mult mai multe locuri fără nume. Dacă căutați fără conexiune la internet și nu aveți o
+  hartă offline a locului în care vă aflați, Soundscape vă spune asta în loc să nu găsească pur și
+  simplu nimic.
+
+### Deschiderea unui loc în altă aplicație
+
+Detaliile locației au un buton nou, **Deschide în aplicația de hărți**, care afișează aplicațiile de
+hărți și navigație de pe telefon. Bifați *Folosește întotdeauna această aplicație* și butonul devine,
+de exemplu, *Deschide în Google Maps*, deschizând-o imediat; o apăsare lungă aduce înapoi lista.
+Listele *Locuri din apropiere* și *Marcaje* au și acțiunile pentru cititorul de ecran *Deschide în…*
+și *Partajează*, alături de *Pornește baliza audio*.
+
+### Baliza și marcajele
+
+* Baliza de pe ecranul principal își arată acum **distanța și direcția**, iar un cititor de ecran o
+  citește, de exemplu, ca „Baliză la Milngavie Library, 390 de metri, sud-est”. Rutele arată la fel
+  distanța până la punctul de traseu curent.
+* Baliza are trei **acțiuni pentru cititorul de ecran**: *Anunță baliza* spune unde se află, *Mai multe
+  informații* adaugă adresa, iar *Adaugă la marcaje* o salvează.
+* Puteți din nou **muta un marcaj** trăgând harta din ecranul *Editează marcaj*.
 
 ### Adrese și denumiri de locuri mai bune
 
@@ -113,7 +201,7 @@ suficient text tradus pentru a fi utilă.
 
 Traducerile sunt muncă a comunității și primim cu plăcere ajutorul dumneavoastră sau corecturile
 acolo unde ceva se citește prost. Orice text poate fi îmbunătățit la
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Modul de repaus
 
@@ -174,6 +262,8 @@ aplicațiile din fundal.
 * **Controlul vocal** a fost eliminat. Nu a funcționat niciodată suficient de fiabil pentru a merita
   păstrat, iar butoanele media de pe căști acoperă în mare parte aceleași nevoi — vedeți
   [Ajutor privind utilizarea comenzilor media]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape este pregătit și pentru comenzi vocale prin Gemini pe Android 16 și versiunile mai noi,
+  dar acestea nu vor funcționa până când Google nu lansează suportul pentru ele în Gemini.
 * **Meniul de limbă din aplicație** a dispărut. Soundscape urmează acum limba setată pe telefon, ceea
   ce majoritatea oamenilor se așteptau oricum. Pentru a o schimba, modificați limba telefonului sau
   setați o limbă per aplicație în setările acestuia, dacă oferă această opțiune.

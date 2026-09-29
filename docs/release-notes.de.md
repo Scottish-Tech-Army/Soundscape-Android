@@ -25,6 +25,19 @@ Hinweise zu älteren Versionen finden Sie auf der Seite
   höherer Geschwindigkeit fortbewegen, und beschreibt Ihre Reise statt Ihrer unmittelbaren Umgebung.
 * **Hinweise beim Überqueren von Gewässern und Bahnstrecken.** Flüsse, Kanäle, Meeresarme und
   Bahnlinien werden angesagt, wenn Sie sie überqueren – zu Fuß ebenso wie unterwegs.
+* **Bestimmen, wie viel Soundscape sagt.** Die neue Einstellung *Detailgrad der Hinweise* macht
+  Soundscape an belebten Orten leiser, und unter *Anzusagende Orte* wählen Sie, über welche Arten von
+  Orten Sie etwas hören. Den Detailgrad können Sie unterwegs mit den Tasten Ihres Kopfhörers ändern.
+* **Wissen, wie weit die nächste Kreuzung entfernt ist.** Kreuzungen werden beim Näherkommen in
+  gleichbleibendem Abstand angesagt, und der Hinweis nennt jetzt die Entfernung bis zur Bordsteinkante.
+* **Nach einer Art von Ort oder nach Koordinaten suchen.** Suchen Sie nach „Apotheke“ oder
+  „Bushaltestelle“, um die nächstgelegenen zu finden, egal wie sie heißen, oder fügen Sie
+  Koordinaten, einen Kartenlink oder einen Plus Code ein.
+* **Einen Ort in einer anderen Karten-App öffnen**, etwa in Google Maps, aus den Standortdetails oder
+  aus den Listen.
+* **Mehr vom Beacon auf dem Startbildschirm.** Er zeigt jetzt Entfernung und Richtung an und bietet
+  Screenreader-Aktionen, um auf den Beacon hinzuweisen, mehr darüber zu hören oder ihn als Markierung
+  zu speichern.
 * **Bessere Adressen und Ortsnamen.** Orte ohne eigene Adresse erhalten nun die Straße und das
   Gebiet, in dem sie liegen, Hausnummern werden der richtigen Straßenseite zugeordnet, und
   Bushaltestellen in Großbritannien verwenden ihre offiziellen Namen.
@@ -85,12 +98,90 @@ Die gewöhnlichen Ansagen für Fußgänger – nahe gelegene Geschäfte, Straße
 – werden während der Fahrt bewusst zurückgehalten, und die Entfernungen, ab denen etwas angesagt
 wird, sind deutlich vergrößert, damit Sie davon erfahren, bevor Sie daran vorbei sind.
 
+### Kreuzungen
+
+Die häufigste Frage zu Kreuzungshinweisen war, wie weit die Kreuzung eigentlich entfernt ist.
+Soundscape sagt es Ihnen jetzt: „Kreuzung 30 Meter entfernt“. Gemessen wird bis zur Bordsteinkante
+der Straße, die Sie gleich überqueren, und nicht bis zur Mitte der Kreuzung, denn dort bleiben Sie
+tatsächlich stehen.
+
+Der Hinweis kommt außerdem an einer gleichmäßigeren Stelle. Bisher konnte er 45 Meter vorher oder
+10 Meter vorher kommen, ohne dass man beides unterscheiden konnte. Jetzt wartet er, bis die Kreuzung
+etwa 30 Meter entfernt ist, sodass die Entfernung jedes Mal ungefähr dasselbe bedeutet.
+
 ### Überqueren von Gewässern und Bahnstrecken
 
 Soundscape sagt Ihnen nun, wenn Sie einen Fluss, einen Kanal, einen Meeresarm, eine Bucht oder eine
 Bahnlinie überqueren. Das funktioniert zu Fuß ebenso wie unterwegs und umfasst sowohl das
 Darunterhindurch- als auch das Darüberhinweggehen, sodass eine Fußgängerbrücke und eine
 Unterführung beide beschrieben werden.
+
+### Bestimmen, wie viel Soundscape sagt
+
+Das, was wir über Soundscape am häufigsten hören, ist, dass es an belebten Orten wie einer
+Innenstadt zu viel sagt. Der Abschnitt *Hinweise verwalten* in den *Einstellungen* hat anstelle der
+alten Liste von Schaltern jetzt drei Einstellungen:
+
+* **Detailgrad der Hinweise** ist Stumm, Leise, Ausgewogen oder Ausführlich. *Ausführlich* ist das,
+  was Soundscape schon immer gemacht hat, und die Voreinstellung. *Ausgewogen* lässt kleinere Wege
+  und Zufahrtsstraßen weg und wiederholt sich seltener. *Leise* sagt nur Straßen, Kreuzungen und
+  Orientierungspunkte an. *Stumm* macht überhaupt keine automatischen Hinweise mehr, während Beacons,
+  Routen und die Tasten auf dem Startbildschirm weiter funktionieren. Die Einstellung ersetzt den alten
+  Schalter *Hinweise zulassen*; wenn Sie diesen ausgeschaltet hatten, steht der Detailgrad auf Stumm.
+* **Straßen und Kreuzungen** schaltet die Hinweise zu Kreuzungen und zur Straße, auf der Sie sich
+  befinden, ein oder aus.
+* **Anzusagende Orte** ist eine Liste zum Ankreuzen: Alles, Orientierungspunkte, Öffentliche
+  Verkehrsmittel, Essen und Trinken, Lebensmittelgeschäfte und Supermärkte, Banken und Geldautomaten
+  oder Keine Orte. Kreuzen Sie so viele an, wie Sie möchten – zum Beispiel Orientierungspunkte und
+  Bushaltestellen. Ihre Markierungen werden immer angesagt.
+
+Wie viel Detail passt, ändert sich unterwegs, deshalb müssen Sie dafür nicht in die Einstellungen.
+Mit der Taste *Zurück* an Ihrem Kopfhörer senken Sie den Detailgrad jeweils um eine Stufe, von
+Ausführlich über Ausgewogen und Leise bis Stumm und dann wieder zu Ausführlich. Die neue Stufe wird
+jedes Mal angesagt. Das funktioniert in beiden Modi der Medientasten, und deshalb haben sich die
+Kopfhörertasten etwas geändert:
+
+* Im *Originalmodus* sagt *Weiter* jetzt *Um mich herum* an, wenn keine Route läuft, und *Mein
+  Standort* liegt nicht mehr auf den Tasten. Während eine Route läuft, wechseln *Weiter* und
+  *Zurück* weiterhin zwischen den Wegpunkten.
+* Im *Audio‑Menü* geht *Zurück* nicht mehr rückwärts durch das Menü. *Weiter* bewegt sich weiterhin
+  hindurch und *Wiedergabe/Pause* wählt weiterhin aus. Markierungen und Routen stehen im Menü jetzt
+  nach Namen sortiert, und nachdem Sie eine gestartet haben, springt das Menü wieder an den Anfang,
+  statt Sie tief in der Liste zu lassen.
+
+### Suchen
+
+Die Suchleiste versteht jetzt mehr als Ortsnamen:
+
+* **Arten von Orten.** Suchen Sie in Ihrer eigenen Sprache nach „Apotheke“, „Toilette“,
+  „Geldautomat“ und so weiter, und Soundscape listet die nächstgelegenen Orte dieser Art auf, egal
+  wie sie heißen. Orte ohne Namen, wie die meisten Toiletten und Bänke, werden nach ihrer Art
+  aufgeführt, mit ihrer Adresse.
+* **Koordinaten, Kartenlinks und Plus Codes.** Fügen Sie ein Zahlenpaar, Grad und Minuten, einen Link
+  aus Google Maps, Apple Karten oder OpenStreetMap oder einen Plus Code ein, und Soundscape zeigt
+  Ihnen genau diese Stelle. Ein einfaches Zahlenpaar lässt sich in beide Richtungen lesen; wo beides
+  sinnvoll ist, bekommen Sie beides angeboten, das Nähere zuerst.
+* **Offline suchen.** Die Suche schaut jetzt immer auch in Ihren heruntergeladenen Karten nach, nicht
+  nur online, und findet so viel mehr Orte ohne Namen. Wenn Sie ohne Internetverbindung suchen und
+  keine Offline-Karte von Ihrem Standort haben, sagt Soundscape das, statt einfach nichts zu finden.
+
+### Einen Ort in einer anderen App öffnen
+
+In den Standortdetails gibt es eine neue Taste **In Karten-App öffnen**, die die Karten- und
+Navigations-Apps auf Ihrem Telefon auflistet. Kreuzen Sie *Immer diese App verwenden* an, dann heißt
+die Taste zum Beispiel *In Google Maps öffnen* und öffnet die App sofort; langes Drücken bringt die
+Liste zurück. Die Listen *Orte in der Nähe* und *Markierungen* haben außerdem die Screenreader-Aktionen
+*In … öffnen* und *Teilen*, neben *Audiobeacon starten*.
+
+### Beacon und Markierungen
+
+* Der Beacon auf dem Startbildschirm zeigt jetzt seine **Entfernung und Richtung** an, und ein
+  Screenreader liest ihn zum Beispiel als „Beacon auf Milngavie Library, 390 Meter, Südost“. Routen
+  zeigen auf dieselbe Weise die Entfernung zum aktuellen Wegpunkt.
+* Der Beacon hat drei **Screenreader-Aktionen**: *Auf Beacon hinweisen* sagt, wo er ist, *Weitere
+  Informationen* fügt die Straßenadresse hinzu, und *Zu Markierungen hinzufügen* speichert ihn.
+* Sie können eine **Markierung wieder verschieben**, indem Sie in *Markierung bearbeiten* die Karte
+  ziehen.
 
 ### Bessere Adressen und Ortsnamen
 
@@ -121,7 +212,7 @@ ist Soundscape nun in 46 Sprachen verfügbar, und auch diese Dokumentationswebsi
 
 Übersetzungen sind Gemeinschaftsarbeit, und wir freuen uns über Ihre Hilfe dabei oder über
 Korrekturen, wenn sich etwas schlecht liest. Jede Zeichenkette kann unter
-<https://hosted.weblate.org/projects/soundscape-android/android-app/> verbessert werden.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/> verbessert werden.
 
 ### Schlafmodus
 
@@ -185,6 +276,8 @@ Hintergrund-Apps aggressiv beenden.
 * **Die Sprachsteuerung** wurde entfernt. Sie funktionierte nie zuverlässig genug, um sie
   beizubehalten, und die Medientasten an Kopfhörern decken weitgehend dasselbe ab – siehe
   [Hilfe zur Verwendung der Medientasten]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape ist außerdem für Sprachbefehle über Gemini auf Android 16 und neuer vorbereitet, doch
+  diese funktionieren erst, wenn Google die Unterstützung dafür in Gemini freigibt.
 * **Das Sprachmenü innerhalb der App** ist verschwunden. Soundscape folgt nun der Sprache, die Sie
   für Ihr Telefon eingestellt haben – was die meisten Menschen ohnehin erwartet hatten. Zum Ändern
   stellen Sie die Sprache Ihres Telefons um oder legen in dessen Einstellungen eine App-spezifische

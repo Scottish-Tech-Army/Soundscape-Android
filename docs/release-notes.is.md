@@ -24,6 +24,17 @@ Nótur fyrir eldri útgáfur eru á síðunni
   ferðalaginu í stað næsta umhverfis.
 * **Látið vita þegar þú ferð yfir vatn og járnbrautir.** Ár, skurðir, firðir og járnbrautarlínur eru
   tilkynntar þegar farið er yfir þær, hvort sem þú gengur eða ert á ferð.
+* **Veldu hversu mikið Soundscape segir.** Ný stilling, *Nákvæmni tilkynninga*, gerir Soundscape
+  hljóðlátara á fjölförnum stöðum, og með *Staðir til að tilkynna* velur þú hvers konar stöðum þú
+  heyrir um. Þú getur breytt nákvæmninni með hnöppunum á heyrnartólunum á göngu.
+* **Vita hve langt er í næstu gatnamót.** Gatnamót eru tilkynnt í jafnri fjarlægð þegar þú nálgast
+  þau, og tilkynningin segir nú hve langt er í gangstéttarbrúnina.
+* **Leita að tegund staðar, eða að hnitum.** Leitaðu að „apótek“ eða „strætóskýli“ til að finna þau
+  næstu, hvað sem þau heita, eða límdu inn hnit, kortatengil eða Plus Code.
+* **Opna stað í öðru kortaforriti**, til dæmis Google Maps, úr upplýsingum um staðsetningu eða úr
+  listunum.
+* **Meira frá hljóðvitanum á heimaskjánum.** Hann sýnir nú fjarlægð og stefnu og hefur aðgerðir fyrir
+  skjálesara til að tilkynna hljóðvitann, heyra meira um hann eða vista hann sem merki.
 * **Betri heimilisföng og staðarheiti.** Staðir sem hafa ekkert eigið heimilisfang fá nú götuna og
   hverfið sem þeir eru í, húsnúmer eru tengd réttri hlið götunnar og strætóstoppistöðvar í Bretlandi
   nota opinber heiti sín.
@@ -78,10 +89,82 @@ Venjulegar tilkynningar fyrir gangandi — verslanir í nágrenninu, gangbrautir
 vísvitandi haldið eftir á ferðinni, og vegalengdirnar sem hlutir eru tilkynntir á hafa verið lengdar
 töluvert svo þú fáir að vita af einhverju áður en þú ert komin/n fram hjá því.
 
+### Gatnamót
+
+Algengasta spurningin um tilkynningar við gatnamót var hve langt gatnamótin væru í raun. Nú segir
+Soundscape þér það: „Gatnamót í 30 metra fjarlægð“. Fjarlægðin er mæld að gangstéttarbrún götunnar
+sem þú ert að fara yfir, en ekki að miðju gatnamótanna, því þar stoppar þú í raun.
+
+Tilkynningin kemur líka á jafnari stað. Áður gat hún komið í 45 metra eða 10 metra fjarlægð, án þess
+að hægt væri að greina á milli. Nú bíður hún þar til gatnamótin eru í um 30 metra fjarlægð, svo
+fjarlægðin þýðir nokkurn veginn það sama í hvert skipti.
+
 ### Að fara yfir vatn og járnbrautir
 
 Soundscape segir þér nú þegar þú ferð yfir á, skurð, fjörð, vík eða járnbrautarlínu. Þetta virkar bæði
 gangandi og á ferð og nær jafnt yfir að fara undir sem yfir, svo bæði göngubrú og undirgöngum er lýst.
+
+### Veldu hversu mikið Soundscape segir
+
+Það sem við heyrum oftast um Soundscape er að það tali of mikið á fjölförnum stöðum eins og í
+miðbænum. Hlutinn *Stjórna tilkynningum* í *Stillingum* hefur nú þrjár stillingar í stað gamla
+rofalistans:
+
+* **Nákvæmni tilkynninga** er Þögult, Hljóðlátt, Jafnvægi eða Ítarlegt. *Ítarlegt* er það sem
+  Soundscape hefur alltaf gert og þar byrjar þú. *Jafnvægi* sleppir minni stígum og þjónustuvegum og
+  endurtekur sig sjaldnar. *Hljóðlátt* tilkynnir aðeins götur, gatnamót og kennileiti. *Þögult* gefur
+  engar sjálfvirkar tilkynningar, en hljóðvitar, leiðir og hnapparnir á heimaskjánum virka áfram.
+  Stillingin kemur í stað gamla rofans *Heimila tilkynningar*, og ef slökkt var á honum er
+  nákvæmnin nú stillt á Þögult.
+* **Götur og gatnamót** kveikir eða slekkur á tilkynningum um gatnamót og götuna sem þú ert á.
+* **Staðir til að tilkynna** er listi til að haka við: Allt, Kennileiti, Almenningssamgöngur, Matur og
+  drykkur, Matvara og búðir, Bankar og hraðbankar eða Engir staðir. Hakaðu við eins marga og þú vilt,
+  til dæmis kennileiti og strætóskýli. Merkin þín eru alltaf tilkynnt.
+
+Hæfileg nákvæmni breytist á göngunni, svo þú þarft ekki að fara í Stillingar til að breyta henni.
+Þegar þú ýtir á *Fyrri* á heyrnartólunum lækkar nákvæmni tilkynninga um eitt stig í einu, frá
+Ítarlegt um Jafnvægi og Hljóðlátt niður í Þögult og síðan aftur í Ítarlegt. Nýja stigið er sagt í
+hvert skipti. Þetta virkar í báðum stillingum miðlastýringanna og því hafa hnapparnir á
+heyrnartólunum breyst aðeins:
+
+* Í *Upprunalegum ham* tilkynnir *Næsta* nú *Í kringum mig* þegar engin leið er í spilun, og *Mín
+  staðsetning* er ekki lengur á hnöppunum. Á meðan leið er í spilun færa *Næsta* og *Fyrri* áfram á
+  milli leiðarpunkta.
+* Í *Hljóðvalmynd* fer *Fyrri* ekki lengur aftur á bak í valmyndinni. *Næsta* fer áfram í gegnum
+  hana og *Spila/Hlé* velur áfram. Merki og leiðir í valmyndinni eru nú í stafrófsröð, og eftir að þú
+  ræsir eitt þeirra fer valmyndin aftur efst í stað þess að skilja þig eftir djúpt inni í listanum.
+
+### Leit
+
+Leitarstikan skilur nú meira en staðanöfn:
+
+* **Tegundir staða.** Leitaðu að „apótek“, „salerni“, „hraðbanki“ og svo framvegis á þínu eigin máli,
+  og Soundscape birtir næstu staði af þeirri tegund, hvað sem þeir heita. Staðir án nafns, eins og
+  flest salerni og bekkir, eru birtir sem það sem þeir eru, með heimilisfangi.
+* **Hnit, kortatenglar og Plus Codes.** Límdu inn talnapar, gráður og mínútur, tengil úr Google Maps,
+  Apple Maps eða OpenStreetMap, eða Plus Code, og Soundscape gefur þér nákvæmlega þann stað. Talnapar
+  eitt og sér má lesa á báða vegu, svo þar sem hvort tveggja gengur upp færðu bæði, það næsta fyrst.
+* **Leit án nettengingar.** Leitin skoðar nú alltaf líka niðurhöluðu kortin þín, ekki aðeins á netinu,
+  og finnur því miklu fleiri nafnlausa staði. Ef þú leitar án nettengingar og átt ekkert
+  ónettengt kort af staðnum þar sem þú ert, segir Soundscape það í stað þess að finna einfaldlega
+  ekkert.
+
+### Að opna stað í öðru forriti
+
+Upplýsingar um staðsetningu hafa nýjan hnapp, **Opna í kortaforriti**, sem sýnir korta- og
+leiðsöguforritin í símanum. Hakaðu við *Nota alltaf þetta forrit* og þá heitir hnappurinn til dæmis
+*Opna í Google Maps* og opnar það strax; langt ýtt kallar listann aftur fram. Listarnir *Nálægir
+staðir* og *Merki* hafa líka skjálesaraaðgerðirnar *Opna í…* og *Deila*, við hliðina á *Kveikja á
+hljóðvita*.
+
+### Hljóðvitinn og merki
+
+* Hljóðvitinn á heimaskjánum sýnir nú **fjarlægð og stefnu**, og skjálesari les hann til dæmis sem
+  „Hljóðviti á Milngavie Library, 390 metrar, suðaustur“. Leiðir sýna á sama hátt fjarlægðina að
+  núverandi leiðarpunkti.
+* Hljóðvitinn hefur þrjár **aðgerðir fyrir skjálesara**: *Tilkynna hljóðvita* segir hvar hann er,
+  *Nánari upplýsingar* bætir við heimilisfanginu og *Bæta við merki* vistar hann.
+* Þú getur aftur **fært merki** með því að draga kortið á skjánum *Uppfæra Merki*.
 
 ### Betri heimilisföng og staðarheiti
 
@@ -111,7 +194,7 @@ Egypsk arabíska var sameinuð arabísku og lúganda var dregin til baka, þar s
 
 Þýðingar eru samfélagsverk og við fögnum aðstoð þinni, eða leiðréttingum þar sem eitthvað les illa.
 Hvaða texta sem er má bæta á
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Svefnstilling
 
@@ -168,6 +251,8 @@ símum sem loka bakgrunnsforritum af hörku.
 * **Raddstýringin** hefur verið fjarlægð. Hún virkaði aldrei nógu áreiðanlega til að halda henni, og
   margmiðlunartakkarnir á heyrnartólum ná að mestu yfir það sama — sjá
   [Hjálp við notkun margmiðlunartakka]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape er líka tilbúið fyrir raddskipanir í gegnum Gemini á Android 16 og nýrri, en þær virka
+  ekki fyrr en Google gefur út stuðning við þær í Gemini.
 * **Tungumálavalmyndin inni í forritinu** er farin. Soundscape fylgir nú tungumálinu sem þú hefur stillt
   í símanum, sem er það sem flestir bjuggust við. Til að breyta því skaltu breyta tungumáli símans eða
   velja tungumál fyrir hvert forrit í stillingum símans ef hann býður upp á það.

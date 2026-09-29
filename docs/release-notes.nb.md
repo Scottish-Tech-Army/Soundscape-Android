@@ -24,6 +24,18 @@ Merknader for eldre versjoner finnes på siden
   beskriver reisen din i stedet for de nære omgivelsene.
 * **Beskjed når du krysser vann og jernbaner.** Elver, kanaler, fjorder og jernbanelinjer kunngjøres
   når du krysser dem, både til fots og underveis.
+* **Velg hvor mye Soundscape sier.** Den nye innstillingen *Detaljnivå for meldinger* gjør
+  Soundscape roligere på travle steder, og med *Steder som skal leses opp* velger du hvilke typer
+  steder du hører om. Du kan endre detaljnivået med knappene på hodetelefonene mens du går.
+* **Hør hvor langt det er til neste veikryss.** Veikryss leses opp på en jevn avstand når du nærmer
+  deg, og meldingen sier nå hvor langt det er til fortauskanten.
+* **Søk etter en type sted, eller etter koordinater.** Søk etter «apotek» eller «bussholdeplass» for
+  å finne de nærmeste, uansett hva de heter, eller lim inn koordinater, en kartlenke eller en Plus
+  Code.
+* **Åpne et sted i en annen kartapp**, for eksempel Google Maps, fra posisjonsinformasjonen eller fra
+  listene.
+* **Mer fra lydsignalet på startskjermen.** Det viser nå avstand og retning, og har
+  skjermleserhandlinger for å lese opp lydsignalet, høre mer om det eller lagre det som markør.
 * **Bedre adresser og stedsnavn.** Steder uten egen adresse får nå gaten og området de ligger i,
   husnumre knyttes til riktig side av gaten, og bussholdeplasser i Storbritannia bruker de offisielle
   navnene sine.
@@ -78,11 +90,83 @@ De vanlige meldingene for gående — butikker i nærheten, fotgjengeroverganger
 bevisst tilbake mens du reiser, og avstandene ting kunngjøres på er strukket betydelig, slik at du
 får vite om noe før du allerede har passert det.
 
+### Veikryss
+
+Det vanligste spørsmålet om meldinger ved veikryss var hvor langt unna krysset egentlig er. Nå sier
+Soundscape det: «Veikryss 30 meter unna». Avstanden måles til fortauskanten på gaten du skal krysse,
+og ikke til midten av krysset, for det er der du faktisk stopper.
+
+Meldingen kommer også på et jevnere sted. Før kunne den komme 45 meter eller 10 meter før, uten noe
+som skilte dem fra hverandre. Nå venter den til krysset er omtrent 30 meter unna, slik at avstanden
+betyr omtrent det samme hver gang.
+
 ### Å krysse vann og jernbaner
 
 Soundscape forteller deg nå når du krysser en elv, en kanal, en fjord, en bukt eller en
 jernbanelinje. Det virker både til fots og underveis, og dekker både å gå under og over, slik at både
 en gangbro og en undergang beskrives.
+
+### Velg hvor mye Soundscape sier
+
+Det vi oftest hører om Soundscape, er at den sier for mye på travle steder som et bysentrum.
+Delen *Administrer meldinger* i *Innstillinger* har nå tre innstillinger i stedet for den gamle
+listen med brytere:
+
+* **Detaljnivå for meldinger** er Lydløs, Stille, Balansert eller Detaljert. *Detaljert* er det
+  Soundscape alltid har gjort, og det er utgangspunktet. *Balansert* hopper over mindre stier og
+  tjenesteveier og gjentar seg sjeldnere. *Stille* leser bare opp gater, veikryss og landemerker.
+  *Lydløs* gir ingen automatiske meldinger i det hele tatt, mens lydsignaler, ruter og knappene på
+  startskjermen fortsatt virker. Den erstatter den gamle bryteren *Tillat meldinger*, og hvis du
+  hadde den slått av, står detaljnivået nå på Lydløs.
+* **Gater og veikryss** slår meldinger om veikryss og om gaten du er på, av eller på.
+* **Steder som skal leses opp** er en liste du kan krysse av i: Alt, Landemerker, Offentlig
+  transport, Mat og drikke, Dagligvarer og nærbutikker, Banker og minibanker eller Ingen steder. Kryss
+  av så mange du vil, for eksempel landemerker og bussholdeplasser. Markørene dine leses alltid opp.
+
+Hvilket detaljnivå som passer, endrer seg mens du går, så du trenger ikke gå inn i Innstillinger for
+å endre det. Når du trykker på *Forrige* på hodetelefonene, senkes detaljnivået ett trinn om gangen,
+fra Detaljert via Balansert og Stille til Lydløs, og så rundt til Detaljert igjen. Det nye nivået
+leses opp hver gang. Dette virker i begge modusene for medieknappene, og derfor har knappene på
+hodetelefonene endret seg litt:
+
+* I *Originalmodus* leser *Neste* nå opp *Rundt meg* når ingen rute spilles, og *Min posisjon* er
+  ikke lenger på knappene. Mens en rute spilles, flytter *Neste* og *Forrige* fortsatt mellom
+  veipunktene.
+* I modusen *Lydmeny* går *Forrige* ikke lenger bakover i menyen. *Neste* går fortsatt gjennom den,
+  og *Spill av/Stans midlertidig* velger fortsatt. Markører og ruter står nå i navnerekkefølge i
+  menyen, og når du har startet en, går menyen tilbake til toppen i stedet for å la deg bli stående
+  langt nede i listen.
+
+### Søk
+
+Søkefeltet forstår nå mer enn stedsnavn:
+
+* **Typer steder.** Søk etter «apotek», «toalett», «minibank» og så videre på ditt eget språk, så
+  viser Soundscape de nærmeste stedene av den typen, uansett hva de heter. Steder uten navn, som de
+  fleste toaletter og benker, vises som det de er, med adressen sin.
+* **Koordinater, kartlenker og Plus Codes.** Lim inn et tallpar, grader og minutter, en lenke fra
+  Google Maps, Apple Kart eller OpenStreetMap, eller en Plus Code, så gir Soundscape deg akkurat det
+  stedet. Et tallpar alene kan leses begge veier, så der begge gir mening, får du begge, det nærmeste
+  først.
+* **Søk uten nett.** Søket ser nå alltid i de nedlastede kartene dine i tillegg til på nett, og finner
+  dermed mange flere steder uten navn. Hvis du søker uten internettforbindelse og ikke har et
+  frakoblet kart over der du er, sier Soundscape det i stedet for bare ikke å finne noe.
+
+### Åpne et sted i en annen app
+
+Posisjonsinformasjonen har en ny knapp, **Åpne i kartapp**, som viser kart- og navigasjonsappene på
+telefonen din. Kryss av for *Bruk alltid denne appen*, så heter knappen for eksempel *Åpne i Google
+Maps* og åpner den med én gang; et langt trykk henter listen fram igjen. Listene *Steder i nærheten*
+og *Markører* har også skjermleserhandlingene *Åpne i …* og *Del*, ved siden av *Start lydsignal*.
+
+### Lydsignalet og markører
+
+* Lydsignalet på startskjermen viser nå **avstand og retning**, og en skjermleser leser det for
+  eksempel som «Lydsignal ved Milngavie Library, 390 meter, sørøst». Ruter viser på samme måte
+  avstanden til det gjeldende veipunktet.
+* Lydsignalet har tre **skjermleserhandlinger**: *Les opp lydsignal* sier hvor det er, *Mer
+  informasjon* legger til adressen, og *Legg til i markører* lagrer det.
+* Du kan igjen **flytte en markør** ved å dra i kartet fra skjermen *Rediger markør*.
 
 ### Bedre adresser og stedsnavn
 
@@ -111,7 +195,7 @@ nok oversatt tekst til å være nyttige.
 
 Oversettelser er fellesarbeid, og vi tar gjerne imot hjelpen din, eller rettelser der noe leses
 dårlig. Enhver tekst kan forbedres på
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Hvilemodus
 
@@ -171,6 +255,8 @@ robust på telefoner som aggressivt lukker apper i bakgrunnen.
 * **Talestyringen** er fjernet. Den fungerte aldri pålitelig nok til å beholdes, og medieknappene på
   hodetelefoner dekker stort sett det samme — se
   [Hjelp til bruk av medieknapper]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape er også klar for talekommandoer via Gemini på Android 16 og nyere, men de virker ikke før
+  Google lanserer støtten for dem i Gemini.
 * **Språkmenyen inne i appen** er borte. Soundscape følger nå språket du har valgt på telefonen, som
   er det de fleste ventet. Vil du endre det, bytter du telefonens språk eller angir et språk per app i
   telefonens innstillinger, dersom den tilbyr det.

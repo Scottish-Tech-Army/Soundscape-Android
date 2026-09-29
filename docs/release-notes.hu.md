@@ -24,6 +24,20 @@ A korábbi verziók megjegyzései a
   halad, és az utazását írja le a közvetlen környezete helyett.
 * **Jelzés vizek és vasútvonalak keresztezésekor.** A folyókat, csatornákat, öblöket és
   vasútvonalakat bemondja, amikor áthalad rajtuk — gyalog és utazás közben egyaránt.
+* **Megválaszthatja, mennyit beszél a Soundscape.** Az új *Közlések részletessége* beállítás
+  csendesebbé teszi a Soundscape-et a zsúfolt helyeken, a *Bemondandó helyek* listában pedig
+  kiválaszthatja, milyen fajta helyekről halljon. A részletességet séta közben a fejhallgató gombjaival
+  is módosíthatja.
+* **Tudja, milyen messze van a következő kereszteződés.** A kereszteződéseket egyenletes távolságban
+  mondja be, amikor közeledik, és a közlés most azt is megmondja, milyen messze van a járdaszegély.
+* **Kereshet helytípusra vagy koordinátákra.** Keressen rá a „gyógyszertár” vagy a „buszmegálló”
+  szóra, és megtalálja a legközelebbieket, bármi is a nevük, vagy illesszen be koordinátákat,
+  térképhivatkozást vagy Plus Code-ot.
+* **Megnyithat egy helyet egy másik térképalkalmazásban**, például a Google Térképben, a helyszín
+  adataiból vagy a listákból.
+* **Többet tud a hangjelző a kezdőképernyőn.** Most már mutatja a távolságot és az irányt, és
+  képernyőolvasó-műveletei vannak a hangjelző bejelentéséhez, további információkhoz és jelölőként
+  való mentéséhez.
 * **Jobb címek és helynevek.** A saját címmel nem rendelkező helyek mostantól megkapják az utcát és a
   területet, ahol vannak, a házszámok az utca megfelelő oldalához társulnak, a nagy-britanniai
   buszmegállók pedig a hivatalos nevüket használják.
@@ -80,11 +94,87 @@ A szokásos gyalogos bemondásokat — közeli boltok, gyalogátkelők és így 
 visszatartja utazás közben, és a távolságok, amelyeken a dolgokat bemondja, jelentősen megnőttek,
 hogy azelőtt értesüljön valamiről, mielőtt elhaladna mellette.
 
+### Kereszteződések
+
+A kereszteződések bejelentésével kapcsolatban a leggyakoribb kérdés az volt, hogy valójában milyen
+messze van a kereszteződés. Most a Soundscape megmondja: „Kereszteződés 30 méter távolságra”. A
+távolságot annak az utcának a járdaszegélyéig méri, amelyen át fog kelni, nem a kereszteződés
+közepéig, mert valójában ott áll meg.
+
+A közlés egyenletesebb ponton is érkezik. Korábban 45 vagy 10 méterrel előtte is jöhetett, és semmi
+nem különböztette meg a kettőt. Most megvárja, amíg a kereszteződés körülbelül 30 méterre van, így a
+távolság minden alkalommal nagyjából ugyanazt jelenti.
+
 ### Vizek és vasútvonalak keresztezése
 
 A Soundscape mostantól szól, amikor folyót, csatornát, öblöt, tengeröblöt vagy vasútvonalat
 keresztez. Ez gyalog és utazás közben egyaránt működik, és az alatta, valamint a fölötte való áthaladást
 is lefedi, így a gyalogoshidat és az aluljárót is leírja.
+
+### Mennyit beszéljen a Soundscape
+
+A leggyakrabban azt halljuk a Soundscape-ről, hogy túl sokat beszél a zsúfolt helyeken, például a
+belvárosban. A *Beállítások* *Közlések kezelése* szakaszában a régi kapcsolólista helyett most három
+beállítás van:
+
+* **Közlések részletessége**: Néma, Csendes, Kiegyensúlyozott vagy Részletes. A *Részletes* az, amit a
+  Soundscape mindig is csinált, és innen indul. A *Kiegyensúlyozott* kihagyja a kisebb ösvényeket és a
+  szervizutakat, és ritkábban ismétli magát. A *Csendes* csak az utcákat, a kereszteződéseket és a
+  nevezetességeket mondja be. A *Néma* egyáltalán nem ad automatikus közléseket, a hangjelzők, az
+  útvonalak és a kezdőképernyő gombjai azonban továbbra is működnek. A régi *Bejelentések
+  engedélyezése* kapcsolót váltja fel; ha az ki volt kapcsolva, a részletesség most Némára van állítva.
+* Az **Utcák és kereszteződések** be- vagy kikapcsolja a kereszteződésekről és az éppen használt
+  utcáról szóló közléseket.
+* A **Bemondandó helyek** egy bejelölhető lista: Minden, Nevezetességek, Tömegközlekedés, Étel és ital,
+  Élelmiszerboltok és közértek, Bankok és bankautomaták vagy Nincsenek helyek. Annyit jelöljön be,
+  amennyit szeretne, például nevezetességeket és buszmegállókat. A jelölőit mindig bemondja.
+
+A megfelelő részletesség séta közben változik, ezért a módosításához nem kell a Beállításokba mennie.
+A fejhallgató *Előző* gombjának megnyomásával a közlések részletessége egyszerre egy szinttel lejjebb
+kerül, Részletesről Kiegyensúlyozotton és Csendesen át Némáig, majd újra Részletesre. Az új szintet
+minden alkalommal kimondja. Ez a médiavezérlők mindkét módjában működik, ezért a fejhallgató gombjai
+kissé megváltoztak:
+
+* *Eredeti módban* a *Következő* most a *Magam körül* közlést adja, ha nem fut útvonal, a *Saját
+  helyzet* pedig már nincs a gombokon. Útvonal közben a *Következő* és az *Előző* továbbra is az
+  útvonalpontok között lép.
+* *Hangmenü* módban az *Előző* már nem lép vissza a menüben. A *Következő* továbbra is végigmegy
+  rajta, a *Lejátszás/Szünet* pedig továbbra is kiválaszt. A menüben a jelölők és útvonalak most név
+  szerint rendezve szerepelnek, és ha elindít egyet, a menü visszaugrik az elejére, ahelyett hogy
+  mélyen a listában hagyná.
+
+### Keresés
+
+A keresősáv most már többet ért a helyneveknél:
+
+* **Helytípusok.** Keressen rá a saját nyelvén a „gyógyszertár”, „mosdó”, „bankautomata” és hasonló
+  szavakra, és a Soundscape felsorolja a legközelebbi ilyen helyeket, bármi is a nevük. A név nélküli
+  helyek, mint a legtöbb mosdó és pad, aszerint jelennek meg, amik, a címükkel együtt.
+* **Koordináták, térképhivatkozások és Plus Code-ok.** Illesszen be egy számpárt, fokot és percet, egy
+  Google Térkép-, Apple Térképek- vagy OpenStreetMap-hivatkozást vagy egy Plus Code-ot, és a Soundscape
+  pontosan azt a helyet adja meg. Egy puszta számpár kétféleképpen is olvasható, így ha mindkettőnek
+  van értelme, mindkettőt felkínálja, a közelebbit előre.
+* **Offline keresés.** A keresés most már mindig a letöltött térképeken is keres az online találatok
+  mellett, így sokkal több név nélküli helyet talál. Ha internetkapcsolat nélkül keres, és nincs
+  offline térképe arról a helyről, ahol van, a Soundscape ezt megmondja, ahelyett hogy egyszerűen nem
+  találna semmit.
+
+### Hely megnyitása másik alkalmazásban
+
+A helyszín adataiban új gomb van, a **Megnyitás térképalkalmazásban**, amely felsorolja a telefonon
+lévő térkép- és navigációs alkalmazásokat. Jelölje be a *Mindig ezzel az alkalmazással* lehetőséget,
+és a gomb például *Megnyitás itt: Google Térkép* lesz, és azonnal megnyitja; hosszú megnyomással újra
+megjelenik a lista. A *Közeli helyek* és a *Jelölők* listában a *Hangjelző indítása* mellett a
+*Megnyitás itt:…* és a *Megosztás* képernyőolvasó-művelet is elérhető.
+
+### A hangjelző és a jelölők
+
+* A kezdőképernyőn lévő hangjelző most mutatja a **távolságot és az irányt**, a képernyőolvasó pedig
+  például így olvassa fel: „Hangjelző itt: Milngavie Library, 390 méter, délkelet”. Az útvonalak
+  ugyanígy mutatják a távolságot az aktuális útvonalpontig.
+* A hangjelzőnek három **képernyőolvasó-művelete** van: a *Hangjelző bejelentése* megmondja, hol van,
+  a *További információ* hozzáadja a címet, a *Hozzáadás a jelölőkhöz* pedig elmenti.
+* Újra **áthelyezhet egy jelölőt** a térkép húzásával a *Jelölő szerkesztése* képernyőn.
 
 ### Jobb címek és helynevek
 
@@ -115,7 +205,7 @@ elég lefordított szövege ahhoz, hogy hasznos legyen.
 
 A fordítások közösségi munka, és szívesen fogadjuk a segítségét vagy javításait ott, ahol valami
 rosszul olvasható. Bármely szöveg javítható a
-<https://hosted.weblate.org/projects/soundscape-android/android-app/> címen.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/> címen.
 
 ### Alvó mód
 
@@ -175,6 +265,8 @@ telefonokon, amelyek agresszíven zárják be a háttéralkalmazásokat.
 * **A hangvezérlést** eltávolítottuk. Soha nem működött elég megbízhatóan ahhoz, hogy megérje
   megtartani, és a fejhallgatók médiagombjai nagyrészt ugyanazt fedik le — lásd a
   [Médiavezérlők használatához nyújtott súgót]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  A Soundscape a Geminin keresztül adott hangutasításokra is fel van készülve Android 16-on és
+  újabbon, ezek azonban csak akkor fognak működni, ha a Google kiadja a támogatásukat a Geminiben.
 * **Az alkalmazáson belüli nyelvi menü** megszűnt. A Soundscape mostantól a telefonján beállított
   nyelvet követi, amit a legtöbben amúgy is vártak. A módosításhoz változtassa meg a telefon nyelvét,
   vagy állítson be alkalmazásonkénti nyelvet a telefon beállításaiban, ha kínál ilyet.

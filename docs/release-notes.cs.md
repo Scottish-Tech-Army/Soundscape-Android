@@ -24,6 +24,17 @@ Poznámky ke starším verzím najdete na stránce
   a popisuje vaši cestu místo bezprostředního okolí.
 * **Upozornění při překonávání vodních toků a železnic.** Řeky, kanály, zálivy a železniční tratě
   jsou ohlašovány, když je překračujete — pěšky i za jízdy.
+* **Zvolte, kolik toho Soundscape říká.** Nové nastavení *Podrobnost hlášení* ztiší Soundscape na
+  rušných místech a v *Místech k ohlašování* si vyberete, o jakých druzích míst chcete slyšet.
+  Podrobnost můžete měnit tlačítky na sluchátkách i za chůze.
+* **Víte, jak daleko je další křižovatka.** Křižovatky se ohlašují ve stálé vzdálenosti, když se k
+  nim blížíte, a hlášení teď říká, jak daleko je obrubník.
+* **Hledejte druh místa nebo souřadnice.** Vyhledejte „lékárna“ nebo „autobusová zastávka“ a najdete
+  ty nejbližší, ať se jmenují jakkoli, nebo vložte souřadnice, odkaz na mapu či Plus Code.
+* **Otevřete místo v jiné mapové aplikaci**, třeba v Mapách Google, z podrobností o místě nebo ze
+  seznamů.
+* **Víc z majáku na domovské obrazovce.** Nyní ukazuje vzdálenost a směr a má akce pro čtečku
+  obrazovky, kterými maják ohlásíte, zjistíte o něm víc nebo ho uložíte jako značku.
 * **Lepší adresy a názvy míst.** Místa bez vlastní adresy nyní dostávají ulici a oblast, v níž leží,
   čísla popisná jsou přiřazena ke správné straně ulice a autobusové zastávky ve Velké Británii
   používají své oficiální názvy.
@@ -77,10 +88,80 @@ Běžná hlášení pro chodce — obchody v okolí, přechody a tak dále — j
 vzdálenosti, na nichž se věci ohlašují, byly výrazně prodlouženy, abyste se o něčem dozvěděli dříve,
 než to minete.
 
+### Křižovatky
+
+Nejčastější otázka k hlášení křižovatek byla, jak daleko ta křižovatka vlastně je. Soundscape vám to
+teď řekne: „Křižovatka 30 metrů daleko“. Vzdálenost se měří k obrubníku ulice, kterou se chystáte
+přejít, ne ke středu křižovatky, protože tam se skutečně zastavíte.
+
+Hlášení také přichází na stálejším místě. Dříve mohlo zaznít 45 metrů předem, nebo 10 metrů předem, a
+nebylo jak to rozlišit. Teď počká, až je křižovatka asi 30 metrů daleko, takže vzdálenost znamená
+pokaždé zhruba totéž.
+
 ### Překonávání vodních toků a železnic
 
 Soundscape vám nyní řekne, když překračujete řeku, kanál, záliv, zátoku nebo železniční trať. Funguje
 to pěšky i za jízdy a zahrnuje jak průchod pod, tak nad, takže je popsána jak lávka, tak podchod.
+
+### Zvolte, kolik toho Soundscape říká
+
+Nejčastěji o Soundscape slýcháme, že na rušných místech, jako je centrum města, mluví příliš. Oddíl
+*Spravovat hlášení* v *Nastavení* má teď místo starého seznamu přepínačů tři nastavení:
+
+* **Podrobnost hlášení** je Bez zvuku, Tichý, Vyvážený nebo Podrobný. *Podrobný* je to, co Soundscape
+  dělal vždycky, a je výchozí. *Vyvážený* vynechává menší cesty a obslužné komunikace a méně se
+  opakuje. *Tichý* ohlašuje jen ulice, křižovatky a orientační body. *Bez zvuku* nedělá žádná
+  automatická hlášení, zatímco majáky, trasy a tlačítka na domovské obrazovce dál fungují. Nahrazuje
+  starý přepínač *Povolit hlášení*; pokud jste ho měli vypnutý, najdete Podrobnost hlášení nastavenou
+  na Bez zvuku.
+* **Ulice a křižovatky** zapíná nebo vypíná hlášení o křižovatkách a o ulici, na které jste.
+* **Místa k ohlašování** je seznam k zaškrtnutí: Vše, Orientační body, Veřejná doprava, Jídlo a pití,
+  Potraviny a smíšené zboží, Banky a bankomaty nebo Žádná místa. Zaškrtněte jich, kolik chcete,
+  například orientační body a autobusové zastávky. Vaše značky se ohlašují vždy.
+
+Vhodná podrobnost se za chůze mění, takže kvůli ní nemusíte chodit do Nastavení. Stisknutím
+*Předchozí* na sluchátkách snížíte podrobnost hlášení vždy o jeden stupeň, z Podrobného přes Vyvážený
+a Tichý na Bez zvuku a pak zase zpět na Podrobný. Nový stupeň se pokaždé ohlásí. Funguje to v obou
+režimech ovládání médií, a proto se tlačítka sluchátek trochu změnila:
+
+* V *Původním režimu* teď *Další* ohlásí *Kolem mě*, když se nepřehrává žádná trasa, a *Moje poloha*
+  už na tlačítkách není. Při přehrávání trasy *Další* a *Předchozí* dál přecházejí mezi trasovými
+  body.
+* V režimu *Zvukové menu* se *Předchozí* už nevrací v menu zpět. *Další* jím dál prochází a
+  *Přehrát/Pozastavit* dál vybírá. Značky a trasy jsou teď v menu seřazené podle názvu a po spuštění
+  jedné z nich se menu vrátí na začátek, místo aby vás nechalo hluboko v seznamu.
+
+### Vyhledávání
+
+Vyhledávací pole teď rozumí víc než jen názvům míst:
+
+* **Druhy míst.** Vyhledejte ve svém jazyce „lékárna“, „toaleta“, „bankomat“ a podobně a Soundscape
+  vypíše nejbližší místa tohoto druhu, ať se jmenují jakkoli. Místa bez názvu, jako většina toalet a
+  laviček, jsou uvedena podle toho, čím jsou, i s adresou.
+* **Souřadnice, odkazy na mapy a Plus Codes.** Vložte dvojici čísel, stupně a minuty, odkaz z Map
+  Google, Map Apple nebo OpenStreetMap, případně Plus Code, a Soundscape vám dá přesně to místo.
+  Samotnou dvojici čísel lze číst oběma směry, takže když dávají smysl oba, dostanete oba, bližší
+  první.
+* **Vyhledávání offline.** Vyhledávání se teď vždy dívá i do stažených map, nejen online, a najde tak
+  mnohem víc míst bez názvu. Pokud hledáte bez připojení k internetu a nemáte offline mapu místa, kde
+  jste, Soundscape vám to řekne, místo aby prostě nic nenašel.
+
+### Otevření místa v jiné aplikaci
+
+Podrobnosti o místě mají nové tlačítko **Otevřít v mapové aplikaci**, které vypíše mapové a navigační
+aplikace ve vašem telefonu. Zaškrtněte *Vždy používat tuto aplikaci* a tlačítko se změní například na
+*Otevřít v aplikaci Mapy Google* a otevře ji hned; dlouhé stisknutí vrátí seznam. Seznamy *Místa v
+okolí* a *Značky* mají také akce pro čtečku obrazovky *Otevřít v aplikaci…* a *Sdílet*, vedle
+*Spustit zvukový maják*.
+
+### Maják a značky
+
+* Maják na domovské obrazovce teď ukazuje svou **vzdálenost a směr** a čtečka obrazovky ho přečte
+  například jako „Maják na Milngavie Library, 390 metrů, jihovýchod“. Trasy stejně ukazují vzdálenost
+  k aktuálnímu trasovému bodu.
+* Maják má tři **akce pro čtečku obrazovky**: *Ohlásit maják* řekne, kde je, *Další informace* přidá
+  adresu a *Přidat do značek* ho uloží.
+* **Značku můžete znovu přesunout** tažením mapy na obrazovce *Upravit značku*.
 
 ### Lepší adresy a názvy míst
 
@@ -110,7 +191,7 @@ dost přeloženého textu, aby byla užitečná.
 
 Překlady jsou dílem komunity a rádi uvítáme vaši pomoc nebo opravy tam, kde se něco čte špatně.
 Jakýkoli text lze zlepšit na
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Režim spánku
 
@@ -169,6 +250,8 @@ které agresivně ukončují aplikace na pozadí.
 * **Hlasové ovládání** bylo odstraněno. Nikdy nefungovalo dost spolehlivě na to, aby stálo za
   zachování, a multimediální tlačítka na sluchátkách pokrývají z velké části totéž — viz
   [Nápovědu k používání multimediálních tlačítek]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape je také připravený na hlasové příkazy přes Gemini v Androidu 16 a novějším, ty ale
+  nebudou fungovat, dokud Google jejich podporu v Gemini nezveřejní.
 * **Nabídka jazyka uvnitř aplikace** zmizela. Soundscape se nyní řídí jazykem nastaveným v telefonu,
   což většina lidí očekávala. Chcete-li jej změnit, změňte jazyk telefonu nebo v jeho nastavení
   určete jazyk pro jednotlivou aplikaci, pokud to nabízí.

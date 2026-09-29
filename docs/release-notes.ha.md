@@ -25,6 +25,16 @@ Bayanan sigogin da suka gabata suna shafin
   sauri, sai ya bayyana tafiyarka maimakon abin da ke kusa da kai.
 * **Sanarwa lokacin da ka ketare ruwa da layin dogo.** Ana sanar da koguna, magudanan ruwa, mashigar
   teku da layukan dogo yayin da kake ketare su, ko kana tafiya a kafa ko kana cikin abin hawa.
+* **Zaɓi yawan abin da Soundscape zai faɗa.** Sabon saitin *Matakin Sanarwa* yana sa Soundscape ya rage
+  magana a wuraren da cunkoso, kuma *Wuraren da za a Sanar* yana baka damar zaɓar irin wuraren da kake son
+  ji. Kana iya canza matakin da maɓallan belun kunne yayin tafiya.
+* **San nisan mahaɗar hanya ta gaba.** Ana sanar da mahaɗar hanya a nisa ɗaya daidai yayin da kake
+  kusantowa, kuma sanarwar yanzu tana faɗin nisan gefen titin ƙafa.
+* **Nemi irin wuri, ko wurin taswira ta lambobi.** Nemi «kantin magani» ko «tashar bas» don samun mafi kusa,
+  komai sunansu, ko liƙa lambobin wuri, hanyar haɗin taswira ko Plus Code.
+* **Buɗe wuri a wata manhajar taswira**, kamar Google Maps, daga Cikakkun Bayanan Wuri ko daga jerin.
+* **Ƙarin abubuwa daga siginar sauti a babban allo.** Yanzu tana nuna nisa da alkibla, kuma tana da ayyukan
+  mai karanta allo don sanar da siginar, jin ƙarin bayani game da ita ko ajiye ta a matsayin alama.
 * **Adireshi da sunayen wurare mafi kyau.** Wuraren da ba su da nasu adireshin yanzu suna samun
   titin da yankin da suke ciki, ana daidaita lambobin gidaje da bangaren titi da ya dace, kuma
   tashoshin bas a Biritaniya suna amfani da sunayensu na hukuma.
@@ -84,12 +94,82 @@ Sanarwar da aka saba yi wa masu tafiya a kafa — shaguna na kusa, mashigar keta
 ana rike su da gangan yayin tafiya, kuma an fadada nisan da ake sanar da abubuwa sosai, domin ka ji
 labarin wani abu kafin ka wuce shi.
 
+### Mahaɗun hanyoyi
+
+Tambayar da aka fi yi game da sanarwar mahaɗar hanya ita ce nisan mahaɗar a zahiri. Yanzu Soundscape yana
+faɗa: «Mahaɗar hanya nisan mita 30». Ana auna nisan zuwa gefen titin ƙafa na titin da za ka ƙetare, ba zuwa
+tsakiyar mahaɗar ba, domin a nan ne kake tsayawa a zahiri.
+
+Sanarwar kuma tana zuwa a wuri da ya fi daidaito. A da tana iya zuwa a mita 45 ko a mita 10, ba tare da
+abin da zai bambanta su ba. Yanzu tana jira har sai mahaɗar ta kai kusan mita 30, don nisan ya kasance yana
+nufin kusan abu ɗaya a kowane lokaci.
+
 ### Ketare ruwa da layin dogo
 
 Yanzu Soundscape yana gaya maka idan ka ketare kogi, magudanar ruwa, mashigar teku, gacin teku ko
 layin dogo. Yana aiki ko kana tafiya a kafa ko kana cikin abin hawa, kuma ya hada da wucewa a kasa
 kamar yadda ya hada da wucewa a sama, don haka ana bayyana gadar masu tafiya a kafa da kuma hanyar
 karkashin kasa.
+
+### Zaɓi yawan abin da Soundscape zai faɗa
+
+Abin da muka fi ji game da Soundscape shi ne yana yawan magana a wuraren da cunkoso kamar tsakiyar gari.
+Sashen *Sarrafa Sanarwa* na *Saitunan* yanzu yana da saiti uku maimakon tsohon jerin makunnai:
+
+* **Matakin Sanarwa** shi ne Shiru, Kaɗan, Daidaito ko Cikakke. *Cikakke* shi ne abin da Soundscape ke yi
+  koyaushe, kuma daga nan kake farawa. *Daidaito* yana tsallake ƙananan hanyoyi da hanyoyin hidima kuma yana
+  rage maimaitawa. *Kaɗan* yana sanar da tituna, mahaɗun hanyoyi da shahararrun wurare kawai. *Shiru* ba ya
+  yin sanarwa ta kai tsaye ko kaɗan, amma siginar sauti, tafarkuna da maɓallan babban allo suna ci gaba da
+  aiki. Yana maye gurbin tsohon makunnin *Ba da Izinin Sanarwowi*; idan ka kashe shi a da, Matakin Sanarwa
+  yanzu yana kan Shiru.
+* **Titina da Mahaɗun Hanyoyi** yana kunna ko kashe sanarwa game da mahaɗun hanyoyi da titin da kake kai.
+* **Wuraren da za a Sanar** jerin zaɓi ne: Komai, Shahararrun Wurare, Sufurin Jama'a, Abinci da Abin Sha,
+  Kayan Abinci da Shagunan Sauƙi, Bankuna da ATM ko Babu Wurare. Zaɓi yawan da kake so, misali shahararrun
+  wurare da tashoshin bas. Ana sanar da alamominka koyaushe.
+
+Matakin da ya dace yana canzawa yayin da kake tafiya, don haka ba sai ka shiga Saitunan don canza shi ba.
+Danna *Na Baya* a belun kunne yana rage Matakin Sanarwa mataki ɗaya a kowane lokaci, daga Cikakke ta
+Daidaito da Kaɗan zuwa Shiru, sannan ya koma Cikakke. Ana faɗin sabon matakin kowane lokaci. Wannan yana aiki
+a duka yanayoyin biyu na maɓallan sarrafawa, shi ya sa maɓallan belun kunne suka ɗan canza:
+
+* A *Yanayin Asali*, idan babu tafarkin da ake kunnawa, *Na Gaba* yanzu yana sanar da *Kewaye da Ni*, kuma
+  *Inda Nake* ba ya kan maɓallai kuma. Yayin kunna tafarki, *Na Gaba* da *Na Baya* har yanzu suna motsawa
+  tsakanin tashoshi.
+* A yanayin *Menu na Sauti*, *Na Baya* ba ya komawa baya a menu kuma. *Na Gaba* har yanzu yana ci gaba a
+  cikinsa kuma *Kunna/Dakata* har yanzu yana zaɓa. Alamomi da tafarkuna a menu yanzu an jera su bisa suna,
+  kuma bayan ka fara ɗaya, menu yana komawa farko maimakon ya bar ka a cikin jerin.
+
+### Bincike
+
+Sandar bincike yanzu tana fahimtar fiye da sunayen wurare:
+
+* **Irin wurare.** Nemi da harshenka «kantin magani», «banɗaki», «ATM» da makamantansu, kuma Soundscape zai
+  jera wurare mafi kusa na wannan irin, komai sunansu. Wuraren da ba su da suna, kamar yawancin banɗakuna da
+  benci, ana nuna su da irin abin da suke, tare da adireshinsu.
+* **Lambobin wuri, hanyoyin haɗin taswira da Plus Codes.** Liƙa lambobi biyu, digiri da minti, hanyar haɗi
+  daga Google Maps, Apple Maps ko OpenStreetMap, ko Plus Code, kuma Soundscape zai ba ka ainihin wannan
+  wurin. Lambobi biyu kawai ana iya karanta su ta hanyoyi biyu, don haka idan duka biyun suna da ma'ana,
+  ana ba ka duka biyun, mafi kusa da farko.
+* **Bincike ba tare da intanet ba.** Bincike yanzu koyaushe yana duba taswirorin da ka sauke ma, ba kan
+  intanet kaɗai ba, don haka yana samun wurare marasa suna da yawa fiye da da. Idan ka nemi wani abu ba tare
+  da intanet ba kuma ba ka da taswirar offline ta wurin da kake, Soundscape zai gaya maka haka maimakon kawai
+  ya kasa samun komai.
+
+### Buɗe wuri a wata manhaja
+
+Cikakkun Bayanan Wuri suna da sabon maɓalli, **Buɗe a manhajar taswira**, wanda ke jera manhajojin taswira da
+na kewayawa a wayarka. Zaɓi *Yi amfani da wannan manhaja koyaushe* sai maɓallin ya zama, misali, *Buɗe a
+Google Maps*, ya buɗe ta nan take; latsawa na tsawon lokaci yana dawo da jerin. Jerin *Wurare na Kusa* da
+*Alamomi* suma suna da ayyukan mai karanta allo *Buɗe a…* da *Raba*, kusa da *Fara Siginar Sauti*.
+
+### Siginar sauti da alamomi
+
+* Siginar sauti a babban allo yanzu tana nuna **nisa da alkibla**, kuma mai karanta allo yana karanta ta,
+  misali, kamar «Siginar Sauti a Milngavie Library, mita 390, kudu maso gabas». Tafarkuna ma suna nuna nisa
+  zuwa tashar yanzu ta hanya ɗaya.
+* Siginar sauti tana da **ayyukan mai karanta allo** guda uku: *Sanar da Siginar Sauti* yana faɗin inda
+  take, *Ƙarin Bayani* yana ƙara adireshi, kuma *Ƙara zuwa Alamomi* yana ajiye ta.
+* Kana iya sake **matsar da alama** ta hanyar jan taswira a allon *Gyara Alama*.
 
 ### Adireshi da sunayen wurare mafi kyau
 
@@ -120,7 +200,7 @@ isasshen rubutu da aka fassara don ya zama mai amfani.
 
 Fassara aikin al'umma ne kuma muna maraba da taimakonka, ko gyaran ka a inda wani abu bai karantu
 sosai ba. Ana iya inganta kowane rubutu a
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Yanayin barci
 
@@ -180,6 +260,8 @@ wayoyin da ke rufe manhajojin baya cikin tsauri.
 * An cire **sarrafawa da murya**. Bai taba yin aiki da aminci sosai da zai cancanci a rike shi ba,
   kuma makullan sarrafa waka a belun kunne suna rufe yawancin abu daya — duba
   [Taimako kan amfani da makullan sarrafa waka]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape kuma yana shirye don umarnin murya ta Gemini a Android 16 da sama, amma ba za su yi aiki ba
+  har sai Google ya fitar da goyon bayansu a Gemini.
 * **Menu na harshe cikin manhajar** ya tafi. Yanzu Soundscape yana bin harshen da ka saita a wayarka,
   wanda shi ne abin da mafi yawan mutane suka sa ran zai kasance. Domin canza shi, canza harshen
   wayarka, ko ka saita harshe na kowace manhaja a saitunan wayar idan tana bayarwa.
