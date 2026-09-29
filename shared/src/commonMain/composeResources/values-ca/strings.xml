@@ -77,9 +77,9 @@
     <string name="location_detail_action_preview_hint">començar la previsualització en aquesta ubicació</string>
     <string name="location_detail_add_waypoint_existing_hint">eliminar aquest marcador de la teva ruta</string>
     <string name="location_detail_add_waypoint_new_hint">afegir aquest marcador com a punt de ruta a la teva ruta</string>
-    <string name="location_detail_full_screen_hint">Mostra el mapa a pantalla completa</string>
+    <string name="location_detail_full_screen_hint">mostrar el mapa a pantalla completa</string>
     <string name="location_detail_exit_full_screen_hint">sortir del mapa a pantalla completa</string>
-    <string name="location_detail_full_screen_for_edit_hint">Mostra el mapa a pantalla completa i edita la ubicació del marcador</string>
+    <string name="location_detail_full_screen_for_edit_hint">mostrar el mapa a pantalla completa i editar la ubicació del marcador</string>
     <string name="route_detail_action_start_route">Inicia la ruta</string>
     <string name="route_detail_action_stop_route">Atura la ruta</string>
     <string name="route_detail_action_edit">Edita la ruta</string>
@@ -625,7 +625,7 @@
     <string name="accessibility_screen_reader_disabled">Com que no teniu cap lector de pantalla activat, suposem que voleu veure els mapes gràfics a l'aplicació. Podeu canviar aquesta configuració aquí, o simplement continuar.</string>
     <string name="text_field_clear_text">Esborra el text</string>
     <string name="marker_name_description_hint">editar el nom del marcador</string>
-    <string name="annotation_description_hint">afegir una nota opcional per ajudar-vos a reconèixer aquest marcador més endavant</string>
+    <string name="annotation_description_hint">afegir una nota opcional per ajudar-te a reconèixer aquest marcador més endavant</string>
     <string name="route_name_description_hint">editar el nom de la ruta</string>
     <string name="route_description_description_hint">afegir una descripció opcional per a aquesta ruta</string>
     <string name="fab_add_item">Afegeix un element</string>
@@ -634,7 +634,7 @@
     <string name="route_beacon_progress">Balisa a %1$s</string>
     <string name="home_screen_title">Inici de Soundscape</string>
     <string name="settings_reset_button">Restableix la configuració als valors predeterminats</string>
-    <string name="settings_reset_button_hint">restableix la configuració als valors predeterminats i després reinicia l'aplicació.</string>
+    <string name="settings_reset_button_hint">restablir la configuració als valors predeterminats i després reiniciar l'aplicació.</string>
     <string name="settings_reset_dialog_title">Esteu segur?</string>
     <string name="settings_reset_dialog_message">En restablir la configuració se suprimiran tots els ajustos que heu configurat a l'aplicació. Voleu continuar?</string>
     <string name="advanced_markers_and_routes_export_button">Exporta la base de dades de marcadors i rutes</string>
