@@ -1613,4 +1613,11 @@
     <string name="search_no_offline_maps">검색이 오프라인으로 작동 중이지만, 현재 위치의 오프라인 지도가 다운로드되어 있지 않습니다.</string>
     <string name="location_detail_adjust_marker_location">위치 편집</string>
     <string name="location_detail_adjust_marker_location_instructions">지도를 드래그하여 마커 위치를 옮깁니다. 새 위치를 유지하려면 ‘완료’를, 변경하지 않으려면 ‘취소’를 탭합니다.</string>
+    <string name="location_detail_action_open_in_app">지도 앱에서 열기</string>
+    <string name="location_detail_action_open_in_named_app">%1$s에서 열기</string>
+    <string name="location_detail_action_open_in_app_hint">다른 지도 또는 내비게이션 앱에서 이 위치 보기</string>
+    <string name="location_detail_action_open_in_named_app_hint">%1$s에서 이 위치 보기</string>
+    <string name="open_in_app_dialog_title">열 때 사용할 앱 선택</string>
+    <string name="open_in_app_remember">항상 이 앱 사용</string>
+    <string name="open_in_app_change">다른 앱 선택</string>
 </resources>
