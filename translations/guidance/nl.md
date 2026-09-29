@@ -87,3 +87,28 @@ Numbered as on the questionnaire.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 24 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** Near and at were both «Bij»: `directions_near_name` → «Nabij %1$s» and `directions_near_settlement_inline` → «nabij %1$s», matching `directions_near_road_and_settlement`. Full stop added to `settings_reset_button_hint`. Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 32 fixes uploaded.** The Weblate log shows no human Dutch edits. The open questions above were not re-flagged. Fixed:
+- **Microsoft errors:**
+  - «waarin u loopt» → «kijkt» for "facing" in the four `help_text_*_how` button strings and `help_text_my_location_when`.
+  - `terms_of_use_medical_safety_disclaimer`: «moeten» → «moet», «mobiele vaardigheden» → «mobiliteitsvaardigheden».
+  - `faq_turn_beacon_back_on_question`: «mij» → «mijn».
+- **Other meaning fixes:**
+  - `relative_clock_direction` «op %1$s uur» («om» is a time of day).
+  - English word order in `osm_train_station_named` («Station %1$s»), `osm_subway_named`, both ferry-terminal names, and the two entrance templates («%2$s van %1$s», «…, vanaf %3$s»).
+  - `osm_services` «Verzorgingsplaats».
+- **NL-T1 leftover:** `callouts_nothing_to_call_out_now` «waarschuwen» → «aankondigen».
+- **Other terminology:**
+  - `ui_action_button_nearby_markers` «Markers⏎vlakbij» → «Markeringen⏎in de buurt», the name the help and tutorial use.
+  - `tour_continue_hint` «tutorial» → «zelfstudie».
+  - `osm_generic_landmark` «Oriëntatiepunt» → «Herkenningspunt».
+- **Grammar:**
+  - Stray «te» in `location_detail_exit_full_screen_hint` and `all_places_nearby_description`.
+  - `help_config_voices_content_ios` («door naar … te gaan en op een stem te tikken»).
+  - `help_text_assistant_when` («als u om een aankondiging vraagt, wordt de app niet geopend»; «Bluetooth-koptelefoon»).
+- **Formatting:**
+  - Lower-case `settings_collapse_section` / `settings_expand_section` hints.
+  - *…* restored in `help_text_routes_content_how_1`.
+  - Sentence case for six OSM names.
+
+Uploaded with `--skip-validate`; all 32 re-fetched and matched exactly.
