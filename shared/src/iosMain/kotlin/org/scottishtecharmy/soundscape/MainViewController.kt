@@ -296,6 +296,8 @@ fun MainViewController() = ComposeUIViewController {
                     ),
                 )
             },
+            onGetMapApps = { getIosMapApps() },
+            onOpenInMapApp = { app, desc -> openInIosMapApp(app, desc) },
             onRateApp = {
                 val url =
                     NSURL.URLWithString("https://apps.apple.com/app/id6459021379?action=write-review")

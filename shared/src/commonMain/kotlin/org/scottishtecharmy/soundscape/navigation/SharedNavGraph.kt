@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.navigation
 
+import org.scottishtecharmy.soundscape.components.LocationListActions
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -266,6 +267,7 @@ fun SharedNavHost(
                     onStartBeacon = { desc ->
                         holder.startBeacon(desc.location, desc.name)
                     },
+                    itemActions = rememberLocationListActions(callbacks, preferencesProvider),
                 )
             } else {
                 // Fallback path: external state holder publishes via flows.
@@ -293,6 +295,7 @@ fun SharedNavHost(
                             desc.name
                         )
                     },
+                    itemActions = rememberLocationListActions(callbacks, preferencesProvider),
                 )
             }
         }
@@ -302,6 +305,7 @@ fun SharedNavHost(
                 flows = flows,
                 callbacks = callbacks,
                 audioTour = audioTour,
+                itemActions = rememberLocationListActions(callbacks, preferencesProvider),
                 onBack = { navController.popBackStack() },
                 onAddRoute = { navController.navigate(SharedRoutes.ADD_ROUTE) },
                 onSelectMarker = { desc ->
@@ -356,6 +360,9 @@ fun SharedNavHost(
                     onShareLocation = { sharedDesc ->
                         callbacks.onShareLocation(sharedDesc, shareMessage)
                     },
+                    // Queried each time the screen is entered so newly installed apps show up.
+                    mapApps = remember { callbacks.onGetMapApps?.invoke() ?: emptyList() },
+                    onOpenInMapApp = callbacks.onOpenInMapApp.takeIf { callbacks.onGetMapApps != null },
                     onOfflineMaps = { locationDesc ->
                         navStateHolder.navigateWithOfflineMapsTarget(
                             navController, SharedRoutes.OFFLINE_MAPS, locationDesc.location,
@@ -696,6 +703,25 @@ fun SharedNavHost(
     }
 }
 
+/**
+ * Open in map app and Share, offered as screen reader actions on Places Nearby and Markers items.
+ * The map apps are queried each time a list is entered so newly installed apps show up.
+ */
+@Composable
+private fun rememberLocationListActions(
+    callbacks: AppCallbacks,
+    preferencesProvider: PreferencesProvider?,
+): LocationListActions {
+    val shareMessage = stringResource(Res.string.universal_links_marker_share_message)
+    val mapApps = remember { callbacks.onGetMapApps?.invoke() ?: emptyList() }
+    return LocationListActions(
+        mapApps = mapApps,
+        preferencesProvider = preferencesProvider,
+        onOpenInMapApp = callbacks.onOpenInMapApp.takeIf { callbacks.onGetMapApps != null },
+        onShare = { desc -> callbacks.onShareLocation(desc, shareMessage) },
+    )
+}
+
 internal object MarkersAndRoutesTabMemory {
     var selected: Int = 1
 }
@@ -705,6 +731,7 @@ private fun MarkersAndRoutesContainer(
     flows: AppFlows,
     callbacks: AppCallbacks,
     audioTour: AudioTour? = null,
+    itemActions: LocationListActions = LocationListActions(),
     onBack: () -> Unit,
     onAddRoute: () -> Unit = {},
     onSelectMarker: (LocationDescription) -> Unit = {},
@@ -764,6 +791,7 @@ private fun MarkersAndRoutesContainer(
                             userLocation = userLocation,
                             onSelectItem = { onSelectMarker(it) },
                             onStartBeacon = { loc, name -> holder.startBeacon(loc, name) },
+                            itemActions = itemActions,
                         )
                     } else {
                         val uiState by flows.markersUiState?.collectAsState()
@@ -777,6 +805,7 @@ private fun MarkersAndRoutesContainer(
                             onStartBeacon = { loc, name ->
                                 callbacks.onStartBeacon(loc.latitude, loc.longitude, name)
                             },
+                            itemActions = itemActions,
                         )
                     }
                 }

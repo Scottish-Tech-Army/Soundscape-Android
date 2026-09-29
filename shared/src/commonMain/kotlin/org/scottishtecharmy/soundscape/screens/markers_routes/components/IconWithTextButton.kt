@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -33,7 +35,12 @@ import org.scottishtecharmy.soundscape.ui.theme.tinyPadding
  * announcement, a route's first waypoint, street preview's callouts. Tells VoiceOver to stay
  * quiet for it instead of speaking the label and its activation click over the top. See
  * [StartsSpeechControl].
+ * @param onLongClick optional secondary action on a long press. TalkBack offers it as "double tap
+ * and hold to [onLongClickLabel]"; VoiceOver has no equivalent, so on iOS pair it with a
+ * semantics custom action passed via [modifier].
+ * @param onLongClickLabel what the long press does, read out by TalkBack.
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun IconWithTextButton(
     modifier: Modifier = Modifier,
@@ -49,12 +56,25 @@ fun IconWithTextButton(
     color: Color = MaterialTheme.colorScheme.onSurface,
     buttonTestTag: String? = null,
     startsSpeech: Boolean = false,
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
     onClick: () -> Unit
 ) {
     val button: @Composable (Modifier) -> Unit = { buttonModifier ->
         Row(
             modifier = buttonModifier
-                .clickable(role = Role.Button) { onClick() }
+                .then(
+                    if (onLongClick != null) {
+                        Modifier.combinedClickable(
+                            role = Role.Button,
+                            onLongClick = onLongClick,
+                            onLongClickLabel = onLongClickLabel,
+                            onClick = onClick,
+                        )
+                    } else {
+                        Modifier.clickable(role = Role.Button) { onClick() }
+                    }
+                )
                 .tinyPadding()
                 .talkbackHint(talkbackHint)
                 .then(if (buttonTestTag != null) Modifier.testTag(buttonTestTag) else Modifier),

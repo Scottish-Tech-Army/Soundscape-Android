@@ -97,6 +97,12 @@ object PreferenceKeys {
      * throwing, and so that it round-trips through the plain string preference store.
      */
     const val POI_RANK_STRATEGY = "PoiRankStrategy"
+
+    /**
+     * Identifier of the map app the user chose to always open locations in from Location
+     * Details - an Android package name, or an iOS app key from IosMapApps. Empty means ask.
+     */
+    const val PREFERRED_MAP_APP = "PreferredMapApp"
 }
 
 object PreferenceDefaults {
@@ -127,4 +133,5 @@ object PreferenceDefaults {
     const val MARKERS_SORT_ASCENDING = true
     const val HEAD_TRACKING_ENABLED = false
     const val POI_RANK_STRATEGY = "off"
+    const val PREFERRED_MAP_APP = ""
 }
