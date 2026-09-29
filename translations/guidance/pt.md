@@ -16,7 +16,7 @@ A well-preserved Microsoft baseline. Microsoft's Title Case style («Sinal de
 Áudio», «Ponto de Passagem») is carried through, which is a house style and
 not an error. The hints compose correctly («Toque duas vezes para desativar
 o Sinal de Áudio»), and the Siri phrases (`pt.lproj`) match the help text.
-Questions: `docs/translation-questions/questions-pt.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-pt.md` (Q1…Q7).
 
 ## Glossary
 
@@ -66,13 +66,13 @@ Nothing yet.
 3. The four detail levels (Detalhado / Equilibrado / Discreto / Silencioso): clear?
 4. Siri phrases «Soundscape arredores / rota / sinal / parar sinal…»: natural?
 5. Articles are now chosen from the name («no Largo do Carmo», «na Rua Augusta»). Right? (PT-G1)
-6. Anything else.
-7. Landmark vs Marker: «marco» is the Marker term, but Microsoft also used it for
+6. Landmark vs Marker: «marco» is the Marker term, but Microsoft also used it for
    "landmark" in `callouts_places_and_landmarks` («Locais e Marcos», which reads as
    "Places and Markers") and `help_text_destination_beacons_when` («um marco
    familiar»). Elsewhere landmark is «Ponto de Referência». Should both become
    «Pontos de Referência» / «ponto de referência»? Both are held unchanged under
    C14 (iOS users have heard Microsoft's wording) until Dave or a reviewer decides.
+7. Anything else.
 
 ## Provenance
 
@@ -96,4 +96,4 @@ wording. Also fixed: the button names «Desativar Sinal» and «OK», the lost `
 entrance strings; the entrances had a fixed «do»). Brazilian and pre-reform forms were replaced:
 «balsas»/«Barcas» → «Terminal de ferry» (4 strings), «Chaveiro» → «Serralheiro»,
 «Rinha» → «Luta de galos», «Boliche» → «Bowling», «afastando-se» → «a afastar-se»,
-«Eléctrico» → «elétrico», «arquitectura» → «arquitetura». Held: Q7 (Landmark as «marco»).
+«Eléctrico» → «elétrico», «arquitectura» → «arquitetura». Held: Q6 (Landmark as «marco»).

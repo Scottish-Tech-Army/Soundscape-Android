@@ -129,7 +129,27 @@ incompleta.
 
 **A pergunta:** soa bem? Notou algum nome que saia mal?
 
-### Q6 — Mais alguma coisa? *(Anything else)*
+### Q6 — „Marcos” para *landmarks* *(Landmark vs Marker)*
+
+**Quando se ouve:** nas definições dos avisos, e na ajuda sobre o Sinal de Áudio.
+
+**Em inglês:** „Places and Landmarks”; e na ajuda, „when you want to keep track
+of a familiar landmark”.
+
+**Como soa agora:** „Locais e Marcos”; e na ajuda, „quando pretende monitorizar
+um marco familiar”.
+
+**O que nos deixa em dúvida:** na aplicação, „marco” é o nome dos locais que o
+utilizador guarda (*markers*). Aqui a palavra quer dizer outra coisa: um ponto
+de referência conhecido. Por isso „Locais e Marcos” pode soar como „locais e os
+seus marcos guardados”. Noutros textos, a aplicação já usa „Pontos de
+Referência” para *landmarks*. Estas duas frases vêm da versão original para
+iPhone, e quem a usava está habituado a elas.
+
+**A pergunta:** devemos mudar para „Locais e Pontos de Referência” e „um ponto
+de referência familiar”, ou „marco” não causa confusão?
+
+### Q7 — Mais alguma coisa? *(Anything else)*
 
 Se alguma frase soar a tradução do inglês, for demasiado longa ou pouco clara,
 diga-nos.

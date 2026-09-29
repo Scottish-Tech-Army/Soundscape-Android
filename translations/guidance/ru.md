@@ -19,7 +19,7 @@ Yurt Page's terms still ship and are marked `confirmed` in the Spanish-file
 sense: "confirmed then, not re-checked since." Everything newer is AI.
 
 The authored Siri phrases (`ru.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-ru.md` (Q1…Q7).
+`docs/translation-questions/questions-ru.md` (Q1…Q8).
 
 ## Glossary
 
@@ -82,14 +82,14 @@ visual thing with no connection to speech. They have been replaced by
 4. Snooze «Отложенный режим»: clear?
 5. «Вы» or «вы»? (RU-S2)
 6. Siri phrases «Soundscape окружение / маршрут / маяк / выключи маяк…»: natural?
-7. Anything else.
-8. Two home-screen buttons are named differently from the help and the tutorial. Yurt Page wrote
+7. Two home-screen buttons are named differently from the help and the tutorial. Yurt Page wrote
    both versions of each: «Впереди меня» (button) vs «Передо мной» (help page title, help text,
    tutorial, Siri help, about 8 strings), and «Ближайшие отметки» (button) vs «Отметки рядом» (help and
    tutorial, 6 strings). The tutorial says «Нажмите «Передо мной»», which no button is labelled.
    Change the 2 buttons («Передо⏎мной», «Отметки⏎рядом»), or the ~14 help strings? Unchanged until
    decided (2026-09-29). The third button, «Моя позиция» (an AI pass, 2026-08-20), was
    aligned to «Моё местоположение».
+8. Anything else.
 
 ## Provenance
 
@@ -111,4 +111,4 @@ Meaning fixes: «приобретите» ("buy") → «возьмите», the 
 `confect_name_joins` «между» (gender-neutral), «вы увидите» → «вы заметите», «кардинальное направление» →
 «сторона света», «называет названия». Terminology: 9 strings used «пути» for Routes → «маршруты», the Terms
 title → «Условия использования», «маркеры» → «отметки», plus 2 OSM names with brackets/slashes read aloud.
-Markup: 12 help/FAQ strings had replaced `*…*` with plain «…», now `*«…»*`. Held: Q8 (two button names).
+Markup: 12 help/FAQ strings had replaced `*…*` with plain «…», now `*«…»*`. Held: Q7 (two button names).

@@ -108,10 +108,16 @@ coisa?
 **Em inglês:** "You're ready!".
 
 **Como soa agora:** "Você está pronto!" (masculino). Antes dizia "Tudo pronto!".
+Logo abaixo, a mensagem começa com "Você está pronto(a) para sua primeira
+caminhada com o Soundscape." (em inglês: "You are ready for your first walk
+with Soundscape.").
 
 **O que nos deixa em dúvida:** o aplicativo não sabe o gênero de quem o usa.
+Além disso, o leitor de tela lê os parênteses de "pronto(a)" em voz alta.
 
-**A pergunta:** qual é melhor?
+**A pergunta:** qual é melhor, no título e na mensagem? Por exemplo "Tudo
+pronto!" e "Tudo pronto para sua primeira caminhada com o Soundscape.", ou
+outra forma sem gênero e sem parênteses?
 
 ### Q5 — "Notificação" *(Callout vs phone notifications)*
 
