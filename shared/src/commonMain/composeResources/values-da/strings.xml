@@ -1628,4 +1628,11 @@
     <string name="search_no_offline_maps">Søgningen kører offline, men der er ikke downloadet noget offline-kort for det sted, hvor du er.</string>
     <string name="location_detail_adjust_marker_location">Rediger placering</string>
     <string name="location_detail_adjust_marker_location_instructions">Træk i kortet for at flytte mærkets placering. Tryk på Udført for at beholde den nye placering eller på Annuller for at lade den være uændret.</string>
+    <string name="location_detail_action_open_in_app">Åbn i kortapp</string>
+    <string name="location_detail_action_open_in_named_app">Åbn i %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">se denne placering i en anden kort- eller navigationsapp</string>
+    <string name="location_detail_action_open_in_named_app_hint">se denne placering i %1$s</string>
+    <string name="open_in_app_dialog_title">Vælg, hvilken app der skal bruges</string>
+    <string name="open_in_app_remember">Brug altid denne app</string>
+    <string name="open_in_app_change">Vælg en anden app</string>
 </resources>
