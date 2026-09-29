@@ -257,7 +257,7 @@
     <string name="help_text_automatic_callouts_how_1">**コールアウトのオン／オフ：**\n\n コールアウトをオフにするとアプリは無音になります。コールアウトは、*「設定」* 画面の *「コールアウト」* セクションで *「コールアウトの詳細度」* を *「無音」* に設定するとオフになり、それ以外のレベルを選ぶと再びオンになります。同じことを Siri や Gemini に頼んで行うこともできます。ヘッドホンのメディアコントロールボタンで、Soundscape を一段階ずつ静かにすることもできます。*「前へ」* を押すたびに *「詳細」*、*「バランス」*、*「控えめ」*、*「無音」* の順に一段階下がり、もう一度押すと *「詳細」* に戻ります。ヘルプの *「メディアコントロールの使用」* を参照してください。あるいはホーム画面右上の *「スリープ」* ボタンを使って、スリープを解除するまで Soundscape のコールアウトを停止することもできます。</string>
     <string name="help_text_automatic_callouts_how_2">**どのコールアウトを聞くかの管理：**\n\n Soundscape が自動的にコールアウトする項目の種類を選択するには、*「ホーム」* 画面のメニューから *「設定」* 画面に移動してください。*「設定」* 画面の *「コールアウト」* セクションでは、*「コールアウトの詳細度」* でアプリがどれだけ話すかを選び、*「道路と交差点」* をコールアウトするかどうか、そして *「コールアウトする場所」* を選びます。すべてのコールアウトをオフにしたい場合は、*「コールアウトの詳細度」* を *「無音」* に設定してください。</string>
     <string name="help_text_my_location_what">[*現在地*] ボタンを使用すると、自分の現在地を簡単に確認できるように情報が提供されます。[*現在地*] ボタンでは、自分が向いている方向、近くの道路や交差点がどこにあるか、近くの特定地点がどこにあるかなど、現在地に関する情報がわかります。</string>
-    <string name="help_text_my_location_when">[*現在地*] は、自分の現在地や向かっている方向を確認する必要がある場合に役立ちます。</string>
+    <string name="help_text_my_location_when">[*現在地*] は、自分の現在地や向いている方位を確認する必要がある場合に役立ちます。</string>
     <string name="help_text_my_location_how">ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*現在地*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*現在地*] ボタンをタップすると、音声が聞こえます。</string>
     <string name="help_text_nearby_markers_what">[*近くのマーカー*] ボタンでは、最大 4 つの近くにあるマーカーの情報がわかります。[*近くのマーカー*] ボタンは、既に知っている場所をもとに自分の位置を把握するのに役立ちます。</string>
     <string name="help_text_nearby_markers_when">自分がどこにいて、どの方向を向いているのかを確認したい場合は、[*近くのマーカー*] ボタンを使用すると、既に知っている場所の位置を確認することができます。</string>
@@ -293,12 +293,12 @@
     <string name="osm_pedestrian_street">歩行者専用道路</string>
     <string name="osm_bicycle_path">自転車道</string>
     <string name="osm_residential_street">住宅地内の道路</string>
-    <string name="osm_service_road">専用道路 or 管理用道路</string>
+    <string name="osm_service_road">管理用道路</string>
     <string name="osm_road">道路</string>
     <string name="osm_highway">幹線道路</string>
     <string name="osm_intersection">交差点</string>
     <string name="osm_roundabout">環状交差点</string>
-    <string name="osm_highway_ramp">ランプ or 出入路</string>
+    <string name="osm_highway_ramp">ランプ</string>
     <string name="osm_merging_lane">合流車線</string>
     <string name="osm_office_building">オフィスビル</string>
     <string name="osm_school_building">校舎</string>
@@ -351,7 +351,7 @@
     <string name="faq_markers_function_question">マーカーとはどのようなもので、活用するにはどうしたらよいですか?</string>
     <string name="faq_markers_function_answer">マーカーは、ユーザーが保存した場所です。アプリ内で見つけられる場所でも、自分で新たに追加した場所でもかまいません。現在地をマーカーとして保存するには、ホーム画面の *「現在地」* ボタンを選択してから *「マーカーを保存」* を選択してください。その他の場所をマーカーとして保存するには、ホーム画面の検索バーで保存したい場所を検索するか、*「近くの場所」* ボタンで探してください。保存したい場所を見つけそれを選択すると *「場所の詳細」* 画面が表示されます。この画面で *「マーカーを保存」* ボタンを選択してください。</string>
     <string name="faq_section_getting_the_best_experience">Soundscape を最大限に活用するにはどうしたらよいですか?</string>
-    <string name="faq_what_can_I_set_question">ビーコンを設定するにはどうしたらよいですか?</string>
+    <string name="faq_what_can_I_set_question">ビーコンは何に設定できますか?</string>
     <string name="faq_what_can_I_set_answer">音声ビーコンは、店舗や施設、特定地点、住所、交差点など、あらゆる場所に設定できます。場所にビーコンを追加する方法はいくつかあります。まず、検索バーで場所を検索するか、*「近くの場所」*、*「マーカーおよびルート」*、または *「現在地」* のいずれかをタップして場所の詳細を表示します。次に、*「場所の詳細」* 画面で *「音声ビーコンを開始」* ボタンを選択してください。これをタップするとホーム画面に戻り、選択した場所の方向から聞こえる音声ビーコンがオンになります。その場所の名前と、利用可能であれば距離や住所がメイン画面に表示されます。</string>
     <string name="faq_how_to_use_beacon_question">ビーコンを最大限に活用するにはどうすればよいですか?</string>
     <string name="faq_how_to_use_beacon_answer">音声ビーコンは *「耳のための灯台」* のようなものです。現在地から見て目的地が直線でどちらの方向にあるかを知らせます。灯台と同様に、行き方そのものは示しません — 障害物を避けるために、途中で進路の判断が必要になる場合があります。ビーコンの継続的なリズミカルな音は目的地の方向から聞こえ、歩いている間に目的地が自分に対してどこにあるかを把握するのに役立ちます。目的地に向かってまっすぐ歩いているとき、あるいは端末を目的地の方向に向けると、高い音の *「リン」* という音が聞こえます。これは目的地の方向を正確に特定するのに役立ちます。騒がしい環境では、リズミカルな音の方向が聞き取りにくいことがあるためです。高い音の *「リン」* を探すときは、端末を水平に持ってゆっくりとその場で一回りしてください。頭も端末と同じ方向に向けると、空間オーディオの効果が最も得られます。\n\nこの設計には次のような自然な帰結があります：\n\n1. ビーコンを使う際に *「正しい」* 進行方向はありません — Soundscape ではあなた自身が行き方を選びます。\n\n2. 高い音の *「リン」* は目的地の方向を特定するのに役立つだけであり、そこへどう行くかを示すものではありません。\n\n3. 目的地までのおおよその行き方が分かっている場合は、移動の大部分でビーコンをミュートにして、目的地が近づいたときだけオンにすることを検討してください。</string>
@@ -375,7 +375,7 @@
     <string name="faq_miss_a_callout_answer">Soundscape には、聞き逃したコールアウトを振り返るための「最近のコールアウト」一覧があります。確認するには、ホーム画面で検索バーをタップしてください。画面下部に「最近のコールアウト」セクションがあり、そこで聞き逃したコールアウトが表示されます。</string>
     <string name="faq_section_how_soundscape_works">Soundscape はどのような仕組みになっていますか?</string>
     <string name="faq_supported_phones_question">どのスマートフォンで Soundscape を実行できますか?</string>
-    <string name="faq_supported_phones_answer">Soundscape for Android は現在、Android 11 以降を搭載した Android スマートフォンで利用できます。</string>
+    <string name="faq_supported_phones_answer">Soundscape は現在、iOS 16 以降を搭載した iPhone と、Android 11 以降を搭載した Android スマートフォンで利用できます。</string>
     <string name="faq_supported_headsets_question">Soundscape ではどのようなヘッドホンを使用する必要がありますか?</string>
     <string name="faq_supported_headsets_answer">Soundscape で使用するヘッドホンは、お好みで選択してください。それぞれのヘッドホンにメリットとトレードオフがあります。唯一の必須事項は、Soundscape の 3D 空間オーディオのコールアウトを体験できるように、ステレオ ヘッドホンを使用することです。</string>
     <string name="faq_battery_impact_question">Soundscape はスマートフォンのバッテリーにどのような影響がありますか?</string>
@@ -415,8 +415,8 @@
     <string name="voice_engine">テキスト読み上げエンジン</string>
     <string name="preview_go_nearest_intersection">最寄りの交差点へ移動</string>
     <string name="last_entry_in_list"> と %1$s</string>
-    <string name="location_detail_full_screen_hint">地図を全画面表示にする</string>
-    <string name="location_detail_exit_full_screen_hint">全画面表示の地図を終了する</string>
+    <string name="location_detail_full_screen_hint">地図を全画面表示にします</string>
+    <string name="location_detail_exit_full_screen_hint">全画面表示の地図を終了します</string>
     <string name="route_detail_action_previous_disabled_hint">ルートが既に開始地点にあるため無効です</string>
     <string name="route_detail_action_next_disabled_hint">ルートが既に終了地点にあるため無効です</string>
     <string name="directions_near_road_and_settlement">%1$s 付近、%2$s の近く</string>
@@ -440,7 +440,7 @@
     <string name="permissions_required">アプリを実行するには位置情報の許可が必要です。</string>
     <string name="permissions_button">アプリの設定で権限を変更する</string>
     <string name="first_launch_change_language">言語を変更</string>
-    <string name="first_launch_change_language_hint">アプリで使用する言語を変更する</string>
+    <string name="first_launch_change_language_hint">アプリで使用する言語を変更します</string>
     <string name="osm_entrance">入口</string>
     <string name="osm_main_entrance">正面入口</string>
     <string name="osm_entrance_named_with_destination">%1$s の %2$s（%3$s から）</string>
@@ -1233,7 +1233,7 @@
     <string name="tour_start_beacon">いま「マーカー」タブを表示しており、保存したマーカーが一覧で表示されています。マーカーを選択し、「場所の詳細」画面が表示されたら 「音声ビーコンを開始」 をタップしてください。</string>
     <string name="tour_beacon_demo">音声ビーコンが聞こえるはずです。目的地の方向から再生されます。端末を回すと、ビーコンの音が移動して聞こえ方が変わるのが分かります。今試してみてください。</string>
     <string name="tour_beacon_demo_locked">端末がロックされていてもビーコンは再生されます。歩行中や乗り物に乗っているときは、アプリは移動方向を使って音声ビーコンを再生します。ただし端末がロックされていても、コンパスのように端末を水平に前方へ向けて持つことができます。その場合、ビーコンは端末が向いている方向を使用します。今試してみてください。</string>
-    <string name="tour_stop_beacon">ビーコンを止める準備ができたら、「ルートを中止する」 ボタンをタップしてください。</string>
+    <string name="tour_stop_beacon">ビーコンを止める準備ができたら、「ルートを中止する」ボタンをタップしてください。</string>
     <string name="tour_finish">これでチュートリアルは終了です。メインメニューからいつでも再度実行できます。アプリがお役に立てることを願っています！</string>
     <string name="tour_cancel">ガイド付きチュートリアルはキャンセルされました。必要であればメインメニューからいつでも再度実行できます。</string>
     <string name="menu_audio_tutorial">ガイド付きチュートリアル</string>
@@ -1252,7 +1252,7 @@
     <string name="tour_continue_button">続行</string>
     <string name="tour_continue_hint">ポップアップを閉じてチュートリアルを続行します</string>
     <string name="location_detail_action_beacon_from_markers">このマーカーで音声ビーコンを開始する</string>
-    <string name="location_detail_full_screen_for_edit_hint">地図を全画面表示にしてマーカーの位置を編集する</string>
+    <string name="location_detail_full_screen_for_edit_hint">地図を全画面表示にしてマーカーの位置を編集します</string>
     <string name="street_description_relative_before">%1$s（%2$s の手前）</string>
     <string name="street_description_relative_after">%1$s（%2$s の直後）</string>
     <string name="street_description_intersection">%1$s の交差点付近</string>
