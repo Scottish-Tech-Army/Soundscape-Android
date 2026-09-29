@@ -60,6 +60,17 @@ A few strings were capitalised differently from the US source (`beacon_settings_
 «Collapse section» vs «collapse section»). The lowercase first letter in hint
 strings is deliberate: it's JJ's VoiceOver convention (#889). Don't "fix" it.
 
+### EN-T4 — «Highway» and «Highway Ramp» are unreachable (`confirmed`, 2026-09-29)
+
+`osm_highway` and `osm_highway_ramp` are keyed on the OSM values `highway` and
+`highway_ramp` in `ResourceMapper.kt`. But the lookup key is always an
+OpenMapTiles class or subclass (`motorway`, `trunk`, `primary`, …, `path`), and
+"highway" is only ever the feature *type*. Slip roads come through as a flag on
+an ordinary class. So neither string is ever spoken. They're probably Microsoft
+leftovers. Dave (UK speaker) decided to leave «Highway» as it is. «Slip Road»
+was uploaded anyway, because it's correct and harmless. Don't spend review time
+on either.
+
 ## Rejected
 
 Nothing yet.
@@ -92,3 +103,9 @@ grocer's by size and kind (EN-T2). Q3: «pavement» always, «transit» fine
 **2026-09-28 — JJ's English rewording and UI-name markup.** Only 4 strings were flagged (4 changed). The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and verified live.
 
 **2026-09-28 — Weblate checks pass.** Loading indicator → «Loading». Uploaded live.
+
+**2026-09-29 — full review (1586 units, 268 overridden).** 6 flagged, and 5 were uploaded and verified live:
+the typo «mamber» (JJ, 2026-09-27, when he copied his English rewording across), `faq_supported_phones_answer` (a stale 2025
+Android-only override now back to the US text, which covers iOS), `help_text_markers_content_2` «grocery
+shop» → «grocery store» (EN-T2), `osm_highway_ramp` → «Slip Road», and `osm_window_construction` →
+«Window Fitter» (the slash was read aloud). `osm_highway` was left as it is (EN-T4).
