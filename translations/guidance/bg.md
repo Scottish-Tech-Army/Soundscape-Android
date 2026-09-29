@@ -26,7 +26,7 @@ grammatically into «Двукратно докосване за %1$s» (BG-B1: 1
 drifted were fixed on 2026-09-29). The open items are all term choices.
 
 The questions for reviewers are in `docs/translation-questions/questions-bg.md`, numbered
-Q1…Q9 to match the Open questions below.
+Q1…Q11 to match the Open questions below.
 
 ---
 
@@ -132,7 +132,9 @@ These are the questions in `docs/translation-questions/questions-bg.md`, in the 
 6. **«дестинация» or «местоназначение» / «цел»?**
 7. **The four detail levels:** clear by ear?
 8. **Siri phrases stay English:** OK? (BG-C1)
-9. **Anything else.**
+9. **Points of interest «забележителности» vs «интересни места»:** the landmarks word is used for both.
+10. **Button labels in the informal imperative** («Спри маршрута», «Чуй околността си») under a formal «Вие» register: OK? (BG-R1)
+11. **Anything else.**
 
 ---
 
@@ -157,6 +159,6 @@ Nothing uploaded.
 
 Uploaded with `--skip-validate`; all 21 re-fetched and matched exactly.
 
-Not changed, candidates for the questionnaire:
+Not changed, now questionnaire Q9 and Q10:
 - "Points of interest" is mostly «забележителности», the landmarks word (one setting says «интересни места»).
 - Button labels use the informal imperative («Спри маршрута», «Чуй околността си») under an otherwise formal «Вие» register (BG-R1).
