@@ -1643,4 +1643,11 @@
     <string name="search_no_offline_maps">La cerca funciona fora de línia, però no hi ha cap mapa fora de línia baixat per al lloc on ets.</string>
     <string name="location_detail_adjust_marker_location">Edita la ubicació</string>
     <string name="location_detail_adjust_marker_location_instructions">Arrossega el mapa per moure la ubicació del marcador. Toca Fet per conservar la nova ubicació, o Cancel·la per deixar-la sense canvis.</string>
+    <string name="location_detail_action_open_in_app">Obre a l'aplicació de mapes</string>
+    <string name="location_detail_action_open_in_named_app">Obre a %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">veure aquesta ubicació en una altra aplicació de mapes o de navegació</string>
+    <string name="location_detail_action_open_in_named_app_hint">veure aquesta ubicació a %1$s</string>
+    <string name="open_in_app_dialog_title">Tria amb quina aplicació vols obrir-ho</string>
+    <string name="open_in_app_remember">Utilitza sempre aquesta aplicació</string>
+    <string name="open_in_app_change">Tria una altra aplicació</string>
 </resources>
