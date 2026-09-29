@@ -85,19 +85,21 @@ yolun nereye gittiğini söyler.
 
 **Soru:** "Moor Road'a giden patika" daha doğru mu?
 
-### Q3 — VoiceOver ipuçları *(VoiceOver hint form)*
+### Q3 — Ekran okuyucu ipuçları *(Screen reader hint form)*
 
-**Ne zaman duyulur:** VoiceOver her düğmenin adından sonra kısa bir kullanım ipucu
-okur.
+**Ne zaman duyulur:** TalkBack ve VoiceOver her düğmenin adından sonra kısa bir
+kullanım ipucu okur.
 
 **İngilizcesi:** "Double tap to mute the audio beacon". Cümle iki parçadan oluşur:
 "Double tap to …" ve onlarca ipucundan biri.
 
-**Şu an nasıl:** "Sesli işareti sessize al için çift dokunun".
+**Şu an nasıl:** "Sesli işareti sessize almak için çift dokunun". Önceden
+"Sesli işareti sessize al için çift dokunun" idi; tüm ipuçlarını "-mek/-mak"
+biçimine çevirdik.
 
-**Bizi düşündüren:** dilbilgisi açısından doğru değil.
+**Bizi düşündüren:** bu biçimi bir makine seçti.
 
-**Soru:** "Sesli işareti sessize almak için çift dokunun" doğru mu?
+**Soru:** kulağa doğal geliyor mu?
 
 ### Q4 — "Sesli İşaret" *(Beacon)*
 
@@ -140,7 +142,25 @@ havaalanı anonslarını çağrıştırabilir.
 
 **Soru:** doğal mı? Değilse ne derdiniz?
 
-### Q7 — Başka bir şey? *(Anything else)*
+### Q7 — Otoyol kavşakları ve iskeleler *(Motorway junctions, ferry terminals)*
+
+**Ne zaman duyulur:** araçla seyahat ederken otoyol kavşağına yaklaştığınızda,
+ve yakındaki yerler listesinde.
+
+**İngilizcesi:** "Junction %1$s" (ör. "Junction 5"), "%1$s Ferry Terminal",
+"Rigger".
+
+**Şu an nasıl:** "5. Kavşak"; bir yerde "Kadıköy Vapur İskelesi", başka bir
+yerde "Feribot İskelesi"; "Rigger" hâlâ İngilizce.
+
+**Bizi düşündüren:** "5. Kavşak" "beşinci kavşak" gibi okunuyor, oysa 5 kavşağın
+numarası; "15A. Kavşak" da garip. "Rigger" (vinç ve halat donanımı kuran usta)
+için Türkçe bir meslek adı bilmiyoruz.
+
+**Soru:** "5 numaralı kavşak", "Kavşak 5" ya da başka bir biçim mi? Vapur mu,
+feribot mu? "Rigger" Türkçede nasıl denir?
+
+### Q8 — Başka bir şey? *(Anything else)*
 
 İngilizceden çevrilmiş gibi duran, çok uzun ya da anlaşılmayan bir cümle varsa
 bize bildirin.
