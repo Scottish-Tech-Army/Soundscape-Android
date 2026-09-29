@@ -1688,4 +1688,11 @@
     <string name="search_no_offline_maps">البحث يعمل بدون اتصال، لكن لا توجد خريطة بدون اتصال منزّلة لموقعك الحالي.</string>
     <string name="location_detail_adjust_marker_location">تعديل الموقع</string>
     <string name="location_detail_adjust_marker_location_instructions">اسحب الخريطة لتحريك موقع العلامة. اضغط على «تم» للاحتفاظ بالموقع الجديد، أو على «إلغاء» لتركه دون تغيير.</string>
+    <string name="location_detail_action_open_in_app">فتح في تطبيق الخرائط</string>
+    <string name="location_detail_action_open_in_named_app">فتح في %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">عرض هذا الموقع في تطبيق خرائط أو ملاحة آخر</string>
+    <string name="location_detail_action_open_in_named_app_hint">عرض هذا الموقع في %1$s</string>
+    <string name="open_in_app_dialog_title">اختر التطبيق الذي تريد الفتح به</string>
+    <string name="open_in_app_remember">استخدام هذا التطبيق دائمًا</string>
+    <string name="open_in_app_change">اختيار تطبيق آخر</string>
 </resources>
