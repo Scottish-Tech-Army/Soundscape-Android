@@ -1628,4 +1628,11 @@
     <string name="search_no_offline_maps">Die Suche funktioniert offline, aber für Ihren Standort ist keine Offline-Karte heruntergeladen.</string>
     <string name="location_detail_adjust_marker_location">Standort bearbeiten</string>
     <string name="location_detail_adjust_marker_location_instructions">Ziehen Sie die Karte, um den Standort der Markierung zu verschieben. Tippen Sie auf „Fertig“, um den neuen Standort zu übernehmen, oder auf „Abbrechen“, um ihn unverändert zu lassen.</string>
+    <string name="location_detail_action_open_in_app">In Karten-App öffnen</string>
+    <string name="location_detail_action_open_in_named_app">In %1$s öffnen</string>
+    <string name="location_detail_action_open_in_app_hint">Diesen Ort in einer anderen Karten- oder Navigations-App ansehen</string>
+    <string name="location_detail_action_open_in_named_app_hint">Diesen Ort in %1$s ansehen</string>
+    <string name="open_in_app_dialog_title">App zum Öffnen auswählen</string>
+    <string name="open_in_app_remember">Immer diese App verwenden</string>
+    <string name="open_in_app_change">Andere App auswählen</string>
 </resources>
