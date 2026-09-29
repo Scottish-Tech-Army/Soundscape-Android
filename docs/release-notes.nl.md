@@ -25,6 +25,18 @@ Opmerkingen bij oudere versies staan op de pagina
   snelheid verplaatst en beschrijft uw reis in plaats van uw directe omgeving.
 * **Melding wanneer u water en spoorlijnen kruist.** Rivieren, kanalen, zeearmen en spoorlijnen
   worden aangekondigd wanneer u ze oversteekt, zowel lopend als onderweg.
+* **Kies hoeveel Soundscape zegt.** Met de nieuwe instelling *Detailniveau aankondigingen* is
+  Soundscape stiller op drukke plekken, en met *Aan te kondigen plaatsen* kiest u over welke soorten
+  plaatsen u hoort. U kunt het detailniveau onderweg met de knoppen van uw koptelefoon wijzigen.
+* **Weet hoe ver het volgende kruispunt is.** Kruispunten worden op een vaste afstand aangekondigd
+  als u nadert, en de aankondiging zegt nu hoe ver de stoeprand is.
+* **Zoek naar een soort plaats, of naar coördinaten.** Zoek op „apotheek” of „bushalte” om de
+  dichtstbijzijnde te vinden, hoe ze ook heten, of plak coördinaten, een kaartlink of een Plus Code.
+* **Open een plaats in een andere kaart-app**, zoals Google Maps, vanuit de locatiedetails of de
+  lijsten.
+* **Meer van het baken op het beginscherm.** Het toont nu de afstand en richting, en heeft
+  schermlezeracties om het baken aan te kondigen, er meer over te horen of het als markering op te
+  slaan.
 * **Betere adressen en plaatsnamen.** Plaatsen zonder eigen adres krijgen nu de straat en de buurt
   waarin ze liggen, huisnummers worden aan de juiste kant van de straat gekoppeld en bushaltes in
   Groot-Brittannië gebruiken hun officiële namen.
@@ -82,11 +94,88 @@ De gewone meldingen voor voetgangers — winkels in de buurt, oversteekplaatsen 
 tijdens het reizen bewust achtergehouden, en de afstanden waarop dingen worden aangekondigd zijn
 flink vergroot, zodat u er iets over hoort voordat u er al voorbij bent.
 
+### Kruispunten
+
+De meest gestelde vraag over kruispuntaankondigingen was hoe ver het kruispunt eigenlijk is.
+Soundscape zegt het u nu: „Kruispunt 30 meter verwijderd”. De afstand wordt gemeten tot de stoeprand
+van de straat die u gaat oversteken, niet tot het midden van het kruispunt, want daar stopt u
+werkelijk.
+
+De aankondiging komt ook op een vaster punt. Eerder kon die op 45 meter of op 10 meter komen, zonder
+dat u het verschil kon horen. Nu wacht ze tot het kruispunt ongeveer 30 meter weg is, zodat de
+afstand elke keer ongeveer hetzelfde betekent.
+
 ### Water en spoorlijnen kruisen
 
 Soundscape vertelt u nu wanneer u een rivier, kanaal, zeearm, baai of spoorlijn kruist. Dit werkt
 zowel lopend als onderweg en geldt zowel voor eronderdoor als eroverheen, zodat een voetgangersbrug
 en een tunneltje allebei worden beschreven.
+
+### Kiezen hoeveel Soundscape zegt
+
+Wat we het vaakst over Soundscape horen, is dat het te veel zegt op drukke plekken zoals een
+stadscentrum. Het onderdeel *Aankondigingen beheren* in *Instellingen* heeft nu drie instellingen in
+plaats van de oude lijst met schakelaars:
+
+* **Detailniveau aankondigingen** is Stil, Rustig, Gebalanceerd of Gedetailleerd. *Gedetailleerd* is
+  wat Soundscape altijd deed, en daar begint u mee. *Gebalanceerd* laat kleine paden en ventwegen weg
+  en herhaalt zich minder vaak. *Rustig* kondigt alleen straten, kruispunten en herkenningspunten aan.
+  *Stil* doet helemaal geen automatische aankondigingen, terwijl bakens, routes en de knoppen op het
+  beginscherm gewoon blijven werken. Het vervangt de oude schakelaar *Aankondigingen toestaan*; als u
+  die had uitgezet, staat het detailniveau op Stil.
+* **Straten en kruispunten** zet de aankondigingen van kruispunten en van de straat waar u bent aan
+  of uit.
+* **Aan te kondigen plaatsen** is een lijst om aan te vinken: Alles, Herkenningspunten, Openbaar
+  vervoer, Eten en drinken, Supermarkten en buurtwinkels, Banken en geldautomaten of Geen plaatsen.
+  Vink er zoveel aan als u wilt, bijvoorbeeld herkenningspunten en bushaltes. Uw markeringen worden
+  altijd aangekondigd.
+
+Het juiste detailniveau verandert terwijl u loopt, dus u hoeft er niet voor naar Instellingen. Met
+*Vorige* op uw koptelefoon zet u het detailniveau steeds één stap lager, van Gedetailleerd via
+Gebalanceerd en Rustig naar Stil, en dan weer terug naar Gedetailleerd. Het nieuwe niveau wordt
+telkens uitgesproken. Dit werkt in beide modi van de mediaregelaars, en daardoor zijn de knoppen van
+de koptelefoon een beetje veranderd:
+
+* In de *Originele modus* kondigt *Volgende* nu *Om me heen* aan als er geen route loopt, en *Mijn
+  locatie* zit niet meer op de knoppen. Terwijl er een route loopt, gaan *Volgende* en *Vorige* nog
+  steeds van routepunt naar routepunt.
+* In de modus *Audiomenu* gaat *Vorige* niet meer terug door het menu. *Volgende* loopt er nog steeds
+  doorheen en *Afspelen/Pauzeren* kiest nog steeds. Markeringen en routes staan in het menu nu op
+  naam, en nadat u er een hebt gestart, springt het menu terug naar het begin in plaats van u diep in
+  de lijst te laten.
+
+### Zoeken
+
+De zoekbalk begrijpt nu meer dan alleen plaatsnamen:
+
+* **Soorten plaatsen.** Zoek op „apotheek”, „toilet”, „geldautomaat” enzovoort, in uw eigen taal, en
+  Soundscape toont de dichtstbijzijnde plaatsen van die soort, hoe ze ook heten. Plaatsen zonder naam,
+  zoals de meeste toiletten en bankjes, staan erin als wat ze zijn, met hun adres.
+* **Coördinaten, kaartlinks en Plus Codes.** Plak een paar getallen, graden en minuten, een link van
+  Google Maps, Apple Kaarten of OpenStreetMap, of een Plus Code, en Soundscape geeft u precies die
+  plek. Een los paar getallen kan op twee manieren gelezen worden; als beide kunnen, krijgt u beide
+  aangeboden, de dichtstbijzijnde eerst.
+* **Offline zoeken.** Zoeken kijkt nu altijd ook in uw gedownloade kaarten, naast online, en vindt zo
+  veel meer plaatsen zonder naam. Als u zonder internetverbinding zoekt en geen offline kaart hebt
+  van waar u bent, zegt Soundscape dat, in plaats van gewoon niets te vinden.
+
+### Een plaats openen in een andere app
+
+In de locatiedetails staat een nieuwe knop **Openen in kaart-app**, met een lijst van de kaart- en
+navigatie-apps op uw telefoon. Vink *Altijd deze app gebruiken* aan en de knop heet bijvoorbeeld
+*Openen in Google Maps* en opent die meteen; lang drukken toont de lijst weer. De lijsten *Plaatsen in
+de buurt* en *Markeringen* hebben ook de schermlezeracties *Openen in…* en *Delen*, naast
+*Audiobaken starten*.
+
+### Het baken en markeringen
+
+* Het baken op het beginscherm toont nu zijn **afstand en richting**, en een schermlezer leest het
+  bijvoorbeeld als „Audiobaken bij Milngavie Library, 390 meter, zuidoosten”. Routes tonen op
+  dezelfde manier de afstand tot het huidige routepunt.
+* Het baken heeft drie **schermlezeracties**: *Baken aankondigen* zegt waar het is, *Meer info*
+  voegt het adres toe, en *Toevoegen aan markeringen* slaat het op.
+* U kunt weer **een markering verplaatsen** door de kaart te slepen in het scherm *Markering
+  bewerken*.
 
 ### Betere adressen en plaatsnamen
 
@@ -116,7 +205,7 @@ genoeg vertaalde tekst had om nuttig te zijn.
 
 Vertalingen zijn gemeenschapswerk en we stellen uw hulp op prijs, of uw correcties waar iets slecht
 leest. Elke tekst kan worden verbeterd op
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Slaapstand
 
@@ -176,6 +265,8 @@ en opstarten is robuuster gemaakt op telefoons die achtergrond-apps agressief af
 * **De spraakbediening** is verwijderd. Die werkte nooit betrouwbaar genoeg om te behouden, en de
   mediatoetsen op koptelefoons dekken grotendeels hetzelfde af — zie
   [Hulp bij het gebruik van mediatoetsen]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape is ook klaar voor spraakopdrachten via Gemini op Android 16 en hoger, maar die werken
+  pas als Google de ondersteuning ervoor in Gemini uitbrengt.
 * **Het taalmenu in de app** is verdwenen. Soundscape volgt nu de taal die u op uw telefoon hebt
   ingesteld, wat de meeste mensen ook verwachtten. Wilt u die wijzigen, verander dan de taal van uw
   telefoon of stel in de telefooninstellingen een taal per app in, als die optie er is.

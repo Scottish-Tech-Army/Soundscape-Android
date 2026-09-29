@@ -24,6 +24,18 @@ As notas de versões anteriores estão na página
   deslocando em velocidade e descreve a viagem em vez do ambiente imediato.
 * **Aviso ao cruzar cursos d'água e ferrovias.** Rios, canais, enseadas e linhas ferroviárias são
   anunciados quando você os cruza, tanto a pé quanto em viagem.
+* **Escolha quanto o Soundscape fala.** O novo ajuste *Detalhe das Notificações* deixa o Soundscape
+  mais discreto em lugares movimentados, e *Locais a Anunciar* permite escolher sobre quais tipos de
+  lugar você quer ouvir. Você pode mudar o detalhe com os botões do fone de ouvido enquanto caminha.
+* **Saiba a que distância fica o próximo cruzamento.** Os cruzamentos são anunciados a uma distância
+  constante conforme você se aproxima, e a notificação agora diz a que distância fica o meio-fio.
+* **Pesquise um tipo de lugar, ou coordenadas.** Pesquise «farmácia» ou «ponto de ônibus» para
+  encontrar os mais próximos, qualquer que seja o nome, ou cole coordenadas, um link de mapa ou um
+  Plus Code.
+* **Abra um lugar em outro aplicativo de mapas**, como o Google Maps, a partir dos detalhes da
+  localização ou das listas.
+* **Mais do sinalizador na tela inicial.** Agora ele mostra a distância e a direção, e tem ações do
+  leitor de tela para anunciar o sinalizador, saber mais sobre ele ou salvá-lo como favorito.
 * **Melhores endereços e nomes de lugares.** Lugares sem endereço próprio agora recebem a rua e a
   região em que estão, os números são associados ao lado correto da rua e os pontos de ônibus na
   Grã-Bretanha usam seus nomes oficiais.
@@ -80,11 +92,87 @@ Os avisos comuns para quem caminha — lojas próximas, travessias e assim por d
 propositalmente contidos durante a viagem, e as distâncias em que as coisas são anunciadas foram
 bastante ampliadas, para que você saiba delas antes de já ter passado.
 
+### Cruzamentos
+
+A pergunta mais frequente sobre as notificações de cruzamento era a que distância o cruzamento fica
+de verdade. Agora o Soundscape diz: «Cruzamento a 30 metros de distância». A distância é medida até
+o meio-fio da rua que você vai atravessar, e não até o centro do cruzamento, porque é ali que você
+realmente para.
+
+A notificação também chega em um ponto mais constante. Antes ela podia vir a 45 metros ou a 10
+metros, sem nada que diferenciasse os dois casos. Agora ela espera até o cruzamento estar a cerca de
+30 metros, para que a distância signifique mais ou menos a mesma coisa toda vez.
+
 ### Cruzar cursos d'água e ferrovias
 
 O Soundscape agora avisa quando você cruza um rio, um canal, uma enseada, uma baía ou uma linha
 ferroviária. Funciona tanto a pé quanto em viagem e abrange tanto passar por baixo quanto por cima,
 de modo que tanto uma passarela quanto uma passagem subterrânea são descritas.
+
+### Escolher quanto o Soundscape fala
+
+O que mais ouvimos sobre o Soundscape é que ele fala demais em lugares movimentados, como o centro
+da cidade. A seção *Gerenciar Notificações* dos *Ajustes* agora tem três ajustes no lugar da antiga
+lista de chaves:
+
+* **Detalhe das Notificações** pode ser Silencioso, Discreto, Equilibrado ou Detalhado. *Detalhado*
+  é o que o Soundscape sempre fez, e é o ponto de partida. *Equilibrado* deixa de fora caminhos
+  secundários e vias de serviço e se repete menos. *Discreto* anuncia apenas ruas, cruzamentos e
+  pontos de referência. *Silencioso* não faz nenhuma notificação automática, enquanto sinalizadores,
+  rotas e os botões da tela inicial continuam funcionando. Ele substitui a antiga chave *Permitir
+  Notificações*: se ela estava desligada, você vai encontrar o Detalhe das Notificações em
+  Silencioso.
+* **Ruas e Cruzamentos** liga ou desliga as notificações de cruzamentos e da rua em que você está.
+* **Locais a Anunciar** é uma lista para marcar: Tudo, Pontos de Referência, Transporte Público,
+  Alimentos e Bebidas, Mercearias e Lojas de Conveniência, Bancos e Caixas Eletrônicos ou Nenhum
+  Local. Marque quantos quiser, por exemplo pontos de referência e pontos de ônibus. Seus favoritos
+  são sempre anunciados.
+
+O nível de detalhe certo muda enquanto você caminha, então não é preciso ir aos Ajustes para mudá-lo.
+Ao apertar *Anterior* no fone de ouvido, o Detalhe das Notificações desce um nível por vez, de
+Detalhado para Equilibrado, Discreto e Silencioso, e depois volta para Detalhado. O novo nível é
+falado a cada vez. Isso funciona nos dois modos dos controles de mídia, e por isso os botões do fone
+mudaram um pouco:
+
+* No *Modo Original*, *Próximo* agora anuncia *Ao Meu Redor* quando nenhuma rota está em andamento,
+  e *Minha Localização* não fica mais nos botões. Durante uma rota, *Próximo* e *Anterior* continuam
+  passando de um localizador para outro.
+* No modo *Menu de Áudio*, *Anterior* não volta mais pelo menu. *Próximo* continua percorrendo o
+  menu e *Reproduzir/Pausar* continua selecionando. Os favoritos e as rotas do menu agora aparecem em
+  ordem alfabética, e depois que você inicia um, o menu volta para o começo em vez de deixar você no
+  meio da lista.
+
+### Pesquisa
+
+A barra de pesquisa agora entende mais do que nomes de lugares:
+
+* **Tipos de lugar.** Pesquise «farmácia», «banheiro», «caixa eletrônico» e assim por diante, no seu
+  idioma, e o Soundscape lista os lugares mais próximos desse tipo, qualquer que seja o nome. Lugares
+  sem nome, como a maioria dos banheiros e bancos de praça, aparecem pelo que são, com o endereço.
+* **Coordenadas, links de mapas e Plus Codes.** Cole um par de números, graus e minutos, um link do
+  Google Maps, do Apple Maps ou do OpenStreetMap, ou um Plus Code, e o Soundscape mostra aquele ponto
+  exato. Um par de números sozinho pode ser lido nos dois sentidos, então quando os dois fazem
+  sentido você recebe as duas opções, a mais próxima primeiro.
+* **Pesquisa offline.** A pesquisa agora sempre procura também nos mapas baixados, além da internet,
+  e assim encontra muito mais lugares sem nome. Se você pesquisar sem conexão com a internet e não
+  tiver um mapa offline de onde está, o Soundscape avisa em vez de simplesmente não encontrar nada.
+
+### Abrir um lugar em outro aplicativo
+
+Os detalhes da localização têm um botão novo, **Abrir em um aplicativo de mapa**, que lista os
+aplicativos de mapas e de navegação do seu celular. Marque *Sempre usar este aplicativo* e o botão
+passa a ser, por exemplo, *Abrir em Google Maps*, abrindo-o na hora; um toque longo traz a lista de
+volta. As listas *Locais Próximos* e *Favoritos* também têm as ações do leitor de tela *Abrir em…* e
+*Compartilhar*, ao lado de *Iniciar Sinalizador Sonoro*.
+
+### O sinalizador e os favoritos
+
+* O sinalizador na tela inicial agora mostra a **distância e a direção**, e um leitor de tela o lê,
+  por exemplo, como «Sinalizador definido em Milngavie Library, 390 metros, sudeste». As rotas mostram
+  do mesmo jeito a distância até o localizador atual.
+* O sinalizador tem três **ações do leitor de tela**: *Anunciar Sinalizador* diz onde ele está,
+  *Mais Informações* acrescenta o endereço e *Adicionar a Favoritos* o salva.
+* Você pode de novo **mover um favorito** arrastando o mapa na tela *Editar Favorito*.
 
 ### Melhores endereços e nomes de lugares
 
@@ -114,7 +202,7 @@ traduzido suficiente para ser útil.
 
 As traduções são um trabalho da comunidade e agradecemos sua ajuda, ou suas correções quando algo
 soar mal. Qualquer texto pode ser melhorado em
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Modo de repouso
 
@@ -175,6 +263,8 @@ aplicativos em segundo plano.
 * **O controle por voz** foi removido. Nunca funcionou de forma confiável o bastante para valer a
   pena mantê-lo, e os botões de mídia dos fones cobrem boa parte da mesma necessidade — veja
   [Ajuda sobre o uso dos controles de mídia]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  O Soundscape também está pronto para comandos de voz com o Gemini no Android 16 ou mais recente,
+  mas eles só vão funcionar quando o Google liberar esse suporte no Gemini.
 * **O menu de idioma dentro do aplicativo** foi retirado. O Soundscape agora segue o idioma
   configurado no celular, que é o que a maioria das pessoas esperava. Para mudá-lo, troque o idioma
   do celular ou defina um idioma por aplicativo nas configurações, se houver essa opção.

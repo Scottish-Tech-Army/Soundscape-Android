@@ -25,6 +25,18 @@ Catatan untuk versi lama ada di halaman
   bergerak dengan kecepatan tinggi dan mendeskripsikan perjalanan Anda alih-alih lingkungan terdekat.
 * **Pemberitahuan saat Anda melintasi perairan dan rel kereta.** Sungai, kanal, teluk, dan jalur rel
   diumumkan saat Anda melintasinya, baik ketika berjalan maupun saat bepergian.
+* **Pilih seberapa banyak yang dikatakan Soundscape.** Pengaturan baru *Tingkat Detail Pemberitahuan*
+  membuat Soundscape lebih tenang di tempat ramai, dan *Tempat yang Diberitahukan* memungkinkan Anda
+  memilih jenis tempat yang ingin Anda dengar. Anda dapat mengubah tingkat detail dengan tombol
+  headphone sambil berjalan.
+* **Ketahui seberapa jauh persimpangan berikutnya.** Persimpangan diumumkan pada jarak yang tetap saat
+  Anda mendekat, dan pemberitahuannya kini menyebutkan jarak ke tepi trotoar.
+* **Cari jenis tempat, atau koordinat.** Cari "apotek" atau "halte bus" untuk menemukan yang terdekat,
+  apa pun namanya, atau tempelkan koordinat, tautan peta, atau Plus Code.
+* **Buka tempat di aplikasi peta lain**, seperti Google Maps, dari Detail Lokasi atau dari daftar.
+* **Lebih banyak dari suar di layar utama.** Kini suar menampilkan jarak dan arah, dan punya aksi
+  pembaca layar untuk memberitahukan suar, mendengar lebih banyak tentangnya, atau menyimpannya sebagai
+  penanda.
 * **Alamat dan nama tempat yang lebih baik.** Tempat yang tidak punya alamat sendiri kini mendapat
   nama jalan dan kawasan tempatnya berada, nomor rumah dicocokkan dengan sisi jalan yang benar, dan
   halte bus di Britania Raya memakai nama resminya.
@@ -81,11 +93,86 @@ Pengumuman biasa untuk pejalan kaki — toko di dekat sini, penyeberangan jalan,
 sengaja ditahan selama perjalanan, dan jarak saat sesuatu diumumkan diperlebar cukup jauh agar Anda
 mengetahuinya sebelum terlewat.
 
+### Persimpangan
+
+Pertanyaan yang paling sering tentang pemberitahuan persimpangan adalah seberapa jauh sebenarnya
+persimpangan itu. Kini Soundscape memberitahukannya: "Persimpangan berjarak 30 meter". Jarak diukur ke
+tepi trotoar jalan yang akan Anda seberangi, bukan ke tengah persimpangan, karena di situlah Anda
+benar-benar berhenti.
+
+Pemberitahuan juga datang pada titik yang lebih tetap. Sebelumnya pemberitahuan bisa datang 45 meter
+atau 10 meter sebelumnya, tanpa ada yang membedakan keduanya. Kini pemberitahuan menunggu sampai
+persimpangan berjarak sekitar 30 meter, sehingga jaraknya selalu berarti kurang lebih sama.
+
 ### Melintasi perairan dan rel kereta
 
 Soundscape kini memberitahu Anda saat melintasi sungai, kanal, teluk, atau jalur rel. Ini berlaku baik
 saat berjalan maupun saat bepergian, dan mencakup lewat di bawah sebagaimana lewat di atas, sehingga
 jembatan penyeberangan maupun terowongan pejalan kaki sama-sama dideskripsikan.
+
+### Memilih seberapa banyak yang dikatakan Soundscape
+
+Hal yang paling sering kami dengar tentang Soundscape adalah terlalu banyak bicara di tempat ramai
+seperti pusat kota. Bagian *Kelola Pemberitahuan* di *Pengaturan* kini punya tiga pengaturan sebagai
+pengganti daftar sakelar yang lama:
+
+* **Tingkat Detail Pemberitahuan** berupa Senyap, Ringkas, Seimbang, atau Rinci. *Rinci* adalah yang
+  selama ini dilakukan Soundscape, dan menjadi pengaturan awal. *Seimbang* melewatkan jalan setapak
+  kecil dan jalan servis serta lebih jarang mengulang. *Ringkas* hanya menyebutkan jalan, persimpangan,
+  dan landmark. *Senyap* tidak memberikan pemberitahuan otomatis sama sekali, sementara suar, rute,
+  dan tombol di layar utama tetap berfungsi. Pengaturan ini menggantikan sakelar lama *Izinkan
+  Pemberitahuan*; jika sakelar itu mati, Tingkat Detail Pemberitahuan kini diatur ke Senyap.
+* **Jalan dan Persimpangan** menyalakan atau mematikan pemberitahuan tentang persimpangan dan jalan
+  yang sedang Anda lalui.
+* **Tempat yang Diberitahukan** adalah daftar yang bisa dicentang: Semua, Landmark, Transportasi Umum,
+  Makanan dan Minuman, Toko Kelontong dan Swalayan, Bank dan ATM, atau Tanpa Tempat. Centang sebanyak
+  yang Anda mau, misalnya landmark dan halte bus. Penanda Anda selalu diberitahukan.
+
+Tingkat detail yang pas berubah saat Anda berjalan, jadi Anda tidak perlu masuk ke Pengaturan untuk
+mengubahnya. Menekan *Sebelumnya* di headphone menurunkan Tingkat Detail Pemberitahuan satu tingkat
+setiap kali, dari Rinci ke Seimbang dan Ringkas lalu Senyap, kemudian kembali ke Rinci. Tingkat yang
+baru diucapkan setiap kali. Ini berfungsi di kedua mode kontrol media, sehingga tombol headphone sedikit
+berubah:
+
+* Di *Mode asli*, *Berikutnya* kini menyebutkan *Di Sekitar Saya* saat tidak ada rute yang diputar,
+  dan *Lokasi Saya* tidak lagi ada di tombol. Saat rute diputar, *Berikutnya* dan *Sebelumnya* tetap
+  berpindah antar titik rute.
+* Di mode *Menu audio*, *Sebelumnya* tidak lagi mundur di menu. *Berikutnya* tetap menelusurinya dan
+  *Putar/Jeda* tetap memilih. Penanda dan rute di menu kini diurutkan berdasarkan nama, dan setelah
+  Anda memulai salah satunya, menu kembali ke awal alih-alih meninggalkan Anda di dalam daftar.
+
+### Pencarian
+
+Bilah pencarian kini memahami lebih dari sekadar nama tempat:
+
+* **Jenis tempat.** Cari "apotek", "toilet", "ATM", dan seterusnya dalam bahasa Anda sendiri, dan
+  Soundscape menampilkan tempat terdekat dari jenis itu, apa pun namanya. Tempat tanpa nama, seperti
+  kebanyakan toilet dan bangku, ditampilkan menurut jenisnya, beserta alamatnya.
+* **Koordinat, tautan peta, dan Plus Code.** Tempelkan sepasang angka, derajat dan menit, tautan dari
+  Google Maps, Apple Maps, atau OpenStreetMap, atau Plus Code, dan Soundscape memberi Anda titik yang
+  tepat itu. Sepasang angka saja bisa dibaca dua arah, jadi jika keduanya masuk akal, Anda ditawari
+  keduanya, yang terdekat lebih dulu.
+* **Pencarian offline.** Pencarian kini selalu juga melihat peta yang telah Anda unduh, selain online,
+  sehingga menemukan jauh lebih banyak tempat tanpa nama. Jika Anda mencari tanpa koneksi internet dan
+  tidak punya peta offline untuk tempat Anda berada, Soundscape memberitahukannya alih-alih tidak
+  menemukan apa pun begitu saja.
+
+### Membuka tempat di aplikasi lain
+
+Detail Lokasi punya tombol baru, **Buka di Aplikasi Peta**, yang menampilkan aplikasi peta dan navigasi
+di ponsel Anda. Centang *Selalu gunakan aplikasi ini* dan tombol berubah menjadi, misalnya, *Buka di
+Google Maps*, yang langsung membukanya; tekan lama untuk memunculkan daftar lagi. Daftar *Tempat di
+Sekitar* dan *Penanda* juga punya aksi pembaca layar *Buka di…* dan *Bagikan*, di samping *Mulai Suar
+Audio*.
+
+### Suar dan penanda
+
+* Suar di layar utama kini menampilkan **jarak dan arahnya**, dan pembaca layar membacanya, misalnya,
+  sebagai "Suar di Milngavie Library, 390 meter, tenggara". Rute menampilkan jarak ke titik rute saat
+  ini dengan cara yang sama.
+* Suar punya tiga **aksi pembaca layar**: *Beritahukan Suar* menyebutkan lokasinya, *Info
+  Selengkapnya* menambahkan alamat, dan *Tambahkan ke Penanda* menyimpannya.
+* Anda bisa lagi **memindahkan penanda** dengan menyeret peta dari layar *Edit Penanda*.
 
 ### Alamat dan nama tempat yang lebih baik
 
@@ -116,7 +203,7 @@ punya cukup teks terjemahan untuk bisa berguna.
 
 Terjemahan adalah kerja komunitas dan kami menyambut bantuan Anda, atau koreksi di tempat yang terbaca
 janggal. Setiap teks dapat diperbaiki di
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Mode tidur
 
@@ -176,6 +263,8 @@ yang menutup aplikasi latar secara agresif.
 * **Kendali suara** telah dihapus. Fitur ini tidak pernah bekerja cukup andal untuk dipertahankan, dan
   tombol media pada headphone mencakup sebagian besar kebutuhan yang sama — lihat
   [Bantuan penggunaan tombol media]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape juga sudah siap untuk perintah suara melalui Gemini di Android 16 atau lebih baru, tetapi
+  perintah itu baru akan berfungsi setelah Google merilis dukungannya di Gemini.
 * **Menu bahasa di dalam aplikasi** telah hilang. Soundscape kini mengikuti bahasa yang Anda atur di
   ponsel, yang memang diharapkan kebanyakan orang. Untuk mengubahnya, ganti bahasa ponsel, atau atur
   bahasa per aplikasi di pengaturan ponsel jika tersedia.

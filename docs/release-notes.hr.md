@@ -24,6 +24,18 @@ Bilješke za starija izdanja nalaze se na stranici
   krećete brzinom i opisuje vaše putovanje umjesto neposredne okoline.
 * **Obavijest kada prelazite vode i željezničke pruge.** Rijeke, kanali, zaljevi i željezničke pruge
   najavljuju se dok ih prelazite — i pješice i u vožnji.
+* **Odaberite koliko Soundscape govori.** Nova postavka *Razina detalja najava* čini Soundscape tišim
+  na prometnim mjestima, a u *Mjestima za najavu* birate o kojim vrstama mjesta želite slušati. Razinu
+  detalja možete mijenjati tipkama na slušalicama dok hodate.
+* **Znajte koliko je udaljeno sljedeće raskrižje.** Raskrižja se najavljuju na ujednačenoj udaljenosti
+  dok im se približavate, a najava sada kaže koliko je udaljen rubnik.
+* **Tražite vrstu mjesta ili koordinate.** Potražite „ljekarna“ ili „autobusna stanica“ da biste
+  pronašli najbliže, bez obzira na to kako se zovu, ili zalijepite koordinate, poveznicu na kartu ili
+  Plus Code.
+* **Otvorite mjesto u drugoj aplikaciji za karte**, primjerice u Google kartama, iz pojedinosti o
+  lokaciji ili iz popisa.
+* **Više od svjetionika na početnom zaslonu.** Sada prikazuje udaljenost i smjer te ima radnje za
+  čitač zaslona kojima svjetionik najavite, saznate više o njemu ili ga spremite kao oznaku.
 * **Bolje adrese i nazivi mjesta.** Mjesta bez vlastite adrese sada dobivaju ulicu i područje u kojem
   se nalaze, kućni brojevi pridružuju se ispravnoj strani ulice, a autobusna stajališta u Velikoj
   Britaniji koriste svoje službene nazive.
@@ -77,10 +89,82 @@ Uobičajene obavijesti za pješake — obližnje trgovine, pješački prijelazi 
 zadržavaju dok putujete, a udaljenosti na kojima se stvari najavljuju znatno su povećane kako biste za
 nešto saznali prije nego što to prođete.
 
+### Raskrižja
+
+Najčešće pitanje o najavama raskrižja bilo je koliko je raskrižje zapravo udaljeno. Soundscape vam to
+sada kaže: „Raskrižje udaljeno 30 metara“. Udaljenost se mjeri do rubnika ulice koju ćete prijeći, a
+ne do sredine raskrižja, jer se ondje zaista zaustavljate.
+
+Najava također stiže na ujednačenijem mjestu. Prije je mogla stići 45 metara ili 10 metara prije
+raskrižja, bez ikakvog načina da ih razlikujete. Sada čeka da raskrižje bude udaljeno oko 30 metara,
+pa udaljenost svaki put znači otprilike isto.
+
 ### Prelaženje voda i željezničkih pruga
 
 Soundscape vam sada govori kada prelazite rijeku, kanal, zaljev, uvalu ili željezničku prugu. To radi
 i pješice i u vožnji te obuhvaća i prolazak ispod i iznad, pa se opisuju i pješački most i podvožnjak.
+
+### Odaberite koliko Soundscape govori
+
+Najčešće o Soundscapeu čujemo da previše govori na prometnim mjestima kao što je središte grada.
+Odjeljak *Upravljanje najavama* u *Postavkama* sada umjesto starog popisa prekidača ima tri postavke:
+
+* **Razina detalja najava** je Bez zvuka, Tiho, Uravnoteženo ili Detaljno. *Detaljno* je ono što je
+  Soundscape uvijek radio i s tim počinjete. *Uravnoteženo* izostavlja manje staze i servisne ceste i
+  rjeđe se ponavlja. *Tiho* najavljuje samo ulice, raskrižja i znamenitosti. *Bez zvuka* uopće ne daje
+  automatske najave, dok svjetionici, rute i tipke na početnom zaslonu i dalje rade. Zamjenjuje stari
+  prekidač *Omogući najave*; ako ste ga imali isključenog, razina detalja sada je postavljena na Bez
+  zvuka.
+* **Ulice i raskrižja** uključuje ili isključuje najave raskrižja i ulice na kojoj se nalazite.
+* **Mjesta za najavu** je popis za označavanje: Sve, Znamenitosti, Javni prijevoz, Hrana i piće,
+  Namirnice i trgovine mješovitom robom, Banke i bankomati ili Bez mjesta. Označite ih koliko želite,
+  primjerice znamenitosti i autobusne stanice. Vaše se oznake uvijek najavljuju.
+
+Prava razina detalja mijenja se dok hodate, pa zbog nje ne morate ulaziti u Postavke. Pritiskom na
+*Previous* na slušalicama razina detalja najava spušta se za jednu razinu odjednom, od Detaljno preko
+Uravnoteženo i Tiho do Bez zvuka, a zatim ponovno na Detaljno. Nova razina izgovara se svaki put. To
+radi u oba načina upravljanja medijima, pa su se tipke na slušalicama malo promijenile:
+
+* U *Izvornom načinu* *Next* sada najavljuje *Oko mene* kada se ne reproducira nijedna ruta, a *Moja
+  lokacija* više nije na tipkama. Dok se reproducira ruta, *Next* i *Previous* i dalje prelaze između
+  putnih točaka.
+* U načinu *Zvučni izbornik* *Previous* se više ne vraća unatrag kroz izbornik. *Next* i dalje
+  prolazi kroz njega, a *Play/Pause* i dalje odabire. Oznake i rute u izborniku sada su poredane po
+  nazivu, a nakon što pokrenete jednu od njih, izbornik se vraća na početak umjesto da vas ostavi duboko
+  u popisu.
+
+### Pretraživanje
+
+Traka za pretraživanje sada razumije više od naziva mjesta:
+
+* **Vrste mjesta.** Na svojem jeziku potražite „ljekarna“, „zahod“, „bankomat“ i slično, a Soundscape
+  će navesti najbliža mjesta te vrste, bez obzira na to kako se zovu. Mjesta bez naziva, kao većina
+  zahoda i klupa, navedena su prema tome što su, zajedno s adresom.
+* **Koordinate, poveznice na karte i Plus Codes.** Zalijepite par brojeva, stupnjeve i minute,
+  poveznicu iz Google karata, Apple karata ili OpenStreetMapa ili Plus Code, a Soundscape će vam dati
+  upravo to mjesto. Sam par brojeva može se čitati u oba smjera, pa kada oba imaju smisla, dobit ćete
+  oba, bliže prvo.
+* **Pretraživanje bez veze.** Pretraživanje sada uvijek gleda i u preuzete karte, a ne samo na
+  internetu, pa pronalazi mnogo više mjesta bez naziva. Ako pretražujete bez internetske veze i nemate
+  izvanmrežnu kartu mjesta na kojem ste, Soundscape će vam to reći umjesto da jednostavno ništa ne
+  pronađe.
+
+### Otvaranje mjesta u drugoj aplikaciji
+
+Pojedinosti o lokaciji imaju novi gumb **Otvori u aplikaciji za karte**, koji navodi aplikacije za
+karte i navigaciju na vašem telefonu. Označite *Uvijek koristi ovu aplikaciju* i gumb se mijenja,
+primjerice u *Otvori u aplikaciji Google karte*, te je odmah otvara; dugi pritisak vraća popis.
+Popisi *Mjesta u blizini* i *Oznake* također imaju radnje za čitač zaslona *Otvori u aplikaciji…* i
+*Podijeli*, uz *Postavi zvučni svjetionik*.
+
+### Svjetionik i oznake
+
+* Svjetionik na početnom zaslonu sada prikazuje svoju **udaljenost i smjer**, a čitač zaslona čita ga,
+  primjerice, kao „Svjetionik na Milngavie Library, 390 metara, jugoistok“. Rute na isti način
+  prikazuju udaljenost do trenutačne putne točke.
+* Svjetionik ima tri **radnje za čitač zaslona**: *Najavi svjetionik* kaže gdje je, *Više
+  informacija* dodaje adresu, a *Dodaj u oznake* ga sprema.
+* **Oznaku ponovno možete premjestiti** povlačenjem karte na zaslonu *Uredi oznaku*.
 
 ### Bolje adrese i nazivi mjesta
 
@@ -110,7 +194,7 @@ prevedenog teksta da bi bio koristan.
 
 Prijevodi su rad zajednice i rado ćemo primiti vašu pomoć ili ispravke ondje gdje se nešto loše čita.
 Svaki se tekst može poboljšati na
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Način mirovanja
 
@@ -168,6 +252,8 @@ učvršćeno na telefonima koji agresivno zatvaraju pozadinske aplikacije.
 * **Glasovno upravljanje** uklonjeno je. Nikada nije radilo dovoljno pouzdano da bi ga se zadržalo, a
   medijske tipke na slušalicama pokrivaju uvelike isto — pogledajte
   [Pomoć za upotrebu medijskih tipki]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape je spreman i za glasovne naredbe putem Geminija na Androidu 16 i novijem, ali one neće
+  raditi dok Google ne objavi njihovu podršku u Geminiju.
 * **Izbornik jezika unutar aplikacije** nestao je. Soundscape sada slijedi jezik postavljen na vašem
   telefonu, što je većina ljudi ionako očekivala. Za promjenu promijenite jezik telefona ili u
   njegovim postavkama odredite jezik po aplikaciji, ako to nudi.

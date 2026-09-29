@@ -24,6 +24,17 @@ Ghi chú của các phiên bản cũ hơn nằm ở trang
   cao và mô tả hành trình của bạn thay vì môi trường ngay xung quanh.
 * **Báo khi bạn vượt qua sông nước và đường sắt.** Sông, kênh đào, vịnh và tuyến đường sắt được thông
   báo khi bạn đi qua, dù đang đi bộ hay đang di chuyển.
+* **Chọn Soundscape nói bao nhiêu.** Cài đặt mới *Mức chi tiết thông báo* giúp Soundscape bớt nói ở nơi
+  đông đúc, và *Địa điểm cần thông báo* cho phép bạn chọn loại địa điểm muốn nghe. Bạn có thể đổi mức
+  chi tiết bằng nút trên tai nghe khi đang đi.
+* **Biết giao lộ tiếp theo còn bao xa.** Giao lộ được thông báo ở một khoảng cách ổn định khi bạn đến
+  gần, và thông báo giờ cho biết còn bao xa đến mép vỉa hè.
+* **Tìm theo loại địa điểm, hoặc theo tọa độ.** Tìm "nhà thuốc" hoặc "trạm xe buýt" để thấy những nơi
+  gần nhất, dù tên là gì, hoặc dán tọa độ, liên kết bản đồ hay Plus Code.
+* **Mở một địa điểm trong ứng dụng bản đồ khác**, chẳng hạn Google Maps, từ Chi tiết vị trí hoặc từ các
+  danh sách.
+* **Đèn hiệu trên màn hình chính làm được nhiều hơn.** Giờ nó hiển thị khoảng cách và hướng, và có các
+  thao tác trình đọc màn hình để thông báo đèn hiệu, nghe thêm về nó hoặc lưu nó làm điểm đánh dấu.
 * **Địa chỉ và tên địa điểm tốt hơn.** Những nơi không có địa chỉ riêng giờ được gắn với con phố và
   khu vực nơi chúng tọa lạc, số nhà được khớp với đúng bên đường, và các điểm dừng xe buýt ở Vương
   quốc Anh dùng tên chính thức của chúng.
@@ -79,11 +90,82 @@ Các thông báo thông thường dành cho người đi bộ — cửa hàng g�
 giữ lại có chủ đích khi bạn đang di chuyển, và khoảng cách mà mọi thứ được thông báo đã được nới rộng
 đáng kể, để bạn biết về một thứ gì đó trước khi đi qua nó.
 
+### Giao lộ
+
+Câu hỏi thường gặp nhất về thông báo giao lộ là giao lộ thực sự còn cách bao xa. Giờ Soundscape cho bạn
+biết: "Giao lộ cách 30 mét". Khoảng cách được đo đến mép vỉa hè của con đường bạn sắp băng qua, chứ không
+phải đến giữa giao lộ, vì đó là nơi bạn thực sự dừng lại.
+
+Thông báo cũng đến ở một điểm ổn định hơn. Trước đây nó có thể đến khi còn 45 mét hoặc 10 mét, không có
+gì để phân biệt. Giờ nó chờ đến khi giao lộ còn khoảng 30 mét, để khoảng cách mỗi lần đều có ý nghĩa gần
+như nhau.
+
 ### Vượt qua sông nước và đường sắt
 
 Soundscape giờ cho bạn biết khi bạn vượt qua một con sông, kênh đào, vịnh, vũng hay tuyến đường sắt.
 Điều này hoạt động cả khi đi bộ lẫn khi di chuyển, và bao gồm cả đi bên dưới lẫn đi bên trên, nên cầu
 bộ hành và hầm chui đều được mô tả.
+
+### Chọn Soundscape nói bao nhiêu
+
+Điều chúng tôi nghe nhiều nhất về Soundscape là nó nói quá nhiều ở những nơi đông đúc như trung tâm
+thành phố. Mục *Quản lý thông báo thoại* trong *Cài đặt* giờ có ba cài đặt thay cho danh sách công tắc
+cũ:
+
+* **Mức chi tiết thông báo** là Im lặng, Yên tĩnh, Cân bằng hoặc Chi tiết. *Chi tiết* là cách Soundscape
+  vẫn làm từ trước tới nay, và là mức khởi đầu. *Cân bằng* bỏ qua các lối đi nhỏ và đường nội bộ, và ít
+  lặp lại hơn. *Yên tĩnh* chỉ thông báo đường phố, giao lộ và điểm mốc. *Im lặng* hoàn toàn không đưa
+  ra thông báo tự động, trong khi đèn hiệu, lộ trình và các nút trên màn hình chính vẫn hoạt động. Nó
+  thay cho công tắc cũ *Cho phép thông báo âm thanh*; nếu bạn đã tắt công tắc đó, Mức chi tiết thông
+  báo giờ sẽ ở Im lặng.
+* **Đường phố và giao lộ** bật hoặc tắt thông báo về giao lộ và con đường bạn đang đi.
+* **Địa điểm cần thông báo** là một danh sách để đánh dấu: Tất cả, Điểm mốc, Phương tiện công cộng, Ăn
+  uống, Cửa hàng tạp hóa và cửa hàng tiện lợi, Ngân hàng và ATM, hoặc Không địa điểm. Đánh dấu bao nhiêu
+  tùy thích, ví dụ điểm mốc và trạm xe buýt. Điểm đánh dấu của bạn luôn được thông báo.
+
+Mức chi tiết phù hợp thay đổi khi bạn đi, nên bạn không cần vào Cài đặt để đổi. Nhấn *Trước đó* trên
+tai nghe sẽ hạ Mức chi tiết thông báo mỗi lần một bậc, từ Chi tiết qua Cân bằng và Yên tĩnh xuống Im
+lặng, rồi quay lại Chi tiết. Mỗi lần đều đọc ra mức mới. Điều này hoạt động ở cả hai chế độ điều khiển
+đa phương tiện, nên các nút trên tai nghe đã thay đổi đôi chút:
+
+* Ở *Chế độ gốc*, *Tiếp theo* giờ thông báo *Xung quanh tôi* khi không có lộ trình nào đang phát, và
+  *Vị trí của tôi* không còn trên các nút. Khi đang phát lộ trình, *Tiếp theo* và *Trước đó* vẫn chuyển
+  giữa các điểm dừng.
+* Ở chế độ *Menu âm thanh*, *Trước đó* không còn lùi lại trong menu. *Tiếp theo* vẫn đi qua menu và
+  *Phát/Tạm dừng* vẫn chọn. Điểm đánh dấu và lộ trình trong menu giờ được sắp theo tên, và sau khi bạn
+  bắt đầu một mục, menu quay về đầu thay vì để bạn ở sâu trong danh sách.
+
+### Tìm kiếm
+
+Thanh tìm kiếm giờ hiểu nhiều hơn tên địa điểm:
+
+* **Loại địa điểm.** Tìm "nhà thuốc", "nhà vệ sinh", "ATM" và những thứ tương tự bằng ngôn ngữ của bạn,
+  và Soundscape sẽ liệt kê những nơi gần nhất thuộc loại đó, dù tên là gì. Những nơi không có tên, như
+  phần lớn nhà vệ sinh và ghế băng, được liệt kê theo loại, kèm địa chỉ.
+* **Tọa độ, liên kết bản đồ và Plus Code.** Dán một cặp số, độ và phút, liên kết từ Google Maps, Apple
+  Maps hoặc OpenStreetMap, hay một Plus Code, và Soundscape sẽ cho bạn đúng điểm đó. Một cặp số đơn
+  thuần có thể đọc theo cả hai chiều, nên khi cả hai đều hợp lý, bạn sẽ được đưa cả hai, điểm gần hơn
+  trước.
+* **Tìm kiếm ngoại tuyến.** Tìm kiếm giờ luôn xem cả bản đồ bạn đã tải xuống, ngoài trực tuyến, nên tìm
+  được nhiều nơi không tên hơn hẳn. Nếu bạn tìm khi không có kết nối internet và không có bản đồ
+  ngoại tuyến cho nơi bạn đang ở, Soundscape sẽ cho biết thay vì đơn giản là không tìm thấy gì.
+
+### Mở một địa điểm trong ứng dụng khác
+
+Chi tiết vị trí có nút mới **Mở trong ứng dụng bản đồ**, liệt kê các ứng dụng bản đồ và chỉ đường trên
+điện thoại của bạn. Đánh dấu *Luôn dùng ứng dụng này* và nút sẽ đổi thành, ví dụ, *Mở trong Google Maps*,
+mở ngay ứng dụng đó; nhấn giữ sẽ hiện lại danh sách. Các danh sách *Địa điểm gần đây* và *Điểm đánh dấu*
+cũng có thao tác trình đọc màn hình *Mở trong…* và *Chia sẻ*, bên cạnh *Bắt đầu đèn hiệu âm thanh*.
+
+### Đèn hiệu và điểm đánh dấu
+
+* Đèn hiệu trên màn hình chính giờ hiển thị **khoảng cách và hướng**, và trình đọc màn hình đọc nó, ví
+  dụ, là "Đèn hiệu âm thanh tại Milngavie Library, 390 mét, đông nam". Lộ trình cũng hiển thị khoảng
+  cách đến điểm dừng hiện tại theo cách tương tự.
+* Đèn hiệu có ba **thao tác trình đọc màn hình**: *Thông báo đèn hiệu* cho biết nó ở đâu, *Thêm thông
+  tin* thêm địa chỉ, và *Thêm vào điểm đánh dấu* lưu nó lại.
+* Bạn lại có thể **di chuyển một điểm đánh dấu** bằng cách kéo bản đồ trên màn hình *Chỉnh sửa điểm
+  đánh dấu*.
 
 ### Địa chỉ và tên địa điểm tốt hơn
 
@@ -113,7 +195,7 @@ có đủ văn bản dịch để hữu ích.
 
 Bản dịch là công sức của cộng đồng và chúng tôi hoan nghênh sự giúp đỡ của bạn, hoặc các sửa chữa ở
 những chỗ đọc lên chưa ổn. Mọi văn bản đều có thể được cải thiện tại
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Chế độ ngủ
 
@@ -172,6 +254,8 @@ nền một cách quyết liệt.
 * **Điều khiển bằng giọng nói** đã bị loại bỏ. Nó chưa bao giờ hoạt động đủ tin cậy để giữ lại, và các
   nút điều khiển media trên tai nghe đáp ứng phần lớn cùng nhu cầu — xem
   [Trợ giúp về việc dùng nút điều khiển media]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape cũng đã sẵn sàng cho lệnh thoại qua Gemini trên Android 16 trở lên, nhưng các lệnh này sẽ
+  chưa hoạt động cho đến khi Google phát hành hỗ trợ cho chúng trong Gemini.
 * **Menu ngôn ngữ bên trong ứng dụng** đã biến mất. Soundscape giờ theo ngôn ngữ bạn đặt cho điện
   thoại, điều mà phần lớn mọi người vẫn mong đợi. Để thay đổi, hãy đổi ngôn ngữ của điện thoại, hoặc
   đặt ngôn ngữ riêng cho từng ứng dụng trong cài đặt điện thoại nếu máy hỗ trợ.

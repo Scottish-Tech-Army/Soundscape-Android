@@ -24,6 +24,18 @@ Les notes de versions anteriors són a la pàgina
   velocitat i descriu el trajecte en comptes de l'entorn immediat.
 * **Avís en creuar cursos d'aigua i vies fèrries.** Rius, canals, badies i línies de ferrocarril
   s'anuncien mentre els creueu, tant si camineu com si viatgeu.
+* **Trieu quant us diu Soundscape.** El nou ajust *Detall dels avisos de veu* fa que Soundscape parli
+  menys en llocs concorreguts, i amb *Llocs per anunciar* trieu de quins tipus de llocs voleu sentir
+  parlar. Podeu canviar el detall amb els botons dels auriculars mentre camineu.
+* **Sapigueu a quina distància és la propera cruïlla.** Les cruïlles s'anuncien a una distància
+  constant quan us hi acosteu, i l'avís diu ara a quina distància és la vora de la vorera.
+* **Cerqueu un tipus de lloc, o unes coordenades.** Cerqueu «farmàcia» o «parada d'autobús» per
+  trobar les més properes, es diguin com es diguin, o enganxeu unes coordenades, un enllaç de mapa o un
+  Plus Code.
+* **Obriu un lloc en una altra aplicació de mapes**, com Google Maps, des dels detalls de la ubicació
+  o des de les llistes.
+* **Més de la balisa a la pantalla principal.** Ara mostra la distància i la direcció, i té accions
+  del lector de pantalla per anunciar la balisa, saber-ne més o desar-la com a marcador.
 * **Millors adreces i noms de lloc.** Els llocs sense adreça pròpia ara reben el carrer i la zona on
   són, els números de porta s'associen al costat correcte del carrer, i les parades d'autobús de la
   Gran Bretanya fan servir els seus noms oficials.
@@ -78,11 +90,87 @@ Els avisos habituals per a vianants —botigues properes, passos de vianants, et
 mentre viatgeu, i les distàncies a què s'anuncien les coses s'han ampliat força perquè en tingueu
 notícia abans d'haver-les passades.
 
+### Cruïlles
+
+La pregunta més freqüent sobre els avisos de cruïlles era a quina distància és realment la cruïlla.
+Ara Soundscape us ho diu: «Cruïlla a 30 metres». La distància es mesura fins a la vora de la vorera del
+carrer que esteu a punt de creuar, i no fins al mig de la cruïlla, perquè és allà on realment us
+atureu.
+
+L'avís també arriba en un punt més constant. Abans podia arribar a 45 metres o a 10 metres, sense res
+que permetés distingir-los. Ara espera que la cruïlla sigui a uns 30 metres, perquè la distància
+vulgui dir més o menys el mateix cada vegada.
+
 ### Creuar cursos d'aigua i vies fèrries
 
 Soundscape ara us diu quan creueu un riu, un canal, una badia, una cala o una línia de ferrocarril.
 Funciona tant caminant com viatjant, i cobreix igualment passar per sota i per damunt, de manera que
 es descriuen tant una passarel·la com un pas soterrani.
+
+### Trieu quant us diu Soundscape
+
+El que més sovint ens diuen de Soundscape és que parla massa en llocs concorreguts com el centre d'una
+ciutat. La secció *Gestiona els avisos de veu* de *Configuració* té ara tres ajustos en lloc de
+l'antiga llista d'interruptors:
+
+* **Detall dels avisos de veu** pot ser Silenciós, Discret, Equilibrat o Detallat. *Detallat* és el que
+  Soundscape ha fet sempre, i és el punt de partida. *Equilibrat* omet els camins secundaris i les vies
+  de servei i es repeteix menys. *Discret* només anuncia carrers, cruïlles i punts de referència.
+  *Silenciós* no fa cap avís automàtic, mentre que les balises, les rutes i els botons de la pantalla
+  principal continuen funcionant. Substitueix l'antic interruptor *Permet els avisos de veu*: si el
+  teníeu desactivat, trobareu el Detall dels avisos de veu a Silenciós.
+* **Carrers i cruïlles** activa o desactiva els avisos de cruïlles i del carrer on sou.
+* **Llocs per anunciar** és una llista per marcar: Tot, Punts de referència, Transport públic, Menjar i
+  begudes, Queviures i botigues de conveniència, Bancs i caixers automàtics o Cap lloc. Marqueu-ne tants
+  com vulgueu, per exemple punts de referència i parades d'autobús. Els vostres marcadors sempre
+  s'anuncien.
+
+El detall adequat canvia mentre camineu, així que no cal entrar a Configuració per canviar-lo. Prémer
+*Anterior* als auriculars fa baixar el Detall dels avisos de veu un nivell cada vegada, de Detallat a
+Equilibrat, Discret i Silenciós, i després torna a Detallat. Cada vegada es diu el nou nivell.
+Funciona en els dos modes dels controls multimèdia, i per això els botons dels auriculars han canviat
+una mica:
+
+* En el *Mode original*, *Següent* ara anuncia *Al meu voltant* quan no hi ha cap ruta en curs, i *La
+  meva ubicació* ja no és als botons. Mentre hi ha una ruta en curs, *Següent* i *Anterior* continuen
+  passant d'un punt de ruta a l'altre.
+* En el mode *Menú d'àudio*, *Anterior* ja no retrocedeix pel menú. *Següent* el continua recorrent i
+  *Reprodueix/Pausa* continua seleccionant. Els marcadors i les rutes del menú apareixen ara per ordre
+  alfabètic, i després d'iniciar-ne un el menú torna al principi en lloc de deixar-vos al fons de la
+  llista.
+
+### Cerca
+
+La barra de cerca ara entén més que noms de llocs:
+
+* **Tipus de lloc.** Cerqueu «farmàcia», «lavabo», «caixer automàtic» i així successivament, en la
+  vostra llengua, i Soundscape mostra els llocs més propers d'aquest tipus, es diguin com es diguin. Els
+  llocs sense nom, com la majoria de lavabos i bancs per seure, apareixen pel que són, amb la seva
+  adreça.
+* **Coordenades, enllaços de mapes i Plus Codes.** Enganxeu un parell de nombres, graus i minuts, un
+  enllaç de Google Maps, Apple Maps o OpenStreetMap, o un Plus Code, i Soundscape us dona aquell punt
+  exacte. Un simple parell de nombres es pot llegir en els dos sentits, així que quan tots dos tenen
+  sentit se us ofereixen tots dos, el més proper primer.
+* **Cerca sense connexió.** La cerca ara mira sempre també als mapes baixats, a més d'internet, i així
+  troba molts més llocs sense nom. Si cerqueu sense connexió a internet i no teniu cap mapa sense
+  connexió del lloc on sou, Soundscape us ho diu en lloc de simplement no trobar res.
+
+### Obrir un lloc en una altra aplicació
+
+Els detalls de la ubicació tenen un botó nou, **Obre a l'aplicació de mapes**, que mostra les
+aplicacions de mapes i de navegació del vostre telèfon. Marqueu *Utilitza sempre aquesta aplicació* i
+el botó passa a ser, per exemple, *Obre a Google Maps*, que l'obre directament; una pulsació llarga torna
+a mostrar la llista. Les llistes *Llocs propers* i *Marcadors* també tenen les accions del lector de
+pantalla *Obre a…* i *Comparteix*, al costat d'*Inicia la balisa sonora*.
+
+### La balisa i els marcadors
+
+* La balisa de la pantalla principal mostra ara la seva **distància i direcció**, i un lector de
+  pantalla la llegeix, per exemple, com a «Balisa a Milngavie Library, 390 metres, sud-est». Les rutes
+  mostren de la mateixa manera la distància fins al punt de ruta actual.
+* La balisa té tres **accions del lector de pantalla**: *Anuncia la balisa* diu on és, *Més informació*
+  hi afegeix l'adreça i *Afegeix als marcadors* la desa.
+* Torneu a poder **moure un marcador** arrossegant el mapa des de la pantalla *Edita el marcador*.
 
 ### Millors adreces i noms de lloc
 
@@ -112,7 +200,7 @@ traduït per ser útil.
 
 Les traduccions són feina de la comunitat i agraïm la vostra ajuda, o les correccions allà on alguna
 cosa es llegeixi malament. Qualsevol text es pot millorar a
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Mode de repòs
 
@@ -172,6 +260,8 @@ aplicacions en segon pla.
 * **El control per veu** s'ha eliminat. Mai no va funcionar prou bé per mantenir-lo, i els botons
   multimèdia dels auriculars cobreixen en gran part el mateix: vegeu
   [Ajuda sobre l'ús dels controls multimèdia]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape també està preparat per a les ordres de veu amb Gemini a Android 16 i posteriors, però no
+  funcionaran fins que Google no publiqui la compatibilitat a Gemini.
 * **El menú d'idioma dins l'aplicació** ha desaparegut. Soundscape ara segueix l'idioma que teniu
   configurat al telèfon, que és el que la majoria esperava. Per canviar-lo, canvieu l'idioma del
   telèfon o definiu un idioma per aplicació a la seva configuració, si l'ofereix.

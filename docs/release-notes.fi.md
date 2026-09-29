@@ -24,6 +24,18 @@ Vanhempien versioiden tiedot löytyvät sivulta
   vauhdilla, ja kuvaa matkaasi välittömän ympäristösi sijaan.
 * **Ilmoitus vesistöjen ja rautateiden ylityksestä.** Joet, kanavat, vuonot ja rautatiet kuulutetaan,
   kun ylität ne — sekä kävellen että matkalla.
+* **Valitse, kuinka paljon Soundscape puhuu.** Uusi asetus *Ilmoitusten tarkkuus* tekee Soundscapesta
+  hiljaisemman vilkkaissa paikoissa, ja *Ilmoitettavat paikat* -asetuksella valitset, millaisista
+  paikoista kuulet. Tarkkuutta voi muuttaa kuulokkeiden painikkeilla kävellessä.
+* **Tiedä, kuinka kaukana seuraava risteys on.** Risteykset ilmoitetaan tasaisella etäisyydellä
+  niitä lähestyessäsi, ja ilmoitus kertoo nyt, kuinka kaukana reunakivi on.
+* **Hae paikan tyyppiä tai koordinaatteja.** Hae esimerkiksi ”apteekki” tai ”bussipysäkki”, niin
+  löydät lähimmät, olipa niiden nimi mikä tahansa, tai liitä koordinaatit, karttalinkki tai Plus
+  Code.
+* **Avaa paikka toisessa karttasovelluksessa**, kuten Google Mapsissa, sijainnin tiedoista tai
+  luetteloista.
+* **Enemmän majakasta aloitusnäytöllä.** Se näyttää nyt etäisyyden ja suunnan, ja siinä on
+  näytönlukijan toimintoja majakasta ilmoittamiseen, lisätietoihin ja merkitsimeksi tallentamiseen.
 * **Paremmat osoitteet ja paikannimet.** Paikat, joilla ei ole omaa osoitetta, saavat nyt kadun ja
   alueen, jolla ne sijaitsevat, talonnumerot yhdistetään kadun oikeaan puoleen, ja bussipysäkit
   Isossa-Britanniassa käyttävät virallisia nimiään.
@@ -79,11 +91,85 @@ Tavalliset kävelijän kuulutukset — lähikaupat, suojatiet ja niin edelleen �
 matkan ajaksi, ja etäisyyksiä, joilla asioista kerrotaan, on pidennetty huomattavasti, jotta kuulet
 asiasta ennen kuin olet jo ohittanut sen.
 
+### Risteykset
+
+Yleisin kysymys risteysilmoituksista oli, kuinka kaukana risteys oikeasti on. Nyt Soundscape kertoo
+sen: ”Risteys 30 metrin päässä”. Etäisyys mitataan ylitettävän kadun reunakiveen eikä risteyksen
+keskelle, koska siihen oikeasti pysähdyt.
+
+Ilmoitus tulee myös tasaisemmassa kohdassa. Aiemmin se saattoi tulla 45 metrin tai 10 metrin päästä,
+eikä niitä voinut erottaa toisistaan. Nyt se odottaa, kunnes risteys on noin 30 metrin päässä, jotta
+etäisyys tarkoittaa joka kerta suunnilleen samaa.
+
 ### Vesistöjen ja rautateiden ylitys
 
 Soundscape kertoo nyt, kun ylität joen, kanavan, vuonon, lahden tai rautatien. Tämä toimii sekä
 kävellen että matkalla, ja kattaa yhtä lailla alitse kuin ylitse kulkemisen, joten sekä kävelysilta
 että alikulku kuvataan.
+
+### Valitse, kuinka paljon Soundscape puhuu
+
+Useimmin kuulemme Soundscapesta, että se puhuu liikaa vilkkaissa paikoissa kuten kaupungin
+keskustassa. *Asetukset*-näytön *Ilmoitusten hallinta* -osiossa on nyt kolme asetusta vanhan
+kytkinluettelon sijaan:
+
+* **Ilmoitusten tarkkuus** on Äänetön, Hiljainen, Tasapainoinen tai Yksityiskohtainen.
+  *Yksityiskohtainen* on se, mitä Soundscape on aina tehnyt, ja siitä aloitetaan. *Tasapainoinen*
+  jättää pois pienet polut ja huoltotiet ja toistaa itseään harvemmin. *Hiljainen* ilmoittaa vain
+  kadut, risteykset ja maamerkit. *Äänetön* ei anna lainkaan automaattisia ilmoituksia, mutta
+  majakat, reitit ja aloitusnäytön painikkeet toimivat edelleen. Se korvaa vanhan *Salli ilmoitukset*
+  -kytkimen, ja jos se oli pois päältä, tarkkuus on nyt Äänetön.
+* **Kadut ja risteykset** kytkee risteyksistä ja nykyisestä kadusta kertovat ilmoitukset päälle tai
+  pois.
+* **Ilmoitettavat paikat** on valintaluettelo: Kaikki, Maamerkit, Julkinen liikenne, Ruoka ja juoma,
+  Ruoka- ja päivittäistavarakaupat, Pankit ja pankkiautomaatit tai Ei paikkoja. Valitse niin monta
+  kuin haluat, esimerkiksi maamerkit ja bussipysäkit. Merkitsimistäsi ilmoitetaan aina.
+
+Sopiva tarkkuus vaihtelee kävellessä, joten sitä ei tarvitse muuttaa Asetuksista. Kuulokkeiden
+*Edellinen*-painike laskee ilmoitusten tarkkuutta porras kerrallaan, Yksityiskohtaisesta
+Tasapainoisen ja Hiljaisen kautta Äänettömään ja sitten taas Yksityiskohtaiseen. Uusi taso sanotaan
+joka kerta. Tämä toimii mediapainikkeiden kummassakin tilassa, ja siksi kuulokkeiden painikkeet ovat
+hieman muuttuneet:
+
+* *Alkuperäisessä tilassa* *Seuraava* ilmoittaa nyt *Lähiympäristö*-tiedot, kun mitään reittiä ei
+  toisteta, eikä *Oma sijaintini* ole enää painikkeissa. Kun reittiä toistetaan, *Seuraava* ja
+  *Edellinen* siirtyvät edelleen reittipisteestä toiseen.
+* *Äänivalikko*-tilassa *Edellinen* ei enää siirry valikossa taaksepäin. *Seuraava* selaa valikkoa
+  edelleen ja *Toista/Pysäytä* valitsee edelleen. Valikon merkitsimet ja reitit ovat nyt
+  aakkosjärjestyksessä, ja kun olet käynnistänyt jonkin, valikko palaa alkuun eikä jätä sinua syvälle
+  luetteloon.
+
+### Haku
+
+Hakukenttä ymmärtää nyt muutakin kuin paikkojen nimiä:
+
+* **Paikkojen tyypit.** Hae omalla kielelläsi esimerkiksi ”apteekki”, ”wc” tai ”pankkiautomaatti”,
+  niin Soundscape luettelee lähimmät sen tyyppiset paikat, olipa niiden nimi mikä tahansa. Nimettömät
+  paikat, kuten useimmat wc:t ja penkit, näytetään sen mukaan, mitä ne ovat, osoitteineen.
+* **Koordinaatit, karttalinkit ja Plus Codet.** Liitä numeropari, asteet ja minuutit, linkki Google
+  Mapsista, Apple Karttoista tai OpenStreetMapista tai Plus Code, niin Soundscape antaa juuri sen
+  paikan. Pelkän numeroparin voi lukea kummin päin tahansa, joten kun molemmat ovat mahdollisia, saat
+  molemmat, lähempi ensin.
+* **Haku ilman verkkoa.** Haku katsoo nyt aina myös ladattuihin karttoihin eikä vain verkkoon, joten
+  se löytää paljon enemmän nimettömiä paikkoja. Jos haet ilman internetyhteyttä eikä sinulla ole
+  offline-karttaa sijainnistasi, Soundscape kertoo sen sen sijaan, että ei vain löytäisi mitään.
+
+### Paikan avaaminen toisessa sovelluksessa
+
+Sijainnin tiedoissa on uusi painike, **Avaa karttasovelluksessa**, joka luettelee puhelimesi kartta-
+ja navigointisovellukset. Valitse *Käytä aina tätä sovellusta*, niin painikkeessa lukee esimerkiksi
+*Avaa sovelluksessa Google Maps* ja se avaa sovelluksen heti; pitkä painallus tuo luettelon takaisin.
+*Lähiympäristön paikat*- ja *Merkitsimet*-luetteloissa on myös näytönlukijan toiminnot *Avaa
+sovelluksessa…* ja *Jaa*, *Käynnistä äänimajakka* -toiminnon vieressä.
+
+### Majakka ja merkitsimet
+
+* Aloitusnäytön majakka näyttää nyt **etäisyytensä ja suuntansa**, ja näytönlukija lukee sen
+  esimerkiksi näin: ”Majakka kohteessa Milngavie Library, 390 metriä, kaakko”. Reitit näyttävät samalla
+  tavalla etäisyyden nykyiseen reittipisteeseen.
+* Majakalla on kolme **näytönlukijan toimintoa**: *Ilmoita majakasta* kertoo, missä se on,
+  *Lisätietoja* lisää osoitteen ja *Lisää merkitsimiin* tallentaa sen.
+* Voit taas **siirtää merkitsintä** vetämällä karttaa *Muokkaa merkitsintä* -näytöllä.
 
 ### Paremmat osoitteet ja paikannimet
 
@@ -113,7 +199,7 @@ tarpeeksi käännettyä tekstiä ollakseen hyödyllinen.
 
 Käännökset ovat yhteisön työtä, ja otamme mielellämme vastaan apuasi tai korjauksia, jos jokin
 lukeutuu huonosti. Mitä tahansa tekstiä voi parantaa osoitteessa
-<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
+<https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
 ### Lepotila
 
@@ -172,6 +258,8 @@ käyttäytymistä on tehty kestävämmäksi puhelimissa, jotka sulkevat taustaso
 * **Ääniohjaus** on poistettu. Se ei koskaan toiminut riittävän luotettavasti säilytettäväksi, ja
   kuulokkeiden medianäppäimet kattavat suurelta osin saman — katso
   [Ohjeet medianäppäinten käyttöön]({{ "/users/help-using-media-controls.html" | relative_url }}).
+  Soundscape on valmis myös Geminin kautta annettaville äänikomennoille Android 16:ssa ja sitä
+  uudemmissa, mutta ne toimivat vasta, kun Google julkaisee niiden tuen Geminiin.
 * **Sovelluksen sisäinen kielivalikko** on poistunut. Soundscape noudattaa nyt puhelimeesi asetettua
   kieltä, mitä useimmat odottivatkin. Vaihtaaksesi sitä muuta puhelimen kieltä tai aseta
   sovelluskohtainen kieli puhelimen asetuksissa, jos se on mahdollista.
