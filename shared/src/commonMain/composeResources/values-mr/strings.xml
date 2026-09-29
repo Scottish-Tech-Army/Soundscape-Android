@@ -1628,4 +1628,11 @@
     <string name="search_no_offline_maps">शोध ऑफलाइन चालू आहे, पण तुम्ही जिथे आहात त्या भागाचा कोणताही ऑफलाइन नकाशा डाउनलोड केलेला नाही.</string>
     <string name="location_detail_adjust_marker_location">स्थान संपादित करा</string>
     <string name="location_detail_adjust_marker_location_instructions">मार्करचे स्थान हलवण्यासाठी नकाशा ड्रॅग करा. नवीन स्थान ठेवण्यासाठी ‘पूर्ण झाले’ वर टॅप करा, किंवा स्थान न बदलता ठेवण्यासाठी ‘रद्द करा’ वर टॅप करा.</string>
+    <string name="location_detail_action_open_in_app">नकाशा ॲपमध्ये उघडा</string>
+    <string name="location_detail_action_open_in_named_app">%1$s मध्ये उघडा</string>
+    <string name="location_detail_action_open_in_app_hint">हे ठिकाण दुसऱ्या नकाशा किंवा नेव्हिगेशन ॲपमध्ये पाहण्या</string>
+    <string name="location_detail_action_open_in_named_app_hint">हे ठिकाण %1$s मध्ये पाहण्या</string>
+    <string name="open_in_app_dialog_title">कोणत्या ॲपने उघडायचे ते निवडा</string>
+    <string name="open_in_app_remember">नेहमी हे ॲप वापरा</string>
+    <string name="open_in_app_change">दुसरे ॲप निवडा</string>
 </resources>
