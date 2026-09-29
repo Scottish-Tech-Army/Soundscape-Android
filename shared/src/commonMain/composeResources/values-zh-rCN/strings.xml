@@ -1613,4 +1613,11 @@
     <string name="search_no_offline_maps">搜索正在离线运行，但尚未下载您所在位置的离线地图。</string>
     <string name="location_detail_adjust_marker_location">编辑位置</string>
     <string name="location_detail_adjust_marker_location_instructions">拖动地图即可移动标记点的位置。点击“完成”保留新位置，或点击“取消”保持原位置不变。</string>
+    <string name="location_detail_action_open_in_app">在地图应用中打开</string>
+    <string name="location_detail_action_open_in_named_app">在%1$s中打开</string>
+    <string name="location_detail_action_open_in_app_hint">在其他地图或导航应用中查看此位置</string>
+    <string name="location_detail_action_open_in_named_app_hint">在%1$s中查看此位置</string>
+    <string name="open_in_app_dialog_title">选择用于打开的应用</string>
+    <string name="open_in_app_remember">始终使用此应用</string>
+    <string name="open_in_app_change">选择其他应用</string>
 </resources>
