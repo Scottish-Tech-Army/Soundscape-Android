@@ -76,7 +76,7 @@ wording. Measured on the Rio Grande do Sul extract: 93% of Portuguese-language s
 1. Marker «Favoritos» and Waypoint «Localizador»: natural? (PTBR-T1)
 2. «Rua X, vira à esquerda»: does it sound like an instruction? (PTBR-S1)
 3. «Caminho para uma rua sem saída»? (PTBR-G1)
-4. «Tudo pronto!» again? And «Boas-vindas!» instead of «Bem-vindo(a)!»? (PTBR-R1)
+4. «Tudo pronto!» again? And «Boas-vindas!» instead of «Bem-vindo(a)!»? (PTBR-R1) The same brackets are in `first_launch_prompt_message` «Você está pronto(a) para…», which is held until this is answered.
 5. Callout «notificação»: confused with phone notifications?
 6. Siri phrases «Soundscape arredores / rota / sinalizador / parar sinalizador…»: natural?
 7. Articles are now chosen from the name («ao longo do Parque Ibirapuera»). Right? (PTBR-G1)
@@ -96,3 +96,13 @@ passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 28 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** `settings_theme_contrast_regular` → «Normal», `osm_village` → «Povoado» (it had been «Vila», same as town). Uploaded live.
+
+**2026-09-29 — full review (1586 units).** 26 flagged, and 25 were uploaded and verified live. Six were
+Microsoft's own errors, fixed under C14: «quatro quarteirões» (city blocks) → «quadrantes»,
+«wayfinding» left in English (×2), «obter as localizações» → «chegar aos locais próximos», «o que escuto
+quando ouço», «linguagem» → «idioma», «e para de se mover» → «e parar». Also fixed: Around Me «vários» →
+«quatro», typo «trÊs», «à caminho», «Pesquisar idioma» → «Idioma da pesquisa», the double «para para» and
+the imperative hint that broke the TalkBack template, lost `*…*` in the routes help, «chamadas» →
+«notificações», «Colocar em Soneca» → «Soneca», «Lixeira de Reciclagem». Word order was fixed in 4 named
+stations/terminals, and {pt:…} markers were added in 4 templates (railway, tunnel, both entrances,
+which had a fixed «do»). Held: `first_launch_prompt_message` «pronto(a)» (with Q4).
