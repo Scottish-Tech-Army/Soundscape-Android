@@ -312,3 +312,5 @@ feature strings wait on Q3 and Q9 (numbered Q10–Q12 in the first draft, merged
 behind Weblate for the reporter's two edits at the time of the sweep.
 
 The two one-off typos (`help_text_destination_beacons_when`, `help_text_routes_content_what`) were uploaded and verified live the same day.
+
+**2026-09-29 — European batch review.** 5 hints were imperatives («zmień», «wyświetl», «wybierz», «zwiń», «rozwiń») → infinitives after «aby». `help_text_remote_control_how` «Menu dźwiękowe»/«Sterowanie multimediami» → the labels «Menu audio»/«Tryb sterowania przyciskami multimedialnymi»; `help_text_routes_content_how_1` «…i Trasy» → «…i trasy». None of these keys had human edits. 7 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** `ui_action_button_nearby_markers_acc_hint` «oznaczyłeś» is masculine only (C15).
