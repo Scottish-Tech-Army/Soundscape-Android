@@ -70,3 +70,5 @@ Nothing uploaded.
 - "the lighthouse metaphor … has natural implications", now "This design has a few natural results".
 
 The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
+
+**2026-09-29 — Full review of all 1586 units.** 7 fixes uploaded. The entrance templates had English word order («%2$s %1$s», «%2$s %1$s من %3$s»). Help text now uses the real labels «حفظ كعلامة», «النقل العام» and «قائمة الصوت». The verbal-noun hints were all correct. Uploaded with `--skip-validate` and re-fetched: all matched exactly.
