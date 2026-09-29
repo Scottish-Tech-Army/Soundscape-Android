@@ -22,7 +22,7 @@ drifted the most, but on inspection the drift is mostly tidying:
 
 The VoiceOver template composes correctly («Dobbelttryk for at slå lydfyret
 fra»). The Siri phrases (`da.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-da.md` (Q1…Q4).
+`docs/translation-questions/questions-da.md` (Q1…Q5).
 
 ## Glossary
 
@@ -76,7 +76,8 @@ Numbered as on the questionnaire.
 2. The four detail levels (Detaljeret / Balanceret / Stille / Lydløs): clear?
    «Stille» and «Lydløs» sit close together.
 3. Siri phrases «Soundscape omgivelser / rute / lydfyr / stop lydfyr…»: natural?
-4. Anything else.
+4. Shop names «Isbutik», «Kaffebutik», «Dyrehandel», «Isenkræmmer»…: natural? (DA-T2, AI coinages)
+5. Anything else.
 
 *Settled 2026-09-25 (C14 drift pass): beacon sound names restored to
 Microsoft's («Hammer», «Dråbe», «Glitre»), DA-T1; compass phrasing restored to

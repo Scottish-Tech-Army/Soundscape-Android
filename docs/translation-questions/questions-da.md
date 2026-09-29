@@ -107,7 +107,24 @@ husker man dem ikke.
 
 **Spørgsmålet:** Lyder de naturligt? Ville du sige noget andet?
 
-### Q4 — Andet? *(Anything else)*
+### Q4 — Navne på butikker *(Shop names)*
+
+**Hvornår du hører det:** når du går forbi en butik, der ikke har et navn på
+kortet, eller hvis navnet mangler. Så siger appen, hvilken slags butik det er.
+
+**På engelsk:** "Ice Cream Shop", "Coffee Shop", "Pet Shop", "Houseware Shop",
+"Alcohol Shop", "Watch Shop".
+
+**Sådan lyder det nu:** «Isbutik», «Kaffebutik», «Dyrehandel», «Isenkræmmer»,
+«Spiritusbutik», «Urforretning». Tidligere sagde appen bare «Is», «Kaffe»,
+«Kæledyr», som man hørte som selve tingen og ikke som en butik.
+
+**Det er vi usikre på:** de nye navne er ikke skrevet af en dansker. De følger
+mønstret -butik/-forretning/-handel, men nogle af dem siger man måske ikke.
+
+**Spørgsmålet:** Lyder de naturligt? Hvilke ville du kalde noget andet?
+
+### Q5 — Andet? *(Anything else)*
 
 Hvis en sætning lyder oversat fra engelsk, er for lang eller uklar, så sig til.
 

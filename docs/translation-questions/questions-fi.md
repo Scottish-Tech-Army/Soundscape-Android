@@ -135,7 +135,22 @@ Almas väg".
 
 **Kysymys:** kuulostaako tämä oikealta? Keksitkö nimiä, jotka se taivuttaa väärin?
 
-### Q6 — Jotain muuta? *(Anything else)*
+### Q6 — Suunta kellotaulun mukaan *(Clock-face directions)*
+
+**Milloin sen kuulee:** jos asetuksissa on valittu suunnat kellotaulun mukaan.
+Sovellus kertoo, missä suunnassa jokin on, niin kuin kellon viisari osoittaisi.
+
+**Englanniksi:** "at 3 o'clock".
+
+**Nyt se kuulostaa tältä:** «kello 3».
+
+**Mikä meitä epäilyttää:** «kello 3» kuulostaa ehkä kellonajalta eikä suunnalta.
+Emme tiedä, sanotaanko suomeksi mieluummin «kello kolmessa» tai «kello kolmen
+suunnassa».
+
+**Kysymys:** miten sanoisit tämän?
+
+### Q7 — Jotain muuta? *(Anything else)*
 
 Jos jokin lause kuulostaa englannista käännetyltä, liian pitkältä tai
 epäselvältä, kerro meille.
