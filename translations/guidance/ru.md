@@ -83,6 +83,13 @@ visual thing with no connection to speech. They have been replaced by
 5. «Вы» or «вы»? (RU-S2)
 6. Siri phrases «Soundscape окружение / маршрут / маяк / выключи маяк…»: natural?
 7. Anything else.
+8. Two home-screen buttons are named differently from the help and the tutorial. Yurt Page wrote
+   both versions of each: «Впереди меня» (button) vs «Передо мной» (help page title, help text,
+   tutorial, Siri help, about 8 strings), and «Ближайшие отметки» (button) vs «Отметки рядом» (help and
+   tutorial, 6 strings). The tutorial says «Нажмите «Передо мной»», which no button is labelled.
+   Change the 2 buttons («Передо⏎мной», «Отметки⏎рядом»), or the ~14 help strings? Unchanged until
+   decided (2026-09-29). The third button, «Моя позиция» (an AI pass, 2026-08-20), was
+   aligned to «Моё местоположение».
 
 ## Provenance
 
@@ -96,3 +103,12 @@ visual thing with no connection to speech. They have been replaced by
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 25 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** Byte `*_a11y` plurals: the «few» form had no number; `%1$s` restored. `osm_nutrition_supplements` → «Магазин пищевых добавок», loading indicator → «Загрузка» (no «…»). «ЗАГС» kept. Uploaded live.
+
+**2026-09-29 — full review (1586 units).** 40 flagged, and 38 were uploaded and verified live. Button
+`ui_action_button_my_location` «Моя позиция» → «Моё местоположение», matching the help and tutorial.
+Meaning fixes: «приобретите» ("buy") → «возьмите», the non-word «разбудится» → «проснётся» (2), a missing «на»,
+«об окружении», «он» for Soundscape, the generic help heading «Когда это использовать?»,
+`confect_name_joins` «между» (gender-neutral), «вы увидите» → «вы заметите», «кардинальное направление» →
+«сторона света», «называет названия». Terminology: 9 strings used «пути» for Routes → «маршруты», the Terms
+title → «Условия использования», «маркеры» → «отметки», plus 2 OSM names with brackets/slashes read aloud.
+Markup: 12 help/FAQ strings had replaced `*…*` with plain «…», now `*«…»*`. Held: Q8 (two button names).
