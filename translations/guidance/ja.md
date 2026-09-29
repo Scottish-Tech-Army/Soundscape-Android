@@ -89,3 +89,14 @@ commits, then AI passes. No recorded translator.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 23 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** Full stop added to `settings_reset_button_hint`. Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 10 fixes uploaded.** The Weblate log shows no human Japanese edits, and the open questions above were not re-flagged. Fixed:
+- **Literal English «or» left between two alternatives:** `osm_service_road` → «管理用道路», `osm_highway_ramp` → «ランプ».
+- **`faq_supported_phones_answer`:** a stale Android-only sentence, now with iOS 16 (C16).
+- **Microsoft errors:**
+  - `faq_what_can_I_set_question` ("How do I set…" → «ビーコンは何に設定できますか?»).
+  - `help_text_my_location_when` «向かっている方向» → «向いている方位».
+- **Register:** 4 hints brought into polite «〜します» like the rest.
+- **Spacing:** a stray space in `tour_stop_beacon`.
+
+Uploaded with `--skip-validate`; all 10 re-fetched and matched exactly.
