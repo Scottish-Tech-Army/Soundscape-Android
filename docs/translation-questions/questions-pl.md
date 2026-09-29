@@ -36,7 +36,9 @@ Kilka pojęć, które pojawiają się w pytaniach:
   coś jest.
 - **Dźwięk naprowadzający** *(audio beacon)*: gdy wybierzesz cel, w słuchawkach
   słychać regularny, powtarzający się dźwięk dobiegający z kierunku celu. Gdy się
-  obrócisz, dźwięk „przesuwa się”, więc do celu można dojść na słuch.
+  obrócisz, dźwięk „przesuwa się”, więc do celu można dojść na słuch. Po
+  angielsku to samo słowo *beacon* oznacza też miejsce, na którym dźwięk
+  ustawiono, i całą funkcję (zob. Q3).
 - **Znacznik** i **trasa** *(marker, route)*: zapisane miejsca i ich kolejność,
   przez którą dźwięk naprowadzający prowadzi po kolei.
 
@@ -93,19 +95,39 @@ maszynowe.
 **Pytanie:** czy to dobre słowo? Jeśli nie, co zamiast niego (np. „komunikat”,
 „zapowiedź”)? Ważne, żeby miało też naturalny czasownik.
 
-### Q3 — „Dźwięk naprowadzający” *(Audio Beacon)*
+### Q3 — „Dźwięk naprowadzający”: dźwięk, miejsce czy funkcja? *(Audio Beacon: one word for three meanings?)*
 
-**Kiedy to słychać:** na przyciskach, w ustawieniach i w samouczku, np. „Teraz
-możesz usłyszeć dźwięk naprowadzający. Odtwarzany jest z kierunku Twojego celu.”
+**Kiedy to słychać:** bardzo często. Po angielsku jedno słowo *beacon* oznacza
+trzy różne rzeczy, a po polsku prawie wszędzie było „dźwięk naprowadzający”:
 
-**Po angielsku:** „Audio Beacon”.
+1. **sam dźwięk**: „Audio beacon styles” → „Style dźwięku naprowadzającego”,
+   „mute the audio beacon” → „wyciszyć dźwięk naprowadzający”;
+2. **miejsce, na którym go ustawiono** (to, do czego idziesz): „Distance to the
+   Audio Beacon” → „Odległość do dźwięku naprowadzającego”, „Beacon is currently
+   105 metres away” → „Naprowadzanie jest obecnie w odległości 105 metrów”,
+   „Beacon Info” → „Informacje o punkcie trasy”, „Call out Beacon” → „Powiadom o
+   punkcie trasy”;
+3. **sama funkcja** (prowadzenie do miejsca): „Beacon set on Dom” → „Ustawiono
+   naprowadzanie na Dom”, „No beacon active” → „Brak aktywnego dźwięku
+   naprowadzającego”, tytuł działu pomocy „Beacons and Callouts” → „Dźwięk
+   naprowadzający i powiadomienia”.
 
-**Jak brzmi teraz:** „Dźwięk naprowadzający”.
+**Co budzi wątpliwości:** native speaker zwrócił nam uwagę, że „dźwięk
+naprowadzający” pasuje tylko do znaczenia 1: nie da się być „w odległości od
+dźwięku”. Dlatego nie chcemy już wymuszać jednego słowa wszędzie. Dwie komendy
+zmieniono już na „punkt trasy”, ale tego samego słowa używamy dla kolejnych
+punktów zapisanej trasy *(waypoint)*, np. „Następny punkt trasy”, a te komendy
+działają też wtedy, gdy żadna trasa nie jest włączona.
 
-**Co budzi wątpliwości:** jest trafny, ale długi jak na coś, co słychać bardzo
-często. Termin wybrało tłumaczenie maszynowe.
+**Pytanie:**
 
-**Pytanie:** czy jest coś krótszego, co nadal będzie jasne?
+- **a)** jak nazwać **miejsce** (2)? „Punkt trasy” (a punkty na trasie inaczej),
+  „cel” („Odległość do celu”, „Informacje o celu”), „punkt docelowy”, czy coś
+  innego?
+- **b)** czy „naprowadzanie” pasuje do **funkcji** (3), np. „Brak aktywnego
+  naprowadzania”, „Naprowadzanie i powiadomienia”?
+- **c)** czy „dźwięk naprowadzający” jest dobry dla samego **dźwięku** (1), czy
+  jest za długi jak na coś, co słychać tak często?
 
 ### Q4 — „Ty” czy „Pan/Pani”? *(Register)*
 
@@ -178,7 +200,22 @@ ruchu, więc każde zbędne słowo męczy.
 
 **Pytanie:** czy dałoby się je skrócić, nie tracąc jasności?
 
-### Q9 — Coś jeszcze? *(Anything else)*
+### Q9 — „Znacznik nawigacyjny” *(Beacon on the map: clashes with Marker)*
+
+**Kiedy to słychać:** gdy aplikacja ogłasza mijany obiekt z mapy: fizyczny znak
+nawigacyjny lub ostrzegawczy w terenie. Nie ma to nic wspólnego z dźwiękiem
+naprowadzającym.
+
+**Po angielsku:** „Beacon”.
+
+**Jak brzmi teraz:** „Znacznik nawigacyjny”.
+
+**Co budzi wątpliwości:** „znacznik” to w aplikacji Twoje zapisane miejsce (Q5),
+więc brzmi to tak, jakbyś mijał/a swój własny znacznik.
+
+**Pytanie:** „Znak nawigacyjny”, „Stawa”, czy coś innego?
+
+### Q10 — Coś jeszcze? *(Anything else)*
 
 Jeśli jakieś zdanie brzmi jak tłumaczenie z angielskiego, jest za długie albo
 niejasne, daj znać.
