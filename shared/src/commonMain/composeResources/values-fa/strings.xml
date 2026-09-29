@@ -1629,4 +1629,11 @@
     <string name="search_no_offline_maps">جستجو به‌صورت آفلاین کار می‌کند، اما هیچ نقشه‌ی آفلاینی برای جایی که هستید دانلود نشده است.</string>
     <string name="location_detail_adjust_marker_location">ویرایش مکان</string>
     <string name="location_detail_adjust_marker_location_instructions">نقشه را بکشید تا مکان نشانه جابه‌جا شود. برای نگه داشتن مکان جدید روی «تمام» و برای بدون تغییر ماندن آن روی «لغو» ضربه بزنید.</string>
+    <string name="location_detail_action_open_in_app">باز کردن در اپلیکیشن نقشه</string>
+    <string name="location_detail_action_open_in_named_app">باز کردن در %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">این مکان را در یک اپلیکیشن نقشه یا مسیریابی دیگر ببینید</string>
+    <string name="location_detail_action_open_in_named_app_hint">این مکان را در %1$s ببینید</string>
+    <string name="open_in_app_dialog_title">انتخاب کنید با کدام اپلیکیشن باز شود</string>
+    <string name="open_in_app_remember">همیشه از این اپلیکیشن استفاده شود</string>
+    <string name="open_in_app_change">انتخاب اپلیکیشن دیگر</string>
 </resources>
