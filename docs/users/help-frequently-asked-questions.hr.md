@@ -25,7 +25,7 @@ Nedostaje mi ono slučajno otkrivanje stvari dok hodam uokolo i primjećujem ih.
 [Koristio/la sam Soundscape] da pronađem pub u centru Yorka. [Koristio/la] sam niz njegovih opcija kako bih ga najprije locirao/la, a zatim i doista pronašao/la. Doveo me na 3 metra od vrata – sjajno!
 
 ### Što su oznake i kako da ih najbolje iskoristim?
-Oznake su mjesta koja ste spremili. To mogu biti mjesta koja se mogu pronaći unutar aplikacije, ili potpuno nova mjesta koja ste sami dodali. Svoju trenutnu lokaciju možete spremiti kao oznaku odabirom gumba *Trenutna lokacija* na početnom zaslonu, a zatim odabirom *Spremi kao oznaku*. Druge lokacije možete spremiti kao oznaku pretraživanjem mjesta koje želite spremiti pomoću trake za pretraživanje, ili pronalaženjem mjesta pomoću gumba *Mjesta u blizini*, oboje dostupno na početnom zaslonu Soundscapea. Kada pronađete željeno mjesto, odabirom istog otvorit će se zaslon *Detalji lokacije*. Na tom zaslonu odaberite gumb *Spremi kao oznaku*.
+Oznake su mjesta koja ste spremili. To mogu biti mjesta koja se mogu pronaći unutar aplikacije, ili potpuno nova mjesta koja ste sami dodali. Svoju trenutnu lokaciju možete spremiti kao oznaku odabirom gumba *Trenutačna lokacija* na početnom zaslonu, a zatim odabirom *Spremi kao oznaku*. Druge lokacije možete spremiti kao oznaku pretraživanjem mjesta koje želite spremiti pomoću trake za pretraživanje, ili pronalaženjem mjesta pomoću gumba *Mjesta u blizini*, oboje dostupno na početnom zaslonu Soundscapea. Kada pronađete željeno mjesto, odabirom istog otvorit će se zaslon *Detalji lokacije*. Na tom zaslonu odaberite gumb *Spremi kao oznaku*.
 
 ## Kako da najbolje iskoristim Soundscape?
 
@@ -33,9 +33,9 @@ Oznake su mjesta koja ste spremili. To mogu biti mjesta koja se mogu pronaći un
 Zvučni svjetionik možete postaviti na bilo koju tvrtku, mjesto, zanimljivu točku, adresu ili raskrižje. Postoji nekoliko načina da dodate svjetionik na lokaciju. Najprije pogledajte detalje lokacije koristeći traku za pretraživanje kako biste pronašli mjesto, ili dodirom na gumb *Mjesta u blizini*, *Oznake i rute* ili *Trenutačna lokacija* i odabirom lokacije. Zatim na zaslonu *Pojedinosti o lokaciji* odaberite gumb *Postavi zvučni svjetionik*. Dodirom na njega vratit ćete se na početni zaslon i uključiti zvučni svjetionik koji dolazi iz smjera odabranog mjesta. Naziv mjesta, zajedno s udaljenošću i fizičkom adresom, ako je dostupna, sada će biti prikazani na glavnom zaslonu.
 
 ### Kako izvući najviše iz zvučnog svjetionika?
-Zvučni svjetionik možete zamisliti kao *svjetionik za uši* koji vas obavještava gdje se vaše odredište nalazi u odnosu na vašu lokaciju, zračnom linijom. Poput pravog svjetionika, on vam ne govori kako doći do cilja – možda ćete morati donijeti mnoge odluke o navigaciji usput, baš kao što jedrilica mora napraviti mnogo strateških *okreta* kako bi se približila svjetioniku. Neprekidan ritmički zvuk svjetionika prostorno je smješten u smjeru odredišta i pomaže vam da budete svjesni položaja odredišta u odnosu na vas dok hodate. Kada hodate izravno prema odredištu, ili telefon usmjerite prema odredištu, čut ćete zvuk višeg tona, poput *zvona*. Ova značajka omogućuje vam da precizno odredite smjer odredišta jer smjer ritmičkog zvuka ponekad može biti teško uočiti u bučnim okruženjima. Kada tražite viši ton *zvona*, držite telefon ravno i polako ga zakrećite; okretanje glave u istom smjeru kao i telefon osigurat će vam najbolji doživljaj prostornog zvuka.
+Zvučni svjetionik možete zamisliti kao *svjetionik za uši* koji vas obavještava gdje se vaše odredište nalazi u odnosu na vašu lokaciju, zračnom linijom. Poput pravog svjetionika, on vam ne govori kako doći do cilja – možda ćete usput i dalje morati birati put kako biste zaobišli prepreke. Neprekidan ritmički zvuk svjetionika prostorno je smješten u smjeru odredišta i pomaže vam da budete svjesni položaja odredišta u odnosu na vas dok hodate. Kada hodate izravno prema odredištu, ili telefon usmjerite prema odredištu, čut ćete zvuk višeg tona, poput *zvona*. Ova značajka omogućuje vam da precizno odredite smjer odredišta jer smjer ritmičkog zvuka ponekad može biti teško uočiti u bučnim okruženjima. Kada tražite viši ton *zvona*, držite telefon ravno i polako se okrećite u krug; okretanje glave u istom smjeru kao i telefon osigurat će vam najbolji doživljaj prostornog zvuka.
 
-Metafora svjetionika za dizajn ovog obilježja ima nekoliko prirodnih posljedica:
+Ovakav dizajn ima nekoliko prirodnih posljedica:
 
 1. Ne postoji *ispravan* smjer kretanja pri korištenju svjetionika – umjesto toga, uz Soundscape sami birate kako ćete doći do cilja;
 
@@ -47,7 +47,7 @@ Metafora svjetionika za dizajn ovog obilježja ima nekoliko prirodnih posljedica
 Zvučni svjetionik Soundscapea u osnovi je usmjeravajući signal koji vam govori gdje se vaše odredište nalazi u odnosu na smjer u kojem ste okrenuti. Kada Soundscape nije siguran u kojem ste smjeru okrenuti, smanjuje glasnoću svjetionika. To se najčešće događa ako ste hodali s telefonom u džepu ili torbi, a zatim prestali hodati, primjerice kako biste prešli cestu. Svjetionik će postati glasniji čim ponovno krenete, ili ako telefon držite ravno i usmjerite ga u smjeru u kojem ste okrenuti.
 
 ### Mogu li postaviti svjetionik na adresu?
-Da, možete. Adrese se prema zadanim postavkama ne prikazuju na popisu, ali se mogu pronaći pomoću polja za pretraživanje. Kako biste spremili tu adresu i ne morali je ponovno tražiti, možete je dodati kao oznaku sa zaslona *Detalji lokacije*, odabirom gumba *Spremi kao oznaku*.
+Da, možete. Adrese se prema zadanim postavkama ne prikazuju na popisu, ali se mogu pronaći pomoću polja za pretraživanje. Kako biste spremili tu adresu i ne morali je ponovno tražiti, možete je dodati kao oznaku sa zaslona *Pojedinosti o lokaciji*, odabirom gumba *Spremi kao oznaku*.
 
 ### Kako da postavim svjetionik na svoj dom?
 Soundscape podržava postavljanje svjetionika na adrese. Kako biste postavili svjetionik na svoj dom ili bilo koju drugu adresu, pretražite lokaciju pomoću trake za pretraživanje na glavnom zaslonu. Zatim na zaslonu *Pojedinosti o lokaciji* dodirnite gumb *Postavi zvučni svjetionik*.
@@ -56,7 +56,7 @@ Soundscape podržava postavljanje svjetionika na adrese. Kako biste postavili sv
 Soundscape može odrediti lokaciju vašeg odredišta s točnošću od nekoliko metara, ali ne manje od toga. Kada Soundscape utvrdi da ste blizu odredišta, čut ćete završnu najavu da vam je odredište u blizini, a svjetionik će se isključiti.
 
 ### Mogu li ponovno uključiti svjetionik kada sam blizu svog odredišta?
-Da, svjetionik možete ponovno uključiti nakon što ga Soundscape isključi, odabirom gumba *uključi zvuk svjetionika*; međutim, budući da su usluge lociranja precizne samo do otprilike 10 metara, ne možemo jamčiti ponašanje svjetionika kada ste na udaljenosti od nekoliko metara od odredišta.
+Da, svjetionik možete ponovno uključiti nakon što ga Soundscape isključi, odabirom gumba *Uključi zvuk svjetionika*; međutim, budući da su usluge lociranja precizne samo do otprilike 10 metara, ne možemo jamčiti ponašanje svjetionika kada ste na udaljenosti od nekoliko metara od odredišta.
 
 ### Zašto Soundscape dvaput izgovara nazive cesta kada se približim raskrižju?
 Kako bi obuhvatio razne oblike raskrižja, Soundscape opisuje raskrižja kao segmente cesta koji polaze iz zajedničke točke. Soundscape koristi prostorni zvuk kako bi naznačio nazive cesta koje idu lijevo, ravno naprijed i desno, tim redoslijedom. Ako opis raskrižja započinje cestom na kojoj se nalazite, umjesto onom lijevo, tada raskrižje tvori položeno slovo T, gdje se cesta na kojoj se nalazite nastavlja naprijed, a druga cesta se s njom spaja s desne strane. Slično, ako opis uključuje samo cestu lijevo i desno, znat ćete da cesta na kojoj se nalazite završava raskrižjem u obliku slova T ispred vas. Ovaj način opisivanja raskrižja funkcionira i kada cesta mijenja naziv na raskrižju.
@@ -113,7 +113,7 @@ Soundscape je osmišljen da vam pomogne popuniti detalje o vašoj okolini kojih 
 ### Kako mogu kontrolirati što čujem i kada to čujem u Soundscapeu?
 Soundscape nudi nekoliko načina za upravljanje time što čujete i kada:
 
-1. Trenutačno zaustavljanje cijelog zvuka: Dvaput dodirnite zaslon s dva prsta kako biste odmah isključili sav zvuk, uključujući najavu koja se trenutačno reproducira i svjetionik ako je uključen. Najave će se automatski nastaviti kada se približite sljedećem raskrižju ili točki interesa, ali zvučni svjetionik neće. Odaberite gumb *Uključi zvuk svjetionika* na glavnom zaslonu kako biste ponovno čuli svjetionik.
+1. Trenutačno zaustavljanje cijelog zvuka: Dvaput dodirnite zaslon s dva prsta kako biste odmah isključili sav zvuk, uključujući najavu koja se trenutačno reproducira i svjetionik ako je uključen. Najave će se automatski nastaviti kada se približite sljedećem raskrižju ili zanimljivoj točki, ali zvučni svjetionik neće. Odaberite gumb *Uključi zvuk svjetionika* na glavnom zaslonu kako biste ponovno čuli svjetionik.
 
 2. Zaustavljanje automatskih najava: Kada ne putujete ili ste stigli na odredište, vjerojatno vam neće trebati da vas Soundscape i dalje obavještava o stvarima oko vas. Umjesto izlaska iz aplikacije, Soundscape možete staviti u način rada Odgoda pa će se probuditi kada odete, ili ga možete staviti u način rada Mirovanje pa će ostati isključen dok ga sami ponovno ne uključite. Također, iz izbornika možete odabrati *Postavke* i u odjeljku *Upravljanje najavama* postaviti *Razina detalja najava* na *Bez zvuka*.
 

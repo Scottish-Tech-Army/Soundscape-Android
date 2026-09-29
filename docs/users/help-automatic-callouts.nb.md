@@ -25,7 +25,7 @@ Soundscape kan fortelle deg om ting rundt deg når du nærmer deg dem ved å les
 
 **Når du trenger stillhet**:
 
- Når du er i ferd med å krysse en vei eller bare vil at appen skal være stille, kan du slå av meldinger. Når meldinger er av, forteller appen bare informasjonen hvis du manuelt trykker på en knappene *Min posisjon*, *Markører i nærheten*, *Rundt meg* eller *Foran meg*.
+ Når du er i ferd med å krysse en vei eller bare vil at appen skal være stille, kan du slå av meldinger. Når meldinger er av, forteller appen bare informasjonen hvis du manuelt trykker på en av knappene *Min posisjon*, *Markører i nærheten*, *Rundt meg* eller *Foran meg*.
 
 ## Hvordan fungerer den?
 

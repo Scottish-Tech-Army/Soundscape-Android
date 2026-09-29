@@ -9,7 +9,7 @@ permalink: /users/help-customizing-markers.html
 
 # Menyesuaikan Penanda
 
-Jika Anda ingin mengganti nama marker yang sebelumnya Anda buat, atau menambahkan anotasi padanya, pilih marker tersebut dari tab *Marker* pada halaman *Penanda dan Rute*, lalu pilih tombol *Edit Marker*. Anda dapat menggunakan ini untuk memberi marker julukan yang deskriptif atau berguna, serta memberi deskripsi yang lebih panjang menggunakan kolom anotasi.
+Jika Anda ingin mengganti nama penanda yang sebelumnya Anda buat, atau menambahkan anotasi padanya, pilih penanda tersebut dari tab *Penanda* pada halaman *Penanda dan Rute*, lalu pilih tombol *Edit Penanda*. Anda dapat menggunakan ini untuk memberi penanda julukan yang deskriptif atau berguna, serta memberi deskripsi yang lebih panjang menggunakan kolom anotasi.
 
-Dari layar *Edit* ini, Anda juga dapat menghapus marker jika sudah tidak diperlukan lagi.
+Dari layar *Edit* ini, Anda juga dapat menghapus penanda jika sudah tidak diperlukan lagi.
 

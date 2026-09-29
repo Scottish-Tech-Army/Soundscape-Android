@@ -15,9 +15,9 @@ De knop *Mijn locatie* geeft snel informatie over de omgeving zodat u kunt achte
 
 ## Wanneer zou ik het moeten gebruiken?
 
-*Mijn locatie* is handig wanneer u wilt weten waar u bent of wat de hoofdrichting is waarin u loopt.
+*Mijn locatie* is handig wanneer u wilt weten waar u bent of wat de hoofdrichting is waarin u kijkt.
 
 ## Hoe werkt het?
 
-Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u loopt, voordat u op *Mijn locatie* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Mijn locatie* en luister.
+Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u kijkt, voordat u op *Mijn locatie* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Mijn locatie* en luister.
 

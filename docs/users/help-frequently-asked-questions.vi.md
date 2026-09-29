@@ -25,7 +25,7 @@ Tôi nhớ cảm giác tình cờ bắt gặp và để ý những điều xung 
 [Tôi đã dùng Soundscape] để tìm một quán rượu ở giữa thành phố York. [Tôi] đã dùng nhiều tùy chọn của ứng dụng để trước tiên định vị và sau đó thực sự tìm ra nó. Nó đã dẫn tôi đến trong vòng 3 mét cách cửa ra vào – thật tuyệt vời!
 
 ### Điểm đánh dấu là gì và làm sao để tận dụng chúng tốt nhất?
-Điểm đánh dấu là những địa điểm mà bạn đã lưu lại. Chúng có thể là những địa điểm có thể tìm thấy trong ứng dụng, hoặc là những địa điểm hoàn toàn mới mà bạn tự thêm vào. Bạn có thể lưu vị trí hiện tại của mình làm điểm đánh dấu bằng cách chọn nút *Vị trí hiện tại* trên màn hình chính rồi chọn *Lưu làm Điểm đánh dấu*. Bạn có thể lưu các địa điểm khác làm điểm đánh dấu bằng cách tìm kiếm địa điểm bạn muốn lưu qua thanh tìm kiếm, hoặc tìm một nơi bằng nút *Địa điểm gần đây* — cả hai đều có trên màn hình chính của Soundscape. Sau khi tìm được địa điểm bạn muốn, chọn nó sẽ đưa bạn đến màn hình *Chi tiết địa điểm*. Trên màn hình này, hãy chọn nút có tên *Lưu làm Điểm đánh dấu*.
+Điểm đánh dấu là những địa điểm mà bạn đã lưu lại. Chúng có thể là những địa điểm có thể tìm thấy trong ứng dụng, hoặc là những địa điểm hoàn toàn mới mà bạn tự thêm vào. Bạn có thể lưu vị trí hiện tại của mình làm điểm đánh dấu bằng cách chọn nút *Vị trí hiện tại* trên màn hình chính rồi chọn *Lưu làm Điểm đánh dấu*. Bạn có thể lưu các địa điểm khác làm điểm đánh dấu bằng cách tìm kiếm địa điểm bạn muốn lưu qua thanh tìm kiếm, hoặc tìm một nơi bằng nút *Địa điểm gần đây* — cả hai đều có trên màn hình chính của Soundscape. Sau khi tìm được địa điểm bạn muốn, chọn nó sẽ đưa bạn đến màn hình *Chi tiết vị trí*. Trên màn hình này, hãy chọn nút có tên *Lưu làm Điểm đánh dấu*.
 
 ## Làm sao để tôi tận dụng Soundscape tốt nhất?
 
@@ -47,7 +47,7 @@ Thiết kế này có một vài hệ quả tự nhiên:
 Về bản chất, đèn hiệu âm thanh của Soundscape là một tín hiệu định hướng, cho bạn biết điểm đến của mình nằm ở đâu so với hướng bạn đang nhìn về. Khi Soundscape không chắc chắn về hướng bạn đang nhìn về, nó sẽ giảm âm lượng của đèn hiệu. Điều này thường xảy ra nhất khi bạn đang đi bộ với điện thoại để trong túi quần hoặc túi xách, rồi bạn dừng di chuyển, chẳng hạn như để băng qua đường. Đèn hiệu sẽ to hơn khi bạn bắt đầu di chuyển trở lại, hoặc khi bạn giữ điện thoại nằm ngang và hướng nó theo hướng bạn đang nhìn về.
 
 ### Tôi có thể đặt đèn hiệu trên một địa chỉ không?
-Có, bạn có thể. Địa chỉ không được liệt kê theo mặc định nhưng có thể tìm thấy bằng cách sử dụng ô tìm kiếm. Để lưu địa chỉ này lại nhằm không cần tìm kiếm lại lần sau, bạn có thể thêm nó làm điểm đánh dấu từ màn hình *Chi tiết địa điểm* bằng cách chọn nút *Lưu làm Điểm đánh dấu*.
+Có, bạn có thể. Địa chỉ không được liệt kê theo mặc định nhưng có thể tìm thấy bằng cách sử dụng ô tìm kiếm. Để lưu địa chỉ này lại nhằm không cần tìm kiếm lại lần sau, bạn có thể thêm nó làm điểm đánh dấu từ màn hình *Chi tiết vị trí* bằng cách chọn nút *Lưu làm Điểm đánh dấu*.
 
 ### Làm sao để đặt đèn hiệu tại nhà của tôi?
 Soundscape hỗ trợ đặt đèn hiệu trên các địa chỉ. Để đặt đèn hiệu tại nhà bạn, hoặc bất kỳ địa chỉ nào khác, hãy tìm kiếm một địa điểm bằng thanh tìm kiếm trên màn hình chính. Sau đó, trên màn hình *Chi tiết vị trí*, nhấn nút *Bắt đầu đèn hiệu âm thanh*.
@@ -56,7 +56,7 @@ Soundscape hỗ trợ đặt đèn hiệu trên các địa chỉ. Để đặt 
 Soundscape có thể xác định vị trí điểm đến của bạn với độ chính xác trong khoảng vài mét, nhưng không thể chính xác hơn. Khi Soundscape xác định rằng bạn đã đến gần điểm đến, bạn sẽ nghe một thông báo cuối cùng cho biết điểm đến của bạn đã gần kề, và đèn hiệu sẽ tắt.
 
 ### Tôi có thể bật lại đèn hiệu khi đã đến gần điểm đến không?
-Có, bạn có thể bật lại đèn hiệu sau khi Soundscape đã tắt nó bằng cách chọn *nút bật tiếng đèn hiệu*; tuy nhiên, do Dịch vụ vị trí chỉ chính xác trong khoảng 10 mét, chúng tôi không thể đảm bảo hoạt động của đèn hiệu khi bạn ở trong phạm vi vài mét cách điểm đến.
+Có, bạn có thể bật lại đèn hiệu sau khi Soundscape đã tắt nó bằng cách chọn nút *Bật tiếng đèn hiệu*; tuy nhiên, do Dịch vụ vị trí chỉ chính xác trong khoảng 10 mét, chúng tôi không thể đảm bảo hoạt động của đèn hiệu khi bạn ở trong phạm vi vài mét cách điểm đến.
 
 ### Tại sao Soundscape thông báo tên đường hai lần khi tôi đến gần một giao lộ?
 Để phù hợp với nhiều hình dạng giao lộ khác nhau, Soundscape mô tả giao lộ như các đoạn đường tỏa ra từ một điểm chung. Soundscape sử dụng âm thanh không gian để cho biết tên các con đường đi về bên trái, thẳng phía trước, và bên phải, theo đúng thứ tự đó. Nếu phần mô tả giao lộ bắt đầu bằng con đường bạn đang đi thay vì con đường bên trái, thì giao lộ đó tạo thành hình chữ T nằm nghiêng, với con đường bạn đang đi tiếp tục thẳng phía trước và một con đường giao cắt từ bên phải. Tương tự, nếu phần mô tả chỉ bao gồm một con đường bên trái và một con đường bên phải, bạn sẽ biết rằng con đường bạn đang đi kết thúc tại một giao lộ hình chữ T phía trước bạn. Phương pháp mô tả giao lộ này cũng hoạt động chính xác khi một con đường đổi tên ngay tại giao lộ.
@@ -113,7 +113,7 @@ Soundscape được thiết kế để giúp bổ sung các chi tiết về môi
 ### Làm sao để kiểm soát những gì tôi nghe và thời điểm tôi nghe trong Soundscape?
 Soundscape cung cấp nhiều cách để kiểm soát những gì bạn nghe và khi nào:
 
-1. Ngừng ngay lập tức mọi âm thanh: Nhấn đúp màn hình bằng hai ngón tay để tắt ngay lập tức mọi âm thanh, bao gồm bất kỳ thông báo nào đang phát và đèn hiệu nếu đang bật. Thông báo sẽ tự động tiếp tục khi bạn đến gần giao lộ hoặc địa điểm quan tâm tiếp theo, nhưng đèn hiệu âm thanh thì không. Hãy chọn *nút bật tiếng đèn hiệu* trên màn hình chính để nghe lại đèn hiệu.
+1. Ngừng ngay lập tức mọi âm thanh: Nhấn đúp màn hình bằng hai ngón tay để tắt ngay lập tức mọi âm thanh, bao gồm bất kỳ thông báo nào đang phát và đèn hiệu nếu đang bật. Thông báo sẽ tự động tiếp tục khi bạn đến gần giao lộ hoặc địa điểm quan tâm tiếp theo, nhưng đèn hiệu âm thanh thì không. Hãy chọn nút *Bật tiếng đèn hiệu* trên màn hình chính để nghe lại đèn hiệu.
 
 2. Ngừng thông báo tự động: Khi bạn không đang di chuyển hoặc đã đến điểm đến, có lẽ bạn sẽ không cần Soundscape tiếp tục thông báo về những thứ xung quanh bạn. Thay vì thoát ứng dụng, bạn có thể đưa Soundscape vào Chế độ Tạm nghỉ và nó sẽ thức dậy trở lại khi bạn rời đi, hoặc bạn có thể đưa Soundscape vào Chế độ Ngủ và nó sẽ giữ nguyên trạng thái tắt cho đến khi bạn bật lại. Ngoài ra, bạn có thể chọn *Cài đặt* từ menu và đặt *Mức chi tiết thông báo* thành *Im lặng* trong phần *Quản lý thông báo thoại*.
 

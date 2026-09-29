@@ -9,7 +9,7 @@ permalink: /users/help-tips.html
 
 # Tippek
 
-A közeli buszmegállókat megtalálhatja a *Közösségi közlekedés* szűrő kiválasztásával a *Közeli helyek* listában.
+A közeli buszmegállókat megtalálhatja a *Tömegközlekedés* szűrő kiválasztásával a *Közeli helyek* listában.
 
 Bármely címre beállíthat hangjelzőt. A főképernyőn keressen rá a címre a keresősávval. Ezután válassza ki a címet a keresési találatok közül a *Helyszín adatai* képernyő megnyitásához. Ezen a képernyőn megtalálja a *Hangjelző indítása* lehetőséget az adott címhez. Így hangjelzőt állíthat be olyan üzletekre, helyekre, érdekes helyekre és lakóépületekre is, amelyek nem szerepelnek az OpenStreetMapben.
 

@@ -56,9 +56,9 @@ Soundscape supporta l'impostazione degli audiofari sugli indirizzi. Per impostar
 Soundscape determina la posizione della tua destinazione con una precisione di alcuni metri, non inferiore. Quando Soundscape determina che sei vicino alla tua destinazione, sentirai una notifica finale indicante che la tua destinazione è vicina e l'audiofaro si spegnerà.
 
 ### Posso riattivare l'audiofaro quando sono vicino alla mia destinazione?
-Sì, in Soundscape puoi riattivare l'audiofaro dopo averlo disattivato selezionando il *"pulsante Attiva audio audiofaro"*. Tuttavia, dato che la precisione dei servizi di localizzazione è di circa 10 metri, non possiamo garantire il comportamento dell'audiofaro quando ti trovi a pochi metri dalla tua destinazione.
+Sì, puoi riattivare l'audiofaro dopo che Soundscape lo ha disattivato selezionando il *pulsante Attiva audio audiofaro*. Tuttavia, dato che la precisione dei servizi di localizzazione è di circa 10 metri, non possiamo garantire il comportamento dell'audiofaro quando ti trovi a pochi metri dalla tua destinazione.
 
-### Perché Soundscape chiama due volte i nomi delle strade quando mi avvicino a un incrocio?
+### Perché Soundscape annuncia due volte i nomi delle strade quando mi avvicino a un incrocio?
 Per includere le varie configurazioni di incroci, Soundscape descrive gli incroci come segmenti di strade che partono da un punto comune. Soundscape utilizza l'audio spaziale per indicare i nomi delle strade che vanno a sinistra, dritto e a destra, in quest'ordine. Se la descrizione dell'incrocio inizia con la strada in cui ti trovi anziché con una a sinistra, l'incrocio forma una T coricata: la strada in cui ti trovi prosegue dritto e un'altra strada si interseca da destra. Allo stesso modo, se la descrizione include solo una strada a sinistra e una a destra, saprai che la strada in cui ti trovi termina a T davanti a te. Questo metodo di descrizione degli incroci funziona anche quando una strada cambia nome in corrispondenza di un incrocio.
 
 ### Perché Soundscape non comunica ogni attività commerciale che incontro?
@@ -73,7 +73,7 @@ Soundscape ha l'elenco delle tue notifiche recenti per permetterti di esaminare 
 ## Come funziona Soundscape?
 
 ### Su quale telefono funziona Soundscape?
-Soundscape per Android è attualmente disponibile per i telefoni Android con Android 11 o versioni successive.
+Soundscape è attualmente disponibile per iPhone con iOS 16 o versioni successive e per i telefoni Android con Android 11 o versioni successive.
 
 ### Quali auricolari si devono usare con Soundscape?
 Gli auricolari che usi con Soundscape dipendono dalle preferenze personali e ogni opzione ha vantaggi e compromessi. L'unico requisito è utilizzare un paio di auricolari stereo in modo da poter ascoltare le notifiche audio spaziali 3D di Soundscape.

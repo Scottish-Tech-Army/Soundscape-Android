@@ -19,5 +19,5 @@ Wanneer u probeert om uw positie te ontdekken en u te oriënteren in uw omgeving
 
 ## Hoe werkt het?
 
-Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u loopt, voordat u op *Om me heen* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Om me heen* en u hoort de vier referentiepunten die zich om u heen bevinden.
+Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u kijkt, voordat u op *Om me heen* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Om me heen* en u hoort de vier referentiepunten die zich om u heen bevinden.
 

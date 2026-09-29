@@ -31,7 +31,7 @@ permalink: /users/help-using-media-controls.html
 
 
 
-*قائمة صوتية*. 
+*قائمة الصوت*. 
 
 
 

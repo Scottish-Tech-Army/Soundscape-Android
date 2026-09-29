@@ -11,11 +11,11 @@ permalink: /users/help-my-location.html
 
 ## Bu nedir?
 
-"Konumum" düğmesi, şu anda nerede olduğunuzu anlamanıza yardımcı olan bilgileri hızla verir. *"Konumum"*, baktığınız yön, yakındaki yollar veya kavşaklar ve yakındaki ilgi noktaları gibi mevcut konumunuz hakkında bilgi verir.
+*Konumum* düğmesi, şu anda nerede olduğunuzu anlamanıza yardımcı olan bilgileri hızla verir. *Konumum*, baktığınız yön, yakındaki yollar veya kavşaklar ve yakındaki ilgi noktaları gibi mevcut konumunuz hakkında bilgi verir.
 
 ## Ne zaman kullanırım?
 
-*"Konumum"*, nerede olduğunuzu veya hangi yönde ilerlediğinizi anlamanız gerektiğinde kullanışlıdır.
+*Konumum*, nerede olduğunuzu veya hangi yöne baktığınızı anlamanız gerektiğinde kullanışlıdır.
 
 ## Nasıl çalışır?
 

@@ -29,5 +29,5 @@ Basta tocar no botão *Parar Rota* no ecrã principal.
 
 **Para silenciar o sinal audível:**
 
-Toque no botão *Silenciar Sinal* ao lado do botão *Parar Rota* no ecrã principal.
+Toque no botão *Desativar Sinal* ao lado do botão *Parar Rota* no ecrã principal.
 

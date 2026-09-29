@@ -19,5 +19,5 @@ Quando estiver a tentar orientar-se no ambiente que o rodeia, utilize *"Em Meu R
 
 ## Como funciona?
 
-Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior apontada para a extremidade voltada para a direção em que está virado antes de premir o botão *"Em Meu Redor"*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *"Em Meu Redor"* e ouvirá vários pontos de interesse localizados sensivelmente à sua frente.
+Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior apontada para a extremidade voltada para a direção em que está virado antes de premir o botão *Em Meu Redor*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *Em Meu Redor* e ouvirá quatro pontos de interesse dispostos à sua volta.
 

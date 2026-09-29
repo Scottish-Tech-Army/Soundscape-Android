@@ -21,7 +21,7 @@ Talvez você queira criar e usar uma rota em um lugar que já conhece, para ajud
 
 **Criando uma rota**:
 
- Primeiro, acesse Favoritos e Rotas, selecione a guia Rotas e o botão Nova Rota. Dê um nome à rota e forneça uma descrição opcional. Adicione localizadores conforme avança ou escolha-os em uma lista de Favoritos. Você pode reorganizar a ordem dos localizadores ao longo da rota quando quiser. Basta editar a rota.
+ Primeiro, acesse *Favoritos e Rotas*, selecione a guia *Rotas* e o botão *Nova Rota*. Dê um nome à rota e forneça uma descrição opcional. Adicione localizadores conforme avança ou escolha-os em uma lista de Favoritos. Você pode reorganizar a ordem dos localizadores ao longo da rota quando quiser. Basta editar a rota.
 
 **Editando uma rota :**
 

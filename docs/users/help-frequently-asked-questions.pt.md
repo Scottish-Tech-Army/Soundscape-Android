@@ -25,7 +25,7 @@ O Soundscape tem funcionalidades e vantagens que abrangem uma variedade de cená
 "[Utilizei o Soundscape] para localizar um pub no meio de York. [Eu] utilizei um conjunto de opções da aplicação primeiro para o localizar e depois para o encontrar de facto. Deixou-me a 3 metros da porta – brilhante!"
 
 ### O que são Marcos e como posso tirar o máximo partido deles?
-Os marcos são locais que guardou. Podem ser locais que a aplicação consegue encontrar ou locais totalmente novos que adicionou você. Pode guardar a sua localização atual como um marco selecionando o botão *Localização Atual* no ecrã principal e, em seguida, tocando em *Guardar como Marco*. Pode guardar outros locais como marcos pesquisando o local que pretende guardar usando a barra de pesquisa ou encontrando um lugar através do botão *Locais nas Proximidades*, ambos disponíveis no ecrã principal do Soundscape. Depois de encontrar o local desejado, selecioná‑lo levar‑á ao ecrã *Detalhes da Localização*. Nesse ecrã, selecione o botão *Guardar como Marco*.
+Os marcos são locais que guardou. Podem ser locais que a aplicação consegue encontrar ou locais totalmente novos adicionados por si. Pode guardar a sua localização atual como um marco selecionando o botão *Localização Atual* no ecrã principal e, em seguida, tocando em *Guardar como Marco*. Pode guardar outros locais como marcos pesquisando o local que pretende guardar usando a barra de pesquisa ou encontrando um lugar através do botão *Locais nas Proximidades*, ambos disponíveis no ecrã principal do Soundscape. Depois de encontrar o local desejado, selecioná‑lo levar‑á ao ecrã *Detalhes da Localização*. Nesse ecrã, selecione o botão *Guardar como Marco*.
 
 ## Como posso tirar o máximo partido do Soundscape?
 
@@ -65,7 +65,7 @@ Para acomodar uma vasta gama de formas de cruzamentos, o Soundscape descreve cru
 O Soundscape foi concebido para não lhe dar avisos em excesso. Utiliza também o OpenStreetMap como fonte de dados. O OpenStreetMap (OSM, https://www.openstreetmap.org/) é um mapa do mundo construído e editado por uma comunidade de colaboradores individuais. Se uma empresa ou um ponto de interesse não for anunciado pelo Soundscape, a razão mais provável é que ainda não tenha sido adicionado aos dados — ou, em alguns casos, atualizado — por um membro da comunidade do OSM.
 
 ### Por que motivo é que alguns avisos param quando estou num veículo?
-Para evitar que o número de avisos se torne insuportável, algumas categorias (como cruzamentos) não são anunciados automaticamente quando viajar num veículo.
+Para evitar que o número de avisos se torne insuportável, algumas categorias (como cruzamentos) não são anunciadas automaticamente quando viajar num veículo.
 
 ### O que acontece se não compreender um aviso ou se o perder devido ao ruído ambiente?
 O Soundscape tem uma lista dos seus avisos recentes para que possa rever avisos que possa ter perdido. Para a encontrar, toque na barra de pesquisa no ecrã principal. Na parte inferior deste ecrã existe uma secção *Avisos Recentes* onde o aviso que perdeu será apresentado.

@@ -44,7 +44,7 @@ Den här utformningen får några naturliga följder:
 3. Om du i stort sett vet hur du tar dig till ditt mål kanske du vill stänga av ljudfyrens ljud under större delen av resan och slå på det först när du närmar dig målet.
 
 ### Varför försvinner ljudfyren ibland?
-Ljudfyren i Soundscape vägleder dig genom att berätta för dig var målet finns i förhållande till den riktning du går i. När Soundscape är osäker på vilken riktning du går i, blir ljudfyren tystare. Det kan hända om du har promenerat med telefonen i en ficka eller väska, och du stannar för att exempelvis korsa en gata. Ljudfyren låter högre när du börjar gå igen, eller om du håller telefonen plant och i den riktning du går i.
+Ljudfyren i Soundscape vägleder dig genom att berätta för dig var målet finns i förhållande till det håll du är vänd åt. När Soundscape är osäker på åt vilket håll du är vänd, blir ljudfyren tystare. Det kan hända om du har promenerat med telefonen i en ficka eller väska, och du stannar för att exempelvis korsa en gata. Ljudfyren låter högre när du börjar gå igen, eller om du håller telefonen plant och pekar den åt det håll du är vänd.
 
 ### Kan jag ställa in en ljudfyr för en adress?
 Ja, det kan du. Adresser listas inte som standard men går att hitta via sökfältet. För att spara en adress så att du slipper söka igen kan du lägga till den som en platsmarkör från skärmen *Platsuppgifter* genom att välja knappen *Spara som platsmarkör*.
@@ -73,7 +73,7 @@ Soundscape har en lista över dina senaste informationsljud så att du kan ta up
 ## Hur fungerar Soundscape?
 
 ### Vilken telefon går det att köra Soundscape på?
-Soundscape för Android är för närvarande tillgängligt för Android-telefoner som kör Android 11 eller senare.
+Soundscape är för närvarande tillgängligt för iPhone med iOS 16 eller senare och för Android-telefoner med Android 11 eller senare.
 
 ### Vilka hörlurar bör jag använda med Soundscape?
 Vilka hörlurar du bör använda med Soundscape beror på dina egna preferenser. Det finns för- och nackdelar med alla alternativ. Det enda kravet är att du måste använda stereohörlurar så att du hör de rumsbestämda informationsljuden i 3D i Soundscape.

@@ -62,7 +62,7 @@ Yes, you can turn the beacon back on once Soundscape turns it off by selecting t
 To accommodate a variety of intersection layouts, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the names of the roads that go to the left, straight ahead, and to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection forms a sideways T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
 
 ### Why doesn’t Soundscape announce every business that I pass?
-Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that an OSM community mamber has not yet added, or in some cases updated, that business in the data.
+Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that an OSM community member has not yet added, or in some cases updated, that business in the data.
 
 ### Why do some callouts stop when I'm in a vehicle?
 In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re travelling in a vehicle.
@@ -73,7 +73,7 @@ Soundscape has a list of your recent callouts so that you can revisit callouts t
 ## How does Soundscape work?
 
 ### What phone does Soundscape run on?
-Soundscape for Android is currently available for Android phones running Android 11 or later.
+Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
 
 ### What headphones should I use with Soundscape?
 Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.

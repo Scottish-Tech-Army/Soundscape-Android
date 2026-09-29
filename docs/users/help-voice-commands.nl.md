@@ -17,9 +17,9 @@ Soundscape antwoordt met zijn eigen stem, met de aankondigingen en bakengeluiden
 
 ## Wanneer zou ik het moeten gebruiken?
 
-Spraakopdrachten zijn handig als uw telefoon in uw zak zit, uw handen vol zijn of u liever niet stilstaat om op een knop te drukken. Ze werken terwijl Soundscape op de achtergrond draait en terwijl uw telefoon vergrendeld is, en om een aankondiging te vragen opent de app niet.
+Spraakopdrachten zijn handig als uw telefoon in uw zak zit, uw handen vol zijn of u liever niet stilstaat om op een knop te drukken. Ze werken terwijl Soundscape op de achtergrond draait en terwijl uw telefoon vergrendeld is, en als u om een aankondiging vraagt, wordt de app niet geopend.
 
-Uw assistent luistert, niet Soundscape, dus de app neemt nooit uw microfoon over en uw bluetooth-hoofdtelefoon blijft in de modus met hoge geluidskwaliteit in plaats van over te schakelen naar de mindere kwaliteit die voor telefoongesprekken wordt gebruikt.
+Uw assistent luistert, niet Soundscape, dus de app neemt nooit uw microfoon over en uw Bluetooth-koptelefoon blijft in de modus met hoge geluidskwaliteit in plaats van over te schakelen naar de mindere kwaliteit die voor telefoongesprekken wordt gebruikt.
 
 ## Hoe werkt het?
 

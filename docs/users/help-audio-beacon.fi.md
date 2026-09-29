@@ -21,7 +21,7 @@ Majakan määrittäminen on hyödyllistä, kun haluat seurata tuttua maamerkkiä
 
 **Majakan asettaminen :**
 
- Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin seuraavista painikkeista: *Lähiympäristön paikat*, *Merkitsimet ja reitit* tai *Nykyinen sijainti* ja valitsemalla haluamasi sijainti. Valitse sitten *Sijainnin yksityiskohdat* -näytöltä *Käynnistä äänimajakka* -painike. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt pääruudulla.
+ Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin seuraavista painikkeista: *Lähiympäristön paikat*, *Merkitsimet ja reitit* tai *Nykyinen sijainti* ja valitsemalla haluamasi sijainti. Valitse sitten *Sijainnin tiedot* -näytöltä *Käynnistä äänimajakka* -painike. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt pääruudulla.
 
 **Majakan poistaminen :**
 

@@ -15,7 +15,7 @@ La définition d’une balise à un emplacement situé à proximité permet à S
 
 ## Utilisation
 
-La définition d’une balise est utile pour effectuer le suivi d’un repère familier quand vous explorez un nouvel environnement ou lorsque vous allez quelque part et que vous souhaitez rester informé de ce qui vous entoure sur votre trajet. La fonctionnalité de balise ne vous fournit pas un itinéraire détaillé, mais émet un son audible continu vous indiquant la direction de la balise, en fonction de votre emplacement actuel. Grâce à la balise sonore, votre recherche d’itinéraire et même votre appli de navigation préférée, vous pouvez choisir comment accéder à des emplacements situés à proximité par vous-même.
+La définition d’une balise est utile pour effectuer le suivi d’un repère familier quand vous explorez un nouvel environnement ou lorsque vous allez quelque part et que vous souhaitez rester informé de ce qui vous entoure sur votre trajet. La fonctionnalité de balise ne vous fournit pas un itinéraire détaillé, mais émet un son audible continu vous indiquant la direction de la balise, en fonction de votre emplacement actuel. Grâce à la balise sonore, vos compétences d’orientation et même votre appli de navigation préférée, vous pouvez choisir comment accéder à des emplacements situés à proximité par vous-même.
 
 ## Fonctionnement
 

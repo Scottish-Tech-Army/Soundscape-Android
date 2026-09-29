@@ -23,11 +23,11 @@ Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sas
 
  *Yanayin Asali*. 
 
-⏯ Kunna/Dakata: Yana kunna ko kashe sautin alama. 
+⏯ Kunna/Dakata: Yana kunna ko kashe siginar sauti. 
 
-⏭ Na Gaba: Idan ana kunna hanya, yana matsar da alamar sauti zuwa tashar gaba a hanyar. Idan ba a kunna wata hanya ba, yana sanar da *Kewaye da Ni*.
+⏭ Na Gaba: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar gaba a tafarkin. Idan ba a kunna wani tafarki ba, yana sanar da *Kewaye da Ni*.
 
-⏮ Na Baya: Idan ana kunna hanya, yana matsar da alamar sauti zuwa tashar da ta gabata a hanyar. Idan ba a kunna wata hanya ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Daidaito*, *Kaɗan*, *Shiru*, sannan ya koma *Cikakke*.
+⏮ Na Baya: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar da ta gabata a tafarkin. Idan ba a kunna wani tafarki ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Daidaito*, *Kaɗan*, *Shiru*, sannan ya koma *Cikakke*.
 
 
 

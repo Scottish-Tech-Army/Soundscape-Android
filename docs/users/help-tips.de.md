@@ -21,5 +21,5 @@ Soundscape funktioniert am besten, wenn Sie das Telefon flach halten, so dass de
 
 Sie können den rhythmischen Ton des Beacons mit der Stummschalttaste auf dem Startbildschirm ein- und ausschalten. Wenn das Beacon stummgeschaltet ist, erhalten Sie weiterhin etwa alle 50 Meter Angaben zur Entfernung zu Ihrem Ziel.
 
-Wenn Sie Soundscape weiterhin nutzen möchten, ohne automatische Hinweise zu hören, setzen Sie im Menü im Abschnitt *„Hinweise verwalten“* des Bildschirms *„Einstellungen“* den *„Detailgrad der Hinweise“* auf *„Stumm“*. Wenn Sie Soundscape eine Weile nicht nutzen werden, können Sie die App stattdessen über die Schaltfläche *„Ruhemodus“* auf dem Startbildschirm in den Ruhe- oder Standbymodus versetzen.
+Wenn Sie Soundscape weiterhin nutzen möchten, ohne automatische Hinweise zu hören, setzen Sie im Menü im Abschnitt *„Hinweise verwalten“* des Bildschirms *„Einstellungen“* den *„Detailgrad der Hinweise“* auf *„Stumm“*. Wenn Sie Soundscape eine Weile nicht nutzen werden, können Sie die App stattdessen über die Schaltfläche *„Ruhemodus aktivieren“* auf dem Startbildschirm in den Ruhe- oder Standbymodus versetzen.
 

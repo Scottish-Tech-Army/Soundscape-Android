@@ -56,7 +56,7 @@ Soundscape podporuje nastavení majáků na adresách. Chcete-li nastavit maják
 Soundscape dokáže určit polohu vašeho cíle s přesností na několik metrů, ne však menší. Když Soundscape zjistí, že jste blízko svého cíle, uslyšíte závěrečné hlášení, že váš cíl je poblíž, a maják se vypne.
 
 ### Mohu maják znovu zapnout, když jsem blízko svého cíle?
-Ano, jakmile Soundscape maják vypne, můžete ho znovu zapnout výběrem *tlačítka pro zapnutí majáku*; jelikož však Služby určování polohy jsou přesné jen na přibližně 10 metrů, nemůžeme zaručit chování majáku, když jste jen několik metrů od svého cíle.
+Ano, jakmile Soundscape maják vypne, můžete ho znovu zapnout výběrem tlačítka *Zrušit ztlumení majáku*; jelikož však Služby určování polohy jsou přesné jen na přibližně 10 metrů, nemůžeme zaručit chování majáku, když jste jen několik metrů od svého cíle.
 
 ### Proč Soundscape při přiblížení ke křižovatce oznamuje názvy ulic dvakrát?
 Aby Soundscape zohlednil různá uspořádání křižovatek, popisuje křižovatky jako úseky vozovek vycházející ze společného bodu. Soundscape používá prostorový zvuk k oznámení názvů ulic, které vedou doleva, rovně a doprava, v tomto pořadí. Pokud popis křižovatky začíná ulicí, na které se nacházíte, a ne ulicí vlevo, tvoří křižovatka bokem otočené T, kde ulice, na které jste, pokračuje rovně a zprava se do ní napojuje jiná ulice. Podobně, pokud popis obsahuje pouze ulici vlevo a vpravo, budete vědět, že ulice, na které se nacházíte, končí křižovatkou ve tvaru T před vámi. Tento způsob popisu křižovatek funguje také tehdy, když se název ulice na křižovatce mění.
@@ -117,7 +117,7 @@ Soundscape nabízí několik způsobů, jak ovládat, co a kdy slyšíte:
 
 2. Zastavení automatických hlášení: Když necestujete nebo jste dosáhli cíle, pravděpodobně nebudete potřebovat, aby vás Soundscape nadále informoval o věcech kolem vás. Místo ukončení aplikace můžete Soundscape přepnout do režimu odložení, a ten se znovu probudí, jakmile odejdete, nebo můžete Soundscape přepnout do režimu spánku, a ten zůstane vypnutý, dokud jej sami znovu nezapnete. Případně můžete v nabídce vybrat *Nastavení* a v části *Správa hlášení* nastavit *Podrobnost hlášení* na *Bez zvuku*.
 
-3. Zastavení majáku: Existuje několik situací, kdy možná nastavíte cíl, ale nebudete potřebovat zapnutý slyšitelný maják. Můžete například přesně vědět, jak se dostat ke svému cíli, ale přesto chtít automatické aktualizace o tom, jak daleko jste. Nebo možná budete potřebovat zvukový maják jen v blízkosti svého cíle. Ať už je to jakkoli, můžete si zvolit, kdy maják uslyšíte, přepnutím tlačítka *ztlumit maják*/*zapnout maják* na hlavní obrazovce.
+3. Zastavení majáku: Existuje několik situací, kdy možná nastavíte cíl, ale nebudete potřebovat zapnutý slyšitelný maják. Můžete například přesně vědět, jak se dostat ke svému cíli, ale přesto chtít automatické aktualizace o tom, jak daleko jste. Nebo možná budete potřebovat zvukový maják jen v blízkosti svého cíle. Ať už je to jakkoli, můžete si zvolit, kdy maják uslyšíte, přepnutím tlačítka *ztlumit maják*/*zrušit ztlumení majáku* na hlavní obrazovce.
 
 Pokud stále chcete se Soundscape interagovat, ale nechcete slyšet automatická hlášení, můžete nastavit *Podrobnost hlášení* na *Bez zvuku* v části *Správa hlášení* na obrazovce *Nastavení* v nabídce. Nebo pokud Soundscape nebudete používat, můžete jej pomocí tlačítka *Spánek* na domovské obrazovce přepnout do režimu spánku nebo odložení.
 

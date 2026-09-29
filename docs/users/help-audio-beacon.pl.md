@@ -15,7 +15,7 @@ Ustawienie naprowadzania na pobliską lokalizację pozwala Soundscape prowadzić
 
 ## Kiedy używać?
 
-Ustawienie naprowadzania dzwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz być informowany(-a) o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.
+Ustawienie naprowadzania dźwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz być informowany(-a) o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.
 
 ## Jak to działa?
 

@@ -29,5 +29,5 @@ Kuweka beacon ni muhimu unapotaka kufuatilia alama unayoifahamu wakati unachungu
 
 **Kunyamazisha beacon inayosikika :**
 
- Gusa kitufe cha *Nyamazisha Beacon* kilicho karibu na kitufe cha *Simamisha Njia* kwenye skrini ya mwanzo.
+ Gusa kitufe cha *Zima Sauti ya Beacon* kilicho karibu na kitufe cha *Simamisha Njia* kwenye skrini ya mwanzo.
 

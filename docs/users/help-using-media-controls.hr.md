@@ -25,7 +25,7 @@ Postoje 2 načina rada gumba za upravljanje medijima. Način rada može se odabr
 
 ⏯ Play/Pause: Uključuje ili isključuje zvuk svjetionika. 
 
-⏭ Next: Ako se reproducira ruta, pomiče zvučni svjetionik na sljedeću putnu točku. Ako se ruta ne reproducira, najavljuje *Što je oko mene*.
+⏭ Next: Ako se reproducira ruta, pomiče zvučni svjetionik na sljedeću putnu točku. Ako se ruta ne reproducira, najavljuje *Oko mene*.
 
 ⏮ Previous: Ako se reproducira ruta, pomiče zvučni svjetionik na prethodnu putnu točku. Ako se ruta ne reproducira, mijenja *Razinu detalja najava*, za jednu razinu tiše pri svakom pritisku: *Detaljno*, *Uravnoteženo*, *Tiho*, *Bez zvuka*, pa natrag na *Detaljno*.
 

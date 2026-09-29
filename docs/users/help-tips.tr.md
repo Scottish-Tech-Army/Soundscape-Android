@@ -15,7 +15,7 @@ Herhangi bir adrese işaret ayarlayabilirsiniz. Ana ekrandaki arama çubuğunu k
 
 Düzenli olarak kullandığınız bir otobüs hattı varsa, bindiğiniz ve indiğiniz durakları kayıtlı nokta olarak kaydedin. Böylece kaydedilmiş olurlar ve onları kolayca yeniden bulabilirsiniz; ana ekrandan *Kayıtlı Noktalar ve Rotalar*'a gidip *Kayıtlı Noktalar* sayfasında bulabilirsiniz. Onlara bir işaret ayarlayarak iniş durağınıza ne kadar yaklaştığınız hakkında düzenli güncellemeler alabilirsiniz. Not: ritmik sesi kapatsanız bile yol boyunca mesafe güncellemelerini almaya devam edersiniz.
 
-Telefonunuzu cebinize koyup hareketsiz kalırsanız, Soundscape hangi yöne baktığınızı belirleyemediği için işaret sesi susar. Bunu düzeltmek için tekrar yürümeye başlayın veya telefonu çıkarıp düz tutun.
+Telefonunuzu cebinize koyup hareketsiz kalırsanız, Soundscape hangi yöne baktığınızı belirleyemediği için işaret sesi kısılır. Bunu düzeltmek için tekrar yürümeye başlayın veya telefonu çıkarıp düz tutun.
 
 Soundscape, telefonu ekran gökyüzüne bakacak şekilde ve telefonun üst kısmı sizden uzağa işaret edecek şekilde düz tuttuğunuzda en iyi şekilde çalışır.
 

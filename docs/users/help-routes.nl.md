@@ -21,7 +21,7 @@ Mogelijk wilt u een route maken en gebruiken op een plek die u al kent, zodat u 
 
 **Een route maken :**
 
- Ga eerst naar Markeringen en routes, selecteer het tabblad Routes en de knop Nieuwe route. Geef de route een naam en een optionele beschrijving, voeg vervolgens routepunten toe of selecteer ze uit uw lijst met Markeringen. U kunt de volgorde van de routepunten op een route altijd wijzigen door de route te bewerken.
+ Ga eerst naar *Markeringen en routes*, selecteer het tabblad *Routes* en de knop *Nieuwe route*. Geef de route een naam en een optionele beschrijving, voeg vervolgens routepunten toe of selecteer ze uit uw lijst met Markeringen. U kunt de volgorde van de routepunten op een route altijd wijzigen door de route te bewerken.
 
 **Een route bewerken :**
 

@@ -15,7 +15,7 @@ Hnappurinn *Í kringum mig* segir þér frá einu atriði í hverjum af fjórum 
 
 ## Hvenær ætti að nota það?
 
-Þegar unnið er með áttun og stefnu er notast við í kringum mig hnappinn.
+Þegar þú ert að reyna að átta þig á umhverfinu skaltu nota *Í kringum mig* til að heyra um það sem er í kringum þig.
 
 ## Hvernig virkar það?
 

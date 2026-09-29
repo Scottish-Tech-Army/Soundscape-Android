@@ -21,7 +21,7 @@ Det kan hende du vil opprette og bruke en rute på et sted du allerede kjenner, 
 
 **Opprett en rute**:
 
- Gå først til Markører og ruter, velg fanen Ruter og velg deretter knappen Ny rute. Gi ruten et navn og en valgfri beskrivelse, og legg deretter til veipunkter mens du går, eller velg dem fra listen over markører. Du kan endre rekkefølgen på veipunktene langs ruten når som helst ved å redigere ruten.
+ Gå først til *Markører og ruter*, velg fanen *Ruter* og velg deretter knappen *Ny rute*. Gi ruten et navn og en valgfri beskrivelse, og legg deretter til veipunkter mens du går, eller velg dem fra listen over markører. Du kan endre rekkefølgen på veipunktene langs ruten når som helst ved å redigere ruten.
 
 **Redigere en rute :**
 
@@ -29,5 +29,5 @@ Det kan hende du vil opprette og bruke en rute på et sted du allerede kjenner, 
 
 **Del en rute :**
 
- Velg ruten din på skjermen *"Markører og ruter"* og velg deretter alternativet for å *"Del"* ved å bruke alle de vanlige delingsalternativene som er tilgjengelige for deg.
+ Velg ruten din på skjermen *Markører og ruter* og velg deretter alternativet *Del* ved å bruke alle de vanlige delingsalternativene som er tilgjengelige for deg.
 

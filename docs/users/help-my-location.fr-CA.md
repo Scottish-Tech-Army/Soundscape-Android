@@ -11,7 +11,7 @@ permalink: /users/help-my-location.html
 
 ## De quoi s’agit-il?
 
-Le bouton *"Mon emplacement"* vous fournit rapidement des informations utiles pour savoir où vous vous trouvez actuellement. *"Mon emplacement"* vous indique votre emplacement actuel, notamment la direction que vous prenez, où se situent les routes et intersections proches et où se trouvent les points d’intérêt environnants.
+Le bouton *Mon emplacement* vous fournit rapidement des informations utiles pour savoir où vous vous trouvez actuellement. *Mon emplacement* vous indique votre emplacement actuel, notamment la direction dans laquelle vous êtes tourné, où se situent les routes et intersections proches et où se trouvent les points d’intérêt environnants.
 
 ## Utilisation
 

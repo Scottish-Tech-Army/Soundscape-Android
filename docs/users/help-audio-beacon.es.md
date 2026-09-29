@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## ¿Qué es?
 
-Establecer una señal en una ubicación cercana permite a Soundscape mantenerte informado reproduciendo un sonido procedente de la dirección de esa ubicación. Esta señal se puede silenciar o reactivar en la pantalla principal. Además, Soundscape muestra información sobre la ubicación de la pantalla principal incluyendo la distancia hasta ella y la dirección si se conoce.
+Establecer una señal en una ubicación cercana permite a Soundscape mantenerte informado reproduciendo un sonido procedente de la dirección de esa ubicación. Esta señal se puede silenciar o reactivar en la pantalla principal. Además, Soundscape muestra en la pantalla principal información sobre la ubicación, incluida la distancia hasta ella y su dirección postal si se conoce.
 
 ## ¿Cuándo lo usaría?
 

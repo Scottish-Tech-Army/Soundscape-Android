@@ -15,7 +15,7 @@ Hnappurinn *Nálæg merki* segir þér frá allt að fjórum merkjum sem eru næ
 
 ## Hvenær ætti að nota það?
 
-Þegar verið er að ná áttum má nota nálæg merki til að átta sig á umhverfinu.
+Þegar þú ert að reyna að átta þig á umhverfinu skaltu nota *Nálæg merki* til að heyra hvar staðir sem þú þekkir eru.
 
 ## Hvernig virkar það?
 

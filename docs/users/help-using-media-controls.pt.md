@@ -11,7 +11,7 @@ permalink: /users/help-using-media-controls.html
 
 ## O que é?
 
-Pode aceder a determinadas funcionalidades do Soundscape com a ajuda dos botões de controlo multimédia dos auscultadores. Isto funciona em quaisquer auscultadores Bluetooth com ou sem fios equipados com botões de controlo multimédia como Reproduzir, Pausa, Seguinte, Anterior e outros. Os botões podem variar consoante os auscultadores. Por este motivo, consulte a lista de ações abaixo para identificar as que estão disponíveis para si.
+Pode aceder a determinadas funcionalidades do Soundscape com a ajuda dos botões de controlo multimédia dos auscultadores. Isto funciona em quaisquer auscultadores com fios ou Bluetooth equipados com botões de controlo multimédia como Reproduzir, Pausa, Seguinte, Anterior e outros. Os botões podem variar consoante os auscultadores. Por este motivo, consulte a lista de ações abaixo para identificar as que estão disponíveis para si.
 
 ## Quando devo utilizá-lo?
 

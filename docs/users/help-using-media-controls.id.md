@@ -23,7 +23,7 @@ Ada 2 mode pengoperasian untuk kontrol media. Mode dapat dipilih di bagian *Peng
 
  *Mode asli*. 
 
-⏯ Putar/Jeda: Mengaktifkan atau menonaktifkan audio suar. 
+⏯ Putar/Jeda: Mengaktifkan atau menonaktifkan suara suar. 
 
 ⏭ Berikutnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute berikutnya dalam rute. Jika tidak ada rute yang sedang diputar, bacakan *Di Sekitar Saya*.
 

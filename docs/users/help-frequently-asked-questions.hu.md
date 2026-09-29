@@ -25,7 +25,7 @@ Hiányzik a séta közbeni véletlen felfedezés élménye. Jó, hogy megvan a S
 [A Soundscape-et arra használtam], hogy megtaláljak egy kocsmát York belvárosában. [Számos] lehetőségét kihasználtam, hogy először behatároljam, majd ténylegesen megtaláljam. 3 méteren belülre vitt az ajtajához – zseniális!
 
 ### Mik azok a jelölők, és hogyan hozhatom ki belőlük a legtöbbet?
-A jelölők olyan helyek, amelyeket elmentett. Lehetnek olyan helyek, amelyek megtalálhatók az alkalmazásban, vagy lehetnek teljesen új helyek, amelyeket Ön maga adott hozzá. A jelenlegi helyét jelölőként elmentheti a *Jelenlegi hely* gomb kiválasztásával a kezdőképernyőn, majd a *Mentés jelölőként* kiválasztásával. Más helyeket úgy menthet el jelölőként, hogy a keresősávval rákeres a menteni kívánt helyre, vagy megkeresi a *Közeli helyek* gombbal – mindkettő megtalálható a Soundscape kezdőképernyőjén. Miután megtalálta a kívánt helyet, a kiválasztása a *Hely részletei* képernyőre viszi. Ezen a képernyőn válassza ki a *Mentés jelölőként* nevű gombot.
+A jelölők olyan helyek, amelyeket elmentett. Lehetnek olyan helyek, amelyek megtalálhatók az alkalmazásban, vagy lehetnek teljesen új helyek, amelyeket Ön maga adott hozzá. A jelenlegi helyét jelölőként elmentheti a *Jelenlegi hely* gomb kiválasztásával a kezdőképernyőn, majd a *Mentés jelölőként* kiválasztásával. Más helyeket úgy menthet el jelölőként, hogy a keresősávval rákeres a menteni kívánt helyre, vagy megkeresi a *Közeli helyek* gombbal – mindkettő megtalálható a Soundscape kezdőképernyőjén. Miután megtalálta a kívánt helyet, a kiválasztása a *Helyszín adatai* képernyőre viszi. Ezen a képernyőn válassza ki a *Mentés jelölőként* nevű gombot.
 
 ## Hogyan hozhatom ki a legtöbbet a Soundscape-ből?
 
@@ -47,7 +47,7 @@ Ennek a kialakításnak néhány természetes következménye van:
 A Soundscape hallható hangjelzője alapvetően egy irányjelzés, amely megmutatja, hol van a célpontja ahhoz az irányhoz képest, amerre néz. Amikor a Soundscape bizonytalan abban, hogy merre néz, csökkenti a hangjelző hangerejét. Ez leggyakrabban akkor fordul elő, ha zsebben vagy táskában tartott telefonnal sétált, és megáll, például hogy átkeljen egy úton. A hangjelző ismét hangosabb lesz, amint újra elindul, vagy ha vízszintesen tartja a telefont, és abba az irányba mutat vele, amerre néz.
 
 ### Beállíthatok hangjelzőt egy címre?
-Igen, ez lehetséges. A címek alapértelmezés szerint nincsenek felsorolva, de a keresőmező segítségével megtalálhatók. Ha el szeretné menteni ezt a címet, hogy ne kelljen újra rákeresnie, hozzáadhatja jelölőként a *Hely részletei* képernyőn a *Mentés jelölőként* gomb kiválasztásával.
+Igen, ez lehetséges. A címek alapértelmezés szerint nincsenek felsorolva, de a keresőmező segítségével megtalálhatók. Ha el szeretné menteni ezt a címet, hogy ne kelljen újra rákeresnie, hozzáadhatja jelölőként a *Helyszín adatai* képernyőn a *Mentés jelölőként* gomb kiválasztásával.
 
 ### Hogyan állítsak be hangjelzőt az otthonomra?
 A Soundscape támogatja a hangjelzők beállítását címekre. Ha hangjelzőt szeretne beállítani az otthonára vagy bármely más címre, keressen rá egy helyre a főképernyő keresősávjával. Ezután a *Helyszín adatai* képernyőn koppintson a *Hangjelző indítása* gombra.

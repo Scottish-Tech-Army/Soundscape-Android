@@ -11,7 +11,7 @@ permalink: /users/help-automatic-callouts.html
 
 ## Đây là gì?
 
-Soundscape có thể cho bạn biết về những thứ xung quanh khi bạn đến gần chúng, bằng cách đọc to tên của chúng từ hướng mà chúng nằm. Ứng dụng sẽ tự động làm điều này cho đủ loại thứ như cửa hàng, điểm dừng xe buýt, và cả giao lộ. Bạn có thể tùy chỉnh những gì ứng dụng tự động thông báo trong phần *Quản lý Thông báo* của màn hình *Cài đặt*, và bạn có thể tắt toàn bộ thông báo khi muốn ứng dụng im lặng.
+Soundscape có thể cho bạn biết về những thứ xung quanh khi bạn đến gần chúng, bằng cách đọc to tên của chúng từ hướng mà chúng nằm. Ứng dụng sẽ tự động làm điều này cho đủ loại thứ như cửa hàng, điểm dừng xe buýt, và cả giao lộ. Bạn có thể tùy chỉnh những gì ứng dụng tự động thông báo trong phần *Quản lý thông báo thoại* của màn hình *Cài đặt*, và bạn có thể tắt toàn bộ thông báo khi muốn ứng dụng im lặng.
 
 ## Khi nào tôi nên dùng tính năng này?
 

@@ -11,7 +11,7 @@ permalink: /users/help-around-me.html
 
 ## De quoi s’agit-il ?
 
-Le bouton *"Autour de moi"* vous indique un lieu à chacun des quatre points cardinaux autour de vous (devant, à droite, derrière et à gauche). *"Autour de moi"* est conçu pour vous aider à vous orienter dans votre environnement.
+Le bouton *Autour de moi* vous indique un lieu dans chacun des quatre quadrants autour de vous (devant, à droite, derrière et à gauche). *Autour de moi* est conçu pour vous aider à vous orienter dans votre environnement.
 
 ## Quand l’utiliser ?
 

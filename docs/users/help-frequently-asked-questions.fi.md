@@ -30,7 +30,7 @@ Merkitsimet ovat paikkoja, jotka olet tallentanut. Ne voivat olla sovelluksesta 
 ## Kuinka saan Soundscapen parhaat ominaisuudet käyttööni?
 
 ### Minkä voin määrittää majakaksi?
-Voit asettaa äänimajakan mihin tahansa yritykseen, paikkaan, kiinnostavaan kohteeseen, osoitteeseen tai risteykseen. Majakan lisäämiseen on useita tapoja. Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin aloitusnäytön painikkeista *Lähiympäristön paikat*, *Merkitsimet ja reitit* tai *Nykyinen sijainti* ja valitsemalla sijainti. Valitse sitten *Sijainnin yksityiskohdat* -näytöltä *Käynnistä äänimajakka* -painike. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt pääruudulla.
+Voit asettaa äänimajakan mihin tahansa yritykseen, paikkaan, kiinnostavaan kohteeseen, osoitteeseen tai risteykseen. Majakan lisäämiseen on useita tapoja. Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin aloitusnäytön painikkeista *Lähiympäristön paikat*, *Merkitsimet ja reitit* tai *Nykyinen sijainti* ja valitsemalla sijainti. Valitse sitten *Sijainnin tiedot* -näytöltä *Käynnistä äänimajakka* -painike. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt pääruudulla.
 
 ### Miten saan majakasta kaiken irti?
 Voit ajatella kuultavaa majakkaa *korviesi majakkana*: se kertoo, missä määränpääsi on suorassa linjassa nykyisestä sijainnistasi. Kuten majakka, se ei kerro, miten sinne pääsee – saatat silti joutua tekemään reittivalintoja matkan varrella kiertääksesi esteitä. Majakan jatkuva rytminen ääni tulee määränpään suunnasta, ja se auttaa sinua hahmottamaan, missä määränpää on suhteessa sinuun kävellessäsi. Kun kävelet suoraan määränpäätä kohti tai osoitat puhelimen määränpäähän, kuulet korkeamman *ring*-äänen. Tämä auttaa paikantamaan määränpään suunnan, koska rytmisen äänen suuntaa voi meluisassa ympäristössä olla joskus vaikea kuulla. Löytääksesi korkeamman *ring*-äänen pidä puhelinta vaakatasossa ja käänny hitaasti ympäri; kun käännät pääsi samaan suuntaan kuin puhelin, saat parhaan tilaäänikokemuksen.
@@ -50,7 +50,7 @@ Soundscapen äänimajakka on pohjimmiltaan suuntavihje, joka kertoo, missä suun
 Kyllä voit. Osoitteet eivät ole oletuksena listattuna, mutta ne löytyvät hakukentän kautta. Tallentaaksesi osoitteen niin, että sinun ei tarvitse etsiä sitä uudelleen, voit lisätä sen merkitsimeksi *Sijainnin tiedot* -näytöltä valitsemalla *Tallenna merkitsimenä* -painikkeen.
 
 ### Kuinka määritän majakan kotiini?
-Soundscape tukee majakoiden asettamista osoitteisiin. Asettaaksesi majakan kotiisi tai mihin tahansa muuhun osoitteeseen, etsi sijainti pääruudun hakupalkin avulla. Napauta sitten *Sijainnin yksityiskohdat* -näytöllä *Käynnistä äänimajakka* -painiketta.
+Soundscape tukee majakoiden asettamista osoitteisiin. Asettaaksesi majakan kotiisi tai mihin tahansa muuhun osoitteeseen, etsi sijainti pääruudun hakupalkin avulla. Napauta sitten *Sijainnin tiedot* -näytöllä *Käynnistä äänimajakka* -painiketta.
 
 ### Kun määritän majakan määränpäähän, kuinka lähelle Soundscape vie minut?
 Soundscape voi tunnistaa määränpääsi paikan muutamien metrien etäisyydellä, mutta ei sitä lähempänä. Kun Soundscape päättelee, että olet lähellä määränpäätäsi, kuulet viimeisen ilmoituksen siitä, että määränpääsi on lähellä, ja majakka poistuu käytöstä.
@@ -68,7 +68,7 @@ Soundscape on suunniteltu välttämään liiallista ilmoitusten määrää. Se k
 Jotta ilmoitusten määrää voidaan estää kasvamasta hallitsemattomaksi, joitakin luokkia, kuten risteyksiä, ei ilmoiteta automaattisesti, kun kuljet ajoneuvolla.
 
 ### Mitä, jos en ymmärrä ilmoitusta tai en huomaa sitä ympäristön melun takia?
-Soundscapella on luettelo viimeisistä ilmoituksistasi, jotta voit palata kuuntelemaan ilmoituksia, jotka ehkä jäivät huomaamatta. Löytääksesi tämän napauta aloitusnäytön hakupalkkia. Tämän ruudun alaosassa on osio *Äskettäiset ilmoitukset*, jonne jättämäsi ilmoitus on listattu.
+Soundscapella on luettelo viimeisistä ilmoituksistasi, jotta voit palata kuuntelemaan ilmoituksia, jotka ehkä jäivät huomaamatta. Löytääksesi tämän napauta aloitusnäytön hakupalkkia. Tämän ruudun alaosassa on osio *Äskettäiset ilmoitukset*, jossa huomaamatta jäänyt ilmoitus on luettelossa.
 
 ## Kuinka Soundscape toimii?
 

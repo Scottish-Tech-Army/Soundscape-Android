@@ -11,7 +11,7 @@ permalink: /users/help-routes.html
 
 ## Što je to?
 
-Rute su niz točaka rute. Bit ćete obaviješteni po dolasku na svaku točku rute, a zvučni svjetionik automatski će se pomaknuti na sljedeću točku rute.
+Rute su niz putnih točaka. Bit ćete obaviješteni po dolasku na svaku putnu točku, a zvučni svjetionik automatski će se pomaknuti na sljedeću putnu točku.
 
 ## Kada se ovo koristi?
 
@@ -21,11 +21,11 @@ Rutu možda želite stvoriti i koristiti na mjestu koje već poznajete, kako bis
 
 **Stvaranje rute:**
 
- Najprije otvorite *Oznake i rute*, odaberite karticu *Rute*, a zatim odaberite gumb *Nova ruta*. Dajte ruti naziv i, po želji, opis, a zatim dodajte točke rute usput ili ih odaberite sa svog popisa oznaka. Redoslijed točaka rute možete u bilo kojem trenutku promijeniti uređivanjem rute.
+ Najprije otvorite *Oznake i rute*, odaberite karticu *Rute*, a zatim odaberite gumb *Nova ruta*. Dajte ruti naziv i, po želji, opis, a zatim dodajte putne točke usput ili ih odaberite sa svog popisa oznaka. Redoslijed putnih točaka možete u bilo kojem trenutku promijeniti uređivanjem rute.
 
 **Uređivanje rute:**
 
- Odaberite svoju rutu na zaslonu *Oznake i rute*, a zatim odaberite *Uredi rutu*. Ovdje možete dodavati i uklanjati točke rute, kao i uređivati naziv i opis rute.
+ Odaberite svoju rutu na zaslonu *Oznake i rute*, a zatim odaberite *Uredi rutu*. Ovdje možete dodavati i uklanjati putne točke, kao i uređivati naziv i opis rute.
 
 **Dijeljenje rute:**
 

@@ -25,9 +25,9 @@ Nastavitev svetilnika je uporabna, kadar želite slediti znani orientacijski to�
 
 **Odstranitev trenutnega svetilnika :**
 
- Preprosto pritisnite gumb *Ustavi pot* na domačem zaslonu.
+ Preprosto pritisnite gumb *Zaustavi pot* na domačem zaslonu.
 
 **Utišanje zvočnega svetilnika :**
 
- Tapnite gumb *Utišaj svetilnik* poleg gumba *Ustavi pot* na domačem zaslonu.
+ Tapnite gumb *Utišaj svetilnik* poleg gumba *Zaustavi pot* na domačem zaslonu.
 

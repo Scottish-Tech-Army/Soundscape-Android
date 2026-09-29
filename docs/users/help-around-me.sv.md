@@ -19,5 +19,5 @@ När du försöker orientera dig i omgivningarna kan du använda *"Omkring mig"*
 
 ## Hur fungerar det?
 
-Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonen i färdriktningen innan du trycker på knappen *"Omkring mig"*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *"Omkring mig"* så hör du flera olika intressepunkter som finns omkring dig.
+Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonens överkant åt det håll du är vänd innan du trycker på knappen *Omkring mig*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *Omkring mig* så hör du flera olika intressepunkter som finns omkring dig.
 

@@ -1,5 +1,5 @@
 ---
-title: Skapar platsmarkörer
+title: Skapa platsmarkörer
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: sv
 permalink: /users/help-creating-markers.html
 ---
 
-# Skapar platsmarkörer
+# Skapa platsmarkörer
 
 Du kan skapa platsmarkörer på tre sätt: söka efter platsen du vill spara via sökfältet, hitta en plats med knappen *Platser i närheten*, eller använda knappen *Aktuell plats* — alla finns på startskärmen. När du hittat platsen du vill spara väljer du den så kommer du till skärmen *Platsuppgifter*. På den skärmen trycker du på knappen *Spara som platsmarkör*.
 

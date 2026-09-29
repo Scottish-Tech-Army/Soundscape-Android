@@ -29,7 +29,7 @@ Mærker er steder, som du har gemt. Det kan være steder, der kan findes i appen
 
 ## Hvordan får jeg mest muligt ud af Soundscape?
 
-### Hvad kan jeg indstille et lydfyr?
+### Hvad kan jeg sætte et lydfyr på?
 Du kan indstille et lydfyr på enhver virksomhed, sted, interessepunkt, adresse eller et kryds. Der er flere måder at tilføje et lydfyr til en placering: vis først oplysningerne for en placering ved at søge efter stedet i søgefeltet eller ved at trykke på en af knapperne *Steder i nærheden*, *Mærker og Ruter* eller *Aktuel placering* og vælge et sted. Vælg derefter knappen *Start lydfyr* på skærmen *Oplysninger om placering*. Når du trykker på denne, vender du tilbage til startskærmen, og et hørbart lydfyr fra den valgte placering tændes. Navnet på stedet samt dets afstand og fysiske adresse, hvis tilgængelig, vil nu blive vist på hovedskærmen.
 
 ### Hvordan får jeg mest muligt ud af et lydfyr?

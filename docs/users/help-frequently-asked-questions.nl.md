@@ -55,7 +55,7 @@ Soundscape ondersteunt het instellen van bakens op adressen. Om een baken in te 
 ### Wanneer ik een baken instel op een bestemming, hoe dichtbij brengt Soundscape me dan?
 Soundscape kan de locatie van uw bestemming binnen een paar meter bepalen, maar niet minder. Wanneer Soundscape vaststelt dat u dichtbij uw bestemming bent, hoort u een laatste aankondiging dat uw bestemming dichtbij is en wordt het baken uitgeschakeld.
 
-### Kan ik het baken weer aanzetten als ik dicht bij mij bestemming bent?
+### Kan ik het baken weer aanzetten als ik dicht bij mijn bestemming bent?
 Ja, u kunt het baken weer inschakelen nadat Soundscape het heeft uitgezet door de knop *"Baken dempen opheffen"* te selecteren; echter, omdat Locatievoorzieningen slechts tot ongeveer 10 meter nauwkeurig zijn, kunnen we het gedrag van het baken binnen een paar meter van uw bestemming niet garanderen.
 
 ### Waarom noemt Soundscape wegnamen twee keer wanneer ik een kruispunt nader?

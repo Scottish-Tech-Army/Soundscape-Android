@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## ¿Qué es?
 
-El botón *Delante de mí* te indica qué se encuentra delante de ti. *Delante de mí* está pensado para explorar lo que se encuentra delante de ti cuando estás conociendo una zona nueva.
+El botón *Delante de mí* te informa de hasta cinco elementos que hay delante de ti. *Delante de mí* está pensado para explorar lo que se encuentra delante de ti cuando estás conociendo una zona nueva.
 
 ## ¿Cuándo lo usaría?
 

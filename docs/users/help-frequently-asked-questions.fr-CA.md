@@ -20,7 +20,7 @@ Soundscape offre des fonctionnalités et des avantages qui couvrent une variét�
 
 « Le son 3D améliore mon expérience de marche, car je me sens davantage connecté à mon environnement… J’ai plus tendance à essayer un nouvel itinéraire maintenant que je peux utiliser l’appli. »
 
-« Cela me manque, de ne plus me promener en observant les choses. Soundscape est intéressant : il ne nécessite aucun effort pour connaître ce qui m’entoure. Les informations sur l’environnement sont utiles et c’est une excellente appli pour découvrir la situation et explorer les axes. »
+« Cela me manque, de ne plus me promener en observant les choses. Soundscape est intéressant : il ne nécessite aucun effort pour connaître ce qui m’entoure. Les informations sur l’environnement sont utiles et c’est une excellente appli pour découvrir la situation et explorer les rues commerçantes. »
 
 « [J’ai utilisé Soundscape] pour localiser un pub au centre de York. [J’ai utilisé] toute une série de ses options pour d’abord le localiser, puis le trouver réellement. Il m’a emmené à 3 mètres de la porte, excellent! »
 
@@ -56,12 +56,12 @@ Soundscape prend en charge la définition de balises sur des adresses. Pour déf
 Soundscape peut déterminer l’emplacement de votre destination à quelques mètres près, mais pas moins. Lorsque Soundscape détermine que vous êtes proche de votre destination, vous entendez une notification finale indiquant que la destination est proche et que la balise va être désactivée.
 
 ### Puis-je réactiver la balise lorsque je suis proche de ma destination?
-Oui, vous pouvez réactiver la balise lorsque Soundscape l’a désactivée en sélectionnant le bouton « Réactiver le son de la balise ». Toutefois, étant donné que les Services de localisation ne sont précis qu’à environ 10 mètres, nous ne pouvons pas garantir le comportement de la balise si vous vous trouvez à quelques mètres de votre destination.
+Oui, vous pouvez réactiver la balise lorsque Soundscape l’a désactivée en sélectionnant le bouton *Réactiver le son de la balise*. Toutefois, étant donné que les Services de localisation ne sont précis qu’à environ 10 mètres, nous ne pouvons pas garantir le comportement de la balise si vous vous trouvez à quelques mètres de votre destination.
 
 ### Pourquoi Soundscape annonce-t-il les noms des routes à deux reprises lorsque j’approche d’une intersection?
 Pour s’adapter à une variété de formes d’intersections, Soundscape décrit les intersections sous forme de segments de chaussée partant d’un point commun. Soundscape utilise un signal audio spatial pour indiquer les noms des routes allant vers la gauche, droit devant et vers la droite, dans cet ordre. Si la description de l’intersection commence par la route sur laquelle vous êtes plutôt que celle sur votre gauche, l’intersection forme un T couché : la route sur laquelle vous êtes continue tout droit et une route arrive par la droite. De même, si la description ne comprend qu’une route vers la gauche et vers la droite, vous savez que la route sur laquelle vous êtes se termine en T devant vous. Cette méthode de description des intersections fonctionne également lorsqu’une route change de nom à une intersection.
 
-### Pourquoi Soundscape n’annonce-t-il pas chaque entreprise que je passe?
+### Pourquoi Soundscape n’annonce-t-il pas chaque commerce devant lequel je passe?
 Soundscape est conçu pour éviter de vous donner trop d’annonces. Il utilise également OpenStreetMap comme source de données. OpenStreetMap (OSM, https://www.openstreetmap.org/) est une carte du monde construite et modifiée par une communauté de contributeurs individuels. Si Soundscape n’annonce pas un commerce ou un point d’intérêt, la raison la plus probable est qu’aucun membre de la communauté OSM ne l’a encore ajouté aux données, ou ne l’a pas mis à jour dans certains cas.
 
 ### Pourquoi certaines notifications s’arrêtent-elles lorsque je suis dans un véhicule?

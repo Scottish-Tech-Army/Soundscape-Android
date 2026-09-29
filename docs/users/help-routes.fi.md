@@ -21,7 +21,7 @@ Saatat haluta luoda reitin ja käyttää sitä paikassa, jonka jo tunnet, jotta 
 
 **Reitin luominen :**
 
- Siirry ensin kohtaan *Merkitsimet ja Reitit*, valitse *Reitit*-välilehti, ja valitse sitten *Uusi reitti* -painike. Anna reitille nimi ja valinnainen kuvaus ja lisää sitten reittipisteitä matkan varrella, tai valitse ne merkitsinluettelosta. Voit järjestää reittipisteet uudelleen reitissä koska tahansa muokkaamalla reittiä.
+ Siirry ensin kohtaan *Merkitsimet ja reitit*, valitse *Reitit*-välilehti, ja valitse sitten *Uusi reitti* -painike. Anna reitille nimi ja valinnainen kuvaus ja lisää sitten reittipisteitä matkan varrella, tai valitse ne merkitsinluettelosta. Voit järjestää reittipisteet uudelleen reitissä koska tahansa muokkaamalla reittiä.
 
 **Reitin muokkaaminen :**
 

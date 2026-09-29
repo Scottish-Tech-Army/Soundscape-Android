@@ -21,7 +21,7 @@ O Soundscape pode informar sobre coisas ao seu redor à medida que você se apro
 
 **Caminhando até uma localização específica**:
 
- quando você estiver à caminho de uma determinada localização, as notificações automáticas sobre cruzamentos serão particularmente úteis. As notificações sobre cruzamentos mostram o layout dos cruzamentos à medida que você se aproxima e confirma a rua em que você está depois de passar por eles.
+ quando você estiver a caminho de uma determinada localização, as notificações automáticas sobre cruzamentos serão particularmente úteis. As notificações sobre cruzamentos mostram o layout dos cruzamentos à medida que você se aproxima e confirmam a rua em que você está depois de passar por eles.
 
 **Quando você precisar de silêncio**:
 

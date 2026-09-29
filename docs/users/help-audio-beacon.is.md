@@ -25,9 +25,9 @@ Fyrst skoðaðu upplýsingar um stað með því að nota leitarstikuna eða vel
 
 **Til að fjarlægja núverandi hljóðvita :**
 
- Ýttu einfaldlega á hnappinn *Ljúka leið* á heimaskjánum.
+ Ýttu einfaldlega á hnappinn *Stöðva leið* á heimaskjánum.
 
 **Til að þagga hljóðvitann :**
 
- Ýttu á hnappinn *Þagga hljóðvita* við hliðina á hnappnum *Ljúka leið* á heimaskjánum.
+ Ýttu á hnappinn *Slökkva á hljóðvita* við hliðina á hnappnum *Stöðva leið* á heimaskjánum.
 

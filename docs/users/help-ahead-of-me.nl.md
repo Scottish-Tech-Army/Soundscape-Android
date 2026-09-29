@@ -19,5 +19,5 @@ Wanneer u door de straat loopt, kunt u met *Vóór me* de plaatsen en dingen ont
 
 ## Hoe werkt het?
 
-Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u loopt, voordat u op *Vóór me* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Vóór me* en u hoort de referentiepunten die zich voor u bevinden.
+Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u kijkt, voordat u op *Vóór me* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Vóór me* en u hoort de referentiepunten die zich voor u bevinden.
 

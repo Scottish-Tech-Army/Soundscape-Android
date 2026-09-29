@@ -21,7 +21,7 @@ Poderá pretender criar e utilizar uma rota num local que já conhece, para o aj
 
 **Criar uma rota :**
 
- Aceda a Marcos e Rotas, selecione o separador Rotas e, em seguida, selecione o botão Nova Rota. Atribua um nome e uma descrição opcional à rota e, em seguida, adicione pontos de passagem durante o percurso ou selecione-os na lista de Marcos. É possível reordenar a lista de pontos de passagem numa rota a qualquer momento editando a rota.
+ Aceda a *Marcos e Rotas*, selecione o separador *Rotas* e, em seguida, selecione o botão *Nova Rota*. Atribua um nome e uma descrição opcional à rota e, em seguida, adicione pontos de passagem durante o percurso ou selecione-os na lista de Marcos. É possível reordenar a lista de pontos de passagem numa rota a qualquer momento editando a rota.
 
 **Editar uma rota :**
 

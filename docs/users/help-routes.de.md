@@ -21,7 +21,7 @@ Sie können eine Route an einem Ort erstellen und nutzen, den Sie bereits kennen
 
 **Route erstellen:**
 
- Gehen Sie zunächst zu Markierungen und Routen, wählen Sie die Registerkarte Routen aus, und wählen Sie dann die Schaltfläche Neue Route aus. Geben Sie der Route einen Namen und eine optionale Beschreibung, und fügen Sie dann nach und nach Wegpunkte hinzu, oder wählen Sie diese aus Ihrer Liste der Markierungen aus. Sie können die Reihenfolge der Wegpunkte entlang einer Route jederzeit neu anordnen, indem Sie die Route bearbeiten.
+ Gehen Sie zunächst zu *„Markierungen und Routen“*, wählen Sie die Registerkarte *„Routen“* aus, und wählen Sie dann die Schaltfläche *„Neue Route“* aus. Geben Sie der Route einen Namen und eine optionale Beschreibung, und fügen Sie dann nach und nach Wegpunkte hinzu, oder wählen Sie diese aus Ihrer Liste der Markierungen aus. Sie können die Reihenfolge der Wegpunkte entlang einer Route jederzeit neu anordnen, indem Sie die Route bearbeiten.
 
 **Route bearbeiten:**
 

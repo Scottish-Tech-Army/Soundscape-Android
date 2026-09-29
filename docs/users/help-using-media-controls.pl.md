@@ -19,7 +19,7 @@ Przycisków sterowania mediami w słuchawkach można używać, gdy Soundscape dz
 
 ## Jak to działa?
 
-Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w sekcji *Ustawienia* *Sterowanie multimediami*. Tryby to:
+Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w sekcji *Ustawienia* *Tryb sterowania przyciskami multimedialnymi*. Tryby to:
 
  *Tryb oryginalny*. 
 
@@ -31,7 +31,7 @@ Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w
 
 
 
-*Menu dźwiękowe*. 
+*Menu audio*. 
 
 
 

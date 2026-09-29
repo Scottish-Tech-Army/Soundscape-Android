@@ -11,7 +11,7 @@ permalink: /users/help-voice-commands.html
 
 ## Vad är det?
 
-Du kan be Gemini att göra saker i Soundscape utan att röra telefonen: höra ett informationsljud, starta en av dina rutter eller ställa in ett ljudfyr på en av dina platsmarkörer. Alla andra assistenter som stöder appfunktioner i Android kan göra samma sak.
+Du kan be Gemini att göra saker i Soundscape utan att röra telefonen: höra ett informationsljud, starta en av dina rutter eller ställa in en ljudfyr på en av dina platsmarkörer. Alla andra assistenter som stöder appfunktioner i Android kan göra samma sak.
 
 Soundscape svarar med sin egen röst, med de informationsljud och fyrljud du redan känner till, i stället för att assistenten läser upp en sammanfattning. På så sätt kommer det du hör fortfarande från den riktning som beskrivs.
 
@@ -31,9 +31,9 @@ Beskriva *Min plats*, vad som finns *Omkring mig* eller vad som finns *Framför 
 
 Läsa upp de sparade platsmarkörerna nära dig.
 
-Starta en av dina sparade rutter med namn, gå vidare till nästa brytpunkt, gå tillbaka till föregående, stänga av ljudfyret eller stoppa rutten.
+Starta en av dina sparade rutter med namn, gå vidare till nästa brytpunkt, gå tillbaka till föregående, stänga av ljudfyren eller stoppa rutten.
 
-Ställa in ett ljudfyr på en av dina sparade platsmarkörer med namn, eller stänga av ljudfyret.
+Ställa in en ljudfyr på en av dina sparade platsmarkörer med namn, eller stänga av ljudfyren.
 
 Ställa in detaljnivån för informationsljuden på *Tyst*, *Lågmäld*, *Balanserad* eller *Detaljerad*, för att ändra hur mycket Soundscape säger medan du går. *Tyst* stänger av de automatiska informationsljuden.
 

@@ -44,7 +44,7 @@ Bu tasarımın birkaç doğal sonucu vardır:
 3. Hedefinize genel olarak nasıl gideceğinizi biliyorsanız, yolculuğun büyük bölümünde işareti sessize alıp yalnızca hedefe yaklaştığınızda açmayı tercih edebilirsiniz.
 
 ### Sesli işaret neden bazen kayboluyor?
-Soundscape'in sesli işareti, temelde baktığınız yöne göre hedefinizin nerede olduğunu söyleyen yönsel bir ipucudur. Soundscape, hangi yöne baktığınızdan emin olmadığında işaretin sesini kısar. Bu durum çoğunlukla, telefonu cebinizde veya çantanızda taşırken yürürken durduğunuzda, örneğin bir yolu geçmek için beklediğinizde yaşanır. Tekrar yürümeye başladığınızda veya telefonu düz tutup baktığınız yöne doğrulttduğunuzda işaret daha yüksek sesle çalacaktır.
+Soundscape'in sesli işareti, temelde baktığınız yöne göre hedefinizin nerede olduğunu söyleyen yönsel bir ipucudur. Soundscape, hangi yöne baktığınızdan emin olmadığında işaretin sesini kısar. Bu durum çoğunlukla, telefonu cebinizde veya çantanızda taşırken yürürken durduğunuzda, örneğin bir yolu geçmek için beklediğinizde yaşanır. Tekrar yürümeye başladığınızda veya telefonu düz tutup baktığınız yöne doğrulttuğunuzda işaret daha yüksek sesle çalacaktır.
 
 ### Bir adrese işaret ayarlayabilir miyim?
 Evet, ayarlayabilirsiniz. Adresler varsayılan olarak listelenmez ancak arama alanı kullanılarak bulunabilir. Bu adresi tekrar aramak zorunda kalmamak için *Konum Ayrıntıları* ekranından *Kayıtlı Nokta Olarak Kaydet* düğmesini seçerek onu bir kayıtlı nokta olarak ekleyebilirsiniz.
@@ -56,7 +56,7 @@ Soundscape, adreslere işaret ayarlamayı destekler. Evinize veya başka herhang
 Soundscape, hedefinizin konumunu birkaç metre içinde belirleyebilir, ancak daha az değil. Soundscape, hedefinize yakın olduğunuzu belirlediğinde, hedefinizin yakında olduğunu söyleyen son bir anons duyacaksınız ve işaret kapanacak.
 
 ### Hedefime yakınken işareti tekrar açabilir miyim?
-Evet, *"işaret sesini aç düğmesini"* seçerek Soundscape'in kapattığı işareti tekrar açabilirsiniz; ancak Konum Servisleri yalnızca yaklaşık 10 metreye kadar doğru olduğundan, hedefinize birkaç metre içindeyken işaretin davranışını garanti edemeyiz.
+Evet, *İşaretin Sesini Aç* düğmesini seçerek Soundscape'in kapattığı işareti tekrar açabilirsiniz; ancak Konum Servisleri yalnızca yaklaşık 10 metreye kadar doğru olduğundan, hedefinize birkaç metre içindeyken işaretin davranışını garanti edemeyiz.
 
 ### Soundscape neden bir kavşağa yaklaştığımda yol adlarını iki kez anons ediyor?
 Çeşitli kavşak düzenlerine uyum sağlamak için Soundscape, kavşakları ortak bir noktadan ayrılan yol segmentleri olarak tanımlar. Soundscape, sola, düz ileri ve sağa giden yolların adlarını bu sırayla belirtmek için mekansal ses kullanır. Kavşak açıklaması solunuzdaki bir yol yerine üzerinde olduğunuz yolla başlıyorsa, kavşak, üzerinde olduğunuz yolun düz devam ettiği ve sağdan bir yolun bağlandığı yan yatmış bir T oluşturur. Benzer şekilde, açıklama yalnızca sola ve sağa giden bir yol içeriyorsa, üzerinde olduğunuz yolun önünüzde bir T kavşağında sona erdiğini anlarsınız. Bu kavşak tanımlama yöntemi, bir yolun kavşakta adını değiştirdiği durumlarda da doğru çalışır.
@@ -79,9 +79,9 @@ Soundscape şu anda iOS 16 veya sonraki sürümleri çalıştıran iPhone'larda 
 Soundscape ile hangi kulaklıkları kullandığınız kişisel tercihe bağlıdır ve her seçeneğin avantajları ve dezavantajları vardır. Tek gereklilik, Soundscape'in 3D mekansal ses anonslarından yararlanabilmek için bir çift stereo kulaklık kullanmaktır.
 
 ### Soundscape telefonumun pilini nasıl etkiler?
-Pil ömrü, telefonunuzun modeline ve yaşına bağlı olarak önemli ölçüde değişir. Pilinizin en çok tükenen kısmı ekranın açık olmasıdır; bu nedenle telefonunuzun pil ömrünü en üst düzeye çıkarmak için ekranı mümkün olduğunca kilitli tutmalısınız. Telefonunuzun piline olan etkiyi azaltmaya yardımcı olması için Soundscape'te Uyku Modu ve Erteleme Modu bulunur. Kullanımda olmadığınız zamanlarda pil tüketimini daha da azaltmak için Soundscape'i telefonunuzun Uygulama Geçişi ekranından zorla kapatmalısınız.
+Pil ömrü, telefonunuzun modeline ve yaşına bağlı olarak önemli ölçüde değişir. Pilinizi en çok tüketen şey ekranın açık olmasıdır; bu nedenle telefonunuzun pil ömrünü en üst düzeye çıkarmak için ekranı mümkün olduğunca kilitli tutmalısınız. Telefonunuzun piline olan etkiyi azaltmaya yardımcı olması için Soundscape'te Uyku Modu ve Erteleme Modu bulunur. Soundscape'i kullanmadığınız zamanlarda pil tüketimini daha da azaltmak için Soundscape'i telefonunuzun Uygulama Geçişi ekranından zorla kapatmalısınız.
 
-### Soundscape'in telefonumun piline etkisini en aza indirmek için Sessiz Mod'u nasıl kullanırım?
+### Soundscape'in telefonumun piline etkisini en aza indirmek için Uyku Modu'nu nasıl kullanırım?
 Soundscape'i Uyku Modu'na almak için ana ekranın sağ üst köşesindeki *Uyku Modu* düğmesini seçin. Bunu seçtiğinizde Soundscape, siz uyandırana kadar Konum Servisleri ve hücresel veriyi kullanmayı durduracaktır.
 
 ### Soundscape'in telefonumun piline etkisini en aza indirmek için Erteleme modunu nasıl kullanırım?
@@ -122,7 +122,7 @@ Soundscape, neyi ve ne zaman duyduğunuzu kontrol etmeniz için birkaç yol suna
 Soundscape ile etkileşimde bulunmaya devam etmek istiyor fakat otomatik anonsları duymak istemiyorsanız, menüden *Ayarlar* ekranındaki *Anonsları yönet* bölümünde *Anons Ayrıntısı* ayarını *Sessiz* yapabilirsiniz. Ya da Soundscape'i kullanmayacaksanız, ana ekrandaki *Uyku Modu* düğmesini kullanarak uygulamayı Uyku veya Erteleme Modu'na alabilirsiniz.
 
 ### Telefonu her zaman elimde tutmam gerekiyor mu?
-Hayır! Yürürken telefonu cebinize, çantanıza veya uygun gördüğünüz herhangi bir yere koyabilirsiniz. Soundscape, hangi anonsları solunuzda ve sağınızda duyuracağını belirlemek için yürüdüğünüz yönü kullanır. Durduğunuzda Soundscape hangi yöne baktığınızı bilemez. Eğer sesli işaret açıksa, tekrar hareket edene kadar sesin kısıldığını fark edersiniz. Herhangi bir zamanda telefonu çıkarıp ana ekranın altındaki konum ve keşif düğmelerine basabilirsiniz; ancak telefonu tutarken üst kısmının baktığınız yöne ve ekranın gökyüzüne bakacak şekilde düz tutmaya dikkat edin. Bu *düz* pozisyonda Soundscape, telefonun pusulasını kullanarak hangi yöne baktığınızı belirler ve doğru mekânsal anonslar sağlar. İşaret açıksa ayrıca sesin tam hacme geri döndüğünü de fark edeceksiniz.
+Hayır! Yürürken telefonu cebinize, çantanıza veya uygun gördüğünüz herhangi bir yere koyabilirsiniz. Soundscape, hangi anonsları solunuzda ve sağınızda duyuracağını belirlemek için yürüdüğünüz yönü kullanır. Durduğunuzda Soundscape hangi yöne baktığınızı bilemez. Eğer sesli işaret açıksa, tekrar hareket edene kadar sesin kısıldığını fark edersiniz. Herhangi bir zamanda telefonu çıkarıp ana ekranın altındaki konum ve keşif düğmelerine basabilirsiniz; ancak telefonu tutarken üst kısmının baktığınız yöne ve ekranın gökyüzüne bakacak şekilde düz tutmaya dikkat edin. Bu *düz* pozisyonda Soundscape, telefonun pusulasını kullanarak hangi yöne baktığınızı belirler ve doğru mekânsal anonslar sağlar. İşaret açıksa ayrıca sesin tam ses düzeyine geri döndüğünü de fark edeceksiniz.
 
 ### OpenStreetMap nedir ve Soundscape için neden kullanıyoruz?
 Soundscape, sesli anonslarını oluşturmak için harita verilerini kullanır. Birincil harita kaynağımız OpenStreetMap'tir (www.openstreetmap.org); katkıda bulunanlardan oluşan bir topluluk tarafından oluşturulmuş bir haritalama platformudur. Kuruluşlar ve bireyler, OpenStreetMap araçlarını kullanarak verileri iyileştirebilir ve mekânlarını daha erişilebilir hale getirebilir.

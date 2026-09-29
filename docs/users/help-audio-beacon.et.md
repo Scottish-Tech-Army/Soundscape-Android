@@ -29,5 +29,5 @@ Helimajaka seadmine on kasulik, kui soovite jälgida tuttavat maamärki uue piir
 
 **Kuuldava helimajaka vaigistamine:**
 
- Puudutage avakuval nuppu *Vaigista helimajakas*, mis asub nupu *Peata marsruut* kõrval.
+ Puudutage avakuval nuppu *Summuta helimajakas*, mis asub nupu *Peata marsruut* kõrval.
 

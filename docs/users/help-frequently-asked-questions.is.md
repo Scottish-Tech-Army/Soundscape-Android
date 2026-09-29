@@ -53,7 +53,7 @@ Já, það er hægt. Heimilisföng koma ekki fram sjálfgefið en má finna með
 Soundscape styður að hljóðviti sé settur á heimilisföng. Til að setja hljóðvita á heimilið þitt, eða annað heimilisfang, skaltu leita að staðnum með leitarstikunni á aðalskjánum. Ýttu síðan á hnappinn *Kveikja á hljóðvita* á skjánum *Upplýsingar um staðsetningu*.
 
 ### Þegar ég set hljóðvita á áfangastað, hversu nálægt honum mun Soundscape koma mér?
-Soundscape getur veitt nákvæmni allt að nokkrum metrum. Þegar komið er að völdum punkti eða merki lætur forritið vita og endar leiðsögn.
+Soundscape getur ákvarðað staðsetningu áfangastaðarins upp á nokkra metra, en ekki nákvæmar. Þegar Soundscape ákvarðar að þú sért nálægt áfangastaðnum heyrirðu lokatilkynningu um að áfangastaðurinn sé nálægt og þá slokknar á hljóðvitanum.
 
 ### Get ég virkjað hljóðvitann aftur þegar ég nálgast áfangastað?
 Já, þú getur kveikt á hljóðvitanum aftur eftir að Soundscape hefur slökkt á honum með því að velja hnappinn *virkja hljóðvita*. Þar sem staðsetningarþjónusta er þó aðeins nákvæm upp á um 10 metra getum við ekki tryggt hegðun hljóðvitans þegar þú ert í fárra metra fjarlægð frá áfangastaðnum.
@@ -73,7 +73,7 @@ Soundscape geymir lista yfir nýlegar tilkynningar svo þú getir farið yfir ti
 ## Hvernig virkar Soundscape?
 
 ### Hvernig síma keyrir Soundscape á?
-Soundscape fyrir Android er hægt að nota með símum sem keyra Android 11 eða nýlegri útgáfur.
+Soundscape er sem stendur í boði fyrir iPhone-síma með iOS 16 eða nýrra og fyrir Android-síma með Android 11 eða nýrra.
 
 ### Hverskonar heyrnartól ætti ég að nota með Soundscape?
 Val á heyrnartólum fer eftir smekk hvers og eins, og hver kostur hefur sína kosti og galla. Eina krafan er að nota víðóma (stereo) heyrnartól svo þú getir nýtt þér þrívíddarhljóð Soundscape til fulls.
