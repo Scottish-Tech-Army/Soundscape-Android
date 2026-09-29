@@ -67,6 +67,12 @@ Nothing yet.
 4. Siri phrases «Soundscape arredores / rota / sinal / parar sinal…»: natural?
 5. Articles are now chosen from the name («no Largo do Carmo», «na Rua Augusta»). Right? (PT-G1)
 6. Anything else.
+7. Landmark vs Marker: «marco» is the Marker term, but Microsoft also used it for
+   "landmark" in `callouts_places_and_landmarks` («Locais e Marcos», which reads as
+   "Places and Markers") and `help_text_destination_beacons_when` («um marco
+   familiar»). Elsewhere landmark is «Ponto de Referência». Should both become
+   «Pontos de Referência» / «ponto de referência»? Both are held unchanged under
+   C14 (iOS users have heard Microsoft's wording) until Dave or a reviewer decides.
 
 ## Provenance
 
@@ -80,3 +86,14 @@ AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 26 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** `settings_theme_contrast_regular` → «Normal». Uploaded live.
+
+**2026-09-29 — full review (1586 units).** 29 flagged, and 27 were uploaded and verified live.
+Checked against Microsoft's pt-PT first. Four Microsoft errors were fixed: `help_text_around_me_how`
+(Microsoft copied Ahead of Me's "several points roughly ahead"), "Bluetooth com ou sem fios" → "com fios
+ou Bluetooth", typo «utiliza», agreement «anunciadas». Two drifted strings were restored to Microsoft's
+wording. Also fixed: the button names «Desativar Sinal» and «OK», the lost `*…*` in
+`help_text_routes_content_how_1`, and the {pt:…} markers in 4 templates (railway, tunnel, both
+entrance strings; the entrances had a fixed «do»). Brazilian and pre-reform forms were replaced:
+«balsas»/«Barcas» → «Terminal de ferry» (4 strings), «Chaveiro» → «Serralheiro»,
+«Rinha» → «Luta de galos», «Boliche» → «Bowling», «afastando-se» → «a afastar-se»,
+«Eléctrico» → «elétrico», «arquitectura» → «arquitetura». Held: Q7 (Landmark as «marco»).
