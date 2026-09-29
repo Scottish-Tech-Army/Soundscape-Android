@@ -129,7 +129,25 @@ sonst merkt man sie sich nicht.
 
 **Die Frage:** Klingen sie natürlich? Würden Sie etwas anders sagen?
 
-### Q5 — Sonst noch etwas? *(Anything else)*
+### Q5 — Die Schaltfläche „Mark. in Nähe“ *(Nearby Markers button)*
+
+**Wann man es hört:** auf dem Startbildschirm. Es ist eine der vier großen
+Schaltflächen unten; sie sagt die gespeicherten Markierungen in der Nähe an.
+
+**Auf Englisch:** „Nearby Markers“.
+
+**Derzeit auf Deutsch:** „Mark. in Nähe“. An anderer Stelle heißt dieselbe
+Funktion „Markierungen in der Nähe“.
+
+**Was uns unsicher macht:** Die Abkürzung wurde vermutlich gewählt, damit der
+Text auf die Schaltfläche passt. Der Screenreader liest sie aber als „Mark“
+vor, also wie ein Name oder die alte Währung, nicht als „Markierungen“.
+
+**Die Frage:** Wie sollte die Schaltfläche heißen, damit sie beim Hören
+verständlich ist, zum Beispiel „Markierungen in der Nähe“? Oder ist „Mark.
+in Nähe“ verständlich genug?
+
+### Q6 — Sonst noch etwas? *(Anything else)*
 
 Wenn ein Satz wie aus dem Englischen übersetzt klingt, zu lang oder
 unverständlich ist, sagen Sie es uns bitte.

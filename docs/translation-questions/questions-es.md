@@ -15,9 +15,10 @@ permalink: /translation-questions/questions-es/
 ¡Hola! Gracias por echar un vistazo.
 
 La traducción al
-español ya ha pasado por la revisión de hablantes nativos, así que no quedan
-preguntas abiertas. Aquí tienes un resumen de lo que se decidió. Si algo te
-suena raro, escríbenos igualmente: cualquier comentario es bienvenido.
+español ya ha pasado por la revisión de hablantes nativos. Aquí tienes un
+resumen de lo que se decidió y, al final, tres preguntas que siguen abiertas.
+**No necesitas conocer ni instalar la aplicación:** cada pregunta dice cuándo
+se oye el texto, qué dice en inglés y cómo suena ahora.
 
 Casi todo lo **lee en voz alta un sintetizador de voz**, a menudo mientras la
 persona camina. Lo más importante es que suene claro y natural *al oído*.
@@ -35,8 +36,8 @@ oriente por sí misma.
 Algunos conceptos que aparecen abajo:
 
 - **Aviso** *(callout)*: un mensaje hablado breve sobre algo junto a lo que
-  pasas, por ejemplo «Cafetería», «La acera junto a Calle Mayor» o «Caminando
-  hacia el norte por Calle Mayor». Se oye en sonido 3D, desde la dirección en
+  pasas, por ejemplo «Cafetería», «Acera junto a la calle Mayor» o «Caminando
+  hacia el norte por la calle Mayor». Se oye en sonido 3D, desde la dirección en
   que está lo que se nombra.
 - **Señal de audio** *(audio beacon)*: al elegir un destino, en los auriculares
   suena un sonido regular y repetido que llega desde la dirección del destino.
@@ -78,7 +79,64 @@ Carabelas», «Cerca del Hospital Italiano», «Cerca del Corte Inglés». Las c
 nombre de persona («Juan B. Justo») siguen sin artículo. Si algún nombre te suena
 mal, cuéntanos.
 
-## ¿Algo más?
+## Cómo responder
+
+Responde por correo e indica el número de la pregunta («Q2: yo diría…»). No
+hace falta contestarlas todas; si algo ya está bien, un simple «OK» también
+ayuda.
+
+---
+
+### Q1 — «Puntos de ruta» o «puntos de referencia» *(waypoints)*
+
+**Cuándo se oye:** en la pantalla de rutas, cuando todavía no has creado
+ninguna.
+
+**En inglés:** «Create a route for yourself or for someone else. Add a set of
+markers as waypoints to build the route.»
+
+**Cómo suena ahora:** «Crea una ruta para ti o para otra persona. Agrega un
+conjunto de marcadores como puntos de referencia para formar la ruta.»
+
+**Qué nos hace dudar:** en el resto de la aplicación, cada parada de una ruta
+se llama «punto de ruta», y «punto de referencia» se usa para otra cosa: los
+lugares conocidos que sirven para orientarse (*landmarks*). Este texto se
+cambió hace poco a «puntos de referencia».
+
+**La pregunta:** ¿fue intencionado? ¿O debería decir «como puntos de ruta»,
+como el resto de la aplicación?
+
+### Q2 — «No ahora» o «Ahora no» *(Not now)*
+
+**Cuándo se oye:** en un botón, al pasar tus marcadores y rutas desde la
+versión anterior de Soundscape, si decides dejarlo para más tarde.
+
+**En inglés:** «Not now».
+
+**Cómo suena ahora:** «No ahora».
+
+**Qué nos hace dudar:** el texto se cambió hace poco de «Ahora no» a «No
+ahora». A nosotros «Ahora no» nos parece la forma habitual en un botón.
+
+**La pregunta:** ¿cuál prefieres?
+
+### Q3 — «podrá actuar» *(you can operate it as usual)*
+
+**Cuándo se oye:** en la ayuda sobre los marcadores.
+
+**En inglés:** «When you do this, the Soundscape audio beacon you are familiar
+with, will be heard and you can operate it as usual.»
+
+**Cómo suena ahora:** «Cuando hagas esto, se oirá la señal de audio de
+Soundscape que conoces y podrá actuar de la manera habitual.»
+
+**Qué nos hace dudar:** en inglés, quien maneja la señal eres tú; «podrá
+actuar» parece decir que es la señal la que «actúa».
+
+**La pregunta:** ¿sería mejor «y podrás usarla de la manera habitual», o está
+bien así?
+
+### Q4 — ¿Algo más? *(Anything else)*
 
 Si una frase te suena a traducción del inglés, es demasiado larga o no se
 entiende, cuéntanoslo, aunque no tenga número.

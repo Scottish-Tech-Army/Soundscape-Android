@@ -19,7 +19,7 @@ Microsoft never had (callout detail, confected way names, voice commands,
 travel mode, ~410 keys) is AI. The 20 drifted strings look like
 improvements: they fix Microsoft errors such as «Endpunkt» for "Done" and
 «Wie verwenden ich». The Siri phrases (`de.lproj`) match the help text.
-Questions: `docs/translation-questions/questions-de.md` (Q1…Q5).
+Questions: `docs/translation-questions/questions-de.md` (Q1…Q6).
 
 ## Glossary
 
@@ -75,10 +75,10 @@ Microsoft's files.
 3. The four detail levels (Ausführlich / Ausgewogen / Leise / Stumm): clear?
    «Leise» may be heard as volume rather than fewer callouts.
 4. Siri phrases «Soundscape Umgebung / Route / Beacon / stoppe Beacon…»: natural?
-5. Anything else.
-6. The *Nearby Markers* button reads «Mark.⏎in Nähe» (Microsoft's wording). TalkBack
+5. The *Nearby Markers* button reads «Mark.⏎in Nähe» (Microsoft's wording). TalkBack
    says "Mark", not "Markierungen". Should the label be spelled out, or should the
    button get a separate spoken label in code? Unchanged until decided (2026-09-29).
+6. Anything else.
 
 ## Provenance
 
@@ -103,4 +103,4 @@ restore. Microsoft itself had mixed «Ruhemodus» and «Ruhemodus aktivieren». 
 → «Bildschirm nach oben», missing «aus», «wenn Sie sich … entfernt sind», «dieser» → «dieses»
 (Audiobeacon), `confect_name_joins` «verbindet» → «zwischen» (keeps it a name inside callouts), lost
 `*„…“*` in the routes help, «Bildschirm „Startbildschirm“». Also the word order in 4 named
-stations/terminals («Bahnhof %1$s»), and 3 slashes read aloud. Held: Q6 («Mark.» label).
+stations/terminals («Bahnhof %1$s»), and 3 slashes read aloud. Held: Q5 («Mark.» label).

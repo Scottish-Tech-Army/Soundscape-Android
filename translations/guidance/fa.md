@@ -25,7 +25,7 @@ Things that already work:
 - «مختصر» (brief) for Quiet keeps it apart from «بی‌صدا» (silent).
 - There is no `fa.lproj`, so the Siri phrases stay in English.
 
-Questions: `docs/translation-questions/questions-fa.md` (Q1…Q5).
+Questions: `docs/translation-questions/questions-fa.md` (Q1…Q6).
 
 ## Glossary
 
@@ -56,14 +56,14 @@ Nothing yet.
 2. Beacon «جهت‌نمای صوتی»: clear?
 3. Snooze «حالت چرت»: natural?
 4. Is the formal plural register right?
-5. Anything else.
-6. Points of interest vs Landmarks: «نقاط شاخص» is used for both. It appears in
+5. Points of interest vs Landmarks: «نقاط شاخص» is used for both. It appears in
    13 strings for "points of interest" and is also the Landmarks category
    (`callouts_places_landmarks`, the Quiet-mode description in
    `callouts_verbosity_description`, `osm_generic_landmark`). So "all places" and
    "landmarks only" sound the same. Should one of them get a different word
    (e.g. «مکان‌های دیدنی» or «مکان‌ها» for points of interest)? Raised by the
    2026-09-29 review, and unchanged until answered.
+6. Anything else.
 
 ## Provenance
 
@@ -83,4 +83,4 @@ the reverse-route hint rewritten as a verb so it fits the TalkBack template, `os
 removed from five `tour_*` strings, because the tutorial dialog shows plain text. And Latin «Soundscape» →
 «ساند‌اسکیپ» in the running text of 15 strings (voice-command help, spoken action/Siri replies,
 migration messages, GPS help). The Siri command phrases inside `*…*` stay English, because there is no
-`fa.lproj`. Open: Q6 (points of interest vs Landmarks).
+`fa.lproj`. Open: Q5 (points of interest vs Landmarks).
