@@ -1628,4 +1628,11 @@
     <string name="search_no_offline_maps">Arama çevrimdışı çalışıyor, ancak bulunduğunuz yer için indirilmiş bir çevrimdışı harita yok.</string>
     <string name="location_detail_adjust_marker_location">Konumu Düzenle</string>
     <string name="location_detail_adjust_marker_location_instructions">Kayıtlı noktanın konumunu taşımak için haritayı sürükleyin. Yeni konumu korumak için Tamam'a, değiştirmeden bırakmak için İptal'e dokunun.</string>
+    <string name="location_detail_action_open_in_app">Harita Uygulamasında Aç</string>
+    <string name="location_detail_action_open_in_named_app">%1$s ile Aç</string>
+    <string name="location_detail_action_open_in_app_hint">bu konumu başka bir harita veya navigasyon uygulamasında görüntülemek</string>
+    <string name="location_detail_action_open_in_named_app_hint">bu konumu %1$s ile görüntülemek</string>
+    <string name="open_in_app_dialog_title">Hangi uygulamayla açılacağını seçin</string>
+    <string name="open_in_app_remember">Her zaman bu uygulamayı kullan</string>
+    <string name="open_in_app_change">Başka bir uygulama seç</string>
 </resources>
