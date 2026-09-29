@@ -53,6 +53,10 @@ Rephrase impersonally («Kada koristiti Soundscape?», «Kako smanjiti…»),
 which is also more natural for FAQ headings. Serbian's equivalents avoid the
 slash by using the masculine only («смањио»), which is a different trade-off.
 
+### HR-B1 — Hints are conditional participles (`agreed`, fixed 2026-09-29)
+
+«Dvaput dodirnite da biste %1$s» needs «utišali», «uredili», «dodali», never an imperative («Prikaži») or the informal present («urediš»). Check any new hint.
+
 ### HR-C1 — Siri phrases stay in English (`agreed`)
 
 See PL-C1.
@@ -95,3 +99,13 @@ Nothing yet.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 27 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** Byte `*_a11y` plurals: the «few» form had no number; `%1$s` restored. `osm_helipad` → «Sletište za helikoptere» (it had been «Heliodrom», same as heliport). Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 23 fixes uploaded.** There are no human Croatian edits in Weblate, and HR-G2 (the FAQ slashes) was left for Q3. Fixed:
+- **`faq_how_to_use_beacon_answer`:** translated from an older English with a sailboat-tacking sentence (C16). Now matches the current English.
+- **8 hints (HR-B1).**
+- **Beacon «far» → «svjetionik»** (4, including the wrong button name in `tour_start_beacon`).
+- **Waypoint «točka rute» → «putna točka»** (4).
+- **Help text now uses the real button or screen names:** *Oko mene*, *Pojedinosti o lokaciji*, *Trenutačna lokacija*, *Uključi zvuk svjetionika*.
+- **Term and register:** «zanimljivoj točki», and «prolaziš» → «prolazite».
+
+Uploaded with `--skip-validate`; all 23 re-fetched and matched exactly.
