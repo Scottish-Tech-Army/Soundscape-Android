@@ -126,3 +126,22 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE
 ```
 
+
+## Open Location Code
+The plus code decoder in
+`shared/src/commonMain/kotlin/org/scottishtecharmy/soundscape/geoengine/utils/openlocationcode`
+is taken from Aught One's Kotlin Multiplatform port of Open Location Code,
+https://github.com/aughtone/aughtone-openlocationcode (version 0.0.1-alpha2),
+with its package renamed. It is licensed under the Apache License, Version 2.0,
+which is available at http://www.apache.org/licenses/LICENSE-2.0. Its NOTICE reads:
+
+```
+Aught One — Open Location Code
+Copyright 2026 The Aught One Authors
+
+This product includes software derived from Open Location Code
+(https://github.com/google/open-location-code)
+Copyright 2014 Google Inc.
+
+Open Location Code is licensed under the Apache License, Version 2.0.
+```
