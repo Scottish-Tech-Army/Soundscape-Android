@@ -1628,4 +1628,11 @@
     <string name="search_no_offline_maps">శోధన ఆఫ్‌లైన్‌లో పనిచేస్తోంది, కానీ మీరు ఉన్న ప్రాంతానికి ఆఫ్‌లైన్ మ్యాప్ ఏదీ డౌన్‌లోడ్ చేయబడలేదు.</string>
     <string name="location_detail_adjust_marker_location">స్థానాన్ని సవరించు</string>
     <string name="location_detail_adjust_marker_location_instructions">మార్కర్ స్థానాన్ని జరపడానికి మ్యాప్‌ను లాగండి. కొత్త స్థానాన్ని ఉంచుకోవడానికి ‘పూర్తయింది’ను నొక్కండి, లేదా స్థానాన్ని మార్చకుండా వదిలేయడానికి ‘రద్దు చేయి’ను నొక్కండి.</string>
+    <string name="location_detail_action_open_in_app">మ్యాప్ యాప్‌లో తెరువు</string>
+    <string name="location_detail_action_open_in_named_app">%1$sలో తెరువు</string>
+    <string name="location_detail_action_open_in_app_hint">ఈ స్థానాన్ని మరొక మ్యాప్ లేదా నావిగేషన్ యాప్‌లో చూడటానికి</string>
+    <string name="location_detail_action_open_in_named_app_hint">ఈ స్థానాన్ని %1$sలో చూడటానికి</string>
+    <string name="open_in_app_dialog_title">ఏ యాప్‌తో తెరవాలో ఎంచుకోండి</string>
+    <string name="open_in_app_remember">ఎల్లప్పుడూ ఈ యాప్‌ను ఉపయోగించు</string>
+    <string name="open_in_app_change">వేరే యాప్‌ను ఎంచుకో</string>
 </resources>
