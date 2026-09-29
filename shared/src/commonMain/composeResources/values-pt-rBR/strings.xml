@@ -1643,4 +1643,11 @@
     <string name="search_no_offline_maps">A pesquisa está funcionando offline, mas não há nenhum mapa offline baixado para o lugar onde você está.</string>
     <string name="location_detail_adjust_marker_location">Editar localização</string>
     <string name="location_detail_adjust_marker_location_instructions">Arraste o mapa para mover a localização do favorito. Toque em Concluído para manter a nova localização ou em Cancelar para deixá-la inalterada.</string>
+    <string name="location_detail_action_open_in_app">Abrir em um aplicativo de mapa</string>
+    <string name="location_detail_action_open_in_named_app">Abrir em %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">ver esta localização em outro aplicativo de mapa ou de navegação</string>
+    <string name="location_detail_action_open_in_named_app_hint">ver esta localização em %1$s</string>
+    <string name="open_in_app_dialog_title">Escolha o aplicativo para abrir</string>
+    <string name="open_in_app_remember">Sempre usar este aplicativo</string>
+    <string name="open_in_app_change">Escolher outro aplicativo</string>
 </resources>
