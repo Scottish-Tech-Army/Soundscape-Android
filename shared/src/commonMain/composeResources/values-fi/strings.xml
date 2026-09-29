@@ -1628,4 +1628,11 @@
     <string name="search_no_offline_maps">Haku toimii offline-tilassa, mutta sijainnistasi ei ole ladattu offline-karttaa.</string>
     <string name="location_detail_adjust_marker_location">Muokkaa sijaintia</string>
     <string name="location_detail_adjust_marker_location_instructions">Siirrä merkitsimen sijaintia vetämällä karttaa. Säilytä uusi sijainti napauttamalla Valmis tai jätä sijainti ennalleen napauttamalla Peruuta.</string>
+    <string name="location_detail_action_open_in_app">Avaa karttasovelluksessa</string>
+    <string name="location_detail_action_open_in_named_app">Avaa sovelluksessa %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">näyttääksesi tämän sijainnin toisessa kartta- tai navigointisovelluksessa</string>
+    <string name="location_detail_action_open_in_named_app_hint">näyttääksesi tämän sijainnin sovelluksessa %1$s</string>
+    <string name="open_in_app_dialog_title">Valitse, millä sovelluksella avataan</string>
+    <string name="open_in_app_remember">Käytä aina tätä sovellusta</string>
+    <string name="open_in_app_change">Valitse toinen sovellus</string>
 </resources>
