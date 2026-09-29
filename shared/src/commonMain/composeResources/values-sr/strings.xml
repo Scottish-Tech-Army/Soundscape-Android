@@ -1643,4 +1643,11 @@
     <string name="search_no_offline_maps">Претрага ради офлајн, али за место на ком се налазите није преузета ниједна офлајн мапа.</string>
     <string name="location_detail_adjust_marker_location">Уреди локацију</string>
     <string name="location_detail_adjust_marker_location_instructions">Превуците мапу да бисте померили локацију маркера. Додирните Готово да бисте задржали нову локацију или Откажи да бисте је оставили непромењеном.</string>
+    <string name="location_detail_action_open_in_app">Отвори у апликацији за мапе</string>
+    <string name="location_detail_action_open_in_named_app">Отвори у апликацији %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">прегледате ову локацију у другој апликацији за мапе или навигацију</string>
+    <string name="location_detail_action_open_in_named_app_hint">прегледате ову локацију у апликацији %1$s</string>
+    <string name="open_in_app_dialog_title">Изаберите апликацију за отварање</string>
+    <string name="open_in_app_remember">Увек користи ову апликацију</string>
+    <string name="open_in_app_change">Изабери другу апликацију</string>
 </resources>
