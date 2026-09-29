@@ -65,6 +65,14 @@ The Siri strings in `iosApp/iosApp/Localizable.xcstrings` ("Marker",
 "Markers", "Nearby Markers" and two descriptions) switched in the same step,
 so the help text still names choices Siri recognises (FI-C1).
 
+### FI-B1 — Hints use the translative infinitive (`agreed`, fixed 2026-09-29)
+
+«Kaksoisnapauta %1$s» needs «avataksesi», «kuullaksesi», «muokataksesi» ('in order to…'), as Microsoft wrote them, never «avaa», «kuule», «muokkaa». Check any new hint.
+
+### FI-T2 — Button and screen names (`agreed`, 2026-09-29)
+
+Nearby Markers is «Lähiympäristön merkitsimet» (button, help, tutorial). Places Nearby is «Lähiympäristön paikat». Location Details is Microsoft's «Sijainnin tiedot». The Siri phrase «Lähellä olevat merkitsimet» is separate (FI-C1).
+
 ## Rejected
 
 Nothing yet.
@@ -100,3 +108,16 @@ AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 27 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** `osm_platform` → «Asemalaituri», `osm_dock` → «Satama-allas» (both had been «Laituri»), `osm_college` → «Opisto». Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 38 fixes uploaded.** The Weblate log shows no human Finnish edits. Fixed:
+- **17 hints** had drifted from the translative infinitive to imperatives (FI-B1).
+- **Unified names (FI-T2):**
+  - Nearby Markers (button + 5 help/tour strings).
+  - Places Nearby in 3 tour strings.
+  - Location Details: title and 5 help strings back to Microsoft's «Sijainnin tiedot».
+- **`help_text_nearby_markers_how`:** the last sentence had been copied from Ahead of Me (Microsoft's error), now "up to four markers near you".
+- **`faq_miss_a_callout_answer`:** «jättämäsi» → «huomaamatta jäänyt».
+- **`help_creating_markers_page_title`:** «Merkitsimien luominen».
+- **Capitals:** «Merkitsimet ja reitit», and three named-place templates lower-cased.
+
+Left for a native speaker: `relative_clock_direction` «kello %1$s» can read as a time of day. Uploaded with `--skip-validate`; all 38 re-fetched and matched exactly.
