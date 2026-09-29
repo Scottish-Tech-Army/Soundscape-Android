@@ -1643,4 +1643,11 @@
     <string name="search_no_offline_maps">Pretraživanje radi izvanmrežno, ali za mjesto na kojem se nalazite nije preuzeta nijedna izvanmrežna karta.</string>
     <string name="location_detail_adjust_marker_location">Uredi lokaciju</string>
     <string name="location_detail_adjust_marker_location_instructions">Povucite kartu da biste pomaknuli lokaciju oznake. Dodirnite Gotovo da biste zadržali novu lokaciju ili Odustani da biste je ostavili nepromijenjenom.</string>
+    <string name="location_detail_action_open_in_app">Otvori u aplikaciji za karte</string>
+    <string name="location_detail_action_open_in_named_app">Otvori u aplikaciji %1$s</string>
+    <string name="location_detail_action_open_in_app_hint">pregledali ovu lokaciju u drugoj aplikaciji za karte ili navigaciju</string>
+    <string name="location_detail_action_open_in_named_app_hint">pregledali ovu lokaciju u aplikaciji %1$s</string>
+    <string name="open_in_app_dialog_title">Odaberite aplikaciju za otvaranje</string>
+    <string name="open_in_app_remember">Uvijek koristi ovu aplikaciju</string>
+    <string name="open_in_app_change">Odaberi drugu aplikaciju</string>
 </resources>
