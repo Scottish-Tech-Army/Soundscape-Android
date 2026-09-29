@@ -94,13 +94,15 @@ sampai di salah satu titik pemberhentiannya.
 
 **Dalam bahasa Inggris:** "Waypoint", "Next waypoint".
 
-**Bunyinya sekarang:** biasanya "Titik Rute", tetapi di beberapa tempat "titik
-jalan" ("Titik jalan berikutnya", "Rute Rumah pada titik jalan 2 dari 5").
+**Bunyinya sekarang:** "Titik Rute" di semua tempat ("Titik rute berikutnya",
+"Rute Rumah pada titik rute 2 dari 5"). Sebelumnya beberapa tempat memakai "titik
+jalan"; kami sudah menyeragamkannya.
 
-**Yang membuat kami ragu:** dua istilah tercampur, dan kami tidak tahu mana yang
-wajar.
+**Yang membuat kami ragu:** istilah ini dipilih oleh mesin, dan "titik jalan"
+mungkin lebih lazim.
 
-**Pertanyaannya:** mana yang lebih wajar? Apa sebutannya di Google Maps?
+**Pertanyaannya:** apakah "Titik Rute" terdengar wajar, atau "titik jalan" lebih
+baik? Apa sebutannya di Google Maps?
 
 ### Q4 — "Menunda" *(Snooze)*
 

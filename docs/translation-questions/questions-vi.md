@@ -89,12 +89,13 @@ trên đó.
 
 **Tiếng Anh:** "Waypoint", "Next waypoint".
 
-**Hiện giờ:** thường là "Điểm dừng", nhưng vài chỗ là "điểm mốc" ("Điểm mốc tiếp
-theo", "Tuyến đường Nhà tại điểm mốc 2 trong số 5").
+**Hiện giờ:** "Điểm dừng" ở mọi nơi ("Điểm dừng tiếp theo", "Lộ trình Nhà tại
+điểm dừng 2 trong số 5"). Trước đây vài chỗ dùng "điểm mốc"; chúng tôi đã thống
+nhất lại, vì "điểm mốc" cũng là từ dùng cho địa danh nổi bật (*Landmarks*).
 
-**Điều chúng tôi băn khoăn:** hai từ bị trộn lẫn.
+**Điều chúng tôi băn khoăn:** từ này do máy chọn.
 
-**Câu hỏi:** từ nào đúng hơn?
+**Câu hỏi:** "Điểm dừng" nghe có tự nhiên không, hay có từ nào tốt hơn?
 
 ### Q4 — "Thông báo" *(Callout vs phone notifications)*
 

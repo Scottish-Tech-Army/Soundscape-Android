@@ -57,7 +57,7 @@ Nothing yet.
 1. Intersection descriptions: «%1$s, rẽ trái» sounds like "turn left". Is
    «%1$s, đi về bên trái» better? (VI-G1)
 2. Beacon «Đèn hiệu âm thanh»: odd for a sound? (VI-T1)
-3. Waypoint «Điểm dừng» (33) vs «điểm mốc» (6): which?
+3. Waypoint «Điểm dừng»: natural? (The waypoint uses of «điểm mốc», which is also the Landmarks word, were unified to «điểm dừng» on 2026-09-29.)
 4. Callout «thông báo»: confused with phone notifications?
 5. Snooze «Tạm nghỉ»: clear?
 6. Is «bạn» right?

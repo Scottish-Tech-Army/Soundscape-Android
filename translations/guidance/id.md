@@ -56,7 +56,7 @@ Nothing yet.
 
 1. Callout «pemberitahuan»: confused with phone notifications? (ID-T1)
 2. Beacon «Suar Audio»: does it sound right for a *sound* you follow? (ID-T2)
-3. Waypoint «Titik Rute» (21) vs «titik jalan» (3): natural? What does Google Maps say?
+3. Waypoint «Titik Rute»: natural, or is «titik jalan» better? What does Google Maps say? (The 3 «titik jalan» were unified to «titik rute» on 2026-09-29.)
 4. Snooze «Menunda»: clear?
 5. Landmarks: keep «Landmark» or use «Tengara»?
 6. Is «Anda» right?
