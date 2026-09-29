@@ -78,3 +78,28 @@ Nothing uploaded.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 25 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-28 — Weblate checks pass.** `osm_dock` → «Darsena», `osm_wrestling` → «Lotta». Uploaded live.
+
+**2026-09-29 — Full review of all 1586 units, 21 fixes uploaded.** The Weblate log shows no human Italian edits. Unlike French, the Microsoft help text got quadrants, facing and wayfinding skills right. Fixed:
+- **Meaning:**
+  - `faq_supported_phones_answer`: a stale Android-only sentence, now with the iPhone/iOS 16 half (C16).
+  - `faq_turn_beacon_back_on_answer`: «dopo che Soundscape lo ha disattivato». Microsoft had the user turning it off.
+  - `osm_wreck` «Relitto».
+  - `relative_clock_direction` «a ore %1$s»: «alle ore» is a time of day.
+- **English word order in named places:** `osm_train_station_named`, `osm_subway_named`, `osm_ferry_terminal_named`, `osm_tag_ferry_terminal_named` → «Stazione ferroviaria %1$s» etc.; `osm_entrance_named_with_destination` → «%2$s {it:di %1$s} {it:da %3$s}».
+- **IT-G1 templates missed by the 2026-09-25 pass:**
+  - `osm_entrance_with_destination`: hard-coded «del» → «{it:di %1$s}».
+  - `directions_entering_tunnel_named` → «Ingresso {it:in %1$s}».
+  - `confect_name_joins` → «che collega %2$s e %3$s».
+- **Grammar:**
+  - `offline_maps_storage` → «salvate in %1$s, che ha %2$s liberi».
+  - `offline_maps_free_space` → «liberi».
+  - `offline_map_details_size_on_phone` → «sul telefono».
+  - `settings_theme_contrast` → «Contrasto del tema».
+  - `settings_theme_contrast_high` → «Alto».
+- **Terms and markup:**
+  - `annotation_description_hint`: «marcatore» → «indicatore».
+  - `faq_road_names_question`: «chiama» → «annuncia» (Microsoft wording).
+  - `help_text_customizing_markers_content_2`: *Modifica*.
+  - `beacon_action_callout_beacon`: «Annuncia audiofaro» (Dave took the soft call).
+
+Uploaded with `--skip-validate`; all 21 re-fetched and matched exactly.
