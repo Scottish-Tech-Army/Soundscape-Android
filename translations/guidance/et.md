@@ -91,3 +91,5 @@ label. **New road templates must use the wrapped form.**
 - "the lighthouse metaphor … has natural implications", now "This design has a few natural results".
 
 The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
+
+**2026-09-29 — European batch review.** 9 hints were imperatives or 3sg («lisa», «muuda», «Kuva», «muudab», «ahenda», «laienda») → da-infinitives. `help_text_destination_beacons_how_3` «Vaigista helimajakas» → «Summuta helimajakas», the label. 10 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.

@@ -85,3 +85,5 @@ Nothing yet.
 Nothing uploaded.
 
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 27 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
+
+**2026-09-29 — European batch review.** 6 hints were «te» verb forms or capitalised («megtekintsd», «kilépj», «válassz», «zárd be…», «Térkép…») → verbal nouns like the rest. Help: «Hely részletei» → «Helyszín adatai» (3), «Közösségi közlekedés» → «Tömegközlekedés» (1). 10 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.

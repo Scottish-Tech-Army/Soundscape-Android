@@ -106,9 +106,11 @@ cosa?
 ara").
 
 **El que ens fa dubtar:** si és adequat per a una aplicació que també fa servir
-gent gran.
+gent gran. A més, les preguntes freqüents
+(l'ajuda) tracten l'usuari de vós ("Podeu…", "la vostra destinació"), i
+l'aplicació hauria de fer servir una sola forma.
 
-**La pregunta:** et sembla bé?
+**La pregunta:** et sembla bé el tu, o preferiries el vós a tota l'aplicació?
 
 ### Q5 — "Avís de veu" *(Callout)*
 
