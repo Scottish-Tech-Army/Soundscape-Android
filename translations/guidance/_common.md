@@ -519,3 +519,21 @@ literally on 2026-09-30 and are asked on their questionnaires, including Ukraini
 Ukrainian's old names had been native-confirmed; Dave chose on 2026-09-30 to override
 that for literal names and ask again. A confirmed decision is only overridden like this
 explicitly and on the record (C8).
+
+## C23 — Right-to-left languages mirror the screen, so left and right swap (2026-09-30)
+
+The app declares `supportsRtl`, and Compose mirrors the layout for Arabic,
+Persian and Urdu. The Sleep button is at the **top-left** there, and My Location
+is the **right-most** of the four buttons at the bottom. Help text that copies
+the English positions sends a blind user to the wrong corner.
+
+> **Case (ar, fa, ur, 2026-09-30):** the all-language review found «الزاوية
+> العلوية اليمنى» (top-right) for the Sleep button and «الزر الموجود على اليسار»
+> (the button on the left) for My Location. Fixed in `tour_my_location`,
+> `help_text_automatic_callouts_how_1`, `faq_sleep_mode_battery_answer` and
+> `faq_snooze_mode_battery_answer`. Persian's two FAQ answers already said top-left.
+
+**How to apply:** in a right-to-left language, swap left and right wherever a
+string gives a **screen position**. Never swap a spatial callout
+(«goes left», «on your right»): the world doesn't mirror, only the screen does.
+Those four English comments now say so.
