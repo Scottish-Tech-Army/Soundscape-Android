@@ -1,6 +1,6 @@
 ---
-name: weblate-add-language
-description: Onboard a brand-new translation language for Soundscape-Android — create its values-<qualifier>/strings.xml, translate every string for it, and (separately) wire it into the app's language whitelist and localized docs. Use when the user asks to add a new language/locale that isn't translated at all yet, as opposed to translating already-untranslated strings in a language the app already supports (that's [[weblate-translate]]) or reviewing existing translations (that's [[weblate-review]]).
+name: add-language
+description: Onboard a brand-new translation language for Soundscape-Android — create its values-<qualifier>/strings.xml, translate every string for it, and (separately) wire it into the app's language whitelist and localized docs. Use when the user asks to add a new language/locale that isn't translated at all yet, as opposed to translating already-untranslated strings in a language the app already supports (that's [[translate]]) or reviewing existing translations (that's [[translation-review]]).
 ---
 
 # Add a language
@@ -10,7 +10,7 @@ phases, run separately:
 
 - **Phase 1 — Translate**: create
   `shared/src/commonMain/composeResources/values-<qualifier>/strings.xml` and translate
-  every string into it, with `weblate-translate`'s `strings_sync.py`. Commit.
+  every string into it, with `translate`'s `strings_sync.py`. Commit.
 - **Phase 2 — Repo wiring**: flip the app-side whitelist and generate the
   small hand-authored docs page so the app and docs site actually offer the
   language. Only when the user asks: whitelisting is what makes the language
@@ -21,8 +21,8 @@ Read `docs/developers/translations.md` before starting (both phases draw on it).
 
 ## Args
 
-The language to add, e.g. `/weblate-add-language Welsh` or
-`/weblate-add-language et` (Estonian). If the user gives only a language
+The language to add, e.g. `/add-language Welsh` or
+`/add-language et` (Estonian). If the user gives only a language
 name, work out its ISO code yourself; if the user gives only a code, work out
 the English name yourself. Either way, confirm your guess in the summary you
 give back rather than silently assuming — a wrong code creates the wrong
@@ -34,7 +34,7 @@ into the app, tell them there's nothing to add — that's not this skill.
 
 ## Phase 1 — Create the file and translate
 
-1. Run `python3 .claude/skills/weblate-translate/scripts/strings_sync.py languages` and
+1. Run `python3 .claude/skills/translate/scripts/strings_sync.py languages` and
    check whether the language already has a `values-*` file.
 
    - **Not present yet**: continue to step 2.
@@ -49,9 +49,9 @@ into the app, tell them there's nothing to add — that's not this skill.
    dropped. If the code differs from the qualifier, add it to `VALUES_DIR` in both
    `strings_sync.py` and `WEBLATE_CODES` in `scripts/find-stale-translations.py`.
 
-3. Translate every string, following `weblate-translate`'s procedure for this one
+3. Translate every string, following `translate`'s procedure for this one
    language:
-   - `strings_sync.py fetch --lang <code> --out-dir /tmp/weblate-add-language` — every
+   - `strings_sync.py fetch --lang <code> --out-dir /tmp/add-language` — every
      string comes back `untranslated`.
    - Read `docs/developers/translations.md`, `docs/developers/translation-terminology.md`
      and `translations/guidance/_common.md`.
@@ -60,7 +60,7 @@ into the app, tell them there's nothing to add — that's not this skill.
    - Plurals take an object with exactly the categories from step 2. With no existing
      plural to compare against, `validate` warns instead of checking them, so check them
      yourself.
-   - `strings_sync.py apply --lang <code> --file <batch> --out-dir /tmp/weblate-add-language`
+   - `strings_sync.py apply --lang <code> --file <batch> --out-dir /tmp/add-language`
      after each batch. The first apply creates the file.
    - This is the whole ~1600-string corpus. Say so up front, keep going rather than
      stopping partway, and report progress every few batches.
@@ -163,7 +163,7 @@ rather than trying to run the instrumented test from here.
 ## Notes
 
 - If parallelizing Phase 1's translation batches across subagents for a
-  large language, follow `weblate-review`'s "If parallelizing the review
+  large language, follow `translation-review`'s "If parallelizing the review
   across subagents" guidance on why to use fresh (non-`fork`) agents with
   disjoint input/output files — the same failure mode (a fork reverting to
   this skill's own generic instructions and overwriting sibling output)

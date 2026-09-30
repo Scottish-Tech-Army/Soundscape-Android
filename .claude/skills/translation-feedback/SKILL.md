@@ -1,6 +1,6 @@
 ---
-name: weblate-feedback
-description: Turn native-speaker feedback about a Soundscape translation into recorded per-language decisions and a corpus-wide sweep. Use when someone sends notes, a bug report, screenshots or a document criticising the translation for a language — it records the decisions in translations/guidance/<code>.md, then finds every other string those decisions affect. Reports findings and never edits translation files; applying them is [[weblate-review]]'s explicit apply step.
+name: translation-feedback
+description: Turn native-speaker feedback about a Soundscape translation into recorded per-language decisions and a corpus-wide sweep. Use when someone sends notes, a bug report, screenshots or a document criticising the translation for a language — it records the decisions in translations/guidance/<code>.md, then finds every other string those decisions affect. Reports findings and never edits translation files; applying them is [[translation-review]]'s explicit apply step.
 ---
 
 # Weblate feedback
@@ -15,17 +15,28 @@ that a straight "fix what they reported" pass misses:
    pilot, 4 reported strings expanded to 62 affected units.
 
 It never edits the translation files. Producing fixes and applying them are separate,
-and applying lives in [[weblate-review]]'s "Applying fixes" step, behind its own
+and applying lives in [[translation-review]]'s "Applying fixes" step, behind its own
 explicit ask.
 
 ## Args
 
 A language code and where the feedback is, e.g.
-`/weblate-feedback uk ~/Downloads/localisation_issues.md`. If the feedback is
+`/translation-feedback uk ~/Downloads/localisation_issues.md`. If the feedback is
 pasted into the conversation instead, use that. If no language is given, infer
 it from the feedback and say which you inferred.
 
 ## Procedure
+
+0. **Weblate suggestions are feedback too.** To collect them:
+   ```
+   python3 .claude/skills/translate/scripts/weblate_sync.py suggestions --out-dir /tmp/translation-review
+   ```
+   It writes `<code>-suggestions.json` for each language with open suggestions, in the
+   findings shape, with the author and date in `reason`. Treat each one as a piece of
+   feedback from an anonymous reviewer: bucket it like anything else below, and never
+   apply one just because someone suggested it. When one is accepted or rejected, say so
+   in the guidance file; the suggestion itself stays open in Weblate until someone
+   dismisses it there.
 
 1. **Read the feedback whole, including images.** Screenshots carry things the
    write-up doesn't: the platform and app version, and often strings the
@@ -45,7 +56,7 @@ it from the feedback and say which you inferred.
 
 3. **Fetch the corpus**:
    ```
-   python3 .claude/skills/weblate-translate/scripts/strings_sync.py fetch --lang <code> --out-dir /tmp/weblate-review
+   python3 .claude/skills/translate/scripts/strings_sync.py fetch --lang <code> --out-dir /tmp/translation-review
    ```
 
 4. **Bucket every item.** This is the core of the skill. Each piece of
@@ -96,8 +107,8 @@ it from the feedback and say which you inferred.
    anything you are interpreting, since your reading may be wrong. Always
    record rejected suggestions with why.
 
-8. **Write findings** to `/tmp/weblate-review/<code>-findings.json` in
-   [[weblate-review]]'s schema (`context`, `source`, `current`, `suggested`,
+8. **Write findings** to `/tmp/translation-review/<code>-findings.json` in
+   [[translation-review]]'s schema (`context`, `source`, `current`, `suggested`,
    `reason`), so its apply step can consume them unchanged. For
    `unconfirmed`/`provisional` items set `suggested` equal to `current` —
    that is the existing signal for "skip, don't apply". Add `rule` and
@@ -110,7 +121,7 @@ it from the feedback and say which you inferred.
    comes back as a second round of feedback.
 
    Close by telling the user what was applied (nothing), what's ready to apply
-   via `weblate-review`, and what's blocked on the reporter.
+   via `translation-review`, and what's blocked on the reporter.
 
 ## Notes
 
@@ -119,7 +130,7 @@ it from the feedback and say which you inferred.
   message that asked for the feedback pass.
 - Editing the English source or its comments (bucket 4) changes what every
   language sees: every language's translation of that string turns stale, and the next
-  [[weblate-translate]] pass picks it up. Flag it to the user rather than treating it as
+  [[translate]] pass picks it up. Flag it to the user rather than treating it as
   a silent side effect. A comment-only edit doesn't make anything stale.
 - The guidance files are the deliverable that outlives the session. A fix
   applied without the rule recorded gets undone by the next translation pass.

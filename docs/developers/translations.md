@@ -22,7 +22,7 @@ A guide to key Soundscape terminology can be found [here]({% link developers/tra
    scripts/find-stale-translations.py                  # counts for every language
    scripts/find-stale-translations.py --lang de --diff # the strings, with how the English changed
    ```
-4. A translation pass fills them in and commits them to the language files, like any other code change. This is normally done with the `weblate-translate` Claude Code skill (see [AI translations](#ai-translations)), but a translator can equally edit the files by hand and open a pull request.
+4. A translation pass fills them in and commits them to the language files, like any other code change. This is normally done with the `translate` Claude Code skill (see [AI translations](#ai-translations)), but a translator can equally edit the files by hand and open a pull request.
 5. Weblate picks up the new state of the repository on its next update.
 
 Stale detection is worked out from git history, as Weblate's "needs editing" used to be. Quote and whitespace changes are ignored on both sides. If an English change needs nothing from a language (a typo fix, say), acknowledge it rather than rewriting the translation:
@@ -33,7 +33,7 @@ This records the current English for that string in `translations/stale-acknowle
 
 ### Feedback from native speakers
 
-Questionnaire answers, emails and Weblate suggestions are turned into recorded decisions in `translations/guidance/<code>.md`, with a corpus-wide sweep for every other string each decision affects. `translations/guidance/_common.md` holds the rules that apply to every language. These files are what every later translation and review pass starts from, so a correction isn't undone by the next pass. The `weblate-feedback` and `weblate-review` skills do this work. Suggestions made in Weblate have to be collected from there by hand for now, since nothing reads them automatically.
+Questionnaire answers, emails and Weblate suggestions are turned into recorded decisions in `translations/guidance/<code>.md`, with a corpus-wide sweep for every other string each decision affects. `translations/guidance/_common.md` holds the rules that apply to every language. These files are what every later translation and review pass starts from, so a correction isn't undone by the next pass. The `translation-feedback` and `translation-review` skills do this work. Weblate suggestions are collected with `.claude/skills/translate/scripts/weblate_sync.py suggestions`, which writes one file per language with open suggestions for the feedback skill to review.
 
 ### Format notes
 
@@ -43,7 +43,7 @@ Questionnaire answers, emails and Weblate suggestions are turned into recorded d
 
 ## Adding a whole new language
 
-Translations for a language that isn't enabled don't affect the app, because we explicitly whitelist the languages to include. The `weblate-add-language` skill creates `values-<qualifier>/strings.xml` and translates every string into it; enabling the language is then a separate, deliberate step. The files to change are:
+Translations for a language that isn't enabled don't affect the app, because we explicitly whitelist the languages to include. The `add-language` skill creates `values-<qualifier>/strings.xml` and translates every string into it; enabling the language is then a separate, deliberate step. The files to change are:
 * Add the language to the `resourceConfigurations` list in `app/build.gradle.kts`. Anything not in this list is excluded from the build and this is to block out partial translations.
 * Add the language to `getAllLanguages` in `LanguageScreen.kt`. This also requires the name of the language in that language e.g. Español for Spanish.
 * Also add the language to `MockLanguagePreviewData` in `LanguageScreen.kt` so that the `@Preview` of the `LanguageScreen` remains accurate.
@@ -56,13 +56,13 @@ Check a new language's locale against the plural rules Compose Resources knows b
 
 Most of our languages don't yet have a native speaker checking them, so translations are kept up to date with AI. This is done in-session with Claude Code skills in `.claude/skills/`, which translate using the whole existing corpus for that language, the terminology guide and the recorded native-speaker decisions:
 
-* `weblate-translate` — translates every untranslated and stale string, validates the result (placeholders, line breaks, plural forms, escaping) and commits it. Its helper `strings_sync.py` does the file work.
-* `weblate-review` — reviews existing translations for a language and reports findings. It only applies fixes when explicitly asked.
-* `weblate-feedback` — turns native-speaker feedback into recorded decisions and a sweep.
-* `weblate-add-language` — adds a new language.
+* `translate` — translates every untranslated and stale string, validates the result (placeholders, line breaks, plural forms, escaping) and commits it. Its helper `strings_sync.py` does the file work.
+* `translation-review` — reviews existing translations for a language and reports findings. It only applies fixes when explicitly asked.
+* `translation-feedback` — turns native-speaker feedback into recorded decisions and a sweep.
+* `add-language` — adds a new language.
 * `translation-questionnaire` — writes and refreshes the published questionnaires.
 
-(The skills keep their `weblate-` names from when they worked through Weblate.)
+(They were called `weblate-translate`, `weblate-review`, `weblate-feedback` and `weblate-add-language` until 2026-09-30, when they stopped working through Weblate.)
 
 ## The documentation website
 

@@ -395,7 +395,7 @@ Weblate shows the string as translated, so nothing else catches it.
 changed. After any bulk pass, run the check:
 
 ```
-python3 .claude/skills/weblate-translate/scripts/truncation_check.py /tmp/weblate-review [<code> ...]
+python3 .claude/skills/translate/scripts/truncation_check.py /tmp/translation-review [<code> ...]
 ```
 
 It compares each translation's length with its language's own median ratio

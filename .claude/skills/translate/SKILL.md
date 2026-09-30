@@ -1,6 +1,6 @@
 ---
-name: weblate-translate
-description: Translate Soundscape-Android's untranslated and stale strings directly in the repo's shared/composeResources values-*/strings.xml files, in-session, then commit. Use when the user asks to translate untranslated/missing/unfinished strings, bring translations up to date after an English change, or run a translation pass — for a language the app doesn't support at all yet, use [[weblate-add-language]] instead.
+name: translate
+description: Translate Soundscape-Android's untranslated and stale strings directly in the repo's shared/composeResources values-*/strings.xml files, in-session, then commit. Use when the user asks to translate untranslated/missing/unfinished strings, bring translations up to date after an English change, or run a translation pass — for a language the app doesn't support at all yet, use [[add-language]] instead.
 ---
 
 # Translate untranslated and stale strings
@@ -18,7 +18,7 @@ for it, and **stale** if its English changed after the translation was last chan
 
 ## Args
 
-Optional language codes narrow scope, e.g. `/weblate-translate de fr`. With no args,
+Optional language codes narrow scope, e.g. `/translate de fr`. With no args,
 process every language `languages` reports as having pending work. Codes are the ones
 `translations/guidance/` uses (`de`, `fr_CA`, `zh_Hans`, `en_GB`, `nb_NO`, `id`);
 `strings_sync.py` maps them to the `values-*` directories.
@@ -28,13 +28,13 @@ process every language `languages` reports as having pending work. Codes are the
 Work in a **fresh, empty** output directory — a previous run's files are
 indistinguishable from this run's. `fetch` deletes its own outputs before writing.
 
-1. Run `python3 .claude/skills/weblate-translate/scripts/strings_sync.py languages`
+1. Run `python3 .claude/skills/translate/scripts/strings_sync.py languages`
    to see every language's untranslated and stale counts. If everything is 0, say so
    and stop.
 
 2. Fetch:
    ```
-   python3 .claude/skills/weblate-translate/scripts/strings_sync.py fetch --all --out-dir <dir>
+   python3 .claude/skills/translate/scripts/strings_sync.py fetch --all --out-dir <dir>
    ```
    or `fetch --lang <code> [<code> ...] --out-dir <dir>` for a subset. It refuses to run
    while translation files have uncommitted changes, because the stale check reads git
@@ -101,7 +101,7 @@ indistinguishable from this run's. `fetch` deletes its own outputs before writin
 
 5. Validate:
    ```
-   python3 .claude/skills/weblate-translate/scripts/strings_sync.py validate --lang <code> --file <dir>/<code>-translations.json --out-dir <dir>
+   python3 .claude/skills/translate/scripts/strings_sync.py validate --lang <code> --file <dir>/<code>-translations.json --out-dir <dir>
    ```
    This checks placeholders, line breaks, escaped quotes, empty values and plural
    quantities, and that every key really is pending for the language — a key that isn't
@@ -110,7 +110,7 @@ indistinguishable from this run's. `fetch` deletes its own outputs before writin
 
 6. Apply, which validates again and writes nothing if any language fails:
    ```
-   python3 .claude/skills/weblate-translate/scripts/strings_sync.py apply --all --out-dir <dir>
+   python3 .claude/skills/translate/scripts/strings_sync.py apply --all --out-dir <dir>
    ```
    or `apply --lang <code> --file <path> --out-dir <dir>`. Existing entries are replaced
    in place; new ones are inserted after their nearest English neighbour.
@@ -128,7 +128,7 @@ indistinguishable from this run's. `fetch` deletes its own outputs before writin
 
 - **Translate the whole string, never just the part that changed** (rule C16 in
   `translations/guidance/_common.md`). After a bulk pass, run
-  `python3 .claude/skills/weblate-translate/scripts/truncation_check.py <dir> <code>` and
+  `python3 .claude/skills/translate/scripts/truncation_check.py <dir> <code>` and
   check every flag against the English.
 - **Write quotes bare or typographic, never escaped.** Compose Resources shows `\"` and
   `\'` literally ([[composeresources-no-quote-escaping]]); `validate` refuses them. French
