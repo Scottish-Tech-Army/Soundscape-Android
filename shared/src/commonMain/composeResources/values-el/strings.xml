@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Η ενημέρωση ολοκληρώθηκε!</string>
     <string name="waypoint_title">Σημείο πορείας</string>
     <string name="universal_links_alert_action_marker">Αποθήκευση ως δείκτη</string>
-    <string name="universal_links_marker_share_message">Έχω μοιραστεί μαζί σας έναν δείκτη του Soundscape: "%1$s".\n\nΓια να τον ανοίξετε στο Soundscape, χρησιμοποιήστε %2$s.\n\nΓια να τον ανοίξετε στο Google Maps, χρησιμοποιήστε %3$s.</string>
+    <string name="universal_links_marker_share_message">Έχω μοιραστεί μαζί σας έναν δείκτη του Soundscape: «%1$s».\n\nΓια να τον ανοίξετε στο Soundscape, χρησιμοποιήστε %2$s.\n\nΓια να τον ανοίξετε στο Google Maps, χρησιμοποιήστε %3$s.</string>
     <string name="user_activity_save_marker_title">Αποθήκευση δείκτη</string>
     <string name="routes_title">Διαδρομές</string>
     <string name="routes_action_deleted">Η διαδρομή διαγράφηκε</string>
@@ -218,7 +218,7 @@
     <string name="help_text_section_title_when">Πότε θα το χρησιμοποιούσα;</string>
     <string name="help_text_section_title_how">Πώς λειτουργεί;</string>
     <string name="terms_of_use_title">Όροι Χρήσης</string>
-    <string name="terms_of_use_message">Η χρήση του Soundscape υπόκειται στους όρους του %1$s και στους όρους που αναφέρονται παρακάτω (μαζί, οι *"Όροι Χρήσης"*).</string>
+    <string name="terms_of_use_message">Η χρήση του Soundscape υπόκειται στους όρους του %1$s και στους όρους που αναφέρονται παρακάτω (μαζί, οι *«Όροι Χρήσης»*).</string>
     <string name="terms_of_use_service_agreement">Συμφωνητικό υπηρεσιών Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Αποδοχή Όρων Χρήσης</string>
     <string name="terms_of_use_medical_safety_disclaimer">Αναγνωρίζετε ότι το Soundscape (1) δεν έχει σχεδιαστεί, δεν προορίζεται και δεν διατίθεται ως ιατρική συσκευή, και (2) δεν έχει σχεδιαστεί ούτε προορίζεται να αποτελέσει υποκατάστατο επαγγελματικής ιατρικής συμβουλής, διάγνωσης, θεραπείας ή κρίσης και δεν πρέπει να χρησιμοποιείται για να αντικαταστήσει ή να υποκαταστήσει επαγγελματική ιατρική συμβουλή, διάγνωση, θεραπεία ή κρίση.\n\nΣημείωση ασφαλείας\n\nΤο Soundscape είναι βοήθημα πλοήγησης και δεν πρέπει να χρησιμοποιείται αντί της εκμάθησης δεξιοτήτων μετακίνησης, της επαγρύπνησης για το περιβάλλον σας και της καλής κρίσης. Να είστε προσεκτικοί όταν πλοηγείστε στο περιβάλλον σας, καθώς τα δεδομένα χαρτογράφησης που ενσωματώνονται στο πρόγραμμα Soundscape προέρχονται από τρίτο μέρος και, ως εκ τούτου, ενδέχεται να υπάρχουν περιορισμοί στην ακρίβεια των παρεχόμενων πληροφοριών.</string>

@@ -69,7 +69,7 @@
     <string name="route_update_success_title">Aktualizacja zakończona!</string>
     <string name="waypoint_title">Punkt trasy</string>
     <string name="universal_links_alert_action_marker">Zapisz jako znacznik</string>
-    <string name="universal_links_marker_share_message">Udostępniam Ci znacznik Soundscape: "%1$s".\n\nAby otworzyć w Soundscape, użyj %2$s.\n\n Aby otworzyć w Mapach Google, użyj %3$s.</string>
+    <string name="universal_links_marker_share_message">Udostępniam Ci znacznik Soundscape: „%1$s”.\n\nAby otworzyć w Soundscape, użyj %2$s.\n\n Aby otworzyć w Mapach Google, użyj %3$s.</string>
     <string name="user_activity_save_marker_title">Zapisz znacznik</string>
     <string name="routes_title">Zapisane trasy</string>
     <string name="routes_action_deleted">Trasa usunięta</string>

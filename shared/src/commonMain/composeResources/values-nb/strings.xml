@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Oppdateringen er fullført!</string>
     <string name="waypoint_title">Veipunkt</string>
     <string name="universal_links_alert_action_marker">Lagre som markør</string>
-    <string name="universal_links_marker_share_message">Jeg har delt en Soundscape-markør med deg: "%1$s".\n\nFor å åpne i Soundscape, bruk %2$s.\n\nFor å åpne i Google Maps, bruk %3$s.</string>
+    <string name="universal_links_marker_share_message">Jeg har delt en Soundscape-markør med deg: «%1$s».\n\nFor å åpne i Soundscape, bruk %2$s.\n\nFor å åpne i Google Maps, bruk %3$s.</string>
     <string name="user_activity_save_marker_title">Lagre markør</string>
     <string name="routes_title">Ruter</string>
     <string name="routes_action_deleted">Ruten er slettet</string>
@@ -218,7 +218,7 @@
     <string name="help_text_section_title_when">Når skal jeg bruke den?</string>
     <string name="help_text_section_title_how">Hvordan fungerer den?</string>
     <string name="terms_of_use_title">Vilkår for bruk</string>
-    <string name="terms_of_use_message">Din bruk av Soundscape er underlagt vilkårene i %1$s og vilkårene som er angitt nedenfor (samlet kalt *"Vilkår for bruk"*).</string>
+    <string name="terms_of_use_message">Din bruk av Soundscape er underlagt vilkårene i %1$s og vilkårene som er angitt nedenfor (samlet kalt *«Vilkår for bruk»*).</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army tjenesteavtale</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Godta vilkårene for bruk</string>
     <string name="terms_of_use_medical_safety_disclaimer">Du erkjenner at Soundscape (1) ikke er utformet, ment eller gjort tilgjengelig som et medisinsk apparat, og (2) ikke er utformet eller ment å være en erstatning for profesjonell medisinsk rådgivning, diagnose, behandling eller vurdering, og skal ikke brukes som erstatning for slik profesjonell rådgivning, diagnose, behandling eller vurdering.\n\nSikkerhetsmerknad\n\nSoundscape er et navigasjonshjelpemiddel og bør ikke brukes i stedet for mobilitetsferdigheter, oppmerksomhet om omgivelsene eller sunn dømmekraft. Vær forsiktig når du ferdes i omgivelsene dine, ettersom kartdataene som inngår i Soundscape er hentet fra et tredjepartsprogram, og det kan derfor være begrensninger i nøyaktigheten til informasjonen som presenteres.</string>
