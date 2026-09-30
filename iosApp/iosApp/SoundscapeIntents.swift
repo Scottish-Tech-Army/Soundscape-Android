@@ -189,6 +189,8 @@ enum ListKind: String, AppEnum, CaseIterable {
 /// the choice crosses into Kotlin - through the companion's lookup rather than the exported enum
 /// cases, the same way the rest of this file reaches the shared code.
 enum CalloutDetailLevel: String, AppEnum, CaseIterable {
+    // Raw values are the stored preference values, which kept the old names when Quiet and Balanced
+    // were renamed Essential and Simplified - only the display names below changed.
     case silent = "Silent"
     case quiet = "Quiet"
     case balanced = "Balanced"
@@ -199,8 +201,8 @@ enum CalloutDetailLevel: String, AppEnum, CaseIterable {
     /// Wording matches the audio menu: callouts_verbosity_level_*.
     static var caseDisplayRepresentations: [CalloutDetailLevel: DisplayRepresentation] = [
         .silent: "Silent",
-        .quiet: "Quiet",
-        .balanced: "Balanced",
+        .quiet: "Essential",
+        .balanced: "Simplified",
         .detailed: "Detailed",
     ]
 

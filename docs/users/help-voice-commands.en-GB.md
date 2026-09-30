@@ -35,7 +35,7 @@ Start one of your saved routes by name, move on to the next waypoint, go back to
 
 Set an audio beacon on one of your saved markers by name, or switch the beacon off.
 
-Set the callout detail to *Silent*, *Quiet*, *Balanced* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.
+Set the callout detail to *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.
 
 Read back the names of your saved routes or your saved markers.
 

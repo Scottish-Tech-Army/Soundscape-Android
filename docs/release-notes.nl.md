@@ -117,9 +117,9 @@ Wat we het vaakst over Soundscape horen, is dat het te veel zegt op drukke plekk
 stadscentrum. Het onderdeel *Aankondigingen beheren* in *Instellingen* heeft nu drie instellingen in
 plaats van de oude lijst met schakelaars:
 
-* **Detailniveau aankondigingen** is Stil, Rustig, Gebalanceerd of Gedetailleerd. *Gedetailleerd* is
-  wat Soundscape altijd deed, en daar begint u mee. *Gebalanceerd* laat kleine paden en ventwegen weg
-  en herhaalt zich minder vaak. *Rustig* kondigt alleen straten, kruispunten en herkenningspunten aan.
+* **Detailniveau aankondigingen** is Stil, Essentieel, Vereenvoudigd of Uitgebreid. *Uitgebreid* is
+  wat Soundscape altijd deed, en daar begint u mee. *Vereenvoudigd* laat kleine paden en ventwegen weg
+  en herhaalt zich minder vaak. *Essentieel* kondigt alleen straten, kruispunten en herkenningspunten aan.
   *Stil* doet helemaal geen automatische aankondigingen, terwijl bakens, routes en de knoppen op het
   beginscherm gewoon blijven werken. Het vervangt de oude schakelaar *Aankondigingen toestaan*; als u
   die had uitgezet, staat het detailniveau op Stil.
@@ -131,8 +131,8 @@ plaats van de oude lijst met schakelaars:
   altijd aangekondigd.
 
 Het juiste detailniveau verandert terwijl u loopt, dus u hoeft er niet voor naar Instellingen. Met
-*Vorige* op uw koptelefoon zet u het detailniveau steeds één stap lager, van Gedetailleerd via
-Gebalanceerd en Rustig naar Stil, en dan weer terug naar Gedetailleerd. Het nieuwe niveau wordt
+*Vorige* op uw koptelefoon zet u het detailniveau steeds één stap lager, van Uitgebreid via
+Vereenvoudigd en Essentieel naar Stil, en dan weer terug naar Uitgebreid. Het nieuwe niveau wordt
 telkens uitgesproken. Dit werkt in beide modi van de mediaregelaars, en daardoor zijn de knoppen van
 de koptelefoon een beetje veranderd:
 

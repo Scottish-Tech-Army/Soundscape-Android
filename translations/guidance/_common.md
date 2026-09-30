@@ -494,3 +494,25 @@ as leading to a place.
 per-language decisions recorded against `confect_name_dead_end` (C9 genitives,
 PL-G1, ES-G1, FR-G1, NL-G1…) now live in these two strings. Don't make `%1$s`
 agree in gender or case: it may be a proper name.
+
+## C22 — Detail levels renamed in English: Simplified and Essential (2026-09-30)
+
+"Balanced" and "Quiet" became **Simplified** and **Essential**. All three
+native-speaker reviewers so far rejected at least one of the old names. The
+Polish reviewer said "Quiet" sounds like volume. French and Dutch said
+"Balanced" has no natural equivalent («Équilibré» "doesn't work",
+«Gebalanceerd» is an anglicism). All three found Quiet too close to Silent.
+The new names describe *how much* the app says, and they form a descending
+ladder: Detailed → Simplified → Essential → Silent.
+
+Only the display names changed. The stored preference values («Quiet»,
+«Balanced»), the resource keys (`callouts_verbosity_level_quiet` /
+`_balanced`) and the iOS `CalloutDetailLevel` raw values are unchanged, so
+saved settings and the Siri/Gemini lookups still work. The lookup matches the
+stored value *or* the localized name.
+
+**How to apply:** translate each level by what it does (level 2 leaves out
+minor paths; level 3 is streets, junctions and landmarks only), and keep all
+four distinct by ear. pl, fr and nl took literal names on Dave's call and
+will be re-asked (PL-T1, FR-L1, NL-L1). Every other language needs its
+level names and the ~6 strings that list them redone once Weblate flags them.

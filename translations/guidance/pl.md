@@ -46,7 +46,7 @@ A review pack was prepared for the first reviewer:
 | Intersection / Junction | skrzyżowanie | `unconfirmed` | — |
 | Sleep / Snooze | Tryb uśpienia / Tryb drzemki | `unconfirmed` | The pair is distinct, which is the main requirement |
 | Callout Detail | Szczegółowość powiadomień | `unconfirmed` | Coined 2026-09-23 with the new setting |
-| Detailed / Balanced / Quiet / Silent | Szczegółowy / Zrównoważony / **Uproszczony** / Wyciszony | `agreed` | Reviewer renamed Quiet to «Uproszczony» (Q1). See PL-T1 |
+| Detailed / Simplified / Essential / Silent | Szczegółowy / Uproszczony / Podstawowy / Wyciszony | `agreed` (Dave), `unconfirmed` (speaker) | English renamed 2026-09-30 (C22). Literal names on Dave's call; the reviewer had put «Uproszczony» on level 3. See PL-T1 |
 | Streets and Junctions | Ulice i skrzyżowania | `unconfirmed` | Coined 2026-09-23 |
 | Places to Call Out | Powiadamiaj o miejscach | `unconfirmed` | AI rewording 2026-09-30 to drop «ogłaszać» (PL-V1). Mirrors «Uwzględniaj odległość…». Not seen by the reviewer |
 | Everything / No Places | Wszystko / Brak miejsc | `unconfirmed` | Distinct from `filter_all` «Wszystkie miejsca», which is a different setting |
@@ -170,6 +170,8 @@ drift, but no speaker has endorsed it. Polish accessibility apps are split betwe
 this and formal «Pan/Pani». See Q4.
 
 ### PL-T1 — The four detail levels must be distinguishable by ear (`agreed` 2026-09-30)
+
+**Later on 2026-09-30:** the English levels were renamed Simplified / Essential (C22). Dave chose literal names: level 2 «Uproszczony», level 3 **«Podstawowy»**. The reviewer's «Uproszczony» therefore moved up one level. That goes against the answer below, so it's round-2 question 4.
 
 Reviewer (Q1): rename Quiet «Cichy» → **«Uproszczony»** ("simplified"), because it announces only the necessary minimum. This also breaks the shared root with «Wyciszony». Swept: `callouts_verbosity_level_quiet`, `callouts_verbosity_description`, `action_no_such_callout_detail`, and the four help texts that recite the ladder. The generated `docs/users/help-*.pl.md` pages follow at the next release ([[docs-site-translations-need-a-release]]).
 
@@ -316,6 +318,7 @@ Q10 → PL-D1.
    Vocalizer…)? Does «na godzinie dziewiątej» sound right, or is «na
    dziewiątej» more natural for clock positions? Did the engine say
    «piętnastu metrów» even with a comma before «na godzinie»?
+4. **Detail levels after the English rename**: Szczegółowy / Uproszczony / Podstawowy / Wyciszony. You chose «Uproszczony» for the third level, which now says only the essentials. Is «Podstawowy» right there, with «Uproszczony» one level up?
 
 ## Provenance
 

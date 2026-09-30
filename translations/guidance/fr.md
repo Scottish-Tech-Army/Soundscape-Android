@@ -66,7 +66,8 @@ cite its numbered questions (Q1…Q12), which match the Open questions list belo
 | Sleep | pause (Mettre en pause / En pause / Reprendre maintenant); mode pause | `agreed` | See FR-T3 |
 | Snooze | pause jusqu’au départ (En pause jusqu’au départ / Reprendre quand je pars) | `agreed` | See FR-T3 |
 | Callout Detail | Détail des annonces | `agreed` | Moved with FR-T1 |
-| Detailed / Balanced / Quiet / Silent | Détaillé / **Synthétique** / **Simplifié** / Silencieux | `agreed` | Reviewer (Q9): «Équilibré» doesn't work as a translation, and «Discret» is too close to «Silencieux». See FR-L1 |
+| Detailed / Simplified / Essential / Silent | Détaillé / Simplifié / Essentiel / Silencieux | `agreed` (Dave), `unconfirmed` (speaker) | English renamed 2026-09-30 (C22); literal on Dave's call. The reviewer had Synthétique / Simplifié. See FR-L1 |
+| (superseded) | Détaillé / Synthétique / Simplifié / Silencieux | — | Reviewer (Q9): «Équilibré» doesn't work as a translation, and «Discret» is too close to «Silencieux». See FR-L1 |
 | dead end | une impasse (in «%1$s menant à %2$s») | `agreed` | Reviewer (Q8): «Chemin menant à une impasse»; «sans issue» may sound anxiety-inducing. See FR-G1 |
 
 ---
@@ -218,7 +219,9 @@ expects. Keep it distinct from `directions_heading_*` «En direction du nord»,
 though, since it's a different string with a different trigger. These are
 spoken often. See Q7.
 
-### FR-L1 — Detail levels: Détaillé / Synthétique / Simplifié / Silencieux (`agreed` 2026-09-30)
+### FR-L1 — Detail levels: Détaillé / Simplifié / Essentiel / Silencieux (`agreed` 2026-09-30, after the English rename)
+
+**Later on 2026-09-30:** the English levels were renamed Simplified / Essential (C22), and Dave chose literal names. The reviewer's «Simplifié» moves up to level 2, «Synthétique» is dropped, and level 3 becomes «Essentiel». This goes against the answer below, so it's round-2 question 4.
 
 Reviewer (Q9): *"Équilibré ne fonctionne pas en termes de traduction"*, and «Discret» vs «Silencieux» may not be distinct enough. 8 strings swept. The Polish reviewer independently renamed Quiet «Uproszczony» ("simplified"), and the Dutch reviewer also rejected Balanced/Quiet. Three languages have now had trouble with them, which suggests the English names themselves are the problem (not changed).
 
@@ -277,6 +280,7 @@ Reviewer (Q6): *"un mot plus commun et généralisable que carrefour et moins fo
 1. «Étape suivante» / «Ajouter des étapes»: clear enough without «de parcours»?
 2. «Mettre en pause» / «Reprendre quand je pars» / «En pause jusqu’au départ»: do they say what the two modes do?
 3. «Balise sonore» said in full everywhere: too heavy in long help texts?
+4. Detail levels after the English rename: Détaillé / Simplifié / Essentiel / Silencieux. You suggested Synthétique / Simplifié. Does the new set work, and does «Essentiel» sound distinct from «Silencieux»?
 
 ## fr_CA is derived from this file
 

@@ -106,7 +106,7 @@ upgrading.
   for callouts (places, landmarks, mobility, information, safety,
   intersections, destination) plus a master switch for automatic callouts.
   The new app's *Manage Callouts* settings work differently:
-  - **Callout Detail** — Silent, Quiet, Balanced or Detailed — sets how much
+  - **Callout Detail** — Silent, Essential, Simplified or Detailed — sets how much
     is said as you walk. Silent replaces the master switch: no automatic
     callouts, while beacons, routes and the home screen buttons carry on.
   - **Streets and Junctions** turns intersection and road callouts on or off.

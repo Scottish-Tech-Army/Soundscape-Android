@@ -136,14 +136,14 @@ abstract class BaseSoundscapeAppFunctionService : AppFunctionService() {
 
     /**
      * Sets how much Soundscape says automatically as the user walks: Silent turns automatic
-     * callouts off altogether, leaving beacons, routes and on-demand callouts; Quiet calls out only
-     * streets, junctions and landmarks; Balanced skips minor paths and repeats itself less;
+     * callouts off altogether, leaving beacons, routes and on-demand callouts; Essential calls out only
+     * streets, junctions and landmarks; Simplified skips minor paths and repeats itself less;
      * Detailed calls out everything nearby. Useful when a busy street is too noisy, or a quiet
      * one too sparse. The change is saved, the same as choosing it in Settings.
      */
     @AppFunction(isDescribedByKDoc = true)
     suspend fun setCalloutDetail(
-        /** One of Silent, Quiet, Balanced or Detailed. */
+        /** One of Silent, Essential, Simplified or Detailed. */
         level: String,
     ): SoundscapeResult = run(SoundscapeAction.SetCalloutDetailNamed(level))
 

@@ -111,9 +111,9 @@ The most common thing we hear about Soundscape is that there's too much of it in
 city centre. The *Manage Callouts* section of *Settings* now has three settings in place of the old
 list of switches:
 
-* **Callout Detail** is Silent, Quiet, Balanced or Detailed. *Detailed* is what Soundscape has
-  always done, and is where you start. *Balanced* leaves out minor paths and service roads and
-  repeats itself less often. *Quiet* calls out only streets, junctions and landmarks. *Silent* makes
+* **Callout Detail** is Silent, Essential, Simplified or Detailed. *Detailed* is what Soundscape has
+  always done, and is where you start. *Simplified* leaves out minor paths and service roads and
+  repeats itself less often. *Essential* calls out only streets, junctions and landmarks. *Silent* makes
   no automatic callouts at all, while beacons, routes and the home screen buttons carry on working.
   It replaces the old *Allow Callouts* switch, and if you had that switched off you'll find
   Callout Detail set to Silent.
@@ -124,7 +124,7 @@ list of switches:
 
 The right amount of detail changes as you walk, so you don't have to go into Settings to change
 it. Pressing *previous* on your headphones steps the Callout Detail down one level at a time,
-from Detailed through Balanced and Quiet to Silent, then round to Detailed again. It says the new
+from Detailed through Simplified and Essential to Silent, then round to Detailed again. It says the new
 level each time. This works in both media control modes, and it means the headphone buttons have
 changed a little:
 
