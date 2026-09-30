@@ -154,7 +154,7 @@
     <string name="directions_name_goes_left">%1$s, बाएँ जाती है</string>
     <string name="directions_name_goes_right">%1$s, दाएँ जाती है</string>
     <string name="directions_name_continues_ahead">%1$s, आगे जारी है</string>
-    <string name="directions_direction_ahead">आगे</string>
+    <string name="directions_ahead_road">आगे %1$s</string>
     <string name="directions_near_road_and_settlement">%1$s के पास और %2$s के नज़दीक</string>
     <string name="directions_traveling_n">उत्तर की ओर यात्रा</string>
     <string name="directions_traveling_ne">उत्तर-पूर्व की ओर यात्रा</string>

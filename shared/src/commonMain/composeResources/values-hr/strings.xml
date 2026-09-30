@@ -897,7 +897,7 @@
     <string name="directions_name_goes_left">%1$s, skreće lijevo</string>
     <string name="directions_name_goes_right">%1$s, skreće desno</string>
     <string name="directions_name_continues_ahead">%1$s, nastavlja ravno</string>
-    <string name="directions_direction_ahead">sprijeda</string>
+    <string name="directions_ahead_road">Sprijeda %1$s</string>
     <string name="directions_near_road_and_settlement">Blizu %1$s i u blizini %2$s</string>
     <string name="directions_junction_with_ref">Čvor %1$s</string>
     <string name="directions_junction_with_ref_and_name">Čvor %1$s, %2$s</string>

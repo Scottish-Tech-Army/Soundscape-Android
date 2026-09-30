@@ -116,7 +116,7 @@
     <string name="directions_name_goes_left">%1$s, geht nach links ab</string>
     <string name="directions_name_goes_right">%1$s, geht nach rechts ab</string>
     <string name="directions_name_continues_ahead">%1$s, weiter geradeaus</string>
-    <string name="directions_direction_ahead">voraus</string>
+    <string name="directions_ahead_road">Voraus %1$s</string>
     <string name="directions_traveling_n">Nach Norden fahrend</string>
     <string name="directions_traveling_ne">Nach Nordosten fahrend</string>
     <string name="directions_traveling_e">Nach Osten fahrend</string>

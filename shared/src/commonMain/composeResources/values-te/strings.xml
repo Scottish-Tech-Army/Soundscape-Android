@@ -897,7 +897,7 @@
     <string name="directions_name_goes_left">%1$s, ఎడమవైపుకు వెళ్తుంది</string>
     <string name="directions_name_goes_right">%1$s, కుడివైపుకు వెళ్తుంది</string>
     <string name="directions_name_continues_ahead">%1$s, ముందుకు కొనసాగుతుంది</string>
-    <string name="directions_direction_ahead">ముందు</string>
+    <string name="directions_ahead_road">ముందు %1$s</string>
     <string name="directions_near_road_and_settlement">%1$s సమీపంలో మరియు %2$sకి దగ్గరలో</string>
     <string name="directions_junction_with_ref">జంక్షన్ %1$s</string>
     <string name="directions_junction_with_ref_and_name">జంక్షన్ %1$s, %2$s</string>

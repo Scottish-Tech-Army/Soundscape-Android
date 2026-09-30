@@ -116,7 +116,7 @@
     <string name="directions_name_goes_left">%1$s, gaat naar links</string>
     <string name="directions_name_goes_right">%1$s, gaat naar rechts</string>
     <string name="directions_name_continues_ahead">%1$s, gaat rechtdoor</string>
-    <string name="directions_direction_ahead">vóór u</string>
+    <string name="directions_ahead_road">Vóór u %1$s</string>
     <string name="directions_traveling_n">U rijdt naar het noorden</string>
     <string name="directions_traveling_ne">U rijdt naar het noordoosten</string>
     <string name="directions_traveling_e">U rijdt naar het oosten</string>

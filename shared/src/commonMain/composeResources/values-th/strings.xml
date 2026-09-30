@@ -541,7 +541,7 @@
     <string name="directions_name_goes_left">%1$s, ไปทางซ้าย</string>
     <string name="directions_name_goes_right">%1$s, ไปทางขวา</string>
     <string name="directions_name_continues_ahead">%1$s, ตรงไปข้างหน้า</string>
-    <string name="directions_direction_ahead">ข้างหน้า</string>
+    <string name="directions_ahead_road">ข้างหน้า %1$s</string>
     <string name="directions_near_road_and_settlement">ใกล้ %1$s และใกล้ %2$s</string>
     <string name="directions_junction_with_ref">ทางแยก %1$s</string>
     <string name="directions_junction_with_ref_and_name">ทางแยก %1$s, %2$s</string>

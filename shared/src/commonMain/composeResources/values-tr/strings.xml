@@ -176,7 +176,7 @@
     <string name="directions_name_goes_left">%1$s, sola gidiyor</string>
     <string name="directions_name_goes_right">%1$s, sağa gidiyor</string>
     <string name="directions_name_continues_ahead">%1$s, düz devam ediyor</string>
-    <string name="directions_direction_ahead">düz</string>
+    <string name="directions_ahead_road">İleride %1$s</string>
     <string name="directions_near_road_and_settlement">%1$s yakınında ve %2$s'{A} yakın</string>
     <string name="directions_traveling_n">Kuzeye seyahat ediliyor</string>
     <string name="directions_traveling_ne">Kuzeydoğuya seyahat ediliyor</string>

@@ -897,7 +897,7 @@
     <string name="directions_name_goes_left">%1$s, ke kiri</string>
     <string name="directions_name_goes_right">%1$s, ke kanan</string>
     <string name="directions_name_continues_ahead">%1$s, lurus ke depan</string>
-    <string name="directions_direction_ahead">lurus</string>
+    <string name="directions_ahead_road">Lurus %1$s</string>
     <string name="directions_near_road_and_settlement">Dekat %1$s dan tidak jauh dari %2$s</string>
     <string name="directions_junction_with_ref">Persimpangan %1$s</string>
     <string name="directions_junction_with_ref_and_name">Persimpangan %1$s, %2$s</string>

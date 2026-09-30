@@ -185,7 +185,7 @@
     <string name="directions_name_goes_left">%1$s, 왼쪽으로 이어집니다</string>
     <string name="directions_name_goes_right">%1$s, 오른쪽으로 이어집니다</string>
     <string name="directions_name_continues_ahead">%1$s, 앞으로 계속됩니다</string>
-    <string name="directions_direction_ahead">앞쪽</string>
+    <string name="directions_ahead_road">앞쪽 %1$s</string>
     <string name="directions_near_road_and_settlement">%1$s 근처, %2$s 인근</string>
     <string name="directions_junction_with_ref">%1$s번 분기점</string>
     <string name="directions_junction_with_ref_and_name">%1$s번 분기점, %2$s</string>

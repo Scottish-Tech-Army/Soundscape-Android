@@ -897,7 +897,7 @@
     <string name="directions_name_goes_left">%1$s, vedie doľava</string>
     <string name="directions_name_goes_right">%1$s, vedie doprava</string>
     <string name="directions_name_continues_ahead">%1$s, pokračuje priamo</string>
-    <string name="directions_direction_ahead">vpredu</string>
+    <string name="directions_ahead_road">Vpredu %1$s</string>
     <string name="directions_near_road_and_settlement">Blízko %1$s a neďaleko %2$s</string>
     <string name="directions_junction_with_ref">Križovatka %1$s</string>
     <string name="directions_junction_with_ref_and_name">Križovatka %1$s, %2$s</string>

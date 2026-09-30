@@ -125,7 +125,7 @@
     <string name="directions_name_goes_left">%1$s، به چپ می‌رود</string>
     <string name="directions_name_goes_right">%1$s، به راست می‌رود</string>
     <string name="directions_name_continues_ahead">%1$s، مستقیم ادامه می‌یابد</string>
-    <string name="directions_direction_ahead">مستقیم</string>
+    <string name="directions_ahead_road">مستقیم %1$s</string>
     <string name="directions_near_road_and_settlement">نزدیک %1$s و در نزدیکی %2$s</string>
     <string name="directions_traveling_n">در حال حرکت در جهت شمال</string>
     <string name="directions_traveling_ne">در حال حرکت در جهت شمال شرقی</string>

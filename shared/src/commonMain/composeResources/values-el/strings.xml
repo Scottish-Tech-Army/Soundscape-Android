@@ -116,7 +116,7 @@
     <string name="directions_name_goes_left">%1$s, πηγαίνει αριστερά</string>
     <string name="directions_name_goes_right">%1$s, πηγαίνει δεξιά</string>
     <string name="directions_name_continues_ahead">%1$s, συνεχίζει μπροστά</string>
-    <string name="directions_direction_ahead">μπροστά</string>
+    <string name="directions_ahead_road">Μπροστά %1$s</string>
     <string name="directions_traveling_n">Ταξιδεύοντας βόρεια</string>
     <string name="directions_traveling_ne">Ταξιδεύοντας βορειοανατολικά</string>
     <string name="directions_traveling_e">Ταξιδεύοντας ανατολικά</string>

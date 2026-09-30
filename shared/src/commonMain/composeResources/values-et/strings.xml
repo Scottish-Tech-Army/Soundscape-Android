@@ -1149,7 +1149,7 @@
     <string name="directions_name_goes_left">%1$s, suundub vasakule</string>
     <string name="directions_name_goes_right">%1$s, suundub paremale</string>
     <string name="directions_name_continues_ahead">%1$s, jätkub otse</string>
-    <string name="directions_direction_ahead">otse</string>
+    <string name="directions_ahead_road">Otse %1$s</string>
     <string name="directions_near_road_and_settlement">%1$s lähedal ja %2$s läheduses</string>
     <string name="directions_traveling_n">Liigub põhja suunas</string>
     <string name="directions_traveling_ne">Liigub kirde suunas</string>
