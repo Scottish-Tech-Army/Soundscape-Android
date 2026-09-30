@@ -11,13 +11,15 @@ import kotlin.test.assertEquals
  * inspectable string so assertions can pin down exactly which PluralKey, quantity and formatted
  * argument formatBytes used, without depending on real translated copy.
  */
-private class FakeLocalizedStrings : LocalizedStrings {
+private class FakeLocalizedStrings(
+    private val a11ySeparator: String = " comma ",
+) : LocalizedStrings {
     val calls = mutableListOf<Triple<PluralKey, Int, List<Any?>>>()
 
     override fun get(key: StringKey, vararg args: Any?): String =
         when (key) {
             StringKey.NumberDecimalSeparator -> ","
-            StringKey.NumberDecimalSeparatorA11y -> " comma "
+            StringKey.NumberDecimalSeparatorA11y -> a11ySeparator
             else -> "${key.name}(${args.joinToString(",")})"
         }
 
@@ -192,6 +194,15 @@ class FormatBytesTest {
         val fake = FakeLocalizedStrings()
         val result = formatBytes(1500L, fake, forAccessibility = true)
         assertEquals("BytesFormatKbA11y:2(1 comma 5)", result)
+    }
+
+    @Test
+    fun kbValue_accessibility_spacesSeparatorTheTranslationLeftBare() {
+        // The translations store the spoken separator without its spaces ("przecinek"), so
+        // they have to be added in code or the number is read as one word.
+        val fake = FakeLocalizedStrings(a11ySeparator = "przecinek")
+        val result = formatBytes(1500L, fake, forAccessibility = true)
+        assertEquals("BytesFormatKbA11y:2(1 przecinek 5)", result)
     }
 
     @Test

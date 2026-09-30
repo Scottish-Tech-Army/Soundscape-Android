@@ -236,9 +236,12 @@ fun formatDistanceAndDirection(
 }
 
 internal fun decimalSeparator(localized: LocalizedStrings?, forAccessibility: Boolean): String {
-    val key = if (forAccessibility) StringKey.NumberDecimalSeparatorA11y
-    else StringKey.NumberDecimalSeparator
-    return localized?.get(key) ?: if (forAccessibility) " point " else "."
+    if (!forAccessibility) return localized?.get(StringKey.NumberDecimalSeparator) ?: "."
+    // The spoken separator is a word between two numbers, so it needs a space either side. The
+    // English string carries them (" point "), but every translation had lost them, which gave
+    // "1przecinek5". So the spaces are added here rather than trusted to the strings.
+    val word = localized?.get(StringKey.NumberDecimalSeparatorA11y)?.trim() ?: "point"
+    return " $word "
 }
 
 internal fun formatDecimal(
