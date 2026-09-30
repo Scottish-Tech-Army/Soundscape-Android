@@ -24,6 +24,8 @@ The a11y template `talkback_double_tap_template` is «%1$s ਦੋ ਵਾਰ ਟ�
 There is no `pa.lproj`, so Siri phrases stay in English; the help and FAQ text quotes
 them in English inside “ ”.
 
+Questions: `docs/translation-questions/questions-pa.md` (Q1…Q8).
+
 ## Plurals
 
 CLDR `pa`: `one` (n = 0..1), `other`. Compose Resources knows the locale.
@@ -83,5 +85,5 @@ Nothing yet.
 ## Provenance
 
 **2026-09-30 — language added**, whole corpus AI-translated via `/add-language`.
-No questionnaire published yet.
+Questionnaire published 2026-09-30.
 **2026-09-30 — self-review** (`translation-review`): 22 fixes, chiefly PA-S2 and PA-S3.
