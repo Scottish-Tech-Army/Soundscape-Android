@@ -84,3 +84,12 @@ Nothing yet.
 **2026-09-28 — Weblate checks pass.** Byte `*_a11y` plurals: the «few» form had no number; `%1$s` restored. `osm_helipad` → «Слетиште за хеликоптере», `osm_religion` → «Религија» (it had been a copy of place of worship). Uploaded live.
 
 **2026-09-29 — European batch review.** 5 hints: imperatives «додајте», «Прикажи… уреди» → present «додате», «прикажете… уредите»; `location_detail_action_beacon_hint` «вас звуком воде» ("they guide you") → «покренете звучно навођење до ове локације». Help: «Оближња места» → «Места у близини» (2), «Успавај» → «Спавање» (1). 8 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 53 flagged, 37 applied in `2524f21ae`. Findings: `/tmp/translation-review/sr-findings.json`.
+Most serious fixed:
+- `help_text_destination_beacons_when`: «пратите познату оријентацију» means 'follow a familiar orientation';
+- `directions_away_from_settlement`: Appended to «Путовање ка југу дуж A81 …»;
+- `terms_of_use_message`: %1$s is the nominative title «Уговор о услугама Scottish Tech Army»;
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+- `c85663f73`: `help_text_remote_control_how` now names the real Around Me button, following the English fix.

@@ -329,3 +329,12 @@ Uploaded with `--skip-validate` and re-fetched: all 13 match, except that Weblat
 
 
 **2026-09-30 — first reviewer's questionnaire applied.** Answers received 2026-09-28 and at first held while more reviewers were asked; Dave then chose to proceed on this one. Swept into 154 units in `/tmp/translation-review/fr-findings.json`. The Siri files `fr.lproj/AppShortcuts.strings` and `Localizable.xcstrings` (French only, 10 values) were changed to match. A new `GrammarMarkersTest` case covers «menant à une impasse». All 154 were uploaded with `--skip-validate` the same day and verified live. The 37 that differ only have the U+00A0/U+202F that Weblate's French autofix adds before : and ?, which is correct.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 78 flagged, 60 applied in `e23801f4b`. Findings: `/tmp/translation-review/fr-findings.json`.
+Most serious fixed:
+- `faq_mobile_data_use_answer`: Says the Sleep button force-closes the app («pour mettre Soundscape en pause ou pour forcer la fermeture»);
+- `help_text_ahead_of_me_when`: Drops 'ahead' ('coming up on either side of the street ahead'), and 'things' became «repères», the app's Landmarks term.
+- `faq_headset_battery_impact_answer`: «ne doit pas être un facteur important» reads as 'must not be';
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+- `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).

@@ -64,3 +64,10 @@ Nothing uploaded.
 **2026-09-28 — Weblate checks pass.** `osm_parking_space` → «Gurbin Ajiye Mota», `osm_clinic` → «Karamin Asibiti» (each had been a copy of a sibling). Uploaded live.
 
 **2026-09-29 — full review.** 56 fixes, all consistency, wording `unconfirmed` like everything in Hausa. Beacon «alamar sauti» (27 strings; «alama» is the Marker word) → «siginar sauti», the UI term; plural «alamomin sauti» avoided with «nau'o'in siginar sauti». Route «hanya/hanyoyi» (road/way) → «tafarki/tafarkuna» in menus, voice commands and the routes help (15). English "beacon" («beacon na murya») left in 4 strings → «siginar sauti». Help button names now match the labels («Tsayar da Tafarki», «Kashe/Kunna Siginar Sauti», «Wurin da Kake Yanzu», «Wurare na Kusa», «An Gama»). `faq_tip_beacon_quiet` «zai yi shiru» → «zai ragu». Two hints lower-cased. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** the four home-button names (Q6); Waypoint «matsayi»/«tasha» (Q2); Snooze «Hutawa»/«Jinkirtawa» (Q6).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 68 flagged, 59 applied in `7596de275`. Findings: `/tmp/translation-review/ha-findings.json`.
+Most serious fixed:
+- `help_text_markers_content_3`: «sanarwar sararin samaniya» says 'outer-space/sky callout' for 'spatial callout' (sararin samaniya = sky, outer space).
+- `faq_holding_phone_flat_answer`: The beacon gets quieter, but «za ku lura ta yi shiru» says it goes silent (the same error was fixed in faq_tip_beacon_quiet on 2026-09-29, «zai yi shiru» → «zai ragu»).
+- `faq_road_names_answer`: 'spatial audio' rendered «sautin sararin samaniya» (outer space;
+Held for a person: `faq_how_to_use_beacon_answer` (reviewer: NEEDS A HUMAN).

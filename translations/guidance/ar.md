@@ -73,3 +73,13 @@ Nothing uploaded.
 The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
 
 **2026-09-29 — Full review of all 1586 units.** 7 fixes uploaded. The entrance templates had English word order («%2$s %1$s», «%2$s %1$s من %3$s»). Help text now uses the real labels «حفظ كعلامة», «النقل العام» and «قائمة الصوت». The verbal-noun hints were all correct. Uploaded with `--skip-validate` and re-fetched: all matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 39 flagged, 33 applied in `aa41154b3`. Findings: `/tmp/translation-review/ar-findings.json`.
+Most serious fixed:
+- `street_description_since`: «منذ» is temporal only ('since [a time]');
+- `directions_on_road_and_settlement_since`: Same as street_description_since: «منذ» is temporal, not spatial;
+- `confect_name_joins`: %1$s is an indefinite way type («ممر», «طريق خدمة»), and Arabic uses no relative pronoun after an indefinite noun: «ممر الذي يصل…» is ungrammatical;
+Also changed the same day:
+- `ecf310fc7`: `relative_clock_direction` changed so it no longer sounds like a time of day (C20).
+- `cc4943378`: help, FAQ and tutorial now give the mirrored right-to-left button positions (Sleep top-left, My Location right-most), `_common.md` C23.
+- `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).

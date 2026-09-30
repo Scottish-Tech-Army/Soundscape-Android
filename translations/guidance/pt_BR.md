@@ -107,3 +107,12 @@ the imperative hint that broke the TalkBack template, lost `*…*` in the routes
 «notificações», «Colocar em Soneca» → «Soneca», «Lixeira de Reciclagem». Word order was fixed in 4 named
 stations/terminals, and {pt:…} markers were added in 4 templates (railway, tunnel, both entrances,
 which had a fixed «do»). Held: `first_launch_prompt_message` «pronto(a)» (with Q4).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 35 flagged, 28 applied in `8354b2eab`. Findings: `/tmp/translation-review/pt_BR-findings.json`.
+Most serious fixed:
+- `help_text_my_location_how`: «na direção para a qual você estava voltado antes de pressionar» says "the direction you WERE facing before pressing";
+- `help_text_nearby_markers_how`: «na direção para a qual você estava voltado antes de pressionar» says "the direction you WERE facing before pressing";
+- `help_text_around_me_how`: «na direção para a qual você estava voltado antes de pressionar» says "the direction you WERE facing before pressing";
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+- `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).

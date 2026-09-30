@@ -87,3 +87,9 @@ Nothing yet.
 **2026-09-30 — language added**, whole corpus AI-translated via `/add-language`.
 Questionnaire published 2026-09-30.
 **2026-09-30 — self-review** (`translation-review`): 22 fixes, chiefly PA-S2 and PA-S3.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 9 flagged, 7 applied in `337a8f487`. Findings: `/tmp/translation-review/pa-findings.json`.
+Most serious fixed:
+- `settings_keep_value`: Passed to talkbackHint() (SettingsComponents.kt), so iOS reads it through talkback_double_tap_template «%1$s ਦੋ ਵਾਰ ਟੈਪ ਕਰੋ»: the bare imperative gives «ਰੱਖੋ ਦੋ ਵਾਰ ਟੈਪ ਕ
+- `settings_use_value`: Same as settings_keep_value: a talkbackHint, so iOS says «ਵਰਤੋ ਦੋ ਵਾਰ ਟੈਪ ਕਰੋ».
+- `osm_crypt`: «ਤਹਿਖਾਨਾ ਕਬਰਗਾਹ» puts two nouns side by side ('basement graveyard'), which isn't grammatical Punjabi.

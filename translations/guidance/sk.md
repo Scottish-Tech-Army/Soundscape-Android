@@ -83,3 +83,10 @@ Nothing yet.
 **2026-09-28 — Weblate checks pass.** Byte `*_a11y` plurals: the «few» form had no number; `%1$s` restored. `osm_helipad` → «Pristávacia plocha pre vrtuľníky» (it had been «Heliport», same as heliport), `osm_rc_car` → «Auto na diaľkové ovládanie». Uploaded live.
 
 **2026-09-29 — European batch review.** `location_detail_title_default` «Podrobnosti o polohe» → «Podrobnosti o mieste», so the screen title matches the three help texts and the tour that name it (and cs «Podrobnosti o místě»). Hints left alone: SK-B1 still open. 1 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 46 flagged, 25 applied in `b1415a6eb`. Findings: `/tmp/translation-review/sk-findings.json`.
+Most serious fixed:
+- `help_text_section_title_when`: «použil(a)» puts a bracketed ending in a help heading that TalkBack reads aloud;
+- `universal_links_marker_share_message`: «Zdieľal(a)» forces a bracketed gender form (C15);
+- `faq_section_what_is_soundscape`: «ako by som ho mal používať» is masculine-only for the reader asking;
+Held for a person: `talkback_double_tap_template` (reviewer: candidate).

@@ -113,3 +113,12 @@ Meaning fixes: «приобретите» ("buy") → «возьмите», the 
 «сторона света», «называет названия». Terminology: 9 strings used «пути» for Routes → «маршруты», the Terms
 title → «Условия использования», «маркеры» → «отметки», plus 2 OSM names with brackets/slashes read aloud.
 Markup: 12 help/FAQ strings had replaced `*…*` with plain «…», now `*«…»*`. Held: Q7 (two button names).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 41 flagged, 22 applied in `fecc2e43e`. Findings: `/tmp/translation-review/ru-findings.json`.
+Most serious fixed:
+- `directions_away_from_settlement`: «в стороне от» means 'off to one side of', not 'moving away from';
+- `relative_left_right_direction_left`: «Налево» is a direction of motion ('turn/go to the left');
+- `relative_left_right_direction_right`: «Направо» is a direction of motion ('go to the right');
+Held for a person: `terms_of_use_message` (legal text); `terms_of_use_service_agreement` (legal text); `help_text_ahead_of_me_what` (reviewer: open question).
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).

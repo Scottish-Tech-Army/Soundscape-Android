@@ -67,3 +67,11 @@ Nothing yet.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 27 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
 
 **2026-09-29 — Full review of all 1586 units.** 24 fixes uploaded. 15 hints had drifted to imperatives («…کریں», «سنیں») and now use the oblique infinitive («…کرنے», «سننے») required by «%1$s کے لیے دو بار تھپتھپائیں» (UR-B1). Help text now uses the real labels «بطور مارکر محفوظ کریں», «پبلک ٹرانزٹ» and «میرے اردگرد». Uploaded with `--skip-validate` and re-fetched: all matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 44 flagged, 39 applied in `817db10b0`. Findings: `/tmp/translation-review/ur-findings.json`.
+Most serious fixed:
+- `osm_clockmaker`: English translator note '(to distinguish from Watchmaker Shop)' leaked into the translation and is read aloud as part of the POI callout
+- `first_launch_welcome_description`: «مقامی آڈیو» means 'local audio';
+- `faq_how_to_use_beacon_answer`: *ring* rendered «رنگ», which in Urdu means 'colour' (a TTS voice reads it as rang);
+Also changed the same day:
+- `cc4943378`: help, FAQ and tutorial now give the mirrored right-to-left button positions (Sleep top-left, My Location right-most), `_common.md` C23.

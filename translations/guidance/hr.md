@@ -110,3 +110,12 @@ Nothing yet.
 - **Term and register:** «zanimljivoj točki», and «prolaziš» → «prolazite».
 
 Uploaded with `--skip-validate`; all 23 re-fetched and matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 31 flagged, 10 applied in `11d1b69a1`. Findings: `/tmp/translation-review/hr-findings.json`.
+Most serious fixed:
+- `legacy_migration_description`: «prethodne verzije Soundscape» leaves the app name undeclined;
+- `legacy_migration_failed`: Undeclined «verzija Soundscape» (should be «Soundscapea»), and «u Postavke, Pomoć» puts the screen name in the wrong case after «u»;
+- `osm_pet`: «Trgovina kućnim ljubimcima» means a shop that sells pets;
+Held for a person: `faq_section_what_is_soundscape` (reviewer: unconfirmed); `faq_when_to_use_soundscape_question` (reviewer: unconfirmed); `faq_supported_headsets_question` (reviewer: unconfirmed); `faq_sleep_mode_battery_question` (reviewer: unconfirmed); `faq_snooze_mode_battery_question` (reviewer: unconfirmed).
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).

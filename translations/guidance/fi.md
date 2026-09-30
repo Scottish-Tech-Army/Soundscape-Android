@@ -122,3 +122,10 @@ AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 - **Capitals:** «Merkitsimet ja reitit», and three named-place templates lower-cased.
 
 Left for a native speaker: `relative_clock_direction` «kello %1$s» can read as a time of day. Uploaded with `--skip-validate`; all 38 re-fetched and matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 31 flagged, 28 applied in `09c4a4e03`. Findings: `/tmp/translation-review/fi-findings.json`.
+Most serious fixed:
+- `faq_how_close_to_destination_answer`: "to within several meters, but not less" is about precision;
+- `osm_beauty`: OSM shop=beauty is a beauty salon (services), not a cosmetics shop.
+- `osm_adult_gaming_centre`: Same word as osm_amusement_arcade «Pelihalli», so the two can't be told apart.
+Held for a person: `terms_of_use_message` (legal text); `terms_of_use_service_agreement` (legal text).

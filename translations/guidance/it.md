@@ -104,3 +104,10 @@ Nothing uploaded.
   - `beacon_action_callout_beacon`: «Annuncia audiofaro» (Dave took the soft call).
 
 Uploaded with `--skip-validate`; all 21 re-fetched and matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 34 flagged, 25 applied in `89f73eba6`. Findings: `/tmp/translation-review/it-findings.json`.
+Most serious fixed:
+- `confect_name_to_via`: Same as confect_name_to (IT-G1): «Sentiero a Via Roma tramite…» → «Sentiero che porta a Via Roma tramite…».
+- `confect_name_to_dead_end`: «Sentiero {it:a vicolo cieco}» wraps a common noun in the map-name marker and gives «Sentiero a vicolo cieco» (IT-G1 defect, still unfixed).
+- `confect_name_to_dead_end_via`: Same as confect_name_to_dead_end (IT-G1/C21): «Sentiero a vicolo cieco tramite…» → «Sentiero senza uscita tramite…».
+Held for a person: `confect_name_to` (reviewer: candidate); `first_launch_prompt_title` (reviewer: candidate); `osm_drugstore` (reviewer: Needs a native); `osm_town` (reviewer: Needs a native).

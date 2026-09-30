@@ -114,3 +114,9 @@ Microsoft's «Kører nord».*
   - `osm_tag_ferry_terminal_named` lower-case «færgeterminal».
 
 Uploaded with `--skip-validate`; all 101 re-fetched and matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 87 flagged, 85 applied in `8a690d674`. Findings: `/tmp/translation-review/da-findings.json`.
+Most serious fixed:
+- `osm_post_box`: False friend: Danish «postboks» is a P.O.
+- `osm_tax`: «Skat» is heard as the Danish tax authority (Skattestyrelsen, known as SKAT) or simply "tax".
+- `osm_car`: «Bil» just means "car", so a car dealership is announced as if a car were there.

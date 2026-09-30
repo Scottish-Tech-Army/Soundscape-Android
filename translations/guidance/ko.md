@@ -80,3 +80,10 @@ Nothing yet.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 26 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` keeps the localized iOS menu names this translation already used and drops JJ's "(In iOS versions prior to 26…)" note (`unconfirmed`: check the iOS 26 menu name on a device in this language). Uploaded and validated.
 
 **2026-09-29 — full review.** 10 fixes. iOS template «%1$s하려면 두 번 탭하세요» → «두 번 탭하여 %1$s» and three «-합니다» hints → -기 (KO-B1). Help named the mute buttons «비콘 음소거…» (labels «오디오 비콘 음소거…», 3 strings) and the Location Details screen «위치 세부정보» (2). `faq_difference_from_map_apps_answer` «주변적 설명» → «설명». Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 22 flagged, 18 applied in `de28e7ec8`. Findings: `/tmp/translation-review/ko-findings.json`.
+Most serious fixed:
+- `help_text_assistant_commands_ios`: Wrong quotative particle after a fixed word: «명령» ends in a consonant, so it must be «명령*이라고», not «명령*라고».
+- `action_route_started`: «%1$s 시작합니다» drops the object particle («Home to Work 시작합니다»).
+- `first_launch_callouts_title`: «주변 환경 소리 듣기» means "hear the sounds of your surroundings".
+Held for a person: `help_config_voices_content_ios` (reviewer: on a device).
