@@ -77,7 +77,7 @@
     <string name="markers_sort_button_sort_by_distance">Distanza</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">Ordinato per distanza</string>
     <string name="markers_no_markers_title">Introduzione agli indicatori</string>
-    <string name="markers_no_markers_hint_1">Crea indicatori per le tue destinazioni preferite, waypoint su un percorso o posizioni per cui desideri ricevere notifiche. Scegli una posizione, o la tua posizione attuale, nella schermata iniziale e seleziona *Salva come Indicatore*.</string>
+    <string name="markers_no_markers_hint_1">Crea indicatori per le tue destinazioni preferite, waypoint su un percorso o posizioni per cui desideri ricevere notifiche. Scegli una posizione, o la tua posizione attuale, nella schermata iniziale e seleziona *Salva come indicatore*.</string>
     <string name="markers_no_markers_hint_2">Prova ad aggiungere un indicatore per la tua abitazione, l'entrata del tuo luogo di lavoro o il tuo angolo preferito nel parco.</string>
     <string name="markers_edit_screen_title_edit">Modifica indicatore</string>
     <string name="markers_generic_name">Indicatore</string>
@@ -194,7 +194,7 @@
     <string name="ui_action_button_ahead_of_me">Davanti\na me</string>
     <string name="ui_action_button_ahead_of_me_acc_hint">ascoltare i luoghi davanti a te</string>
     <string name="ui_menu">Menu</string>
-    <string name="ui_menu_hint">apri il menu</string>
+    <string name="ui_menu_hint">aprire il menu</string>
     <string name="ui_menu_close">Chiudi menu</string>
     <string name="ui_continue">Continua</string>
     <string name="menu_manage_callouts">Gestisci notifiche</string>
@@ -204,7 +204,7 @@
     <string name="behavior_experiences_route_nav_title">Dettagli percorso</string>
     <string name="behavior_scavenger_hunt_callout_next_flag">L'audiofaro è stato impostato su %1$s, a %2$s di distanza, %3$s di %4$s</string>
     <string name="help_configuration_section_title">Configurazione di Soundscape</string>
-    <string name="settings_help_section_beacons_and_pois">Audiofaro e notifiche</string>
+    <string name="settings_help_section_beacons_and_pois">Audiofari e notifiche</string>
     <string name="settings_help_section_home_screen_buttons">Pulsanti di posizione ed esplorazione</string>
     <string name="help_config_voices_content">Soundscape può usare qualsiasi voce che hai scaricato sul tuo telefono Android nelle impostazioni dell'output di sintesi vocale. Nell'app Soundscape, per selezionare una voce diversa da quella predefinita di Android, vai su *Impostazioni* dal menu principale, espandi la sezione *Audio* e seleziona *Voci*.</string>
     <string name="help_offline_page_title">Perché Soundscape funziona offline?</string>
@@ -248,10 +248,10 @@
     <string name="first_launch_permissions_required">Questa autorizzazione è necessaria</string>
     <string name="first_launch_beacon_title">Scegli un audiofaro</string>
     <string name="first_launch_beacon_message_1">Quando ti sposti con Soundscape, sentirai l'audiofaro nella direzione della tua destinazione. Seguendo il suo suono, saprai sempre da che parte andare.</string>
-    <string name="first_launch_beacon_message_2">Ascolta gli audiofaro disponibili e seleziona la tua preferenza.</string>
+    <string name="first_launch_beacon_message_2">Ascolta gli audiofari disponibili e seleziona la tua preferenza.</string>
     <string name="first_launch_beacon_message_3">La scelta può essere modificata in seguito nelle impostazioni dell'app.</string>
     <string name="first_launch_prompt_title">Sei pronto!</string>
-    <string name="first_launch_prompt_message">Sei pronto per la tua prima passeggiata con Soundscape. Per iniziare, scegli una destinazione vicina e avvia l'audiofaro: lo sentirai suonare nella direzione della tua destinazione.</string>
+    <string name="first_launch_prompt_message">È tutto pronto per la tua prima passeggiata con Soundscape. Per iniziare, scegli una destinazione vicina e avvia l'audiofaro: lo sentirai suonare nella direzione della tua destinazione.</string>
     <string name="first_launch_prompt_button">Fine</string>
     <string name="help_text_destination_beacons_what">L'impostazione di un audiofaro su una posizione nelle vicinanze consente a Soundscape di tenerti informato riproducendo un suono proveniente dalla direzione di quella posizione. Questo audiofaro può essere disattivato o riattivato nella schermata iniziale. Inoltre, Soundscape visualizza nella schermata iniziale le informazioni sulla posizione, inclusa la distanza alla destinazione e il suo indirizzo, se conosciuto.</string>
     <string name="help_text_destination_beacons_when">L'impostazione di un audiofaro è utile quando desideri tenere traccia di un punto di riferimento che conosci mentre esplori una nuova area o quando stai andando da qualche parte e desideri essere informato sull'ambiente circostante lungo il percorso. La funzione audiofaro non fornisce indicazioni dettagliate, ma offre un suono udibile continuo che ti indica la direzione verso l'audiofaro rispetto a dove ti trovi attualmente. Utilizzando l'audiofaro con le tue capacità di orientamento e persino con la tua app di navigazione preferita, puoi scegliere tu stesso come raggiungere le posizioni nelle vicinanze.</string>
@@ -414,7 +414,7 @@
     <string name="faq_tip_turning_beacon_off">Puoi attivare e disattivare il suono ritmico dell'audiofaro utilizzando il pulsante di disattivazione dell'audio nella schermata iniziale. Se l'audiofaro è disattivato, riceverai comunque gli aggiornamenti sulla distanza dalla destinazione all'incirca ogni 50 metri.</string>
     <string name="faq_tip_turning_off_auto_callouts">Per continuare a usare Soundscape senza ascoltare le notifiche automatiche, imposta *Dettaglio delle notifiche* su *Silenzioso* nella sezione *Gestisci notifiche* della schermata *Impostazioni* dal menu. Se non userai Soundscape per un po', puoi invece metterlo in modalità Sospendi o Posponi usando il pulsante *Sospendi* nella schermata principale.</string>
     <string name="faq_tip_hold_phone_flat">Soundscape funziona in modo ottimale quando si tiene il telefono piatto con lo schermo rivolto verso il cielo e la parte superiore del telefono che punta davanti a te.</string>
-    <string name="faq_tip_create_marker_at_bus_stop">Se prendi regolarmente una linea di autobus, salva le fermate di salita e discesa come Indicatori. In questo modo saranno salvate e potrai ritrovarle facilmente. Vai su *Indicatori e Percorsi* dalla schermata iniziale, poi cercale nella pagina *Indicatori*. Puoi impostare un audiofaro su di esse per ricevere aggiornamenti periodici su quanto sei vicino alla fermata di uscita. Nota: puoi disattivare il suono ritmico e continuare comunque a ricevere aggiornamenti sulla distanza lungo il percorso.</string>
+    <string name="faq_tip_create_marker_at_bus_stop">Se prendi regolarmente una linea di autobus, salva le fermate di salita e discesa come Indicatori. In questo modo saranno salvate e potrai ritrovarle facilmente. Vai su *Indicatori e Percorsi* dalla schermata iniziale, poi cercale nella pagina *Indicatori*. Puoi impostare un audiofaro su di esse per ricevere aggiornamenti periodici su quanto sei vicino alla fermata di discesa. Nota: puoi disattivare il suono ritmico e continuare comunque a ricevere aggiornamenti sulla distanza lungo il percorso.</string>
     <string name="first_launch_permissions_notification">Notifiche</string>
     <string name="no_language_selected">Nessuna lingua selezionata</string>
     <string name="preview_go_nearest_intersection">Vai all'incrocio più vicino</string>
@@ -456,13 +456,13 @@
     <string name="settings_theme_contrast_medium">Medio</string>
     <string name="settings_theme_contrast_high">Alto</string>
     <string name="settings_list_item_description">%1$s è la scelta %2$s di %3$s</string>
-    <string name="settings_keep_value">mantieni</string>
-    <string name="settings_use_value">usa</string>
+    <string name="settings_keep_value">mantenere</string>
+    <string name="settings_use_value">usare</string>
     <string name="street_preview_exit">Esci dalla simulazione della posizione</string>
     <string name="settings_travel_recording">Abilitare la registrazione del viaggio</string>
     <string name="settings_debug_heading">Opzioni di debug</string>
     <string name="menu_share_recorded_route">Condividi la registrazione del viaggio</string>
-    <string name="confect_name_to_via">%1$s {it:a %2$s} tramite %3$s</string>
+    <string name="confect_name_to_via">%1$s che porta {it:a %2$s} tramite %3$s</string>
     <string name="confect_name_to">%1$s {it:a %2$s}</string>
     <string name="confect_name_joins">%1$s che collega %2$s e %3$s</string>
     <string name="confect_name_via">%1$s tramite %2$s</string>
@@ -478,7 +478,7 @@
     <string name="permissions_required">Per funzionare, l'app richiede l'autorizzazione all'accesso alla posizione.</string>
     <string name="permissions_button">Modifica le autorizzazioni nelle impostazioni dell'app</string>
     <string name="first_launch_change_language">Cambia lingua</string>
-    <string name="first_launch_change_language_hint">modifica la lingua utilizzata dall'app</string>
+    <string name="first_launch_change_language_hint">modificare la lingua utilizzata dall'app</string>
     <string name="settings_theme_light_dark">Tema chiaro o scuro</string>
     <string name="settings_theme_auto">Automatico</string>
     <string name="settings_theme_light">Chiaro</string>
@@ -517,13 +517,13 @@
     <string name="route_name_description_hint">modificare il nome del percorso</string>
     <string name="route_description_description_hint">aggiungere una descrizione facoltativa per questo percorso</string>
     <string name="fab_add_item">Aggiungi elemento</string>
-    <string name="fab_add_route">Aggiungi il percorso</string>
+    <string name="fab_add_route">Aggiungi percorso</string>
     <string name="route_waypoint_progress">Percorso %1$s al waypoint %2$s di %3$s</string>
     <string name="home_screen_title">Soundscape</string>
     <string name="offline_maps_manifest_failed">Impossibile scaricare i dati della mappa offline</string>
     <string name="settings_reset_button">Ripristina impostazioni predefinite</string>
     <string name="settings_reset_button_hint">ripristinare le impostazioni ai valori predefiniti e riavviare l'app.</string>
-    <string name="settings_reset_dialog_title">Sei sicuro?</string>
+    <string name="settings_reset_dialog_title">Confermi?</string>
     <string name="settings_reset_dialog_message">Il ripristino delle impostazioni eliminerà tutte le impostazioni che hai configurato nell'app. Vuoi continuare?</string>
     <string name="menu_advanced_markers_and_routes">Indicatori e Percorsi avanzati</string>
     <string name="advanced_markers_and_routes_description">Questa schermata consente di esportare o importare indicatori e percorsi, e di eliminare tutti gli indicatori e percorsi esistenti.</string>
@@ -536,7 +536,17 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Indicatori e percorsi eliminati</string>
     <string name="new_version_info_text">Informazioni sulla nuova versione</string>
     <string name="new_version_info_completed">Chiudi il dialogo delle novità</string>
-    <string name="new_version_info_details">Questo è un importante aggiornamento di Soundscape. La modalità Viaggio è molto migliorata. Quando viaggi in auto o in autobus, Soundscape ora annuncia i numeri delle strade, la tua direzione di marcia e i centri abitati vicini. Annuncia anche quando attraversi fiumi, canali, estuari e baie. Aggiorna le tue mappe offline per ottenere queste nuove funzionalità. Le descrizioni delle fermate degli autobus sono ora molto migliori per gli utenti nel Regno Unito. La modalità Sospendi ora può riattivarsi automaticamente quando rileva che ti stai muovendo di nuovo. Non devi più ricordarti di riattivarla manualmente. Abbiamo riorganizzato il codice sottostante in modo da poter creare un'app iOS a partire dallo stesso codice. Questo significa che in futuro potremo rilasciare un'app iOS con tutte le funzionalità che abbiamo creato per Android. Continua a segnalarci eventuali problemi, per quanto piccoli, tramite l'opzione Contatta l'assistenza nel menu principale.</string>
+    <string name="new_version_info_details">
+Questo è un importante aggiornamento di Soundscape.
+
+La modalità Viaggio è molto migliorata. Quando viaggi in auto o in autobus, Soundscape ora annuncia i numeri delle strade, la tua direzione di marcia e i centri abitati vicini. Annuncia anche quando attraversi fiumi, canali, estuari e baie. Aggiorna le tue mappe offline per ottenere queste nuove funzionalità. Le descrizioni delle fermate degli autobus sono ora molto migliori per gli utenti nel Regno Unito.
+
+La modalità Sospendi ora può riattivarsi automaticamente quando rileva che ti stai muovendo di nuovo. Non devi più ricordarti di riattivarla manualmente.
+
+Abbiamo riorganizzato il codice sottostante in modo da poter creare un'app iOS a partire dallo stesso codice. Questo significa che in futuro potremo rilasciare un'app iOS con tutte le funzionalità che abbiamo creato per Android.
+
+Continua a segnalarci eventuali problemi, per quanto piccoli, tramite l'opzione Contatta l'assistenza nel menu principale.
+</string>
     <string name="menu_open_source_licenses">Licenze open source</string>
     <string name="osm_tag_ferry_terminal">Terminal dei traghetti</string>
     <string name="osm_tag_ferry_terminal_named">Terminal dei traghetti %1$s</string>
@@ -671,7 +681,7 @@
     <string name="osm_retail">Negozio al dettaglio</string>
     <string name="osm_hotel">Hotel</string>
     <string name="osm_camp_site">Campeggio</string>
-    <string name="osm_rugby_league">Rugby League</string>
+    <string name="osm_rugby_league">Rugby a 13</string>
     <string name="osm_roller_skating">Pattinaggio a rotelle</string>
     <string name="osm_multi">Polifunzionale</string>
     <string name="osm_ice_hockey">Hockey su ghiaccio</string>
@@ -709,7 +719,7 @@
     <string name="osm_curling">Curling</string>
     <string name="osm_cricket_nets">Reti per cricket</string>
     <string name="osm_cliff_diving">Tuffi dalla scogliera</string>
-    <string name="osm_boules">Bocce / pétanque</string>
+    <string name="osm_boules">Bocce</string>
     <string name="osm_bobsleigh">Bob</string>
     <string name="osm_baseball">Baseball</string>
     <string name="osm_aikido">Aikido</string>
@@ -799,7 +809,7 @@
     <string name="osm_paddle_tennis">Padel</string>
     <string name="osm_hockey">Hockey</string>
     <string name="osm_fencing">Scherma</string>
-    <string name="osm_bowls">Bowls</string>
+    <string name="osm_bowls">Bocce su prato</string>
     <string name="osm_badminton">Badminton</string>
     <string name="osm_archery">Tiro con l'arco</string>
     <string name="osm_american_football">Football americano</string>
@@ -862,7 +872,7 @@
     <string name="osm_soccer">Calcio</string>
     <string name="osm_shooting">Poligono di tiro</string>
     <string name="osm_rugby_union">Rugby</string>
-    <string name="osm_orienteering">Orientamento</string>
+    <string name="osm_orienteering">Orienteering</string>
     <string name="osm_netball">Netball</string>
     <string name="osm_motor">Concessionaria</string>
     <string name="osm_kitesurfing">Kitesurf</string>
@@ -1217,7 +1227,7 @@
     <string name="osm_city">Città</string>
     <string name="osm_town">Paese</string>
     <string name="osm_neighbourhood">Quartiere</string>
-    <string name="osm_village">Villaggio</string>
+    <string name="osm_village">Paese</string>
     <string name="osm_hamlet">Frazione</string>
     <string name="osm_recreation_ground">Campo sportivo</string>
     <string name="osm_river">Fiume</string>
@@ -1228,10 +1238,10 @@
     <string name="osm_health_food">Negozio di alimenti salutari</string>
     <string name="osm_events_venue">Spazio per eventi</string>
     <string name="menu_help">Guida</string>
-    <string name="tour_welcome">Benvenuto nel tutorial guidato. Questo tutorial ti guiderà attraverso le principali funzionalità dell'app. Puoi interrompere il tutorial in qualsiasi momento toccando Annulla tutorial guidato nel menu principale. Iniziamo con Luoghi nelle vicinanze. Ti permette di trovare punti di interesse. Il pulsante Luoghi nelle vicinanze si trova nella schermata iniziale, subito sotto la barra di ricerca. Toccalo ora per provarlo.</string>
+    <string name="tour_welcome">Ti diamo il benvenuto nel tutorial guidato. Questo tutorial ti guiderà attraverso le principali funzionalità dell'app. Puoi interrompere il tutorial in qualsiasi momento toccando Annulla tutorial guidato nel menu principale. Iniziamo con Luoghi nelle vicinanze. Ti permette di trovare punti di interesse. Il pulsante Luoghi nelle vicinanze si trova nella schermata iniziale, subito sotto la barra di ricerca. Toccalo ora per provarlo.</string>
     <string name="tour_select_place">Luoghi nelle vicinanze raggruppa i punti di interesse per tipologia. Sfoglia i luoghi negli elenchi e selezionane uno.</string>
     <string name="tour_create_marker_started">Perfetto! Ora sei nella schermata Dettagli posizione. Da qui puoi salvare questa posizione come Indicatore, oltre a eseguire altre azioni. Con Soundscape puoi contrassegnare qualsiasi luogo a cui tieni, come la tua abitazione, la fermata dell'autobus o persino il punto in cui ti trovi. Provalo ora. Salva questa posizione come indicatore toccando Salva come indicatore.</string>
-    <string name="tour_create_marker_done">Perfetto! Quando crei un indicatore puoi modificarne il nome e aggiungere note. Prova ora e, quando sei pronto, tocca Fatto.</string>
+    <string name="tour_create_marker_done">Perfetto! Quando crei un indicatore puoi modificarne il nome e aggiungere note. Prova ora e, quando hai finito, tocca Fatto.</string>
     <string name="tour_my_location">Ora che sai come usare gli indicatori, vediamo altre funzioni. In basso allo schermo ci sono quattro pulsanti. Li proveremo uno alla volta. Il pulsante a sinistra è La mia posizione. Descrive la tua posizione attuale. Provalo toccandolo ora.</string>
     <string name="tour_around_me">Il pulsante successivo è "Intorno a me". Ti indica cosa c'è nelle vicinanze in ogni direzione. Tocca "Intorno a me".</string>
     <string name="tour_ahead">Il pulsante successivo è "Davanti a me". Ti dice cosa si trova davanti a te. Tocca "Davanti a me".</string>
@@ -1241,7 +1251,7 @@
     <string name="tour_start_beacon">Ora sei nella scheda Indicatori che elenca tutti gli indicatori salvati. Seleziona un indicatore e, quando viene visualizzata la schermata Dettagli posizione, tocca "Avvia audiofaro".</string>
     <string name="tour_beacon_demo">Adesso puoi ascoltare l'audiofaro. Suona dalla direzione della tua destinazione. Quando ruoti il telefono, senti l'audiofaro spostarsi e modificare il suo suono. Provalo ora.</string>
     <string name="tour_beacon_demo_locked">Quando il telefono è bloccato, l'audiofaro continua a suonare. Se stai camminando o sei su un veicolo, l'app utilizza la direzione del tuo movimento per riprodurre l'audiofaro. Tuttavia, anche quando il telefono è bloccato puoi tenerlo piatto davanti a te, come una bussola. In quel caso l'audiofaro utilizza la direzione verso cui il telefono è orientato. Provalo ora.</string>
-    <string name="tour_stop_beacon">Quando sei pronto per interrompere l'audiofaro, tocca il pulsante "Interrompi Percorso".</string>
+    <string name="tour_stop_beacon">Quando vuoi interrompere l'audiofaro, tocca il pulsante "Interrompi Percorso".</string>
     <string name="tour_finish">Il tutorial è terminato. Puoi eseguirlo di nuovo dal menu principale. Speriamo che l'app ti sia utile!</string>
     <string name="tour_cancel">Il tutorial guidato è stato annullato. Se vuoi, puoi eseguirlo di nuovo dal menu principale.</string>
     <string name="menu_audio_tutorial">Tutorial guidato</string>
@@ -1253,7 +1263,7 @@
     <string name="groceries_places_nearby_description">vedere un elenco dei negozi di generi alimentari nelle vicinanze</string>
     <string name="banks_places_nearby_description">vedere un elenco di banche e sportelli bancomat nelle vicinanze</string>
     <string name="intersections_places_nearby_description">vedere un elenco di incroci stradali nelle vicinanze</string>
-    <string name="places_nearby_selection_description">scegli da un elenco di luoghi nelle vicinanze</string>
+    <string name="places_nearby_selection_description">scegliere da un elenco di luoghi nelle vicinanze</string>
     <string name="accessibility_title">Accessibilità</string>
     <string name="accessibility_screen_reader_enabled">Poiché hai un lettore di schermo attivato, ti consigliamo di disattivare le mappe grafiche nell'app. Puoi modificare questa impostazione qui oppure continuare.</string>
     <string name="accessibility_screen_reader_disabled">Poiché non hai un lettore di schermo attivato, presumiamo che tu voglia vedere le mappe grafiche nell'app. Puoi modificare questa impostazione qui oppure continuare.</string>
@@ -1570,7 +1580,7 @@
     <string name="markers_sort_action_distance_ascending">ordinare per distanza, dal più vicino al più lontano</string>
     <string name="markers_sort_action_distance_descending">ordinare per distanza, dal più lontano al più vicino</string>
     <string name="callouts_verbosity">Dettaglio delle notifiche</string>
-    <string name="callouts_verbosity_description">Il dettaglio delle notifiche controlla quante cose Soundscape ti racconta mentre cammini. La modalità Dettagliato annuncia tutto ciò che si trova nelle vicinanze. La modalità Semplificato tralascia i sentieri secondari e le strade di servizio, e si ripete meno spesso. La modalità Essenziale annuncia solo strade, incroci e punti di riferimento. La modalità Silenzioso non produce alcuna notifica automatica, lasciando gli audiofari, i percorsi e i pulsanti della schermata principale.</string>
+    <string name="callouts_verbosity_description">Il dettaglio delle notifiche controlla quante cose Soundscape ti racconta mentre cammini. La modalità Dettagliato annuncia tutto ciò che si trova nelle vicinanze. La modalità Semplificato tralascia i sentieri secondari e le strade di servizio, e si ripete meno spesso. La modalità Essenziale annuncia solo strade, incroci e punti di riferimento. La modalità Silenzioso non produce alcuna notifica automatica: restano attivi gli audiofari, i percorsi e i pulsanti della schermata principale.</string>
     <string name="callouts_verbosity_level_silent">Silenzioso</string>
     <string name="callouts_verbosity_level_quiet">Essenziale</string>
     <string name="callouts_verbosity_level_balanced">Semplificato</string>
@@ -1654,8 +1664,8 @@
     <string name="open_in_app_dialog_title">Scegli con quale app aprire</string>
     <string name="open_in_app_remember">Usa sempre questa app</string>
     <string name="open_in_app_change">Scegli un'altra app</string>
-    <string name="confect_name_to_dead_end">%1$s {it:a vicolo cieco}</string>
-    <string name="confect_name_to_dead_end_via">%1$s {it:a vicolo cieco} tramite %2$s</string>
+    <string name="confect_name_to_dead_end">%1$s senza uscita</string>
+    <string name="confect_name_to_dead_end_via">%1$s senza uscita tramite %2$s</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>
