@@ -443,3 +443,5 @@ Most serious fixed:
 - `directions_junction_with_ref`: Only ever substituted into «przy %2$s» (directions_on_road_at_junction) and «przy %1$s» (directions_at_junction_inline).
 - `directions_junction_with_ref_and_name`: Same as directions_junction_with_ref: always lands after «przy», so it needs the locative («przy zjeździe 2, Robroyston»), not the nominative «Zjazd».
 Held for a person: `terms_of_use_message` (legal text).
+
+**2026-09-30 — missed-callout FAQ brought into line with PL-V1.** The retranslated `faq_miss_a_callout_answer` had said «komunikatów» and «ogłaszają» without checking this file. It now says «powiadomień» and «powiadamiają o miejscach». `faq_miss_a_callout_question` also used «komunikat» for a callout and now says «Co jeśli nie zrozumiem powiadomienia lub przegapię je…».
