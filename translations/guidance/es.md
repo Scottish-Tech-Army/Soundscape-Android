@@ -369,7 +369,7 @@ Most serious fixed:
 - `location_detail_exit_full_screen_hint`: This is a contentDescription (label), like its sibling location_detail_full_screen_hint «Poner el mapa…», not a 'Double tap to' fragment;
 - `osm_entrance_named_with_destination`: %1$s (destination) and %3$s (road) are map names after bare prepositions;
 - `osm_entrance_with_destination`: %1$s is a map name after bare «de»;
-Held for a person: `terms_of_use_medical_safety_disclaimer` (legal text).
+Held back as legal text, then fixed on request the same day (below).
 Also changed the same day:
 - `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
-- `daa34bc2d`: `terms_of_use_medical_safety_disclaimer` said «dispositivo» (device) for "advice"; now «el asesoramiento». Recorded above.
+- `daa34bc2d`: `terms_of_use_medical_safety_disclaimer` said «dispositivo» (device) for "advice"; now «el asesoramiento». See the entry above.
