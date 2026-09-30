@@ -85,3 +85,11 @@ removed from five `tour_*` strings, because the tutorial dialog shows plain text
 «ساند‌اسکیپ» in the running text of 15 strings (voice-command help, spoken action/Siri replies,
 migration messages, GPS help). The Siri command phrases inside `*…*` stay English, because there is no
 `fa.lproj`. Open: Q5 (points of interest vs Landmarks).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 15 flagged, 12 applied in `b9ddb8405`. Findings: `/tmp/translation-review/fa-findings.json`.
+Most serious fixed:
+- `location_detail_action_beacon_hint`: Accessibility hint lands in «دو بار ضربه بزنید تا %1$s»;
+- `number_decimal_separator_a11y`: Spoken decimal separator: Persian reads 2.5 as «دو ممیز پنج».
+- `confect_name_to`: C10: %1$s is a way type (Path, Service road…) described as leading to %2$s.
+Also changed the same day:
+- `cc4943378`: help, FAQ and tutorial now give the mirrored right-to-left button positions (Sleep top-left, My Location right-most), `_common.md` C23.

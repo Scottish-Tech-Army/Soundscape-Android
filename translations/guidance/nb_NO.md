@@ -79,3 +79,10 @@ Nothing yet.
 - **`osm_deli`:** «Delikatessebutikk».
 
 Uploaded with `--skip-validate`; all 38 re-fetched and matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 22 flagged, 19 applied in `d93638c56`. Findings: `/tmp/translation-review/nb_NO-findings.json`.
+Most serious fixed:
+- `faq_when_to_use_soundscape_answer`: The five user testimonials lost their quotation marks, so they read (and are heard) as Soundscape's own first-person claims rather than quoted users;
+- `help_text_nearby_markers_how`: English says "up to four markers";
+- `osm_post_box`: «Postboks» is a P.O. box (rented box at a post office);
+Held for a person: `terms_of_use_service_agreement` (legal text).

@@ -126,3 +126,13 @@ the resolver in `GrammarMarkers.kt`.
 **2026-09-28 — Weblate checks pass.** `help_text_automatic_callouts_when_2` had lost its bold heading; restored as «**Belirli bir konuma yürürken:**». Beacon styles translated (Dave's decision, as for Romanian): Parıltı, Işıltı, Dokunsal, Çınlama, Düşüş, Sinyal, Tokmak, all `unconfirmed`. Uploaded live.
 
 **2026-09-29 — full review.** 34 fixes, live strings re-checked before upload, uploaded with `--skip-validate` and verified live. Meaning: `directions_approaching_name` «%1$s yaklaşıyor» (the place approaching you) → «%1$s'{A} yaklaşılıyor»; `faq_sleep_mode_battery_question` «Sessiz Mod» → «Uyku Modu»; `help_text_my_location_when` "facing" as «ilerlediğinizi» → «baktığınızı»; `faq_battery_impact_answer` («Pilinizin en çok tükenen kısmı», «Kullanımda olmadığınız»); `faq_tip_beacon_quiet` «susar» → «kısılır»; `tour_start_beacon` past tense «sekmesindeydiniz»; `faq_holding_phone_flat_answer` «tam hacme» → «tam ses düzeyine»; `general_error_add_marker_error` dropped "later"; `first_launch_headphones_message_1` «şimdi alın» → «şimdi takın». Also a typo, a lost `*…*`, and two help texts renamed to the real labels («İşaretin Sesini Aç», «Tamam»). 21 hints swept to «-mek» (TR-B1). **Held:** `osm_rigger` still English; `directions_junction_with_ref` «%1$s. Kavşak» turns a junction ref into an ordinal; ferry terminal «Vapur İskelesi» vs «Feribot İskelesi».
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 48 flagged, 40 applied in `60ae9f0d0`. Findings: `/tmp/translation-review/tr-findings.json`.
+Most serious fixed:
+- `confect_name_to_via`: Same C10 from-to reading as confect_name_to ('from the path to Moor Road via steps');
+- `confect_name_to_dead_end`: «Patika'dan çıkmaz sokak'a» = 'from the path to the dead-end street': the from-to reading of C10, and it puts an apostrophe+marker on a common noun.
+- `confect_name_to_dead_end_via`: Same as confect_name_to_dead_end: from-to reading and a marker on a common noun.
+Held for a person: `confect_name_to` (reviewer: open question).
+Also changed the same day:
+- `ecf310fc7`: `relative_clock_direction` changed so it no longer sounds like a time of day (C20).
+- `1094f4f7a`: "ahead" became the template `directions_ahead_road`; Turkish is «İleride %1$s» instead of «düz» (C24).

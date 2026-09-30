@@ -239,3 +239,10 @@ and to tell apart, so they are now in the glossary as `confirmed`. Nothing uploa
 **2026-09-29 — European batch review.** 8 hints started with a capital after «Двічі торкніться, щоб» → lower case; `route_detail_action_start_route_disabled_hint` imperative «додайте» → «додати». Help: «Навколишні місця» → «Місця поблизу» (2), «Найближчі мітки» → «Мітки поблизу» (4), «Навколо Мене»/«Попереду Мене» → lower-case «мене». 15 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** help says button «Редагувати мітку», `markers_edit_screen_title_edit` is «Редагування мітки».
 
 **2026-09-29 — edit-marker label.** `markers_edit_screen_title_edit` is both the screen title and the button on the location details screen (`SharedLocationDetailsScreen.kt`), so the button said «Редагування мітки» ("editing of marker") while the help and the route button say «Редагувати мітку» / «Редагувати маршрут». Now «Редагувати мітку». Uploaded and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 115 flagged, 54 applied in `9661040d4`. Findings: `/tmp/translation-review/uk-findings.json`.
+Most serious fixed:
+- `help_text_my_location_what`: "the direction you are facing" became «напрямок, в якому ви рухаєтесь» (moving).
+- `faq_why_does_beacon_disappear_answer`: The answer is about the direction you are *facing* when you stop;
+- `first_launch_headphones_title`: «Як звучить Soundscape» is "What Soundscape sounds like";
+Held for a person: `directions_along_heading_n` (reviewer: awaiting); `directions_along_heading_ne` (reviewer: awaiting); `directions_along_heading_e` (reviewer: awaiting); `directions_along_heading_se` (reviewer: awaiting); `directions_along_heading_s` (reviewer: awaiting); `directions_along_heading_sw` (reviewer: awaiting); `directions_along_heading_w` (reviewer: awaiting); `directions_along_heading_nw` (reviewer: awaiting).

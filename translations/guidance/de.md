@@ -104,3 +104,12 @@ restore. Microsoft itself had mixed «Ruhemodus» and «Ruhemodus aktivieren». 
 (Audiobeacon), `confect_name_joins` «verbindet» → «zwischen» (keeps it a name inside callouts), lost
 `*„…“*` in the routes help, «Bildschirm „Startbildschirm“». Also the word order in 4 named
 stations/terminals («Bahnhof %1$s»), and 3 slashes read aloud. Held: Q5 («Mark.» label).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 33 flagged, 28 applied in `b6cd77f7e`. Findings: `/tmp/translation-review/de-findings.json`.
+Most serious fixed:
+- `directions_on_road_and_settlement_since`: «seit» is temporal ("since a time");
+- `street_description_since`: Same as the train variant: «125 m seit 32nd Street» uses temporal «seit» for a distance;
+- `settings_voice_command_listening_prompt`: "Announce listening" means say that the app is now listening;
+Held for a person: `talkback_double_tap_template` (reviewer: open question); `confect_name_to_dead_end` (reviewer: open question); `confect_name_to_dead_end_via` (reviewer: Q2).
+Also changed the same day:
+- `ecf310fc7`: `relative_clock_direction` changed so it no longer sounds like a time of day (C20).

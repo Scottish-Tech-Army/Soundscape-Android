@@ -88,3 +88,10 @@ AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 - **Formatting:** *…* restored in `help_text_routes_content_how_1`; three stray capitals.
 
 Uploaded with `--skip-validate`; all 26 re-fetched and matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 50 flagged, 44 applied in `5a97d3d65`. Findings: `/tmp/translation-review/el-findings.json`.
+Most serious fixed:
+- `help_text_destination_beacons_what`: "can be muted or unmuted on the home screen" became "can be on mute or not, on the home screen": it no longer says the user can do it there.
+- `help_text_automatic_callouts_when_3`: Reads as if the app informs you "manually, by tapping": the tapping is the user's, not the app's.
+- `faq_use_with_wayfinding_apps_answer`: Drops "turn-by-turn", so it says Soundscape is not a navigation app at all;
+Held for a person: `ui_menu_hint` (reviewer: open question); `osm_tag_ferry_terminal` (reviewer: pending); `osm_tag_ferry_terminal_named` (reviewer: pending).

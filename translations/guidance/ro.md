@@ -69,3 +69,13 @@ Nothing uploaded.
 **2026-09-28 — Beacon style names translated (Dave's decision).** All 13 `beacon_styles_*` had been left in English. They are now translated, following the English translator notes and the es/it/fr/pt pattern: Actual, Original, Scânteie (flare, a bright burst), Licărire (shimmer, a softer flare), Tactil, Clinchet (ping, a short high ring), Cădere (drop), Semnal, Ciocănel (a xylophone mallet), with «(lent)» / «(foarte lent)» in lowercase. `unconfirmed`, so check with a native speaker, especially Scânteie and Clinchet. Also on 2026-09-28 during the Weblate checks pass: `osm_religion` → «Religie» (it had been a copy of place of worship), loading indicator → «Se încarcă» without «…». Uploaded live.
 
 **2026-09-29 — European batch review.** 10 hints were imperatives («Schimbă», «Afișează», «Restrânge», «deschide meniul», «resetați…») → «a» + infinitive; `annotation_description_hint` «vă… recunoașteți» → «te… recunoști» (register «tu»). 11 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 72 flagged, 69 applied in `9067e59c1`. Findings: `/tmp/translation-review/ro-findings.json`.
+Most serious fixed:
+- `first_launch_permissions_title`: Ungrammatical: a genitive/dative «aplicației» needs the articled head noun «Permisiunile».
+- `faq_controlling_what_you_hear_answer`: «a relua» is transitive;
+- `faq_tip_turning_beacon_off`: "If the beacon is muted" became "if the beacon is switched off";
+Held for a person: `first_launch_prompt_title` (reviewer: open question).
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+- `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).

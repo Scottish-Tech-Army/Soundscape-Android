@@ -94,3 +94,9 @@ label. **New road templates must use the wrapped form.**
 The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
 
 **2026-09-29 — European batch review.** 9 hints were imperatives or 3sg («lisa», «muuda», «Kuva», «muudab», «ahenda», «laienda») → da-infinitives. `help_text_destination_beacons_how_3` «Vaigista helimajakas» → «Summuta helimajakas», the label. 10 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 38 flagged, 21 applied in `f15461772`. Findings: `/tmp/translation-review/et-findings.json`.
+Most serious fixed:
+- `directions_cardinal_north_west`: «Loe» is the imperative 'read!', not a compass point;
+- `faq_controlling_what_you_hear_answer`: The gesture is a two-finger DOUBLE tap;
+- `ui_action_button_my_location_acc_hint`: «kuulata oma praegust asukohta» means 'to listen to your current location';

@@ -363,3 +363,13 @@ ES-M1. The only fix left is the `*Marcadores cercanos*` markup in
 `es-findings.2026-09-29.json`. The markup fix was uploaded the same day and verified live.
 
 **2026-09-30 — medical disclaimer: "advice", not "device".** The all-language review found `terms_of_use_medical_safety_disclaimer` rendering "professional medical advice" as «sustituir un dispositivo, diagnóstico…», present since the earliest version in the repo. Changed that one phrase to «sustituir el asesoramiento, diagnóstico, tratamiento o criterio médico profesional», on Dave's request. The rest of the legal text, and its formal «usted», are unchanged.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 21 flagged, 5 applied in `1d77c7310`. Findings: `/tmp/translation-review/es-findings.json`.
+Most serious fixed:
+- `location_detail_exit_full_screen_hint`: This is a contentDescription (label), like its sibling location_detail_full_screen_hint «Poner el mapa…», not a 'Double tap to' fragment;
+- `osm_entrance_named_with_destination`: %1$s (destination) and %3$s (road) are map names after bare prepositions;
+- `osm_entrance_with_destination`: %1$s is a map name after bare «de»;
+Held for a person: `terms_of_use_medical_safety_disclaimer` (legal text).
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+- `daa34bc2d`: `terms_of_use_medical_safety_disclaimer` said «dispositivo» (device) for "advice"; now «el asesoramiento». Recorded above.

@@ -77,3 +77,10 @@ Nothing yet.
 **2026-09-28 — Weblate checks pass.** `osm_optician` → «கண் கண்ணாடிக் கடை» (it had been the same as glazier). Full stop added to `settings_reset_button_hint`. Uploaded live.
 
 **2026-09-29 — Full review of all 1586 units.** 40 fixes uploaded. Marker had three words: «குறிப்பான்» (glossary, the Markers screen), «மார்க்கர்» (27, including the Nearby Markers button) and «குறியிடம்» (help text). All noun forms were swept to «குறிப்பான்» (TA-T2). The verb forms «குறியிடலாம்» and «குறியிடப்பட்ட» were kept. 4 hints had drifted to imperatives and now use the infinitive. Help text now uses «பீக்கனை இயக்கு», «வெளியேறும்போது எழுப்பு» and «எனைச் சுற்றி». Uploaded with `--skip-validate` and re-fetched: all matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 28 flagged, 22 applied in `00b6e1a45`. Findings: `/tmp/translation-review/ta-findings.json`.
+Most serious fixed:
+- `confect_name_to_via`: TA-G1 applies to _via too: 'from X up to Y via Z' instead of 'X leading to Y via Z'.
+- `confect_name_to_dead_end`: Inherited TA-G1 (C21): «%1$s முதல் முட்டுச்சந்து வரை» says 'from the path up to the dead end'.
+- `confect_name_to_dead_end_via`: Same TA-G1 'from … to' construction as confect_name_to_dead_end.
+Held for a person: `confect_name_to` (reviewer: candidate); `terms_of_use_medical_safety_disclaimer` (legal text).

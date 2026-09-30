@@ -197,3 +197,10 @@ looking for slashes, which a speech synthesiser reads aloud. Checked that
 **2026-09-28 — Weblate checks pass.** Home-screen buttons showed a literal `\n`; they now have real line breaks and match the help text: «Mín\nstaðsetning», «Í kringum\nmig», «Fyrir\nframan mig», «Nálæg\nmerki». `osm_gambling` → «Fjárhættuspilastaður», `osm_dock` → «Skipakví», rugby → «Rugbývöllur (rugby league)» / «(rugby union)». Signal was «Merki», the same as Markers: beacon style → «Boð» (hægt / mjög hægt), `osm_signal` → «Merkjaljós». Uploaded live.
 
 **2026-09-29 — European batch review.** 4 hints capitalised or imperative («Fara», «Gera», «Stækka», «veldu») → lower-case infinitives. Help: «Ljúka leið» → «Stöðva leið» (2), «Þagga hljóðvita» → «Slökkva á hljóðvita». Rewritten in full (C16): `faq_supported_phones_answer` (was the old Android-only answer), and three shortened first-pass texts `faq_how_close_to_destination_answer`, `help_text_nearby_markers_when`, `help_text_around_me_when`, which had dropped the button names and that the beacon turns off. New wording `unconfirmed`. 10 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 79 flagged, 72 applied in `e7805f737`. Findings: `/tmp/translation-review/is-findings.json`.
+Most serious fixed:
+- `osm_intersection`: Typo «Gatnamot» (missing ó) in a label spoken in callouts;
+- `route_detail_action_start_route`: «Upphaf leiðar» is the noun "start of the route", not the action "Start Route";
+- `route_detail_action_start_route_reverse`: Same as route_detail_action_start_route: noun «Upphaf leiðar» instead of the action
+Held for a person: `terms_of_use_medical_safety_disclaimer` (legal text); `terms_of_use_message` (legal text).

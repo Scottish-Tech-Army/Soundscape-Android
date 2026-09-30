@@ -162,3 +162,11 @@ Uploaded with `--skip-validate`; all 21 re-fetched and matched exactly.
 Not changed, now questionnaire Q9 and Q10:
 - "Points of interest" is mostly «забележителности», the landmarks word (one setting says «интересни места»).
 - Button labels use the informal imperative («Спри маршрута», «Чуй околността си») under an otherwise formal «Вие» register (BG-R1).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 21 flagged, 15 applied in `dc35e8edb`. Findings: `/tmp/translation-review/bg-findings.json`.
+Most serious fixed:
+- `osm_block`: barrier=block is a large concrete block across a path.
+- `osm_shed`: «Навес» is an open canopy/lean-to;
+- `confect_name_joins`: %1$s is a way type of any gender (Пътека, Пешеходна алея are feminine, Стълби plural), but the relative pronoun «който» is masculine, so it gives 'Пътека, който свързва…'.
+Also changed the same day:
+- `c85663f73`: `help_text_remote_control_how` now names the real Around Me button, following the English fix.

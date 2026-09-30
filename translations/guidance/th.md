@@ -80,3 +80,11 @@ Nothing yet.
 The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
 
 **2026-09-29 — full review.** 5 fixes. «รายละเอียดสถานที่» → «รายละเอียดตำแหน่ง», the screen title (3 strings); «*ปุ่มเปิดเสียงบีคอน*» → «ปุ่ม *เปิดเสียงบีคอน*» (2). Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** TH-T1.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 21 flagged, 20 applied in `aa8ef5cbe`. Findings: `/tmp/translation-review/th-findings.json`.
+Most serious fixed:
+- `directions_away_from_settlement`: %2$s is a distance ("away from Strathblane, 5.0 km behind you");
+- `directions_name_is_currently`: %2$s is a distance plus direction ("700 metres, north west");
+- `directions_name_is_currently_street_address`: Same sentence as directions_name_is_currently (translator note asks to keep them consistent);
+Also changed the same day:
+- `7ca86e582`: `new_version_info_details` got the English paragraph breaks back, which the release-notes dialog now splits Thai on.

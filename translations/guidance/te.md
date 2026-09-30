@@ -66,3 +66,10 @@ Nothing yet.
 **2026-09-28 — Weblate checks pass.** Full stop added to `settings_reset_button_hint`. Uploaded live.
 
 **2026-09-29 — Full review of all 1586 units.** 14 fixes uploaded. **The double-tap template was broken:** «%1$s చేయడానికి రెండుసార్లు నొక్కండి» plus hints ending «…చేయడానికి» gave «…చేయడానికి చేయడానికి…». The earlier note in this file that it composed well was wrong. The template is now «%1$s రెండుసార్లు నొక్కండి» (TE-B1), and 2 more hints moved to «-డానికి». 11 help strings now use the real button, filter and mode labels («బీకాన్‌ను మ్యూట్ చేయి», «ప్రజా రవాణా», «ఒరిజినల్ మోడ్», …). Uploaded with `--skip-validate` and re-fetched: all matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 40 flagged, 32 applied in `12bf5dc4b`. Findings: `/tmp/translation-review/te-findings.json`.
+Most serious fixed:
+- `settings_keep_value`: Passed to talkbackHint, so on iOS it becomes «ఉంచు రెండుసార్లు నొక్కండి».
+- `settings_use_value`: Passed to talkbackHint, so on iOS it becomes «ఉపయోగించు రెండుసార్లు నొక్కండి».
+- `route_detail_action_start_route_disabled_hint`: Despite the _hint key this is shown as visible Text on the add/edit route screen (SharedAddAndEditRouteScreen.kt), not as a TalkBack hint, so the -డానికి fragment ('to ad
+Held for a person: `terms_of_use_medical_safety_disclaimer` (legal text).

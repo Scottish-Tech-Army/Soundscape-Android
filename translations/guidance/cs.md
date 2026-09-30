@@ -82,3 +82,11 @@ Nothing yet.
 **2026-09-28 — Weblate checks pass.** Byte `*_a11y` plurals: the «few» form had no number (read as «kilobajty» for 2–4 kB); `%1$s` restored. `osm_rigger` → «Vazač břemen», `osm_rc_car` → «Auto na dálkové ovládání», full stop added to `settings_reset_button_hint`. Uploaded live.
 
 **2026-09-29 — European batch review.** 13 hints were infinitives or nouns instead of the 2pl future the template needs («přidat»/«Zobrazit»/«výběr»/«sbalit» → «přidáte»/«zobrazíte»/«vyberete»/«sbalíte»…). `faq_controlling_what_you_hear_answer` and `faq_turn_beacon_back_on_answer` named the unmute button «zapnout maják»; now «Zrušit ztlumení majáku», its label. 15 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 32 flagged, 26 applied in `6c9839a56`. Findings: `/tmp/translation-review/cs-findings.json`.
+Most serious fixed:
+- `directions_generic_train`: Goes into the 'Na %1$s' / 'Jízda … po %1$s' templates, which gives 'Na vlaku' (on the roof of the train) and 'po vlaku' (after the train).
+- `directions_generic_tram`: Same as directions_generic_train: 'Na tramvaji' means on top of the tram.
+- `faq_holding_phone_flat_answer`: The reflexive is missing: 'všimnete si, že ztiší' reads as 'that it silences [something]'.
+Also changed the same day:
+- `c85663f73`: `help_text_remote_control_how` now names the real Around Me button, following the English fix.

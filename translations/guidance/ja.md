@@ -100,3 +100,10 @@ commits, then AI passes. No recorded translator.
 - **Spacing:** a stray space in `tour_stop_beacon`.
 
 Uploaded with `--skip-validate`; all 10 re-fetched and matched exactly.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 44 flagged, 41 applied in `9c94d26d6`. Findings: `/tmp/translation-review/ja-findings.json`.
+Most serious fixed:
+- `confect_name_to_via`: JA-G1 applies to _via too (ja.md): «から…へ» makes the way the starting point.
+- `confect_name_to_dead_end`: Inherited the JA-G1 «から…へ» defect when C21 built it from confect_name_to + dead end: «小道 から 行き止まり へ» = "from the path to the dead end", with stray spaces around 行き止まり.
+- `confect_name_to_dead_end_via`: Same JA-G1/C21 defect as confect_name_to_dead_end («から 行き止まり へ» = "from X to the dead end").
+Held for a person: `confect_name_to` (reviewer: Candidate); `terms_of_use_message` (legal text).

@@ -97,3 +97,12 @@ entrance strings; the entrances had a fixed «do»). Brazilian and pre-reform fo
 «balsas»/«Barcas» → «Terminal de ferry» (4 strings), «Chaveiro» → «Serralheiro»,
 «Rinha» → «Luta de galos», «Boliche» → «Bowling», «afastando-se» → «a afastar-se»,
 «Eléctrico» → «elétrico», «arquitectura» → «arquitetura». Held: Q6 (Landmark as «marco»).
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 37 flagged, 31 applied in `656611873`. Findings: `/tmp/translation-review/pt-findings.json`.
+Most serious fixed:
+- `faq_when_to_use_soundscape_answer`: "situational awareness" is rendered «deteção situacional» ("situational detection");
+- `settings_voice_command_listening_prompt_description`: "Speak a listening prompt" became «Reproduzir um aviso sonoro» ("play a sound");
+- `osm_biergarten`: «Jardim de cerveja» is a word-for-word calque with no meaning in Portuguese;
+Also changed the same day:
+- `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+- `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).

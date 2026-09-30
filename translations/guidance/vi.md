@@ -72,3 +72,9 @@ Nothing yet.
 **2026-09-28 — JJ's English rewording and UI-name markup (33 help/FAQ strings).** The existing translations were edited to follow the new English, not retranslated: 26 changed. Each whole string was checked against its English (C16). Where an edited sentence named a button differently from its real label, the text now uses the label. The UI names in `help_text_assistant_commands`, `help_text_assistant_commands_ios` and `help_text_remote_control_how` are now wrapped in `*…*` like the English (commit 2842d5a00). `help_config_voices_content_ios` already gave the iOS menu path in English, so it now reads Accessibility > Read & Speak > Voices, with the "(In iOS versions prior to 26…)" note translated. Uploaded and validated.
 
 **2026-09-29 — full review.** 15 fixes. Waypoint «điểm mốc» (the Landmarks word) and Route «tuyến đường» in 5 strings → «điểm dừng», «lộ trình». Help names now match the labels («Chi tiết vị trí», «Quản lý thông báo thoại», «Bật tiếng đèn hiệu», «Phương tiện công cộng»). `faq_tip_beacon_quiet` «sẽ im lặng» → «sẽ nhỏ đi». Three hints lower-cased. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** VI-G1.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 200 flagged, 197 applied in `99fbc6402`. Findings: `/tmp/translation-review/vi-findings.json`.
+Most serious fixed:
+- `search_synonyms_taxi`: «xe ôm» (motorbike taxi) does not use taxi stands, so searching it returns taxi ranks
+- `faq_when_to_use_soundscape_answer`: The user testimonials lost their quotation marks, so they read as the app speaking about itself ("Soundscape helped me…");
+- `help_text_creating_markers_content_1`: UI name does not match the button label «Lưu làm điểm đánh dấu» (Vietnamese labels are sentence case)

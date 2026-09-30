@@ -86,3 +86,9 @@ Nothing yet.
 The extra *…* pair around the "tacks" word went with the sentence. The rest of the text was left unchanged. The new wording is `unconfirmed`. Found by a cross-language check after the bg/hr reviews. Uploaded and verified live.
 
 **2026-09-29 — European batch review.** 16 hints were infinitives, imperatives or 2pl verbs instead of the verbal noun (accusative) that follows «za» («dodati», «Preklopi», «izvedeti o…», «odpreti meni» → «dodajanje», «preklop», «informacije o…», «odpiranje menija»); `places_nearby_selection_description` «izbira» → accusative «izbiro». Help texts named the stop button «Ustavi pot» (label «Zaustavi pot», 3 strings) and the mute pair «izklopi/vklopi zvok svetilnika» (labels «Utišaj/Odtišaj svetilnik», 2 strings). 21 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
+
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 52 flagged, 42 applied in `527387cee`. Findings: `/tmp/translation-review/sl-findings.json`.
+Most serious fixed:
+- `directions_name_goes_left`: Template says the road «zavije levo» ("turns left"), while the onboarding example of the same callout (first_launch_callouts_example_3) says «poteka levo».
+- `directions_name_goes_right`: Same as directions_name_goes_left: match first_launch_callouts_example_4 «poteka desno» (C11).
+- `osm_casino`: «Igralnica» is also osm_gambling, so casino and gambling venue sound the same;
