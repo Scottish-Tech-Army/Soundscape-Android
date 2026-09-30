@@ -1,12 +1,12 @@
 ---
-name: weblate-review
-description: Review Soundscape-Android's already-translated strings (the repo's shared/composeResources values-*/strings.xml) for a given language, checking they make sense against the English source, preserve placeholders/formatting, and match project terminology. Reports findings in-session; can apply confident fixes to the files and commit them, but ONLY in a separate step the user explicitly asks for by name in their own message — the review itself never edits anything. Use when the user asks to review, check, audit, or proofread existing translations for a language, as opposed to translating untranslated strings (that's [[weblate-translate]]).
+name: translation-review
+description: Review Soundscape-Android's already-translated strings (the repo's shared/composeResources values-*/strings.xml) for a given language, checking they make sense against the English source, preserve placeholders/formatting, and match project terminology. Reports findings in-session; can apply confident fixes to the files and commit them, but ONLY in a separate step the user explicitly asks for by name in their own message — the review itself never edits anything. Use when the user asks to review, check, audit, or proofread existing translations for a language, as opposed to translating untranslated strings (that's [[translate]]).
 ---
 
 # Translation review
 
 QA pass over strings that are *already* translated — sanity-checks them against the
-English source instead of producing new translations. It reuses `weblate-translate`'s
+English source instead of producing new translations. It reuses `translate`'s
 `strings_sync.py`: `languages` and `fetch` for the review itself, and — only in the
 "Applying fixes" step below, only on explicit request — `apply`.
 
@@ -17,28 +17,28 @@ exactly what counts as the required ask.
 
 ## Args
 
-One or more language codes to review, e.g. `/weblate-review de fr`. Language
+One or more language codes to review, e.g. `/translation-review de fr`. Language
 codes are the ones `translations/guidance/` uses (e.g. `de`, `fr_CA`, `zh_Hans`,
 `en_GB`), matching what `languages` prints. If the user gives no language, ask which one(s) to
 review rather than guessing — reviewing every language in one pass is a lot
 of output for the user to sift through, so don't default to "all" the way
-`weblate-translate` does with untranslated strings.
+`translate` does with untranslated strings.
 
 ## Procedure
 
 1. Run
-   `python3 .claude/skills/weblate-translate/scripts/strings_sync.py languages --lang <code> ...`
+   `python3 .claude/skills/translate/scripts/strings_sync.py languages --lang <code> ...`
    to confirm the requested language code(s) exist and see what is still pending.
 
 2. For each language, in turn:
 
    a. Fetch its units:
       ```
-      python3 .claude/skills/weblate-translate/scripts/strings_sync.py fetch --lang <code> --out-dir /tmp/weblate-review
+      python3 .claude/skills/translate/scripts/strings_sync.py fetch --lang <code> --out-dir /tmp/translation-review
       ```
       This writes `<code>-translated.json` — the set to review — and
       `<code>-untranslated.json`, the strings that are untranslated or stale. Don't
-      review those: they're [[weblate-translate]]'s job. Mention their count in the
+      review those: they're [[translate]]'s job. Mention their count in the
       summary if it isn't 0. If `-translated.json` is empty, say so and skip the
       language.
 
@@ -76,7 +76,7 @@ of output for the user to sift through, so don't default to "all" the way
         specifically for an audio-first app used by blind/low-vision users
         (see `docs/developers/translations.md`) — e.g. a translation that
         only makes sense visually.
-      - Use `note`/`context` on the unit the same way `weblate-translate`
+      - Use `note`/`context` on the unit the same way `translate`
         does, for where/how the string is used.
 
    d. For every flagged unit, record `{context, source, current, suggested,
@@ -88,7 +88,7 @@ of output for the user to sift through, so don't default to "all" the way
       skip" and won't apply it.
 
    e. Write the language's findings (even if empty) to
-      `/tmp/weblate-review/<code>-findings.json` as a JSON array of those
+      `/tmp/translation-review/<code>-findings.json` as a JSON array of those
       objects. Keep this file around after reporting — it's what "Applying
       fixes" below reads if the user asks for that later, in this session or
       a future one.
@@ -112,7 +112,7 @@ would be too slow.
 If you do parallelize, do **not** hand batches to `fork` subagents. A fork
 inherits this entire skill file verbatim, including the generic
 instructions and file paths above ("go through `<code>-translated.json`",
-"write to `/tmp/weblate-review/<code>-findings.json`"). A worker holding
+"write to `/tmp/translation-review/<code>-findings.json`"). A worker holding
 both that generic instruction and your narrower per-batch delegation ("only
 look at batch N") can end up following the skill's own generic instructions
 instead of the delegation — re-reviewing the *entire* corpus on its own
@@ -158,7 +158,7 @@ sent in this turn, naming what to apply — e.g. "apply the French fixes",
 
 **Procedure**, once genuinely triggered:
 
-1. Read `/tmp/weblate-review/<code>-findings.json` for the requested
+1. Read `/tmp/translation-review/<code>-findings.json` for the requested
    language. If it's missing, run the review procedure above first — don't
    guess at findings from memory.
 
@@ -176,14 +176,14 @@ sent in this turn, naming what to apply — e.g. "apply the French fixes",
    again").
 
 4. Build `{context: suggested}` for the confirmed actionable findings (same
-   shape `weblate-translate` applies) and write it to
-   `/tmp/weblate-review/<code>-apply.json`. First check each `current` still matches
+   shape `translate` applies) and write it to
+   `/tmp/translation-review/<code>-apply.json`. First check each `current` still matches
    the file — a finding whose string has changed since the review is stale; drop it
    and say so.
 
 5. Apply:
    ```
-   python3 .claude/skills/weblate-translate/scripts/strings_sync.py apply --lang <code> --file /tmp/weblate-review/<code>-apply.json --revise
+   python3 .claude/skills/translate/scripts/strings_sync.py apply --lang <code> --file /tmp/translation-review/<code>-apply.json --revise
    ```
    `--revise` allows keys that aren't pending, which review fixes never are. It
    validates first and writes nothing if anything fails. Check `git diff`, then commit
@@ -194,7 +194,7 @@ sent in this turn, naming what to apply — e.g. "apply the French fixes",
 
 ## Notes
 
-- **Translate the whole string, never just the part that changed** (rule C16 in `translations/guidance/_common.md`). After a bulk pass, run `python3 .claude/skills/weblate-translate/scripts/truncation_check.py /tmp/weblate-review <code>` and check every flag against the English.
+- **Translate the whole string, never just the part that changed** (rule C16 in `translations/guidance/_common.md`). After a bulk pass, run `python3 .claude/skills/translate/scripts/truncation_check.py /tmp/translation-review <code>` and check every flag against the English.
 
 - The review step (`languages`/`fetch`) never runs `strings_sync.py apply` — only
   the "Applying fixes" step does, and only when explicitly triggered per the rules

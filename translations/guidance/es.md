@@ -70,7 +70,7 @@ earlier pass of this file recorded.
 
 **A 2026-09-24 sweep of the live 1522-unit corpus found two kinds of drift
 from this rule, now both fixed with concrete rewrites in
-`/tmp/weblate-review/es-findings.json` (95 units total, `high` confidence —
+`/tmp/translation-review/es-findings.json` (95 units total, `high` confidence —
 this is regular tú-conjugation, not a term decision):**
 
 1. **26 general-UI strings** (onboarding, errors, hints, settings
@@ -310,7 +310,7 @@ cluster: 69 more units were formal, converted to «tú» throughout. Combined
 with the earlier 22 plus the 4 previously-"borderline" settings/about
 strings (no longer borderline — now unambiguously in scope), this brings the
 total to **95 units** with concrete fixes in
-`/tmp/weblate-review/es-findings.json`, all `high` confidence. Verified: no
+`/tmp/translation-review/es-findings.json`, all `high` confidence. Verified: no
 placeholder or line-break drift, no leftover formal verb forms, and every
 remaining «su»/«sus» in the suggested text double-checked as a genuine
 third-person possessive (the beacon's sound, the place's distance, the
@@ -318,12 +318,12 @@ libraries' licenses) rather than a missed "your". The
 `help_text_assistant_*` cluster needed no change — it was already informal
 and is now simply correct rather than an outlier.
 
-**2026-09-24 — applied.** Dave asked to apply via `weblate-review`. Published
+**2026-09-24 — applied.** Dave asked to apply via `translation-review`. Published
 a review page (word-diff over all 95 findings) for confirmation before
 upload, per the skill's own rule that this lands live with no review queue.
 Dave confirmed all 95. Upload hit a tooling gap: `weblate_sync.py`'s
 validator checks that every uploaded key is currently *untranslated* — a
-check built for `weblate-translate`'s fill-in-the-blanks flow, not for
+check built for `translate`'s fill-in-the-blanks flow, not for
 correcting already-translated strings, so it flagged all 95 as errors on a
 check that doesn't apply to this operation. `--skip-validate` is itself
 blocked by an auto-mode safety classifier ("Safety Bypass Flag"), so Dave ran

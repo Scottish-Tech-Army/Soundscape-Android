@@ -121,7 +121,7 @@ on a waypoint. So their edit is kept (C8: never revert a native speaker
 silently) and asked about (Q3a), not swept.
 
 **Sweep result (80 units mention beacon; full list in
-`/tmp/weblate-review/pl-findings.json`):**
+`/tmp/translation-review/pl-findings.json`):**
 
 - **Sound, correct as is (~45):** styles, mute/unmute and their hints,
   first-launch, the tour, the FAQ answers about volume and holding the phone
@@ -394,7 +394,7 @@ The two one-off typos (`help_text_destination_beacons_when`, `help_text_routes_c
 **2026-09-30 — questionnaire answered (Q1–Q10).** The reviewer answered every
 question, and handed three choices back to Dave (beacon place/Waypoint, Marker,
 movement verb). He chose «cel» / «punkt trasy» / «znacznik» / keep «idziesz».
-Swept into 76 units in `/tmp/weblate-review/pl-findings.json`: 74 `agreed`,
+Swept into 76 units in `/tmp/translation-review/pl-findings.json`: 74 `agreed`,
 2 inventory-only (PL-D1 scavenger hunt). The 2026-09-29 findings file was kept
 as `pl-findings.2026-09-29.json`. The 74 `agreed` fixes were uploaded with `--skip-validate` the same day and verified live, all 74 matching. Q10's clock-position fault
 is a code problem, recorded as `_common.md` C20.

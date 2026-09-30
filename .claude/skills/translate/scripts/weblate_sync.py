@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Deterministic Weblate I/O for the weblate-translate skill: list languages,
+Deterministic Weblate I/O for the translate skill: list languages,
 fetch untranslated/translated units, and upload finished translations.
 
 Auth comes from wlc's standard config search path (e.g. ~/.config/weblate),
@@ -315,6 +315,99 @@ def cmd_validate(args: argparse.Namespace) -> None:
     print(f"{args.lang}: {len(translations)} translation(s) OK")
 
 
+# Weblate change-log action codes (weblate/trans/models/change.py).
+ACTION_SUGGESTION_ADDED = 4
+ACTION_SUGGESTION_ACCEPTED = 7
+ACTION_SUGGESTION_REMOVED = 26
+
+
+def languages_with_suggestions(c: wlc.Weblate) -> list[str]:
+    base_url = c.url
+    path = f"components/{PROJECT}/{COMPONENT}/statistics/"
+    codes = []
+    while path:
+        data = with_retry("statistics", lambda p=path: c.get(p))
+        for row in data["results"]:
+            if row.get("suggestions") and row.get("code") != "en":
+                codes.append(row["code"])
+        path = _to_path(base_url, data.get("next"))
+    return sorted(codes)
+
+
+def suggestions_for(c: wlc.Weblate, lang: str) -> list[dict[str, Any]]:
+    """Open suggestions for one language, in translation-review's findings shape.
+
+    Weblate's /suggestions/ endpoint spans every project on the server, so this goes per
+    language instead: `has:suggestion` finds the units that still have one open, and the
+    language's change log (action "Suggestion added") gives each suggestion's text, author
+    and date. A unit can carry several; each distinct text is listed, less any the log
+    shows accepted or removed since.
+    """
+    base_url = c.url
+    units = {u["id"]: u for u in get_units(c, lang, "has:suggestion")}
+    if not units:
+        return []
+
+    def changes(action: int):
+        path = f"translations/{PROJECT}/{COMPONENT}/{lang}/changes/?action={action}"
+        while path:
+            data = with_retry(f"{lang} changes {action}", lambda p=path: c.get(p))
+            for change in data["results"]:
+                if change.get("unit"):
+                    yield int(change["unit"].rstrip("/").rsplit("/", 1)[-1]), change
+            path = _to_path(base_url, data.get("next"))
+
+    closed = {
+        (unit_id, change.get("target") or "")
+        for action in (ACTION_SUGGESTION_ACCEPTED, ACTION_SUGGESTION_REMOVED)
+        for unit_id, change in changes(action)
+    }
+    found: dict[tuple[int, str], dict[str, Any]] = {}
+    for unit_id, change in changes(ACTION_SUGGESTION_ADDED):
+        if unit_id not in units or (unit_id, change.get("target") or "") in closed:
+            continue
+        text = change.get("target") or ""
+        unit = units[unit_id]
+        if not text or text == unit["target"]:
+            continue
+        user = (change.get("user") or "").rstrip("/").rsplit("/", 1)[-1] or "someone"
+        key = (unit_id, text)
+        if key not in found:  # the log is newest first; keep the latest
+            found[key] = {
+                "context": unit["context"],
+                "source": unit["source"],
+                "current": unit["target"],
+                "suggested": text,
+                "reason": f"Weblate suggestion by {user}, {change['timestamp'][:10]}",
+                "rule": "weblate-suggestion",
+                "confidence": "unreviewed",
+            }
+    return sorted(found.values(), key=lambda f: f["context"])
+
+
+def cmd_suggestions(args: argparse.Namespace) -> None:
+    """Write <lang>-suggestions.json for every language with open Weblate suggestions.
+
+    Read-only. The files use translation-review's findings shape but a different name, so a
+    suggestion never reaches the apply step without someone deciding on it first.
+    """
+    c = client()
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    langs = args.lang or languages_with_suggestions(c)
+    if not langs:
+        print("No open suggestions in any language.")
+        return
+    for i, lang in enumerate(langs):
+        path = out_dir / f"{lang}-suggestions.json"
+        path.unlink(missing_ok=True)
+        found = suggestions_for(c, lang)
+        path.write_text(json.dumps(found, ensure_ascii=False, indent=2))
+        print(f"{lang:10s} {len(found)} suggestion(s) -> {path}")
+        if i < len(langs) - 1:
+            time.sleep(args.pause)
+
+
 def cmd_add_language(args: argparse.Namespace) -> None:
     c = client()
     component = c.get_component(f"{PROJECT}/{COMPONENT}")
@@ -444,7 +537,7 @@ def git_config(key: str, default: str) -> str:
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="Weblate I/O helper for the weblate-translate skill.")
+    p = argparse.ArgumentParser(description="Weblate I/O helper for the translate skill.")
     sub = p.add_subparsers(dest="command", required=True)
 
     p_lang = sub.add_parser("languages", help="List languages and their untranslated counts.")
@@ -469,6 +562,14 @@ def main() -> None:
     p_validate.add_argument("--require-complete", action="store_true",
                             help="Also fail if any untranslated key is missing (not a partial batch).")
     p_validate.set_defaults(func=cmd_validate)
+
+    p_sugg = sub.add_parser("suggestions",
+                            help="Write <lang>-suggestions.json for open Weblate suggestions (read-only).")
+    p_sugg.add_argument("--lang", nargs="+", help="Default: every language with open suggestions.")
+    p_sugg.add_argument("--out-dir", default=".", help="Directory to write the files into.")
+    p_sugg.add_argument("--pause", type=float, default=PAUSE_SECONDS,
+                        help="Seconds between languages (throttling protection).")
+    p_sugg.set_defaults(func=cmd_suggestions)
 
     p_addlang = sub.add_parser("add-language", help="Add an existing Weblate language as a new translation of the component.")
     p_addlang.add_argument("--lang", required=True, help="Weblate language code, e.g. et, nn_NO, cy.")

@@ -134,4 +134,4 @@ Numbered as on `questions-nl.md`; Q4 is "anything else".
 
 Uploaded with `--skip-validate`; all 32 re-fetched and matched exactly.
 
-**2026-09-30 — first reviewer's questionnaire applied.** Answers received 2026-09-28 and held until Dave chose to proceed. 12 strings in `/tmp/weblate-review/nl-findings.json`. Siri phrases changed in the iOS files. NL-G1 needed a code change (new dead-end templates) and values for all 45 languages. The 12 strings were uploaded and verified live the same day. The dead-end values wait until Weblate has the new keys.
+**2026-09-30 — first reviewer's questionnaire applied.** Answers received 2026-09-28 and held until Dave chose to proceed. 12 strings in `/tmp/translation-review/nl-findings.json`. Siri phrases changed in the iOS files. NL-G1 needed a code change (new dead-end templates) and values for all 45 languages. The 12 strings were uploaded and verified live the same day. The dead-end values wait until Weblate has the new keys.

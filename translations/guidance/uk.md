@@ -119,7 +119,7 @@ and said they are testing and noting the callouts that sound unnatural or
 unclear. **Don't apply the label form across the 54 yet.** Wait for those
 notes, which will say which templates are wrong and what they should become.
 Some may be fine as they are, and the fix may not always be a label. The
-inventory is in `/tmp/weblate-review/uk-findings.json`, rule UK-G3; regenerate
+inventory is in `/tmp/translation-review/uk-findings.json`, rule UK-G3; regenerate
 it if it's gone.
 
 ### UK-T4 — Callout stays «оголошення» (`confirmed`, closed)
