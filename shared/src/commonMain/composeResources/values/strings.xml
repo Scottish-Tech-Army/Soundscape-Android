@@ -6,7 +6,7 @@
     <string name="general_alert_cancel">Cancel</string>
     <!-- Text for button to accept as done a dialog -->
     <string name="general_alert_done">Done</string>
-    <!-- Text displayed whilst app is starting location simulation mode -->
+    <!-- Shown while the app is getting something ready: on the home screen while it finds your location, in the Add Waypoints list while it loads, and while location simulation starts. Keep it general - don’t name any one of these. -->
     <string name="general_loading_start">Getting things ready…</string>
     <!-- Error message that Soundscape is having trouble determining current location -->
     <string name="general_error_location_services_find_location_error">We are having trouble finding your current location.</string>
@@ -154,7 +154,7 @@
     <string name="talkback_double_tap_template">Double tap to %1$s</string>
     <!-- Initial location simulation state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
     <string name="preview_go_nearest_intersection">Go to nearest intersection</string>
-    <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road" -->
+    <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road". The app adds the space before it itself, so a leading space is optional. -->
     <string name="last_entry_in_list"> and %1$s</string>
     <!-- Title for a setting to include unnamed roads -->
     <string name="preview_include_unnamed_roads_title">Unnamed Roads</string>
@@ -194,11 +194,11 @@
     <string name="location_detail_add_waypoint_existing_hint">remove this marker from your route</string>
     <!-- Accessibility hint for markers in a list that can be added to a list. This is always preceded by "Double tap to " -->
     <string name="location_detail_add_waypoint_new_hint">add this marker as a waypoint on your route</string>
-    <!-- Talkback hint for button that makes map full screen -->
+    <!-- Accessibility label of the button that makes the map full screen. The screen reader reads it as the button’s name, not after "Double tap to", so write it as a label or command (e.g. "Full-screen map"), not as the continuation of a phrase. -->
     <string name="location_detail_full_screen_hint">Make the map full screen</string>
-    <!-- Talkback hint for button that stops map being full screen -->
+    <!-- Accessibility label of the button that closes the full-screen map. Read as the button’s name, not after "Double tap to". -->
     <string name="location_detail_exit_full_screen_hint">Exit the full-screen map</string>
-    <!-- Talkback hint for button that makes map full screen to enable editing of the location -->
+    <!-- Accessibility label of the button that opens the map full screen to move the marker. Read as the button’s name, not after "Double tap to". -->
     <string name="location_detail_full_screen_for_edit_hint">Make the map full screen and edit the marker location</string>
     <!-- Title of the full-screen map used to move a marker. Marker - A location that has been marked as important by the user or application. -->
     <string name="location_detail_adjust_marker_location">Edit location</string>
@@ -474,13 +474,13 @@
     <string name="directions_name_goes_right">%1$s, goes right</string>
     <!-- Notification, %s street name, "<Pike Street>, continues ahead -->
     <string name="directions_name_continues_ahead">%1$s, continues ahead</string>
-    <!-- Notification orientation, ahead. Used as the direction name in sentences such as "<Pike Street>, <ahead>". -->
+    <!-- Notification orientation, ahead. The code puts it directly BEFORE a road name with a space: "ahead Moor Road" (IntersectionUtils). The word order can’t be changed, so choose a word that reads correctly in front of a name. -->
     <string name="directions_direction_ahead">ahead</string>
     <!-- Notification announced to the user that they are near a location that is near a settlement. The settlement is the nearest by distance, but isn't necessarily the one that the road is actually in. %1$@ is a road name and %2$@ is a settlement name, example: "Near Glasgow Road and close to Milngavie" -->
     <string name="directions_near_road_and_settlement">Near %1$s and close to %2$s</string>
-    <!-- Travelling in a vehicle, describes a numbered road junction with no separate interchange name, %1$s is the junction number, example: "Junction 15" -->
+    <!-- Travelling in a vehicle, describes a numbered road junction with no separate interchange name, %1$s is the junction number, example: "Junction 15". Never heard on its own: it is substituted after a preposition, as the %1$s of directions_at_junction_inline ("at %1$s") and the %2$s of directions_on_road_at_junction ("On %1$s at %2$s"), e.g. "On the M8 at Junction 15". In a language with noun cases, write it in the case those templates need. -->
     <string name="directions_junction_with_ref">Junction %1$s</string>
-    <!-- Travelling in a vehicle, describes a numbered road junction that also has an interchange name, %1$s is the junction number and %2$s is the interchange name, example: "Junction 2, Robroyston" -->
+    <!-- Travelling in a vehicle, describes a numbered road junction that also has an interchange name, %1$s is the junction number and %2$s is the interchange name, example: "Junction 2, Robroyston". Like directions_junction_with_ref, it is only ever substituted after "at" in directions_at_junction_inline and directions_on_road_at_junction, so use the case those need. -->
     <string name="directions_junction_with_ref_and_name">Junction %1$s, %2$s</string>
     <!-- Travelling in a vehicle, names a road that carries both a route number and a local street name, %1$s is the route number and %2$s is the street name, example: "A81 (Glasgow Road)" -->
     <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
@@ -502,9 +502,9 @@
     <string name="directions_near_settlement_inline">near %1$s</string>
     <!-- Travelling in a vehicle, appended after a "Traveling north along %s" style phrase when close to a city/large conurbation, where a directional "towards"/"away from" wouldn't be meaningful, %1$s is the settlement name, example: "Traveling north along the A81 close to Glasgow" -->
     <string name="directions_close_to_settlement_inline">close to %1$s</string>
-    <!-- Travelling on an unnamed railway line - used in place of a line name (e.g. "Argyle Line") when the line's name isn't available in the map data, combined with the "On %s" style templates, example: "On train" -->
+    <!-- Stands in for the name of a railway line that has no name in the map data (a named line would be e.g. "Argyle Line"). It goes wherever a road name would go: "On %1$s", "Traveling north along %1$s", "On %1$s and close to %2$s, %3$s since %4$s", so the English says "On train". Translate it as the name of the line or track, in the form those templates’ prepositions need (e.g. "the railway line"), not as a word for the vehicle. -->
     <string name="directions_generic_train">train</string>
-    <!-- The same, for an unnamed tramway rather than a railway line - what the rider is on is a tram, not a train, example: "On tram" -->
+    <!-- The same as directions_generic_train, for an unnamed tramway. It goes where a road name would go ("On %1$s", "Traveling north along %1$s"), so translate it as the tram line or track, not the vehicle. -->
     <string name="directions_generic_tram">tram</string>
     <!-- Travelling by car, bus or train, called out on passing above a named feature: a river or canal crossed by a bridge, a railway line crossed by a bridge, or (riding a train) a road the line is carried over. Pairs with "Passing under %1$s" below, so the two should stay symmetrical - the point is to say which side of the feature the traveller is on. %1$s is the feature's name, examples: "Passing over Allander Water", "Passing over the West Highland Line", "Passing over Great Western Road" -->
     <string name="directions_crossing_waterway">Passing over %1$s</string>
@@ -1201,8 +1201,9 @@
     <string name="settings_theme_contrast_high">High</string>
     <!-- Description for an item in a list e.g. "Blah is choice 2 out of 3" -->
     <string name="settings_list_item_description">%1$s is choice %2$s out of %3$s</string>
-    <!-- Setting hints for keeping or using a value from a list-->
+    <!-- Screen reader hint for the item in a settings list that is already selected. Always follows "Double tap to" (TalkBack, and our own talkback_double_tap_template on iOS), so it must continue that phrase: "Double tap to keep". Write it in the same form as the other *_hint strings in your language (usually an infinitive), not as a command. -->
     <string name="settings_keep_value">keep</string>
+    <!-- Screen reader hint for an item in a settings list that is not selected. Always follows "Double tap to", so it must continue that phrase: "Double tap to use". Same form as settings_keep_value. -->
     <string name="settings_use_value">use</string>
     <!-- Button text for exiting location simulation mode -->
     <string name="street_preview_exit">Exit location simulation</string>
@@ -1231,7 +1232,7 @@
     <string name="confect_name_to_via">%1$s to %2$s via %3$s</string>
     <!-- Describes an unnamed way by where it leads, e.g. "Path to Moor Road". %1$s is the kind of way (Path, Track, Service road...), %2$s is the road it leads to or the dead end string (confect_name_dead_end). Translate as "a %1$s that leads to %2$s" - the way is the thing being described, not the starting point of a journey, so do not use a "from %1$s to %2$s" construction. -->
     <string name="confect_name_to">%1$s to %2$s</string>
-    <!-- Road description of path joining two roads e.g. "Path that joins Roselea Drive and Moor Road" -->
+    <!-- Road description of path joining two roads e.g. "Path that joins Roselea Drive and Moor Road". %1$s is a kind of way (Path, Sidewalk, Steps, Service road…) and can be any gender or number in your language, so don’t make a word agree with it: a finite verb or "%1$s between %2$s and %3$s" works everywhere. -->
     <string name="confect_name_joins">%1$s that joins %2$s and %3$s</string>
     <!-- Road description for path via steps/tunnel/bridge e.g. "Path via bridge" -->
     <string name="confect_name_via">%1$s via %2$s</string>
@@ -1514,7 +1515,7 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="osm_cattle_grid">Cattle Guard</string>
     <!-- OpenStreetMap term gate. A moveable barrier for entry or exit.-->
     <string name="osm_gate">Gate</string>
-    <!-- OpenStreetMap term lift_gate. A gate that lifts vertically to allow access.-->
+    <!-- OpenStreetMap term lift_gate. A boom barrier: a pole that swings up to let vehicles through, as at a car park entrance or level crossing. Not a gate that rises vertically. -->
     <string name="osm_lift_gate">Lift Gate</string>
     <!-- OpenStreetMap term toilets. Public or private restroom facilities.-->
     <string name="osm_toilets">Toilets</string>
@@ -1528,7 +1529,7 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="osm_taxi">Taxi Stand</string>
     <!-- OpenStreetMap term post_office. A facility offering postal services.-->
     <string name="osm_post_office">Post Office</string>
-    <!-- OpenStreetMap term post_box. A public mailbox for outgoing mail.-->
+    <!-- OpenStreetMap term post_box. A street post box that people put letters into to send them, e.g. a red pillar box. Not a P.O. box (a rented box at a post office for receiving mail). -->
     <string name="osm_post_box">Post Box</string>
     <!-- OpenStreetMap term waste_basket. A bin for disposing of litter.-->
     <string name="osm_waste_basket">Waste Basket</string>
@@ -1714,7 +1715,7 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="osm_mobile_phone">Mobile Phone Shop</string>
     <!-- OpenStreetMap term carpet. Shop selling carpets and floor coverings.-->
     <string name="osm_carpet">Carpet Shop</string>
-    <!-- OpenStreetMap term trade. General trade or commercial retail outlet.-->
+    <!-- OpenStreetMap term trade. A trade supplier or builders’ merchant, selling building materials and tools mainly to tradespeople. Not a general shop. -->
     <string name="osm_trade">Trade Shop</string>
     <!-- OpenStreetMap term garden_centre. Retail center selling plants, gardening supplies, and outdoor items.-->
     <string name="osm_garden_centre">Garden Centre Shop</string>
@@ -1802,7 +1803,7 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="osm_running">Running Track</string>
     <!-- OpenStreetMap term glaziery. Workshop or shop for glass installation and repair.-->
     <string name="osm_glaziery">Glazier Shop</string>
-    <!-- OpenStreetMap term garages. Workshops for vehicle repair and storage of cars.-->
+    <!-- OpenStreetMap term garages. A block or row of lock-up garages where people park their own cars. Not a workshop that repairs vehicles (that is car_repair). -->
     <string name="osm_garages">Garages</string>
     <!-- OpenStreetMap term retail. General retail outlet selling various goods.-->
     <string name="osm_retail">Retail Shop</string>
@@ -3014,7 +3015,7 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="relative_clock_hour_10">10</string>
     <string name="relative_clock_hour_11">11</string>
     <string name="relative_clock_hour_12">12</string>
-    <!-- Relative directions using degrees, %s is angle e.g. at 45 degrees -->
+    <!-- Relative directions using degrees, %s is angle e.g. at 45 degrees. %1$s can be any whole number from 0 to 359, and the noun can’t change with it, so choose wording that reads correctly for every number (e.g. a degree sign, or a form where the noun doesn’t agree). -->
     <string name="relative_degrees_direction">at %1$s degrees</string>
     <!-- Relative directions using left/right -->
     <string name="relative_left_right_direction_ahead">Ahead</string>
@@ -3168,80 +3169,80 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="legacy_migration_continue">Continue</string>
     <!-- Search synonyms for places that sell medicines. A comma-separated list of the words someone might type into search to find places that sell medicines of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_pharmacy">pharmacy, chemist, drugstore</string>
-    <!-- Search synonyms for cafes. A comma-separated list of the words someone might type into search to find cafes of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for cafes. A comma-separated list of the words someone might type into search to find cafes of any name, e.g. "cafe" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_cafe">cafe, coffee shop, coffee</string>
-    <!-- Search synonyms for restaurants. A comma-separated list of the words someone might type into search to find restaurants of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for restaurants. A comma-separated list of the words someone might type into search to find restaurants of any name, e.g. "restaurant" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_restaurant">restaurant, place to eat</string>
-    <!-- Search synonyms for fast food outlets and takeaways. A comma-separated list of the words someone might type into search to find fast food outlets and takeaways of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for fast food outlets and takeaways. A comma-separated list of the words someone might type into search to find fast food outlets and takeaways of any name, e.g. "fast food" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_fast_food">fast food, takeaway, takeout</string>
-    <!-- Search synonyms for pubs and bars. A comma-separated list of the words someone might type into search to find pubs and bars of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for pubs and bars. A comma-separated list of the words someone might type into search to find pubs and bars of any name, e.g. "pub" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_pub">pub, bar</string>
-    <!-- Search synonyms for public toilets. A comma-separated list of the words someone might type into search to find public toilets of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for public toilets. A comma-separated list of the words someone might type into search to find public toilets of any name, e.g. "toilet" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_toilets">toilet, toilets, restroom, bathroom, loo, public toilet</string>
-    <!-- Search synonyms for cash machines. A comma-separated list of the words someone might type into search to find cash machines of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for cash machines. A comma-separated list of the words someone might type into search to find cash machines of any name, e.g. "ATM" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_atm">ATM, cash machine, cashpoint</string>
-    <!-- Search synonyms for banks. A comma-separated list of the words someone might type into search to find banks of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for banks. A comma-separated list of the words someone might type into search to find banks of any name, e.g. "bank" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_bank">bank</string>
-    <!-- Search synonyms for supermarkets. A comma-separated list of the words someone might type into search to find supermarkets of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for supermarkets. A comma-separated list of the words someone might type into search to find supermarkets of any name, e.g. "supermarket" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_supermarket">supermarket, grocery store, grocer</string>
-    <!-- Search synonyms for small convenience stores. A comma-separated list of the words someone might type into search to find small convenience stores of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for small convenience stores. A comma-separated list of the words someone might type into search to find small convenience stores of any name, e.g. "convenience store" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_convenience">convenience store, corner shop</string>
-    <!-- Search synonyms for bus stops. A comma-separated list of the words someone might type into search to find bus stops of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for bus stops. A comma-separated list of the words someone might type into search to find bus stops of any name, e.g. "bus stop" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_bus_stop">bus stop</string>
-    <!-- Search synonyms for railway stations. A comma-separated list of the words someone might type into search to find railway stations of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for railway stations. A comma-separated list of the words someone might type into search to find railway stations of any name, e.g. "train station" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_train_station">train station, railway station, station</string>
-    <!-- Search synonyms for post offices. A comma-separated list of the words someone might type into search to find post offices of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for post offices. A comma-separated list of the words someone might type into search to find post offices of any name, e.g. "post office" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_post_office">post office</string>
-    <!-- Search synonyms for post boxes for sending letters. A comma-separated list of the words someone might type into search to find post boxes for sending letters of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for post boxes for sending letters. A comma-separated list of the words someone might type into search to find post boxes for sending letters of any name, e.g. "post box" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_post_box">post box, postbox, mailbox, letter box</string>
-    <!-- Search synonyms for doctors' surgeries and clinics. A comma-separated list of the words someone might type into search to find doctors' surgeries and clinics of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for doctors' surgeries and clinics. A comma-separated list of the words someone might type into search to find doctors' surgeries and clinics of any name, e.g. "doctor" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_doctors">doctor, doctors, GP, surgery, medical centre, clinic</string>
-    <!-- Search synonyms for dentists. A comma-separated list of the words someone might type into search to find dentists of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for dentists. A comma-separated list of the words someone might type into search to find dentists of any name, e.g. "dentist" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_dentist">dentist</string>
-    <!-- Search synonyms for hospitals. A comma-separated list of the words someone might type into search to find hospitals of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for hospitals. A comma-separated list of the words someone might type into search to find hospitals of any name, e.g. "hospital" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_hospital">hospital, emergency room</string>
-    <!-- Search synonyms for libraries. A comma-separated list of the words someone might type into search to find libraries of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for libraries. A comma-separated list of the words someone might type into search to find libraries of any name, e.g. "library" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_library">library</string>
-    <!-- Search synonyms for police stations. A comma-separated list of the words someone might type into search to find police stations of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for police stations. A comma-separated list of the words someone might type into search to find police stations of any name, e.g. "police" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_police">police, police station</string>
-    <!-- Search synonyms for fuel stations. A comma-separated list of the words someone might type into search to find fuel stations of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for fuel stations. A comma-separated list of the words someone might type into search to find fuel stations of any name, e.g. "petrol station" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_fuel">petrol station, gas station, filling station</string>
-    <!-- Search synonyms for car parks. A comma-separated list of the words someone might type into search to find car parks of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for car parks. A comma-separated list of the words someone might type into search to find car parks of any name, e.g. "car park" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_parking">car park, parking lot, parking</string>
-    <!-- Search synonyms for hotels. A comma-separated list of the words someone might type into search to find hotels of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for hotels. A comma-separated list of the words someone might type into search to find hotels of any name, e.g. "hotel" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_hotel">hotel, accommodation</string>
-    <!-- Search synonyms for parks. A comma-separated list of the words someone might type into search to find parks of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for parks. A comma-separated list of the words someone might type into search to find parks of any name, e.g. "park" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_park">park</string>
-    <!-- Search synonyms for children's playgrounds. A comma-separated list of the words someone might type into search to find children's playgrounds of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for children's playgrounds. A comma-separated list of the words someone might type into search to find children's playgrounds of any name, e.g. "playground" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_playground">playground</string>
-    <!-- Search synonyms for places of worship. A comma-separated list of the words someone might type into search to find places of worship of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for places of worship. A comma-separated list of the words someone might type into search to find places of worship of any name, e.g. "place of worship" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_place_of_worship">place of worship, church, mosque, synagogue, temple</string>
-    <!-- Search synonyms for schools. A comma-separated list of the words someone might type into search to find schools of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for schools. A comma-separated list of the words someone might type into search to find schools of any name, e.g. "school" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_school">school</string>
-    <!-- Search synonyms for cinemas. A comma-separated list of the words someone might type into search to find cinemas of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for cinemas. A comma-separated list of the words someone might type into search to find cinemas of any name, e.g. "cinema" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_cinema">cinema, movie theater</string>
-    <!-- Search synonyms for bakeries. A comma-separated list of the words someone might type into search to find bakeries of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for bakeries. A comma-separated list of the words someone might type into search to find bakeries of any name, e.g. "bakery" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_bakery">bakery, baker</string>
-    <!-- Search synonyms for hairdressers and barbers. A comma-separated list of the words someone might type into search to find hairdressers and barbers of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for hairdressers and barbers. A comma-separated list of the words someone might type into search to find hairdressers and barbers of any name, e.g. "hairdresser" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_hairdresser">hairdresser, barber, hair salon</string>
-    <!-- Search synonyms for benches to sit on. A comma-separated list of the words someone might type into search to find benches to sit on of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for benches to sit on. A comma-separated list of the words someone might type into search to find benches to sit on of any name, e.g. "bench" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_bench">bench, seat</string>
-    <!-- Search synonyms for drinking water taps. A comma-separated list of the words someone might type into search to find drinking water taps of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for drinking water taps. A comma-separated list of the words someone might type into search to find drinking water taps of any name, e.g. "drinking water" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_drinking_water">drinking water, water fountain</string>
-    <!-- Search synonyms for taxi ranks. A comma-separated list of the words someone might type into search to find taxi ranks of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for taxi ranks. A comma-separated list of the words someone might type into search to find taxi ranks of any name, e.g. "taxi" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_taxi">taxi, taxi rank, taxi stand</string>
-    <!-- Search synonyms for museums. A comma-separated list of the words someone might type into search to find museums of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for museums. A comma-separated list of the words someone might type into search to find museums of any name, e.g. "museum" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_museum">museum</string>
-    <!-- Search synonyms for gyms. A comma-separated list of the words someone might type into search to find gyms of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for gyms. A comma-separated list of the words someone might type into search to find gyms of any name, e.g. "gym" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_gym">gym, fitness centre</string>
-    <!-- Search synonyms for swimming pools. A comma-separated list of the words someone might type into search to find swimming pools of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for swimming pools. A comma-separated list of the words someone might type into search to find swimming pools of any name, e.g. "swimming pool" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_swimming_pool">swimming pool</string>
-    <!-- Search synonyms for vets for animals. A comma-separated list of the words someone might type into search to find vets for animals of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for vets for animals. A comma-separated list of the words someone might type into search to find vets for animals of any name, e.g. "vet" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_veterinary">vet, veterinary</string>
-    <!-- Search synonyms for bicycle shops. A comma-separated list of the words someone might type into search to find bicycle shops of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for bicycle shops. A comma-separated list of the words someone might type into search to find bicycle shops of any name, e.g. "bike shop" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_bicycle_shop">bike shop, bicycle shop, cycle shop</string>
-    <!-- Search synonyms for book shops. A comma-separated list of the words someone might type into search to find book shops of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for book shops. A comma-separated list of the words someone might type into search to find book shops of any name, e.g. "books" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_book_shop">books, bookshop, bookstore, book shop</string>
-    <!-- Search synonyms for mobile phone shops. A comma-separated list of the words someone might type into search to find mobile phone shops of any name, e.g. "pharmacy" to find one called "Boots". Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
+    <!-- Search synonyms for mobile phone shops. A comma-separated list of the words someone might type into search to find mobile phone shops of any name, e.g. "phone shop" to find one whatever its name. Give the everyday words used in your language - they don't need to be translations of the English ones, and there can be more or fewer of them. Keep the commas between them. -->
     <string name="search_synonyms_phone_shop">phone shop, mobile phone shop</string>
 </resources>
