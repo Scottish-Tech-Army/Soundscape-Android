@@ -420,7 +420,7 @@
     <string name="preview_go_nearest_intersection">Ir al cruce más cercano</string>
     <string name="last_entry_in_list"> y %1$s</string>
     <string name="location_detail_full_screen_hint">Poner el mapa en pantalla completa</string>
-    <string name="location_detail_exit_full_screen_hint">salir del mapa en pantalla completa</string>
+    <string name="location_detail_exit_full_screen_hint">Salir del mapa en pantalla completa</string>
     <string name="directions_near_road_and_settlement">Cerca {es:de %1$s} y próximo {es:a %2$s}</string>
     <string name="directions_cardinal_north">Norte</string>
     <string name="directions_cardinal_north_east">Nordeste</string>
@@ -464,7 +464,7 @@
     <string name="menu_share_recorded_route">Compartir grabación de viaje</string>
     <string name="confect_name_to_via">%1$s {es:hacia %2$s} vía %3$s</string>
     <string name="confect_name_to">%1$s {es:hacia %2$s}</string>
-    <string name="confect_name_joins">%1$s que une %2$s con %3$s</string>
+    <string name="confect_name_joins">%1$s {es:entre %2$s} {es:y %3$s}</string>
     <string name="confect_name_via">%1$s vía %2$s</string>
     <string name="confect_name_pavement_next_to">Acera junto {es:a %1$s}</string>
     <string name="confect_name_pavement">Acera</string>
@@ -489,8 +489,8 @@
     <string name="route_detail_action_next_disabled_hint">Inactivo porque la ruta ya está al final</string>
     <string name="osm_entrance">entrada</string>
     <string name="osm_main_entrance">entrada principal</string>
-    <string name="osm_entrance_named_with_destination">%2$s de %1$s desde %3$s</string>
-    <string name="osm_entrance_with_destination">%2$s de %1$s</string>
+    <string name="osm_entrance_named_with_destination">%2$s {es:de %1$s} {es:desde %3$s}</string>
+    <string name="osm_entrance_with_destination">%2$s {es:de %1$s}</string>
     <string name="offline_maps_title">Mapas sin conexión</string>
     <string name="offline_map_details_title">Detalles del mapa sin conexión</string>
     <string name="offline_maps_loading">Cargando…</string>
@@ -536,7 +536,17 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Marcadores y rutas eliminados</string>
     <string name="new_version_info_text">Información sobre la nueva versión</string>
     <string name="new_version_info_completed">Cerrar el cuadro de diálogo de la nueva versión</string>
-    <string name="new_version_info_details">Esta es una actualización importante de Soundscape. El modo de viaje ha mejorado mucho. Cuando viajes en coche o autobús, Soundscape ahora anuncia los números de carretera, tu dirección de desplazamiento y las localidades cercanas. También avisa cuando cruzas ríos, canales, estuarios y bahías. Actualiza tus mapas sin conexión para disponer de estas nuevas funciones. Las descripciones de las paradas de autobús son ahora mucho mejores para los usuarios del Reino Unido. El modo de suspensión ahora puede reactivarse automáticamente al detectar que vuelves a moverte. Ya no necesitas acordarte de reactivarlo tú mismo. Hemos reorganizado el código subyacente para poder crear una aplicación para iOS a partir del mismo código. Esto significa que en el futuro podremos lanzar una aplicación para iOS con todas las funciones que hemos creado para Android. Sigue informándonos de cualquier problema, por pequeño que sea, a través de la opción Contacto con soporte del menú principal.</string>
+    <string name="new_version_info_details">
+Esta es una actualización importante de Soundscape.
+
+El modo de viaje ha mejorado mucho. Cuando viajes en coche o autobús, Soundscape ahora anuncia los números de carretera, tu dirección de desplazamiento y las localidades cercanas. También avisa cuando cruzas ríos, canales, estuarios y bahías. Actualiza tus mapas sin conexión para disponer de estas nuevas funciones. Las descripciones de las paradas de autobús son ahora mucho mejores para los usuarios del Reino Unido.
+
+El modo de suspensión ahora puede reactivarse automáticamente al detectar que vuelves a moverte. Ya no necesitas acordarte de reactivarlo tú mismo.
+
+Hemos reorganizado el código subyacente para poder crear una aplicación para iOS a partir del mismo código. Esto significa que en el futuro podremos lanzar una aplicación para iOS con todas las funciones que hemos creado para Android.
+
+Sigue informándonos de cualquier problema, por pequeño que sea, a través de la opción Contacto con soporte del menú principal.
+</string>
     <string name="menu_open_source_licenses">Licencias de código abierto</string>
     <string name="osm_tag_ferry_terminal">Terminal de ferry</string>
     <string name="osm_tag_ferry_terminal_named">Terminal de ferry de %1$s</string>
