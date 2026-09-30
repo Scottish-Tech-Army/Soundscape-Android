@@ -126,7 +126,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "fyrir framan mig"
+            "value": "Fyrir framan mig"
           }
         },
         "it": {
@@ -400,7 +400,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "í kringum mig"
+            "value": "Í kringum mig"
           }
         },
         "it": {
@@ -1460,7 +1460,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Annonce"
+            "value": "Notification"
           }
         },
         "ha": {
@@ -3688,7 +3688,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "lokið"
+            "value": "Lokið"
           }
         },
         "it": {
@@ -4152,7 +4152,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meine Umgebung hören"
+            "value": "Meine Umgebung"
           }
         },
         "el": {
@@ -4194,7 +4194,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Écoutez mon environnement"
+            "value": "Écouter mon environnement"
           }
         },
         "fr-CA": {
@@ -4236,7 +4236,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "lýsing á umhverfi"
+            "value": "Lýsing á umhverfi"
           }
         },
         "it": {
@@ -5374,7 +5374,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Znaczniki (pinezki)"
+            "value": "Znaczniki"
           }
         },
         "pt": {
@@ -5606,7 +5606,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "slökkva á hljóðvita"
+            "value": "Slökkva á hljóðvita"
           }
         },
         "it": {
@@ -5880,7 +5880,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "mín staðsetning"
+            "value": "Mín staðsetning"
           }
         },
         "it": {
@@ -6106,7 +6106,7 @@
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lähellä olevat merkitsimet"
+            "value": "Lähiympäristön merkitsimet"
           }
         },
         "fr": {
@@ -6154,7 +6154,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "nálæg merki"
+            "value": "Nálæg merki"
           }
         },
         "it": {
@@ -6392,7 +6392,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prochain point de cheminement"
+            "value": "Prochain point de repère"
           }
         },
         "ha": {
@@ -6422,7 +6422,7 @@
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Titik jalan berikutnya"
+            "value": "Titik rute berikutnya"
           }
         },
         "is": {
@@ -6566,7 +6566,7 @@
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Điểm mốc tiếp theo"
+            "value": "Điểm dừng tiếp theo"
           }
         },
         "zh-Hans": {
@@ -6648,7 +6648,7 @@
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "برای تکمیل آن Soundscape را باز کنید."
+            "value": "برای تکمیل آن ساند‌اسکیپ را باز کنید."
           }
         },
         "fi": {
@@ -6940,7 +6940,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Point de cheminement précédent"
+            "value": "Point de repère précédent"
           }
         },
         "ha": {
@@ -6970,7 +6970,7 @@
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Titik jalan sebelumnya"
+            "value": "Titik rute sebelumnya"
           }
         },
         "is": {
@@ -7114,7 +7114,7 @@
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Điểm mốc trước đó"
+            "value": "Điểm dừng trước"
           }
         },
         "zh-Hans": {
@@ -8072,7 +8072,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "leiðir"
+            "value": "Leiðir"
           }
         },
         "it": {
@@ -8310,7 +8310,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Place une balise audio sur l’un de vos marqueurs enregistrés."
+            "value": "Place une balise sonore sur l’un de vos marqueurs enregistrés."
           }
         },
         "ha": {
@@ -8436,7 +8436,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ställer in ett ljudfyr på en av dina sparade platsmarkörer."
+            "value": "Ställer in en ljudfyr på en av dina sparade platsmarkörer."
           }
         },
         "sw": {
@@ -9406,7 +9406,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passe des points de cheminement, coupe le son de la balise ou arrête l’itinéraire."
+            "value": "Passe des points de repère, coupe le son de la balise ou arrête l’itinéraire."
           }
         },
         "ha": {
@@ -9532,7 +9532,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hoppar över brytpunkter, stänger av ljudfyret eller stoppar rutten."
+            "value": "Hoppar över brytpunkter, stänger av ljudfyren eller stoppar rutten."
           }
         },
         "sw": {
@@ -9662,7 +9662,7 @@
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soundscape نتوانست آن را انجام دهد."
+            "value": "ساند‌اسکیپ نتوانست آن را انجام دهد."
           }
         },
         "fi": {
@@ -10264,7 +10264,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "upphaf leiðar"
+            "value": "Upphaf leiðar"
           }
         },
         "it": {
@@ -11598,7 +11598,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactive la balise audio."
+            "value": "Désactive la balise sonore."
           }
         },
         "ha": {
@@ -11724,7 +11724,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stänger av ljudfyret."
+            "value": "Stänger av ljudfyren."
           }
         },
         "sw": {
