@@ -544,8 +544,8 @@
 Παρακαλούμε συνεχίστε να αναφέρετε τυχόν προβλήματα, όσο μικρά κι αν είναι, μέσω της επιλογής Επικοινωνία με την υποστήριξη στο κύριο μενού.
 </string>
     <string name="menu_open_source_licenses">Άδειες ανοιχτού κώδικα</string>
-    <string name="osm_tag_ferry_terminal">Τερματικός σταθμός φέρι μποτ</string>
-    <string name="osm_tag_ferry_terminal_named">Τερματικός σταθμός φέρι μποτ %1$s</string>
+    <string name="osm_tag_ferry_terminal">Τερματικός σταθμός φέρι</string>
+    <string name="osm_tag_ferry_terminal_named">Τερματικός σταθμός φέρι %1$s</string>
     <string name="osm_office">Γραφείο</string>
     <string name="osm_school">Σχολείο</string>
     <string name="osm_roof">Στέγη</string>
