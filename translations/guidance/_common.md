@@ -476,3 +476,21 @@ the template needs an ordinal or a case, write the word that fits *your*
 `relative_clock_direction`. Polish «na godzinie %1$s» + «dziewiątej»; Czech
 «na %1$s hodině» + «deváté»; Slovak «deviatej»; Ukrainian «дев'ятій».
 Changing the template and the hour words must happen together.
+
+## C21 — Dead ends have their own template (code, 2026-09-30)
+
+`confect_name_dead_end` ("dead end", substituted as the `%2$s` of
+`confect_name_to`) is **gone**. It's replaced by `confect_name_to_dead_end`
+("%1$s to dead end") and `confect_name_to_dead_end_via` ("%1$s to dead end
+via %2$s"). A language can now describe the way itself as ending instead of
+as leading to a place.
+
+> **Case (nl, 2026-09-30):** the reviewer wanted «Doodlopend pad». `%1$s` is
+> the way type *or a road's name* («Ladywood to dead end»), so Dutch uses
+> «%1$s, doodlopend».
+
+**How to apply:** each language's first values were built from its own
+`confect_name_to` + `confect_name_dead_end`, so the output didn't change. The
+per-language decisions recorded against `confect_name_dead_end` (C9 genitives,
+PL-G1, ES-G1, FR-G1, NL-G1…) now live in these two strings. Don't make `%1$s`
+agree in gender or case: it may be a proper name.

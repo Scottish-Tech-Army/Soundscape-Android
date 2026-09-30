@@ -1241,8 +1241,10 @@
     <string name="confect_name_pavement">Sidewalk</string>
     <!-- Description of an un-named path which follows a river or the shore of a lake e.g. "Path next to Allander Water" -->
     <string name="confect_name_next_to">%1$s next to %2$s</string>
-    <!-- Dead end road description - a road that goes nowhere. Never shown on its own: it is only ever the %2$s of confect_name_to and confect_name_to_via ("Path to dead end"), so translate it in whatever form (case, article) your translation of those templates needs after its "to" word. -->
-    <string name="confect_name_dead_end">dead end</string>
+    <!-- Describes a way that leads to a dead end, e.g. "Path to dead end" or "Ladywood to dead end". %1$s is either the kind of way (Path, Track, Service road...) or a road's own name, so don't make it agree with %1$s. The way itself is what ends: you can say so directly (Dutch "%1$s, doodlopend") rather than as a destination the way leads to. -->
+    <string name="confect_name_to_dead_end">%1$s to dead end</string>
+    <!-- As confect_name_to_dead_end, plus what the way passes on its way to the dead end, e.g. "Path to dead end via steps". %1$s is the kind of way or a road's name, %2$s is what it passes (steps, tunnel, bridge). -->
+    <string name="confect_name_to_dead_end_via">%1$s to dead end via %2$s</string>
     <!-- Offscreen maps screen title - offline maps are map files which can be downloaded by the app so that the app can work without Internet -->
     <string name="offline_maps_title">Offline maps</string>
     <!-- Offscreen maps details title - this screen describes a single offline map extract that can be downloaded. -->

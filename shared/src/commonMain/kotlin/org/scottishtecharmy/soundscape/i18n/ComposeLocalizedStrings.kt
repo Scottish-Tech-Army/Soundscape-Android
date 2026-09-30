@@ -47,12 +47,13 @@ import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_detail
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_quiet
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity_level_silent
 import org.scottishtecharmy.soundscape.resources.callouts_verbosity_set
-import org.scottishtecharmy.soundscape.resources.confect_name_dead_end
 import org.scottishtecharmy.soundscape.resources.confect_name_joins
 import org.scottishtecharmy.soundscape.resources.confect_name_pavement
 import org.scottishtecharmy.soundscape.resources.confect_name_next_to
 import org.scottishtecharmy.soundscape.resources.confect_name_pavement_next_to
 import org.scottishtecharmy.soundscape.resources.confect_name_to
+import org.scottishtecharmy.soundscape.resources.confect_name_to_dead_end
+import org.scottishtecharmy.soundscape.resources.confect_name_to_dead_end_via
 import org.scottishtecharmy.soundscape.resources.confect_name_to_via
 import org.scottishtecharmy.soundscape.resources.confect_name_via
 import org.scottishtecharmy.soundscape.resources.directions_along_facing_e
@@ -280,7 +281,8 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ConfectNameToVia -> Res.string.confect_name_to_via
         StringKey.ConfectNameVia -> Res.string.confect_name_via
         StringKey.ConfectNameJoins -> Res.string.confect_name_joins
-        StringKey.ConfectNameDeadEnd -> Res.string.confect_name_dead_end
+        StringKey.ConfectNameToDeadEnd -> Res.string.confect_name_to_dead_end
+        StringKey.ConfectNameToDeadEndVia -> Res.string.confect_name_to_dead_end_via
         StringKey.ConfectNamePavementNextTo -> Res.string.confect_name_pavement_next_to
         StringKey.ConfectNamePavement -> Res.string.confect_name_pavement
         StringKey.ConfectNameNextTo -> Res.string.confect_name_next_to

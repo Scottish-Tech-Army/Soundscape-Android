@@ -243,7 +243,7 @@ class Way : MvtFeature() {
                         if (destinationModifier == "dead-end") {
                             if (noGenericDeadEnds)
                                 return ""
-                            destinationModifier = strings?.getOrNull(StringKey.ConfectNameDeadEnd) ?: "dead end"
+                            return deadEndName(result, passesString, strings)
                         }
 
                         return if (passesString.isNotEmpty()) {
@@ -278,7 +278,7 @@ class Way : MvtFeature() {
         }
         if (destinationModifier != null) {
             if (destinationModifier == "dead-end") {
-                destinationModifier = strings?.getOrNull(StringKey.ConfectNameDeadEnd) ?: "dead end"
+                return deadEndName(result, passesString, strings)
             }
             return if (passesString.isNotEmpty()) {
                 strings?.getOrNull(
@@ -624,6 +624,19 @@ class Way : MvtFeature() {
         intersection.members.clear()
     }
 }
+
+/**
+ * "Path to dead end", with what the way passes if anything. A template of its own rather than
+ * confect_name_to with "dead end" as the destination, because some languages describe the way
+ * itself as ending ("Pad, doodlopend") instead of as leading somewhere.
+ */
+private fun deadEndName(way: String, passes: String, strings: LocalizedStrings?): String =
+    if (passes.isNotEmpty()) {
+        strings?.getOrNull(StringKey.ConfectNameToDeadEndVia, way, passes)
+            ?: "$way to dead end via $passes"
+    } else {
+        strings?.getOrNull(StringKey.ConfectNameToDeadEnd, way) ?: "$way to dead end"
+    }
 
 fun convertBackToTileCoordinates(
     location: LngLatAlt,
