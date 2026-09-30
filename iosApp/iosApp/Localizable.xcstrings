@@ -635,7 +635,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balise"
+            "value": "Balise sonore"
           }
         },
         "fr-CA": {
@@ -909,7 +909,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notification"
+            "value": "Annonce"
           }
         },
         "fr-CA": {
@@ -3661,7 +3661,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactiver le son de la balise"
+            "value": "Désactiver le son de la balise sonore"
           }
         },
         "fr-CA": {
@@ -4483,7 +4483,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prochain point de repère"
+            "value": "Étape suivante"
           }
         },
         "fr-CA": {
@@ -5031,7 +5031,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Point de repère précédent"
+            "value": "Étape précédente"
           }
         },
         "fr-CA": {
@@ -6684,7 +6684,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passe des points de repère, coupe le son de la balise ou arrête l’itinéraire."
+            "value": "Passe des étapes, coupe le son de la balise sonore ou arrête l’itinéraire."
           }
         },
         "fr-CA": {
@@ -7232,7 +7232,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarrer la balise"
+            "value": "Démarrer la balise sonore"
           }
         },
         "fr-CA": {
@@ -8328,7 +8328,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrêter la balise"
+            "value": "Arrêter la balise sonore"
           }
         },
         "fr-CA": {
@@ -9103,7 +9103,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous pouvez dire : Soundscape environs, Soundscape itinéraire, Soundscape démarre l'itinéraire, Soundscape balise, Soundscape arrête la balise, Soundscape détails ou Soundscape liste."
+            "value": "Vous pouvez dire : Soundscape environs, Soundscape itinéraire, Soundscape démarre l'itinéraire, Soundscape balise, Soundscape arrête la balise sonore, Soundscape détails ou Soundscape liste."
           }
         },
         "it": {
