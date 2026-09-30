@@ -25,7 +25,7 @@
 "${applicationName} list ${kind}" = "${applicationName} liste ${kind}";
 "${applicationName} list" = "${applicationName} liste";
 
-"${applicationName} stop beacon" = "${applicationName} arrête la balise";
+"${applicationName} stop beacon" = "${applicationName} arrête la balise sonore";
 
 "${applicationName} detail ${level}" = "${applicationName} détails ${level}";
 "${applicationName} detail" = "${applicationName} détails";

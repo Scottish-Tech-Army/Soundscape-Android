@@ -463,6 +463,14 @@ class GrammarMarkersTest {
         assertEquals("Sentier à l’impasse", fr("Sentier {fr:à impasse}"))
     }
 
+    // The French strings say «menant à une impasse» (reviewer, 2026-09-30): an indefinite article
+    // already in the substituted text must be left alone, while a map name still gets its own.
+    @Test
+    fun frenchLeadingToKeepsAnIndefiniteArticle() {
+        assertEquals("Sentier menant à une impasse", fr("Sentier menant {fr:à une impasse}"))
+        assertEquals("Sentier menant à la rue de Rivoli", fr("Sentier menant {fr:à Rue de Rivoli}"))
+    }
+
     @Test
     fun frenchRealTemplatesResolve() {
         assertEquals(
