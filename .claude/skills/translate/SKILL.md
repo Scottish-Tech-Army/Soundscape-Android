@@ -152,8 +152,9 @@ indistinguishable from this run's. `fetch` deletes its own outputs before writin
   `\'` literally ([[composeresources-no-quote-escaping]]); `validate` refuses them. French
   no-break spaces before `: ; ? !` are added at build time (`composeResourcesForBuild`), so
   plain spaces are fine.
-- `find-stale-translations.py` dates a translation by its commit's author time. Commits
-  from Weblate's old squash add-on carry the squash's time; see the script's docstring.
+- `find-stale-translations.py` judges an in-repo translation against the English in its own
+  commit, so a rebased push can't make it look stale. Weblate's old commits are dated by
+  author time, and its squash add-on carries the squash's time; see the script's docstring.
 - Weblate now only mirrors the repo and collects suggestions; it accepts no direct
   translations and never commits back. `weblate_sync.py` is kept for reading from it
   (suggestions, statistics), plus `clear-needs-editing` (step 9), which changes only unit

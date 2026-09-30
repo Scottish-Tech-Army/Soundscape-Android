@@ -20,7 +20,11 @@ translations/stale-acknowledged.json. It then stays quiet until the English chan
 History starts when the resources moved to shared/composeResources (2026-04-19). Anything
 already stale before that is not detected.
 
-While Weblate is still in the loop, a translation is dated by its commit's author time, and
+A translation made in the repo is judged against the English in its own commit's tree. One
+saved on Weblate ("Translated using Weblate" commits) is judged by its author time instead,
+against the English as it stood then, because Weblate's commits were rebased onto main later.
+
+For those Weblate commits, a translation is dated by its commit's author time, and
 Weblate's squash add-on stamps each squashed commit with the time of the squash rather than of
 the translations in it. A string Weblate flagged after a source change can then look up to
 date here until Weblate's own fix is merged back. translations/stale-acknowledged.json was
@@ -157,6 +161,8 @@ def stale_for(lang: str, blobs: BlobReader, timeline: EnglishTimeline,
     # key -> (commit, author time) where its translation last really changed
     last_change: dict[str, tuple[str, int]] = {}
     previous: dict[str, str] = {}
+    weblate = set(git("log", "--format=%H", "--grep=^Translated using Weblate", "--",
+                      path).split())
     for commit, authored in history(path, "%at"):
         strings = blobs.parsed(f"{commit}:{path}")
         for key, text in strings.items():
@@ -172,7 +178,16 @@ def stale_for(lang: str, blobs: BlobReader, timeline: EnglishTimeline,
             untranslated.append(key)
             continue
         commit, authored = last_change.get(key, (None, 0))
-        seen = timeline.at(authored).get(key) if commit else None
+        if commit is None:
+            seen = None
+        elif commit in weblate:
+            # Saved on Weblate, then rebased onto main: judge it by when it was written.
+            seen = timeline.at(authored).get(key)
+        else:
+            # Made in the repo, so the translator saw the English in this commit's own
+            # tree. Commit times can't be used: a rebased push gives every commit the
+            # same one, which put an English change after translations made from it.
+            seen = blobs.parsed(f"{commit}:{ENGLISH}").get(key)
         if seen is None:
             # The English key didn't exist when this was translated: it was translated under
             # a key that was later reused, or before the English was committed. Either way the
