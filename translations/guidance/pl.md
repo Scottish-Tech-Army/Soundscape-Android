@@ -434,5 +434,5 @@ terminology. `ui_action_button_my_location` «Moja\npozycja» → «Moja\nlokali
 «lokaliz», not from a speaker. Check that it fits the button at large font
 sizes. Left for a person: Q5–Q8 above, plus `number_decimal_separator_a11y`,
 which is a code problem in every language (the translations lost the spaces
-around « point », so VoiceOver gets «1przecinek5»). Findings are in
+around « point », so VoiceOver gets «1przecinek5»). Fixed the same day in code: `decimalSeparator()` now trims the word and adds the spaces itself, for every language. Findings are in
 `/tmp/translation-review/pl-findings.json`.
