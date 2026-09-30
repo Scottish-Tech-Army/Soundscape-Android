@@ -16,7 +16,7 @@ glosses in italics are for the maintainer.*
 
 Cześć i jeszcze raz dziękujemy za odpowiedzi na pierwszą rundę pytań. Wszystkie
 zostały już wprowadzone do aplikacji (zob. „Co ustaliliśmy” niżej). Zostało kilka
-drobnych pytań, które wyniknęły z tych zmian. **Nie musisz znać ani instalować
+drobnych pytań, które wyniknęły z tych zmian i z przeglądu całego tłumaczenia. **Nie musisz znać ani instalować
 aplikacji:** przy każdym pytaniu jest napisane, kiedy tekst słychać, jak brzmi po
 angielsku i jak brzmi teraz po polsku.
 
@@ -139,7 +139,81 @@ tego, który mówi tylko to, co niezbędne. Po zmianie angielskich nazw
 **Pytanie:** czy taki układ jest w porządku, czy wolisz inne nazwy dla dwóch
 środkowych poziomów?
 
-### Q5 — Coś jeszcze? *(Anything else)*
+### Q5 — „Jesteś zwrócony na północ” *(Facing north)*
+
+**Kiedy to słychać:** gdy stoisz w miejscu, a aplikacja mówi, w którą stronę
+świata jesteś zwrócony, np. po naciśnięciu „Moja lokalizacja”. To jeden z
+najczęstszych komunikatów.
+
+**Po angielsku:** „Facing north”, „Facing north along Marszałkowska”.
+
+**Jak brzmi teraz:** „Jesteś zwrócony na północ”, „Stoisz zwrócony na północ
+wzdłuż Marszałkowska”. W trakcie chodzenia jest „Idziesz na północ”, a w
+pojeździe „Poruszasz się na północ”.
+
+**Co budzi wątpliwości:** „zwrócony” to forma męska, więc kobieta słyszy
+zwrot do mężczyzny. W tekstach pomocy zamieniliśmy już „jesteś zwrócony” na
+„patrzysz” („w którym kierunku patrzysz”).
+
+**Pytanie:** które brzmi najlepiej?
+- „Patrzysz na północ” / „Patrzysz na północ wzdłuż Marszałkowska”
+- „Stoisz twarzą na północ” / „Stoisz twarzą na północ wzdłuż Marszałkowska”
+- „Kierunek: północ” / „Kierunek: północ, Marszałkowska”
+- zostawić jak jest
+
+### Q6 — „Wejście do tunelu” *(Entering a tunnel)*
+
+**Kiedy to słychać:** gdy wjeżdżasz do tunelu samochodem, autobusem lub
+pociągiem, a czasem gdy przechodzisz tunelem pieszo. Komunikat ostrzega też, że
+w tunelu GPS przestanie działać dokładnie.
+
+**Po angielsku:** „Entering a tunnel”; tunel z nazwą: „Entering Clyde Tunnel”.
+
+**Jak brzmi teraz:** „Wejście do tunelu”; tunel z nazwą: „Wejście do Tunel pod
+Martwą Wisłą” (nazwa z mapy w mianowniku, jak przy ulicach).
+
+**Co budzi wątpliwości:** „Wejście do tunelu” brzmi jak napis na tabliczce, a
+nie jak informacja, że właśnie wjeżdżasz. W pojeździe naturalne byłoby „Wjazd do
+tunelu”, ale ten sam tekst słychać też pieszo.
+
+**Pytanie:** „Wjazd do tunelu” zawsze, samo „Tunel” („Tunel: Tunel pod Martwą
+Wisłą”), czy zostawić „Wejście do tunelu”?
+
+### Q7 — Dźwięk „Upadek” *(Beacon style "Drop")*
+
+**Kiedy to słychać:** przy wyborze dźwięku naprowadzającego, przy pierwszym
+uruchomieniu i w ustawieniach. Nazwy na liście: Najnowszy, Oryginalny, Błysk,
+Lśnienie, Stukot, Pikanie, Upadek, Sygnał, Pałeczka.
+
+**Po angielsku:** „Drop”. Dźwięk przypomina przedmiot upuszczony na twardą
+podłogę.
+
+**Jak brzmi teraz:** „Upadek”.
+
+**Co budzi wątpliwości:** „upadek” kojarzy się raczej z przewróceniem się
+człowieka niż z dźwiękiem. Nazwa musi się też wyraźnie różnić od „Stukot”.
+
+**Pytanie:** zostawić „Upadek”, czy lepiej „Stuknięcie”, „Stuk”, „Kropla” albo
+coś innego?
+
+### Q8 — „Droga główna” dwa razy *(Trunk Road and Highway)*
+
+**Kiedy to słychać:** gdy aplikacja nazywa drogę według jej rodzaju, np. drogę
+bez nazwy w danych mapy.
+
+**Po angielsku:** „Trunk Road” (ważna droga o klasie niższej niż autostrada) i
+„Highway”.
+
+**Jak brzmi teraz:** oba teksty to „Droga główna”. „Motorway” to „Autostrada”.
+
+**Co budzi wątpliwości:** w polskich danych mapy (OpenStreetMap) jako „trunk”
+oznacza się głównie drogi ekspresowe (S), więc „Droga główna” może być mylące.
+Poza tym dwa różne rodzaje dróg brzmią tak samo.
+
+**Pytanie:** czy „Trunk Road” powinno brzmieć „Droga ekspresowa”? Czy „Highway”
+może zostać „Droga główna”?
+
+### Q9 — Coś jeszcze? *(Anything else)*
 
 Jeśli jakieś zdanie brzmi jak tłumaczenie z angielskiego, jest za długie albo
 niejasne, daj znać.
