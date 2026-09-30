@@ -361,3 +361,5 @@ Microsoft wording, and Q3 went with the proposed «podrás usarla». Recorded as
 ES-M1. The only fix left is the `*Marcadores cercanos*` markup in
 `help_text_markers_content_3`. The 2026-09-29 findings file was archived as
 `es-findings.2026-09-29.json`. The markup fix was uploaded the same day and verified live.
+
+**2026-09-30 — medical disclaimer: "advice", not "device".** The all-language review found `terms_of_use_medical_safety_disclaimer` rendering "professional medical advice" as «sustituir un dispositivo, diagnóstico…», present since the earliest version in the repo. Changed that one phrase to «sustituir el asesoramiento, diagnóstico, tratamiento o criterio médico profesional», on Dave's request. The rest of the legal text, and its formal «usted», are unchanged.
