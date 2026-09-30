@@ -79,9 +79,12 @@ same address and we'll help you get set up.
 - [اردو]({{ "/translation-questions/questions-ur/" | relative_url }}) — Urdu
 - [Tiếng Việt]({{ "/translation-questions/questions-vi/" | relative_url }}) — Vietnamese
 
-## Prefer to translate directly?
+## Spotted something else?
 
-The translations themselves live on
-[Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/),
-where you can suggest improvements to any string once you have an account.
-The questionnaires are the quickest way to help if you'd rather not set one up.
+If a phrase sounds wrong when you hear it, email it to
+soundscapeAndroid@scottishtecharmy.support. Tell us what Soundscape said, what you'd
+expect it to say, and where you heard it. Nothing more formal is needed.
+
+You can also browse every translation on
+[Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) and leave
+suggestions there if you have an account, though email reaches us sooner.
