@@ -130,4 +130,4 @@ Q1 → NL-B1, Q2 → NL-G1, Q3 → NL-L1, Q4 → NL-C1, Q5 → «u» `confirmed`
 
 Uploaded with `--skip-validate`; all 32 re-fetched and matched exactly.
 
-**2026-09-30 — first reviewer's questionnaire applied.** Answers received 2026-09-28 and held until Dave chose to proceed. 12 strings in `/tmp/weblate-review/nl-findings.json`. Siri phrases changed in the iOS files. NL-G1 needed a code change (new dead-end templates) and values for all 45 languages.
+**2026-09-30 — first reviewer's questionnaire applied.** Answers received 2026-09-28 and held until Dave chose to proceed. 12 strings in `/tmp/weblate-review/nl-findings.json`. Siri phrases changed in the iOS files. NL-G1 needed a code change (new dead-end templates) and values for all 45 languages. The 12 strings were uploaded and verified live the same day. The dead-end values wait until Weblate has the new keys.
