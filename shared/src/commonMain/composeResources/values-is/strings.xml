@@ -374,7 +374,7 @@
     <string name="faq_callouts_stopping_in_vehicle_question">Hvers vegna hætta sumar tilkynningar þegar ég er í bíl?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">Til að tilkynningarnar verði ekki yfirþyrmandi eru sumir flokkar, til dæmis gatnamót, ekki tilkynntir sjálfkrafa þegar þú ferðast í ökutæki.</string>
     <string name="faq_miss_a_callout_question">Hvað geri ég ef ég missi af tilkynningu eða skil hana ekki?</string>
-    <string name="faq_miss_a_callout_answer">Soundscape geymir lista yfir nýlegar tilkynningar svo þú getir farið yfir tilkynningar sem þú misstir af. Til að finna þetta, bankaðu á leitarstikuna á heimaskjánum. Neðst á þessum skjá er hluti sem heitir *Nýlegar tilkynningar* þar sem tilkynningin sem þú misstir af verður skráð.</string>
+    <string name="faq_miss_a_callout_answer">Soundscape heldur ekki lista yfir fyrri tilkynningar, en þú getur hvenær sem er beðið forritið um að lýsa umhverfinu aftur. *Mín staðsetning* segir þér hvar þú ert, og *Í kringum mig* og *Fyrir framan mig* tilkynna staðina í kringum þig og fyrir framan þig. Allir þrír hnapparnir eru neðst á heimaskjánum. Ef þú notar margmiðlunarstýringar heyrnartólanna og *Upprunalegur hamur* er valinn, segir ⏭ Næsta *Í kringum mig* þegar engin leið er í spilun.</string>
     <string name="faq_section_how_soundscape_works">Hvernig virkar Soundscape?</string>
     <string name="faq_supported_phones_question">Hvernig síma keyrir Soundscape á?</string>
     <string name="faq_supported_phones_answer">Soundscape er sem stendur í boði fyrir iPhone-síma með iOS 16 eða nýrra og fyrir Android-síma með Android 11 eða nýrra.</string>

@@ -880,7 +880,7 @@
     <string name="help_text_creating_markers_content_1">您可以通过三种方式创建标记点：在搜索栏中搜索要保存的地点、使用*附近地点*按钮查找地点，或使用主屏幕上的*当前位置*按钮。找到想要保存的地点后，选择该地点将进入*位置详情*屏幕。在该页面上，选择*保存为标记点*按钮。</string>
     <string name="help_text_creating_markers_content_2">现在您可以自定义此标记点。您可以更改标记点的名称，还可以添加注释，注释会与标记点一起播报以提供额外信息。完成后，点击*"完成"*按钮保存您的标记点。</string>
     <string name="help_text_customizing_markers_content_1">如果您想重命名之前创建的标记点或为其添加注释，可在*标记点和路线*页面的*标记点*选项卡中选择该标记点，然后选择*编辑标记点*按钮。您可以为标记点设置描述性或有用的昵称，并在注释字段中填写更详细的描述。</string>
-    <string name="help_text_customizing_markers_content_2">在此*"编辑"*页面中，如果您不再需要某个标记点，也可以将其删除。</string>
+    <string name="help_text_customizing_markers_content_2">在此*编辑标记点*页面中，如果您不再需要某个标记点，也可以将其删除。</string>
     <string name="help_text_routes_content_what">路线是一系列航点。当您到达每个航点时会收到通知，音频信标会自动前进到下一个航点。</string>
     <string name="help_text_routes_content_when">您可能想在自己已经熟悉的地方创建并使用路线，以确保不偏离方向。也可以用路线来熟悉一段新的行程。</string>
     <string name="help_text_routes_content_how_1">**创建路线：**\n\n首先，进入*"标记点和路线"*，选择*"路线"*选项卡，然后点击*"新建路线"*按钮。为路线命名并添加可选的描述，然后随行添加航点或从您的标记点列表中选择。您可以随时通过编辑路线来重新排列航点的顺序。</string>
@@ -917,7 +917,7 @@
     <string name="faq_callouts_stopping_in_vehicle_question">为什么某些播报在我乘坐交通工具时停止了？</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">为了避免播报数量过多，某些类别（如路口）在您乘坐交通工具行驶时不会自动播报。</string>
     <string name="faq_miss_a_callout_question">如果我没听清播报或因环境噪音错过了怎么办？</string>
-    <string name="faq_miss_a_callout_answer">Soundscape有一个您最近提示的列表，方便您重温可能错过的提示。要找到此列表，请点击主屏幕上的搜索栏。在该屏幕底部，有一个*最近提示*部分，您错过的提示会列在其中。</string>
+    <string name="faq_miss_a_callout_answer">Soundscape不会保存以往提示的列表，但您可以随时让它重新描述您周围的环境。*我的位置*会告诉您身在何处，*周围*和*前方*会播报您周围和前方的地点。这三个按钮都在主屏幕底部。如果您在*经典模式*下使用耳机上的媒体控制按钮，在没有播放路线时，⏭ 下一曲会播报*周围*。</string>
     <string name="faq_section_how_soundscape_works">Soundscape如何运作？</string>
     <string name="faq_supported_phones_question">Soundscape可以在什么手机上运行？</string>
     <string name="faq_supported_phones_answer">Soundscape目前适用于运行iOS 16或更高版本的iPhone，以及运行Android 11或更高版本的安卓手机。</string>

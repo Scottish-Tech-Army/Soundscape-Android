@@ -1381,7 +1381,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="faq_callouts_stopping_in_vehicle_question">Tại sao một số thông báo dừng lại khi tôi đang ở trong xe?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">Để tránh số lượng thông báo trở nên quá tải, một số nhóm thông tin, chẳng hạn như giao lộ, sẽ không được tự động thông báo khi bạn đang di chuyển trong xe.</string>
     <string name="faq_miss_a_callout_question">Nếu tôi không hiểu một thông báo hoặc bỏ lỡ nó vì tiếng ồn xung quanh thì sao?</string>
-    <string name="faq_miss_a_callout_answer">Soundscape có một danh sách các thông báo gần đây của bạn để bạn có thể xem lại những thông báo mình có thể đã bỏ lỡ. Để tìm danh sách này, hãy nhấn vào thanh tìm kiếm trên màn hình chính. Ở dưới cùng màn hình đó, có một phần *Thông báo gần đây* nơi thông báo bạn đã bỏ lỡ sẽ được liệt kê.</string>
+    <string name="faq_miss_a_callout_answer">Soundscape không lưu danh sách các thông báo trước đó, nhưng bạn có thể yêu cầu ứng dụng mô tả lại khu vực xung quanh bất cứ lúc nào. *Vị trí của tôi* cho bạn biết bạn đang ở đâu, còn *Xung quanh tôi* và *Phía trước tôi* thông báo các địa điểm xung quanh và phía trước bạn. Cả ba nút đều nằm ở dưới cùng màn hình chính. Nếu bạn dùng nút điều khiển phương tiện trên tai nghe ở *Chế độ gốc*, ⏭ Tiếp theo sẽ thông báo *Xung quanh tôi* khi không có lộ trình nào đang phát.</string>
     <string name="faq_section_how_soundscape_works">Soundscape hoạt động như thế nào?</string>
     <string name="faq_supported_phones_question">Soundscape chạy trên loại điện thoại nào?</string>
     <string name="faq_supported_phones_answer">Soundscape hiện có sẵn cho iPhone chạy iOS 16 trở lên, và cho điện thoại Android chạy Android 11 trở lên.</string>

@@ -376,7 +376,7 @@
     <string name="faq_callouts_stopping_in_vehicle_question">Miksi jotkin ilmoitukset lakkaavat, kun olen ajoneuvossa?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">Jotta ilmoitusten määrää voidaan estää kasvamasta hallitsemattomaksi, joitakin luokkia, kuten risteyksiä, ei ilmoiteta automaattisesti, kun kuljet ajoneuvolla.</string>
     <string name="faq_miss_a_callout_question">Mitä, jos en ymmärrä ilmoitusta tai en huomaa sitä ympäristön melun takia?</string>
-    <string name="faq_miss_a_callout_answer">Soundscapella on luettelo viimeisistä ilmoituksistasi, jotta voit palata kuuntelemaan ilmoituksia, jotka ehkä jäivät huomaamatta. Löytääksesi tämän napauta aloitusnäytön hakupalkkia. Tämän ruudun alaosassa on osio *Äskettäiset ilmoitukset*, jossa huomaamatta jäänyt ilmoitus on luettelossa.</string>
+    <string name="faq_miss_a_callout_answer">Soundscape ei säilytä luetteloa aiemmista ilmoituksista, mutta voit milloin tahansa pyytää sitä kuvailemaan ympäristösi uudelleen. *Oma sijaintini* kertoo, missä olet, ja *Lähiympäristö* ja *Edessäpäin* ilmoittavat ympärilläsi ja edessäsi olevat paikat. Kaikki kolme painiketta ovat aloitusnäytön alaosassa. Jos käytät kuulokkeidesi mediapainikkeita ja valittuna on *Alkuperäinen tila*, ⏭ Seuraava antaa ilmoituksen *Lähiympäristö*, kun reittiä ei toisteta.</string>
     <string name="faq_section_how_soundscape_works">Kuinka Soundscape toimii?</string>
     <string name="faq_supported_phones_question">Missä puhelimessa Soundscape toimii?</string>
     <string name="faq_supported_phones_answer">Soundscape on tällä hetkellä saatavilla iPhonelle, jossa on iOS 16 tai uudempi, sekä Android-puhelimille, joissa on Android 11 tai uudempi.</string>
