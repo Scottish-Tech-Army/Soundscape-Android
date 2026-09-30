@@ -575,6 +575,13 @@ old word plus « %1$s», so nothing sounds different except Turkish, which is
 now «İleride %1$s». A language whose word order wants the name first can now
 write «%1$s ileride».
 
+> **Follow-up (2026-09-30 translate pass):** the head-final Indic languages
+> now put the name first, as their "near %1$s" siblings do: hi «%1$s आगे»,
+> mr «%1$s पुढे», bn «%1$s সামনে», pa «%1$s ਅੱਗੇ», ur «%1$s آگے»,
+> ta «%1$s முன்னால்», te «%1$s ముందు». Japanese and Korean keep «ahead»
+> first but gain the particle: ja «前方に%1$s», ko «앞쪽에 %1$s». Every other
+> language's prefix wording was reviewed and acknowledged unchanged.
+
 ## C25 — Degrees are a plural now; the angle is always a multiple of 5 (code, 2026-09-30)
 
 `relative_degrees_direction` ("at %1$s degrees") is a `<plurals>` resource,
