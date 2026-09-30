@@ -1351,7 +1351,11 @@
     <string name="callout_settings_position_text">Include distanța și direcția atunci când se anunță punctele de interes</string>
     <string name="callout_settings_position_description">Implicit, anunțurile pentru punctele de interes nu includ distanța sau direcția. Această setare le adaugă.</string>
     <string name="relative_clock_direction">la ora %1$s</string>
-    <string name="relative_degrees_direction">la %1$s grade</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">la %1$s grad</item>
+        <item quantity="few">la %1$s grade</item>
+        <item quantity="other">la %1$s de grade</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">În față</string>
     <string name="relative_left_right_direction_ahead_left">În față la stânga</string>
     <string name="relative_left_right_direction_ahead_right">În față la dreapta</string>

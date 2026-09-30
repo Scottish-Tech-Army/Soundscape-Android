@@ -1278,7 +1278,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">பேச்சு அடையாளம் காணும் அறியப்படாத பிழை.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">இந்தத் தொலைபேசியில் பேச்சு அடையாளம் காணுதல் ஆதரிக்கப்படவில்லை.</string>
     <string name="relative_clock_direction">%1$s மணி திசையில்</string>
-    <string name="relative_degrees_direction">%1$s டிகிரியில்</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">%1$s டிகிரியில்</item>
+        <item quantity="other">%1$s டிகிரியில்</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">முன்னால்</string>
     <string name="relative_left_right_direction_ahead_left">முன் இடது</string>
     <string name="relative_left_right_direction_ahead_right">முன் வலது</string>

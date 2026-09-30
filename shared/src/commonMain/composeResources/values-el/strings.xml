@@ -1347,7 +1347,10 @@
     <string name="callout_settings_position_text">Συμπεριλάβετε την απόσταση και την κατεύθυνση όταν ανακοινώνονται σημεία ενδιαφέροντος</string>
     <string name="callout_settings_position_description">Κατά προεπιλογή, οι επεξηγήσεις για σημεία ενδιαφέροντος δεν περιλαμβάνουν απόσταση ή κατεύθυνση. Αυτή η ρύθμιση τις προσθέτει.</string>
     <string name="relative_clock_direction">στις %1$s η ώρα</string>
-    <string name="relative_degrees_direction">στους %1$s βαθμούς</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">στους %1$s βαθμούς</item>
+        <item quantity="other">στους %1$s βαθμούς</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Μπροστά</string>
     <string name="relative_left_right_direction_ahead_left">Μπροστά αριστερά</string>
     <string name="relative_left_right_direction_ahead_right">Μπροστά δεξιά</string>

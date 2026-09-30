@@ -700,7 +700,12 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Neznámá chyba rozpoznávání řeči.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Rozpoznávání řeči není v tomto telefonu podporováno.</string>
     <string name="relative_clock_direction">na %1$s hodině</string>
-    <string name="relative_degrees_direction">na %1$s stupních</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">na %1$s stupních</item>
+        <item quantity="few">na %1$s stupních</item>
+        <item quantity="many">na %1$s stupních</item>
+        <item quantity="other">na %1$s stupních</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Vpředu</string>
     <string name="relative_left_right_direction_ahead_left">Vpředu vlevo</string>
     <string name="relative_left_right_direction_ahead_right">Vpředu vpravo</string>

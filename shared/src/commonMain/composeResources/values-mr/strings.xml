@@ -740,7 +740,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">वाक् ओळख अज्ञात त्रुटी.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">या फोनवर वाक् ओळख समर्थित नाही.</string>
     <string name="relative_clock_direction">%1$s वाजताच्या दिशेला</string>
-    <string name="relative_degrees_direction">%1$s अंशांवर</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">%1$s अंशांवर</item>
+        <item quantity="other">%1$s अंशांवर</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">पुढे</string>
     <string name="relative_left_right_direction_ahead_left">पुढे डावीकडे</string>
     <string name="relative_left_right_direction_ahead_right">पुढे उजवीकडे</string>

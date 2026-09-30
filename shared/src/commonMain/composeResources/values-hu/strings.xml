@@ -700,7 +700,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Ismeretlen hiba történt a beszédfelismerés során.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">A beszédfelismerés nem támogatott ezen a telefonon.</string>
     <string name="relative_clock_direction">%1$s óra irányában</string>
-    <string name="relative_degrees_direction">%1$s foknál</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">%1$s foknál</item>
+        <item quantity="other">%1$s foknál</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Elöl</string>
     <string name="relative_left_right_direction_ahead_left">Elöl balra</string>
     <string name="relative_left_right_direction_ahead_right">Elöl jobbra</string>

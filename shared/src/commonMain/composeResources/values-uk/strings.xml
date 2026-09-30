@@ -1355,7 +1355,12 @@
     <string name="callout_settings_position_text">Включати відстань і напрям під час оголошення точок інтересу</string>
     <string name="callout_settings_position_description">За замовчуванням оголошення про точки інтересу не містять відстані або напрямку. Цей параметр додає їх.</string>
     <string name="relative_clock_direction">на %1$s годині</string>
-    <string name="relative_degrees_direction">під кутом %1$s градусів</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">під кутом %1$s градусів</item>
+        <item quantity="few">під кутом %1$s градусів</item>
+        <item quantity="many">під кутом %1$s градусів</item>
+        <item quantity="other">під кутом %1$s градусів</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Попереду</string>
     <string name="relative_left_right_direction_ahead_left">Попереду ліворуч</string>
     <string name="relative_left_right_direction_ahead_right">Попереду праворуч</string>

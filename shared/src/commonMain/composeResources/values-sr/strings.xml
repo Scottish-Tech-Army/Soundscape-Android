@@ -1115,7 +1115,11 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Непозната грешка препознавања говора.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Овај телефон не подржава препознавање говора.</string>
     <string name="relative_clock_direction">на %1$s</string>
-    <string name="relative_degrees_direction">на %1$s степени</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">на %1$s степени</item>
+        <item quantity="few">на %1$s степени</item>
+        <item quantity="other">на %1$s степени</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Испред</string>
     <string name="relative_left_right_direction_ahead_left">Испред лево</string>
     <string name="relative_left_right_direction_ahead_right">Испред десно</string>

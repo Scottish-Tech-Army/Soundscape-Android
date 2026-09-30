@@ -1146,7 +1146,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Неизвестна грешка при разпознаване на реч.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Разпознаването на реч не се поддържа на този телефон.</string>
     <string name="relative_clock_direction">на %1$s часа</string>
-    <string name="relative_degrees_direction">на %1$s градуса</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">на %1$s градуса</item>
+        <item quantity="other">на %1$s градуса</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Напред</string>
     <string name="relative_left_right_direction_ahead_left">Напред вляво</string>
     <string name="relative_left_right_direction_ahead_right">Напред вдясно</string>

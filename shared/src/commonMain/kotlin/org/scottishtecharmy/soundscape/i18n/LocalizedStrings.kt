@@ -49,6 +49,7 @@ enum class PluralKey {
     BytesFormatGbA11y,
     BytesFormatTb,
     BytesFormatTbA11y,
+    RelativeDegreesDirection,
 }
 
 enum class StringKey {
@@ -88,7 +89,6 @@ enum class StringKey {
     RelativeClockHour10,
     RelativeClockHour11,
     RelativeClockHour12,
-    RelativeDegreesDirection,
     RelativeLeftRightDirectionAhead,
     RelativeLeftRightDirectionAheadRight,
     RelativeLeftRightDirectionRight,

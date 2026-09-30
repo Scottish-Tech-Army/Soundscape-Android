@@ -211,7 +211,7 @@ fun formatDistanceAndDirection(
                     val relativeHeading = (heading - userHeading)
                     val degrees = normalizeHeading(((relativeHeading / 5.0).roundToInt() * 5))
                     headingText = ", " +
-                            (localized?.get(StringKey.RelativeDegreesDirection, degrees.toString())
+                            (localized?.getPlural(PluralKey.RelativeDegreesDirection, degrees, degrees.toString())
                                 ?: "at $degrees degrees")
                 }
 

@@ -1131,7 +1131,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Kõnetuvastuse tundmatu viga.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Kõnetuvastust ei toetata selles telefonis.</string>
     <string name="relative_clock_direction">kell %1$s</string>
-    <string name="relative_degrees_direction">%1$s kraadi suunas</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">%1$s kraadi suunas</item>
+        <item quantity="other">%1$s kraadi suunas</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Ees</string>
     <string name="relative_left_right_direction_ahead_left">Ees vasakul</string>
     <string name="relative_left_right_direction_ahead_right">Ees paremal</string>

@@ -1273,7 +1273,9 @@
     <string name="voice_cmd_speech_recognition_error_unknown">เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุในการรู้จำเสียง</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">โทรศัพท์เครื่องนี้ไม่รองรับการรู้จำเสียง</string>
     <string name="relative_clock_direction">ที่ตำแหน่ง %1$s นาฬิกา</string>
-    <string name="relative_degrees_direction">ที่ %1$s องศา</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="other">ที่ %1$s องศา</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">ข้างหน้า</string>
     <string name="relative_left_right_direction_ahead_left">ข้างหน้าซ้าย</string>
     <string name="relative_left_right_direction_ahead_right">ข้างหน้าขวา</string>

@@ -1278,7 +1278,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">వాక్ గుర్తింపు తెలియని లోపం.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">ఈ ఫోన్‌లో వాక్ గుర్తింపుకు మద్దతు లేదు.</string>
     <string name="relative_clock_direction">%1$s గంటల దిశలో</string>
-    <string name="relative_degrees_direction">%1$s డిగ్రీల వద్ద</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">%1$s డిగ్రీల వద్ద</item>
+        <item quantity="other">%1$s డిగ్రీల వద్ద</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">ముందు</string>
     <string name="relative_left_right_direction_ahead_left">ముందు ఎడమవైపు</string>
     <string name="relative_left_right_direction_ahead_right">ముందు కుడివైపు</string>

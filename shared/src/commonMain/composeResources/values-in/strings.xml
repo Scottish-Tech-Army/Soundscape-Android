@@ -1263,7 +1263,9 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Terjadi kesalahan tidak diketahui pada pengenalan suara.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Pengenalan suara tidak didukung di ponsel ini.</string>
     <string name="relative_clock_direction">pada arah jam %1$s</string>
-    <string name="relative_degrees_direction">pada %1$s derajat</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="other">pada %1$s derajat</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Depan</string>
     <string name="relative_left_right_direction_ahead_left">Depan kiri</string>
     <string name="relative_left_right_direction_ahead_right">Depan kanan</string>

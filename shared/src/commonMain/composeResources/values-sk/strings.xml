@@ -344,7 +344,12 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Neznáma chyba rozpoznávania reči.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Rozpoznávanie reči nie je na tomto telefóne podporované.</string>
     <string name="relative_clock_direction">na %1$s hodine</string>
-    <string name="relative_degrees_direction">na %1$s stupňoch</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">na %1$s stupňoch</item>
+        <item quantity="few">na %1$s stupňoch</item>
+        <item quantity="many">na %1$s stupňoch</item>
+        <item quantity="other">na %1$s stupňoch</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Vpredu</string>
     <string name="relative_left_right_direction_ahead_left">Vpredu vľavo</string>
     <string name="relative_left_right_direction_ahead_right">Vpredu vpravo</string>

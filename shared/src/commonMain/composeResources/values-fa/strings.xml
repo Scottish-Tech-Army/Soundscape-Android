@@ -1348,7 +1348,10 @@
     <string name="callout_settings_position_text">هنگام اعلام نقاط شاخص، فاصله و جهت آنها را نیز اعلام کنید</string>
     <string name="callout_settings_position_description">به‌صورت پیش‌فرض، اعلان‌های مربوط به نقاط شاخص شامل فاصله یا جهت نمی‌شوند. این تنظیم آنها را اضافه می‌کند.</string>
     <string name="relative_clock_direction">در ساعت %1$s</string>
-    <string name="relative_degrees_direction">در %1$s درجه</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">در %1$s درجه</item>
+        <item quantity="other">در %1$s درجه</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">جلو</string>
     <string name="relative_left_right_direction_ahead_left">جلو-چپ</string>
     <string name="relative_left_right_direction_ahead_right">جلو-راست</string>
