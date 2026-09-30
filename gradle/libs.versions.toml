@@ -27,14 +27,15 @@ htmlMermaidDokkaPlugin = "0.6.0"
 jtsCore = "1.20.0"
 ktor = "3.5.1" # 3.5.2 is a partial release missing published iosSimulatorArm64 artifacts (POM 404s)
 leakcanaryAndroid = "2.14"
-mapLibre = "13.6.0" # Do not drop below 13.5.0. The plain android-sdk artifact is the Vulkan build
-                     # from 13.x, and its MapLibreVulkanSurfaceView deadlocked the main thread in
-                     # RenderThread.onWindowResize on surface resize (ANR); upstream fixed that in
-                     # 13.5.0 by having ableToDraw() also test graphicsSurfaceCreated. 13.4.0+ also
-                     # ships a prefab package declaring stl=c++_static, which is only tolerable
-                     # because prefab is off - see app/build.gradle.kts. If the Vulkan renderer ever
-                     # needs backing out, org.maplibre.gl:android-sdk-opengl is the same version
-                     # built on OpenGL and has never had that deadlock.
+mapLibre = "13.6.0" # We use android-sdk-opengl, not the plain android-sdk artifact, which from 13.x
+                     # is the Vulkan build. That one declares a required android.hardware.vulkan.version
+                     # feature, so Play hides the app from phones without Vulkan (e.g. Android Go
+                     # devices like the Cubot J10), and its MapLibreVulkanSurfaceView also deadlocked
+                     # the main thread on surface resize before 13.5.0. maplibre-compose and the
+                     # annotation plugin depend on android-sdk themselves, so the root build.gradle.kts
+                     # substitutes it project-wide. 13.4.0+ also ships a prefab package declaring
+                     # stl=c++_static, which is only tolerable because prefab is off - see
+                     # app/build.gradle.kts.
 mapLibreAnnotation = "3.0.2"
 androidxJunit = "1.3.0"
 coreSplashscreen = "1.2.0"
@@ -174,7 +175,7 @@ ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-maplibre = { module = "org.maplibre.gl:android-sdk", version.ref = "mapLibre" }
+maplibre = { module = "org.maplibre.gl:android-sdk-opengl", version.ref = "mapLibre" }
 androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3Session" }
 maplibre-annotations = { module = "org.maplibre.gl:android-plugin-annotation-v9", version.ref = "mapLibreAnnotation" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
