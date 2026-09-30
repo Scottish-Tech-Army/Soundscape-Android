@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. Structurally sound: «%1$s کے لیے دو بار تھپتھپائیں» with «-نے»
 infinitive hints composes correctly, and `confect_name_to` «%1$s %2$s تک»
 is acceptable under C10. The main open item is a split term. Questions:
-`docs/translation-questions/questions-ur.md` (Q1…Q6).
+`docs/translation-questions/questions-ur.md` (Q1…Q7).
 
 ## Glossary
 
@@ -56,7 +56,8 @@ Nothing yet.
 3. Sleep/Snooze «نیند» / «اسنوز»: natural?
 4. Dead end «بند گلی»: right?
 5. Is «آپ» right?
-6. Anything else.
+6. **The four detail levels** (تفصیلی / سادہ / ضروری / خاموش), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+7. Anything else.
 
 ## Provenance
 

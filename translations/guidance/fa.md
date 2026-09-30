@@ -25,7 +25,7 @@ Things that already work:
 - «مختصر» (brief) for Quiet keeps it apart from «بی‌صدا» (silent).
 - There is no `fa.lproj`, so the Siri phrases stay in English.
 
-Questions: `docs/translation-questions/questions-fa.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-fa.md` (Q1…Q7).
 
 ## Glossary
 
@@ -63,7 +63,8 @@ Nothing yet.
    "landmarks only" sound the same. Should one of them get a different word
    (e.g. «مکان‌های دیدنی» or «مکان‌ها» for points of interest)? Raised by the
    2026-09-29 review, and unchanged until answered.
-6. Anything else.
+6. **The four detail levels** (مفصل / ساده‌شده / ضروری / بی‌صدا), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+7. Anything else.
 
 ## Provenance
 

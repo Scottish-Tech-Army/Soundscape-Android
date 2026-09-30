@@ -16,7 +16,7 @@ is all AI passes plus five "Anonymous" Weblate commits, which are mechanical
 (copyright placeholders, whitespace). Everything is `unconfirmed` except the
 two grammar defects, HI-B1 and HI-G1, whose *diagnosis* is `agreed`.
 
-Questions for reviewers: `docs/translation-questions/questions-hi.md` (Q1…Q8).
+Questions for reviewers: `docs/translation-questions/questions-hi.md` (Q1…Q9).
 
 ## Glossary
 
@@ -77,7 +77,8 @@ Nothing yet.
    टैप करें»? And what does Android TalkBack say around the same hint? (HI-B1, C13)
 6. «%2$s तक जाने वाला %1$s» for "path to Moor Road"? (HI-G1)
 7. Is «आप» the right register?
-8. Anything else.
+8. **The four detail levels** (विस्तृत / सरलीकृत / आवश्यक / मौन), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+9. Anything else.
 
 ## Provenance
 

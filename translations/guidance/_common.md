@@ -515,6 +515,7 @@ stored value *or* the localized name.
 minor paths; level 3 is streets, junctions and landmarks only), and keep all
 four distinct by ear. pl, fr and nl took literal names on Dave's call and
 will be re-asked (PL-T1, FR-L1, NL-L1). The other languages were retranslated
-literally on 2026-09-30 and are asked on their questionnaires, **except Ukrainian**,
-whose native-confirmed «Збалансований / Тихий» were kept (C8: a confirmed decision is
-not overridden by a source rename).
+literally on 2026-09-30 and are asked on their questionnaires, including Ukrainian.
+Ukrainian's old names had been native-confirmed; Dave chose on 2026-09-30 to override
+that for literal names and ask again. A confirmed decision is only overridden like this
+explicitly and on the record (C8).

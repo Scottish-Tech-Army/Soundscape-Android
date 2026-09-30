@@ -138,7 +138,19 @@ telefon saját értesítéseivel.
 **A kérdés:** melyik hangzik természetesebben: „bejelentés”, „bemondás”,
 vagy valami más?
 
-### Q5 — Valami más? *(Anything else)*
+### Q5 — A négy részletességi szint *(Four detail levels, renamed 2026-09-30)*
+
+**Mikor hallod:** a beállításokban, ahol hallás alapján választod ki, mennyit beszéljen az alkalmazás útközben.
+
+**Angolul:** „Detailed / Simplified / Essential / Silent”
+
+**Most így szól:** Részletes / Egyszerűsített / Alapvető / Néma. Az Egyszerűsített kihagyja a kisebb ösvényeket és ritkábban ismétel; az Alapvető csak utcákat, kereszteződéseket és tájékozódási pontokat jelent be.
+
+**Amiben bizonytalanok vagyunk:** épp most neveztük át a két középső szintet. Korábban „Kiegyensúlyozott” és „Csendes” volt a nevük, de más nyelvek anyanyelvi beszélői a régi angol neveket nem találták világosnak: a „Csendes” hangerőnek hangzik. Az új neveket mi választottuk, nem magyar anyanyelvű.
+
+**A kérdés:** Könnyű hallás alapján megkülönböztetni és megérteni a négy szintet? Máshogy neveznéd a két középsőt?
+
+### Q6 — Valami más? *(Anything else)*
 
 Ha egy mondat angolból fordítottnak hangzik, túl hosszú vagy nem érthető,
 szólj nekünk.

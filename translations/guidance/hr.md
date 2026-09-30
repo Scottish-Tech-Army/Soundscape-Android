@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. The VoiceOver template «Dvaput dodirnite da biste %1$s» with
 conditional participle hints («utišali») composes correctly. There is one
 `agreed` case defect (C9) and one TTS-audible defect (HR-G2). Questions:
-`docs/translation-questions/questions-hr.md` (Q1…Q8).
+`docs/translation-questions/questions-hr.md` (Q1…Q9).
 
 ## Glossary
 
@@ -85,7 +85,8 @@ Nothing yet.
    street word, and «Na Ilica» is undeclined. Would a label form («…, ulica:
    Ilica») sound better? Not fixable in code: the street word sits at either end
    of the name and the adjective declines with it. See C17.
-8. Anything else.
+8. **The four detail levels** (Detaljno / Pojednostavljeno / Osnovno / Bez zvuka), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+9. Anything else.
 
 ## Provenance
 

@@ -19,7 +19,7 @@ Yurt Page's terms still ship and are marked `confirmed` in the Spanish-file
 sense: "confirmed then, not re-checked since." Everything newer is AI.
 
 The authored Siri phrases (`ru.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-ru.md` (Q1…Q8).
+`docs/translation-questions/questions-ru.md` (Q1…Q9).
 
 ## Glossary
 
@@ -89,7 +89,8 @@ visual thing with no connection to speech. They have been replaced by
    Change the 2 buttons («Передо⏎мной», «Отметки⏎рядом»), or the ~14 help strings? Unchanged until
    decided (2026-09-29). The third button, «Моя позиция» (an AI pass, 2026-08-20), was
    aligned to «Моё местоположение».
-8. Anything else.
+8. **The four detail levels** (Подробный / Упрощённый / Основной / Беззвучный), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+9. Anything else.
 
 ## Provenance
 

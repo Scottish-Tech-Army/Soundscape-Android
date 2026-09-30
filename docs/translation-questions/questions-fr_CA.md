@@ -140,7 +140,19 @@ croissant) y sont, mais il en manque peut-être.
 **La question :** est-ce que ça sonne juste au Québec ? Voyez-vous un type de voie
 qui sort mal ?
 
-### Q6 — Autre chose? *(Anything else)*
+### Q6 — Les quatre niveaux de détail *(Four detail levels, renamed 2026-09-30)*
+
+**Quand on l'entend :** dans les réglages, où l'on choisit à l'oreille ce que l'application dit en chemin.
+
+**En anglais :** « Detailed / Simplified / Essential / Silent »
+
+**Ce que dit l'application :** Détaillé / Simplifié / Essentiel / Silencieux. Le Simplifié laisse de côté les petits chemins et se répète moins; l'Essentiel n'annonce que les rues, les intersections et les repères.
+
+**Ce qui nous fait hésiter :** nous venons de renommer les deux niveaux du milieu. Avant, c'était « Équilibré » et « Discret », mais des locuteurs natifs d'autres langues trouvaient les anciens noms anglais peu clairs : « Quiet » faisait penser au volume. Les nouveaux noms ont été choisis par nous, pas par un locuteur natif du français canadien.
+
+**La question :** se distinguent-ils bien à l'oreille? Nommeriez-vous autrement les deux du milieu?
+
+### Q7 — Autre chose? *(Anything else)*
 
 Si une phrase sonne comme une traduction de l'anglais, est trop longue ou peu
 claire, dites-le-nous.

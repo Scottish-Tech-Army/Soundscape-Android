@@ -151,7 +151,19 @@ rečenice riješili oznakom, npr. „Krećete se prema sjeveru, ulica: Ilica”.
 **Pitanje:** koliko to smeta na sluh? Bi li oblik s oznakom („…, ulica: Ilica”,
 „Ulica: Ilica, između …”) zvučao prirodnije, ili biste predložili nešto drugo?
 
-### Q8 — Još nešto? *(Anything else)*
+### Q8 — Četiri razine detalja *(Four detail levels, renamed 2026-09-30)*
+
+**Kada se čuje:** u postavkama, gdje se po sluhu bira koliko aplikacija govori usput.
+
+**Na engleskom:** „Detailed / Simplified / Essential / Silent”
+
+**Kako sada zvuči:** Detaljno / Pojednostavljeno / Osnovno / Bez zvuka. Pojednostavljeno izostavlja manje staze i rjeđe se ponavlja; Osnovno najavljuje samo ulice, raskrižja i orijentire.
+
+**Što nas brine:** upravo smo preimenovali dvije srednje razine. Prije su bile „Uravnoteženo” i „Tiho”, ali izvorni govornici drugih jezika smatrali su stare engleske nazive nejasnima: „Tiho” zvuči kao glasnoća. Nove nazive odabrali smo mi, a ne izvorni govornik hrvatskog.
+
+**Pitanje:** Razlikuju li se četiri razine lako i jesu li razumljive kad ih čujete? Biste li dvije srednje nazvali drukčije?
+
+### Q9 — Još nešto? *(Anything else)*
 
 Ako neka rečenica zvuči kao prijevod s engleskog, predugačka je ili nejasna,
 javite nam.

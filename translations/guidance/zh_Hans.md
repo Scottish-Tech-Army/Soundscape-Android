@@ -15,7 +15,7 @@ There is one native-speaker touch. Benjamin Lin (`cecc87ab4`, 2026-02-17)
 made a small edit: he tightened `settings_explanation` and rewrote the three
 intersection-direction strings (ZH-G1). Everything else comes from AI passes
 since 2026-02-08. The authored Siri phrases (`zh-Hans.lproj`) match the help
-text. Questions: `docs/translation-questions/questions-zh_Hans.md` (Q1…Q8).
+text. Questions: `docs/translation-questions/questions-zh_Hans.md` (Q1…Q9).
 
 ## Glossary
 
@@ -82,7 +82,8 @@ here once ZH-G1 is settled.
    the path to Moor Road"? (C10)
 6. Siri phrases «Soundscape 周围 / 路线 / 信标…»: natural to say?
 7. Beacon «音频信标»: natural? (AI-only term, asked for confirmation)
-8. Anything else.
+8. **The four detail levels** (详细 / 简化 / 基本 / 静音), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+9. Anything else.
 
 ## Provenance
 

@@ -16,7 +16,7 @@ Turkish has two small human contributions (Toro Inoue added the language in
 is AI. The corpus has **the most serious structural problem found in any
 language**: suffixes hard-coded onto placeholders (TR-G1). The authored Siri
 phrases (`tr.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-tr.md` (Q1…Q8).
+`docs/translation-questions/questions-tr.md` (Q1…Q9).
 
 ## Glossary
 
@@ -106,7 +106,8 @@ Nothing yet.
 5. Siri phrases: natural?
 6. Callout «anons»: natural? (AI-only term, asked for confirmation)
 7. Motorway junctions: «5. Kavşak» reads as "the 5th junction". Better «5 numaralı kavşak» or «Kavşak 5»? Also: is «Vapur İskelesi» or «Feribot İskelesi» right for a ferry terminal, and what is a *rigger* (a craft trade) in Turkish?
-8. Anything else.
+8. **The four detail levels** (Ayrıntılı / Sadeleştirilmiş / Temel / Sessiz), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+9. Anything else.
 
 ## Provenance
 

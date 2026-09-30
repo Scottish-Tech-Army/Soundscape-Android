@@ -132,7 +132,19 @@ dụ nhà mình).
 
 **Câu hỏi:** có phù hợp không?
 
-### Q7 — Điều gì khác? *(Anything else)*
+### Q7 — Bốn mức chi tiết *(Four detail levels, renamed 2026-09-30)*
+
+**Khi nào nghe thấy:** trong phần cài đặt, nơi người dùng nghe để chọn ứng dụng nói nhiều hay ít khi đi đường.
+
+**Tiếng Anh:** "Detailed / Simplified / Essential / Silent"
+
+**Hiện giờ:** Chi tiết / Đơn giản / Thiết yếu / Im lặng. "Đơn giản" bỏ qua đường nhỏ và ít lặp lại hơn; "Thiết yếu" chỉ báo đường phố, giao lộ và địa danh.
+
+**Điều chúng tôi băn khoăn:** chúng tôi vừa đổi tên hai mức ở giữa. Trước đây là "Cân bằng" và "Yên tĩnh", nhưng người bản ngữ các ngôn ngữ khác thấy tên tiếng Anh cũ không rõ: "Yên tĩnh" nghe như âm lượng. Tên mới do chúng tôi chọn, không phải người bản ngữ tiếng Việt.
+
+**Câu hỏi:** Nghe bốn mức này có dễ phân biệt và dễ hiểu không? Bạn có đặt tên khác cho hai mức ở giữa không?
+
+### Q8 — Điều gì khác? *(Anything else)*
 
 Nếu có câu nào nghe như dịch từ tiếng Anh, quá dài, hoặc khó hiểu, xin cho chúng tôi
 biết.

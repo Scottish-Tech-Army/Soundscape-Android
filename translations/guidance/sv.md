@@ -16,7 +16,7 @@ Swedish started from Microsoft's professional translation (C14) and has
 drifted the least of the Nordic languages. The VoiceOver template composes
 correctly («Dubbeltryck för att stänga av ljudfyren»). The Siri phrases
 (`sv.lproj`) match the help text. There is one real inconsistency (SV-T1).
-Questions: `docs/translation-questions/questions-sv.md` (Q1…Q4).
+Questions: `docs/translation-questions/questions-sv.md` (Q1…Q5).
 
 ## Glossary
 
@@ -71,7 +71,8 @@ Numbered as on the questionnaire.
 1. Sleep/Snooze are back to Microsoft's «Inaktivera» / «Inaktiverad» / «Snoozar». OK?
 2. «Stig till återvändsgata»: natural, or with «en»?
 3. Siri phrases «Soundscape omgivning / rutt / ljudfyr / stoppa ljudfyr…»: natural?
-4. Anything else.
+4. **The four detail levels** (Detaljerad / Förenklad / Grundläggande / Tyst), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+5. Anything else.
 
 ## Provenance
 

@@ -19,7 +19,7 @@ Read with [`_common.md`](_common.md).
 - Formal Slovenian takes plural agreement, so «Pripravljeni ste!» is correct
   and gender-neutral.
 
-Questions: `docs/translation-questions/questions-sl.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-sl.md` (Q1…Q7).
 
 ## Glossary
 
@@ -64,7 +64,8 @@ Nothing yet.
 3. Waypoint «točka poti»: natural?
 4. Snooze «V dremežu»: clear?
 5. Is vikanje right?
-6. Anything else.
+6. **The four detail levels** (Podrobno / Poenostavljeno / Osnovno / Brez zvoka), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+7. Anything else.
 
 ## Provenance
 

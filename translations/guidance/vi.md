@@ -13,7 +13,7 @@ Read with [`_common.md`](_common.md).
 
 **No native speaker has reviewed Vietnamese.** It has been AI-only since
 2026-08-21. There is one `agreed` meaning defect (VI-G1) and one term with
-the wrong sense (VI-T1). Questions: `docs/translation-questions/questions-vi.md` (Q1…Q7).
+the wrong sense (VI-T1). Questions: `docs/translation-questions/questions-vi.md` (Q1…Q8).
 
 ## Glossary
 
@@ -61,7 +61,8 @@ Nothing yet.
 4. Callout «thông báo»: confused with phone notifications?
 5. Snooze «Tạm nghỉ»: clear?
 6. Is «bạn» right?
-7. Anything else.
+7. **The four detail levels** (Chi tiết / Đơn giản / Thiết yếu / Im lặng), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
 
 ## Provenance
 

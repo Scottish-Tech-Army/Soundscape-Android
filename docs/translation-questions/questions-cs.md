@@ -134,7 +134,19 @@ nebo adresu“).
 
 **Otázka:** je to přirozené? Pokud ne, jak byste to řekli?
 
-### Q7 — Něco dalšího? *(Anything else)*
+### Q7 — Čtyři úrovně podrobnosti *(Four detail levels, renamed 2026-09-30)*
+
+**Kdy to zazní:** v nastavení, kde se podle sluchu vybírá, kolik aplikace cestou říká.
+
+**Anglicky:** „Detailed / Simplified / Essential / Silent“
+
+**Jak to zní teď:** Podrobný / Zjednodušený / Základní / Bez zvuku. Zjednodušený vynechává menší cesty a méně se opakuje; Základní hlásí jen ulice, křižovatky a orientační body.
+
+**Čím si nejsme jistí:** právě jsme přejmenovali dvě prostřední úrovně. Dříve to byly „Vyvážený“ a „Tichý“, ale rodilí mluvčí jiných jazyků považovali původní anglické názvy za nejasné: „Tichý“ zní jako hlasitost. Nové názvy jsme vybrali my, ne rodilý mluvčí češtiny.
+
+**Otázka:** Jsou čtyři úrovně při poslechu snadno rozlišitelné a srozumitelné? Pojmenovali byste ty dvě prostřední jinak?
+
+### Q8 — Něco dalšího? *(Anything else)*
 
 Pokud nějaká věta zní jako překlad z angličtiny, je příliš dlouhá nebo
 nesrozumitelná, dejte nám vědět.

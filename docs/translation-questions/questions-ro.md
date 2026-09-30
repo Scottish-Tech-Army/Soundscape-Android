@@ -122,7 +122,19 @@ dacă „baliză” sugerează firesc un sunet care arată o direcție.
 
 **Întrebarea:** sună natural? Dacă nu, cum ați spune?
 
-### Q6 — Altceva? *(Anything else)*
+### Q6 — Cele patru niveluri de detaliu *(Four detail levels, renamed 2026-09-30)*
+
+**Când se aude:** în setări, unde alegi după ureche cât vorbește aplicația pe drum.
+
+**În engleză:** „Detailed / Simplified / Essential / Silent”
+
+**Cum sună acum:** Detaliat / Simplificat / Esențial / Silențios. Simplificat omite potecile mici și se repetă mai rar; Esențial anunță doar străzi, intersecții și repere.
+
+**Ce ne face să ezităm:** tocmai am redenumit cele două niveluri din mijloc. Înainte erau „Echilibrat” și „Discret”, dar vorbitori nativi ai altor limbi au găsit neclare vechile nume englezești: „Quiet” suna a volum. Numele noi le-am ales noi, nu un vorbitor nativ de română.
+
+**Întrebarea:** se deosebesc și se înțeleg ușor cele patru niveluri când le auzi? Le-ai numi altfel pe cele două din mijloc?
+
+### Q7 — Altceva? *(Anything else)*
 
 Dacă o frază sună ca tradusă din engleză, e prea lungă sau neclară, spuneți-ne.
 

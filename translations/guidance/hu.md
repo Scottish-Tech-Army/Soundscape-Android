@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. The VoiceOver template «Duplán koppintva: %1$s» with verbal-noun
 hints is already the colon frame that C13 recommends. There is no
 `hu.lproj`, so the Siri phrases stay in English. Questions:
-`docs/translation-questions/questions-hu.md` (Q1…Q5).
+`docs/translation-questions/questions-hu.md` (Q1…Q6).
 
 ## Glossary
 
@@ -77,7 +77,8 @@ Nothing yet.
 2. Register: «te» everywhere, or «Ön» everywhere? (HU-R1)
 3. Beacon «hangjelző»: natural? In everyday use it means a buzzer, beeper or car horn, so it may not suggest a sound that shows a direction.
 4. Callout «bejelentés»: natural? It can sound official; «bemondás» (a public-transport announcement) was offered as an alternative. «értesítés» was ruled out because it clashes with phone notifications.
-5. Anything else.
+5. **The four detail levels** (Részletes / Egyszerűsített / Alapvető / Néma), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+6. Anything else.
 
 ## Provenance
 

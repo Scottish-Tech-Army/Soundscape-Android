@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. Structurally sound: `confect_name_to` «%2$sకు వెళ్ళే %1$s» is
 correct under C10, and the double-tap template now composes (fixed 2026-09-29, TE-B1).
 It leans heavily on loanwords. Questions: `docs/translation-questions/questions-te.md`
-(Q1…Q6).
+(Q1…Q7).
 
 ## Glossary
 
@@ -53,7 +53,8 @@ Nothing yet.
 3. Landmarks «మైలురాళ్లు»: do they sound like places, or like achievements?
 4. Dead end: «డెడ్ ఎండ్» or a Telugu word?
 5. Sleep/Snooze «నిద్ర» / «స్నూజ్»: natural?
-6. Anything else.
+6. **The four detail levels** (వివరణాత్మకం / సరళీకృతం / ముఖ్యం / నిశ్శబ్దం), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+7. Anything else.
 
 ## Provenance
 

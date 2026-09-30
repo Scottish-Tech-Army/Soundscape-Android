@@ -163,7 +163,19 @@ incompleta.
 
 **A pergunta:** soa bem? Notou algum nome que saia errado?
 
-### Q8 — Mais alguma coisa? *(Anything else)*
+### Q8 — Os quatro níveis de detalhe *(Four detail levels, renamed 2026-09-30)*
+
+**Quando você ouve:** nas configurações, onde você escolhe de ouvido quanto o app fala pelo caminho.
+
+**Em inglês:** "Detailed / Simplified / Essential / Silent"
+
+**Como soa agora:** Detalhado / Simplificado / Essencial / Silencioso. O Simplificado deixa de fora caminhos pequenos e se repete menos; o Essencial só avisa ruas, cruzamentos e pontos de referência.
+
+**O que nos deixa em dúvida:** acabamos de renomear os dois níveis do meio. Antes eram "Equilibrado" e "Discreto", mas falantes nativos de outros idiomas acharam os nomes antigos em inglês pouco claros: "Quiet" parecia volume. Os nomes novos foram escolhidos por nós, não por um falante nativo de português.
+
+**A pergunta:** os quatro níveis são fáceis de distinguir e de entender quando você ouve? Você daria outro nome aos dois do meio?
+
+### Q9 — Mais alguma coisa? *(Anything else)*
 
 Se alguma frase parecer traduzida do inglês, longa demais ou confusa, avise a
 gente.

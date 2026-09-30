@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Indonesian.** It has been AI-only since
 2026-08-21. It is grammatically sound: «Ketuk dua kali untuk %1$s» composes
 with the hints, and «%1$s ke %2$s» is fine under C10. The problems are two
-terms with the wrong sense. Questions: `docs/translation-questions/questions-id.md` (Q1…Q7).
+terms with the wrong sense. Questions: `docs/translation-questions/questions-id.md` (Q1…Q8).
 
 ## Glossary
 
@@ -60,7 +60,8 @@ Nothing yet.
 4. Snooze «Menunda»: clear?
 5. Landmarks: keep «Landmark» or use «Tengara»?
 6. Is «Anda» right?
-7. Anything else.
+7. **The four detail levels** (Rinci / Sederhana / Esensial / Senyap), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
 
 ## Provenance
 

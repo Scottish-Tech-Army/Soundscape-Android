@@ -140,7 +140,19 @@ sabem si "balisa" fa pensar naturalment en un so que indica una direcció.
 
 **La pregunta:** sona natural? Si no, com ho diries?
 
-### Q7 — Alguna cosa més? *(Anything else)*
+### Q7 — Els quatre nivells de detall *(Four detail levels, renamed 2026-09-30)*
+
+**Quan se sent:** a la configuració, on es tria d'oïda quant parla l'aplicació pel camí.
+
+**En anglès:** "Detailed / Simplified / Essential / Silent"
+
+**Com sona ara:** Detallat / Simplificat / Essencial / Silenciós. El Simplificat omet els camins petits i es repeteix menys; l'Essencial només avisa de carrers, cruïlles i punts de referència.
+
+**El que ens fa dubtar:** acabem de canviar el nom dels dos nivells del mig. Abans eren "Equilibrat" i "Discret", però parlants nadius d'altres llengües van trobar poc clars els noms anglesos antics: "Quiet" sonava a volum. Els noms nous els hem triat nosaltres, no un parlant nadiu de català.
+
+**La pregunta:** es distingeixen i s'entenen bé d'oïda? Posaries un altre nom als dos del mig?
+
+### Q8 — Alguna cosa més? *(Anything else)*
 
 Si alguna frase sona com una traducció de l'anglès, és massa llarga o poc clara,
 digues-nos-ho.

@@ -142,7 +142,19 @@ membantu orientasi.
 
 **Pertanyaannya:** apakah sudah tepat?
 
-### Q7 — Ada yang lain? *(Anything else)*
+### Q7 — Empat tingkat detail *(Four detail levels, renamed 2026-09-30)*
+
+**Kapan terdengar:** di pengaturan, tempat pengguna memilih dengan mendengarkan seberapa banyak aplikasi berbicara saat berjalan.
+
+**Dalam bahasa Inggris:** "Detailed / Simplified / Essential / Silent"
+
+**Bunyinya sekarang:** Rinci / Sederhana / Esensial / Senyap. Sederhana melewatkan jalan setapak kecil dan lebih jarang mengulang; Esensial hanya menyebutkan jalan, persimpangan, dan penanda.
+
+**Yang membuat kami ragu:** kami baru saja mengganti nama dua tingkat di tengah. Sebelumnya "Seimbang" dan "Ringkas", tetapi penutur asli bahasa lain merasa nama bahasa Inggris yang lama kurang jelas. Nama baru ini kami yang memilih, bukan penutur asli bahasa Indonesia.
+
+**Pertanyaannya:** Apakah keempat tingkat mudah dibedakan dan dipahami saat didengar? Apakah Anda akan memberi nama lain untuk dua yang di tengah?
+
+### Q8 — Ada yang lain? *(Anything else)*
 
 Kalau ada kalimat yang terdengar seperti terjemahan dari bahasa Inggris, terlalu
 panjang, atau tidak dimengerti, beri tahu kami.

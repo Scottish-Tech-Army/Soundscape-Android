@@ -138,7 +138,19 @@ kde ste (napríklad z domu).
 
 **Otázka:** je to prirodzené? Ak nie, ako by ste to povedali?
 
-### Q7 — Niečo ďalšie? *(Anything else)*
+### Q7 — Štyri úrovne podrobnosti *(Four detail levels, renamed 2026-09-30)*
+
+**Kedy to zaznie:** v nastaveniach, kde sa podľa sluchu vyberá, koľko aplikácia cestou hovorí.
+
+**Po anglicky:** „Detailed / Simplified / Essential / Silent“
+
+**Ako to znie teraz:** Podrobný / Zjednodušený / Základný / Bez zvuku. Zjednodušený vynecháva menšie cesty a menej sa opakuje; Základný hlási len ulice, križovatky a orientačné body.
+
+**Čím si nie sme istí:** práve sme premenovali dve stredné úrovne. Predtým to boli „Vyvážený“ a „Tichý“, ale rodení hovoriaci iných jazykov považovali pôvodné anglické názvy za nejasné: „Tichý“ znie ako hlasitosť. Nové názvy sme vybrali my, nie rodený hovoriaci slovenčiny.
+
+**Otázka:** Sú štyri úrovne pri počúvaní ľahko rozlíšiteľné a zrozumiteľné? Pomenovali by ste tie dve stredné inak?
+
+### Q8 — Niečo ďalšie? *(Anything else)*
 
 Ak nejaká veta znie ako preklad z angličtiny, je príliš dlhá alebo nezrozumiteľná,
 dajte nám vedieť.

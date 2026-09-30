@@ -120,7 +120,23 @@ places that help orientation.*
 **Swali:** Je, neno hili linafaa, au ni la kitalii mno?
 *Does it fit, or is it too touristy?*
 
-### Q5 — Kitu kingine? *(Anything else)*
+### Q5 — Viwango vinne vya maelezo *(Four detail levels, renamed 2026-09-30)*
+
+**Linasikika lini:** kwenye mipangilio, ambapo mtumiaji huchagua kwa kusikiliza kiasi programu inachosema wakati wa kutembea.
+*In the settings, where you choose by ear how much the app says as you walk.*
+
+**Kwa Kiingereza:** "Detailed / Simplified / Essential / Silent"
+
+**Linavyosikika sasa:** Kwa Kina / Rahisi / Muhimu / Kimya. "Rahisi" huacha njia ndogo na hurudia mara chache; "Muhimu" hutaja barabara, makutano na alama maarufu tu.
+*Simplified skips minor paths and repeats less; Essential only calls out streets, junctions and landmarks.*
+
+**Kinachotutia shaka:** tumebadilisha majina ya viwango viwili vya kati hivi punde. Awali vilikuwa "Wastani" na "Chache", lakini wazungumzaji asilia wa lugha nyingine waliona majina ya zamani ya Kiingereza hayako wazi. Majina mapya tumeyachagua sisi, si mzungumzaji asilia wa Kiswahili.
+*We have just renamed the middle two, which were «Wastani» and «Chache»: speakers of other languages found the old English names unclear. We chose the new names, not a Swahili speaker.*
+
+**Swali:** Je, viwango hivi vinne vinatofautiana na kueleweka kwa urahisi vinaposikika? Ungevipa viwili vya kati majina mengine?
+*Are the four easy to tell apart by ear? Would you name the middle two differently?*
+
+### Q6 — Kitu kingine? *(Anything else)*
 
 Kama sentensi yoyote inasikika kama tafsiri kutoka Kiingereza, ni ndefu mno au
 haieleweki, tuambie.

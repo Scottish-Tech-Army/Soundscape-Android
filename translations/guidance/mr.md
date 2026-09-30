@@ -17,7 +17,7 @@ Read with [`_common.md`](_common.md).
 - `confect_name_to` «%2$s कडे जाणारा %1$s» is the model C10 answer.
 - The VoiceOver template «%1$sसाठी डबल टॅप करा» composes correctly.
 
-Questions: `docs/translation-questions/questions-mr.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-mr.md` (Q1…Q7).
 
 ## Glossary
 
@@ -60,7 +60,8 @@ Nothing yet.
 3. Sleep button «झोप मोड»: natural as something you press?
 4. Dead end: does «बंद रस्ता» sound like "road closed"? (MR-T1)
 5. Is «तुम्ही» right?
-6. Anything else.
+6. **The four detail levels** (तपशीलवार / सरलीकृत / आवश्यक / निःशब्द), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+7. Anything else.
 
 ## Provenance
 
