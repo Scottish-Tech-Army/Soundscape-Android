@@ -63,6 +63,7 @@ same address and we'll help you get set up.
 - [Polski]({{ "/translation-questions/questions-pl/" | relative_url }}) — Polish _(round 2)_
 - [Português]({{ "/translation-questions/questions-pt/" | relative_url }}) — Portuguese
 - [Português (Brasil)]({{ "/translation-questions/questions-pt_BR/" | relative_url }}) — Portuguese (Brazil)
+- [ਪੰਜਾਬੀ]({{ "/translation-questions/questions-pa/" | relative_url }}) — Punjabi
 - [Română]({{ "/translation-questions/questions-ro/" | relative_url }}) — Romanian
 - [Русский]({{ "/translation-questions/questions-ru/" | relative_url }}) — Russian
 - [Српски]({{ "/translation-questions/questions-sr/" | relative_url }}) — Serbian
