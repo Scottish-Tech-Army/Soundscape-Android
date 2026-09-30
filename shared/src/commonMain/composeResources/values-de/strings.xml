@@ -100,7 +100,7 @@
     <string name="callouts_allow_callouts">Hinweise zulassen</string>
     <string name="callouts_places_and_landmarks">Orte und Orientierungspunkte</string>
     <string name="callouts_mobility">Mobilität</string>
-    <string name="callouts_audio_beacon">Distanz zum Audiobeacon</string>
+    <string name="callouts_audio_beacon">Entfernung zum Audiobeacon</string>
     <string name="callouts_automatic_callouts">Automatische Hinweise</string>
     <string name="callouts_nothing_to_call_out_now">Derzeit gibt es keine Hinweise</string>
     <string name="callouts_nearby_markers">Markierungen in der Nähe</string>
@@ -235,8 +235,8 @@
     <string name="first_launch_callouts_listen">Hören Sie sich ein Beispiel dafür an, was Soundscape Ihnen auf Ihrem nächsten Spaziergang sagen könnte</string>
     <string name="first_launch_callouts_listen_accessibility_label">Anhören</string>
     <string name="first_launch_callouts_example_1">Café</string>
-    <string name="first_launch_callouts_example_3">Hauptstraße geht nach links</string>
-    <string name="first_launch_callouts_example_4">Hauptstraße geht nach rechts</string>
+    <string name="first_launch_callouts_example_3">Hauptstraße geht nach links ab</string>
+    <string name="first_launch_callouts_example_4">Hauptstraße geht nach rechts ab</string>
     <string name="first_launch_permissions_title">App‑Berechtigungen</string>
     <string name="first_launch_permissions_message">Soundscape benötigt bestimmte Berechtigungen, um zu funktionieren. Diese Berechtigungen erlauben es der App, den Standort Ihres Telefons zu empfangen, auch wenn das Telefon gesperrt ist. Bitte tippen Sie auf jede der folgenden Berechtigungen und aktivieren Sie sie, wenn Sie dazu aufgefordert werden:</string>
     <string name="first_launch_permissions_location">Ortungsdienste mit genauem Standort</string>
@@ -249,7 +249,7 @@
     <string name="first_launch_prompt_title">Sie sind bereit!</string>
     <string name="first_launch_prompt_message">Sie sind bereit für Ihren ersten Spaziergang mit Soundscape. Wählen Sie zum Einstieg ein nahe gelegenes Ziel aus und starten Sie das Audiobeacon – Sie hören es dann aus der Richtung Ihres Ziels.</string>
     <string name="first_launch_prompt_button">Fertig</string>
-    <string name="help_text_destination_beacons_what">Platzieren eines Beacons an einem nahegelegenen Ort ermöglicht es Soundscape, Sie auf dem Laufenden zu halten, indem es einen Ton aus der Richtung dieses Standorts abspielt. Das Beacon kann auf dem Startbildschirm stummgeschaltet werden bzw. seine Stummschaltung kann aufgehoben werden. Außerdem zeigt Soundscape auf dem Startbildschirm Informationen über den Standort an einschließlich der Entfernung zu ihm und seiner Adresse, falls sie bekannt ist.</string>
+    <string name="help_text_destination_beacons_what">Das Platzieren eines Beacons an einem nahegelegenen Ort ermöglicht es Soundscape, Sie auf dem Laufenden zu halten, indem es einen Ton aus der Richtung dieses Standorts abspielt. Das Beacon kann auf dem Startbildschirm stummgeschaltet werden bzw. seine Stummschaltung kann aufgehoben werden. Außerdem zeigt Soundscape auf dem Startbildschirm Informationen über den Standort an, einschließlich der Entfernung zu ihm und seiner Adresse, falls sie bekannt ist.</string>
     <string name="help_text_destination_beacons_when">Das Platzieren eines Beacons ist nützlich, wenn Sie bei der Erkundung eines neuen Gebiets einen vertrauten Orientierungspunkt im Auge behalten möchten, oder wenn Sie irgendwo hingehen und unterwegs über Ihre Umgebung informiert werden möchten. Mit der Beacon-Funktion erhalten Sie keine Navigationsanweisungen, sondern hören einen kontinuierlichen Ton, der Ihnen die Richtung zum Beacon relativ zu Ihrer aktuellen Position angibt. Mithilfe des Audiobeacons, Ihrer vorhandenen Wegfindungsfähigkeiten und sogar Ihrer bevorzugten Navigations-App können Sie selbst entscheiden, wie Sie zu Orten in der Nähe gelangen möchten.</string>
     <string name="help_text_destination_beacons_how_1">**Zum Platzieren eines Beacons:**\n\nZuerst zeigen Sie die Details eines Ortes an, indem Sie entweder die Suchleiste verwenden, um nach einem Ort zu suchen, oder auf eine der Schaltflächen *„Orte in der Nähe“*, *„Markierungen und Routen“* oder *„Aktueller Standort“* tippen und einen Ort auswählen. Wählen Sie dann auf dem Bildschirm *„Standortdetails“* die Schaltfläche *„Audiobeacon starten“* aus. Wenn Sie diese antippen, kehren Sie zum Startbildschirm zurück und ein hörbares Beacon wird aus der Richtung des ausgewählten Ortes abgespielt. Der Name des Ortes sowie seine Entfernung und gegebenenfalls seine physische Adresse werden nun auf dem Hauptbildschirm angezeigt.</string>
     <string name="help_text_destination_beacons_how_2">**Zum Entfernen des aktuellen Beacons:**\n\n Drücken Sie einfach die Schaltfläche *„Route anhalten“* auf dem Startbildschirm.</string>
@@ -310,7 +310,7 @@
     <string name="osm_convenience_store">Convenience-Shop</string>
     <string name="osm_building_entrance">Gebäudeeingang</string>
     <string name="osm_assembly_point">Sammelpunkt</string>
-    <string name="osm_cycle_barrier">Fahrradschranke</string>
+    <string name="osm_cycle_barrier">Umlaufsperre</string>
     <string name="osm_turnstile">Drehkreuz</string>
     <string name="osm_cattle_grid">Viehgitter</string>
     <string name="osm_gate">Tor</string>
@@ -353,7 +353,7 @@
     <string name="faq_when_to_use_soundscape_question">Wann sollte ich Soundscape verwenden?</string>
     <string name="faq_when_to_use_soundscape_answer">Soundscape hat Funktionen und Vorteile, die eine Vielzahl von Szenarien und Zeitspannen umfassen. Der Wert von Soundscape für Sie kann sich mit der Zeit auch ändern, sodass Sie die App heute vielleicht anders nutzen als in drei Monaten. Die Leute denken bei Apps oft im Sinne von *„Welches Problem kann diese App gut lösen?“*. Soundscape kann durchaus für ganz bestimmte Bedürfnisse verwendet werden – zum Beispiel, um ein Ziel unterwegs im Auge zu behalten, um sich zu orientieren, wenn Sie aus einer U‑Bahn‑Station kommen, um sich zurechtzufinden, wenn Sie aus dem Auto aussteigen, oder um die Straßennamen oder die Entfernung zur nächsten Kreuzung zu erfahren. Die Philosophie hinter Soundscape ist jedoch *„Vertonen Sie Ihre Welt“* – die App ist dafür gedacht, jederzeit genutzt zu werden, wenn Sie unterwegs sind, um Ihnen ein Gespür für Ihre Umgebung zu geben, etwa für die Namen der Straßen, auf denen Sie sich befinden, die Richtung, in die Sie gehen, und die Namen der Geschäfte, an denen Sie vorbeikommen. In diesem Nutzungsmodus haben unsere Nutzer Soundscape als eine *„nette Begleit-App“* bezeichnet, die *„Entdeckungen“* ermöglicht, hilft, die *„Lücken auf Ihrer mentalen Karte zu füllen“*, und für mehr *„Sicherheit beim Gehen“* sorgt. Hier sind einige weitere Beispiele dafür, wie unsere Nutzer Soundscape in ihrem Alltag verwenden:\n\n„Soundscape hat mir geholfen, wieder den richtigen Weg zu finden, nachdem ich aus dem Bus ausgestiegen und in die falsche Richtung gegangen war.“\n\n„Sogar in der Stadt, in der ich seit 3 Jahren lebe, habe ich Neues darüber erfahren, was um mich herum ist [mit Soundscape]“\n\n„Der 3D-Sound verbessert meine Spaziergänge, da ich mich mehr mit meiner Umgebung verbunden fühle … Jetzt, da ich die App nutze, bin ich eher geneigt, eine neue Route auszuprobieren“\n\n„Mir fehlt die Erfahrung, durch die Gegend zu laufen und Dinge zu entdecken. Es ist schön, Soundscape zu haben – es ist jetzt so einfach, etwas über meine Umgebung zu erfahren. Die Informationen sind nützlich, und es ist eine großartige App für die Erkundung.“\n\n„[Ich habe Soundscape] verwendet, um einen Pub mitten in York zu finden. [Ich] nutzte eine Reihe von Optionen, um das Lokal zunächst zu lokalisieren und dann tatsächlich zu finden. Es hat mich bis auf 3 Meter an die Tür herangeführt – genial!“</string>
     <string name="faq_markers_function_question">Was sind Markierungen, und wie nutze ich sie optimal?</string>
-    <string name="faq_markers_function_answer">Markierungen sind Orte, die Sie gespeichert haben. Dabei kann es sich um Orte handeln, die in der App gefunden werden können, oder um völlig neue Orte, die Sie selbst hinzugefügt haben. Sie können Ihren aktuellen Standort als Markierung speichern, indem Sie auf dem Startbildschirm die Schaltfläche *„Aktueller Standort“* auswählen und dann *„Als Markierung speichern“* tippen. Andere Orte können Sie als Markierung speichern, indem Sie in der Suchleiste nach dem gewünschten Ort suchen oder die Schaltfläche *„Orte in der Nähe“* verwenden. Sobald Sie den gewünschten Ort gefunden haben, führt die Auswahl dorthin zum Bildschirm *„Standortdetails“*. Auf diesem Bildschirm wählen Sie die Schaltfläche *„Als Markierung speichern“*.</string>
+    <string name="faq_markers_function_answer">Markierungen sind Orte, die Sie gespeichert haben. Dabei kann es sich um Orte handeln, die in der App gefunden werden können, oder um völlig neue Orte, die Sie selbst hinzugefügt haben. Sie können Ihren aktuellen Standort als Markierung speichern, indem Sie auf dem Startbildschirm die Schaltfläche *„Aktueller Standort“* auswählen und dann auf *„Als Markierung speichern“* tippen. Andere Orte können Sie als Markierung speichern, indem Sie in der Suchleiste nach dem gewünschten Ort suchen oder die Schaltfläche *„Orte in der Nähe“* verwenden. Sobald Sie den gewünschten Ort gefunden haben, führt die Auswahl dorthin zum Bildschirm *„Standortdetails“*. Auf diesem Bildschirm wählen Sie die Schaltfläche *„Als Markierung speichern“*.</string>
     <string name="faq_section_getting_the_best_experience">Wie nutze ich Soundscape optimal?</string>
     <string name="faq_what_can_I_set_question">Worauf kann ich ein Beacon platzieren?</string>
     <string name="faq_what_can_I_set_answer">Sie können ein Audiobeacon auf jedes Geschäft, jeden Ort, jeden Point of Interest, jede Adresse oder jede Kreuzung setzen. Es gibt mehrere Möglichkeiten, ein Beacon an einem Ort zu platzieren. Zeigen Sie zunächst die Details eines Ortes an, indem Sie entweder die Suchleiste verwenden, um nach einem Ort zu suchen, oder auf eine der Schaltflächen *„Orte in der Nähe“*, *„Markierungen und Routen“* oder *„Aktueller Standort“* tippen und einen Ort auswählen. Wählen Sie dann auf dem Bildschirm *„Standortdetails“* die Schaltfläche *„Audiobeacon starten“* aus. Wenn Sie diese antippen, kehren Sie zum Startbildschirm zurück und ein hörbares Beacon wird aus der Richtung des ausgewählten Ortes abgespielt. Der Name des Ortes sowie dessen Entfernung und die physische Adresse, falls verfügbar, werden nun auf dem Hauptbildschirm angezeigt.</string>
@@ -375,7 +375,7 @@
     <string name="faq_why_not_every_business_answer">Soundscape ist so konzipiert, dass es Ihnen nicht zu viele Hinweise gibt. Außerdem verwendet es OpenStreetMap als Datenquelle. OpenStreetMap (OSM, https://www.openstreetmap.org/) ist eine Weltkarte, die von einer Gemeinschaft einzelner Mitwirkender erstellt und bearbeitet wird. Wenn Soundscape ein Geschäft oder einen Point of Interest nicht ansagt, liegt das höchstwahrscheinlich daran, dass ein Mitglied der OSM‑Community dieses Geschäft noch nicht in die Daten eingetragen oder in manchen Fällen noch nicht aktualisiert hat.</string>
     <string name="faq_callouts_stopping_in_vehicle_question">Warum höre ich manche Hinweise nicht, wenn ich in einem Fahrzeug unterwegs bin?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">Um zu verhindern, dass die Anzahl der Hinweise zu überwältigend wird, werden einige Kategorien, z. B. Kreuzungen, nicht automatisch angekündigt, wenn Sie in einem Fahrzeug unterwegs sind.</string>
-    <string name="faq_miss_a_callout_question">Was wenn ich einen Hinweis nicht verstehe oder ihn aufgrund der Umgebungsgeräusche verpasse?</string>
+    <string name="faq_miss_a_callout_question">Was, wenn ich einen Hinweis nicht verstehe oder ihn aufgrund der Umgebungsgeräusche verpasse?</string>
     <string name="faq_miss_a_callout_answer">Soundscape führt eine Liste Ihrer letzten Hinweise, sodass Sie Hinweise, die Sie verpasst haben, noch einmal anhören können. Tippen Sie dazu auf dem Startbildschirm auf die Suchleiste. Am unteren Rand dieses Bildschirms finden Sie den Abschnitt *„Letzte Hinweise“*, in dem der Hinweis, den Sie verpasst haben, aufgeführt wird.</string>
     <string name="faq_section_how_soundscape_works">Wie funktioniert Soundscape?</string>
     <string name="faq_supported_phones_question">Mit welchen Mobilgeräten ist Soundscape kompatibel?</string>
@@ -393,7 +393,7 @@
     <string name="faq_background_battery_impact_question">Wie wirkt sich die Ausführung von Soundscape im Hintergrund auf die Akkulaufzeit meines Telefons aus?</string>
     <string name="faq_background_battery_impact_answer">Soundscape verwendet die Ortungsdienste, um zu bestimmen, wo Sie sich befinden. In unseren Tests verbrauchte Soundscape nicht mehr Batterieleistung als die durchschnittliche Karten‑App. Wenn Sie sich jedoch Sorgen um den Batterieverbrauch Ihres Telefons machen, beachten Sie die nachfolgenden Tipps, um den Verbrauch zu senken:\n\n1. Schalten Sie die Bildschirmanzeige möglichst aus, wenn Sie nicht mit der App interagieren.\n\n2. Schließen Sie die App, wenn Sie sie nicht verwenden. Soundscape verwendet im laufenden Betrieb kontinuierlich den Ortungsdienst, sodass es Ihren Standort immer kennt, auch wenn Sie sich nicht bewegen. Vergessen Sie nicht, die App neu zu starten, wenn Sie Ihren Weg fortsetzen.\n\n3. Halten Sie Ihr Telefon bei Kälte warm, da die Batterieleistung bei kalten Temperaturen nachlässt.</string>
     <string name="faq_mobile_data_use_question">Wie hoch ist die mobile Datenmenge, die Soundscape verbraucht?</string>
-    <string name="faq_mobile_data_use_answer">Die Menge an mobilen Daten, die verwendet wird, hängt davon ab, wie Sie Soundscape nutzen. Wir haben die App so gestaltet, dass es unterwegs nur wenig Daten verbraucht, z. B. indem Punkte beim Herumlaufen gespeichert werden, sodass Sie sie nicht jedes Mal neu herunterladen müssen, wenn Sie an einen bereits besuchten Ort zurückkehren. Um den mobilen Datenverbrauch zu reduzieren, stellen Sie sicher, dass Sie wann immer möglich mit WLAN verbunden sind, insbesondere beim Herunterladen der App. Wenn Sie Soundscape nicht verwenden, sollten Sie die Schaltfläche *„Ruhemodus aktivieren“* verwenden, um Soundscape in den Ruhemodus zu versetzen, oder die App vollständig schließen.</string>
+    <string name="faq_mobile_data_use_answer">Die Menge an mobilen Daten, die verwendet wird, hängt davon ab, wie Sie Soundscape nutzen. Wir haben die App so gestaltet, dass sie unterwegs nur wenig Daten verbraucht, z. B. indem Punkte beim Herumlaufen gespeichert werden, sodass Sie sie nicht jedes Mal neu herunterladen müssen, wenn Sie an einen bereits besuchten Ort zurückkehren. Um den mobilen Datenverbrauch zu reduzieren, stellen Sie sicher, dass Sie wann immer möglich mit WLAN verbunden sind, insbesondere beim Herunterladen der App. Wenn Sie Soundscape nicht verwenden, sollten Sie die Schaltfläche *„Ruhemodus aktivieren“* verwenden, um Soundscape in den Ruhemodus zu versetzen, oder die App vollständig schließen.</string>
     <string name="faq_difference_from_map_apps_question">Wie unterscheidet sich Soundscape von anderen Karten-Apps?</string>
     <string name="faq_difference_from_map_apps_answer">Soundscape bietet eine ambientartige Beschreibung Ihrer Umgebung, um beim Erkunden und bei der Wegfindung zu unterstützen. Mithilfe räumlichen Audios sagt Soundscape Points of Interest, Parks, Straßen und Kreuzungen aus der Richtung an, in der sie sich in Ihrer unmittelbaren Umgebung befinden, während Sie gehen. Wenn Sie zum Beispiel an einem Geschäft auf Ihrer rechten Seite vorbeigehen, hören Sie den Namen dieses Geschäfts von rechts. Wenn Sie sich einer Kreuzung nähern, hören Sie die Namen der einzelnen Straßen jeweils aus der Richtung, in die sie verlaufen – beginnend mit der links liegenden, dann der geradeaus führenden und schließlich der rechts liegenden.\n\nAnstatt Schritt‑für‑Schritt‑Anweisungen, wie sie viele andere Karten‑Apps bieten, spielt Soundscape ein Audiobeacon in Richtung Ihres Ziels ab. So können Sie dank Ihrer verbesserten Wahrnehmung der Umgebung und des Wissens über die Lage Ihres Ziels so dorthin gelangen, wie es für Sie am besten funktioniert. Soundscape ist so konzipiert, dass es im Hintergrund läuft, sodass Sie parallel eine Navigations‑App mit Schritt‑für‑Schritt‑Anweisungen verwenden können, während Soundscape weiterhin Umgebungsinformationen liefert, während Sie sich auf den Weg zu Ihrem Ziel machen.</string>
     <string name="faq_use_with_wayfinding_apps_question">Wie verwende ich Soundscape mit einer Wegfindungs-App?</string>
@@ -420,7 +420,7 @@
     <string name="preview_go_nearest_intersection">Gehen Sie zur nächsten Kreuzung</string>
     <string name="last_entry_in_list"> und %1$s</string>
     <string name="location_detail_full_screen_hint">Karte im Vollbild anzeigen</string>
-    <string name="location_detail_exit_full_screen_hint">die Vollbildkarte beenden</string>
+    <string name="location_detail_exit_full_screen_hint">Vollbildansicht der Karte beenden</string>
     <string name="route_detail_action_previous_disabled_hint">Inaktiv, weil die Route bereits am Anfang ist</string>
     <string name="route_detail_action_next_disabled_hint">Inaktiv, weil die Route bereits am Ende ist</string>
     <string name="directions_near_road_and_settlement">Nahe %1$s und nahe bei %2$s</string>
@@ -488,8 +488,8 @@
     <string name="confect_name_dead_end">Sackgasse</string>
     <string name="offline_maps_title">Offline-Karten</string>
     <string name="offline_map_details_title">Details zur Offline-Karte</string>
-    <string name="offline_maps_loading">Laden…</string>
-    <string name="offline_maps_downloading">Lade %1$s herunter</string>
+    <string name="offline_maps_loading">Wird geladen…</string>
+    <string name="offline_maps_downloading">%1$s wird heruntergeladen</string>
     <string name="offline_maps_caching">Der Server bereitet %1$s für den Download vor. Das kann ein paar Minuten dauern; anschließend startet der Download automatisch.</string>
     <string name="offline_maps_free_space">%1$s frei</string>
     <string name="offline_maps_storage">Karten werden auf %1$s gespeichert, es sind noch %2$s frei</string>
@@ -507,10 +507,10 @@
     <string name="offline_map_storage_description">Sie können Karten herunterladen und auf Ihrem Telefon speichern, damit Soundscape auch ohne Internetverbindung funktioniert. Standardmäßig werden Karten im externen Speicher Ihres Telefons abgelegt, aber Sie können hier einen anderen Speicherort wählen.</string>
     <string name="offline_map_wifi_only">Karten-Download nur über WLAN</string>
     <string name="text_field_clear_text">Text löschen</string>
-    <string name="marker_name_description_hint">den Namen der Markierung zu bearbeiten</string>
-    <string name="annotation_description_hint">eine optionale Notiz hinzuzufügen, damit Sie diese Markierung später wiedererkennen</string>
-    <string name="route_name_description_hint">den Namen der Route zu bearbeiten</string>
-    <string name="route_description_description_hint">eine optionale Beschreibung für diese Route hinzuzufügen</string>
+    <string name="marker_name_description_hint">Den Namen der Markierung bearbeiten</string>
+    <string name="annotation_description_hint">Eine optionale Notiz hinzufügen, damit Sie diese Markierung später wiedererkennen</string>
+    <string name="route_name_description_hint">Den Namen der Route bearbeiten</string>
+    <string name="route_description_description_hint">Eine optionale Beschreibung für diese Route hinzufügen</string>
     <string name="fab_add_item">Element hinzufügen</string>
     <string name="fab_add_route">Route hinzufügen</string>
     <string name="route_waypoint_progress">Route %1$s, Wegpunkt %2$s von %3$s</string>
@@ -518,7 +518,7 @@
     <string name="about_soundscape">Soundscape nutzt innovative audiobasierte Technik, um Menschen dabei zu helfen, ein besseres Bewusstsein für ihre Umgebung zu entwickeln. Das macht Menschen selbstsicherer und ermöglicht es ihnen, sich eigenständig zu bewegen.</string>
     <string name="offline_maps_manifest_failed">Beim Herunterladen der Offline-Kartendaten ist ein Fehler aufgetreten</string>
     <string name="settings_reset_button">Einstellungen auf Standardwerte zurücksetzen</string>
-    <string name="settings_reset_button_hint">Einstellungen auf die Standardwerte zurückzusetzen und anschließend die App neu zu starten.</string>
+    <string name="settings_reset_button_hint">Einstellungen auf die Standardwerte zurücksetzen und anschließend die App neu starten.</string>
     <string name="settings_reset_dialog_title">Sind Sie sicher?</string>
     <string name="settings_reset_dialog_message">Beim Zurücksetzen der Einstellungen werden alle Einstellungen gelöscht, die Sie in der App konfiguriert haben. Möchten Sie fortfahren?</string>
     <string name="menu_advanced_markers_and_routes">Erweiterte Markierungen und Routen</string>
@@ -532,7 +532,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markierungen und Routen gelöscht</string>
     <string name="new_version_info_text">Informationen zur neuen Version</string>
     <string name="new_version_info_completed">Dialog zur neuen Version schließen</string>
-    <string name="new_version_info_details">Dies ist ein umfangreiches Update für Soundscape. Der Reisemodus wurde deutlich verbessert. Wenn Sie mit dem Auto oder Bus unterwegs sind, sagt Soundscape jetzt Straßennummern, Ihre Fahrtrichtung und nahe gelegene Ortschaften an. Außerdem wird angesagt, wenn Sie Flüsse, Kanäle, Meeresarme und Buchten überqueren. Bitte aktualisieren Sie Ihre Offline‑Karten, um diese neuen Funktionen zu erhalten. Die Beschreibungen von Bushaltestellen sind für Nutzer im Vereinigten Königreich jetzt deutlich besser. Der Ruhemodus kann jetzt automatisch aufwachen, wenn er erkennt, dass Sie sich wieder bewegen. Sie müssen ihn nicht mehr selbst aufwecken. Wir haben den zugrunde liegenden Code umstrukturiert, damit wir aus demselben Code eine iOS‑App erstellen können. Das bedeutet, dass wir in Zukunft eine iOS‑App mit allen Funktionen veröffentlichen können, die wir für Android entwickelt haben. Bitte melden Sie weiterhin alle Probleme, egal wie klein, über Support kontaktieren im Hauptmenü.</string>
+    <string name="new_version_info_details">Dies ist ein umfangreiches Update für Soundscape. Der Reisemodus wurde deutlich verbessert. Wenn Sie mit dem Auto oder Bus unterwegs sind, sagt Soundscape jetzt Straßennummern, Ihre Fahrtrichtung und nahe gelegene Ortschaften an. Außerdem wird angesagt, wenn Sie Flüsse, Kanäle, Meeresarme und Buchten überqueren. Bitte aktualisieren Sie Ihre Offline‑Karten, um diese neuen Funktionen zu erhalten. Die Beschreibungen von Bushaltestellen sind für Nutzer im Vereinigten Königreich jetzt deutlich besser. Der Ruhemodus kann jetzt automatisch aufwachen, wenn er erkennt, dass Sie sich wieder bewegen. Sie müssen ihn nicht mehr selbst aufwecken. Wir haben den zugrunde liegenden Code umstrukturiert, damit wir aus demselben Code eine iOS‑App erstellen können. Das bedeutet, dass wir in Zukunft eine iOS‑App mit allen Funktionen veröffentlichen können, die wir für Android entwickelt haben. Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support kontaktieren“ im Hauptmenü.</string>
     <string name="menu_open_source_licenses">Open-Source-Lizenzen</string>
     <string name="osm_tag_ferry_terminal">Fährterminal</string>
     <string name="osm_tag_ferry_terminal_named">Fährterminal %1$s</string>
@@ -540,7 +540,7 @@
     <string name="osm_school">Schule</string>
     <string name="osm_roof">Dach</string>
     <string name="osm_convenience">Convenience-Shop</string>
-    <string name="osm_lift_gate">Hubtor</string>
+    <string name="osm_lift_gate">Schranke</string>
     <string name="osm_toilets">Toiletten</string>
     <string name="osm_parking">Parkplatz</string>
     <string name="osm_taxi">Taxistand</string>
@@ -556,7 +556,7 @@
     <string name="osm_guide">Wegweiser</string>
     <string name="osm_water">Gewässer</string>
     <string name="osm_fire_hose">Feuerwehrschlauch</string>
-    <string name="osm_fire_flapper">Werkzeug zum Löschen kleiner Brände</string>
+    <string name="osm_fire_flapper">Feuerpatsche</string>
     <string name="osm_information_point">Informationsstelle</string>
     <string name="osm_wetland">Feuchtgebiet</string>
     <string name="osm_mud">Schlamm</string>
@@ -587,7 +587,7 @@
     <string name="osm_petroleum_well">Ölbohrung</string>
     <string name="osm_cross">Kreuz</string>
     <string name="osm_gallows">Galgen</string>
-    <string name="osm_speed_camera">Geschwindigkeitskamera</string>
+    <string name="osm_speed_camera">Blitzer</string>
     <string name="osm_siren">Sirene</string>
     <string name="osm_pylon">Pylon</string>
     <string name="osm_mineshaft">Bergwerkschacht</string>
@@ -596,7 +596,7 @@
     <string name="osm_cannon">Kanone</string>
     <string name="osm_boundary_stone">Grenzstein</string>
     <string name="osm_shed">Schuppen</string>
-    <string name="osm_traffic_cones">Verkehrskegel</string>
+    <string name="osm_traffic_cones">Leitkegel</string>
     <string name="osm_firepit">Feuerstelle</string>
     <string name="osm_stone">Stein</string>
     <string name="osm_surveillance">Überwachung</string>
@@ -894,7 +894,7 @@
     <string name="osm_doityourself">Baumarkt</string>
     <string name="osm_bathroom_furnishing">Sanitärfachgeschäft</string>
     <string name="osm_medical_supply">Sanitätshaus</string>
-    <string name="osm_variety_store">Ramschladen</string>
+    <string name="osm_variety_store">Sonderpostenmarkt</string>
     <string name="osm_second_hand">Gebrauchtwarenladen</string>
     <string name="osm_charity">Wohltätigkeitsladen</string>
     <string name="osm_fashion">Modegeschäft</string>
@@ -1096,11 +1096,11 @@
     <string name="osm_temple">Tempel</string>
     <string name="osm_national_park">Nationalpark</string>
     <string name="osm_heliport">Hubschrauberlandeplatz</string>
-    <string name="osm_public_park">öffentlicher Park</string>
+    <string name="osm_public_park">Öffentlicher Park</string>
     <string name="osm_department_store">Kaufhaus</string>
     <string name="osm_studio">Studio</string>
-    <string name="osm_public_building">öffentliches Gebäude</string>
-    <string name="osm_clock">öffentliche Uhr</string>
+    <string name="osm_public_building">Öffentliches Gebäude</string>
+    <string name="osm_clock">Öffentliche Uhr</string>
     <string name="osm_casino">Casino</string>
     <string name="osm_stadium">Stadion</string>
     <string name="osm_dam">Staudamm</string>
@@ -1209,7 +1209,7 @@
     <string name="location_item_move_down">In Liste nach unten verschieben</string>
     <string name="street_description_between">Auf %1$s zwischen %2$s und %3$s</string>
     <string name="street_description_until">Auf %1$s, noch %2$s bis %3$s</string>
-    <string name="street_description_since">Auf %1$s, %2$s seit %3$s</string>
+    <string name="street_description_since">Auf %1$s, %2$s hinter %3$s</string>
     <string name="osm_city">Großstadt</string>
     <string name="osm_town">Stadt</string>
     <string name="osm_neighbourhood">Stadtteil</string>
@@ -1328,7 +1328,7 @@
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events">Fehler beim Überwachen von Spracherkennungs‑Downloads.</string>
     <string name="voice_cmd_speech_recognition_error_unknown">Unbekannter Fehler bei der Spracherkennung.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Dieses Telefon unterstützt keine Spracherkennung.</string>
-    <string name="settings_voice_command_listening_prompt">Ansage beim Zuhören</string>
+    <string name="settings_voice_command_listening_prompt">Zuhören ankündigen</string>
     <string name="settings_voice_command_listening_prompt_description">Einen Hinweis ansagen, bevor die Spracherkennung startet.</string>
     <string name="settings_voice_command_microphone">Mikrofon</string>
     <string name="settings_voice_command_microphone_description">Wählen Sie, welches Mikrofon für Sprachbefehle verwendet werden soll.</string>
@@ -1449,7 +1449,7 @@
     <string name="directions_on_road_and_settlement">Auf %1$s und nahe bei %2$s</string>
     <string name="directions_on_road_at_junction">Auf %1$s bei %2$s</string>
     <string name="directions_at_junction_inline">bei %1$s</string>
-    <string name="directions_on_road_and_settlement_since">Auf %1$s und nahe bei %2$s, %3$s seit %4$s</string>
+    <string name="directions_on_road_and_settlement_since">Auf %1$s und nahe bei %2$s, %3$s hinter %4$s</string>
     <string name="directions_towards_settlement">Richtung %1$s, %2$s entfernt</string>
     <string name="directions_away_from_settlement">weg von %1$s, %2$s hinter Ihnen</string>
     <string name="directions_near_settlement_inline">nahe %1$s</string>
