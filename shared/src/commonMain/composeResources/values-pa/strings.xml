@@ -625,8 +625,8 @@
     <string name="settings_theme_contrast_medium">ਦਰਮਿਆਨਾ</string>
     <string name="settings_theme_contrast_high">ਉੱਚਾ</string>
     <string name="settings_list_item_description">%1$s, %3$s ਵਿੱਚੋਂ ਚੋਣ %2$s ਹੈ</string>
-    <string name="settings_keep_value">ਰੱਖੋ</string>
-    <string name="settings_use_value">ਵਰਤੋ</string>
+    <string name="settings_keep_value">ਰੱਖਣ ਲਈ</string>
+    <string name="settings_use_value">ਵਰਤਣ ਲਈ</string>
     <string name="street_preview_exit">ਟਿਕਾਣੇ ਦੀ ਨਕਲ ਤੋਂ ਬਾਹਰ ਆਓ</string>
     <string name="settings_travel_recording">ਸਫ਼ਰ ਦੀ ਰਿਕਾਰਡਿੰਗ ਚਾਲੂ ਕਰੋ</string>
     <string name="settings_mix_audio">ਹੋਰ ਐਪਾਂ ਨਾਲ ਆਡੀਓ ਮਿਲਾਓ</string>
@@ -721,7 +721,7 @@
 
 ਅਸੀਂ ਅੰਦਰਲਾ ਕੋਡ ਮੁੜ ਵਿਵਸਥਿਤ ਕੀਤਾ ਹੈ ਤਾਂ ਜੋ ਉਸੇ ਕੋਡ ਤੋਂ iOS ਐਪ ਵੀ ਬਣਾ ਸਕੀਏ। ਇਸਦਾ ਮਤਲਬ ਹੈ ਕਿ ਭਵਿੱਖ ਵਿੱਚ ਅਸੀਂ Android ਲਈ ਬਣਾਈਆਂ ਸਾਰੀਆਂ ਸਹੂਲਤਾਂ ਵਾਲੀ iOS ਐਪ ਜਾਰੀ ਕਰ ਸਕਦੇ ਹਾਂ।
 
-ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਵੀ ਸਮੱਸਿਆ, ਭਾਵੇਂ ਕਿੰਨੀ ਵੀ ਛੋਟੀ ਹੋਵੇ, ਮੁੱਖ ਮੀਨੂ ਵਿੱਚ ਸਹਾਇਤਾ ਨਾਲ ਸੰਪਰਕ ਕਰੋ ਰਾਹੀਂ ਦੱਸਦੇ ਰਹੋ।
+ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਵੀ ਸਮੱਸਿਆ, ਭਾਵੇਂ ਕਿੰਨੀ ਵੀ ਛੋਟੀ ਹੋਵੇ, ਮੁੱਖ ਮੀਨੂ ਵਿੱਚ ‘ਸਹਾਇਤਾ ਨਾਲ ਸੰਪਰਕ ਕਰੋ’ ਰਾਹੀਂ ਦੱਸਦੇ ਰਹੋ।
 </string>
     <string name="about_soundscape">Soundscape ਨਵੀਨਤਾਕਾਰੀ ਆਡੀਓ-ਅਧਾਰਿਤ ਤਕਨੀਕ ਵਰਤ ਕੇ ਲੋਕਾਂ ਨੂੰ ਆਪਣੇ ਆਲੇ-ਦੁਆਲੇ ਦੀ ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਦੇਣ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ। ਇਸ ਨਾਲ ਲੋਕ ਵਧੇਰੇ ਆਤਮਵਿਸ਼ਵਾਸੀ ਬਣਦੇ ਹਨ ਅਤੇ ਆਪਣੇ ਆਪ ਆ-ਜਾ ਸਕਦੇ ਹਨ।</string>
     <string name="copyright_notices">Soundscape ਇਨ੍ਹਾਂ ਸ਼ਾਨਦਾਰ ਤੀਜੀ-ਧਿਰ ਲਾਇਬ੍ਰੇਰੀਆਂ ਅਤੇ ਡਾਟਾ 'ਤੇ ਨਿਰਭਰ ਹੈ। ਉਨ੍ਹਾਂ ਦੇ ਲਾਇਸੈਂਸ ਦੇਖਣ ਲਈ ਲਿੰਕਾਂ 'ਤੇ ਕਲਿੱਕ ਕਰੋ:</string>
@@ -919,7 +919,7 @@
     <string name="osm_generic_place">ਥਾਂ</string>
     <string name="osm_hunting_stand">ਸ਼ਿਕਾਰ ਮਚਾਨ</string>
     <string name="osm_game_feeding">ਜੰਗਲੀ ਜਾਨਵਰਾਂ ਨੂੰ ਚਾਰਾ ਪਾਉਣ ਦੀ ਥਾਂ</string>
-    <string name="osm_crypt">ਤਹਿਖਾਨਾ ਕਬਰਗਾਹ</string>
+    <string name="osm_crypt">ਜ਼ਮੀਨਦੋਜ਼ ਕਬਰਗਾਹ</string>
     <string name="osm_animal_shelter">ਪਸ਼ੂ ਆਸਰਾ</string>
     <string name="osm_animal_boarding">ਪਸ਼ੂਆਂ ਦਾ ਰਹਿਣ ਘਰ</string>
     <string name="osm_blood_donation">ਖੂਨਦਾਨ ਕੇਂਦਰ</string>
@@ -1115,7 +1115,7 @@
     <string name="osm_internet_cafe">ਇੰਟਰਨੈੱਟ ਕੈਫ਼ੇ</string>
     <string name="osm_shoe_shop">ਜੁੱਤੀਆਂ ਦੀ ਦੁਕਾਨ</string>
     <string name="osm_generic_shop">ਦੁਕਾਨ</string>
-    <string name="osm_coffee_shop">ਕੌਫ਼ੀ ਸ਼ਾਪ</string>
+    <string name="osm_coffee_shop">ਕੌਫ਼ੀ ਦੀ ਦੁਕਾਨ</string>
     <string name="osm_coworking_space">ਸਾਂਝੀ ਕੰਮ ਵਾਲੀ ਥਾਂ</string>
     <string name="osm_stripclub">ਸਟ੍ਰਿਪ ਕਲੱਬ</string>
     <string name="osm_ev_charging">ਇਲੈਕਟ੍ਰਿਕ ਵਾਹਨ ਚਾਰਜਿੰਗ</string>
@@ -1170,7 +1170,7 @@
     <string name="osm_clothes">ਕੱਪੜਿਆਂ ਦੀ ਦੁਕਾਨ</string>
     <string name="osm_butcher">ਮੀਟ ਦੀ ਦੁਕਾਨ</string>
     <string name="osm_water_utility">ਜਲ ਸਪਲਾਈ ਸੇਵਾ</string>
-    <string name="osm_realtor">ਪ੍ਰਾਪਰਟੀ ਏਜੰਟ</string>
+    <string name="osm_realtor">ਪ੍ਰਾਪਰਟੀ ਡੀਲਰ</string>
     <string name="osm_company">ਕੰਪਨੀ</string>
     <string name="osm_accountant">ਲੇਖਾਕਾਰ</string>
     <string name="osm_bunker_silo">ਬੰਕਰ ਸਾਇਲੋ</string>
@@ -1621,7 +1621,7 @@
     <string name="search_synonyms_cafe">ਕੈਫ਼ੇ, ਕੌਫ਼ੀ ਸ਼ਾਪ, ਕੌਫ਼ੀ, ਚਾਹ ਦੀ ਦੁਕਾਨ</string>
     <string name="search_synonyms_restaurant">ਰੈਸਟੋਰੈਂਟ, ਖਾਣੇ ਦੀ ਥਾਂ, ਢਾਬਾ</string>
     <string name="search_synonyms_fast_food">ਫਾਸਟ ਫੂਡ, ਟੇਕਅਵੇ</string>
-    <string name="search_synonyms_pub">ਪੱਬ, ਬਾਰ, ਠੇਕਾ</string>
+    <string name="search_synonyms_pub">ਪੱਬ, ਬਾਰ</string>
     <string name="search_synonyms_toilets">ਪਖਾਨਾ, ਟਾਇਲਟ, ਬਾਥਰੂਮ, ਜਨਤਕ ਪਖਾਨਾ</string>
     <string name="search_synonyms_atm">ATM, ਏਟੀਐਮ, ਕੈਸ਼ ਮਸ਼ੀਨ</string>
     <string name="search_synonyms_bank">ਬੈਂਕ</string>
