@@ -19,7 +19,7 @@ Dacă îți pui telefonul în buzunar și te oprești din mers, sunetul balizei 
 
 Soundscape funcționează cel mai bine când ții telefonul orizontal, cu ecranul orientat spre cer și cu partea de sus a telefonului îndreptată în direcția opusă ție.
 
-Poți activa și dezactiva sunetul ritmic al balizei folosind butonul de dezactivare a sunetului de pe ecranul principal. Dacă baliza este dezactivată, vei primi în continuare actualizări despre distanța până la destinație aproximativ la fiecare 50 de metri.
+Poți activa și dezactiva sunetul ritmic al balizei folosind butonul de dezactivare a sunetului de pe ecranul principal. Dacă sunetul balizei este dezactivat, vei primi în continuare actualizări despre distanța până la destinație aproximativ la fiecare 50 de metri.
 
 Pentru a continua să folosești Soundscape fără să auzi anunțuri automate, setează *Detaliul anunțurilor* pe *Silențios* în secțiunea *Gestionare anunțuri* a ecranului *Setări*, accesând meniul. Dacă nu vei folosi Soundscape pentru o perioadă, poți în schimb să îl pui în modul Repaus sau Amânare utilizând butonul *Repaus* de pe ecranul principal.
 

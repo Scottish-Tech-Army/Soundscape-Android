@@ -15,7 +15,7 @@ Knappen *Framför mig* berättar om upp till fem saker som finns framför dig. *
 
 ## När ska jag använda det?
 
-När du går på en gata kan du testa att använda *"Framför mig"* för att upptäcka platser och annat som dyker upp vid sidan av gatan.
+När du går på en gata kan du testa att använda *”Framför mig”* för att upptäcka platser och annat som dyker upp vid sidan av gatan.
 
 ## Hur fungerar det?
 

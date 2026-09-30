@@ -27,7 +27,7 @@ Fjölmiðlastýringar á heyrnartólum er hægt að nota á meðan Soundscape er
 
 ⏭ Næsta: Ef leið er í spilun færist hljóðviti á næsta leiðarpunkt í leiðinni. Ef engin leið er í spilun segir forritið *Í kringum mig*.
 
-⏮ Fyrri: Ef leið er í spilun færist hljóðviti á fyrri leiðarpunkt í leiðinni. Ef engin leið er í spilun breytist *Nákvæmni tilkynninga* um eitt þrep niður við hverja ýtingu: *Ítarlegt*, *Jafnvægi*, *Hljóðlátt*, *Þögult*, og aftur í *Ítarlegt*.
+⏮ Fyrri: Ef leið er í spilun færist hljóðviti á fyrri leiðarpunkt í leiðinni. Ef engin leið er í spilun breytist *Nákvæmni tilkynninga* um eitt þrep niður við hverja ýtingu: *Ítarlegt*, *Einfaldað*, *Nauðsynlegt*, *Þögult*, og aftur í *Ítarlegt*.
 
 
 

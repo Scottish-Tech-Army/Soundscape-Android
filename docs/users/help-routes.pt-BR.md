@@ -29,5 +29,5 @@ Talvez você queira criar e usar uma rota em um lugar que já conhece, para ajud
 
 **Compartilhando uma rota:**
 
-Selecione sua rota na tela *"Favoritos e Rotas"* e então selecione a opção *"Compartilhar"* usando todas as opções de compartilhamento usuais disponíveis.
+Selecione sua rota na tela *“Favoritos e Rotas”* e então selecione a opção *“Compartilhar”* usando todas as opções de compartilhamento usuais disponíveis.
 

@@ -12,17 +12,17 @@ permalink: /users/help-frequently-asked-questions.html
 ## Vad är Soundscape och hur använder jag appen?
 
 ### När bör jag använda Soundscape?
-Soundscape har funktioner och fördelar som täcker många olika situationer och tidsperspektiv. Värdet av Soundscape för dig kan också förändras över tid, så hur du använder appen i dag kan skilja sig från hur du använder den om tre månader. Man tänker ofta på appar i termer av *"vilket problem är den här appen bra på att lösa?"* Soundscape kan absolut användas för specifika behov – som att hålla koll på ett mål medan du är på väg dit, hjälpa dig att orientera dig när du kommer ut från en tunnelbanestation, hitta rätt när du kliver ur en bil, eller ta reda på gatunamnen vid eller avståndet till nästa vägkorsning. Filosofin bakom Soundscape är dock att *"lysa upp din värld med ljud"* – appen är gjord för att användas när som helst du är ute, för att ge dig en löpande medvetenhet om omgivningen, som namnen på gatorna du går på, riktningen du är på väg åt och namnen på företagen du passerar. I det här användningssättet kallar våra användare Soundscape för en *"trevlig färdkamrat"*, som stödjer *"slumpartade upptäckter"*, hjälper till att *"fylla i luckorna i din mentala karta"* och ger mer *"trygghet när du går"*. Här är några andra exempel på hur våra användare använder Soundscape i sin vardag:
+Soundscape har funktioner och fördelar som täcker många olika situationer och tidsperspektiv. Värdet av Soundscape för dig kan också förändras över tid, så hur du använder appen i dag kan skilja sig från hur du använder den om tre månader. Man tänker ofta på appar i termer av *”vilket problem är den här appen bra på att lösa?”* Soundscape kan absolut användas för specifika behov – som att hålla koll på ett mål medan du är på väg dit, hjälpa dig att orientera dig när du kommer ut från en tunnelbanestation, hitta rätt när du kliver ur en bil, eller ta reda på gatunamnen vid eller avståndet till nästa vägkorsning. Filosofin bakom Soundscape är dock att *”lysa upp din värld med ljud”* – appen är gjord för att användas när som helst du är ute, för att ge dig en löpande medvetenhet om omgivningen, som namnen på gatorna du går på, riktningen du är på väg åt och namnen på företagen du passerar. I det här användningssättet kallar våra användare Soundscape för en *”trevlig färdkamrat”*, som stödjer *”slumpartade upptäckter”*, hjälper till att *”fylla i luckorna i din mentala karta”* och ger mer *”trygghet när du går”*. Här är några andra exempel på hur våra användare använder Soundscape i sin vardag:
 
-"Soundscape hjälpte mig tillbaka på rätt spår efter att jag klivit av bussen och gått åt fel håll."
+”Soundscape hjälpte mig tillbaka på rätt spår efter att jag klivit av bussen och gått åt fel håll.”
 
-"Även i staden där jag har bott i 3 år har jag [med Soundscape] fått en bättre bild av vad som finns runt omkring mig."
+”Även i staden där jag har bott i 3 år har jag [med Soundscape] fått en bättre bild av vad som finns runt omkring mig.”
 
-"3D-ljudet förhöjer min upplevelse av en promenad, eftersom jag känner mig mer förbunden med min omgivning… Jag är mer benägen att prova en ny rutt nu när jag har appen."
+”3D-ljudet förhöjer min upplevelse av en promenad, eftersom jag känner mig mer förbunden med min omgivning… Jag är mer benägen att prova en ny rutt nu när jag har appen.”
 
-"Jag saknar de slumpartade upptäckterna av att gå omkring och lägga märke till saker. Det är skönt att ha Soundscape – det krävs ingen ansträngning för att höra om saker runt omkring mig. Den relationella informationen är användbar och det är en fantastisk app för situationsmedvetenhet och för att utforska affärsgator."
+”Jag saknar de slumpartade upptäckterna av att gå omkring och lägga märke till saker. Det är skönt att ha Soundscape – det krävs ingen ansträngning för att höra om saker runt omkring mig. Den relationella informationen är användbar och det är en fantastisk app för situationsmedvetenhet och för att utforska affärsgator.”
 
-"[Jag använde Soundscape] för att hitta en pub mitt i York. [Jag] använde flera av dess alternativ för att först lokalisera den och sedan faktiskt hitta den. Den tog mig till 3 meter från dörren – lysande!"
+”[Jag använde Soundscape] för att hitta en pub mitt i York. [Jag] använde flera av dess alternativ för att först lokalisera den och sedan faktiskt hitta den. Den tog mig till 3 meter från dörren – lysande!”
 
 ### Vad är platsmarkörer och hur använder jag dem på bästa sätt?
 Platsmarkörer är platser som du har sparat. De kan vara platser som går att hitta i appen eller helt nya platser som du själv lagt till. Du kan spara din aktuella plats som en platsmarkör genom att välja knappen *Aktuell plats* på startskärmen och sedan välja *Spara som platsmarkör*. Du kan spara andra platser som platsmarkörer genom att söka efter platsen i sökfältet eller hitta platsen via knappen *Platser i närheten*, båda finns på Soundscapes startskärm. När du hittat platsen du vill spara väljer du den så kommer du till skärmen *Platsuppgifter*. På den skärmen väljer du knappen *Spara som platsmarkör*.
@@ -53,10 +53,10 @@ Ja, det kan du. Adresser listas inte som standard men går att hitta via sökfä
 I Soundscape kan du ställa in ljudfyrar för adresser. Om du vill ställa in en ljudfyr för din bostad eller en annan adress söker du efter en plats med sökfältet på huvudskärmen. Tryck sedan på knappen *Ställ in ljudfyr* på skärmen *Platsuppgifter*.
 
 ### När jag ställer in en ljudfyr på ett mål, hur nära tar Soundscape mig?
-Soundscape kan fastställa ditt mål på några meter när, men inte mindre. När Soundscape fastställer att du börjar närma dig målet hör du ett sista informationsljud om att målet ligger i närheten, och ljudfyren stängs.
+Soundscape kan fastställa ditt mål på några meter när, men inte mindre. När Soundscape fastställer att du börjar närma dig målet hör du ett sista informationsljud om att målet ligger i närheten, och ljudfyren stängs av.
 
 ### Kan jag aktivera ljudfyren igen när jag närmar mig målet?
-Ja, du kan aktivera ljudfyren igen när Soundscape stängt av den genom att välja knappen *"Sätt på ljudfyr"*. Men eftersom precisionen i Platstjänster bara är cirka 10 meter, kan vi inte garantera hur ljudfyren beter sig när du bara är några meter från målet.
+Ja, du kan aktivera ljudfyren igen när Soundscape stängt av den genom att välja knappen *Sätt på ljudfyr*. Men eftersom precisionen i Platstjänster bara är cirka 10 meter, kan vi inte garantera hur ljudfyren beter sig när du bara är några meter från målet.
 
 ### Varför läser Soundscape upp vägnamn två gånger när jag närmar mig en vägkorsning?
 För att kunna hantera olika typer av vägkorsningar beskriver Soundscape vägkorsningarna som vägsegment som utgår från en gemensam punkt. Soundscape använder rumsbestämda ljud för att ange namnen på vägarna som går till vänster, rakt fram och åt höger, i den ordningen. Om beskrivningen av vägkorsningen inleds med vägen som du befinner dig på i stället för den till vänster, bildar vägkorsningen ett liggande T där vägen du befinner dig på fortsätter rakt fram och en väg korsar den från höger. Om beskrivningen bara omfattar en väg till vänster och en till höger om dig, vet du att vägen du befinner dig på slutar i en T-korsning framför dig. Den här metoden att beskriva vägkorsningar fungerar också när en väg byter namn vid en vägkorsning.
@@ -68,7 +68,7 @@ Soundscape är utformat för att inte ge dig alltför många informationsljud. A
 För att det inte ska bli för många informationsljud meddelas vissa kategorier, som vägkorsningar, inte automatiskt om du färdas med ett fordon.
 
 ### Vad ska jag göra om jag inte förstår ett informationsljud eller jag missar det på grund av buller?
-Soundscape har en lista över dina senaste informationsljud så att du kan ta upp sådana du kan ha missat. För att hitta den, tryck på sökfältet på startskärmen. Längst ned på den här skärmen finns en sektion för *Senaste informationsljud* där det informationsljud du missade kommer att listas.
+Soundscape sparar ingen lista över tidigare informationsljud, men du kan när som helst be appen att beskriva din omgivning igen. *Min plats* talar om var du är, och *Omkring mig* och *Framför mig* läser upp platserna omkring dig och framför dig. Alla tre knapparna finns längst ned på startskärmen. Om du använder mediekontrollerna på dina hörlurar i *Originalläge* läser ⏭ Nästa upp *Omkring mig* när ingen rutt spelas upp.
 
 ## Hur fungerar Soundscape?
 
@@ -108,7 +108,7 @@ Soundscape ger en omgivningsbeskrivning som hjälper vid utforskning och naviger
 Istället för de sväng‑för‑sväng‑väganvisningar som ofta erbjuds av andra kartappar spelar Soundscape upp en hörbar ljudfyr i riktning mot ditt mål. Denna ljudfyr gör det möjligt för dig att ta dig dit på det sätt som passar dig bäst, genom att öka din medvetenhet om omgivningarna och målets läge. Soundscape är utformat för att köras i bakgrunden, så att du kan använda en navigeringsapp med sväng‑för‑sväng‑anvisningar samtidigt som Soundscape fortsätter att ge omgivningsinformation under färden.
 
 ### Hur använder jag Soundscape tillsammans med en navigeringsapp?
-Soundscape är tänkt att fylla i detaljer om din omgivning som du annars inte skulle vara medveten om. Det är inte tänkt att du ska kunna navigera sväng för sväng med den. Den kan dock användas för att komplettera sådana navigeringsappar. Om du vill använda Soundscape med sådana appar ska du först starta navigeringsappen. Sedan går du över till Soundscape och ställer in en ljudfyr på samma mål som navigeringsappen. Nu körs båda apparna och du kommer att höra vägvisningar från navigeringsappen samtidigt som du får uppdateringar om intressepunkter, vägkorsningar och avståndet från ditt mål från Soundscape.
+Soundscape är tänkt att fylla i detaljer om din omgivning som du annars inte skulle vara medveten om. Det är inte tänkt att du ska kunna navigera sväng för sväng med den. Den kan dock användas för att komplettera sådana navigeringsappar. Om du vill använda Soundscape med sådana appar ska du först starta navigeringsappen. Sedan går du över till Soundscape och ställer in en ljudfyr på samma mål som navigeringsappen. Nu körs båda apparna och du kommer att höra vägvisningar från navigeringsappen samtidigt som du får uppdateringar om intressepunkter, vägkorsningar och avståndet till ditt mål från Soundscape.
 
 ### Hur styr jag vad jag hör och när jag hör det i Soundscape?
 Soundscape ger flera sätt att styra vad du hör och när:

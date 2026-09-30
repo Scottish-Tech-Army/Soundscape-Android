@@ -21,7 +21,7 @@ Zaten bildiğiniz bir yerde doğru yolda kaldığınızdan emin olmak için bir 
 
 **Rota oluşturmak:**
 
- Önce *"Kayıtlı Noktalar ve Rotalar"*'a gidin, *"Rotalar"* sekmesini seçin, ardından *"Yeni Rota"* düğmesine dokunun. Rotaya bir ad ve isteğe bağlı bir açıklama verin, ardından giderken ara noktalar ekleyin veya Kayıtlı Noktalar listenizden seçin. Rotayı düzenleyerek istediğiniz zaman bir güzergah boyunca ara noktaların sırasını yeniden düzenleyebilirsiniz.
+ Önce *Kayıtlı Noktalar ve Rotalar*'a gidin, *Rotalar* sekmesini seçin, ardından *Yeni Rota* düğmesine dokunun. Rotaya bir ad ve isteğe bağlı bir açıklama verin, ardından giderken ara noktalar ekleyin veya Kayıtlı Noktalar listenizden seçin. Rotayı düzenleyerek istediğiniz zaman bir güzergah boyunca ara noktaların sırasını yeniden düzenleyebilirsiniz.
 
 **Bir rotayı düzenleme :**
 
@@ -29,5 +29,5 @@ Zaten bildiğiniz bir yerde doğru yolda kaldığınızdan emin olmak için bir 
 
 **Rota paylaşmak:**
 
- *"Kayıtlı Noktalar ve Rotalar"* ekranında rotanızı seçin ve ardından size sunulan tüm paylaşım seçeneklerini kullanarak *"Paylaş"* seçeneğini belirleyin.
+ *Kayıtlı Noktalar ve Rotalar* ekranında rotanızı seçin ve ardından size sunulan tüm paylaşım seçeneklerini kullanarak *Paylaş* seçeneğini belirleyin.
 

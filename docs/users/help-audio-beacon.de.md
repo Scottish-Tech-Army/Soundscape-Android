@@ -11,7 +11,7 @@ permalink: /users/help-audio-beacon.html
 
 ## Was ist es?
 
-Platzieren eines Beacons an einem nahegelegenen Ort ermöglicht es Soundscape, Sie auf dem Laufenden zu halten, indem es einen Ton aus der Richtung dieses Standorts abspielt. Das Beacon kann auf dem Startbildschirm stummgeschaltet werden bzw. seine Stummschaltung kann aufgehoben werden. Außerdem zeigt Soundscape auf dem Startbildschirm Informationen über den Standort an einschließlich der Entfernung zu ihm und seiner Adresse, falls sie bekannt ist.
+Das Platzieren eines Beacons an einem nahegelegenen Ort ermöglicht es Soundscape, Sie auf dem Laufenden zu halten, indem es einen Ton aus der Richtung dieses Standorts abspielt. Das Beacon kann auf dem Startbildschirm stummgeschaltet werden bzw. seine Stummschaltung kann aufgehoben werden. Außerdem zeigt Soundscape auf dem Startbildschirm Informationen über den Standort an, einschließlich der Entfernung zu ihm und seiner Adresse, falls sie bekannt ist.
 
 ## Wann würde ich es verwenden?
 

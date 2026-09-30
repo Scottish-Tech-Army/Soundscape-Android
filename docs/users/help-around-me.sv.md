@@ -11,13 +11,13 @@ permalink: /users/help-around-me.html
 
 ## Vad är det?
 
-Knappen *"Omkring mig"* berättar om en sak i var och en av de fyra kvadranterna omkring dig (framför, till höger, bakom och till vänster). *"Omkring mig"* hjälper dig att orientera dig i omgivningarna.
+Knappen *”Omkring mig”* berättar om en sak i var och en av de fyra kvadranterna omkring dig (framför, till höger, bakom och till vänster). *”Omkring mig”* hjälper dig att orientera dig i omgivningarna.
 
 ## När ska jag använda det?
 
-När du försöker orientera dig i omgivningarna kan du använda *"Omkring mig"* för att höra om vad som finns omkring dig.
+När du försöker orientera dig i omgivningarna kan du använda *”Omkring mig”* för att höra om vad som finns omkring dig.
 
 ## Hur fungerar det?
 
-Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonens överkant åt det håll du är vänd innan du trycker på knappen *Omkring mig*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *Omkring mig* så hör du flera olika intressepunkter som finns omkring dig.
+Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonens överkant åt det håll du är vänd innan du trycker på knappen *Omkring mig*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *Omkring mig* så hör du fyra intressepunkter som finns omkring dig.
 

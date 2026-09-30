@@ -27,7 +27,7 @@ Det finnes to driftsmoduser for mediekontrollene. Modus velges i seksjonen *Inns
 
 ⏭ Neste: Hvis en rute spilles av, flytt lydsignalet til neste veipunkt i ruten. Hvis ingen rute spilles av, les opp *Rundt meg*.
 
-⏮ Forrige: Hvis en rute spilles av, flytt lydsignalet til forrige veipunkt i ruten. Hvis ingen rute spilles av, endres *Detaljnivå for meldinger* ett trinn stillere for hvert trykk: *Detaljert*, *Balansert*, *Stille*, *Lydløs*, og tilbake til *Detaljert*.
+⏮ Forrige: Hvis en rute spilles av, flytt lydsignalet til forrige veipunkt i ruten. Hvis ingen rute spilles av, endres *Detaljnivå for meldinger* ett trinn stillere for hvert trykk: *Detaljert*, *Forenklet*, *Grunnleggende*, *Lydløs*, og tilbake til *Detaljert*.
 
 
 

@@ -15,7 +15,7 @@ Lorsqu’il n’y a pas de connexion Internet, ou que les services Soundscape so
 
 ## Limites
 
-Les notifications continuent de fonctionner dans les secteurs que vous avez déjà parcourus, car Soundscape les conserve dans votre historique des notifications. Vous pouvez aussi placer une balise sonore ou créer un marqueur sur des emplacements déjà enregistrés dans votre historique des notifications.
+Les annonces continuent de fonctionner dans les secteurs que vous avez déjà parcourus, car Soundscape les conserve dans votre historique des annonces. Vous pouvez aussi placer une balise sonore ou créer un marqueur sur des emplacements déjà enregistrés dans votre historique des annonces.
 
 ## Que pouvez-vous faire?
 

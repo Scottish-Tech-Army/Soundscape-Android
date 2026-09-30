@@ -25,9 +25,9 @@ A médiavezérlőknek 2 üzemmódja van. Az üzemmód a *Beállítások* *Média
 
 ⏯ Lejátszás/Szünet: Be- vagy kikapcsolja a hangjelző hangját. 
 
-⏭ Következő: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal következő útpontjára mozgatja. Ha nincs útvonal lejátszás alatt, bemondja a *Körülöttem* adatait.
+⏭ Következő: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal következő útvonalpontjára mozgatja. Ha nincs útvonal lejátszás alatt, bemondja a *Körülöttem* adatait.
 
-⏮ Előző: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal előző útpontjára mozgatja. Ha nincs útvonal lejátszás alatt, minden egyes megnyomással egy szinttel halkabbra állítja a *Közlések részletessége* beállítást: *Részletes*, *Kiegyensúlyozott*, *Csendes*, *Néma*, majd vissza a *Részletes* szintre.
+⏮ Előző: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal előző útvonalpontjára mozgatja. Ha nincs útvonal lejátszás alatt, minden egyes megnyomással egy szinttel halkabbra állítja a *Közlések részletessége* beállítást: *Részletes*, *Egyszerűsített*, *Alapvető*, *Néma*, majd vissza a *Részletes* szintre.
 
 
 
@@ -35,7 +35,7 @@ A médiavezérlőknek 2 üzemmódja van. Az üzemmód a *Beállítások* *Média
 
 
 
-⏭ Következő végiglépked egy sor menüopción, amelyeket az alkalmazás szövegfelolvasással ismertet, és az utolsó után visszatér az elsőhöz. Az ⏯ Lejátszás/Szünet ezután elindítja az ismertetett opció végrehajtását. Van egy egyetlen felső szintű menü, amelynek csak almenük az opciói. Minden almenü hasonló lehetséges műveletek egy csoportját tartalmazza.
+⏭ Következő végiglépked egy sor menüopción, amelyeket az alkalmazás szövegfelolvasással ismertet, és az utolsó után visszatér az elsőhöz. Az ⏯ Lejátszás/Szünet ezután elindítja az ismertetett opció végrehajtását. Egyetlen felső szintű menü van, amelynek csak almenük az opciói. Minden almenü hasonló lehetséges műveletek egy csoportját tartalmazza.
 
 ⏮ Előző nem lépked végig a menün. Ehelyett a *Közlések részletessége* beállítást módosítja, pontosan úgy, mint Eredeti módban, így ugyanaz a gomb halkítja az alkalmazást bármelyik módot is használja.
 

@@ -14,15 +14,15 @@ permalink: /users/help-frequently-asked-questions.html
 ### Når bør jeg bruke Soundscape?
 Soundscape har funksjoner og fordeler som dekker en rekke situasjoner og tidsperspektiver. Soundscapes verdi for deg kan også endre seg over tid, så hvordan du bruker appen i dag kan være annerledes enn hvordan du bruker den om tre måneder. Mange tenker på apper i form av *«hvilket problem løser denne appen?»* Soundscape kan absolutt brukes til konkrete behov – for eksempel å holde oversikt over en destinasjon mens du er på vei dit, hjelpe deg å orientere deg når du kommer ut av en t-banestasjon, finne retningen når du går ut av en bil, eller finne veinavnene eller avstanden til neste veikryss. Filosofien bak Soundscape er imidlertid å *«lyse opp verden din med lyd»* – appen er designet for å brukes når som helst du er ute, for å gi deg bevissthet om omgivelsene, for eksempel navnene på gatene du går i, hvilken retning du går, og navnene på virksomhetene du passerer. I denne bruksmodusen har brukere omtalt Soundscape som en *«hyggelig følgesvenn»*-app som understøtter *«serendipitet»*, hjelper til med å *«fylle inn hullene i ditt mentale kart»* og gir mer *«selvtillit når du går»*. Her er noen andre eksempler på hvordan brukerne våre bruker Soundscape i livet sitt:
 
-Soundscape hjalp meg å komme på rett spor igjen etter at jeg gikk av bussen og gikk i feil retning.
+«Soundscape hjalp meg å komme på rett spor igjen etter at jeg gikk av bussen og gikk i feil retning.»
 
-Selv i byen hvor jeg har bodd i 3 år, har jeg fått et bedre bilde av hva som er rundt meg [med Soundscape].
+«Selv i byen hvor jeg har bodd i 3 år, har jeg fått et bedre bilde av hva som er rundt meg [med Soundscape].»
 
-3D-lyden forbedrer opplevelsen av en gåtur, fordi jeg føler meg mer tilknyttet omgivelsene... Jeg er mer tilbøyelig til å prøve en ny rute nå som jeg har appen å bruke.
+«3D-lyden forbedrer opplevelsen av en gåtur, fordi jeg føler meg mer tilknyttet omgivelsene... Jeg er mer tilbøyelig til å prøve en ny rute nå som jeg har appen å bruke.»
 
-Jeg savner tilfeldighetene ved å gå rundt og legge merke til ting. Å ha Soundscape er hyggelig – det krever ingen innsats å høre om ting rundt meg. Den relasjonelle informasjonen er nyttig, og appen er flott for situasjonsforståelse og utforskning av handlegater.
+«Jeg savner tilfeldighetene ved å gå rundt og legge merke til ting. Å ha Soundscape er hyggelig – det krever ingen innsats å høre om ting rundt meg. Den relasjonelle informasjonen er nyttig, og appen er flott for situasjonsforståelse og utforskning av handlegater.»
 
-[Jeg brukte Soundscape] for å finne en pub midt i York. [Jeg] brukte flere av alternativene først for å lokalisere og deretter faktisk finne den. Den tok meg til innen 3 meter fra døren – fantastisk!
+«[Jeg brukte Soundscape] for å finne en pub midt i York. [Jeg] brukte flere av alternativene først for å lokalisere og deretter faktisk finne den. Den tok meg til innen 3 meter fra døren – fantastisk!»
 
 ### Hva er markører og hvordan får jeg mest mulig ut av dem?
 Markører er steder du har lagret. De kan være steder som finnes i appen, eller helt nye steder du har lagt til selv. Du kan lagre din nåværende posisjon som en markør ved å velge knappen *Nåværende posisjon* på startskjermen og deretter *Lagre som markør*. Du kan lagre andre steder som markører ved å søke etter stedet du vil lagre i søkefeltet, eller ved å finne et sted med knappen *Steder i nærheten*, begge tilgjengelige på Soundscapes startskjerm. Når du har funnet stedet du ønsker, tar valg av stedet deg til skjermen *Posisjonsinformasjon*. På denne skjermen velger du knappen *Lagre som markør*.
@@ -56,7 +56,7 @@ Soundscape støtter å angi lydsignaler på adresser. For å angi et lydsignal p
 Soundscape kan fastslå posisjonen til destinasjonen din inntil flere meter, men ikke mindre. Når Soundscape fastslår at du nærmer deg destinasjonen, hører du en siste melding om at destinasjonen er i nærheten, og lydsignalet slås av.
 
 ### Kan jeg slå på igjen lydsignalet når jeg nærmer meg destinasjonen?
-Ja, du kan slå på lydsignalet igjen etter at Soundscape har slått det av ved å velge knappen *"Slå på lydsignal"*; men siden Stedstjenester bare er nøyaktige til omtrent 10 meter, kan vi ikke garantere hvordan lydsignalet oppfører seg når du er innen noen få meter fra destinasjonen.
+Ja, du kan slå på lydsignalet igjen etter at Soundscape har slått det av ved å velge knappen *Slå på lydsignal*; men siden Stedstjenester bare er nøyaktige til omtrent 10 meter, kan vi ikke garantere hvordan lydsignalet oppfører seg når du er innen noen få meter fra destinasjonen.
 
 ### Hvorfor leser Soundscape opp veinavn to ganger når jeg nærmer meg et veikryss?
 For å tilrettelegge for ulike typer veikryss beskriver Soundscape veikryss som segmenter med vei som går fra et felles punkt. Soundscape bruker romlig lyd til å indikere navnene på veiene som går til venstre, rett frem og til høyre, i den rekkefølgen. Hvis beskrivelsen av veikrysset begynner med veien du er på, i stedet for veien til venstre, danner veikrysset en liggende T, der veien du er på, fortsetter fremover og en vei kommer inn fra høyre. Hvis beskrivelsen bare omfatter en vei til venstre og høyre, vet du at veien du er på, slutter ved en T foran deg. Denne måten å beskrive veikryss på fungerer også når en vei bytter navn ved et veikryss.
@@ -68,7 +68,7 @@ Soundscape er laget slik at den ikke gir deg for mange meldinger. Den bruker ogs
 For å hindre at antall meldinger blir for mange kunngjøres ikke enkelte kategorier, som veikryss, automatisk når du reiser med bil.
 
 ### Hva om jeg ikke forstår en melding eller går glipp av den på grunn av omgivelsesstøy?
-Soundscape har en liste over nylige meldinger slik at du kan gå tilbake til meldinger du kanskje gikk glipp av. For å finne denne, trykk på søkefeltet på startskjermen. Nederst på denne skjermen er det en seksjon for *Nylige meldinger* hvor meldingen du gikk glipp av vil være oppført.
+Soundscape tar ikke vare på en liste over tidligere meldinger, men du kan når som helst be appen beskrive omgivelsene dine på nytt. *Min posisjon* forteller deg hvor du er, og *Rundt meg* og *Foran meg* leser opp stedene rundt deg og foran deg. Alle tre knappene er nederst på startskjermen. Hvis du bruker mediekontrollene på hodetelefonene i *Originalmodus*, leser ⏭ Neste opp *Rundt meg* når ingen rute spilles av.
 
 ## Hvordan fungerer Soundscape?
 

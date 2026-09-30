@@ -25,13 +25,13 @@ Soundscape kan berätta om saker i din omgivning när du närmar dig dem genom a
 
 **När du vill att det ska vara tyst**:
 
- När du ska korsa en väg eller bara vill att appen ska vara tyst kan du inaktivera informationsljuden. När de är inaktiverade får du bara information från appen om du manuellt trycker på någon av knapparna *"Min plats"*, *"Platsmarkörer i närheten"*, *"Omkring mig"* eller *"Framför mig"*.
+ När du ska korsa en väg eller bara vill att appen ska vara tyst kan du inaktivera informationsljuden. När de är inaktiverade får du bara information från appen om du manuellt trycker på någon av knapparna *”Min plats”*, *”Platsmarkörer i närheten”*, *”Omkring mig”* eller *”Framför mig”*.
 
 ## Hur fungerar det?
 
 **Aktivera eller inaktivera informationsljud:**
 
- Att stänga av informationsljuden gör appen tyst. Du kan stänga av informationsljuden i avsnittet *Hantera informationsljud* på skärmen *Inställningar* genom att ställa in *Detaljnivå för informationsljud* på *Tyst*, och slå på dem igen genom att välja vilken annan nivå som helst. Du kan göra samma sak genom att be Siri eller Gemini om det. Du kan också göra Soundscape tystare ett steg i taget med mediereglageknapparna på dina hörlurar: varje tryck på *föregående* går ett steg nedåt genom *Detaljerad*, *Balanserad*, *Lågmäld* och *Tyst*, och ytterligare ett tryck går tillbaka till *Detaljerad*. Se hjälpavsnittet *Använda mediereglage*. Alternativt kan du använda knappen *Inaktivera* uppe till höger på startskärmen för att förhindra att Soundscape spelar upp informationsljud tills du väcker appen.
+ Att stänga av informationsljuden gör appen tyst. Du kan stänga av informationsljuden i avsnittet *Hantera informationsljud* på skärmen *Inställningar* genom att ställa in *Detaljnivå för informationsljud* på *Tyst*, och slå på dem igen genom att välja vilken annan nivå som helst. På iPhone kan du göra samma sak genom att be Siri om det, och på Android kommer samma sak att fungera via Gemini när Google släpper stöd för det. Du kan också göra Soundscape tystare ett steg i taget med mediereglageknapparna på dina hörlurar: varje tryck på *föregående* går ett steg nedåt genom *Detaljerad*, *Förenklad*, *Grundläggande* och *Tyst*, och ytterligare ett tryck går tillbaka till *Detaljerad*. Se hjälpavsnittet *Använda mediereglage*. Alternativt kan du använda knappen *Inaktivera* uppe till höger på startskärmen för att förhindra att Soundscape spelar upp informationsljud tills du väcker appen.
 
 **Hantera vilka informationsljud du hör:**
 

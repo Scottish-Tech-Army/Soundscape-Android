@@ -25,7 +25,7 @@ There are 2 modes of operation for the media controls. The mode can be selected 
 
 ⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *Around Me*.
 
 ⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.
 

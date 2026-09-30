@@ -11,11 +11,11 @@ permalink: /users/help-audio-beacon.html
 
 ## Ni nini?
 
-Kuweka beacon kwenye mahali pa karibu humwezesha Soundscape kukujulisha kwa kucheza sauti ikitoka upande wa mahali hapo. Beacon hii inaweza kunyamazishwa au kuwashwa tena kwenye skrini ya mwanzo. Zaidi ya hayo, Soundscape huonyesha taarifa kuhusu mahali hapo kwenye skrini ya mwanzo, ikiwemo umbali kufikia mahali hapo na anwani yake ya barabara ikiwa inajulikana.
+Kuweka beacon kwenye mahali pa karibu huiwezesha Soundscape kukujulisha kwa kucheza sauti ikitoka upande wa mahali hapo. Beacon hii inaweza kunyamazishwa au kuwashwa tena kwenye skrini ya mwanzo. Zaidi ya hayo, Soundscape huonyesha taarifa kuhusu mahali hapo kwenye skrini ya mwanzo, ikiwemo umbali kufikia mahali hapo na anwani yake ya barabara ikiwa inajulikana.
 
 ## Ni lini nitaitumia?
 
-Kuweka beacon ni muhimu unapotaka kufuatilia alama unayoifahamu wakati unachunguza eneo jipya, au unapokwenda mahali na unataka kujulishwa kuhusu mazingira yanayokuzunguka njiani. Kipengele cha beacon hakikupi maelekezo ya hatua kwa hatua, bali hukupa sauti endelevu inayokujulisha upande ulipo beacon, kulingana na mahali ulipo sasa. Kwa kutumia beacon ya sauti, ujuzi wako wa kutafuta njia, na hata programu yako uipendayo ya usafiri, unaweza kuchagua jinsi unavyotaka kufika mahali pa karibu wewe mwenyewe.
+Kuweka beacon ni muhimu unapotaka kufuatilia kivutio unachokifahamu wakati unachunguza eneo jipya, au unapokwenda mahali na unataka kujulishwa kuhusu mazingira yanayokuzunguka njiani. Kipengele cha beacon hakikupi maelekezo ya hatua kwa hatua, bali hukupa sauti endelevu inayokujulisha upande ulipo beacon, kulingana na mahali ulipo sasa. Kwa kutumia beacon ya sauti, ujuzi wako wa kutafuta njia, na hata programu yako uipendayo ya uelekezaji, unaweza kuchagua jinsi unavyotaka kufika mahali pa karibu wewe mwenyewe.
 
 ## Inafanyaje kazi?
 

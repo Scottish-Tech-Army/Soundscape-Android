@@ -11,7 +11,7 @@ permalink: /users/help-routes.html
 
 ## Mi ez?
 
-Az útvonalak útpontok sorozatai. Minden útpont elérésekor értesítést kap, és a hangjelző automatikusan a következő útpontra vált.
+Az útvonalak útvonalpontok sorozatai. Minden útvonalpont elérésekor értesítést kap, és a hangjelző automatikusan a következő útvonalpontra vált.
 
 ## Mikor használnám?
 
@@ -21,11 +21,11 @@ Létrehozhat és használhat egy útvonalat egy Önnek már ismerős helyen, hog
 
 **Útvonal létrehozása:**
 
- Először lépjen a *Jelölők és útvonalak* menübe, válassza az *Útvonalak* lapot, majd válassza az *Új útvonal* gombot. Adjon nevet az útvonalnak, és opcionálisan írjon hozzá leírást, majd adjon hozzá útpontokat útközben, vagy válassza ki őket a jelölőlistájából. Az útvonal szerkesztésével bármikor átrendezheti az útpontok sorrendjét.
+ Először lépjen a *Jelölők és útvonalak* menübe, válassza az *Útvonalak* lapot, majd válassza az *Új útvonal* gombot. Adjon nevet az útvonalnak, és opcionálisan írjon hozzá leírást, majd adjon hozzá útvonalpontokat útközben, vagy válassza ki őket a jelölőlistájából. Az útvonal szerkesztésével bármikor átrendezheti az útvonalpontok sorrendjét.
 
 **Útvonal szerkesztése:**
 
- Válassza ki az útvonalát a *Jelölők és útvonalak* képernyőn, majd válassza az *Útvonal szerkesztése* lehetőséget. Innen hozzáadhat és eltávolíthat útpontokat, valamint szerkesztheti az útvonal nevét és leírását.
+ Válassza ki az útvonalát a *Jelölők és útvonalak* képernyőn, majd válassza az *Útvonal szerkesztése* lehetőséget. Innen hozzáadhat és eltávolíthat útvonalpontokat, valamint szerkesztheti az útvonal nevét és leírását.
 
 **Útvonal megosztása:**
 

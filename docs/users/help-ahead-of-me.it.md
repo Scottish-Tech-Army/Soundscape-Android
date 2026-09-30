@@ -15,7 +15,7 @@ Il pulsante *Davanti a me* ti indica fino a cinque elementi che si trovano davan
 
 ## Quando si usa?
 
-Quando cammini per strada, prova a utilizzare *"Davanti a me"* per scoprire i luoghi e le cose che si trovano su entrambi i lati della strada.
+Quando cammini per strada, prova a utilizzare *«Davanti a me»* per scoprire i luoghi e le cose che si trovano su entrambi i lati della strada.
 
 ## Come funziona?
 

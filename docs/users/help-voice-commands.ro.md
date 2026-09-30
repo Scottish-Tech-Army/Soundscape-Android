@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Ce este?
 
-Îi poți cere lui Gemini să facă lucruri în Soundscape fără să atingi telefonul: să auzi un anunț, să pornești una dintre rutele tale sau să pui o baliză audio pe unul dintre marcajele tale. Orice alt asistent care acceptă funcțiile de aplicație Android poate face același lucru.
+Soundscape este pregătit pentru Gemini, dar Gemini nu îl poate folosi încă: asta depinde de momentul în care Google va lansa în Gemini suportul pentru funcțiile de aplicație Android. Când se va întâmpla, îi vei putea cere lui Gemini să facă lucruri în Soundscape fără să atingi telefonul: să auzi un anunț, să pornești una dintre rutele tale sau să pui o baliză audio pe unul dintre marcajele tale. Orice alt asistent care acceptă funcțiile de aplicație Android va putea face același lucru.
 
-Soundscape răspunde cu propria voce, cu anunțurile și sunetele de baliză pe care le știi deja, în loc ca asistentul să citească un rezumat. Astfel, ceea ce auzi vine în continuare din direcția pe care o descrie.
+Soundscape va răspunde cu propria voce, cu anunțurile și sunetele de baliză pe care le știi deja, în loc ca asistentul să citească un rezumat. Astfel, ceea ce auzi va veni în continuare din direcția pe care o descrie.
 
 ## Când aș folosi această funcție?
 
@@ -35,11 +35,11 @@ Să pornească una dintre rutele tale salvate după nume, să treacă la punctul
 
 Să pună o baliză audio pe unul dintre marcajele tale salvate după nume sau să oprească baliza.
 
-Să seteze detaliul anunțurilor pe *Silențios*, *Discret*, *Echilibrat* sau *Detaliat*, pentru a schimba cât de mult vorbește Soundscape în timp ce mergi. *Silențios* dezactivează anunțurile automate.
+Să seteze detaliul anunțurilor pe *Silențios*, *Esențial*, *Simplificat* sau *Detaliat*, pentru a schimba cât de mult vorbește Soundscape în timp ce mergi. *Silențios* dezactivează anunțurile automate.
 
 Să citească numele rutelor tale salvate sau ale marcajelor tale salvate.
 
 Tot, în afară de cele două liste, are nevoie ca Soundscape să ruleze. Dacă nu rulează, asistentul îți va spune să deschizi mai întâi Soundscape. Enumerarea rutelor și a marcajelor tale funcționează în ambele cazuri, pentru că doar citește ce ai salvat deja.
 
-Comenzile vocale au nevoie de un telefon cu Android 16 sau mai nou și de un asistent care acceptă funcțiile de aplicație.
+Comenzile vocale vor avea nevoie de un telefon cu Android 16 sau mai nou și de un asistent care acceptă funcțiile de aplicație. Până când Google nu lansează acest suport în Gemini, ele nu vor funcționa.
 

@@ -25,9 +25,9 @@ Hi ha 2 modes de funcionament per als controls multimèdia. El mode es pot selec
 
 ⏯ Reprodueix/Pausa: Activa o desactiva l'àudio de la balisa. 
 
-⏭ Següent: Si s'està reproduint una ruta, mou la balisa sonora al punt de ruta següent de la ruta. Si no s'està reproduint cap ruta, anuncia *Què hi ha al meu voltant*.
+⏭ Següent: Si s'està reproduint una ruta, mou la balisa sonora al punt de ruta següent de la ruta. Si no s'està reproduint cap ruta, anuncia *Al meu voltant*.
 
-⏮ Anterior: Si s'està reproduint una ruta, mou la balisa sonora al punt de ruta anterior de la ruta. Si no s'està reproduint cap ruta, canvia el *Detall dels avisos de veu*, un nivell més discret a cada pulsació: *Detallat*, *Equilibrat*, *Discret*, *Silenciós*, i torna a *Detallat*.
+⏮ Anterior: Si s'està reproduint una ruta, mou la balisa sonora al punt de ruta anterior de la ruta. Si no s'està reproduint cap ruta, canvia el *Detall dels avisos de veu*, un nivell més discret a cada pulsació: *Detallat*, *Simplificat*, *Essencial*, *Silenciós*, i torna a *Detallat*.
 
 
 

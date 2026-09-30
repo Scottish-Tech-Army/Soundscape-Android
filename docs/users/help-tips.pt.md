@@ -19,7 +19,7 @@ Se guardar o telemóvel no bolso e ficar imóvel, o som do sinal fica mais baixo
 
 O Soundscape funciona melhor quando segura no telemóvel numa posição plana, com o ecrã virado para o céu e a extremidade superior do telemóvel apontada na direção oposta à do seu corpo.
 
-Pode ativar e desativar o som rítmico do sinal utilizando o botão Desativar no ecrã principal. Se o sinal estiver desativado, continuará a receber atualizações sobre a distância a que se encontra do destino aproximadamente a cada 50 metros.
+Pode ativar e desativar o som rítmico do sinal utilizando o botão Desativar Sinal no ecrã principal. Se o sinal estiver desativado, continuará a receber atualizações sobre a distância a que se encontra do destino aproximadamente a cada 50 metros.
 
 Para continuar a utilizar o Soundscape sem ouvir avisos automáticos, defina *Detalhe dos Avisos* como *Silencioso* na secção *Gerir Avisos* do ecrã *Definições* a partir do menu. Se não for usar o Soundscape durante algum tempo, pode em alternativa colocá-lo em Modo de Suspensão ou em Modo de Pausa usando o botão *Suspender* no ecrã principal.
 

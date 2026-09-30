@@ -29,5 +29,5 @@ Es posible que quieras crear y usar una ruta en un lugar que ya conoces, para ay
 
 **Uso compartido de una ruta**:
 
- selecciona tu ruta en la página *"Marcadores y rutas"* y, a continuación, la opción *"Compartir ruta"* utilizando todas las opciones de uso compartido habituales disponibles para ti.
+ selecciona tu ruta en la página *«Marcadores y rutas»* y, a continuación, la opción *«Compartir ruta»* utilizando todas las opciones de uso compartido habituales disponibles para ti.
 

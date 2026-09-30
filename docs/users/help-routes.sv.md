@@ -29,5 +29,5 @@ Välj din rutt på skärmen *Platsmarkörer och rutter* och välj sedan *Rediger
 
 **Dela en rutt :**
 
- Välj din rutt på skärmen *"Platsmarkörer och rutter"* och välj sedan alternativet *"Dela"* med de vanliga delningsalternativ som finns tillgängliga.
+ Välj din rutt på skärmen *”Platsmarkörer och rutter”* och välj sedan alternativet *”Dela”* med de vanliga delningsalternativ som finns tillgängliga.
 

@@ -11,11 +11,11 @@ permalink: /users/help-nearby-markers.html
 
 ## Vad är det?
 
-Knappen *"Platsmarkörer i närheten"* berättar om upp till fyra platsmarkörer som finns närmast dig. *"Platsmarkörer i närheten"* hjälper dig att orientera dig med hjälp av platser du redan känner till.
+Knappen *”Platsmarkörer i närheten”* berättar om upp till fyra platsmarkörer som finns närmast dig. *”Platsmarkörer i närheten”* hjälper dig att orientera dig med hjälp av platser du redan känner till.
 
 ## När ska jag använda det?
 
-När du försöker orientera dig i omgivningarna kan du använda *"Platsmarkörer i närheten"* för att höra om platser som du känner till.
+När du försöker orientera dig i omgivningarna kan du använda *”Platsmarkörer i närheten”* för att höra om platser som du känner till.
 
 ## Hur fungerar det?
 

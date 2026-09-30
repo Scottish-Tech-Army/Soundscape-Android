@@ -11,11 +11,11 @@ permalink: /users/help-around-me.html
 
 ## Mikä se on?
 
-*"Lähiympäristö"*-painike kertoo sinulle yhdestä asiasta kussakin lähiympäristösi neljässä neljänneksessä (edessä, oikealla, takana ja vasemmalla). *"Lähiympäristö"* on tarkoitettu auttamaan sinua perehtymään ympäristöösi.
+*Lähiympäristö*-painike kertoo sinulle yhdestä asiasta kussakin lähiympäristösi neljässä neljänneksessä (edessä, oikealla, takana ja vasemmalla). *Lähiympäristö* on tarkoitettu auttamaan sinua perehtymään ympäristöösi.
 
 ## Milloin käyttäisin sitä?
 
-Kun haluat päästä jyvälle siitä, missä olet, ja perehtyä ympäristöösi, käytä *"Lähiympäristö"*-toimintoa kuullaksesi lähiympäristösi asioista.
+Kun haluat päästä jyvälle siitä, missä olet, ja perehtyä ympäristöösi, käytä *Lähiympäristö*-toimintoa kuullaksesi lähiympäristösi asioista.
 
 ## Kuinka se toimii?
 

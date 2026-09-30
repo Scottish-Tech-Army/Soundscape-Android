@@ -27,7 +27,7 @@ Existem 2 modos de operação para os controles de mídia. O modo pode ser selec
 
 ⏭ Próximo: Se uma rota estiver em reprodução, move o sinalizador sonoro para o próximo localizador da rota. Se nenhuma rota estiver em reprodução, anuncia *Ao Meu Redor*.
 
-⏮ Anterior: Se uma rota estiver em reprodução, move o sinalizador sonoro para o localizador anterior da rota. Se nenhuma rota estiver em reprodução, altera o *Detalhe das Notificações*, um nível mais discreto a cada toque: *Detalhado*, *Equilibrado*, *Discreto*, *Silencioso*, e de volta a *Detalhado*.
+⏮ Anterior: Se uma rota estiver em reprodução, move o sinalizador sonoro para o localizador anterior da rota. Se nenhuma rota estiver em reprodução, altera o *Detalhe das Notificações*, um nível mais discreto a cada toque: *Detalhado*, *Simplificado*, *Essencial*, *Silencioso*, e de volta a *Detalhado*.
 
 
 

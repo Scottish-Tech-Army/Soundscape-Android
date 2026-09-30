@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Što je to?
 
-Gemini možete zatražiti da učini nešto u Soundscapeu bez da dodirnete telefon: da čujete najavu, pokrenete jednu od svojih ruta ili postavite zvučni svjetionik na jednu od svojih oznaka. Isto može i svaki drugi asistent koji podržava funkcije aplikacija u Androidu.
+Soundscape je spreman za Gemini, ali ga Gemini još ne može koristiti: to ovisi o tome kada će Google objaviti podršku za funkcije aplikacija u Androidu u Geminiju. Kada se to dogodi, moći ćete zatražiti od Geminija da učini nešto u Soundscapeu bez da dodirnete telefon: da čujete najavu, pokrenete jednu od svojih ruta ili postavite zvučni svjetionik na jednu od svojih oznaka. Isto će moći i svaki drugi asistent koji podržava funkcije aplikacija u Androidu.
 
-Soundscape odgovara vlastitim glasom, najavama i zvukovima svjetionika koje već poznajete, umjesto da asistent pročita sažetak. Tako ono što čujete i dalje dolazi iz smjera koji opisuje.
+Soundscape će odgovarati vlastitim glasom, najavama i zvukovima svjetionika koje već poznajete, umjesto da asistent pročita sažetak. Tako će ono što čujete i dalje dolaziti iz smjera koji opisuje.
 
 ## Kada se ovo koristi?
 
@@ -35,11 +35,11 @@ Pokrene jednu od vaših spremljenih ruta po nazivu, prijeđe na sljedeću putnu 
 
 Postavi zvučni svjetionik na jednu od vaših spremljenih oznaka po nazivu ili isključi svjetionik.
 
-Postavi razinu detalja najava na *Bez zvuka*, *Tiho*, *Uravnoteženo* ili *Detaljno*, čime se mijenja koliko Soundscape govori dok hodate. *Bez zvuka* isključuje automatske najave.
+Postavi razinu detalja najava na *Bez zvuka*, *Osnovno*, *Pojednostavljeno* ili *Detaljno*, čime se mijenja koliko Soundscape govori dok hodate. *Bez zvuka* isključuje automatske najave.
 
 Pročita nazive vaših spremljenih ruta ili vaših spremljenih oznaka.
 
 Sve osim dvaju popisa zahtijeva da Soundscape bude pokrenut. Ako nije, asistent će vam reći da najprije otvorite Soundscape. Nabrajanje vaših ruta i vaših oznaka radi u oba slučaja jer samo čita ono što ste već spremili.
 
-Glasovne naredbe zahtijevaju telefon s Androidom 16 ili novijim i asistenta koji podržava funkcije aplikacija.
+Glasovne naredbe zahtijevat će telefon s Androidom 16 ili novijim i asistenta koji podržava funkcije aplikacija. Dok Google ne objavi tu podršku u Geminiju, neće raditi.
 

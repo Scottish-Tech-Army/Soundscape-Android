@@ -27,7 +27,7 @@ Meediumijuhtnuppudel on 2 töörežiimi. Režiimi saab valida jaotises *Seadistu
 
 ⏭ Järgmine: kui marsruuti esitatakse, liigutab helimajaka marsruudi järgmisele teekonnapunktile. Kui marsruuti ei esitata, teatab *Minu ümber*.
 
-⏮ Eelmine: kui marsruuti esitatakse, liigutab helimajaka marsruudi eelmisele teekonnapunktile. Kui marsruuti ei esitata, muudab *Häälteadete detailsust* iga vajutusega ühe taseme võrra vaiksemaks: *Üksikasjalik*, *Tasakaalustatud*, *Vaikne*, *Hääletu* ja tagasi tasemele *Üksikasjalik*.
+⏮ Eelmine: kui marsruuti esitatakse, liigutab helimajaka marsruudi eelmisele teekonnapunktile. Kui marsruuti ei esitata, muudab *Häälteadete detailsust* iga vajutusega ühe taseme võrra vaiksemaks: *Üksikasjalik*, *Lihtsustatud*, *Põhiline*, *Hääletu* ja tagasi tasemele *Üksikasjalik*.
 
 
 

@@ -12,17 +12,17 @@ permalink: /users/help-frequently-asked-questions.html
 ## Mikä on Soundscape ja kuinka minun tulisi käyttää sitä?
 
 ### Milloin minun kannattaa käyttää Soundscapea?
-Soundscapessa on ominaisuuksia ja hyötyjä, jotka kattavat monenlaisia tilanteita ja aikajänteitä. Soundscapen arvo sinulle voi myös muuttua ajan myötä, joten tapa, jolla käytät sitä tänään, voi olla erilainen kuin tapa, jolla käytät sitä kolmen kuukauden kuluttua. Ihmiset ajattelevat sovelluksia usein kysymyksen *"mihin ongelmaan tämä sovellus vastaa hyvin?"* kautta. Soundscapea voi toki käyttää tiettyihin tarpeisiin – kuten määränpään seuraamiseen matkalla sinne, suunnistamiseen metroasemalta tullessa, sijainnin hahmottamiseen autosta noustessa tai seuraavan risteyksen katujen nimien tai etäisyyden selvittämiseen. Soundscapen taustalla oleva ajatus on kuitenkin *"maailmasi valaiseminen äänellä"* – se on suunniteltu käytettäväksi aina, kun olet liikkeellä, jotta saat jatkuvan käsityksen ympäristöstäsi, kuten niiden katujen nimistä, joilla kuljet, suunnasta, johon olet menossa, ja ohittamiesi liikkeiden nimistä. Tässä käyttötavassa käyttäjämme ovat kuvailleet Soundscapea *"mukavaksi kumppanisovellukseksi"*, joka tukee *"sattumalta löytämistä"*, auttaa *"täyttämään aukkoja mielikartassasi"* ja antaa lisää *"varmuutta kävelyyn"*. Tässä muutamia muita esimerkkejä siitä, miten käyttäjämme käyttävät Soundscapea elämässään:
+Soundscapessa on ominaisuuksia ja hyötyjä, jotka kattavat monenlaisia tilanteita ja aikajänteitä. Soundscapen arvo sinulle voi myös muuttua ajan myötä, joten tapa, jolla käytät sitä tänään, voi olla erilainen kuin tapa, jolla käytät sitä kolmen kuukauden kuluttua. Ihmiset ajattelevat sovelluksia usein kysymyksen *”mihin ongelmaan tämä sovellus vastaa hyvin?”* kautta. Soundscapea voi toki käyttää tiettyihin tarpeisiin – kuten määränpään seuraamiseen matkalla sinne, suunnistamiseen metroasemalta tullessa, sijainnin hahmottamiseen autosta noustessa tai seuraavan risteyksen katujen nimien tai etäisyyden selvittämiseen. Soundscapen taustalla oleva ajatus on kuitenkin *”maailmasi valaiseminen äänellä”* – se on suunniteltu käytettäväksi aina, kun olet liikkeellä, jotta saat jatkuvan käsityksen ympäristöstäsi, kuten niiden katujen nimistä, joilla kuljet, suunnasta, johon olet menossa, ja ohittamiesi liikkeiden nimistä. Tässä käyttötavassa käyttäjämme ovat kuvailleet Soundscapea *”mukavaksi kumppanisovellukseksi”*, joka tukee *”sattumalta löytämistä”*, auttaa *”täyttämään aukkoja mielikartassasi”* ja antaa lisää *”varmuutta kävelyyn”*. Tässä muutamia muita esimerkkejä siitä, miten käyttäjämme käyttävät Soundscapea elämässään:
 
-"Soundscape auttoi minua palaamaan oikealle reitille, kun olin noussut bussista ja lähtenyt väärään suuntaan."
+”Soundscape auttoi minua palaamaan oikealle reitille, kun olin noussut bussista ja lähtenyt väärään suuntaan.”
 
-"Jopa kaupungissa, jossa olen asunut 3 vuotta, olen [Soundscapen avulla] muodostanut paremman kuvan siitä, mitä ympärilläni on."
+”Jopa kaupungissa, jossa olen asunut 3 vuotta, olen [Soundscapen avulla] muodostanut paremman kuvan siitä, mitä ympärilläni on.”
 
-"3D-ääni parantaa kävelykokemustani, koska tunnen olevani enemmän yhteydessä ympäristööni… Kokeilen todennäköisemmin uutta reittiä nyt, kun minulla on tämä sovellus."
+”3D-ääni parantaa kävelykokemustani, koska tunnen olevani enemmän yhteydessä ympäristööni… Kokeilen todennäköisemmin uutta reittiä nyt, kun minulla on tämä sovellus.”
 
-"Kaipaan sitä sattumanvaraista löytämisen iloa, kun kävelee ympäriinsä ja huomaa asioita. On mukavaa, että minulla on Soundscape – ei vaadi mitään vaivaa kuulla ympärilläni olevista asioista. Suhteelliset tiedot ovat hyödyllisiä, ja se on loistava sovellus tilannetietoisuuteen ja liikekatujen tutkimiseen."
+”Kaipaan sitä sattumanvaraista löytämisen iloa, kun kävelee ympäriinsä ja huomaa asioita. On mukavaa, että minulla on Soundscape – ei vaadi mitään vaivaa kuulla ympärilläni olevista asioista. Suhteelliset tiedot ovat hyödyllisiä, ja se on loistava sovellus tilannetietoisuuteen ja liikekatujen tutkimiseen.”
 
-"[Käytin Soundscapea] löytääkseni pubin keskeltä Yorkia. [Käytin] useita sen vaihtoehtoja ensin paikantaakseni sen ja sitten todella löytääkseni sen. Se vei minut 3 metrin päähän ovesta – loistavaa!"
+”[Käytin Soundscapea] löytääkseni pubin keskeltä Yorkia. [Käytin] useita sen vaihtoehtoja ensin paikantaakseni sen ja sitten todella löytääkseni sen. Se vei minut 3 metrin päähän ovesta – loistavaa!”
 
 ### Mitä ovat merkitsimet ja kuinka saan niistä parhaan hyödyn?
 Merkitsimet ovat paikkoja, jotka olet tallentanut. Ne voivat olla sovelluksesta löydettäviä paikkoja tai täysin uusia paikkoja, jotka olet itse lisännyt. Voit tallentaa nykyisen sijaintisi merkitsimeksi napauttamalla aloitusnäytöllä *Nykyinen sijainti* -painiketta ja valitsemalla sitten *Tallenna merkitsimenä*. Voit tallentaa muita sijainteja merkitsimeksi etsimällä tallennettavan paikan hakupalkin avulla tai etsimällä paikkoja *Lähiympäristön paikat* -painikkeella, jotka molemmat löytyvät Soundscapen aloitusnäytöltä. Kun olet löytänyt haluamasi paikan, sen valitseminen vie sinut *Sijainnin tiedot* -näytölle. Tältä näytöltä valitse *Tallenna merkitsimenä* -painike.
@@ -53,10 +53,10 @@ Kyllä voit. Osoitteet eivät ole oletuksena listattuna, mutta ne löytyvät hak
 Soundscape tukee majakoiden asettamista osoitteisiin. Asettaaksesi majakan kotiisi tai mihin tahansa muuhun osoitteeseen, etsi sijainti pääruudun hakupalkin avulla. Napauta sitten *Sijainnin tiedot* -näytöllä *Käynnistä äänimajakka* -painiketta.
 
 ### Kun määritän majakan määränpäähän, kuinka lähelle Soundscape vie minut?
-Soundscape voi tunnistaa määränpääsi paikan muutamien metrien etäisyydellä, mutta ei sitä lähempänä. Kun Soundscape päättelee, että olet lähellä määränpäätäsi, kuulet viimeisen ilmoituksen siitä, että määränpääsi on lähellä, ja majakka poistuu käytöstä.
+Soundscape voi määrittää määränpääsi sijainnin muutaman metrin tarkkuudella, mutta ei tarkemmin. Kun Soundscape päättelee, että olet lähellä määränpäätäsi, kuulet viimeisen ilmoituksen siitä, että määränpääsi on lähellä, ja majakka poistuu käytöstä.
 
 ### Voinko ottaa majakan takaisin käyttöön, kun olen lähellä päämäärääni?
-Kyllä, voit ottaa majakan takaisin käyttöön sen jälkeen, kun Soundscape on sen poistanut käytöstä, valitsemalla *"Poista majakan hiljennys"* -painikkeen; huomaa kuitenkin, että Sijaintipalvelut ovat vain noin 10 metrin tarkkuudella, joten emme voi taata majakan käyttäytymistä, kun olet vain muutaman metrin päässä määränpäästä.
+Kyllä, voit ottaa majakan takaisin käyttöön sen jälkeen, kun Soundscape on sen poistanut käytöstä, valitsemalla *Poista majakan hiljennys* -painikkeen; huomaa kuitenkin, että Sijaintipalvelut ovat vain noin 10 metrin tarkkuudella, joten emme voi taata majakan käyttäytymistä, kun olet vain muutaman metrin päässä määränpäästä.
 
 ### Miksi Soundscape ilmoittaa teiden nimet kahdesti, kun lähestyn risteystä?
 Soundscape kuvailee risteyksiä tiesegmentteinä, jotka lähtevät yhteisestä pisteestä mahdollistaakseen useita erilaisia risteysten muotoja. Soundscape käyttää tilaääntä osoittamaan vasemmalle, suoraan eteenpäin ja oikealle lähtevien teiden nimet, tässä järjestyksessä. Jos risteyksen kuvaus alkaa tiellä, jolla olet, eikä vasemmanpuoleisella tiellä, risteys muodostaa kyljellään olevan T:n, jossa tie, jolla olet, kulkee eteenpäin ja toinen tie risteää oikealta. Samoin jos kuvaus sisältää vain vasemmalle ja oikealle lähtevät tiet, tiedät, että tie, jolla olet, päättyy edessä olevassa T-risteyksessä. Tämä risteysten kuvailumenetelmä toimii myös silloin, kun tien nimi muuttuu risteyksessä.
@@ -68,7 +68,7 @@ Soundscape on suunniteltu välttämään liiallista ilmoitusten määrää. Se k
 Jotta ilmoitusten määrää voidaan estää kasvamasta hallitsemattomaksi, joitakin luokkia, kuten risteyksiä, ei ilmoiteta automaattisesti, kun kuljet ajoneuvolla.
 
 ### Mitä, jos en ymmärrä ilmoitusta tai en huomaa sitä ympäristön melun takia?
-Soundscapella on luettelo viimeisistä ilmoituksistasi, jotta voit palata kuuntelemaan ilmoituksia, jotka ehkä jäivät huomaamatta. Löytääksesi tämän napauta aloitusnäytön hakupalkkia. Tämän ruudun alaosassa on osio *Äskettäiset ilmoitukset*, jossa huomaamatta jäänyt ilmoitus on luettelossa.
+Soundscape ei säilytä luetteloa aiemmista ilmoituksista, mutta voit milloin tahansa pyytää sitä kuvailemaan ympäristösi uudelleen. *Oma sijaintini* kertoo, missä olet, ja *Lähiympäristö* ja *Edessäpäin* ilmoittavat ympärilläsi ja edessäsi olevat paikat. Kaikki kolme painiketta ovat aloitusnäytön alaosassa. Jos käytät kuulokkeidesi mediapainikkeita ja valittuna on *Alkuperäinen tila*, ⏭ Seuraava antaa ilmoituksen *Lähiympäristö*, kun reittiä ei toisteta.
 
 ## Kuinka Soundscape toimii?
 
@@ -82,7 +82,7 @@ Se, mitä kuulokkeita käytät Soundscapen kanssa, riippuu henkilökohtaisista m
 Akun kesto vaihtelee merkittävästi puhelimen mallin ja iän mukaan. Suurin akun kuluttaja on näytön pitäminen päällä, joten pidä näyttö lukittuna aina kun mahdollista maksimoidaksesi puhelimesi akun keston. Vähentääksesi Soundscapen vaikutusta puhelimesi akkuun, Soundscapella on lepotila ja odotustila. Vähentääksesi akun käyttöä entisestään sulje Soundscape kokonaan, kun et käytä sitä, pakottamalla sovellus sulkeutumaan puhelimesi sovellusvalitsimesta.
 
 ### Kuinka käytän lepotilaa, jotta Soundscape vaikuttaisi mahdollisimman vähän akun kestoon?
-Laita Soundscape lepotilaan valitsemalla aloitusnäytön oikeassa yläkulmassa oleva *Siirry lepotilaan* -painike. Valitsemalla tämän Soundscape lopettaa Sijaintipalveluiden ja mobiilidatan käytön siihen asti, kunnes herätät sen.
+Laita Soundscape lepotilaan valitsemalla aloitusnäytön oikeassa yläkulmassa oleva *Siirry lepotilaan* -painike. Kun valitset tämän, Soundscape lopettaa Sijaintipalveluiden ja mobiilidatan käytön siihen asti, kunnes herätät sen.
 
 ### Kuinka käytän odotustilaa, jotta Soundscape vaikuttaisi mahdollisimman vähän akun kestoon?
 Laita Soundscape odotustilaan valitsemalla aloitusnäytön oikeassa yläkulmassa oleva *Siirry lepotilaan* -painike. Kun Soundscape on lepotilassa, valitse *Herää kun poistut* -painike, jolloin Soundscape siirtyy vähävirtaiseen tilaan siihen asti, kunnes poistut nykyisestä sijainnistasi.
@@ -108,7 +108,7 @@ Soundscape antaa ympäristöstä ääneen luonnehdinnan, joka auttaa alueeseen t
 Sen sijaan että annettaisiin askel‑askelelta toimivia käännösohjeita, kuten monissa muissa karttasovelluksissa, Soundscape soittaa äänimajakkaa määränpääsi suunnasta. Se antaa sinulle mahdollisuuden edetä sinulle parhaiten sopivalla tavalla hyödyntäen parempaa ympäristötietoisuuttasi ja käsitystä määränpään sijainnista. Soundscape on suunniteltu toimimaan taustalla, joten voit käyttää samanaikaisesti askel‑askelelta ohjeita antavaa navigaattoria, samalla kun Soundscape jatkaa ympäristön tiedottamista matkallasi.
 
 ### Kuinka Soundscapea käytetään opastussovelluksen kanssa?
-Soundscape on suunniteltu parantamaan tietoisuutta ympäristöstäsi ja antamaan lisätietoja sen yksityiskohdista, joita et ehkä muuten huomaisi. Sitä ei ole suunniteltu kääntymisohjeita antavaksi navigointisovellukseksi, mutta sitä voidaan käyttää sellaisten rinnalla antamaan täydentäviä tietoja. Jos haluat käyttää Soundscapea näiden sovellusten rinnalla, käynnistä ensin navigointisovellus. Siirry sitten Soundscapeen ja määritä äänimajakka samaan määränpäähän kuin navigointisovelluksessa. Tässä vaiheessa molemmat sovellukset ovat käynnissä ja kuulet kävelyohjeita navigointisovelluksestasi samalla, kun saat päivityksiä mielenkiintoisista kohteista, risteyksistä ja etäisyydestäsi määränpäähän Soundscapesta.
+Soundscape on suunniteltu parantamaan tietoisuutta ympäristöstäsi ja antamaan lisätietoja sen yksityiskohdista, joita et ehkä muuten huomaisi. Sitä ei ole suunniteltu kääntymisohjeita antavaksi navigointisovellukseksi, mutta sitä voidaan käyttää sellaisten rinnalla antamaan täydentäviä tietoja. Jos haluat käyttää Soundscapea näiden sovellusten rinnalla, käynnistä ensin navigointisovellus. Siirry sitten Soundscapeen ja määritä äänimajakka samaan määränpäähän kuin navigointisovelluksessa. Tässä vaiheessa molemmat sovellukset ovat käynnissä ja kuulet kävelyohjeita navigointisovelluksestasi samalla, kun saat päivityksiä kiinnostavista kohteista, risteyksistä ja etäisyydestäsi määränpäähän Soundscapesta.
 
 ### Kuinka hallitsen sitä, mitä kuulen, ja milloin kuulen sen Soundscapessa?
 Soundscape tarjoaa useita tapoja hallita, mitä kuulet ja milloin:

@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Đây là gì?
 
-Bạn có thể nhờ Gemini làm các việc trong Soundscape mà không cần chạm vào điện thoại: nghe một thông báo âm thanh, bắt đầu một trong các lộ trình của bạn, hoặc đặt đèn hiệu âm thanh lên một trong các điểm đánh dấu của bạn. Bất kỳ trợ lý nào khác hỗ trợ chức năng ứng dụng của Android đều làm được như vậy.
+Soundscape đã sẵn sàng cho Gemini, nhưng Gemini chưa thể sử dụng nó: điều đó phụ thuộc vào việc Google phát hành tính năng hỗ trợ chức năng ứng dụng Android trong Gemini. Khi điều đó xảy ra, bạn sẽ có thể nhờ Gemini làm các việc trong Soundscape mà không cần chạm vào điện thoại: nghe một thông báo âm thanh, bắt đầu một trong các lộ trình của bạn, hoặc đặt đèn hiệu âm thanh lên một trong các điểm đánh dấu của bạn. Bất kỳ trợ lý nào khác hỗ trợ chức năng ứng dụng của Android cũng sẽ làm được như vậy.
 
-Soundscape trả lời bằng giọng nói của chính nó, với những thông báo âm thanh và tiếng đèn hiệu mà bạn đã quen, thay vì để trợ lý đọc một bản tóm tắt. Nhờ đó, điều bạn nghe vẫn phát ra từ đúng hướng mà nó đang mô tả.
+Soundscape sẽ trả lời bằng giọng nói của chính nó, với những thông báo âm thanh và tiếng đèn hiệu mà bạn đã quen, thay vì để trợ lý đọc một bản tóm tắt. Nhờ đó, điều bạn nghe sẽ vẫn phát ra từ đúng hướng mà nó đang mô tả.
 
 ## Khi nào tôi nên dùng tính năng này?
 
@@ -35,11 +35,11 @@ Bắt đầu một trong các lộ trình đã lưu theo tên, chuyển sang đi
 
 Đặt đèn hiệu âm thanh lên một trong các điểm đánh dấu đã lưu theo tên, hoặc tắt đèn hiệu.
 
-Đặt mức chi tiết thông báo thành *Im lặng*, *Yên tĩnh*, *Cân bằng* hoặc *Chi tiết*, để thay đổi mức độ Soundscape nói khi bạn đi bộ. *Im lặng* sẽ tắt thông báo tự động.
+Đặt mức chi tiết thông báo thành *Im lặng*, *Thiết yếu*, *Đơn giản* hoặc *Chi tiết*, để thay đổi mức độ Soundscape nói khi bạn đi bộ. *Im lặng* sẽ tắt thông báo tự động.
 
 Đọc lại tên các lộ trình đã lưu hoặc các điểm đánh dấu đã lưu của bạn.
 
 Mọi thứ trừ hai danh sách đều cần Soundscape đang chạy. Nếu không, trợ lý sẽ bảo bạn mở Soundscape trước. Việc liệt kê lộ trình và điểm đánh dấu vẫn hoạt động trong cả hai trường hợp, vì nó chỉ đọc những gì bạn đã lưu.
 
-Lệnh thoại cần điện thoại chạy Android 16 trở lên, cùng một trợ lý hỗ trợ chức năng ứng dụng.
+Lệnh thoại sẽ cần điện thoại chạy Android 16 trở lên, cùng một trợ lý hỗ trợ chức năng ứng dụng. Cho đến khi Google phát hành tính năng hỗ trợ đó trong Gemini, lệnh thoại sẽ chưa hoạt động.
 

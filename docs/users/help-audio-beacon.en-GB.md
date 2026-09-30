@@ -27,7 +27,7 @@ First, view the details of a location by either using the search bar to look for
 
  Simply press the *Stop Route* button on the home screen.
 
-**To mute the audible beacon :**
+**To mute the audible beacon:**
 
- Tap the *Mute Beacon* button next to the *Stop Route* button on the home screen.
+Tap the *Mute Beacon* button next to the *Stop Route* button on the home screen.
 

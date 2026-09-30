@@ -27,7 +27,7 @@ Existen 2 modos de funcionamiento para los controles multimedia. El modo se pued
 
 ⏭ Siguiente: Si se está reproduciendo una ruta, mueve la señal de audio al siguiente punto de ruta de la ruta. Si no se está reproduciendo ninguna ruta, avisa de *Alrededor de mí*.
 
-⏮ Anterior: Si se está reproduciendo una ruta, mueve la señal de audio al punto de ruta anterior de la ruta. Si no se está reproduciendo ninguna ruta, cambia el *Detalle de los avisos*, un nivel más discreto con cada pulsación: *Detallado*, *Equilibrado*, *Discreto*, *Silencioso*, y de vuelta a *Detallado*.
+⏮ Anterior: Si se está reproduciendo una ruta, mueve la señal de audio al punto de ruta anterior de la ruta. Si no se está reproduciendo ninguna ruta, cambia el *Detalle de los avisos*, un nivel más discreto con cada pulsación: *Detallado*, *Simplificado*, *Esencial*, *Silencioso*, y de vuelta a *Detallado*.
 
 
 

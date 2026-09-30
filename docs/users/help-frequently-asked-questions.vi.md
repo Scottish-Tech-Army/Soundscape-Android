@@ -14,18 +14,18 @@ permalink: /users/help-frequently-asked-questions.html
 ### Khi nào tôi nên sử dụng Soundscape?
 Soundscape có các tính năng và lợi ích trải rộng trên nhiều tình huống và khung thời gian khác nhau. Giá trị mà Soundscape mang lại cho bạn có thể thay đổi theo thời gian, vì vậy cách bạn sử dụng nó hôm nay có thể khác với cách bạn sẽ sử dụng nó sau ba tháng. Mọi người thường nghĩ về các ứng dụng theo hướng *ứng dụng này giỏi giải quyết vấn đề gì?* Soundscape chắc chắn có thể được dùng cho những nhu cầu cụ thể – chẳng hạn như theo dõi một điểm đến trong lúc di chuyển đến đó, giúp định hướng khi bạn ra khỏi ga tàu điện ngầm, xác định phương hướng khi bước ra khỏi xe hơi, hoặc tìm tên đường hay khoảng cách đến giao lộ tiếp theo. Tuy nhiên, triết lý đằng sau Soundscape là *thắp sáng thế giới của bạn bằng âm thanh* — ứng dụng được thiết kế để sử dụng bất cứ khi nào bạn ra ngoài, nhằm mang lại nhận thức về môi trường xung quanh: tên các con đường bạn đang đi, hướng bạn đang di chuyển, và tên các cửa hàng bạn đang đi ngang qua. Với cách sử dụng này, người dùng của chúng tôi gọi Soundscape là một *ứng dụng đồng hành dễ chịu*, hỗ trợ *những khám phá tình cờ*, giúp *lấp đầy những khoảng trống trong bản đồ tinh thần của bạn* và mang lại nhiều *sự tự tin hơn khi đi bộ*. Dưới đây là một số ví dụ khác về cách người dùng của chúng tôi đưa Soundscape vào cuộc sống của họ:
 
-Soundscape đã giúp tôi quay lại đúng hướng sau khi tôi xuống xe buýt và đi nhầm hướng.
+“Soundscape đã giúp tôi quay lại đúng hướng sau khi tôi xuống xe buýt và đi nhầm hướng.”
 
-Ngay cả ở thị trấn mà tôi đã sống suốt 3 năm, tôi vẫn xây dựng được một bức tranh rõ nét hơn về những gì xung quanh mình [nhờ Soundscape].
+“Ngay cả ở thị trấn mà tôi đã sống suốt 3 năm, tôi vẫn xây dựng được một bức tranh rõ nét hơn về những gì xung quanh mình [nhờ Soundscape].”
 
-Âm thanh 3D làm phong phú thêm trải nghiệm đi bộ của tôi, vì tôi cảm thấy kết nối hơn với môi trường xung quanh…Giờ đây tôi sẵn sàng thử một lộ trình mới hơn vì đã có ứng dụng này để sử dụng.
+“Âm thanh 3D làm phong phú thêm trải nghiệm đi bộ của tôi, vì tôi cảm thấy kết nối hơn với môi trường xung quanh…Giờ đây tôi sẵn sàng thử một lộ trình mới hơn vì đã có ứng dụng này để sử dụng.”
 
-Tôi nhớ cảm giác tình cờ bắt gặp và để ý những điều xung quanh khi đi bộ. Có Soundscape thật tuyệt – tôi không cần cố gắng gì cũng nghe được những gì xung quanh mình. Thông tin liên quan rất hữu ích, và đây là một ứng dụng tuyệt vời để nhận thức tình huống và khám phá các khu phố thương mại.
+“Tôi nhớ cảm giác tình cờ bắt gặp và để ý những điều xung quanh khi đi bộ. Có Soundscape thật tuyệt – tôi không cần cố gắng gì cũng nghe được những gì xung quanh mình. Thông tin liên quan rất hữu ích, và đây là một ứng dụng tuyệt vời để nhận thức tình huống và khám phá các khu phố thương mại.”
 
-[Tôi đã dùng Soundscape] để tìm một quán rượu ở giữa thành phố York. [Tôi] đã dùng nhiều tùy chọn của ứng dụng để trước tiên định vị và sau đó thực sự tìm ra nó. Nó đã dẫn tôi đến trong vòng 3 mét cách cửa ra vào – thật tuyệt vời!
+“[Tôi đã dùng Soundscape] để tìm một quán rượu ở giữa thành phố York. [Tôi] đã dùng nhiều tùy chọn của ứng dụng để trước tiên định vị và sau đó thực sự tìm ra nó. Nó đã dẫn tôi đến trong vòng 3 mét cách cửa ra vào – thật tuyệt vời!”
 
 ### Điểm đánh dấu là gì và làm sao để tận dụng chúng tốt nhất?
-Điểm đánh dấu là những địa điểm mà bạn đã lưu lại. Chúng có thể là những địa điểm có thể tìm thấy trong ứng dụng, hoặc là những địa điểm hoàn toàn mới mà bạn tự thêm vào. Bạn có thể lưu vị trí hiện tại của mình làm điểm đánh dấu bằng cách chọn nút *Vị trí hiện tại* trên màn hình chính rồi chọn *Lưu làm Điểm đánh dấu*. Bạn có thể lưu các địa điểm khác làm điểm đánh dấu bằng cách tìm kiếm địa điểm bạn muốn lưu qua thanh tìm kiếm, hoặc tìm một nơi bằng nút *Địa điểm gần đây* — cả hai đều có trên màn hình chính của Soundscape. Sau khi tìm được địa điểm bạn muốn, chọn nó sẽ đưa bạn đến màn hình *Chi tiết vị trí*. Trên màn hình này, hãy chọn nút có tên *Lưu làm Điểm đánh dấu*.
+Điểm đánh dấu là những địa điểm mà bạn đã lưu lại. Chúng có thể là những địa điểm có thể tìm thấy trong ứng dụng, hoặc là những địa điểm hoàn toàn mới mà bạn tự thêm vào. Bạn có thể lưu vị trí hiện tại của mình làm điểm đánh dấu bằng cách chọn nút *Vị trí hiện tại* trên màn hình chính rồi chọn *Lưu làm điểm đánh dấu*. Bạn có thể lưu các địa điểm khác làm điểm đánh dấu bằng cách tìm kiếm địa điểm bạn muốn lưu qua thanh tìm kiếm, hoặc tìm một nơi bằng nút *Địa điểm gần đây* — cả hai đều có trên màn hình chính của Soundscape. Sau khi tìm được địa điểm bạn muốn, chọn nó sẽ đưa bạn đến màn hình *Chi tiết vị trí*. Trên màn hình này, hãy chọn nút có tên *Lưu làm điểm đánh dấu*.
 
 ## Làm sao để tôi tận dụng Soundscape tốt nhất?
 
@@ -47,7 +47,7 @@ Thiết kế này có một vài hệ quả tự nhiên:
 Về bản chất, đèn hiệu âm thanh của Soundscape là một tín hiệu định hướng, cho bạn biết điểm đến của mình nằm ở đâu so với hướng bạn đang nhìn về. Khi Soundscape không chắc chắn về hướng bạn đang nhìn về, nó sẽ giảm âm lượng của đèn hiệu. Điều này thường xảy ra nhất khi bạn đang đi bộ với điện thoại để trong túi quần hoặc túi xách, rồi bạn dừng di chuyển, chẳng hạn như để băng qua đường. Đèn hiệu sẽ to hơn khi bạn bắt đầu di chuyển trở lại, hoặc khi bạn giữ điện thoại nằm ngang và hướng nó theo hướng bạn đang nhìn về.
 
 ### Tôi có thể đặt đèn hiệu trên một địa chỉ không?
-Có, bạn có thể. Địa chỉ không được liệt kê theo mặc định nhưng có thể tìm thấy bằng cách sử dụng ô tìm kiếm. Để lưu địa chỉ này lại nhằm không cần tìm kiếm lại lần sau, bạn có thể thêm nó làm điểm đánh dấu từ màn hình *Chi tiết vị trí* bằng cách chọn nút *Lưu làm Điểm đánh dấu*.
+Có, bạn có thể. Địa chỉ không được liệt kê theo mặc định nhưng có thể tìm thấy bằng cách sử dụng ô tìm kiếm. Để lưu địa chỉ này lại nhằm không cần tìm kiếm lại lần sau, bạn có thể thêm nó làm điểm đánh dấu từ màn hình *Chi tiết vị trí* bằng cách chọn nút *Lưu làm điểm đánh dấu*.
 
 ### Làm sao để đặt đèn hiệu tại nhà của tôi?
 Soundscape hỗ trợ đặt đèn hiệu trên các địa chỉ. Để đặt đèn hiệu tại nhà bạn, hoặc bất kỳ địa chỉ nào khác, hãy tìm kiếm một địa điểm bằng thanh tìm kiếm trên màn hình chính. Sau đó, trên màn hình *Chi tiết vị trí*, nhấn nút *Bắt đầu đèn hiệu âm thanh*.
@@ -68,7 +68,7 @@ Soundscape được thiết kế để không thông báo quá nhiều. Ứng d�
 Để tránh số lượng thông báo trở nên quá tải, một số nhóm thông tin, chẳng hạn như giao lộ, sẽ không được tự động thông báo khi bạn đang di chuyển trong xe.
 
 ### Nếu tôi không hiểu một thông báo hoặc bỏ lỡ nó vì tiếng ồn xung quanh thì sao?
-Soundscape có một danh sách các thông báo gần đây của bạn để bạn có thể xem lại những thông báo mình có thể đã bỏ lỡ. Để tìm danh sách này, hãy nhấn vào thanh tìm kiếm trên màn hình chính. Ở dưới cùng màn hình đó, có một phần *Thông báo gần đây* nơi thông báo bạn đã bỏ lỡ sẽ được liệt kê.
+Soundscape không lưu danh sách các thông báo trước đó, nhưng bạn có thể yêu cầu ứng dụng mô tả lại khu vực xung quanh bất cứ lúc nào. *Vị trí của tôi* cho bạn biết bạn đang ở đâu, còn *Xung quanh tôi* và *Phía trước tôi* thông báo các địa điểm xung quanh và phía trước bạn. Cả ba nút đều nằm ở dưới cùng màn hình chính. Nếu bạn dùng nút điều khiển phương tiện trên tai nghe ở *Chế độ gốc*, ⏭ Tiếp theo sẽ thông báo *Xung quanh tôi* khi không có lộ trình nào đang phát.
 
 ## Soundscape hoạt động như thế nào?
 

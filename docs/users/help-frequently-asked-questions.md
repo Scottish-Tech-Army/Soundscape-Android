@@ -54,7 +54,7 @@ Soundscape supports setting beacons on addresses. To set a beacon on your home, 
 Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
 
 ### Can I turn the beacon back on when I am close to my destination?
-Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
+Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *Unmute Beacon* button; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
 
 ### Why does Soundscape call out road names twice when I approach an intersection?
 To accommodate a variety of intersection layouts, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the names of the roads that go to the left, straight ahead, and to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection forms a sideways T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
@@ -66,7 +66,7 @@ Soundscape is designed to avoid giving you too many callouts. It also uses OpenS
 In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
 
 ### What if I don't understand a callout or miss it because of ambient noise?
-Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the home screen. At the bottom of this screen, there is a section for *Recent Callouts* where the callout you missed will be listed.
+Soundscape doesn't keep a list of past callouts, but you can ask it to describe your surroundings again at any time. *My Location* tells you where you are, and *Around Me* and *Ahead of Me* call out the places around you and in front of you. All three buttons are at the bottom of the home screen. If you use the media controls on your headphones in *Original mode*, ⏭ Next calls out *Around Me* when no route is playing.
 
 ## How does Soundscape work?
 
@@ -111,11 +111,11 @@ Soundscape is designed to help fill in details about your environment that you m
 ### How do I control what I hear and when I hear it in Soundscape?
 Soundscape provides several ways to control what you hear and when:
 
-1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.
+1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *Unmute Beacon* button on the main screen to resume hearing the beacon.
 
 2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.
 
-3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.
+3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *Mute Beacon*/*Unmute Beacon* button on the main screen.
 
 If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.
 

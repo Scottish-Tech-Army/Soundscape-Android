@@ -11,7 +11,7 @@ permalink: /users/help-why-is-soundscape-working-offline-.html
 
 ## Zakaj Soundscape deluje brez povezave?
 
-Kadar ni internetne povezave ali storitve Soundscape ne delujejo, aplikacija preklopi v način brez povezave. Deloval bo naprej, vendar so nekatere funkcije lahko omejene.
+Kadar ni internetne povezave ali storitve Soundscape ne delujejo, aplikacija preklopi v način brez povezave. Še naprej bo delovala, vendar so nekatere funkcije lahko omejene.
 
 ## Omejitve
 

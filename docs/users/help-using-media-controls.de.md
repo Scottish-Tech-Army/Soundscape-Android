@@ -27,7 +27,7 @@ Es gibt zwei Betriebsmodi für die Mediensteuerungen. Den Modus können Sie im A
 
 ⏭ Weiter: Wenn gerade eine Route abgespielt wird, wird das Audiobeacon zum nächsten Wegpunkt der Route verschoben. Wenn keine Route abgespielt wird, wird *Um mich herum* angesagt.
 
-⏮ Zurück: Wenn gerade eine Route abgespielt wird, wird das Audiobeacon zum vorherigen Wegpunkt der Route verschoben. Wenn keine Route abgespielt wird, ändert sich der *Detailgrad der Hinweise*, mit jedem Druck eine Stufe leiser: *Ausführlich*, *Ausgewogen*, *Leise*, *Stumm*, und dann zurück zu *Ausführlich*.
+⏮ Zurück: Wenn gerade eine Route abgespielt wird, wird das Audiobeacon zum vorherigen Wegpunkt der Route verschoben. Wenn keine Route abgespielt wird, ändert sich der *Detailgrad der Hinweise*, mit jedem Druck eine Stufe leiser: *Ausführlich*, *Vereinfacht*, *Wesentlich*, *Stumm*, und dann zurück zu *Ausführlich*.
 
 
 

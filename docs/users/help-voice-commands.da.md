@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Hvad er det?
 
-Du kan bede Gemini om at gøre ting i Soundscape uden at røre din telefon: høre en lydbesked, starte en af dine ruter eller sætte et lydfyr på et af dine mærker. Enhver anden assistent, der understøtter Android-appfunktioner, kan gøre det samme.
+Soundscape er klar til Gemini, men Gemini kan ikke bruge det endnu: det afhænger af, at Google frigiver understøttelse af Android-appfunktioner i Gemini. Når det sker, vil du kunne bede Gemini om at gøre ting i Soundscape uden at røre din telefon: høre en lydbesked, starte en af dine ruter eller sætte et lydfyr på et af dine mærker. Enhver anden assistent, der understøtter Android-appfunktioner, vil kunne gøre det samme.
 
-Soundscape svarer med sin egen stemme, med de lydbeskeder og fyrlyde, du allerede kender, i stedet for at assistenten læser et resumé op. På den måde kommer det, du hører, stadig fra den retning, det beskriver.
+Soundscape vil svare med sin egen stemme, med de lydbeskeder og fyrlyde, du allerede kender, i stedet for at assistenten læser et resumé op. På den måde vil det, du hører, stadig komme fra den retning, det beskriver.
 
 ## Hvornår ville jeg bruge det?
 
@@ -35,11 +35,11 @@ Starte en af dine gemte ruter ved navn, gå videre til næste vejpunkt, gå tilb
 
 Sætte et lydfyr på et af dine gemte mærker ved navn eller slukke for lydfyret.
 
-Sætte detaljeniveauet for lydbeskeder til *Lydløs*, *Stille*, *Balanceret* eller *Detaljeret* for at ændre, hvor meget Soundscape siger, mens du går. *Lydløs* slår de automatiske lydbeskeder fra.
+Sætte detaljeniveauet for lydbeskeder til *Lydløs*, *Essentiel*, *Forenklet* eller *Detaljeret* for at ændre, hvor meget Soundscape siger, mens du går. *Lydløs* slår de automatiske lydbeskeder fra.
 
 Læse navnene på dine gemte ruter eller dine gemte mærker op.
 
 Alt bortset fra de to lister kræver, at Soundscape kører. Hvis appen ikke kører, beder assistenten dig om at åbne Soundscape først. Det virker under alle omstændigheder at få dine ruter og dine mærker læst op, for der læses kun det op, du allerede har gemt.
 
-Stemmekommandoer kræver en telefon med Android 16 eller nyere og en assistent, der understøtter appfunktioner.
+Stemmekommandoer vil kræve en telefon med Android 16 eller nyere og en assistent, der understøtter appfunktioner. Indtil Google frigiver den understøttelse i Gemini, virker de ikke.
 

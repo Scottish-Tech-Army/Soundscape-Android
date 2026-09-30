@@ -68,7 +68,7 @@ Soundscape je zasnovan tako, da vam ne daje preveč zvočnih obvestil. Kot vir p
 Da število zvočnih obvestil ne bi postalo preobremenjujoče, nekatere kategorije, kot so križišča, med vožnjo v vozilu niso samodejno napovedane.
 
 ### Kaj če zvočnega obvestila ne razumem ali ga zamudim zaradi hrupa okolice?
-Soundscape hrani seznam vaših nedavnih zvočnih obvestil, da si lahko znova ogledate tista, ki ste jih morda zamudili. Do njega dostopate tako, da tapnete iskalno vrstico na začetnem zaslonu. Na dnu tega zaslona je razdelek *Nedavna zvočna obvestila*, kjer bo navedeno zvočno obvestilo, ki ste ga zamudili.
+Soundscape ne hrani seznama preteklih zvočnih obvestil, vendar ga lahko kadar koli prosite, naj znova opiše vašo okolico. *Moja lokacija* vam pove, kje ste, *Okoli mene* in *Pred menoj* pa izgovorita kraje okoli vas in pred vami. Vsi trije gumbi so na dnu začetnega zaslona. Če uporabljate predstavnostne kontrolnike na slušalkah in je izbran *Izvirni način*, ⏭ Naprej izgovori *Okoli mene*, ko se ne predvaja nobena pot.
 
 ## Kako deluje Soundscape?
 
@@ -82,7 +82,7 @@ Katere slušalke uporabljate s Soundscape, je stvar osebnega okusa, saj ima vsak
 Trajanje baterije se precej razlikuje glede na model in starost vašega telefona. Največ baterije porabi prižgan zaslon, zato naj bo zaslon vedno, kadar je to mogoče, zaklenjen, da čim bolj podaljšate trajanje baterije telefona. Da bi zmanjšali vpliv na baterijo telefona, ima Soundscape način spanja in način dremeža. Za dodatno zmanjšanje porabe baterije morate, kadar aplikacije Soundscape ne uporabljate, aplikacijo prisilno zapreti prek preklopnika aplikacij na telefonu.
 
 ### Kako uporabljam način spanja za zmanjšanje vpliva aplikacije Soundscape na baterijo telefona?
-Če želite aplikacijo Soundscape preklopiti v način spanja, izberite gumb *Spanje* v zgornjem desnem kotu domačega zaslona. Ko to izberete, Soundscape preneha uporabljati Lokacijske storitve in mobilne podatke, dokler je ne prebudite.
+Če želite aplikacijo Soundscape preklopiti v način spanja, izberite gumb *Spanje* v zgornjem desnem kotu domačega zaslona. Ko to izberete, Soundscape preneha uporabljati Lokacijske storitve in mobilne podatke, dokler ga ne prebudite.
 
 ### Kako uporabljam način dremeža za zmanjšanje vpliva aplikacije Soundscape na baterijo telefona?
 Če želite aplikacijo Soundscape preklopiti v način dremeža, izberite gumb *Spanje* v zgornjem desnem kotu domačega zaslona. Ko je Soundscape v načinu spanja, izberite gumb *Prebudi ob odhodu* in Soundscape bo prešel v način nizke porabe, dokler ne zapustite trenutne lokacije.
@@ -113,7 +113,7 @@ Soundscape je zasnovan tako, da vam pomaga dopolniti podrobnosti o okolici, ki j
 ### Kako v aplikaciji Soundscape nadzorujem, kaj slišim in kdaj to slišim?
 Soundscape ponuja več načinov za nadzor nad tem, kaj in kdaj slišite:
 
-1. Takojšnja zaustavitev vsega zvoka: Z dvema prstoma dvakrat tapnite zaslon, da takoj izklopite ves zvok, vključno z vsakim zvočnim obvestilom, ki se trenutno predvaja, in svetilnikom, če je vklopljen. Zvočna obvestila se bodo samodejno nadaljevala, ko se boste približali naslednjemu križišču ali zanimivosti, zvočni svetilnik pa se ne bo znova vklopil samodejno. Za ponoven vklop svetilnika na glavnem zaslonu izberite gumb *za vklop zvoka svetilnika*.
+1. Takojšnja zaustavitev vsega zvoka: Z dvema prstoma dvakrat tapnite zaslon, da takoj izklopite ves zvok, vključno z vsakim zvočnim obvestilom, ki se trenutno predvaja, in svetilnikom, če je vklopljen. Zvočna obvestila se bodo samodejno nadaljevala, ko se boste približali naslednjemu križišču ali zanimivosti, zvočni svetilnik pa se ne bo znova vklopil samodejno. Za ponoven vklop svetilnika na glavnem zaslonu izberite gumb *Odtišaj svetilnik*.
 
 2. Zaustavitev samodejnih zvočnih obvestil: Kadar ne potujete ali ste že dosegli cilj, verjetno ne potrebujete, da vas Soundscape še naprej obvešča o stvareh v okolici. Namesto da bi aplikacijo zaprli, jo lahko preklopite v način dremeža, ki se bo znova prebudil, ko odidete, ali pa jo preklopite v način spanja, kjer bo ostala izklopljena, dokler je ne vklopite nazaj. Druga možnost je, da v meniju izberete *Nastavitve* in v razdelku *Upravljanje zvočnih obvestil* nastavite *Raven podrobnosti obvestil* na *Brez zvoka*.
 

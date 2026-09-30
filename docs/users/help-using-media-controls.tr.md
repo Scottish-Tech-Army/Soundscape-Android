@@ -27,7 +27,7 @@ Medya kontrolleri için 2 çalışma modu vardır. Mod, *Ayarlar* ekranının *M
 
 ⏭ İleri: Bir rota oynatılıyorsa sesli işareti rotadaki bir sonraki Ara Noktaya taşır. Hiçbir rota oynatılmıyorsa *Etrafımda* anonsunu yapar.
 
-⏮ Geri: Bir rota oynatılıyorsa sesli işareti rotadaki önceki Ara Noktaya taşır. Hiçbir rota oynatılmıyorsa *Anons Ayrıntısı* ayarını her basışta bir kademe daha sakin hale getirir: *Ayrıntılı*, *Dengeli*, *Sakin*, *Sessiz* ve yeniden *Ayrıntılı*.
+⏮ Geri: Bir rota oynatılıyorsa sesli işareti rotadaki önceki Ara Noktaya taşır. Hiçbir rota oynatılmıyorsa *Anons Ayrıntısı* ayarını her basışta bir kademe daha sakin hale getirir: *Ayrıntılı*, *Sadeleştirilmiş*, *Temel*, *Sessiz* ve yeniden *Ayrıntılı*.
 
 
 

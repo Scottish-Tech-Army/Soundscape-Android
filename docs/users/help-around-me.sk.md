@@ -13,7 +13,7 @@ permalink: /users/help-around-me.html
 
 Tlačidlo *Okolo mňa* vám povie o jednej veci v každom zo štyroch kvadrantov okolo vás (vpredu, vpravo, vzadu a vľavo). *Okolo mňa* má za cieľ pomôcť vám zorientovať sa vo svojom okolí.
 
-## Kedy by som to použil(a)?
+## Kedy to použiť?
 
 Keď sa snažíte zorientovať a získať prehľad o svojom okolí, použite *Okolo mňa*, aby ste počuli o veciach vo vašom okolí.
 

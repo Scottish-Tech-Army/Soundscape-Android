@@ -19,5 +19,5 @@ Gdy próbujesz się zorientować i ustalić swoje położenie, użyj *„Wokół
 
 ## Jak to działa?
 
-Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk *„Wokół mnie”*. To działa jak kompas, informując aplikację, w którą stronę jesteś zwrócony. Po prostu stuknij przycisk *„Wokół mnie”* i usłyszysz cztery punkty zainteresowania rozmieszczone wokół Ciebie.
+Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk *„Wokół mnie”*. To działa jak kompas, informując aplikację, w którą stronę patrzysz. Po prostu stuknij przycisk *„Wokół mnie”* i usłyszysz cztery punkty zainteresowania rozmieszczone wokół Ciebie.
 

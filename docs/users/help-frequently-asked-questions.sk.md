@@ -9,9 +9,9 @@ permalink: /users/help-frequently-asked-questions.html
 
 # Často kladené otázky
 
-## Čo je Soundscape a ako by som ho mal používať?
+## Čo je Soundscape a ako ho používať?
 
-### Kedy by som mal používať Soundscape?
+### Kedy používať Soundscape?
 Soundscape má funkcie a výhody, ktoré pokrývajú rôzne situácie a časové rámce. Hodnota, ktorú vám Soundscape prináša, sa tiež môže časom meniť, takže spôsob, akým ho používate dnes, sa môže líšiť od toho, ako ho budete používať o tri mesiace. Ľudia o aplikáciách často premýšľajú z hľadiska *aký problém táto aplikácia dobre rieši?* Soundscape sa určite dá používať na konkrétne potreby – napríklad sledovanie cieľa počas cesty k nemu, pomoc pri orientácii po vystúpení zo stanice metra, zorientovanie sa po vystúpení z auta, alebo zistenie názvov ulíc pri najbližšej križovatke či vzdialenosti k nej. Filozofia, ktorá stojí za aplikáciou Soundscape, je však *rozžiariť váš svet zvukom* – je navrhnutá tak, aby sa dala používať kedykoľvek, keď ste vonku, a poskytovala vám priebežné povedomie o okolí, napríklad názvy ulíc, po ktorých kráčate, smer, ktorým sa uberáte, a názvy obchodov, popri ktorých prechádzate. Pri tomto spôsobe používania naši používatelia označujú Soundscape za *príjemného spoločníka*, ktorý podporuje *náhodné objavovanie*, pomáha *vyplniť medzery vo vašej mentálnej mape* a dodáva viac *istoty pri chôdzi*. Tu je niekoľko ďalších príkladov toho, ako Soundscape naši používatelia používajú vo svojom živote:
 
 Soundscape mi pomohol vrátiť sa na správnu cestu potom, čo som vystúpil z autobusu a vydal sa nesprávnym smerom.
@@ -30,7 +30,7 @@ Značky sú miesta, ktoré ste si uložili. Môžu to byť miesta, ktoré je mo�
 ## Ako dosiahnuť čo najlepšie využitie aplikácie Soundscape?
 
 ### Čo si môžem nastaviť ako maják?
-Zvukový maják si môžete nastaviť na akýkoľvek obchod, miesto, zaujímavé miesto, adresu alebo križovatku. Maják na miesto môžete pridať niekoľkými spôsobmi. Najprv zobrazte podrobnosti o mieste – buď vyhľadaním miesta pomocou vyhľadávacieho poľa, alebo ťuknutím na jedno z tlačidiel *Miesta v okolí*, *Značky a trasy* alebo *Aktuálna poloha* a výberom miesta. Potom na obrazovke *Podrobnosti o polohe* vyberte tlačidlo *Spustiť zvukový maják*. Ťuknutím naň sa vrátite na domovskú obrazovku a zapne sa zvukový maják prichádzajúci zo smeru vybraného miesta. Na hlavnej obrazovke sa teraz zobrazí názov miesta spolu s jeho vzdialenosťou a fyzickou adresou, ak je k dispozícii.
+Zvukový maják si môžete nastaviť na akýkoľvek obchod, miesto, zaujímavé miesto, adresu alebo križovatku. Maják na miesto môžete pridať niekoľkými spôsobmi. Najprv zobrazte podrobnosti o mieste – buď vyhľadaním miesta pomocou vyhľadávacieho poľa, alebo ťuknutím na jedno z tlačidiel *Miesta v okolí*, *Značky a trasy* alebo *Aktuálna poloha* a výberom miesta. Potom na obrazovke *Podrobnosti o mieste* vyberte tlačidlo *Spustiť zvukový maják*. Ťuknutím naň sa vrátite na domovskú obrazovku a zapne sa zvukový maják prichádzajúci zo smeru vybraného miesta. Na hlavnej obrazovke sa teraz zobrazí názov miesta spolu s jeho vzdialenosťou a fyzickou adresou, ak je k dispozícii.
 
 ### Ako z majáka vyťažiť čo najviac?
 Zvukový maják si môžete predstaviť ako *maják pre vaše uši*: hovorí vám, kde sa nachádza váš cieľ, v priamej línii od vašej aktuálnej polohy. Podobne ako skutočný maják vám neradí, ako sa tam dostať – cestou možno budete musieť urobiť navigačné rozhodnutia, aby ste obišli prekážky. Nepretržitý rytmický zvuk majáka prichádza zo smeru cieľa a pomáha vám počas chôdze vedieť, kde sa cieľ vzhľadom na vás nachádza. Keď kráčate priamo smerom k cieľu, alebo keď namierite telefón smerom k cieľu, ozve sa vyšší zvuk *zvonenia*. Pomáha vám to presne určiť smer k cieľu, keďže smer rytmického zvuku môže byť v hlučnom prostredí niekedy ťažké počuť. Ak chcete nájsť vyšší zvuk *zvonenia*, držte telefón vodorovne a pomaly sa otočte dokola; otočením hlavy rovnakým smerom ako telefón dosiahnete čo najlepší zážitok z priestorového zvuku.
@@ -50,13 +50,13 @@ Zvukový maják aplikácie Soundscape je v podstate smerový signál, ktorý vá
 Áno, môžete. Adresy sa v predvolenom nastavení nezobrazujú v zozname, ale dajú sa nájsť pomocou vyhľadávacieho poľa. Ak si chcete túto adresu uložiť, aby ste ju nemuseli znova vyhľadávať, môžete ju pridať ako značku z obrazovky *Podrobnosti o mieste* výberom tlačidla *Uložiť ako značku*.
 
 ### Ako si nastavím maják na svoj domov?
-Soundscape podporuje nastavenie majáka na adresy. Ak chcete nastaviť maják na svoj domov alebo akúkoľvek inú adresu, vyhľadajte miesto pomocou vyhľadávacieho poľa na hlavnej obrazovke. Potom na obrazovke *Podrobnosti o polohe* ťuknite na tlačidlo *Spustiť zvukový maják*.
+Soundscape podporuje nastavenie majáka na adresy. Ak chcete nastaviť maják na svoj domov alebo akúkoľvek inú adresu, vyhľadajte miesto pomocou vyhľadávacieho poľa na hlavnej obrazovke. Potom na obrazovke *Podrobnosti o mieste* ťuknite na tlačidlo *Spustiť zvukový maják*.
 
 ### Keď nastavím maják na cieľ, ako blízko ma k nemu Soundscape dostane?
 Soundscape dokáže určiť polohu vášho cieľa s presnosťou na niekoľko metrov, no nie presnejšie. Keď Soundscape zistí, že ste blízko svojho cieľa, počujete záverečné hlásenie, že cieľ je nablízku, a maják sa vypne.
 
 ### Môžem maják opäť zapnúť, keď som blízko svojho cieľa?
-Áno, po tom, čo ho Soundscape vypne, môžete maják opäť zapnúť výberom *tlačidla na zrušenie stlmenia majáka*. Keďže však služby polohy sú presné len na približne 10 metrov, nemôžeme zaručiť správanie majáka, keď sa nachádzate len niekoľko metrov od svojho cieľa.
+Áno, po tom, čo ho Soundscape vypne, môžete maják opäť zapnúť výberom tlačidla *Zrušiť stlmenie majáka*. Keďže však služby polohy sú presné len na približne 10 metrov, nemôžeme zaručiť správanie majáka, keď sa nachádzate len niekoľko metrov od svojho cieľa.
 
 ### Prečo Soundscape pri priblížení ku križovatke oznamuje názvy ciest dvakrát?
 Aby Soundscape zohľadnil rôzne usporiadania križovatiek, opisuje ich ako úseky ciest vychádzajúce zo spoločného bodu. Soundscape pomocou priestorového zvuku postupne oznamuje názvy ciest vedúcich doľava, rovno a doprava. Ak opis križovatky začína cestou, po ktorej práve idete, a nie cestou vľavo, tvorí križovatka bokom otočené T, kde cesta, po ktorej idete, pokračuje rovno a sprava sa do nej pripája ďalšia cesta. Podobne, ak opis obsahuje iba cestu vľavo a vpravo, znamená to, že cesta, po ktorej idete, pred vami končí v tvare T. Tento spôsob opisu križovatiek funguje aj vtedy, keď sa názov cesty na križovatke mení.
@@ -68,14 +68,14 @@ Soundscape je navrhnutý tak, aby vám nedával príliš veľa hlásení. Okrem 
 Aby sa zabránilo tomu, že počet hlásení bude neúnosný, niektoré kategórie, ako napríklad križovatky, sa počas cestovania vo vozidle automaticky neoznamujú.
 
 ### Čo ak hláseniu nerozumiem alebo mi ho prehluší okolitý hluk?
-Soundscape uchováva zoznam vašich nedávnych hlásení, takže si môžete znova pozrieť hlásenia, ktoré ste možno prepočuli. Nájdete ho ťuknutím na vyhľadávacie pole na domovskej obrazovke. V spodnej časti tejto obrazovky sa nachádza časť *Nedávne hlásenia*, kde nájdete hlásenie, ktoré ste prepočuli.
+Soundscape neuchováva zoznam predchádzajúcich hlásení, ale kedykoľvek ho môžete požiadať, aby vám znova opísal okolie. *Moja poloha* vám povie, kde sa nachádzate, a *Okolo mňa* a *Predo mnou* oznámia miesta okolo vás a pred vami. Všetky tri tlačidlá sú v spodnej časti domovskej obrazovky. Ak používate ovládanie médií na slúchadlách a máte nastavený *Pôvodný režim*, ⏭ Ďalej oznámi *Okolo mňa*, keď sa neprehráva žiadna trasa.
 
 ## Ako Soundscape funguje?
 
 ### Na akom telefóne beží Soundscape?
 Soundscape je momentálne dostupný pre iPhony s iOS 16 alebo novším a pre telefóny s Androidom 11 alebo novším.
 
-### Aké slúchadlá by som mal používať so Soundscape?
+### Aké slúchadlá používať so Soundscape?
 Voľba slúchadiel na používanie so Soundscape je vecou osobnej preferencie a každá možnosť má svoje výhody aj nevýhody. Jedinou požiadavkou je použitie stereo slúchadiel, aby ste mohli naplno využiť 3D priestorové zvukové hlásenia aplikácie Soundscape.
 
 ### Ako Soundscape ovplyvňuje batériu môjho telefónu?
@@ -115,11 +115,11 @@ Soundscape ponúka niekoľko spôsobov, ako ovládať, čo a kedy počujete:
 
 1. Okamžite zastaviť všetok zvuk: Dvojitým ťuknutím na obrazovku dvomi prstami okamžite vypnete všetok zvuk vrátane práve prehrávaného hlásenia a majáka, ak je zapnutý. Hlásenia sa automaticky obnovia, keď sa priblížite k ďalšej križovatke alebo zaujímavému miestu, zvukový maják sa však automaticky neobnoví. Ak chcete maják znova počuť, vyberte na hlavnej obrazovke *tlačidlo na zrušenie stlmenia majáka*.
 
-2. Zastaviť automatické hlásenia: Keď necestujete alebo ste dosiahli cieľ, pravdepodobne nebudete potrebovať, aby vás Soundscape naďalej upozorňoval na veci vo vašom okolí. Namiesto ukončenia aplikácie môžete Soundscape prepnúť do režimu Driemanie, ktorý sa opäť zobudí, keď miesto opustíte, alebo ho môžete prepnúť do Režimu spánku, v ktorom zostane vypnutý, kým ho sami nezapnete späť. Prípadne môžete v menu vybrať *Nastavenia* a v časti *Správa hlásení* nastaviť *Podrobnosť hlásení* na *Bez zvuku*.
+2. Zastaviť automatické hlásenia: Keď necestujete alebo ste dosiahli cieľ, pravdepodobne nebudete potrebovať, aby vás Soundscape naďalej upozorňoval na veci vo vašom okolí. Namiesto ukončenia aplikácie môžete Soundscape prepnúť do režimu Driemanie a keď miesto opustíte, opäť sa zobudí, alebo ho môžete prepnúť do Režimu spánku, v ktorom zostane vypnutý, kým ho sami nezapnete späť. Prípadne môžete v menu vybrať *Nastavenia* a v časti *Spravovať hlásenia* nastaviť *Podrobnosť hlásení* na *Bez zvuku*.
 
 3. Zastaviť maják: Existuje niekoľko situácií, keď síce nastavíte cieľ, no zvukový maják nepotrebujete zapnutý. Môžete napríklad presne vedieť, ako sa dostať do cieľa, ale napriek tomu chcete automatické informácie o tom, ako ďaleko sa ešte nachádzate. Alebo môžete zvukový maják potrebovať iba pri priblížení sa k cieľu. Nech je to akokoľvek, kedy budete maják počuť, si môžete zvoliť prepínaním tlačidla *stlmiť maják*/*zrušiť stlmenie majáka* na hlavnej obrazovke.
 
-Ak chcete so Soundscape naďalej pracovať, ale nechcete počuť automatické hlásenia, môžete nastaviť *Podrobnosť hlásení* na *Bez zvuku* v časti *Správa hlásení* na obrazovke *Nastavenia*, ktorú nájdete v menu. Alebo, ak Soundscape momentálne nechcete používať vôbec, môžete ho pomocou tlačidla *Spánok* na domovskej obrazovke prepnúť do Režimu spánku alebo do režimu Driemanie.
+Ak chcete so Soundscape naďalej pracovať, ale nechcete počuť automatické hlásenia, môžete nastaviť *Podrobnosť hlásení* na *Bez zvuku* v časti *Spravovať hlásenia* na obrazovke *Nastavenia*, ktorú nájdete v menu. Alebo, ak Soundscape momentálne nechcete používať vôbec, môžete ho pomocou tlačidla *Spánok* na domovskej obrazovke prepnúť do Režimu spánku alebo do režimu Driemanie.
 
 ### Musím telefón držať v ruke po celý čas?
 Nie! Počas chôdze si telefón môžete odložiť do tašky, vrecka alebo kamkoľvek vám to vyhovuje. Soundscape na určenie toho, ktoré hlásenia má oznámiť naľavo a napravo, využíva smer, ktorým kráčate. Keď sa zastavíte, Soundscape už nevie, ktorým smerom ste otočení. Ak je zvukový maják zapnutý, všimnete si, že stíchne, kým sa opäť nezačnete pohybovať. Telefón môžete kedykoľvek vytiahnuť a stlačiť tlačidlá polohy a preskúmania v spodnej časti domovskej obrazovky, no dbajte na to, aby ste ho držali s hornou časťou telefónu smerom v smere, ktorým ste otočení, a s obrazovkou smerom k oblohe. V tejto *vodorovnej* polohe Soundscape použije kompas telefónu na určenie smeru, ktorým ste otočení, a poskytne presné priestorové hlásenia. Ak je maják zapnutý, všimnete si tiež, že sa vráti na plnú hlasitosť.

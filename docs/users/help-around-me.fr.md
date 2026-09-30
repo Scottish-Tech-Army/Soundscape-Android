@@ -15,7 +15,7 @@ Le bouton *Autour de moi* vous indique un lieu dans chacun des quatre quadrants 
 
 ## Quand l’utiliser ?
 
-Lorsque vous essayez de trouver vos repères et de vous orienter dans votre environnement, utilisez *"Autour de moi"* pour entendre ce qui vous entoure.
+Lorsque vous essayez de trouver vos repères et de vous orienter dans votre environnement, utilisez *Autour de moi* pour entendre ce qui vous entoure.
 
 ## Comment ça fonctionne ?
 

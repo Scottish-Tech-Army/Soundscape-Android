@@ -9,5 +9,5 @@ has_toc: false
 
 If you want to rename a marker you previously created, or add an annotation to it, select the marker from the *Markers* tab of the *Markers and Routes* page, and then select the *Edit Marker* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-From this *Edit* screen you can also delete a marker if you no longer need it.
+From this *Edit Marker* screen you can also delete a marker if you no longer need it.
 

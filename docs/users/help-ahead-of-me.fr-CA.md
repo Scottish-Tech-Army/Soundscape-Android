@@ -15,7 +15,7 @@ Le bouton *Devant moi* vous indique jusqu’à cinq éléments se trouvant devan
 
 ## Utilisation
 
-Lorsque vous marchez dans la rue, essayez d’utiliser *"Devant moi"* pour découvrir les lieux et les repères situés de part et d’autre.
+Lorsque vous marchez dans la rue, essayez d’utiliser *Devant moi* pour découvrir les lieux et les repères qui se trouvent devant vous, de part et d’autre de la rue.
 
 ## Fonctionnement
 

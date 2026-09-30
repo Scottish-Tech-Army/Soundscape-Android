@@ -27,7 +27,7 @@ Mediasäätimille on kaksi toimintatilaa. Tilan voi valita *Asetukset* -> *Media
 
 ⏭ Seuraava: Jos reittiä toistetaan, siirtää äänimajakan reitin seuraavaan reittipisteeseen. Jos reittiä ei toisteta, antaa ilmoituksen *Lähiympäristö*.
 
-⏮ Edellinen: Jos reittiä toistetaan, siirtää äänimajakan reitin edelliseen reittipisteeseen. Jos reittiä ei toisteta, muuttaa asetusta *Ilmoitusten tarkkuus* yhden askeleen hiljaisemmaksi joka painalluksella: *Yksityiskohtainen*, *Tasapainoinen*, *Hiljainen*, *Äänetön*, ja takaisin tasolle *Yksityiskohtainen*.
+⏮ Edellinen: Jos reittiä toistetaan, siirtää äänimajakan reitin edelliseen reittipisteeseen. Jos reittiä ei toisteta, muuttaa asetusta *Ilmoitusten tarkkuus* yhden askeleen hiljaisemmaksi joka painalluksella: *Yksityiskohtainen*, *Yksinkertaistettu*, *Olennainen*, *Äänetön*, ja takaisin tasolle *Yksityiskohtainen*.
 
 
 

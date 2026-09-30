@@ -1,5 +1,5 @@
 ---
-title: Znaczniki (pinezki)
+title: Znaczniki
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: pl
 permalink: /users/help-markers.html
 ---
 
-# Znaczniki (pinezki)
+# Znaczniki
 
 Dzięki Soundscape możesz oznaczać swój świat i wszystko, co jest dla Ciebie ważne — jak pinezki na mapie.
 
 Możesz oznaczać miejsca osobiste i ważne dla Ciebie, takie jak dom, biuro czy ulubiony sklep spożywczy. Możesz oznaczyć dowolne miejsce lub adres, a także rzeczy, których zwykle nie ma na mapach, na przykład: wejścia do budynków lub parków, przyciski dla pieszych, przejścia dla pieszych, mosty, przystanki autobusowe, a nawet ulubione drzewo Twojego psa. Używaj tych znaczników jako punktów odniesienia podczas spaceru.
 
-Aby doświadczyć działania oznaczonych miejsc, Soundscape będzie automatycznie ogłaszał oznaczone miejsca, gdy je mijasz lub się do nich zbliżasz, możesz też użyć przycisku *„Bliskie znaczniki”* na dole ekranu głównego, aby usłyszeć przestrzenne komunikaty o oznaczonych miejscach wokół Ciebie. Możesz nawet ustawić dźwięk naprowadzający na dowolny oznaczony punkt. Wtedy usłyszysz znany dźwięk naprowadzający Soundscape i będziesz mógł nim sterować jak zwykle.
+Aby doświadczyć działania oznaczonych miejsc, Soundscape będzie automatycznie powiadamiał o oznaczonych miejscach, gdy je mijasz lub się do nich zbliżasz, możesz też użyć przycisku *„Bliskie znaczniki”* na dole ekranu głównego, aby usłyszeć przestrzenne komunikaty o oznaczonych miejscach wokół Ciebie. Możesz nawet ustawić dźwięk naprowadzający na dowolny oznaczony punkt. Wtedy usłyszysz znany dźwięk naprowadzający Soundscape i możesz nim sterować jak zwykle.
 

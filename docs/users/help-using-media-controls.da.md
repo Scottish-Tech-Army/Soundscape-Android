@@ -27,7 +27,7 @@ Der er 2 driftsmåder for mediebetjeningsknapperne. Tilstanden vælges i afsnitt
 
 ⏭ Næste: Hvis en rute afspilles, flytter lydfyret til det næste vejpunkt i ruten. Hvis der ikke afspilles nogen rute, afspilles *Omkring mig*.
 
-⏮ Forrige: Hvis en rute afspilles, flytter lydfyret til det forrige vejpunkt i ruten. Hvis der ikke afspilles nogen rute, ændres *Detaljeniveau for lydbeskeder* et trin mere stille for hvert tryk: *Detaljeret*, *Balanceret*, *Stille*, *Lydløs*, og tilbage til *Detaljeret*.
+⏮ Forrige: Hvis en rute afspilles, flytter lydfyret til det forrige vejpunkt i ruten. Hvis der ikke afspilles nogen rute, ændres *Detaljeniveau for lydbeskeder* et trin mere stille for hvert tryk: *Detaljeret*, *Forenklet*, *Essentiel*, *Lydløs*, og tilbage til *Detaljeret*.
 
 
 
@@ -35,7 +35,7 @@ Der er 2 driftsmåder for mediebetjeningsknapperne. Tilstanden vælges i afsnitt
 
 
 
-⏭ Næste bevæger sig gennem en række menumuligheder, som appen beskriver vha. tekst-til-tale, og vender tilbage til den første efter den sidste. ⏯ Afspil/Pause får derefter appen til at udføre den beskrevne mulighed. Der er én top-niveau-menu, som kun indeholder undermenuer som valgmuligheder. Hver undermenu indeholder en gruppe af lignende handlinger.
+⏭ Næste bevæger sig gennem en række menumuligheder, som appen beskriver ved hjælp af tekst-til-tale, og vender tilbage til den første efter den sidste. ⏯ Afspil/Pause får derefter appen til at udføre den beskrevne mulighed. Der er én top-niveau-menu, som kun indeholder undermenuer som valgmuligheder. Hver undermenu indeholder en gruppe af lignende handlinger.
 
 ⏮ Forrige bevæger sig ikke gennem menuen. I stedet ændrer den *Detaljeniveau for lydbeskeder*, præcis som i originaltilstanden, så den samme knap gør appen mere stille, uanset hvilken tilstand du bruger.
 

@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Ni nini?
 
-Unaweza kumwomba Gemini afanye mambo katika Soundscape bila kugusa simu yako: kusikia tangazo la sauti, kuanzisha mojawapo ya njia zako, au kuweka beacon ya sauti kwenye mojawapo ya alama zako. Msaidizi mwingine yeyote anayeunga mkono vipengele vya programu za Android anaweza kufanya vivyo hivyo.
+Soundscape iko tayari kwa Gemini, lakini Gemini bado haiwezi kuitumia: hilo linategemea Google kutoa uwezo wa vipengele vya programu za Android ndani ya Gemini. Hilo likitokea, utaweza kumwomba Gemini afanye mambo katika Soundscape bila kugusa simu yako: kusikia tangazo la sauti, kuanzisha mojawapo ya njia zako, au kuweka beacon ya sauti kwenye mojawapo ya alama zako. Msaidizi mwingine yeyote anayeunga mkono vipengele vya programu za Android ataweza kufanya vivyo hivyo.
 
-Soundscape hujibu kwa sauti yake yenyewe, kwa matangazo ya sauti na sauti za beacon unazozijua tayari, badala ya msaidizi kusoma muhtasari. Kwa njia hiyo, unachosikia bado kinatoka upande ule unaoelezwa.
+Soundscape itajibu kwa sauti yake yenyewe, kwa matangazo ya sauti na sauti za beacon unazozijua tayari, badala ya msaidizi kusoma muhtasari. Kwa njia hiyo, utakachosikia bado kitatoka upande ule unaoelezwa.
 
 ## Ni lini nitaitumia?
 
@@ -35,11 +35,11 @@ Ianzishe mojawapo ya njia zako zilizohifadhiwa kwa jina, isogee hadi kituo kinac
 
 Iweke beacon ya sauti kwenye mojawapo ya alama zako zilizohifadhiwa kwa jina, au izime beacon.
 
-Iweke kiwango cha matangazo kuwa *Kimya*, *Chache*, *Wastani* au *Kwa Kina*, ili kubadilisha kiasi ambacho Soundscape husema unapotembea. *Kimya* huzima matangazo ya kiotomatiki.
+Iweke kiwango cha matangazo kuwa *Kimya*, *Muhimu*, *Rahisi* au *Kwa Kina*, ili kubadilisha kiasi ambacho Soundscape husema unapotembea. *Kimya* huzima matangazo ya kiotomatiki.
 
 Isome majina ya njia zako zilizohifadhiwa au alama zako zilizohifadhiwa.
 
 Kila kitu isipokuwa orodha hizo mbili kinahitaji Soundscape iwe inafanya kazi. Kama haifanyi kazi, msaidizi atakuambia ufungue Soundscape kwanza. Kuorodhesha njia zako na alama zako hufanya kazi vyovyote vile, kwa sababu husoma tu ulichokwisha hifadhi.
 
-Amri za sauti zinahitaji simu yenye Android 16 au mpya zaidi, na msaidizi anayeunga mkono vipengele vya programu.
+Amri za sauti zitahitaji simu yenye Android 16 au mpya zaidi, na msaidizi anayeunga mkono vipengele vya programu. Hazitafanya kazi hadi Google itakapotoa uwezo huo ndani ya Gemini.
 

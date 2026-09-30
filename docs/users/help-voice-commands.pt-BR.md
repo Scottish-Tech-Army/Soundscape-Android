@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## O que é?
 
-Você pode pedir ao Gemini para fazer coisas no Soundscape sem tocar no celular: ouvir uma notificação, iniciar uma das suas rotas ou colocar um sinalizador sonoro em um dos seus favoritos. Qualquer outro assistente compatível com as funções de app do Android pode fazer o mesmo.
+O Soundscape está pronto para o Gemini, mas o Gemini ainda não consegue usá-lo: isso depende de o Google liberar o suporte às funções de app do Android no Gemini. Quando isso acontecer, você vai poder pedir ao Gemini para fazer coisas no Soundscape sem tocar no celular: ouvir uma notificação, iniciar uma das suas rotas ou colocar um sinalizador sonoro em um dos seus favoritos. Qualquer outro assistente compatível com as funções de app do Android vai poder fazer o mesmo.
 
-O Soundscape responde com a própria voz, com as notificações e os sons de sinalizador que você já conhece, em vez de o assistente ler um resumo. Assim, o que você ouve continua vindo da direção que está sendo descrita.
+O Soundscape vai responder com a própria voz, com as notificações e os sons de sinalizador que você já conhece, em vez de o assistente ler um resumo. Assim, o que você ouvir vai continuar vindo da direção que está sendo descrita.
 
 ## Quando eu o usaria?
 
@@ -35,11 +35,11 @@ Iniciar uma das suas rotas salvas pelo nome, avançar para o localizador seguint
 
 Colocar um sinalizador sonoro em um dos seus favoritos salvos pelo nome, ou desligar o sinalizador.
 
-Definir o detalhe das notificações como *Silencioso*, *Discreto*, *Equilibrado* ou *Detalhado*, para mudar quanto o Soundscape fala enquanto você caminha. *Silencioso* desativa as notificações automáticas.
+Definir o detalhe das notificações como *Silencioso*, *Essencial*, *Simplificado* ou *Detalhado*, para mudar quanto o Soundscape fala enquanto você caminha. *Silencioso* desativa as notificações automáticas.
 
 Ler os nomes das suas rotas salvas ou dos seus favoritos salvos.
 
 Tudo, exceto as duas listas, exige que o Soundscape esteja em execução. Se não estiver, o assistente pede para você abrir o Soundscape primeiro. Listar suas rotas e seus favoritos funciona de qualquer jeito, porque isso só lê o que você já salvou.
 
-Os comandos de voz exigem um celular com Android 16 ou posterior e um assistente compatível com funções de app.
+Os comandos de voz vão exigir um celular com Android 16 ou posterior e um assistente compatível com funções de app. Até o Google liberar esse suporte no Gemini, eles não vão funcionar.
 

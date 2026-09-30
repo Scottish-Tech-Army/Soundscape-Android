@@ -11,5 +11,5 @@ permalink: /users/help-customizing-markers.html
 
 Ikiwa unataka kubadilisha jina la alama uliyoiunda hapo awali, au kuongeza maelezo ya ziada kwake, chagua alama kutoka kwenye kichupo cha *Alama* cha ukurasa wa *Alama na Njia*, kisha uchague kitufe cha *Hariri Alama*. Unaweza kutumia hii kuzipa alama majina mafupi yenye maelezo au manufaa, na pia kuzipa maelezo marefu zaidi kwa kutumia sehemu ya maelezo ya ziada.
 
-Kutoka kwenye skrini hii ya *Hariri* unaweza pia kufuta alama ikiwa huihitaji tena.
+Kutoka kwenye skrini hii ya *Hariri Alama* unaweza pia kufuta alama ikiwa huihitaji tena.
 

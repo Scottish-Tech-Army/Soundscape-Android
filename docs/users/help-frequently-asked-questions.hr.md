@@ -9,9 +9,9 @@ permalink: /users/help-frequently-asked-questions.html
 
 # Često postavljana pitanja
 
-## Što je Soundscape i kako bih ga trebao/la koristiti?
+## Što je Soundscape i kako ga koristiti?
 
-### Kada bih trebao/la koristiti Soundscape?
+### Kada koristiti Soundscape?
 Soundscape ima značajke i prednosti koje obuhvaćaju razne situacije i vremenske okvire. Vrijednost koju vam Soundscape pruža također se može mijenjati tijekom vremena, pa se način na koji ga koristite danas može razlikovati od načina na koji ćete ga koristiti za tri mjeseca. Ljudi često razmišljaju o aplikacijama u smislu *koji problem ova aplikacija dobro rješava?* Soundscape se svakako može koristiti za određene potrebe – primjerice za praćenje odredišta dok se prema njemu krećete, za snalaženje pri izlasku iz stanice metroa, za orijentaciju nakon izlaska iz automobila ili za pronalaženje naziva ulica odnosno udaljenosti do sljedećeg raskrižja. Međutim, filozofija koja stoji iza Soundscapea jest *osvijetliti vaš svijet zvukom* – aplikacija je osmišljena da se koristi kad god ste vani, kako bi vam pružila ambijentalnu svijest o okolini, primjerice nazive ulica u kojima se nalazite, smjer u kojem se krećete i nazive trgovina pored kojih prolazite. U ovom načinu korištenja, naši korisnici opisuju Soundscape kao *ugodnog pratitelja* koji potiče *slučajna otkrića*, pomaže *popuniti praznine u vašoj mentalnoj karti* i pruža veće *samopouzdanje pri hodanju*. Evo nekoliko primjera kako naši korisnici koriste Soundscape u svom životu:
 
 Soundscape mi je pomogao da se vratim na pravi put nakon što sam izašao/la iz autobusa i krenuo/la u pogrešnom smjeru.
@@ -25,7 +25,7 @@ Nedostaje mi ono slučajno otkrivanje stvari dok hodam uokolo i primjećujem ih.
 [Koristio/la sam Soundscape] da pronađem pub u centru Yorka. [Koristio/la] sam niz njegovih opcija kako bih ga najprije locirao/la, a zatim i doista pronašao/la. Doveo me na 3 metra od vrata – sjajno!
 
 ### Što su oznake i kako da ih najbolje iskoristim?
-Oznake su mjesta koja ste spremili. To mogu biti mjesta koja se mogu pronaći unutar aplikacije, ili potpuno nova mjesta koja ste sami dodali. Svoju trenutnu lokaciju možete spremiti kao oznaku odabirom gumba *Trenutačna lokacija* na početnom zaslonu, a zatim odabirom *Spremi kao oznaku*. Druge lokacije možete spremiti kao oznaku pretraživanjem mjesta koje želite spremiti pomoću trake za pretraživanje, ili pronalaženjem mjesta pomoću gumba *Mjesta u blizini*, oboje dostupno na početnom zaslonu Soundscapea. Kada pronađete željeno mjesto, odabirom istog otvorit će se zaslon *Detalji lokacije*. Na tom zaslonu odaberite gumb *Spremi kao oznaku*.
+Oznake su mjesta koja ste spremili. To mogu biti mjesta koja se mogu pronaći unutar aplikacije, ili potpuno nova mjesta koja ste sami dodali. Svoju trenutnu lokaciju možete spremiti kao oznaku odabirom gumba *Trenutačna lokacija* na početnom zaslonu, a zatim odabirom *Spremi kao oznaku*. Druge lokacije možete spremiti kao oznaku pretraživanjem mjesta koje želite spremiti pomoću trake za pretraživanje, ili pronalaženjem mjesta pomoću gumba *Mjesta u blizini*, oboje dostupno na početnom zaslonu Soundscapea. Kada pronađete željeno mjesto, odabirom istog otvorit će se zaslon *Pojedinosti o lokaciji*. Na tom zaslonu odaberite gumb *Spremi kao oznaku*.
 
 ## Kako da najbolje iskoristim Soundscape?
 
@@ -68,23 +68,23 @@ Soundscape je osmišljen tako da vam ne daje previše najava. Također koristi O
 Kako broj najava ne bi postao preplavljujući, neke se kategorije, poput raskrižja, ne najavljuju automatski dok putujete vozilom.
 
 ### Što ako ne razumijem najavu ili je propustim zbog buke u okolini?
-Soundscape ima popis vaših nedavnih najava kako biste mogli ponovno pregledati najave koje ste možda propustili. Kako biste ga pronašli, dodirnite traku za pretraživanje na početnom zaslonu. Na dnu tog zaslona nalazi se odjeljak *Nedavne najave* u kojem će biti navedena najava koju ste propustili.
+Soundscape ne čuva popis prošlih najava, ali ga u bilo kojem trenutku možete zamoliti da vam ponovno opiše okolinu. *Moja lokacija* govori vam gdje se nalazite, a *Oko mene* i *Ispred mene* najavljuju mjesta oko vas i ispred vas. Sva tri gumba nalaze se na dnu početnog zaslona. Ako upotrebljavate medijske kontrole na slušalicama i odabran je *Izvorni način*, ⏭ Next najavljuje *Oko mene* kada se ne reproducira nijedna ruta.
 
 ## Kako Soundscape radi?
 
 ### Na kojim telefonima radi Soundscape?
 Soundscape je trenutačno dostupan za iPhone uređaje s iOS-om 16 ili novijim te za Android telefone s Androidom 11 ili novijim.
 
-### Koje bih slušalice trebao/la koristiti uz Soundscape?
+### Koje slušalice koristiti uz Soundscape?
 Koje ćete slušalice koristiti uz Soundscape stvar je osobnog izbora, a svaka opcija dolazi s prednostima i kompromisima. Jedini zahtjev jest korištenje stereo slušalica kako biste mogli iskoristiti prostorne 3D zvučne najave Soundscapea.
 
 ### Kako Soundscape utječe na bateriju mog telefona?
 Trajanje baterije uvelike ovisi o modelu i starosti vašeg telefona. Najveće trošenje baterije uzrokuje uključen zaslon, pa biste, kako biste produljili trajanje baterije telefona, zaslon trebali držati zaključanim kad god je to moguće. Kako bi se smanjio utjecaj na bateriju telefona, Soundscape ima načine rada Mirovanje i Odgoda. Za dodatno smanjenje potrošnje baterije, kada ne koristite Soundscape, trebali biste ga prisilno zatvoriti putem preglednika aplikacija na telefonu.
 
-### Kako da koristim način rada Mirovanje kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?
+### Kako koristiti način rada Mirovanje za smanjenje utjecaja Soundscapea na bateriju telefona?
 Kako biste Soundscape prebacili u način rada Mirovanje, odaberite gumb *Mirovanje* u gornjem desnom kutu početnog zaslona. Kada to odaberete, Soundscape će prestati koristiti usluge lociranja i mobilne podatke dok ga ne probudite.
 
-### Kako da koristim način rada Odgoda kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?
+### Kako koristiti način rada Odgoda za smanjenje utjecaja Soundscapea na bateriju telefona?
 Kako biste Soundscape prebacili u način rada Odgoda, odaberite gumb *Mirovanje* u gornjem desnom kutu početnog zaslona. Kada je Soundscape u načinu rada Mirovanje, odaberite gumb *Probudi pri odlasku* i Soundscape će prijeći u stanje niske potrošnje energije dok ne napustite trenutnu lokaciju.
 
 ### Kako izbor slušalica utječe na trajanje baterije mog telefona?

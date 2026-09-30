@@ -13,7 +13,7 @@ permalink: /users/help-routes.html
 
 Trasy sú séria bodov trasy. Pri príchode ku každému bodu trasy budete informovaní a zvukový maják automaticky prejde na ďalší bod trasy.
 
-## Kedy by som to použil(a)?
+## Kedy to použiť?
 
 Trasu si možno budete chcieť vytvoriť a použiť na mieste, ktoré už poznáte, aby ste sa držali správnej cesty. Alebo môžete trasu použiť na to, aby ste sa naučili novú cestu.
 

@@ -29,5 +29,5 @@ Poderá pretender criar e utilizar uma rota num local que já conhece, para o aj
 
 **Partilhar uma rota :**
 
-Selecione a sua rota no ecrã *"Marcos e Rotas"* e, em seguida, selecione a opção *"Partilhar"* utilizando as opções de partilha habituais disponíveis.
+Selecione a sua rota no ecrã *«Marcos e Rotas»* e, em seguida, selecione a opção *«Partilhar»* utilizando as opções de partilha habituais disponíveis.
 

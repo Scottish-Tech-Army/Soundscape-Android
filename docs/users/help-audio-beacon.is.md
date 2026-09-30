@@ -15,7 +15,7 @@ Með því að setja hljóðvita á nálægan stað getur Soundscape haldið þ�
 
 ## Hvenær ætti að nota það?
 
-Það er gagnlegt að setja hljóðvita þegar þú vilt fylgjast með þekktu kennileiti meðan þú kannar nýtt svæði, eða þegar þú ert á leið einhvers staðar og vilt fá upplýsingar um umhverfið á leiðinni. Hljóðvitinn gefur ekki skref-fyrir-skref leiðbeiningar; hann spilar samfellda hljóðsögn sem segir þér í hvaða átt hljóðvitinn er miðað við núverandi staðsetningu þína. Með því að nota hljóðvitann ásamt færni þinni í leiðsögn og jafnvel uppáhalds leiðsagnarforritinu þínu geturðu sjálfur valið hvernig þú ferð að ná til staðarins.
+Það er gagnlegt að setja hljóðvita þegar þú vilt fylgjast með þekktu kennileiti meðan þú kannar nýtt svæði, eða þegar þú ert á leið eitthvert og vilt fá upplýsingar um umhverfið á leiðinni. Hljóðvitinn gefur ekki skref-fyrir-skref leiðbeiningar; hann spilar samfellt hljóð sem segir þér í hvaða átt hljóðvitinn er miðað við núverandi staðsetningu þína. Með því að nota hljóðvitann ásamt færni þinni í leiðsögn og jafnvel uppáhalds leiðsagnarforritinu þínu geturðu valið hvernig þú ferð að ná til staðarins.
 
 ## Hvernig virkar það?
 

@@ -25,9 +25,9 @@ K dispozici jsou 2 režimy ovládání médií. Režim lze vybrat v části *Nas
 
 ⏯ Přehrát/Pozastavit: Zapne nebo vypne zvuk majáku. 
 
-⏭ Další: Pokud se přehrává trasa, přesune zvukový maják na další bod trasy. Pokud se nepřehrává žádná trasa, oznámí *Co je kolem mě*.
+⏭ Další: Pokud se přehrává trasa, přesune zvukový maják na další bod trasy. Pokud se nepřehrává žádná trasa, oznámí *Kolem mě*.
 
-⏮ Předchozí: Pokud se přehrává trasa, přesune zvukový maják na předchozí bod trasy. Pokud se nepřehrává žádná trasa, změní *Podrobnost hlášení* o jednu úroveň tišeji při každém stisknutí: *Podrobný*, *Vyvážený*, *Tichý*, *Bez zvuku* a zpět na *Podrobný*.
+⏮ Předchozí: Pokud se přehrává trasa, přesune zvukový maják na předchozí bod trasy. Pokud se nepřehrává žádná trasa, změní *Podrobnost hlášení* o jednu úroveň tišeji při každém stisknutí: *Podrobný*, *Zjednodušený*, *Základní*, *Bez zvuku* a zpět na *Podrobný*.
 
 
 

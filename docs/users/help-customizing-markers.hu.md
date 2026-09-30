@@ -11,5 +11,5 @@ permalink: /users/help-customizing-markers.html
 
 Ha át szeretné nevezni egy korábban létrehozott jelölőjét, vagy megjegyzést szeretne hozzáadni, válassza ki a jelölőt a *Jelölők és útvonalak* oldal *Jelölők* lapján, majd válassza a *Jelölő szerkesztése* gombot. Ezzel leíró vagy hasznos becenevet adhat a jelölőknek, valamint hosszabb leírást is fűzhet hozzájuk a megjegyzés mezőben.
 
-Ezen a *Szerkesztés* képernyőn a jelölőt is törölheti, ha már nincs rá szüksége.
+A *Jelölő szerkesztése* képernyőn a jelölőt is törölheti, ha már nincs rá szüksége.
 

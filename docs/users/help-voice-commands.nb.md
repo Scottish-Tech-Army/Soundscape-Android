@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Hva er det?
 
-Du kan be Gemini om å gjøre ting i Soundscape uten å ta på telefonen: høre en melding, starte en av rutene dine eller sette et lydsignal på en av markørene dine. Alle andre assistenter som støtter appfunksjoner i Android, kan gjøre det samme.
+Soundscape er klar for Gemini, men Gemini kan ikke bruke det ennå: det avhenger av at Google lanserer støtte for appfunksjoner i Android i Gemini. Når det skjer, vil du kunne be Gemini om å gjøre ting i Soundscape uten å ta på telefonen: høre en melding, starte en av rutene dine eller sette et lydsignal på en av markørene dine. Alle andre assistenter som støtter appfunksjoner i Android, vil kunne gjøre det samme.
 
-Soundscape svarer med sin egen stemme, med de meldingene og signallydene du allerede kjenner, i stedet for at assistenten leser opp et sammendrag. Slik kommer det du hører fortsatt fra retningen det beskriver.
+Soundscape vil svare med sin egen stemme, med de meldingene og signallydene du allerede kjenner, i stedet for at assistenten leser opp et sammendrag. Slik vil det du hører fortsatt komme fra retningen det beskriver.
 
 ## Når skal jeg bruke den?
 
@@ -35,11 +35,11 @@ Starte en av de lagrede rutene dine ved navn, gå videre til neste veipunkt, gå
 
 Sette et lydsignal på en av de lagrede markørene dine ved navn, eller slå av lydsignalet.
 
-Sette detaljnivået for meldinger til *Lydløs*, *Stille*, *Balansert* eller *Detaljert*, for å endre hvor mye Soundscape sier mens du går. *Lydløs* slår av de automatiske meldingene.
+Sette detaljnivået for meldinger til *Lydløs*, *Grunnleggende*, *Forenklet* eller *Detaljert*, for å endre hvor mye Soundscape sier mens du går. *Lydløs* slår av de automatiske meldingene.
 
 Lese opp navnene på de lagrede rutene eller de lagrede markørene dine.
 
 Alt bortsett fra de to listene krever at Soundscape kjører. Hvis appen ikke kjører, ber assistenten deg om å åpne Soundscape først. Å liste opp rutene og markørene dine fungerer uansett, fordi det bare leser opp det du allerede har lagret.
 
-Talekommandoer krever en telefon med Android 16 eller nyere og en assistent som støtter appfunksjoner.
+Talekommandoer vil kreve en telefon med Android 16 eller nyere og en assistent som støtter appfunksjoner. Inntil Google lanserer den støtten i Gemini, fungerer de ikke.
 

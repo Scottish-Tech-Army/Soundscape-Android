@@ -25,5 +25,5 @@ Soundscape ان بہترین تھرڈ پارٹی لائبریریوں اور ڈ�
 
 [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) کے رضاکاروں نے کئی تراجم کو بہتر بنایا، جنہیں [MIT license](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) کے تحت استعمال کے لیے دستیاب کیا گیا ہے۔
 
-تمام تھرڈ پارٹی مصنوعات، کمپنی کے ناموں اور لوگوز کے ٹریڈ مارکس یا رجسٹرڈ ٹریڈ مارکس ہیں اور ان کے متعلقہ مالکان کی ملکیت ہیں۔
+تمام تھرڈ پارٹی مصنوعات اور کمپنیوں کے نام اور لوگوز ٹریڈ مارکس یا رجسٹرڈ ٹریڈ مارکس ہیں اور اپنے متعلقہ مالکان کی ملکیت ہیں۔
 

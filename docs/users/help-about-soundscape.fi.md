@@ -17,9 +17,9 @@ Soundscape nojaa näihin erinomaisiin kolmannen osapuolen kirjastoihin ja tietoi
 
 [©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md)ia käytetään niiden karttatiilten tuottamiseen, joita sovelluksemme käyttää.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio)ia käytetään 3D-äänen tuottamiseen, ja se on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) nojalla.
+3D-ääni tuotetaan [Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) -kirjastolla, joka on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) nojalla.
 
-[Oboe library ©The Android Open Source Project](https://github.com/google/oboe)a käytetään äänen toistamiseen pienellä viiveellä, ja se on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/google/oboe/blob/main/LICENSE) nojalla.
+Ääni toistetaan pienellä viiveellä [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) -kirjastolla, joka on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/google/oboe/blob/main/LICENSE) nojalla.
 
 [Alkuperäinen Soundscape-sovellus ©Microsoft Corporation](https://github.com/microsoft/soundscape) tarjosi äänimajakan äänet ja monet käännöksistä, ja se on saatavilla käytettäväksi [MIT-lisenssin](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt) nojalla.
 

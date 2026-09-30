@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Wat is het?
 
-U kunt Gemini vragen om dingen in Soundscape te doen zonder uw telefoon aan te raken: een aankondiging horen, een van uw routes starten of een audiobaken op een van uw markeringen instellen. Elke andere assistent die Android-appfuncties ondersteunt, kan hetzelfde.
+Soundscape is klaar voor Gemini, maar Gemini kan het nog niet gebruiken: dat hangt ervan af wanneer Google ondersteuning voor Android-appfuncties in Gemini uitbrengt. Zodra dat gebeurt, kunt u Gemini vragen om dingen in Soundscape te doen zonder uw telefoon aan te raken: een aankondiging horen, een van uw routes starten of een audiobaken op een van uw markeringen instellen. Elke andere assistent die Android-appfuncties ondersteunt, zal hetzelfde kunnen.
 
-Soundscape antwoordt met zijn eigen stem, met de aankondigingen en bakengeluiden die u al kent, in plaats van dat de assistent een samenvatting voorleest. Zo blijft wat u hoort uit de richting komen die het beschrijft.
+Soundscape zal antwoorden met zijn eigen stem, met de aankondigingen en bakengeluiden die u al kent, in plaats van dat de assistent een samenvatting voorleest. Zo blijft wat u hoort uit de richting komen die het beschrijft.
 
 ## Wanneer zou ik het moeten gebruiken?
 
@@ -35,11 +35,11 @@ Een van uw opgeslagen routes op naam te starten, door te gaan naar het volgende 
 
 Een audiobaken op een van uw opgeslagen markeringen op naam in te stellen, of het baken uit te zetten.
 
-Het detailniveau van de aankondigingen op *Stil*, *Rustig*, *Gebalanceerd* of *Gedetailleerd* te zetten, om te wijzigen hoeveel Soundscape zegt terwijl u loopt. *Stil* zet de automatische aankondigingen uit.
+Het detailniveau van de aankondigingen op *Stil*, *Essentieel*, *Vereenvoudigd* of *Uitgebreid* te zetten, om te wijzigen hoeveel Soundscape zegt terwijl u loopt. *Stil* zet de automatische aankondigingen uit.
 
 De namen van uw opgeslagen routes of uw opgeslagen markeringen voor te lezen.
 
 Alles behalve de twee lijsten vereist dat Soundscape draait. Als dat niet zo is, zegt de assistent dat u Soundscape eerst moet openen. Uw routes en uw markeringen opsommen werkt hoe dan ook, want daarbij wordt alleen voorgelezen wat u al hebt opgeslagen.
 
-Spraakopdrachten vereisen een telefoon met Android 16 of nieuwer en een assistent die appfuncties ondersteunt.
+Spraakopdrachten zullen een telefoon met Android 16 of nieuwer vereisen en een assistent die appfuncties ondersteunt. Tot Google die ondersteuning in Gemini uitbrengt, werken ze niet.
 

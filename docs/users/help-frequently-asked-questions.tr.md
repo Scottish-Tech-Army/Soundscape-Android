@@ -53,7 +53,7 @@ Evet, ayarlayabilirsiniz. Adresler varsayılan olarak listelenmez ancak arama al
 Soundscape, adreslere işaret ayarlamayı destekler. Evinize veya başka herhangi bir adrese işaret ayarlamak için ana ekrandaki arama çubuğunu kullanarak bir konum arayın. Ardından *Konum Ayrıntıları* ekranında *Sesli İşareti Başlat* düğmesine dokunun.
 
 ### Bir hedefe işaret ayarladığımda, Soundscape beni ne kadar yakına götürür?
-Soundscape, hedefinizin konumunu birkaç metre içinde belirleyebilir, ancak daha az değil. Soundscape, hedefinize yakın olduğunuzu belirlediğinde, hedefinizin yakında olduğunu söyleyen son bir anons duyacaksınız ve işaret kapanacak.
+Soundscape, hedefinizin konumunu birkaç metre içinde belirleyebilir, ancak daha az değil. Soundscape hedefinize yakın olduğunuzu belirlediğinde, hedefinizin yakında olduğunu söyleyen son bir anons duyacaksınız ve işaret kapanacak.
 
 ### Hedefime yakınken işareti tekrar açabilir miyim?
 Evet, *İşaretin Sesini Aç* düğmesini seçerek Soundscape'in kapattığı işareti tekrar açabilirsiniz; ancak Konum Servisleri yalnızca yaklaşık 10 metreye kadar doğru olduğundan, hedefinize birkaç metre içindeyken işaretin davranışını garanti edemeyiz.
@@ -68,7 +68,7 @@ Soundscape, size aşırı anons yapmayacak şekilde tasarlanmıştır. Ayrıca v
 Anons sayısının bunaltıcı hale gelmesini önlemek için, kavşaklar gibi bazı kategoriler araçla seyahat ederken otomatik olarak anons edilmez.
 
 ### Bir anonsu anlayamazsam veya ortam gürültüsü nedeniyle kaçırırsam ne olur?
-Soundscape, kaçırmış olabileceğiniz anonsları yeniden gözden geçirebilmeniz için son anonslarınızın bir listesini tutar. Bunu bulmak için ana ekrandaki arama çubuğuna dokunun. Bu ekranın alt kısmında, kaçırdığınız anonsun listeleneceği *Son Anonslar* bölümü bulunur.
+Soundscape geçmiş anonsların bir listesini tutmaz, ancak istediğiniz zaman çevrenizi yeniden anlatmasını isteyebilirsiniz. *Konumum* nerede olduğunuzu söyler; *Etrafımda* ve *Önümde* ise çevrenizdeki ve önünüzdeki yerleri anons eder. Üç düğme de ana ekranın alt kısmındadır. Kulaklığınızın medya denetimlerini kullanıyorsanız ve *Orijinal Mod* seçiliyse, hiçbir rota oynatılmıyorken ⏭ İleri *Etrafımda* anonsunu yapar.
 
 ## Soundscape nasıl çalışır?
 

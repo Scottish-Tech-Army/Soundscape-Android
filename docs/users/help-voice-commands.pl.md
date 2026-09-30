@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Co to jest?
 
-Możesz poprosić Gemini, aby zrobił coś w Soundscape bez dotykania telefonu: odtworzył powiadomienie, uruchomił jedną z twoich tras albo ustawił dźwięk naprowadzający na jednym z twoich znaczników. To samo potrafi każdy inny asystent obsługujący funkcje aplikacji w Androidzie.
+Soundscape jest gotowy na Gemini, ale Gemini nie może go jeszcze używać: zależy to od tego, kiedy Google udostępni w Gemini obsługę funkcji aplikacji w Androidzie. Gdy to nastąpi, będziesz mieć możliwość poproszenia Gemini, aby zrobił coś w Soundscape bez dotykania telefonu: odtworzył powiadomienie, uruchomił jedną z twoich tras albo ustawił dźwięk naprowadzający na jednym z twoich znaczników. To samo będzie potrafił każdy inny asystent obsługujący funkcje aplikacji w Androidzie.
 
-Soundscape odpowiada własnym głosem, powiadomieniami i dźwiękami naprowadzającymi, które już znasz, zamiast czytania streszczenia przez asystenta. Dzięki temu to, co słyszysz, nadal dobiega z kierunku, który opisuje.
+Soundscape będzie odpowiadać własnym głosem, powiadomieniami i dźwiękami naprowadzającymi, które już znasz, zamiast czytania streszczenia przez asystenta. Dzięki temu to, co usłyszysz, nadal będzie dobiegać z kierunku, który opisuje.
 
 ## Kiedy używać?
 
@@ -27,19 +27,19 @@ Nie ma żadnych dokładnych zwrotów do zapamiętania. Poproś o to, czego chces
 
 Możesz poprosić Soundscape, aby:
 
-Opisał *Moja lokalizacja*, co jest *Wokół mnie* albo co jest *Przede mną*.
+Opisał twoją lokalizację (*Moja lokalizacja*), to, co jest *Wokół mnie*, albo to, co jest *Przede mną*.
 
-Ogłosił zapisane znaczniki w twoim pobliżu.
+Powiadomił o zapisanych znacznikach w twoim pobliżu.
 
 Uruchomił jedną z twoich zapisanych tras po nazwie, przeszedł do następnego punktu trasy, wrócił do poprzedniego, wyciszył dźwięk naprowadzający albo zatrzymał trasę.
 
 Ustawił dźwięk naprowadzający na jednym z twoich zapisanych znaczników po nazwie albo go wyłączył.
 
-Ustawił szczegółowość powiadomień na *Wyciszony*, *Cichy*, *Zrównoważony* albo *Szczegółowy*, aby zmienić, jak dużo Soundscape mówi podczas chodzenia. *Wyciszony* wyłącza automatyczne powiadomienia.
+Ustawił szczegółowość powiadomień na *Wyciszony*, *Podstawowy*, *Uproszczony* albo *Szczegółowy*, aby zmienić, jak dużo Soundscape mówi podczas chodzenia. *Wyciszony* wyłącza automatyczne powiadomienia.
 
 Odczytał nazwy twoich zapisanych tras albo twoich zapisanych znaczników.
 
-Wszystko poza tymi dwiema listami wymaga, aby Soundscape był uruchomiony. Jeśli nie jest, asystent poprosi cię o wcześniejsze otwarcie Soundscape. Wypisanie twoich tras i twoich znaczników działa w obu przypadkach, ponieważ odczytuje tylko to, co już zapisałeś.
+Wszystko poza tymi dwiema listami wymaga, aby Soundscape był uruchomiony. Jeśli nie jest, asystent poprosi cię o wcześniejsze otwarcie Soundscape. Wypisanie twoich tras i twoich znaczników działa w obu przypadkach, ponieważ odczytuje tylko to, co zostało już zapisane.
 
-Polecenia głosowe wymagają telefonu z Androidem 16 lub nowszym oraz asystenta obsługującego funkcje aplikacji.
+Polecenia głosowe będą wymagać telefonu z Androidem 16 lub nowszym oraz asystenta obsługującego funkcje aplikacji. Dopóki Google nie udostępni tej obsługi w Gemini, nie będą działać.
 

@@ -14,15 +14,15 @@ permalink: /users/help-frequently-asked-questions.html
 ### Hvornår skal jeg bruge Soundscape?
 Soundscape har funktioner og fordele, der spænder over mange forskellige situationer og tidshorisonter. Værdien af Soundscape for dig kan også ændre sig over tid, så den måde, du bruger appen på i dag, kan være anderledes end den måde, du bruger den på om tre måneder. Folk tænker ofte på apps i form af *hvilket problem er denne app god til at løse?* Soundscape kan bestemt bruges til konkrete behov – f.eks. at holde styr på en destination, mens du er på vej derhen, at hjælpe dig med at orientere dig, når du kommer ud fra en metrostation, at finde ud af, hvor du er, når du stiger ud af en bil, eller at finde vejnavnene på eller afstanden til det næste kryds. Men filosofien bag Soundscape er at *kaste lys over din verden med lyd* – appen er designet til at blive brugt, når som helst du er ude, og give dig en løbende fornemmelse af dine omgivelser, f.eks. navnene på de gader, du går på, den retning, du bevæger dig i, og navnene på de forretninger, du passerer. I denne brugsform har vores brugere omtalt Soundscape som en *dejlig ledsagerapp*, som understøtter *lykketræf*, hjælper med at *udfylde hullerne i dit mentale kort* og giver mere *selvtillid, når du går*. Her er nogle andre eksempler på, hvordan vores brugere bruger Soundscape i deres hverdag:
 
-Soundscape hjalp mig tilbage på rette vej, efter at jeg var stået af bussen og gået i den forkerte retning.
+»Soundscape hjalp mig tilbage på rette vej, efter at jeg var stået af bussen og gået i den forkerte retning.«
 
-Selv i den by, hvor jeg har boet i 3 år, har jeg fået et bedre billede af, hvad der er omkring mig [med Soundscape].
+»Selv i den by, hvor jeg har boet i 3 år, har jeg fået et bedre billede af, hvad der er omkring mig [med Soundscape].«
 
-3D-lyden forbedrer min oplevelse af en gåtur, fordi jeg føler mig mere forbundet med mine omgivelser… Jeg er mere tilbøjelig til at prøve en ny rute nu, hvor jeg har appen.
+»3D-lyden forbedrer min oplevelse af en gåtur, fordi jeg føler mig mere forbundet med mine omgivelser… Jeg er mere tilbøjelig til at prøve en ny rute nu, hvor jeg har appen.«
 
-Jeg savner de tilfældige opdagelser ved at gå rundt og lægge mærke til ting. Det er dejligt at have Soundscape – det kræver ingen indsats at høre om tingene omkring mig. De relationelle oplysninger er nyttige, og det er en fantastisk app til situationsfornemmelse og til at udforske butiksgader.
+»Jeg savner de tilfældige opdagelser ved at gå rundt og lægge mærke til ting. Det er dejligt at have Soundscape – det kræver ingen indsats at høre om tingene omkring mig. De relationelle oplysninger er nyttige, og det er en fantastisk app til situationsfornemmelse og til at udforske butiksgader.«
 
-[Jeg brugte Soundscape] til at finde en pub midt i York. [Jeg] brugte en række af dens muligheder til først at lokalisere den og derefter rent faktisk finde den. Den førte mig hen på 3 meters afstand af døren – fantastisk!
+»[Jeg brugte Soundscape] til at finde en pub midt i York. [Jeg] brugte en række af dens muligheder til først at lokalisere den og derefter rent faktisk finde den. Den førte mig hen på 3 meters afstand af døren – fantastisk!«
 
 ### Hvad er mærker, og hvordan får jeg mest muligt ud af dem?
 Mærker er steder, som du har gemt. Det kan være steder, der kan findes i appen, eller helt nye steder, du selv har tilføjet. Du kan gemme din aktuelle placering som et mærke ved at vælge knappen *Aktuel placering* på startskærmen og derefter vælge *Gem som mærke*. Du kan gemme andre placeringer som mærker ved at søge efter det sted, du vil gemme, med søgefeltet eller ved at finde et sted med knappen *Steder i nærheden*, som begge findes på Soundscapes startskærm. Når du har fundet det sted, du vil gemme, fører valget dig til skærmen *Oplysninger om placering*. På denne skærm vælger du knappen *Gem som mærke*.
@@ -30,7 +30,7 @@ Mærker er steder, som du har gemt. Det kan være steder, der kan findes i appen
 ## Hvordan får jeg mest muligt ud af Soundscape?
 
 ### Hvad kan jeg sætte et lydfyr på?
-Du kan indstille et lydfyr på enhver virksomhed, sted, interessepunkt, adresse eller et kryds. Der er flere måder at tilføje et lydfyr til en placering: vis først oplysningerne for en placering ved at søge efter stedet i søgefeltet eller ved at trykke på en af knapperne *Steder i nærheden*, *Mærker og Ruter* eller *Aktuel placering* og vælge et sted. Vælg derefter knappen *Start lydfyr* på skærmen *Oplysninger om placering*. Når du trykker på denne, vender du tilbage til startskærmen, og et hørbart lydfyr fra den valgte placering tændes. Navnet på stedet samt dets afstand og fysiske adresse, hvis tilgængelig, vil nu blive vist på hovedskærmen.
+Du kan indstille et lydfyr på enhver virksomhed, sted, interessepunkt, adresse eller et kryds. Der er flere måder at tilføje et lydfyr til en placering: vis først oplysningerne for en placering ved at søge efter stedet i søgefeltet eller ved at trykke på en af knapperne *Steder i nærheden*, *Mærker og ruter* eller *Aktuel placering* og vælge et sted. Vælg derefter knappen *Start lydfyr* på skærmen *Oplysninger om placering*. Når du trykker på denne, vender du tilbage til startskærmen, og et hørbart lydfyr fra den valgte placering tændes. Navnet på stedet samt dets afstand og fysiske adresse, hvis tilgængelig, vil nu blive vist på hovedskærmen.
 
 ### Hvordan får jeg mest muligt ud af et lydfyr?
 Du kan tænke på det hørbare lydfyr som et *fyr for dine ører*: det fortæller dig, hvor din destination ligger, i lige linje fra din nuværende position. Ligesom et fyr fortæller det dig ikke, hvordan du skal komme derhen – du kan stadig få brug for at træffe navigationsvalg undervejs for at komme uden om forhindringer. Den kontinuerlige rytmiske lyd fra lydfyret kommer fra destinationens retning og hjælper dig med at bevare fornemmelsen af, hvor destinationen ligger i forhold til dig, mens du går. Når du går direkte mod destinationen, eller hvis du peger telefonen mod destinationen, hører du en højere *ring*-lyd. Det hjælper dig med at præcisere destinationens retning, fordi retningen af den rytmiske lyd nogle gange kan være svær at høre i støjende omgivelser. For at finde den højere *ring* skal du holde telefonen fladt og langsomt dreje rundt; hvis du drejer hovedet i samme retning som telefonen, får du den bedste rumlige lydoplevelse.
@@ -56,7 +56,7 @@ Soundscape understøtter indstilling af lydfyr på adresser. Hvis du vil indstil
 Soundscape kan bestemme placeringen af din destination inden for nogle meters afstand, men ikke mindre. Når Soundscape registrerer, at du er tæt på din destination, hører du en endelig lydbesked om, at din destination er i nærheden, og lydfyret slukkes.
 
 ### Kan jeg slå lydfyret til igen, når jeg er tæt på min destination?
-Ja, du kan slå lydfyret til igen, når Soundscape slår det fra, ved at vælge *"slå lydfyr til-knappen"*. Men da lokalitetstjenester kun har en præcision på cirka 10 meter, kan vi ikke garantere lydfyrets funktion, når du er inden for nogle få meter af din destination.
+Ja, du kan slå lydfyret til igen, når Soundscape slår det fra, ved at vælge *slå lydfyr til-knappen*. Men da lokalitetstjenester kun har en præcision på cirka 10 meter, kan vi ikke garantere lydfyrets funktion, når du er inden for nogle få meter af din destination.
 
 ### Hvorfor sender Soundscape lydbeskeder om vejnavne to gange, når jeg nærmer mig et kryds?
 For at tage højde for forskellige typer kryds, beskriver Soundscape kryds som segmenter af veje, der udgår fra et fælles punkt. Soundscape bruger rumlig lyd til at angive navnene på de veje, der går til venstre, ligeud og til højre, i denne rækkefølge. Hvis beskrivelsen af krydset begynder med den vej, du er på, i stedet for én til venstre, så danner krydset et T på siden, hvor den vej, du er på, fortsætter fremad, og den tilstødende vej kommer fra højre. Tilsvarende, hvis beskrivelsen kun omfatter en vej til venstre og til højre, ved du, at den vej, du er på, ender i et T foran dig. Denne metode til beskrivelse af kryds fungerer også, når en vej skifter navn ved et kryds.
@@ -68,7 +68,7 @@ Soundscape er designet til ikke at give dig for mange lydbeskeder. Den bruger og
 For at forhindre, at antallet af lydbeskeder bliver overvældende, annonceres nogle kategorier, f.eks. kryds, ikke automatisk, når du kører i et køretøj.
 
 ### Hvad gør jeg, hvis jeg ikke forstår en lydbesked eller går glip af den på grund af omgivende støj?
-Soundscape har en liste over dine seneste lydbeskeder, så du kan genfinde lydbeskeder, du måske gik glip af. For at finde denne liste skal du trykke på søgefeltet på startskærmen. Nederst på denne skærm er der en sektion for *Seneste lydbeskeder*, hvor den lydbesked, du gik glip af, vil være angivet.
+Soundscape gemmer ikke en liste over tidligere lydbeskeder, men du kan når som helst bede appen om at beskrive dine omgivelser igen. *Min placering* fortæller dig, hvor du er, og *Omkring mig* og *Foran mig* læser stederne omkring dig og foran dig op. Alle tre knapper er nederst på startskærmen. Hvis du bruger medieknapperne på dine hovedtelefoner i *Originaltilstand*, afspiller ⏭ Næste *Omkring mig*, når der ikke afspilles nogen rute.
 
 ## Hvordan fungerer Soundscape?
 
@@ -85,7 +85,7 @@ Batterilevetiden varierer meget afhængigt af din telefons model og alder. Den s
 For at sætte Soundscape i dvaletilstand skal du vælge knappen *Dvale* i øverste højre hjørne af startskærmen. Når du vælger denne, stopper Soundscape med at bruge lokalitetstjenester og mobildata, indtil du vækker den.
 
 ### Hvordan bruger jeg slumretilstand til at minimere indvirkningen fra Soundscape på mit telefonbatteri?
-For at sætte Soundscape i slumretilstand skal du vælge knappen *Dvale* i øverste højre hjørne af startskærmen. Når Soundscape er i dvaletilstand, vælg knappen *Væk, når jeg forlader stedet*, så går Soundscape i en lavenergitilstand, indtil du forlader din nuværende placering.
+For at sætte Soundscape i slumretilstand skal du vælge knappen *Dvale* i øverste højre hjørne af startskærmen. Når Soundscape er i dvaletilstand, skal du vælge knappen *Væk, når jeg forlader stedet*, så går Soundscape i en lavenergitilstand, indtil du forlader din nuværende placering.
 
 ### Hvordan påvirker mit valg af hovedtelefoner batterilevetiden på min telefon?
 I vores tests er batteriforbruget i Bluetooth-hovedtelefoner sammenligneligt med forbruget i kablede hovedtelefoner og bør ikke være en væsentlig faktor at overveje, når man vælger hovedtelefoner.
@@ -100,7 +100,7 @@ Soundscape bruger lokalitetstjenester til at bestemme, hvor du er. I vores tests
 3. I koldt vejr skal du holde telefonen varm, da batterierne klarer sig dårligere ved koldere temperaturer.
 
 ### Hvor mange mobildata bruger Soundscape?
-Mængden af mobildata, der bruges, afhænger af, hvordan du bruger Soundscape. Vi har designet appen til kun at bruge en lille mængde data, når du er ude at færdes, ved f.eks. at gemme punkter, mens du går rundt, så du ikke behøver at downloade dem igen, hver gang du vender tilbage til et sted, du allerede har været. For at reducere mængden af mobildata, du bruger, skal du sørge for at have forbindelse til Wi-Fi, når det er muligt, især for at downloade appen. Når du ikke bruger Soundscape, bør du bruge knappen *Dvale* til at sætte Soundscape i dvaletilstand eller tvinge appen til at lukke den ned.
+Mængden af mobildata, der bruges, afhænger af, hvordan du bruger Soundscape. Vi har designet appen til kun at bruge en lille mængde data, når du er ude at færdes, ved f.eks. at gemme punkter, mens du går rundt, så du ikke behøver at downloade dem igen, hver gang du vender tilbage til et sted, du allerede har været. For at reducere mængden af mobildata, du bruger, skal du sørge for at have forbindelse til Wi-Fi, når det er muligt, især for at downloade appen. Når du ikke bruger Soundscape, bør du bruge knappen *Dvale* til at sætte Soundscape i dvaletilstand eller tvangslukke appen.
 
 ### Hvordan adskiller Soundscape sig fra andre kortapps?
 Soundscape giver en omgivende beskrivelse af dine omgivelser for at hjælpe med udforskning og vejfinding. Ved hjælp af rumlig lyd annoncerer Soundscape interessepunkter, parker, veje og kryds fra den retning, de fysisk befinder sig i dit umiddelbare nærområde, mens du går. For eksempel: hvis du passerer en butik på din højre side, vil du høre butikkens navn komme fra højre. Når du nærmer dig et kryds, vil du høre hvert vejnavn lyde fra den retning, vejen går — startende med den til venstre, derefter den ligeud og til højre.

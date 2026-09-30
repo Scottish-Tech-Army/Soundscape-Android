@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Apa itu?
 
-Anda dapat meminta Gemini melakukan hal-hal di Soundscape tanpa menyentuh ponsel: mendengar pemberitahuan, memulai salah satu rute Anda, atau memasang suar audio pada salah satu penanda Anda. Asisten lain yang mendukung fungsi aplikasi Android juga bisa melakukan hal yang sama.
+Soundscape sudah siap untuk Gemini, tetapi Gemini belum dapat menggunakannya: hal itu bergantung pada kapan Google merilis dukungan fungsi aplikasi Android di Gemini. Setelah itu terjadi, Anda akan dapat meminta Gemini melakukan hal-hal di Soundscape tanpa menyentuh ponsel: mendengar pemberitahuan, memulai salah satu rute Anda, atau memasang suar audio pada salah satu penanda Anda. Asisten lain yang mendukung fungsi aplikasi Android juga akan bisa melakukan hal yang sama.
 
-Soundscape menjawab dengan suaranya sendiri, dengan pemberitahuan dan suara suar yang sudah Anda kenal, bukan asisten yang membacakan ringkasan. Dengan begitu, apa yang Anda dengar tetap datang dari arah yang digambarkannya.
+Soundscape akan menjawab dengan suaranya sendiri, dengan pemberitahuan dan suara suar yang sudah Anda kenal, bukan asisten yang membacakan ringkasan. Dengan begitu, apa yang Anda dengar akan tetap datang dari arah yang digambarkannya.
 
 ## Kapan saya menggunakannya?
 
@@ -35,11 +35,11 @@ Memulai salah satu rute tersimpan Anda berdasarkan nama, berpindah ke titik rute
 
 Memasang suar audio pada salah satu penanda tersimpan Anda berdasarkan nama, atau mematikan suar.
 
-Mengatur tingkat detail pemberitahuan ke *Senyap*, *Ringkas*, *Seimbang*, atau *Rinci*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. *Senyap* mematikan pemberitahuan otomatis.
+Mengatur tingkat detail pemberitahuan ke *Senyap*, *Esensial*, *Sederhana*, atau *Rinci*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. *Senyap* mematikan pemberitahuan otomatis.
 
 Membacakan nama rute tersimpan atau penanda tersimpan Anda.
 
 Semuanya kecuali kedua daftar itu memerlukan Soundscape yang sedang berjalan. Jika tidak, asisten akan meminta Anda membuka Soundscape terlebih dahulu. Menyebutkan daftar rute dan penanda Anda tetap bisa dilakukan, karena hanya membacakan apa yang sudah Anda simpan.
 
-Perintah suara memerlukan ponsel dengan Android 16 atau yang lebih baru, serta asisten yang mendukung fungsi aplikasi.
+Perintah suara akan memerlukan ponsel dengan Android 16 atau yang lebih baru, serta asisten yang mendukung fungsi aplikasi. Sebelum Google merilis dukungan tersebut di Gemini, perintah suara belum akan berfungsi.
 

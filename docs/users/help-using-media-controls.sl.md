@@ -27,7 +27,7 @@ Za predstavnostne kontrolnike sta na voljo 2 načina delovanja. Način lahko izb
 
 ⏭ Naprej: Če se predvaja pot, premakne zvočni svetilnik na naslednjo točko poti. Če se ne predvaja nobena pot, izgovori *Okoli mene*.
 
-⏮ Nazaj: Če se predvaja pot, premakne zvočni svetilnik na prejšnjo točko poti. Če se ne predvaja nobena pot, spremeni *Raven podrobnosti obvestil* za eno raven tiše ob vsakem pritisku: *Podrobno*, *Uravnoteženo*, *Tiho*, *Brez zvoka* in nazaj na *Podrobno*.
+⏮ Nazaj: Če se predvaja pot, premakne zvočni svetilnik na prejšnjo točko poti. Če se ne predvaja nobena pot, spremeni *Raven podrobnosti obvestil* za eno raven tiše ob vsakem pritisku: *Podrobno*, *Poenostavljeno*, *Osnovno*, *Brez zvoka* in nazaj na *Podrobno*.
 
 
 

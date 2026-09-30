@@ -1,5 +1,5 @@
 ---
-title: Sử dụng nút điều khiển media
+title: Sử dụng nút điều khiển đa phương tiện
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: vi
 permalink: /users/help-using-media-controls.html
 ---
 
-# Sử dụng nút điều khiển media
+# Sử dụng nút điều khiển đa phương tiện
 
 ## Đây là gì?
 
@@ -27,7 +27,7 @@ Có 2 chế độ hoạt động cho các nút điều khiển đa phương ti�
 
 ⏭ Tiếp theo: Nếu một lộ trình đang phát, di chuyển đèn hiệu âm thanh đến Điểm dừng tiếp theo trong lộ trình. Nếu không có lộ trình nào đang phát, thông báo *Xung quanh tôi*.
 
-⏮ Trước đó: Nếu một lộ trình đang phát, di chuyển đèn hiệu âm thanh đến Điểm dừng trước đó trong lộ trình. Nếu không có lộ trình nào đang phát, thay đổi *Mức chi tiết thông báo*, mỗi lần nhấn lại yên tĩnh hơn một mức: *Chi tiết*, *Cân bằng*, *Yên tĩnh*, *Im lặng*, rồi quay lại *Chi tiết*.
+⏮ Trước đó: Nếu một lộ trình đang phát, di chuyển đèn hiệu âm thanh đến Điểm dừng trước đó trong lộ trình. Nếu không có lộ trình nào đang phát, thay đổi *Mức chi tiết thông báo*, mỗi lần nhấn lại yên tĩnh hơn một mức: *Chi tiết*, *Đơn giản*, *Thiết yếu*, *Im lặng*, rồi quay lại *Chi tiết*.
 
 
 

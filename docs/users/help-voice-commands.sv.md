@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Vad är det?
 
-Du kan be Gemini att göra saker i Soundscape utan att röra telefonen: höra ett informationsljud, starta en av dina rutter eller ställa in en ljudfyr på en av dina platsmarkörer. Alla andra assistenter som stöder appfunktioner i Android kan göra samma sak.
+Soundscape är redo för Gemini, men Gemini kan inte använda det än: det kräver att Google först släpper stöd för appfunktioner i Android i Gemini. När det sker kommer du att kunna be Gemini att göra saker i Soundscape utan att röra telefonen: höra ett informationsljud, starta en av dina rutter eller ställa in en ljudfyr på en av dina platsmarkörer. Alla andra assistenter som stöder appfunktioner i Android kommer att kunna göra samma sak.
 
-Soundscape svarar med sin egen röst, med de informationsljud och fyrljud du redan känner till, i stället för att assistenten läser upp en sammanfattning. På så sätt kommer det du hör fortfarande från den riktning som beskrivs.
+Soundscape kommer att svara med sin egen röst, med de informationsljud och fyrljud du redan känner till, i stället för att assistenten läser upp en sammanfattning. På så sätt kommer det du hör fortfarande från den riktning som beskrivs.
 
 ## När ska jag använda det?
 
@@ -35,11 +35,11 @@ Starta en av dina sparade rutter med namn, gå vidare till nästa brytpunkt, gå
 
 Ställa in en ljudfyr på en av dina sparade platsmarkörer med namn, eller stänga av ljudfyren.
 
-Ställa in detaljnivån för informationsljuden på *Tyst*, *Lågmäld*, *Balanserad* eller *Detaljerad*, för att ändra hur mycket Soundscape säger medan du går. *Tyst* stänger av de automatiska informationsljuden.
+Ställa in detaljnivån för informationsljuden på *Tyst*, *Grundläggande*, *Förenklad* eller *Detaljerad*, för att ändra hur mycket Soundscape säger medan du går. *Tyst* stänger av de automatiska informationsljuden.
 
 Läsa upp namnen på dina sparade rutter eller dina sparade platsmarkörer.
 
 Allt utom de två listorna kräver att Soundscape körs. Om appen inte körs säger assistenten åt dig att öppna Soundscape först. Att lista dina rutter och dina platsmarkörer fungerar i båda fallen, eftersom det bara läser upp det du redan har sparat.
 
-Röstkommandon kräver en telefon med Android 16 eller senare och en assistent som stöder appfunktioner.
+Röstkommandon kommer att kräva en telefon med Android 16 eller senare och en assistent som stöder appfunktioner. Tills Google släpper det stödet i Gemini fungerar de inte.
 

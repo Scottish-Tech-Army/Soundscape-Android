@@ -68,7 +68,7 @@ Soundscape está diseñado para no darte demasiados avisos. Además, usa OpenStr
 Para que el número de avisos no resulte abrumador, algunas categorías, como los cruces, no se anuncian automáticamente al viajar en un vehículo.
 
 ### ¿Qué ocurre si no entiendo un aviso o si no lo oigo por el ruido?
-Soundscape tiene una lista de avisos recientes para que puedas volver a visitar avisos que te hayas perdido. Para encontrarla, pulsa en la barra de búsqueda en la pantalla principal. En la parte inferior de esta página, hay una sección *Avisos recientes*, donde aparecerá el aviso que te has perdido.
+Soundscape no guarda una lista de los avisos anteriores, pero puedes pedirle que vuelva a describir tu entorno en cualquier momento. *Mi ubicación* te dice dónde estás, y *Alrededor de mí* y *Delante de mí* anuncian los lugares que tienes alrededor y delante. Los tres botones están en la parte inferior de la pantalla principal. Si usas los controles multimedia de tus auriculares en *Modo Original*, ⏭ Siguiente avisa de *Alrededor de mí* cuando no se está reproduciendo ninguna ruta.
 
 ## ¿Cómo funciona Soundscape?
 

@@ -11,7 +11,7 @@ permalink: /users/help-using-media-controls.html
 
 ## Co to jest?
 
-Do niektórych funkcji Soundscape możesz uzyskać dostęp za pomocą przycisków sterowania mediami w słuchawkach. Funkcjonalność działa z dowolnymi słuchawkami przewodowymi lub Bluetooth, które mają przyciski sterowania mediami, takie jak Odtwarzaj, Pauza, Dalej, Wstecz i inne. Różne modele słuchawek mogą mieć różny zestaw przycisków — zapoznaj się z poniższą listą akcji, aby sprawdzić, które z nich są dostępne dla Ciebie.
+Do niektórych funkcji Soundscape możesz uzyskać dostęp za pomocą przycisków sterowania mediami w słuchawkach. Funkcjonalność działa z dowolnymi słuchawkami przewodowymi lub Bluetooth, które mają przyciski sterowania mediami, takie jak Odtwórz, Pauza, Następny, Poprzedni i inne. Różne modele słuchawek mogą mieć różny zestaw przycisków — zapoznaj się z poniższą listą akcji, aby sprawdzić, które z nich są dostępne dla Ciebie.
 
 ## Kiedy używać?
 
@@ -25,9 +25,9 @@ Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w
 
 ⏯ Odtwórz/Pauza: włącza i wyłącza dźwięk naprowadzający. 
 
-⏭ Następny: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do następnego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, ogłasza *Wokół mnie*.
+⏭ Następny: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do następnego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, uruchamia *Wokół mnie*.
 
-⏮ Poprzedni: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do poprzedniego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, zmienia *Szczegółowość powiadomień* o jeden poziom ciszej przy każdym naciśnięciu: *Szczegółowy*, *Zrównoważony*, *Cichy*, *Wyciszony* i z powrotem *Szczegółowy*.
+⏮ Poprzedni: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do poprzedniego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, zmienia *Szczegółowość powiadomień* o jeden poziom ciszej przy każdym naciśnięciu: *Szczegółowy*, *Uproszczony*, *Podstawowy*, *Wyciszony* i z powrotem *Szczegółowy*.
 
 
 

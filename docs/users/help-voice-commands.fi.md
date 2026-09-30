@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Mikä se on?
 
-Voit pyytää Geminiä tekemään asioita Soundscapessa koskematta puhelimeen: kuulla ilmoituksen, aloittaa jonkin reiteistäsi tai asettaa äänimajakan johonkin merkitsimistäsi. Sama onnistuu millä tahansa muullakin avustajalla, joka tukee Androidin sovellustoimintoja.
+Soundscape on valmis Geminiä varten, mutta Gemini ei voi vielä käyttää sitä: se riippuu siitä, milloin Google julkaisee Geminiin tuen Androidin sovellustoiminnoille. Kun näin käy, voit pyytää Geminiä tekemään asioita Soundscapessa koskematta puhelimeen: kuulla ilmoituksen, aloittaa jonkin reiteistäsi tai asettaa äänimajakan johonkin merkitsimistäsi. Sama onnistuu silloin millä tahansa muullakin avustajalla, joka tukee Androidin sovellustoimintoja.
 
-Soundscape vastaa omalla äänellään, niillä ilmoituksilla ja majakan äänillä, jotka jo tunnet, sen sijaan että avustaja lukisi yhteenvedon. Näin kuulemasi tulee edelleen siitä suunnasta, jota se kuvaa.
+Soundscape vastaa silloin omalla äänellään, niillä ilmoituksilla ja majakan äänillä, jotka jo tunnet, sen sijaan että avustaja lukisi yhteenvedon. Näin kuulemasi tulee edelleen siitä suunnasta, jota se kuvaa.
 
 ## Milloin käyttäisin sitä?
 
@@ -35,11 +35,11 @@ Aloittamaan jonkin tallennetuista reiteistäsi nimeltä, siirtymään seuraavaan
 
 Asettamaan äänimajakan johonkin tallennetuista merkitsimistäsi nimeltä tai kytkemään majakan pois.
 
-Asettamaan ilmoitusten tarkkuudeksi *Äänetön*, *Hiljainen*, *Tasapainoinen* tai *Yksityiskohtainen*, jolloin muuttuu, kuinka paljon Soundscape puhuu kävellessäsi. *Äänetön* kytkee automaattiset ilmoitukset pois.
+Asettamaan ilmoitusten tarkkuudeksi *Äänetön*, *Olennainen*, *Yksinkertaistettu* tai *Yksityiskohtainen*, jolloin muuttuu, kuinka paljon Soundscape puhuu kävellessäsi. *Äänetön* kytkee automaattiset ilmoitukset pois.
 
 Lukemaan tallennettujen reittiesi tai tallennettujen merkitsimiesi nimet.
 
 Kaikki muu paitsi nämä kaksi luetteloa edellyttää, että Soundscape on käynnissä. Jos se ei ole, avustaja kehottaa avaamaan Soundscapen ensin. Reittiesi ja merkitsimiesi luetteleminen toimii kummassakin tapauksessa, koska siinä vain luetaan se, minkä olet jo tallentanut.
 
-Äänikomennot edellyttävät puhelinta, jossa on Android 16 tai uudempi, ja avustajaa, joka tukee sovellustoimintoja.
+Äänikomennot tulevat edellyttämään puhelinta, jossa on Android 16 tai uudempi, ja avustajaa, joka tukee sovellustoimintoja. Ennen kuin Google julkaisee tämän tuen Geminiin, ne eivät toimi.
 

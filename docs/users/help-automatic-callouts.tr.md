@@ -25,13 +25,13 @@ Soundscape, yaklaştığınızda bulunduğu yönden adını söyleyerek çevreni
 
 **Sessizliğe ihtiyaç duyduğunuzda:**
 
- Bir yolu geçmek üzereyken veya uygulamanın sessiz olmasına ihtiyaç duyduğunuzda anonsları kapatabilirsiniz. Anonslar kapalıyken uygulama yalnızca *"Konumum"*, *"Yakındaki Kayıtlı Noktalar"*, *"Etrafımda"* veya *"Önümde"* düğmelerinden birine manuel olarak dokunduğunuzda bilgi verir.
+ Bir yolu geçmek üzereyken veya uygulamanın sessiz olmasına ihtiyaç duyduğunuzda anonsları kapatabilirsiniz. Anonslar kapalıyken uygulama yalnızca *Konumum*, *Yakındaki Kayıtlı Noktalar*, *Etrafımda* veya *Önümde* düğmelerinden birine manuel olarak dokunduğunuzda bilgi verir.
 
 ## Nasıl çalışır?
 
 **Anonsları açma veya kapatma :**
 
- Anonsları kapatmak uygulamayı sessiz hale getirir. Anonslar, *Ayarlar* ekranının *Anonsları yönet* bölümünde *Anons Ayrıntısı* ayarını *Sessiz* yaparak kapatılabilir; başka herhangi bir düzey seçildiğinde yeniden açılır. Aynısını Siri'den veya Gemini'den isteyerek de yapabilirsiniz. Ayrıca kulaklığınızdaki medya kontrol düğmeleriyle Soundscape'i adım adım kısabilirsiniz: *geri* düğmesine her basış *Ayrıntılı*, *Dengeli*, *Sakin* ve *Sessiz* düzeyleri arasında bir kademe aşağı iner, bir basış daha *Ayrıntılı* düzeyine döner. *Medya Kontrollerini Kullanma* yardım konusuna bakın. Alternatif olarak, ana ekranın sağ üst köşesindeki *Uyku Modu* düğmesini kullanarak Soundscape'in anons yapmasını, siz uyandırana kadar durdurabilirsiniz.
+ Anonsları kapatmak uygulamayı sessiz hale getirir. Anonslar, *Ayarlar* ekranının *Anonsları yönet* bölümünde *Anons Ayrıntısı* ayarını *Sessiz* yaparak kapatılabilir; başka herhangi bir düzey seçildiğinde yeniden açılır. iPhone'da aynısını Siri'den isteyerek yapabilirsiniz; Android'de ise Google desteği yayınladığında aynısı Gemini üzerinden çalışacak. Ayrıca kulaklığınızdaki medya kontrol düğmeleriyle Soundscape'i adım adım kısabilirsiniz: *geri* düğmesine her basış *Ayrıntılı*, *Sadeleştirilmiş*, *Temel* ve *Sessiz* düzeyleri arasında bir kademe aşağı iner, bir basış daha *Ayrıntılı* düzeyine döner. *Medya Kontrollerini Kullanma* yardım konusuna bakın. Alternatif olarak, ana ekranın sağ üst köşesindeki *Uyku Modu* düğmesini kullanarak Soundscape'in anons yapmasını, siz uyandırana kadar durdurabilirsiniz.
 
 **Hangi anonsları duyduğunuzu yönetme :**
 

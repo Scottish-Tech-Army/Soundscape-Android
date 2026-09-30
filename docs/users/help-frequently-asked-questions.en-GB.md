@@ -12,17 +12,17 @@ permalink: /users/help-frequently-asked-questions.html
 ## What is Soundscape and how should I use it?
 
 ### When should I use Soundscape?
-Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
+Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *“what problem is this app good at solving?”* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *“lighting up your world with sound”* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *“nice companion app”*, which supports *“serendipity”*, helps *“fill in the gaps in your mental map”*, and provides more *“confidence when walking”*. Here are some other examples of how our users are using Soundscape in their life:
 
-"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
+“Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.”
 
-"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
+“Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].”
 
-"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
+“The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.”
 
-"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
+“I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.”
 
-"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 metres of the door – brilliant!"
+“[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 metres of the door – brilliant!”
 
 ### What are Markers and how do I get the most out of them?
 Markers are places that you have saved. They may be places already discoverable in the app or entirely new places you add yourself. You can save your current location as a marker by selecting the *Current Location* button on the home screen and then choosing *Save as Marker*. You can save other locations by searching for the place using the search bar or by finding somewhere with the *Places Nearby* button. Once you have found the place you want, selecting it will open the *Location Details* screen; on that screen select the *Save as Marker* button.
@@ -56,7 +56,7 @@ Soundscape supports setting beacons on addresses. To set a beacon on your home, 
 Soundscape can determine the location of your destination to within several metres, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
 
 ### Can I turn the beacon back on when I am close to my destination?
-Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 metres, we cannot guarantee the behaviour of the beacon when you are within a few metres of your destination.
+Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 metres, we cannot guarantee the behaviour of the beacon when you are within a few metres of your destination.
 
 ### Why does Soundscape call out road names twice when I approach an intersection?
 To accommodate a variety of intersection layouts, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the names of the roads that go to the left, straight ahead, and to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection forms a sideways T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
@@ -68,7 +68,7 @@ Soundscape is designed to avoid giving you too many callouts. It also uses OpenS
 In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re travelling in a vehicle.
 
 ### What if I don't understand a callout or miss it because of ambient noise?
-Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the home screen. At the bottom of this screen, there is a section for *Recent Callouts* where the callout you missed will be listed.
+Soundscape doesn't keep a list of past callouts, but you can ask it to describe your surroundings again at any time. *My Location* tells you where you are, and *Around Me* and *Ahead of Me* call out the places around you and in front of you. All three buttons are at the bottom of the home screen. If you use the media controls on your headphones in *Original mode*, ⏭ Next calls out *Around Me* when no route is playing.
 
 ## How does Soundscape work?
 

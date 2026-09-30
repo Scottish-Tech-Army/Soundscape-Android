@@ -14,15 +14,15 @@ permalink: /users/help-frequently-asked-questions.html
 ### Wanneer kan ik Soundscape het beste gebruiken?
 Soundscape heeft functies en voordelen die uiteenlopende situaties en tijdsbestekken bestrijken. De waarde van Soundscape voor u kan ook in de loop van de tijd veranderen, dus de manier waarop u het vandaag gebruikt kan anders zijn dan hoe u het over drie maanden gebruikt. Mensen denken vaak in termen van *welk probleem lost deze app goed op?* Soundscape kan zeker worden gebruikt voor specifieke behoeften – zoals het volgen van een bestemming terwijl u ernaartoe gaat, u helpen u te oriënteren wanneer u een metrostation uit komt, uw positie bepalen wanneer u uit een auto stapt, of de straatnamen of de afstand tot het volgende kruispunt opzoeken. De filosofie achter Soundscape is echter *uw wereld verlichten met geluid* – de app is bedoeld om te worden gebruikt wanneer u ook maar onderweg bent, om u bewust te maken van uw omgeving, zoals de namen van de straten waar u loopt, de richting waarin u gaat en de namen van de zaken waar u langskomt. In deze gebruiksmodus noemen onze gebruikers Soundscape wel eens een *fijne begeleidings-app*, die *serendipiteit* ondersteunt, helpt om *de hiaten in uw mentale kaart op te vullen* en meer *vertrouwen tijdens het lopen* geeft. Hier volgen nog enkele voorbeelden van hoe onze gebruikers Soundscape in hun leven gebruiken:
 
-"Soundscape hielp me weer op het juiste spoor te komen nadat ik uit de bus was gestapt en de verkeerde kant op liep."
+“Soundscape hielp me weer op het juiste spoor te komen nadat ik uit de bus was gestapt en de verkeerde kant op liep.”
 
-"Zelfs in de stad waar ik al 3 jaar woon, heb ik [met Soundscape] een beter beeld gekregen van wat er om me heen is."
+“Zelfs in de stad waar ik al 3 jaar woon, heb ik [met Soundscape] een beter beeld gekregen van wat er om me heen is.”
 
-"Het 3D-geluid maakt mijn wandeling beter, omdat ik me meer verbonden voel met mijn omgeving… Ik probeer nu eerder een nieuwe route, nu ik de app heb."
+“Het 3D-geluid maakt mijn wandeling beter, omdat ik me meer verbonden voel met mijn omgeving… Ik probeer nu eerder een nieuwe route, nu ik de app heb.”
 
-"Ik mis het toevallige ontdekken tijdens het rondlopen. Het is fijn om Soundscape te hebben – het kost geen enkele moeite om te horen wat er om me heen is. De relationele informatie is nuttig en het is een geweldige app voor situationeel bewustzijn en om winkelstraten te verkennen."
+“Ik mis het toevallige ontdekken tijdens het rondlopen. Het is fijn om Soundscape te hebben – het kost geen enkele moeite om te horen wat er om me heen is. De relationele informatie is nuttig en het is een geweldige app voor situationeel bewustzijn en om winkelstraten te verkennen.”
 
-"[Ik gebruikte Soundscape] om een pub in het centrum van York te vinden. [Ik] gebruikte verschillende opties om hem eerst te lokaliseren en hem daarna ook echt te vinden. Het bracht me tot op 3 meter van de deur – briljant!"
+“[Ik gebruikte Soundscape] om een pub in het centrum van York te vinden. [Ik] gebruikte verschillende opties om hem eerst te lokaliseren en hem daarna ook echt te vinden. Het bracht me tot op 3 meter van de deur – briljant!”
 
 ### Wat zijn markeringen en hoe kan ik die het beste gebruiken?
 Markeringen zijn plaatsen die u hebt opgeslagen. Dat kunnen plaatsen zijn die in de app te vinden zijn, of volledig nieuwe plaatsen die u zelf hebt toegevoegd. U kunt uw huidige locatie opslaan als markering door op het startscherm de knop *Huidige locatie* te selecteren en daarna *Opslaan als markering* te kiezen. Andere locaties kunt u als markering opslaan door in de zoekbalk naar de plaats te zoeken of door een locatie te vinden met de knop *Plaatsen in de buurt*, beide te vinden op het startscherm van Soundscape. Zodra u de gewenste plaats hebt gevonden, brengt het selecteren ervan u naar het scherm *Locatiedetails*. Op dat scherm selecteert u de knop *Opslaan als markering*.
@@ -44,7 +44,7 @@ Dit ontwerp heeft een aantal logische gevolgen:
 3. Als u globaal weet hoe u bij uw bestemming moet komen, kunt u het baken gedurende het grootste deel van de route dempen en het alleen inschakelen wanneer u dichterbij komt.
 
 ### Waarom verdwijnt het audiobaken soms?
-Het audiobaken van Soundscape is met name een richtingaanwijzing, zodat u weet waar uw bestemming is in relatie tot de richting waarin u kijkt. Wanneer Soundscape niet zeker weet in welke richting u kijkt, wordt het volume van het baken verlaagd. Dit gebeurt het vaakst wanneer de telefoon in een tas of zak zit en u stopt met lopen, bijvoorbeeld om over te steken. Het baken wordt luider wanneer u weer gaat lopen of als u de telefoon vlak houdt en in de richting wijst waarin u kijkt.
+Het audiobaken van Soundscape is in wezen een richtingaanwijzing, zodat u weet waar uw bestemming is in relatie tot de richting waarin u kijkt. Wanneer Soundscape niet zeker weet in welke richting u kijkt, wordt het volume van het baken verlaagd. Dit gebeurt het vaakst wanneer de telefoon in een tas of zak zit en u stopt met lopen, bijvoorbeeld om over te steken. Het baken wordt luider wanneer u weer gaat lopen of als u de telefoon vlak houdt en in de richting wijst waarin u kijkt.
 
 ### Kan ik een baken instellen op een adres?
 Ja, dat kan. Adressen worden niet standaard weergegeven maar zijn vindbaar via het zoekveld. Om dit adres op te slaan zodat u het niet opnieuw hoeft te zoeken, kunt u het als markering toevoegen op het scherm *Locatiedetails* door de knop *Opslaan als markering* te selecteren.
@@ -56,7 +56,7 @@ Soundscape ondersteunt het instellen van bakens op adressen. Om een baken in te 
 Soundscape kan de locatie van uw bestemming binnen een paar meter bepalen, maar niet minder. Wanneer Soundscape vaststelt dat u dichtbij uw bestemming bent, hoort u een laatste aankondiging dat uw bestemming dichtbij is en wordt het baken uitgeschakeld.
 
 ### Kan ik het baken weer aanzetten als ik dicht bij mijn bestemming bent?
-Ja, u kunt het baken weer inschakelen nadat Soundscape het heeft uitgezet door de knop *"Baken dempen opheffen"* te selecteren; echter, omdat Locatievoorzieningen slechts tot ongeveer 10 meter nauwkeurig zijn, kunnen we het gedrag van het baken binnen een paar meter van uw bestemming niet garanderen.
+Ja, u kunt het baken weer inschakelen nadat Soundscape het heeft uitgezet door de knop *Baken dempen opheffen* te selecteren; echter, omdat Locatievoorzieningen slechts tot ongeveer 10 meter nauwkeurig zijn, kunnen we het gedrag van het baken binnen een paar meter van uw bestemming niet garanderen.
 
 ### Waarom noemt Soundscape wegnamen twee keer wanneer ik een kruispunt nader?
 Voor de verschillende soorten kruispunten gebruikt Soundscape beschrijvingen waarin kruispunten segmenten zijn van wegen die beginnen op een gemeenschappelijk punt. Soundscape gebruikt ruimtelijke audio om achtereenvolgens de namen aan te geven van de weg naar links, de weg die rechtdoor gaat en de weg die naar rechts gaat. Als de beschrijving van het kruispunt begint met de weg waarop u zich bevindt in plaats van de weg naar links, vormt het kruispunt een liggende T: de weg waarop u bent, gaat rechtdoor en van rechts komt een weg uit. Als de beschrijving alleen een weg naar links en een weg naar rechts bevat, weet u dat de weg waarop u zich bevindt, eindigt bij de komende T-splitsing. Deze methode voor het beschrijven van kruispunten werkt ook wanneer een weg van naam verandert bij een kruispunt.
@@ -65,10 +65,10 @@ Voor de verschillende soorten kruispunten gebruikt Soundscape beschrijvingen waa
 Soundscape is ontworpen om u niet te veel aankondigingen te geven. Het gebruikt ook OpenStreetMap als gegevensbron. OpenStreetMap (OSM, https://www.openstreetmap.org/) is een wereldkaart die wordt gemaakt en bewerkt door een gemeenschap van individuele bijdragers. Als Soundscape een bedrijf of referentiepunt niet aankondigt, is de meest waarschijnlijke reden dat een lid van de OSM-gemeenschap dat bedrijf nog niet aan de gegevens heeft toegevoegd, of in sommige gevallen niet heeft bijgewerkt.
 
 ### Waarom hoor ik bepaalde aankondigingen niet meer wanneer ik in een auto rijd?
-Om te voorkomen dat er te veel aankondigingen worden weergegeven, worden bepaalde categorieën, zoals kruispunten, niet automatisch aangekondigd wanneer u met een auto reist.
+Om te voorkomen dat het aantal aankondigingen overweldigend wordt, worden bepaalde categorieën, zoals kruispunten, niet automatisch aangekondigd wanneer u in een voertuig reist.
 
 ### Wat moet ik doen als ik een aankondiging niet begrijp of niet hoor vanwege omgevingsgeluid?
-Soundscape heeft een lijst met uw recente aankondigingen zodat u aankondigingen die u gemist hebt opnieuw kunt beluisteren. Tik daarvoor op de zoekbalk op het startscherm. Onderaan dat scherm is een sectie *Recente aankondigingen* waarin de aankondiging die u gemist hebt, wordt weergegeven.
+Soundscape houdt geen lijst bij van eerdere aankondigingen, maar u kunt de app op elk moment vragen uw omgeving opnieuw te beschrijven. *Mijn locatie* vertelt u waar u bent, en *Om me heen* en *Vóór me* kondigen de plaatsen om u heen en vóór u aan. Alle drie de knoppen staan onderaan het startscherm. Als u de mediabediening van uw koptelefoon gebruikt en *Originele modus* is gekozen, roept ⏭ Volgende *Om me heen* op wanneer er geen route wordt afgespeeld.
 
 ## Hoe werkt Soundscape?
 
@@ -100,7 +100,7 @@ Soundscape gebruikt Locatievoorzieningen om te bepalen waar u bent. In onze test
 3. Houd uw telefoon warm bij koud weer, omdat batterijen bij lage temperaturen minder goed presteren.
 
 ### Hoeveel mobiele gegevens gebruikt Soundscape?
-De hoeveelheid mobiele data die wordt gebruikt, hangt af van hoe u Soundscape gebruikt. We hebben de app zo ontworpen dat het onderweg maar een kleine hoeveelheid data verbruikt, onder andere door locaties op te slaan terwijl u rondloopt, zodat u ze niet telkens opnieuw hoeft te downloaden wanneer u teruggaat naar een plaats die u al eerder bezocht hebt. Om het mobiele dataverbruik te verminderen, zorgt u er waar mogelijk voor dat u verbonden bent met Wi‑Fi, met name bij het downloaden van de app. Wanneer u Soundscape niet gebruikt, gebruikt u de knop *Slapen* om Soundscape in de slaapstand te zetten of moet u de app geforceerd afsluiten.
+De hoeveelheid mobiele data die wordt gebruikt, hangt af van hoe u Soundscape gebruikt. We hebben de app zo ontworpen dat het onderweg maar een kleine hoeveelheid data verbruikt, onder andere door locaties op te slaan terwijl u rondloopt, zodat u ze niet telkens opnieuw hoeft te downloaden wanneer u teruggaat naar een plaats die u al eerder bezocht hebt. Om het mobiele dataverbruik te verminderen, zorgt u er waar mogelijk voor dat u verbonden bent met Wi‑Fi, met name bij het downloaden van de app. Wanneer u Soundscape niet gebruikt, gebruikt u de knop *Slapen* om Soundscape in de slaapstand te zetten, of sluit u de app geforceerd af.
 
 ### Waarin verschilt Soundscape van andere kaarttoepassingen?
 Soundscape geeft een omgevingsbeschrijving van uw directe omgeving om het verkennen en oriënteren te ondersteunen. Met ruimtelijke audio kondigt Soundscape referentiepunten, parken, wegen en kruispunten aan vanuit de richting waarin ze zich fysiek bevinden terwijl u loopt. Als u bijvoorbeeld een winkel aan uw rechterkant passeert, hoort u de naam van die winkel aan uw rechterkant klinken. Wanneer u een kruispunt nadert, hoort u de naam van elke weg klinken vanuit de richting waarin die weg loopt, te beginnen links van u, vóór u en rechts van u.
@@ -113,7 +113,7 @@ Soundscape is ontworpen als een hulpmiddel om u bewuster te maken van details in
 ### Hoe bepaal ik wat ik hoor en wanneer ik het hoor in Soundscape?
 Soundscape biedt verschillende mogelijkheden om te bepalen wat en wanneer u iets hoort:
 
-1. Alle audio direct stoppen: dubbel tik met twee vingers op het scherm om direct alle audio uit te schakelen, inclusief eventuele aankondigingen die op dat moment worden afgespeeld en het audiobaken als dat aan staat. Aankondigingen worden automatisch hervat wanneer u het volgende kruispunt of referentiepunt nadert, maar het hoorbare baken niet. Selecteer de knop *Baken dempen opheffen* op het hoofdscherm om het baken weer te horen.
+1. Alle audio direct stoppen: tik met twee vingers dubbel op het scherm om direct alle audio uit te schakelen, inclusief eventuele aankondigingen die op dat moment worden afgespeeld en het audiobaken als dat aan staat. Aankondigingen worden automatisch hervat wanneer u het volgende kruispunt of referentiepunt nadert, maar het hoorbare baken niet. Selecteer de knop *Baken dempen opheffen* op het hoofdscherm om het baken weer te horen.
 
 2. Automatische aankondigingen stoppen: wanneer u niet onderweg bent of uw bestemming hebt bereikt, heeft u waarschijnlijk geen behoefte meer aan automatische meldingen van Soundscape. In plaats van de app te verlaten, kunt u Soundscape in de sluimerstand zetten; het wordt dan weer actief wanneer u vertrekt. U kunt Soundscape ook in de slaapstand zetten; het blijft dan uit totdat u het weer inschakelt. Als alternatief kunt u in het menu naar *Instellingen* gaan en in de sectie *Aankondigingen beheren* het *Detailniveau aankondigingen* op *Stil* zetten.
 

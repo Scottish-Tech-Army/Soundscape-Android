@@ -23,11 +23,11 @@ Il existe 2 modes de fonctionnement pour les contrôles multimédias. Le mode se
 
  *Mode original*. 
 
-⏯ Lecture/Pause : active ou désactive le son de la balise. 
+⏯ Lecture/Pause : active ou désactive le son de la balise sonore. 
 
-⏭ Suivant : si un itinéraire est en cours de lecture, déplace la balise sonore vers le point de repère suivant de l’itinéraire. Si aucun itinéraire n’est en cours, annonce *Autour de moi*.
+⏭ Suivant : si un itinéraire est en cours de lecture, déplace la balise sonore vers l’étape suivante de l’itinéraire. Si aucun itinéraire n’est en cours, annonce *Autour de moi*.
 
-⏮ Précédent : si un itinéraire est en cours de lecture, déplace la balise sonore vers le point de repère précédent de l’itinéraire. Si aucun itinéraire n’est en cours, modifie le *Détail des notifications*, d’un niveau plus discret à chaque appui : *Détaillé*, *Équilibré*, *Discret*, *Silencieux*, puis retour à *Détaillé*.
+⏮ Précédent : si un itinéraire est en cours de lecture, déplace la balise sonore vers l’étape précédente de l’itinéraire. Si aucun itinéraire n’est en cours, modifie le *Détail des annonces*, d’un niveau plus discret à chaque appui : *Détaillé*, *Simplifié*, *Essentiel*, *Silencieux*, puis retour à *Détaillé*.
 
 
 
@@ -37,5 +37,5 @@ Il existe 2 modes de fonctionnement pour les contrôles multimédias. Le mode se
 
 ⏭ Suivant parcourt une série d’options de menu que l’appli décrit par synthèse vocale, en revenant à la première après la dernière. ⏯ Lecture/Pause déclenche ensuite l’exécution de l’option décrite. Il y a un seul menu de niveau supérieur qui ne contient que des sous-menus comme options. Chaque sous-menu regroupe un ensemble d’actions similaires.
 
-⏮ Précédent ne parcourt pas le menu. Il modifie à la place le *Détail des notifications*, exactement comme en mode original, de sorte que le même bouton rend l’appli plus discrète quel que soit le mode utilisé.
+⏮ Précédent ne parcourt pas le menu. Il modifie à la place le *Détail des annonces*, exactement comme en mode original, de sorte que le même bouton rend l’appli plus discrète quel que soit le mode utilisé.
 

@@ -1,5 +1,5 @@
 ---
-title: Penanda di Sekitar
+title: Penanda Terdekat
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: id
 permalink: /users/help-nearby-markers.html
 ---
 
-# Penanda di Sekitar
+# Penanda Terdekat
 
 ## Apa itu?
 

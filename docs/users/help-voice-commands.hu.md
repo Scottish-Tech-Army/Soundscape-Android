@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Mi ez?
 
-Megkérheti a Geminit, hogy a telefon érintése nélkül végezzen műveleteket a Soundscape-ben: hallgasson meg egy bejelentést, indítsa el valamelyik útvonalát, vagy állítson be hangjelzőt valamelyik jelölőjén. Ugyanerre képes minden más asszisztens is, amely támogatja az Android alkalmazásfunkcióit.
+A Soundscape készen áll a Geminire, de a Gemini még nem tudja használni: ez attól függ, mikor adja ki a Google az Android alkalmazásfunkcióinak támogatását a Geminiben. Ha ez megtörténik, megkérheti majd a Geminit, hogy a telefon érintése nélkül végezzen műveleteket a Soundscape-ben: hallgasson meg egy bejelentést, indítsa el valamelyik útvonalát, vagy állítson be hangjelzőt valamelyik jelölőjén. Ugyanerre képes lesz minden más asszisztens is, amely támogatja az Android alkalmazásfunkcióit.
 
-A Soundscape a saját hangján válaszol, azokkal a bejelentésekkel és hangjelző hangokkal, amelyeket már ismer, ahelyett hogy az asszisztens felolvasna egy összefoglalót. Így amit hall, továbbra is abból az irányból érkezik, amelyet leír.
+A Soundscape a saját hangján fog válaszolni, azokkal a bejelentésekkel és hangjelző hangokkal, amelyeket már ismer, ahelyett hogy az asszisztens felolvasna egy összefoglalót. Így amit hall, továbbra is abból az irányból fog érkezni, amelyet leír.
 
 ## Mikor használnám?
 
@@ -35,11 +35,11 @@ Indítsa el valamelyik mentett útvonalát név szerint, lépjen a következő �
 
 Állítson be hangjelzőt valamelyik mentett jelölőjén név szerint, vagy kapcsolja ki a hangjelzőt.
 
-Állítsa a közlések részletességét *Néma*, *Csendes*, *Kiegyensúlyozott* vagy *Részletes* értékre, hogy módosuljon, mennyit mond a Soundscape séta közben. A *Néma* kikapcsolja az automatikus közléseket.
+Állítsa a közlések részletességét *Néma*, *Alapvető*, *Egyszerűsített* vagy *Részletes* értékre, hogy módosuljon, mennyit mond a Soundscape séta közben. A *Néma* kikapcsolja az automatikus közléseket.
 
 Olvassa fel a mentett útvonalai vagy a mentett jelölői nevét.
 
 A két listán kívül mindenhez az kell, hogy a Soundscape fusson. Ha nem fut, az asszisztens megkéri, hogy előbb nyissa meg a Soundscape-et. Az útvonalai és a jelölői felsorolása mindkét esetben működik, mert csak azt olvassa fel, amit már elmentett.
 
-A hangparancsokhoz Android 16 vagy újabb rendszerű telefon és alkalmazásfunkciókat támogató asszisztens szükséges.
+A hangparancsokhoz Android 16 vagy újabb rendszerű telefon és alkalmazásfunkciókat támogató asszisztens lesz szükséges. Amíg a Google ki nem adja ezt a támogatást a Geminiben, nem fognak működni.
 

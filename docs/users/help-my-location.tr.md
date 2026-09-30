@@ -19,5 +19,5 @@ permalink: /users/help-my-location.html
 
 ## Nasıl çalışır?
 
-Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *"Konumum"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *"Konumum"* düğmesine dokunun ve dinleyin.
+Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *Konumum* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *Konumum* düğmesine dokunun ve dinleyin.
 

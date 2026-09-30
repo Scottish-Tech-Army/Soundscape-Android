@@ -19,5 +19,5 @@ Hnappurinn *Fyrir framan mig* segir þér frá allt að fimm hlutum fyrir framan
 
 ## Hvernig virkar það?
 
-Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn snýr upp að himni) og toppinn á símanum í þá átt sem þú snýrð áður en þú ýtir á *"fyrir framan mig"* hnappinn. Þetta virkar eins og áttaviti og segir forritinu hvaða átt þú snýrð. Ýttu einfaldlega á *"fyrir framan mig"* hnappinn og þú munt heyra nokkur áhugaverð staði sem eru um það bil fyrir framan þig.
+Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn snýr upp að himni) og toppinn á símanum í þá átt sem þú snýrð áður en þú ýtir á *Fyrir framan mig* hnappinn. Þetta virkar eins og áttaviti og segir forritinu hvaða átt þú snýrð. Ýttu einfaldlega á *Fyrir framan mig* hnappinn og þú munt heyra nokkra áhugaverða staði sem eru um það bil fyrir framan þig.
 

@@ -11,7 +11,7 @@ permalink: /users/help-using-media-controls.html
 
 ## Vad är det?
 
-Du kan få tillgång till vissa funktioner i Soundscape med hjälp av mediereglageknapparna på dina hörlurar. Detta fungerar både med sladdförsedda hörlurar och Bluetooth-hörlurar som är utrustade med knappar som Spela upp, Paus, Nästa och Föregående. Olika hörlurar har olika typer av knappar. Använd listan med åtgärder nedan för att ta reda vilka som finns.
+Du kan få tillgång till vissa funktioner i Soundscape med hjälp av mediereglageknapparna på dina hörlurar. Detta fungerar både med sladdförsedda hörlurar och Bluetooth-hörlurar som är utrustade med knappar som Spela upp, Paus, Nästa och Föregående. Olika hörlurar har olika typer av knappar. Använd listan med åtgärder nedan för att ta reda på vilka som finns.
 
 ## När ska jag använda det?
 
@@ -27,7 +27,7 @@ Det finns 2 driftlägen för mediereglagen. Läget väljs i *Inställningar*-avs
 
 ⏭ Nästa: Om en rutt spelas upp flyttar ljudfyren till nästa brytpunkt i rutten. Om ingen rutt spelas upp läser appen upp *Omkring mig*.
 
-⏮ Föregående: Om en rutt spelas upp flyttar ljudfyren till föregående brytpunkt i rutten. Om ingen rutt spelas upp ändras *Detaljnivå för informationsljud* ett steg tystare för varje tryck: *Detaljerad*, *Balanserad*, *Lågmäld*, *Tyst*, och tillbaka till *Detaljerad*.
+⏮ Föregående: Om en rutt spelas upp flyttar ljudfyren till föregående brytpunkt i rutten. Om ingen rutt spelas upp ändras *Detaljnivå för informationsljud* ett steg tystare för varje tryck: *Detaljerad*, *Förenklad*, *Grundläggande*, *Tyst*, och tillbaka till *Detaljerad*.
 
 
 

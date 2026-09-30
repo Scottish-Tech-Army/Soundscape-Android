@@ -49,7 +49,7 @@ Beacon inayosikika ya Soundscape kimsingi ni ishara ya kuelekeza, inayokujulisha
 ### Naweza kuweka beacon kwenye anwani?
 Ndiyo, unaweza. Anwani hazionyeshwi kwenye orodha kwa chaguo-msingi lakini zinaweza kupatikana kwa kutumia sehemu ya utafutaji. Ili kuhifadhi anwani hii ili usihitaji kuitafuta tena, unaweza kuiongeza kama alama kutoka kwenye skrini ya *Taarifa za Mahali* kwa kuchagua kitufe cha *Hifadhi kama Alama*.
 
-### Ninawezaje kuweka beacon kwenye nyumbani kwangu?
+### Ninawezaje kuweka beacon nyumbani kwangu?
 Soundscape inaruhusu kuweka beacon kwenye anwani. Ili kuweka beacon nyumbani kwako, au anwani nyingine yoyote, tafuta mahali kwa kutumia upau wa utafutaji kwenye skrini kuu. Kisha kwenye skrini ya *Taarifa za Mahali*, gusa kitufe cha *Anzisha Beacon ya Sauti*.
 
 ### Ninapoweka beacon kwenye mahali ninapoenda, Soundscape itanifikisha karibu kiasi gani?
@@ -68,7 +68,7 @@ Soundscape imeundwa ili isikupe matangazo mengi kupita kiasi. Pia inatumia OpenS
 Ili kuzuia idadi ya matangazo kuwa nyingi kupita kiasi, baadhi ya makundi, kama vile makutano ya barabara, hayatangazwi kiotomatiki unapokuwa unasafiri kwa gari.
 
 ### Nifanye nini ikiwa sielewi tangazo au ninalikosa kwa sababu ya kelele za mazingira?
-Soundscape ina orodha ya matangazo yako ya hivi karibuni ili uweze kurudi kuyaangalia matangazo ambayo huenda uliyakosa. Ili kuipata, gusa upau wa utafutaji kwenye skrini ya mwanzo. Chini ya skrini hii, kuna sehemu ya *Matangazo ya Hivi Karibuni* ambapo tangazo ulilolikosa litaorodheshwa.
+Soundscape haihifadhi orodha ya matangazo yaliyopita, lakini unaweza kuiomba ieleze tena mazingira yako wakati wowote. *Mahali Nilipo* inakuambia uko wapi, na *Karibu Nami* na *Mbele Yangu* hutangaza maeneo yaliyo karibu nawe na mbele yako. Vitufe vyote vitatu viko chini ya skrini ya mwanzo. Ikiwa unatumia vidhibiti vya media kwenye vipokea sauti vyako katika *Hali ya Awali*, ⏭ Ifuatayo hutangaza *Karibu Nami* wakati hakuna njia inayochezwa.
 
 ## Soundscape inafanya kazi vipi?
 
@@ -108,7 +108,7 @@ Soundscape hutoa maelezo ya mazingira yanayokuzunguka ili kusaidia uchunguzi na 
 Badala ya maelekezo ya hatua kwa hatua kama yanavyotolewa mara nyingi na programu nyingine za ramani, Soundscape itacheza beacon inayosikika kuelekea upande wa mahali unapoenda, ikikuwezesha kufika huko kwa njia inayokufaa zaidi, ukitumia ufahamu wako ulioongezeka wa mazingira yanayokuzunguka na mahali unapoenda. Soundscape imeundwa kufanya kazi nyuma, ikikuwezesha kutumia programu ya maelekezo ya hatua kwa hatua, huku ikiendelea kutoa ufahamu wa mazingira wakati unafika mahali unapoenda.
 
 ### Ninawezaje kutumia Soundscape pamoja na programu ya kutafuta njia?
-Soundscape imeundwa ili kusaidia kuziba maelezo kuhusu mazingira yako ambayo huenda usingekuwa nayo vinginevyo. Ingawa haikuundwa kama programu ya maelekezo ya hatua kwa hatua, inaweza kutumika pamoja na programu kama hizo kutoa taarifa za ziada. Ili kutumia Soundscape pamoja na programu hizo, anzisha kwanza programu yako ya usafiri. Kisha, hamia kwenye Soundscape na uweke beacon kwenye mahali panapoenda sawa na kile kilichopo kwenye programu ya usafiri. Kwa wakati huo, programu zote mbili zitakuwa zinafanya kazi nawe utasikia maelekezo ya kutembea kutoka kwenye programu yako ya usafiri, huku ukipata masasisho kuhusu sehemu za kuvutia, makutano ya barabara, na umbali wako hadi mahali unapoenda kutoka Soundscape.
+Soundscape imeundwa ili kusaidia kuziba maelezo kuhusu mazingira yako ambayo huenda usingekuwa nayo vinginevyo. Ingawa haikuundwa kama programu ya maelekezo ya hatua kwa hatua, inaweza kutumika pamoja na programu kama hizo kutoa taarifa za ziada. Ili kutumia Soundscape pamoja na programu hizo, anzisha kwanza programu yako ya uelekezaji. Kisha, hamia kwenye Soundscape na uweke beacon kwenye mahali palepale ulipochagua kwenye programu ya uelekezaji. Kwa wakati huo, programu zote mbili zitakuwa zinafanya kazi nawe utasikia maelekezo ya kutembea kutoka kwenye programu yako ya uelekezaji, huku ukipata masasisho kuhusu sehemu za kuvutia, makutano ya barabara, na umbali wako hadi mahali unapoenda kutoka Soundscape.
 
 ### Ninawezaje kudhibiti ninachosikia na wakati ninachosikia kwenye Soundscape?
 Soundscape hutoa njia kadhaa za kudhibiti unachosikia na wakati gani:

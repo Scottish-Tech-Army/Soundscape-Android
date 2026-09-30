@@ -27,7 +27,7 @@ Ada 2 mode pengoperasian untuk kontrol media. Mode dapat dipilih di bagian *Peng
 
 ⏭ Berikutnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute berikutnya dalam rute. Jika tidak ada rute yang sedang diputar, bacakan *Di Sekitar Saya*.
 
-⏮ Sebelumnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute sebelumnya dalam rute. Jika tidak ada rute yang sedang diputar, ubah *Tingkat Detail Pemberitahuan* satu tingkat lebih senyap pada setiap penekanan: *Rinci*, *Seimbang*, *Ringkas*, *Senyap*, lalu kembali ke *Rinci*.
+⏮ Sebelumnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute sebelumnya dalam rute. Jika tidak ada rute yang sedang diputar, ubah *Tingkat Detail Pemberitahuan* satu tingkat lebih senyap pada setiap penekanan: *Rinci*, *Sederhana*, *Esensial*, *Senyap*, lalu kembali ke *Rinci*.
 
 
 

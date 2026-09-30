@@ -13,7 +13,7 @@ permalink: /users/help-ahead-of-me.html
 
 Tlačidlo *Predo mnou* vám povie o až piatich veciach pred vami. *Predo mnou* má za cieľ pomôcť vám preskúmať cestu pred sebou, keď sa oboznamujete s novou oblasťou.
 
-## Kedy by som to použil(a)?
+## Kedy to použiť?
 
 Keď kráčate po ulici, skúste použiť *Predo mnou*, aby ste objavili miesta a veci, ktoré sa nachádzajú na oboch stranách ulice pred vami.
 

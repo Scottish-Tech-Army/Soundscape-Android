@@ -11,7 +11,7 @@ permalink: /users/help-routes.html
 
 ## Mis see on?
 
-Marsruudid on teekonnapunktide jada. Teid teavitatakse iga teekonnapunkti saabumisel ja helimajakas liigub automaatselt järgmisele teekonnapunktile.
+Marsruudid on teekonnapunktide jada. Teid teavitatakse igasse teekonnapunkti jõudmisel ja helimajakas liigub automaatselt järgmisele teekonnapunktile.
 
 ## Millal seda kasutada?
 

@@ -21,5 +21,5 @@ Soundscape funciona millor quan sosteniu el telèfon pla amb la pantalla mirant 
 
 Podeu activar i desactivar el so rítmic de la balisa mitjançant el botó de silenci a la pantalla principal. Si la balisa està silenciada, encara rebreu actualitzacions sobre la vostra distància fins a la destinació aproximadament cada 50 metres.
 
-Per continuar utilitzant Soundscape sense sentir avisos de veu automàtics, poseu *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. Si no utilitzareu Soundscape durant una estona, podeu posar-lo en mode de repòs o en mode de repòs amb represa automàtica utilitzant el botó *Repòs* a la pantalla principal.
+Per continuar utilitzant Soundscape sense sentir avisos de veu automàtics, poseu *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. Si no utilitzareu Soundscape durant una estona, podeu posar-lo en mode de repòs o en mode d'espera utilitzant el botó *Repòs* a la pantalla principal.
 

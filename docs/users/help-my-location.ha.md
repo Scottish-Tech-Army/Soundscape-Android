@@ -11,7 +11,7 @@ permalink: /users/help-my-location.html
 
 ## Menene wannan?
 
-Maɓallin *Inda Nake* yana ba ku bayani cikin sauri wanda ke taimaka muku sanin inda kuke a halin yanzu. *Inda Nake* yana gaya muku game da wurinku na yanzu wanda ya haɗa da irin abubuwa kamar alkiblar da kuke fuskanta, inda hanyoyi ko mahadar hanyoyi na kusa suke, da kuma inda wurare masu ban sha'awa na kusa suke.
+Maɓallin *Inda Nake* yana ba ku bayani cikin sauri wanda ke taimaka muku sanin inda kuke a halin yanzu. *Inda Nake* yana gaya muku game da wurinku na yanzu wanda ya haɗa da irin abubuwa kamar alkiblar da kuke fuskanta, inda hanyoyi ko mahaɗar hanyoyi na kusa suke, da kuma inda wurare masu ban sha'awa na kusa suke.
 
 ## Yaushe zan yi amfani da shi?
 

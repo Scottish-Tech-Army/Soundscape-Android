@@ -13,7 +13,7 @@ permalink: /users/help-using-media-controls.html
 
 K niektorým funkciám aplikácie Soundscape sa môžete dostať pomocou tlačidiel na ovládanie médií na vašich slúchadlách. Táto funkcia funguje s akýmikoľvek káblovými alebo Bluetooth slúchadlami, ktoré majú tlačidlá na ovládanie médií, ako sú Prehrať, Pozastaviť, Ďalej, Predchádzajúce a ďalšie. Rôzne slúchadlá môžu mať rôzne tlačidlá, preto si pozrite nižšie uvedený zoznam akcií a zistite, ktoré sú pre vás dostupné.
 
-## Kedy by som to použil(a)?
+## Kedy to použiť?
 
 Ovládacie prvky médií na slúchadlách môžete používať, kým je Soundscape spustený – či už aplikáciu práve aktívne používate, beží na pozadí, alebo je vaše zariadenie uzamknuté. Tlačidlá na ovládanie médií na slúchadlách však nebudú s aplikáciou Soundscape fungovať, ak v inej aplikácii prehrávate zvuk, napríklad hudbu, podcasty alebo videá.
 
@@ -27,7 +27,7 @@ Existujú 2 režimy fungovania ovládacích prvkov médií. Režim je možné vy
 
 ⏭ Ďalej: Ak sa práve prehráva trasa, presunie zvukový maják na ďalší bod trasy. Ak sa neprehráva žiadna trasa, oznámi *Okolo mňa*.
 
-⏮ Predchádzajúce: Ak sa práve prehráva trasa, presunie zvukový maják na predchádzajúci bod trasy. Ak sa neprehráva žiadna trasa, zmení *Podrobnosť hlásení* o jednu úroveň tichšie pri každom stlačení: *Podrobný*, *Vyvážený*, *Tichý*, *Bez zvuku* a späť na *Podrobný*.
+⏮ Predchádzajúce: Ak sa práve prehráva trasa, presunie zvukový maják na predchádzajúci bod trasy. Ak sa neprehráva žiadna trasa, zmení *Podrobnosť hlásení* o jednu úroveň tichšie pri každom stlačení: *Podrobný*, *Zjednodušený*, *Základný*, *Bez zvuku* a späť na *Podrobný*.
 
 
 

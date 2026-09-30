@@ -27,7 +27,7 @@ Esistono 2 modalità di funzionamento per i controlli multimediali. La modalità
 
 ⏭ Avanti: Se è in riproduzione un percorso, sposta l'audiofaro al Waypoint successivo del percorso. Se non è in riproduzione alcun percorso, fa annunciare *Intorno a me*.
 
-⏮ Indietro: Se è in riproduzione un percorso, sposta l'audiofaro al Waypoint precedente del percorso. Se non è in riproduzione alcun percorso, cambia il *Dettaglio delle notifiche*, di un livello più discreto a ogni pressione: *Dettagliato*, *Bilanciato*, *Discreto*, *Silenzioso*, e di nuovo *Dettagliato*.
+⏮ Indietro: Se è in riproduzione un percorso, sposta l'audiofaro al Waypoint precedente del percorso. Se non è in riproduzione alcun percorso, cambia il *Dettaglio delle notifiche*, di un livello più discreto a ogni pressione: *Dettagliato*, *Semplificato*, *Essenziale*, *Silenzioso*, e di nuovo *Dettagliato*.
 
 
 

@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Què és?
 
-Pots demanar a Gemini que faci coses a Soundscape sense tocar el telèfon: escoltar un avís de veu, iniciar una de les teves rutes o posar una balisa sonora en un dels teus marcadors. Qualsevol altre assistent compatible amb les funcions d’aplicació d’Android pot fer el mateix.
+Soundscape està preparat per a Gemini, però Gemini encara no el pot fer servir: depèn que Google publiqui la compatibilitat amb les funcions d’aplicació d’Android a Gemini. Quan ho faci, podràs demanar a Gemini que faci coses a Soundscape sense tocar el telèfon: escoltar un avís de veu, iniciar una de les teves rutes o posar una balisa sonora en un dels teus marcadors. Qualsevol altre assistent compatible amb les funcions d’aplicació d’Android podrà fer el mateix.
 
-Soundscape respon amb la seva pròpia veu, amb els avisos de veu i els sons de balisa que ja coneixes, en lloc que l’assistent llegeixi un resum. Així, el que sents continua venint de la direcció que descriu.
+Soundscape respondrà amb la seva pròpia veu, amb els avisos de veu i els sons de balisa que ja coneixes, en lloc que l’assistent llegeixi un resum. Així, el que sentis continuarà venint de la direcció que descriu.
 
 ## Quan l'hauria d'utilitzar?
 
@@ -35,11 +35,11 @@ Iniciï una de les teves rutes desades pel seu nom, passi al punt de ruta següe
 
 Posi una balisa sonora en un dels teus marcadors desats pel seu nom, o apagui la balisa.
 
-Posi el detall dels avisos de veu a *Silenciós*, *Discret*, *Equilibrat* o *Detallat*, per canviar quant diu Soundscape mentre camines. *Silenciós* desactiva els avisos de veu automàtics.
+Posi el detall dels avisos de veu a *Silenciós*, *Essencial*, *Simplificat* o *Detallat*, per canviar quant diu Soundscape mentre camines. *Silenciós* desactiva els avisos de veu automàtics.
 
 Llegeixi els noms de les teves rutes desades o dels teus marcadors desats.
 
 Tot excepte les dues llistes requereix que Soundscape s’estigui executant. Si no ho està, l’assistent et dirà que obris Soundscape primer. Llistar les teves rutes i els teus marcadors funciona en tots dos casos, perquè només llegeix el que ja has desat.
 
-Les ordres de veu requereixen un telèfon amb Android 16 o posterior i un assistent compatible amb les funcions d’aplicació.
+Les ordres de veu requeriran un telèfon amb Android 16 o posterior i un assistent compatible amb les funcions d’aplicació. Fins que Google no publiqui aquesta compatibilitat a Gemini, no funcionaran.
 

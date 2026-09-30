@@ -15,7 +15,7 @@ Kitufe cha *Alama za Karibu* hukujulisha kuhusu hadi alama nne zilizo karibu zai
 
 ## Ni lini nitaitumia?
 
-Unapojaribu kujielekeza na kujua mazingira yanayokuzunguka, tumia *Alama za Karibu* ili kusikia kuhusu mahali ulipo alama unazozifahamu.
+Unapojaribu kujielekeza na kujua mazingira yanayokuzunguka, tumia *Alama za Karibu* ili kusikia kuhusu mahali zilipo sehemu unazozifahamu.
 
 ## Inafanyaje kazi?
 

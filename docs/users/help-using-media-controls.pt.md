@@ -27,7 +27,7 @@ Existem 2 modos de funcionamento para os controlos multimédia. O modo pode ser 
 
 ⏭ Seguinte: Se uma rota estiver a ser reproduzida, move o sinal de áudio para o Ponto de Passagem seguinte da rota. Se não estiver a ser reproduzida nenhuma rota, anuncia *Em Meu Redor*.
 
-⏮ Anterior: Se uma rota estiver a ser reproduzida, move o sinal de áudio para o Ponto de Passagem anterior da rota. Se não estiver a ser reproduzida nenhuma rota, altera o *Detalhe dos Avisos*, um nível mais discreto a cada toque: *Detalhado*, *Equilibrado*, *Discreto*, *Silencioso*, e de novo *Detalhado*.
+⏮ Anterior: Se uma rota estiver a ser reproduzida, move o sinal de áudio para o Ponto de Passagem anterior da rota. Se não estiver a ser reproduzida nenhuma rota, altera o *Detalhe dos Avisos*, um nível mais discreto a cada toque: *Detalhado*, *Simplificado*, *Essencial*, *Silencioso*, e de novo *Detalhado*.
 
 
 

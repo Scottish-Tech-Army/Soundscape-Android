@@ -25,7 +25,7 @@ Soundscape hat Funktionen und Vorteile, die eine Vielzahl von Szenarien und Zeit
 „[Ich habe Soundscape] verwendet, um einen Pub mitten in York zu finden. [Ich] nutzte eine Reihe von Optionen, um das Lokal zunächst zu lokalisieren und dann tatsächlich zu finden. Es hat mich bis auf 3 Meter an die Tür herangeführt – genial!“
 
 ### Was sind Markierungen, und wie nutze ich sie optimal?
-Markierungen sind Orte, die Sie gespeichert haben. Dabei kann es sich um Orte handeln, die in der App gefunden werden können, oder um völlig neue Orte, die Sie selbst hinzugefügt haben. Sie können Ihren aktuellen Standort als Markierung speichern, indem Sie auf dem Startbildschirm die Schaltfläche *„Aktueller Standort“* auswählen und dann *„Als Markierung speichern“* tippen. Andere Orte können Sie als Markierung speichern, indem Sie in der Suchleiste nach dem gewünschten Ort suchen oder die Schaltfläche *„Orte in der Nähe“* verwenden. Sobald Sie den gewünschten Ort gefunden haben, führt die Auswahl dorthin zum Bildschirm *„Standortdetails“*. Auf diesem Bildschirm wählen Sie die Schaltfläche *„Als Markierung speichern“*.
+Markierungen sind Orte, die Sie gespeichert haben. Dabei kann es sich um Orte handeln, die in der App gefunden werden können, oder um völlig neue Orte, die Sie selbst hinzugefügt haben. Sie können Ihren aktuellen Standort als Markierung speichern, indem Sie auf dem Startbildschirm die Schaltfläche *„Aktueller Standort“* auswählen und dann auf *„Als Markierung speichern“* tippen. Andere Orte können Sie als Markierung speichern, indem Sie in der Suchleiste nach dem gewünschten Ort suchen oder die Schaltfläche *„Orte in der Nähe“* verwenden. Sobald Sie den gewünschten Ort gefunden haben, führt die Auswahl dorthin zum Bildschirm *„Standortdetails“*. Auf diesem Bildschirm wählen Sie die Schaltfläche *„Als Markierung speichern“*.
 
 ## Wie nutze ich Soundscape optimal?
 
@@ -67,8 +67,8 @@ Soundscape ist so konzipiert, dass es Ihnen nicht zu viele Hinweise gibt. Außer
 ### Warum höre ich manche Hinweise nicht, wenn ich in einem Fahrzeug unterwegs bin?
 Um zu verhindern, dass die Anzahl der Hinweise zu überwältigend wird, werden einige Kategorien, z. B. Kreuzungen, nicht automatisch angekündigt, wenn Sie in einem Fahrzeug unterwegs sind.
 
-### Was wenn ich einen Hinweis nicht verstehe oder ihn aufgrund der Umgebungsgeräusche verpasse?
-Soundscape führt eine Liste Ihrer letzten Hinweise, sodass Sie Hinweise, die Sie verpasst haben, noch einmal anhören können. Tippen Sie dazu auf dem Startbildschirm auf die Suchleiste. Am unteren Rand dieses Bildschirms finden Sie den Abschnitt *„Letzte Hinweise“*, in dem der Hinweis, den Sie verpasst haben, aufgeführt wird.
+### Was, wenn ich einen Hinweis nicht verstehe oder ihn aufgrund der Umgebungsgeräusche verpasse?
+Soundscape führt keine Liste früherer Hinweise, aber Sie können sich Ihre Umgebung jederzeit erneut beschreiben lassen. *Mein Standort* sagt Ihnen, wo Sie sind, und *Um mich herum* und *Vor mir* sagen die Orte um Sie herum und vor Ihnen an. Alle drei Schaltflächen befinden sich am unteren Rand des Startbildschirms. Wenn Sie die Mediensteuerung Ihrer Kopfhörer im *Originalmodus* verwenden, sagt ⏭ Weiter *Um mich herum* an, wenn keine Route abgespielt wird.
 
 ## Wie funktioniert Soundscape?
 
@@ -100,7 +100,7 @@ Soundscape verwendet die Ortungsdienste, um zu bestimmen, wo Sie sich befinden. 
 3. Halten Sie Ihr Telefon bei Kälte warm, da die Batterieleistung bei kalten Temperaturen nachlässt.
 
 ### Wie hoch ist die mobile Datenmenge, die Soundscape verbraucht?
-Die Menge an mobilen Daten, die verwendet wird, hängt davon ab, wie Sie Soundscape nutzen. Wir haben die App so gestaltet, dass es unterwegs nur wenig Daten verbraucht, z. B. indem Punkte beim Herumlaufen gespeichert werden, sodass Sie sie nicht jedes Mal neu herunterladen müssen, wenn Sie an einen bereits besuchten Ort zurückkehren. Um den mobilen Datenverbrauch zu reduzieren, stellen Sie sicher, dass Sie wann immer möglich mit WLAN verbunden sind, insbesondere beim Herunterladen der App. Wenn Sie Soundscape nicht verwenden, sollten Sie die Schaltfläche *„Ruhemodus aktivieren“* verwenden, um Soundscape in den Ruhemodus zu versetzen, oder die App vollständig schließen.
+Die Menge an mobilen Daten, die verwendet wird, hängt davon ab, wie Sie Soundscape nutzen. Wir haben die App so gestaltet, dass sie unterwegs nur wenig Daten verbraucht, z. B. indem Punkte beim Herumlaufen gespeichert werden, sodass Sie sie nicht jedes Mal neu herunterladen müssen, wenn Sie an einen bereits besuchten Ort zurückkehren. Um den mobilen Datenverbrauch zu reduzieren, stellen Sie sicher, dass Sie wann immer möglich mit WLAN verbunden sind, insbesondere beim Herunterladen der App. Wenn Sie Soundscape nicht verwenden, sollten Sie die Schaltfläche *„Ruhemodus aktivieren“* verwenden, um Soundscape in den Ruhemodus zu versetzen, oder die App vollständig schließen.
 
 ### Wie unterscheidet sich Soundscape von anderen Karten-Apps?
 Soundscape bietet eine ambientartige Beschreibung Ihrer Umgebung, um beim Erkunden und bei der Wegfindung zu unterstützen. Mithilfe räumlichen Audios sagt Soundscape Points of Interest, Parks, Straßen und Kreuzungen aus der Richtung an, in der sie sich in Ihrer unmittelbaren Umgebung befinden, während Sie gehen. Wenn Sie zum Beispiel an einem Geschäft auf Ihrer rechten Seite vorbeigehen, hören Sie den Namen dieses Geschäfts von rechts. Wenn Sie sich einer Kreuzung nähern, hören Sie die Namen der einzelnen Straßen jeweils aus der Richtung, in die sie verlaufen – beginnend mit der links liegenden, dann der geradeaus führenden und schließlich der rechts liegenden.

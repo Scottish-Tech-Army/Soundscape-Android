@@ -25,13 +25,13 @@ Soundscape kan fortælle dig om ting omkring dig, når du nærmer dig dem, ved a
 
 **Når du har brug for stilhed**:
 
- Når du er ved at krydse en vej eller bare har brug for, at appen er stille, kan du slå lydbeskeder fra. Når lydbeskeder er slået fra, sender appen dig kun oplysninger, hvis du manuelt trykker på én af knapperne *"Min placering"*, *"Mærker i nærheden"*, *"Omkring mig"* eller *"Foran mig"*.
+ Når du er ved at krydse en vej eller bare har brug for, at appen er stille, kan du slå lydbeskeder fra. Når lydbeskeder er slået fra, sender appen dig kun oplysninger, hvis du manuelt trykker på én af knapperne *Min placering*, *Mærker i nærheden*, *Omkring mig* eller *Foran mig*.
 
 ## Hvordan virker det?
 
 **Slå lydbeskeder til eller fra:**
 
- Hvis du slår lydbeskeder fra, vil appen være tavs. Du kan slå lydbeskeder fra i afsnittet *Administrer lydbeskeder* på skærmen *Indstillinger* ved at sætte *Detaljeniveau for lydbeskeder* til *Lydløs*, og slå dem til igen ved at vælge et hvilket som helst andet niveau. Du kan gøre det samme ved at bede Siri eller Gemini om det. Du kan også gøre Soundscape mere stille et trin ad gangen med medieknapperne på dine hovedtelefoner: hvert tryk på *forrige* går et trin ned gennem *Detaljeret*, *Balanceret*, *Stille* og *Lydløs*, og endnu et tryk vender tilbage til *Detaljeret*. Se hjælpeemnet *Brug af mediebetjeningsknapper*. Alternativt kan du bruge knappen *Dvale* i øverste højre hjørne af startskærmen for at få Soundscape til at stoppe med at lave lydbeskeder, indtil du vækker den.
+ Hvis du slår lydbeskeder fra, vil appen være tavs. Du kan slå lydbeskeder fra i afsnittet *Administrer lydbeskeder* på skærmen *Indstillinger* ved at sætte *Detaljeniveau for lydbeskeder* til *Lydløs*, og slå dem til igen ved at vælge et hvilket som helst andet niveau. På iPhone kan du gøre det samme ved at bede Siri om det, og på Android vil det virke via Gemini, når Google frigiver understøttelse af det. Du kan også gøre Soundscape mere stille et trin ad gangen med medieknapperne på dine hovedtelefoner: hvert tryk på *forrige* går et trin ned gennem *Detaljeret*, *Forenklet*, *Essentiel* og *Lydløs*, og endnu et tryk vender tilbage til *Detaljeret*. Se hjælpeemnet *Brug af mediebetjeningsknapper*. Alternativt kan du bruge knappen *Dvale* i øverste højre hjørne af startskærmen for at få Soundscape til at stoppe med at lave lydbeskeder, indtil du vækker den.
 
 **Administrer hvilke lydbeskeder du hører:**
 

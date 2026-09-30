@@ -25,5 +25,5 @@ Soundscape इन शानदार तृतीय‑पक्ष लाइब
 
 [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) के स्वयंसेवकों ने कई अनुवादों में सुधार किया, जिन्हें उपयोग के लिए [MIT लाइसेंस](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt) के अंतर्गत उपलब्ध कराया गया है।
 
-सभी तृतीय‑पक्ष उत्पादों, कंपनी नामों और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।
+सभी तृतीय‑पक्ष उत्पाद, कंपनी नाम और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।
 

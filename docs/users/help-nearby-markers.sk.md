@@ -13,7 +13,7 @@ permalink: /users/help-nearby-markers.html
 
 Tlačidlo *Značky v okolí* vám povie o až štyroch značkách, ktoré sú vám najbližšie. *Značky v okolí* má za cieľ pomôcť vám zorientovať sa pomocou miest, ktoré už poznáte.
 
-## Kedy by som to použil(a)?
+## Kedy to použiť?
 
 Keď sa snažíte zorientovať a získať prehľad o svojom okolí, použite *Značky v okolí*, aby ste počuli o polohe miest, ktoré poznáte.
 

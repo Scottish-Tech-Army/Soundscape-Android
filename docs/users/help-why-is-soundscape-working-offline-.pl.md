@@ -15,7 +15,7 @@ Gdy nie ma połączenia z internetem lub usługi Soundscape nie działają, apli
 
 ## Ograniczenia
 
-Powiadomienia nadal działają w miejscach, przez które wcześniej przechodziłeś, ponieważ Soundscape zapisuje je w Twojej historii powiadomień. Możesz też ustawić naprowadzanie lub utworzyć znacznik (pinezkę) dla miejsc już zapisanych w historii powiadomień.
+Powiadomienia nadal działają w okolicach odwiedzonych już wcześniej, ponieważ Soundscape zapisuje je w Twojej historii powiadomień. Możesz też ustawić naprowadzanie lub utworzyć znacznik dla miejsc już zapisanych w historii powiadomień.
 
 ## Co możesz zrobić?
 

@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Co to je?
 
-Gemini můžete požádat, aby v Soundscape něco udělal, aniž byste se dotkli telefonu: přehrál hlášení, spustil některou z vašich tras nebo nastavil zvukový maják na některou z vašich značek. Totéž zvládne i každý jiný asistent, který podporuje funkce aplikací v Androidu.
+Soundscape je na Gemini připraven, ale Gemini ho zatím používat nemůže: záleží na tom, až Google vydá podporu funkcí aplikací v Androidu pro Gemini. Až se tak stane, budete moci Gemini požádat, aby v Soundscape něco udělal, aniž byste se dotkli telefonu: přehrál hlášení, spustil některou z vašich tras nebo nastavil zvukový maják na některou z vašich značek. Totéž zvládne i každý jiný asistent, který podporuje funkce aplikací v Androidu.
 
-Soundscape odpovídá vlastním hlasem, hlášeními a zvuky majáku, které už znáte, místo aby asistent přečetl shrnutí. Díky tomu to, co slyšíte, stále přichází ze směru, který popisuje.
+Soundscape bude odpovídat vlastním hlasem, hlášeními a zvuky majáku, které už znáte, místo aby asistent přečetl shrnutí. Díky tomu to, co uslyšíte, bude stále přicházet ze směru, který popisuje.
 
 ## Kdy to použít?
 
@@ -35,11 +35,11 @@ Spustil některou z vašich uložených tras podle názvu, přešel na další t
 
 Nastavil zvukový maják na některou z vašich uložených značek podle názvu nebo maják vypnul.
 
-Nastavil podrobnost hlášení na *Bez zvuku*, *Tichý*, *Vyvážený* nebo *Podrobný*, čímž se změní, kolik toho Soundscape říká, když jdete. *Bez zvuku* vypne automatická hlášení.
+Nastavil podrobnost hlášení na *Bez zvuku*, *Základní*, *Zjednodušený* nebo *Podrobný*, čímž se změní, kolik toho Soundscape říká, když jdete. *Bez zvuku* vypne automatická hlášení.
 
 Přečetl názvy vašich uložených tras nebo vašich uložených značek.
 
 Vše kromě obou seznamů vyžaduje, aby Soundscape běžel. Pokud neběží, asistent vám řekne, ať Soundscape nejprve otevřete. Vypsání vašich tras a značek funguje tak či tak, protože jen přečte to, co už máte uložené.
 
-Hlasové příkazy vyžadují telefon s Androidem 16 nebo novějším a asistenta, který podporuje funkce aplikací.
+Hlasové příkazy budou vyžadovat telefon s Androidem 16 nebo novějším a asistenta, který podporuje funkce aplikací. Dokud Google tuto podporu v Gemini nevydá, fungovat nebudou.
 

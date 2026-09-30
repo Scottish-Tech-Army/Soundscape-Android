@@ -19,5 +19,5 @@ Når du prøver å orientere deg i omgivelsene, kan du bruke *Markører i nærhe
 
 ## Hvordan fungerer den?
 
-Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Markører i nærheten*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Markører i nærheten* så hører du fire markører i nærheten av deg.
+Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Markører i nærheten*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Markører i nærheten* så hører du opptil fire markører i nærheten av deg.
 

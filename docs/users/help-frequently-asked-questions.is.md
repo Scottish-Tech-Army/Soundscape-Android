@@ -11,7 +11,7 @@ permalink: /users/help-frequently-asked-questions.html
 
 ## Hvað er Soundscape og hvernig er það notað?
 
-### Hvenar skal nota Soundscape?
+### Hvenær ætti ég að nota Soundscape?
 Soundscape hefur eiginleika og kosti sem spanna fjölbreyttar aðstæður og tímaramma. Gildi Soundscape fyrir þig getur einnig breyst með tímanum, þannig að notkun þín í dag getur verið önnur en eftir þrjá mánuði. Fólk hugsar oft um öpp út frá spurningunni *„hvaða vandamál leysir þetta app vel?“* Vissulega er hægt að nota Soundscape fyrir tiltekin verkefni – eins og að fylgjast með áfangastað á leiðinni þangað, að átta sig þegar þú kemur út úr neðanjarðarlestarstöð, að átta sig þegar þú stígur út úr bíl, eða að finna götunöfnin fyrir næstu gatnamót eða fjarlægðina að þeim. Hins vegar er heimspekin á bak við Soundscape sú að *„lýsa upp heiminn þinn með hljóði“* – forritið er hannað til að vera notað hvenær sem þú ert á ferðinni, til að veita þér umhverfisvitund, eins og nöfn gatnanna sem þú ert á, í hvaða átt þú ert að fara og nöfn fyrirtækja sem þú ferð framhjá. Í þessum notkunarmáta hafa notendur okkar vísað til Soundscape sem *„góðs fylgiforrits“*, sem styður *„tilviljun“*, hjálpar til við að *„fylla í eyðurnar í hugarkortinu þínu“* og veitir meira *„öryggi þegar maður gengur“*. Hér eru nokkur önnur dæmi um hvernig notendur okkar nota Soundscape í lífi sínu:
 
 „Soundscape hjálpaði mér að komast aftur á rétta braut eftir að ég fór úr strætó og fór í ranga átt.“
@@ -20,16 +20,16 @@ Soundscape hefur eiginleika og kosti sem spanna fjölbreyttar aðstæður og tí
 
 „Þrívíddarhljóðið eykur upplifun mína af göngu, þar sem ég finn mig tengdari umhverfi mínu ... Ég er líklegri til að prófa nýja leið núna þegar ég hef forritið til að nota.“
 
-„Ég sakna tilviljunarinnar við að ganga um og taka eftir hlutum. Að hafa Soundscape er fínt - það krefst engra fyrirhafnar að heyra um hluti í kringum mig. Tengslaupplýsingarnar eru gagnlegar og er frábært forrit til að átta sig á aðstæðum og kanna viðskiptagöng.“
+„Ég sakna tilviljunarinnar við að ganga um og taka eftir hlutum. Að hafa Soundscape er fínt - það krefst engrar fyrirhafnar að heyra um hluti í kringum mig. Tengslaupplýsingarnar eru gagnlegar og þetta er frábært forrit til að átta sig á aðstæðum og kanna verslunargötur.“
 
 „[Ég notaði Soundscape] til að finna krá í miðri York. [Ég] notaði ýmsa möguleika til að finna hana fyrst og svo í raun og veru. Það færði mig innan við þriggja metra frá dyrunum – frábært!“
 
 ### Hvað eru merki og hvernig nýti ég þau?
-Merki eru staðir sem þú hefur vistað. Þau geta verið staðir sem finnast í forritinu eða alveg nýir staðir sem þú bættir við sjálfur. Þú getur vistað núverandi staðsetningu sem merki með því að velja hnappinn *staðsetning* á heimaskjánum og síðan *Vista sem merki*. Þú getur vistað aðra staði sem merki með því að leita að staðnum með leitarstikunni eða finna hann með hnappnum *Nálægir staðir*, sem báðir eru á heimaskjánum. Þegar þú finnur staðinn sem þú vilt og velur hann færðu upp skjáinn *Upplýsingar um staðsetningu*. Á þeim skjá skaltu velja hnappinn *Vista sem merki*.
+Merki eru staðir sem þú hefur vistað. Þau geta verið staðir sem finnast í forritinu eða alveg nýir staðir sem þú hefur bætt við. Þú getur vistað núverandi staðsetningu sem merki með því að velja hnappinn *Núverandi staðsetning* á heimaskjánum og síðan *Vista sem merki*. Þú getur vistað aðra staði sem merki með því að leita að staðnum með leitarstikunni eða finna hann með hnappnum *Nálægir staðir*, sem báðir eru á heimaskjánum. Þegar þú finnur staðinn sem þú vilt og velur hann færðu upp skjáinn *Upplýsingar um staðsetningu*. Á þeim skjá skaltu velja hnappinn *Vista sem merki*.
 
 ## Hvernig nýti ég Soundscape sem best?
 
-### Hvað get ég virkjað sem hljóðvita?
+### Á hvað get ég sett hljóðvita?
 Þú getur sett hljóðvita á hvaða fyrirtæki, stað, áhugaverðan stað, heimilisfang eða gatnamót sem er. Til að bæta hljóðvita við stað, skoðaðu fyrst upplýsingar um staðinn með því að nota leitarstikuna eða velja einn af hnöppunum *Nálægir staðir*, *Merki og leiðir* eða *Núverandi staðsetning* og velja staðinn. Veldu síðan hnappinn *Kveikja á hljóðvita* á skjánum *Upplýsingar um staðsetningu*. Með því að ýta á hann snýrðu aftur á heimaskjáinn og kveikir á heyranlegum hljóðvita sem heyrist úr þeirri átt sem staðurinn er. Nafn staðarins ásamt fjarlægð og heimilisfangi, ef tiltækt, verður nú sýnt á aðalskjánum.
 
 ### Hvernig næ ég sem mestu út úr hljóðvitanum?
@@ -44,7 +44,7 @@ Hugsaðu um heyranlega hljóðvitann sem *„vita fyrir eyrun þín“*: hann se
 3. Ef þú veist almennt hvernig þú kemst á áfangastaðinn gætirðu viljað þagga hljóðvitann mestan hluta leiðarinnar og kveikja á honum aðeins þegar þú nálgast áfangastaðinn.
 
 ### Hvers vegna hverfur hljóðvitinn stundum?
-Hljóðmerki Soundscape er í grundvallaratriðum stefnuvísbending sem segir þér hvert áfangastaðurinn þinn er miðað við þá átt sem þú snýrð í. Þegar Soundscape er óviss um í hvaða átt þú snýrð lækkar það hljóðstyrk merkisins. Oftast gerist þetta ef þú hefur verið að ganga með símann geymdan í vasa eða tösku og hættir að hreyfa þig, til dæmis til að fara yfir götu. Merkið verður háværara þegar þú byrjar að hreyfa þig aftur, eða ef þú heldur símanum flatt og beinir honum í þá átt sem þú snýrð í.
+Hljóðviti Soundscape er í grundvallaratriðum stefnuvísbending sem segir þér hvert áfangastaðurinn þinn er miðað við þá átt sem þú snýrð í. Þegar Soundscape er óviss um í hvaða átt þú snýrð lækkar það hljóðstyrk hljóðvitans. Oftast gerist þetta ef þú hefur verið að ganga með símann geymdan í vasa eða tösku og hættir að hreyfa þig, til dæmis til að fara yfir götu. Hljóðvitinn verður háværari þegar þú byrjar að hreyfa þig aftur, eða ef þú heldur símanum flatt og beinir honum í þá átt sem þú snýrð í.
 
 ### Get ég sett hljóðvita á heimilisfang?
 Já, það er hægt. Heimilisföng koma ekki fram sjálfgefið en má finna með leitarreitnum. Til að vista heimilisfang svo þú þurfir ekki að leita að því aftur geturðu bætt því sem merki á skjánum *Upplýsingar um staðsetningu* með því að velja hnappinn *Vista sem merki*.
@@ -59,16 +59,16 @@ Soundscape getur ákvarðað staðsetningu áfangastaðarins upp á nokkra metra
 Já, þú getur kveikt á hljóðvitanum aftur eftir að Soundscape hefur slökkt á honum með því að velja hnappinn *virkja hljóðvita*. Þar sem staðsetningarþjónusta er þó aðeins nákvæm upp á um 10 metra getum við ekki tryggt hegðun hljóðvitans þegar þú ert í fárra metra fjarlægð frá áfangastaðnum.
 
 ### Hvers vegna tilkynnir Soundscape tvisvar um götuheiti þegar ég nálgast gatnamót?
-Til að lýsa margvíslegum gatnamótum lýsir Soundscape þeim sem vegaálmum sem liggja frá sameiginlegum punkti. Soundscape notar rúmsnertilegt hljóð til að segja til um nöfn gatnanna sem liggja til vinstri, beint áfram og til hægri, í þeirri röð. Ef lýsingin byrjar á götunni sem þú ert á frekar en götu til vinstri, mynda gatnamótin T sem liggur á hliðinni, þar sem gatan sem þú ert á heldur áfram og önnur gata mætir frá hægri. Á sama hátt, ef lýsingin nefnir aðeins götu til vinstri og hægri, veistu að gatan sem þú ert á endar í T fram undan. Þessi aðferð virkar einnig þegar gata skiptir um nafn á gatnamótunum.
+Til að lýsa margvíslegum gatnamótum lýsir Soundscape þeim sem vegaálmum sem liggja frá sameiginlegum punkti. Soundscape notar rúmhljóð til að segja til um nöfn gatnanna sem liggja til vinstri, beint áfram og til hægri, í þeirri röð. Ef lýsingin byrjar á götunni sem þú ert á frekar en götu til vinstri, mynda gatnamótin T sem liggur á hliðinni, þar sem gatan sem þú ert á heldur áfram og önnur gata mætir frá hægri. Á sama hátt, ef lýsingin nefnir aðeins götu til vinstri og hægri, veistu að gatan sem þú ert á endar í T fram undan. Þessi aðferð virkar einnig þegar gata skiptir um nafn á gatnamótunum.
 
 ### Hvers vegna segir Soundscape ekki frá öllum stöðum sem ég nálgast?
 Soundscape er hannað til að gefa þér ekki of margar tilkynningar. Það notar einnig OpenStreetMap sem gagnagjafa. OpenStreetMap (OSM, https://www.openstreetmap.org/) er heimskort sem samfélag einstakra þátttakenda byggir upp og ritstýrir. Ef Soundscape tilkynnir ekki um fyrirtæki eða áhugaverðan stað er líklegasta ástæðan sú að enginn úr OSM‑samfélaginu hafi enn bætt því fyrirtæki við gögnin, eða í sumum tilfellum ekki uppfært það.
 
 ### Hvers vegna hætta sumar tilkynningar þegar ég er í bíl?
-Til að koma í veg fyrir of miklar upplýsingar greinir Soundscape á milli þess þegar notandi er í bíl eða á gangi. og miðlar upplýsingum eftir því.
+Til að tilkynningarnar verði ekki yfirþyrmandi eru sumir flokkar, til dæmis gatnamót, ekki tilkynntir sjálfkrafa þegar þú ferðast í ökutæki.
 
 ### Hvað geri ég ef ég missi af tilkynningu eða skil hana ekki?
-Soundscape geymir lista yfir nýlegar tilkynningar svo þú getir farið yfir tilkynningar sem þú missti af. Til að finna þetta, bankaðu á leitarstikuna á heimaskjánum. Neðst á þessum skjá er hluti sem heitir *Nýlegar tilkynningar* þar sem tilkynningin sem þú missti af verður skráð.
+Soundscape heldur ekki lista yfir fyrri tilkynningar, en þú getur hvenær sem er beðið forritið um að lýsa umhverfinu aftur. *Mín staðsetning* segir þér hvar þú ert, og *Í kringum mig* og *Fyrir framan mig* tilkynna staðina í kringum þig og fyrir framan þig. Allir þrír hnapparnir eru neðst á heimaskjánum. Ef þú notar margmiðlunarstýringar heyrnartólanna og *Upprunalegur hamur* er valinn, segir ⏭ Næsta *Í kringum mig* þegar engin leið er í spilun.
 
 ## Hvernig virkar Soundscape?
 
@@ -79,18 +79,18 @@ Soundscape er sem stendur í boði fyrir iPhone-síma með iOS 16 eða nýrra og
 Val á heyrnartólum fer eftir smekk hvers og eins, og hver kostur hefur sína kosti og galla. Eina krafan er að nota víðóma (stereo) heyrnartól svo þú getir nýtt þér þrívíddarhljóð Soundscape til fulls.
 
 ### Hvaða áhrif hefur Soundscape á rafhlöðu símans?
-Endingu rafhlöðu ræðst mjög af gerð og aldri símans. Mest dregur úr rafhlöðu að hafa skjáinn á, svo til að hámarka endingu rafhlöðu símans skaltu hafa skjáinn læstan eins og kostur er. Til að draga úr áhrifum á rafhlöðu síman þíns hefur Soundscape dvalaham og lúra-ham. Til að minnka rafhlöðunotkun enn frekar ættir þú að loka forritinu í forritaskiptum símans (App Switcher) þegar þú notar það ekki.
+Ending rafhlöðu ræðst mjög af gerð og aldri símans. Mest dregur úr rafhlöðu að hafa skjáinn á, svo til að hámarka endingu rafhlöðu símans skaltu hafa skjáinn læstan eins og kostur er. Til að draga úr áhrifum á rafhlöðu símans þíns hefur Soundscape dvalaham og lúra-ham. Til að minnka rafhlöðunotkun enn frekar ættir þú að loka forritinu í forritaskiptum símans (App Switcher) þegar þú notar það ekki.
 
-### Hvernig nota ég í dvala ham til að spara rafhlöðuna?
+### Hvernig nota ég dvalaham til að spara rafhlöðuna?
 Til að setja Soundscape í dvalaham skaltu velja hnappinn *Fara í dvala* efst í hægra horni heimaskjásins. Þegar þú gerir það hættir Soundscape að nota Staðsetningarþjónustu og farsímagögn þar til þú vekur það.
 
-### Hvernig nýti ég möguleikann á því að láta Soundscape lura til að spara rafhlöðu?
+### Hvernig nýti ég möguleikann á því að láta Soundscape lúra til að spara rafhlöðu?
 Til að setja Soundscape í lúra‑ham (Snooze) skaltu velja hnappinn *Fara í dvala* efst í hægra horni heimaskjásins. Þegar Soundscape er í dvalaham skaltu velja hnappinn *Vakna við brottför* og forritið fer þá í lágorkustöðu þar til þú yfirgefur núverandi staðsetningu þína.
 
 ### Hvernig hefur val á heyrnartólum áhrif á endingu rafhlöðu símans míns?
 Ekki hefur fundist merkjanlegur munur á virkni mismunandi heyrnartóla á endingu rafhlöðu. Sambærilegar niðurstöður sjást hvort sem um er að ræða bluetooth eða snúru.
 
-### Hvaða áhrif hefur það á rafhlöðu að keyra Soundscape í bakrunni?
+### Hvaða áhrif hefur það á rafhlöðu að keyra Soundscape í bakgrunni?
 Soundscape notar staðsetningarþjónustu til að ákvarða hvar þú ert. Í prófunum okkar notar Soundscape ekki meiri rafhlöðu en meðalkortaforrit; en ef þú hefur áhyggjur af rafhlöðunotkun símans þíns, þá eru eftirfarandi nokkur ráð sem geta hjálpað til við að draga úr notkun:
 
 1. Slökktu á skjánum eins mikið og mögulegt er þegar þú ert ekki að nota forritið.
@@ -99,11 +99,11 @@ Soundscape notar staðsetningarþjónustu til að ákvarða hvar þú ert. Í pr
 
 3. Í köldu veðri skaltu halda símanum heitum þar sem rafhlöðurnar virka verr í kaldara hitastigi.
 
-### Hversu miklum gagnamagni notar Soundscape?
+### Hversu mikið gagnamagn notar Soundscape?
 Gagnamagnið sem notað er fer eftir því hvernig þú notar Soundscape. Forritið er hannað til að nota lítið gagnamagn þegar þú ert á ferðinni, meðal annars með því að vista punkta á meðan þú gengur svo þú þurfir ekki að sækja þá aftur. Til að draga úr gagnanotkun skaltu tengjast Wi-Fi þegar mögulegt er, sérstaklega við niðurhal forritsins. Þegar þú notar ekki Soundscape skaltu nota *Fara í dvala*-hnappinn eða loka forritinu alveg.
 
-### Hver er sérstaða Soundscape fram yfir önnur smbærileg forrit?
-Soundscape veitir umhverfislýsingu um það sem er í kringum þig til að auðvelda könnun og leiðsögn. Með rúmsnertilegum hljóðum mun Soundscape tilkynna áhugaverða staði, garða, götur og gatnamót frá þeirri átt sem þau eru í í nánasta umhverfi þínu meðan þú gengur. Til dæmis, ef þú gengur framhjá verslun hægra megin mun þú heyra nafnið á versluninni berast frá hægri. Þegar þú nálgast gatnamót munu nöfn götanna heyrast frá þeirri átt sem þær liggja, fyrst frá vinstri, síðan beint framundan og svo frá hægri.
+### Hver er sérstaða Soundscape umfram önnur kortaforrit?
+Soundscape veitir umhverfislýsingu um það sem er í kringum þig til að auðvelda könnun og leiðsögn. Með rúmhljóði mun Soundscape tilkynna áhugaverða staði, garða, götur og gatnamót frá þeirri átt sem þau eru í í nánasta umhverfi þínu meðan þú gengur. Til dæmis, ef þú gengur framhjá verslun hægra megin mun þú heyra nafnið á versluninni berast frá hægri. Þegar þú nálgast gatnamót munu nöfn götanna heyrast frá þeirri átt sem þær liggja, fyrst frá vinstri, síðan beint framundan og svo frá hægri.
 
 Í stað skref fyrir skref leiðbeininga sem mörg önnur kortaforrit bjóða upp á, spilar Soundscape heyranlegan hljóðvita í þá átt sem áfangastaðurinn er. Þetta gerir þér kleift að komast þangað á þann hátt sem hentar þér best með aukinni umhverfisvitund og betri hugmynd um staðsetningu áfangastaðarins. Soundscape er hannað til að halda áfram að keyra í bakgrunni, svo þú getur notað skref fyrir skref leiðsagnarforrit samhliða, á meðan Soundscape heldur áfram að veita umhverfisupplýsingar meðan þú ferð að áfangastað.
 
@@ -117,7 +117,7 @@ Soundscape býður upp á nokkra vegu til að stýra því sem þú heyrir og hv
 
 2. Slökkva á sjálfvirkum tilkynningum: Þegar þú ert ekki á ferð eða hefur náð áfangastað þarftu líklega ekki að Soundscape haldi áfram að tilkynna um hluti í kringum þig. Í stað þess að loka forritinu geturðu sett Soundscape í lúra-ham og það vekur sig sjálfkrafa þegar þú yfirgefur staðinn, eða sett það í dvalaham og þá verður það slökkt þar til þú kveikir á því aftur. Að öðrum kosti geturðu farið í *Stillingar* úr valmyndinni og stillt *Nákvæmni tilkynninga* á *Þögult* í kaflanum *Stjórna tilkynningum*.
 
-3. Stöðva hljóðvitann: Það geta verið margar aðstæður þar sem þú setur áfangastað en þarft ekki hljóðvitann. Til dæmis gætirðu vitað hvernig á að komast þangað en viljað samt reglulegar fjarlægðaruppfærslur, eða þú gætir viljað hljóðvitann aðeins þegar þú nálgast áfangastað. Hvað sem því líður geturðu valið hvenær þú heyrir hljóðvitann með því að skipta um hnappinn *slökkva á hljóðvita*/*virkja hljóðvita* á aðalskjánum.
+3. Stöðva hljóðvitann: Það geta verið margar aðstæður þar sem þú setur áfangastað en þarft ekki hljóðvitann. Til dæmis gætirðu vitað hvernig á að komast þangað en viljað samt reglulegar fjarlægðaruppfærslur, eða þú gætir viljað hljóðvitann aðeins þegar þú nálgast áfangastað. Hvað sem því líður geturðu valið hvenær þú heyrir hljóðvitann með hnappnum *slökkva á hljóðvita*/*virkja hljóðvita* á aðalskjánum.
 
 Ef þú vilt eiga samskipti við Soundscape en ekki heyra sjálfvirkar tilkynningar geturðu stillt *Nákvæmni tilkynninga* á *Þögult* í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape geturðu sett það í dvalaham eða lúra-ham með hnappnum *Fara í dvala* á heimaskjánum.
 

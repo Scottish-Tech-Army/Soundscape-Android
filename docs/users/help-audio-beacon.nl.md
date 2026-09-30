@@ -25,7 +25,7 @@ Bekijk eerst de gegevens van een locatie door in de zoekbalk naar een plaats te 
 
 **Om het huidige baken te verwijderen :**
 
-Tik eenvoudig op de *Route stoppen* knop op het hoofdscherm.
+Tik op de knop *Route stoppen* op het hoofdscherm.
 
 **Om het hoorbare baken te dempen :**
 

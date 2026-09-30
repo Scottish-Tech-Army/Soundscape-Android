@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Bu nedir?
 
-Telefonunuza dokunmadan Gemini'den Soundscape'te işlem yapmasını isteyebilirsiniz: bir anons dinlemek, rotalarınızdan birini başlatmak ya da kayıtlı noktalarınızdan birine sesli işaret koymak. Android uygulama işlevlerini destekleyen diğer tüm asistanlar da aynısını yapabilir.
+Soundscape Gemini'ye hazır, ancak Gemini onu henüz kullanamıyor: bu, Google'ın Gemini'de Android uygulama işlevleri desteğini yayınlamasına bağlı. Bu gerçekleştiğinde, telefonunuza dokunmadan Gemini'den Soundscape'te işlem yapmasını isteyebileceksiniz: bir anons dinlemek, rotalarınızdan birini başlatmak ya da kayıtlı noktalarınızdan birine sesli işaret koymak. Android uygulama işlevlerini destekleyen diğer tüm asistanlar da aynısını yapabilecek.
 
-Soundscape, asistanın bir özet okuması yerine kendi sesiyle, zaten bildiğiniz anonslar ve işaret sesleriyle yanıt verir. Böylece duyduğunuz şey yine anlattığı yönden gelir.
+Soundscape, asistanın bir özet okuması yerine kendi sesiyle, zaten bildiğiniz anonslar ve işaret sesleriyle yanıt verecek. Böylece duyduğunuz şey yine anlattığı yönden gelecek.
 
 ## Ne zaman kullanırım?
 
@@ -35,11 +35,11 @@ Kayıtlı rotalarınızdan biri adıyla başlatılsın, sonraki ara noktaya geç
 
 Kayıtlı noktalarınızdan birine adıyla sesli işaret konsun ya da işaret kapatılsın.
 
-Anons ayrıntısı *Sessiz*, *Sakin*, *Dengeli* ya da *Ayrıntılı* yapılsın; böylece yürürken Soundscape'in ne kadar konuşacağı değişir. *Sessiz*, otomatik anonsları kapatır.
+Anons ayrıntısı *Sessiz*, *Temel*, *Sadeleştirilmiş* ya da *Ayrıntılı* yapılsın; böylece yürürken Soundscape'in ne kadar konuşacağı değişir. *Sessiz*, otomatik anonsları kapatır.
 
 Kayıtlı rotalarınızın ya da kayıtlı noktalarınızın adları okunsun.
 
 İki liste dışındaki her şey Soundscape'in çalışıyor olmasını gerektirir. Çalışmıyorsa asistan size önce Soundscape'i açmanızı söyler. Rotalarınızı ve kayıtlı noktalarınızı listelemek her durumda çalışır, çünkü yalnızca zaten kaydettiklerinizi okur.
 
-Sesli komutlar için Android 16 veya üzeri bir telefon ve uygulama işlevlerini destekleyen bir asistan gerekir.
+Sesli komutlar için Android 16 veya üzeri bir telefon ve uygulama işlevlerini destekleyen bir asistan gerekecek. Google bu desteği Gemini'de yayınlayana kadar çalışmayacaklar.
 

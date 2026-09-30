@@ -11,5 +11,5 @@ permalink: /users/help-creating-markers.html
 
 Þú getur búið til merki á þrjá vegu: með því að leita að stað sem þú vilt vista með leitarstikunni, finna stað með hnappnum *Nálægir staðir*, eða nota hnappinn *Núverandi staðsetning*, sem allir eru á heimaskjánum. Þegar þú finnur staðinn sem þú vilt, leiðir val hans þig á skjáinn *Upplýsingar um staðsetningu*. Á þeim skjá skaltu velja hnappinn *Vista sem merki*.
 
-Nú færðu kost á að sérsníða þetta merki. Þú getur breytt nafni merkisins og bætt við athugasemd sem verður lesin upp ásamt merkinu til að gefa frekari upplýsingar. Þegar þú ert búinn skaltu velja *"lokið"* til að vista merkið.
+Nú færðu kost á að sérsníða þetta merki. Þú getur breytt nafni merkisins og bætt við athugasemd sem verður lesin upp ásamt merkinu til að gefa frekari upplýsingar. Að því loknu skaltu velja *Lokið* til að vista merkið.
 

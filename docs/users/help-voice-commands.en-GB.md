@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## What is it?
 
-You can ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions can do the same.
+Soundscape is ready for Gemini, but Gemini cannot use it yet: that depends on Google releasing support for Android app functions in Gemini. Once it does, you will be able to ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions will be able to do the same.
 
-Soundscape answers in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear still comes from the direction it is describing.
+Soundscape will answer in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear will still come from the direction it is describing.
 
 ## When would I use it?
 
@@ -41,5 +41,5 @@ Read back the names of your saved routes or your saved markers.
 
 Everything except the two lists needs Soundscape to be running. If it is not, the assistant will tell you to open Soundscape first. Listing your routes and your markers works either way, because it only reads what you have already saved.
 
-Voice commands need a phone running Android 16 or later, with an assistant that supports app functions.
+Voice commands will need a phone running Android 16 or later, with an assistant that supports app functions. Until Google releases that support in Gemini, they will not work.
 

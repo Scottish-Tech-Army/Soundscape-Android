@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Kaj je to?
 
-Gemini lahko naročite, naj v Soundscapu opravi stvari, ne da bi se dotaknili telefona: predvaja zvočno obvestilo, zažene eno od vaših poti ali nastavi zvočni svetilnik na eno od vaših oznak. Enako zmore vsak drug pomočnik, ki podpira funkcije aplikacij v Androidu.
+Soundscape je pripravljen na Gemini, vendar ga Gemini še ne more uporabljati: to je odvisno od tega, kdaj bo Google v Geminiju izdal podporo za funkcije aplikacij v Androidu. Ko se to zgodi, boste lahko Geminiju naročili, naj v Soundscapu opravi stvari, ne da bi se dotaknili telefona: predvaja zvočno obvestilo, zažene eno od vaših poti ali nastavi zvočni svetilnik na eno od vaših oznak. Enako bo zmogel vsak drug pomočnik, ki podpira funkcije aplikacij v Androidu.
 
-Soundscape odgovori s svojim lastnim glasom, z zvočnimi obvestili in zvoki svetilnika, ki jih že poznate, namesto da bi pomočnik prebral povzetek. Tako to, kar slišite, še vedno prihaja iz smeri, ki jo opisuje.
+Soundscape bo odgovoril s svojim lastnim glasom, z zvočnimi obvestili in zvoki svetilnika, ki jih že poznate, namesto da bi pomočnik prebral povzetek. Tako bo to, kar slišite, še vedno prihajalo iz smeri, ki jo opisuje.
 
 ## Kdaj naj to uporabim?
 
@@ -35,11 +35,11 @@ Zažene eno od vaših shranjenih poti po imenu, se pomakne na naslednjo točko p
 
 Nastavi zvočni svetilnik na eno od vaših shranjenih oznak po imenu ali svetilnik izklopi.
 
-Nastavi raven podrobnosti obvestil na *Brez zvoka*, *Tiho*, *Uravnoteženo* ali *Podrobno*, s čimer se spremeni, koliko Soundscape pove med hojo. *Brez zvoka* izklopi samodejna zvočna obvestila.
+Nastavi raven podrobnosti obvestil na *Brez zvoka*, *Osnovno*, *Poenostavljeno* ali *Podrobno*, s čimer se spremeni, koliko Soundscape pove med hojo. *Brez zvoka* izklopi samodejna zvočna obvestila.
 
 Prebere imena vaših shranjenih poti ali vaših shranjenih oznak.
 
 Vse razen obeh seznamov zahteva, da Soundscape teče. Če ne teče, vam bo pomočnik naročil, da najprej odprete Soundscape. Naštevanje vaših poti in vaših oznak deluje tako ali tako, ker prebere le tisto, kar ste že shranili.
 
-Glasovni ukazi zahtevajo telefon z Androidom 16 ali novejšim in pomočnika, ki podpira funkcije aplikacij.
+Glasovni ukazi bodo zahtevali telefon z Androidom 16 ali novejšim in pomočnika, ki podpira funkcije aplikacij. Dokler Google te podpore v Geminiju ne izda, ne bodo delovali.
 

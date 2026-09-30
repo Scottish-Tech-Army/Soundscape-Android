@@ -21,5 +21,5 @@ Soundscape funguje nejlépe, když telefon držíte rovně, s obrazovkou obráce
 
 Rytmický zvuk majáku můžete zapínat a vypínat tlačítkem ztlumení na domovské obrazovce. Pokud je maják ztlumený, budete přesto přibližně každých 50 metrů dostávat aktualizace o vzdálenosti k cíli.
 
-Chcete-li Soundscape používat dál, ale neslyšet automatická hlášení, nastavte *Podrobnost hlášení* na *Bez zvuku* v části *Správa hlášení* na obrazovce *Nastavení* v nabídce. Pokud Soundscape nebudete chvíli používat, můžete jej místo toho pomocí tlačítka *Spánek* na domovské obrazovce přepnout do režimu spánku nebo dřímání.
+Chcete-li Soundscape používat dál, ale neslyšet automatická hlášení, nastavte *Podrobnost hlášení* na *Bez zvuku* v části *Spravovat hlášení* na obrazovce *Nastavení* v nabídce. Pokud Soundscape nebudete chvíli používat, můžete jej místo toho pomocí tlačítka *Spánek* na domovské obrazovce přepnout do režimu spánku nebo dřímání.
 

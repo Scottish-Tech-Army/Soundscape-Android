@@ -11,5 +11,5 @@ permalink: /users/help-customizing-markers.html
 
 Hvis du vil gi en tidligere opprettet markør nytt navn eller legge til en annotasjon, velger du markøren fra fanen *Markører* på siden *Markører og ruter*, og deretter knappen *Rediger markør*. Du kan bruke dette til å gi markører beskrivende eller nyttige kallenavn, samt legge inn en lengre beskrivelse i annotasjonsfeltet.
 
-Fra denne skjermen *"Rediger"* kan du også slette en markør hvis du ikke lenger trenger den.
+Fra skjermen *Rediger markør* kan du også slette en markør hvis du ikke lenger trenger den.
 

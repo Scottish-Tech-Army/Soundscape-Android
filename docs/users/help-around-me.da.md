@@ -11,7 +11,7 @@ permalink: /users/help-around-me.html
 
 ## Hvad er det?
 
-Knappen *"Omkring mig"* fortæller dig om én ting i hver af de fire kvadranter omkring dig (foran, til højre, bagved og til venstre). *"Omkring mig"* er beregnet til at hjælpe dig med at orientere dig om dine omgivelser.
+Knappen *Omkring mig* fortæller dig om én ting i hver af de fire kvadranter omkring dig (foran, til højre, bagved og til venstre). *Omkring mig* er beregnet til at hjælpe dig med at orientere dig om dine omgivelser.
 
 ## Hvornår ville jeg bruge det?
 

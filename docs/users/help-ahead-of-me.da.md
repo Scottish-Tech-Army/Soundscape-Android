@@ -19,5 +19,5 @@ Når du går ned ad gaden, kan du prøve at bruge *Foran mig* for at opdage de s
 
 ## Hvordan virker det?
 
-Som med alle fire knapper nederst på startskærmen skal du holde telefonen med skærmen vandret (så den vender mod himlen), og toppen af telefonen skal pege i den retning, du vender, før du trykker på knappen *"Foran mig"*. Dette fungerer som et kompas, der fortæller appen, i hvilken retning du vender. Du skal blot trykke på *"Foran mig"*, så vil du høre om flere interessepunkter, der alle ligger nogenlunde foran dig.
+Som med alle fire knapper nederst på startskærmen skal du holde telefonen med skærmen vandret (så den vender mod himlen), og toppen af telefonen skal pege i den retning, du vender, før du trykker på knappen *Foran mig*. Dette fungerer som et kompas, der fortæller appen, i hvilken retning du vender. Du skal blot trykke på *Foran mig*, så vil du høre om flere interessepunkter, der alle ligger nogenlunde foran dig.
 

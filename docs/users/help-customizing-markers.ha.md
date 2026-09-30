@@ -11,5 +11,5 @@ permalink: /users/help-customizing-markers.html
 
 Idan kuna son sake wa sunan alamar da kuka riga kuka ƙirƙira, ko ƙara bayani a kanta, ku zaɓi alamar daga shafin *Alamomi* na shafin *Alamomi da Tafarkuna*, sannan ku zaɓi maɓallin *Gyara Alama*. Za ku iya amfani da wannan don ba wa alamomi sunayen laƙabi masu bayani ko amfani, da kuma ba su cikakken bayani ta amfani da filin bayani.
 
-Daga wannan allon *Gyara* kuma za ku iya share alama idan ba kwa bukatarta kuma.
+Daga wannan allon *Gyara Alama* kuma za ku iya share alama idan ba kwa bukatarta kuma.
 

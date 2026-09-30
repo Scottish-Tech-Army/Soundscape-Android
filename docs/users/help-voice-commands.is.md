@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Hvað er það?
 
-Þú getur beðið Gemini um að gera hluti í Soundscape án þess að snerta símann: heyra tilkynningu, ræsa eina af leiðunum þínum eða setja hljóðvita á eitt af merkjunum þínum. Allir aðrir aðstoðarmenn sem styðja forritsaðgerðir í Android geta gert það sama.
+Soundscape er tilbúið fyrir Gemini en Gemini getur ekki notað það enn: það veltur á því hvenær Google gefur út stuðning við forritsaðgerðir í Android fyrir Gemini. Þegar það gerist getur þú beðið Gemini um að gera hluti í Soundscape án þess að snerta símann: heyra tilkynningu, ræsa eina af leiðunum þínum eða setja hljóðvita á eitt af merkjunum þínum. Allir aðrir aðstoðarmenn sem styðja forritsaðgerðir í Android munu geta gert það sama.
 
-Soundscape svarar með sinni eigin rödd, með þeim tilkynningum og vitahljóðum sem þú þekkir nú þegar, í stað þess að aðstoðarmaðurinn lesi upp samantekt. Þannig kemur það sem þú heyrir áfram úr þeirri átt sem verið er að lýsa.
+Soundscape mun svara með sinni eigin rödd, með þeim tilkynningum og vitahljóðum sem þú þekkir nú þegar, í stað þess að aðstoðarmaðurinn lesi upp samantekt. Þannig mun það sem þú heyrir áfram koma úr þeirri átt sem verið er að lýsa.
 
 ## Hvenær ætti að nota það?
 
@@ -27,7 +27,7 @@ Raddskipanir eru gagnlegar þegar síminn er í vasanum, þegar þú ert með fu
 
 Þú getur beðið Soundscape um að:
 
-Lýsa *mín staðsetning*, hvað er *í kringum mig* eða hvað er *fyrir framan mig*.
+Lýsa *Mín staðsetning*, hvað er *Í kringum mig* eða hvað er *Fyrir framan mig*.
 
 Lesa upp vistuðu merkin nálægt þér.
 
@@ -35,11 +35,11 @@ Ræsa eina af vistuðu leiðunum þínum eftir heiti, fara á næsta leiðarpunk
 
 Setja hljóðvita á eitt af vistuðu merkjunum þínum eftir heiti, eða slökkva á hljóðvitanum.
 
-Stilla nákvæmni tilkynninga á *Þögult*, *Hljóðlátt*, *Jafnvægi* eða *Ítarlegt*, til að breyta því hversu mikið Soundscape segir á meðan þú gengur. *Þögult* slekkur á sjálfvirkum tilkynningum.
+Stilla nákvæmni tilkynninga á *Þögult*, *Nauðsynlegt*, *Einfaldað* eða *Ítarlegt*, til að breyta því hversu mikið Soundscape segir á meðan þú gengur. *Þögult* slekkur á sjálfvirkum tilkynningum.
 
 Lesa upp heiti vistuðu leiðanna þinna eða vistuðu merkjanna þinna.
 
 Allt nema listarnir tveir krefst þess að Soundscape sé í gangi. Sé svo ekki biður aðstoðarmaðurinn þig um að opna Soundscape fyrst. Að telja upp leiðirnar þínar og merkin þín virkar hvort sem er, því þá er aðeins lesið upp það sem þú hefur þegar vistað.
 
-Raddskipanir krefjast síma með Android 16 eða nýrra og aðstoðarmanns sem styður forritsaðgerðir.
+Raddskipanir munu krefjast síma með Android 16 eða nýrra og aðstoðarmanns sem styður forritsaðgerðir. Þær virka ekki fyrr en Google gefur út þennan stuðning í Gemini.
 

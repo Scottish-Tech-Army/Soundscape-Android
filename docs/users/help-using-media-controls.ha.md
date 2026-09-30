@@ -11,15 +11,15 @@ permalink: /users/help-using-media-controls.html
 
 ## Menene wannan?
 
-Za ku iya samun damar wasu fasalulluka a cikin Soundscape ta amfani da maɓallan sarrafa kafofin watsa labarai da ke a belun kunnenku. Wannan aikin yana aiki tare da kowace irin belun kunne, ko waya ko Bluetooth, da ke da maɓallan sarrafa kamar Kunna, Dakata, Na Gaba, Na Baya da sauransu. Belun kunne daban-daban na iya samun maɓallai daban-daban saboda haka a duba jerin ayyukan da ke ƙasa domin sanin waɗanda ke akwai a gare ku.
+Za ku iya samun damar wasu fasalulluka a cikin Soundscape ta amfani da maɓallan sarrafa sauti da ke a belun kunnenku. Wannan aikin yana aiki tare da kowace irin belun kunne, ko waya ko Bluetooth, da ke da maɓallan sarrafa kamar Kunna, Dakata, Na Gaba, Na Baya da sauransu. Belun kunne daban-daban na iya samun maɓallai daban-daban saboda haka a duba jerin ayyukan da ke ƙasa domin sanin waɗanda ke akwai a gare ku.
 
 ## Yaushe zan yi amfani da shi?
 
-Ana iya amfani da maɓallan sarrafa kafofin watsa labarai na belun kunne yayin da Soundscape ke aiki — ko kuna amfani da manhajar kai tsaye, ko tana aiki a bango, ko na'urarku tana kulle. Duk da haka, maɓallan sarrafa kafofin watsa labarai na belun kunne ba za su yi aiki da Soundscape ba idan kuna kunna sauti, kamar waƙa, podcast ko bidiyo, ta wata manhajar daban.
+Ana iya amfani da maɓallan sarrafa sauti na belun kunne yayin da Soundscape ke aiki — ko kuna amfani da manhajar kai tsaye, ko tana aiki a bango, ko na'urarku tana kulle. Duk da haka, maɓallan sarrafa sauti na belun kunne ba za su yi aiki da Soundscape ba idan kuna kunna sauti, kamar waƙa, podcast ko bidiyo, ta wata manhajar daban.
 
 ## Yaya yake aiki?
 
-Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sashen *Saitunan* *Sarrafa Kafofin Watsa Labarai*. Yanayoyin sune:
+Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sashen *Saitunan* *Maɓallan Sarrafa Sauti*. Yanayoyin sune:
 
  *Yanayin Asali*. 
 
@@ -27,7 +27,7 @@ Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sas
 
 ⏭ Na Gaba: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar gaba a tafarkin. Idan ba a kunna wani tafarki ba, yana sanar da *Kewaye da Ni*.
 
-⏮ Na Baya: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar da ta gabata a tafarkin. Idan ba a kunna wani tafarki ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Daidaito*, *Kaɗan*, *Shiru*, sannan ya koma *Cikakke*.
+⏮ Na Baya: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar da ta gabata a tafarkin. Idan ba a kunna wani tafarki ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Sauƙaƙe*, *Muhimmi*, *Shiru*, sannan ya koma *Cikakke*.
 
 
 

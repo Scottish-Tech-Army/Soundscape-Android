@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Menene wannan?
 
-Kana iya gaya wa Gemini ya yi abubuwa a cikin Soundscape ba tare da taɓa wayarka ba: ka ji sanarwa, ka fara ɗaya daga cikin tafarkunka, ko ka saita siginar sauti a kan ɗaya daga cikin alamominka. Duk wani mataimaki da ke goyon bayan ayyukan manhajar Android zai iya yin haka.
+Soundscape ya shirya wa Gemini, amma Gemini ba zai iya amfani da shi ba tukuna: hakan ya dogara ne kan lokacin da Google zai fitar da goyon bayan ayyukan manhajar Android a cikin Gemini. Da zarar ya yi haka, za ka iya gaya wa Gemini ya yi abubuwa a cikin Soundscape ba tare da taɓa wayarka ba: ka ji sanarwa, ka fara ɗaya daga cikin tafarkunka, ko ka saita siginar sauti a kan ɗaya daga cikin alamominka. Duk wani mataimaki da ke goyon bayan ayyukan manhajar Android zai iya yin haka.
 
-Soundscape yana amsawa da muryarsa, da sanarwowi da sautunan sigina da ka riga ka sani, maimakon mataimaki ya karanta taƙaitawa. Ta haka abin da kake ji yana ci gaba da fitowa daga hanyar da yake bayyanawa.
+Soundscape zai amsa da muryarsa, da sanarwowi da sautunan sigina da ka riga ka sani, maimakon mataimaki ya karanta taƙaitawa. Ta haka abin da za ka ji zai ci gaba da fitowa daga hanyar da yake bayyanawa.
 
 ## Yaushe zan yi amfani da shi?
 
@@ -35,11 +35,11 @@ Ya fara ɗaya daga cikin tafarkunka da aka ajiye da suna, ya matsa zuwa matsayi 
 
 Ya saita siginar sauti a kan ɗaya daga cikin alamominka da aka ajiye da suna, ko ya kashe siginar.
 
-Ya sanya matakin sanarwa ya zama *Shiru*, *Kaɗan*, *Daidaito* ko *Cikakke*, don canza yawan abin da Soundscape ke faɗa yayin tafiyarka. *Shiru* yana kashe sanarwa ta atomatik.
+Ya sanya matakin sanarwa ya zama *Shiru*, *Muhimmi*, *Sauƙaƙe* ko *Cikakke*, don canza yawan abin da Soundscape ke faɗa yayin tafiyarka. *Shiru* yana kashe sanarwa ta atomatik.
 
 Ya karanta sunayen tafarkunka da aka ajiye ko alamominka da aka ajiye.
 
 Kome sai jerin biyun nan yana buƙatar Soundscape ya kasance yana gudana. Idan ba ya gudana, mataimakin zai gaya maka ka fara buɗe Soundscape. Lissafa tafarkunka da alamominka yana aiki ko ta yaya, domin yana karanta abin da ka riga ka ajiye kawai.
 
-Umarnin murya suna buƙatar waya mai Android 16 ko sabo, tare da mataimaki da ke goyon bayan ayyukan manhaja.
+Umarnin murya za su buƙaci waya mai Android 16 ko sabo, tare da mataimaki da ke goyon bayan ayyukan manhaja. Har sai Google ya fitar da wannan goyon baya a cikin Gemini, ba za su yi aiki ba.
 

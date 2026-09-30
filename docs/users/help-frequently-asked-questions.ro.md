@@ -56,7 +56,7 @@ Soundscape permite setarea balizelor pe adrese. Pentru a seta o baliză pe casa 
 Soundscape poate determina locația destinației tale cu o precizie de câțiva metri, dar nu mai puțin. Când Soundscape determină că ești aproape de destinație, vei auzi un anunț final că destinația ta este în apropiere, iar baliza se va opri.
 
 ### Pot reporni baliza când sunt aproape de destinație?
-Da, poți reporni baliza după ce Soundscape o oprește selectând *"butonul de activare a sunetului balizei"*; totuși, deoarece Serviciile de localizare au o precizie de doar aproximativ 10 metri, nu putem garanta comportamentul balizei când te afli la câțiva metri de destinație.
+Da, poți reporni baliza după ce Soundscape o oprește selectând butonul *Activează sunetul balizei*; totuși, deoarece Serviciile de localizare au o precizie de doar aproximativ 10 metri, nu putem garanta comportamentul balizei când te afli la câțiva metri de destinație.
 
 ### De ce anunță Soundscape numele străzilor de două ori când mă apropii de o intersecție?
 Pentru a se adapta unei varietăți de forme de intersecții, Soundscape descrie intersecțiile ca segmente de drumuri care pornesc dintr-un punct comun. Soundscape folosește audio spațial pentru a indica numele drumurilor care merg la stânga, drept înainte și la dreapta, în această ordine. Dacă descrierea intersecției începe cu drumul pe care te afli în loc de unul la stânga, atunci intersecția formează un T culcat, cu drumul tău continuând înainte și un drum care vine din dreapta. În mod similar, dacă descrierea include doar un drum la stânga și la dreapta, vei ști că drumul pe care te afli se termină într-un T în fața ta. Această metodă de descriere a intersecțiilor funcționează și atunci când un drum își schimbă numele la o intersecție.
@@ -68,7 +68,7 @@ Soundscape este proiectat să nu îți dea prea multe anunțuri. De asemenea, fo
 Pentru a preveni ca numărul de anunțuri să devină copleșitor, unele categorii, cum ar fi intersecțiile, nu sunt anunțate automat când te deplasezi într-un vehicul.
 
 ### Ce se întâmplă dacă nu înțeleg un anunț sau îl pierd din cauza zgomotului ambiental?
-Soundscape are o listă cu anunțurile tale recente pentru a putea revedea anunțurile pe care le-ai ratat. Pentru a o găsi, apasă pe bara de căutare de pe ecranul principal. În partea de jos a acestui ecran, există o secțiune *Anunțuri recente* unde va fi listat anunțul pe care l-ai ratat.
+Soundscape nu păstrează o listă cu anunțurile anterioare, dar îi poți cere oricând să descrie din nou ce se află în jurul tău. *Locația mea* îți spune unde te afli, iar *În jurul meu* și *Înaintea mea* anunță locurile din jurul tău și din fața ta. Toate cele trei butoane se află în partea de jos a ecranului principal. Dacă folosești butoanele media ale căștilor și este selectat *Mod original*, ⏭ Următorul anunță *În jurul meu* atunci când nicio rută nu este redată.
 
 ## Cum funcționează Soundscape?
 
@@ -113,7 +113,7 @@ Soundscape este conceput pentru a completa detaliile despre mediul tău de care 
 ### Cum controlez ce aud și când aud în Soundscape?
 Soundscape oferă mai multe modalități de a controla ce auzi și când:
 
-1. Oprești imediat tot sunetul: Atinge de două ori ecranul cu două degete pentru a opri imediat tot sunetul, inclusiv orice anunț care se redă în acel moment și baliza, dacă este activă. Anunțurile vor relua automat când te apropii de următoarea intersecție sau punct de interes, însă baliza audibilă nu va porni automat. Selectează butonul *Activează sunetul balizei* de pe ecranul principal pentru a relua redarea balizei.
+1. Oprești imediat tot sunetul: Atinge de două ori ecranul cu două degete pentru a opri imediat tot sunetul, inclusiv orice anunț care se redă în acel moment și baliza, dacă este activă. Anunțurile se vor relua automat când te apropii de următoarea intersecție sau punct de interes, însă baliza audibilă nu va porni automat. Selectează butonul *Activează sunetul balizei* de pe ecranul principal pentru a relua redarea balizei.
 
 2. Dezactivezi anunțurile automate: Când nu te deplasezi sau ai ajuns la destinație, probabil nu vei avea nevoie ca Soundscape să mai anunțe lucruri din jur. În loc să închizi aplicația, poți pune Soundscape în modul Amânare și se va trezi când pleci, sau poți pune Soundscape în modul Repaus și va rămâne oprit până când îl pornești din nou. Alternativ, poți selecta *Setări* din meniu și seta *Detaliul anunțurilor* pe *Silențios* în secțiunea *Gestionare anunțuri*.
 

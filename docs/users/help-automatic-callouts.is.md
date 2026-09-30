@@ -25,13 +25,13 @@ Kveiktu á sjálfvirkum tilkynningum og gakktu um til að heyra um mismunandi ve
 
 **Þegar þú þarft þögn:**
 
-Þegar þú ætlar að fara yfir veg eða þarft einfaldlega að forritið sé hljótt, geturðu slökkt á tilkynningum. Þegar tilkynningar eru slökktar mun forritið aðeins gefa þér upplýsingar ef þú ýtir sjálfur á einn af hnöppunum *Mín staðsetning*, *Nálæg merki*, *Í kringum mig* eða *Fyrir framan mig*.
+Þegar þú ætlar að fara yfir veg eða þarft einfaldlega að forritið sé hljótt, geturðu slökkt á tilkynningum. Þegar tilkynningar eru slökktar mun forritið aðeins gefa þér upplýsingar ef þú ýtir á einn af hnöppunum *Mín staðsetning*, *Nálæg merki*, *Í kringum mig* eða *Fyrir framan mig*.
 
 ## Hvernig virkar það?
 
 **Kveikja eða slökkva á tilkynningum:**
 
- Ef slökkt er á tilkynningum verður forritið hljótt. Hægt er að slökkva á tilkynningum í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* með því að stilla *Nákvæmni tilkynninga* á *Þögult*, og kveikja aftur á þeim með því að velja hvaða annað stig sem er. Þú getur gert það sama með því að biðja Siri eða Gemini um það. Þú getur einnig lækkað í Soundscape eitt þrep í einu með fjölmiðlahnöppunum á heyrnartólunum þínum: hver ýting á *fyrri* færir þig niður um eitt þrep í gegnum *Ítarlegt*, *Jafnvægi*, *Hljóðlátt* og *Þögult*, og enn ein ýting fer aftur í *Ítarlegt*. Sjá hjálparefnið *Notkun fjölmiðlastýringa*. Að öðrum kosti geturðu notað hnappinn *Fara í dvala* efst í hægra horni heimaskjásins til að stöðva tilkynningar Soundscape þar til þú vekur forritið.
+ Ef slökkt er á tilkynningum verður forritið hljótt. Hægt er að slökkva á tilkynningum í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* með því að stilla *Nákvæmni tilkynninga* á *Þögult*, og kveikja aftur á þeim með því að velja hvaða annað stig sem er. Á iPhone getur þú gert það sama með því að biðja Siri um það og á Android mun það virka í gegnum Gemini um leið og Google gefur út stuðning við það. Þú getur einnig lækkað í Soundscape eitt þrep í einu með fjölmiðlahnöppunum á heyrnartólunum þínum: hver ýting á *fyrri* færir þig niður um eitt þrep í gegnum *Ítarlegt*, *Einfaldað*, *Nauðsynlegt* og *Þögult*, og enn ein ýting fer aftur í *Ítarlegt*. Sjá hjálparefnið *Notkun fjölmiðlastýringa*. Að öðrum kosti geturðu notað hnappinn *Fara í dvala* efst í hægra horni heimaskjásins til að stöðva tilkynningar Soundscape þar til þú vekur forritið.
 
 **Stjórna því hvaða tilkynningar þú heyrir:**
 

@@ -21,7 +21,7 @@ A definição de um sinal é útil quando pretende monitorizar um marco familiar
 
 **Para definir um sinal :**
 
- Primeiro, visualize os detalhes de uma localização, usando a barra de pesquisa para procurar um local ou tocando num dos botões *Locais nas Proximidades*, *Marcos e Rotas* ou *Localização Atual* e selecionando uma localização. Depois, no ecrã *Detalhes da Localização*, selecione o botão *Iniciar Sinal de Áudio*. Ao tocar neste botão será retornado ao ecrã principal e será ativado um sinal audível vindo da direção do local selecionado. O nome do local, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal.
+ Primeiro, visualize os detalhes de uma localização, usando a barra de pesquisa para procurar um local ou tocando num dos botões *Locais nas Proximidades*, *Marcos e Rotas* ou *Localização Atual* e selecionando uma localização. Depois, no ecrã *Detalhes da Localização*, selecione o botão *Iniciar Sinal de Áudio*. Ao tocar neste botão, regressa ao ecrã principal e é ativado um sinal audível vindo da direção do local selecionado. O nome do local, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal.
 
 **Para remover o sinal atual:**
 

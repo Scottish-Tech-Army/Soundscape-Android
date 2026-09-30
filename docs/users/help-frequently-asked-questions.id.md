@@ -14,15 +14,15 @@ permalink: /users/help-frequently-asked-questions.html
 ### Kapan sebaiknya saya menggunakan Soundscape?
 Soundscape memiliki fitur dan manfaat yang mencakup berbagai skenario dan rentang waktu. Nilai Soundscape bagi Anda juga dapat berubah seiring waktu, sehingga cara Anda menggunakannya hari ini mungkin berbeda dengan cara Anda menggunakannya tiga bulan mendatang. Orang sering memikirkan aplikasi dari segi *masalah apa yang paling bisa diselesaikan aplikasi ini?* Soundscape tentu dapat digunakan untuk kebutuhan tertentu – seperti memantau tujuan saat Anda menuju ke sana, membantu Anda mengetahui arah saat keluar dari stasiun metro, mengetahui posisi saat keluar dari mobil, atau mencari nama jalan atau jarak menuju persimpangan berikutnya. Namun, filosofi di balik Soundscape adalah *menerangi dunia Anda dengan suara* – aplikasi ini dirancang untuk digunakan kapan pun Anda sedang bepergian, untuk memberi Anda kesadaran ambien terhadap sekitar, seperti nama jalan yang Anda lalui, arah yang Anda tuju, dan nama bisnis yang Anda lewati. Dalam mode penggunaan ini, para pengguna kami menyebut Soundscape sebagai *teman perjalanan yang menyenangkan*, yang mendukung *kejutan-kejutan menyenangkan*, membantu *mengisi celah dalam peta mental Anda*, dan memberikan lebih banyak *kepercayaan diri saat berjalan*. Berikut beberapa contoh lain bagaimana pengguna kami menggunakan Soundscape dalam kehidupan mereka:
 
-Soundscape membantu saya kembali ke jalur yang benar setelah saya turun dari bus dan berjalan ke arah yang salah.
+“Soundscape membantu saya kembali ke jalur yang benar setelah saya turun dari bus dan berjalan ke arah yang salah.”
 
-Bahkan di kota tempat saya tinggal selama 3 tahun, saya telah membangun gambaran yang lebih baik tentang apa yang ada di sekitar saya [dengan Soundscape].
+“Bahkan di kota tempat saya tinggal selama 3 tahun, saya telah membangun gambaran yang lebih baik tentang apa yang ada di sekitar saya [dengan Soundscape].”
 
-Suara 3D meningkatkan pengalaman jalan kaki saya, karena saya merasa lebih terhubung dengan lingkungan saya… Saya lebih cenderung mencoba rute baru sekarang karena saya memiliki aplikasi ini.
+“Suara 3D meningkatkan pengalaman jalan kaki saya, karena saya merasa lebih terhubung dengan lingkungan saya… Saya lebih cenderung mencoba rute baru sekarang karena saya memiliki aplikasi ini.”
 
-Saya rindu kejutan-kejutan menyenangkan saat berjalan-jalan dan memperhatikan sekitar. Memiliki Soundscape sangat menyenangkan – tidak perlu usaha untuk mendengar tentang hal-hal di sekitar saya. Informasi relasionalnya berguna dan aplikasi ini sangat baik untuk kesadaran situasional dan menjelajahi kawasan komersial.
+“Saya rindu kejutan-kejutan menyenangkan saat berjalan-jalan dan memperhatikan sekitar. Memiliki Soundscape sangat menyenangkan – tidak perlu usaha untuk mendengar tentang hal-hal di sekitar saya. Informasi relasionalnya berguna dan aplikasi ini sangat baik untuk kesadaran situasional dan menjelajahi kawasan komersial.”
 
-[Saya menggunakan Soundscape] untuk menemukan sebuah pub di tengah kota York. [Saya] menggunakan berbagai opsinya untuk pertama-tama menemukan lokasinya lalu benar-benar mencapainya. Aplikasi ini membawa saya hingga jarak 3 meter dari pintu – luar biasa!
+“[Saya menggunakan Soundscape] untuk menemukan sebuah pub di tengah kota York. [Saya] menggunakan berbagai opsinya untuk pertama-tama menemukan lokasinya lalu benar-benar mencapainya. Aplikasi ini membawa saya hingga jarak 3 meter dari pintu – luar biasa!”
 
 ### Apa itu Penanda dan bagaimana cara memanfaatkannya secara maksimal?
 Penanda adalah tempat yang telah Anda simpan. Bisa berupa tempat yang dapat ditemukan di dalam aplikasi, atau tempat yang sepenuhnya baru yang Anda tambahkan sendiri. Anda dapat menyimpan lokasi Anda saat ini sebagai penanda dengan memilih tombol *Lokasi Saat Ini* di layar utama, lalu memilih *Simpan sebagai Penanda*. Anda dapat menyimpan lokasi lain sebagai penanda dengan mencari tempat yang ingin Anda simpan menggunakan bilah pencarian, atau menemukan suatu tempat menggunakan tombol *Tempat di Sekitar*, yang keduanya dapat ditemukan di layar utama Soundscape. Setelah Anda menemukan tempat yang diinginkan, memilihnya akan membawa Anda ke layar *Detail Lokasi*. Di layar ini, pilih tombol bernama *Simpan sebagai Penanda*.
@@ -68,7 +68,7 @@ Soundscape dirancang agar tidak memberi Anda terlalu banyak pemberitahuan. Aplik
 Untuk mencegah jumlah pemberitahuan menjadi terlalu banyak, beberapa kategori, seperti persimpangan, tidak diumumkan secara otomatis saat Anda bepergian dengan kendaraan.
 
 ### Bagaimana jika saya tidak memahami sebuah pemberitahuan atau melewatkannya karena kebisingan sekitar?
-Soundscape memiliki daftar pemberitahuan terbaru Anda sehingga Anda dapat meninjau kembali pemberitahuan yang mungkin terlewat. Untuk menemukannya, ketuk bilah pencarian di layar utama. Di bagian bawah layar ini, terdapat bagian *Pemberitahuan Terbaru* tempat pemberitahuan yang terlewat akan tercantum.
+Soundscape tidak menyimpan daftar pemberitahuan sebelumnya, tetapi Anda dapat memintanya menjelaskan kembali lingkungan sekitar Anda kapan saja. *Lokasi Saya* memberi tahu di mana Anda berada, sedangkan *Di Sekitar Saya* dan *Di Depan Saya* membacakan tempat-tempat di sekitar dan di depan Anda. Ketiga tombol ini ada di bagian bawah layar utama. Jika Anda menggunakan kontrol media di headphone dalam *Mode asli*, ⏭ Berikutnya membacakan *Di Sekitar Saya* saat tidak ada rute yang sedang diputar.
 
 ## Bagaimana cara kerja Soundscape?
 

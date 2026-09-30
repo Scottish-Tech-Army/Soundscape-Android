@@ -11,7 +11,7 @@ permalink: /users/help-nearby-markers.html
 
 ## De quoi s’agit-il?
 
-Le bouton *"Marqueurs à proximité"* vous indique jusqu’à quatre marqueurs les plus proches de vous. *"Marqueurs à proximité"* est conçu pour vous aider à vous orienter à l’aide d’emplacements que vous connaissez déjà.
+Le bouton *Marqueurs à proximité* vous indique jusqu’à quatre marqueurs les plus proches de vous. *Marqueurs à proximité* est conçu pour vous aider à vous orienter à l’aide d’emplacements que vous connaissez déjà.
 
 ## Utilisation
 

@@ -13,7 +13,7 @@ permalink: /users/help-my-location.html
 
 Tlačidlo *Moja poloha* vám rýchlo poskytne informácie, ktoré vám pomôžu zistiť, kde sa práve nachádzate. *Moja poloha* vám povie o vašej aktuálnej polohe vrátane smeru, ktorým ste otočení, kde sa nachádzajú blízke cesty alebo križovatky a kde sú blízke zaujímavé miesta.
 
-## Kedy by som to použil(a)?
+## Kedy to použiť?
 
 *Moja poloha* je užitočná, keď potrebujete zistiť, kde sa nachádzate alebo ktorým svetovým smerom ste otočení.
 

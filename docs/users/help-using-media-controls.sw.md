@@ -1,5 +1,5 @@
 ---
-title: Kutumia Vidhibiti vya Media
+title: Kutumia Vidhibiti vya Sauti
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: sw
 permalink: /users/help-using-media-controls.html
 ---
 
-# Kutumia Vidhibiti vya Media
+# Kutumia Vidhibiti vya Sauti
 
 ## Ni nini?
 
@@ -27,7 +27,7 @@ Kuna hali 2 za uendeshaji za vitufe vya kudhibiti sauti. Hali inaweza kuchaguliw
 
 ⏭ Ifuatayo: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kinachofuata katika njia hiyo. Ikiwa hakuna njia inayochezwa, hutangaza *Karibu Nami*.
 
-⏮ Iliyotangulia: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kilichotangulia katika njia hiyo. Ikiwa hakuna njia inayochezwa, hubadilisha *Kiwango cha Matangazo*, kikiwa kimya zaidi kwa kiwango kimoja kila unapobonyeza: *Kwa Kina*, *Wastani*, *Chache*, *Kimya*, kisha kurudi kwenye *Kwa Kina*.
+⏮ Iliyotangulia: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kilichotangulia katika njia hiyo. Ikiwa hakuna njia inayochezwa, hubadilisha *Kiwango cha Matangazo*, kikiwa kimya zaidi kwa kiwango kimoja kila unapobonyeza: *Kwa Kina*, *Rahisi*, *Muhimu*, *Kimya*, kisha kurudi kwenye *Kwa Kina*.
 
 
 
@@ -37,5 +37,5 @@ Kuna hali 2 za uendeshaji za vitufe vya kudhibiti sauti. Hali inaweza kuchaguliw
 
 ⏭ Ifuatayo husogea kupitia mfululizo wa chaguo za menyu ambazo programu huzieleza kwa maandishi kwenda sauti, na hurudi kwenye chaguo la kwanza baada ya la mwisho. ⏯ Cheza/Simamisha kisha huamsha programu kutekeleza chaguo lililoelezwa. Kuna menyu moja ya ngazi ya juu ambayo ina menyu ndogo tu kama chaguo. Kila menyu ndogo ina kundi la vitendo vinavyofanana.
 
-⏮ Iliyotangulia haisogei kupitia menyu. Badala yake hubadilisha *Kiwango cha Matangazo*, sawasawa na inavyofanya katika Hali ya Awali, hivyo kitufe kilekile hupunguza sauti ya programu katika hali yoyote unayotumia.
+⏮ Iliyotangulia haisogei kupitia menyu. Badala yake hubadilisha *Kiwango cha Matangazo*, sawasawa na inavyofanya katika Hali ya Awali, hivyo kitufe kilekile hupunguza matangazo ya programu katika hali yoyote unayotumia.
 

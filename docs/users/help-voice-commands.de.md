@@ -11,9 +11,9 @@ permalink: /users/help-voice-commands.html
 
 ## Was ist es?
 
-Sie können Gemini bitten, Dinge in Soundscape zu tun, ohne Ihr Telefon zu berühren: einen Hinweis anhören, eine Ihrer Routen starten oder ein Audiobeacon auf eine Ihrer Markierungen setzen. Jeder andere Assistent, der Android-App-Funktionen unterstützt, kann dasselbe.
+Soundscape ist für Gemini bereit, aber Gemini kann es noch nicht nutzen: Das hängt davon ab, dass Google die Unterstützung für Android-App-Funktionen in Gemini freigibt. Sobald das geschieht, können Sie Gemini bitten, Dinge in Soundscape zu tun, ohne Ihr Telefon zu berühren: einen Hinweis anhören, eine Ihrer Routen starten oder ein Audiobeacon auf eine Ihrer Markierungen setzen. Jeder andere Assistent, der Android-App-Funktionen unterstützt, wird dasselbe können.
 
-Soundscape antwortet mit seiner eigenen Stimme, mit den Hinweisen und Beacon-Tönen, die Sie bereits kennen, statt dass der Assistent eine Zusammenfassung vorliest. So kommt das, was Sie hören, weiterhin aus der Richtung, die es beschreibt.
+Soundscape wird mit seiner eigenen Stimme antworten, mit den Hinweisen und Beacon-Tönen, die Sie bereits kennen, statt dass der Assistent eine Zusammenfassung vorliest. So kommt das, was Sie hören, weiterhin aus der Richtung, die es beschreibt.
 
 ## Wann würde ich es verwenden?
 
@@ -35,11 +35,11 @@ Eine Ihrer gespeicherten Routen mit Namen zu starten, zum nächsten Wegpunkt zu 
 
 Ein Audiobeacon auf eine Ihrer gespeicherten Markierungen mit Namen zu setzen oder das Beacon auszuschalten.
 
-Den Detailgrad der Hinweise auf *Stumm*, *Leise*, *Ausgewogen* oder *Ausführlich* zu setzen, um zu ändern, wie viel Soundscape beim Gehen sagt. *Stumm* schaltet die automatischen Hinweise aus.
+Den Detailgrad der Hinweise auf *Stumm*, *Wesentlich*, *Vereinfacht* oder *Ausführlich* zu setzen, um zu ändern, wie viel Soundscape beim Gehen sagt. *Stumm* schaltet die automatischen Hinweise aus.
 
 Die Namen Ihrer gespeicherten Routen oder Ihrer gespeicherten Markierungen vorzulesen.
 
 Alles außer den beiden Listen setzt voraus, dass Soundscape läuft. Ist das nicht der Fall, fordert der Assistent Sie auf, Soundscape zuerst zu öffnen. Ihre Routen und Ihre Markierungen aufzulisten funktioniert in beiden Fällen, denn dabei wird nur vorgelesen, was Sie bereits gespeichert haben.
 
-Sprachbefehle erfordern ein Telefon mit Android 16 oder neuer und einen Assistenten, der App-Funktionen unterstützt.
+Sprachbefehle werden ein Telefon mit Android 16 oder neuer und einen Assistenten erfordern, der App-Funktionen unterstützt. Bis Google diese Unterstützung in Gemini freigibt, funktionieren sie nicht.
 

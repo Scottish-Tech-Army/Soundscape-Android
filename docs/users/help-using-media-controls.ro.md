@@ -19,7 +19,7 @@ Butoanele de control media de pe căști pot fi folosite în timp ce Soundscape 
 
 ## Cum funcționează?
 
-Există 2 moduri de operare pentru controalele media. Modul poate fi selectat în secțiunea *Setări* -> *Controale media*. Modurile sunt:
+Există 2 moduri de operare pentru controalele media. Modul poate fi selectat în secțiunea *Controale media* din *Setări*. Modurile sunt:
 
  *Mod original*. 
 
@@ -27,7 +27,7 @@ Există 2 moduri de operare pentru controalele media. Modul poate fi selectat î
 
 ⏭ Următorul: Dacă o rută este redată, mută baliza audio la punctul de traseu următor din rută. Dacă nicio rută nu este redată, anunță *În jurul meu*.
 
-⏮ Anterior: Dacă o rută este redată, mută baliza audio la punctul de traseu anterior din rută. Dacă nicio rută nu este redată, schimbă *Detaliul anunțurilor*, cu un nivel mai discret la fiecare apăsare: *Detaliat*, *Echilibrat*, *Discret*, *Silențios*, apoi înapoi la *Detaliat*.
+⏮ Anterior: Dacă o rută este redată, mută baliza audio la punctul de traseu anterior din rută. Dacă nicio rută nu este redată, schimbă *Detaliul anunțurilor*, cu un nivel mai discret la fiecare apăsare: *Detaliat*, *Simplificat*, *Esențial*, *Silențios*, apoi înapoi la *Detaliat*.
 
 
 

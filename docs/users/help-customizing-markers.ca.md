@@ -11,5 +11,5 @@ permalink: /users/help-customizing-markers.html
 
 Si vols canviar el nom d'un marcador que has creat anteriorment, o afegir-hi una anotació, selecciona el marcador des de la pestanya *Marcadors* de la pàgina *Marcadors i rutes* i, tot seguit, selecciona el botó *Edita el marcador*. Pots utilitzar això per donar als marcadors sobrenoms descriptius o útils, així com donar-los una descripció més llarga mitjançant el camp d'anotació.
 
-Des d'aquesta pantalla *Edita* també pots suprimir un marcador si ja no el necessites.
+Des d'aquesta pantalla *Edita el marcador* també pots suprimir un marcador si ja no el necessites.
 

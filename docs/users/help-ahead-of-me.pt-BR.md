@@ -19,5 +19,5 @@ Quando estiver andando pela rua, tente usar *À Minha Frente* para descobrir os 
 
 ## Como ele funciona?
 
-Tal como acontece com os quatro botões da parte inferior da tela inicial, segure seu telefone com a tela na horizontal (com a tela voltada para cima) e o topo apontando na direção para a qual você estava voltado antes de pressionar o botão *"À Minha Frente"*. Isso age como uma bússola, mostrando ao aplicativo a direção para a qual você está voltado. Bastará tocar no botão *"À Minha Frente"* e você ouvirá vários pontos de interesse nas proximidades à sua frente.
+Tal como acontece com os quatro botões da parte inferior da tela inicial, segure seu telefone com a tela na horizontal (com a tela voltada para cima) e o topo apontando na direção para a qual você está voltado, antes de pressionar o botão *“À Minha Frente”*. Isso age como uma bússola, mostrando ao aplicativo a direção para a qual você está voltado. Bastará tocar no botão *“À Minha Frente”* e você ouvirá vários pontos de interesse nas proximidades à sua frente.
 

@@ -27,7 +27,7 @@ Er zijn 2 modi voor de mediaregelaars. De modus kan worden geselecteerd in de *I
 
 ⏭ Volgende: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het volgende routepunt in de route. Als er geen route wordt afgespeeld, roept het *Om me heen* op.
 
-⏮ Vorige: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het vorige routepunt in de route. Als er geen route wordt afgespeeld, wijzigt het het *Detailniveau aankondigingen*, met elke druk een stap rustiger: *Gedetailleerd*, *Gebalanceerd*, *Rustig*, *Stil*, en weer terug naar *Gedetailleerd*.
+⏮ Vorige: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het vorige routepunt in de route. Als er geen route wordt afgespeeld, wijzigt het het *Detailniveau aankondigingen*, met elke druk een stap rustiger: *Uitgebreid*, *Vereenvoudigd*, *Essentieel*, *Stil*, en weer terug naar *Uitgebreid*.
 
 
 
@@ -35,7 +35,7 @@ Er zijn 2 modi voor de mediaregelaars. De modus kan worden geselecteerd in de *I
 
 
 
-⏭ Volgende bladert door een reeks menuopties die de app via tekst-naar-spraak beschrijft, en keert na de laatste terug naar de eerste. ⏯ Afspelen/Pauzeren activeert vervolgens de beschreven optie. Er is één hoofdmenu dat alleen submenus als opties heeft. Elk submenu bevat een groep vergelijkbare acties.
+⏭ Volgende bladert door een reeks menuopties die de app via tekst-naar-spraak beschrijft, en keert na de laatste terug naar de eerste. ⏯ Afspelen/Pauzeren activeert vervolgens de beschreven optie. Er is één hoofdmenu dat alleen submenu's als opties heeft. Elk submenu bevat een groep vergelijkbare acties.
 
 ⏮ Vorige bladert niet door het menu. In plaats daarvan wijzigt het het *Detailniveau aankondigingen*, precies zoals in de originele modus, zodat dezelfde knop de app rustiger maakt in welke modus u ook werkt.
 

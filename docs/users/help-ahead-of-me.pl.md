@@ -15,9 +15,9 @@ Przycisk *„Przede mną”* informuje o maksymalnie pięciu obiektach znajdują
 
 ## Kiedy używać?
 
-Idąc ulicą, spróbuj użyć „Przede mną”, aby odkryć miejsca i obiekty pojawiające się po obu stronach ulicy przed Tobą.
+Idąc ulicą, spróbuj użyć *„Przede mną”*, aby odkryć miejsca i obiekty pojawiające się po obu stronach ulicy przed Tobą.
 
 ## Jak to działa?
 
-Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk „Przede mną”. To działa jak kompas, informując aplikację o kierunku, w którym jesteś zwrócony. Po prostu naciśnij przycisk „Przede mną” i usłyszysz kilka punktów zainteresowania rozmieszczonych mniej więcej przed Tobą.
+Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk *„Przede mną”*. To działa jak kompas, informując aplikację o kierunku, w którym patrzysz. Po prostu naciśnij przycisk *„Przede mną”* i usłyszysz kilka punktów zainteresowania rozmieszczonych mniej więcej przed Tobą.
 

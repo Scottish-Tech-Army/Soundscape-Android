@@ -68,7 +68,7 @@ Soundscape è progettato per non darti troppe notifiche. Inoltre utilizza OpenSt
 Per evitare che il numero di notifiche diventi eccessivo, alcune categorie, come gli incroci, non vengono comunicate automaticamente quando viaggi in un veicolo.
 
 ### Cosa posso fare se non capisco una notifica o se la perdo a causa del rumore ambientale?
-Soundscape ha l'elenco delle tue notifiche recenti per permetterti di esaminare quelle che potresti aver perso. Per trovarlo, tocca la barra di ricerca nella schermata iniziale. Nella parte inferiore di questa pagina, c'è la sezione *Notifiche recenti* in cui vengono elencate le notifiche che hai perso.
+Soundscape non conserva un elenco delle notifiche passate, ma puoi chiedergli in qualsiasi momento di descrivere di nuovo ciò che ti circonda. *La mia posizione* ti dice dove sei, mentre *Intorno a me* e *Davanti a me* annunciano i luoghi intorno a te e davanti a te. Tutti e tre i pulsanti si trovano nella parte inferiore della schermata principale. Se usi i controlli multimediali delle cuffie in *Modalità originale*, ⏭ Avanti fa annunciare *Intorno a me* quando non è in riproduzione alcun percorso.
 
 ## Come funziona Soundscape?
 

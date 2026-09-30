@@ -19,5 +19,5 @@ Cuando camines por la calle, intenta usar *Delante de mí* para descubrir los lu
 
 ## ¿Cómo funciona?
 
-Como con los cuatro botones de la parte inferior de la pantalla principal, mantén el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección en la que estás mirando antes de presionar el botón *"Delante de mí"*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección estás orientado. Solo tienes que pulsar en el botón *"Delante de mí"* y oirás varios puntos de interés que estén más o menos delante de ti.
+Como con los cuatro botones de la parte inferior de la pantalla principal, mantén el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección en la que estás mirando antes de presionar el botón *«Delante de mí»*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección estás orientado. Solo tienes que pulsar en el botón *«Delante de mí»* y oirás varios puntos de interés que estén más o menos delante de ti.
 
