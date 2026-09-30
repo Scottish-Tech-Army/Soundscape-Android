@@ -1,6 +1,6 @@
 ---
 name: weblate-feedback
-description: Turn native-speaker feedback about a Soundscape translation into recorded per-language decisions and a corpus-wide sweep. Use when someone sends notes, a bug report, screenshots or a document criticising the translation for a language — it records the decisions in translations/guidance/<code>.md, then finds every other string those decisions affect. Reports findings and never uploads; applying them is [[weblate-review]]'s explicit apply step.
+description: Turn native-speaker feedback about a Soundscape translation into recorded per-language decisions and a corpus-wide sweep. Use when someone sends notes, a bug report, screenshots or a document criticising the translation for a language — it records the decisions in translations/guidance/<code>.md, then finds every other string those decisions affect. Reports findings and never edits translation files; applying them is [[weblate-review]]'s explicit apply step.
 ---
 
 # Weblate feedback
@@ -14,8 +14,8 @@ that a straight "fix what they reported" pass misses:
 2. **Sweep** — find every other string the decision touches. In the Ukrainian
    pilot, 4 reported strings expanded to 62 affected units.
 
-It never uploads. Producing fixes and uploading them are separate, and the
-upload lives in [[weblate-review]]'s "Applying fixes" step, behind its own
+It never edits the translation files. Producing fixes and applying them are separate,
+and applying lives in [[weblate-review]]'s "Applying fixes" step, behind its own
 explicit ask.
 
 ## Args
@@ -45,7 +45,7 @@ it from the feedback and say which you inferred.
 
 3. **Fetch the corpus**:
    ```
-   python3 .claude/skills/weblate-translate/scripts/weblate_sync.py fetch --lang <code> --out-dir /tmp/weblate-review
+   python3 .claude/skills/weblate-translate/scripts/strings_sync.py fetch --lang <code> --out-dir /tmp/weblate-review
    ```
 
 4. **Bucket every item.** This is the core of the skill. Each piece of
@@ -100,7 +100,7 @@ it from the feedback and say which you inferred.
    [[weblate-review]]'s schema (`context`, `source`, `current`, `suggested`,
    `reason`), so its apply step can consume them unchanged. For
    `unconfirmed`/`provisional` items set `suggested` equal to `current` —
-   that is the existing signal for "skip, don't upload". Add `rule` and
+   that is the existing signal for "skip, don't apply". Add `rule` and
    `confidence` fields; the apply step ignores extras.
 
 9. **Report**, and include the piece the user can act on socially: a short
@@ -114,16 +114,12 @@ it from the feedback and say which you inferred.
 
 ## Notes
 
-- Never upload from this skill. Not as a natural continuation, not because the
+- Never apply fixes from this skill. Not as a natural continuation, not because the
   fixes are obviously right, not because the user said "and fix them" in the
   message that asked for the feedback pass.
-- The Weblate project has an empty `glossary` component (TBX,
-  `is_glossary=true`, 0 terms in every language). Mirroring `confirmed`/
-  `agreed` terms into it makes them appear inline for human translators in the
-  Weblate editor — worth offering once a language's glossary settles, but the
-  repo file stays the source of truth.
 - Editing the English source or its comments (bucket 4) changes what every
-  language sees and needs a Weblate "Update" to propagate. Flag it to the user
-  rather than treating it as a silent side effect.
+  language sees: every language's translation of that string turns stale, and the next
+  [[weblate-translate]] pass picks it up. Flag it to the user rather than treating it as
+  a silent side effect. A comment-only edit doesn't make anything stale.
 - The guidance files are the deliverable that outlives the session. A fix
-  uploaded without the rule recorded gets undone by the next translation pass.
+  applied without the rule recorded gets undone by the next translation pass.

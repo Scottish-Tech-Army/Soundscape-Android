@@ -7,50 +7,62 @@ has_toc: false
 
 # Language support
 
-We aim to support as many languages as possible and we're using [Weblate](https://hosted.weblate.org/projects/soundscape-android/) to help with the localization of the app. What that gives us is a place where native speakers can add new translations or just suggest improvements for some of the current strings in the app. We started off supporting the same languages as supported in iOS, but we have since added Ukrainian, Egyptian Arabic, Farsi, Polish, Russian and Icelandic.
+We aim to support as many languages as possible. Soundscape is translated into 45 languages, and the translations live in this repository: `shared/src/commonMain/composeResources/values-<lang>/strings.xml`, alongside the English source in `values/strings.xml`. **The repository is the source of truth.**
+
+Native speakers help mainly through the [per-language questionnaires]({{ "/help-translate/" | relative_url }}) and by email to soundscapeAndroid@scottishtecharmy.support. [Weblate](https://hosted.weblate.org/projects/soundscape-android/androidkmp/) mirrors the repository so that anyone can browse the translations and leave suggestions there, but it no longer writes to the repository.
 
 A guide to key Soundscape terminology can be found [here]({% link developers/translation-terminology.md %}).
 
 ## The translation loop
-Weblate follows the Soundscape git repository and generates it's own branch which contains translation edits made from within Weblate. It's a fairly long round trip to do the translations, but it's fairly quick to do. Here's the process:
 
-1. Developer adds a new string or changes an existing one. The string is changed only in the English base language which is in `res/values/strings.xml`. It's important that in the comment above the string there's a good explanation of what the string is used for. This is so that translators have all the context they need to do an accurate translation.
-2. Feature is landed in the [Soundscape-Android git repository](https://github.com/Scottish-Tech-Army/Soundscape-Android).
-3. In the Weblate UI a project admin clicks on Update [here](https://hosted.weblate.org/projects/soundscape-android/android-app/#repository). This causes the Weblate git repo to rebase/merge changes from the Soundscape-Android repo and update it's lists of strings that need translations for each language.
-4. At this point each of the languages in Weblate should show that they have some "Untranslated" strings.
-5. The strings are translated either within the Weblate UI or by AI
-6. The new strings are committed to the Weblate git repo by an admin clicking on Commit [here](https://hosted.weblate.org/projects/soundscape-android/android-app/#repository)
-7. A developer can merge the new translations from the Weblate git into their local tree and then create a pull request containing those changes.
-8. The pull request is tested and accepted in Soundscape-Android and we now have all of the translations
-9. Final step is to redo step 3 to Update the weblate git repo so that it know that the translations have been landed.
+1. A developer adds a new string or changes an existing one, in the English `values/strings.xml` only. The comment above the string must explain what it's for and where it's heard: translators (human or AI) have nothing else to go on.
+2. The change lands on `main`. Every language now has the string as **untranslated** (a new key) or **stale** (the English changed after the translation was last changed).
+3. `scripts/find-stale-translations.py` lists them, per language:
+   ```
+   scripts/find-stale-translations.py                  # counts for every language
+   scripts/find-stale-translations.py --lang de --diff # the strings, with how the English changed
+   ```
+4. A translation pass fills them in and commits them to the language files, like any other code change. This is normally done with the `weblate-translate` Claude Code skill (see [AI translations](#ai-translations)), but a translator can equally edit the files by hand and open a pull request.
+5. Weblate picks up the new state of the repository on its next update.
 
-The good thing about this process is that translators, who work in Weblate only, can make additions within the Weblate UI and those changes are integrated in the same way as step 6 onwards. This is also true for new languages being added, but there are some more steps required to integrate those into the app.
+Stale detection is worked out from git history, as Weblate's "needs editing" used to be. Quote and whitespace changes are ignored on both sides. If an English change needs nothing from a language (a typo fix, say), acknowledge it rather than rewriting the translation:
+```
+scripts/find-stale-translations.py --lang de --acknowledge <key> ...
+```
+This records the current English for that string in `translations/stale-acknowledged.json`, and the string stays quiet until the English changes again.
 
-**The most important thing here is that the only `strings.xml` file modified directly in Soundscape-Android should be the base English one. All others must come via Weblate merges. Otherwise, there will be git conflicts that require fixing which is a lot more work. For the same reason the base translation cannot be edited within Weblate.**
+### Feedback from native speakers
+
+Questionnaire answers, emails and Weblate suggestions are turned into recorded decisions in `translations/guidance/<code>.md`, with a corpus-wide sweep for every other string each decision affects. `translations/guidance/_common.md` holds the rules that apply to every language. These files are what every later translation and review pass starts from, so a correction isn't undone by the next pass. The `weblate-feedback` and `weblate-review` skills do this work. Suggestions made in Weblate have to be collected from there by hand for now, since nothing reads them automatically.
+
+### Format notes
+
+* Quotes and apostrophes go in bare, or better, as typographic quotes. Compose Resources shows `\"` and `\'` literally.
+* French no-break spaces before `: ; ? !` are added at build time (`composeResourcesForBuild`), so plain spaces in the files are fine.
+* Plurals select on whole numbers only, and each language needs exactly its own CLDR categories.
 
 ## Adding a whole new language
-Whole new languages can be added via the Weblate UI and generally the translations will appear bit by bit as the translators work their way through it. Merging those into Soundscape-Android will not affect the app as we explicitly whitelist the languages that are to be included. As a result, when we do want to add a new language there are some files to change. They are:
+
+Translations for a language that isn't enabled don't affect the app, because we explicitly whitelist the languages to include. The `weblate-add-language` skill creates `values-<qualifier>/strings.xml` and translates every string into it; enabling the language is then a separate, deliberate step. The files to change are:
 * Add the language to the `resourceConfigurations` list in `app/build.gradle.kts`. Anything not in this list is excluded from the build and this is to block out partial translations.
 * Add the language to `getAllLanguages` in `LanguageScreen.kt`. This also requires the name of the language in that language e.g. Español for Spanish.
 * Also add the language to `MockLanguagePreviewData` in `LanguageScreen.kt` so that the `@Preview` of the `LanguageScreen` remains accurate.
 * Edit `res/xml/locales_config.xml` to include the new language code. This is the list of languages that the app advertises to Android. The list is used within Android to show the user what languages are supported by an app and allow per-app language configuration.
 * Add the language to the documentation website so the localized help pages are generated and served (see [The documentation website](#the-documentation-website) below): add an entry to `localeMap` in `DocumentationScreens.kt` (mapping the Android resource qualifier to its web/BCP-47 code) and add the same web code to the `languages` list in `docs/_config.yml`.
 
+Check a new language's locale against the plural rules Compose Resources knows before adding it: an unknown locale throws rather than falling back.
+
 ## AI translations
-Unfortunately, we don't currently have native speakers helping with translation in the majority of languages that we support and so we needed an additional approach. We want to try and ensure that the translations don't get left behind as we add new features which require new text. It's also quite a big task to add a new translation and so we looked at ways of accelerating that.
 
-*Note that the scripts mentioned below require a couple of keys to be run. A Weblate key to access our server and an OpenAI key to pay for generating new translations.*
+Most of our languages don't yet have a native speaker checking them, so translations are kept up to date with AI. This is done in-session with Claude Code skills in `.claude/skills/`, which translate using the whole existing corpus for that language, the terminology guide and the recorded native-speaker decisions:
 
-### Incremental AI updates
-There's now a [Python script](https://github.com/davecraig/weblate-translate/blob/main/weblate-translate-unfinished.py) which queries Weblate to get a list of all of the untranslated strings in each language. It translates them with OpenAI and then uploads the results back into Weblate. As well as the strings to be translated and some context provided from Weblate, the translating process passes in all of the previously translated strings and an explanation of the app. This should give OpenAI enough information to provide an accurate translation, much better than just providing the English source string by itself.
+* `weblate-translate` — translates every untranslated and stale string, validates the result (placeholders, line breaks, plural forms, escaping) and commits it. Its helper `strings_sync.py` does the file work.
+* `weblate-review` — reviews existing translations for a language and reports findings. It only applies fixes when explicitly asked.
+* `weblate-feedback` — turns native-speaker feedback into recorded decisions and a sweep.
+* `weblate-add-language` — adds a new language.
+* `translation-questionnaire` — writes and refreshes the published questionnaires.
 
-### AI accelerated addition of new language
-One of the issues with translating Soundscape is that it has some rather unique terms with very specific meanings e.g. Audio Beacon. Rather than just leave it up to an AI to translate these we've come up with the following approach:
-
-1. Use an interactive ChatGPT session run by a native speaker to generate a glossary of terms (https://chatgpt.com/g/g-68c2c7f92eb4819182fa40ce8fc9f4ff-soundscape-glossary-translation). This suggests various possible translations for each term and at the end generates a JSON file containing the agreed translations.
-2. The glossary is passed into OpenAI as context along with all of the terms to be translated by a [Python Script](https://github.com/davecraig/weblate-translate/blob/main/weblate-translation.py). The aim is to maintain a consistency of terms across the translation.
-
-The resulting translation can then be uploaded into Weblate either as Suggestions for the translator or as approved translations.
+(The skills keep their `weblate-` names from when they worked through Weblate.)
 
 ## The documentation website
 
@@ -68,7 +80,7 @@ The set of locales lives in `localeMap` in `DocumentationScreens.kt`, which mirr
 
 ### Regenerating the help pages
 
-The `build-app.yaml` release workflow runs `getHelp` on an emulator, pulls the generated markdown off the device, and commits any changes to `main` (which triggers the Pages deploy). It runs as part of every release, so the pages pick up whatever Weblate translations had landed by then — cut a release to publish a batch of translations.
+The `build-app.yaml` release workflow runs `getHelp` on an emulator, pulls the generated markdown off the device, and commits any changes to `main` (which triggers the Pages deploy). It runs as part of every release, so the pages pick up whatever translations had been committed by then — cut a release to publish a batch of translations.
 
 To regenerate locally instead:
 
@@ -101,18 +113,6 @@ Instead, link to such pages by URL so polyglot can rewrite it to the active lang
 
 {% raw %}`{% link %}`{% endraw %} is still fine for English-only pages (developer docs, `user.md`), because their English source stays in every language pass.
 
-## Weblate usage tips
+## Weblate
 
-There's [extensive documentation](https://docs.weblate.org/en/latest/index.html) available for Weblate. Specific instructions relating to our project are [here](https://hosted.weblate.org/projects/soundscape-android/android-app/#information).
-
-### Zen mode
-The main Weblate UI can be quite slow to use when processing strings. Using Zen mode instead shows a much shorter description of the strings to translate and the screen contains is a long list of all those being worked on. Each translation can be edited in turn and they are uploaded in the background which means that there is no UI delay for the translator.
-
-### Bulk edit
-Flags can be reset across multiple translations at once using bulk edit. This is useful for moving everything to 'Approved' if we've decided that a translation has been fully completed.
-
-### Failing checks
-Weblate compares the translation with the original string and checks that they match in various ways e.g. number of newlines, ending punctuation. It also checks for duplicated words in a translation e.g. "them them" and other things that may be incorrect. It's very important to go through these for each translation as there should be no failures. Any check failure which is an incorrect failure can be dismissed within the UI once it has been double checked by the user.
-
-### Screenshots
-Screenshots can be added and associated with strings.
+Weblate follows the repository, and anyone with an account can leave suggestions. The component no longer accepts direct translations and never commits back, so it can't cause git conflicts, strip quotes or lose no-break spaces, as it used to. Don't unlock it for direct editing without first reinstating a way to merge its changes, because edits made there would otherwise be overwritten by the next update from the repository.

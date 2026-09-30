@@ -51,6 +51,11 @@ RES = "shared/src/commonMain/composeResources"
 ENGLISH = f"{RES}/values/strings.xml"
 ACK_FILE = REPO / "translations" / "stale-acknowledged.json"
 
+# Weblate-style language codes (as translations/guidance uses) -> values-* suffix, where they
+# differ. Either form is accepted on the command line.
+WEBLATE_CODES = {"en_GB": "en-rGB", "fr_CA": "fr-rCA", "pt_BR": "pt-rBR",
+                 "zh_Hans": "zh-rCN", "nb_NO": "nb", "id": "in"}
+
 
 def git(*args: str) -> str:
     return subprocess.run(
@@ -196,10 +201,10 @@ def main() -> int:
     if args.lang:
         # Accept Weblate's codes (pt_BR, zh_Hans) as well as the directory names (pt-rBR).
         def to_dir(code: str) -> str:
-            for d in all_langs:
-                if d == code or d.replace("-r", "_") == code or d.split("-")[0] == code:
-                    return d
-            sys.exit(f"No values-{code}/strings.xml (known: {' '.join(all_langs)})")
+            d = WEBLATE_CODES.get(code, code)
+            if d in all_langs:
+                return d
+            sys.exit(f"No values-{d}/strings.xml (known: {' '.join(all_langs)})")
         wanted = [to_dir(c) for c in args.lang]
 
     blobs = BlobReader()

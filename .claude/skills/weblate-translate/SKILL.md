@@ -1,57 +1,48 @@
 ---
 name: weblate-translate
-description: Translate Soundscape-Android's untranslated Weblate strings (androidkmp component) directly in-session and upload the results back to Weblate. Use when the user asks to translate untranslated/missing/unfinished strings, sync translations with Weblate, or run the "weblate-translate-unfinished" workflow — for a language the app doesn't support at all yet, use [[weblate-add-language]] instead.
+description: Translate Soundscape-Android's untranslated and stale strings directly in the repo's shared/composeResources values-*/strings.xml files, in-session, then commit. Use when the user asks to translate untranslated/missing/unfinished strings, bring translations up to date after an English change, or run a translation pass — for a language the app doesn't support at all yet, use [[weblate-add-language]] instead.
 ---
 
-# Weblate translate-unfinished
+# Translate untranslated and stale strings
 
-Replaces the external `weblate-translate-unfinished.py` (OpenAI-based) workflow:
-you do the translating yourself, in-session, instead of calling an LLM API.
-`scripts/weblate_sync.py` only handles the deterministic Weblate HTTP calls
-(auth, pagination, upload) — it never talks to any translation API.
+You do the translating yourself, in-session, and write the results straight into
+`shared/src/commonMain/composeResources/values-<lang>/strings.xml`. Weblate is no longer
+in the loop: the repo is the source of truth, and translations land as ordinary commits.
 
-## One-time setup (tell the user if this fails)
+`scripts/strings_sync.py` handles the deterministic file work — finding what needs
+translating, validating, and writing the XML. It never translates anything.
 
-Auth comes from `wlc`'s standard config path, `~/.config/weblate`:
-
-```ini
-[keys]
-https://hosted.weblate.org/api/ = <weblate-api-token>
-```
-
-`chmod 600 ~/.config/weblate`. If `scripts/weblate_sync.py languages` reports
-no API key, stop and tell the user to add it there — never ask for the key
-in chat or write it into any file in this repo.
+What needs work comes from `scripts/find-stale-translations.py`, the repo's replacement
+for Weblate's "needs editing": a string is **untranslated** if the language has no entry
+for it, and **stale** if its English changed after the translation was last changed.
 
 ## Args
 
-Optional language codes narrow scope, e.g. `/weblate-translate de fr`. With
-no args, process every language `languages` reports as having untranslated
-units. Language codes are Weblate's (e.g. `de`, `fr_CA`, `zh_Hans`, `en_GB`),
-matching what `languages` prints.
+Optional language codes narrow scope, e.g. `/weblate-translate de fr`. With no args,
+process every language `languages` reports as having pending work. Codes are the ones
+`translations/guidance/` uses (`de`, `fr_CA`, `zh_Hans`, `en_GB`, `nb_NO`, `id`);
+`strings_sync.py` maps them to the `values-*` directories.
 
 ## Procedure
 
-Work in a **fresh, empty** output directory — `/tmp/weblate-translate` is
-reused across runs and a previous run's cache files there are
-indistinguishable from this run's. `fetch` deletes its own outputs before
-writing, so a failed fetch leaves nothing behind, but files for languages you
-never fetched will still be sitting there looking current.
+Work in a **fresh, empty** output directory — a previous run's files are
+indistinguishable from this run's. `fetch` deletes its own outputs before writing.
 
-1. Run `python3 .claude/skills/weblate-translate/scripts/weblate_sync.py languages`
-   to see every language and its untranslated count. If none have untranslated
-   strings, say so and stop.
+1. Run `python3 .claude/skills/weblate-translate/scripts/strings_sync.py languages`
+   to see every language's untranslated and stale counts. If everything is 0, say so
+   and stop.
 
-2. Fetch. For a whole-component run use `--all`, which fetches exactly the
-   languages that have untranslated strings and paces itself:
+2. Fetch:
    ```
-   python3 .claude/skills/weblate-translate/scripts/weblate_sync.py fetch --all --out-dir <dir>
+   python3 .claude/skills/weblate-translate/scripts/strings_sync.py fetch --all --out-dir <dir>
    ```
-   For the caller's subset, one `fetch --lang <code> --out-dir <dir>` each.
-   Either way it exits non-zero and names the languages if any failed — do not
-   carry on translating until every language you intend to upload fetched
-   cleanly. Don't write your own shell loop around `fetch`: `--all` exists
-   because a bare loop hides failures and trips Weblate's rate limiter.
+   or `fetch --lang <code> [<code> ...] --out-dir <dir>` for a subset. It refuses to run
+   while translation files have uncommitted changes, because the stale check reads git
+   history — commit or stash them first.
+
+   It writes, per language, `<code>-untranslated.json` (the work: every pending unit,
+   with `kind` = `untranslated` or `stale`) and `<code>-translated.json` (everything
+   already translated and up to date, for anchoring).
 
 3. Read `docs/developers/translations.md` and
    `docs/developers/translation-terminology.md` for app context and the
@@ -70,8 +61,18 @@ never fetched will still be sitting there looking current.
 
 4. For each language, translate the units in `<code>-untranslated.json`:
 
-   - `source` is the English text; `note`/`context` are the translator
-     comments from Weblate saying where the string is used — read them.
+   - `source` is the English text; `note` is the translator comment from the English
+     `strings.xml`, saying where the string is used — read it.
+   - **Stale units** (`kind: "stale"`) have a `target` (the current translation) and `was`
+     (the English it was translated from). Compare `was` with `source` to see what
+     changed, then produce the **whole** new translation (rule C16) — keep the existing
+     translation's choices wherever the English didn't change. If the change needs
+     nothing from this language (an English typo fix, say), don't rewrite it:
+     acknowledge it instead, with
+     `python3 scripts/find-stale-translations.py --lang <code> --acknowledge <key> ...`.
+   - **Plural units** have `source`/`target` objects of `{quantity: text}`. Translate every
+     quantity the language uses (the same set as its other plurals) — see
+     [[compose-plurals-select-on-int-only]].
    - **Anchor to prior art rather than translating cold.** `<code>-translated.json`
      holds every string already approved in that language. Before translating,
      find the sibling strings that share wording with the new one and reuse
@@ -94,57 +95,48 @@ never fetched will still be sitting there looking current.
      appropriate phrase over a literal one, remembering this is an audio-first
      app for blind and low-vision users.
 
-   Write `{context-key: translated-text}` to
-   `<dir>/<code>-translations.json` — the shape Weblate's upload endpoint
-   expects. Translate in batches of roughly 25-30 units so each batch stays
-   checkable.
+   Write `{context-key: translated-text}` to `<dir>/<code>-translations.json` (a plural's
+   value is an object of `{quantity: text}`). Translate in batches of roughly 25-30 units
+   so each batch stays checkable.
 
-5. Validate before uploading anything:
+5. Validate:
    ```
-   python3 .claude/skills/weblate-translate/scripts/weblate_sync.py validate --lang <code> --file <dir>/<code>-translations.json
+   python3 .claude/skills/weblate-translate/scripts/strings_sync.py validate --lang <code> --file <dir>/<code>-translations.json --out-dir <dir>
    ```
-   This checks that placeholders and line breaks survived, that nothing is
-   empty, and that every key really is one of the language's untranslated
-   ones — a key that isn't is how a stale fetch cache shows up. Uploading only
-   part of a language is fine and reported as a note rather than an error, so
-   the batched whole-language runs [[weblate-add-language]] does still pass;
+   This checks placeholders, line breaks, escaped quotes, empty values and plural
+   quantities, and that every key really is pending for the language — a key that isn't
+   is how a stale fetch cache shows up. A partial file is fine and reported as a note;
    add `--require-complete` when a file is meant to cover everything.
 
-   `upload` runs the same checks itself and uploads nothing if any language
-   fails, so this step is only for catching problems early — never reach for
-   `--skip-validate` to get past a failure.
-
-6. Upload. Uploads land as **live translations** with no suggestion or review
-   queue, so quality matters and there is no undo:
+6. Apply, which validates again and writes nothing if any language fails:
    ```
-   python3 .claude/skills/weblate-translate/scripts/weblate_sync.py upload --all --out-dir <dir>
+   python3 .claude/skills/weblate-translate/scripts/strings_sync.py apply --all --out-dir <dir>
    ```
-   `--all` validates every language first, uploads none if any fails, then
-   paces the uploads. For a single language, `upload --lang <code> --file <path>`.
+   or `apply --lang <code> --file <path> --out-dir <dir>`. Existing entries are replaced
+   in place; new ones are inserted after their nearest English neighbour.
 
-7. Confirm by re-running `languages` — the counts you translated should now
-   read `untranslated=0`. Then report a short summary table: language, how many
-   strings were uploaded, and anything skipped or failed.
+7. Check the diff (`git diff --stat`, and spot-read a few languages), then run the
+   truncation check from the Notes. Commit on main, one commit for the pass, describing
+   what was translated. Don't push — the user does that ([[commit-directly-on-main]],
+   [[never-push-upstream]]).
 
-Tell the user the Weblate side is done and the remaining steps are theirs:
-Commit in the Weblate UI, then merge the translation branch back into the repo
-(see `docs/developers/translations.md`).
+8. Confirm with `strings_sync.py languages`: the languages you did should now read 0
+   (the stale check only sees committed changes). Report a short table: language,
+   untranslated/stale strings done, anything skipped or acknowledged.
 
 ## Notes
 
-- **Translate the whole string, never just the part that changed** (rule C16 in `translations/guidance/_common.md`). After a bulk pass, run `python3 .claude/skills/weblate-translate/scripts/truncation_check.py /tmp/weblate-review <code>` and check every flag against the English.
-
-- Component is fixed to `androidkmp`
-  (`shared/src/commonMain/composeResources/values-*/strings.xml`). Don't use
-  the `android-app` component in the same Weblate project — it points at a
-  `strings.xml` path that no longer exists in this repo (pre-KMP-migration,
-  stale).
-- hosted.weblate.org throttles bursts hard. Requests already retry with
-  backoff and the `--all` loops pause between languages; if you still see
-  throttling, raise `--pause`. Firing ~50 languages back to back fails most of
-  them.
-- Never print or log the Weblate API key. It's only ever read by
-  `weblate_sync.py` from `~/.config/weblate`.
-- If `weblate_sync.py` isn't runnable (e.g. `wlc` not installed), tell the
-  user to `pip install wlc` rather than trying to reimplement its HTTP calls
-  inline.
+- **Translate the whole string, never just the part that changed** (rule C16 in
+  `translations/guidance/_common.md`). After a bulk pass, run
+  `python3 .claude/skills/weblate-translate/scripts/truncation_check.py <dir> <code>` and
+  check every flag against the English.
+- **Write quotes bare or typographic, never escaped.** Compose Resources shows `\"` and
+  `\'` literally ([[composeresources-no-quote-escaping]]); `validate` refuses them. French
+  no-break spaces before `: ; ? !` are added at build time (`composeResourcesForBuild`), so
+  plain spaces are fine.
+- `find-stale-translations.py` dates a translation by its commit's author time. Commits
+  from Weblate's old squash add-on carry the squash's time; see the script's docstring.
+- Weblate now only mirrors the repo and collects suggestions; it accepts no direct
+  translations and never commits back. `weblate_sync.py` is kept for reading from it
+  (suggestions, statistics). Never upload through it: an upload would be overwritten by
+  Weblate's next update from the repo.

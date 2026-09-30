@@ -1,44 +1,23 @@
 ---
 name: weblate-add-language
-description: Onboard a brand-new translation language for Soundscape-Android — add it to the Weblate component (androidkmp), translate every string for it, and (separately) wire it into the app's language whitelist and localized docs. Use when the user asks to add a new language/locale that isn't translated at all yet, as opposed to translating already-untranslated strings in a language the app already supports (that's [[weblate-translate]]) or reviewing existing translations (that's [[weblate-review]]).
+description: Onboard a brand-new translation language for Soundscape-Android — create its values-<qualifier>/strings.xml, translate every string for it, and (separately) wire it into the app's language whitelist and localized docs. Use when the user asks to add a new language/locale that isn't translated at all yet, as opposed to translating already-untranslated strings in a language the app already supports (that's [[weblate-translate]]) or reviewing existing translations (that's [[weblate-review]]).
 ---
 
-# Weblate add-language
+# Add a language
 
 Onboards a language that doesn't exist in the project yet, end to end. Two
 phases, run separately:
 
-- **Phase 1 — Weblate**: add the language to the `androidkmp` component and
-  translate every string for it (fully automatable in-session, reuses
-  `weblate-translate`'s `weblate_sync.py`).
+- **Phase 1 — Translate**: create
+  `shared/src/commonMain/composeResources/values-<qualifier>/strings.xml` and translate
+  every string into it, with `weblate-translate`'s `strings_sync.py`. Commit.
 - **Phase 2 — Repo wiring**: flip the app-side whitelist and generate the
   small hand-authored docs page so the app and docs site actually offer the
-  language. This is gated on `values-<qualifier>/strings.xml` already
-  existing in the repo (see "Why Phase 2 is gated" below) — it can't be
-  automated in the same session as Phase 1 because getting the translated
-  strings from Weblate into this repo's git tree is a separate, human,
-  Weblate-UI step (see `docs/developers/translations.md`'s "translation
-  loop").
+  language. Only when the user asks: whitelisting is what makes the language
+  ship, so it stays a deliberate step even though Phase 1 now lands in the repo
+  directly.
 
-Read `docs/developers/translations.md` in full before starting (both phases
-draw on it) — it's the canonical description of this whole loop and of
-"Adding a whole new language" specifically; this skill automates the pieces
-of that section a CLI/session can actually do.
-
-## One-time setup (tell the user if this fails)
-
-Same auth as `weblate-translate` — `wlc`'s standard config path,
-`~/.config/weblate`:
-
-```ini
-[keys]
-https://hosted.weblate.org/api/ = <weblate-api-token>
-```
-
-`chmod 600 ~/.config/weblate`. If
-`python3 .claude/skills/weblate-translate/scripts/weblate_sync.py languages`
-reports no API key, stop and tell the user to add it there — never ask for
-the key in chat or write it into any file in this repo.
+Read `docs/developers/translations.md` before starting (both phases draw on it).
 
 ## Args
 
@@ -47,71 +26,48 @@ The language to add, e.g. `/weblate-add-language Welsh` or
 name, work out its ISO code yourself; if the user gives only a code, work out
 the English name yourself. Either way, confirm your guess in the summary you
 give back rather than silently assuming — a wrong code creates the wrong
-language in Weblate.
+`values-*` directory, and Compose Resources matches the qualifier exactly
+([[compose-resources-indonesian-in-vs-id]]).
 
 If the user names a language that's *already* fully translated and wired
 into the app, tell them there's nothing to add — that's not this skill.
 
-## Phase 1 — Add to Weblate and translate
+## Phase 1 — Create the file and translate
 
-1. Run
-   `python3 .claude/skills/weblate-translate/scripts/weblate_sync.py languages`
-   and check whether the language is already a translation of the
-   `androidkmp` component (by code or by name in the output).
+1. Run `python3 .claude/skills/weblate-translate/scripts/strings_sync.py languages` and
+   check whether the language already has a `values-*` file.
 
    - **Not present yet**: continue to step 2.
-   - **Already present with untranslated > 0**: it was already added (e.g.
-     via the Weblate UI, per `docs/developers/translations.md`) but not
-     finished — skip step 2 and go straight to step 3, treating whatever's
-     already translated as prior art (same as `weblate-translate` does).
-   - **Already present with untranslated == 0**: it's fully translated in
-     Weblate already. Say so and jump to Phase 2 (it may still not be wired
-     into the repo).
+   - **Present with pending strings**: a previous run stopped partway. Carry on from
+     step 3, treating what's there as prior art.
+   - **Present and complete**: say so and jump to Phase 2.
 
-2. Add the language to the component. Weblate's language database covers
-   nearly every language Soundscape is likely to add, keyed by a code using
-   underscores for region variants (e.g. `et`, `nb_NO`, `fr_CA`, `zh_Hans` —
-   check the `languages` output above for this project's existing examples
-   of that convention before guessing a new one):
-   ```
-   python3 .claude/skills/weblate-translate/scripts/weblate_sync.py add-language --lang <weblate-code>
-   ```
-   If this fails because Weblate has no such language defined at all (rare —
-   only for languages with no ISO 639 entry in Weblate's database), tell the
-   user rather than guessing plural rules yourself; only if they confirm the
-   details, define it first with:
-   ```
-   python3 .claude/skills/weblate-translate/scripts/weblate_sync.py create-language \
-     --code <code> --name "<English name>" --direction ltr|rtl \
-     --plural-number <n> --plural-formula "<CLDR formula>"
-   ```
-   then retry `add-language`.
+2. Work out the language's code and `values-*` qualifier (`cy`, `et`; a region variant
+   is `xx-rYY`), and its CLDR plural categories. **Check the plural categories against
+   the 220-locale map before starting** ([[compose-plurals-select-on-int-only]]): Compose
+   throws on a locale it doesn't know rather than falling back, which is why `arz` was
+   dropped. If the code differs from the qualifier, add it to `VALUES_DIR` in both
+   `strings_sync.py` and `WEBLATE_CODES` in `scripts/find-stale-translations.py`.
 
-3. Translate every string for the language. This is exactly
-   `weblate-translate`'s procedure — follow it as written, for this one
+3. Translate every string, following `weblate-translate`'s procedure for this one
    language:
-   - Fetch units with `weblate_sync.py fetch --lang <code> --out-dir /tmp/weblate-add-language`.
-   - Read `docs/developers/translations.md` and
-     `docs/developers/translation-terminology.md` for app context and
-     terminology; use a user-supplied glossary if one is pointed at.
-   - Translate in batches of ~25-30 units, preserving placeholders and
-     markdown/line breaks exactly, using `<translated.json>` (if any) to
-     keep terminology/tone consistent within the language.
-   - Upload with `weblate_sync.py upload --lang <code> --file <path>`.
-   - Since this is a brand-new language, expect this to be the *entire*
-     ~1400-string component in one run — this will take many batches. Say
-     so up front and keep going rather than stopping partway; report
-     progress every few batches so the user can see it's moving.
+   - `strings_sync.py fetch --lang <code> --out-dir /tmp/weblate-add-language` — every
+     string comes back `untranslated`.
+   - Read `docs/developers/translations.md`, `docs/developers/translation-terminology.md`
+     and `translations/guidance/_common.md`.
+   - Translate in batches of ~25-30 units, preserving placeholders and markdown/line
+     breaks exactly. Keep terminology consistent within the language.
+   - Plurals take an object with exactly the categories from step 2. With no existing
+     plural to compare against, `validate` warns instead of checking them, so check them
+     yourself.
+   - `strings_sync.py apply --lang <code> --file <batch> --out-dir /tmp/weblate-add-language`
+     after each batch. The first apply creates the file.
+   - This is the whole ~1600-string corpus. Say so up front, keep going rather than
+     stopping partway, and report progress every few batches.
 
-4. Report: language added (yes/no, or already-present), how many strings
-   translated/uploaded, any batches that failed to upload (print the
-   script's error, keep going). Tell the user the next Weblate-side step is
-   manual and outside this skill: a project admin needs to click **Commit**
-   then **Update** on the component's repository page in the Weblate UI (see
-   `docs/developers/translations.md` step 6/9) and open a PR from Weblate's
-   git branch into this repo — that's what actually produces
-   `shared/src/commonMain/composeResources/values-<qualifier>/strings.xml`
-   here. Phase 2 depends on that PR having landed.
+4. Commit on main (don't push), then report: the code and qualifier you used, how many
+   strings were translated, and anything skipped. Phase 2 can follow whenever the user
+   asks for it.
 
 ## Phase 2 — Wire the language into the repo
 
@@ -131,9 +87,9 @@ than not offering it. So:
 
 **Gate check**: does
 `shared/src/commonMain/composeResources/values-<qualifier>/strings.xml`
-already exist in this repo (`git ls-files` or a plain check)? If not, stop
-and tell the user Phase 1's Weblate merge hasn't landed here yet — point them
-at the manual step from Phase 1 §4, and don't edit any of the files below.
+already exist in this repo, committed and with nothing pending
+(`strings_sync.py languages --lang <code>` shows 0 untranslated)? If not, stop and
+tell the user Phase 1 isn't finished, and don't edit any of the files below.
 (`<qualifier>` is the Android resource-qualifier form — see the table below.)
 
 ### Determine the three code forms
@@ -147,7 +103,8 @@ the existing files aren't perfectly self-consistent (e.g. `zh-rCN` in
 `app/build.gradle.kts` vs. bare `zh` in `locales_config.xml`), so match
 what's actually there:
 
-1. **Weblate code** (underscore) — from Phase 1, e.g. `et`, `nb_NO`.
+1. **Language code** (underscore, as `translations/guidance/` uses) — from Phase 1,
+   e.g. `et`, `nb_NO`.
 2. **Android resource qualifier** (hyphen + `r`-prefixed region, only when a
    region distinguishes it from another variant of the same base language,
    e.g. `en-rGB`, `fr-rCA`, `pt-rBR`, `zh-rCN` — but plain `nb`, `et` for
@@ -191,10 +148,8 @@ them in sync with each other):
    `lang: <web code>`, `permalink: /users/user.html`,
    `machine-translated: true`.
 
-Do not touch `values-<qualifier>/strings.xml` itself — per
-`docs/developers/translations.md`, the only `strings.xml` ever hand-edited
-in this repo is the English source; every other language's strings.xml only
-ever arrives via a Weblate merge.
+Do not touch `values-<qualifier>/strings.xml` in this phase — it's Phase 1's, and it
+only changes through `strings_sync.py apply`.
 
 ### Wrap-up
 
@@ -207,13 +162,6 @@ rather than trying to run the instrumented test from here.
 
 ## Notes
 
-- Component is fixed to `androidkmp`, same as `weblate-translate` and
-  `weblate-review`. Don't use the `android-app` component — it's stale
-  (pre-KMP-migration).
-- Never print or log the Weblate API key.
-- If `weblate_sync.py` isn't runnable (e.g. `wlc` not installed), tell the
-  user to `pip install wlc` rather than trying to reimplement its HTTP calls
-  inline.
 - If parallelizing Phase 1's translation batches across subagents for a
   large language, follow `weblate-review`'s "If parallelizing the review
   across subagents" guidance on why to use fresh (non-`fork`) agents with

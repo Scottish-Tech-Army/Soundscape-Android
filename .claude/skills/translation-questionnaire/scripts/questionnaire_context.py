@@ -29,7 +29,7 @@ KEYS = [
     "beacon_audio_beacon", "callouts_automatic_callouts", "markers_title", "routes_title",
     # example callouts (map names go in UNDECLINED, exactly as the template gets them)
     "confect_name_pavement_next_to", "directions_along_heading_n", "confect_name_to",
-    "confect_name_dead_end", "osm_path", "directions_name_goes_left",
+    "confect_name_to_dead_end", "osm_path", "directions_name_goes_left",
     # things questions commonly quote
     "tour_beacon_demo", "first_launch_prompt_title", "first_launch_welcome_title",
     "callouts_verbosity_level_detailed", "callouts_verbosity_level_balanced",

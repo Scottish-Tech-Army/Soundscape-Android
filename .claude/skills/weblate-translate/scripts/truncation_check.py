@@ -6,7 +6,7 @@ a pass that re-translates only the changed fragment of an edited English string
 and throws the rest of the translation away (often marking the gap with "...").
 
 Reads the <code>-translated.json files written by
-`weblate_sync.py fetch --lang <code> --out-dir <dir>`.
+`strings_sync.py fetch --lang <code> --out-dir <dir>` (plurals are skipped).
 
     python3 truncation_check.py <dir> [<code> ...]
 
@@ -49,7 +49,8 @@ def sentences(s):
 
 def check(path):
     units = [u for u in json.load(open(path, encoding='utf-8'))
-             if not u['context'].startswith('osm_') and u.get('target')
+             if not u['context'].startswith('osm_') and isinstance(u.get('target'), str) and u['target']
+             and isinstance(u.get('source'), str)
              and len(clean(u['source'])) >= 60]
     if not units:
         return None, []
