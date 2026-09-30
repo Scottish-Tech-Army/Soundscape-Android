@@ -70,6 +70,22 @@ class FormatDistanceTest {
         )
     }
 
+    /**
+     * The clock position reaches the template as a localized word, not a digit, so a language can
+     * give the speech synthesiser the ordinal it needs ("na godzinie dziewiątej", not "dziewięciu").
+     */
+    @Test
+    fun clockPositionIsLocalizedWord() {
+        assertEquals(
+            "DistanceMeters[20](20), RelativeClockDirection(RelativeClockHour9())",
+            formatDistanceAndDirection(20.0, 270.0, localized, userHeading = 0.0),
+        )
+        assertEquals(
+            "DistanceMeters[20](20), RelativeClockDirection(RelativeClockHour12())",
+            formatDistanceAndDirection(20.0, 5.0, localized, userHeading = 0.0),
+        )
+    }
+
     @AfterTest
     fun restoreUnits() {
         metric = true

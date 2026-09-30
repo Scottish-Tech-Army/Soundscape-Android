@@ -226,7 +226,7 @@ understanding the callout. C17's label form was **not** adopted for Polish.
 Leave `directions_along_*`, `confect_name_to*` and friends in their
 preposition form.
 
-### PL-D1 — Spoken distances and clock positions come out misdeclined (`unconfirmed`, code)
+### PL-D1 — Spoken distances and clock positions come out misdeclined (clock: code fixed 2026-09-30, words pending; distance: `unconfirmed`)
 
 Reviewer (Q10): callouts like «Przejście dla pieszych piętnastu metrów na
 godzinie dziewięciu» sound "quite nonsensical". The app builds
@@ -241,6 +241,9 @@ The speech engine then declines the bare numbers:
   this. It needs a code change: twelve localized clock positions (or ordinal
   words), not a number. cs «na %1$s hodině», sk and uk have the same shape.
   Slovenian works around it with «%1$s. uri» (an ordinal dot). See `_common.md` C20.
+  **Code fixed 2026-09-30:** `relative_clock_hour_1`…`_12`. Polish values
+  are «pierwszej … dwunastej» (feminine locative ordinals, agreeing with
+  «godzinie»), uploaded once Weblate has the new keys.
 - **Distance:** «15 metrów» on its own should read «piętnaście». Why the
   engine said «piętnastu» isn't known. It may be carrying case across the comma
   into «na godzinie». Ask which TTS engine and voice the reviewer uses.
