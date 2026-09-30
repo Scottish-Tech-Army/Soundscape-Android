@@ -54,8 +54,8 @@ MAPPING = {
     "Commands": "siri_choice_commands",
     # Amount of detail choices
     "Silent": "callouts_verbosity_level_silent",
-    "Quiet": "callouts_verbosity_level_quiet",
-    "Balanced": "callouts_verbosity_level_balanced",
+    "Essential": "callouts_verbosity_level_quiet",
+    "Simplified": "callouts_verbosity_level_balanced",
     "Detailed": "callouts_verbosity_level_detailed",
     # Shortcut and intent names
     "Hear My Surroundings": "callouts_panel_title",
@@ -116,7 +116,7 @@ PHRASE_COUPLED = {
               "Soundscape pysäytä majakka, Soundscape yksityiskohdat tai Soundscape luettelo.",
         "fr": "Vous pouvez dire : Soundscape environs, Soundscape itinéraire, "
               "Soundscape démarre l'itinéraire, Soundscape balise, "
-              "Soundscape arrête la balise, Soundscape détails ou Soundscape liste.",
+              "Soundscape arrête la balise sonore, Soundscape détails ou Soundscape liste.",
         "it": "Puoi dire: Soundscape dintorni, Soundscape percorso, "
               "Soundscape avvia percorso, Soundscape audiofaro, "
               "Soundscape ferma audiofaro, Soundscape dettagli o Soundscape elenco.",
@@ -130,8 +130,8 @@ PHRASE_COUPLED = {
               "Soundscape start rute, Soundscape lydsignal, "
               "Soundscape stopp lydsignal, Soundscape detaljer eller Soundscape liste.",
         "nl": "U kunt zeggen: Soundscape omgeving, Soundscape route, "
-              "Soundscape start route, Soundscape baken, Soundscape stop baken, Soundscape detail "
-              "of Soundscape lijst.",
+              "Soundscape start de route, Soundscape baken, Soundscape stop het baken, "
+              "Soundscape detail of Soundscape lijst.",
         "pt": "Pode dizer: Soundscape arredores, Soundscape rota, "
               "Soundscape iniciar rota, Soundscape sinal, Soundscape parar sinal, Soundscape detalhe "
               "ou Soundscape lista.",
