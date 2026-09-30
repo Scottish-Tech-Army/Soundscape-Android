@@ -92,7 +92,8 @@ def with_retry(what: str, call: Callable[[], Any]) -> Any:
         except (wlc.WeblateDeniedError, wlc.WeblatePermissionError):
             raise
         except (wlc.WeblateThrottlingError, wlc.WeblateException, OSError) as exc:
-            if attempt == RETRIES:
+            # A 4xx other than throttling is a rejected request, not a transient one.
+            if re.match(r"HTTP error 4(?!29)", str(exc)) or attempt == RETRIES:
                 raise
             delay = BACKOFF_SECONDS * attempt
             print(
@@ -469,8 +470,12 @@ def cmd_clear_needs_editing(args: argparse.Namespace) -> None:
                 held += 1
                 continue
             if args.apply:
-                with_retry(f"{lang} {key}", lambda uid=u["id"]: c.request(
-                    "patch", f"units/{uid}/", data={"state": STATE_TRANSLATED}))
+                # Weblate validates the target on any state change and rejects a state
+                # on its own ("Number of plurals does not match"), so send its own
+                # current target back unchanged.
+                with_retry(f"{lang} {key}", lambda uid=u["id"], target=u["target"]: c.request(
+                    "patch", f"units/{uid}/",
+                    data={"state": STATE_TRANSLATED, "target": target}))
             print(f"  {'cleared' if args.apply else 'would clear'}  {lang} {key}")
             cleared += 1
         if i < len(langs) - 1:
