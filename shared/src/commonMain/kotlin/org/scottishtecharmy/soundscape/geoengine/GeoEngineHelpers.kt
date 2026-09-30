@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
@@ -128,7 +129,7 @@ fun formatDistanceAndDirection(
     heading: Double?,
     localized: LocalizedStrings?,
     userHeading: Double? = null,
-    relativeTimeMode: String = "ClockFace",
+    relativeDirectionMode: String = PreferenceDefaults.RELATIVE_DIRECTION,
     forAccessibility: Boolean = false,
     speed: Double = 0.0,
     abbreviatedDirection: Boolean = false
@@ -195,7 +196,7 @@ fun formatDistanceAndDirection(
                 headingText = ", " + localized.get(key)
             }
         } else {
-            when (relativeTimeMode) {
+            when (relativeDirectionMode) {
                 "ClockFace" -> {
                     val timeHeading = getRelativeClockTime(heading.toInt(), userHeading.toInt())
                     headingText = ", " +

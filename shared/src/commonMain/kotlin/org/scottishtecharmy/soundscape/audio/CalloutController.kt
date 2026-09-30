@@ -62,7 +62,10 @@ class CalloutController(
             println("CalloutController: speakCallout: Could not get audio focus.")
             return 0L
         }
-        return speakCalloutCommon(callout, addModeEarcon, audioEngine, lastGeometry, ruler)
+        return speakCalloutCommon(
+            callout, addModeEarcon, audioEngine, lastGeometry, ruler,
+            relativeDirectionMode = geoEngine.relativeDirectionMode(),
+        )
     }
 
     private suspend fun awaitHandle(handle: Long) {
