@@ -133,10 +133,14 @@ bejelentés be- vagy kikapcsolása”.
 **Amiben bizonytalanok vagyunk:** a „bejelentés” hivatalosnak hathat (mint
 egy hivatalban tett bejelentés). A „bemondás” (mint a villamoson vagy a
 pályaudvaron) talán közelebb áll, az „értesítés” viszont összekeverhető a
-telefon saját értesítéseivel.
+telefon saját értesítéseivel. Ráadásul most három szó keveredik: „bejelentés”
+(például „Bejelentések engedélyezése”), „közlés” (például „Közlések kezelése”,
+„Közlések részletessége”) és néhol „bemondás”. Ugyanazon a beállítási
+képernyőn egymás után hallható a „Bejelentések engedélyezése” és a „Közlések
+kezelése”.
 
-**A kérdés:** melyik hangzik természetesebben: „bejelentés”, „bemondás”,
-vagy valami más?
+**A kérdés:** melyik legyen az egyetlen szó mindenhol: „bejelentés”,
+„közlés”, „bemondás”, vagy valami más?
 
 ### Q5 — A négy részletességi szint *(Four detail levels, renamed 2026-09-30)*
 

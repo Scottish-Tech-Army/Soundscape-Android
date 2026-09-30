@@ -114,7 +114,23 @@ misschien beter leest. Op knoppen en in menu's blijft het „Markering”.
 **De vraag:** zullen we „opgeslagen plek” in de langere hulpteksten gebruiken, of
 overal „markering” laten staan?
 
-### Q4 — Nog iets? *(Anything else)*
+### Q4 — „Enhanced”-stemmen *(iOS Enhanced voices)*
+
+**Wanneer u het hoort:** in de hulp over stemmen op de iPhone.
+
+**In het Engels:** „We recommend choosing one of the higher quality *Enhanced*
+voices”.
+
+**Zo klinkt het nu:** „We raden u aan een van de *Enhanced*-stemmen van hogere
+kwaliteit te kiezen”.
+
+**Waar we over twijfelen:** op een Nederlandse iPhone heten deze stemmen
+waarschijnlijk „Verbeterd”. Als de hulptekst een ander woord gebruikt dan de
+stemmenlijst, is de stem moeilijk te vinden.
+
+**De vraag:** hoe heten deze stemmen in de stemmenlijst van uw iPhone?
+
+### Q5 — Nog iets? *(Anything else)*
 
 Klinkt een zin als vertaald uit het Engels, te lang of onduidelijk? Elke
 opmerking is welkom, ook zonder nummer.

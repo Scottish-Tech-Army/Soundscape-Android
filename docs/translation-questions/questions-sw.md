@@ -136,7 +136,23 @@ places that help orientation.*
 **Swali:** Je, viwango hivi vinne vinatofautiana na kueleweka kwa urahisi vinaposikika? Ungevipa viwili vya kati majina mengine?
 *Are the four easy to tell apart by ear? Would you name the middle two differently?*
 
-### Q6 — Kitu kingine? *(Anything else)*
+### Q6 — "katika saa 3" *(Clock-face directions)*
+
+**Linasikika lini:** ukichagua "Uso wa Saa" katika mipangilio, programu husema kitu kiko wapi kama kwenye uso wa saa: saa 12 ni mbele, saa 3 ni kulia, saa 6 ni nyuma, saa 9 ni kushoto. Kwa mfano: "Kafe, 20 mita, katika saa 3".
+*With the "Clock face" setting, the app says where something is as on a clock face: 12 ahead, 3 right, 6 behind, 9 left. For example: "Cafe, 20 meters, at 3 o'clock".*
+
+**Kwa Kiingereza:** "Cafe, 20 meters, at 3 o'clock"
+
+**Linavyosikika sasa:** "katika saa 3", "katika saa 9" (tarakimu husomwa na kisomaji sauti).
+*"katika saa 3", "katika saa 9" (the speech engine reads the digit).*
+
+**Kinachotutia shaka:** kwa Kiswahili saa huhesabiwa kuanzia asubuhi, hivyo "saa tatu" ni saa 9 kwa Kiingereza. Msikilizaji anaweza kuelewa "saa 3" kama upande wa kushoto (saa 9), si kulia. Pia "katika saa 3" huenda likasikika kama "baada ya saa tatu".
+*In Swahili time, «saa tatu» is 9 o'clock, so "3" may be heard as the left (9), not the right. «katika saa 3» may also sound like "within three hours".*
+
+**Swali:** Je, Mswahili angeelewa "saa 3" hapa kama upande wa kulia? Kama sivyo, tuseme vipi? Au ni bora mtumiaji wa Kiswahili atumie "Kushoto/Kulia" badala ya saa?
+*Would a Swahili speaker hear "3" here as the right-hand side? If not, how should it be said? Or should Swahili users just use "Left/Right" instead?*
+
+### Q7 — Kitu kingine? *(Anything else)*
 
 Kama sentensi yoyote inasikika kama tafsiri kutoka Kiingereza, ni ndefu mno au
 haieleweki, tuambie.

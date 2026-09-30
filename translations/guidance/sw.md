@@ -21,7 +21,7 @@ already work:
 - The «ku»-infinitive hints compose with «Gusa mara mbili %1$s».
 - There is no `sw.lproj`, so the Siri phrases stay in English.
 
-Questions: `docs/translation-questions/questions-sw.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-sw.md` (Q1…Q7).
 
 ## Glossary
 
@@ -55,7 +55,8 @@ Nothing yet.
 3. Callout «tangazo la sauti»: natural?
 4. Landmarks «vivutio»: too touristy?
 5. **The four detail levels** (Kwa Kina / Rahisi / Muhimu / Kimya), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
-6. Anything else.
+6. Clock-face directions «katika saa %1$s»: Swahili time counts from 6 a.m., so «saa tatu» (hour 3) is 9 o'clock and a position meant as the right may be heard as the left. How should they be said, or should Swahili users use Left/Right? (all-language review 2026-09-30, `_common.md` C20)
+7. Anything else.
 
 ## Provenance
 

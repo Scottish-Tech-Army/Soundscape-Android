@@ -151,7 +151,24 @@ rakendus „Metsa tänaval“. Kui nime ei saa käänata (nt „E20“), jääb 
 
 **Küsimus:** kas neli taset on kuuldes kergesti eristatavad ja arusaadavad? Kas nimetaksid kaks keskmist teisiti?
 
-### Q8 — Midagi muud? *(Anything else)*
+### Q8 — „Kell 3“ *(Clock-face directions)*
+
+**Millal see kõlab:** kui valite seadetes „Kella numbrilaud“, ütleb rakendus,
+kus miski asub nagu kella sihverplaadil: kell 12 otse ees, kell 3 paremal, kell
+9 vasakul. Näiteks: „Kohvik, 20 meetrit, kell 3“.
+
+**Inglise keeles:** „Cafe, 20 meters, at 3 o'clock“.
+
+**Kuidas see praegu kõlab:** „kell %1$s“, näiteks „kell 3“.
+
+**Mis meid kahtlema paneb:** „kell 3“ on tavaline kellaaeg, nii et teade võib
+kõlada nagu lahtiolekuaeg. Suuna kohta öeldakse ehk pigem „kella kolme
+suunas“.
+
+**Küsimus:** kas „kell 3“ on suunana arusaadav, või peaks olema „kella kolme
+suunas“ või midagi muud?
+
+### Q9 — Midagi muud? *(Anything else)*
 
 Kui mõni lause kõlab nagu tõlge inglise keelest, on liiga pikk või ebaselge,
 andke teada.

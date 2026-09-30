@@ -62,7 +62,7 @@ Nothing yet.
 ## Open questions
 
 1. «Caminho para um beco sem saída»? (PT-G1)
-2. «Está tudo pronto!» again? (PT-R1)
+2. «Está tudo pronto!» (title and the message under it): applied 2026-09-30 by the all-language review. Natural? (PT-R1)
 3. The four detail levels (Detalhado / Simplificado / Essencial / Silencioso), renamed 2026-09-30 (C22): clear by ear? Better names for the middle two?
 4. Siri phrases «Soundscape arredores / rota / sinal / parar sinal…»: natural?
 5. Articles are now chosen from the name («no Largo do Carmo», «na Rua Augusta»). Right? (PT-G1)

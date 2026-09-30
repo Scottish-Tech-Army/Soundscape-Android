@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 A Microsoft baseline. There is no `el.lproj`, so the Siri phrases stay in
 English (PL-C1). The formal plural «Είστε έτοιμοι!» is Microsoft's and
 gender-neutral enough. There is one VoiceOver defect (EL-B1). Questions:
-`docs/translation-questions/questions-el.md` (Q1…Q5).
+`docs/translation-questions/questions-el.md` (Q1…Q6).
 
 ## Glossary
 
@@ -57,7 +57,8 @@ Nothing yet.
 2. Callout «επεξήγηση»: natural for a short spoken description?
 3. The four detail levels (Λεπτομερές / Απλοποιημένο / Βασικό / Σιωπηλό), renamed 2026-09-30 (C22): clear by ear? Better names for the middle two?
 4. Snooze «αναβολή»: clear?
-5. Anything else.
+5. Clock-face directions «στις %1$s η ώρα»: 1 needs «στη μία», and the TTS may read «στις 3» with the neuter «τρία». Write the hours as words? (all-language review 2026-09-30, C20)
+6. Anything else.
 
 ## Provenance
 

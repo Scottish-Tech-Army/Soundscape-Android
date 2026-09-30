@@ -76,7 +76,7 @@ Nothing yet.
    numbers, abbreviations and numbers? (HU-A1)
 2. Register: «te» everywhere, or «Ön» everywhere? (HU-R1)
 3. Beacon «hangjelző»: natural? In everyday use it means a buzzer, beeper or car horn, so it may not suggest a sound that shows a direction.
-4. Callout «bejelentés»: natural? It can sound official; «bemondás» (a public-transport announcement) was offered as an alternative. «értesítés» was ruled out because it clashes with phone notifications.
+4. Callout «bejelentés»: natural? It can sound official; «bemondás» (a public-transport announcement) was offered as an alternative. «értesítés» was ruled out because it clashes with phone notifications. Also: the corpus mixes «bejelentés» (e.g. «Bejelentések engedélyezése»), «közlés» (e.g. «Közlések kezelése», «Közlések részletessége») and «bemondás»; which one word everywhere? (all-language review 2026-09-30)
 5. **The four detail levels** (Részletes / Egyszerűsített / Alapvető / Néma), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
 6. Anything else.
 
