@@ -3,8 +3,8 @@
 | | |
 |---|---|
 | Weblate component | `androidkmp` |
-| Corpus at last sweep | 1522 units (2026-09-24) |
-| Last native-speaker input | 2026-09-29: written feedback on *beacon* (PL-B1), plus two Weblate edits by `trc695`, probably the same person |
+| Corpus at last sweep | 1586 units (2026-09-30) |
+| Last native-speaker input | 2026-09-30: answers to all ten questions on `questions-pl.md` (Q1–Q10). Earlier: 2026-09-29 written feedback on *beacon*, plus two Weblate edits by `trc695`, probably the same person |
 | Reporter platform | — |
 
 Read with [`_common.md`](_common.md).
@@ -13,15 +13,11 @@ Read with [`_common.md`](_common.md).
 
 ## Status of this file
 
-**No native speaker has reviewed Polish.** Everything below was decided by an AI
-translation pass, so almost nothing here is `confirmed` or `agreed` — the entries
-are `unconfirmed` and exist to give the first reviewer something to react to,
-not to be swept across the corpus.
-
-Two entries are marked `agreed`, and only because neither turns on taste: PL-G1
-is grammar (Polish case government is not an opinion), and PL-C1 is a fact
-about the repo (there is no Polish `AppShortcuts.strings`). Even in PL-G1, the
-replacement *wording* stays `unconfirmed`.
+**A native speaker answered the whole questionnaire on 2026-09-30.** The core
+glossary is now `confirmed` or `agreed`. Three answers were handed back to the
+developer to choose (the beacon place and Waypoint in Q3a, Marker in Q5,
+movement verbs in Q8). Dave chose on 2026-09-30, and those rows say so. Rows
+nobody has looked at are still `unconfirmed`.
 
 A review pack was prepared for the first reviewer:
 
@@ -39,27 +35,32 @@ A review pack was prepared for the first reviewer:
 
 | English | Polish | Status | Why |
 |---|---|---|---|
-| Callout | powiadomienie | `unconfirmed` | Shipping since the first pass. Collides conceptually with system notifications — see Q2 |
-| Beacon: **sound** | dźwięk naprowadzający | `agreed` (meaning) / `unconfirmed` (word) | Only for the audio signal. Never for the place or the feature — see PL-B1, C19, Q3c |
-| Beacon: **place/target** | *open*: «punkt trasy» (reporter's Weblate edit), «cel», or «punkt docelowy» | `unconfirmed` | «punkt trasy» is also our Waypoint term — see PL-B1 and Q3a |
-| Beacon: **feature** | naprowadzanie | `unconfirmed` | Already used in ~15 strings (`action_beacon_started`, `siri_*`, `route_beacon_progress`). No speaker has endorsed it by name. See Q3b |
-| Marker | znacznik | `unconfirmed` | `markers_title` says «Znaczniki (pinezki)» — see PL-I1 |
-| Waypoint | punkt trasy | `unconfirmed` | Not a calque of our own "route point" gloss (rule C1), but no speaker has confirmed it is what Polish mapping apps use |
+| Callout (noun) | powiadomienie | `confirmed` | Reviewer 2026-09-30: the right word in both phone-OS and navigation UI (Q2) |
+| Call out (verb) | powiadamiać o (+ locative) | `agreed` | Not «ogłaszać», which "sounds a bit artificial" (Q2). See PL-V1 |
+| Beacon: **sound** | dźwięk naprowadzający | `confirmed` | Only for the audio signal. Reviewer: accurate, not too long, don't shorten it (Q3c). Never for the place or the feature, see PL-B1 and C19 |
+| Beacon: **place/target** | cel | `agreed` | Reviewer: «cel» is the Polish for *destination*, and «punkt docelowy» is needlessly long. Dave chose «cel» for the beacon place over «punkt trasy» on 2026-09-30, so the Waypoint collision is gone (Q3a) |
+| Beacon: **feature** | naprowadzanie | `confirmed` | Reviewer: "the exact equivalent of *guidance*" (Q3b). For docs and tutorial prose they suggest «adaptacyjne naprowadzanie dźwiękowe» as the full descriptive name. Not swept |
+| Marker | znacznik | `agreed` | The reviewer called «znacznik» the professional word and «pinezka» the colloquial one. Dave chose «znacznik» on 2026-09-30. Never «(pinezka)» as a gloss (PL-I1) |
+| Waypoint | punkt trasy | `confirmed` | Reviewer: the usual Polish navigation term for an intermediate point. «punkt pośredni» is an acceptable stylistic alternative, but Dave kept «punkt trasy» on 2026-09-30. Not for the beacon place |
 | Landmarks | punkty orientacyjne | `unconfirmed` | Consistent with `callouts_places_and_landmarks` |
 | Intersection / Junction | skrzyżowanie | `unconfirmed` | — |
 | Sleep / Snooze | Tryb uśpienia / Tryb drzemki | `unconfirmed` | The pair is distinct, which is the main requirement |
 | Callout Detail | Szczegółowość powiadomień | `unconfirmed` | Coined 2026-09-23 with the new setting |
-| Detailed / Balanced / Quiet / Silent | Szczegółowy / Zrównoważony / Cichy / Wyciszony | `unconfirmed` | Four level names that must stay distinct **by ear** — see PL-T1 and Q1 |
+| Detailed / Balanced / Quiet / Silent | Szczegółowy / Zrównoważony / **Uproszczony** / Wyciszony | `agreed` | Reviewer renamed Quiet to «Uproszczony» (Q1). See PL-T1 |
 | Streets and Junctions | Ulice i skrzyżowania | `unconfirmed` | Coined 2026-09-23 |
-| Places to Call Out | Miejsca do ogłaszania | `unconfirmed` | Coined 2026-09-23 |
+| Places to Call Out | Powiadamiaj o miejscach | `unconfirmed` | AI rewording 2026-09-30 to drop «ogłaszać» (PL-V1). Mirrors «Uwzględniaj odległość…». Not seen by the reviewer |
 | Everything / No Places | Wszystko / Brak miejsc | `unconfirmed` | Distinct from `filter_all` «Wszystkie miejsca», which is a different setting |
-| dead end | ślepa uliczka | `unconfirmed` | Possibly wrong register — see PL-G1 |
+| dead end | ślepa ulica | `agreed` | Reviewer: drop the diminutive, which sounds more professional. «droga bez przejazdu» is correct but too long (Q6) |
+| Beacon (OSM map feature, `osm_beacon`) | Znak nawigacyjny | `agreed` | Reviewer (Q9). Not «znacznik», which is Marker |
+| Form of address | ty | `confirmed` | Reviewer (Q4). See PL-R1 |
 
 ---
 
 ## Rules
 
-### PL-G1 — `confect_name_dead_end` must be in the genitive (case `confirmed` fixed 2026-09-24, word `unconfirmed`)
+### PL-G1 — `confect_name_dead_end` must be in the genitive (case fixed 2026-09-24; word `agreed` 2026-09-30)
+
+**2026-09-30:** the reviewer chose «ślepa ulica» (Q6), so the string becomes «ślepej **ulicy**» and keeps the genitive. On the open side (undeclined map names), the reviewer says to leave it. See PL-G2.
 
 **Fixed 2026-09-24:** `confect_name_dead_end` is now «ślepej uliczki», uploaded and verified live. This applied the genitive to the *existing* noun only. The register question below stays open, and if the noun changes, the genitive has to change with it.
 
@@ -84,7 +85,9 @@ if the noun changes, the genitive changes with it.
 > OpenStreetMap, in the nominative, giving «Droga do ulica Główna». Same unresolved
 > question as Ukrainian's.
 
-### PL-B1 — *Beacon* is three meanings; Polish needs a word for each (`agreed`; words `unconfirmed`)
+### PL-B1 — *Beacon* is three meanings; Polish needs a word for each (`agreed`; words `agreed` 2026-09-30)
+
+**2026-09-30 resolution:** sound = «dźwięk naprowadzający» (`confirmed`), place = «cel» (`agreed`, chosen by Dave from the reviewer's options), feature = «naprowadzanie» (`confirmed`). The reviewer's answer to Q3a treats «punkt trasy» as the word for an *intermediate* point and «cel» as the word for the destination, so their own 2026-09-29 Weblate edits (`menu_beacon_info`, `beacon_action_callout_beacon` → «punkt trasy») are superseded by that later answer rather than reverted silently. `callouts_audio_beacon_distance` becomes «Do celu: %1$s». This also removes a case bug: «w odległości» needs the genitive, but the 2–4 plural form is nominative («w odległości 2 metry»). `osm_beacon` → «Znak nawigacyjny» (Q9). The text from here down is the 2026-09-29 analysis.
 
 **Source:** written feedback from a Polish user, 2026-09-29, pasted into the
 session. It argues the principle in general terms and proposes **no
@@ -157,14 +160,18 @@ beacon, not ours) is «Znacznik nawigacyjny». «znacznik» is our **Marker**,
 so a map beacon is announced as if it were a saved marker. «Znak
 nawigacyjny» or «Stawa» would avoid that (`unconfirmed`, Q9).
 
-### PL-R1 — Informal second person throughout (`unconfirmed`)
+### PL-R1 — Informal second person throughout (`confirmed` 2026-09-30)
+
+Reviewer (Q4): stay with «ty». «Pan/Pani» would make Soundscape sound "like an electronic survey from a government office" rather than audio navigation. Phone and computer interfaces already say «Czy chcesz usunąć plik…», so users are used to it. Guard it. «Pan/Pani» must not appear anywhere.
 
 The corpus addresses the user as «ty» — «możesz», «twoje trasy», imperatives
 «Naciśnij», «Wybierz». It is consistent, so this is a real convention rather than
 drift, but no speaker has endorsed it. Polish accessibility apps are split between
 this and formal «Pan/Pani». See Q4.
 
-### PL-T1 — The four detail levels must be distinguishable by ear (`unconfirmed`)
+### PL-T1 — The four detail levels must be distinguishable by ear (`agreed` 2026-09-30)
+
+Reviewer (Q1): rename Quiet «Cichy» → **«Uproszczony»** ("simplified"), because it announces only the necessary minimum. This also breaks the shared root with «Wyciszony». Swept: `callouts_verbosity_level_quiet`, `callouts_verbosity_description`, `action_no_such_callout_detail`, and the four help texts that recite the ladder. The generated `docs/users/help-*.pl.md` pages follow at the next release ([[docs-site-translations-need-a-release]]).
 
 *Szczegółowy / Zrównoważony / Cichy / Wyciszony*. The user picks between these
 without looking, often while walking, and hears them read by a speech synthesiser.
@@ -185,11 +192,63 @@ recognise is worse than an English one that works. See
 [[ios-siri-phrases-are-outside-weblate]]. If Polish Siri phrases are ever authored,
 these two strings must change with them.
 
-### PL-I1 — `markers_title` carries a parenthetical gloss (`unconfirmed`)
+### PL-I1 — `markers_title` carries a parenthetical gloss (`agreed` 2026-09-30)
+
+Resolved: «znacznik» only (Q5, Dave's choice from the reviewer's two). Remove every «(pinezka)» gloss (43 units). The home button `ui_action_button_nearby_markers` said «Bliskie pinezki», while the help texts called it «Bliskie znaczniki mapy (pinezki)» and `callouts_nearby_markers` said «Bliskie znaczniki». All three now say «Bliskie znaczniki». Keep `help_text_markers_content_1` «jak pinezki na mapie», because it translates the English simile "like pins in a map".
 
 `markers_title` is «Znaczniki (pinezki)» while every other string uses «znacznik»
 alone. Reads like an unresolved choice between two candidate terms that was shipped
 rather than decided. Pick one. See Q5.
+
+### PL-V1 — The callout verb is «powiadamiać o» (`agreed` 2026-09-30)
+
+Reviewer (Q2): «Tryb Szczegółowy ogłasza wszystko w pobliżu» "sounds a bit
+artificial". Use «powiadamia o wszystkim w pobliżu», which also pairs with the
+noun: «powiadomienie» → «powiadamia».
+
+This is a derived-form change (C3), not a word swap. «powiadamiać» takes
+**o + locative**, so every object phrase has to be re-declined («ogłasza ulice,
+skrzyżowania» → «powiadamia o ulicach, skrzyżowaniach»), and it has no natural
+passive («są ogłaszane» must become an active sentence). Swept 18 units. Where
+the object is a button being run («ogłasza *Wokół mnie*»), use «uruchamia».
+Where it is where a sound plays («które powiadomienia ogłaszać po lewej»), use
+«odtwarzać». `callouts_places_to_call_out` «Miejsca do ogłaszania» became
+«Powiadamiaj o miejscach» (`unconfirmed` wording, see the questions below).
+
+Not swept: generic «komunikat» in help prose ("messages"). The reviewer only
+ruled on the noun «powiadomienie» and the verb.
+
+### PL-G2 — Undeclined map names after prepositions: leave them (`confirmed` 2026-09-30)
+
+Reviewer (Q7): «wzdłuż Marszałkowska» sounds "a bit robotic, like many other
+navigation apps". It's a minor cosmetic flaw that doesn't stop anyone
+understanding the callout. C17's label form was **not** adopted for Polish.
+Leave `directions_along_*`, `confect_name_to*` and friends in their
+preposition form.
+
+### PL-D1 — Spoken distances and clock positions come out misdeclined (`unconfirmed`, code)
+
+Reviewer (Q10): callouts like «Przejście dla pieszych piętnastu metrów na
+godzinie dziewięciu» sound "quite nonsensical". The app builds
+`name + ", " + distance + ", " + relative_clock_direction`
+(`GeoEngineHelpers.formatDistanceAndDirection`), which gives «Przejście dla
+pieszych, 15 metrów, na godzinie 9». The *text* is grammatical up to the digits.
+The speech engine then declines the bare numbers:
+
+- **Clock:** «na godzinie 9» needs the **ordinal** «dziewiątej». A digit
+  can't say that, and the TTS picks the cardinal locative «dziewięciu». No
+  Polish wording of `relative_clock_direction` with `%1$s` as a digit can fix
+  this. It needs a code change: twelve localized clock positions (or ordinal
+  words), not a number. cs «na %1$s hodině», sk and uk have the same shape.
+  Slovenian works around it with «%1$s. uri» (an ordinal dot). See `_common.md` C20.
+- **Distance:** «15 metrów» on its own should read «piętnaście». Why the
+  engine said «piętnastu» isn't known. It may be carrying case across the comma
+  into «na godzinie». Ask which TTS engine and voice the reviewer uses.
+- **Related, found in the sweep:** «w odległości %1$s» templates get the
+  nominative 2–4 plural («w odległości 2 metry» should be «2 metrów»).
+  `callouts_audio_beacon_distance` is fixed by PL-B1's «Do celu: %1$s». The two
+  `behavior_scavenger_hunt_callout_next_flag*` strings are inventoried with the
+  same rewording and are not applied.
 
 ### PL-Q1 — Quote convention (`unconfirmed`, cosmetic)
 
@@ -209,45 +268,51 @@ normalising eventually, but it is invisible to a listener and low priority.
   it avoids choosing. Rejected by the reporter: Polish speech synthesis
   mispronounces it, and the word is heard more often than it is read.
 
+- **«Pan/Pani» formal address** (Q4, 2026-09-30). Attractive because some
+  Polish accessibility apps use it and older users are part of the audience.
+  Rejected by the reviewer as sounding like official paperwork.
+- **«pinezka» for Marker** (Q5). Attractive because it is what people say
+  ("I'll send you a pin"). Rejected in favour of the more professional
+  «znacznik». It survives only in the simile in `help_text_markers_content_1`.
+- **«punkt trasy» for the beacon place** (the reviewer's own 2026-09-29
+  Weblate edits). Attractive because a native speaker typed it. Superseded by
+  their Q3a answer, which reserves it for intermediate points. It collides
+  with Waypoint when no route is running.
+- **«punkt docelowy»** for the beacon place or destination. Rejected by the
+  reviewer as a padded «cel», like saying "point of destination".
+- **«droga bez przejazdu»** for dead end. Correct, but too long for speech (Q6).
+- **Shortening `directions_*`** (Q8). The reviewer sees nothing to cut.
+- **«poruszasz się» for walking too** (Q8, the reviewer's optional
+  simplification). Dave kept the distinction on 2026-09-30. The code already
+  picks walking or vehicle strings, and «idziesz» is shorter and natural.
+- **C17 label form for map names** (Q7). The reviewer prefers the robotic
+  nominative. Declining names with AI at runtime isn't feasible offline, and
+  the reviewer accepts the occasional error either way.
+
 Once a reviewer turns something else down, record it here **with the evidence
 that made it attractive**. Otherwise the next pass reinstates it (rule C8).
 
 ---
 
-## Open questions for the first native-speaker round
+## Questionnaire round 1 — answered 2026-09-30
 
-Numbered as on `docs/translation-questions/questions-pl.md`. The full-corpus pack
-(`pl-full/00-przeczytaj-najpierw.md`) asks five of these in its own order (its 1–5 are
-Q1, Q2, Q3, Q5 and Q8 here), so map a reply by the pack it cites.
+All ten questions on `docs/translation-questions/questions-pl.md` were answered:
+Q1 → PL-T1, Q2 → PL-V1, Q3 → PL-B1, Q4 → PL-R1, Q5 → PL-I1, Q6 → PL-G1,
+Q7 → PL-G2, Q8 → rejected (no change), Q9 → PL-B1 (`osm_beacon`),
+Q10 → PL-D1.
 
-1. **Do *Cichy* and *Wyciszony* differ enough spoken aloud?** (PL-T1)
-2. **Is «powiadomienie» right for *callout*?** On a phone the word means a system
-   notification. If it misleads, what replaces it, with a natural verb (rule C3)?
-   (AI-only term, asked for confirmation)
-3. **Beacon has three meanings: what is each called?** (PL-B1, C19)
-   (a) the **place**: «punkt trasy» (the reporter's Weblate edit, but it
-   collides with Waypoint and those commands work with no route running),
-   «cel», «punkt docelowy», or something else? This also decides
-   `callouts_audio_beacon`, `callouts_audio_beacon_distance`, `menu_beacon_info`
-   and `beacon_action_callout_beacon`. (b) is «naprowadzanie» right for the
-   **feature** (`callouts_no_beacon_active`,
-   `settings_help_section_beacons_and_pois`)? (c) is «dźwięk naprowadzający»
-   fine for the **sound**, or too long? (Originally only (c), as an AI-only term
-   asked for confirmation. Reframed 2026-09-29.)
-4. **Informal «ty» or formal «Pan/Pani»?** (PL-R1)
-5. **«Znaczniki» or «pinezki»?** (PL-I1)
-6. **«ślepa uliczka», «ślepa ulica» or «droga bez przejazdu»?** (PL-G1)
-7. **Map names after «do», «na», «wzdłuż» arrive undeclined** («wzdłuż
-   Marszałkowska»): how bad, and would C17's label form be better? (PL-G1's open
-   side)
-8. **Directions and distances**: `directions_*` is 108 strings spoken many times a
-   day. Can they be shorter without losing clarity?
-9. **`osm_beacon`** (a physical navigation beacon on the map) is
-   «Znacznik nawigacyjny», but «znacznik» is our Marker. «Znak nawigacyjny»,
-   «Stawa», or something else? (PL-B1)
-10. Anything else.
+## Open questions for round 2
 
----
+1. **«Do celu: 105 metrów»** (`callouts_audio_beacon_distance`, spoken while
+   walking to a beacon). Natural? Should the scavenger-hunt «Ustawiono
+   naprowadzanie na %1$s, w odległości %2$s» change the same way, to «…, do
+   celu: %2$s»?
+2. **«Powiadamiaj o miejscach»** for the *Places to Call Out* setting (was
+   «Miejsca do ogłaszania»). Would «Miejsca w powiadomieniach» be better?
+3. **Q10 detail.** Which speech engine and voice (Google, Samsung, eSpeak,
+   Vocalizer…)? Does «na godzinie dziewiątej» sound right, or is «na
+   dziewiątej» more natural for clock positions? Did the engine say
+   «piętnastu metrów» even with a comma before «na godzinie»?
 
 ## Provenance
 
@@ -316,3 +381,12 @@ The two one-off typos (`help_text_destination_beacons_when`, `help_text_routes_c
 **2026-09-29 — European batch review.** 5 hints were imperatives («zmień», «wyświetl», «wybierz», «zwiń», «rozwiń») → infinitives after «aby». `help_text_remote_control_how` «Menu dźwiękowe»/«Sterowanie multimediami» → the labels «Menu audio»/«Tryb sterowania przyciskami multimedialnymi»; `help_text_routes_content_how_1` «…i Trasy» → «…i trasy». None of these keys had human edits. 7 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** `ui_action_button_nearby_markers_acc_hint` «oznaczyłeś» is masculine only (C15).
 
 **2026-09-29 — gender-neutral hint (C15).** `ui_action_button_nearby_markers_acc_hint` «…miejscach, które oznaczyłeś» was masculine only → «usłyszeć informacje o pobliskich oznaczonych miejscach». Uploaded and verified live.
+
+
+**2026-09-30 — questionnaire answered (Q1–Q10).** The reviewer answered every
+question, and handed three choices back to Dave (beacon place/Waypoint, Marker,
+movement verb). He chose «cel» / «punkt trasy» / «znacznik» / keep «idziesz».
+Swept into 76 units in `/tmp/weblate-review/pl-findings.json`: 74 `agreed`,
+2 inventory-only (PL-D1 scavenger hunt). The 2026-09-29 findings file was kept
+as `pl-findings.2026-09-29.json`. The 74 `agreed` fixes were uploaded with `--skip-validate` the same day and verified live, all 74 matching. Q10's clock-position fault
+is a code problem, recorded as `_common.md` C20.
