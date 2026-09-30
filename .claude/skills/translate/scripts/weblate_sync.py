@@ -439,16 +439,19 @@ def cmd_clear_needs_editing(args: argparse.Namespace) -> None:
     acknowledged (the English change needed nothing from the language) keeps its text, so
     Weblate would count it as untranslated forever. This sets such units back to
     translated, but only when the repo agrees the string is up to date AND Weblate holds
-    exactly the repo's text, so a real pending translation is never hidden.
+    exactly the repo's text, so a real pending translation is never hidden. With --apply
+    it unlocks the component for the writes and always locks it again afterwards.
     """
     ss = _strings_sync()
     fst = ss._load_stale_module()
     langs = args.lang or ss.all_codes()
     repo_pending = ss.pending(langs)
     c = client()
-    cleared = held = 0
+    plan, held = [], 0
     for i, lang in enumerate(langs):
         units = needs_editing_units(c, lang)
+        if i < len(langs) - 1:
+            time.sleep(1)
         if not units:
             continue
         pend = repo_pending[lang]
@@ -469,19 +472,38 @@ def cmd_clear_needs_editing(args: argparse.Namespace) -> None:
                 print(f"  held  {lang} {key}: Weblate's text differs from the repo's")
                 held += 1
                 continue
-            if args.apply:
-                # Weblate validates the target on any state change and rejects a state
-                # on its own ("Number of plurals does not match"), so send its own
-                # current target back unchanged.
-                with_retry(f"{lang} {key}", lambda uid=u["id"], target=u["target"]: c.request(
-                    "patch", f"units/{uid}/",
-                    data={"state": STATE_TRANSLATED, "target": target}))
-            print(f"  {'cleared' if args.apply else 'would clear'}  {lang} {key}")
+            plan.append((lang, key, u))
+            if not args.apply:
+                print(f"  would clear  {lang} {key}")
+
+    if not args.apply:
+        print(f"\nWould clear {len(plan)} (dry run; add --apply); held {held}.")
+        return
+    if not plan:
+        print(f"\nNothing to clear; held {held}. The lock was left alone.")
+        return
+
+    # The component is locked (Weblate only mirrors the repo and takes suggestions), and
+    # a locked component refuses any unit change with a 403. Unlock just for the writes,
+    # and always lock again, even if a write fails.
+    lock_path = f"components/{PROJECT}/{COMPONENT}/lock/"
+    cleared = 0
+    with_retry("unlock", lambda: c.request("post", lock_path, data={"lock": False}))
+    print("  unlocked " + COMPONENT)
+    try:
+        for lang, key, u in plan:
+            # Weblate validates the target on any state change and rejects a state on
+            # its own ("Number of plurals does not match"), so send its own current
+            # target back unchanged.
+            with_retry(f"{lang} {key}", lambda uid=u["id"], target=u["target"]: c.request(
+                "patch", f"units/{uid}/",
+                data={"state": STATE_TRANSLATED, "target": target}))
+            print(f"  cleared  {lang} {key}")
             cleared += 1
-        if i < len(langs) - 1:
-            time.sleep(1)
-    verb = "Cleared" if args.apply else "Would clear (dry run; add --apply)"
-    print(f"\n{verb} {cleared}; held {held}.")
+    finally:
+        locked = with_retry("lock", lambda: c.request("post", lock_path, data={"lock": True}))
+        print(f"  locked {COMPONENT} again: {locked}")
+    print(f"\nCleared {cleared}; held {held}.")
 
 
 def cmd_add_language(args: argparse.Namespace) -> None:

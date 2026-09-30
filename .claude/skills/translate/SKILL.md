@@ -134,9 +134,11 @@ indistinguishable from this run's. `fetch` deletes its own outputs before writin
    ```
    It is a dry run: it lists the units it would set back to translated, and holds any the
    repo still has pending or whose Weblate text differs from the repo's. Check the list,
-   then rerun with `--apply`. This writes to a shared service, so ask the user first
-   unless they already asked for it in this session. It changes only the unit's state,
-   never its text, so Weblate's next update from the repo leaves it alone.
+   then rerun with `--apply`. The component is kept locked, which refuses unit changes
+   (403), so `--apply` unlocks it for the writes and always locks it again, even on
+   failure. This writes to a shared service: give the user the `--apply` command to run
+   with `!` rather than running it yourself. It changes only the unit's state, never its
+   text, so Weblate's next update from the repo leaves it alone.
 
 ## Notes
 
