@@ -451,7 +451,7 @@ nonsense when spoken, and this app is mostly heard.
   itself already uses).
 
 
-## C20 — A bare digit can't carry an ordinal or a case (`unconfirmed`, code)
+## C20 — A bare digit can't carry an ordinal or a case (code fixed 2026-09-30)
 
 `relative_clock_direction` ("at %1$s o'clock") gets the clock position as a
 digit, and the speech engine chooses how to say it. In a language where the
@@ -467,7 +467,12 @@ Same shape: cs «na %1$s hodině», sk «na %1$s hodine», uk «на %1$s год
 which may or may not survive TTS. Russian «в %1$s часов» and Croatian
 «na %1$s sati» are cardinal and fine.
 
-**How to apply:** don't try to fix it in the string. The fix is in code: pass
-a localized clock-position word (twelve strings, `relative_clock_1`…`_12`, or
-one plural-free select) instead of a digit. Until then, record the problem in
-the language file rather than rewording the template.
+**Fixed in code (2026-09-30):** the position now arrives as
+`relative_clock_hour_1`…`_12`. The English value is the digit, so a language
+that leaves them untranslated sounds exactly as before.
+
+**How to apply:** for most languages, translate each one as its digit. Where
+the template needs an ordinal or a case, write the word that fits *your*
+`relative_clock_direction`. Polish «na godzinie %1$s» + «dziewiątej»; Czech
+«na %1$s hodině» + «deváté»; Slovak «deviatej»; Ukrainian «дев'ятій».
+Changing the template and the hour words must happen together.

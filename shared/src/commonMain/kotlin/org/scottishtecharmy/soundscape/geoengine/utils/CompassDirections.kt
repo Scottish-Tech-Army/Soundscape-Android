@@ -47,6 +47,28 @@ fun getRelativeClockTime(degrees: Int, userDegrees: Int): Int {
     return if (hour == 0) 12 else hour
 }
 
+/**
+ * The clock position [hour] (1-12) as a word for relative_clock_direction. A bare digit leaves the
+ * speech synthesiser to guess its form, and where the position is an ordinal in a grammatical case
+ * (Polish "na godzinie dziewiątej") it guesses wrong. Languages that don't need a word keep the
+ * digit.
+ */
+fun getRelativeClockHourLabel(hour: Int): StringKey =
+    when (hour) {
+        1 -> StringKey.RelativeClockHour1
+        2 -> StringKey.RelativeClockHour2
+        3 -> StringKey.RelativeClockHour3
+        4 -> StringKey.RelativeClockHour4
+        5 -> StringKey.RelativeClockHour5
+        6 -> StringKey.RelativeClockHour6
+        7 -> StringKey.RelativeClockHour7
+        8 -> StringKey.RelativeClockHour8
+        9 -> StringKey.RelativeClockHour9
+        10 -> StringKey.RelativeClockHour10
+        11 -> StringKey.RelativeClockHour11
+        else -> StringKey.RelativeClockHour12
+    }
+
 fun getRelativeLeftRightLabel(relativeAngle: Int): StringKey {
     val normalizedAngle = normalizeHeading(relativeAngle)
     return when (normalizedAngle) {

@@ -192,6 +192,18 @@ import org.scottishtecharmy.soundscape.resources.osm_train_station_named
 import org.scottishtecharmy.soundscape.resources.osm_tram_stop
 import org.scottishtecharmy.soundscape.resources.osm_tram_stop_named
 import org.scottishtecharmy.soundscape.resources.relative_clock_direction
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_1
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_2
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_3
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_4
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_5
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_6
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_7
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_8
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_9
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_10
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_11
+import org.scottishtecharmy.soundscape.resources.relative_clock_hour_12
 import org.scottishtecharmy.soundscape.resources.relative_degrees_direction
 import org.scottishtecharmy.soundscape.resources.relative_left_right_direction_ahead
 import org.scottishtecharmy.soundscape.resources.relative_left_right_direction_ahead_left
@@ -288,6 +300,18 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.NumberDecimalSeparator -> Res.string.number_decimal_separator
         StringKey.NumberDecimalSeparatorA11y -> Res.string.number_decimal_separator_a11y
         StringKey.RelativeClockDirection -> Res.string.relative_clock_direction
+        StringKey.RelativeClockHour1 -> Res.string.relative_clock_hour_1
+        StringKey.RelativeClockHour2 -> Res.string.relative_clock_hour_2
+        StringKey.RelativeClockHour3 -> Res.string.relative_clock_hour_3
+        StringKey.RelativeClockHour4 -> Res.string.relative_clock_hour_4
+        StringKey.RelativeClockHour5 -> Res.string.relative_clock_hour_5
+        StringKey.RelativeClockHour6 -> Res.string.relative_clock_hour_6
+        StringKey.RelativeClockHour7 -> Res.string.relative_clock_hour_7
+        StringKey.RelativeClockHour8 -> Res.string.relative_clock_hour_8
+        StringKey.RelativeClockHour9 -> Res.string.relative_clock_hour_9
+        StringKey.RelativeClockHour10 -> Res.string.relative_clock_hour_10
+        StringKey.RelativeClockHour11 -> Res.string.relative_clock_hour_11
+        StringKey.RelativeClockHour12 -> Res.string.relative_clock_hour_12
         StringKey.RelativeDegreesDirection -> Res.string.relative_degrees_direction
         StringKey.RelativeLeftRightDirectionAhead -> Res.string.relative_left_right_direction_ahead
         StringKey.RelativeLeftRightDirectionAheadRight -> Res.string.relative_left_right_direction_ahead_right

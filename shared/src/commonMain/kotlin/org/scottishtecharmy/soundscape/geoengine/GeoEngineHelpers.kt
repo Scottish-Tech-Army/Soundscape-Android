@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelAbbreviated
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
+import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeClockHourLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeClockTime
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeLeftRightLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
@@ -200,7 +201,7 @@ fun formatDistanceAndDirection(
                     headingText = ", " +
                             (localized?.get(
                                 StringKey.RelativeClockDirection,
-                                timeHeading.toString()
+                                localized.get(getRelativeClockHourLabel(timeHeading))
                             )
                                 ?: "at $timeHeading o'clock")
                 }
