@@ -16,7 +16,7 @@ is all AI passes plus five "Anonymous" Weblate commits, which are mechanical
 (copyright placeholders, whitespace). Everything is `unconfirmed` except the
 two grammar defects, HI-B1 and HI-G1, whose *diagnosis* is `agreed`.
 
-Questions for reviewers: `docs/translation-questions/questions-hi.md` (Q1…Q9).
+Questions for reviewers: `docs/translation-questions/questions-hi.md` (Q1…Q10).
 
 ## Glossary
 
@@ -78,7 +78,8 @@ Nothing yet.
 6. «%2$s तक जाने वाला %1$s» for "path to Moor Road"? (HI-G1)
 7. Is «आप» the right register?
 8. **The four detail levels** (विस्तृत / सरलीकृत / आवश्यक / मौन), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
-9. Anything else.
+9. **"Ahead" + road name** (`directions_ahead_road`, C24): «%1$s आगे» since 2026-09-30, name first like «%1$s के पास» (AI choice; was «आगे %1$s»). Natural by ear?
+10. Anything else.
 
 ## Provenance
 

@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. Structurally sound: the VoiceOver hints are «-তে» infinitives
 that compose correctly with «%1$s ডাবল ট্যাপ করুন», and `confect_name_to`
 «%2$s পর্যন্ত %1$s» avoids the C10 misreading. The open items are term
-choices. Questions: `docs/translation-questions/questions-bn.md` (Q1…Q8).
+choices. Questions: `docs/translation-questions/questions-bn.md` (Q1…Q9).
 
 ## Glossary
 
@@ -64,7 +64,8 @@ Nothing yet.
 5. Dead end: «শেষ প্রান্ত» or «কানাগলি»? (BN-T2)
 6. Is «আপনি» right?
 7. **The four detail levels** (বিস্তারিত / সরলীকৃত / প্রয়োজনীয় / নীরব), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
-8. Anything else.
+8. **"Ahead" + road name** (`directions_ahead_road`, C24): «%1$s সামনে» since 2026-09-30, name first like «%1$s-এর কাছে» (AI choice; was «সামনে %1$s»). Natural by ear?
+9. Anything else.
 
 ## Provenance
 

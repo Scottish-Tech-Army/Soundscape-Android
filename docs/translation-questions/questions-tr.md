@@ -172,7 +172,19 @@ feribot mu? "Rigger" Türkçede nasıl denir?
 
 **Soru:** Dört düzey duyulduğunda kolayca ayırt ediliyor ve anlaşılıyor mu? Ortadaki ikisine başka ad verir miydiniz?
 
-### Q9 — Başka bir şey? *(Anything else)*
+### Q9 — "İleride Bağdat Caddesi" *("Ahead Moor Road", changed 2026-09-30)*
+
+**Ne zaman duyulur:** yürürken, yürüdüğünüz yönde tam karşınızda bir cadde olduğunda. Uygulama o caddenin adını söyler.
+
+**İngilizcesi:** "Ahead Moor Road"
+
+**Şu an nasıl:** "İleride Bağdat Caddesi"
+
+**Bizi düşündüren:** kelime sırası daha önce kodda sabitti ve uygulama "düz Bağdat Caddesi" diyordu. Artık sıra değiştirilebildiği için bunu "İleride" yaptık. Bunu anadili Türkçe olan biri henüz duymadı.
+
+**Soru:** Kulağa doğal geliyor mu? Yoksa "Bağdat Caddesi ileride" mi daha iyi olur?
+
+### Q10 — Başka bir şey? *(Anything else)*
 
 İngilizceden çevrilmiş gibi duran, çok uzun ya da anlaşılmayan bir cümle varsa
 bize bildirin.
