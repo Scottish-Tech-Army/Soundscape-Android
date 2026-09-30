@@ -116,7 +116,7 @@
     <string name="directions_name_goes_left">左へ行くと%1$s</string>
     <string name="directions_name_goes_right">右へ行くと%1$s</string>
     <string name="directions_name_continues_ahead">直進すると%1$s</string>
-    <string name="directions_direction_ahead">前方</string>
+    <string name="directions_ahead_road">前方 %1$s</string>
     <string name="directions_traveling_n">北へ走行中</string>
     <string name="directions_traveling_ne">北東へ走行中</string>
     <string name="directions_traveling_e">東へ走行中</string>

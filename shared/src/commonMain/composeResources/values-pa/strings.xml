@@ -236,7 +236,7 @@
     <string name="directions_name_goes_left">%1$s, ਖੱਬੇ ਪਾਸੇ ਜਾਂਦੀ ਹੈ</string>
     <string name="directions_name_goes_right">%1$s, ਸੱਜੇ ਪਾਸੇ ਜਾਂਦੀ ਹੈ</string>
     <string name="directions_name_continues_ahead">%1$s, ਅੱਗੇ ਜਾਰੀ ਰਹਿੰਦੀ ਹੈ</string>
-    <string name="directions_direction_ahead">ਅੱਗੇ</string>
+    <string name="directions_ahead_road">ਅੱਗੇ %1$s</string>
     <string name="directions_near_road_and_settlement">%1$s ਦੇ ਨੇੜੇ ਅਤੇ %2$s ਦੇ ਕੋਲ</string>
     <string name="directions_junction_with_ref">ਜੰਕਸ਼ਨ %1$s</string>
     <string name="directions_junction_with_ref_and_name">ਜੰਕਸ਼ਨ %1$s, %2$s</string>

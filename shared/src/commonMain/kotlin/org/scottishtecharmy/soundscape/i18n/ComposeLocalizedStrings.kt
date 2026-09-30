@@ -109,7 +109,7 @@ import org.scottishtecharmy.soundscape.resources.directions_transit_stop_street_
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_street_locality_bound
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_common_name_bound
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_with_landmark
-import org.scottishtecharmy.soundscape.resources.directions_direction_ahead
+import org.scottishtecharmy.soundscape.resources.directions_ahead_road
 import org.scottishtecharmy.soundscape.resources.directions_facing_e
 import org.scottishtecharmy.soundscape.resources.directions_facing_n
 import org.scottishtecharmy.soundscape.resources.directions_facing_ne
@@ -293,7 +293,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsNameIsCurrentlyStreetAddress ->
             Res.string.directions_name_is_currently_street_address
         StringKey.DirectionsAtPoi -> Res.string.directions_at_poi
-        StringKey.DirectionsDirectionAhead -> Res.string.directions_direction_ahead
+        StringKey.DirectionsAheadRoad -> Res.string.directions_ahead_road
         StringKey.IntersectionApproachingIntersection -> Res.string.intersection_approaching_intersection
         StringKey.IntersectionApproachingIntersectionDistance -> Res.string.intersection_approaching_intersection_distance
         StringKey.DirectionsNameGoesLeft -> Res.string.directions_name_goes_left

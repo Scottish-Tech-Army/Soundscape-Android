@@ -542,7 +542,7 @@
     <string name="directions_name_goes_left">%1$s, বামে যায়</string>
     <string name="directions_name_goes_right">%1$s, ডানে যায়</string>
     <string name="directions_name_continues_ahead">%1$s, সোজা চলতে থাকে</string>
-    <string name="directions_direction_ahead">সামনে</string>
+    <string name="directions_ahead_road">সামনে %1$s</string>
     <string name="directions_near_road_and_settlement">%1$s-এর কাছে এবং %2$s-এর নিকটে</string>
     <string name="directions_junction_with_ref">জংশন %1$s</string>
     <string name="directions_junction_with_ref_and_name">জংশন %1$s, %2$s</string>

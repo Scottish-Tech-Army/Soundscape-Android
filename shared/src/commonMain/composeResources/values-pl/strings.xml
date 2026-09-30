@@ -124,7 +124,7 @@
     <string name="directions_name_goes_left">%1$s, biegnie w lewo</string>
     <string name="directions_name_goes_right">%1$s, biegnie w prawo</string>
     <string name="directions_name_continues_ahead">%1$s, biegnie prosto</string>
-    <string name="directions_direction_ahead">przed tobą</string>
+    <string name="directions_ahead_road">Przed tobą %1$s</string>
     <string name="directions_near_road_and_settlement">W pobliżu %1$s i niedaleko %2$s</string>
     <string name="directions_traveling_n">Poruszasz się na północ</string>
     <string name="directions_traveling_ne">Poruszasz się na północny wschód</string>

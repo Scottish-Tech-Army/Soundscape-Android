@@ -67,7 +67,7 @@ enum class StringKey {
     DirectionsNameIsCurrently,
     DirectionsNameIsCurrentlyStreetAddress,
     DirectionsAtPoi,
-    DirectionsDirectionAhead,
+    DirectionsAheadRoad,
     IntersectionApproachingIntersection,
     IntersectionApproachingIntersectionDistance,
     DirectionsNameGoesLeft,

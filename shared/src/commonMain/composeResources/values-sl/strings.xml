@@ -185,7 +185,7 @@
     <string name="directions_name_goes_left">%1$s, zavije levo</string>
     <string name="directions_name_goes_right">%1$s, zavije desno</string>
     <string name="directions_name_continues_ahead">%1$s, nadaljuje naravnost</string>
-    <string name="directions_direction_ahead">naravnost</string>
+    <string name="directions_ahead_road">Naravnost %1$s</string>
     <string name="directions_near_road_and_settlement">Blizu %1$s in v bližini %2$s</string>
     <string name="directions_junction_with_ref">Priključek %1$s</string>
     <string name="directions_junction_with_ref_and_name">Priključek %1$s, %2$s</string>

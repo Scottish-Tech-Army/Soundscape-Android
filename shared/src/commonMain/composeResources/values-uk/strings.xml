@@ -123,7 +123,7 @@
     <string name="directions_name_goes_left">%1$s, йде ліворуч</string>
     <string name="directions_name_goes_right">%1$s, йде праворуч</string>
     <string name="directions_name_continues_ahead">%1$s, продовжується прямо</string>
-    <string name="directions_direction_ahead">попереду</string>
+    <string name="directions_ahead_road">Попереду %1$s</string>
     <string name="directions_near_road_and_settlement">Поблизу %1$s та неподалік від %2$s</string>
     <string name="directions_traveling_n">Ви їдете на північ</string>
     <string name="directions_traveling_ne">Ви їдете на північний схід</string>

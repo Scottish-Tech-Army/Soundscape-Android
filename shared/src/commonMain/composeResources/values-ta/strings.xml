@@ -185,7 +185,7 @@
     <string name="directions_name_goes_left">%1$s, இடதுபுறம் செல்கிறது</string>
     <string name="directions_name_goes_right">%1$s, வலதுபுறம் செல்கிறது</string>
     <string name="directions_name_continues_ahead">%1$s, நேராகத் தொடர்கிறது</string>
-    <string name="directions_direction_ahead">முன்னால்</string>
+    <string name="directions_ahead_road">முன்னால் %1$s</string>
     <string name="directions_near_road_and_settlement">%1$s அருகில் மற்றும் %2$s-க்கு அருகாமையில்</string>
     <string name="directions_junction_with_ref">சந்திப்பு %1$s</string>
     <string name="directions_junction_with_ref_and_name">சந்திப்பு %1$s, %2$s</string>

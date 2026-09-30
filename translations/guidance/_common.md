@@ -564,3 +564,13 @@ the English positions sends a blind user to the wrong corner.
 string gives a **screen position**. Never swap a spatial callout
 («goes left», «on your right»): the world doesn't mirror, only the screen does.
 Those four English comments now say so.
+
+## C24 — "Ahead" is a template now (code, 2026-09-30)
+
+`directions_direction_ahead` ("ahead") was joined to the road name in code,
+«ahead» + " " + name, so no language could change the word order. Turkish
+came out as «düz Moor Road» ("straight Moor Road"). It is replaced by
+`directions_ahead_road` ("Ahead %1$s"). Each language's first value is its
+old word plus « %1$s», so nothing sounds different except Turkish, which is
+now «İleride %1$s». A language whose word order wants the name first can now
+write «%1$s ileride».

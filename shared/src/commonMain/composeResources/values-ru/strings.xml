@@ -122,7 +122,7 @@
     <string name="directions_name_goes_left">%1$s, поворачивает налево</string>
     <string name="directions_name_goes_right">%1$s, поворачивает направо</string>
     <string name="directions_name_continues_ahead">%1$s, продолжается вперёд</string>
-    <string name="directions_direction_ahead">впереди</string>
+    <string name="directions_ahead_road">Впереди %1$s</string>
     <string name="directions_near_road_and_settlement">Рядом с %1$s и близко к %2$s</string>
     <string name="directions_traveling_n">Движется на север</string>
     <string name="directions_traveling_ne">Движется на северо-восток</string>

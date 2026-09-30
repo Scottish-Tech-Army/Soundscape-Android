@@ -585,10 +585,10 @@ fun addIntersectionCalloutFromDescription(
             }
             if (direction != null) {
                 val roadName = nearestRoad.getName(direction, gridState, localized)
-                val calloutText = if (localized == null)
-                    "Ahead $roadName"
-                else
-                    localized.get(StringKey.DirectionsDirectionAhead) + " " + roadName
+                // A template, not "ahead" + " " + name, so each language can put the name where
+                // its word order needs it ("Moor Road ileride").
+                val calloutText = localized?.get(StringKey.DirectionsAheadRoad, roadName)
+                    ?: "Ahead $roadName"
 
                 val trackedCallout = TrackedCallout(
                     description.userGeometry,
