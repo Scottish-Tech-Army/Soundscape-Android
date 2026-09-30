@@ -472,6 +472,14 @@ def cmd_clear_needs_editing(args: argparse.Namespace) -> None:
                 print(f"  held  {lang} {key}: Weblate's text differs from the repo's")
                 held += 1
                 continue
+            # Saving a unit makes Weblate rewrite it in the file, and the cmp-resource
+            # writer strips bare ASCII double quotes. A state change on such a unit
+            # therefore becomes a real text change, committed on Weblate's side only.
+            if any('"' in t for t in u["target"]):
+                print(f"  held  {lang} {key}: has ASCII \" quotes, which Weblate would strip "
+                      "on save; change them to typographic quotes in the repo first")
+                held += 1
+                continue
             plan.append((lang, key, u))
             if not args.apply:
                 print(f"  would clear  {lang} {key}")

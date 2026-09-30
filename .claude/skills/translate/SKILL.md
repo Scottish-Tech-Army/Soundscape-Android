@@ -133,7 +133,9 @@ indistinguishable from this run's. `fetch` deletes its own outputs before writin
    python3 .claude/skills/translate/scripts/weblate_sync.py clear-needs-editing [--lang <code> ...]
    ```
    It is a dry run: it lists the units it would set back to translated, and holds any the
-   repo still has pending or whose Weblate text differs from the repo's. Check the list,
+   repo still has pending, whose Weblate text differs from the repo's, or that contain bare
+   ASCII `"` (Weblate strips those when it saves a unit, which turns a state change into a
+   text change committed only on Weblate's side). Check the list,
    then rerun with `--apply`. The component is kept locked, which refuses unit changes
    (403), so `--apply` unlocks it for the writes and always locks it again, even on
    failure. This writes to a shared service: give the user the `--apply` command to run
