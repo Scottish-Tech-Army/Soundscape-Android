@@ -69,7 +69,7 @@
     <string name="route_detail_edit_description">Lýsing</string>
     <string name="waypoint_title">Leiðarpunktur</string>
     <string name="universal_links_alert_action_marker">Vista sem merki</string>
-    <string name="universal_links_marker_share_message">Ég hef deilt merki frá Soundscape með þér: "%1$s".\n\nTil að opna í Soundscape notaðu %2$s.\n\nTil að opna í Google Maps notaðu %3$s.</string>
+    <string name="universal_links_marker_share_message">Ég hef deilt merki frá Soundscape með þér: „%1$s“.\n\nTil að opna í Soundscape notaðu %2$s.\n\nTil að opna í Google Maps notaðu %3$s.</string>
     <string name="user_activity_save_marker_title">Vista merki</string>
     <string name="routes_title">Leiðir</string>
     <string name="routes_action_deleted">Leið eytt</string>

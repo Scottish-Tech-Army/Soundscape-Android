@@ -110,7 +110,7 @@
     <string name="waypoint_title">Ara Nokta</string>
     <string name="route_not_found">Rota bulunamadı</string>
     <string name="universal_links_alert_action_marker">Kayıtlı Nokta Olarak Kaydet</string>
-    <string name="universal_links_marker_share_message">Size bir Soundscape kayıtlı noktası paylaştım: "%1$s".\n\nSoundscape'te açmak için %2$s kullanın.\n\nGoogle Haritalar'da açmak için %3$s kullanın.</string>
+    <string name="universal_links_marker_share_message">Size bir Soundscape kayıtlı noktası paylaştım: “%1$s”.\n\nSoundscape'te açmak için %2$s kullanın.\n\nGoogle Haritalar'da açmak için %3$s kullanın.</string>
     <string name="user_activity_save_marker_title">Kayıtlı Nokta Olarak Kaydet</string>
     <string name="routes_title">Rotalar</string>
     <string name="routes_action_deleted">Rota silindi</string>
@@ -301,7 +301,7 @@
     <string name="help_text_section_title_when">Ne zaman kullanırım?</string>
     <string name="help_text_section_title_how">Nasıl çalışır?</string>
     <string name="terms_of_use_title">Kullanım Koşulları</string>
-    <string name="terms_of_use_message">Soundscape'i kullanımınız, %1$s koşullarına ve aşağıda belirtilen koşullara (birlikte *"Kullanım Koşulları"*) tabidir.</string>
+    <string name="terms_of_use_message">Soundscape'i kullanımınız, %1$s koşullarına ve aşağıda belirtilen koşullara (birlikte *“Kullanım Koşulları”*) tabidir.</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army Hizmet Sözleşmesi</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Kullanım Koşullarını Kabul Et</string>
     <string name="terms_of_use_medical_safety_disclaimer">Soundscape'in (1) tıbbi bir cihaz olarak tasarlanmadığını, amaçlanmadığını veya tıbbi cihaz olarak sunulmadığını ve (2) profesyonel tıbbi tavsiye, tanı, tedavi veya yargının yerini tutacak şekilde tasarlanmadığını ya da amaçlanmadığını ve profesyonel tıbbi tavsiye, tanı, tedavi veya yargının yerine kullanılmaması gerektiğini kabul edersiniz.\n\nGüvenlik Bildirimi\n\nSoundscape bir navigasyon yardımcısıdır ve hareketlilik becerilerinin, çevrenizin farkında olmanın ve sağduyunun yerine kullanılmamalıdır. Soundscape programına dahil edilen harita verileri üçüncü taraf bir programdan alındığından, sunulan bilgilerin doğruluğunda sınırlamalar olabileceğini göz önünde bulundurarak çevrenizde gezinirken dikkatli olun.</string>
