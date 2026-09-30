@@ -184,7 +184,23 @@ Gabana", "Alamomin Kusa"; koyarwa tana cewa "Gaba da Ni", "Alamomi Kusa da Ni".
 **Tambaya:** Shin matakan huɗu suna da sauƙin bambancewa da fahimta idan aka ji su? Za ka ba wa biyun na tsakiya wasu sunaye?
 *Are the four easy to tell apart by ear? Would you name the middle two differently?*
 
-### Q8 — Wani abu kuma? *(Anything else)*
+### Q8 — "*ƙara* mai ƙarar sauti" *(The beacon's higher-pitched ring)*
+
+**Lokacin da ake ji:** a cikin Tambayoyin da Ake Yawan Yi, inda aka bayyana siginar sauti.
+*In the FAQ answer that explains the audio beacon.*
+
+**Da Turanci:** "you will hear a higher-pitched *ring* sound"
+
+**Yadda yake yanzu:** "za ku ji sautin *ƙara* mai ƙarar sauti"
+*"you will hear the sound of a loud noise"*
+
+**Abin da ke damun mu:** a Turanci, sautin ya fi siriri (higher pitch), ba ya fi ƙarfi ba. "ƙara mai ƙarar sauti" yana nufin sauti mai ƙarfi, kuma "ƙara" na iya nufin "ƙarawa".
+*In English the sound is higher in pitch, not louder. This says "loud", and «ƙara» can also mean "add".*
+
+**Tambaya:** yaya za a faɗi wannan a Hausa: sauti mai siririn murya, kamar ƙaramar ƙararrawa?
+*How would you say it: a thin, high sound, like a small bell?*
+
+### Q9 — Wani abu kuma? *(Anything else)*
 
 Idan wata jimla ta yi kama da fassara daga Turanci, ta yi tsayi, ko ba a fahimce
 ta ba, ku faɗa mana.

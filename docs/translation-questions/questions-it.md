@@ -155,7 +155,25 @@ davanti a via o piazza.
 
 **La domanda:** i quattro livelli si distinguono e si capiscono bene all'ascolto? Chiameresti diversamente i due centrali?
 
-### Q8 — Altro? *(Anything else)*
+### Q8 — "Paese" e "Drogheria" *(Town/village, drugstore)*
+
+**Quando lo senti:** quando l'app nomina un centro abitato o un negozio per
+tipo, per esempio nell'elenco dei luoghi vicini.
+
+**In inglese:** "Town", "Village", "Drugstore".
+
+**Come suona ora:** "Paese" sia per *town* sia per *village* (e "Città" per
+*city*, "Frazione" per *hamlet*); "Drogheria" per *drugstore*.
+
+**Cosa ci lascia in dubbio:** una cittadina e un villaggio suonano uguali. E
+"drogheria" oggi fa pensare a un negozio di alimentari o di spezie, mentre qui
+si intende un negozio che vende farmaci da banco, prodotti per l'igiene e
+articoli vari.
+
+**La domanda:** va bene "Cittadina" per *town* e "Paese" per *village*? E per
+*drugstore*, "Parafarmacia" o altro?
+
+### Q9 — Altro? *(Anything else)*
 
 Se una frase sembra tradotta dall'inglese, è troppo lunga o poco chiara,
 faccelo sapere.

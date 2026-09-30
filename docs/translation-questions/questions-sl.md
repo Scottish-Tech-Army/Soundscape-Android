@@ -133,7 +133,24 @@ ste!“).
 
 **Vprašanje:** Ali se štiri ravni ob poslušanju zlahka razlikujejo in so razumljive? Bi srednji dve poimenovali drugače?
 
-### Q7 — Še kaj? *(Anything else)*
+### Q7 — „Na 3. uri“ *(Clock-face directions)*
+
+**Kdaj se sliši:** če v nastavitvah izberete „Urna številčnica“, aplikacija
+pove, kje je nekaj, kot na številčnici ure: ob 12 naravnost, ob 3 desno, ob 9
+levo. Na primer: „Kavarna, 20 metrov, na 3. uri“.
+
+**V angleščini:** „Cafe, 20 meters, at 3 o'clock“.
+
+**Kako se sliši zdaj:** „na %1$s. uri“, s piko za vrstilni števnik: „na 3.
+uri“, „na 9. uri“.
+
+**Kaj nas skrbi:** ne vemo, ali govorna sinteza „3.“ prebere kot „tretji“.
+Lahko bi ure napisali z besedami („na tretji uri“, „na deveti uri“), ali pa je
+bolj naravno kaj drugega, na primer „ob treh“.
+
+**Vprašanje:** kako se to sliši na vaši napravi in kako bi rekli vi?
+
+### Q8 — Še kaj? *(Anything else)*
 
 Če se kakšen stavek sliši kot prevod iz angleščine, je predolg ali nejasen, nam
 sporočite.

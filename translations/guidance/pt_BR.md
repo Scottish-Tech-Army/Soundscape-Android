@@ -76,7 +76,7 @@ wording. Measured on the Rio Grande do Sul extract: 93% of Portuguese-language s
 1. Marker «Favoritos» and Waypoint «Localizador»: natural? (PTBR-T1)
 2. «Rua X, vira à esquerda»: does it sound like an instruction? (PTBR-S1)
 3. «Caminho para uma rua sem saída»? (PTBR-G1)
-4. «Tudo pronto!» again? And «Boas-vindas!» instead of «Bem-vindo(a)!»? (PTBR-R1) The same brackets are in `first_launch_prompt_message` «Você está pronto(a) para…», which is held until this is answered.
+4. The title is «Tudo pronto!» since 2026-09-30 (all-language review). Natural? And «Boas-vindas!» for `first_launch_welcome_title` «Bem-vindo(a)!», and a bracket-free `first_launch_prompt_message` for «Você está pronto(a)…»? (PTBR-R1)
 5. Callout «notificação»: confused with phone notifications?
 6. Siri phrases «Soundscape arredores / rota / sinalizador / parar sinalizador…»: natural?
 7. Articles are now chosen from the name («ao longo do Parque Ibirapuera»). Right? (PTBR-G1)

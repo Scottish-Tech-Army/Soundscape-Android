@@ -15,7 +15,7 @@ Priit Jõerüüt added Estonian in Weblate (2025-11-08) and made a few edits,
 including Beacon = «Helimajakas», which is `confirmed`. Everything else is
 AI. The hints are «da»-infinitives («summutada helimajakas») that compose
 correctly with «Topeltkoputa, et %1$s». There is no `et.lproj`, so the Siri
-phrases stay in English. Questions: `docs/translation-questions/questions-et.md` (Q1…Q8).
+phrases stay in English. Questions: `docs/translation-questions/questions-et.md` (Q1…Q9).
 
 ## Glossary
 
@@ -75,7 +75,8 @@ label. **New road templates must use the wrapped form.**
 5. Snooze «Uinak»: clear?
 6. Street names are now inflected («Pärnu maanteel», «Metsa tänaval») instead of «Teel X». Right? Especially: is every single-word name a «tänav»? (ET-G2)
 7. **The four detail levels** (Üksikasjalik / Lihtsustatud / Põhiline / Hääletu), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
-8. Anything else.
+8. Clock-face directions «kell %1$s» sounds like a time of day. «kella kolme suunas» instead, with genitive hour words? (all-language review 2026-09-30, C20)
+9. Anything else.
 
 ## Provenance
 

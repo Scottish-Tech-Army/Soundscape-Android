@@ -71,18 +71,22 @@ para onde vai esse caminho.
 
 **A pergunta:** «Caminho para um beco sem saída» é melhor, ou diria outra coisa?
 
-### Q2 — «Está pronto!» *(Gendered "you're ready")*
+### Q2 — «Está tudo pronto!» *(Gender-free "you're ready", changed 2026-09-30)*
 
 **Quando se ouve:** no fim da configuração, na primeira utilização.
 
-**Em inglês:** «You're ready!».
+**Em inglês:** «You're ready!» e, logo abaixo, «You are ready for your first
+walk with Soundscape.».
 
-**Como soa agora:** «Está pronto!» (no masculino). Antes dizia «Está tudo
-pronto!».
+**Como soa agora:** «Está tudo pronto!» e «Está tudo pronto para a sua
+primeira caminhada com o Soundscape.». Até 30 de setembro dizia «Está
+pronto!», no masculino.
 
-**O que nos deixa em dúvida:** a aplicação não sabe o género de quem a usa.
+**O que nos deixa em dúvida:** a aplicação não sabe o género de quem a usa,
+por isso mudámos para uma forma sem género. Fomos nós que escolhemos esta
+redação; ainda nenhum falante nativo a ouviu.
 
-**A pergunta:** qual prefere?
+**A pergunta:** soa natural, ou diria de outra forma?
 
 ### Q3 — Os quatro níveis de detalhe *(Four detail levels, renamed 2026-09-30)*
 

@@ -101,23 +101,25 @@ para onde vai esse caminho.
 **A pergunta:** "Caminho para uma rua sem saída" está certo, ou você diria outra
 coisa?
 
-### Q4 — "Você está pronto!" *(Gendered "you're ready")*
+### Q4 — "Tudo pronto!" e "Bem-vindo(a)!" *(Gender-free "you're ready" and "Welcome")*
 
-**Quando você ouve:** no fim da configuração, no primeiro uso.
+**Quando você ouve:** no início e no fim da configuração, no primeiro uso.
 
-**Em inglês:** "You're ready!".
+**Em inglês:** "Welcome!", "You're ready!" e "You are ready for your first
+walk with Soundscape.".
 
-**Como soa agora:** "Você está pronto!" (masculino). Antes dizia "Tudo pronto!".
-Logo abaixo, a mensagem começa com "Você está pronto(a) para sua primeira
-caminhada com o Soundscape." (em inglês: "You are ready for your first walk
-with Soundscape.").
+**Como soa agora:** o título do fim agora é "Tudo pronto!" (até 30 de
+setembro era "Você está pronto!", no masculino). Mas o início ainda diz
+"Bem-vindo(a)!", e a mensagem do fim ainda começa com "Você está pronto(a)
+para sua primeira caminhada com o Soundscape.".
 
-**O que nos deixa em dúvida:** o aplicativo não sabe o gênero de quem o usa.
-Além disso, o leitor de tela lê os parênteses de "pronto(a)" em voz alta.
+**O que nos deixa em dúvida:** o aplicativo não sabe o gênero de quem o usa, e
+o leitor de tela lê os parênteses de "Bem-vindo(a)" e "pronto(a)" em voz alta.
+O "Tudo pronto!" foi escolha nossa; nenhum falante nativo ouviu ainda.
 
-**A pergunta:** qual é melhor, no título e na mensagem? Por exemplo "Tudo
-pronto!" e "Tudo pronto para sua primeira caminhada com o Soundscape.", ou
-outra forma sem gênero e sem parênteses?
+**A pergunta:** "Tudo pronto!" soa bem? E para os outros dois, "Boas-vindas!"
+e "Tudo pronto para sua primeira caminhada com o Soundscape.", ou outra forma
+sem gênero e sem parênteses?
 
 ### Q5 — "Notificação" *(Callout vs phone notifications)*
 
