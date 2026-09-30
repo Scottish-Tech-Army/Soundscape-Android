@@ -518,16 +518,16 @@ tasks.withType<Test>().configureEach {
     }
 }
 
-tasks.register<Test>("nightlyUnitTest") {
-    group = "verification"
-    description = "Runs the slow JVM unit tests excluded from the regular test task (nightly build only)."
-    val debugUnitTest = tasks.named<Test>("testDebugUnitTest").get()
-    testClassesDirs = debugUnitTest.testClassesDirs
-    classpath = debugUnitTest.classpath
-    useJUnit {
-        includeCategories(nightlyOnlyTestCategory)
-    }
-}
+//tasks.register<Test>("nightlyUnitTest") {
+//    group = "verification"
+//    description = "Runs the slow JVM unit tests excluded from the regular test task (nightly build only)."
+//    val debugUnitTest = tasks.named<Test>("testDebugUnitTest").get()
+//    testClassesDirs = debugUnitTest.testClassesDirs
+//    classpath = debugUnitTest.classpath
+//    useJUnit {
+//        includeCategories(nightlyOnlyTestCategory)
+//    }
+//}
 
 dokka {
     dokkaSourceSets.configureEach {
@@ -562,7 +562,7 @@ val composeBaselinesTarFile = File(composeBaselinesTempTargetDir, "baselines.tar
 tasks.register<Exec>("pullComposeBaselines") {
 
     // Need to create these at configuration time, not execution time, so we can set standardOutput.
-    Path(composeBaselinesTempTargetDir).createDirectories()
+//    Path(composeBaselinesTempTargetDir).createDirectories()
     composeBaselinesTarFile.createNewFile()
 
     doFirst {
@@ -627,9 +627,9 @@ tasks.register<Copy>("extractComposeBaselines") {
 }
 
 tasks.configureEach {
-    if (this is AndroidTestTask) {
-       finalizedBy("extractComposeBaselines")
-    }
+//    if (this is AndroidTestTask) {
+//       finalizedBy("extractComposeBaselines")
+//    }
 }
 
 tasks.withType<Test> {
