@@ -58,6 +58,7 @@ Most of our languages don't yet have a native speaker checking them, so translat
 
 * `translate` — translates every untranslated and stale string, validates the result (placeholders, line breaks, plural forms, escaping) and commits it. Its helper `strings_sync.py` does the file work.
 * `translation-review` — reviews existing translations for a language and reports findings. It only applies fixes when explicitly asked.
+* `translation-review-all` — runs `translation-review` on every language at once, one subagent per language, and combines the findings into one summary with the cross-language problems pulled out. Review only: fixes are then applied one language at a time.
 * `translation-feedback` — turns native-speaker feedback into recorded decisions and a sweep.
 * `add-language` — adds a new language.
 * `translation-questionnaire` — writes and refreshes the published questionnaires.
