@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. Structurally sound: «%1$s کے لیے دو بار تھپتھپائیں» with «-نے»
 infinitive hints composes correctly, and `confect_name_to` «%1$s %2$s تک»
 is acceptable under C10. The main open item is a split term. Questions:
-`docs/translation-questions/questions-ur.md` (Q1…Q8).
+`docs/translation-questions/questions-ur.md` (Q1…Q9).
 
 ## Glossary
 
@@ -58,7 +58,8 @@ Nothing yet.
 5. Is «آپ» right?
 6. **The four detail levels** (تفصیلی / سادہ / ضروری / خاموش), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
 7. **"Ahead" + road name** (`directions_ahead_road`, C24): «%1$s آگے» since 2026-09-30, name first like «%1$s کے قریب» (AI choice; was «آگے %1$s»). Natural by ear?
-8. Anything else.
+8. **Path** (`osm_path` «راستہ» reads as "way / the way to somewhere", not a footpath (it is also the %1$s of «%1$s %2$s تک»). Proposed «پگڈنڈی», which may sound rural; «پیدل راستہ» is taken by `osm_walking_path`. Which word?)
+9. Anything else.
 
 ## Provenance
 

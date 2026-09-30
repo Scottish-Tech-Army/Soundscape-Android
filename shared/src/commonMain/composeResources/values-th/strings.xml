@@ -857,7 +857,7 @@
     <string name="osm_road">ถนน</string>
     <string name="osm_motorway">ทางหลวงพิเศษ</string>
     <string name="osm_trunk">ทางหลวงสายหลัก</string>
-    <string name="osm_path">เส้นทางเดิน</string>
+    <string name="osm_path">ทางเดิน</string>
     <string name="osm_raceway">สนามแข่งรถ</string>
     <string name="osm_busway">ทางเฉพาะรถบัส</string>
     <string name="osm_bus_guideway">ทางนำร่องรถบัส</string>

@@ -93,3 +93,5 @@ Most serious fixed:
 - `confect_name_to`: C10: %1$s is a way type (Path, Service road…) described as leading to %2$s.
 Also changed the same day:
 - `cc4943378`: help, FAQ and tutorial now give the mirrored right-to-left button positions (Sleep top-left, My Location right-most), `_common.md` C23.
+
+**2026-09-30 — `osm_path` no longer shares the Routes word.** It said «مسیر», the same word as `routes_title`, so a footpath sounded like a route. Now «باریکه‌راه», a footpath word (AI choice, `unconfirmed`). The English comment now says Path means a footpath and must not share a word with Routes.

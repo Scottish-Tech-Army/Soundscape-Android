@@ -88,3 +88,5 @@ Most serious fixed:
 - `directions_name_is_currently_street_address`: Same sentence as directions_name_is_currently (translator note asks to keep them consistent);
 Also changed the same day:
 - `7ca86e582`: `new_version_info_details` got the English paragraph breaks back, which the release-notes dialog now splits Thai on.
+
+**2026-09-30 — `osm_path` no longer shares the Routes word.** It said «เส้นทางเดิน», the same word as `routes_title`, so a footpath sounded like a route. Now «ทางเดิน», a footpath word (AI choice, `unconfirmed`). The English comment now says Path means a footpath and must not share a word with Routes.

@@ -506,7 +506,7 @@
     <string name="osm_road">சாலை</string>
     <string name="osm_motorway">விரைவுச்சாலை</string>
     <string name="osm_trunk">பிரதான சாலை</string>
-    <string name="osm_path">பாதை</string>
+    <string name="osm_path">ஒற்றையடிப் பாதை</string>
     <string name="osm_raceway">பந்தயப் பாதை</string>
     <string name="osm_busway">பேருந்து சாலை</string>
     <string name="osm_bus_guideway">பேருந்து வழிகாட்டிப் பாதை</string>
