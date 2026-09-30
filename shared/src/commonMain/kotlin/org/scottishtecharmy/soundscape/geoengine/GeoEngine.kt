@@ -149,6 +149,17 @@ class GeoEngine {
     private lateinit var localizedStrings: LocalizedStrings
     private lateinit var preferencesProvider: PreferencesProvider
 
+    /** The Relative Direction setting: how a callout says where something is relative to you. */
+    fun relativeDirectionMode(): String =
+        if (::preferencesProvider.isInitialized) {
+            preferencesProvider.getString(
+                PreferenceKeys.RELATIVE_DIRECTION,
+                PreferenceDefaults.RELATIVE_DIRECTION
+            )
+        } else {
+            PreferenceDefaults.RELATIVE_DIRECTION
+        }
+
     lateinit var geocoder: SoundscapeGeocoder
     private lateinit var multiGeocoder: MultiGeocoder
     lateinit var tileSearch: TileSearch

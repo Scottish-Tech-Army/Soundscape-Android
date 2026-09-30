@@ -1126,7 +1126,7 @@ class MainActivity : AppCompatActivity() {
         const val LAST_SPLASH_RELEASE_KEY = "LastNewRelease"
         const val POSITION_INCLUDES_HEADING_AND_DISTANCE_DEFAULT = false
         const val POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY = "PositionTextDescription"
-        const val RELATIVE_DIRECTION_DEFAULT = "ClockFace"
+        const val RELATIVE_DIRECTION_DEFAULT = "LeftRight"
         const val RELATIVE_DIRECTION_KEY = "RelativeDirectionMode"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"

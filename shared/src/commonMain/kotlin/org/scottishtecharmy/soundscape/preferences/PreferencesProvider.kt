@@ -112,7 +112,10 @@ object PreferenceDefaults {
     const val CALLOUT_VERBOSITY = "Detailed"
     const val DISTANCE_TO_INTERSECTION = true
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = false
-    const val RELATIVE_DIRECTION = "ClockFace"
+    // Left/right rather than clock positions: the clock convention is taught in orientation and
+    // mobility training in some countries but is unfamiliar in others, and in Swahili the hour
+    // count itself differs (saa tatu is 9 o'clock).
+    const val RELATIVE_DIRECTION = "LeftRight"
 
     const val BEACON_TYPE = "Classic"
     const val SPEECH_RATE = 1.0f

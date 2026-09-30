@@ -78,11 +78,20 @@ class FormatDistanceTest {
     fun clockPositionIsLocalizedWord() {
         assertEquals(
             "DistanceMeters[20](20), RelativeClockDirection(RelativeClockHour9())",
-            formatDistanceAndDirection(20.0, 270.0, localized, userHeading = 0.0),
+            formatDistanceAndDirection(20.0, 270.0, localized, userHeading = 0.0, relativeDirectionMode = "ClockFace"),
         )
         assertEquals(
             "DistanceMeters[20](20), RelativeClockDirection(RelativeClockHour12())",
-            formatDistanceAndDirection(20.0, 5.0, localized, userHeading = 0.0),
+            formatDistanceAndDirection(20.0, 5.0, localized, userHeading = 0.0, relativeDirectionMode = "ClockFace"),
+        )
+    }
+
+    /** With no Relative Direction chosen, a callout says left/right rather than a clock position. */
+    @Test
+    fun defaultRelativeDirectionIsLeftRight() {
+        assertEquals(
+            "DistanceMeters[20](20), RelativeLeftRightDirectionLeft()",
+            formatDistanceAndDirection(20.0, 270.0, localized, userHeading = 0.0),
         )
     }
 

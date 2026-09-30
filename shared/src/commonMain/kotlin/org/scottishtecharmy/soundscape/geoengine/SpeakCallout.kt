@@ -7,6 +7,7 @@ import org.scottishtecharmy.soundscape.audio.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 
 /**
  * Shared implementation of speakCallout used by both Android and iOS service layers.
@@ -18,6 +19,8 @@ import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
  * @param audioEngine The audio engine to play through
  * @param lastGeometry The most recent user geometry (for distance/heading calculations)
  * @param ruler A CheapRuler instance for distance calculations
+ * @param relativeDirectionMode How to say where something is relative to the user: the Relative
+ *   Direction setting's value (ClockFace, Degrees or LeftRight)
  * @return The handle of the last queued TTS item, or 0 if nothing was queued
  */
 fun speakCalloutCommon(
@@ -26,6 +29,7 @@ fun speakCalloutCommon(
     audioEngine: AudioEngine,
     lastGeometry: UserGeometry?,
     ruler: CheapRuler,
+    relativeDirectionMode: String = PreferenceDefaults.RELATIVE_DIRECTION,
 ): Long {
     if (callout == null) return 0L
 
@@ -65,6 +69,7 @@ fun speakCalloutCommon(
                         distance, heading,
                         ComposeLocalizedStrings(),
                         lastGeometry.heading(),
+                        relativeDirectionMode = relativeDirectionMode,
                         speed = lastGeometry.speed
                     )
                 } ?: result.text
