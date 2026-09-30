@@ -30,7 +30,7 @@ Questions: `docs/translation-questions/questions-mr.md` (Q1…Q6).
 | Landmarks | खुणा | `unconfirmed` | |
 | Intersection | चौक | `unconfirmed` | |
 | Sleep / Snooze | झोप मोड / स्नूझ मोड | `unconfirmed` | `sleep_sleep` is «झोप मोड» ("sleep mode") on a *button*. See Q3 |
-| Detail levels | तपशीलवार / संतुलित / संक्षिप्त / निःशब्द | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | तपशीलवार / सरलीकृत / आवश्यक / निःशब्द | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was तपशीलवार / संतुलित / संक्षिप्त / निःशब्द |
 | dead end | बंद रस्ता | `unconfirmed` | **Can also mean "road closed"**. See MR-T1 |
 
 ## Rules

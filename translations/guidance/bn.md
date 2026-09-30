@@ -28,7 +28,7 @@ choices. Questions: `docs/translation-questions/questions-bn.md` (Q1…Q7).
 | Landmarks | ল্যান্ডমার্ক | `unconfirmed` | |
 | Intersection | মোড় | `unconfirmed` | |
 | Sleep / Snooze | ঘুম / স্নুজ | `unconfirmed` | «ঘুম» is a noun on a button. See Q4 |
-| Detail levels | বিস্তারিত / ভারসাম্যপূর্ণ / শান্ত / নীরব | `unconfirmed` | |
+| Detailed / Simplified / Essential / Silent | বিস্তারিত / সরলীকৃত / প্রয়োজনীয় / নীরব | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was বিস্তারিত / ভারসাম্যপূর্ণ / শান্ত / নীরব |
 | dead end | শেষ প্রান্ত | `unconfirmed` | "Far end", which may not mean a dead-end street. «কানাগলি» is the usual word. See BN-T2 |
 
 ## Rules

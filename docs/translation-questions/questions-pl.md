@@ -11,15 +11,14 @@ permalink: /translation-questions/questions-pl/
 > Odpowiedzi wyślij e-mailem na adres **soundscapeAndroid@scottishtecharmy.support**, podając język w temacie wiadomości.
 
 
-*Polish translation — questions for native-speaker reviewers. English glosses
-in italics are for the maintainer.*
+*Polish translation, round 2 — questions for native-speaker reviewers. English
+glosses in italics are for the maintainer.*
 
-Cześć i dziękujemy, że zgodziłeś/aś się na to zerknąć.
-
-Polskie tłumaczenie powstało bez udziału native speakera, więc Twoja opinia jest
-dla nas naprawdę cenna. **Nie musisz znać ani instalować aplikacji:** przy każdym
-pytaniu jest napisane, kiedy tekst słychać, jak brzmi po angielsku i jak brzmi
-teraz po polsku.
+Cześć i jeszcze raz dziękujemy za odpowiedzi na pierwszą rundę pytań. Wszystkie
+zostały już wprowadzone do aplikacji (zob. „Co ustaliliśmy” niżej). Zostało kilka
+drobnych pytań, które wyniknęły z tych zmian. **Nie musisz znać ani instalować
+aplikacji:** przy każdym pytaniu jest napisane, kiedy tekst słychać, jak brzmi po
+angielsku i jak brzmi teraz po polsku.
 
 ## Czym jest Soundscape?
 
@@ -31,191 +30,116 @@ tylko mówi na głos, co jest w pobliżu, żeby można było samemu się zorient
 Kilka pojęć, które pojawiają się w pytaniach:
 
 - **Powiadomienie** *(callout)*: krótki komunikat głosowy o czymś, obok czego
-  przechodzisz, np. „Kawiarnia”, „Chodnik obok Marszałkowska” albo „Idziesz na
-  północ wzdłuż Marszałkowska”. Słychać go przestrzennie, z kierunku, w którym to
-  coś jest.
-- **Dźwięk naprowadzający** *(audio beacon)*: gdy wybierzesz cel, w słuchawkach
-  słychać regularny, powtarzający się dźwięk dobiegający z kierunku celu. Gdy się
-  obrócisz, dźwięk „przesuwa się”, więc do celu można dojść na słuch. Po
-  angielsku to samo słowo *beacon* oznacza też miejsce, na którym dźwięk
-  ustawiono, i całą funkcję (zob. Q3).
-- **Znacznik** i **trasa** *(marker, route)*: zapisane miejsca i ich kolejność,
-  przez którą dźwięk naprowadzający prowadzi po kolei.
+  przechodzisz, np. „Kawiarnia” albo „Idziesz na północ wzdłuż Marszałkowska”.
+  Słychać go przestrzennie, z kierunku, w którym to coś jest.
+- **Dźwięk naprowadzający** *(audio beacon)*: gdy wybierzesz **cel**, w słuchawkach
+  słychać regularny, powtarzający się dźwięk dobiegający z kierunku celu. Całą
+  funkcję nazywamy **naprowadzaniem**.
+- **Znacznik** i **trasa** *(marker, route)*: zapisane miejsca i ich kolejność
+  (**punkty trasy**), przez którą dźwięk naprowadzający prowadzi po kolei.
 
 Osoby niewidome obsługują telefon za pomocą **czytnika ekranu** (TalkBack na
 Androidzie, VoiceOver na iPhonie): każdy przycisk i tekst czyta syntetyczny głos.
 Teksty aplikacji są więc prawie zawsze *słuchane*, a nie czytane, i to często w
-ulicznym hałasie. Najważniejsze, żeby były krótkie, jasne i naturalne w odbiorze
-na słuch.
+ulicznym hałasie.
 
 Pojęcia są dokładniej opisane (po angielsku)
 [na tej stronie]({{ "/developers/translation-terminology.html" | relative_url }}).
 
+## Co ustaliliśmy
+
+- **Powiadomienie** zostaje, a czasownik to **„powiadamia o”** („Tryb Szczegółowy
+  powiadamia o wszystkim w pobliżu”).
+- **Dźwięk naprowadzający** to sam dźwięk, **cel** to miejsce, do którego
+  prowadzi („Odległość do celu”, „Informacje o celu”), a **naprowadzanie** to
+  funkcja („Brak aktywnego naprowadzania”). **Punkt trasy** tylko dla punktów
+  zapisanej trasy.
+- **Znacznik** bez „(pinezka)”, także na przycisku „Bliskie znaczniki”.
+- **Forma „ty”** zostaje.
+- **Ślepa ulica** zamiast „ślepa uliczka”; na mapie **„Znak nawigacyjny”**.
+- **Nazwy ulic** zostają w mianowniku, jak w innych nawigacjach.
+- **Kierunki** („Idziesz” / „Poruszasz się”) bez zmian.
+
 ## Jak odpowiedzieć
 
-Odpisz mailem, podając numer pytania („Q3: lepiej brzmiałoby…”). Nie musisz
-odpowiadać na wszystko: nawet dwie, trzy odpowiedzi bardzo pomogą. Jeśli coś jest
-dobre, też warto napisać „OK”, wtedy wiemy, żeby tego nie ruszać.
+Odpisz mailem, podając numer pytania („Q2: lepiej brzmiałoby…”). Nie musisz
+odpowiadać na wszystko. Jeśli coś jest dobre, też warto napisać „OK”.
 
 ---
 
-### Q1 — „Cichy” i „Wyciszony” *(Quiet vs Silent: distinct by ear?)*
+### Q1 — „Do celu: 105 metrów” *(Distance to the beacon)*
+
+**Kiedy to słychać:** co jakiś czas podczas marszu do celu, jeśli dźwięk
+naprowadzający jest włączony.
+
+**Po angielsku:** „Beacon is currently 105 metres away”.
+
+**Jak brzmi teraz:** „Do celu: 105 metrów”. Wcześniej było „Naprowadzanie jest
+obecnie w odległości 105 metrów”.
+
+**Co budzi wątpliwości:** wybraliśmy tę formę, bo po „w odległości” liczba
+musiałaby być w dopełniaczu („w odległości dwóch metrów”), a aplikacja podaje
+ją w mianowniku („2 metry”). W jednym innym komunikacie wciąż jest stara forma:
+„Ustawiono naprowadzanie na %1$s, w odległości 2 metry”.
+
+**Pytanie:** czy „Do celu: 105 metrów” brzmi naturalnie? Czy tamten drugi
+komunikat zmienić tak samo („…, do celu: 2 metry”)?
+
+### Q2 — „Powiadamiaj o miejscach” *(Places to Call Out)*
+
+**Kiedy to słychać:** w ustawieniach, nad listą rodzajów miejsc, o których
+aplikacja ma mówić (Wszystko, Punkty orientacyjne, Transport publiczny…).
+
+**Po angielsku:** „Places to Call Out”.
+
+**Jak brzmi teraz:** „Powiadamiaj o miejscach”. Wcześniej było „Miejsca do
+ogłaszania”.
+
+**Co budzi wątpliwości:** to nasza propozycja, żeby pozbyć się „ogłaszania”.
+
+**Pytanie:** czy tak jest dobrze, czy lepiej „Miejsca w powiadomieniach” albo coś
+innego?
+
+### Q3 — Godziny i odległości na głos *(Clock positions and distances)*
+
+**Kiedy to słychać:** gdy aplikacja mówi, gdzie coś jest, np. „Przejście dla
+pieszych, 15 metrów, na godzinie dziewiątej”.
+
+**Po angielsku:** „15 metres, at 9 o'clock”.
+
+**Jak brzmi teraz:** godzina jest teraz zapisana słowem: „na godzinie
+dziewiątej”, a nie cyfrą, którą syntezator czytał „dziewięciu”. Domyślnie
+aplikacja mówi teraz jednak „z lewej” / „z prawej” zamiast godzin, a godziny są
+opcją w ustawieniach.
+
+**Co budzi wątpliwości:** nie wiemy, skąd wzięło się „piętnastu metrów”: tekst to
+„15 metrów”, więc tak odmienił to syntezator.
+
+**Pytanie:** z jakiego syntezatora mowy korzystasz (Google, Samsung, eSpeak,
+Vocalizer…)? Czy „na godzinie dziewiątej” brzmi dobrze, czy naturalniej
+„na dziewiątej”?
+
+### Q4 — Poziomy szczegółowości po zmianie nazw *(Detail levels after the rename)*
 
 **Kiedy to słychać:** w ustawieniach, gdzie na słuch wybiera się, ile aplikacja
 mówi w trakcie chodzenia.
 
-**Po angielsku:** „Detailed / Balanced / Quiet / Silent”.
+**Po angielsku:** „Detailed / Simplified / Essential / Silent”. Angielskie nazwy
+też się zmieniły, bo osoby z kilku krajów miały z nimi kłopot.
 
-**Jak brzmi teraz:** **Szczegółowy / Zrównoważony / Cichy / Wyciszony**. Tryb
-Szczegółowy ogłasza wszystko w pobliżu; Zrównoważony pomija mniejsze ścieżki i
-rzadziej się powtarza; Cichy ogłasza tylko ulice, skrzyżowania i punkty
-orientacyjne; Wyciszony nie daje żadnych automatycznych powiadomień.
+**Jak brzmi teraz:** Szczegółowy / Uproszczony / Podstawowy / Wyciszony. Tryb
+Uproszczony pomija mniejsze ścieżki i rzadziej się powtarza; Tryb Podstawowy
+powiadamia tylko o ulicach, skrzyżowaniach i punktach orientacyjnych.
 
-**Co budzi wątpliwości:** „Cichy” i „Wyciszony” mają ten sam rdzeń, a „Cichy”
-może brzmieć jak głośność, a nie „mniej powiadomień”.
+**Co budzi wątpliwości:** zaproponowałeś/aś „Uproszczony” dla trzeciego poziomu,
+tego, który mówi tylko to, co niezbędne. Po zmianie angielskich nazw
+„Uproszczony” przesunął się o jeden poziom wyżej, a trzeci to teraz
+„Podstawowy”.
 
-**Pytanie:** czy na słuch dobrze się różnią? Jeśli nie, jak nazwałbyś/nazwałabyś
-tryb Cichy?
+**Pytanie:** czy taki układ jest w porządku, czy wolisz inne nazwy dla dwóch
+środkowych poziomów?
 
-### Q2 — „Powiadomienie” *(Callout)*
-
-**Kiedy to słychać:** to nazwa krótkich komunikatów głosowych opisanych wyżej.
-Pojawia się głównie w ustawieniach, np. „Automatyczne powiadomienia głosowe”,
-„Zezwól na powiadomienia”, „Szczegółowość powiadomień”.
-
-**Po angielsku:** „Callout”, „Automatic Callouts”, „Allow Callouts”.
-
-**Jak brzmi teraz:** „powiadomienie”, a jako czasownik „ogłasza” („Tryb
-Szczegółowy ogłasza wszystko w pobliżu”).
-
-**Co budzi wątpliwości:** na telefonie „powiadomienie” to zwykle komunikat
-systemowy (SMS, e-mail…), a nie opis otoczenia. Termin wybrało tłumaczenie
-maszynowe.
-
-**Pytanie:** czy to dobre słowo? Jeśli nie, co zamiast niego (np. „komunikat”,
-„zapowiedź”)? Ważne, żeby miało też naturalny czasownik.
-
-### Q3 — „Dźwięk naprowadzający”: dźwięk, miejsce czy funkcja? *(Audio Beacon: one word for three meanings?)*
-
-**Kiedy to słychać:** bardzo często. Po angielsku jedno słowo *beacon* oznacza
-trzy różne rzeczy, a po polsku prawie wszędzie było „dźwięk naprowadzający”:
-
-1. **sam dźwięk**: „Audio beacon styles” → „Style dźwięku naprowadzającego”,
-   „mute the audio beacon” → „wyciszyć dźwięk naprowadzający”;
-2. **miejsce, na którym go ustawiono** (to, do czego idziesz): „Distance to the
-   Audio Beacon” → „Odległość do dźwięku naprowadzającego”, „Beacon is currently
-   105 metres away” → „Naprowadzanie jest obecnie w odległości 105 metrów”,
-   „Beacon Info” → „Informacje o punkcie trasy”, „Call out Beacon” → „Powiadom o
-   punkcie trasy”;
-3. **sama funkcja** (prowadzenie do miejsca): „Beacon set on Dom” → „Ustawiono
-   naprowadzanie na Dom”, „No beacon active” → „Brak aktywnego dźwięku
-   naprowadzającego”, tytuł działu pomocy „Beacons and Callouts” → „Dźwięk
-   naprowadzający i powiadomienia”.
-
-**Co budzi wątpliwości:** native speaker zwrócił nam uwagę, że „dźwięk
-naprowadzający” pasuje tylko do znaczenia 1: nie da się być „w odległości od
-dźwięku”. Dlatego nie chcemy już wymuszać jednego słowa wszędzie. Dwie komendy
-zmieniono już na „punkt trasy”, ale tego samego słowa używamy dla kolejnych
-punktów zapisanej trasy *(waypoint)*, np. „Następny punkt trasy”, a te komendy
-działają też wtedy, gdy żadna trasa nie jest włączona.
-
-**Pytanie:**
-
-- **a)** jak nazwać **miejsce** (2)? „Punkt trasy” (a punkty na trasie inaczej),
-  „cel” („Odległość do celu”, „Informacje o celu”), „punkt docelowy”, czy coś
-  innego?
-- **b)** czy „naprowadzanie” pasuje do **funkcji** (3), np. „Brak aktywnego
-  naprowadzania”, „Naprowadzanie i powiadomienia”?
-- **c)** czy „dźwięk naprowadzający” jest dobry dla samego **dźwięku** (1), czy
-  jest za długi jak na coś, co słychać tak często?
-
-### Q4 — „Ty” czy „Pan/Pani”? *(Register)*
-
-**Kiedy to słychać:** w całej aplikacji.
-
-**Jak brzmi teraz:** aplikacja zwraca się na „ty”: „Wypróbuj to teraz”, „Idziesz
-na północ…”, „Stuknij dwukrotnie, aby…”.
-
-**Co budzi wątpliwości:** polskie aplikacje dla osób niewidomych bywają pisane w
-obu formach, a z aplikacji korzystają też osoby starsze.
-
-**Pytanie:** czy „ty” jest w porządku, czy lepsza byłaby forma „Pan/Pani”?
-
-### Q5 — „Znaczniki” czy „pinezki”? *(Marker)*
-
-**Kiedy to słychać:** na ekranie zapisanych miejsc i w wielu tekstach o nich.
-
-**Po angielsku:** „Markers”.
-
-**Jak brzmi teraz:** tytuł ekranu to „Znaczniki (pinezki)”, a wszędzie indziej
-jest samo „znacznik”.
-
-**Co budzi wątpliwości:** nawias wygląda jak niepodjęta decyzja, a czytnik ekranu
-czyta go na głos.
-
-**Pytanie:** które słowo zostawić: „znacznik” czy „pinezka”?
-
-### Q6 — „Ślepa uliczka” *(Dead end)*
-
-**Kiedy to słychać:** w trakcie chodzenia, przy mijaniu odgałęzienia. Aplikacja
-mówi, dokąd ono prowadzi.
-
-**Po angielsku:** „Path to dead end”.
-
-**Jak brzmi teraz:** „Ścieżka do ślepej uliczki”.
-
-**Co budzi wątpliwości:** „ślepa uliczka” łatwiej zrozumieć przenośnie (sytuacja
-bez wyjścia) niż jako rodzaj drogi; na znaku drogowym byłoby raczej „ślepa ulica”
-albo „droga bez przejazdu”.
-
-**Pytanie:** co brzmi najnaturalniej?
-
-### Q7 — Nazwy ulic po „do”, „na”, „wzdłuż” *(Map names arrive undeclined)*
-
-**Kiedy to słychać:** stale, w trakcie chodzenia. Aplikacja wstawia nazwę ulicy
-dokładnie tak, jak jest na mapie, w mianowniku, bo nie umie jej odmienić.
-
-**Po angielsku:** „Heading north along Marszałkowska”, „On Marszałkowska between …”,
-„Path to Marszałkowska”.
-
-**Jak brzmi teraz:** „Idziesz na północ wzdłuż Marszałkowska” (zamiast
-„Marszałkowskiej”), „Na Marszałkowska, między …”, „Ścieżka do Marszałkowska”.
-
-**Co budzi wątpliwości:** odmiany nazw nie da się przewidzieć automatycznie. W
-innych językach takie zdania przebudowano na formę z etykietą, np. „Idziesz na
-północ, ulica: Marszałkowska”.
-
-**Pytanie:** jak bardzo to przeszkadza na słuch? Czy forma z etykietą brzmiałaby
-lepiej, czy masz inny pomysł?
-
-### Q8 — Kierunki i odległości *(Directions: shorter?)*
-
-**Kiedy to słychać:** wiele razy dziennie, przy każdym zakręcie i skrzyżowaniu.
-
-**Jak brzmi teraz:** np. „Idziesz na północ wzdłuż …”, „Poruszasz się na północ
-wzdłuż …” (w pojeździe), „Zbliżasz się do skrzyżowania”.
-
-**Co budzi wątpliwości:** takich komunikatów jest ponad sto, a słucha się ich w
-ruchu, więc każde zbędne słowo męczy.
-
-**Pytanie:** czy dałoby się je skrócić, nie tracąc jasności?
-
-### Q9 — „Znacznik nawigacyjny” *(Beacon on the map: clashes with Marker)*
-
-**Kiedy to słychać:** gdy aplikacja ogłasza mijany obiekt z mapy: fizyczny znak
-nawigacyjny lub ostrzegawczy w terenie. Nie ma to nic wspólnego z dźwiękiem
-naprowadzającym.
-
-**Po angielsku:** „Beacon”.
-
-**Jak brzmi teraz:** „Znacznik nawigacyjny”.
-
-**Co budzi wątpliwości:** „znacznik” to w aplikacji Twoje zapisane miejsce (Q5),
-więc brzmi to tak, jakbyś mijał/a swój własny znacznik.
-
-**Pytanie:** „Znak nawigacyjny”, „Stawa”, czy coś innego?
-
-### Q10 — Coś jeszcze? *(Anything else)*
+### Q5 — Coś jeszcze? *(Anything else)*
 
 Jeśli jakieś zdanie brzmi jak tłumaczenie z angielskiego, jest za długie albo
 niejasne, daj znać.

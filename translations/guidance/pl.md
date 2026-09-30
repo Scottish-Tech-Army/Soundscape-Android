@@ -22,7 +22,7 @@ nobody has looked at are still `unconfirmed`.
 A review pack was prepared for the first reviewer:
 
 - `docs/translation-questions/questions-pl.md` — the numbered open questions below
-  (Q1…Q10), in the same layout as every other language (converted 2026-09-25).
+  (Q1…Q5, round 2 since 2026-09-30), in the same layout as every other language.
 - `translations/review/pl-full/07-nowe-teksty.md` — the per-text review of the 27
   strings added 2026-09-23, which was the published sheet until 2026-09-25.
 - `translations/review/pl-full/` — the whole corpus split by area, plus
@@ -307,6 +307,8 @@ Q7 → PL-G2, Q8 → rejected (no change), Q9 → PL-B1 (`osm_beacon`),
 Q10 → PL-D1.
 
 ## Open questions for round 2
+
+Numbered as on `questions-pl.md` (round 2, 2026-09-30); Q5 is "anything else".
 
 1. **«Do celu: 105 metrów»** (`callouts_audio_beacon_distance`, spoken while
    walking to a beacon). Natural? Should the scavenger-hunt «Ustawiono

@@ -28,7 +28,7 @@ It leans heavily on loanwords. Questions: `docs/translation-questions/questions-
 | Landmarks | మైలురాళ్లు | `unconfirmed` | Literally "milestones", which may mean achievements rather than places. See Q3 |
 | Intersection | కూడలి | `unconfirmed` | |
 | Sleep / Snooze | నిద్ర / స్నూజ్ | `unconfirmed` | |
-| Detail levels | వివరణాత్మకం / సమతుల్యం / క్లుప్తం / నిశ్శబ్దం | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | వివరణాత్మకం / సరళీకృతం / ముఖ్యం / నిశ్శబ్దం | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was వివరణాత్మకం / సమతుల్యం / క్లుప్తం / నిశ్శబ్దం |
 | dead end | డెడ్ ఎండ్ | `unconfirmed` | Loanword where a Telugu word may exist. See Q4 |
 
 ## Rules

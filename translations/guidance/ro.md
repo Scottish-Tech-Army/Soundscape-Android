@@ -32,7 +32,7 @@ Questions: `docs/translation-questions/questions-ro.md` (Q1…Q6).
 | Landmarks | repere | `unconfirmed` | |
 | Intersection | intersecție | `unconfirmed` | |
 | Sleep / Snooze | Repaus ; Amânare | `unconfirmed` | |
-| Detail levels | Detaliat / Echilibrat / Discret / Silențios | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Detaliat / Simplificat / Esențial / Silențios | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Detaliat / Echilibrat / Discret / Silențios |
 | dead end | fundătură | `unconfirmed` | |
 
 ## Rules

@@ -26,7 +26,7 @@ the wrong sense (VI-T1). Questions: `docs/translation-questions/questions-vi.md`
 | Landmarks | Điểm mốc | `unconfirmed` | |
 | Intersection | giao lộ | `unconfirmed` | |
 | Sleep / Snooze | Ngủ / Tạm nghỉ | `unconfirmed` | |
-| Detail levels | Chi tiết / Cân bằng / Yên tĩnh / Im lặng | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Chi tiết / Đơn giản / Thiết yếu / Im lặng | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Chi tiết / Cân bằng / Yên tĩnh / Im lặng |
 | dead end | đường cụt | `unconfirmed` | |
 | Traveling / Heading | Di chuyển / Đi bộ | `agreed` | Correct vehicle/walking split |
 

@@ -27,7 +27,7 @@ gender-neutral enough. There is one VoiceOver defect (EL-B1). Questions:
 | Waypoint | σημείο πορείας | `confirmed` | Microsoft |
 | Intersection | διασταύρωση | `confirmed` | Microsoft |
 | Sleep / Snooze | αναστολή λειτουργίας ; αναβολή | `confirmed` | Microsoft |
-| Detail levels | Λεπτομερές / Ισορροπημένο / Ήσυχο / Σιωπηλό | `unconfirmed` | AI |
+| Detailed / Simplified / Essential / Silent | Λεπτομερές / Απλοποιημένο / Βασικό / Σιωπηλό | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Λεπτομερές / Ισορροπημένο / Ήσυχο / Σιωπηλό |
 | dead end | αδιέξοδο | `unconfirmed` | AI. «%1$s προς αδιέξοδο» reads acceptably |
 
 ## Rules
@@ -55,7 +55,7 @@ Nothing yet.
 
 1. VoiceOver: «Πατήστε δύο φορές: θέστε σε σίγαση το ηχητικό σήμα»? (EL-B1)
 2. Callout «επεξήγηση»: natural for a short spoken description?
-3. The four detail levels: clear?
+3. The four detail levels (Λεπτομερές / Απλοποιημένο / Βασικό / Σιωπηλό), renamed 2026-09-30 (C22): clear by ear? Better names for the middle two?
 4. Snooze «αναβολή»: clear?
 5. Anything else.
 

@@ -27,7 +27,7 @@ that produced rule C13). Questions: `docs/translation-questions/questions-sk.md`
 | Landmarks | orientačné body | `unconfirmed` | |
 | Intersection | križovatka | `unconfirmed` | |
 | Sleep / Snooze | Spánok / Spí ; Drieme | `unconfirmed` | |
-| Detail levels | Podrobný / Vyvážený / Tichý / Bez zvuku | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Podrobný / Zjednodušený / Základný / Bez zvuku | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Podrobný / Vyvážený / Tichý / Bez zvuku |
 | dead end | slepá ulica | `unconfirmed` word; case fixed 2026-09-24. See SK-G1 |
 
 ## Rules

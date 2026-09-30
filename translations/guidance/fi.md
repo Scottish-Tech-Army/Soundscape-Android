@@ -29,7 +29,7 @@ themselves. The Siri phrases (`fi.lproj`) match the help text. Questions:
 | Waypoint | reittipiste | `confirmed` | Microsoft |
 | Intersection | risteys | `confirmed` | Microsoft |
 | Sleep / Snooze | lepotila ; odotustila | `confirmed` | Microsoft |
-| Detail levels | Yksityiskohtainen / Tasapainoinen / Hiljainen / Äänetön | `unconfirmed` | AI. Distinct |
+| Detailed / Simplified / Essential / Silent | Yksityiskohtainen / Yksinkertaistettu / Olennainen / Äänetön | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Yksityiskohtainen / Tasapainoinen / Hiljainen / Äänetön |
 | dead end | umpikuja | `unconfirmed` | AI. See FI-G1 |
 
 ## Rules
@@ -91,7 +91,7 @@ templates must use the wrapped form.**
 
 1. «Polku kohteeseen umpikuja» or «Polku umpikujaan»? (FI-G1)
 2. Callout «ilmoitus»: confused with phone notifications?
-3. The four detail levels: clear?
+3. The four detail levels (Yksityiskohtainen / Yksinkertaistettu / Olennainen / Äänetön), renamed 2026-09-30 (C22): clear by ear? Better names for the middle two?
 4. Siri phrases «Soundscape ympäristö / reitti / majakka / pysäytä majakka…»: natural?
 5. Street names are now inflected («Mannerheimintiellä», «Vanhalla Vihdintiellä») instead of «Tiellä X». Right? Any names it gets wrong? (FI-G2)
 6. Clock-face directions «kello %1$s»: heard as a time? «kello kolmessa» / «kello kolmen suunnassa»?

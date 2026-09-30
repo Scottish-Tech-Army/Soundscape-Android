@@ -28,7 +28,7 @@ text. Questions: `docs/translation-questions/questions-zh_Hans.md` (Q1…Q8).
 | Landmarks | 地标 | `unconfirmed` | |
 | Intersection | 路口 | `unconfirmed` | |
 | Sleep / Snooze | 休眠 / 小睡 | `unconfirmed` | |
-| Detail levels | 详细 / 平衡 / 简略 / 静音 | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | 详细 / 简化 / 基本 / 静音 | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was 详细 / 平衡 / 简略 / 静音 |
 | dead end | 死胡同 | `unconfirmed` | |
 | goes left / right / ahead | 左转 / 右转 / 直行 | `unconfirmed` | Benjamin's wording. See ZH-G1 |
 

@@ -50,7 +50,7 @@ Q1…Q10 to match the Open questions below.
 | Sleep | dvali (fara í dvala / í dvala) | `confirmed` | Þorkell's choice |
 | Snooze | lúr («Í lúra-ham») | `unconfirmed` | Þorkell wrote «Dvala eða Lúra» once in the FAQ, but «Í lúra-ham» is AI-built. See IS-T1 / Q3 |
 | Callout Detail | Nákvæmni tilkynninga | `unconfirmed` | AI pass, 2026-09-23 |
-| Detailed / Balanced / Quiet / Silent | Ítarlegt / Jafnvægi / Hljóðlátt / Þögult | `unconfirmed` | «Jafnvægi» is a noun among three adjectives. See Q7 |
+| Detailed / Simplified / Essential / Silent | Ítarlegt / Einfaldað / Nauðsynlegt / Þögult | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Ítarlegt / Jafnvægi / Hljóðlátt / Þögult |
 | dead end | blindgata | `unconfirmed` | The word is fine. Case fixed 2026-09-24 («blindgötu»). See IS-G1 |
 
 ---
@@ -163,9 +163,8 @@ These are the questions in `docs/translation-questions/questions-is.md`, in the 
 4. **Gender:** how to rephrase «tilbúin/n», «Velkomin/n». (IS-G3)
 5. **Street names in the nominative** («Á Laugavegur»): how bad is it? (IS-G2)
 6. **«til blindgötu»:** confirm what now ships (applied 2026-09-24). (IS-G1)
-7. **The four detail levels:** is «Jafnvægi» (a noun) OK next to three
-   adjectives, and are they distinct by ear? «Hljóðlátt» may also be heard as volume
-   rather than fewer callouts.
+7. **The four detail levels** (Ítarlegt / Einfaldað / Nauðsynlegt / Þögult), renamed 2026-09-30 (C22), now all
+   adjectives: distinct by ear? Better names for the middle two?
 8. **«Tvíbankaðu» or «Ýttu tvisvar»?** (IS-T2)
 9. **Siri phrases stay English:** OK? (IS-C1)
 10. **Anything else.**

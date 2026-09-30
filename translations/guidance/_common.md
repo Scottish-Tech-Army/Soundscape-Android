@@ -514,5 +514,7 @@ stored value *or* the localized name.
 **How to apply:** translate each level by what it does (level 2 leaves out
 minor paths; level 3 is streets, junctions and landmarks only), and keep all
 four distinct by ear. pl, fr and nl took literal names on Dave's call and
-will be re-asked (PL-T1, FR-L1, NL-L1). Every other language needs its
-level names and the ~6 strings that list them redone once Weblate flags them.
+will be re-asked (PL-T1, FR-L1, NL-L1). The other languages were retranslated
+literally on 2026-09-30 and are asked on their questionnaires, **except Ukrainian**,
+whose native-confirmed «Збалансований / Тихий» were kept (C8: a confirmed decision is
+not overridden by a source rename).

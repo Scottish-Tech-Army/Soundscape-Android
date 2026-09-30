@@ -29,7 +29,7 @@ Questions: `docs/translation-questions/questions-pt.md` (Q1…Q7).
 | Intersection | cruzamento | `confirmed` | Microsoft |
 | Sleep / Snooze | Suspensão ; Pausa | `confirmed` | Microsoft |
 | Traveling / Heading | A viajar / A caminhar | `confirmed` | Microsoft. The vehicle/walking split |
-| Detail levels | Detalhado / Equilibrado / Discreto / Silencioso | `unconfirmed` | AI |
+| Detailed / Simplified / Essential / Silent | Detalhado / Simplificado / Essencial / Silencioso | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Detalhado / Equilibrado / Discreto / Silencioso |
 | dead end | beco sem saída | `unconfirmed` | AI. See PT-G1 |
 
 ## Rules
@@ -63,7 +63,7 @@ Nothing yet.
 
 1. «Caminho para um beco sem saída»? (PT-G1)
 2. «Está tudo pronto!» again? (PT-R1)
-3. The four detail levels (Detalhado / Equilibrado / Discreto / Silencioso): clear?
+3. The four detail levels (Detalhado / Simplificado / Essencial / Silencioso), renamed 2026-09-30 (C22): clear by ear? Better names for the middle two?
 4. Siri phrases «Soundscape arredores / rota / sinal / parar sinal…»: natural?
 5. Articles are now chosen from the name («no Largo do Carmo», «na Rua Augusta»). Right? (PT-G1)
 6. Landmark vs Marker: «marco» is the Marker term, but Microsoft also used it for

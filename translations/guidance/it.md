@@ -27,7 +27,7 @@ help text. Questions: `docs/translation-questions/questions-it.md` (Q1…Q7).
 | Waypoint | waypoint | `confirmed` | Microsoft, English loan (C12) |
 | Intersection | incrocio | `confirmed` | Microsoft |
 | Sleep / Snooze | Sospendi ; Posponi | `confirmed` | Microsoft |
-| Detail levels | Dettagliato / Bilanciato / Discreto / Silenzioso | `unconfirmed` | AI. Distinct |
+| Detailed / Simplified / Essential / Silent | Dettagliato / Semplificato / Essenziale / Silenzioso | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Dettagliato / Bilanciato / Discreto / Silenzioso |
 | dead end | vicolo cieco | `unconfirmed` | AI. See IT-G1 |
 
 ## Rules

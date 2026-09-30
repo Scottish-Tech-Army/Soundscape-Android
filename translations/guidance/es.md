@@ -38,6 +38,7 @@ since May; treat `confirmed` as "confirmed then, unswept since" rather than
 | Callout | aviso | `confirmed` | 40 occurrences, consistent |
 | Audio Beacon | señal (de audio) | `confirmed` | 77 occurrences, consistent |
 | Marker | marcador | `confirmed` | 84 occurrences, consistent |
+| Detailed / Simplified / Essential / Silent | Detallado / Simplificado / Esencial / Silencioso | `unconfirmed` | English renamed 2026-09-30 (C22), retranslated from «Equilibrado» / «Discreto». Asked as Q1 |
 | Waypoint | punto de ruta | `confirmed` | 24 occurrences, consistent. **One deliberate exception:** `routes_no_routes_hint_1` says «puntos de referencia» (ES-M1) |
 | Sleep Mode | modo de suspensión | `confirmed` | 8 occurrences; lowercase mid-sentence is correct Spanish style, not a drift from the English title case |
 | Snooze Mode | modo de aplazamiento | `confirmed` | 5 occurrences, consistent |
@@ -179,9 +180,14 @@ of Microsoft's text.
 
 ## Open questions for the reporter
 
-None open. Q1–Q3 were answered 2026-09-30 (ES-M1). Still waiting for a human:
-`osm_signal` («Señal» is also the Beacon term), and a device check of the
-iOS 26 menu names in `help_config_voices_content_ios`.
+Numbered as on `docs/translation-questions/questions-es.md` (Q1…Q2); Q2 is "anything else".
+
+1. **The detail levels after the English rename (C22):** Detallado / Simplificado /
+   Esencial / Silencioso, retranslated 2026-09-30 from «Equilibrado» / «Discreto».
+   Distinct by ear? Better names for the middle two?
+
+Still waiting for a human: `osm_signal` («Señal» is also the Beacon term), and a device
+check of the iOS 26 menu names in `help_config_voices_content_ios`.
 
 *Earlier rounds, all closed:* **Q1 «Pulsa»**, confirmed (ES-R2). **Q2, the FAQ
 button name** (`faq_snooze_mode_battery_answer`): JJ explained that

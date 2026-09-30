@@ -28,7 +28,7 @@ conditional participle hints («utišali») composes correctly. There is one
 | Landmarks | znamenitosti | `unconfirmed` | "Sights", narrower than landmark |
 | Intersection | raskrižje | `unconfirmed` | |
 | Sleep / Snooze | Mirovanje / U mirovanju ; Odgođeno | `unconfirmed` | «Odgođeno» = "postponed". See Q4 |
-| Detail levels | Detaljno / Uravnoteženo / Tiho / Bez zvuka | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Detaljno / Pojednostavljeno / Osnovno / Bez zvuka | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Detaljno / Uravnoteženo / Tiho / Bez zvuka |
 | dead end | slijepa ulica | `unconfirmed` word; case fixed 2026-09-24. See HR-G1 |
 
 ## Rules

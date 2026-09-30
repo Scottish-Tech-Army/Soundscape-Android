@@ -155,20 +155,22 @@ hvert hann liggur.
 
 **Spurningin:** er það rétt, eða er til betra orðalag?
 
-### Q7 — Fjögur stig nákvæmni *(The four detail levels: OK by ear? «Jafnvægi» is a noun)*
+### Q7 — Fjögur stig nákvæmni *(The four detail levels, renamed 2026-09-30: OK by ear?)*
 
 **Hvenær það heyrist:** í stillingunum, þar sem valið er eftir eyranu hversu mikið
 appið segir á gangi.
 
-**Á ensku:** „Detailed / Balanced / Quiet / Silent“.
+**Á ensku:** „Detailed / Simplified / Essential / Silent“.
 
-**Hvernig það hljómar núna:** **Ítarlegt / Jafnvægi / Hljóðlátt / Þögult**.
+**Hvernig það hljómar núna:** **Ítarlegt / Einfaldað / Nauðsynlegt / Þögult**.
 
-**Það sem við erum óviss um:** „Jafnvægi“ er nafnorð en hin eru lýsingarorð, og
-„Hljóðlátt“ gæti hljómað eins og hljóðstyrkur frekar en færri tilkynningar.
+**Það sem við erum óviss um:** við vorum að endurnefna miðstigin tvö. Áður
+hétu þau „Jafnvægi“ og „Hljóðlátt“, en móðurmálshafar annarra tungumála töldu
+að „Hljóðlátt“ hljómaði eins og hljóðstyrkur. Nýju nöfnin völdum við, ekki
+móðurmálshafi íslensku. Öll fjögur eru nú lýsingarorð.
 
-**Spurningin:** eru stigin auðþekkjanleg og skýr þegar hlustað er á þau? Skiptir
-nafnorðið máli?
+**Spurningin:** eru stigin auðþekkjanleg og skýr þegar hlustað er á þau? Myndir
+þú nefna miðstigin tvö öðruvísi?
 
 ### Q8 — „Tvíbankaðu“ eða „Ýttu tvisvar“? *(Double-tap verb)*
 

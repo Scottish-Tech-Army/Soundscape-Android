@@ -27,7 +27,7 @@ phrases stay in English. Questions: `docs/translation-questions/questions-et.md`
 | Waypoint | teekonnapunkt | `unconfirmed` | |
 | Intersection | ristmik | `unconfirmed` | |
 | Sleep / Snooze | Unerežiim ; Uinak | `unconfirmed` | |
-| Detail levels | Üksikasjalik / Tasakaalustatud / Vaikne / Hääletu | `unconfirmed` | |
+| Detailed / Simplified / Essential / Silent | Üksikasjalik / Lihtsustatud / Põhiline / Hääletu | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Üksikasjalik / Tasakaalustatud / Vaikne / Hääletu |
 | dead end | ummiktee | `unconfirmed` | See ET-G1 |
 
 ## Rules

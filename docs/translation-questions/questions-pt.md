@@ -84,21 +84,25 @@ pronto!».
 
 **A pergunta:** qual prefere?
 
-### Q3 — Os quatro níveis de detalhe *(Four detail levels)*
+### Q3 — Os quatro níveis de detalhe *(Four detail levels, renamed 2026-09-30)*
 
 **Quando se ouve:** nas definições, onde se escolhe de ouvido quanto a
 aplicação diz pelo caminho.
 
-**Em inglês:** «Detailed / Balanced / Quiet / Silent».
+**Em inglês:** «Detailed / Simplified / Essential / Silent».
 
-**Como soa agora:** **Detalhado / Equilibrado / Discreto / Silencioso**. O
-Detalhado refere tudo o que está perto; o Equilibrado deixa de fora caminhos
-pequenos e repete-se menos; o Discreto refere apenas ruas, cruzamentos e pontos
-de referência; o Silencioso não faz nenhum aviso automático.
+**Como soa agora:** **Detalhado / Simplificado / Essencial / Silencioso**. O
+Detalhado refere tudo o que está perto; o Simplificado deixa de fora caminhos
+pequenos e repete-se menos; o Essencial refere apenas ruas, cruzamentos e
+pontos de referência; o Silencioso não faz nenhum aviso automático.
 
-**O que nos deixa em dúvida:** se «Discreto» se percebe como «menos avisos».
+**O que nos deixa em dúvida:** acabámos de mudar o nome dos dois níveis do
+meio. Antes eram «Equilibrado» e «Discreto», mas falantes nativos de outras
+línguas acharam que o inglês «Quiet» soava a volume. Os novos nomes foram
+escolhidos por nós, não por um falante nativo de português.
 
-**A pergunta:** são fáceis de distinguir e de perceber quando se ouvem?
+**A pergunta:** são fáceis de distinguir e de perceber quando se ouvem? Daria
+outro nome aos dois do meio?
 
 ### Q4 — Comandos Siri *(Siri phrases)*
 

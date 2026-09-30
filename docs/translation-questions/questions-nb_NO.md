@@ -71,22 +71,25 @@ telefonens varsler.
 **Spørsmålet:** Kan det forveksles med tekstmeldinger eller varsler? Finnes det
 et bedre ord?
 
-### Q2 — De fire detaljnivåene *(Four detail levels)*
+### Q2 — De fire detaljnivåene *(Four detail levels, renamed 2026-09-30)*
 
 **Når du hører det:** i innstillingene, der man etter gehør velger hvor mye
 appen sier underveis.
 
-**På engelsk:** "Detailed / Balanced / Quiet / Silent".
+**På engelsk:** "Detailed / Simplified / Essential / Silent".
 
-**Slik høres det ut nå:** **Detaljert / Balansert / Stille / Lydløs**. Detaljert
-nevner alt i nærheten; Balansert hopper over mindre stier og gjentar seg
-sjeldnere; Stille nevner bare gater, veikryss og landemerker; Lydløs gir ingen
-automatiske meldinger i det hele tatt.
+**Slik høres det ut nå:** **Detaljert / Forenklet / Grunnleggende / Lydløs**.
+Detaljert nevner alt i nærheten; Forenklet hopper over mindre stier og gjentar
+seg sjeldnere; Grunnleggende nevner bare gater, veikryss og landemerker; Lydløs
+gir ingen automatiske meldinger i det hele tatt.
 
-**Det er vi usikre på:** "Stille" og "Lydløs" ligger nær hverandre, og "Stille"
-kan oppfattes som lydstyrke.
+**Det er vi usikre på:** vi har nettopp gitt de to midterste nivåene nye navn.
+Før het de "Balansert" og "Stille", men morsmålsbrukere av andre språk syntes
+"Stille" hørtes ut som lydstyrke. De nye navnene valgte vi, ikke noen med norsk
+som morsmål.
 
 **Spørsmålet:** Er de fire nivåene lette å skille og forstå når man hører dem?
+Ville du kalt de to midterste noe annet?
 
 ### Q3 — Siri-kommandoer *(Siri phrases)*
 

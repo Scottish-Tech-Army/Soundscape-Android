@@ -26,7 +26,7 @@ Read with [`_common.md`](_common.md).
 | Waypoint | punt de ruta | `unconfirmed` | |
 | Intersection | cruïlla | `unconfirmed` | |
 | Sleep / Snooze | Repòs ; En espera | `unconfirmed` | |
-| Detail levels | Detallat / Equilibrat / Discret / Silenciós | `unconfirmed` | |
+| Detailed / Simplified / Essential / Silent | Detallat / Simplificat / Essencial / Silenciós | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Detallat / Equilibrat / Discret / Silenciós |
 | dead end | carrer sense sortida | `unconfirmed` | See CA-G1 |
 
 ## Rules

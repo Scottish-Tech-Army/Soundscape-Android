@@ -32,7 +32,7 @@ Questions: `docs/translation-questions/questions-sl.md` (Q1…Q6).
 | Landmarks | znamenitosti | `unconfirmed` | |
 | Intersection | križišče | `unconfirmed` | |
 | Sleep / Snooze | Spanje / V spanju ; V dremežu | `unconfirmed` | |
-| Detail levels | Podrobno / Uravnoteženo / Tiho / Brez zvoka | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Podrobno / Poenostavljeno / Osnovno / Brez zvoka | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Podrobno / Uravnoteženo / Tiho / Brez zvoka |
 | dead end | slepa ulica | `unconfirmed` word; case fixed 2026-09-24. See SL-G1 |
 
 ## Rules
