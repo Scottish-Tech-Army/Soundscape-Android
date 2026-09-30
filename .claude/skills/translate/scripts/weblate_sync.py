@@ -16,6 +16,7 @@ is done by Claude in the skill itself. This script only knows how to talk to
 Weblate.
 """
 import argparse
+import importlib.util
 import json
 import re
 import sys
@@ -408,6 +409,76 @@ def cmd_suggestions(args: argparse.Namespace) -> None:
             time.sleep(args.pause)
 
 
+STATE_TRANSLATED = 20
+
+
+def _strings_sync():
+    spec = importlib.util.spec_from_file_location(
+        "strings_sync", Path(__file__).resolve().parent / "strings_sync.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def needs_editing_units(c: wlc.Weblate, lang: str) -> list[dict[str, Any]]:
+    """Units Weblate holds a translation for but marks as needing work (state 10-19)."""
+    base_url = c.url
+    path = f"translations/{PROJECT}/{COMPONENT}/{lang}/units/?q=state:<translated"
+    units = []
+    while path:
+        data = with_retry(f"{lang} needs-editing", lambda p=path: c.get(p))
+        units += [u for u in data["results"] if 0 < u["state"] < STATE_TRANSLATED]
+        path = _to_path(base_url, data.get("next"))
+    return units
+
+
+def cmd_clear_needs_editing(args: argparse.Namespace) -> None:
+    """Weblate marks every translation "needs editing" when its English changes, and only
+    clears the mark when the translation text changes. A string the repo's stale check
+    acknowledged (the English change needed nothing from the language) keeps its text, so
+    Weblate would count it as untranslated forever. This sets such units back to
+    translated, but only when the repo agrees the string is up to date AND Weblate holds
+    exactly the repo's text, so a real pending translation is never hidden.
+    """
+    ss = _strings_sync()
+    fst = ss._load_stale_module()
+    langs = args.lang or ss.all_codes()
+    repo_pending = ss.pending(langs)
+    c = client()
+    cleared = held = 0
+    for i, lang in enumerate(langs):
+        units = needs_editing_units(c, lang)
+        if not units:
+            continue
+        pend = repo_pending[lang]
+        repo = ss.parse(ss.values_path(lang))
+        for u in units:
+            key = u["context"]
+            if key in pend["stale"] or key in pend["untranslated"]:
+                print(f"  held  {lang} {key}: still pending in the repo; translate it")
+                held += 1
+                continue
+            value = repo.get(key, {}).get("value")
+            repo_forms = list(value.values()) if isinstance(value, dict) else [value]
+            # The XML keeps line breaks as \n, which Weblate stores as real newlines.
+            repo_forms = [f.replace("\\n", "\n").replace("\\t", "\t") for f in repo_forms
+                          if f is not None]
+            if value is None or sorted(map(fst.normalise, repo_forms)) != sorted(
+                    map(fst.normalise, u["target"])):
+                print(f"  held  {lang} {key}: Weblate's text differs from the repo's")
+                held += 1
+                continue
+            if args.apply:
+                with_retry(f"{lang} {key}", lambda uid=u["id"]: c.request(
+                    "patch", f"units/{uid}/", data={"state": STATE_TRANSLATED}))
+            print(f"  {'cleared' if args.apply else 'would clear'}  {lang} {key}")
+            cleared += 1
+        if i < len(langs) - 1:
+            time.sleep(1)
+    verb = "Cleared" if args.apply else "Would clear (dry run; add --apply)"
+    print(f"\n{verb} {cleared}; held {held}.")
+
+
 def cmd_add_language(args: argparse.Namespace) -> None:
     c = client()
     component = c.get_component(f"{PROJECT}/{COMPONENT}")
@@ -570,6 +641,14 @@ def main() -> None:
     p_sugg.add_argument("--pause", type=float, default=PAUSE_SECONDS,
                         help="Seconds between languages (throttling protection).")
     p_sugg.set_defaults(func=cmd_suggestions)
+
+    p_clear = sub.add_parser(
+        "clear-needs-editing",
+        help="Set Weblate's 'needs editing' units back to translated where the repo says they're "
+             "up to date (acknowledged) and Weblate holds the repo's text. Dry run without --apply.")
+    p_clear.add_argument("--lang", nargs="+", help="Default: every language in the repo.")
+    p_clear.add_argument("--apply", action="store_true", help="Write the state changes.")
+    p_clear.set_defaults(func=cmd_clear_needs_editing)
 
     p_addlang = sub.add_parser("add-language", help="Add an existing Weblate language as a new translation of the component.")
     p_addlang.add_argument("--lang", required=True, help="Weblate language code, e.g. et, nn_NO, cy.")
