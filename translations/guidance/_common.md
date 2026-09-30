@@ -464,8 +464,35 @@ cardinal and gets it wrong. No wording of the template can fix that.
 
 Same shape: cs «na %1$s hodině», sk «na %1$s hodine», uk «на %1$s годині»
 (all ordinals in the locative). Slovenian «na %1$s. uri» uses an ordinal dot,
-which may or may not survive TTS. Russian «в %1$s часов» and Croatian
-«na %1$s sati» are cardinal and fine.
+which may or may not survive TTS.
+
+A cardinal template breaks too wherever the noun after the number agrees
+with it. **Correction (2026-09-30):** this rule used to say Russian «в %1$s
+часов» and Croatian «na %1$s sati» were fine. They are right only for 5–12
+(«в три часов» is wrong). The all-language review found the same fault in
+seven languages, and these were fixed the same day by moving the noun into
+the hour words:
+
+| Language | Template | Hour words |
+|---|---|---|
+| ru | «на %1$s» | «1 час», «2–4 часа», «5–12 часов» |
+| hr | «na %1$s» | «1 sat», «2–4 sata», «5–12 sati» |
+| sr | «на %1$s» | «1 сат», «2–4 сата», «5–12 сати» |
+| es | «a %1$s en punto» | «la una», «las 2» … «las 12» |
+| ca | «a %1$s en punt» | «la una», «les dues», «les 3» … «les 12» |
+| fr, fr_CA | «à %1$s» | «1 heure», «2 heures» … |
+| pt, pt_BR | «%1$s» | «à 1 hora», «às 2 horas» … |
+| ro | «la ora %1$s» (unchanged) | «două», «douăsprezece» (feminine; the rest stay digits) |
+
+Also changed for meaning, not agreement: de «bei %1$s Uhr» → «auf %1$s
+Uhr» («bei» sounds like a time of day), ar «عند الساعة» → «باتجاه الساعة»
+("in the direction of"), tr «saat %1$s'{DA}» → «saat %1$s yönünde».
+
+**Still open, for a native speaker:** sw (Swahili counts clock time from 6
+o'clock, so «saa tatu», literally "hour three", means 9 o'clock and the
+position may be heard on the opposite side), sl (the ordinal dot), el
+(«στις 1» needs «στη μία», and the TTS may read the digits as neuter), bg
+(«на 1 часа»), it («a ore 1»), et.
 
 **Fixed in code (2026-09-30):** the position now arrives as
 `relative_clock_hour_1`…`_12`. The English value is the digit, so a language

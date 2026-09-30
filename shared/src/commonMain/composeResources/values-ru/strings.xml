@@ -1354,7 +1354,7 @@
     <string name="settings_relative_directions_left_right">Слева/Справа</string>
     <string name="callout_settings_position_text">Включать расстояние и направление при озвучивании объектов интереса</string>
     <string name="callout_settings_position_description">По умолчанию уточнения об объектах интереса не содержат расстояние и направление. Эта настройка добавляет их.</string>
-    <string name="relative_clock_direction">в %1$s часов</string>
+    <string name="relative_clock_direction">на %1$s</string>
     <string name="relative_degrees_direction">под углом %1$s градусов</string>
     <string name="relative_left_right_direction_ahead">Впереди</string>
     <string name="relative_left_right_direction_ahead_left">Впереди слева</string>
@@ -1667,16 +1667,16 @@
     <string name="open_in_app_change">Выбрать другое приложение</string>
     <string name="confect_name_to_dead_end">%1$s к тупику</string>
     <string name="confect_name_to_dead_end_via">%1$s к тупику через %2$s</string>
-    <string name="relative_clock_hour_1">1</string>
-    <string name="relative_clock_hour_2">2</string>
-    <string name="relative_clock_hour_3">3</string>
-    <string name="relative_clock_hour_4">4</string>
-    <string name="relative_clock_hour_5">5</string>
-    <string name="relative_clock_hour_6">6</string>
-    <string name="relative_clock_hour_7">7</string>
-    <string name="relative_clock_hour_8">8</string>
-    <string name="relative_clock_hour_9">9</string>
-    <string name="relative_clock_hour_10">10</string>
-    <string name="relative_clock_hour_11">11</string>
-    <string name="relative_clock_hour_12">12</string>
+    <string name="relative_clock_hour_1">1 час</string>
+    <string name="relative_clock_hour_2">2 часа</string>
+    <string name="relative_clock_hour_3">3 часа</string>
+    <string name="relative_clock_hour_4">4 часа</string>
+    <string name="relative_clock_hour_5">5 часов</string>
+    <string name="relative_clock_hour_6">6 часов</string>
+    <string name="relative_clock_hour_7">7 часов</string>
+    <string name="relative_clock_hour_8">8 часов</string>
+    <string name="relative_clock_hour_9">9 часов</string>
+    <string name="relative_clock_hour_10">10 часов</string>
+    <string name="relative_clock_hour_11">11 часов</string>
+    <string name="relative_clock_hour_12">12 часов</string>
 </resources>

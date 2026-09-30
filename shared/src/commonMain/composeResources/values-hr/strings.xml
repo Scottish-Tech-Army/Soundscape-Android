@@ -699,7 +699,7 @@
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events">Greška praćenja preuzimanja za prepoznavanje govora.</string>
     <string name="voice_cmd_speech_recognition_error_unknown">Nepoznata greška prepoznavanja govora.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Prepoznavanje govora nije podržano na ovom telefonu.</string>
-    <string name="relative_clock_direction">na %1$s sati</string>
+    <string name="relative_clock_direction">na %1$s</string>
     <string name="relative_degrees_direction">na %1$s stupnjeva</string>
     <string name="relative_left_right_direction_ahead">Naprijed</string>
     <string name="relative_left_right_direction_ahead_left">Naprijed lijevo</string>
@@ -1652,16 +1652,16 @@
     <string name="open_in_app_change">Odaberi drugu aplikaciju</string>
     <string name="confect_name_to_dead_end">%1$s do slijepe ulice</string>
     <string name="confect_name_to_dead_end_via">%1$s do slijepe ulice preko %2$s</string>
-    <string name="relative_clock_hour_1">1</string>
-    <string name="relative_clock_hour_2">2</string>
-    <string name="relative_clock_hour_3">3</string>
-    <string name="relative_clock_hour_4">4</string>
-    <string name="relative_clock_hour_5">5</string>
-    <string name="relative_clock_hour_6">6</string>
-    <string name="relative_clock_hour_7">7</string>
-    <string name="relative_clock_hour_8">8</string>
-    <string name="relative_clock_hour_9">9</string>
-    <string name="relative_clock_hour_10">10</string>
-    <string name="relative_clock_hour_11">11</string>
-    <string name="relative_clock_hour_12">12</string>
+    <string name="relative_clock_hour_1">1 sat</string>
+    <string name="relative_clock_hour_2">2 sata</string>
+    <string name="relative_clock_hour_3">3 sata</string>
+    <string name="relative_clock_hour_4">4 sata</string>
+    <string name="relative_clock_hour_5">5 sati</string>
+    <string name="relative_clock_hour_6">6 sati</string>
+    <string name="relative_clock_hour_7">7 sati</string>
+    <string name="relative_clock_hour_8">8 sati</string>
+    <string name="relative_clock_hour_9">9 sati</string>
+    <string name="relative_clock_hour_10">10 sati</string>
+    <string name="relative_clock_hour_11">11 sati</string>
+    <string name="relative_clock_hour_12">12 sati</string>
 </resources>

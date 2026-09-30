@@ -1050,7 +1050,7 @@
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events">خطأ في الاستماع إلى أحداث تنزيل التعرف على الصوت.</string>
     <string name="voice_cmd_speech_recognition_error_unknown">خطأ غير معروف في التعرف على الصوت.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">التعرف على الصوت غير مدعوم على هذا الهاتف.</string>
-    <string name="relative_clock_direction">عند الساعة %1$s</string>
+    <string name="relative_clock_direction">باتجاه الساعة %1$s</string>
     <string name="relative_degrees_direction">عند %1$s درجة</string>
     <string name="relative_left_right_direction_ahead">أمام</string>
     <string name="relative_left_right_direction_ahead_left">أمام يسار</string>
