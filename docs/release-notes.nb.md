@@ -112,9 +112,9 @@ Det vi oftest hører om Soundscape, er at den sier for mye på travle steder som
 Delen *Administrer meldinger* i *Innstillinger* har nå tre innstillinger i stedet for den gamle
 listen med brytere:
 
-* **Detaljnivå for meldinger** er Lydløs, Stille, Balansert eller Detaljert. *Detaljert* er det
-  Soundscape alltid har gjort, og det er utgangspunktet. *Balansert* hopper over mindre stier og
-  tjenesteveier og gjentar seg sjeldnere. *Stille* leser bare opp gater, veikryss og landemerker.
+* **Detaljnivå for meldinger** er Lydløs, Grunnleggende, Forenklet eller Detaljert. *Detaljert* er det
+  Soundscape alltid har gjort, og det er utgangspunktet. *Forenklet* hopper over mindre stier og
+  tjenesteveier og gjentar seg sjeldnere. *Grunnleggende* leser bare opp gater, veikryss og landemerker.
   *Lydløs* gir ingen automatiske meldinger i det hele tatt, mens lydsignaler, ruter og knappene på
   startskjermen fortsatt virker. Den erstatter den gamle bryteren *Tillat meldinger*, og hvis du
   hadde den slått av, står detaljnivået nå på Lydløs.
@@ -125,7 +125,7 @@ listen med brytere:
 
 Hvilket detaljnivå som passer, endrer seg mens du går, så du trenger ikke gå inn i Innstillinger for
 å endre det. Når du trykker på *Forrige* på hodetelefonene, senkes detaljnivået ett trinn om gangen,
-fra Detaljert via Balansert og Stille til Lydløs, og så rundt til Detaljert igjen. Det nye nivået
+fra Detaljert via Forenklet og Grunnleggende til Lydløs, og så rundt til Detaljert igjen. Det nye nivået
 leses opp hver gang. Dette virker i begge modusene for medieknappene, og derfor har knappene på
 hodetelefonene endret seg litt:
 

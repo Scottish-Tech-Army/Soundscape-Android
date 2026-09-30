@@ -113,9 +113,9 @@ Useimmin kuulemme Soundscapesta, että se puhuu liikaa vilkkaissa paikoissa kute
 keskustassa. *Asetukset*-näytön *Ilmoitusten hallinta* -osiossa on nyt kolme asetusta vanhan
 kytkinluettelon sijaan:
 
-* **Ilmoitusten tarkkuus** on Äänetön, Hiljainen, Tasapainoinen tai Yksityiskohtainen.
-  *Yksityiskohtainen* on se, mitä Soundscape on aina tehnyt, ja siitä aloitetaan. *Tasapainoinen*
-  jättää pois pienet polut ja huoltotiet ja toistaa itseään harvemmin. *Hiljainen* ilmoittaa vain
+* **Ilmoitusten tarkkuus** on Äänetön, Olennainen, Yksinkertaistettu tai Yksityiskohtainen.
+  *Yksityiskohtainen* on se, mitä Soundscape on aina tehnyt, ja siitä aloitetaan. *Yksinkertaistettu*
+  jättää pois pienet polut ja huoltotiet ja toistaa itseään harvemmin. *Olennainen* ilmoittaa vain
   kadut, risteykset ja maamerkit. *Äänetön* ei anna lainkaan automaattisia ilmoituksia, mutta
   majakat, reitit ja aloitusnäytön painikkeet toimivat edelleen. Se korvaa vanhan *Salli ilmoitukset*
   -kytkimen, ja jos se oli pois päältä, tarkkuus on nyt Äänetön.
@@ -127,7 +127,7 @@ kytkinluettelon sijaan:
 
 Sopiva tarkkuus vaihtelee kävellessä, joten sitä ei tarvitse muuttaa Asetuksista. Kuulokkeiden
 *Edellinen*-painike laskee ilmoitusten tarkkuutta porras kerrallaan, Yksityiskohtaisesta
-Tasapainoisen ja Hiljaisen kautta Äänettömään ja sitten taas Yksityiskohtaiseen. Uusi taso sanotaan
+Yksinkertaistetun ja Olennaisen kautta Äänettömään ja sitten taas Yksityiskohtaiseen. Uusi taso sanotaan
 joka kerta. Tämä toimii mediapainikkeiden kummassakin tilassa, ja siksi kuulokkeiden painikkeet ovat
 hieman muuttuneet:
 

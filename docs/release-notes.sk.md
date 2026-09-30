@@ -110,9 +110,9 @@ Najčastejšie o Soundscape počúvame, že na rušných miestach, ako je centru
 Časť *Spravovať hlásenia* v *Nastaveniach* má teraz namiesto starého zoznamu prepínačov tri
 nastavenia:
 
-* **Podrobnosť hlásení** je Bez zvuku, Tichý, Vyvážený alebo Podrobný. *Podrobný* je to, čo
-  Soundscape robil vždy, a je predvolený. *Vyvážený* vynecháva menšie cesty a obslužné komunikácie a
-  menej sa opakuje. *Tichý* ohlasuje len ulice, križovatky a orientačné body. *Bez zvuku* nerobí
+* **Podrobnosť hlásení** je Bez zvuku, Základný, Zjednodušený alebo Podrobný. *Podrobný* je to, čo
+  Soundscape robil vždy, a je predvolený. *Zjednodušený* vynecháva menšie cesty a obslužné komunikácie a
+  menej sa opakuje. *Základný* ohlasuje len ulice, križovatky a orientačné body. *Bez zvuku* nerobí
   žiadne automatické hlásenia, zatiaľ čo majáky, trasy a tlačidlá na domovskej obrazovke ďalej
   fungujú. Nahrádza starý prepínač *Povoliť hlásenia*; ak ste ho mali vypnutý, nájdete Podrobnosť
   hlásení nastavenú na Bez zvuku.
@@ -124,7 +124,7 @@ nastavenia:
 
 Vhodná podrobnosť sa počas chôdze mení, takže kvôli nej nemusíte chodiť do Nastavení. Stlačením
 *Predchádzajúce* na slúchadlách znížite podrobnosť hlásení vždy o jeden stupeň, z Podrobného cez
-Vyvážený a Tichý na Bez zvuku a potom späť na Podrobný. Nový stupeň sa zakaždým ohlási. Funguje to v
+Zjednodušený a Základný na Bez zvuku a potom späť na Podrobný. Nový stupeň sa zakaždým ohlási. Funguje to v
 oboch režimoch ovládania médií, a preto sa tlačidlá slúchadiel trochu zmenili:
 
 * V *Pôvodnom režime* teraz *Ďalej* ohlási *Okolo mňa*, keď sa neprehráva žiadna trasa, a *Moja

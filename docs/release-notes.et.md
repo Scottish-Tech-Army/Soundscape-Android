@@ -109,9 +109,9 @@ Kõige sagedamini kuuleme Soundscape'i kohta, et see räägib rahvarohketes koht
 liiga palju. *Seadistuste* jaotises *Halda häälteateid* on nüüd vana lülitite loendi asemel kolm
 seadistust:
 
-* **Häälteadete detailsus** on Hääletu, Vaikne, Tasakaalustatud või Üksikasjalik. *Üksikasjalik* on
-  see, mida Soundscape on alati teinud, ja sellest alustate. *Tasakaalustatud* jätab välja väiksemad
-  rajad ja teenindusteed ning kordab ennast harvem. *Vaikne* teatab ainult tänavatest, ristmikest ja
+* **Häälteadete detailsus** on Hääletu, Põhiline, Lihtsustatud või Üksikasjalik. *Üksikasjalik* on
+  see, mida Soundscape on alati teinud, ja sellest alustate. *Lihtsustatud* jätab välja väiksemad
+  rajad ja teenindusteed ning kordab ennast harvem. *Põhiline* teatab ainult tänavatest, ristmikest ja
   maamärkidest. *Hääletu* ei tee üldse automaatseid häälteateid, kuid helimajakad, marsruudid ja
   avakuva nupud töötavad edasi. See asendab vana lüliti *Luba häälteated*; kui see oli välja lülitatud,
   on detailsus nüüd seatud olekusse Hääletu.
@@ -122,7 +122,7 @@ seadistust:
 
 Sobiv detailsus muutub kõndimise ajal, nii et selle muutmiseks ei pea seadistustesse minema.
 Kõrvaklappide nupp *Eelmine* vähendab häälteadete detailsust korraga ühe astme võrra, Üksikasjalikust
-Tasakaalustatu ja Vaikse kaudu Hääletuni ning siis uuesti Üksikasjalikuks. Uus tase öeldakse iga kord.
+Lihtsustatu ja Põhilise kaudu Hääletuni ning siis uuesti Üksikasjalikuks. Uus tase öeldakse iga kord.
 See töötab meedianuppude mõlemas režiimis, mistõttu kõrvaklappide nupud on veidi muutunud:
 
 * *Algses režiimis* teatab *Järgmine* nüüd *Minu ümber*, kui ühtegi marsruuti ei esitata, ja *Minu

@@ -109,9 +109,9 @@ i pješice i u vožnji te obuhvaća i prolazak ispod i iznad, pa se opisuju i pj
 Najčešće o Soundscapeu čujemo da previše govori na prometnim mjestima kao što je središte grada.
 Odjeljak *Upravljanje najavama* u *Postavkama* sada umjesto starog popisa prekidača ima tri postavke:
 
-* **Razina detalja najava** je Bez zvuka, Tiho, Uravnoteženo ili Detaljno. *Detaljno* je ono što je
-  Soundscape uvijek radio i s tim počinjete. *Uravnoteženo* izostavlja manje staze i servisne ceste i
-  rjeđe se ponavlja. *Tiho* najavljuje samo ulice, raskrižja i znamenitosti. *Bez zvuka* uopće ne daje
+* **Razina detalja najava** je Bez zvuka, Osnovno, Pojednostavljeno ili Detaljno. *Detaljno* je ono što je
+  Soundscape uvijek radio i s tim počinjete. *Pojednostavljeno* izostavlja manje staze i servisne ceste i
+  rjeđe se ponavlja. *Osnovno* najavljuje samo ulice, raskrižja i znamenitosti. *Bez zvuka* uopće ne daje
   automatske najave, dok svjetionici, rute i tipke na početnom zaslonu i dalje rade. Zamjenjuje stari
   prekidač *Omogući najave*; ako ste ga imali isključenog, razina detalja sada je postavljena na Bez
   zvuka.
@@ -122,7 +122,7 @@ Odjeljak *Upravljanje najavama* u *Postavkama* sada umjesto starog popisa prekid
 
 Prava razina detalja mijenja se dok hodate, pa zbog nje ne morate ulaziti u Postavke. Pritiskom na
 *Previous* na slušalicama razina detalja najava spušta se za jednu razinu odjednom, od Detaljno preko
-Uravnoteženo i Tiho do Bez zvuka, a zatim ponovno na Detaljno. Nova razina izgovara se svaki put. To
+Pojednostavljeno i Osnovno do Bez zvuka, a zatim ponovno na Detaljno. Nova razina izgovara se svaki put. To
 radi u oba načina upravljanja medijima, pa su se tipke na slušalicama malo promijenile:
 
 * U *Izvornom načinu* *Next* sada najavljuje *Oko mene* kada se ne reproducira nijedna ruta, a *Moja

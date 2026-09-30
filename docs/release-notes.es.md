@@ -119,9 +119,9 @@ Lo que más nos dicen de Soundscape es que habla demasiado en lugares concurrido
 una ciudad. La sección *Administrar avisos* de *Ajustes* tiene ahora tres ajustes en lugar de la
 antigua lista de interruptores:
 
-* **Detalle de los avisos** puede ser Silencioso, Discreto, Equilibrado o Detallado. *Detallado* es
-  lo que Soundscape ha hecho siempre, y es el punto de partida. *Equilibrado* omite los caminos
-  secundarios y las vías de servicio y se repite menos. *Discreto* solo avisa de calles, cruces y
+* **Detalle de los avisos** puede ser Silencioso, Esencial, Simplificado o Detallado. *Detallado* es
+  lo que Soundscape ha hecho siempre, y es el punto de partida. *Simplificado* omite los caminos
+  secundarios y las vías de servicio y se repite menos. *Esencial* solo avisa de calles, cruces y
   puntos de referencia. *Silencioso* no hace ningún aviso automático, mientras que las señales, las
   rutas y los botones de la pantalla principal siguen funcionando. Sustituye al antiguo interruptor
   *Permitir avisos*: si lo tenías desactivado, verás el Detalle de los avisos en Silencioso.
@@ -133,7 +133,7 @@ antigua lista de interruptores:
 
 El detalle adecuado cambia mientras caminas, así que no tienes que entrar en Ajustes para cambiarlo.
 Al pulsar *Anterior* en tus auriculares, el Detalle de los avisos baja un nivel cada vez, de
-Detallado a Equilibrado, Discreto y Silencioso, y luego vuelve a Detallado. Dice el nuevo nivel cada
+Detallado a Simplificado, Esencial y Silencioso, y luego vuelve a Detallado. Dice el nuevo nivel cada
 vez. Funciona en los dos modos de los controles multimedia, y por eso los botones de los auriculares
 han cambiado un poco:
 

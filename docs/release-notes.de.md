@@ -122,9 +122,9 @@ Das, was wir über Soundscape am häufigsten hören, ist, dass es an belebten Or
 Innenstadt zu viel sagt. Der Abschnitt *Hinweise verwalten* in den *Einstellungen* hat anstelle der
 alten Liste von Schaltern jetzt drei Einstellungen:
 
-* **Detailgrad der Hinweise** ist Stumm, Leise, Ausgewogen oder Ausführlich. *Ausführlich* ist das,
-  was Soundscape schon immer gemacht hat, und die Voreinstellung. *Ausgewogen* lässt kleinere Wege
-  und Zufahrtsstraßen weg und wiederholt sich seltener. *Leise* sagt nur Straßen, Kreuzungen und
+* **Detailgrad der Hinweise** ist Stumm, Wesentlich, Vereinfacht oder Ausführlich. *Ausführlich* ist das,
+  was Soundscape schon immer gemacht hat, und die Voreinstellung. *Vereinfacht* lässt kleinere Wege
+  und Zufahrtsstraßen weg und wiederholt sich seltener. *Wesentlich* sagt nur Straßen, Kreuzungen und
   Orientierungspunkte an. *Stumm* macht überhaupt keine automatischen Hinweise mehr, während Beacons,
   Routen und die Tasten auf dem Startbildschirm weiter funktionieren. Die Einstellung ersetzt den alten
   Schalter *Hinweise zulassen*; wenn Sie diesen ausgeschaltet hatten, steht der Detailgrad auf Stumm.
@@ -137,7 +137,7 @@ alten Liste von Schaltern jetzt drei Einstellungen:
 
 Wie viel Detail passt, ändert sich unterwegs, deshalb müssen Sie dafür nicht in die Einstellungen.
 Mit der Taste *Zurück* an Ihrem Kopfhörer senken Sie den Detailgrad jeweils um eine Stufe, von
-Ausführlich über Ausgewogen und Leise bis Stumm und dann wieder zu Ausführlich. Die neue Stufe wird
+Ausführlich über Vereinfacht und Wesentlich bis Stumm und dann wieder zu Ausführlich. Die neue Stufe wird
 jedes Mal angesagt. Das funktioniert in beiden Modi der Medientasten, und deshalb haben sich die
 Kopfhörertasten etwas geändert:
 

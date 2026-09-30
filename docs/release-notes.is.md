@@ -110,9 +110,9 @@ gangandi og á ferð og nær jafnt yfir að fara undir sem yfir, svo bæði gön
 miðbænum. Hlutinn *Stjórna tilkynningum* í *Stillingum* hefur nú þrjár stillingar í stað gamla
 rofalistans:
 
-* **Nákvæmni tilkynninga** er Þögult, Hljóðlátt, Jafnvægi eða Ítarlegt. *Ítarlegt* er það sem
-  Soundscape hefur alltaf gert og þar byrjar þú. *Jafnvægi* sleppir minni stígum og þjónustuvegum og
-  endurtekur sig sjaldnar. *Hljóðlátt* tilkynnir aðeins götur, gatnamót og kennileiti. *Þögult* gefur
+* **Nákvæmni tilkynninga** er Þögult, Nauðsynlegt, Einfaldað eða Ítarlegt. *Ítarlegt* er það sem
+  Soundscape hefur alltaf gert og þar byrjar þú. *Einfaldað* sleppir minni stígum og þjónustuvegum og
+  endurtekur sig sjaldnar. *Nauðsynlegt* tilkynnir aðeins götur, gatnamót og kennileiti. *Þögult* gefur
   engar sjálfvirkar tilkynningar, en hljóðvitar, leiðir og hnapparnir á heimaskjánum virka áfram.
   Stillingin kemur í stað gamla rofans *Heimila tilkynningar*, og ef slökkt var á honum er
   nákvæmnin nú stillt á Þögult.
@@ -123,7 +123,7 @@ rofalistans:
 
 Hæfileg nákvæmni breytist á göngunni, svo þú þarft ekki að fara í Stillingar til að breyta henni.
 Þegar þú ýtir á *Fyrri* á heyrnartólunum lækkar nákvæmni tilkynninga um eitt stig í einu, frá
-Ítarlegt um Jafnvægi og Hljóðlátt niður í Þögult og síðan aftur í Ítarlegt. Nýja stigið er sagt í
+Ítarlegt um Einfaldað og Nauðsynlegt niður í Þögult og síðan aftur í Ítarlegt. Nýja stigið er sagt í
 hvert skipti. Þetta virkar í báðum stillingum miðlastýringanna og því hafa hnapparnir á
 heyrnartólunum breyst aðeins:
 

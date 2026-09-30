@@ -115,9 +115,9 @@ O que mais ouvimos sobre o Soundscape é que ele fala demais em lugares moviment
 da cidade. A seção *Gerenciar Notificações* dos *Ajustes* agora tem três ajustes no lugar da antiga
 lista de chaves:
 
-* **Detalhe das Notificações** pode ser Silencioso, Discreto, Equilibrado ou Detalhado. *Detalhado*
-  é o que o Soundscape sempre fez, e é o ponto de partida. *Equilibrado* deixa de fora caminhos
-  secundários e vias de serviço e se repete menos. *Discreto* anuncia apenas ruas, cruzamentos e
+* **Detalhe das Notificações** pode ser Silencioso, Essencial, Simplificado ou Detalhado. *Detalhado*
+  é o que o Soundscape sempre fez, e é o ponto de partida. *Simplificado* deixa de fora caminhos
+  secundários e vias de serviço e se repete menos. *Essencial* anuncia apenas ruas, cruzamentos e
   pontos de referência. *Silencioso* não faz nenhuma notificação automática, enquanto sinalizadores,
   rotas e os botões da tela inicial continuam funcionando. Ele substitui a antiga chave *Permitir
   Notificações*: se ela estava desligada, você vai encontrar o Detalhe das Notificações em
@@ -130,7 +130,7 @@ lista de chaves:
 
 O nível de detalhe certo muda enquanto você caminha, então não é preciso ir aos Ajustes para mudá-lo.
 Ao apertar *Anterior* no fone de ouvido, o Detalhe das Notificações desce um nível por vez, de
-Detalhado para Equilibrado, Discreto e Silencioso, e depois volta para Detalhado. O novo nível é
+Detalhado para Simplificado, Essencial e Silencioso, e depois volta para Detalhado. O novo nível é
 falado a cada vez. Isso funciona nos dois modos dos controles de mídia, e por isso os botões do fone
 mudaram um pouco:
 
