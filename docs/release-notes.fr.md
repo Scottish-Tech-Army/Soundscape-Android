@@ -24,28 +24,28 @@ Les notes des versions précédentes se trouvent sur la page
   déplacez à vitesse élevée et décrit votre trajet plutôt que votre environnement immédiat.
 * **Annonce des cours d'eau et des voies ferrées franchis.** Rivières, canaux, estuaires et lignes
   de chemin de fer sont annoncés lorsque vous les traversez, à pied comme en déplacement.
-* **Choisir ce que Soundscape vous dit.** Le nouveau réglage *Détail des notifications* rend
+* **Choisir ce que Soundscape vous dit.** Le nouveau réglage *Détail des annonces* rend
   Soundscape plus discret dans les endroits animés, et *Lieux à annoncer* vous permet de choisir les
   types de lieux dont vous entendez parler. Vous pouvez changer le niveau de détail avec les boutons
   de vos écouteurs en marchant.
-* **Savoir à quelle distance se trouve la prochaine intersection.** Les intersections sont annoncées
-  à une distance régulière quand vous approchez, et la notification indique maintenant la distance
+* **Savoir à quelle distance se trouve le prochain croisement.** Les croisements sont annoncés
+  à une distance régulière quand vous approchez, et l’annonce indique maintenant la distance
   jusqu’au bord du trottoir.
 * **Rechercher un type de lieu, ou des coordonnées.** Cherchez « pharmacie » ou « arrêt de bus » pour
   trouver les plus proches, quel que soit leur nom, ou collez des coordonnées, un lien de carte ou un
   Plus Code.
 * **Ouvrir un lieu dans une autre application de cartes**, comme Google Maps, depuis les détails de
   l’emplacement ou depuis les listes.
-* **Plus d’informations sur la balise à l’écran d’accueil.** Elle affiche maintenant la distance et
-  la direction, et propose des actions de lecteur d’écran pour annoncer la balise, en savoir plus ou
+* **Plus d’informations sur la balise sonore à l’écran d’accueil.** Elle affiche maintenant la distance et
+  la direction, et propose des actions de lecteur d’écran pour annoncer la balise sonore, en savoir plus ou
   l’enregistrer comme marqueur.
 * **De meilleures adresses et de meilleurs noms de lieux.** Les lieux sans adresse propre reçoivent
   désormais la rue et le quartier où ils se trouvent, les numéros de rue sont rattachés au bon côté
   de la chaussée, et les arrêts de bus en Grande-Bretagne utilisent leur nom officiel.
 * **Vingt nouvelles langues**, portant le total à 46. Ce site de documentation est également
   traduit.
-* **Réveil au départ.** Le mode veille peut désormais réveiller Soundscape lorsque vous quittez
-  l'endroit où vous l'avez mis en veille.
+* **Reprise au départ.** Le mode pause peut désormais réactiver Soundscape lorsque vous quittez
+  l'endroit où vous l'avez mis en pause.
 * **Des distances plus courtes et plus naturelles**, avec des unités plus grandes lorsque vous vous
   déplacez rapidement.
 * **Une sortie plus rapide.** *Quitter Soundscape* figure désormais en haut du menu principal.
@@ -100,15 +100,15 @@ Les annonces habituelles pour la marche – commerces à proximité, traversées
 volontairement mises en retrait pendant le trajet, et les distances auxquelles les éléments sont
 annoncés sont nettement allongées afin que vous en soyez informé avant de les avoir dépassés.
 
-### Intersections
+### Croisements
 
-La question la plus fréquente sur les notifications d’intersection était de savoir à quelle distance
-se trouve vraiment l’intersection. Soundscape vous le dit maintenant : « Intersection à 30 mètres ».
+La question la plus fréquente sur les annonces de croisement était de savoir à quelle distance
+se trouve vraiment le croisement. Soundscape vous le dit maintenant : « Croisement à 30 mètres ».
 La distance est mesurée jusqu’au bord du trottoir de la rue que vous allez traverser, et non
-jusqu’au milieu de l’intersection, car c’est là que vous vous arrêtez réellement.
+jusqu’au milieu du croisement, car c’est là que vous vous arrêtez réellement.
 
-La notification arrive aussi à un moment plus régulier. Auparavant, elle pouvait venir à 45 mètres
-ou à 10 mètres, sans rien pour les distinguer. Elle attend maintenant que l’intersection soit à
+L’annonce arrive aussi à un moment plus régulier. Auparavant, elle pouvait venir à 45 mètres
+ou à 10 mètres, sans rien pour les distinguer. Elle attend maintenant que le croisement soit à
 environ 30 mètres, pour que la distance veuille dire à peu près la même chose à chaque fois.
 
 ### Franchissement des cours d'eau et des voies ferrées
@@ -121,14 +121,14 @@ deux décrits.
 ### Choisir ce que Soundscape vous dit
 
 Ce que l’on nous dit le plus souvent au sujet de Soundscape, c’est qu’il parle trop dans les endroits
-animés comme un centre-ville. La section *Gérer les notifications* des *Réglages* propose maintenant
+animés comme un centre-ville. La section *Gérer les annonces* des *Réglages* propose maintenant
 trois réglages à la place de l’ancienne liste d’interrupteurs :
 
 * **Détail des annonces** vaut Silencieux, Essentiel, Simplifié ou Détaillé. *Détaillé* est ce que
   Soundscape a toujours fait, et c’est la valeur de départ. *Simplifié* laisse de côté les petits
   chemins et les voies de service et se répète moins souvent. *Essentiel* n’annonce que les rues, les
   croisements et les repères. *Silencieux* ne fait plus aucune annonce automatique, tandis que
-  les balises, les itinéraires et les boutons de l’écran d’accueil continuent de fonctionner. Il
+  les balises sonores, les itinéraires et les boutons de l’écran d’accueil continuent de fonctionner. Il
   remplace l’ancien interrupteur *Autoriser les annonces* : si vous l’aviez désactivé, vous
   trouverez le Détail des annonces réglé sur Silencieux.
 * **Rues et croisements** active ou désactive les annonces sur les croisements et sur la
@@ -146,7 +146,7 @@ des contrôles multimédias, ce qui change un peu les boutons des écouteurs :
 
 * En *Mode original*, *suivant* annonce maintenant *Autour de moi* quand aucun itinéraire n’est en
   cours, et *Mon emplacement* n’est plus sur les boutons. Pendant un itinéraire, *suivant* et
-  *précédent* passent toujours d’un point de repère à l’autre.
+  *précédent* passent toujours d’une étape à l’autre.
 * En mode *Menu audio*, *précédent* ne recule plus dans le menu. *Suivant* le parcourt toujours et
   *lecture/pause* sélectionne toujours. Les marqueurs et les itinéraires du menu sont maintenant
   classés par nom, et après en avoir lancé un, le menu revient au début au lieu de vous laisser au
@@ -175,15 +175,15 @@ Les détails de l’emplacement ont un nouveau bouton **Ouvrir dans une applicat
 liste les applications de cartes et de navigation de votre téléphone. Cochez *Toujours utiliser
 cette application* et le bouton devient, par exemple, *Ouvrir dans Google Maps*, qui l’ouvre tout de
 suite ; un appui long fait revenir la liste. Les listes *Emplacements à proximité* et *Marqueurs* ont
-aussi les actions de lecteur d’écran *Ouvrir dans…* et *Partager*, à côté de *Démarrer la Balise
+aussi les actions de lecteur d’écran *Ouvrir dans…* et *Partager*, à côté de *Démarrer la balise
 sonore*.
 
-### La balise et les marqueurs
+### La balise sonore et les marqueurs
 
-* La balise de l’écran d’accueil affiche maintenant sa **distance et sa direction**, et un lecteur
-  d’écran la lit par exemple ainsi : « Balise sur Milngavie Library, 390 mètres, sud-est ». Les
-  itinéraires affichent de la même façon la distance jusqu’au point de repère en cours.
-* La balise a trois **actions de lecteur d’écran** : *Annoncer la balise* dit où elle se trouve,
+* La balise sonore de l’écran d’accueil affiche maintenant sa **distance et sa direction**, et un lecteur
+  d’écran la lit par exemple ainsi : « Balise sonore sur Milngavie Library, 390 mètres, sud-est ». Les
+  itinéraires affichent de la même façon la distance jusqu’à l’étape en cours.
+* La balise sonore a trois **actions de lecteur d’écran** : *Annoncer la balise sonore* dit où elle se trouve,
   *Informations supplémentaires* ajoute l’adresse, et *Ajouter aux marqueurs* l’enregistre.
 * Vous pouvez de nouveau **déplacer un marqueur** en faisant glisser la carte depuis l’écran
   *Modifier le marqueur*.
@@ -220,10 +220,10 @@ Les traductions sont un travail collectif et nous accueillons volontiers votre a
 corrections lorsqu'une formulation se lit mal. Chaque chaîne peut être améliorée sur
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Mode veille
+### Mode pause
 
-Le mode veille dispose désormais du **réveil au départ**. Lorsque vous mettez Soundscape en veille,
-vous pouvez lui demander de se réveiller dès que vous quittez les lieux, ce qui est utile quand vous
+Le mode pause dispose désormais de la **reprise au départ**. Lorsque vous mettez Soundscape en pause,
+vous pouvez lui demander de reprendre dès que vous quittez les lieux, ce qui est utile quand vous
 arrivez quelque part et souhaitez le silence jusqu'à votre prochain départ.
 
 ### Distances et parole

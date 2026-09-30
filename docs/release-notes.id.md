@@ -116,9 +116,9 @@ Hal yang paling sering kami dengar tentang Soundscape adalah terlalu banyak bica
 seperti pusat kota. Bagian *Kelola Pemberitahuan* di *Pengaturan* kini punya tiga pengaturan sebagai
 pengganti daftar sakelar yang lama:
 
-* **Tingkat Detail Pemberitahuan** berupa Senyap, Ringkas, Seimbang, atau Rinci. *Rinci* adalah yang
-  selama ini dilakukan Soundscape, dan menjadi pengaturan awal. *Seimbang* melewatkan jalan setapak
-  kecil dan jalan servis serta lebih jarang mengulang. *Ringkas* hanya menyebutkan jalan, persimpangan,
+* **Tingkat Detail Pemberitahuan** berupa Senyap, Esensial, Sederhana, atau Rinci. *Rinci* adalah yang
+  selama ini dilakukan Soundscape, dan menjadi pengaturan awal. *Sederhana* melewatkan jalan setapak
+  kecil dan jalan servis serta lebih jarang mengulang. *Esensial* hanya menyebutkan jalan, persimpangan,
   dan landmark. *Senyap* tidak memberikan pemberitahuan otomatis sama sekali, sementara suar, rute,
   dan tombol di layar utama tetap berfungsi. Pengaturan ini menggantikan sakelar lama *Izinkan
   Pemberitahuan*; jika sakelar itu mati, Tingkat Detail Pemberitahuan kini diatur ke Senyap.
@@ -130,7 +130,7 @@ pengganti daftar sakelar yang lama:
 
 Tingkat detail yang pas berubah saat Anda berjalan, jadi Anda tidak perlu masuk ke Pengaturan untuk
 mengubahnya. Menekan *Sebelumnya* di headphone menurunkan Tingkat Detail Pemberitahuan satu tingkat
-setiap kali, dari Rinci ke Seimbang dan Ringkas lalu Senyap, kemudian kembali ke Rinci. Tingkat yang
+setiap kali, dari Rinci ke Sederhana dan Esensial lalu Senyap, kemudian kembali ke Rinci. Tingkat yang
 baru diucapkan setiap kali. Ini berfungsi di kedua mode kontrol media, sehingga tombol headphone sedikit
 berubah:
 

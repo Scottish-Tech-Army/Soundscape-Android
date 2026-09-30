@@ -111,9 +111,9 @@ Det, vi oftest hører om Soundscape, er, at den siger for meget på travle stede
 Afsnittet *Administrer lydbeskeder* i *Indstillinger* har nu tre indstillinger i stedet for den
 gamle liste med kontakter:
 
-* **Detaljeniveau for lydbeskeder** er Lydløs, Stille, Balanceret eller Detaljeret. *Detaljeret* er
-  det, Soundscape altid har gjort, og det er udgangspunktet. *Balanceret* udelader mindre stier og
-  servicevej og gentager sig sjældnere. *Stille* annoncerer kun gader, vejkryds og landemærker.
+* **Detaljeniveau for lydbeskeder** er Lydløs, Essentiel, Forenklet eller Detaljeret. *Detaljeret* er
+  det, Soundscape altid har gjort, og det er udgangspunktet. *Forenklet* udelader mindre stier og
+  servicevej og gentager sig sjældnere. *Essentiel* annoncerer kun gader, vejkryds og landemærker.
   *Lydløs* giver slet ingen automatiske lydbeskeder, mens lydfyr, ruter og knapperne på startskærmen
   fortsat virker. Indstillingen erstatter den gamle kontakt *Tillad lydbeskeder*, og hvis du havde
   slået den fra, står detaljeniveauet nu på Lydløs.
@@ -124,7 +124,7 @@ gamle liste med kontakter:
 
 Det rette detaljeniveau skifter, mens du går, så du behøver ikke gå ind i Indstillinger for at ændre
 det. Når du trykker på *Forrige* på dine høretelefoner, sænkes detaljeniveauet ét trin ad gangen, fra
-Detaljeret over Balanceret og Stille til Lydløs og så rundt til Detaljeret igen. Det nye niveau
+Detaljeret over Forenklet og Essentiel til Lydløs og så rundt til Detaljeret igen. Det nye niveau
 siges hver gang. Det virker i begge tilstande for medieknapperne, og det betyder, at knapperne på
 høretelefonerne er ændret en smule:
 

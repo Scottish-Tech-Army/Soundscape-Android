@@ -117,9 +117,9 @@ A leggyakrabban azt halljuk a Soundscape-ről, hogy túl sokat beszél a zsúfol
 belvárosban. A *Beállítások* *Közlések kezelése* szakaszában a régi kapcsolólista helyett most három
 beállítás van:
 
-* **Közlések részletessége**: Néma, Csendes, Kiegyensúlyozott vagy Részletes. A *Részletes* az, amit a
-  Soundscape mindig is csinált, és innen indul. A *Kiegyensúlyozott* kihagyja a kisebb ösvényeket és a
-  szervizutakat, és ritkábban ismétli magát. A *Csendes* csak az utcákat, a kereszteződéseket és a
+* **Közlések részletessége**: Néma, Alapvető, Egyszerűsített vagy Részletes. A *Részletes* az, amit a
+  Soundscape mindig is csinált, és innen indul. A *Egyszerűsített* kihagyja a kisebb ösvényeket és a
+  szervizutakat, és ritkábban ismétli magát. A *Alapvető* csak az utcákat, a kereszteződéseket és a
   nevezetességeket mondja be. A *Néma* egyáltalán nem ad automatikus közléseket, a hangjelzők, az
   útvonalak és a kezdőképernyő gombjai azonban továbbra is működnek. A régi *Bejelentések
   engedélyezése* kapcsolót váltja fel; ha az ki volt kapcsolva, a részletesség most Némára van állítva.
@@ -131,7 +131,7 @@ beállítás van:
 
 A megfelelő részletesség séta közben változik, ezért a módosításához nem kell a Beállításokba mennie.
 A fejhallgató *Előző* gombjának megnyomásával a közlések részletessége egyszerre egy szinttel lejjebb
-kerül, Részletesről Kiegyensúlyozotton és Csendesen át Némáig, majd újra Részletesre. Az új szintet
+kerül, Részletesről Egyszerűsítetton és Alapvetően át Némáig, majd újra Részletesre. Az új szintet
 minden alkalommal kimondja. Ez a médiavezérlők mindkét módjában működik, ezért a fejhallgató gombjai
 kissé megváltoztak:
 

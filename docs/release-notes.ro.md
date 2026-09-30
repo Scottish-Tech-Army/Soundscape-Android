@@ -113,9 +113,9 @@ Cel mai des auzim despre Soundscape că vorbește prea mult în locurile aglomer
 orașului. Secțiunea *Gestionare anunțuri* din *Setări* are acum trei setări în locul vechii liste de
 comutatoare:
 
-* **Detaliul anunțurilor** poate fi Silențios, Discret, Echilibrat sau Detaliat. *Detaliat* este ce a
-  făcut Soundscape dintotdeauna și de aici porniți. *Echilibrat* omite potecile mici și drumurile de
-  serviciu și se repetă mai rar. *Discret* anunță doar străzi, intersecții și repere. *Silențios* nu
+* **Detaliul anunțurilor** poate fi Silențios, Esențial, Simplificat sau Detaliat. *Detaliat* este ce a
+  făcut Soundscape dintotdeauna și de aici porniți. *Simplificat* omite potecile mici și drumurile de
+  serviciu și se repetă mai rar. *Esențial* anunță doar străzi, intersecții și repere. *Silențios* nu
   face deloc anunțuri automate, iar balizele, rutele și butoanele de pe ecranul principal continuă să
   funcționeze. Înlocuiește vechiul comutator *Permite anunțurile*; dacă îl aveați dezactivat, veți
   găsi Detaliul anunțurilor setat pe Silențios.
@@ -127,7 +127,7 @@ comutatoare:
 
 Nivelul potrivit de detaliu se schimbă pe măsură ce mergeți, așa că nu trebuie să intrați în Setări ca
 să-l schimbați. Apăsând *Anterior* pe căști, Detaliul anunțurilor coboară câte un nivel, de la Detaliat
-la Echilibrat, Discret și Silențios, apoi din nou la Detaliat. Noul nivel este spus de fiecare dată.
+la Simplificat, Esențial și Silențios, apoi din nou la Detaliat. Noul nivel este spus de fiecare dată.
 Funcționează în ambele moduri ale controalelor media, iar asta înseamnă că butoanele căștilor s-au
 schimbat puțin:
 

@@ -116,9 +116,9 @@ O que mais ouvimos sobre o Soundscape é que fala demasiado em locais movimentad
 uma cidade. A secção *Gerir Avisos* das *Definições* tem agora três definições em vez da antiga lista
 de interruptores:
 
-* **Detalhe dos Avisos** pode ser Silencioso, Discreto, Equilibrado ou Detalhado. *Detalhado* é o
-  que o Soundscape sempre fez, e é o ponto de partida. *Equilibrado* deixa de fora caminhos
-  secundários e vias de serviço e repete-se menos. *Discreto* anuncia apenas ruas, cruzamentos e
+* **Detalhe dos Avisos** pode ser Silencioso, Essencial, Simplificado ou Detalhado. *Detalhado* é o
+  que o Soundscape sempre fez, e é o ponto de partida. *Simplificado* deixa de fora caminhos
+  secundários e vias de serviço e repete-se menos. *Essencial* anuncia apenas ruas, cruzamentos e
   pontos de referência. *Silencioso* não faz avisos automáticos, enquanto os sinais, os percursos e
   os botões do ecrã principal continuam a funcionar. Substitui o antigo interruptor *Permitir
   Avisos*: se o tinha desligado, vai encontrar o Detalhe dos Avisos em Silencioso.
@@ -130,7 +130,7 @@ de interruptores:
 
 O nível de detalhe certo muda enquanto caminha, por isso não precisa de ir às Definições para o
 alterar. Ao carregar em *Anterior* nos auscultadores, o Detalhe dos Avisos desce um nível de cada
-vez, de Detalhado para Equilibrado, Discreto e Silencioso, e depois volta a Detalhado. O novo nível é
+vez, de Detalhado para Simplificado, Essencial e Silencioso, e depois volta a Detalhado. O novo nível é
 dito de cada vez. Funciona nos dois modos dos controlos multimédia, e por isso os botões dos
 auscultadores mudaram um pouco:
 

@@ -113,9 +113,9 @@ Tunachosikia mara nyingi zaidi kuhusu Soundscape ni kwamba husema mno katika seh
 katikati ya mji. Sehemu ya *Dhibiti Matangazo* katika *Mipangilio* sasa ina mipangilio mitatu badala ya
 orodha ya zamani ya swichi:
 
-* **Kiwango cha Matangazo** ni Kimya, Chache, Wastani au Kwa Kina. *Kwa Kina* ndicho Soundscape imekuwa
-  ikifanya siku zote, na ndipo unapoanzia. *Wastani* huacha njia ndogo na barabara za huduma na hujirudia
-  mara chache. *Chache* hutangaza barabara, makutano na vivutio pekee. *Kimya* haitoi matangazo ya kiotomatiki
+* **Kiwango cha Matangazo** ni Kimya, Muhimu, Rahisi au Kwa Kina. *Kwa Kina* ndicho Soundscape imekuwa
+  ikifanya siku zote, na ndipo unapoanzia. *Rahisi* huacha njia ndogo na barabara za huduma na hujirudia
+  mara chache. *Muhimu* hutangaza barabara, makutano na vivutio pekee. *Kimya* haitoi matangazo ya kiotomatiki
   kabisa, huku beacon, njia na vitufe vya skrini ya mwanzo vikiendelea kufanya kazi. Unachukua nafasi ya
   swichi ya zamani *Ruhusu Matangazo ya Sauti*; kama ulikuwa umeizima, Kiwango cha Matangazo sasa kiko
   kwenye Kimya.
@@ -126,7 +126,7 @@ orodha ya zamani ya swichi:
 
 Kiwango kinachofaa hubadilika unapotembea, kwa hiyo huhitaji kwenda kwenye Mipangilio ili kukibadilisha.
 Kubonyeza *Iliyotangulia* kwenye vipokea sauti hushusha Kiwango cha Matangazo hatua moja kila mara, kutoka
-Kwa Kina kupitia Wastani na Chache hadi Kimya, kisha tena Kwa Kina. Kiwango kipya husemwa kila mara. Hii
+Kwa Kina kupitia Rahisi na Muhimu hadi Kimya, kisha tena Kwa Kina. Kiwango kipya husemwa kila mara. Hii
 hufanya kazi katika hali zote mbili za vidhibiti vya sauti, na ndiyo sababu vitufe vya vipokea sauti
 vimebadilika kidogo:
 

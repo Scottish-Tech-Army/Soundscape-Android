@@ -118,9 +118,9 @@ La cosa che ci sentiamo dire più spesso su Soundscape è che parla troppo nei l
 centro città. La sezione *Gestisci notifiche* delle *Impostazioni* ha ora tre impostazioni al posto
 della vecchia lista di interruttori:
 
-* **Dettaglio delle notifiche** può essere Silenzioso, Discreto, Bilanciato o Dettagliato.
-  *Dettagliato* è quello che Soundscape ha sempre fatto, ed è il punto di partenza. *Bilanciato*
-  tralascia i sentieri minori e le strade di servizio e si ripete meno spesso. *Discreto* annuncia
+* **Dettaglio delle notifiche** può essere Silenzioso, Essenziale, Semplificato o Dettagliato.
+  *Dettagliato* è quello che Soundscape ha sempre fatto, ed è il punto di partenza. *Semplificato*
+  tralascia i sentieri minori e le strade di servizio e si ripete meno spesso. *Essenziale* annuncia
   solo strade, incroci e punti di riferimento. *Silenzioso* non fa nessuna notifica automatica, mentre
   audiofari, percorsi e pulsanti della schermata principale continuano a funzionare. Sostituisce il
   vecchio interruttore *Consenti notifiche*: se lo avevi disattivato, troverai il Dettaglio delle
@@ -133,7 +133,7 @@ della vecchia lista di interruttori:
 
 Il dettaglio giusto cambia mentre cammini, quindi non devi entrare nelle Impostazioni per
 modificarlo. Premendo *Indietro* sulle cuffie il Dettaglio delle notifiche scende di un livello alla
-volta, da Dettagliato a Bilanciato, Discreto e Silenzioso, e poi torna a Dettagliato. Il nuovo
+volta, da Dettagliato a Semplificato, Essenziale e Silenzioso, e poi torna a Dettagliato. Il nuovo
 livello viene detto ogni volta. Funziona in entrambe le modalità dei controlli di riproduzione, e
 per questo i pulsanti delle cuffie sono cambiati un po':
 

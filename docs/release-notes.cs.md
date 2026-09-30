@@ -108,9 +108,9 @@ to pěšky i za jízdy a zahrnuje jak průchod pod, tak nad, takže je popsána 
 Nejčastěji o Soundscape slýcháme, že na rušných místech, jako je centrum města, mluví příliš. Oddíl
 *Spravovat hlášení* v *Nastavení* má teď místo starého seznamu přepínačů tři nastavení:
 
-* **Podrobnost hlášení** je Bez zvuku, Tichý, Vyvážený nebo Podrobný. *Podrobný* je to, co Soundscape
-  dělal vždycky, a je výchozí. *Vyvážený* vynechává menší cesty a obslužné komunikace a méně se
-  opakuje. *Tichý* ohlašuje jen ulice, křižovatky a orientační body. *Bez zvuku* nedělá žádná
+* **Podrobnost hlášení** je Bez zvuku, Základní, Zjednodušený nebo Podrobný. *Podrobný* je to, co Soundscape
+  dělal vždycky, a je výchozí. *Zjednodušený* vynechává menší cesty a obslužné komunikace a méně se
+  opakuje. *Základní* ohlašuje jen ulice, křižovatky a orientační body. *Bez zvuku* nedělá žádná
   automatická hlášení, zatímco majáky, trasy a tlačítka na domovské obrazovce dál fungují. Nahrazuje
   starý přepínač *Povolit hlášení*; pokud jste ho měli vypnutý, najdete Podrobnost hlášení nastavenou
   na Bez zvuku.
@@ -120,8 +120,8 @@ Nejčastěji o Soundscape slýcháme, že na rušných místech, jako je centrum
   například orientační body a autobusové zastávky. Vaše značky se ohlašují vždy.
 
 Vhodná podrobnost se za chůze mění, takže kvůli ní nemusíte chodit do Nastavení. Stisknutím
-*Předchozí* na sluchátkách snížíte podrobnost hlášení vždy o jeden stupeň, z Podrobného přes Vyvážený
-a Tichý na Bez zvuku a pak zase zpět na Podrobný. Nový stupeň se pokaždé ohlásí. Funguje to v obou
+*Předchozí* na sluchátkách snížíte podrobnost hlášení vždy o jeden stupeň, z Podrobného přes Zjednodušený
+a Základní na Bez zvuku a pak zase zpět na Podrobný. Nový stupeň se pokaždé ohlásí. Funguje to v obou
 režimech ovládání médií, a proto se tlačítka sluchátek trochu změnila:
 
 * V *Původním režimu* teď *Další* ohlásí *Kolem mě*, když se nepřehrává žádná trasa, a *Moje poloha*

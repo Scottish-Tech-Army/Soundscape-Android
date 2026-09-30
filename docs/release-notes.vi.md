@@ -112,9 +112,9 @@ bộ hành và hầm chui đều được mô tả.
 thành phố. Mục *Quản lý thông báo thoại* trong *Cài đặt* giờ có ba cài đặt thay cho danh sách công tắc
 cũ:
 
-* **Mức chi tiết thông báo** là Im lặng, Yên tĩnh, Cân bằng hoặc Chi tiết. *Chi tiết* là cách Soundscape
-  vẫn làm từ trước tới nay, và là mức khởi đầu. *Cân bằng* bỏ qua các lối đi nhỏ và đường nội bộ, và ít
-  lặp lại hơn. *Yên tĩnh* chỉ thông báo đường phố, giao lộ và điểm mốc. *Im lặng* hoàn toàn không đưa
+* **Mức chi tiết thông báo** là Im lặng, Thiết yếu, Đơn giản hoặc Chi tiết. *Chi tiết* là cách Soundscape
+  vẫn làm từ trước tới nay, và là mức khởi đầu. *Đơn giản* bỏ qua các lối đi nhỏ và đường nội bộ, và ít
+  lặp lại hơn. *Thiết yếu* chỉ thông báo đường phố, giao lộ và điểm mốc. *Im lặng* hoàn toàn không đưa
   ra thông báo tự động, trong khi đèn hiệu, lộ trình và các nút trên màn hình chính vẫn hoạt động. Nó
   thay cho công tắc cũ *Cho phép thông báo âm thanh*; nếu bạn đã tắt công tắc đó, Mức chi tiết thông
   báo giờ sẽ ở Im lặng.
@@ -124,7 +124,7 @@ cũ:
   tùy thích, ví dụ điểm mốc và trạm xe buýt. Điểm đánh dấu của bạn luôn được thông báo.
 
 Mức chi tiết phù hợp thay đổi khi bạn đi, nên bạn không cần vào Cài đặt để đổi. Nhấn *Trước đó* trên
-tai nghe sẽ hạ Mức chi tiết thông báo mỗi lần một bậc, từ Chi tiết qua Cân bằng và Yên tĩnh xuống Im
+tai nghe sẽ hạ Mức chi tiết thông báo mỗi lần một bậc, từ Chi tiết qua Đơn giản và Thiết yếu xuống Im
 lặng, rồi quay lại Chi tiết. Mỗi lần đều đọc ra mức mới. Điều này hoạt động ở cả hai chế độ điều khiển
 đa phương tiện, nên các nút trên tai nghe đã thay đổi đôi chút:
 

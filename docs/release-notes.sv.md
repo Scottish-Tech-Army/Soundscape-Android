@@ -112,9 +112,9 @@ Det vi oftast hör om Soundscape är att den säger för mycket på livliga plat
 Avsnittet *Hantera informationsljud* i *Inställningar* har nu tre inställningar i stället för den
 gamla listan med reglage:
 
-* **Detaljnivå för informationsljud** är Tyst, Lågmäld, Balanserad eller Detaljerad. *Detaljerad* är
-  det Soundscape alltid har gjort, och där börjar du. *Balanserad* hoppar över mindre stigar och
-  servicevägar och upprepar sig mer sällan. *Lågmäld* läser bara upp gator, vägkorsningar och
+* **Detaljnivå för informationsljud** är Tyst, Grundläggande, Förenklad eller Detaljerad. *Detaljerad* är
+  det Soundscape alltid har gjort, och där börjar du. *Förenklad* hoppar över mindre stigar och
+  servicevägar och upprepar sig mer sällan. *Grundläggande* läser bara upp gator, vägkorsningar och
   landmärken. *Tyst* ger inga automatiska informationsljud alls, medan ljudfyrar, rutter och knapparna
   på startskärmen fortsätter att fungera. Den ersätter det gamla reglaget *Tillåt informationsljud*,
   och om du hade det avstängt står detaljnivån nu på Tyst.
@@ -126,7 +126,7 @@ gamla listan med reglage:
 
 Vilken detaljnivå som passar ändras medan du går, så du behöver inte gå in i Inställningar för att
 ändra den. När du trycker på *Föregående* på dina hörlurar sänks detaljnivån ett steg i taget, från
-Detaljerad via Balanserad och Lågmäld till Tyst, och sedan runt till Detaljerad igen. Den nya nivån
+Detaljerad via Förenklad och Grundläggande till Tyst, och sedan runt till Detaljerad igen. Den nya nivån
 läses upp varje gång. Det fungerar i båda lägena för medieknapparna, och därför har knapparna på
 hörlurarna ändrats lite:
 

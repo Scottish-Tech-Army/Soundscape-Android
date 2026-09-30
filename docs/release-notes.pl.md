@@ -22,19 +22,19 @@ Informacje o starszych wersjach znajdują się na stronie
 
 * **Komunikaty podczas podróży samochodem, autobusem lub pociągiem.** Soundscape rozpoznaje, że
   poruszasz się z prędkością, i opisuje twoją podróż zamiast najbliższego otoczenia.
-* **Informacja o przekraczaniu wód i linii kolejowych.** Rzeki, kanały, zatoki i linie kolejowe są
-  ogłaszane, gdy je przekraczasz — zarówno pieszo, jak i w podróży.
+* **Informacja o przekraczaniu wód i linii kolejowych.** Soundscape powiadamia o rzekach,
+  kanałach, zatokach i liniach kolejowych, gdy je przekraczasz — zarówno pieszo, jak i w podróży.
 * **Wybierz, ile mówi Soundscape.** Nowe ustawienie *Szczegółowość powiadomień* sprawia, że Soundscape
-  mówi mniej w ruchliwych miejscach, a w *Miejscach do ogłaszania* wybierasz, o jakich rodzajach
+  mówi mniej w ruchliwych miejscach, a w ustawieniu *Powiadamiaj o miejscach* wybierasz, o jakich rodzajach
   miejsc chcesz słyszeć. Szczegółowość możesz zmieniać przyciskami słuchawek w trakcie marszu.
-* **Wiesz, jak daleko jest najbliższe skrzyżowanie.** Skrzyżowania są ogłaszane w stałej odległości,
+* **Wiesz, jak daleko jest najbliższe skrzyżowanie.** Soundscape powiadamia o skrzyżowaniach w stałej odległości,
   gdy się do nich zbliżasz, a powiadomienie mówi teraz, jak daleko jest do krawężnika.
 * **Szukaj rodzaju miejsca albo współrzędnych.** Wpisz „apteka” albo „przystanek autobusowy”, żeby
   znaleźć najbliższe, niezależnie od ich nazwy, albo wklej współrzędne, link do mapy lub Plus Code.
 * **Otwieraj miejsce w innej aplikacji z mapami**, np. w Mapach Google, ze szczegółów lokalizacji
   lub z list.
 * **Więcej z naprowadzania na ekranie głównym.** Pokazuje ono teraz odległość i kierunek oraz ma
-  akcje czytnika ekranu, które ogłaszają cel, podają więcej informacji albo zapisują go jako znacznik.
+  akcje czytnika ekranu, które powiadamiają o celu, podają więcej informacji albo zapisują go jako znacznik.
 * **Lepsze adresy i nazwy miejsc.** Miejsca bez własnego adresu otrzymują teraz ulicę i okolicę, w
   której się znajdują, numery domów są przypisywane do właściwej strony ulicy, a przystanki autobusowe
   w Wielkiej Brytanii używają swoich oficjalnych nazw.
@@ -69,7 +69,7 @@ pójdziesz pieszo.
 Podczas podróży usłyszysz:
 
 * **Gdzie jesteś**, co jakiś czas — drogę, którą jedziesz, i kierunek jazdy, na przykład „Jazda na
-  północ drogą M8”. Drogi z numerem są ogłaszane ich numerem, a Soundscape nie powtarza tej samej
+  północ drogą M8”. Drogi z numerem Soundscape nazywa ich numerem, a Soundscape nie powtarza tej samej
   drogi za każdym razem, gdy zmienia się nazwa ulicy.
 * **Miasta i wsie**, w kierunku których jedziesz, wraz z odległością, a także te, od których się
   oddalasz lub które po prostu mijasz.
@@ -87,7 +87,7 @@ jest trudniejsze, niż się wydaje, ponieważ autostrady i linie kolejowe częst
 kilometrami, więc spora część pracy w tym wydaniu poszła na to, by nie mylić jednego z drugim.
 
 Zwykłe komunikaty dla pieszych — pobliskie sklepy, przejścia dla pieszych i tak dalej — są celowo
-wstrzymywane podczas podróży, a odległości, na jakich ogłaszane są obiekty, zostały znacznie
+wstrzymywane podczas podróży, a odległości, z jakich Soundscape powiadamia o obiektach, zostały znacznie
 zwiększone, żebyś dowiedział się o czymś, zanim to miniesz.
 
 ### Skrzyżowania
@@ -121,10 +121,10 @@ przełączników:
   *Zezwól na powiadomienia*; jeśli był wyłączony, szczegółowość jest teraz ustawiona na Wyciszony.
 * **Ulice i skrzyżowania** włącza lub wyłącza powiadomienia o skrzyżowaniach i o ulicy, na której
   jesteś.
-* **Miejsca do ogłaszania** to lista do zaznaczenia: Wszystko, Punkty orientacyjne, Transport
+* **Powiadamiaj o miejscach** to lista do zaznaczenia: Wszystko, Punkty orientacyjne, Transport
   publiczny, Jedzenie i napoje, Sklepy spożywcze i sklepy osiedlowe, Banki i bankomaty albo Brak
-  miejsc. Zaznacz ich tyle, ile chcesz, na przykład punkty orientacyjne i przystanki autobusowe. Twoje
-  znaczniki są ogłaszane zawsze.
+  miejsc. Zaznacz ich tyle, ile chcesz, na przykład punkty orientacyjne i przystanki autobusowe. O twoich
+  znacznikach Soundscape powiadamia zawsze.
 
 Odpowiednia szczegółowość zmienia się w trakcie marszu, więc nie musisz wchodzić do Ustawień, żeby ją
 zmienić. Naciśnięcie *Poprzedni* na słuchawkach obniża szczegółowość o jeden poziom: od Szczegółowego
@@ -132,7 +132,7 @@ przez Uproszczony i Podstawowy do Wyciszonego, a potem z powrotem do Szczegóło
 słyszysz nowy poziom. Działa to w obu trybach sterowania multimediami, dlatego przyciski słuchawek
 trochę się zmieniły:
 
-* W *Trybie oryginalnym* *Następny* ogłasza teraz *Wokół mnie*, gdy żadna trasa nie jest odtwarzana,
+* W *Trybie oryginalnym* *Następny* uruchamia teraz *Wokół mnie*, gdy żadna trasa nie jest odtwarzana,
   a *Moja pozycja* nie jest już na przyciskach. Podczas odtwarzania trasy *Następny* i *Poprzedni*
   nadal przechodzą między punktami trasy.
 * W trybie *Menu audio* *Poprzedni* nie cofa się już w menu. *Następny* nadal po nim przechodzi, a
@@ -159,7 +159,7 @@ Pasek wyszukiwania rozumie teraz więcej niż nazwy miejsc:
 W szczegółach lokalizacji jest nowy przycisk **Otwórz w aplikacji z mapami**, który pokazuje
 aplikacje z mapami i nawigacją na twoim telefonie. Zaznacz *Zawsze używaj tej aplikacji*, a przycisk
 zmieni się na przykład na *Otwórz w aplikacji Mapy Google* i od razu ją otworzy; długie naciśnięcie
-przywraca listę. Listy *Miejsca w pobliżu* i *Znaczniki (pinezki)* mają też akcje czytnika ekranu
+przywraca listę. Listy *Miejsca w pobliżu* i *Znaczniki* mają też akcje czytnika ekranu
 *Otwórz w aplikacji…* i *Udostępnij*, obok *Uruchom dźwięk naprowadzający*.
 
 ### Naprowadzanie i znaczniki
@@ -167,9 +167,9 @@ przywraca listę. Listy *Miejsca w pobliżu* i *Znaczniki (pinezki)* mają też 
 * Naprowadzanie na ekranie głównym pokazuje teraz **odległość i kierunek**, a czytnik ekranu czyta
   je na przykład jako „Naprowadzanie na Milngavie Library, 390 metrów, południowy wschód”. Trasy
   pokazują w ten sam sposób odległość do bieżącego punktu trasy.
-* Naprowadzanie ma trzy **akcje czytnika ekranu**: *Powiadom o punkcie trasy* mówi, gdzie jest cel,
+* Naprowadzanie ma trzy **akcje czytnika ekranu**: *Powiadom o celu* mówi, gdzie jest cel,
   *Więcej informacji* dodaje adres, a *Dodaj do znaczników* go zapisuje.
-* Znów możesz **przesunąć znacznik**, przeciągając mapę na ekranie *Edytuj znacznik (pinezkę)*.
+* Znów możesz **przesunąć znacznik**, przeciągając mapę na ekranie *Edytuj znacznik*.
 
 ### Lepsze adresy i nazwy miejsc
 

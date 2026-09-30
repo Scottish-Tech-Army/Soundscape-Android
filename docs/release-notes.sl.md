@@ -110,9 +110,9 @@ Najpogosteje slišimo, da Soundscape na prometnih krajih, kot je mestno središ�
 Razdelek *Upravljanje zvočnih obvestil* v *Nastavitvah* ima zdaj namesto starega seznama stikal tri
 nastavitve:
 
-* **Raven podrobnosti obvestil** je Brez zvoka, Tiho, Uravnoteženo ali Podrobno. *Podrobno* je tisto,
-  kar je Soundscape počel vedno, in je izhodišče. *Uravnoteženo* izpusti manjše poti in servisne ceste
-  ter se redkeje ponavlja. *Tiho* najavi samo ulice, križišča in znamenitosti. *Brez zvoka* ne daje
+* **Raven podrobnosti obvestil** je Brez zvoka, Osnovno, Poenostavljeno ali Podrobno. *Podrobno* je tisto,
+  kar je Soundscape počel vedno, in je izhodišče. *Poenostavljeno* izpusti manjše poti in servisne ceste
+  ter se redkeje ponavlja. *Osnovno* najavi samo ulice, križišča in znamenitosti. *Brez zvoka* ne daje
   nobenih samodejnih obvestil, svetilniki, poti in gumbi na domačem zaslonu pa še naprej delujejo.
   Nadomešča staro stikalo *Omogoči zvočna obvestila*; če ste ga imeli izklopljenega, je raven
   podrobnosti zdaj nastavljena na Brez zvoka.
@@ -123,7 +123,7 @@ nastavitve:
 
 Primerna raven podrobnosti se med hojo spreminja, zato vam je ni treba spreminjati v Nastavitvah. S
 pritiskom na *Nazaj* na slušalkah znižate raven podrobnosti za eno stopnjo naenkrat, od Podrobno prek
-Uravnoteženo in Tiho do Brez zvoka ter nato spet na Podrobno. Nova raven se vsakič izgovori. To deluje
+Poenostavljeno in Osnovno do Brez zvoka ter nato spet na Podrobno. Nova raven se vsakič izgovori. To deluje
 v obeh načinih upravljanja predstavnosti, zato so se gumbi na slušalkah malo spremenili:
 
 * V *Izvirnem načinu* *Naprej* zdaj najavi *Okoli mene*, ko se ne predvaja nobena pot, *Moja

@@ -116,9 +116,9 @@ karkashin kasa.
 Abin da muka fi ji game da Soundscape shi ne yana yawan magana a wuraren da cunkoso kamar tsakiyar gari.
 Sashen *Sarrafa Sanarwa* na *Saitunan* yanzu yana da saiti uku maimakon tsohon jerin makunnai:
 
-* **Matakin Sanarwa** shi ne Shiru, Kaɗan, Daidaito ko Cikakke. *Cikakke* shi ne abin da Soundscape ke yi
-  koyaushe, kuma daga nan kake farawa. *Daidaito* yana tsallake ƙananan hanyoyi da hanyoyin hidima kuma yana
-  rage maimaitawa. *Kaɗan* yana sanar da tituna, mahaɗun hanyoyi da shahararrun wurare kawai. *Shiru* ba ya
+* **Matakin Sanarwa** shi ne Shiru, Muhimmi, Sauƙaƙe ko Cikakke. *Cikakke* shi ne abin da Soundscape ke yi
+  koyaushe, kuma daga nan kake farawa. *Sauƙaƙe* yana tsallake ƙananan hanyoyi da hanyoyin hidima kuma yana
+  rage maimaitawa. *Muhimmi* yana sanar da tituna, mahaɗun hanyoyi da shahararrun wurare kawai. *Shiru* ba ya
   yin sanarwa ta kai tsaye ko kaɗan, amma siginar sauti, tafarkuna da maɓallan babban allo suna ci gaba da
   aiki. Yana maye gurbin tsohon makunnin *Ba da Izinin Sanarwowi*; idan ka kashe shi a da, Matakin Sanarwa
   yanzu yana kan Shiru.
@@ -129,7 +129,7 @@ Sashen *Sarrafa Sanarwa* na *Saitunan* yanzu yana da saiti uku maimakon tsohon j
 
 Matakin da ya dace yana canzawa yayin da kake tafiya, don haka ba sai ka shiga Saitunan don canza shi ba.
 Danna *Na Baya* a belun kunne yana rage Matakin Sanarwa mataki ɗaya a kowane lokaci, daga Cikakke ta
-Daidaito da Kaɗan zuwa Shiru, sannan ya koma Cikakke. Ana faɗin sabon matakin kowane lokaci. Wannan yana aiki
+Sauƙaƙe da Muhimmi zuwa Shiru, sannan ya koma Cikakke. Ana faɗin sabon matakin kowane lokaci. Wannan yana aiki
 a duka yanayoyin biyu na maɓallan sarrafawa, shi ya sa maɓallan belun kunne suka ɗan canza:
 
 * A *Yanayin Asali*, idan babu tafarkin da ake kunnawa, *Na Gaba* yanzu yana sanar da *Kewaye da Ni*, kuma

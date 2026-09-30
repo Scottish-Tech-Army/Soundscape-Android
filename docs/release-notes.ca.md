@@ -113,9 +113,9 @@ El que més sovint ens diuen de Soundscape és que parla massa en llocs concorre
 ciutat. La secció *Gestiona els avisos de veu* de *Configuració* té ara tres ajustos en lloc de
 l'antiga llista d'interruptors:
 
-* **Detall dels avisos de veu** pot ser Silenciós, Discret, Equilibrat o Detallat. *Detallat* és el que
-  Soundscape ha fet sempre, i és el punt de partida. *Equilibrat* omet els camins secundaris i les vies
-  de servei i es repeteix menys. *Discret* només anuncia carrers, cruïlles i punts de referència.
+* **Detall dels avisos de veu** pot ser Silenciós, Essencial, Simplificat o Detallat. *Detallat* és el que
+  Soundscape ha fet sempre, i és el punt de partida. *Simplificat* omet els camins secundaris i les vies
+  de servei i es repeteix menys. *Essencial* només anuncia carrers, cruïlles i punts de referència.
   *Silenciós* no fa cap avís automàtic, mentre que les balises, les rutes i els botons de la pantalla
   principal continuen funcionant. Substitueix l'antic interruptor *Permet els avisos de veu*: si el
   teníeu desactivat, trobareu el Detall dels avisos de veu a Silenciós.
@@ -127,7 +127,7 @@ l'antiga llista d'interruptors:
 
 El detall adequat canvia mentre camineu, així que no cal entrar a Configuració per canviar-lo. Prémer
 *Anterior* als auriculars fa baixar el Detall dels avisos de veu un nivell cada vegada, de Detallat a
-Equilibrat, Discret i Silenciós, i després torna a Detallat. Cada vegada es diu el nou nivell.
+Simplificat, Essencial i Silenciós, i després torna a Detallat. Cada vegada es diu el nou nivell.
 Funciona en els dos modes dels controls multimèdia, i per això els botons dels auriculars han canviat
 una mica:
 

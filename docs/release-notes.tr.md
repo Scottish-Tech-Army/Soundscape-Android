@@ -114,9 +114,9 @@ hem bir yaya köprüsü hem de bir alt geçit tarif edilir.
 Soundscape hakkında en sık duyduğumuz şey, şehir merkezi gibi kalabalık yerlerde fazla konuşmasıdır.
 *Ayarlar*'daki *Anonsları yönet* bölümünde artık eski anahtar listesi yerine üç ayar var:
 
-* **Anons Ayrıntısı** Sessiz, Sakin, Dengeli ya da Ayrıntılı olabilir. *Ayrıntılı*, Soundscape'in her
-  zaman yaptığı şeydir ve başlangıç ayarıdır. *Dengeli* küçük patikaları ve servis yollarını atlar ve
-  kendini daha seyrek tekrarlar. *Sakin* yalnızca sokakları, kavşakları ve simge yapıları anons eder.
+* **Anons Ayrıntısı** Sessiz, Temel, Sadeleştirilmiş ya da Ayrıntılı olabilir. *Ayrıntılı*, Soundscape'in her
+  zaman yaptığı şeydir ve başlangıç ayarıdır. *Sadeleştirilmiş* küçük patikaları ve servis yollarını atlar ve
+  kendini daha seyrek tekrarlar. *Temel* yalnızca sokakları, kavşakları ve simge yapıları anons eder.
   *Sessiz* hiç otomatik anons yapmaz; sesli işaretler, rotalar ve ana ekran düğmeleri ise çalışmaya
   devam eder. Eski *Anonsları Etkinleştir* anahtarının yerini alır; o anahtar kapalıysa Anons Ayrıntısı
   artık Sessiz'e ayarlıdır.
@@ -128,7 +128,7 @@ Soundscape hakkında en sık duyduğumuz şey, şehir merkezi gibi kalabalık ye
 
 Uygun ayrıntı düzeyi yürüdükçe değişir; bu yüzden değiştirmek için Ayarlar'a girmeniz gerekmez.
 Kulaklığınızdaki *Geri* düğmesine her basış Anons Ayrıntısı'nı bir düzey indirir: Ayrıntılı'dan
-Dengeli ve Sakin üzerinden Sessiz'e, sonra yeniden Ayrıntılı'ya. Yeni düzey her seferinde söylenir. Bu,
+Sadeleştirilmiş ve Temel üzerinden Sessiz'e, sonra yeniden Ayrıntılı'ya. Yeni düzey her seferinde söylenir. Bu,
 medya kontrollerinin iki modunda da çalışır ve bu yüzden kulaklık düğmeleri biraz değişti:
 
 * *Orijinal Mod*'da, hiçbir rota oynatılmıyorken *İleri* artık *Etrafımda* anonsunu yapar ve *Konumum*

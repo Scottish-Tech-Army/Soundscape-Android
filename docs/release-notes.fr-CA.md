@@ -124,9 +124,9 @@ Ce que l’on nous dit le plus souvent au sujet de Soundscape, c’est qu’il p
 animés comme un centre-ville. La section *Gérer les notifications* des *Réglages* propose maintenant
 trois réglages à la place de l’ancienne liste d’interrupteurs :
 
-* **Détail des notifications** vaut Silencieux, Discret, Équilibré ou Détaillé. *Détaillé* est ce que
-  Soundscape a toujours fait, et c’est la valeur de départ. *Équilibré* laisse de côté les petits
-  chemins et les voies de service et se répète moins souvent. *Discret* n’annonce que les rues, les
+* **Détail des notifications** vaut Silencieux, Essentiel, Simplifié ou Détaillé. *Détaillé* est ce que
+  Soundscape a toujours fait, et c’est la valeur de départ. *Simplifié* laisse de côté les petits
+  chemins et les voies de service et se répète moins souvent. *Essentiel* n’annonce que les rues, les
   intersections et les repères. *Silencieux* ne fait plus aucune notification automatique, tandis que
   les balises, les itinéraires et les boutons de l’écran d’accueil continuent de fonctionner. Il
   remplace l’ancien interrupteur *Autoriser les notifications* : si vous l’aviez désactivé, vous
@@ -140,7 +140,7 @@ trois réglages à la place de l’ancienne liste d’interrupteurs :
 
 Le bon niveau de détail change au fil de la marche, et vous n’avez donc pas à passer par les
 Réglages pour le modifier. Appuyer sur *précédent* sur vos écouteurs baisse le Détail des
-notifications d’un niveau à la fois, de Détaillé à Équilibré, Discret puis Silencieux, avant de
+notifications d’un niveau à la fois, de Détaillé à Simplifié, Essentiel puis Silencieux, avant de
 revenir à Détaillé. Le nouveau niveau est annoncé à chaque fois. Cela fonctionne dans les deux modes
 des contrôles multimédias, ce qui change un peu les boutons des écouteurs :
 
