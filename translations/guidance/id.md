@@ -72,7 +72,7 @@ Nothing yet.
 
 **2026-09-29 — full review.** 48 fixes. Help, FAQ and a few UI strings still used English "beacon", "marker" and "waypoint" (38 strings) → «suar», «penanda», «titik rute» like the rest of the UI; button names now match the labels («Nonaktifkan/Aktifkan Suara Suar», «Simpan sebagai Penanda», «Penanda Terdekat»). If ID-T2 replaces «suar», one sweep covers it all. Waypoint «titik jalan» (3) → «titik rute» (ID Q3 still asks which is natural). Home button «Sekitar Saya» → «Di Sekitar Saya», matching its help page, six help texts and Siri; `tour_around_me` follows. Three hints lower-cased / made me- verbs. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 16 flagged, 15 applied in `a541af19b`. Findings: `/tmp/translation-review/id-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 16 flagged, 15 applied in `a541af19b`. Findings: `translations/review/2026-09-30-all-languages/id-findings.json`.
 Most serious fixed:
 - `osm_wreck`: A bare 'Bangkai' means a carcass or corpse.
 - `osm_rowing`: 'Dayung' is the oar itself.

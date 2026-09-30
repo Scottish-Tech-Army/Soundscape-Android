@@ -74,7 +74,7 @@ The extra *…* pair around the "tacks" word went with the sentence. The rest of
 
 **2026-09-29 — Full review of all 1586 units.** 7 fixes uploaded. The entrance templates had English word order («%2$s %1$s», «%2$s %1$s من %3$s»). Help text now uses the real labels «حفظ كعلامة», «النقل العام» and «قائمة الصوت». The verbal-noun hints were all correct. Uploaded with `--skip-validate` and re-fetched: all matched exactly.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 39 flagged, 33 applied in `aa41154b3`. Findings: `/tmp/translation-review/ar-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 39 flagged, 33 applied in `aa41154b3`. Findings: `translations/review/2026-09-30-all-languages/ar-findings.json`.
 Most serious fixed:
 - `street_description_since`: «منذ» is temporal only ('since [a time]');
 - `directions_on_road_and_settlement_since`: Same as street_description_since: «منذ» is temporal, not spatial;

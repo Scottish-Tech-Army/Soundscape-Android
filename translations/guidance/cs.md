@@ -83,7 +83,7 @@ Nothing yet.
 
 **2026-09-29 — European batch review.** 13 hints were infinitives or nouns instead of the 2pl future the template needs («přidat»/«Zobrazit»/«výběr»/«sbalit» → «přidáte»/«zobrazíte»/«vyberete»/«sbalíte»…). `faq_controlling_what_you_hear_answer` and `faq_turn_beacon_back_on_answer` named the unmute button «zapnout maják»; now «Zrušit ztlumení majáku», its label. 15 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 32 flagged, 26 applied in `6c9839a56`. Findings: `/tmp/translation-review/cs-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 32 flagged, 26 applied in `6c9839a56`. Findings: `translations/review/2026-09-30-all-languages/cs-findings.json`.
 Most serious fixed:
 - `directions_generic_train`: Goes into the 'Na %1$s' / 'Jízda … po %1$s' templates, which gives 'Na vlaku' (on the roof of the train) and 'po vlaku' (after the train).
 - `directions_generic_tram`: Same as directions_generic_train: 'Na tramvaji' means on top of the tram.

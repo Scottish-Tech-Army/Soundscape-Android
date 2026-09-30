@@ -68,7 +68,7 @@ Nothing yet.
 
 **2026-09-29 — Full review of all 1586 units.** 24 fixes uploaded. 15 hints had drifted to imperatives («…کریں», «سنیں») and now use the oblique infinitive («…کرنے», «سننے») required by «%1$s کے لیے دو بار تھپتھپائیں» (UR-B1). Help text now uses the real labels «بطور مارکر محفوظ کریں», «پبلک ٹرانزٹ» and «میرے اردگرد». Uploaded with `--skip-validate` and re-fetched: all matched exactly.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 44 flagged, 39 applied in `817db10b0`. Findings: `/tmp/translation-review/ur-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 44 flagged, 39 applied in `817db10b0`. Findings: `translations/review/2026-09-30-all-languages/ur-findings.json`.
 Most serious fixed:
 - `osm_clockmaker`: English translator note '(to distinguish from Watchmaker Shop)' leaked into the translation and is read aloud as part of the POI callout
 - `first_launch_welcome_description`: «مقامی آڈیو» means 'local audio';

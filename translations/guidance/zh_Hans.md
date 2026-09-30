@@ -97,7 +97,7 @@ here once ZH-G1 is settled.
 
 **2026-09-29 — full review.** 5 fixes. Home buttons «我的周围»/«我的前方» → «周围»/«前方», the names in the help page titles, 17 help and tour strings and the Siri phrases (the labels lose the two-line break). «原始模式» → «经典模式», the setting's label. «*取消静音信标按钮*» → «*取消静音信标*按钮» (2). Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** ZH-G1, ZH-R1, ZH-T1, ZH-T2.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 23 flagged, 18 applied in `0af603716`. Findings: `/tmp/translation-review/zh_Hans-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 23 flagged, 18 applied in `0af603716`. Findings: `translations/review/2026-09-30-all-languages/zh_Hans-findings.json`.
 Most serious fixed:
 - `faq_when_to_use_soundscape_answer`: First testimonial mistranslated: English is "got off the bus and headed off in the wrong direction", target says "got off the wrong bus" (下错公交车).
 - `confect_name_to_via`: Same C10 from–to problem as confect_name_to, plus stray spaces around the placeholders;

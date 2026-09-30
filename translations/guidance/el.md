@@ -89,7 +89,7 @@ AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 
 Uploaded with `--skip-validate`; all 26 re-fetched and matched exactly.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 50 flagged, 44 applied in `5a97d3d65`. Findings: `/tmp/translation-review/el-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 50 flagged, 44 applied in `5a97d3d65`. Findings: `translations/review/2026-09-30-all-languages/el-findings.json`.
 Most serious fixed:
 - `help_text_destination_beacons_what`: "can be muted or unmuted on the home screen" became "can be on mute or not, on the home screen": it no longer says the user can do it there.
 - `help_text_automatic_callouts_when_3`: Reads as if the app informs you "manually, by tapping": the tapping is the user's, not the app's.

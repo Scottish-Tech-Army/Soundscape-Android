@@ -98,7 +98,7 @@ entrance strings; the entrances had a fixed «do»). Brazilian and pre-reform fo
 «Rinha» → «Luta de galos», «Boliche» → «Bowling», «afastando-se» → «a afastar-se»,
 «Eléctrico» → «elétrico», «arquitectura» → «arquitetura». Held: Q6 (Landmark as «marco»).
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 37 flagged, 31 applied in `656611873`. Findings: `/tmp/translation-review/pt-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 37 flagged, 31 applied in `656611873`. Findings: `translations/review/2026-09-30-all-languages/pt-findings.json`.
 Most serious fixed:
 - `faq_when_to_use_soundscape_answer`: "situational awareness" is rendered «deteção situacional» ("situational detection");
 - `settings_voice_command_listening_prompt_description`: "Speak a listening prompt" became «Reproduzir um aviso sonoro» ("play a sound");

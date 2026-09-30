@@ -85,7 +85,7 @@ Nothing yet.
 
 **2026-09-29 — European batch review.** 5 hints: imperatives «додајте», «Прикажи… уреди» → present «додате», «прикажете… уредите»; `location_detail_action_beacon_hint` «вас звуком воде» ("they guide you") → «покренете звучно навођење до ове локације». Help: «Оближња места» → «Места у близини» (2), «Успавај» → «Спавање» (1). 8 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 53 flagged, 37 applied in `2524f21ae`. Findings: `/tmp/translation-review/sr-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 53 flagged, 37 applied in `2524f21ae`. Findings: `translations/review/2026-09-30-all-languages/sr-findings.json`.
 Most serious fixed:
 - `help_text_destination_beacons_when`: «пратите познату оријентацију» means 'follow a familiar orientation';
 - `directions_away_from_settlement`: Appended to «Путовање ка југу дуж A81 …»;

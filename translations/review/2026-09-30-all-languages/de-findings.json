@@ -1,0 +1,266 @@
+[
+ {
+  "context": "talkback_double_tap_template",
+  "source": "Double tap to %1$s",
+  "current": "Doppeltippen, um %1$s",
+  "suggested": "Doppeltippen: %1$s",
+  "reason": "DE-B1 (agreed defect): «um» needs a zu-infinitive but ~40 hints are bare infinitives, so VoiceOver says «Doppeltippen, um Audiobeacon stummschalten». Fix the template only (C13). Wording is still open question Q1 in de.md; «Doppeltippen: %1$s» is the first candidate",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s nach Sackgasse",
+  "suggested": "%1$s, Sackgasse",
+  "reason": "DE-G1 (agreed defect): «Fußweg nach Sackgasse» has no article, and «nach» suits towns rather than a road end. C21 lets the way itself be described as ending; %1$s may be a road name, so a label form avoids agreement. Wording still open question Q2 in de.md",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%1$s nach Sackgasse über %2$s",
+  "suggested": "%1$s über %2$s, Sackgasse",
+  "reason": "DE-G1 sibling of confect_name_to_dead_end: «Fußweg nach Sackgasse über Treppe» lacks the article; keep it consistent with whichever wording Q2 settles on",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_on_road_and_settlement_since",
+  "source": "On %1$s and close to %2$s, %3$s since %4$s",
+  "current": "Auf %1$s und nahe bei %2$s, %3$s seit %4$s",
+  "suggested": "Auf %1$s und nahe bei %2$s, %3$s hinter %4$s",
+  "reason": "«seit» is temporal (\"since a time\"); a distance past a station is «1,6 km hinter Westerton»",
+  "category": "meaning"
+ },
+ {
+  "context": "street_description_since",
+  "source": "On %1$s, %2$s since %3$s",
+  "current": "Auf %1$s, %2$s seit %3$s",
+  "suggested": "Auf %1$s, %2$s hinter %3$s",
+  "reason": "Same as the train variant: «125 m seit 32nd Street» uses temporal «seit» for a distance; «125 m hinter …» says \"125 m past …\"",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_direction",
+  "source": "at %1$s o'clock",
+  "current": "bei %1$s Uhr",
+  "suggested": "auf %1$s Uhr",
+  "reason": "German gives clock-face directions as «auf 3 Uhr» («Gefahr auf drei Uhr»); «bei 3 Uhr» reads as a time of day (\"at around 3 o'clock\")",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_degrees_direction",
+  "source": "at %1$s degrees",
+  "current": "bei %1$s Grad",
+  "suggested": "auf %1$s Grad",
+  "reason": "«bei 45 Grad» is how German states a temperature or angle setting, not a direction; «auf 45 Grad» reads as a bearing. Worth a native check",
+  "category": "meaning"
+ },
+ {
+  "context": "marker_name_description_hint",
+  "source": "edit the marker name",
+  "current": "den Namen der Markierung zu bearbeiten",
+  "suggested": "Den Namen der Markierung bearbeiten",
+  "reason": "zu-infinitive, unlike the ~40 other hints which are bare infinitives («Den Namen der Route ändern»). Whatever DE-B1 decides for the template, these four will then read wrong; make them match the rest",
+  "category": "formatting"
+ },
+ {
+  "context": "annotation_description_hint",
+  "source": "add an optional note to help you recognize this marker later",
+  "current": "eine optionale Notiz hinzuzufügen, damit Sie diese Markierung später wiedererkennen",
+  "suggested": "Eine optionale Notiz hinzufügen, damit Sie diese Markierung später wiedererkennen",
+  "reason": "zu-infinitive, unlike the ~40 other hints which are bare infinitives («Den Namen der Route ändern»). Whatever DE-B1 decides for the template, these four will then read wrong; make them match the rest",
+  "category": "formatting"
+ },
+ {
+  "context": "route_name_description_hint",
+  "source": "edit the route name",
+  "current": "den Namen der Route zu bearbeiten",
+  "suggested": "Den Namen der Route bearbeiten",
+  "reason": "zu-infinitive, unlike the ~40 other hints which are bare infinitives («Den Namen der Route ändern»). Whatever DE-B1 decides for the template, these four will then read wrong; make them match the rest",
+  "category": "formatting"
+ },
+ {
+  "context": "route_description_description_hint",
+  "source": "add an optional description for this route",
+  "current": "eine optionale Beschreibung für diese Route hinzuzufügen",
+  "suggested": "Eine optionale Beschreibung für diese Route hinzufügen",
+  "reason": "zu-infinitive, unlike the ~40 other hints which are bare infinitives («Den Namen der Route ändern»). Whatever DE-B1 decides for the template, these four will then read wrong; make them match the rest",
+  "category": "formatting"
+ },
+ {
+  "context": "settings_reset_button_hint",
+  "source": "reset the settings to their defaults and then restart the app.",
+  "current": "Einstellungen auf die Standardwerte zurückzusetzen und anschließend die App neu zu starten.",
+  "suggested": "Einstellungen auf die Standardwerte zurücksetzen und anschließend die App neu starten.",
+  "reason": "zu-infinitive hint while the other hints are bare infinitives; same DE-B1 template problem",
+  "category": "formatting"
+ },
+ {
+  "context": "location_detail_exit_full_screen_hint",
+  "source": "Exit the full-screen map",
+  "current": "die Vollbildkarte beenden",
+  "suggested": "Vollbildansicht der Karte beenden",
+  "reason": "«die Vollbildkarte beenden» (\"end the full-screen map\") is odd and the only hint starting lower-case with an article; the mode is what ends",
+  "category": "tone"
+ },
+ {
+  "context": "callouts_audio_beacon",
+  "source": "Distance to the Audio Beacon",
+  "current": "Distanz zum Audiobeacon",
+  "suggested": "Entfernung zum Audiobeacon",
+  "reason": "Only string using «Distanz»; its own description and every other distance string say «Entfernung»",
+  "category": "terminology"
+ },
+ {
+  "context": "offline_maps_downloading",
+  "source": "Downloading %1$s",
+  "current": "Lade %1$s herunter",
+  "suggested": "%1$s wird heruntergeladen",
+  "reason": "«Lade %1$s herunter» is a first-person verb fragment (\"[I] download…\"); status messages elsewhere use the passive («Liste der Offline-Karten wird geladen»)",
+  "category": "tone"
+ },
+ {
+  "context": "offline_maps_loading",
+  "source": "Loading…",
+  "current": "Laden…",
+  "suggested": "Wird geladen…",
+  "reason": "The loading indicator was set to «Wird geladen» on 2026-09-28; «Laden…» (a bare infinitive, can read as the verb \"load\") is the one left over",
+  "category": "terminology"
+ },
+ {
+  "context": "settings_voice_command_listening_prompt",
+  "source": "Announce listening",
+  "current": "Ansage beim Zuhören",
+  "suggested": "Zuhören ankündigen",
+  "reason": "\"Announce listening\" means say that the app is now listening; «Ansage beim Zuhören» reads as \"announcement while listening\". Its description confirms it is a prompt before recognition starts",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_destination_beacons_what",
+  "source": "Setting a beacon on a nearby location allows Soundscape to keep you informed by playing a sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.",
+  "current": "Platzieren eines Beacons an einem nahegelegenen Ort ermöglicht es Soundscape, Sie auf dem Laufenden zu halten, indem es einen Ton aus der Richtung dieses Standorts abspielt. Das Beacon kann auf dem Startbildschirm stummgeschaltet werden bzw. seine Stummschaltung kann aufgehoben werden. Außerdem zeigt Soundscape auf dem Startbildschirm Informationen über den Standort an einschließlich der Entfernung zu ihm und seiner Adresse, falls sie bekannt ist.",
+  "suggested": "Das Platzieren eines Beacons an einem nahegelegenen Ort ermöglicht es Soundscape, Sie auf dem Laufenden zu halten, indem es einen Ton aus der Richtung dieses Standorts abspielt. Das Beacon kann auf dem Startbildschirm stummgeschaltet werden bzw. seine Stummschaltung kann aufgehoben werden. Außerdem zeigt Soundscape auf dem Startbildschirm Informationen über den Standort an, einschließlich der Entfernung zu ihm und seiner Adresse, falls sie bekannt ist.",
+  "reason": "Sentence starts without its article («Platzieren eines Beacons … ermöglicht») and a comma is missing before «einschließlich»; the sibling _when string has «Das Platzieren»",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_markers_function_answer",
+  "source": "Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *Current Location* button on the home screen and then selecting *Save as Marker*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *Places Nearby* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *Location Details* screen. On this screen, select the button called *Save as Marker*.",
+  "current": "Markierungen sind Orte, die Sie gespeichert haben. Dabei kann es sich um Orte handeln, die in der App gefunden werden können, oder um völlig neue Orte, die Sie selbst hinzugefügt haben. Sie können Ihren aktuellen Standort als Markierung speichern, indem Sie auf dem Startbildschirm die Schaltfläche *„Aktueller Standort“* auswählen und dann *„Als Markierung speichern“* tippen. Andere Orte können Sie als Markierung speichern, indem Sie in der Suchleiste nach dem gewünschten Ort suchen oder die Schaltfläche *„Orte in der Nähe“* verwenden. Sobald Sie den gewünschten Ort gefunden haben, führt die Auswahl dorthin zum Bildschirm *„Standortdetails“*. Auf diesem Bildschirm wählen Sie die Schaltfläche *„Als Markierung speichern“*.",
+  "suggested": "Markierungen sind Orte, die Sie gespeichert haben. Dabei kann es sich um Orte handeln, die in der App gefunden werden können, oder um völlig neue Orte, die Sie selbst hinzugefügt haben. Sie können Ihren aktuellen Standort als Markierung speichern, indem Sie auf dem Startbildschirm die Schaltfläche *„Aktueller Standort“* auswählen und dann auf *„Als Markierung speichern“* tippen. Andere Orte können Sie als Markierung speichern, indem Sie in der Suchleiste nach dem gewünschten Ort suchen oder die Schaltfläche *„Orte in der Nähe“* verwenden. Sobald Sie den gewünschten Ort gefunden haben, führt die Auswahl dorthin zum Bildschirm *„Standortdetails“*. Auf diesem Bildschirm wählen Sie die Schaltfläche *„Als Markierung speichern“*.",
+  "reason": "«… *„Als Markierung speichern“* tippen» is missing «auf» («auf … tippen»)",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_miss_a_callout_question",
+  "source": "What if I don't understand a callout or miss it because of ambient noise?",
+  "current": "Was wenn ich einen Hinweis nicht verstehe oder ihn aufgrund der Umgebungsgeräusche verpasse?",
+  "suggested": "Was, wenn ich einen Hinweis nicht verstehe oder ihn aufgrund der Umgebungsgeräusche verpasse?",
+  "reason": "«Was, wenn …» needs the comma",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_mobile_data_use_answer",
+  "source": "The amount of mobile data used depends on how you use Soundscape. We have designed the app to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to redownload them every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *Sleep* button to put Soundscape to sleep or force close the app.",
+  "current": "Die Menge an mobilen Daten, die verwendet wird, hängt davon ab, wie Sie Soundscape nutzen. Wir haben die App so gestaltet, dass es unterwegs nur wenig Daten verbraucht, z. B. indem Punkte beim Herumlaufen gespeichert werden, sodass Sie sie nicht jedes Mal neu herunterladen müssen, wenn Sie an einen bereits besuchten Ort zurückkehren. Um den mobilen Datenverbrauch zu reduzieren, stellen Sie sicher, dass Sie wann immer möglich mit WLAN verbunden sind, insbesondere beim Herunterladen der App. Wenn Sie Soundscape nicht verwenden, sollten Sie die Schaltfläche *„Ruhemodus aktivieren“* verwenden, um Soundscape in den Ruhemodus zu versetzen, oder die App vollständig schließen.",
+  "suggested": "Die Menge an mobilen Daten, die verwendet wird, hängt davon ab, wie Sie Soundscape nutzen. Wir haben die App so gestaltet, dass sie unterwegs nur wenig Daten verbraucht, z. B. indem Punkte beim Herumlaufen gespeichert werden, sodass Sie sie nicht jedes Mal neu herunterladen müssen, wenn Sie an einen bereits besuchten Ort zurückkehren. Um den mobilen Datenverbrauch zu reduzieren, stellen Sie sicher, dass Sie wann immer möglich mit WLAN verbunden sind, insbesondere beim Herunterladen der App. Wenn Sie Soundscape nicht verwenden, sollten Sie die Schaltfläche *„Ruhemodus aktivieren“* verwenden, um Soundscape in den Ruhemodus zu versetzen, oder die App vollständig schließen.",
+  "reason": "«die App … dass es» — the pronoun must agree with feminine «die App»: «dass sie»",
+  "category": "gender"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Dies ist ein umfangreiches Update für Soundscape. Der Reisemodus wurde deutlich verbessert. Wenn Sie mit dem Auto oder Bus unterwegs sind, sagt Soundscape jetzt Straßennummern, Ihre Fahrtrichtung und nahe gelegene Ortschaften an. Außerdem wird angesagt, wenn Sie Flüsse, Kanäle, Meeresarme und Buchten überqueren. Bitte aktualisieren Sie Ihre Offline‑Karten, um diese neuen Funktionen zu erhalten. Die Beschreibungen von Bushaltestellen sind für Nutzer im Vereinigten Königreich jetzt deutlich besser. Der Ruhemodus kann jetzt automatisch aufwachen, wenn er erkennt, dass Sie sich wieder bewegen. Sie müssen ihn nicht mehr selbst aufwecken. Wir haben den zugrunde liegenden Code umstrukturiert, damit wir aus demselben Code eine iOS‑App erstellen können. Das bedeutet, dass wir in Zukunft eine iOS‑App mit allen Funktionen veröffentlichen können, die wir für Android entwickelt haben. Bitte melden Sie weiterhin alle Probleme, egal wie klein, über Support kontaktieren im Hauptmenü.",
+  "suggested": "Dies ist ein umfangreiches Update für Soundscape. Der Reisemodus wurde deutlich verbessert. Wenn Sie mit dem Auto oder Bus unterwegs sind, sagt Soundscape jetzt Straßennummern, Ihre Fahrtrichtung und nahe gelegene Ortschaften an. Außerdem wird angesagt, wenn Sie Flüsse, Kanäle, Meeresarme und Buchten überqueren. Bitte aktualisieren Sie Ihre Offline‑Karten, um diese neuen Funktionen zu erhalten. Die Beschreibungen von Bushaltestellen sind für Nutzer im Vereinigten Königreich jetzt deutlich besser. Der Ruhemodus kann jetzt automatisch aufwachen, wenn er erkennt, dass Sie sich wieder bewegen. Sie müssen ihn nicht mehr selbst aufwecken. Wir haben den zugrunde liegenden Code umstrukturiert, damit wir aus demselben Code eine iOS‑App erstellen können. Das bedeutet, dass wir in Zukunft eine iOS‑App mit allen Funktionen veröffentlichen können, die wir für Android entwickelt haben. Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support kontaktieren“ im Hauptmenü.",
+  "reason": "The menu item name runs into the sentence («über Support kontaktieren im Hauptmenü»); quote it as the other help text does (no markdown, so plain „…“)",
+  "category": "formatting"
+ },
+ {
+  "context": "first_launch_callouts_example_3",
+  "source": "Main Street goes left",
+  "current": "Hauptstraße geht nach links",
+  "suggested": "Hauptstraße geht nach links ab",
+  "reason": "The example is meant to sound like a real callout, which is «%1$s, geht nach links ab» (directions_name_goes_left)",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_callouts_example_4",
+  "source": "Main Street goes right",
+  "current": "Hauptstraße geht nach rechts",
+  "suggested": "Hauptstraße geht nach rechts ab",
+  "reason": "Same as example_3: real callout is «geht nach rechts ab»",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_public_park",
+  "source": "Public Park",
+  "current": "öffentlicher Park",
+  "suggested": "Öffentlicher Park",
+  "reason": "Lower-case start; every other place type is capitalised and these are spoken/shown at the start of a callout",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_public_building",
+  "source": "Public Building",
+  "current": "öffentliches Gebäude",
+  "suggested": "Öffentliches Gebäude",
+  "reason": "Lower-case start; every other place type is capitalised and these are spoken/shown at the start of a callout",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_clock",
+  "source": "Clock",
+  "current": "öffentliche Uhr",
+  "suggested": "Öffentliche Uhr",
+  "reason": "Lower-case start; every other place type is capitalised and these are spoken/shown at the start of a callout",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_fire_flapper",
+  "source": "Fire Flapper",
+  "current": "Werkzeug zum Löschen kleiner Brände",
+  "suggested": "Feuerpatsche",
+  "reason": "German has a word for this tool, «Feuerpatsche»; «Werkzeug zum Löschen kleiner Brände» is a long paraphrase in a callout",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_speed_camera",
+  "source": "Speed Camera",
+  "current": "Geschwindigkeitskamera",
+  "suggested": "Blitzer",
+  "reason": "«Geschwindigkeitskamera» is a calque; German says «Blitzer» (or «Radarfalle»)",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_traffic_cones",
+  "source": "Traffic Cones",
+  "current": "Verkehrskegel",
+  "suggested": "Leitkegel",
+  "reason": "The German term is «Leitkegel» (or «Pylonen»); «Verkehrskegel» is a calque",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_cycle_barrier",
+  "source": "Cycle Barrier",
+  "current": "Fahrradschranke",
+  "suggested": "Umlaufsperre",
+  "reason": "OSM barrier=cycle_barrier is the staggered barrier German calls «Umlaufsperre» (Drängelgitter); «Fahrradschranke» suggests a lifting bar",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_lift_gate",
+  "source": "Lift Gate",
+  "current": "Hubtor",
+  "suggested": "Schranke",
+  "reason": "A lift gate (boom barrier) is a «Schranke»; «Hubtor» is an industrial roller door",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_variety_store",
+  "source": "Variety Store",
+  "current": "Ramschladen",
+  "suggested": "Sonderpostenmarkt",
+  "reason": "«Ramschladen» is pejorative (\"junk shop\"); a neutral name for a low-cost general store is «Sonderpostenmarkt» or «Kleinpreisgeschäft»",
+  "category": "tone"
+ }
+]

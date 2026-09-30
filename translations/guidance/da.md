@@ -115,7 +115,7 @@ Microsoft's «Kører nord».*
 
 Uploaded with `--skip-validate`; all 101 re-fetched and matched exactly.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 87 flagged, 85 applied in `8a690d674`. Findings: `/tmp/translation-review/da-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 87 flagged, 85 applied in `8a690d674`. Findings: `translations/review/2026-09-30-all-languages/da-findings.json`.
 Most serious fixed:
 - `osm_post_box`: false friend. Danish «postboks» is a P.O. box; a street post box is «postkasse».
 - `osm_tax`: «Skat» is heard as the Danish tax authority (Skattestyrelsen, known as SKAT) or simply "tax".

@@ -70,7 +70,7 @@ Nothing uploaded.
 
 **2026-09-29 — European batch review.** 10 hints were imperatives («Schimbă», «Afișează», «Restrânge», «deschide meniul», «resetați…») → «a» + infinitive; `annotation_description_hint` «vă… recunoașteți» → «te… recunoști» (register «tu»). 11 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 72 flagged, 69 applied in `9067e59c1`. Findings: `/tmp/translation-review/ro-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 72 flagged, 69 applied in `9067e59c1`. Findings: `translations/review/2026-09-30-all-languages/ro-findings.json`.
 Most serious fixed:
 - `first_launch_permissions_title`: Ungrammatical: a genitive/dative «aplicației» needs the articled head noun «Permisiunile».
 - `faq_controlling_what_you_hear_answer`: «a relua» is transitive;

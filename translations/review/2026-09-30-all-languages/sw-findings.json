@@ -1,0 +1,218 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Hii ni sasisho kubwa la Soundscape. Hali ya usafiri imeboreshwa sana. Unaposafiri kwa gari au basi, Soundscape sasa hutangaza namba za barabara, mwelekeo wa safari yako na makazi yaliyo karibu. Pia hutangaza unapovuka mito, mifereji, hori na ghuba. Tafadhali sasisha ramani zako za nje ya mtandao ili kupata vipengele hivi vipya. Maelezo ya vituo vya basi sasa ni bora zaidi kwa watumiaji nchini Uingereza. Hali ya usingizi sasa inaweza kuamka kiotomatiki inapogundua kuwa unatembea tena. Hutahitaji tena kukumbuka kuiamsha wewe mwenyewe. Tumepanga upya msimbo wa msingi ili tuweze kujenga programu ya iOS kutoka msimbo huohuo. Hii inamaanisha kuwa siku zijazo tunaweza kutoa programu ya iOS yenye vipengele vyote tulivyounda kwa ajili ya Android. Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia Wasiliana na Usaidizi kwenye menyu kuu.",
+  "suggested": "\nHili ni sasisho kubwa la Soundscape.\n\nHali ya usafiri imeboreshwa sana. Unaposafiri kwa gari au basi, Soundscape sasa hutangaza namba za barabara, mwelekeo wa safari yako na makazi yaliyo karibu. Pia hutangaza unapovuka mito, mifereji, hori na ghuba. Tafadhali sasisha ramani zako za nje ya mtandao ili kupata vipengele hivi vipya. Maelezo ya vituo vya basi sasa ni bora zaidi kwa watumiaji nchini Uingereza.\n\nHali ya kulala sasa inaweza kuamka kiotomatiki inapogundua kuwa unatembea tena. Hutahitaji tena kukumbuka kuiamsha wewe mwenyewe.\n\nTumepanga upya msimbo wa msingi ili tuweze kujenga programu ya iOS kutoka msimbo huohuo. Hii inamaanisha kuwa siku zijazo tunaweza kutoa programu ya iOS yenye vipengele vyote tulivyounda kwa ajili ya Android.\n\nTafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia Wasiliana na Usaidizi kwenye menyu kuu.\n",
+  "reason": "All four paragraph breaks (and the leading/trailing newline) were lost, so the release-notes dialog shows one block; also 'Hali ya usingizi' should be the corpus term 'Hali ya kulala' for Sleep mode, and sasisho takes 'Hili'",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Nearby Markers* to hear about the locations of places you know of.",
+  "current": "Unapojaribu kujielekeza na kujua mazingira yanayokuzunguka, tumia *Alama za Karibu* ili kusikia kuhusu mahali ulipo alama unazozifahamu.",
+  "suggested": "Unapojaribu kujielekeza na kujua mazingira yanayokuzunguka, tumia *Alama za Karibu* ili kusikia kuhusu mahali zilipo sehemu unazozifahamu.",
+  "reason": "'mahali ulipo alama unazozifahamu' says 'where you are markers you know' (ulipo = where YOU are); should be where the known places are",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_destination_beacons_when",
+  "source": "Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.",
+  "current": "Kuweka beacon ni muhimu unapotaka kufuatilia alama unayoifahamu wakati unachunguza eneo jipya, au unapokwenda mahali na unataka kujulishwa kuhusu mazingira yanayokuzunguka njiani. Kipengele cha beacon hakikupi maelekezo ya hatua kwa hatua, bali hukupa sauti endelevu inayokujulisha upande ulipo beacon, kulingana na mahali ulipo sasa. Kwa kutumia beacon ya sauti, ujuzi wako wa kutafuta njia, na hata programu yako uipendayo ya usafiri, unaweza kuchagua jinsi unavyotaka kufika mahali pa karibu wewe mwenyewe.",
+  "suggested": "Kuweka beacon ni muhimu unapotaka kufuatilia kivutio unachokifahamu wakati unachunguza eneo jipya, au unapokwenda mahali na unataka kujulishwa kuhusu mazingira yanayokuzunguka njiani. Kipengele cha beacon hakikupi maelekezo ya hatua kwa hatua, bali hukupa sauti endelevu inayokujulisha upande ulipo beacon, kulingana na mahali ulipo sasa. Kwa kutumia beacon ya sauti, ujuzi wako wa kutafuta njia, na hata programu yako uipendayo ya uelekezaji, unaweza kuchagua jinsi unavyotaka kufika mahali pa karibu wewe mwenyewe.",
+  "reason": "'familiar landmark' rendered with 'alama', the app's word for Marker, so it reads 'keep track of a familiar marker'; also 'navigation app' is 'programu ya uelekezaji' elsewhere, not 'ya usafiri' (transport app)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_use_with_wayfinding_apps_answer",
+  "source": "Soundscape is designed to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.",
+  "current": "Soundscape imeundwa ili kusaidia kuziba maelezo kuhusu mazingira yako ambayo huenda usingekuwa nayo vinginevyo. Ingawa haikuundwa kama programu ya maelekezo ya hatua kwa hatua, inaweza kutumika pamoja na programu kama hizo kutoa taarifa za ziada. Ili kutumia Soundscape pamoja na programu hizo, anzisha kwanza programu yako ya usafiri. Kisha, hamia kwenye Soundscape na uweke beacon kwenye mahali panapoenda sawa na kile kilichopo kwenye programu ya usafiri. Kwa wakati huo, programu zote mbili zitakuwa zinafanya kazi nawe utasikia maelekezo ya kutembea kutoka kwenye programu yako ya usafiri, huku ukipata masasisho kuhusu sehemu za kuvutia, makutano ya barabara, na umbali wako hadi mahali unapoenda kutoka Soundscape.",
+  "suggested": "Soundscape imeundwa ili kusaidia kuziba maelezo kuhusu mazingira yako ambayo huenda usingekuwa nayo vinginevyo. Ingawa haikuundwa kama programu ya maelekezo ya hatua kwa hatua, inaweza kutumika pamoja na programu kama hizo kutoa taarifa za ziada. Ili kutumia Soundscape pamoja na programu hizo, anzisha kwanza programu yako ya uelekezaji. Kisha, hamia kwenye Soundscape na uweke beacon kwenye mahali palepale ulipochagua kwenye programu ya uelekezaji. Kwa wakati huo, programu zote mbili zitakuwa zinafanya kazi nawe utasikia maelekezo ya kutembea kutoka kwenye programu yako ya uelekezaji, huku ukipata masasisho kuhusu sehemu za kuvutia, makutano ya barabara, na umbali wako hadi mahali unapoenda kutoka Soundscape.",
+  "reason": "'mahali panapoenda sawa na kile kilichopo' is garbled ('the place where it goes, same as what is in'); and 'navigation app' is rendered 'programu ya usafiri' (transport app) instead of the corpus 'programu ya uelekezaji'",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_prompt_message",
+  "source": "You are ready for your first walk with Soundscape. To get started, choose a nearby destination and start the audio beacon — you’ll hear it playing in the direction of your destination.",
+  "current": "Uko tayari kwa matembezi yako ya kwanza na Soundscape. Ili kuanza, chagua mahali pa karibu unapoenda na uanzishe beacon ya sauti — utaisikia ikilia kutoka upande unaoelekea.",
+  "suggested": "Uko tayari kwa matembezi yako ya kwanza na Soundscape. Ili kuanza, chagua mahali pa karibu unapoenda na uanzishe beacon ya sauti — utaisikia ikilia kutoka upande wa unakoelekea.",
+  "reason": "'upande unaoelekea' means 'the direction you are facing', not 'the direction of your destination'; first_launch_beacon_message_1 already uses 'upande wa unakoelekea'",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_beacon_on_home_question",
+  "source": "How do I set a beacon on my home?",
+  "current": "Ninawezaje kuweka beacon kwenye nyumbani kwangu?",
+  "suggested": "Ninawezaje kuweka beacon nyumbani kwangu?",
+  "reason": "'kwenye nyumbani kwangu' doubles the locative ('on at my home'); the answer string itself says 'nyumbani kwako'",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_assistant_commands_ios",
+  "source": "*\"Soundscape surroundings\"* — then *My Location*, *Around Me*, *Ahead of Me* or *Nearby Markers*.\\n\\n*\"Soundscape route\"* — then *Next Waypoint*, *Previous Waypoint*, *Mute Beacon* or *Stop*.\\n\\n*\"Soundscape start route\"* — then the name of one of your saved routes.\\n\\n*\"Soundscape beacon\"* — then the name of one of your saved markers.\\n\\n*\"Soundscape stop beacon\"*.\\n\\n*\"Soundscape detail\"* — then *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\n*\"Soundscape list\"* — then *Routes*, *Markers* or *Commands*.\\n\\nSaying *\"Soundscape list commands\"* reads this list of commands back to you.",
+  "current": "*Soundscape surroundings* — kisha *Mahali Nilipo*, *Karibu Nami*, *Mbele Yangu* au *Alama za Karibu*.\\n\\n*Soundscape route* — kisha *Kituo Kinachofuata*, *Kituo Kilichotangulia*, *Zima Sauti ya Beacon* au *Simamisha*.\\n\\n*Soundscape start route* — kisha jina la mojawapo ya njia zako zilizohifadhiwa.\\n\\n*Soundscape beacon* — kisha jina la mojawapo ya alama zako zilizohifadhiwa.\\n\\n*Soundscape stop beacon*.\\n\\n*Soundscape detail* — kisha *Kimya*, *Muhimu*, *Rahisi* au *Kwa Kina*, ili kubadilisha kiasi ambacho Soundscape husema unapotembea. *Kimya* huzima matangazo ya kiotomatiki.\\n\\n*Soundscape list* — kisha *Njia*, *Alama* au *Amri*.\\n\\nUkisema *Soundscape list commands*, orodha hii ya amri husomwa kwako.",
+  "suggested": "*Soundscape surroundings* — kisha *Mahali Nilipo*, *Karibu Nami*, *Mbele Yangu* au *Alama za Karibu*.\\n\\n*Soundscape route* — kisha *Kituo Kinachofuata*, *Kituo Kilichopita*, *Zima Sauti ya Beacon* au *Simamisha*.\\n\\n*Soundscape start route* — kisha jina la mojawapo ya njia zako zilizohifadhiwa.\\n\\n*Soundscape beacon* — kisha jina la mojawapo ya alama zako zilizohifadhiwa.\\n\\n*Soundscape stop beacon*.\\n\\n*Soundscape detail* — kisha *Kimya*, *Muhimu*, *Rahisi* au *Kwa Kina*, ili kubadilisha kiasi ambacho Soundscape husema unapotembea. *Kimya* huzima matangazo ya kiotomatiki.\\n\\n*Soundscape list* — kisha *Njia*, *Alama* au *Amri*.\\n\\nUkisema *Soundscape list commands*, orodha hii ya amri husomwa kwako.",
+  "reason": "Names the Previous Waypoint choice 'Kituo Kilichotangulia', but the button/choice label (route_detail_action_previous) is 'Kituo Kilichopita'",
+  "category": "terminology"
+ },
+ {
+  "context": "help_remote_page_title",
+  "source": "Using Media Controls",
+  "current": "Kutumia Vidhibiti vya Media",
+  "suggested": "Kutumia Vidhibiti vya Sauti",
+  "reason": "Help title says 'Vidhibiti vya Media' but the Settings section it describes (menu_media_controls) is 'Vidhibiti vya Sauti', and the help body uses that too",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_1",
+  "source": "**Turning callouts on or off :**\\n\\n Turning callouts off will silence the app. Callouts can be turned off in the *Manage Callouts* section of the *Settings* screen by setting *Callout Detail* to *Silent*, and turned back on by choosing any other level. On iPhone you can do the same by asking Siri, and on Android the same will work through Gemini once Google releases support for it. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *previous* moves down through *Detailed*, *Simplified*, *Essential* and *Silent*, and one more press goes back to *Detailed*. See the *Using Media Controls* help topic. Alternatively, you can use the *Sleep* button in the top-right corner of the home screen to stop Soundscape from making callouts until you wake it up.",
+  "current": "**Kuwasha au kuzima matangazo :**\\n\\n Kuzima matangazo kutaifanya programu ikae kimya. Matangazo yanaweza kuzimwa katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio* kwa kuweka *Kiwango cha Matangazo* kuwa *Kimya*, na yanawashwa tena kwa kuchagua kiwango kingine chochote. Kwenye iPhone unaweza kufanya vivyo hivyo kwa kumwomba Siri, na kwenye Android vivyo hivyo vitafanya kazi kupitia Gemini mara Google itakapotoa uwezo huo. Unaweza pia kuifanya Soundscape iwe kimya hatua kwa hatua kwa kutumia vitufe vya kudhibiti sauti kwenye vipokea sauti vyako: kila unapobonyeza *iliyotangulia* hushuka kiwango kimoja kupitia *Kwa Kina*, *Rahisi*, *Muhimu* na *Kimya*, na kubonyeza mara nyingine hurudi kwenye *Kwa Kina*. Angalia mada ya usaidizi ya *Kutumia Vidhibiti vya Media*. Vinginevyo, unaweza kutumia kitufe cha *Lala* kilichopo kona ya juu kulia ya skrini ya mwanzo ili kuzuia Soundscape kutoa matangazo mpaka utakapoiamsha.",
+  "suggested": "**Kuwasha au kuzima matangazo :**\\n\\n Kuzima matangazo kutaifanya programu ikae kimya. Matangazo yanaweza kuzimwa katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio* kwa kuweka *Kiwango cha Matangazo* kuwa *Kimya*, na yanawashwa tena kwa kuchagua kiwango kingine chochote. Kwenye iPhone unaweza kufanya vivyo hivyo kwa kumwomba Siri, na kwenye Android vivyo hivyo vitafanya kazi kupitia Gemini mara Google itakapotoa uwezo huo. Unaweza pia kuifanya Soundscape iwe kimya hatua kwa hatua kwa kutumia vitufe vya kudhibiti sauti kwenye vipokea sauti vyako: kila unapobonyeza *iliyotangulia* hushuka kiwango kimoja kupitia *Kwa Kina*, *Rahisi*, *Muhimu* na *Kimya*, na kubonyeza mara nyingine hurudi kwenye *Kwa Kina*. Angalia mada ya usaidizi ya *Kutumia Vidhibiti vya Sauti*. Vinginevyo, unaweza kutumia kitufe cha *Lala* kilichopo kona ya juu kulia ya skrini ya mwanzo ili kuzuia Soundscape kutoa matangazo mpaka utakapoiamsha.",
+  "reason": "Refers to the help topic as '*Kutumia Vidhibiti vya Media*'; must follow help_remote_page_title if that is changed to match the Settings name 'Vidhibiti vya Sauti' (change both or neither)",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "Kuna hali 2 za uendeshaji za vitufe vya kudhibiti sauti. Hali inaweza kuchaguliwa katika sehemu ya *Mipangilio* *Vidhibiti vya Sauti*. Hali hizo ni:\\n\\n *Hali ya Awali*. \\n\\n⏯ Cheza/Simamisha: Hubadilisha kuwasha na kuzima sauti ya beacon. \\n\\n⏭ Ifuatayo: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kinachofuata katika njia hiyo. Ikiwa hakuna njia inayochezwa, hutangaza *Karibu Nami*.\\n\\n⏮ Iliyotangulia: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kilichotangulia katika njia hiyo. Ikiwa hakuna njia inayochezwa, hubadilisha *Kiwango cha Matangazo*, kikiwa kimya zaidi kwa kiwango kimoja kila unapobonyeza: *Kwa Kina*, *Rahisi*, *Muhimu*, *Kimya*, kisha kurudi kwenye *Kwa Kina*.\\n\\n\\n\\n*Menyu ya Sauti*. \\n\\n\\n\\n⏭ Ifuatayo husogea kupitia mfululizo wa chaguo za menyu ambazo programu huzieleza kwa maandishi kwenda sauti, na hurudi kwenye chaguo la kwanza baada ya la mwisho. ⏯ Cheza/Simamisha kisha huamsha programu kutekeleza chaguo lililoelezwa. Kuna menyu moja ya ngazi ya juu ambayo ina menyu ndogo tu kama chaguo. Kila menyu ndogo ina kundi la vitendo vinavyofanana.\\n\\n⏮ Iliyotangulia haisogei kupitia menyu. Badala yake hubadilisha *Kiwango cha Matangazo*, sawasawa na inavyofanya katika Hali ya Awali, hivyo kitufe kilekile hupunguza sauti ya programu katika hali yoyote unayotumia.",
+  "suggested": "Kuna hali 2 za uendeshaji za vitufe vya kudhibiti sauti. Hali inaweza kuchaguliwa katika sehemu ya *Mipangilio* *Vidhibiti vya Sauti*. Hali hizo ni:\\n\\n *Hali ya Awali*. \\n\\n⏯ Cheza/Simamisha: Hubadilisha kuwasha na kuzima sauti ya beacon. \\n\\n⏭ Ifuatayo: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kinachofuata katika njia hiyo. Ikiwa hakuna njia inayochezwa, hutangaza *Karibu Nami*.\\n\\n⏮ Iliyotangulia: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kilichotangulia katika njia hiyo. Ikiwa hakuna njia inayochezwa, hubadilisha *Kiwango cha Matangazo*, kikiwa kimya zaidi kwa kiwango kimoja kila unapobonyeza: *Kwa Kina*, *Rahisi*, *Muhimu*, *Kimya*, kisha kurudi kwenye *Kwa Kina*.\\n\\n\\n\\n*Menyu ya Sauti*. \\n\\n\\n\\n⏭ Ifuatayo husogea kupitia mfululizo wa chaguo za menyu ambazo programu huzieleza kwa maandishi kwenda sauti, na hurudi kwenye chaguo la kwanza baada ya la mwisho. ⏯ Cheza/Simamisha kisha huamsha programu kutekeleza chaguo lililoelezwa. Kuna menyu moja ya ngazi ya juu ambayo ina menyu ndogo tu kama chaguo. Kila menyu ndogo ina kundi la vitendo vinavyofanana.\\n\\n⏮ Iliyotangulia haisogei kupitia menyu. Badala yake hubadilisha *Kiwango cha Matangazo*, sawasawa na inavyofanya katika Hali ya Awali, hivyo kitufe kilekile hupunguza matangazo ya programu katika hali yoyote unayotumia.",
+  "reason": "'hupunguza sauti ya programu' says the Previous button lowers the app's volume; it actually lowers the Callout Detail level (fewer callouts), the volume confusion C22 warns about",
+  "category": "tone"
+ },
+ {
+  "context": "callout_settings_position_description",
+  "source": "By default, callouts for points of interest don't include a distance or direction. This setting adds them.",
+  "current": "Kwa kawaida matangazo ya sehemu muhimu hayajumuishi umbali au mwelekeo. Mpangilio huu unayaongeza.",
+  "suggested": "Kwa kawaida matangazo ya sehemu za kuvutia hayajumuishi umbali au mwelekeo. Mpangilio huu unayaongeza.",
+  "reason": "Point of interest is 'sehemu za kuvutia' in 9 strings (including the setting title just above this one) but 'sehemu muhimu' here; 'Muhimu' is also now the Essential detail level, so it reads like a level name",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_welcome",
+  "source": "Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.",
+  "current": "Karibu kwenye mafunzo elekezi. Mafunzo haya yatakuongoza kupitia vipengele muhimu vya programu. Unaweza kusitisha mafunzo wakati wowote kwa kugusa Ghairi Mafunzo Elekezi kwenye Menyu Kuu. Tuanze na Sehemu za Karibu. Hukuwezesha kupata sehemu muhimu karibu nawe. Kitufe cha Sehemu za Karibu kiko kwenye skrini ya Nyumbani, chini kidogo ya Sehemu ya Utafutaji. Gusa sasa ujaribu.",
+  "suggested": "Karibu kwenye mafunzo elekezi. Mafunzo haya yatakuongoza kupitia vipengele muhimu vya programu. Unaweza kusitisha mafunzo wakati wowote kwa kugusa Ghairi Mafunzo Elekezi kwenye Menyu Kuu. Tuanze na Sehemu za Karibu. Hukuwezesha kupata sehemu za kuvutia karibu nawe. Kitufe cha Sehemu za Karibu kiko kwenye skrini ya mwanzo, chini kidogo ya Sehemu ya Utafutaji. Gusa sasa ujaribu.",
+  "reason": "'sehemu muhimu' for points of interest splits the POI term (elsewhere 'sehemu za kuvutia') and echoes the Essential level 'Muhimu'; 'skrini ya Nyumbani' is 'skrini ya mwanzo' in every other help and tour string",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_select_place",
+  "source": "Places Nearby groups points of interest by type. Browse the places in the lists and select one.",
+  "current": "Sehemu za Karibu hupanga sehemu muhimu kulingana na aina. Pitia sehemu zilizo kwenye orodha kisha uchague moja.",
+  "suggested": "Sehemu za Karibu hupanga sehemu za kuvutia kulingana na aina. Pitia sehemu zilizo kwenye orodha kisha uchague moja.",
+  "reason": "'sehemu muhimu' for points of interest, where the corpus uses 'sehemu za kuvutia' (and 'Muhimu' is the Essential level name)",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_markers_content_3",
+  "source": "To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *Nearby markers* button at the bottom of the home screen to hear a spatial callout of marked places around you. You can even set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.",
+  "current": "Ili kupata uzoefu wa mahali yaliyowekewa alama, Soundscape itatangaza kiotomatiki mahali hayo unapopita karibu nayo au kuyakaribia, au unaweza pia kutumia kitufe cha *Alama za Karibu* kilichopo chini ya skrini ya mwanzo ili kusikia tangazo la anga la mahali yaliyowekewa alama yanayokuzunguka. Unaweza hata kuweka beacon ya sauti kwenye mahali popote palipowekewa alama. Ukifanya hivyo, beacon ya sauti ya Soundscape unayoifahamu itasikika nawe unaweza kuiendesha kama kawaida.",
+  "suggested": "Ili kupata uzoefu wa mahali yaliyowekewa alama, Soundscape itatangaza kiotomatiki mahali hayo unapopita karibu nayo au kuyakaribia, au unaweza pia kutumia kitufe cha *Alama za Karibu* kilichopo chini ya skrini ya mwanzo ili kusikia tangazo la sauti ya pande tatu la mahali yaliyowekewa alama yanayokuzunguka. Unaweza hata kuweka beacon ya sauti kwenye mahali popote palipowekewa alama. Ukifanya hivyo, beacon ya sauti ya Soundscape unayoifahamu itasikika nawe unaweza kuiendesha kama kawaida.",
+  "reason": "'tangazo la anga' ('sky/air callout') for 'spatial callout'; the corpus's clearer term for spatial/3D audio is 'sauti ya pande tatu' (first_launch_welcome_description, steam_copyright)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_supported_headsets_answer",
+  "source": "Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.",
+  "current": "Vipokea sauti gani unavyotumia na Soundscape ni suala la upendeleo wa kibinafsi, na kila chaguo lina manufaa na hasara zake. Sharti pekee ni kutumia jozi ya vipokea sauti vya stereo ili uweze kunufaika na matangazo ya sauti ya anga ya pande tatu ya Soundscape.",
+  "suggested": "Vipokea sauti gani unavyotumia na Soundscape ni suala la upendeleo wa kibinafsi, na kila chaguo lina manufaa na hasara zake. Sharti pekee ni kutumia jozi ya vipokea sauti vya stereo ili uweze kunufaika na matangazo ya sauti ya anga ya pande tatu ya Soundscape.",
+  "category": "terminology",
+  "reason": "Spatial audio is split between 'sauti ya anga' (here and in faq_how_to_use_beacon_answer, faq_road_names_answer, faq_difference_from_map_apps_answer, faq_holding_phone_flat_answer 'matangazo sahihi ya anga', settings_head_tracking_description) and 'sauti ya pande tatu' (first_launch_welcome_description, steam_copyright, faq_when_to_use_soundscape_answer). 'anga' is also 'sky', used literally in 'skrini ikielekeza angani'. Needs a native speaker to pick one; no fix proposed"
+ },
+ {
+  "context": "relative_clock_direction",
+  "source": "at %1$s o'clock",
+  "current": "katika saa %1$s",
+  "suggested": "katika saa %1$s",
+  "category": "meaning",
+  "reason": "'katika saa %1$s' can be heard as 'in %1$s hours', and 'saa tatu' in Swahili time-telling is 9 o'clock (6-hour offset), so a clock-face direction 'at 3 o'clock' may be understood as 9 o'clock, i.e. left instead of right. Ask a native speaker how clock-face directions are said (e.g. 'upande wa saa 3 ya dira'?); no confident fix"
+ },
+ {
+  "context": "osm_generic_landmark",
+  "source": "Landmark",
+  "current": "Alama ya Eneo",
+  "suggested": "Kivutio",
+  "reason": "'Alama ya Eneo' uses 'alama', the app's word for Marker, so a map landmark is announced like a user marker; glossary Landmarks = 'vivutio' (callouts_places_landmarks 'Vivutio')",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_beacon",
+  "source": "Beacon",
+  "current": "Alama ya Urambazi",
+  "suggested": "Kiashiria cha Urambazaji",
+  "reason": "'Alama ya Urambazi' uses 'alama' (Marker) for a navigation beacon, colliding with user markers; also 'Urambazi' vs 'Urambazaji' in osm_navigationaid",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_survey_point",
+  "source": "Survey Point",
+  "current": "Alama ya Upimaji",
+  "suggested": "Kigingi cha Upimaji",
+  "reason": "'Alama ya Upimaji' uses 'alama' (the app's Marker term) for a surveyor's point, so it sounds like one of the user's markers",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_bus_station",
+  "source": "Bus Station",
+  "current": "Kituo cha Basi",
+  "suggested": "Stendi ya Mabasi",
+  "reason": "Bus Station is 'Kituo cha Basi', identical to Bus Stop (osm_bus_stop), so the two can't be told apart by ear; 'stendi' is the usual word for a bus station and already in search_synonyms_bus_stop",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_tag_ferry_terminal",
+  "source": "Ferry Terminal",
+  "current": "Kituo cha Kivuko",
+  "suggested": "Kituo cha Feri",
+  "reason": "Ferry Terminal is 'Kituo cha Kivuko' here but 'Kituo cha Feri' in osm_ferry_terminal; 'kivuko' is also the pedestrian crossing word (osm_crossing), so 'Feri' is the unambiguous one",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_tag_ferry_terminal_named",
+  "source": "%1$s Ferry Terminal",
+  "current": "Kituo cha Kivuko cha %1$s",
+  "suggested": "Kituo cha Feri cha %1$s",
+  "reason": "Same split as osm_tag_ferry_terminal: 'Kivuko' vs 'Feri' in osm_ferry_terminal_named",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_ferry",
+  "source": "Ferry Route",
+  "current": "Njia ya Kivuko",
+  "suggested": "Njia ya Feri",
+  "reason": "'Njia ya Kivuko' can be heard as a crossing path ('kivuko' = pedestrian crossing in osm_crossing); align with the 'Feri' ferry terminal strings",
+  "category": "terminology"
+ },
+ {
+  "context": "location_detail_action_save_hint",
+  "source": "save this location to use later",
+  "current": "kuhifadhi mahali hapa ili kuitumia baadaye",
+  "suggested": "kuhifadhi mahali hapa ili kupatumia baadaye",
+  "reason": "Noun-class agreement: 'mahali' takes pa-, so 'kuitumia' (i-class) should be 'kupatumia'",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_destination_beacons_what",
+  "source": "Setting a beacon on a nearby location allows Soundscape to keep you informed by playing a sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.",
+  "current": "Kuweka beacon kwenye mahali pa karibu humwezesha Soundscape kukujulisha kwa kucheza sauti ikitoka upande wa mahali hapo. Beacon hii inaweza kunyamazishwa au kuwashwa tena kwenye skrini ya mwanzo. Zaidi ya hayo, Soundscape huonyesha taarifa kuhusu mahali hapo kwenye skrini ya mwanzo, ikiwemo umbali kufikia mahali hapo na anwani yake ya barabara ikiwa inajulikana.",
+  "suggested": "Kuweka beacon kwenye mahali pa karibu huiwezesha Soundscape kukujulisha kwa kucheza sauti ikitoka upande wa mahali hapo. Beacon hii inaweza kunyamazishwa au kuwashwa tena kwenye skrini ya mwanzo. Zaidi ya hayo, Soundscape huonyesha taarifa kuhusu mahali hapo kwenye skrini ya mwanzo, ikiwemo umbali kufikia mahali hapo na anwani yake ya barabara ikiwa inajulikana.",
+  "reason": "'humwezesha Soundscape' uses the personal (m-wa) object marker; the rest of the corpus treats Soundscape as class 9 ('Soundscape inaweza', 'kuiweka Soundscape')",
+  "category": "gender"
+ },
+ {
+  "context": "advanced_markers_and_routes_description",
+  "source": "This screen lets you export or import markers and routes, and delete all existing markers and routes.",
+  "current": "Skrini hii inakuwezesha kusafirisha nje au kuingiza alama na njia, na kufuta alama na njia zote zilizopo.",
+  "suggested": "Skrini hii inakuwezesha kuhamisha au kuingiza alama na njia, na kufuta alama na njia zote zilizopo.",
+  "reason": "Export is 'kusafirisha nje' (ship abroad) here but the Export button (advanced_markers_and_routes_export_button, _export) is 'Hamisha'",
+  "category": "terminology"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "Nimekutumia alama ya Soundscape: %1$s.\\n\\nKufungua kwenye Soundscape tumia %2$s.\\n\\n Kufungua kwenye Google Maps tumia %3$s.",
+  "suggested": "Nimekutumia alama ya Soundscape: “%1$s”.\\n\\nKufungua kwenye Soundscape tumia %2$s.\\n\\n Kufungua kwenye Google Maps tumia %3$s.",
+  "reason": "The quotes that set the marker name apart in the shared message were dropped; typographic quotes restore them without the \\\" escape problem",
+  "category": "formatting"
+ }
+]

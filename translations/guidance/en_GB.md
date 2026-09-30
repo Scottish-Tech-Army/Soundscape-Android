@@ -110,7 +110,7 @@ Android-only override now back to the US text, which covers iOS), `help_text_mar
 shop» → «grocery store» (EN-T2), `osm_highway_ramp` → «Slip Road», and `osm_window_construction` →
 «Window Fitter» (the slash was read aloud). `osm_highway` was left as it is (EN-T4).
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 44 flagged, 40 applied in `d672abe75`. Findings: `/tmp/translation-review/en_GB-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 44 flagged, 40 applied in `d672abe75`. Findings: `translations/review/2026-09-30-all-languages/en_GB-findings.json`.
 Most serious fixed:
 - `osm_stone`: Keyed on the bare value "stone" (natural=stone, historic=stone): usually a notable boulder or erratic.
 - `help_text_automatic_callouts_when_3`: UI names are wrapped as *"Name"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*;

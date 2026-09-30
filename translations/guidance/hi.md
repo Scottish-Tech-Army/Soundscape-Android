@@ -95,7 +95,7 @@ Nothing uploaded.
 
 **2026-09-29 — Full review of all 1586 units, nothing uploaded.** No new defects found. HI-B1 (the hint template) and HI-G1 (`confect_name_to`) stay open for a reviewer.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 41 flagged, 36 applied in `3677f02f5`. Findings: `/tmp/translation-review/hi-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 41 flagged, 36 applied in `3677f02f5`. Findings: `translations/review/2026-09-30-all-languages/hi-findings.json`.
 Most serious fixed:
 - `faq_difference_from_map_apps_answer`: "किसी दुकान के दाहिनी ओर से गुजरते हैं" means passing along the shop's right-hand side, which puts the shop on the user's LEFT;
 - `help_text_automatic_callouts_what`: Ungrammatical first sentence ("उसके उस दिशा से उसका नाम" - उसके does not agree with दिशा, and the clause order is garbled);

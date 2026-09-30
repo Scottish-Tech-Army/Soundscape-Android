@@ -240,7 +240,7 @@ and to tell apart, so they are now in the glossary as `confirmed`. Nothing uploa
 
 **2026-09-29 — edit-marker label.** `markers_edit_screen_title_edit` is both the screen title and the button on the location details screen (`SharedLocationDetailsScreen.kt`), so the button said «Редагування мітки» ("editing of marker") while the help and the route button say «Редагувати мітку» / «Редагувати маршрут». Now «Редагувати мітку». Uploaded and verified live.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 115 flagged, 54 applied in `9661040d4`. Findings: `/tmp/translation-review/uk-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 115 flagged, 54 applied in `9661040d4`. Findings: `translations/review/2026-09-30-all-languages/uk-findings.json`.
 Most serious fixed:
 - `help_text_my_location_what`: "the direction you are facing" became «напрямок, в якому ви рухаєтесь» (moving).
 - `faq_why_does_beacon_disappear_answer`: The answer is about the direction you are *facing* when you stop;

@@ -121,7 +121,7 @@ sweep.** Nothing uploaded.
 
 **2026-09-30 — French reviewer's decisions carried over (Dave's request).** 119 strings. 81 were identical to the pre-change French, allowing for the Canadian layer, and took the new French plus the layer. 38 had Canadian or Microsoft wording of their own (or were new dead-end templates), and had the terms changed in place: annonce, croisement, étape (with agreement written by hand), balise sonore in full. The Siri help keeps the group word «Soundscape balise», and the stop phrase becomes «Soundscape arrête la balise sonore»: fr-CA has no phrase file of its own and falls back to fr.lproj. Not carried over: Sleep/Snooze (FRCA-T1) and the vehicle-direction wording (rule 1). The Siri catalog was regenerated from these strings, which also restores «Annonce» and «Étape suivante» there.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 22 flagged, 19 applied in `4536820a1`. Findings: `/tmp/translation-review/fr_CA-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 22 flagged, 19 applied in `4536820a1`. Findings: `translations/review/2026-09-30-all-languages/fr_CA-findings.json`.
 Most serious fixed:
 - `faq_use_with_wayfinding_apps_answer`: «vous entendez des itinéraires provenant de votre application» says 'you hear routes from', not walking directions;
 - `directions_generic_train`: Substituted as a way name into «{fr:de %1$s}» / «{fr:Sur %1$s}» templates;

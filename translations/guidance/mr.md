@@ -81,7 +81,7 @@ The extra *…* pair around the "tacks" word went with the sentence. The rest of
 
 **2026-09-29 — Full review of all 1586 units.** 20 fixes uploaded. 18 hints had drifted to imperatives and now use the «-ण्या» oblique form, which the template «%1$sसाठी डबल टॅप करा» joins with «साठी» (MR-B1). The full stop was dropped from `settings_reset_button_hint`, because it would land before «साठी». Help text now uses «*माझ्या भोवती*» and «*झोप मोड*». Uploaded with `--skip-validate` and re-fetched: all matched exactly.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 24 flagged, 19 applied in `4cf00fed2`. Findings: `/tmp/translation-review/mr-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 24 flagged, 19 applied in `4cf00fed2`. Findings: `translations/review/2026-09-30-all-languages/mr-findings.json`.
 Most serious fixed:
 - `confect_name_to_dead_end`: «बंद रस्ता कडे» is ungrammatical: «कडे» needs the oblique «बंद रस्त्याकडे».
 - `confect_name_to_dead_end_via`: Same as confect_name_to_dead_end: «बंद रस्ता कडे» needs the oblique «बंद रस्त्याकडे», and «जाणारा» must not agree with %1$s (feminine «वाट» gives «…जाणारा वाट»).

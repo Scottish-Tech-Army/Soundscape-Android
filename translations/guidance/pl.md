@@ -435,9 +435,9 @@ terminology. `ui_action_button_my_location` «Moja\npozycja» → «Moja\nlokali
 sizes. Left for a person: Q5–Q8 above, plus `number_decimal_separator_a11y`,
 which is a code problem in every language (the translations lost the spaces
 around « point », so VoiceOver gets «1przecinek5»). Fixed the same day in code: `decimalSeparator()` now trims the word and adds the spaces itself, for every language. Findings are in
-`/tmp/translation-review/pl-findings.json`.
+`translations/review/2026-09-30-all-languages/earlier/pl-findings.json`.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 44 flagged, 20 applied in `8283fcb09`. Findings: `/tmp/translation-review/pl-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 44 flagged, 20 applied in `8283fcb09`. Findings: `translations/review/2026-09-30-all-languages/pl-findings.json`.
 Most serious fixed:
 - `general_loading_start`: Says "preparing the street preview", but the string is also shown on the home screen and in the add-waypoints list, not only when starting location simulation.
 - `directions_junction_with_ref`: Only ever substituted into «przy %2$s» (directions_on_road_at_junction) and «przy %1$s» (directions_at_junction_inline).

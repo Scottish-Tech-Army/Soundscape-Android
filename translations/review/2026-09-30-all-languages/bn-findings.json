@@ -1,0 +1,186 @@
+[
+ {
+  "context": "settings_keep_value",
+  "source": "keep",
+  "current": "রাখুন",
+  "suggested": "রাখতে",
+  "reason": "This is a TalkBack hint (SettingsComponents.kt passes it to talkbackHint), so it follows 'Double tap to'. BN-B1 requires the «-তে» infinitive; «রাখুন» is an imperative and gives «রাখুন ডাবল ট্যাপ করুন» on iOS.",
+  "category": "formatting"
+ },
+ {
+  "context": "settings_use_value",
+  "source": "use",
+  "current": "ব্যবহার করুন",
+  "suggested": "ব্যবহার করতে",
+  "reason": "TalkBack hint like settings_keep_value. BN-B1: it must be the «-তে» infinitive, not the imperative «ব্যবহার করুন».",
+  "category": "formatting"
+ },
+ {
+  "context": "route_beacon_progress",
+  "source": "Beacon at %1$s",
+  "current": "%1$s-এ বিকন",
+  "suggested": "%1$s-এ বীকন",
+  "reason": "Spelled «বিকন» here, but «বীকন» in every other string (glossary: অডিও বীকন). A TTS voice may say the two spellings differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_stop_beacon",
+  "source": "When you're ready to stop the beacon, tap the Stop Route button.",
+  "current": "বীকনটি বন্ধ করতে প্রস্তুত হলে, রুট থামান বোতামে ট্যাপ করুন।",
+  "suggested": "বীকনটি বন্ধ করতে প্রস্তুত হলে, রুট বন্ধ করুন বোতামে ট্যাপ করুন।",
+  "reason": "The tutorial tells the user to tap «রুট থামান», but the button is labelled «রুট বন্ধ করুন» (route_detail_action_stop_route). A blind user listens for that exact label.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_nearby_markers",
+  "source": "The final button is Nearby Markers, which announces saved places around you. Tap Nearby Markers to try that.",
+  "current": "শেষ বোতামটি হলো কাছের মার্কার, যা আপনার আশেপাশের সংরক্ষিত স্থানগুলো ঘোষণা করে। এটি চেষ্টা করতে কাছের মার্কার-এ ট্যাপ করুন।",
+  "suggested": "শেষ বোতামটি হলো কাছাকাছি মার্কার, যা আপনার আশেপাশের সংরক্ষিত স্থানগুলো ঘোষণা করে। এটি চেষ্টা করতে কাছাকাছি মার্কার-এ ট্যাপ করুন।",
+  "reason": "The tutorial calls the button «কাছের মার্কার» twice. The button and help pages call it «কাছাকাছি মার্কার» (callouts_nearby_markers), so the user hears a name that matches nothing.",
+  "category": "terminology"
+ },
+ {
+  "context": "ui_action_button_nearby_markers",
+  "source": "Nearby\\nMarkers",
+  "current": "নিকটবর্তী\\nমার্কার",
+  "suggested": "কাছাকাছি\\nমার্কার",
+  "reason": "The home-screen button says «নিকটবর্তী মার্কার», but its long form callouts_nearby_markers and every help, FAQ and Siri string say «কাছাকাছি মার্কার». «কাছাকাছি» is 8 characters, so it still fits the line limit.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_config_voices_content",
+  "source": "Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *Settings* from the main menu, expand the *Audio* section, and then select *Voices*.",
+  "current": "আপনার Android ফোনে টেক্সট-টু-স্পিচ আউটপুট সেটিংসে ডাউনলোড করা যেকোনো ভয়েস Soundscape ব্যবহার করতে পারে। Soundscape অ্যাপে ডিফল্ট Android ভয়েস ছাড়া অন্য কোনো ভয়েস নির্বাচন করতে, প্রধান মেনু থেকে *সেটিংস*-এ যান, *অডিও* বিভাগটি বিস্তৃত করুন, এবং তারপর *ভয়েস* নির্বাচন করুন।",
+  "suggested": "আপনার Android ফোনে টেক্সট-টু-স্পিচ আউটপুট সেটিংসে ডাউনলোড করা যেকোনো ভয়েস Soundscape ব্যবহার করতে পারে। Soundscape অ্যাপে ডিফল্ট Android ভয়েস ছাড়া অন্য কোনো ভয়েস নির্বাচন করতে, প্রধান মেনু থেকে *সেটিংস*-এ যান, *অডিও* বিভাগটি বিস্তৃত করুন, এবং তারপর *কণ্ঠস্বর* নির্বাচন করুন।",
+  "reason": "Tells the user to select *ভয়েস*, but the setting is labelled «কণ্ঠস্বর» (voice_voices). The iOS variant already uses *কণ্ঠস্বর*.",
+  "category": "terminology"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "এটি Soundscape-এর একটি বড় আপডেট। ট্রাভেল মোড অনেক উন্নত হয়েছে। আপনি যখন গাড়ি বা বাসে ভ্রমণ করেন, Soundscape এখন রাস্তার নম্বর, আপনার ভ্রমণের দিক এবং কাছাকাছি জনবসতি ঘোষণা করে। নদী, খাল, মোহনা ও উপসাগর অতিক্রম করার সময়ও এটি ঘোষণা দেয়। এই নতুন বৈশিষ্ট্যগুলো পেতে অনুগ্রহ করে আপনার অফলাইন মানচিত্র আপডেট করুন। যুক্তরাজ্যের ব্যবহারকারীদের জন্য বাস স্টপের বিবরণ এখন অনেক ভালো হয়েছে। ঘুম মোড এখন স্বয়ংক্রিয়ভাবে জেগে উঠতে পারে যখন এটি বুঝতে পারে যে আপনি আবার নড়াচড়া করছেন। আপনাকে আর নিজে থেকে এটিকে জাগানোর কথা মনে রাখতে হবে না। আমরা অন্তর্নিহিত কোড পুনর্বিন্যাস করেছি যাতে একই কোড থেকে একটি iOS অ্যাপ তৈরি করা যায়। এর মানে হলো ভবিষ্যতে আমরা Android-এর জন্য তৈরি করা সমস্ত বৈশিষ্ট্য সহ একটি iOS অ্যাপ প্রকাশ করতে পারব। অনুগ্রহ করে যেকোনো সমস্যা, তা যত ছোটই হোক না কেন, মূল মেনুতে থাকা Contact Support-এর মাধ্যমে জানাতে থাকুন।",
+  "suggested": "এটি Soundscape-এর একটি বড় আপডেট। ট্রাভেল মোড অনেক উন্নত হয়েছে। আপনি যখন গাড়ি বা বাসে ভ্রমণ করেন, Soundscape এখন রাস্তার নম্বর, আপনার ভ্রমণের দিক এবং কাছাকাছি জনবসতি ঘোষণা করে। নদী, খাল, মোহনা ও উপসাগর অতিক্রম করার সময়ও এটি ঘোষণা দেয়। এই নতুন বৈশিষ্ট্যগুলো পেতে অনুগ্রহ করে আপনার অফলাইন মানচিত্র আপডেট করুন। যুক্তরাজ্যের ব্যবহারকারীদের জন্য বাস স্টপের বিবরণ এখন অনেক ভালো হয়েছে। ঘুম মোড এখন স্বয়ংক্রিয়ভাবে জেগে উঠতে পারে যখন এটি বুঝতে পারে যে আপনি আবার নড়াচড়া করছেন। আপনাকে আর নিজে থেকে এটিকে জাগানোর কথা মনে রাখতে হবে না। আমরা অন্তর্নিহিত কোড পুনর্বিন্যাস করেছি যাতে একই কোড থেকে একটি iOS অ্যাপ তৈরি করা যায়। এর মানে হলো ভবিষ্যতে আমরা Android-এর জন্য তৈরি করা সমস্ত বৈশিষ্ট্য সহ একটি iOS অ্যাপ প্রকাশ করতে পারব। অনুগ্রহ করে যেকোনো সমস্যা, তা যত ছোটই হোক না কেন, মূল মেনুতে থাকা ‘সহায়তার সাথে যোগাযোগ করুন’-এর মাধ্যমে জানাতে থাকুন।",
+  "reason": "Names the menu item in English, «Contact Support», but in Bengali it is «সহায়তার সাথে যোগাযোগ করুন» (menu_contact_support). Separately, CROSS-LANGUAGE: the English paragraph breaks (leading, blank-line and trailing newlines) are gone here and in every other language. The dialog splits on paragraph breaks, so that fix belongs to a corpus-wide pass and isn't in this suggestion.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_battery_impact_answer",
+  "source": "Battery life varies significantly depending on the model and age of your phone. The biggest drain on your battery is having the screen on, so to maximize your phone's battery life, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape has a Sleep and a Snooze Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.",
+  "current": "ব্যাটারি লাইফ আপনার ফোনের মডেল এবং এর বয়সের উপর নির্ভর করে উল্লেখযোগ্যভাবে ভিন্ন হতে পারে। আপনার ব্যাটারির সবচেয়ে বড় ক্ষয় ঘটে স্ক্রিন চালু থাকার কারণে, তাই আপনার ফোনের ব্যাটারি লাইফ সর্বোচ্চ করতে, যতটা সম্ভব স্ক্রিন লক রাখা উচিত। আপনার ফোনের ব্যাটারিতে প্রভাব কমাতে সাহায্য করতে, Soundscape-এ একটি স্লিপ মোড এবং একটি স্নুজ মোড রয়েছে। ব্যাটারি ব্যবহার আরও কমাতে, আপনি যখন Soundscape ব্যবহার করছেন না, তখন আপনার ফোনের অ্যাপ সুইচার দিয়ে এটি জোর করে বন্ধ করা উচিত।",
+  "suggested": "ব্যাটারি লাইফ আপনার ফোনের মডেল এবং এর বয়সের উপর নির্ভর করে উল্লেখযোগ্যভাবে ভিন্ন হতে পারে। আপনার ব্যাটারির সবচেয়ে বড় ক্ষয় ঘটে স্ক্রিন চালু থাকার কারণে, তাই আপনার ফোনের ব্যাটারি লাইফ সর্বোচ্চ করতে, যতটা সম্ভব স্ক্রিন লক রাখা উচিত। আপনার ফোনের ব্যাটারিতে প্রভাব কমাতে সাহায্য করতে, Soundscape-এ একটি ঘুম মোড এবং একটি স্নুজ মোড রয়েছে। ব্যাটারি ব্যবহার আরও কমাতে, আপনি যখন Soundscape ব্যবহার করছেন না, তখন আপনার ফোনের অ্যাপ সুইচার দিয়ে এটি জোর করে বন্ধ করা উচিত।",
+  "reason": "Split term: Sleep Mode is «স্লিপ মোড» in these 5 FAQ strings, but «ঘুম মোড» in sleep_sleeping_message and new_version_info_details, and «ঘুম বা স্নুজ মোড» in faq_tip_turning_off_auto_callouts. The button itself is «ঘুম». Keep «ঘুম» for consistency (glossary Sleep = ঘুম).",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_sleep_mode_battery_question",
+  "source": "How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "আমার ফোনের ব্যাটারিতে Soundscape-এর প্রভাব কমাতে আমি কীভাবে স্লিপ মোড ব্যবহার করব?",
+  "suggested": "আমার ফোনের ব্যাটারিতে Soundscape-এর প্রভাব কমাতে আমি কীভাবে ঘুম মোড ব্যবহার করব?",
+  "reason": "Split term: Sleep Mode is «স্লিপ মোড» in these 5 FAQ strings, but «ঘুম মোড» in sleep_sleeping_message and new_version_info_details, and «ঘুম বা স্নুজ মোড» in faq_tip_turning_off_auto_callouts. The button itself is «ঘুম». Keep «ঘুম» for consistency (glossary Sleep = ঘুম).",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_sleep_mode_battery_answer",
+  "source": "To put Soundscape into Sleep Mode, select the *Sleep* button in the top-right corner of the home screen. When you select this, Soundscape will stop using Location Services and mobile data until you wake it up.",
+  "current": "Soundscape-কে স্লিপ মোডে নিতে, হোম স্ক্রিনের উপরের ডান কোণে থাকা *ঘুম* বোতাম নির্বাচন করুন। এটি নির্বাচন করলে, আপনি এটিকে না জাগানো পর্যন্ত Soundscape লোকেশন সার্ভিস এবং মোবাইল ডেটা ব্যবহার বন্ধ করে দেবে।",
+  "suggested": "Soundscape-কে ঘুম মোডে নিতে, হোম স্ক্রিনের উপরের ডান কোণে থাকা *ঘুম* বোতাম নির্বাচন করুন। এটি নির্বাচন করলে, আপনি এটিকে না জাগানো পর্যন্ত Soundscape লোকেশন সার্ভিস এবং মোবাইল ডেটা ব্যবহার বন্ধ করে দেবে।",
+  "reason": "Split term: Sleep Mode is «স্লিপ মোড» in these 5 FAQ strings, but «ঘুম মোড» in sleep_sleeping_message and new_version_info_details, and «ঘুম বা স্নুজ মোড» in faq_tip_turning_off_auto_callouts. The button itself is «ঘুম». Keep «ঘুম» for consistency (glossary Sleep = ঘুম).",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_snooze_mode_battery_answer",
+  "source": "To put Soundscape into Snooze Mode, select the *Sleep* button in the top-right corner of the home screen. Once Soundscape’s in Sleep Mode, select the *Wake On Leave* button and Soundscape will go in to a low power state until you leave your current location.",
+  "current": "Soundscape-কে স্নুজ মোডে নিতে, হোম স্ক্রিনের উপরের ডান কোণে থাকা *ঘুম* বোতাম নির্বাচন করুন। Soundscape স্লিপ মোডে গেলে, *চলে গেলে জাগান* বোতাম নির্বাচন করুন এবং আপনি আপনার বর্তমান অবস্থান ত্যাগ না করা পর্যন্ত Soundscape একটি লো-পাওয়ার অবস্থায় চলে যাবে।",
+  "suggested": "Soundscape-কে স্নুজ মোডে নিতে, হোম স্ক্রিনের উপরের ডান কোণে থাকা *ঘুম* বোতাম নির্বাচন করুন। Soundscape ঘুম মোডে গেলে, *চলে গেলে জাগান* বোতাম নির্বাচন করুন এবং আপনি আপনার বর্তমান অবস্থান ত্যাগ না করা পর্যন্ত Soundscape একটি লো-পাওয়ার অবস্থায় চলে যাবে।",
+  "reason": "Split term: Sleep Mode is «স্লিপ মোড» in these 5 FAQ strings, but «ঘুম মোড» in sleep_sleeping_message and new_version_info_details, and «ঘুম বা স্নুজ মোড» in faq_tip_turning_off_auto_callouts. The button itself is «ঘুম». Keep «ঘুম» for consistency (glossary Sleep = ঘুম).",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape আপনি কী এবং কখন শুনবেন তা নিয়ন্ত্রণ করার বেশ কয়েকটি উপায় প্রদান করে:\\n\\n1. অবিলম্বে সব অডিও বন্ধ করুন: বর্তমানে চলমান কোনো কলআউট এবং বীকন চালু থাকলে তা সহ সব অডিও অবিলম্বে বন্ধ করতে দুই আঙুল দিয়ে স্ক্রিনে দুইবার ট্যাপ করুন। আপনি পরবর্তী মোড় বা আগ্রহের স্থানের কাছে পৌঁছালে কলআউট স্বয়ংক্রিয়ভাবে আবার শুরু হবে, তবে শ্রবণযোগ্য বীকন শুরু হবে না। বীকন শোনা আবার শুরু করতে মূল স্ক্রিনে *বীকন আনমিউট বোতাম* নির্বাচন করুন।\\n\\n2. স্বয়ংক্রিয় কলআউট বন্ধ করুন: আপনি যখন ভ্রমণ করছেন না বা গন্তব্যে পৌঁছে গেছেন, তখন সম্ভবত আপনার চারপাশের জিনিস সম্পর্কে Soundscape-এর ক্রমাগত জানানোর প্রয়োজন হবে না। অ্যাপ থেকে বের হওয়ার পরিবর্তে, আপনি Soundscape-কে স্নুজ মোডে রাখতে পারেন এবং আপনি চলে গেলে এটি আবার জেগে উঠবে, অথবা আপনি Soundscape-কে স্লিপ মোডে রাখতে পারেন এবং আপনি নিজে আবার চালু না করা পর্যন্ত এটি বন্ধ থাকবে। বিকল্পভাবে, আপনি মেনু থেকে *সেটিংস* নির্বাচন করে *কলআউট পরিচালনা করুন* বিভাগে *কলআউট বিবরণ* সেটিংটি *নীরব* করে দিতে পারেন।\\n\\n3. বীকন বন্ধ করুন: এমন বেশ কয়েকটি পরিস্থিতি রয়েছে যেখানে আপনি একটি গন্তব্য সেট করতে পারেন কিন্তু শ্রবণযোগ্য বীকন চালু থাকার প্রয়োজন নাও হতে পারে। উদাহরণস্বরূপ, আপনি হয়তো ঠিক জানেন কীভাবে আপনার গন্তব্যে পৌঁছাতে হয় কিন্তু তবুও আপনি কত দূরে আছেন সে সম্পর্কে স্বয়ংক্রিয় আপডেট চান। অথবা আপনার হয়তো শুধু গন্তব্যের কাছাকাছি এলে অডিও বীকনের প্রয়োজন হয়। যাই হোক না কেন, আপনি মূল স্ক্রিনে *বীকন মিউট করুন*/*বীকন আনমিউট করুন* বোতাম টগল করে কখন বীকন শুনবেন তা বেছে নিতে পারেন।\\n\\nআপনি যদি এখনও Soundscape-এর সাথে ইন্টারঅ্যাক্ট করতে চান কিন্তু স্বয়ংক্রিয় কলআউট শুনতে না চান, তাহলে মেনু থেকে *সেটিংস* স্ক্রিনের *কলআউট পরিচালনা করুন* বিভাগে গিয়ে *কলআউট বিবরণ* সেটিংটি *নীরব* করে দিতে পারেন। অথবা, আপনি যদি Soundscape ব্যবহার না করতে যাচ্ছেন, তাহলে হোম স্ক্রিনের *ঘুম* বোতাম ব্যবহার করে এটিকে স্লিপ বা স্নুজ মোডে রাখতে পারেন।",
+  "suggested": "Soundscape আপনি কী এবং কখন শুনবেন তা নিয়ন্ত্রণ করার বেশ কয়েকটি উপায় প্রদান করে:\\n\\n1. অবিলম্বে সব অডিও বন্ধ করুন: বর্তমানে চলমান কোনো কলআউট এবং বীকন চালু থাকলে তা সহ সব অডিও অবিলম্বে বন্ধ করতে দুই আঙুল দিয়ে স্ক্রিনে দুইবার ট্যাপ করুন। আপনি পরবর্তী মোড় বা আগ্রহের স্থানের কাছে পৌঁছালে কলআউট স্বয়ংক্রিয়ভাবে আবার শুরু হবে, তবে শ্রবণযোগ্য বীকন শুরু হবে না। বীকন শোনা আবার শুরু করতে মূল স্ক্রিনে *বীকন আনমিউট বোতাম* নির্বাচন করুন।\\n\\n2. স্বয়ংক্রিয় কলআউট বন্ধ করুন: আপনি যখন ভ্রমণ করছেন না বা গন্তব্যে পৌঁছে গেছেন, তখন সম্ভবত আপনার চারপাশের জিনিস সম্পর্কে Soundscape-এর ক্রমাগত জানানোর প্রয়োজন হবে না। অ্যাপ থেকে বের হওয়ার পরিবর্তে, আপনি Soundscape-কে স্নুজ মোডে রাখতে পারেন এবং আপনি চলে গেলে এটি আবার জেগে উঠবে, অথবা আপনি Soundscape-কে ঘুম মোডে রাখতে পারেন এবং আপনি নিজে আবার চালু না করা পর্যন্ত এটি বন্ধ থাকবে। বিকল্পভাবে, আপনি মেনু থেকে *সেটিংস* নির্বাচন করে *কলআউট পরিচালনা করুন* বিভাগে *কলআউট বিবরণ* সেটিংটি *নীরব* করে দিতে পারেন।\\n\\n3. বীকন বন্ধ করুন: এমন বেশ কয়েকটি পরিস্থিতি রয়েছে যেখানে আপনি একটি গন্তব্য সেট করতে পারেন কিন্তু শ্রবণযোগ্য বীকন চালু থাকার প্রয়োজন নাও হতে পারে। উদাহরণস্বরূপ, আপনি হয়তো ঠিক জানেন কীভাবে আপনার গন্তব্যে পৌঁছাতে হয় কিন্তু তবুও আপনি কত দূরে আছেন সে সম্পর্কে স্বয়ংক্রিয় আপডেট চান। অথবা আপনার হয়তো শুধু গন্তব্যের কাছাকাছি এলে অডিও বীকনের প্রয়োজন হয়। যাই হোক না কেন, আপনি মূল স্ক্রিনে *বীকন মিউট করুন*/*বীকন আনমিউট করুন* বোতাম টগল করে কখন বীকন শুনবেন তা বেছে নিতে পারেন।\\n\\nআপনি যদি এখনও Soundscape-এর সাথে ইন্টারঅ্যাক্ট করতে চান কিন্তু স্বয়ংক্রিয় কলআউট শুনতে না চান, তাহলে মেনু থেকে *সেটিংস* স্ক্রিনের *কলআউট পরিচালনা করুন* বিভাগে গিয়ে *কলআউট বিবরণ* সেটিংটি *নীরব* করে দিতে পারেন। অথবা, আপনি যদি Soundscape ব্যবহার না করতে যাচ্ছেন, তাহলে হোম স্ক্রিনের *ঘুম* বোতাম ব্যবহার করে এটিকে ঘুম বা স্নুজ মোডে রাখতে পারেন।",
+  "reason": "Split term: Sleep Mode is «স্লিপ মোড» in these 5 FAQ strings, but «ঘুম মোড» in sleep_sleeping_message and new_version_info_details, and «ঘুম বা স্নুজ মোড» in faq_tip_turning_off_auto_callouts. The button itself is «ঘুম». Keep «ঘুম» for consistency (glossary Sleep = ঘুম).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "হোম স্ক্রিনের নিচের চারটি বোতামের ক্ষেত্রেই যেমন, *আমার সামনে* বোতাম চাপার আগে আপনার ফোনটি সমতলভাবে (স্ক্রিন আকাশের দিকে মুখ করে) এবং ফোনের উপরের অংশ আপনি যেদিকে মুখ করে আছেন সেদিকে রেখে ধরুন। এটি একটি কম্পাসের মতো কাজ করে অ্যাপটিকে জানায় যে আপনি কোন দিকে মুখ করে আছেন। শুধু, *আমার সামনে* বোতামে ট্যাপ করুন এবং আপনি প্রায় সবগুলোই আপনার সামনে থাকা বেশ কয়েকটি আগ্রহের স্থান সম্পর্কে শুনতে পাবেন।",
+  "suggested": "হোম স্ক্রিনের নিচের চারটি বোতামের ক্ষেত্রেই যেমন, *আমার সামনে* বোতাম চাপার আগে আপনার ফোনটি সমতলভাবে (স্ক্রিন আকাশের দিকে মুখ করে) এবং ফোনের উপরের অংশ আপনি যেদিকে মুখ করে আছেন সেদিকে রেখে ধরুন। এটি একটি কম্পাসের মতো কাজ করে অ্যাপটিকে জানায় যে আপনি কোন দিকে মুখ করে আছেন। শুধু, *আমার সামনে* বোতামে ট্যাপ করুন এবং আপনি মোটামুটি আপনার সামনে থাকা বেশ কয়েকটি আগ্রহের স্থান সম্পর্কে শুনতে পাবেন।",
+  "reason": "The last clause «আপনি প্রায় সবগুলোই আপনার সামনে থাকা বেশ কয়েকটি আগ্রহের স্থান» is garbled ('you almost all of them several points of interest in front of you'). The English means 'several points of interest, all roughly ahead of you'.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_why_does_beacon_disappear_question",
+  "source": "Why does the audible beacon disappear sometimes?",
+  "current": "শ্রবণযোগ্য বীকনটি মাঝে মাঝে কেন অদৃশ্য হয়ে যায়?",
+  "suggested": "শ্রবণযোগ্য বীকনটি মাঝে মাঝে কেন হারিয়ে যায়?",
+  "reason": "«অদৃশ্য হয়ে যায়» means 'becomes invisible': a visual word for a sound, in an app most users only hear. «হারিয়ে যায়» ('goes missing / fades away') keeps the meaning without the sight metaphor.",
+  "category": "tone"
+ },
+ {
+  "context": "osm_gas_station",
+  "source": "Gas Station",
+  "current": "গ্যাস স্টেশন",
+  "suggested": "পেট্রোল পাম্প",
+  "reason": "«গ্যাস স্টেশন» usually means a CNG or gas-cylinder station in Bengali. The same English is «পেট্রোল পাম্প» in osm_gas, and the search synonyms lead with «পেট্রোল পাম্প».",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_beacon",
+  "source": "Beacon",
+  "current": "বীকন",
+  "suggested": "সংকেত স্তম্ভ",
+  "reason": "The OSM beacon is a physical navigation or warning marker, but «বীকন» is also the app's own Audio Beacon. A callout «বীকন» next to the user would sound like the audio beacon (C19). A Bengali word for a signal post avoids the clash.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_unmanaged_crossing",
+  "source": "Unmanaged Crosswalk",
+  "current": "অনিয়ন্ত্রিত ক্রসিং",
+  "suggested": "অনিয়ন্ত্রিত পথচারী পারাপার",
+  "reason": "«ক্রসিং» here, but plain Crosswalk (osm_crossing) and the help text say «পথচারী পারাপার». Callouts for the two kinds of crossing should share the noun.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape-এর এমন বৈশিষ্ট্য ও সুবিধা রয়েছে যা বিভিন্ন পরিস্থিতি এবং সময়কাল জুড়ে বিস্তৃত। আপনার কাছে Soundscape-এর মূল্যও সময়ের সাথে সাথে বদলাতে পারে, তাই আজ আপনি এটি যেভাবে ব্যবহার করছেন তিন মাস পরে তা ভিন্ন হতে পারে। মানুষ প্রায়ই অ্যাপ সম্পর্কে ভাবে *এই অ্যাপটি কোন সমস্যা সমাধানে দক্ষ?* এই দৃষ্টিভঙ্গি থেকে। Soundscape নিশ্চিতভাবেই নির্দিষ্ট প্রয়োজনে ব্যবহার করা যায় – যেমন কোনো গন্তব্যের দিকে যাওয়ার সময় তার হদিস রাখা, মেট্রো স্টেশন থেকে বের হওয়ার সময় দিকনির্ণয়ে সাহায্য করা, গাড়ি থেকে নামার সময় অবস্থান বোঝা, বা পরবর্তী মোড়ের রাস্তার নাম বা দূরত্ব খুঁজে বের করা। তবে, Soundscape-এর পেছনের দর্শনটি হলো *শব্দ দিয়ে আপনার জগৎ আলোকিত করা* – আপনি যখনই বাইরে থাকেন তখন ব্যবহারের জন্য এটি তৈরি, যাতে আপনার চারপাশ সম্পর্কে পরিবেষ্টনমূলক সচেতনতা পান, যেমন আপনি যে রাস্তায় আছেন তার নাম, আপনি যে দিকে যাচ্ছেন, এবং আপনি যে ব্যবসা প্রতিষ্ঠানগুলোর পাশ দিয়ে যাচ্ছেন তাদের নাম। এই ব্যবহারের ক্ষেত্রে, আমাদের ব্যবহারকারীরা Soundscape-কে একটি *চমৎকার সহচর অ্যাপ* বলে উল্লেখ করেছেন, যা *সরেন্ডিপিটি*কে সমর্থন করে, আপনার *মানসিক মানচিত্রের ফাঁকগুলো পূরণ করতে* সাহায্য করে এবং *হাঁটার সময় আরও আত্মবিশ্বাস* যোগায়। আমাদের ব্যবহারকারীরা কীভাবে Soundscape তাদের জীবনে ব্যবহার করছেন তার আরও কিছু উদাহরণ এখানে দেওয়া হলো:\\n\\nবাস থেকে নেমে ভুল দিকে যাওয়ার পর Soundscape আমাকে সঠিক পথে ফিরে আসতে সাহায্য করেছিল।\\n\\nএমনকি যে শহরে আমি ৩ বছর ধরে বাস করছি, সেখানেও [Soundscape দিয়ে] আমার চারপাশে কী আছে তার একটি উন্নত চিত্র তৈরি করেছি।\\n\\n৩ডি শব্দ আমার হাঁটার অভিজ্ঞতা বাড়িয়ে দেয়, কারণ আমি আমার পরিবেশের সাথে আরও সংযুক্ত অনুভব করি…এখন আমার কাছে ব্যবহারের জন্য এই অ্যাপ থাকায় আমি নতুন পথ চেষ্টা করার সম্ভাবনা বেশি।\\n\\nআমি চারপাশে হাঁটাহাঁটি করে জিনিস লক্ষ্য করার আকস্মিক আনন্দ মিস করি। Soundscape থাকা ভালো – আমার চারপাশের জিনিস সম্পর্কে জানতে কোনো পরিশ্রম করতে হয় না। সম্পর্কিত তথ্য উপযোগী এবং এটি পরিস্থিতিগত সচেতনতা ও বাণিজ্যিক করিডোর অন্বেষণের জন্য একটি দুর্দান্ত অ্যাপ।\\n\\n[আমি Soundscape ব্যবহার করেছিলাম] ইয়র্কের মাঝখানে একটি পাব খুঁজে বের করতে। [আমি] প্রথমে অবস্থান নির্ণয় করতে এবং তারপর প্রকৃতপক্ষে সেটি খুঁজে পেতে এর বিভিন্ন অপশনের পরিসর ব্যবহার করেছিলাম। এটি আমাকে দরজার ৩ মিটারের মধ্যে নিয়ে গিয়েছিল – দুর্দান্ত!",
+  "suggested": "Soundscape-এর এমন বৈশিষ্ট্য ও সুবিধা রয়েছে যা বিভিন্ন পরিস্থিতি এবং সময়কাল জুড়ে বিস্তৃত। আপনার কাছে Soundscape-এর মূল্যও সময়ের সাথে সাথে বদলাতে পারে, তাই আজ আপনি এটি যেভাবে ব্যবহার করছেন তিন মাস পরে তা ভিন্ন হতে পারে। মানুষ প্রায়ই অ্যাপ সম্পর্কে ভাবে *এই অ্যাপটি কোন সমস্যা সমাধানে দক্ষ?* এই দৃষ্টিভঙ্গি থেকে। Soundscape নিশ্চিতভাবেই নির্দিষ্ট প্রয়োজনে ব্যবহার করা যায় – যেমন কোনো গন্তব্যের দিকে যাওয়ার সময় তার হদিস রাখা, মেট্রো স্টেশন থেকে বের হওয়ার সময় দিকনির্ণয়ে সাহায্য করা, গাড়ি থেকে নামার সময় অবস্থান বোঝা, বা পরবর্তী মোড়ের রাস্তার নাম বা দূরত্ব খুঁজে বের করা। তবে, Soundscape-এর পেছনের দর্শনটি হলো *শব্দ দিয়ে আপনার জগৎ আলোকিত করা* – আপনি যখনই বাইরে থাকেন তখন ব্যবহারের জন্য এটি তৈরি, যাতে আপনার চারপাশ সম্পর্কে পরিবেষ্টনমূলক সচেতনতা পান, যেমন আপনি যে রাস্তায় আছেন তার নাম, আপনি যে দিকে যাচ্ছেন, এবং আপনি যে ব্যবসা প্রতিষ্ঠানগুলোর পাশ দিয়ে যাচ্ছেন তাদের নাম। এই ব্যবহারের ক্ষেত্রে, আমাদের ব্যবহারকারীরা Soundscape-কে একটি *চমৎকার সহচর অ্যাপ* বলে উল্লেখ করেছেন, যা *অপ্রত্যাশিত আবিষ্কারের আনন্দ*কে সমর্থন করে, আপনার *মানসিক মানচিত্রের ফাঁকগুলো পূরণ করতে* সাহায্য করে এবং *হাঁটার সময় আরও আত্মবিশ্বাস* যোগায়। আমাদের ব্যবহারকারীরা কীভাবে Soundscape তাদের জীবনে ব্যবহার করছেন তার আরও কিছু উদাহরণ এখানে দেওয়া হলো:\\n\\nবাস থেকে নেমে ভুল দিকে যাওয়ার পর Soundscape আমাকে সঠিক পথে ফিরে আসতে সাহায্য করেছিল।\\n\\nএমনকি যে শহরে আমি ৩ বছর ধরে বাস করছি, সেখানেও [Soundscape দিয়ে] আমার চারপাশে কী আছে তার একটি উন্নত চিত্র তৈরি করেছি।\\n\\n৩ডি শব্দ আমার হাঁটার অভিজ্ঞতা বাড়িয়ে দেয়, কারণ আমি আমার পরিবেশের সাথে আরও সংযুক্ত অনুভব করি…এখন আমার কাছে ব্যবহারের জন্য এই অ্যাপ থাকায় আমি নতুন পথ চেষ্টা করার সম্ভাবনা বেশি।\\n\\nআমি চারপাশে হাঁটাহাঁটি করে জিনিস লক্ষ্য করার আকস্মিক আনন্দ মিস করি। Soundscape থাকা ভালো – আমার চারপাশের জিনিস সম্পর্কে জানতে কোনো পরিশ্রম করতে হয় না। সম্পর্কিত তথ্য উপযোগী এবং এটি পরিস্থিতিগত সচেতনতা ও বাণিজ্যিক করিডোর অন্বেষণের জন্য একটি দুর্দান্ত অ্যাপ।\\n\\n[আমি Soundscape ব্যবহার করেছিলাম] ইয়র্কের মাঝখানে একটি পাব খুঁজে বের করতে। [আমি] প্রথমে অবস্থান নির্ণয় করতে এবং তারপর প্রকৃতপক্ষে সেটি খুঁজে পেতে এর বিভিন্ন অপশনের পরিসর ব্যবহার করেছিলাম। এটি আমাকে দরজার ৩ মিটারের মধ্যে নিয়ে গিয়েছিল – দুর্দান্ত!",
+  "reason": "«*সরেন্ডিপিটি*» transliterates 'serendipity', which most Bengali speakers won't recognise when it is spoken. Later in the same answer the idea is translated as «আকস্মিক আনন্দ». (The testimonials also lost their quotation marks, which is minor.)",
+  "category": "tone"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "আমি আপনার সাথে একটি Soundscape মার্কার শেয়ার করেছি: %1$s.\\n\\nSoundscape-এ খুলতে %2$s ব্যবহার করুন।\\n\\n Google Maps-এ খুলতে %3$s ব্যবহার করুন।",
+  "suggested": "আমি আপনার সাথে একটি Soundscape মার্কার শেয়ার করেছি: “%1$s”।\\n\\nSoundscape-এ খুলতে %2$s ব্যবহার করুন।\\n\\n Google Maps-এ খুলতে %3$s ব্যবহার করুন।",
+  "reason": "The quotes around the marker name were dropped, and the sentence ends in a Latin «.» instead of «।» like the rest of the message.",
+  "category": "formatting"
+ },
+ {
+  "context": "last_entry_in_list",
+  "source": " and %1$s",
+  "current": "এবং %1$s",
+  "suggested": "এবং %1$s",
+  "reason": "CROSS-LANGUAGE: the English \" and %1$s\" has a leading space, because StreetPreview.kt appends it straight after joinToString(\", \"). bn dropped the space, so it shows «Road Aএবং Road B». 21 languages have lost the space the same way, so this is best fixed in code (trim the word and add the spaces, as was done for the decimal separator in 8bc004bdd). The per-language fix would be « এবং %1$s».",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_water_fountain",
+  "source": "Water Fountain",
+  "current": "পানির ফোয়ারা",
+  "suggested": "পানির ফোয়ারা",
+  "reason": "Split dialect: water is «পানি» here, in osm_water_point and in the search synonyms, but «জল» in osm_water, osm_drinking_water, osm_water_tap, osm_water_tank and others. Pick one register (BD «পানি» or WB «জল») with a native reviewer. There is no confident fix.",
+  "category": "terminology"
+ },
+ {
+  "context": "callouts_allow_callouts",
+  "source": "Allow Callouts",
+  "current": "ঘোষণা চালু করুন",
+  "suggested": "ঘোষণা চালু করুন",
+  "reason": "Known split corpus BN-T1 (still open): Callout is «ঘোষণা» here and in callouts_allow_callouts_description, callouts_automatic_callouts, siri_type_callout and others, but «কলআউট» in callouts_verbosity, menu_manage_callouts and most help text. The settings screen mixes both. Waiting on Q1.",
+  "category": "terminology"
+ }
+]

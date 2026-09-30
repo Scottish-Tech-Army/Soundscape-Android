@@ -114,7 +114,7 @@ Meaning fixes: «приобретите» ("buy") → «возьмите», the 
 title → «Условия использования», «маркеры» → «отметки», plus 2 OSM names with brackets/slashes read aloud.
 Markup: 12 help/FAQ strings had replaced `*…*` with plain «…», now `*«…»*`. Held: Q7 (two button names).
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 41 flagged, 22 applied in `fecc2e43e`. Findings: `/tmp/translation-review/ru-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 41 flagged, 22 applied in `fecc2e43e`. Findings: `translations/review/2026-09-30-all-languages/ru-findings.json`.
 Most serious fixed:
 - `directions_away_from_settlement`: «в стороне от» means 'off to one side of', not 'moving away from';
 - `relative_left_right_direction_left`: «Налево» is a direction of motion ('turn/go to the left');

@@ -86,7 +86,7 @@ removed from five `tour_*` strings, because the tutorial dialog shows plain text
 migration messages, GPS help). The Siri command phrases inside `*…*` stay English, because there is no
 `fa.lproj`. Open: Q5 (points of interest vs Landmarks).
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 15 flagged, 12 applied in `b9ddb8405`. Findings: `/tmp/translation-review/fa-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 15 flagged, 12 applied in `b9ddb8405`. Findings: `translations/review/2026-09-30-all-languages/fa-findings.json`.
 Most serious fixed:
 - `location_detail_action_beacon_hint`: Accessibility hint lands in «دو بار ضربه بزنید تا %1$s»;
 - `number_decimal_separator_a11y`: Spoken decimal separator: Persian reads 2.5 as «دو ممیز پنج».

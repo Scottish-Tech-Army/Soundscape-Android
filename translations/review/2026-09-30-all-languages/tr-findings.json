@@ -1,0 +1,386 @@
+[
+ {
+  "context": "new_version_info_details",
+  "category": "formatting",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Bu, Soundscape için önemli bir güncellemedir. Seyahat modu önemli ölçüde geliştirildi. Arabayla veya otobüsle seyahat ederken Soundscape artık yol numaralarını, seyahat yönünüzü ve yakındaki yerleşim yerlerini anons ediyor. Ayrıca nehirleri, kanalları, haliçleri ve körfezleri geçerken de anons yapıyor. Bu yeni özelliklerden yararlanmak için lütfen çevrimdışı haritalarınızı güncelleyin. Birleşik Krallık'taki kullanıcılar için otobüs durağı açıklamaları artık çok daha iyi. Uyku modu, tekrar hareket ettiğinizi algıladığında artık otomatik olarak uyanıyor. Onu kendiniz uyandırmayı hatırlamanıza gerek yok. Aynı koddan bir iOS uygulaması oluşturabilmemiz için temel kodu yeniden düzenledik. Bu, gelecekte Android için oluşturduğumuz tüm özelliklere sahip bir iOS uygulaması yayınlayabileceğimiz anlamına geliyor. Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana menüdeki Destek ile İletişime Geç seçeneği aracılığıyla bildirmeye devam edin.",
+  "suggested": "\nBu, Soundscape için önemli bir güncellemedir.\n\nSeyahat modu önemli ölçüde geliştirildi. Arabayla veya otobüsle seyahat ederken Soundscape artık yol numaralarını, seyahat yönünüzü ve yakındaki yerleşim yerlerini anons ediyor. Ayrıca nehirleri, kanalları, haliçleri ve körfezleri geçerken de anons yapıyor. Bu yeni özelliklerden yararlanmak için lütfen çevrimdışı haritalarınızı güncelleyin. Birleşik Krallık'taki kullanıcılar için otobüs durağı açıklamaları artık çok daha iyi.\n\nUyku modu, tekrar hareket ettiğinizi algıladığında artık otomatik olarak uyanıyor. Onu kendiniz uyandırmayı hatırlamanıza gerek yok.\n\nAynı koddan bir iOS uygulaması oluşturabilmemiz için temel kodu yeniden düzenledik. Bu, gelecekte Android için oluşturduğumuz tüm özelliklere sahip bir iOS uygulaması yayınlayabileceğimiz anlamına geliyor.\n\nNe kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana menüdeki Destek ile İletişime Geç seçeneği aracılığıyla bildirmeye devam edin.\n",
+  "reason": "All paragraph breaks (and the leading/trailing newline) of the English were dropped, so the dialog renders as one block and the paragraph-based sentence split loses its structure."
+ },
+ {
+  "context": "confect_name_to",
+  "category": "meaning",
+  "source": "%1$s to %2$s",
+  "current": "%1$s'{DAn} %2$s'{A}",
+  "suggested": "%2$s'{A} giden %1$s",
+  "reason": "C10/TR open question 2: «%1$s'{DAn} %2$s'{A}» says 'from the path to Moor Road'; %1$s is the kind of way, so it should be 'a path leading to Moor Road' (relative clause, the model C10 names)."
+ },
+ {
+  "context": "confect_name_to_via",
+  "category": "meaning",
+  "source": "%1$s to %2$s via %3$s",
+  "current": "%3$s üzerinden %1$s'{DAn} %2$s'{A}",
+  "suggested": "%3$s üzerinden %2$s'{A} giden %1$s",
+  "reason": "Same C10 from-to reading as confect_name_to ('from the path to Moor Road via steps'); rephrase as a relative clause."
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "category": "meaning",
+  "source": "%1$s to dead end",
+  "current": "%1$s'{DAn} çıkmaz sokak'{A}",
+  "suggested": "Çıkmaza giden %1$s",
+  "reason": "«Patika'dan çıkmaz sokak'a» = 'from the path to the dead-end street': the from-to reading of C10, and it puts an apostrophe+marker on a common noun. C21 lets the way itself be described as leading to a dead end; %1$s may also be a road name, which the relative clause handles."
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "category": "meaning",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%2$s üzerinden %1$s'{DAn} çıkmaz sokak'{A}",
+  "suggested": "%2$s üzerinden çıkmaza giden %1$s",
+  "reason": "Same as confect_name_to_dead_end: from-to reading and a marker on a common noun."
+ },
+ {
+  "context": "directions_entering_tunnel_named",
+  "category": "meaning",
+  "source": "Entering %1$s",
+  "current": "%1$s tüneline giriliyor",
+  "suggested": "%1$s'{A} giriliyor",
+  "reason": "%1$s is the tunnel's full name («Clyde Tunnel», «Avrasya Tüneli»), so adding «tüneline» doubles it («Avrasya Tüneli tüneline giriliyor»). Put the dative on the name instead."
+ },
+ {
+  "context": "directions_direction_ahead",
+  "category": "meaning",
+  "source": "ahead",
+  "current": "düz",
+  "suggested": "ileride",
+  "reason": "The code prefixes this to a road name («<ahead> Moor Road», IntersectionUtils.kt:591). «düz Moor Road» reads as 'straight Moor Road'; «ileride» gives 'ahead: Moor Road'. (The code concatenates rather than using a template, which is a word-order risk for every language.)"
+ },
+ {
+  "context": "relative_clock_direction",
+  "category": "meaning",
+  "source": "at %1$s o'clock",
+  "current": "saat %1$s'{DA}",
+  "suggested": "saat %1$s yönünde",
+  "reason": "«saat 3'te» is how Turkish says the time 'at 3 o'clock'; the clock-face direction is conventionally «saat 3 yönünde», which also avoids depending on the suffix marker."
+ },
+ {
+  "context": "settings_list_item_description",
+  "category": "meaning",
+  "source": "%1$s is choice %2$s out of %3$s",
+  "current": "%1$s, %3$s seçeneğinden %2$s. seçenektir",
+  "suggested": "%1$s, %3$s seçenekten %2$s. seçenek",
+  "reason": "«3 seçeneğinden 2. seçenektir» is ungrammatical (possessive on the total); «3 seçenekten 2. seçenek» is the natural 'choice 2 of 3'."
+ },
+ {
+  "context": "settings_keep_value",
+  "category": "tone",
+  "source": "keep",
+  "current": "Sakla",
+  "suggested": "korumak",
+  "reason": "Used as a TalkBack/VoiceOver double-tap hint (talkbackHint in SettingsComponents.kt), so TR-B1 requires the «-mek» form; «Sakla» also means 'store/hide' rather than 'keep this value'. The English comment doesn't say it's a hint (C7)."
+ },
+ {
+  "context": "settings_use_value",
+  "category": "tone",
+  "source": "use",
+  "current": "Kullan",
+  "suggested": "kullanmak",
+  "reason": "Used as a double-tap hint (talkbackHint), so TR-B1 requires the «-mek» form: iOS reads «Kullan için çift dokunun»."
+ },
+ {
+  "context": "route_waypoint_progress",
+  "category": "tone",
+  "source": "Route %1$s at waypoint %2$s of %3$s",
+  "current": "%3$s'{In} %2$s. ara noktasında %1$s rotası",
+  "suggested": "%1$s rotası, %2$s. ara noktada (toplam %3$s)",
+  "reason": "«5'in 3. ara noktasında Home rotası» ('Home route at the 3rd waypoint of 5') treats the total as the owner of the waypoint and reads awkwardly when spoken."
+ },
+ {
+  "context": "behavior_scavenger_hunt_callout_next_flag",
+  "category": "tone",
+  "source": "Beacon set on %1$s, %2$s away, %3$s of %4$s",
+  "current": "%1$s üzerinde Sesli İşaret ayarlandı, %2$s uzakta, %4$s üzerinden %3$s",
+  "suggested": "%1$s üzerinde Sesli İşaret ayarlandı, %2$s uzakta, %3$s. ara nokta (toplam %4$s)",
+  "reason": "«5 üzerinden 3» is how a score or mark is said ('3 out of 5 points'), not a position in a route."
+ },
+ {
+  "context": "confect_name_next_to",
+  "category": "tone",
+  "source": "%1$s next to %2$s",
+  "current": "%2$s yanındaki %1$s",
+  "suggested": "%2$s'{In} yanındaki %1$s",
+  "reason": "Missing genitive: «Allander Water yanındaki patika» should be «Allander Water'ın yanındaki patika», matching confect_name_pavement_next_to («%1$s'{In} yanındaki kaldırım»)."
+ },
+ {
+  "context": "callouts_verbosity_description",
+  "category": "tone",
+  "source": "Callout detail controls how much Soundscape tells you about as you walk. Detailed mode calls out everything nearby. Simplified mode leaves out minor paths and service roads, and repeats itself less often. Essential mode calls out streets, junctions and landmarks only. Silent mode makes no automatic callouts at all, leaving beacons, routes and the buttons on the home screen.",
+  "current": "Anons ayrıntısı, yürürken Soundscape'in size ne kadar şey anlatacağını belirler. Ayrıntılı modu yakındaki her şeyi anons eder. Sadeleştirilmiş modu küçük patikaları ve servis yollarını atlar ve kendini daha seyrek tekrarlar. Temel modu yalnızca sokakları, kavşakları ve simge yapıları anons eder. Sessiz modu hiç otomatik anons yapmaz; sesli işaretler, rotalar ve ana ekrandaki düğmeler çalışmaya devam eder.",
+  "suggested": "Anons ayrıntısı, yürürken Soundscape'in size ne kadar şey anlatacağını belirler. Ayrıntılı mod yakındaki her şeyi anons eder. Sadeleştirilmiş mod küçük patikaları ve servis yollarını atlar ve kendini daha seyrek tekrarlar. Temel mod yalnızca sokakları, kavşakları ve simge yapıları anons eder. Sessiz mod hiç otomatik anons yapmaz; sesli işaretler, rotalar ve ana ekrandaki düğmeler çalışmaya devam eder.",
+  "reason": "«Ayrıntılı modu / Sadeleştirilmiş modu / Temel modu / Sessiz modu» puts a possessive on «mod» after an adjective; Turkish says «Sessiz mod» (like the phone's own «Sessiz mod»)."
+ },
+ {
+  "context": "directions_along_facing_n",
+  "category": "tone",
+  "source": "Facing north along %1$s",
+  "current": "%1$s boyunca kuzeye dönük",
+  "suggested": "%1$s üzerinde kuzeye dönük",
+  "reason": "«boyunca» ('along the length of') describes motion; for a stationary user facing a direction on a road, «%1$s üzerinde» is natural."
+ },
+ {
+  "context": "directions_along_facing_ne",
+  "category": "tone",
+  "source": "Facing northeast along %1$s",
+  "current": "%1$s boyunca kuzeydoğuya dönük",
+  "suggested": "%1$s üzerinde kuzeydoğuya dönük",
+  "reason": "«boyunca» ('along the length of') describes motion; for a stationary user facing a direction on a road, «%1$s üzerinde» is natural."
+ },
+ {
+  "context": "directions_along_facing_e",
+  "category": "tone",
+  "source": "Facing east along %1$s",
+  "current": "%1$s boyunca doğuya dönük",
+  "suggested": "%1$s üzerinde doğuya dönük",
+  "reason": "«boyunca» ('along the length of') describes motion; for a stationary user facing a direction on a road, «%1$s üzerinde» is natural."
+ },
+ {
+  "context": "directions_along_facing_se",
+  "category": "tone",
+  "source": "Facing southeast along %1$s",
+  "current": "%1$s boyunca güneydoğuya dönük",
+  "suggested": "%1$s üzerinde güneydoğuya dönük",
+  "reason": "«boyunca» ('along the length of') describes motion; for a stationary user facing a direction on a road, «%1$s üzerinde» is natural."
+ },
+ {
+  "context": "directions_along_facing_s",
+  "category": "tone",
+  "source": "Facing south along %1$s",
+  "current": "%1$s boyunca güneye dönük",
+  "suggested": "%1$s üzerinde güneye dönük",
+  "reason": "«boyunca» ('along the length of') describes motion; for a stationary user facing a direction on a road, «%1$s üzerinde» is natural."
+ },
+ {
+  "context": "directions_along_facing_sw",
+  "category": "tone",
+  "source": "Facing southwest along %1$s",
+  "current": "%1$s boyunca güneybatıya dönük",
+  "suggested": "%1$s üzerinde güneybatıya dönük",
+  "reason": "«boyunca» ('along the length of') describes motion; for a stationary user facing a direction on a road, «%1$s üzerinde» is natural."
+ },
+ {
+  "context": "directions_along_facing_w",
+  "category": "tone",
+  "source": "Facing west along %1$s",
+  "current": "%1$s boyunca batıya dönük",
+  "suggested": "%1$s üzerinde batıya dönük",
+  "reason": "«boyunca» ('along the length of') describes motion; for a stationary user facing a direction on a road, «%1$s üzerinde» is natural."
+ },
+ {
+  "context": "directions_along_facing_nw",
+  "category": "tone",
+  "source": "Facing northwest along %1$s",
+  "current": "%1$s boyunca kuzeybatıya dönük",
+  "suggested": "%1$s üzerinde kuzeybatıya dönük",
+  "reason": "«boyunca» ('along the length of') describes motion; for a stationary user facing a direction on a road, «%1$s üzerinde» is natural."
+ },
+ {
+  "context": "ui_action_button_my_location",
+  "category": "formatting",
+  "source": "My\\nLocation",
+  "current": "Konu\\nmum",
+  "suggested": "Konumum",
+  "reason": "The line break splits the single word «Konumum» into «Konu / mum», which looks broken and may be read as two words by the screen reader (the label is the button's spoken text). «Konumum» is 7 characters and fits one line."
+ },
+ {
+  "context": "ui_action_button_ahead_of_me",
+  "category": "formatting",
+  "source": "Ahead\\nof Me",
+  "current": "Önüm\\nde",
+  "suggested": "Önümde",
+  "reason": "The line break splits the single word «Önümde» into «Önüm / de»; TalkBack may read «Önüm de» ('my front, too'). 6 characters, fits one line."
+ },
+ {
+  "context": "ui_action_button_around_me",
+  "category": "formatting",
+  "source": "Around\\nMe",
+  "current": "Etra\\nfımda",
+  "suggested": "Etrafımda",
+  "reason": "The line break splits the single word «Etrafımda» into «Etra / fımda». It is 9 characters (one over the 8-per-line guide), so check it fits before applying."
+ },
+ {
+  "context": "ui_action_button_nearby_markers",
+  "category": "formatting",
+  "source": "Nearby\\nMarkers",
+  "current": "Yakındaki\\nKayıtlı Noktalar",
+  "suggested": "Yakındaki\\nKayıtlı Noktalar",
+  "reason": "Second line «Kayıtlı Noktalar» is 16 characters against an 8-per-line limit and may wrap to a third line. No short form of the Marker term exists in the glossary; needs a layout check or a native speaker's short label."
+ },
+ {
+  "context": "help_text_automatic_callouts_when_3",
+  "category": "formatting",
+  "source": "**When you need silence :**\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.",
+  "current": "**Sessizliğe ihtiyaç duyduğunuzda:**\\n\\n Bir yolu geçmek üzereyken veya uygulamanın sessiz olmasına ihtiyaç duyduğunuzda anonsları kapatabilirsiniz. Anonslar kapalıyken uygulama yalnızca *\"Konumum\"*, *\"Yakındaki Kayıtlı Noktalar\"*, *\"Etrafımda\"* veya *\"Önümde\"* düğmelerinden birine manuel olarak dokunduğunuzda bilgi verir.",
+  "suggested": "**Sessizliğe ihtiyaç duyduğunuzda:**\\n\\n Bir yolu geçmek üzereyken veya uygulamanın sessiz olmasına ihtiyaç duyduğunuzda anonsları kapatabilirsiniz. Anonslar kapalıyken uygulama yalnızca *Konumum*, *Yakındaki Kayıtlı Noktalar*, *Etrafımda* veya *Önümde* düğmelerinden birine manuel olarak dokunduğunuzda bilgi verir.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_my_location_how",
+  "category": "formatting",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *\"Konumum\"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *\"Konumum\"* düğmesine dokunun ve dinleyin.",
+  "suggested": "Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *Konumum* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *Konumum* düğmesine dokunun ve dinleyin.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_nearby_markers_what",
+  "category": "formatting",
+  "source": "The *Nearby Markers* button tells you about up to four markers that are closest to you. *Nearby Markers* is intended to help you orient yourself using places you already know about.",
+  "current": "*\"Yakındaki Kayıtlı Noktalar\"* düğmesi, size en yakın dört kayıtlı nokta hakkında bilgi verir. *\"Yakındaki Kayıtlı Noktalar\"*, zaten bildiğiniz yerleri kullanarak kendinizi yönlendirmenize yardımcı olmak için tasarlanmıştır.",
+  "suggested": "*Yakındaki Kayıtlı Noktalar* düğmesi, size en yakın dört kayıtlı nokta hakkında bilgi verir. *Yakındaki Kayıtlı Noktalar*, zaten bildiğiniz yerleri kullanarak kendinizi yönlendirmenize yardımcı olmak için tasarlanmıştır.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_nearby_markers_when",
+  "category": "formatting",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Nearby Markers* to hear about the locations of places you know of.",
+  "current": "Çevrenize göre yönünüzü bulmaya çalıştığınızda, bildiğiniz yerlerin konumlarını duymak için *\"Yakındaki Kayıtlı Noktalar\"* kullanın.",
+  "suggested": "Çevrenize göre yönünüzü bulmaya çalıştığınızda, bildiğiniz yerlerin konumlarını duymak için *Yakındaki Kayıtlı Noktalar* kullanın.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_nearby_markers_how",
+  "category": "formatting",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "current": "Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *\"Yakındaki Kayıtlı Noktalar\"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *\"Yakındaki Kayıtlı Noktalar\"* düğmesine dokunun; size yakın dört kayıtlı noktayı duyacaksınız.",
+  "suggested": "Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *Yakındaki Kayıtlı Noktalar* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *Yakındaki Kayıtlı Noktalar* düğmesine dokunun; size yakın dört kayıtlı noktayı duyacaksınız.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_around_me_what",
+  "category": "formatting",
+  "source": "The *Around Me* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *Around Me* is intended to help you orient yourself to your surroundings.",
+  "current": "*\"Etrafımda\"* düğmesi, çevrenizdeki dört çeyrekte (önünüzde, sağınızda, arkanızda ve solunuzda) birer şey hakkında bilgi verir. *\"Etrafımda\"*, çevrenize göre kendinizi yönlendirmenize yardımcı olmak için tasarlanmıştır.",
+  "suggested": "*Etrafımda* düğmesi, çevrenizdeki dört çeyrekte (önünüzde, sağınızda, arkanızda ve solunuzda) birer şey hakkında bilgi verir. *Etrafımda*, çevrenize göre kendinizi yönlendirmenize yardımcı olmak için tasarlanmıştır.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_around_me_when",
+  "category": "formatting",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Around Me* to hear about the things around you.",
+  "current": "Çevrenize göre yönünüzü bulmaya çalıştığınızda, etrafınızdaki şeyleri duymak için *\"Etrafımda\"* kullanın.",
+  "suggested": "Çevrenize göre yönünüzü bulmaya çalıştığınızda, etrafınızdaki şeyleri duymak için *Etrafımda* kullanın.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_around_me_how",
+  "category": "formatting",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *\"Etrafımda\"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *\"Etrafımda\"* düğmesine dokunun; etrafınızda düzenlenmiş dört ilgi noktasını duyacaksınız.",
+  "suggested": "Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *Etrafımda* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *Etrafımda* düğmesine dokunun; etrafınızda düzenlenmiş dört ilgi noktasını duyacaksınız.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_ahead_of_me_when",
+  "category": "formatting",
+  "source": "When you are walking down the street, try using *Ahead of Me* to discover the places and things coming up on either side of the street ahead.",
+  "current": "Sokakta yürürken, ilerde caddenin her iki tarafında karşılaşacağınız yerleri ve şeyleri keşfetmek için *\"Önümde\"* kullanmayı deneyin.",
+  "suggested": "Sokakta yürürken, ilerde caddenin her iki tarafında karşılaşacağınız yerleri ve şeyleri keşfetmek için *Önümde* kullanmayı deneyin.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "category": "formatting",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *\"Önümde\"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *\"Önümde\"* düğmesine dokunun; kabaca önünüzdeki birkaç ilgi noktasını duyacaksınız.",
+  "suggested": "Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *Önümde* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *Önümde* düğmesine dokunun; kabaca önünüzdeki birkaç ilgi noktasını duyacaksınız.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "category": "formatting",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Bu *\"Düzenle\"* ekranından artık ihtiyaç duymadığınız bir kayıtlı noktayı da silebilirsiniz.",
+  "suggested": "Bu *Düzenle* ekranından artık ihtiyaç duymadığınız bir kayıtlı noktayı da silebilirsiniz.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "category": "formatting",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Rota oluşturmak:**\\n\\n Önce *\"Kayıtlı Noktalar ve Rotalar\"*'a gidin, *\"Rotalar\"* sekmesini seçin, ardından *\"Yeni Rota\"* düğmesine dokunun. Rotaya bir ad ve isteğe bağlı bir açıklama verin, ardından giderken ara noktalar ekleyin veya Kayıtlı Noktalar listenizden seçin. Rotayı düzenleyerek istediğiniz zaman bir güzergah boyunca ara noktaların sırasını yeniden düzenleyebilirsiniz.",
+  "suggested": "**Rota oluşturmak:**\\n\\n Önce *Kayıtlı Noktalar ve Rotalar*'a gidin, *Rotalar* sekmesini seçin, ardından *Yeni Rota* düğmesine dokunun. Rotaya bir ad ve isteğe bağlı bir açıklama verin, ardından giderken ara noktalar ekleyin veya Kayıtlı Noktalar listenizden seçin. Rotayı düzenleyerek istediğiniz zaman bir güzergah boyunca ara noktaların sırasını yeniden düzenleyebilirsiniz.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "help_text_routes_content_how_3",
+  "category": "formatting",
+  "source": "**Sharing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "current": "**Rota paylaşmak:**\\n\\n *\"Kayıtlı Noktalar ve Rotalar\"* ekranında rotanızı seçin ve ardından size sunulan tüm paylaşım seçeneklerini kullanarak *\"Paylaş\"* seçeneğini belirleyin.",
+  "suggested": "**Rota paylaşmak:**\\n\\n *Kayıtlı Noktalar ve Rotalar* ekranında rotanızı seçin ve ardından size sunulan tüm paylaşım seçeneklerini kullanarak *Paylaş* seçeneğini belirleyin.",
+  "reason": "UI names are wrapped in *\"…\"* where the English (and the rest of the Turkish help) uses plain *…*; the extra quotes are inconsistent markup."
+ },
+ {
+  "context": "osm_tax",
+  "category": "meaning",
+  "source": "Tax Office",
+  "current": "Vergi Dairesi",
+  "suggested": "Vergi Danışmanlık Bürosu",
+  "reason": "OSM office=tax is a private tax-advice office; «Vergi Dairesi» is the government tax office, so a user would be sent to the wrong kind of place."
+ },
+ {
+  "context": "osm_tomb",
+  "category": "terminology",
+  "source": "Tomb",
+  "current": "Türbe",
+  "suggested": "Mezar",
+  "reason": "«Türbe» is specifically the mausoleum of a revered (usually Muslim) figure, and it is also used for osm_shrine, so two different features sound the same. «Mezar» is the generic tomb."
+ },
+ {
+  "context": "osm_wayside_shrine",
+  "category": "meaning",
+  "source": "Wayside Shrine",
+  "current": "Yol Kenarı Türbesi",
+  "suggested": "Yol Kenarı Sunağı",
+  "reason": "A wayside shrine is a small roadside devotional structure (mostly Christian, no burial); «türbe» means a tomb/mausoleum."
+ },
+ {
+  "context": "osm_rugby_union",
+  "category": "tone",
+  "source": "Rugby Union",
+  "current": "Rugby Union",
+  "suggested": "Ragbi Sahası",
+  "reason": "Left in English; a Turkish voice will mispronounce «Rugby Union». osm_rugby_league already uses «Ragbi Sahası»."
+ },
+ {
+  "context": "osm_bobsleigh",
+  "category": "tone",
+  "source": "Bobsleigh",
+  "current": "Bobsled",
+  "suggested": "Bobsley Pisti",
+  "reason": "«Bobsled» is the English word; Turkish uses «bobsley», and the other sport venues are named as places (Kızak Pisti, Paten Pisti)."
+ },
+ {
+  "context": "faq_how_close_to_destination_answer",
+  "category": "tone",
+  "source": "Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.",
+  "current": "Soundscape, hedefinizin konumunu birkaç metre içinde belirleyebilir, ancak daha az değil. Soundscape, hedefinize yakın olduğunuzu belirlediğinde, hedefinizin yakında olduğunu söyleyen son bir anons duyacaksınız ve işaret kapanacak.",
+  "suggested": "Soundscape, hedefinizin konumunu birkaç metre içinde belirleyebilir, ancak daha az değil. Soundscape hedefinize yakın olduğunuzu belirlediğinde, hedefinizin yakında olduğunu söyleyen son bir anons duyacaksınız ve işaret kapanacak.",
+  "reason": "«Soundscape, hedefinize yakın olduğunuzu belirlediğinde, … son bir anons duyacaksınız» makes Soundscape the subject of «duyacaksınız»; dropping the comma after Soundscape makes it the subject of the subordinate clause only."
+ },
+ {
+  "context": "help_text_creating_markers_content_1",
+  "category": "tone",
+  "source": "You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *Places Nearby* button, or using the *Current Location* button, all of which can be found on the home screen. Once you have found the place you would like, selecting it will take you to the *Location Details* screen. On this screen, select the *Save as Marker* button.",
+  "current": "Kayıtlı nokta üç şekilde oluşturabilirsiniz: ana ekrandaki arama çubuğunu kullanarak kaydetmek istediğiniz yeri arayarak, *Yakındaki Yerler* düğmesini kullanarak bir yer bularak veya *Mevcut Konum* düğmesini kullanarak; bunların hepsi ana ekranda bulunur. İstediğiniz yeri bulduktan sonra seçmeniz sizi *Konum Ayrıntıları* ekranına götürecektir. Bu ekranda *Kayıtlı Nokta Olarak Kaydet* düğmesini seçin.",
+  "suggested": "Kayıtlı noktaları üç şekilde oluşturabilirsiniz: arama çubuğunu kullanarak kaydetmek istediğiniz yeri arayarak, *Yakındaki Yerler* düğmesini kullanarak bir yer bularak veya *Mevcut Konum* düğmesini kullanarak; bunların hepsi ana ekranda bulunur. İstediğiniz yeri bulduktan sonra seçmeniz sizi *Konum Ayrıntıları* ekranına götürecektir. Bu ekranda *Kayıtlı Nokta Olarak Kaydet* düğmesini seçin.",
+  "reason": "«Kayıtlı nokta üç şekilde oluşturabilirsiniz» lacks the object case, and «ana ekrandaki arama çubuğu» repeats the «bunların hepsi ana ekranda bulunur» that follows."
+ },
+ {
+  "context": "directions_on_road_and_settlement_since",
+  "category": "tone",
+  "source": "On %1$s and close to %2$s, %3$s since %4$s",
+  "current": "%1$s üzerinde ve %2$s yakınında, %4$s'{DAn} beri %3$s",
+  "suggested": "%1$s üzerinde ve %2$s yakınında, %4$s'{DAn} beri %3$s",
+  "reason": "«%4$s'{DAn} beri %3$s» uses the time word «beri» for a distance ('3 km since Glasgow station'); street_description_since uses «bu yana». A clearer phrasing may be «%4$s'{DAn} bu yana %3$s yol alındı»; needs a native speaker."
+ }
+]

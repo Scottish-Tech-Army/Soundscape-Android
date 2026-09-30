@@ -75,7 +75,7 @@ Nothing yet.
 
 **2026-09-29 — Full review of all 1586 units.** 12 fixes uploaded. 5 hints had drifted to «…করুন» imperatives and now use the «-তে» infinitive required by «%1$s ডাবল ট্যাপ করুন» (BN-B1). Help text now uses the real labels «আমার চারপাশ» and «কাছাকাছি স্থান». Uploaded with `--skip-validate` and re-fetched: all matched exactly.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 23 flagged, 20 applied in `f2e2a5ea8`. Findings: `/tmp/translation-review/bn-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 23 flagged, 20 applied in `f2e2a5ea8`. Findings: `translations/review/2026-09-30-all-languages/bn-findings.json`.
 Most serious fixed:
 - `help_text_ahead_of_me_how`: The last clause «আপনি প্রায় সবগুলোই আপনার সামনে থাকা বেশ কয়েকটি আগ্রহের স্থান» is garbled ('you almost all of them several points of interest in front of you').
 - `osm_gas_station`: «গ্যাস স্টেশন» usually means a CNG or gas-cylinder station in Bengali.

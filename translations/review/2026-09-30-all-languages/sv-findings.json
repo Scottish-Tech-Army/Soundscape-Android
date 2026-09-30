@@ -1,0 +1,211 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Det här är en stor uppdatering av Soundscape. Reseläget är mycket bättre. När du reser med bil eller buss läser Soundscape nu upp vägnummer, din färdriktning och närliggande orter. Appen läser också upp när du korsar floder, kanaler, fjordar och vikar. Uppdatera dina offlinekartor för att få dessa nya funktioner. Beskrivningarna av busshållplatser är nu mycket bättre för användare i Storbritannien. Viloläget kan nu vakna automatiskt när det upptäcker att du rör dig igen. Du behöver inte längre komma ihåg att väcka det själv. Vi har omstrukturerat den underliggande koden så att vi kan bygga en iOS-app från samma kod. Det innebär att vi i framtiden kan släppa en iOS-app med alla funktioner vi har byggt för Android. Fortsätt gärna rapportera eventuella problem, hur små de än är, via alternativet Kontakta supporten i huvudmenyn.",
+  "suggested": "\nDet här är en stor uppdatering av Soundscape.\n\nReseläget är mycket bättre. När du reser med bil eller buss läser Soundscape nu upp vägnummer, din färdriktning och närliggande orter. Appen läser också upp när du korsar floder, kanaler, fjordar och vikar. Uppdatera dina offlinekartor för att få dessa nya funktioner. Beskrivningarna av busshållplatser är nu mycket bättre för användare i Storbritannien.\n\nViloläget kan nu vakna automatiskt när det upptäcker att du rör dig igen. Du behöver inte längre komma ihåg att väcka det själv.\n\nVi har omstrukturerat den underliggande koden så att vi kan bygga en iOS-app från samma kod. Det innebär att vi i framtiden kan släppa en iOS-app med alla funktioner vi har byggt för Android.\n\nFortsätt gärna rapportera eventuella problem, hur små de än är, via alternativet Kontakta supporten i huvudmenyn.\n",
+  "reason": "All paragraph breaks (and the leading/trailing newline) of the English are missing; the release-notes dialog now splits on paragraph breaks, so the five paragraphs run together as one block.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_assistant_what",
+  "source": "Soundscape is ready for Gemini, but Gemini cannot use it yet: that depends on Google releasing support for Android app functions in Gemini. Once it does, you will be able to ask Gemini to do things in Soundscape without touching your phone: hear a callout, start one of your routes, or set an audio beacon on one of your markers. Any other assistant that supports Android app functions will be able to do the same.\\n\\nSoundscape will answer in its own voice, with the callouts and beacon sounds you already know, rather than the assistant reading out a summary. That way what you hear will still come from the direction it is describing.",
+  "current": "Soundscape är redo för Gemini, men Gemini kan inte använda det än: det beror på att Google släpper stöd för appfunktioner i Android i Gemini. När det sker kommer du att kunna be Gemini att göra saker i Soundscape utan att röra telefonen: höra ett informationsljud, starta en av dina rutter eller ställa in en ljudfyr på en av dina platsmarkörer. Alla andra assistenter som stöder appfunktioner i Android kommer att kunna göra samma sak.\\n\\nSoundscape kommer att svara med sin egen röst, med de informationsljud och fyrljud du redan känner till, i stället för att assistenten läser upp en sammanfattning. På så sätt kommer det du hör fortfarande från den riktning som beskrivs.",
+  "suggested": "Soundscape är redo för Gemini, men Gemini kan inte använda det än: det kräver att Google först släpper stöd för appfunktioner i Android i Gemini. När det sker kommer du att kunna be Gemini att göra saker i Soundscape utan att röra telefonen: höra ett informationsljud, starta en av dina rutter eller ställa in en ljudfyr på en av dina platsmarkörer. Alla andra assistenter som stöder appfunktioner i Android kommer att kunna göra samma sak.\\n\\nSoundscape kommer att svara med sin egen röst, med de informationsljud och fyrljud du redan känner till, i stället för att assistenten läser upp en sammanfattning. På så sätt kommer det du hör fortfarande från den riktning som beskrivs.",
+  "reason": "«det beror på att Google släpper stöd» means 'that is because Google releases support' — the opposite of 'that depends on Google releasing support'. It tells the user support has been released.",
+  "category": "meaning"
+ },
+ {
+  "context": "terms_of_use_medical_safety_disclaimer",
+  "source": "You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\\n\\nSafety Notice\\n\\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.",
+  "current": "Du är medveten om att Soundscape (1) inte är avsett för eller gjorts tillgängligt som medicinsk utrustning och (2) inte är avsett att ersätta professionell medicinsk rådgivning, diagnoser, behandling eller bedömning och inte ska användas i stället för professionell medicinsk rådgivning, diagnoser, behandling eller bedömning.\\n\\nSäkerhetsinformation\\n\\nSoundscape är ett navigeringshjälpmedel och ska inte användas i stället för mobilitetsfärdigheter, kännedom om omgivningarna och gott omdöme. Var försiktig när du navigerar i din miljö eftersom de kartdata som ingår i Soundscape har samlats in från ett program från tredje part, och det kan därför finnas begränsningar i hur exakt den informationen presenteras.",
+  "suggested": "Du är medveten om att Soundscape (1) inte är avsett för eller gjorts tillgängligt som medicinsk utrustning och (2) inte är avsett att ersätta professionell medicinsk rådgivning, diagnoser, behandling eller bedömning och inte ska användas i stället för professionell medicinsk rådgivning, diagnoser, behandling eller bedömning.\\n\\nSäkerhetsinformation\\n\\nSoundscape är ett navigeringshjälpmedel och ska inte användas i stället för mobilitetsfärdigheter, kännedom om omgivningarna och gott omdöme. Var försiktig när du navigerar i din miljö eftersom de kartdata som ingår i Soundscape har samlats in från ett program från tredje part, och det kan därför finnas begränsningar i hur exakt den information som presenteras är.",
+  "reason": "Last clause says 'limitations in how exactly the information is presented' instead of 'limitations in the accuracy of the information presented'.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_collapse_section",
+  "source": "collapse section",
+  "current": "fäll ihop avsnittet",
+  "suggested": "fälla ihop avsnittet",
+  "reason": "Used as a TalkBack onClickLabel, so it lands in «…för att %1$s»; imperative «fäll» must be the infinitive (SV-B1).",
+  "category": "formatting"
+ },
+ {
+  "context": "settings_expand_section",
+  "source": "expand section",
+  "current": "fäll ut avsnittet",
+  "suggested": "fälla ut avsnittet",
+  "reason": "Used as a TalkBack onClickLabel («…för att %1$s»); imperative «fäll» must be the infinitive (SV-B1).",
+  "category": "formatting"
+ },
+ {
+  "context": "settings_keep_value",
+  "source": "keep",
+  "current": "behåll",
+  "suggested": "behålla",
+  "reason": "Passed to talkbackHint, so it becomes «Dubbeltryck för att behåll»; needs the infinitive (SV-B1).",
+  "category": "formatting"
+ },
+ {
+  "context": "settings_use_value",
+  "source": "use",
+  "current": "använd",
+  "suggested": "använda",
+  "reason": "Passed to talkbackHint, so it becomes «Dubbeltryck för att använd»; needs the infinitive (SV-B1).",
+  "category": "formatting"
+ },
+ {
+  "context": "street_description_until",
+  "source": "On %1$s, %2$s until %3$s",
+  "current": "På %1$s, %2$s tills %3$s",
+  "suggested": "På %1$s, %2$s till %3$s",
+  "reason": "«tills» is a temporal conjunction ('until [time]'); a distance to a street needs «till» ('125 m till 32nd Street').",
+  "category": "meaning"
+ },
+ {
+  "context": "street_description_since",
+  "source": "On %1$s, %2$s since %3$s",
+  "current": "På %1$s, %2$s sedan %3$s",
+  "suggested": "På %1$s, %2$s från %3$s",
+  "reason": "«sedan» is temporal ('since [time]'); distance travelled from a street reads «125 m från 32nd Street».",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_on_road_and_settlement_since",
+  "source": "On %1$s and close to %2$s, %3$s since %4$s",
+  "current": "På %1$s och nära %2$s, %3$s sedan %4$s",
+  "suggested": "På %1$s och nära %2$s, %3$s från %4$s",
+  "reason": "«1,6 km sedan Westerton» uses temporal «sedan» for a distance; «1,6 km från Westerton» is natural.",
+  "category": "meaning"
+ },
+ {
+  "context": "preview_go_title",
+  "source": "Go",
+  "current": "OK",
+  "suggested": "Gå",
+  "reason": "Button moves the simulated position to the next intersection; «OK» sounds like a confirmation button, not 'Go'.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_around_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonens överkant åt det håll du är vänd innan du trycker på knappen *Omkring mig*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *Omkring mig* så hör du flera olika intressepunkter som finns omkring dig.",
+  "suggested": "Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonens överkant åt det håll du är vänd innan du trycker på knappen *Omkring mig*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *Omkring mig* så hör du fyra intressepunkter som finns omkring dig.",
+  "reason": "English says you will hear four points of interest (one per quadrant); «flera olika» ('several') loses the number that explains the feature.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_remote_control_what",
+  "source": "You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.",
+  "current": "Du kan få tillgång till vissa funktioner i Soundscape med hjälp av mediereglageknapparna på dina hörlurar. Detta fungerar både med sladdförsedda hörlurar och Bluetooth-hörlurar som är utrustade med knappar som Spela upp, Paus, Nästa och Föregående. Olika hörlurar har olika typer av knappar. Använd listan med åtgärder nedan för att ta reda vilka som finns.",
+  "suggested": "Du kan få tillgång till vissa funktioner i Soundscape med hjälp av mediereglageknapparna på dina hörlurar. Detta fungerar både med sladdförsedda hörlurar och Bluetooth-hörlurar som är utrustade med knappar som Spela upp, Paus, Nästa och Föregående. Olika hörlurar har olika typer av knappar. Använd listan med åtgärder nedan för att ta reda på vilka som finns.",
+  "reason": "Missing «på»: «ta reda vilka» is ungrammatical, should be «ta reda på vilka».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_how_close_to_destination_answer",
+  "source": "Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.",
+  "current": "Soundscape kan fastställa ditt mål på några meter när, men inte mindre. När Soundscape fastställer att du börjar närma dig målet hör du ett sista informationsljud om att målet ligger i närheten, och ljudfyren stängs.",
+  "suggested": "Soundscape kan fastställa ditt mål på några meter när, men inte mindre. När Soundscape fastställer att du börjar närma dig målet hör du ett sista informationsljud om att målet ligger i närheten, och ljudfyren stängs av.",
+  "reason": "«ljudfyren stängs» means 'the beacon closes'; 'turns off' is «stängs av».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_use_with_wayfinding_apps_answer",
+  "source": "Soundscape is designed to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.",
+  "current": "Soundscape är tänkt att fylla i detaljer om din omgivning som du annars inte skulle vara medveten om. Det är inte tänkt att du ska kunna navigera sväng för sväng med den. Den kan dock användas för att komplettera sådana navigeringsappar. Om du vill använda Soundscape med sådana appar ska du först starta navigeringsappen. Sedan går du över till Soundscape och ställer in en ljudfyr på samma mål som navigeringsappen. Nu körs båda apparna och du kommer att höra vägvisningar från navigeringsappen samtidigt som du får uppdateringar om intressepunkter, vägkorsningar och avståndet från ditt mål från Soundscape.",
+  "suggested": "Soundscape är tänkt att fylla i detaljer om din omgivning som du annars inte skulle vara medveten om. Det är inte tänkt att du ska kunna navigera sväng för sväng med den. Den kan dock användas för att komplettera sådana navigeringsappar. Om du vill använda Soundscape med sådana appar ska du först starta navigeringsappen. Sedan går du över till Soundscape och ställer in en ljudfyr på samma mål som navigeringsappen. Nu körs båda apparna och du kommer att höra vägvisningar från navigeringsappen samtidigt som du får uppdateringar om intressepunkter, vägkorsningar och avståndet till ditt mål från Soundscape.",
+  "reason": "'your distance to your destination' became «avståndet från ditt mål» ('distance from'); should be «till».",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_permissions_notification",
+  "source": "Notifications",
+  "current": "Meddelanden",
+  "suggested": "Aviseringar",
+  "reason": "Android and iOS Swedish call this permission «Aviseringar»; «Meddelanden» is the Messages app/SMS.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_main_entrance",
+  "source": "main entrance",
+  "current": "Huvudentré",
+  "suggested": "huvudentré",
+  "reason": "English is deliberately lowercase because it is substituted mid-callout into osm_entrance_*_with_destination («Stormarknad huvudentré från Hills Road»).",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_garages",
+  "source": "Garages",
+  "current": "Bilverkstäder",
+  "suggested": "Garagelänga",
+  "reason": "OSM building=garages is a row of lock-up garages, not car repair workshops; «Bilverkstäder» is a different amenity (osm_car_repair is «Bilverkstad»).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_sally_port",
+  "source": "Sally Port",
+  "current": "Säkerhetsport",
+  "suggested": "Utfallsport",
+  "reason": "A sally port is a historic fortification gate; «Säkerhetsport» ('security gate') suggests a modern access-control gate.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_unmanaged_crossing",
+  "source": "Unmanaged Crosswalk",
+  "current": "Obevakad övergång",
+  "suggested": "Obevakat övergångsställe",
+  "reason": "«Obevakad övergång» is the usual term for an unguarded railway level crossing; for a pedestrian crossing without signals Swedish uses «obevakat övergångsställe», matching osm_crossing «Övergångsställe».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_trade",
+  "source": "Trade Shop",
+  "current": "Handelsbutik",
+  "suggested": "Handelsbutik",
+  "reason": "shop=trade is a trade supplier (builders' merchant, plumbing/electrical supplies); «Handelsbutik» ('trade shop') is a calque that tells the listener nothing. «Byggvaruhandel» or «Grossist för hantverkare» are candidates; needs a native call.",
+  "category": "meaning"
+ },
+ {
+  "context": "distance_format_miles",
+  "source": {
+   "one": "%1$s mile",
+   "other": "%1$s miles"
+  },
+  "current": {
+   "one": "%1$s mile",
+   "other": "%1$s miles"
+  },
+  "suggested": {
+   "one": "%1$s mile",
+   "other": "%1$s miles"
+  },
+  "reason": "«mile/miles» keeps the English plural, and a Swedish TTS voice may read «mile» as Swedish «mil» (10 km). «engelsk mil / engelska mil» is unambiguous but longer; worth a native decision.",
+  "category": "terminology"
+ },
+ {
+  "context": "ui_action_button_nearby_markers",
+  "source": "Nearby\\nMarkers",
+  "current": "Markörer\\nnära",
+  "suggested": "Markörer\\nnära",
+  "reason": "«Markörer» departs from the confirmed term «platsmarkör» used everywhere else (help texts call this button *Platsmarkörer i närheten*). Forced by the 8-characters-per-line limit, so probably acceptable; flagged for a human look only.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_how_to_use_beacon_answer",
+  "source": "You can think of the audible beacon like a *lighthouse for your ears*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *ring* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *ring*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.\\n\\nThis design has a few natural results:\\n\\n1. There is no *correct* direction to travel when using the beacon – with Soundscape, you choose how to get there;\\n\\n2. The higher-pitched *ring* only helps you pinpoint the direction of the destination – it does not tell you how to get there;\\n\\n3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.",
+  "current": "Du kan se den hörbara ljudfyren som en *fyr för dina öron*: den berättar var ditt mål finns, i rak linje från din nuvarande plats. Precis som en fyr talar den inte om hur du tar dig dit – du kan fortfarande behöva göra vägval längs vägen för att ta dig runt hinder. Ljudfyrens kontinuerliga rytmiska ljud kommer från målets riktning och hjälper dig att hålla koll på var målet finns i förhållande till dig medan du går. När du går rakt mot målet, eller riktar telefonen mot målet, hör du en högre ton, en *klinga*. Det hjälper dig att avgöra målets riktning exakt, eftersom riktningen på det rytmiska ljudet ibland kan vara svår att höra i bullriga miljöer. För att hitta den högre *klingan* håller du telefonen plant och vrider dig långsamt runt; om du vänder huvudet åt samma håll som telefonen får du bästa möjliga rumsljudupplevelse.\\n\\nDen här utformningen får några naturliga följder:\\n\\n1. Det finns ingen *rätt* riktning att färdas i när du använder ljudfyren – med Soundscape väljer du själv hur du tar dig dit;\\n\\n2. Den högre *klingan* hjälper dig bara att avgöra målets riktning – den talar inte om hur du tar dig dit;\\n\\n3. Om du i stort sett vet hur du tar dig till ditt mål kanske du vill stänga av ljudfyrens ljud under större delen av resan och slå på det först när du närmar dig målet.",
+  "suggested": "Du kan se den hörbara ljudfyren som en *fyr för dina öron*: den berättar var ditt mål finns, i rak linje från din nuvarande plats. Precis som en fyr talar den inte om hur du tar dig dit – du kan fortfarande behöva göra vägval längs vägen för att ta dig runt hinder. Ljudfyrens kontinuerliga rytmiska ljud kommer från målets riktning och hjälper dig att hålla koll på var målet finns i förhållande till dig medan du går. När du går rakt mot målet, eller riktar telefonen mot målet, hör du en högre ton, en *klinga*. Det hjälper dig att avgöra målets riktning exakt, eftersom riktningen på det rytmiska ljudet ibland kan vara svår att höra i bullriga miljöer. För att hitta den högre *klingan* håller du telefonen plant och vrider dig långsamt runt; om du vänder huvudet åt samma håll som telefonen får du bästa möjliga rumsljudupplevelse.\\n\\nDen här utformningen får några naturliga följder:\\n\\n1. Det finns ingen *rätt* riktning att färdas i när du använder ljudfyren – med Soundscape väljer du själv hur du tar dig dit;\\n\\n2. Den högre *klingan* hjälper dig bara att avgöra målets riktning – den talar inte om hur du tar dig dit;\\n\\n3. Om du i stort sett vet hur du tar dig till ditt mål kanske du vill stänga av ljudfyrens ljud under större delen av resan och slå på det först när du närmar dig målet.",
+  "reason": "«klinga» (as a noun) means 'blade'; 'ring sound' would be «klang» or «ringsignal». Probably Microsoft's wording (C14), so flagged for a native check rather than changed.",
+  "category": "tone"
+ },
+ {
+  "context": "relative_degrees_direction",
+  "source": "at %1$s degrees",
+  "current": "vid %1$s grader",
+  "suggested": "vid %1$s grader",
+  "reason": "«vid 90 grader» is an odd way to say a bearing; «på %1$s grader» would parallel «på klockan %1$s». Low confidence, native check.",
+  "category": "tone"
+ }
+]

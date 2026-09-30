@@ -1,0 +1,258 @@
+[
+ {
+  "context": "last_entry_in_list",
+  "source": " and %1$s",
+  "current": "a %1$s",
+  "suggested": " a %1$s",
+  "reason": "Leading space lost. StreetPreview.kt appends this straight after the comma-joined roads with no separator, so Czech shows 'Moor Roada High Street'. English and German keep the leading space.",
+  "category": "formatting"
+ },
+ {
+  "context": "directions_generic_train",
+  "source": "train",
+  "current": "vlaku",
+  "suggested": "trati",
+  "reason": "Goes into the 'Na %1$s' / 'Jízda … po %1$s' templates, which gives 'Na vlaku' (on the roof of the train) and 'po vlaku' (after the train). 'Na trati' / 'po trati' (on the line) is the natural Czech and fits both prepositions.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_generic_tram",
+  "source": "tram",
+  "current": "tramvaji",
+  "suggested": "tramvajové trati",
+  "reason": "Same as directions_generic_train: 'Na tramvaji' means on top of the tram. 'Na tramvajové trati' fits the 'Na %1$s' and 'po %1$s' templates.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_joins",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s, která spojuje %2$s a %3$s",
+  "suggested": "%1$s spojující %2$s a %3$s",
+  "reason": "The feminine relative pronoun 'která' is wrong for masculine way types such as 'Chodník' ('Chodník, která spojuje…'). The participle 'spojující' has the same form in every gender, which is what C21 asks for.",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_automatic_callouts_what",
+  "source": "Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *Manage Callouts* section of the *Settings* screen, and you can turn all callouts off when you want the app to be silent.",
+  "current": "Soundscape vám může sdělovat informace o věcech ve vašem okolí, jakmile se k nim přiblížíte, tím, že oznámí jejich název ze směru, ve kterém se nacházejí. Aplikace to dělá automaticky pro nejrůznější věci, jako jsou obchody, autobusové zastávky a dokonce i křižovatky. To, co aplikace automaticky oznamuje, můžete nastavit v části *Správa hlášení* na obrazovce *Nastavení*, a všechna hlášení můžete kdykoli vypnout, pokud chcete, aby byla aplikace tichá.",
+  "suggested": "Soundscape vám může sdělovat informace o věcech ve vašem okolí, jakmile se k nim přiblížíte, tím, že oznámí jejich název ze směru, ve kterém se nacházejí. Aplikace to dělá automaticky pro nejrůznější věci, jako jsou obchody, autobusové zastávky a dokonce i křižovatky. To, co aplikace automaticky oznamuje, můžete nastavit v části *Spravovat hlášení* na obrazovce *Nastavení*, a všechna hlášení můžete kdykoli vypnout, pokud chcete, aby byla aplikace tichá.",
+  "reason": "Calls the settings section *Správa hlášení*, but its real label (menu_manage_callouts) is 'Spravovat hlášení'. A blind user looking for the section hears a different name from the one TalkBack reads out.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_1",
+  "source": "**Turning callouts on or off :**\\n\\n Turning callouts off will silence the app. Callouts can be turned off in the *Manage Callouts* section of the *Settings* screen by setting *Callout Detail* to *Silent*, and turned back on by choosing any other level. On iPhone you can do the same by asking Siri, and on Android the same will work through Gemini once Google releases support for it. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *previous* moves down through *Detailed*, *Simplified*, *Essential* and *Silent*, and one more press goes back to *Detailed*. See the *Using Media Controls* help topic. Alternatively, you can use the *Sleep* button in the top-right corner of the home screen to stop Soundscape from making callouts until you wake it up.",
+  "current": "**Zapnutí nebo vypnutí hlášení:**\\n\\n Vypnutím hlášení aplikaci ztišíte. Hlášení lze vypnout v části *Správa hlášení* na obrazovce *Nastavení* nastavením položky *Podrobnost hlášení* na *Bez zvuku* a znovu zapnout výběrem kterékoli jiné úrovně. Na iPhonu můžete totéž udělat požádáním Siri a na Androidu to bude fungovat přes Gemini, jakmile pro to Google vydá podporu. Soundscape můžete také postupně ztišovat tlačítky pro ovládání médií na sluchátkách: každé stisknutí *předchozí* posune o úroveň níž přes *Podrobný*, *Zjednodušený*, *Základní* a *Bez zvuku* a další stisknutí se vrátí na *Podrobný*. Viz téma nápovědy *Používání ovládacích prvků médií*. Případně můžete použít tlačítko *Spánek* v pravém horním rohu domovské obrazovky, které zastaví hlášení aplikace Soundscape, dokud ji neprobudíte.",
+  "suggested": "**Zapnutí nebo vypnutí hlášení:**\\n\\n Vypnutím hlášení aplikaci ztišíte. Hlášení lze vypnout v části *Spravovat hlášení* na obrazovce *Nastavení* nastavením položky *Podrobnost hlášení* na *Bez zvuku* a znovu zapnout výběrem kterékoli jiné úrovně. Na iPhonu můžete totéž udělat požádáním Siri a na Androidu to bude fungovat přes Gemini, jakmile pro to Google vydá podporu. Soundscape můžete také postupně ztišovat tlačítky pro ovládání médií na sluchátkách: každé stisknutí *předchozí* posune o úroveň níž přes *Podrobný*, *Zjednodušený*, *Základní* a *Bez zvuku* a další stisknutí se vrátí na *Podrobný*. Viz téma nápovědy *Používání ovládacích prvků médií*. Případně můžete použít tlačítko *Spánek* v pravém horním rohu domovské obrazovky, které zastaví hlášení aplikace Soundscape, dokud ji neprobudíte.",
+  "reason": "Calls the settings section *Správa hlášení*, but its real label (menu_manage_callouts) is 'Spravovat hlášení'. A blind user looking for the section hears a different name from the one TalkBack reads out.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_2",
+  "source": "**Managing which callouts you hear :**\\n\\n To choose the types of things Soundscape will automatically call out, go to the *Settings* screen using the menu on the *Home* screen. The *Manage Callouts* section of the *Settings* screen is where you choose how much the app says with *Callout Detail*, whether it calls out *Streets and Junctions*, and which *Places to Call Out*. If you wish to turn off all callouts, set *Callout Detail* to *Silent*.",
+  "current": "**Správa toho, jaká hlášení slyšíte:**\\n\\n Chcete-li zvolit typy věcí, které bude Soundscape automaticky oznamovat, přejděte na obrazovku *Nastavení* pomocí nabídky na obrazovce *Domů*. V části *Správa hlášení* na obrazovce *Nastavení* volíte, kolik toho aplikace říká, pomocí položky *Podrobnost hlášení*, zda ohlašuje *Ulice a křižovatky* a jaká jsou *Místa k ohlašování*. Chcete-li vypnout všechna hlášení, nastavte *Podrobnost hlášení* na *Bez zvuku*.",
+  "suggested": "**Správa toho, jaká hlášení slyšíte:**\\n\\n Chcete-li zvolit typy věcí, které bude Soundscape automaticky oznamovat, přejděte na obrazovku *Nastavení* pomocí nabídky na obrazovce *Domů*. V části *Spravovat hlášení* na obrazovce *Nastavení* volíte, kolik toho aplikace říká, pomocí položky *Podrobnost hlášení*, zda ohlašuje *Ulice a křižovatky* a jaká jsou *Místa k ohlašování*. Chcete-li vypnout všechna hlášení, nastavte *Podrobnost hlášení* na *Bez zvuku*.",
+  "reason": "Calls the settings section *Správa hlášení*, but its real label (menu_manage_callouts) is 'Spravovat hlášení'. A blind user looking for the section hears a different name from the one TalkBack reads out.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_tip_turning_off_auto_callouts",
+  "source": "To keep using Soundscape without hearing automatic callouts, set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *Sleep* button on the home screen.",
+  "current": "Chcete-li Soundscape používat dál, ale neslyšet automatická hlášení, nastavte *Podrobnost hlášení* na *Bez zvuku* v části *Správa hlášení* na obrazovce *Nastavení* v nabídce. Pokud Soundscape nebudete chvíli používat, můžete jej místo toho pomocí tlačítka *Spánek* na domovské obrazovce přepnout do režimu spánku nebo dřímání.",
+  "suggested": "Chcete-li Soundscape používat dál, ale neslyšet automatická hlášení, nastavte *Podrobnost hlášení* na *Bez zvuku* v části *Spravovat hlášení* na obrazovce *Nastavení* v nabídce. Pokud Soundscape nebudete chvíli používat, můžete jej místo toho pomocí tlačítka *Spánek* na domovské obrazovce přepnout do režimu spánku nebo dřímání.",
+  "reason": "Calls the settings section *Správa hlášení*, but its real label (menu_manage_callouts) is 'Spravovat hlášení'. A blind user looking for the section hears a different name from the one TalkBack reads out.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape nabízí několik způsobů, jak ovládat, co a kdy slyšíte:\\n\\n1. Okamžité zastavení veškerého zvuku: Dvojím klepnutím na obrazovku dvěma prsty okamžitě vypnete veškerý zvuk, včetně jakéhokoli právě přehrávaného hlášení a majáku, pokud je zapnutý. Hlášení se automaticky obnoví, jakmile se přiblížíte k další křižovatce nebo bodu zájmu, ale slyšitelný maják se automaticky neobnoví. Chcete-li maják znovu slyšet, vyberte na hlavní obrazovce *tlačítko pro zapnutí majáku*.\\n\\n2. Zastavení automatických hlášení: Když necestujete nebo jste dosáhli cíle, pravděpodobně nebudete potřebovat, aby vás Soundscape nadále informoval o věcech kolem vás. Místo ukončení aplikace můžete Soundscape přepnout do režimu odložení, a ten se znovu probudí, jakmile odejdete, nebo můžete Soundscape přepnout do režimu spánku, a ten zůstane vypnutý, dokud jej sami znovu nezapnete. Případně můžete v nabídce vybrat *Nastavení* a v části *Správa hlášení* nastavit *Podrobnost hlášení* na *Bez zvuku*.\\n\\n3. Zastavení majáku: Existuje několik situací, kdy možná nastavíte cíl, ale nebudete potřebovat zapnutý slyšitelný maják. Můžete například přesně vědět, jak se dostat ke svému cíli, ale přesto chtít automatické aktualizace o tom, jak daleko jste. Nebo možná budete potřebovat zvukový maják jen v blízkosti svého cíle. Ať už je to jakkoli, můžete si zvolit, kdy maják uslyšíte, přepnutím tlačítka *ztlumit maják*/*zrušit ztlumení majáku* na hlavní obrazovce.\\n\\nPokud stále chcete se Soundscape interagovat, ale nechcete slyšet automatická hlášení, můžete nastavit *Podrobnost hlášení* na *Bez zvuku* v části *Správa hlášení* na obrazovce *Nastavení* v nabídce. Nebo pokud Soundscape nebudete používat, můžete jej pomocí tlačítka *Spánek* na domovské obrazovce přepnout do režimu spánku nebo odložení.",
+  "suggested": "Soundscape nabízí několik způsobů, jak ovládat, co a kdy slyšíte:\\n\\n1. Okamžité zastavení veškerého zvuku: Dvojím klepnutím na obrazovku dvěma prsty okamžitě vypnete veškerý zvuk, včetně jakéhokoli právě přehrávaného hlášení a majáku, pokud je zapnutý. Hlášení se automaticky obnoví, jakmile se přiblížíte k další křižovatce nebo bodu zájmu, ale slyšitelný maják se automaticky neobnoví. Chcete-li maják znovu slyšet, vyberte na hlavní obrazovce tlačítko *Zrušit ztlumení majáku*.\\n\\n2. Zastavení automatických hlášení: Když necestujete nebo jste dosáhli cíle, pravděpodobně nebudete potřebovat, aby vás Soundscape nadále informoval o věcech kolem vás. Místo ukončení aplikace můžete Soundscape přepnout do režimu dřímání a znovu se probudí, jakmile odejdete, nebo můžete Soundscape přepnout do režimu spánku, a ten zůstane vypnutý, dokud jej sami znovu nezapnete. Případně můžete v nabídce vybrat *Nastavení* a v části *Spravovat hlášení* nastavit *Podrobnost hlášení* na *Bez zvuku*.\\n\\n3. Zastavení majáku: Existuje několik situací, kdy možná nastavíte cíl, ale nebudete potřebovat zapnutý slyšitelný maják. Můžete například přesně vědět, jak se dostat ke svému cíli, ale přesto chtít automatické aktualizace o tom, jak daleko jste. Nebo možná budete potřebovat zvukový maják jen v blízkosti svého cíle. Ať už je to jakkoli, můžete si zvolit, kdy maják uslyšíte, přepnutím tlačítka *ztlumit maják*/*zrušit ztlumení majáku* na hlavní obrazovce.\\n\\nPokud stále chcete se Soundscape interagovat, ale nechcete slyšet automatická hlášení, můžete nastavit *Podrobnost hlášení* na *Bez zvuku* v části *Spravovat hlášení* na obrazovce *Nastavení* v nabídce. Nebo pokud Soundscape nebudete používat, můžete jej pomocí tlačítka *Spánek* na domovské obrazovce přepnout do režimu spánku nebo dřímání.",
+  "reason": "Three problems. (1) '*tlačítko pro zapnutí majáku*' isn't the button's label: it is 'Zrušit ztlumení majáku' (beacon_action_unmute_beacon), which the 2026-09-29 fix recorded in cs.md put in but which has since gone back. (2) *Správa hlášení* should be the label 'Spravovat hlášení'. (3) Snooze is 'režim odložení' here but 'dřímání'/'Dřímá' everywhere else (sleep_snoozing, faq_tip_turning_off_auto_callouts).",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_battery_impact_answer",
+  "source": "Battery life varies significantly depending on the model and age of your phone. The biggest drain on your battery is having the screen on, so to maximize your phone's battery life, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape has a Sleep and a Snooze Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.",
+  "current": "Výdrž baterie se výrazně liší v závislosti na modelu a stáří vašeho telefonu. Největší zátěží pro baterii je zapnutá obrazovka, takže pro maximalizaci výdrže baterie telefonu byste měli obrazovku pokud možno nechávat zamčenou. Aby se minimalizoval dopad na baterii telefonu, má Soundscape režim spánku a režim odložení. Chcete-li dále snížit spotřebu baterie, měli byste aplikaci Soundscape, když ji nepoužíváte, vynuceně ukončit pomocí přepínače aplikací telefonu.",
+  "suggested": "Výdrž baterie se výrazně liší v závislosti na modelu a stáří vašeho telefonu. Největší zátěží pro baterii je zapnutá obrazovka, takže pro maximalizaci výdrže baterie telefonu byste měli obrazovku pokud možno nechávat zamčenou. Aby se minimalizoval dopad na baterii telefonu, má Soundscape režim spánku a režim dřímání. Chcete-li dále snížit spotřebu baterie, měli byste aplikaci Soundscape, když ji nepoužíváte, vynuceně ukončit pomocí přepínače aplikací telefonu.",
+  "reason": "Snooze Mode is 'režim odložení' ('postpone mode') here, but everywhere else it is Dřímá/dřímání (sleep_snoozing, sleep_sleeping_wake_on_leave_message, faq_tip_turning_off_auto_callouts).",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_snooze_mode_battery_question",
+  "source": "How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "Jak použít režim odložení k minimalizaci dopadu Soundscape na baterii mého telefonu?",
+  "suggested": "Jak použít režim dřímání k minimalizaci dopadu Soundscape na baterii mého telefonu?",
+  "reason": "Snooze is 'odložení' here, but 'dřímání' everywhere else (see faq_battery_impact_answer).",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_snooze_mode_battery_answer",
+  "source": "To put Soundscape into Snooze Mode, select the *Sleep* button in the top-right corner of the home screen. Once Soundscape’s in Sleep Mode, select the *Wake On Leave* button and Soundscape will go in to a low power state until you leave your current location.",
+  "current": "Chcete-li přepnout Soundscape do režimu odložení, vyberte tlačítko *Spánek* v pravém horním rohu domovské obrazovky. Jakmile je Soundscape v režimu spánku, vyberte tlačítko *Probudit při odchodu* a Soundscape přejde do úsporného stavu, dokud neopustíte svou aktuální polohu.",
+  "suggested": "Chcete-li přepnout Soundscape do režimu dřímání, vyberte tlačítko *Spánek* v pravém horním rohu domovské obrazovky. Jakmile je Soundscape v režimu spánku, vyberte tlačítko *Probudit při odchodu* a Soundscape přejde do úsporného stavu, dokud neopustíte svou aktuální polohu.",
+  "reason": "Snooze is 'odložení' here, but 'dřímání' everywhere else (see faq_battery_impact_answer).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Na této obrazovce *Úpravy* můžete také značku smazat, pokud ji již nepotřebujete.",
+  "suggested": "Na této obrazovce *Upravit značku* můžete také značku smazat, pokud ji již nepotřebujete.",
+  "reason": "The English names the *Edit* screen, whose title is markers_edit_screen_title_edit, 'Upravit značku'. '*Úpravy*' doesn't exist anywhere in the app.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "K dispozici jsou 2 režimy ovládání médií. Režim lze vybrat v části *Nastavení* *Ovládání médií*. Režimy jsou:\\n\\n *Původní režim*. \\n\\n⏯ Přehrát/Pozastavit: Zapne nebo vypne zvuk majáku. \\n\\n⏭ Další: Pokud se přehrává trasa, přesune zvukový maják na další bod trasy. Pokud se nepřehrává žádná trasa, oznámí *Co je kolem mě*.\\n\\n⏮ Předchozí: Pokud se přehrává trasa, přesune zvukový maják na předchozí bod trasy. Pokud se nepřehrává žádná trasa, změní *Podrobnost hlášení* o jednu úroveň tišeji při každém stisknutí: *Podrobný*, *Zjednodušený*, *Základní*, *Bez zvuku* a zpět na *Podrobný*.\\n\\n\\n\\n*Zvukové menu*. \\n\\n\\n\\n⏭ Další prochází řadou možností nabídky, které aplikace popisuje pomocí převodu textu na řeč, a po poslední se vrací k první. ⏯ Přehrát/Pozastavit poté spustí provedení popsané možnosti. Existuje jediná hlavní nabídka, která má jako možnosti pouze podnabídky. Každá podnabídka obsahuje skupinu podobných možných akcí.\\n\\n⏮ Předchozí nabídkou neprochází. Místo toho mění *Podrobnost hlášení* přesně tak jako v původním režimu, takže stejné tlačítko aplikaci ztišuje v obou režimech.",
+  "suggested": "K dispozici jsou 2 režimy ovládání médií. Režim lze vybrat v části *Nastavení* *Ovládání médií*. Režimy jsou:\\n\\n *Původní režim*. \\n\\n⏯ Přehrát/Pozastavit: Zapne nebo vypne zvuk majáku. \\n\\n⏭ Další: Pokud se přehrává trasa, přesune zvukový maják na další trasový bod. Pokud se nepřehrává žádná trasa, oznámí *Co je kolem mě*.\\n\\n⏮ Předchozí: Pokud se přehrává trasa, přesune zvukový maják na předchozí trasový bod. Pokud se nepřehrává žádná trasa, změní *Podrobnost hlášení* o jednu úroveň tišeji při každém stisknutí: *Podrobný*, *Zjednodušený*, *Základní*, *Bez zvuku* a zpět na *Podrobný*.\\n\\n\\n\\n*Zvukové menu*. \\n\\n\\n\\n⏭ Další prochází řadou možností nabídky, které aplikace popisuje pomocí převodu textu na řeč, a po poslední se vrací k první. ⏯ Přehrát/Pozastavit poté spustí provedení popsané možnosti. Existuje jediná hlavní nabídka, která má jako možnosti pouze podnabídky. Každá podnabídka obsahuje skupinu podobných možných akcí.\\n\\n⏮ Předchozí nabídkou neprochází. Místo toho mění *Podrobnost hlášení* přesně tak jako v původním režimu, takže stejné tlačítko aplikaci ztišuje v obou režimech.",
+  "reason": "Waypoint is 'bod trasy' here, but 'trasový bod' in every button, hint and callout (route_detail_action_next, menu_route_next_waypoint, action_at_route_end…). Two words for one concept is a split corpus (C12).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_routes_content_what",
+  "source": "Routes are a series of waypoints. You will be informed on arrival at each waypoint, and the Audio Beacon will automatically advance to the next waypoint.",
+  "current": "Trasy jsou posloupností bodů trasy. Při dosažení každého bodu trasy budete informováni a zvukový maják automaticky přejde na další bod trasy.",
+  "suggested": "Trasy jsou posloupností trasových bodů. Při dosažení každého trasového bodu budete informováni a zvukový maják automaticky přejde na další trasový bod.",
+  "reason": "Waypoint is 'bod trasy' here, but 'trasový bod' in every button, hint and callout (route_detail_action_next, menu_route_next_waypoint, action_at_route_end…). Two words for one concept is a split corpus (C12).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Vytvoření trasy:**\\n\\n Nejprve přejděte na *Značky a trasy*, vyberte kartu *Trasy* a poté vyberte tlačítko *Nová trasa*. Zadejte název trasy a volitelně popis, poté přidávejte body trasy postupně, jak jdete, nebo je vyberte ze seznamu svých značek. Pořadí bodů trasy můžete kdykoli změnit úpravou trasy.",
+  "suggested": "**Vytvoření trasy:**\\n\\n Nejprve přejděte na *Značky a trasy*, vyberte kartu *Trasy* a poté vyberte tlačítko *Nová trasa*. Zadejte název trasy a volitelně popis, poté přidávejte trasové body postupně, jak jdete, nebo je vyberte ze seznamu svých značek. Pořadí trasových bodů můžete kdykoli změnit úpravou trasy.",
+  "reason": "Waypoint is 'bod trasy' here, but 'trasový bod' in every button, hint and callout (route_detail_action_next, menu_route_next_waypoint, action_at_route_end…). Two words for one concept is a split corpus (C12).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_routes_content_how_2",
+  "source": "**Editing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select *Edit Route*. From here you can add and remove waypoints, as well as edit the name and description of the route.",
+  "current": "**Úprava trasy:**\\n\\n Vyberte svou trasu na obrazovce *Značky a trasy* a poté vyberte *Upravit trasu*. Odtud můžete přidávat a odebírat body trasy a také upravovat název a popis trasy.",
+  "suggested": "**Úprava trasy:**\\n\\n Vyberte svou trasu na obrazovce *Značky a trasy* a poté vyberte *Upravit trasu*. Odtud můžete přidávat a odebírat trasové body a také upravovat název a popis trasy.",
+  "reason": "Waypoint is 'bod trasy' here, but 'trasový bod' in every button, hint and callout (route_detail_action_next, menu_route_next_waypoint, action_at_route_end…). Two words for one concept is a split corpus (C12).",
+  "category": "terminology"
+ },
+ {
+  "context": "route_waypoint_progress",
+  "source": "Route %1$s at waypoint %2$s of %3$s",
+  "current": "Trasa %1$s, bod trasy %2$s z %3$s",
+  "suggested": "Trasa %1$s, trasový bod %2$s z %3$s",
+  "reason": "Waypoint is 'bod trasy' here, but 'trasový bod' in every button, hint and callout (route_detail_action_next, menu_route_next_waypoint, action_at_route_end…). Two words for one concept is a split corpus (C12).",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "Ne! Při chůzi můžete mít telefon uložený v tašce, kapse nebo kdekoli jinde, kde vám to vyhovuje. Soundscape použije směr, kterým jdete, k určení toho, jaká hlášení oznamovat vlevo a vpravo. Když se zastavíte, Soundscape neví, kterým směrem jste otočeni. Pokud je zapnutý slyšitelný maják, všimnete si, že ztiší, dokud se znovu nevydáte na cestu. Telefon můžete kdykoli vytáhnout a stisknout tlačítka pro určení polohy a průzkum ve spodní části domovské obrazovky, ale ujistěte se, že telefon držíte s horní stranou telefonu ve směru, kterým jste otočeni, a obrazovkou k obloze. V této *rovné* poloze Soundscape použije kompas telefonu k určení směru, kterým jste otočeni, a poskytne přesná prostorová hlášení. Pokud je maják zapnutý, všimnete si také, že se vrátí na plnou hlasitost.",
+  "suggested": "Ne! Při chůzi můžete mít telefon uložený v tašce, kapse nebo kdekoli jinde, kde vám to vyhovuje. Soundscape použije směr, kterým jdete, k určení toho, jaká hlášení oznamovat vlevo a vpravo. Když se zastavíte, Soundscape neví, kterým směrem jste otočeni. Pokud je zapnutý slyšitelný maják, všimnete si, že se ztiší, dokud se znovu nevydáte na cestu. Telefon můžete kdykoli vytáhnout a stisknout tlačítka pro určení polohy a průzkum ve spodní části domovské obrazovky, ale ujistěte se, že telefon držíte s horní stranou telefonu ve směru, kterým jste otočeni, a obrazovkou k obloze. V této *rovné* poloze Soundscape použije kompas telefonu k určení směru, kterým jste otočeni, a poskytne přesná prostorová hlášení. Pokud je maják zapnutý, všimnete si také, že se vrátí na plnou hlasitost.",
+  "reason": "The reflexive is missing: 'všimnete si, že ztiší' reads as 'that it silences [something]'. It needs to be 'že se ztiší'.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_question",
+  "source": "When should I use Soundscape?",
+  "current": "Kdy bych měl používat Soundscape?",
+  "suggested": "Kdy používat Soundscape?",
+  "reason": "'bych měl' assumes a male user. An infinitive question needs no gender (C15).",
+  "category": "gender"
+ },
+ {
+  "context": "faq_section_what_is_soundscape",
+  "source": "What is Soundscape and how should I use it?",
+  "current": "Co je Soundscape a jak bych ji měl používat?",
+  "suggested": "Co je Soundscape a jak ho používat?",
+  "reason": "'bych … měl' assumes a male user, and 'ji' makes Soundscape feminine, while most of the corpus treats it as masculine ('Soundscape je navržen', 'Soundscape to nedokázal'). An infinitive with 'ho' fixes both.",
+  "category": "gender"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape má funkce a výhody, které se hodí do celé řady situací a časových horizontů. Hodnota, kterou vám Soundscape přináší, se také může časem měnit, takže způsob, jakým jej používáte dnes, může být jiný než způsob, jakým jej budete používat za tři měsíce. Lidé o aplikacích často přemýšlejí z hlediska otázky *jaký problém tato aplikace dobře řeší?* Soundscape lze jistě používat pro konkrétní potřeby – například sledování cíle při cestě k němu, orientaci při vystoupení ze stanice metra, zorientování se po vystoupení z auta nebo zjištění názvů ulic či vzdálenosti k nejbližší křižovatce. Filozofií Soundscape je však *rozsvítit váš svět zvukem* – aplikace je navržena tak, aby ji bylo možné používat kdykoli jste venku, a poskytovala vám ambientní povědomí o okolí, jako jsou názvy ulic, po kterých jdete, směr, kterým se pohybujete, a názvy podniků, kolem kterých procházíte. Při tomto způsobu používání naši uživatelé Soundscape označují za *příjemného společníka*, který podporuje *náhodná objevování*, pomáhá *doplnit mezery ve vaší mentální mapě* a poskytuje větší *jistotu při chůzi*. Zde je několik dalších příkladů, jak naši uživatelé Soundscape používají ve svém životě:\\n\\nSoundscape mi pomohl vrátit se na správnou cestu poté, co jsem vystoupil z autobusu a vydal se špatným směrem.\\n\\nI ve městě, kde žiji už 3 roky, jsem si díky Soundscape vytvořil lepší představu o tom, co je kolem mě.\\n\\nProstorový zvuk zlepšuje můj zážitek z procházky, protože se cítím více propojen se svým okolím… Nyní, když mám tuto aplikaci, jsem ochotnější vyzkoušet novou trasu.\\n\\nChybí mi ta radost z náhodných objevů při procházení a všímání si věcí. Mít Soundscape je příjemné – nevyžaduje žádné úsilí slyšet o věcech kolem sebe. Vztahové informace jsou užitečné a je to skvělá aplikace pro situační povědomí a průzkum obchodních čtvrtí.\\n\\n[Soundscape jsem použil] k nalezení hospody uprostřed Yorku. Použil jsem řadu jejích možností, abych ji nejprve našel a pak skutečně dorazil. Dovedla mě na 3 metry od dveří – skvělé!",
+  "suggested": "Soundscape má funkce a výhody, které se hodí do celé řady situací a časových horizontů. Hodnota, kterou vám Soundscape přináší, se také může časem měnit, takže způsob, jakým jej používáte dnes, může být jiný než způsob, jakým jej budete používat za tři měsíce. Lidé o aplikacích často přemýšlejí z hlediska otázky *jaký problém tato aplikace dobře řeší?* Soundscape lze jistě používat pro konkrétní potřeby – například sledování cíle při cestě k němu, orientaci při vystoupení ze stanice metra, zorientování se po vystoupení z auta nebo zjištění názvů ulic či vzdálenosti k nejbližší křižovatce. Filozofií Soundscape je však *rozsvítit váš svět zvukem* – aplikace je navržena tak, aby ji bylo možné používat kdykoli jste venku, a poskytovala vám ambientní povědomí o okolí, jako jsou názvy ulic, po kterých jdete, směr, kterým se pohybujete, a názvy podniků, kolem kterých procházíte. Při tomto způsobu používání naši uživatelé Soundscape označují za *příjemného společníka*, který podporuje *náhodná objevování*, pomáhá *doplnit mezery ve vaší mentální mapě* a poskytuje větší *jistotu při chůzi*. Zde je několik dalších příkladů, jak naši uživatelé Soundscape používají ve svém životě:\\n\\n„Soundscape mi pomohl vrátit se na správnou cestu poté, co jsem vystoupil z autobusu a vydal se špatným směrem.“\\n\\n„I ve městě, kde žiji už 3 roky, jsem si díky Soundscape vytvořil lepší představu o tom, co je kolem mě.“\\n\\n„Prostorový zvuk zlepšuje můj zážitek z procházky, protože se cítím více propojen se svým okolím… Nyní, když mám tuto aplikaci, jsem ochotnější vyzkoušet novou trasu.“\\n\\n„Chybí mi ta radost z náhodných objevů při procházení a všímání si věcí. Mít Soundscape je příjemné – nevyžaduje žádné úsilí slyšet o věcech kolem sebe. Vztahové informace jsou užitečné a je to skvělá aplikace pro situační povědomí a průzkum obchodních čtvrtí.“\\n\\n„[Soundscape jsem použil] k nalezení hospody uprostřed Yorku. Použil jsem řadu jejích možností, abych ji nejprve našel a pak skutečně dorazil. Dovedla mě na 3 metry od dveří – skvělé!“",
+  "reason": "The quotation marks around the five user testimonials have been dropped, so first-person sentences like 'Soundscape mi pomohl… vystoupil jsem z autobusu' are read out as though the app were saying them. This restores them as typographic „…“ quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_how_close_to_destination_answer",
+  "source": "Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.",
+  "current": "Soundscape dokáže určit polohu vašeho cíle s přesností na několik metrů, ne však menší. Když Soundscape zjistí, že jste blízko svého cíle, uslyšíte závěrečné hlášení, že váš cíl je poblíž, a maják se vypne.",
+  "suggested": "Soundscape dokáže určit polohu vašeho cíle s přesností na několik metrů, ale ne přesněji. Když Soundscape zjistí, že jste blízko svého cíle, uslyšíte závěrečné hlášení, že váš cíl je poblíž, a maják se vypne.",
+  "reason": "'s přesností na několik metrů, ne však menší' is clumsy: 'menší' has no noun to go with. 'ale ne přesněji' is what the English means.",
+  "category": "tone"
+ },
+ {
+  "context": "help_config_voices_content",
+  "source": "Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *Settings* from the main menu, expand the *Audio* section, and then select *Voices*.",
+  "current": "Soundscape může používat kterýkoli z hlasů, které jste si stáhli do telefonu s Androidem v nastavení výstupu převodu textu na řeč. V aplikaci Soundscape vyberete jiný než výchozí hlas Androidu tak, že v hlavní nabídce přejdete do *„Nastavení“*, rozbalíte sekci *„Zvuk“* a poté vyberete *„Hlasy“*.",
+  "suggested": "Soundscape může používat kterýkoli z hlasů, které jste si stáhli do telefonu s Androidem v nastavení výstupu převodu textu na řeč. V aplikaci Soundscape vyberete jiný než výchozí hlas Androidu tak, že v hlavní nabídce přejdete do *Nastavení*, rozbalíte sekci *Zvuk* a poté vyberete *Hlasy*.",
+  "reason": "This is the only help string that puts „…“ quotes inside the *…* UI-name markup, so a screen reader may read out the quotation marks. Every sibling uses bare *Nastavení*.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_walking_path",
+  "source": "Walking Path",
+  "current": "Turistická stezka",
+  "suggested": "Pěší cesta",
+  "reason": "'Turistická stezka' means a marked hiking trail, but the note says the path is for 'walking or hiking', which includes ordinary urban footpaths. 'Pěší cesta' covers both.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_travel_recording",
+  "source": "Enable recording of travel",
+  "current": "Povolit nahrávání trasy",
+  "suggested": "Povolit záznam cesty",
+  "reason": "'trasa' is this app's term for a saved Route. A recording of where you travelled isn't one, so 'nahrávání trasy' suggests it records a Route. 'záznam cesty' avoids the clash.",
+  "category": "terminology"
+ },
+ {
+  "context": "menu_share_recorded_route",
+  "source": "Share recording of travel",
+  "current": "Sdílet záznam trasy",
+  "suggested": "Sdílet záznam cesty",
+  "reason": "Same clash with the Route term as settings_travel_recording.",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_prompt_title",
+  "source": "You're ready!",
+  "current": "Jste připraveni!",
+  "suggested": "Jste připraveni!",
+  "reason": "CS-R1 (open, Q3): the plural 'připraveni' addresses a group. The rephrasing «Vše je připraveno!» is waiting on a native speaker, so this is flagged, not changed. first_launch_prompt_message repeats «Jste připraveni».",
+  "category": "gender"
+ },
+ {
+  "context": "directions_at_poi",
+  "source": "At %1$s",
+  "current": "U %1$s",
+  "suggested": "U %1$s",
+  "reason": "C17: Czech declines map names after a preposition, and runtime names always arrive in the nominative, so this template is wrong for some names whatever wording is used. It's a candidate for the label form, to put to a reviewer, not to apply unasked. 'U %1$s' needs the genitive ('U Starbucks' works, but 'U Hlavní nádraží' is wrong).",
+  "category": "gender"
+ },
+ {
+  "context": "directions_near_name",
+  "source": "Near %1$s",
+  "current": "Poblíž %1$s",
+  "suggested": "Poblíž %1$s",
+  "reason": "C17: Czech declines map names after a preposition, and runtime names always arrive in the nominative, so this template is wrong for some names whatever wording is used. It's a candidate for the label form, to put to a reviewer, not to apply unasked. 'Poblíž %1$s' needs the genitive, and so do siblings such as directions_approaching_name ('k' + dative) and directions_towards_settlement.",
+  "category": "gender"
+ },
+ {
+  "context": "confect_name_to",
+  "source": "%1$s to %2$s",
+  "current": "%1$s do %2$s",
+  "suggested": "%1$s do %2$s",
+  "reason": "C17: Czech declines map names after a preposition, and runtime names always arrive in the nominative, so this template is wrong for some names whatever wording is used. It's a candidate for the label form, to put to a reviewer, not to apply unasked. 'do %2$s' needs the genitive of the road name ('Cesta do Hlavní ulice', not 'do Hlavní ulice' as delivered in the nominative). C9 was fixed for the dead-end string only.",
+  "category": "gender"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Toto je zásadní aktualizace Soundscape. Cestovní režim je výrazně vylepšen. Když cestujete autem nebo autobusem, Soundscape nyní hlásí čísla silnic, směr vaší jízdy a blízká sídla. Také hlásí, když překračujete řeky, kanály, zálivy a fjordy. Aktualizujte prosím své offline mapy, abyste tyto nové funkce získali. Popisy autobusových zastávek jsou nyní pro uživatele ve Spojeném království mnohem lepší. Režim spánku se nyní může automaticky probudit, jakmile zjistí, že se opět pohybujete. Už si nemusíte pamatovat, že ho máte probudit sami. Přeuspořádali jsme základní kód, abychom z něj mohli vytvořit i aplikaci pro iOS. To znamená, že v budoucnu budeme moci vydat aplikaci pro iOS se všemi funkcemi, které jsme vytvořili pro Android. Nahlašujte nám prosím i nadále jakékoli problémy, ať jsou sebemenší, prostřednictvím možnosti Kontaktovat podporu v hlavní nabídce.",
+  "suggested": "Toto je zásadní aktualizace Soundscape. Cestovní režim je výrazně vylepšen. Když cestujete autem nebo autobusem, Soundscape nyní hlásí čísla silnic, směr vaší jízdy a blízká sídla. Také hlásí, když překračujete řeky, kanály, zálivy a fjordy. Aktualizujte prosím své offline mapy, abyste tyto nové funkce získali. Popisy autobusových zastávek jsou nyní pro uživatele ve Spojeném království mnohem lepší. Režim spánku se nyní může automaticky probudit, jakmile zjistí, že se opět pohybujete. Už si nemusíte pamatovat, že ho máte probudit sami. Přeuspořádali jsme základní kód, abychom z něj mohli vytvořit i aplikaci pro iOS. To znamená, že v budoucnu budeme moci vydat aplikaci pro iOS se všemi funkcemi, které jsme vytvořili pro Android. Nahlašujte nám prosím i nadále jakékoli problémy, ať jsou sebemenší, prostřednictvím možnosti Kontaktovat podporu v hlavní nabídce.",
+  "reason": "CROSS-LANGUAGE: the English has blank-line paragraph breaks, and the translation has run them all into one paragraph. Only pa, pl and th keep the breaks. 42 languages have lost them, which points to the translation pass or tooling rather than Czech. The release-notes splitter now splits on paragraph breaks.",
+  "category": "formatting"
+ }
+]

@@ -1,0 +1,130 @@
+[
+ {
+  "context": "last_entry_in_list",
+  "source": " and %1$s",
+  "current": "dan %1$s",
+  "suggested": " dan %1$s",
+  "reason": "The leading space of the English ' and %1$s' was lost. StreetPreview.kt appends this straight after the comma-joined list, so the screen shows 'Jalan A, Jalan Bdan Jalan C'.",
+  "category": "formatting"
+ },
+ {
+  "context": "callouts_nearby_markers",
+  "source": "Nearby Markers",
+  "current": "Penanda di Sekitar",
+  "suggested": "Penanda Terdekat",
+  "reason": "The home button is 'Penanda\\nTerdekat' (ui_action_button_nearby_markers), and the help pages, the tutorial and FAQ all call it *Penanda Terdekat*. This string is the only 'Penanda di Sekitar', and it's also the label Siri speaks.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_assistant_commands_ios",
+  "source": "*\"Soundscape surroundings\"* — then *My Location*, *Around Me*, *Ahead of Me* or *Nearby Markers*.\\n\\n*\"Soundscape route\"* — then *Next Waypoint*, *Previous Waypoint*, *Mute Beacon* or *Stop*.\\n\\n*\"Soundscape start route\"* — then the name of one of your saved routes.\\n\\n*\"Soundscape beacon\"* — then the name of one of your saved markers.\\n\\n*\"Soundscape stop beacon\"*.\\n\\n*\"Soundscape detail\"* — then *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\n*\"Soundscape list\"* — then *Routes*, *Markers* or *Commands*.\\n\\nSaying *\"Soundscape list commands\"* reads this list of commands back to you.",
+  "current": "*Soundscape surroundings* — lalu *Lokasi Saya*, *Di Sekitar Saya*, *Di Depan Saya*, atau *Penanda di Sekitar*.\\n\\n*Soundscape route* — lalu *Titik Rute Berikutnya*, *Titik Rute Sebelumnya*, *Nonaktifkan Suara Suar*, atau *Hentikan*.\\n\\n*Soundscape start route* — lalu nama salah satu rute tersimpan Anda.\\n\\n*Soundscape beacon* — lalu nama salah satu penanda tersimpan Anda.\\n\\n*Soundscape stop beacon*.\\n\\n*Soundscape detail* — lalu *Senyap*, *Esensial*, *Sederhana*, atau *Rinci*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. *Senyap* mematikan pemberitahuan otomatis.\\n\\n*Soundscape list* — lalu *Rute*, *Penanda*, atau *Perintah*.\\n\\nMengucapkan *Soundscape list commands* akan membacakan daftar perintah ini kepada Anda.",
+  "suggested": "*Soundscape surroundings* — lalu *Lokasi Saya*, *Di Sekitar Saya*, *Di Depan Saya*, atau *Penanda Terdekat*.\\n\\n*Soundscape route* — lalu *Titik Rute Berikutnya*, *Titik Rute Sebelumnya*, *Nonaktifkan Suara Suar*, atau *Hentikan*.\\n\\n*Soundscape start route* — lalu nama salah satu rute tersimpan Anda.\\n\\n*Soundscape beacon* — lalu nama salah satu penanda tersimpan Anda.\\n\\n*Soundscape stop beacon*.\\n\\n*Soundscape detail* — lalu *Senyap*, *Esensial*, *Sederhana*, atau *Rinci*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. *Senyap* mematikan pemberitahuan otomatis.\\n\\n*Soundscape list* — lalu *Rute*, *Penanda*, atau *Perintah*.\\n\\nMengucapkan *Soundscape list commands* akan membacakan daftar perintah ini kepada Anda.",
+  "reason": "This names the Siri choice from callouts_nearby_markers. Change it together with that string so it matches the button's name, *Penanda Terdekat*.",
+  "category": "terminology"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Ini adalah pembaruan besar untuk Soundscape. Mode perjalanan jauh lebih baik sekarang. Saat Anda bepergian dengan mobil atau bus, Soundscape kini menyebutkan nomor jalan, arah perjalanan Anda, dan permukiman terdekat. Aplikasi juga memberi tahu saat Anda melintasi sungai, kanal, muara, dan teluk. Harap perbarui peta offline Anda untuk mendapatkan fitur-fitur baru ini. Deskripsi halte bus kini jauh lebih baik bagi pengguna di Inggris. Mode tidur kini dapat bangun secara otomatis saat mendeteksi bahwa Anda bergerak lagi. Anda tidak perlu lagi mengingat untuk membangunkannya sendiri. Kami menyusun ulang kode dasar aplikasi agar kami dapat membangun aplikasi iOS dari kode yang sama. Ini berarti di masa mendatang kami dapat merilis aplikasi iOS dengan semua fitur yang telah kami buat untuk Android. Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui Hubungi Dukungan di menu utama.",
+  "suggested": "\nIni adalah pembaruan besar untuk Soundscape.\n\nMode perjalanan jauh lebih baik sekarang. Saat Anda bepergian dengan mobil atau bus, Soundscape kini menyebutkan nomor jalan, arah perjalanan Anda, dan permukiman terdekat. Aplikasi juga memberi tahu saat Anda melintasi sungai, kanal, muara, dan teluk. Harap perbarui peta offline Anda untuk mendapatkan fitur-fitur baru ini. Deskripsi halte bus kini jauh lebih baik bagi pengguna di Inggris.\n\nMode tidur kini dapat bangun secara otomatis saat mendeteksi bahwa Anda bergerak lagi. Anda tidak perlu lagi mengingat untuk membangunkannya sendiri.\n\nKami menyusun ulang kode dasar aplikasi agar kami dapat membangun aplikasi iOS dari kode yang sama. Ini berarti di masa mendatang kami dapat merilis aplikasi iOS dengan semua fitur yang telah kami buat untuk Android.\n\nSilakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui Hubungi Dukungan di menu utama.\n",
+  "reason": "All the paragraph breaks in the English, and its leading and trailing newlines, were collapsed into one block. The release-notes splitter uses paragraph breaks (7ca86e582). Suggested text is the same wording with the English paragraphing restored.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape memiliki fitur dan manfaat yang mencakup berbagai skenario dan rentang waktu. Nilai Soundscape bagi Anda juga dapat berubah seiring waktu, sehingga cara Anda menggunakannya hari ini mungkin berbeda dengan cara Anda menggunakannya tiga bulan mendatang. Orang sering memikirkan aplikasi dari segi *masalah apa yang paling bisa diselesaikan aplikasi ini?* Soundscape tentu dapat digunakan untuk kebutuhan tertentu – seperti memantau tujuan saat Anda menuju ke sana, membantu Anda mengetahui arah saat keluar dari stasiun metro, mengetahui posisi saat keluar dari mobil, atau mencari nama jalan atau jarak menuju persimpangan berikutnya. Namun, filosofi di balik Soundscape adalah *menerangi dunia Anda dengan suara* – aplikasi ini dirancang untuk digunakan kapan pun Anda sedang bepergian, untuk memberi Anda kesadaran ambien terhadap sekitar, seperti nama jalan yang Anda lalui, arah yang Anda tuju, dan nama bisnis yang Anda lewati. Dalam mode penggunaan ini, para pengguna kami menyebut Soundscape sebagai *teman perjalanan yang menyenangkan*, yang mendukung *kejutan-kejutan menyenangkan*, membantu *mengisi celah dalam peta mental Anda*, dan memberikan lebih banyak *kepercayaan diri saat berjalan*. Berikut beberapa contoh lain bagaimana pengguna kami menggunakan Soundscape dalam kehidupan mereka:\\n\\nSoundscape membantu saya kembali ke jalur yang benar setelah saya turun dari bus dan berjalan ke arah yang salah.\\n\\nBahkan di kota tempat saya tinggal selama 3 tahun, saya telah membangun gambaran yang lebih baik tentang apa yang ada di sekitar saya [dengan Soundscape].\\n\\nSuara 3D meningkatkan pengalaman jalan kaki saya, karena saya merasa lebih terhubung dengan lingkungan saya… Saya lebih cenderung mencoba rute baru sekarang karena saya memiliki aplikasi ini.\\n\\nSaya rindu kejutan-kejutan menyenangkan saat berjalan-jalan dan memperhatikan sekitar. Memiliki Soundscape sangat menyenangkan – tidak perlu usaha untuk mendengar tentang hal-hal di sekitar saya. Informasi relasionalnya berguna dan aplikasi ini sangat baik untuk kesadaran situasional dan menjelajahi kawasan komersial.\\n\\n[Saya menggunakan Soundscape] untuk menemukan sebuah pub di tengah kota York. [Saya] menggunakan berbagai opsinya untuk pertama-tama menemukan lokasinya lalu benar-benar mencapainya. Aplikasi ini membawa saya hingga jarak 3 meter dari pintu – luar biasa!",
+  "suggested": "Soundscape memiliki fitur dan manfaat yang mencakup berbagai skenario dan rentang waktu. Nilai Soundscape bagi Anda juga dapat berubah seiring waktu, sehingga cara Anda menggunakannya hari ini mungkin berbeda dengan cara Anda menggunakannya tiga bulan mendatang. Orang sering memikirkan aplikasi dari segi *masalah apa yang paling bisa diselesaikan aplikasi ini?* Soundscape tentu dapat digunakan untuk kebutuhan tertentu – seperti memantau tujuan saat Anda menuju ke sana, membantu Anda mengetahui arah saat keluar dari stasiun metro, mengetahui posisi saat keluar dari mobil, atau mencari nama jalan atau jarak menuju persimpangan berikutnya. Namun, filosofi di balik Soundscape adalah *menerangi dunia Anda dengan suara* – aplikasi ini dirancang untuk digunakan kapan pun Anda sedang bepergian, untuk memberi Anda kesadaran ambien terhadap sekitar, seperti nama jalan yang Anda lalui, arah yang Anda tuju, dan nama bisnis yang Anda lewati. Dalam mode penggunaan ini, para pengguna kami menyebut Soundscape sebagai *teman perjalanan yang menyenangkan*, yang mendukung *kejutan-kejutan menyenangkan*, membantu *mengisi celah dalam peta mental Anda*, dan memberikan lebih banyak *kepercayaan diri saat berjalan*. Berikut beberapa contoh lain bagaimana pengguna kami menggunakan Soundscape dalam kehidupan mereka:\\n\\n“Soundscape membantu saya kembali ke jalur yang benar setelah saya turun dari bus dan berjalan ke arah yang salah.”\\n\\n“Bahkan di kota tempat saya tinggal selama 3 tahun, saya telah membangun gambaran yang lebih baik tentang apa yang ada di sekitar saya [dengan Soundscape].”\\n\\n“Suara 3D meningkatkan pengalaman jalan kaki saya, karena saya merasa lebih terhubung dengan lingkungan saya… Saya lebih cenderung mencoba rute baru sekarang karena saya memiliki aplikasi ini.”\\n\\n“Saya rindu kejutan-kejutan menyenangkan saat berjalan-jalan dan memperhatikan sekitar. Memiliki Soundscape sangat menyenangkan – tidak perlu usaha untuk mendengar tentang hal-hal di sekitar saya. Informasi relasionalnya berguna dan aplikasi ini sangat baik untuk kesadaran situasional dan menjelajahi kawasan komersial.”\\n\\n“[Saya menggunakan Soundscape] untuk menemukan sebuah pub di tengah kota York. [Saya] menggunakan berbagai opsinya untuk pertama-tama menemukan lokasinya lalu benar-benar mencapainya. Aplikasi ini membawa saya hingga jarak 3 meter dari pintu – luar biasa!”",
+  "reason": "The five user testimonials lost their quotation marks, so they read (and are heard) as the app's own claims in the first person ('Soundscape membantu saya…'). Restored with typographic quotes, which Compose shows correctly.",
+  "category": "formatting"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "Saya telah membagikan penanda Soundscape kepada Anda: %1$s.\\n\\nUntuk membuka di Soundscape gunakan %2$s.\\n\\n Untuk membuka di Google Maps gunakan %3$s.",
+  "suggested": "Saya telah membagikan penanda Soundscape kepada Anda: “%1$s”.\\n\\nUntuk membuka di Soundscape gunakan %2$s.\\n\\n Untuk membuka di Google Maps gunakan %3$s.",
+  "reason": "The quotes around the marker name were dropped. In a shared message, a multi-word name then runs into the sentence ('…kepada Anda: Rumah Nenek.'). Used typographic quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "tour_welcome",
+  "source": "Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.",
+  "current": "Selamat datang di tutorial terpandu. Tutorial ini akan memandu Anda melalui fitur-fitur utama aplikasi. Anda dapat menghentikan tutorial kapan saja dengan mengetuk Batalkan Tutorial Terpandu di Menu Utama. Mari kita mulai dengan Tempat di Sekitar. Fitur ini memungkinkan Anda menemukan titik minat. Tombol Tempat di Sekitar ada di layar Beranda, tepat di bawah bilah pencarian. Ketuk sekarang untuk mencobanya.",
+  "suggested": "Selamat datang di tutorial terpandu. Tutorial ini akan memandu Anda melalui fitur-fitur utama aplikasi. Anda dapat menghentikan tutorial kapan saja dengan mengetuk Batalkan Tutorial Terpandu di Menu Utama. Mari kita mulai dengan Tempat di Sekitar. Fitur ini memungkinkan Anda menemukan tempat menarik. Tombol Tempat di Sekitar ada di layar Beranda, tepat di bawah bilah pencarian. Ketuk sekarang untuk mencobanya.",
+  "reason": "'titik minat' appears only in these two tutorial strings. Everywhere else (12 strings: settings, help, FAQ, onboarding) point of interest is 'tempat menarik'.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_select_place",
+  "source": "Places Nearby groups points of interest by type. Browse the places in the lists and select one.",
+  "current": "Tempat di Sekitar mengelompokkan titik minat berdasarkan jenisnya. Jelajahi tempat-tempat dalam daftar dan pilih salah satu.",
+  "suggested": "Tempat di Sekitar mengelompokkan tempat menarik berdasarkan jenisnya. Jelajahi tempat-tempat dalam daftar dan pilih salah satu.",
+  "reason": "Same as tour_welcome: 'titik minat' should be the corpus term 'tempat menarik'.",
+  "category": "terminology"
+ },
+ {
+  "context": "settings_voice_command_listening_prompt",
+  "source": "Announce listening",
+  "current": "Umumkan mendengarkan",
+  "suggested": "Umumkan saat mendengarkan",
+  "reason": "'Umumkan mendengarkan' ('announce listen') isn't grammatical. The setting speaks a prompt when the microphone starts listening.",
+  "category": "tone"
+ },
+ {
+  "context": "settings_search_results_language_description",
+  "source": "You can let online search use the local language of the result, or force it to return English, French, or German.",
+  "current": "Anda dapat membiarkan pencarian daring menggunakan bahasa lokal dari hasil pencarian, atau memaksanya mengembalikan hasil dalam bahasa Inggris, Prancis, atau Jerman.",
+  "suggested": "Anda dapat membiarkan pencarian online menggunakan bahasa lokal dari hasil pencarian, atau memaksanya mengembalikan hasil dalam bahasa Inggris, Prancis, atau Jerman.",
+  "reason": "This is the only 'daring'. The search setting it describes is labelled 'Online' (settings_search_online), and 'online/offline' is used throughout.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_wreck",
+  "source": "Wreck",
+  "current": "Bangkai",
+  "suggested": "Bangkai Kapal",
+  "reason": "A bare 'Bangkai' means a carcass or corpse. OSM historic=wreck is a shipwreck, and 'bangkai kapal' is the normal Indonesian phrase.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_rowing",
+  "source": "Rowing",
+  "current": "Dayung",
+  "suggested": "Mendayung",
+  "reason": "'Dayung' is the oar itself. The activity or club is 'mendayung', the same way the sibling sports use activity forms (Berlayar, Memancing, Menyelam).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_beacon",
+  "source": "Beacon",
+  "current": "Suar",
+  "suggested": "Suar Navigasi",
+  "reason": "A POI called just 'Suar' is the same word as the app's own Audio Beacon term (Suar / Suar Audio, 140 uses). A callout of 'Suar' nearby could be taken as the user's beacon (C5). A qualifier keeps the navigational-marker meaning.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_farm",
+  "source": "Farm",
+  "current": "Pertanian",
+  "suggested": "Lahan Pertanian",
+  "reason": "'Pertanian' is 'agriculture', the activity. As a place name for a farm, 'Lahan Pertanian' (or 'Peternakan' for livestock) is what's meant.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_convenience",
+  "source": "Convenience Shop",
+  "current": "Toko Serba Ada",
+  "suggested": "Minimarket",
+  "reason": "osm_convenience_store is 'Minimarket', but this sibling is 'Toko Serba Ada'. That is the department-store word (toserba), and osm_department_store already uses it. Use the same term for both convenience-shop tags.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "Ada 2 mode pengoperasian untuk kontrol media. Mode dapat dipilih di bagian *Pengaturan* *Kontrol Media*. Mode-mode tersebut adalah:\\n\\n *Mode asli*. \\n\\n⏯ Putar/Jeda: Mengaktifkan atau menonaktifkan suara suar. \\n\\n⏭ Berikutnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute berikutnya dalam rute. Jika tidak ada rute yang sedang diputar, bacakan *Di Sekitar Saya*.\\n\\n⏮ Sebelumnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute sebelumnya dalam rute. Jika tidak ada rute yang sedang diputar, ubah *Tingkat Detail Pemberitahuan* satu tingkat lebih senyap pada setiap penekanan: *Rinci*, *Sederhana*, *Esensial*, *Senyap*, lalu kembali ke *Rinci*.\\n\\n\\n\\n*Menu audio*. \\n\\n\\n\\n⏭ Berikutnya berpindah melalui serangkaian opsi menu yang dijelaskan aplikasi melalui text-to-speech, dan kembali ke opsi pertama setelah yang terakhir. ⏯ Putar/Jeda kemudian memicu aplikasi untuk menjalankan opsi yang dijelaskan tersebut. Ada satu menu tingkat atas tunggal yang hanya memiliki submenu sebagai opsi. Setiap submenu memiliki sekelompok aksi serupa yang mungkin dilakukan.\\n\\n⏮ Sebelumnya tidak berpindah melalui menu. Sebagai gantinya, tombol ini mengubah *Tingkat Detail Pemberitahuan*, persis seperti pada mode asli, sehingga tombol yang sama membuat aplikasi lebih senyap pada mode mana pun yang Anda gunakan.",
+  "suggested": "Ada 2 mode pengoperasian untuk kontrol media. Mode dapat dipilih di bagian *Pengaturan* *Kontrol Media*. Mode-mode tersebut adalah:\\n\\n *Mode asli*. \\n\\n⏯ Putar/Jeda: Mengaktifkan atau menonaktifkan suara suar. \\n\\n⏭ Berikutnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute berikutnya dalam rute. Jika tidak ada rute yang sedang diputar, bacakan *Di Sekitar Saya*.\\n\\n⏮ Sebelumnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute sebelumnya dalam rute. Jika tidak ada rute yang sedang diputar, ubah *Tingkat Detail Pemberitahuan* satu tingkat lebih senyap pada setiap penekanan: *Rinci*, *Sederhana*, *Esensial*, *Senyap*, lalu kembali ke *Rinci*.\\n\\n\\n\\n*Menu audio*. \\n\\n\\n\\n⏭ Berikutnya berpindah melalui serangkaian opsi menu yang dijelaskan aplikasi melalui text-to-speech, dan kembali ke opsi pertama setelah yang terakhir. ⏯ Putar/Jeda kemudian memicu aplikasi untuk menjalankan opsi yang dijelaskan tersebut. Ada satu menu tingkat atas tunggal yang hanya memiliki submenu sebagai opsi. Setiap submenu memiliki sekelompok aksi serupa yang mungkin dilakukan.\\n\\n⏮ Sebelumnya tidak berpindah melalui menu. Sebagai gantinya, tombol ini mengubah *Tingkat Detail Pemberitahuan*, persis seperti pada mode asli, sehingga tombol yang sama membuat aplikasi lebih senyap pada mode mana pun yang Anda gunakan.",
+  "reason": "CROSS-LANGUAGE: the English says 'callout *What's Around Me*', but no UI element has that name. The button is *Around Me* (help_orient_page_title). Indonesian already uses *Di Sekitar Saya* correctly. Fix the English source (C7).",
+  "category": "terminology"
+ }
+]
