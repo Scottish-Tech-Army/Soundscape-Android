@@ -4,7 +4,7 @@
 |---|---|
 | Weblate component | `androidkmp` |
 | Corpus at last sweep | 1522 translated units (2026-09-24) |
-| Last native-speaker input | 2026-05-12 (GitHub issue #881) |
+| Last native-speaker input | 2026-09-30 (JJ, answers to `questions-es.md` Q1–Q3, via Dave) |
 | Reporter platform | GitHub issues, Weblate comments — Android and general |
 | Register | Informal «tú» everywhere, no exceptions (Dave's call, 2026-09-24 — see ES-R1) |
 
@@ -38,7 +38,7 @@ since May; treat `confirmed` as "confirmed then, unswept since" rather than
 | Callout | aviso | `confirmed` | 40 occurrences, consistent |
 | Audio Beacon | señal (de audio) | `confirmed` | 77 occurrences, consistent |
 | Marker | marcador | `confirmed` | 84 occurrences, consistent |
-| Waypoint | punto de ruta | `confirmed` | 24 occurrences, consistent |
+| Waypoint | punto de ruta | `confirmed` | 24 occurrences, consistent. **One deliberate exception:** `routes_no_routes_hint_1` says «puntos de referencia» (ES-M1) |
 | Sleep Mode | modo de suspensión | `confirmed` | 8 occurrences; lowercase mid-sentence is correct Spanish style, not a drift from the English title case |
 | Snooze Mode | modo de aplazamiento | `confirmed` | 5 occurrences, consistent |
 | Manage Callouts | Administrar avisos | `confirmed` | From JJ's FAQ edit (issue #892 attachment) |
@@ -128,6 +128,10 @@ name's own «El» contracts («del Corte Inglés»). Streets named after a perso
 
 ## Rejected
 
+- **«puntos de ruta» in `routes_no_routes_hint_1`** and **«Ahora no» for
+  Not now** (2026-09-30). Both attractive for glossary consistency and
+  everyday idiom. JJ kept the inherited wording on purpose, see ES-M1.
+
 - **«Te damos la bienvenida» for Welcome** (2026-09-25). It's attractive:
   it's gender-neutral (C15), and it's close to Microsoft's VoiceOver label
   «Le damos la bienvenida». JJ rejected it after asking native speakers, as
@@ -140,37 +144,46 @@ Nothing yet — no feedback in this thread was proposed and then turned down.
 
 ---
 
-## Open questions for the reporter (JJ / next native-speaker round)
+## ES-M1 — Keep inherited Microsoft wording unless the meaning is wrong (`confirmed`, JJ 2026-09-30)
 
-Three questions are open. They come from the 2026-09-29 review, where each proposed fix would have
-undone an edit JJ made in Weblate on 2026-09-27/28. They're held in
-`/tmp/weblate-review/es-findings.json` (`suggested` = `current`, the fix is
-in `proposed`) until JJ answers. Don't upload them without him.
+JJ's answer to the three questions in `questions-es.md` rests on one principle. In his
+words: *"I chose to preserve as much of Microsoft's original text and do as
+little as possible to change anything if it didn't affect the meaning"* and
+*"I didn't want to fix Microsoft's text, they could have done that for a
+reason."* He calls it an *"if it ain't broke, don't fix it"* case.
 
-- **Q1 `routes_no_routes_hint_1`.** JJ changed «Agrega un conjunto de
-  marcadores como puntos de ruta» to «…como puntos de referencia». The
-  glossary term for Waypoint is «punto de ruta» (`confirmed`, 24
-  occurrences). Elsewhere «punto de referencia» means Landmark
-  (`callouts_places_landmarks`, `osm_generic_landmark`, the Quiet-mode
-  description). Was the change meant as the waypoint term here, or should
-  it go back to «puntos de ruta»?
-- **Q2 `legacy_migration_not_now`.** JJ changed the button from «Ahora no»
-  to «No ahora». To us «Ahora no» reads as the usual phrasing for a "Not now"
-  button. Is «No ahora» preferred?
-- **Q3 `help_text_markers_content_3`.** JJ changed «…y podrás actuar de la
-  manera habitual» to «…y podrá actuar…». The English is "you can operate
-  it as usual", with the user as subject, and «podrá actuar» reads as "it
-  will be able to act". Proposed: «…y podrás usarla de la manera
-  habitual». The same fix would also restore the `*Marcadores cercanos*`
-  markup that the English has, and that part doesn't depend on the answer.
-- **Q4** Anything else.
+**How to apply:** a review pass may flag inherited text for a wrong
+*meaning*, broken grammar or ES-R1 register. It must not flag it for
+idiom preference alone («Ahora no» sounds more usual to us). This fits the
+Soundscape Community baseline (Dave, 2026-09-25), which is JJ's continuation
+of Microsoft's text.
 
-Questions: `docs/translation-questions/questions-es.md` (Q1…Q4).
+- **Q1 `routes_no_routes_hint_1`: «…como puntos de referencia…» stays.** JJ
+  kept Microsoft's wording and thinks Microsoft *"wanted to try to explain to
+  beginners that they could use personal landmarks to set up a route."* It is
+  a deliberate one-string exception. The Waypoint term everywhere else stays
+  «punto de ruta», and «punto de referencia» stays Landmark. Don't "fix" this
+  string to match the glossary, and don't copy it to other strings either.
+- **Q2 `legacy_migration_not_now`: «No ahora» stays.** JJ checked Spanish
+  forums, which accept both forms. He prefers «No ahora» because *"it warns
+  screen reader users with the negative word first, especially if they might
+  miss it when they crank up the speed."* For a new negative button, put
+  the negation first (same reasoning). This was the only "Not now" button when
+  swept on 2026-09-30.
+- **Q3 `help_text_markers_content_3`: «podrás usarla de la manera habitual»
+  (`agreed`).** Here ES-M1 gives way, because the meaning was wrong. «actuar»
+  is intransitive, so «podrá actuar» said the beacon would "act". JJ: *"the
+  phrase 'podrás usarla' may be a better solution … So let's go with the AI."*
+  That wording was already live on 2026-09-30. The `*Marcadores cercanos*`
+  markup is still missing.
 
-Earlier questions (numbered Q1–Q5 at the time) were all answered; JJ answered Q3–Q5 on 2026-09-25 (see ES-G1, ES-W1 and the
-Rejected section).
+## Open questions for the reporter
 
-*Answered and closed:* **Q1 «Pulsa»**, confirmed (ES-R2). **Q2, the FAQ
+None open. Q1–Q3 were answered 2026-09-30 (ES-M1). Still waiting for a human:
+`osm_signal` («Señal» is also the Beacon term), and a device check of the
+iOS 26 menu names in `help_config_voices_content_ios`.
+
+*Earlier rounds, all closed:* **Q1 «Pulsa»**, confirmed (ES-R2). **Q2, the FAQ
 button name** (`faq_snooze_mode_battery_answer`): JJ explained that
 Microsoft's FAQ said «Reactivar cuando salga» because Microsoft's iOS button
 had a *separate VoiceOver label*, `sleep_wake_up_when_i_leave` ("Wake Up When
@@ -179,10 +192,7 @@ That's true of Microsoft's app and of Soundscape Community. **It isn't true
 of ours:** `SharedSleepScreen.kt` puts `sleep_wake_on_leave` on the button as
 plain text, so VoiceOver and TalkBack both read «Reactivar al salir». The
 English FAQ was corrected to match (2026-09-25), and the Spanish FAQ should
-say «Reactivar al salir» (`agreed`, to be done when Weblate flags the string). *Also closed:* «sobre de» in `first_launch_callouts_listen`, fixed in the 2026-09-24 upload («sobre lo que»). The two-register question — Dave decided informal
-everywhere, no FAQ exception (2026-09-24, see ES-R1). The
-`help_text_assistant_*` register — already informal, already correct under
-the new rule.*
+say «Reactivar al salir» (`agreed`, to be done when Weblate flags the string).
 
 ---
 
@@ -339,3 +349,9 @@ Latin American Spanish in Soundscape Community.
 **2026-09-29 — full review (1586 units, no speaker involved).** 31 flagged. 30 had a fix, and `osm_signal` («Señal» is also the Beacon term) was left for a human. Before applying, every fix was checked against the Weblate change log. Three would reverse JJ's 2026-09-27/28 edits and are held as the open questions Q1–Q3. Four more touch strings JJ edited but not the part he changed (`universal_links_marker_share_message` keeps a formal «Le» next to his «utiliza»; also `preview_go_nearest_intersection`, `help_text_destination_beacons_what`, `help_text_remote_control_what`), so they stay in. Git authorship can't answer "is this JJ's?", because Weblate squashes commits. Use `translations/…/es/changes/` from the API instead. The androidkmp log only starts 2026-08-04, so older edits need `git log -S` on `app/src/main/res/values-es/strings.xml`.
 
 **2026-09-29 — applied.** Dave confirmed the 27 remaining fixes, and all 27 were uploaded (`--skip-validate` ran fine this time) and verified live by re-fetching. The corpus stays at 1586/1586. Still open: Q1–Q3 (held for JJ) and `osm_signal`.
+
+**2026-09-30 — JJ answered Q1–Q3 (via Dave).** Q1 and Q2 were kept as inherited
+Microsoft wording, and Q3 went with the proposed «podrás usarla». Recorded as
+ES-M1. The only fix left is the `*Marcadores cercanos*` markup in
+`help_text_markers_content_3`. The 2026-09-29 findings file was archived as
+`es-findings.2026-09-29.json`. The markup fix was uploaded the same day and verified live.
