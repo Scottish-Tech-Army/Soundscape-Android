@@ -41,9 +41,7 @@ fun SharedNewReleaseDialog(
     newReleaseDialog: MutableState<Boolean>,
 ) {
     val markdownText = stringResource(Res.string.new_version_info_details)
-    val sentences = remember(markdownText) {
-        markdownText.split(Regex("(?<=[.!?][ \n])\\s*")).filter { it.isNotBlank() }
-    }
+    val sentences = remember(markdownText) { splitReleaseNotes(markdownText) }
     val uriHandler = LocalUriHandler.current
 
     AlertDialog(
@@ -82,3 +80,16 @@ fun SharedNewReleaseDialog(
         },
     )
 }
+
+/**
+ * Splits the release notes into the sentences the dialog shows one per line.
+ *
+ * A Latin-script full stop needs a space or line break after it, so "1.2" and "v1.1" stay whole.
+ * The ideographic (。！？), Devanagari/Bengali/Gurmukhi (।) and Urdu (۔) full stops split on their
+ * own, because Chinese and Japanese put no space after them. Thai has no sentence punctuation at
+ * all, so a blank line (a paragraph break, as in the English) splits too.
+ */
+internal fun splitReleaseNotes(text: String): List<String> =
+    text.split(Regex("(?<=[.!?][ \n])\\s*|(?<=[。！？।۔])\\s*|\\n\\s*\\n\\s*"))
+        .map { it.trim() }
+        .filter { it.isNotEmpty() }
