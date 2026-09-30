@@ -181,7 +181,7 @@
     <string name="osm_water_tank">储水罐</string>
     <string name="osm_sty">猪圈</string>
     <string name="osm_navigationaid">助航标志</string>
-    <string name="osm_terminal">航站楼</string>
+    <string name="osm_terminal">客运站</string>
     <string name="osm_water_tap">水龙头</string>
     <string name="osm_water_well">水井</string>
     <string name="osm_petroleum_well">油井</string>
@@ -198,7 +198,7 @@
     <string name="osm_shed">棚屋</string>
     <string name="osm_traffic_cones">交通锥</string>
     <string name="osm_firepit">篝火坑</string>
-    <string name="osm_stone">石碑</string>
+    <string name="osm_stone">立石</string>
     <string name="osm_surveillance">监控</string>
     <string name="osm_monitoring_station">监测站</string>
     <string name="osm_wayside_shrine">路边神龛</string>
@@ -267,7 +267,7 @@
     <string name="osm_retail">零售店</string>
     <string name="osm_hotel">酒店</string>
     <string name="osm_camp_site">露营地</string>
-    <string name="osm_rugby_league">橄榄球联赛球场</string>
+    <string name="osm_rugby_league">联盟式橄榄球场</string>
     <string name="osm_roller_skating">轮滑场</string>
     <string name="osm_multi">综合运动场</string>
     <string name="osm_ice_hockey">冰球场</string>
@@ -667,7 +667,7 @@
     <string name="osm_archaeological_site">考古遗址</string>
     <string name="osm_train_station">火车站</string>
     <string name="osm_train_station_named">%1$s火车站</string>
-    <string name="osm_shrine">神社</string>
+    <string name="osm_shrine">圣祠</string>
     <string name="osm_church">教堂</string>
     <string name="osm_historic_monument">历史古迹</string>
     <string name="osm_generic_landmark">地标</string>
@@ -824,7 +824,7 @@
     <string name="tour_ahead">下一个按钮是前方。它会告诉您前面有什么。点击前方。</string>
     <string name="tour_nearby_markers">最后一个按钮是附近标记点，它会播报您周围已保存的地点。点击附近标记点来试试。</string>
     <string name="tour_markers_and_routes">您已成功创建了一个标记点。接下来让我们启动音频信标来引导我们前往该位置。点击附近地点下方的标记点和路线。</string>
-    <string name="tour_markers">标记点和路线屏幕有两个选项卡。一个显示路线，即标记点的列表；另一个显示各个标记点。点击标记点切换到该选项卡，找到您创建的标记点。</string>
+    <string name="tour_markers">标记点和路线屏幕有两个选项卡。一个显示路线，即由标记点组成的播放列表；另一个显示各个标记点。点击标记点切换到该选项卡，找到您创建的标记点。</string>
     <string name="tour_start_beacon">您现在进入了标记点选项卡，这里列出了您所有已保存的标记点。选择一个标记点，当位置详情屏幕出现时，点击启动音频信标。</string>
     <string name="tour_beacon_demo">您现在可以听到音频信标了。它从您目的地的方向传来。当您转动手机时，可以听到信标移动、声音发生变化。现在试试看。</string>
     <string name="tour_beacon_demo_locked">即使手机锁屏，信标仍会继续播放。如果您在步行或乘车，应用会使用您的行进方向来播放音频信标。不过，即使在锁屏状态下，您也可以像使用指南针一样将手机平放在面前，此时信标会使用手机指向的方向。现在试试看。</string>
@@ -873,10 +873,10 @@
     <string name="help_text_ahead_of_me_how">与主屏幕底部的所有四个按钮一样，在按下*"前方"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*"前方"*按钮，您就会听到大致在您前方的多个兴趣点。</string>
     <string name="help_text_remote_control_what">您可以借助耳机上的媒体控制按钮使用Soundscape的某些功能。此功能适用于任何带有媒体控制按钮（如播放、暂停、下一曲、上一曲等）的有线或蓝牙耳机。不同的耳机可能包含不同的按钮，请参考以下操作列表来确定哪些功能可供您使用。</string>
     <string name="help_text_remote_control_when">在 Soundscape 运行时，您可以使用耳机媒体控制按钮——无论您正在使用应用、应用在后台运行，还是设备已锁屏。但如果您正在使用其他应用播放音乐、播客或视频等音频内容，耳机媒体控制按钮将无法与 Soundscape 配合使用。</string>
-    <string name="help_text_remote_control_how">媒体控制有 2 种操作模式。可以在*设置*的*媒体控制*部分选择模式。模式如下：\n\n *经典模式*。 \n\n⏯ 播放/暂停：切换音频信标的开/关。 \n\n⏭ 下一曲：如果正在播放路线，则将音频信标移到路线中的下一个航点；如果没有播放路线，则播报*周围*。\n\n⏮ 上一曲：如果正在播放路线，则将音频信标移到路线中的上一个航点；如果没有播放路线，则每按一次就把*提示详细程度*调低一级：*详细*、*简化*、*基本*、*静音*，然后回到*详细*。\n\n\n\n*音频菜单*。 \n\n\n\n⏭ 下一曲 在应用通过文字转语音朗读的菜单选项中依次移动，到最后一项后回到第一项。⏯ 播放/暂停 则触发应用执行当前所述的选项。菜单为单一顶层菜单，顶层菜单仅包含子菜单作为选项。每个子菜单将一组相似的可执行操作归为一类。\n\n⏮ 上一曲 不用于在菜单中移动。它改为调整*提示详细程度*，与原始模式中完全一样，因此无论使用哪种模式，同一个按钮都能让应用更安静。</string>
+    <string name="help_text_remote_control_how">媒体控制有 2 种操作模式。可以在*设置*的*媒体控制*部分选择模式。模式如下：\n\n *经典模式*。 \n\n⏯ 播放/暂停：切换音频信标的开/关。 \n\n⏭ 下一曲：如果正在播放路线，则将音频信标移到路线中的下一个航点；如果没有播放路线，则播报*周围*。\n\n⏮ 上一曲：如果正在播放路线，则将音频信标移到路线中的上一个航点；如果没有播放路线，则每按一次就把*提示详细程度*调低一级：*详细*、*简化*、*基本*、*静音*，然后回到*详细*。\n\n\n\n*音频菜单*。 \n\n\n\n⏭ 下一曲 在应用通过文字转语音朗读的菜单选项中依次移动，到最后一项后回到第一项。⏯ 播放/暂停 则触发应用执行当前所述的选项。菜单为单一顶层菜单，顶层菜单仅包含子菜单作为选项。每个子菜单将一组相似的可执行操作归为一类。\n\n⏮ 上一曲 不用于在菜单中移动。它改为调整*提示详细程度*，与经典模式中完全一样，因此无论使用哪种模式，同一个按钮都能让应用更安静。</string>
     <string name="help_text_markers_content_1">使用Soundscape，您可以标记您的世界和您关心的任何事物，就像在地图上插图钉一样。</string>
     <string name="help_text_markers_content_2">您可以标记对您个人有意义的地点，如您的家、办公室或常去的杂货店。您可以标记任何地点或地址，也可以标记地图上通常没有的事物，例如：建筑物或公园的入口、行人过街按钮、人行横道、桥梁、公交站，甚至您家狗最喜欢的树。将这些标记点作为步行途中的参考点。</string>
-    <string name="help_text_markers_content_3">要体验已标记的地点，Soundscape 会在您经过或接近这些地点时自动播报它们，或者您也可以使用 主屏幕底部的*附近标记点*按钮收听周围标记点的空间播报。您甚至可以在任何已标记地点上设置音频信标。设置信标后，您熟悉的 Soundscape 音频信标将被听到，并且可以照常操作。</string>
+    <string name="help_text_markers_content_3">要体验已标记的地点，Soundscape 会在您经过或接近这些地点时自动播报它们，或者您也可以使用主屏幕底部的*附近标记点*按钮收听周围标记点的空间播报。您甚至可以在任何已标记地点上设置音频信标。设置后，您会听到熟悉的 Soundscape 音频信标，并可以照常操作它。</string>
     <string name="help_text_creating_markers_content_1">您可以通过三种方式创建标记点：在搜索栏中搜索要保存的地点、使用*附近地点*按钮查找地点，或使用主屏幕上的*当前位置*按钮。找到想要保存的地点后，选择该地点将进入*位置详情*屏幕。在该页面上，选择*保存为标记点*按钮。</string>
     <string name="help_text_creating_markers_content_2">现在您可以自定义此标记点。您可以更改标记点的名称，还可以添加注释，注释会与标记点一起播报以提供额外信息。完成后，点击*"完成"*按钮保存您的标记点。</string>
     <string name="help_text_customizing_markers_content_1">如果您想重命名之前创建的标记点或为其添加注释，可在*标记点和路线*页面的*标记点*选项卡中选择该标记点，然后选择*编辑标记点*按钮。您可以为标记点设置描述性或有用的昵称，并在注释字段中填写更详细的描述。</string>
@@ -892,7 +892,7 @@
     <string name="faq_tips_title">使用技巧</string>
     <string name="faq_section_what_is_soundscape">什么是Soundscape，我该如何使用？</string>
     <string name="faq_when_to_use_soundscape_question">我应该在什么时候使用Soundscape？</string>
-    <string name="faq_when_to_use_soundscape_answer">Soundscape 的功能和优势涵盖多种场景和时间跨度。Soundscape 对您的价值可能会随时间变化，因此您今天的使用方式可能与三个月后有所不同。人们常常以*这个应用能解决什么问题？*的角度来看待应用。Soundscape 当然可以用于特定需求——例如在前往目的地途中追踪目的地位置、从地铁站出来时帮助您辨别方向、下车后确定方位，或者查找下一个路口的街道名称和距离。然而，Soundscape 背后的理念是*用声音照亮您的世界*——它的设计初衷是在您外出时随时使用，提供对周围环境的感知：您所在街道的名称、您的行进方向，以及您经过的商家名称。在这种使用模式下，我们的用户将 Soundscape 称为*不错的伴侣应用*，它支持*偶然发现*，能*填补心理地图中的空白*，并在*步行时带来更多信心*。以下是我们的用户将 Soundscape 融入生活的一些其他例子：\n\nSoundscape帮助我在下错公交车后重新找到了方向。\n\n即使在我已经住了3年的城镇，使用Soundscape后，我对周围环境有了更好的了解。\n\n3D声音增强了我的步行体验，因为我感觉与环境的联系更加紧密……有了这个应用，我更愿意尝试新路线了。\n\n我怀念走在路上偶然发现事物的感觉。有了Soundscape真好——无需任何努力就能听到周围事物的信息。位置关系信息非常有用，是一款很棒的情境感知和探索商业区的应用。\n\n我用Soundscape在约克市中心找到一家酒吧。我使用了它的多种功能先定位再实际找到它。它把我带到了距离门口3米以内的地方——太棒了！</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape 的功能和优势涵盖多种场景和时间跨度。Soundscape 对您的价值可能会随时间变化，因此您今天的使用方式可能与三个月后有所不同。人们常常以*这个应用能解决什么问题？*的角度来看待应用。Soundscape 当然可以用于特定需求——例如在前往目的地途中追踪目的地位置、从地铁站出来时帮助您辨别方向、下车后确定方位，或者查找下一个路口的街道名称和距离。然而，Soundscape 背后的理念是*用声音照亮您的世界*——它的设计初衷是在您外出时随时使用，提供对周围环境的感知：您所在街道的名称、您的行进方向，以及您经过的商家名称。在这种使用模式下，我们的用户将 Soundscape 称为*不错的伴侣应用*，它支持*偶然发现*，能*填补心理地图中的空白*，并在*步行时带来更多信心*。以下是我们的用户将 Soundscape 融入生活的一些其他例子：\n\n“Soundscape 帮助我在下了公交车、走错方向之后重新找回了方向。”\n\n“即使在我已经住了 3 年的城镇，[借助 Soundscape] 我对周围环境也有了更清晰的了解。”\n\n“3D声音增强了我的步行体验，因为我感觉与环境的联系更加紧密……有了这个应用，我更愿意尝试新路线了。”\n\n“我怀念走在路上偶然发现事物的感觉。有了Soundscape真好——无需任何努力就能听到周围事物的信息。位置关系信息非常有用，是一款很棒的情境感知和探索商业区的应用。”\n\n“[我用 Soundscape] 在约克市中心找一家酒吧。[我]先用它的多种功能定位，然后真正找到了它。它把我带到了距离门口 3 米以内的地方——太棒了！”</string>
     <string name="faq_markers_function_question">什么是标记点，如何充分利用它们？</string>
     <string name="faq_markers_function_answer">标记点是您保存的地点。它们可以是应用中可发现的地点，也可以是您亲自添加的全新地点。您可以通过在主屏幕选择*当前位置*按钮并点击*保存为标记点*来将当前位置保存为标记点。也可以在主屏幕使用搜索栏搜索想要保存的地点，或使用*附近地点*按钮查找地点来保存其他位置。找到想保存的地点后，选择该地点将进入*位置详情*屏幕，在该屏幕上点击名为*保存为标记点*的按钮即可。</string>
     <string name="faq_section_getting_the_best_experience">如何获得Soundscape的最佳体验？</string>
@@ -944,7 +944,7 @@
     <string name="faq_holding_phone_flat_question">我需要一直将手机拿在手上吗？</string>
     <string name="faq_holding_phone_flat_answer">不需要！走路时您可以将手机放在包里或口袋或任何方便的地方。Soundscape 会使用您行走的方向来判断应从左侧和右侧播报哪些内容。当您停止移动时，Soundscape 无法知道您面朝的方向；如果可听信标开启，您会发现它会变安静，直到您再次开始移动。您可以随时拿出手机按下主屏幕底部的位置和探索按钮，但请确保将手机顶端指向您面朝的方向，屏幕朝向天空。在这种*平放*姿势下，Soundscape 将使用手机的指南针来确定您面朝的方向并提供准确的空间播报。如果信标开启，您也会注意到它恢复到满音量。</string>
     <string name="faq_what_is_osm_question">什么是 OpenStreetMap，我们为什么在 Soundscape 中使用它？</string>
-    <string name="faq_what_is_osm_answer">Soundscape 使用地图数据来生成语音播报。我们的主要地图数据源是 OpenStreetMap（www.openstreetmap.org），这是一个由贡献者社区共同建设的地图平台。组织和个人都可以使用 OpenStreetMap 的工具改进数据，让自己的场所更易于到达。</string>
+    <string name="faq_what_is_osm_answer">Soundscape 使用地图数据来生成语音播报。我们的主要地图数据源是 OpenStreetMap（www.openstreetmap.org），这是一个由贡献者社区共同建设的地图平台。组织和个人都可以使用 OpenStreetMap 的工具改进数据，让自己的场所更加无障碍。</string>
     <string name="faq_tip_beacon_quiet">如果您将手机放在口袋里并停止移动，信标声音会安静下来，因为 Soundscape 无法判断您面朝的方向。解决方法是重新开始走动，或拿出手机平放。</string>
     <string name="faq_tip_setting_beacon_on_address">您可以在任何地址上设置信标。从主屏幕使用搜索栏搜索该地址。然后在搜索结果中选择该地址，打开*位置详情*屏幕。此屏幕有在该地址*启动音频信标*的选项。通过这种方式，您可以在 OpenStreetMap 中没有的商家、地点、兴趣点和住宅上设置信标。</string>
     <string name="faq_tip_finding_bus_stops">您可以在*附近地点*列表中选择*公共交通*筛选器来查找附近的公交站点。</string>
@@ -977,10 +977,10 @@
     <string name="settings_search_results_language">搜索语言</string>
     <string name="settings_search_results_language_description">在线搜索可以使用结果的本地语言，或强制返回英语、法语或德语的结果。</string>
     <string name="menu_share_recorded_route">分享行程录制</string>
-    <string name="confect_name_to_via">%1$s 到 %2$s 经由 %3$s</string>
+    <string name="confect_name_to_via">经由%3$s通往%2$s的%1$s</string>
     <string name="confect_name_to">%1$s到%2$s</string>
-    <string name="confect_name_joins">%1$s连接%2$s和%3$s</string>
-    <string name="confect_name_via">%1$s经由%2$s</string>
+    <string name="confect_name_joins">连接%2$s和%3$s的%1$s</string>
+    <string name="confect_name_via">经由%2$s的%1$s</string>
     <string name="confect_name_pavement_next_to">%1$s旁的人行道</string>
     <string name="confect_name_pavement">人行道</string>
     <string name="confect_name_dead_end">死胡同</string>
@@ -1042,7 +1042,17 @@
     <string name="new_version_info_text">新版本信息</string>
     <string name="new_version_info_completed">关闭新版本对话框</string>
     <string name="menu_open_source_licenses">开源许可证</string>
-    <string name="new_version_info_details">这是 Soundscape 的一次重大更新。旅行模式已得到大幅改进。当您乘坐汽车或公交车出行时，Soundscape 现在会播报道路编号、您的行进方向以及附近的居民点。当您经过河流、运河、河口湾和海湾时，也会进行播报。请更新您的离线地图以获得这些新功能。对于英国用户，公交车站的描述现在好了很多。休眠模式现在会在检测到您再次移动时自动唤醒。您不再需要记得自己手动唤醒它。我们重组了底层代码，以便能够使用相同的代码构建 iOS 应用。这意味着未来我们可以发布一款拥有我们为 Android 开发的所有功能的 iOS 应用。请继续通过主菜单中的联系客服选项，向我们报告您遇到的任何问题，无论大小。</string>
+    <string name="new_version_info_details">
+这是 Soundscape 的一次重大更新。
+
+旅行模式已得到大幅改进。当您乘坐汽车或公交车出行时，Soundscape 现在会播报道路编号、您的行进方向以及附近的居民点。当您经过河流、运河、河口湾和海湾时，也会进行播报。请更新您的离线地图以获得这些新功能。对于英国用户，公交车站的描述现在好了很多。
+
+休眠模式现在会在检测到您再次移动时自动唤醒。您不再需要记得自己手动唤醒它。
+
+我们重组了底层代码，以便能够使用相同的代码构建 iOS 应用。这意味着未来我们可以发布一款拥有我们为 Android 开发的所有功能的 iOS 应用。
+
+请继续通过主菜单中的联系客服选项，向我们报告您遇到的任何问题，无论大小。
+</string>
     <string name="about_soundscape">Soundscape 使用创新的音频技术，帮助人们更深入地感知周围环境，从而更加自信、独立地出行。</string>
     <string name="osm_office_building">办公楼</string>
     <string name="osm_school_building">校舍</string>
@@ -1479,7 +1489,7 @@
     <string name="action_beacon_stopped">信标已停止</string>
     <string name="action_no_such_route">我找不到名为%1$s的路线</string>
     <string name="action_no_such_marker">我找不到名为%1$s的标记点</string>
-    <string name="action_item_not_found">那个已不在 Soundscape 中保存</string>
+    <string name="action_item_not_found">该项已不再保存在 Soundscape 中</string>
     <string name="action_no_markers_saved">没有已保存的标记点</string>
     <string name="action_no_location">Soundscape 还不知道你的位置</string>
     <string name="action_no_map_data">Soundscape 仍在加载你所在区域的地图</string>
@@ -1571,8 +1581,8 @@
     <string name="menu_beacon_info">信标信息</string>
     <string name="markers_action_add_to_markers">添加到标记点</string>
     <string name="callouts_no_beacon_active">没有正在使用的信标</string>
-    <string name="directions_name_is_currently_street_address">%1$s：当前%2$s。街道地址：%3$s。</string>
-    <string name="directions_name_is_currently">%1$s：当前%2$s。</string>
+    <string name="directions_name_is_currently_street_address">%1$s当前距离%2$s。街道地址：%3$s。</string>
+    <string name="directions_name_is_currently">%1$s当前距离%2$s。</string>
     <string name="search_synonyms_pharmacy">药店，药房，大药房</string>
     <string name="search_synonyms_cafe">咖啡馆，咖啡店，咖啡厅，咖啡</string>
     <string name="search_synonyms_restaurant">餐厅，饭店，饭馆，餐馆</string>
@@ -1622,8 +1632,8 @@
     <string name="open_in_app_dialog_title">选择用于打开的应用</string>
     <string name="open_in_app_remember">始终使用此应用</string>
     <string name="open_in_app_change">选择其他应用</string>
-    <string name="confect_name_to_dead_end">%1$s到死胡同</string>
-    <string name="confect_name_to_dead_end_via">%1$s 到 死胡同 经由 %2$s</string>
+    <string name="confect_name_to_dead_end">%1$s，尽头不通</string>
+    <string name="confect_name_to_dead_end_via">%1$s经由%2$s，尽头不通</string>
     <string name="relative_clock_hour_1">1</string>
     <string name="relative_clock_hour_2">2</string>
     <string name="relative_clock_hour_3">3</string>
