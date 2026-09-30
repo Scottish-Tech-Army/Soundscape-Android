@@ -27,7 +27,7 @@ match the help text. Questions: `docs/translation-questions/questions-nl.md` (Q1
 | Intersection | kruispunt | `confirmed` | Microsoft |
 | Sleep / Snooze | Slapen / Slaapstand ; Sluimerstand | `confirmed` | Microsoft |
 | Traveling / Heading | U rijdt / U loopt naar het noorden | `confirmed` | Microsoft. The vehicle/walking split, spelled out |
-| Detail levels | Uitgebreid / Normaal / Beperkt / Stil | `agreed` | Reviewer (Q3). See NL-L1 |
+| Detail levels | Uitgebreid / Vereenvoudigd / Essentieel / Stil | `agreed` (Dave), `unconfirmed` (speaker) | English renamed 2026-09-30 (C22); literal on Dave's call. The reviewer had Normaal / Beperkt. See NL-L1 |
 | Landmarks | herkenningspunten | `unconfirmed` | AI |
 | Way to a dead end | %1$s, doodlopend | `agreed` | New template `confect_name_to_dead_end` (code, 2026-09-30). See NL-G1 |
 
@@ -67,7 +67,9 @@ capital letter mid-sentence and no article. Candidates: dead end →
 
 The same coupling as FR-C1. **2026-09-30:** the reviewer (Q4) wants verbs («Soundscape, start de route», «…stop het baken»). Only the two phrases that already contain a verb changed: «Soundscape start de route» and «Soundscape stop het baken». They were changed in `nl.lproj/AppShortcuts.strings`, in `Localizable.xcstrings` ("You can say…") and in `help_text_assistant_commands_ios`. The group words omgeving / route / baken / lijst / detail stay as they are, because Siri needs the "<app> <group> <choice>" shape.
 
-### NL-L1 — Detail levels: Uitgebreid / Normaal / Beperkt / Stil (`agreed` 2026-09-30)
+### NL-L1 — Detail levels: Uitgebreid / Vereenvoudigd / Essentieel / Stil (`agreed` 2026-09-30, after the English rename)
+
+**Later on 2026-09-30:** the English levels were renamed Simplified / Essential (C22), and Dave chose literal names over the reviewer's Normaal / Beperkt. Round-2 question 4.
 
 Reviewer (Q3). «Gebalanceerd» was an anglicism, and «Rustig» sat too close to «Stil». 9 strings swept. This is the third language (after Polish and French) to reject the literal Balanced/Quiet. The iOS Siri detail choices have no Dutch entries at all (see FR-L1).
 
@@ -92,6 +94,7 @@ Q1 → NL-B1, Q2 → NL-G1, Q3 → NL-L1, Q4 → NL-C1, Q5 → «u» `confirmed`
 1. «Pad, doodlopend» / «Ladywood, doodlopend»: natural?
 2. The Q3 answer was cut off. Anything after «Stil»?
 3. In help texts, would «opgeslagen plek» read better than «markering»?
+4. Detail levels after the English rename: Uitgebreid / Vereenvoudigd / Essentieel / Stil. You suggested Normaal and Beperkt. Does the new set work?
 
 ## Provenance
 

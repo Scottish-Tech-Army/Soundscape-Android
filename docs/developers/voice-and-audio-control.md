@@ -18,7 +18,7 @@ These started as the iOS app's bindings, and apply whenever the audio menu isn't
 
 * **Play/Pause** toggles the beacon audio on and off.
 * **Next** moves the beacon to the next waypoint while a route is playing, and otherwise calls out *Around Me*.
-* **Previous** moves the beacon to the previous waypoint while a route is playing, and otherwise steps the *Callout Detail* setting down one level: Detailed, Balanced, Quiet, Silent, and round to Detailed again. It speaks only the level it reached.
+* **Previous** moves the beacon to the previous waypoint while a route is playing, and otherwise steps the *Callout Detail* setting down one level: Detailed, Simplified, Essential, Silent, and round to Detailed again. It speaks only the level it reached.
 
 *My Location* is not on the buttons; it's a home screen button and a Siri or Gemini command.
 
@@ -132,7 +132,7 @@ Voice control does have some major advantages as we can allow the user to specif
 If the name is empty, we can either guess a good marker name or fall back to using "Waypoint X".
 
 #### Callback filtering
-*This now exists as the **Callout Detail** setting: Silent, Quiet, Balanced or Detailed. Rather than a menu, it's on the Previous button in both media control modes, a slider in Settings, and a Siri or Gemini command ("Soundscape detail quiet" on iOS, `setCalloutDetail` in the Android AppFunctions). Silent replaced the old Allow Callouts switch. The levels are bundles of thresholds in `CalloutVerbosity.kt`. The rest of this section is the original proposal.*
+*This now exists as the **Callout Detail** setting: Silent, Essential, Simplified or Detailed. Rather than a menu, it's on the Previous button in both media control modes, a slider in Settings, and a Siri or Gemini command ("Soundscape detail quiet" on iOS, `setCalloutDetail` in the Android AppFunctions). Silent replaced the old Allow Callouts switch. The levels are bundles of thresholds in `CalloutVerbosity.kt`. The rest of this section is the original proposal.*
 
 This sort of goes along with audio profiles, but it simply a way of getting the app to quieten down when there's too much to describe. Perhaps this should just be an audio profile e.g. "Quieter"?
 ```

@@ -113,10 +113,10 @@ Najczęściej słyszymy o Soundscape, że mówi za dużo w ruchliwych miejscach,
 Sekcja *Zarządzaj powiadomieniami* w *Ustawieniach* ma teraz trzy ustawienia zamiast dawnej listy
 przełączników:
 
-* **Szczegółowość powiadomień** ma poziomy Wyciszony, Cichy, Zrównoważony i Szczegółowy.
-  *Szczegółowy* to to, co Soundscape robił zawsze, i od tego zaczynasz. *Zrównoważony* pomija
-  mniejsze ścieżki i drogi dojazdowe i rzadziej się powtarza. *Cichy* ogłasza tylko ulice,
-  skrzyżowania i punkty orientacyjne. *Wyciszony* nie daje żadnych automatycznych powiadomień, a
+* **Szczegółowość powiadomień** ma poziomy Wyciszony, Podstawowy, Uproszczony i Szczegółowy.
+  *Szczegółowy* to to, co Soundscape robił zawsze, i od tego zaczynasz. *Uproszczony* pomija
+  mniejsze ścieżki i drogi dojazdowe i rzadziej się powtarza. *Podstawowy* powiadamia tylko o ulicach,
+  skrzyżowaniach i punktach orientacyjnych. *Wyciszony* nie daje żadnych automatycznych powiadomień, a
   dźwięk naprowadzający, trasy i przyciski ekranu głównego nadal działają. Zastępuje dawny przełącznik
   *Zezwól na powiadomienia*; jeśli był wyłączony, szczegółowość jest teraz ustawiona na Wyciszony.
 * **Ulice i skrzyżowania** włącza lub wyłącza powiadomienia o skrzyżowaniach i o ulicy, na której
@@ -128,7 +128,7 @@ przełączników:
 
 Odpowiednia szczegółowość zmienia się w trakcie marszu, więc nie musisz wchodzić do Ustawień, żeby ją
 zmienić. Naciśnięcie *Poprzedni* na słuchawkach obniża szczegółowość o jeden poziom: od Szczegółowego
-przez Zrównoważony i Cichy do Wyciszonego, a potem z powrotem do Szczegółowego. Za każdym razem
+przez Uproszczony i Podstawowy do Wyciszonego, a potem z powrotem do Szczegółowego. Za każdym razem
 słyszysz nowy poziom. Działa to w obu trybach sterowania multimediami, dlatego przyciski słuchawek
 trochę się zmieniły:
 
