@@ -107,7 +107,7 @@
     <string name="waypoint_title">Punt de ruta</string>
     <string name="route_not_found">No s'ha trobat la ruta</string>
     <string name="universal_links_alert_action_marker">Desa com a marcador</string>
-    <string name="universal_links_marker_share_message">He compartit un marcador de Soundscape amb tu: %1$s.\n\nPer obrir-lo a Soundscape utilitza %2$s.\n\n Per obrir-lo a Google Maps utilitza %3$s.</string>
+    <string name="universal_links_marker_share_message">He compartit un marcador de Soundscape amb tu: «%1$s».\n\nPer obrir-lo a Soundscape utilitza %2$s.\n\n Per obrir-lo a Google Maps utilitza %3$s.</string>
     <string name="user_activity_save_marker_title">Desa el marcador</string>
     <string name="routes_title">Rutes</string>
     <string name="routes_action_deleted">Ruta suprimida</string>
@@ -182,8 +182,8 @@
     <string name="directions_transit_stop_street_locality_bound">%1$s, %2$s %3$s</string>
     <string name="directions_transit_stop_common_name_bound">%1$s %2$s</string>
     <string name="directions_transit_stop_with_landmark">%1$s per a %2$s</string>
-    <string name="directions_name_goes_left">%1$s, gira a l'esquerra</string>
-    <string name="directions_name_goes_right">%1$s, gira a la dreta</string>
+    <string name="directions_name_goes_left">%1$s, va cap a l'esquerra</string>
+    <string name="directions_name_goes_right">%1$s, va cap a la dreta</string>
     <string name="directions_name_continues_ahead">%1$s, continua endavant</string>
     <string name="directions_ahead_road">Endavant %1$s</string>
     <string name="directions_near_road_and_settlement">Prop de %1$s i a prop de %2$s</string>
@@ -195,7 +195,7 @@
     <string name="directions_at_junction_inline">a %1$s</string>
     <string name="directions_on_road_and_settlement_since">A %1$s i a prop de %2$s, %3$s des de %4$s</string>
     <string name="directions_towards_settlement">cap a %1$s, a %2$s</string>
-    <string name="directions_away_from_settlement">lluny de %1$s, a %2$s darrere teu</string>
+    <string name="directions_away_from_settlement">allunyant-te de %1$s, a %2$s darrere teu</string>
     <string name="directions_near_settlement_inline">prop de %1$s</string>
     <string name="directions_close_to_settlement_inline">a prop de %1$s</string>
     <string name="directions_generic_train">tren</string>
@@ -383,7 +383,7 @@
     <string name="behavior_experiences_route_nav_title">Detalls de la ruta</string>
     <string name="behavior_scavenger_hunt_callout_next_flag">Balisa establerta a %1$s, a %2$s de distància, %3$s de %4$s</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route">Balisa establerta a %1$s, a %2$s de distància</string>
-    <string name="help_configuration_section_title">Configurant Soundscape</string>
+    <string name="help_configuration_section_title">Configuració de Soundscape</string>
     <string name="settings_help_section_beacons_and_pois">Balises sonores i avisos de veu</string>
     <string name="settings_help_section_home_screen_buttons">Botons d'ubicació i exploració</string>
     <string name="help_config_voices_content">Soundscape pot utilitzar qualsevol de les veus que hagis baixat al teu telèfon Android a la configuració de sortida de conversió de text a veu. Dins de l'aplicació Soundscape, per seleccionar una veu diferent de la predeterminada d'Android, ves a *Configuració* des del menú principal, desplega la secció *Àudio* i selecciona *Veus*.</string>
@@ -516,11 +516,11 @@
     <string name="faq_supported_headsets_question">Quins auriculars hauria d'utilitzar amb Soundscape?</string>
     <string name="faq_supported_headsets_answer">Quins auriculars utilitzeu amb Soundscape és una qüestió de preferència personal, i cada opció té els seus avantatges i inconvenients. L'únic requisit és utilitzar uns auriculars estèreo per poder aprofitar els avisos de veu amb àudio espacial 3D de Soundscape.</string>
     <string name="faq_battery_impact_question">Com afecta Soundscape la bateria del meu telèfon?</string>
-    <string name="faq_battery_impact_answer">La durada de la bateria varia significativament segons el model i l'antiguitat del vostre telèfon. El factor que més consumeix bateria és tenir la pantalla encesa, així que per maximitzar la durada de la bateria del vostre telèfon, hauríeu de mantenir la pantalla bloquejada sempre que sigui possible. Per ajudar a minimitzar l'impacte en la bateria del telèfon, Soundscape té un mode de repòs i un mode de repòs amb represa automàtica. Per reduir encara més el consum de bateria, quan no utilitzeu Soundscape, hauríeu de tancar-lo forçosament mitjançant el canviador d'aplicacions del telèfon.</string>
+    <string name="faq_battery_impact_answer">La durada de la bateria varia significativament segons el model i l'antiguitat del vostre telèfon. El factor que més consumeix bateria és tenir la pantalla encesa, així que per maximitzar la durada de la bateria del vostre telèfon, hauríeu de mantenir la pantalla bloquejada sempre que sigui possible. Per ajudar a minimitzar l'impacte en la bateria del telèfon, Soundscape té un mode de repòs i un mode d'espera. Per reduir encara més el consum de bateria, quan no utilitzeu Soundscape, hauríeu de tancar-lo forçosament mitjançant el canviador d'aplicacions del telèfon.</string>
     <string name="faq_sleep_mode_battery_question">Com utilitzo el mode de repòs per minimitzar l'impacte de Soundscape en la bateria del meu telèfon?</string>
     <string name="faq_sleep_mode_battery_answer">Per posar Soundscape en mode de repòs, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla principal. En seleccionar-lo, Soundscape deixarà d'utilitzar els Serveis d'ubicació i les dades mòbils fins que el reactiveu.</string>
-    <string name="faq_snooze_mode_battery_question">Com utilitzo el mode de repòs amb represa automàtica per minimitzar l'impacte de Soundscape en la bateria del meu telèfon?</string>
-    <string name="faq_snooze_mode_battery_answer">Per posar Soundscape en mode de repòs amb represa automàtica, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla principal. Un cop Soundscape estigui en mode de repòs, seleccioneu el botó *Desperta en sortir* i Soundscape passarà a un estat de baix consum fins que abandoneu la vostra ubicació actual.</string>
+    <string name="faq_snooze_mode_battery_question">Com utilitzo el mode d'espera per minimitzar l'impacte de Soundscape en la bateria del meu telèfon?</string>
+    <string name="faq_snooze_mode_battery_answer">Per posar Soundscape en mode d'espera, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla principal. Un cop Soundscape estigui en mode de repòs, seleccioneu el botó *Desperta en sortir* i Soundscape passarà a un estat de baix consum fins que abandoneu la vostra ubicació actual.</string>
     <string name="faq_headset_battery_impact_question">Com afecta la meva elecció d'auriculars la durada de la bateria del meu telèfon?</string>
     <string name="faq_headset_battery_impact_answer">En les nostres proves, el consum de bateria dels auriculars Bluetooth és comparable al dels auriculars amb cable i no hauria de ser un factor significatiu a tenir en compte a l'hora de triar auriculars.</string>
     <string name="faq_background_battery_impact_question">Com afecta la bateria del meu telèfon que Soundscape s'executi en segon pla?</string>
@@ -532,7 +532,7 @@
     <string name="faq_use_with_wayfinding_apps_question">Com utilitzo Soundscape amb una aplicació d'orientació?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape està dissenyat per ajudar-vos a completar detalls sobre el vostre entorn dels quals potser no sou conscients. Tot i que no està dissenyat com una aplicació de navegació pas a pas, es pot utilitzar juntament amb aquest tipus d'aplicacions per proporcionar informació complementària. Per utilitzar Soundscape amb aquestes aplicacions, inicieu primer la vostra aplicació de navegació. Després, canvieu a Soundscape i definiu una balisa a la mateixa destinació que a l'aplicació de navegació. En aquest punt, les dues aplicacions s'estaran executant i sentireu les indicacions per caminar de la vostra aplicació de navegació, mentre rebeu actualitzacions sobre punts d'interès, cruïlles i la vostra distància fins a la destinació des de Soundscape.</string>
     <string name="faq_controlling_what_you_hear_question">Com controlo què sento i quan ho sento a Soundscape?</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape ofereix diverses maneres de controlar què sentiu i quan:\n\n1. Aturar immediatament tot l'àudio: toqueu dues vegades la pantalla amb dos dits per aturar immediatament tot l'àudio, inclòs qualsevol avís de veu que s'estigui reproduint i la balisa si està activada. Els avisos de veu es reprendran automàticament quan us apropeu a la propera cruïlla o punt d'interès, però la balisa audible no. Seleccioneu el *botó d'activar el so de la balisa* a la pantalla principal per tornar a sentir la balisa.\n\n2. Aturar els avisos de veu automàtics: quan no esteu viatjant o heu arribat a una destinació, probablement no necessitareu que Soundscape continuï notificant-vos coses del vostre voltant. En lloc de sortir de l'aplicació, podeu posar Soundscape en mode de repòs amb represa automàtica i es tornarà a activar quan marxeu, o podeu posar Soundscape en mode de repòs i romandrà desactivat fins que el torneu a activar. Alternativament, podeu seleccionar *Configuració* des del menú i posar *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu*.\n\n3. Aturar la balisa: hi ha diversos escenaris en què podríeu definir una destinació però no necessitar la balisa audible activada. Per exemple, potser sabeu exactament com arribar a la vostra destinació però encara voleu actualitzacions automàtiques sobre la distància que us hi separa. O potser només necessiteu la balisa sonora quan us apropeu a la vostra destinació. Sigui com sigui, podeu triar quan sentir la balisa alternant el botó *silencia la balisa*/*activa el so de la balisa* a la pantalla principal.\n\nSi encara voleu interactuar amb Soundscape però no voleu sentir avisos de veu automàtics, podeu posar *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. O, si no utilitzareu Soundscape, podeu posar-lo en mode de repòs o en mode de repòs amb represa automàtica utilitzant el botó *Repòs* a la pantalla principal.</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape ofereix diverses maneres de controlar què sentiu i quan:\n\n1. Aturar immediatament tot l'àudio: toqueu dues vegades la pantalla amb dos dits per aturar immediatament tot l'àudio, inclòs qualsevol avís de veu que s'estigui reproduint i la balisa si està activada. Els avisos de veu es reprendran automàticament quan us apropeu a la propera cruïlla o punt d'interès, però la balisa audible no. Seleccioneu el *botó d'activar el so de la balisa* a la pantalla principal per tornar a sentir la balisa.\n\n2. Aturar els avisos de veu automàtics: quan no esteu viatjant o heu arribat a una destinació, probablement no necessitareu que Soundscape continuï notificant-vos coses del vostre voltant. En lloc de sortir de l'aplicació, podeu posar Soundscape en mode d'espera i es tornarà a activar quan marxeu, o podeu posar Soundscape en mode de repòs i romandrà desactivat fins que el torneu a activar. Alternativament, podeu seleccionar *Configuració* des del menú i posar *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu*.\n\n3. Aturar la balisa: hi ha diversos escenaris en què podríeu definir una destinació però no necessitar la balisa audible activada. Per exemple, potser sabeu exactament com arribar a la vostra destinació però encara voleu actualitzacions automàtiques sobre la distància que us hi separa. O potser només necessiteu la balisa sonora quan us apropeu a la vostra destinació. Sigui com sigui, podeu triar quan sentir la balisa alternant el botó *silencia la balisa*/*activa el so de la balisa* a la pantalla principal.\n\nSi encara voleu interactuar amb Soundscape però no voleu sentir avisos de veu automàtics, podeu posar *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. O, si no utilitzareu Soundscape, podeu posar-lo en mode de repòs o en mode d'espera utilitzant el botó *Repòs* a la pantalla principal.</string>
     <string name="faq_holding_phone_flat_question">He de sostenir el telèfon a la mà tota l'estona?</string>
     <string name="faq_holding_phone_flat_answer">No! Quan camineu, podeu guardar el telèfon en una bossa o butxaca, o on us sigui més còmode. Soundscape utilitzarà la direcció en què camineu per determinar quins avisos de veu anunciar a la vostra esquerra i a la vostra dreta. Quan us atureu, Soundscape no sap cap a on esteu orientats. Si la balisa audible està activada, notareu que es torna més silenciosa fins que torneu a caminar. Podeu treure el telèfon per prémer els botons d'ubicació i exploració a la part inferior de la pantalla principal en qualsevol moment, però assegureu-vos de sostenir el telèfon amb la part superior apuntant en la direcció cap a la qual esteu orientats i amb la pantalla mirant cap al cel. En aquesta posició *plana*, Soundscape utilitzarà la brúixola del telèfon per determinar cap a on esteu orientats i proporcionar avisos de veu espacials precisos. Si la balisa està activada, també notareu que torna al volum complet.</string>
     <string name="faq_what_is_osm_question">Què és OpenStreetMap i per què l'utilitzem per a Soundscape?</string>
@@ -541,7 +541,7 @@
     <string name="faq_tip_setting_beacon_on_address">Podeu definir una balisa en qualsevol adreça. Des de la pantalla principal, cerqueu l'adreça amb la barra de cerca. Després, seleccioneu l'adreça als resultats de la cerca per obrir la pantalla *Detalls de la ubicació*. Aquesta pantalla té una opció *Inicia la balisa sonora* a l'adreça. D'aquesta manera, podeu definir una balisa en negocis, llocs, punts d'interès i habitatges que no es troben a OpenStreetMap.</string>
     <string name="faq_tip_finding_bus_stops">Podeu trobar les parades d'autobús properes seleccionant el filtre *Transport públic* a la llista de *Llocs propers*.</string>
     <string name="faq_tip_turning_beacon_off">Podeu activar i desactivar el so rítmic de la balisa mitjançant el botó de silenci a la pantalla principal. Si la balisa està silenciada, encara rebreu actualitzacions sobre la vostra distància fins a la destinació aproximadament cada 50 metres.</string>
-    <string name="faq_tip_turning_off_auto_callouts">Per continuar utilitzant Soundscape sense sentir avisos de veu automàtics, poseu *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. Si no utilitzareu Soundscape durant una estona, podeu posar-lo en mode de repòs o en mode de repòs amb represa automàtica utilitzant el botó *Repòs* a la pantalla principal.</string>
+    <string name="faq_tip_turning_off_auto_callouts">Per continuar utilitzant Soundscape sense sentir avisos de veu automàtics, poseu *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. Si no utilitzareu Soundscape durant una estona, podeu posar-lo en mode de repòs o en mode d'espera utilitzant el botó *Repòs* a la pantalla principal.</string>
     <string name="faq_tip_hold_phone_flat">Soundscape funciona millor quan sosteniu el telèfon pla amb la pantalla mirant cap al cel i la part superior del telèfon apuntant lluny de vosaltres.</string>
     <string name="faq_tip_create_marker_at_bus_stop">Si agafeu una línia d'autobús regularment, deseu les vostres parades de pujada i baixada com a marcadors. Així es desen i les podeu tornar a trobar fàcilment. Aneu a *Marcadors i rutes* des de la pantalla principal i després trobeu-les a la pàgina *Marcadors*. Podeu definir-hi una balisa per rebre actualitzacions periòdiques de com d'a prop us trobeu de la vostra parada de baixada. Nota: podeu desactivar el so rítmic i continuar rebent actualitzacions de distància pel camí.</string>
     <string name="no_language_selected">No s'ha seleccionat cap idioma</string>
@@ -658,7 +658,17 @@
     <string name="new_version_info_text">Informació de la nova versió</string>
     <string name="new_version_info_completed">Tanca el diàleg de la nova versió</string>
     <string name="menu_open_source_licenses">Llicències de codi obert</string>
-    <string name="new_version_info_details">Aquesta és una actualització important de Soundscape. El mode de viatge ha millorat molt. Quan viatgeu amb cotxe o autobús, Soundscape ara anuncia els números de carretera, la vostra direcció de desplaçament i els nuclis de població propers. També anuncia quan creueu rius, canals, estuaris i badies. Actualitzeu els vostres mapes fora de línia per obtenir aquestes funcions noves. Les descripcions de les parades d'autobús ara són molt millors per als usuaris del Regne Unit. El mode de repòs ara es pot desactivar automàticament quan detecta que torneu a moure-us. Ja no cal que recordeu desactivar-lo vosaltres mateixos. Hem reorganitzat el codi subjacent perquè puguem crear una aplicació per a iOS a partir del mateix codi. Això vol dir que en el futur podrem publicar una aplicació per a iOS amb totes les funcions que hem creat per a Android. Continueu informant-nos de qualsevol problema, per petit que sigui, mitjançant Contacta amb el suport tècnic al menú principal.</string>
+    <string name="new_version_info_details">
+Aquesta és una actualització important de Soundscape.
+
+El mode de viatge ha millorat molt. Quan viatgeu amb cotxe o autobús, Soundscape ara anuncia els números de carretera, la vostra direcció de desplaçament i els nuclis de població propers. També anuncia quan creueu rius, canals, estuaris i badies. Actualitzeu els vostres mapes fora de línia per obtenir aquestes funcions noves. Les descripcions de les parades d'autobús ara són molt millors per als usuaris del Regne Unit.
+
+El mode de repòs ara es pot desactivar automàticament quan detecta que torneu a moure-us. Ja no cal que recordeu desactivar-lo vosaltres mateixos.
+
+Hem reorganitzat el codi subjacent perquè puguem crear una aplicació per a iOS a partir del mateix codi. Això vol dir que en el futur podrem publicar una aplicació per a iOS amb totes les funcions que hem creat per a Android.
+
+Continueu informant-nos de qualsevol problema, per petit que sigui, mitjançant Contacta amb el suport al menú principal.
+</string>
     <string name="about_soundscape">Soundscape utilitza tecnologia innovadora basada en l'àudio per ajudar les persones a desenvolupar una consciència més rica del seu entorn. Això fa que les persones tinguin més confiança i puguin moure's de manera autònoma.</string>
     <string name="copyright_notices">Soundscape depèn d'aquestes excel·lents biblioteques i dades de tercers. Feu clic als enllaços per veure'n les llicències:</string>
     <string name="osm_copyright">[©Col·laboradors d'OpenStreetMap](https://www.openstreetmap.org/copyright) proporcionen totes les dades geogràfiques per a la cartografia i l'àudio utilitzats a Soundscape.</string>
@@ -684,7 +694,7 @@
     <string name="osm_entrance_named_with_destination">%1$s %2$s des de %3$s</string>
     <string name="osm_entrance_with_destination">%1$s %2$s</string>
     <string name="osm_tag_ferry_terminal">Terminal de ferri</string>
-    <string name="osm_tag_ferry_terminal_named">Terminal de ferri %1$s</string>
+    <string name="osm_tag_ferry_terminal_named">Terminal de ferri de %1$s</string>
     <string name="osm_crossing">Pas de vianants</string>
     <string name="osm_construction">Obres</string>
     <string name="osm_dangerous_area">Zona perillosa</string>
@@ -1053,7 +1063,7 @@
     <string name="osm_stripclub">Club de striptease</string>
     <string name="osm_ev_charging">Càrrega de vehicles elèctrics</string>
     <string name="osm_pub">Pub</string>
-    <string name="osm_obstacle_course">Cursa d'obstacles</string>
+    <string name="osm_obstacle_course">Circuit d'obstacles</string>
     <string name="osm_volleyball">Voleibol</string>
     <string name="osm_tennis">Tennis</string>
     <string name="osm_soccer">Futbol</string>
@@ -1253,7 +1263,7 @@
     <string name="osm_chapel">Capella</string>
     <string name="osm_cathedral">Catedral</string>
     <string name="osm_train_terminal">Terminal de tren</string>
-    <string name="osm_college">Col·legi</string>
+    <string name="osm_college">Centre d'educació superior</string>
     <string name="osm_arts_centre">Centre d'art</string>
     <string name="osm_ranger_station">Estació de guardaboscos</string>
     <string name="osm_hospital">Hospital</string>
@@ -1290,7 +1300,7 @@
     <string name="osm_gasometer">Gasòmetre</string>
     <string name="osm_water_park">Parc aquàtic</string>
     <string name="osm_bandstand">Quiosc de música</string>
-    <string name="osm_wreck">Naufragi</string>
+    <string name="osm_wreck">Restes d'un naufragi</string>
     <string name="osm_pillory">Picota</string>
     <string name="osm_monastery">Monestir</string>
     <string name="osm_locomotive">Locomotora</string>
@@ -1417,7 +1427,7 @@
     <string name="osm_sport">Esport</string>
     <string name="osm_health_food">Botiga de dietètica</string>
     <string name="osm_events_venue">Sala d'esdeveniments</string>
-    <string name="tour_welcome">Benvingut/da al tutorial guiat. Aquest tutorial et guiarà per les funcions principals de l'aplicació. Pots aturar el tutorial en qualsevol moment tocant Cancel·la el tutorial guiat al Menú principal. Comencem amb Llocs propers. Et permet trobar punts d'interès. El botó Llocs propers es troba a la pantalla d'inici, just a sota de la Barra de cerca. Toca'l ara per provar-ho.</string>
+    <string name="tour_welcome">Et donem la benvinguda al tutorial guiat. Aquest tutorial et guiarà per les funcions principals de l'aplicació. Pots aturar el tutorial en qualsevol moment tocant Cancel·la el tutorial guiat al Menú principal. Comencem amb Llocs propers. Et permet trobar punts d'interès. El botó Llocs propers es troba a la pantalla d'inici, just a sota de la Barra de cerca. Toca'l ara per provar-ho.</string>
     <string name="tour_select_place">Llocs propers agrupa els punts d'interès per tipus. Fes un cop d'ull als llocs de les llistes i selecciona'n un.</string>
     <string name="tour_create_marker_started">Genial! Ara ets a la pantalla de detalls de la ubicació. Des d'aquí pots desar aquesta ubicació com a marcador, a més d'altres accions. Amb Soundscape, pots marcar qualsevol lloc que t'importi, com casa teva, la teva parada d'autobús o fins i tot el lloc on ets ara mateix. Prova-ho ara. Desa aquesta ubicació com a marcador tocant Desa com a marcador.</string>
     <string name="tour_create_marker_done">Genial! Quan crees un marcador, pots editar-ne el nom i afegir-hi notes. Prova-ho ara i, quan estiguis a punt, toca Fet.</string>
@@ -1654,8 +1664,8 @@
     <string name="open_in_app_dialog_title">Tria amb quina aplicació vols obrir-ho</string>
     <string name="open_in_app_remember">Utilitza sempre aquesta aplicació</string>
     <string name="open_in_app_change">Tria una altra aplicació</string>
-    <string name="confect_name_to_dead_end">%1$s a carrer sense sortida</string>
-    <string name="confect_name_to_dead_end_via">%1$s a carrer sense sortida per %2$s</string>
+    <string name="confect_name_to_dead_end">%1$s, sense sortida</string>
+    <string name="confect_name_to_dead_end_via">%1$s per %2$s, sense sortida</string>
     <string name="relative_clock_hour_1">la una</string>
     <string name="relative_clock_hour_2">les dues</string>
     <string name="relative_clock_hour_3">les 3</string>
