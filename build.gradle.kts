@@ -22,3 +22,15 @@ buildscript {
         }
     }
 }
+// Keep the Vulkan build of MapLibre out of the app: maplibre-compose and the annotation plugin
+// depend on org.maplibre.gl:android-sdk, which from 13.x requires Vulkan and so hides the app on
+// Play from phones without it. See the mapLibre entry in gradle/libs.versions.toml.
+subprojects {
+    configurations.configureEach {
+        resolutionStrategy.dependencySubstitution {
+            substitute(module("org.maplibre.gl:android-sdk"))
+                .using(module("org.maplibre.gl:android-sdk-opengl:${libs.versions.mapLibre.get()}"))
+                .because("the Vulkan build requires android.hardware.vulkan.version")
+        }
+    }
+}
