@@ -544,7 +544,7 @@
     <string name="talkback_default_activate">تفعيل</string>
     <string name="talkback_double_tap_template">انقر نقرًا مزدوجًا لـ %1$s</string>
     <string name="preview_go_nearest_intersection">الانتقال إلى أقرب تقاطع</string>
-    <string name="last_entry_in_list">و%1$s</string>
+    <string name="last_entry_in_list"> و%1$s</string>
     <string name="preview_include_unnamed_roads_title">الطرق غير المسماة</string>
     <string name="preview_include_unnamed_roads_title_description">تضمين الطرق غير المسماة أثناء محاكاة الموقع</string>
     <string name="location_detail_title_default">تفاصيل الموقع</string>
@@ -603,7 +603,7 @@
     <string name="faq_tip_turning_beacon_off">يمكنك تشغيل الصوت الإيقاعي للمنارة الصوتية وإيقافه باستخدام زر الكتم في الشاشة الرئيسية. إذا كانت المنارة الصوتية مكتومة، فستظل تحصل على تحديثات عن المسافة إلى وجهتك كل 50 مترًا تقريبًا.</string>
     <string name="faq_tip_turning_off_auto_callouts">لمواصلة استخدام Soundscape دون سماع النداءات الصوتية التلقائية، اضبط *تفاصيل النداءات الصوتية* على *صامت* من قسم *إدارة النداءات الصوتية* في شاشة *الإعدادات* من القائمة. وإذا كنت لن تستخدم Soundscape لفترة، يمكنك بدلًا من ذلك وضعه في وضع النوم أو وضع الغفوة باستخدام زر *نوم* في الشاشة الرئيسية.</string>
     <string name="faq_tip_hold_phone_flat">يعمل Soundscape بأفضل شكل عندما تُمسك الهاتف بشكل أفقي مع توجيه الشاشة نحو السماء وأعلى الهاتف بعيدًا عنك.</string>
-    <string name="faq_tip_create_marker_at_bus_stop">إذا كان هناك مسار حافلة تستقلّه بانتظام، فاضبط محطتي الركوب والنزول كعلامات. بهذه الطريقة سيتم حفظها لتتمكن من العثور عليها مرة أخرى بسهولة، فقط انتقل إلى *العلامات والمسارات* من الشاشة الرئيسية وابحث عنها في صفحة *العلامات*. يمكنك ضبط منارة صوتية عليها وستحصل على تحديثات دورية حول مدى اقترابك من محطة النزول. ملاحظة: يمكنك إيقاف تشغيل الصوت الإيقاعي وستظل تحصل على تحديثات المسافة أثناء الطريق.</string>
+    <string name="faq_tip_create_marker_at_bus_stop">إذا كان هناك مسار حافلة تستقلّه بانتظام، فاحفظ محطتي الركوب والنزول كعلامات. بهذه الطريقة سيتم حفظها لتتمكن من العثور عليها مرة أخرى بسهولة، فقط انتقل إلى *العلامات والمسارات* من الشاشة الرئيسية وابحث عنها في صفحة *العلامات*. يمكنك ضبط منارة صوتية عليها وستحصل على تحديثات دورية حول مدى اقترابك من محطة النزول. ملاحظة: يمكنك إيقاف تشغيل الصوت الإيقاعي وستظل تحصل على تحديثات المسافة أثناء الطريق.</string>
     <string name="no_language_selected">لم يتم اختيار لغة</string>
     <string name="first_launch_permissions_notification">الإشعارات</string>
     <string name="first_launch_permissions_record_audio">تسجيل الصوت</string>
@@ -680,7 +680,7 @@
     <string name="menu_share_recorded_route">مشاركة تسجيل الرحلة</string>
     <string name="confect_name_to_via">%1$s إلى %2$s عبر %3$s</string>
     <string name="confect_name_to">%1$s إلى %2$s</string>
-    <string name="confect_name_joins">%1$s الذي يصل بين %2$s و%3$s</string>
+    <string name="confect_name_joins">%1$s يصل بين %2$s و%3$s</string>
     <string name="confect_name_via">%1$s عبر %2$s</string>
     <string name="confect_name_pavement_next_to">الرصيف بجانب %1$s</string>
     <string name="confect_name_pavement">الرصيف</string>
@@ -853,7 +853,7 @@
     <string name="directions_on_road_and_settlement">على %1$s وقريبًا من %2$s</string>
     <string name="directions_on_road_at_junction">على %1$s عند %2$s</string>
     <string name="directions_at_junction_inline">عند %1$s</string>
-    <string name="directions_on_road_and_settlement_since">على %1$s وقريبًا من %2$s، %3$s منذ %4$s</string>
+    <string name="directions_on_road_and_settlement_since">على %1$s وقريبًا من %2$s، %3$s بعد %4$s</string>
     <string name="directions_towards_settlement">باتجاه %1$s، على بعد %2$s</string>
     <string name="directions_away_from_settlement">بعيدًا عن %1$s، على بعد %2$s خلفك</string>
     <string name="directions_near_settlement_inline">بالقرب من %1$s</string>
@@ -951,14 +951,24 @@
     <string name="location_item_move_down">نقل لأسفل في القائمة</string>
     <string name="street_description_between">على %1$s بين %2$s و%3$s</string>
     <string name="street_description_until">على %1$s، %2$s حتى %3$s</string>
-    <string name="street_description_since">على %1$s، %2$s منذ %3$s</string>
+    <string name="street_description_since">على %1$s، %2$s بعد %3$s</string>
     <string name="street_description_relative_before">على %1$s قبل %2$s مباشرة</string>
     <string name="street_description_relative_after">على %1$s بعد %2$s مباشرة</string>
     <string name="street_description_intersection">بالقرب من تقاطع %1$s</string>
     <string name="new_version_info_text">معلومات الإصدار الجديد</string>
     <string name="new_version_info_completed">إغلاق مربع حوار الإصدار الجديد</string>
     <string name="menu_open_source_licenses">تراخيص المصادر المفتوحة</string>
-    <string name="new_version_info_details">هذا تحديث كبير لتطبيق Soundscape. تحسّن وضع التنقل كثيرًا. عندما تتنقل بالسيارة أو الحافلة، أصبح Soundscape الآن ينادي بأرقام الطرق واتجاه سيرك والمستوطنات القريبة. كما ينادي عند عبورك الأنهار والقنوات والمصبات والخلجان. يُرجى تحديث خرائطك بدون اتصال للحصول على هذه الميزات الجديدة. وأصبحت أوصاف محطات الحافلات الآن أفضل بكثير للمستخدمين في المملكة المتحدة. يمكن لوضع النوم الآن أن يستيقظ تلقائيًا عند اكتشافه أنك تتحرك مرة أخرى. لم تعد بحاجة إلى تذكر إيقاظه بنفسك. لقد أعدنا تنظيم الكود الأساسي حتى نتمكن من بناء تطبيق لنظام iOS من الكود نفسه. هذا يعني أنه بإمكاننا في المستقبل إصدار تطبيق لنظام iOS بجميع الميزات التي بنيناها لنظام Android. يُرجى الاستمرار في الإبلاغ عن أي مشكلات، مهما كانت صغيرة، عبر التواصل مع الدعم في القائمة الرئيسية.</string>
+    <string name="new_version_info_details">
+هذا تحديث كبير لتطبيق Soundscape.
+
+تحسّن وضع التنقل كثيرًا. عندما تتنقل بالسيارة أو الحافلة، أصبح Soundscape الآن ينادي بأرقام الطرق واتجاه سيرك والمستوطنات القريبة. كما ينادي عند عبورك الأنهار والقنوات والمصبات والخلجان. يُرجى تحديث خرائطك بدون اتصال للحصول على هذه الميزات الجديدة. وأصبحت أوصاف محطات الحافلات الآن أفضل بكثير للمستخدمين في المملكة المتحدة.
+
+يمكن لوضع النوم الآن أن يستيقظ تلقائيًا عند اكتشافه أنك تتحرك مرة أخرى. لم تعد بحاجة إلى تذكر إيقاظه بنفسك.
+
+لقد أعدنا تنظيم الكود الأساسي حتى نتمكن من بناء تطبيق لنظام iOS من الكود نفسه. هذا يعني أنه بإمكاننا في المستقبل إصدار تطبيق لنظام iOS بجميع الميزات التي بنيناها لنظام Android.
+
+يُرجى الاستمرار في الإبلاغ عن أي مشكلات، مهما كانت صغيرة، عبر التواصل مع الدعم في القائمة الرئيسية.
+</string>
     <string name="osm_recreation_ground">أرض ترفيهية</string>
     <string name="osm_river">نهر</string>
     <string name="osm_railway">سكة حديد</string>
@@ -1007,18 +1017,18 @@
     <string name="directions_heading_sw">السير نحو الجنوب الغربي</string>
     <string name="directions_heading_w">السير نحو الغرب</string>
     <string name="directions_heading_nw">السير نحو الشمال الغربي</string>
-    <string name="directions_along_traveling_n">التوجه نحو الشمال عبر %1$s</string>
-    <string name="directions_along_traveling_ne">التوجه نحو الشمال الشرقي عبر %1$s</string>
-    <string name="directions_along_traveling_e">التوجه نحو الشرق عبر %1$s</string>
-    <string name="directions_along_traveling_se">التوجه نحو الجنوب الشرقي عبر %1$s</string>
-    <string name="directions_along_traveling_s">التوجه نحو الجنوب عبر %1$s</string>
-    <string name="directions_along_traveling_sw">التوجه نحو الجنوب الغربي عبر %1$s</string>
-    <string name="directions_along_traveling_w">التوجه نحو الغرب عبر %1$s</string>
-    <string name="directions_along_traveling_nw">التوجه نحو الشمال الغربي عبر %1$s</string>
-    <string name="directions_along_facing_n">مواجهة الشمال عبر %1$s</string>
-    <string name="directions_along_facing_ne">مواجهة الشمال الشرقي عبر %1$s</string>
-    <string name="directions_along_facing_e">مواجهة الشرق عبر %1$s</string>
-    <string name="directions_along_facing_se">مواجهة الجنوب الشرقي عبر %1$s</string>
+    <string name="directions_along_traveling_n">التوجه نحو الشمال على طول %1$s</string>
+    <string name="directions_along_traveling_ne">التوجه نحو الشمال الشرقي على طول %1$s</string>
+    <string name="directions_along_traveling_e">التوجه نحو الشرق على طول %1$s</string>
+    <string name="directions_along_traveling_se">التوجه نحو الجنوب الشرقي على طول %1$s</string>
+    <string name="directions_along_traveling_s">التوجه نحو الجنوب على طول %1$s</string>
+    <string name="directions_along_traveling_sw">التوجه نحو الجنوب الغربي على طول %1$s</string>
+    <string name="directions_along_traveling_w">التوجه نحو الغرب على طول %1$s</string>
+    <string name="directions_along_traveling_nw">التوجه نحو الشمال الغربي على طول %1$s</string>
+    <string name="directions_along_facing_n">مواجهة الشمال على %1$s</string>
+    <string name="directions_along_facing_ne">مواجهة الشمال الشرقي على %1$s</string>
+    <string name="directions_along_facing_e">مواجهة الشرق على %1$s</string>
+    <string name="directions_along_facing_se">مواجهة الجنوب الشرقي على %1$s</string>
     <string name="voice_cmd_not_recognized">عذرًا، لم أتمكن من العثور على الأمر %1$s. الأمر الصوتي %2$s سيعرض قائمة بالأوامر المتاحة.</string>
     <string name="voice_cmd_list_routes">عرض المسارات</string>
     <string name="voice_cmd_routes_list">المسارات المتاحة هي،</string>
@@ -1110,7 +1120,7 @@
     <string name="osm_road">طريق</string>
     <string name="osm_motorway">طريق سريع</string>
     <string name="osm_trunk">طريق رئيسي</string>
-    <string name="osm_path">مسار</string>
+    <string name="osm_path">درب</string>
     <string name="osm_raceway">حلبة سباق</string>
     <string name="osm_busway">طريق حافلات مخصص</string>
     <string name="osm_bus_guideway">مسار حافلات موجّه</string>
@@ -1190,18 +1200,18 @@
     <string name="osm_rune_stone">حجر روني</string>
     <string name="osm_milestone">علامة مسافة</string>
     <string name="osm_lifeguard_platform">منصة الإنقاذ</string>
-    <string name="directions_along_facing_s">مواجهة الجنوب عبر %1$s</string>
-    <string name="directions_along_facing_sw">مواجهة الجنوب الغربي عبر %1$s</string>
-    <string name="directions_along_facing_w">مواجهة الغرب عبر %1$s</string>
-    <string name="directions_along_facing_nw">مواجهة الشمال الغربي عبر %1$s</string>
-    <string name="directions_along_heading_n">متجه نحو الشمال على طول %1$s</string>
-    <string name="directions_along_heading_ne">متجه نحو الشمال الشرقي على طول %1$s</string>
-    <string name="directions_along_heading_e">متجه نحو الشرق على طول %1$s</string>
-    <string name="directions_along_heading_se">متجه نحو الجنوب الشرقي على طول %1$s</string>
-    <string name="directions_along_heading_s">متجه نحو الجنوب على طول %1$s</string>
-    <string name="directions_along_heading_sw">متجه نحو الجنوب الغربي على طول %1$s</string>
-    <string name="directions_along_heading_w">متجه نحو الغرب على طول %1$s</string>
-    <string name="directions_along_heading_nw">متجه نحو الشمال الغربي على طول %1$s</string>
+    <string name="directions_along_facing_s">مواجهة الجنوب على %1$s</string>
+    <string name="directions_along_facing_sw">مواجهة الجنوب الغربي على %1$s</string>
+    <string name="directions_along_facing_w">مواجهة الغرب على %1$s</string>
+    <string name="directions_along_facing_nw">مواجهة الشمال الغربي على %1$s</string>
+    <string name="directions_along_heading_n">السير نحو الشمال على طول %1$s</string>
+    <string name="directions_along_heading_ne">السير نحو الشمال الشرقي على طول %1$s</string>
+    <string name="directions_along_heading_e">السير نحو الشرق على طول %1$s</string>
+    <string name="directions_along_heading_se">السير نحو الجنوب الشرقي على طول %1$s</string>
+    <string name="directions_along_heading_s">السير نحو الجنوب على طول %1$s</string>
+    <string name="directions_along_heading_sw">السير نحو الجنوب الغربي على طول %1$s</string>
+    <string name="directions_along_heading_w">السير نحو الغرب على طول %1$s</string>
+    <string name="directions_along_heading_nw">السير نحو الشمال الغربي على طول %1$s</string>
     <string name="directions_cardinal_north">الشمال</string>
     <string name="directions_cardinal_north_east">الشمال الشرقي</string>
     <string name="directions_cardinal_east">الشرق</string>
@@ -1461,7 +1471,7 @@
     <string name="help_text_ahead_of_me_how">كما هو الحال مع جميع الأزرار الأربعة أسفل الشاشة الرئيسية، أمسك هاتفك بحيث تكون الشاشة أفقية (متجهة نحو السماء) وأعلى الهاتف يشير إلى الاتجاه الذي تواجهه قبل الضغط على زر *أمامي*. يعمل هذا كبوصلة تخبر التطبيق بالاتجاه الذي تواجهه. ببساطة، انقر على زر *أمامي* وستسمع عدة نقاط اهتمام تقع تقريبًا أمامك.</string>
     <string name="help_text_remote_control_what">يمكنك الوصول إلى بعض ميزات Soundscape بمساعدة أزرار التحكم بالوسائط الموجودة على سماعات الرأس الخاصة بك. تعمل هذه الميزة مع أي سماعات سلكية أو بلوتوث تحتوي على أزرار تحكم بالوسائط مثل تشغيل وإيقاف مؤقت وتالي وسابق وغيرها. قد تختلف الأزرار الموجودة حسب نوع السماعات، لذا يُرجى الرجوع إلى قائمة الإجراءات أدناه لمعرفة الأزرار المتاحة لديك.</string>
     <string name="help_text_remote_control_when">يمكن استخدام أزرار التحكم بالوسائط في السماعات أثناء تشغيل Soundscape — سواء كنت تستخدم التطبيق بنشاط، أو كان يعمل في الخلفية، أو كان جهازك مقفلاً. ومع ذلك، لن تعمل أزرار التحكم بالوسائط في السماعات مع Soundscape إذا كنت تشغّل صوتًا، مثل الموسيقى أو البودكاست أو الفيديوهات، من تطبيق آخر.</string>
-    <string name="help_text_remote_control_how">هناك وضعان لتشغيل عناصر التحكم في الوسائط. يمكن اختيار الوضع من قسم *الإعدادات* *عناصر التحكم في الوسائط*. الوضعان هما:\n\n *الوضع الأصلي*. \n\n⏯ تشغيل/إيقاف مؤقت: يشغّل صوت المنارة ويوقفه. \n\n⏭ التالي: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار التالية. إذا لم يكن هناك مسار قيد التشغيل، ينادي بـ *حولي*.\n\n⏮ السابق: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار السابقة. إذا لم يكن هناك مسار قيد التشغيل، يغيّر *تفاصيل النداءات الصوتية* درجة واحدة أهدأ مع كل ضغطة: *مفصّل*، *مبسّط*، *أساسي*، *صامت*، ثم يعود إلى *مفصّل*.\n\n\n\n*قائمة الصوت*. \n\n\n\n⏭ التالي ينتقل بين سلسلة من خيارات القائمة التي يصفها التطبيق عبر تحويل النص إلى كلام، ويعود إلى الخيار الأول بعد الأخير. ثم يجعل ⏯ تشغيل/إيقاف مؤقت التطبيق ينفّذ الخيار الموصوف. هناك قائمة واحدة في المستوى الأعلى لا تحتوي إلا على قوائم فرعية كخيارات. وتضم كل قائمة فرعية مجموعة من الإجراءات المتشابهة.\n\n⏮ السابق لا ينتقل بين خيارات القائمة. بل يغيّر *تفاصيل النداءات الصوتية* تمامًا كما في الوضع الأصلي، فيخفض الزر نفسه كلام التطبيق أيًا كان الوضع الذي تستخدمه.</string>
+    <string name="help_text_remote_control_how">هناك وضعان لتشغيل عناصر التحكم في الوسائط. يمكن اختيار الوضع من قسم *الإعدادات* *عناصر التحكم بالوسائط*. الوضعان هما:\n\n *الوضع الأصلي*. \n\n⏯ تشغيل/إيقاف مؤقت: يشغّل صوت المنارة ويوقفه. \n\n⏭ التالي: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار التالية. إذا لم يكن هناك مسار قيد التشغيل، ينادي بـ *حولي*.\n\n⏮ السابق: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار السابقة. إذا لم يكن هناك مسار قيد التشغيل، يغيّر *تفاصيل النداءات الصوتية* درجة واحدة أهدأ مع كل ضغطة: *مفصّل*، *مبسّط*، *أساسي*، *صامت*، ثم يعود إلى *مفصّل*.\n\n\n\n*قائمة الصوت*. \n\n\n\n⏭ التالي ينتقل بين سلسلة من خيارات القائمة التي يصفها التطبيق عبر تحويل النص إلى كلام، ويعود إلى الخيار الأول بعد الأخير. ثم يجعل ⏯ تشغيل/إيقاف مؤقت التطبيق ينفّذ الخيار الموصوف. هناك قائمة واحدة في المستوى الأعلى لا تحتوي إلا على قوائم فرعية كخيارات. وتضم كل قائمة فرعية مجموعة من الإجراءات المتشابهة.\n\n⏮ السابق لا ينتقل بين خيارات القائمة. بل يغيّر *تفاصيل النداءات الصوتية* تمامًا كما في الوضع الأصلي، فيخفض الزر نفسه كلام التطبيق أيًا كان الوضع الذي تستخدمه.</string>
     <string name="help_text_markers_content_1">باستخدام Soundscape، يمكنك تمييز عالمك وأي شيء يهمك، مثل الدبابيس على الخريطة.</string>
     <string name="help_text_markers_content_2">يمكنك وضع علامات على الأماكن الشخصية وذات الصلة بك، مثل منزلك أو مكتبك أو متجر البقالة المفضل لديك. يمكنك وضع علامة على أي مكان أو عنوان، كما يمكنك وضع علامة على أشياء لا تظهر عادةً على الخرائط، على سبيل المثال: مداخل المباني أو الحدائق، وأزرار طلب عبور المشاة، ومعابر المشاة، والجسور، ومحطات الحافلات، أو حتى الشجرة المفضلة لكلبك. استخدم هذه العلامات كمراجع أثناء تنقلك.</string>
     <string name="help_text_markers_content_3">لتجربة الأماكن المميزة، سينادي Soundscape تلقائيًا بالأماكن المميزة عند مرورك بها أو اقترابك منها، أو يمكنك أيضًا استخدام زر *العلامات القريبة* أسفل الشاشة الرئيسية لسماع نداء مكاني للأماكن المميزة من حولك. بل يمكنك أيضًا ضبط منارة صوتية على أي مكان مميز. عند القيام بذلك، ستسمع منارة Soundscape الصوتية المعتادة، ويمكنك تشغيلها كالمعتاد.</string>
@@ -1487,7 +1497,7 @@
     <string name="faq_what_can_I_set_question">ما الذي يمكنني ضبط منارة صوتية عليه؟</string>
     <string name="faq_what_can_I_set_answer">يمكنك ضبط منارة صوتية على أي محل تجاري أو مكان أو نقطة اهتمام أو عنوان أو تقاطع. هناك عدة طرق لإضافة منارة صوتية على موقع. أولًا، اعرض تفاصيل الموقع إما باستخدام شريط البحث للبحث عن مكان، أو بالنقر على أحد الأزرار *الأماكن القريبة* أو *العلامات والمسارات* أو *الموقع الحالي* واختيار موقع. ثم من شاشة *تفاصيل الموقع*، اختر زر *بدء المنارة الصوتية*. سيعيدك النقر على هذا الزر إلى الشاشة الرئيسية ويشغّل منارة صوتية مسموعة قادمة من اتجاه المكان الذي اخترته. سيُعرض الآن اسم المكان إلى جانب المسافة إليه وعنوانه الفعلي، إن كان متاحًا، على الشاشة الرئيسية.</string>
     <string name="faq_how_to_use_beacon_question">كيف أحقق أقصى استفادة من المنارة الصوتية؟</string>
-    <string name="faq_how_to_use_beacon_answer">يمكنك اعتبار المنارة الصوتية المسموعة بمثابة *منارة بحرية للأذنين*، تُعلمك بمكان وجهتك بالنسبة لموقعك، كما لو كنت تسير في خط مستقيم. مثل المنارة البحرية، لا تخبرك بكيفية الوصول إلى هناك - فقد تحتاج مع ذلك إلى اختيار طريقك أثناء السير للالتفاف حول العوائق. الصوت الإيقاعي المستمر للمنارة الصوتية يُبَث بشكل مكاني من اتجاه الوجهة، ويساعدك على البقاء واعيًا بموقع الوجهة بالنسبة لك أثناء مشيك. عندما تسير مباشرة نحو الوجهة، أو توجّه الهاتف نحو الوجهة، سيُسمع صوت *رنين* أعلى حدة. تتيح لك هذه الميزة تحديد اتجاه الوجهة بدقة، لأن اتجاه الصوت الإيقاعي قد يكون أحيانًا صعب الإدراك في البيئات الصاخبة. عند البحث عن صوت *الرنين* الأعلى حدة، أمسك الهاتف بشكل أفقي واستدر ببطء في دائرة؛ سيضمن تدوير رأسك للإشارة إلى نفس اتجاه الهاتف حصولك على أفضل تجربة صوت مكاني.\n\nلهذا التصميم بعض النتائج الطبيعية:\n\n1. لا يوجد اتجاه *صحيح* للسير فيه عند استخدام المنارة الصوتية؛ بل يمكنك مع Soundscape اختيار الطريقة التي تريدها للوصول إلى هناك؛\n\n2. يساعدك صوت *الرنين* الأعلى حدة على تحديد اتجاه الوجهة فقط - وهو ليس إشارة إلى كيفية الوصول إليها؛\n\n3. إذا كنت تعرف عمومًا كيفية الوصول إلى وجهتك، فقد ترغب في كتم المنارة الصوتية لمعظم رحلتك وتشغيلها فقط عند اقترابك من وجهتك.</string>
+    <string name="faq_how_to_use_beacon_answer">يمكنك اعتبار المنارة الصوتية المسموعة بمثابة *منارة بحرية للأذنين*، تُعلمك بمكان وجهتك في خط مستقيم من موقعك الحالي. مثل المنارة البحرية، لا تخبرك بكيفية الوصول إلى هناك - فقد تحتاج مع ذلك إلى اختيار طريقك أثناء السير للالتفاف حول العوائق. الصوت الإيقاعي المستمر للمنارة الصوتية يُبَث بشكل مكاني من اتجاه الوجهة، ويساعدك على البقاء واعيًا بموقع الوجهة بالنسبة لك أثناء مشيك. عندما تسير مباشرة نحو الوجهة، أو توجّه الهاتف نحو الوجهة، سيُسمع صوت *رنين* أعلى حدة. تتيح لك هذه الميزة تحديد اتجاه الوجهة بدقة، لأن اتجاه الصوت الإيقاعي قد يكون أحيانًا صعب الإدراك في البيئات الصاخبة. عند البحث عن صوت *الرنين* الأعلى حدة، أمسك الهاتف بشكل أفقي واستدر ببطء في دائرة؛ سيضمن تدوير رأسك للإشارة إلى نفس اتجاه الهاتف حصولك على أفضل تجربة صوت مكاني.\n\nلهذا التصميم بعض النتائج الطبيعية:\n\n1. لا يوجد اتجاه *صحيح* للسير فيه عند استخدام المنارة الصوتية؛ بل يمكنك مع Soundscape اختيار الطريقة التي تريدها للوصول إلى هناك؛\n\n2. يساعدك صوت *الرنين* الأعلى حدة على تحديد اتجاه الوجهة فقط - وهو ليس إشارة إلى كيفية الوصول إليها؛\n\n3. إذا كنت تعرف عمومًا كيفية الوصول إلى وجهتك، فقد ترغب في كتم المنارة الصوتية لمعظم رحلتك وتشغيلها فقط عند اقترابك من وجهتك.</string>
     <string name="faq_why_does_beacon_disappear_question">لماذا تختفي المنارة الصوتية المسموعة أحيانًا؟</string>
     <string name="faq_why_does_beacon_disappear_answer">المنارة الصوتية المسموعة في Soundscape هي في الأساس إشارة اتجاهية، تخبرك بمكان وجهتك بالنسبة إلى الاتجاه الذي تواجهه. عندما لا يكون Soundscape متأكدًا من الاتجاه الذي تواجهه، يخفض مستوى صوت المنارة الصوتية. يحدث هذا غالبًا إذا كنت تسير والهاتف موضوع في جيبك أو حقيبتك، ثم توقفت عن الحركة، كأن تعبر شارعًا. سيصبح صوت المنارة الصوتية أعلى بمجرد أن تبدأ بالتحرك مرة أخرى، أو إذا أمسكت الهاتف بشكل أفقي ووجهته نحو الاتجاه الذي تواجهه.</string>
     <string name="faq_beacon_on_address_question">هل يمكنني ضبط منارة صوتية على عنوان؟</string>
