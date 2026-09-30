@@ -27,7 +27,7 @@ help text. Questions: `docs/translation-questions/questions-ar.md` (Q1…Q6).
 | Landmarks | المعالم | `unconfirmed` | |
 | Intersection | تقاطع | `unconfirmed` | |
 | Sleep / Snooze | نوم ; غافٍ | `unconfirmed` | |
-| Detail levels | مفصّل / متوازن / هادئ / صامت | `unconfirmed` | |
+| Detailed / Simplified / Essential / Silent | مفصّل / مبسّط / أساسي / صامت | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was مفصّل / متوازن / هادئ / صامت |
 | dead end | طريق مسدود | `unconfirmed` | |
 
 ## Rules

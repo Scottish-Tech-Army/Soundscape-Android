@@ -97,23 +97,25 @@ Artikel des Straßennamens nicht kennen.
 **Die Frage:** Wäre „Fußweg zur Sackgasse“ bzw. „Fußweg Richtung Moor Road“
 besser, oder etwas anderes?
 
-### Q3 — Die vier Detailstufen *(Four detail levels)*
+### Q3 — Die vier Detailstufen *(Four detail levels, renamed 2026-09-30)*
 
 **Wann man es hört:** in den Einstellungen. Man wählt dort nach Gehör, wie viel
 die App unterwegs ansagt.
 
-**Auf Englisch:** „Detailed / Balanced / Quiet / Silent“.
+**Auf Englisch:** „Detailed / Simplified / Essential / Silent“.
 
-**Derzeit auf Deutsch:** **Ausführlich / Ausgewogen / Leise / Stumm**.
-„Ausführlich“ sagt alles in der Nähe an; „Ausgewogen“ lässt kleinere Wege aus
-und wiederholt seltener; „Leise“ nennt nur Straßen, Kreuzungen und markante
-Orte; „Stumm“ macht gar keine automatischen Ansagen.
+**Derzeit auf Deutsch:** **Ausführlich / Vereinfacht / Wesentlich / Stumm**.
+„Ausführlich“ sagt alles in der Nähe an; „Vereinfacht“ lässt kleinere Wege aus
+und wiederholt seltener; „Wesentlich“ nennt nur Straßen, Kreuzungen und
+markante Orte; „Stumm“ macht gar keine automatischen Ansagen.
 
-**Was uns unsicher macht:** „Leise“ könnte als *Lautstärke* verstanden werden,
-nicht als *weniger Ansagen*.
+**Was uns unsicher macht:** Wir haben die beiden mittleren Stufen gerade
+umbenannt. Vorher hießen sie „Ausgewogen“ und „Leise“, aber Muttersprachler
+anderer Sprachen fanden, dass „Leise“ nach Lautstärke klingt. Die neuen Namen
+haben wir gewählt, kein deutscher Muttersprachler.
 
 **Die Frage:** Sind die vier Stufen beim Hören gut zu unterscheiden und
-verständlich?
+verständlich? Würden Sie die beiden mittleren anders nennen?
 
 ### Q4 — Siri-Befehle *(Siri phrases)*
 

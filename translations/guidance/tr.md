@@ -29,7 +29,7 @@ phrases (`tr.lproj`) match the help text. Questions:
 | Landmarks | Simge Yapılar | `unconfirmed` | |
 | Intersection | kavşak | `unconfirmed` | |
 | Sleep / Snooze | Uyku Modu ; Erteleme Modu | `unconfirmed` | |
-| Detail levels | Ayrıntılı / Dengeli / Sakin / Sessiz | `unconfirmed` | |
+| Detailed / Simplified / Essential / Silent | Ayrıntılı / Sadeleştirilmiş / Temel / Sessiz | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Ayrıntılı / Dengeli / Sakin / Sessiz |
 | dead end | çıkmaz sokak | `unconfirmed` | |
 
 ## Rules

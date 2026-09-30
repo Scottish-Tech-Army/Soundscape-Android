@@ -45,7 +45,7 @@ space that turned two words into one, and is now fixed. In FR-G1 the *replacemen
 `unconfirmed`.
 
 The questions for reviewers are in `docs/translation-questions/questions-fr.md`. Feedback will
-cite its numbered questions (Q1…Q12), which match the Open questions list below.
+cite its numbered questions (Q1…Q5, round 2 since 2026-09-30), which match the round-2 list below.
 
 ---
 
@@ -276,6 +276,8 @@ Q1 → FR-T1, Q2 → FR-T2, Q3 → FR-T3, Q4 → FR-R1, Q5 (articles before name
 Reviewer (Q6): *"un mot plus commun et généralisable que carrefour et moins formel qu’intersection."* 24 strings swept, including the label «Rues et croisements». The gender change (f → m) was rewritten throughout: «le croisement suivant», «au croisement le plus proche», «d’un croisement», «jusqu’au croisement suivant».
 
 ## Open questions for round 2
+
+Numbered as on `questions-fr.md`; Q5 is "anything else".
 
 1. «Étape suivante» / «Ajouter des étapes»: clear enough without «de parcours»?
 2. «Mettre en pause» / «Reprendre quand je pars» / «En pause jusqu’au départ»: do they say what the two modes do?

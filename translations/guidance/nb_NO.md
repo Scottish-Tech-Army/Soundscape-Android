@@ -33,7 +33,7 @@ Questions are confirmations. Questions: `docs/translation-questions/questions-nb
 | Intersection | veikryss | `confirmed` | Microsoft |
 | Sleep / Snooze | dvalemodus ; pausemodus | `confirmed` | Microsoft |
 | Traveling / Heading | Kjører / Du går mot nord | `confirmed` | Microsoft. The vehicle/walking split |
-| Detail levels | Detaljert / Balansert / Stille / Lydløs | `unconfirmed` | AI. Distinct |
+| Detailed / Simplified / Essential / Silent | Detaljert / Forenklet / Grunnleggende / Lydløs | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Detaljert / Balansert / Stille / Lydløs |
 | dead end | blindvei | `unconfirmed` | AI |
 
 ## Rules
@@ -53,7 +53,7 @@ Nothing yet.
 ## Open questions
 
 1. Callout «melding»: confused with text messages or notifications?
-2. The four detail levels (Detaljert / Balansert / Stille / Lydløs): clear?
+2. The four detail levels (Detaljert / Forenklet / Grunnleggende / Lydløs), renamed 2026-09-30 (C22): clear by ear? Better names for the middle two?
 3. Siri phrases «Soundscape omgivelser / rute / lydsignal / stopp lydsignal…»: natural?
 4. Anything else.
 

@@ -27,7 +27,7 @@ Questions: `docs/translation-questions/questions-th.md` (Q1…Q8).
 | Landmarks | จุดสังเกต | `unconfirmed` | |
 | Intersection | ทางแยก | `unconfirmed` | |
 | Sleep / Snooze | สลีป / สนูซ | `unconfirmed` | Loanwords (C12) |
-| Detail levels | ละเอียด / สมดุล / **เงียบ / เงียบสนิท** | `unconfirmed` | See TH-T1 |
+| Detailed / Simplified / Essential / Silent | ละเอียด / แบบง่าย / เฉพาะที่สำคัญ / เงียบสนิท | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was ละเอียด / สมดุล / **เงียบ / เงียบสนิท** |
 | dead end | ทางตัน | `unconfirmed` | |
 
 ## Rules
@@ -57,7 +57,7 @@ Nothing yet.
 ## Open questions
 
 1. Callout «การแจ้งเตือน»: confused with phone notifications?
-2. «เงียบ» vs «เงียบสนิท»: different enough by ear? (TH-T1)
+2. The four detail levels (ละเอียด / แบบง่าย / เฉพาะที่สำคัญ / เงียบสนิท), renamed 2026-09-30 (C22), which also ends the «เงียบ» / «เงียบสนิท» clash: clear by ear? (TH-T1)
 3. Waypoint «จุดผ่านทาง»: natural?
 4. Sleep/Snooze «สลีป» / «สนูซ»: understood?
 5. Siri phrases «Soundscape รอบตัว / เส้นทาง / บีคอน…»: natural to say?

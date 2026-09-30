@@ -29,7 +29,7 @@ present-tense hints («утишате») composes correctly. Traveling/Heading a
 | Landmarks | знаменитости | `unconfirmed` | |
 | Intersection | раскрсница | `unconfirmed` | |
 | Sleep / Snooze | Спавање / **Спавање** ; Дремање | `unconfirmed` | See SR-T1 |
-| Detail levels | Детаљно / Уравнотежено / Тихо / Без звука | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Детаљно / Поједностављено / Основно / Без звука | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Детаљно / Уравнотежено / Тихо / Без звука |
 | dead end | ћорсокак | `unconfirmed` word; case fixed 2026-09-24. See SR-G1 |
 
 ## Rules

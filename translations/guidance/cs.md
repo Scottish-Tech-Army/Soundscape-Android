@@ -32,7 +32,7 @@ One `agreed` defect. Questions: `docs/translation-questions/questions-cs.md` (Q1
 | Landmarks | orientační body | `unconfirmed` | |
 | Intersection | křižovatka | `unconfirmed` | |
 | Sleep / Snooze | Spánek / Spí ; Dřímá | `unconfirmed` | |
-| Detail levels | Podrobný / Vyvážený / Tichý / Bez zvuku | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Podrobný / Zjednodušený / Základní / Bez zvuku | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Podrobný / Vyvážený / Tichý / Bez zvuku |
 | dead end | slepá ulice | `unconfirmed` word; case fixed 2026-09-24. See CS-G1 |
 
 ## Rules

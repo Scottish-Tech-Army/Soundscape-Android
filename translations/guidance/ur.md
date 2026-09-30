@@ -28,7 +28,7 @@ is acceptable under C10. The main open item is a split term. Questions:
 | Landmarks | نشانات | `unconfirmed` | |
 | Intersection | چوراہا | `unconfirmed` | |
 | Sleep / Snooze | نیند / اسنوز | `unconfirmed` | |
-| Detail levels | تفصیلی / متوازن / مختصر / خاموش | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | تفصیلی / سادہ / ضروری / خاموش | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was تفصیلی / متوازن / مختصر / خاموش |
 | dead end | بند گلی | `unconfirmed` | |
 
 ## Rules

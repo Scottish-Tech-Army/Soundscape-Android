@@ -32,7 +32,7 @@ Questions: `docs/translation-questions/questions-de.md` (Q1…Q6).
 | Intersection | Kreuzung | `confirmed` | Microsoft |
 | Sleep / Snooze | Ruhemodus / Standbymodus | `confirmed` | Microsoft. Button restored to «Ruhemodus aktivieren» 2026-09-25 (C14 parity) |
 | Traveling / Heading | Nach Norden fahrend / Richtung Norden | `confirmed` | Microsoft. Matches the vehicle/walking split |
-| Detail levels | Ausführlich / Ausgewogen / Leise / Stumm | `unconfirmed` | AI. Distinct |
+| Detailed / Simplified / Essential / Silent | Ausführlich / Vereinfacht / Wesentlich / Stumm | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Ausführlich / Ausgewogen / Leise / Stumm |
 | Landmarks | Orientierungspunkte | `unconfirmed` | AI |
 | dead end | Sackgasse | `unconfirmed` | AI. See DE-G1 |
 
@@ -72,8 +72,8 @@ Microsoft's files.
    stummschalten – doppeltippen»? (DE-B1)
 2. «Fußweg nach Sackgasse»: better as «Fußweg zur Sackgasse» or «Fußweg
    Richtung Moor Road»? (DE-G1)
-3. The four detail levels (Ausführlich / Ausgewogen / Leise / Stumm): clear?
-   «Leise» may be heard as volume rather than fewer callouts.
+3. The four detail levels (Ausführlich / Vereinfacht / Wesentlich / Stumm), renamed 2026-09-30 (C22): clear by ear?
+   Better names for the middle two?
 4. Siri phrases «Soundscape Umgebung / Route / Beacon / stoppe Beacon…»: natural?
 5. The *Nearby Markers* button reads «Mark.⏎in Nähe» (Microsoft's wording). TalkBack
    says "Mark", not "Markierungen". Should the label be spelled out, or should the

@@ -32,7 +32,7 @@ The authored Siri phrases (`ru.lproj`) match the help text. Questions:
 | Landmarks | достопримечательности | `confirmed` | Yurt Page. Note it means *tourist sights*, which is narrower than "landmark". See Q3 |
 | Intersection | перекрёсток | `confirmed` | Yurt Page |
 | Sleep / Snooze | Сон / Спящий режим ; Отложенный режим | `unconfirmed` | Yurt Page wrote «Спание» for sleeping, which has since been replaced. «Отложенный режим» is AI. See Q4 |
-| Detail levels | Подробный / Сбалансированный / Тихий / Беззвучный | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Подробный / Упрощённый / Основной / Беззвучный | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Подробный / Сбалансированный / Тихий / Беззвучный |
 | dead end | тупик | `confirmed` word; case fixed 2026-09-24 («тупику»). See RU-G1 |
 
 ## Rules

@@ -29,7 +29,7 @@ Questions: `docs/translation-questions/questions-sv.md` (Q1…Q4).
 | Intersection | vägkorsning | `confirmed` | Microsoft |
 | Sleep / Snooze | Inaktivera / Inaktiverad ; Snoozar | `confirmed` | Microsoft, restored 2026-09-25 (C14 parity). See SV-T1 |
 | Traveling / Heading | Reser / På väg norrut | `confirmed` | Microsoft |
-| Detail levels | Detaljerad / Balanserad / Lågmäld / Tyst | `unconfirmed` | AI. Distinct, and «Lågmäld» is a nice choice for "fewer" |
+| Detailed / Simplified / Essential / Silent | Detaljerad / Förenklad / Grundläggande / Tyst | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Detaljerad / Balanserad / Lågmäld / Tyst |
 | dead end | återvändsgata | `unconfirmed` | AI |
 
 ## Rules

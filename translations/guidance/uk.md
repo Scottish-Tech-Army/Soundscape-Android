@@ -20,7 +20,7 @@ Read with [`_common.md`](_common.md).
 | Waypoint | зупинка | `agreed` | ~~маршрутна точка~~ | Google Maps Ukrainian uses «зупинка» for a stop added to a route. «маршрутна точка» was a calque of our own doc's "route point" gloss (rule C1) |
 | Callout | оголошення | `confirmed` | ~~підказка~~ | Kept unchanged on the reporter's second look — see "Rejected". Ukrainian has no good word for this; «оголошення» is the settled least-bad choice, not an oversight |
 | Guided tutorial | Інтерактивний тур | `agreed` | ~~Керований навчальний посібник~~, ~~Навчання~~ | Reporter proposed it 2026-09-18 as provisional ("cannot find any real examples of usage in Ukrainian applications"), confirmed OK 2026-09-21. Also replaces «Навчання» in `tour_finish` |
-| Detail levels | Докладний / Збалансований / Тихий / Беззвучний | `confirmed` | — | `callouts_verbosity_level_*`. Reporter, 2026-09-25: "easy to understand and distinguish" as currently translated |
+| Detail levels | Докладний / Збалансований / Тихий / Беззвучний | `confirmed` | — | `callouts_verbosity_level_*`. Reporter, 2026-09-25: "easy to understand and distinguish" as currently translated. Kept when the English became Simplified / Essential (C22, 2026-09-30): the names needn't be literal. The 2026-09-30 pass replaced them with «Спрощений / Основний» by mistake; restored the same day |
 | Dead end | тупик | `agreed` | ~~кінець дороги~~ | «кінець дороги» is "end of the road", not the street type. Reporter, 2026-09-21. See UK-G1 for the case it must take |
 
 ### Waypoint declension map (`agreed`, mechanical)

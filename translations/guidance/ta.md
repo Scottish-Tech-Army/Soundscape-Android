@@ -28,7 +28,7 @@ VoiceOver hints are «-க்க» infinitives that compose correctly with «%1$
 | Landmarks | அடையாளக் குறிகள் | `unconfirmed` | |
 | Intersection | சந்திப்பு | `unconfirmed` | |
 | Sleep / Snooze | உறக்கம் / ஸ்னூஸ் | `unconfirmed` | |
-| Detail levels | விரிவு / சமநிலை / அமைதி / மௌனம் | `unconfirmed` | **அமைதி (calm/quiet) and மௌனம் (silence) are close in meaning**. See TA-T1 |
+| Detailed / Simplified / Essential / Silent | விரிவு / எளிமை / அத்தியாவசியம் / மௌனம் | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was விரிவு / சமநிலை / அமைதி / மௌனம் |
 | dead end | முட்டுச்சந்து | `unconfirmed` | |
 
 ## Rules
@@ -62,7 +62,7 @@ Nothing yet.
 1. Callout «அறிவிப்பு»: confused with phone notifications?
 2. Beacon «ஒலி பீக்கன்»: understood?
 3. Waypoint «வழிப்புள்ளி»: natural?
-4. Quiet «அமைதி» vs Silent «மௌனம்»: different enough? (TA-T1)
+4. The four detail levels (விரிவு / எளிமை / அத்தியாவசியம் / மௌனம்), renamed 2026-09-30 (C22) partly because «அமைதி» and «மௌனம்» were too close: clear by ear now? (TA-T1)
 5. «%2$s நோக்கிச் செல்லும் %1$s» for "path to Moor Road"? (TA-G1)
 6. Is «நீங்கள்» right?
 7. Anything else.

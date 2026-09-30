@@ -37,7 +37,7 @@ The questions are confirmation, not repair. Questions:
 | Landmarks | 랜드마크 | `unconfirmed` | |
 | Intersection | 교차로 | `unconfirmed` | |
 | Sleep / Snooze | 잠자기 / 스누즈 | `unconfirmed` | |
-| Detail levels | 상세 / 균형 / 간략 / 무음 | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | 상세 / 간소화 / 핵심 / 무음 | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was 상세 / 균형 / 간략 / 무음 |
 | dead end | 막다른 길 | `unconfirmed` | |
 
 ## Rules

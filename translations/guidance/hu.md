@@ -28,7 +28,7 @@ hints is already the colon frame that C13 recommends. There is no
 | Landmarks | nevezetességek | `unconfirmed` | "Sights" |
 | Intersection | kereszteződés | `unconfirmed` | |
 | Sleep / Snooze | Alvás ; Szundikálás | `unconfirmed` | |
-| Detail levels | Részletes / Kiegyensúlyozott / Csendes / Néma | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Részletes / Egyszerűsített / Alapvető / Néma | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Részletes / Kiegyensúlyozott / Csendes / Néma |
 | dead end | zsákutca | `unconfirmed` | |
 
 ## Rules

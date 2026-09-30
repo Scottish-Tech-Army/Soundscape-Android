@@ -43,7 +43,7 @@ Q1…Q11 to match the Open questions below.
 | Junction (motorway, with ref) | възел | `unconfirmed` | `directions_junction_with_ref` «Възел %1$s» |
 | Sleep / Snooze | Сън / Заспал ; Дремещ | `unconfirmed` | See BG-T3 / Q4 |
 | Callout Detail | Детайлност на съобщенията | `unconfirmed` | AI pass, 2026-09-23 |
-| Detailed / Balanced / Quiet / Silent | Подробно / Балансирано / Тихо / Без звук | `unconfirmed` | Distinct roots, so this looks fine by ear. See Q7 |
+| Detailed / Simplified / Essential / Silent | Подробно / Опростено / Основно / Без звук | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Подробно / Балансирано / Тихо / Без звук |
 | Destination | дестинация | `unconfirmed` | 17 occurrences. An anglicism; «местоназначение» or «цел» may be more natural. See Q6 |
 | dead end | задънена улица | `unconfirmed` | Grammatically fine in the template. See BG-G1 |
 
@@ -130,7 +130,7 @@ These are the questions in `docs/translation-questions/questions-bg.md`, in the 
 4. **Sleep/Snooze:** «Сън», «Заспал», «Дремещ». (BG-T3)
 5. **«Вие» OK? And «Ви» or «ви»?** (BG-R1)
 6. **«дестинация» or «местоназначение» / «цел»?**
-7. **The four detail levels:** clear by ear?
+7. **The four detail levels** (Подробно / Опростено / Основно / Без звук), renamed 2026-09-30 (C22): clear by ear, and better names for the middle two?
 8. **Siri phrases stay English:** OK? (BG-C1)
 9. **Points of interest «забележителности» vs «интересни места»:** the landmarks word is used for both.
 10. **Button labels in the informal imperative** («Спри маршрута», «Чуй околността си») under a formal «Вие» register: OK? (BG-R1)

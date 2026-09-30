@@ -27,7 +27,7 @@ terms with the wrong sense. Questions: `docs/translation-questions/questions-id.
 | Landmarks | Landmark | `unconfirmed` | English left as is. «Tengara» exists but is rarely used |
 | Intersection | persimpangan | `unconfirmed` | |
 | Sleep / Snooze | Tidur / Menunda | `unconfirmed` | «Sedang Menunda» = "postponing". See Q4 |
-| Detail levels | Rinci / Seimbang / Ringkas / Senyap | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | Rinci / Sederhana / Esensial / Senyap | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Rinci / Seimbang / Ringkas / Senyap |
 | dead end | jalan buntu | `unconfirmed` | |
 | Traveling / Heading | Melaju / Berjalan | `agreed` | Correct vehicle/walking split (BG-T4) |
 

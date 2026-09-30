@@ -75,23 +75,24 @@ vejnavn, og "til blind vej" lyder måske ikke naturligt.
 **Spørgsmålet:** Er "Sti til blindvej" bedre, eller ville du sige det helt
 anderledes?
 
-### Q2 — De fire detaljeniveauer *(Four detail levels)*
+### Q2 — De fire detaljeniveauer *(Four detail levels, renamed 2026-09-30)*
 
 **Hvornår du hører det:** i indstillingerne, hvor man efter gehør vælger, hvor
 meget appen siger undervejs.
 
-**På engelsk:** "Detailed / Balanced / Quiet / Silent".
+**På engelsk:** "Detailed / Simplified / Essential / Silent".
 
-**Sådan lyder det nu:** **Detaljeret / Balanceret / Stille / Lydløs**.
-Detaljeret nævner alt i nærheden; Balanceret springer mindre stier over og
-gentager sig sjældnere; Stille nævner kun gader, vejkryds og landemærker;
+**Sådan lyder det nu:** **Detaljeret / Forenklet / Essentiel / Lydløs**.
+Detaljeret nævner alt i nærheden; Forenklet springer mindre stier over og
+gentager sig sjældnere; Essentiel nævner kun gader, vejkryds og landemærker;
 Lydløs giver slet ingen automatiske lydbeskeder.
 
-**Det er vi usikre på:** "Stille" og "Lydløs" ligger tæt på hinanden, og
-"Stille" kan forstås som lydstyrke frem for færre beskeder.
+**Det er vi usikre på:** vi har lige omdøbt de to midterste niveauer. Før hed
+de "Balanceret" og "Stille", men modersmålstalere af andre sprog fandt, at
+"Stille" lød som lydstyrke. De nye navne har vi valgt, ikke en dansker.
 
 **Spørgsmålet:** Er de fire niveauer lette at skelne og forstå, når man hører
-dem?
+dem? Ville du kalde de to midterste noget andet?
 
 ### Q3 — Siri-kommandoer *(Siri phrases)*
 

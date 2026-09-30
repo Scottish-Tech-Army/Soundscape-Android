@@ -29,7 +29,7 @@ Questions for reviewers: `docs/translation-questions/questions-hi.md` (Q1…Q8).
 | Landmarks | लैंडमार्क | `unconfirmed` | |
 | Intersection | चौराहा | `unconfirmed` | |
 | Sleep / Snooze | स्लीप / स्नूज़ मोड | `unconfirmed` | Loanwords. See Q4 |
-| Detail levels | विस्तृत / संतुलित / शांत / मौन | `unconfirmed` | Distinct by ear |
+| Detailed / Simplified / Essential / Silent | विस्तृत / सरलीकृत / आवश्यक / मौन | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was विस्तृत / संतुलित / शांत / मौन |
 | dead end | बंद गली | `unconfirmed` | Common Hindi for a dead-end lane |
 | Traveling / Heading | यात्रा / चलते हुए | `agreed` | Correct: Heading is only used when walking (see `bg.md` BG-T4) |
 

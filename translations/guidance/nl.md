@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 
 Dutch started from Microsoft's professional translation (C14). One core
 term has **changed** away from Microsoft (NL-T1). The Siri phrases (`nl.lproj`)
-match the help text. Questions: `docs/translation-questions/questions-nl.md` (Q1…Q5).
+match the help text. Questions: `docs/translation-questions/questions-nl.md` (Q1…Q4, round 2 since 2026-09-30).
 
 ## Glossary
 
@@ -91,10 +91,11 @@ Q1 → NL-B1, Q2 → NL-G1, Q3 → NL-L1, Q4 → NL-C1, Q5 → «u» `confirmed`
 
 ## Open questions for round 2
 
-1. «Pad, doodlopend» / «Ladywood, doodlopend»: natural?
-2. The Q3 answer was cut off. Anything after «Stil»?
+Numbered as on `questions-nl.md`; Q4 is "anything else".
+
+1. «Pad, doodlopend» / «Dorpsstraat, doodlopend»: natural?
+2. Detail levels after the English rename: Uitgebreid / Vereenvoudigd / Essentieel / Stil (reviewer had Normaal / Beperkt). Also: the Q3 answer was cut off after «Stil».
 3. In help texts, would «opgeslagen plek» read better than «markering»?
-4. Detail levels after the English rename: Uitgebreid / Vereenvoudigd / Essentieel / Stil. You suggested Normaal and Beperkt. Does the new set work?
 
 ## Provenance
 

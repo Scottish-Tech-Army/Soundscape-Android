@@ -16,7 +16,7 @@ permalink: /translation-questions/questions-es/
 
 La traducción al
 español ya ha pasado por la revisión de hablantes nativos. Aquí tienes un
-resumen de lo que se decidió y, al final, tres preguntas que siguen abiertas.
+resumen de lo que se decidió y, al final, una pregunta nueva.
 **No necesitas conocer ni instalar la aplicación:** cada pregunta dice cuándo
 se oye el texto, qué dice en inglés y cómo suena ahora.
 
@@ -69,6 +69,12 @@ Los conceptos se describen con más detalle (en inglés)
 - **Modos de suspensión.** «Suspendiendo» y «Posponiendo», como en la
   aplicación original para iOS, para que quien venga de ella note las mínimas
   diferencias posibles.
+- **Se respeta el texto heredado de Microsoft** cuando su sentido es correcto.
+  Por eso «Agrega un conjunto de marcadores como puntos de referencia» y el
+  botón «No ahora» (con la negación primero, que se oye antes con el lector de
+  pantalla a gran velocidad) se quedan como están.
+- **«podrás usarla de la manera habitual»**, porque la que actúa eres tú, no la
+  señal de audio.
 
 ## Una novedad: artículos ante los nombres
 
@@ -87,56 +93,26 @@ ayuda.
 
 ---
 
-### Q1 — «Puntos de ruta» o «puntos de referencia» *(waypoints)*
+### Q1 — Los cuatro niveles de detalle *(Four detail levels, renamed 2026-09-30)*
 
-**Cuándo se oye:** en la pantalla de rutas, cuando todavía no has creado
-ninguna.
+**Cuándo se oye:** en los ajustes, donde se elige de oído cuánto dice la
+aplicación por el camino.
 
-**En inglés:** «Create a route for yourself or for someone else. Add a set of
-markers as waypoints to build the route.»
+**En inglés:** «Detailed / Simplified / Essential / Silent». Los nombres en
+inglés han cambiado, porque a hablantes de varios idiomas les costaba entender
+los anteriores.
 
-**Cómo suena ahora:** «Crea una ruta para ti o para otra persona. Agrega un
-conjunto de marcadores como puntos de referencia para formar la ruta.»
+**Cómo suena ahora:** Detallado / Simplificado / Esencial / Silencioso. Antes
+eran «Equilibrado» y «Discreto». El Simplificado omite los caminos pequeños y se
+repite menos; el Esencial solo avisa de calles, cruces y puntos de referencia.
 
-**Qué nos hace dudar:** en el resto de la aplicación, cada parada de una ruta
-se llama «punto de ruta», y «punto de referencia» se usa para otra cosa: los
-lugares conocidos que sirven para orientarse (*landmarks*). Este texto se
-cambió hace poco a «puntos de referencia».
+**Lo que nos hace dudar:** los nombres nuevos los elegimos nosotros, no un
+hablante nativo.
 
-**La pregunta:** ¿fue intencionado? ¿O debería decir «como puntos de ruta»,
-como el resto de la aplicación?
+**La pregunta:** ¿se distinguen bien de oído? ¿Llamarías de otra forma a los dos
+del medio?
 
-### Q2 — «No ahora» o «Ahora no» *(Not now)*
-
-**Cuándo se oye:** en un botón, al pasar tus marcadores y rutas desde la
-versión anterior de Soundscape, si decides dejarlo para más tarde.
-
-**En inglés:** «Not now».
-
-**Cómo suena ahora:** «No ahora».
-
-**Qué nos hace dudar:** el texto se cambió hace poco de «Ahora no» a «No
-ahora». A nosotros «Ahora no» nos parece la forma habitual en un botón.
-
-**La pregunta:** ¿cuál prefieres?
-
-### Q3 — «podrá actuar» *(you can operate it as usual)*
-
-**Cuándo se oye:** en la ayuda sobre los marcadores.
-
-**En inglés:** «When you do this, the Soundscape audio beacon you are familiar
-with, will be heard and you can operate it as usual.»
-
-**Cómo suena ahora:** «Cuando hagas esto, se oirá la señal de audio de
-Soundscape que conoces y podrá actuar de la manera habitual.»
-
-**Qué nos hace dudar:** en inglés, quien maneja la señal eres tú; «podrá
-actuar» parece decir que es la señal la que «actúa».
-
-**La pregunta:** ¿sería mejor «y podrás usarla de la manera habitual», o está
-bien así?
-
-### Q4 — ¿Algo más? *(Anything else)*
+### Q2 — ¿Algo más? *(Anything else)*
 
 Si una frase te suena a traducción del inglés, es demasiado larga o no se
 entiende, cuéntanoslo, aunque no tenga número.

@@ -35,7 +35,7 @@ The authored Siri phrases (`ja.lproj`) match the help text. Questions:
 | Landmarks | ランドマーク | `unconfirmed` | |
 | Intersection | 交差点 | `unconfirmed` | |
 | Sleep / Snooze | スリープ / スヌーズ | `unconfirmed` | Standard loanwords |
-| Detail levels | 詳細 / バランス / 控えめ / 無音 | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | 詳細 / 簡略 / 基本 / 無音 | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was 詳細 / バランス / 控えめ / 無音 |
 | dead end | 行き止まり | `unconfirmed` | |
 
 ## Rules
@@ -70,7 +70,7 @@ Nothing yet.
 1. Callout: «コールアウト», «読み上げ» or «案内»? (JA-T1)
 2. «%2$s へ続く%1$s» for "path to Moor Road"? (JA-G1)
 3. Waypoint: «ウェイポイント» or «経由地»?
-4. Do the four levels 詳細 / バランス / 控えめ / 無音 work by ear?
+4. Do the four levels 詳細 / 簡略 / 基本 / 無音 work by ear? Renamed 2026-09-30 (C22); better names for the middle two?
 5. Siri phrases «Soundscape 周辺 / ルート / ビーコン…»: natural to say?
 6. Is the です/ます register right?
 7. Beacon «音声ビーコン»: natural? (AI-only term, asked for confirmation)

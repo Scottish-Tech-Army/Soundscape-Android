@@ -88,22 +88,27 @@ Sitä näkyy etenkin asetuksissa, esimerkiksi "Automaattiset ilmoitukset".
 **Kysymys:** sekoittuuko se puhelimen ilmoituksiin? Olisiko jokin muu sana
 parempi?
 
-### Q3 — Neljä tarkkuustasoa *(Four detail levels)*
+### Q3 — Neljä tarkkuustasoa *(Four detail levels, renamed 2026-09-30)*
 
 **Milloin sen kuulee:** asetuksissa, joissa korvakuulolta valitaan, kuinka
 paljon sovellus puhuu matkalla.
 
-**Englanniksi:** "Detailed / Balanced / Quiet / Silent".
+**Englanniksi:** "Detailed / Simplified / Essential / Silent".
 
-**Nyt se kuulostaa tältä:** **Yksityiskohtainen / Tasapainoinen / Hiljainen /
-Äänetön**. Yksityiskohtainen kertoo kaiken lähellä olevan; Tasapainoinen
-jättää pienet polut pois ja toistaa harvemmin; Hiljainen kertoo vain kadut,
-risteykset ja maamerkit; Äänetön ei anna lainkaan automaattisia ilmoituksia.
+**Nyt se kuulostaa tältä:** **Yksityiskohtainen / Yksinkertaistettu /
+Olennainen / Äänetön**. Yksityiskohtainen kertoo kaiken lähellä olevan;
+Yksinkertaistettu jättää pienet polut pois ja toistaa harvemmin; Olennainen
+kertoo vain kadut, risteykset ja maamerkit; Äänetön ei anna lainkaan
+automaattisia ilmoituksia.
 
-**Mikä meitä epäilyttää:** "Hiljainen" voi kuulostaa äänenvoimakkuudelta, ei
-vähemmiltä ilmoituksilta.
+**Mikä meitä epäilyttää:** nimesimme juuri kaksi keskimmäistä tasoa uudelleen.
+Ennen ne olivat "Tasapainoinen" ja "Hiljainen", mutta muiden kielten
+äidinkieliset puhujat kokivat, että "Hiljainen" kuulostaa
+äänenvoimakkuudelta. Uudet nimet valitsimme me, eivät suomea äidinkielenään
+puhuvat.
 
 **Kysymys:** erottuvatko tasot hyvin ja ovatko ne ymmärrettäviä kuultuina?
+Nimeäisitkö kaksi keskimmäistä toisin?
 
 ### Q4 — Siri-komennot *(Siri phrases)*
 
@@ -146,7 +151,9 @@ Sovellus kertoo, missä suunnassa jokin on, niin kuin kellon viisari osoittaisi.
 
 **Mikä meitä epäilyttää:** «kello 3» kuulostaa ehkä kellonajalta eikä suunnalta.
 Emme tiedä, sanotaanko suomeksi mieluummin «kello kolmessa» tai «kello kolmen
-suunnassa».
+suunnassa». Tunnin voi nyt kirjoittaa myös sanana, joten taivutettu muoto on
+mahdollinen. (Oletuksena sovellus kertoo nyt suunnat muodossa vasen/oikea;
+kellotaulu on valinnainen asetus.)
 
 **Kysymys:** miten sanoisit tämän?
 

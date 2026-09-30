@@ -38,7 +38,7 @@ Questions: `docs/translation-questions/questions-fa.md` (Q1…Q6).
 | Landmarks | نقاط شاخص | `unconfirmed` | |
 | Intersection | تقاطع | `unconfirmed` | |
 | Sleep / Snooze | حالت خواب ; حالت چرت | `unconfirmed` | |
-| Detail levels | مفصل / متعادل / مختصر / بی‌صدا | `unconfirmed` | Distinct |
+| Detailed / Simplified / Essential / Silent | مفصل / ساده‌شده / ضروری / بی‌صدا | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was مفصل / متعادل / مختصر / بی‌صدا |
 | dead end | بن‌بست | `unconfirmed` | |
 
 ## Rules

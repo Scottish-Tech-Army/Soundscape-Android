@@ -34,7 +34,7 @@ fra»). The Siri phrases (`da.lproj`) match the help text. Questions:
 | Waypoint | vejpunkt | `unconfirmed` | Microsoft mixed «vejpunkt» and «waypoint». Now consistent |
 | Intersection | (vej)kryds | `confirmed` | Microsoft said «kryds», and some strings now say «vejkryds» |
 | Sleep / Snooze | Dvale / I dvale ; Slumrer | `confirmed` | Microsoft. Snooze restored from «I slumretilstand» 2026-09-25 (C14 parity) |
-| Detail levels | Detaljeret / Balanceret / Stille / Lydløs | `unconfirmed` | AI. Distinct |
+| Detailed / Simplified / Essential / Silent | Detaljeret / Forenklet / Essentiel / Lydløs | `unconfirmed` | English renamed 2026-09-30 (C22), names retranslated to match. Was Detaljeret / Balanceret / Stille / Lydløs |
 | dead end | Blind vej | `unconfirmed` | AI. See DA-G1 |
 
 ## Rules
@@ -73,8 +73,8 @@ Nothing yet.
 Numbered as on the questionnaire.
 
 1. «Sti til blindvej»? (DA-G1)
-2. The four detail levels (Detaljeret / Balanceret / Stille / Lydløs): clear?
-   «Stille» and «Lydløs» sit close together.
+2. The four detail levels (Detaljeret / Forenklet / Essentiel / Lydløs), renamed 2026-09-30 (C22): clear by ear?
+   Better names for the middle two?
 3. Siri phrases «Soundscape omgivelser / rute / lydfyr / stop lydfyr…»: natural?
 4. Shop names «Isbutik», «Kaffebutik», «Dyrehandel», «Isenkræmmer»…: natural? (DA-T2, AI coinages)
 5. Anything else.

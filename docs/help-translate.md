@@ -41,11 +41,11 @@ same address and we'll help you get set up.
 - [Hrvatski]({{ "/translation-questions/questions-hr/" | relative_url }}) — Croatian
 - [Čeština]({{ "/translation-questions/questions-cs/" | relative_url }}) — Czech
 - [Dansk]({{ "/translation-questions/questions-da/" | relative_url }}) — Danish
-- [Nederlands]({{ "/translation-questions/questions-nl/" | relative_url }}) — Dutch
+- [Nederlands]({{ "/translation-questions/questions-nl/" | relative_url }}) — Dutch _(round 2)_
 - [English (UK)]({{ "/translation-questions/questions-en_GB/" | relative_url }}) — English (UK)
 - [Eesti]({{ "/translation-questions/questions-et/" | relative_url }}) — Estonian
 - [Suomi]({{ "/translation-questions/questions-fi/" | relative_url }}) — Finnish
-- [Français]({{ "/translation-questions/questions-fr/" | relative_url }}) — French
+- [Français]({{ "/translation-questions/questions-fr/" | relative_url }}) — French _(round 2)_
 - [Français (Canada)]({{ "/translation-questions/questions-fr_CA/" | relative_url }}) — French (Canada)
 - [Deutsch]({{ "/translation-questions/questions-de/" | relative_url }}) — German
 - [Ελληνικά]({{ "/translation-questions/questions-el/" | relative_url }}) — Greek
@@ -60,7 +60,7 @@ same address and we'll help you get set up.
 - [मराठी]({{ "/translation-questions/questions-mr/" | relative_url }}) — Marathi
 - [Norsk bokmål]({{ "/translation-questions/questions-nb_NO/" | relative_url }}) — Norwegian Bokmål
 - [فارسی]({{ "/translation-questions/questions-fa/" | relative_url }}) — Persian
-- [Polski]({{ "/translation-questions/questions-pl/" | relative_url }}) — Polish
+- [Polski]({{ "/translation-questions/questions-pl/" | relative_url }}) — Polish _(round 2)_
 - [Português]({{ "/translation-questions/questions-pt/" | relative_url }}) — Portuguese
 - [Português (Brasil)]({{ "/translation-questions/questions-pt_BR/" | relative_url }}) — Portuguese (Brazil)
 - [Română]({{ "/translation-questions/questions-ro/" | relative_url }}) — Romanian
@@ -68,7 +68,7 @@ same address and we'll help you get set up.
 - [Српски]({{ "/translation-questions/questions-sr/" | relative_url }}) — Serbian
 - [Slovenčina]({{ "/translation-questions/questions-sk/" | relative_url }}) — Slovak
 - [Slovenščina]({{ "/translation-questions/questions-sl/" | relative_url }}) — Slovenian
-- [Español]({{ "/translation-questions/questions-es/" | relative_url }}) — Spanish _(all answered — comments still welcome)_
+- [Español]({{ "/translation-questions/questions-es/" | relative_url }}) — Spanish _(one new question)_
 - [Kiswahili]({{ "/translation-questions/questions-sw/" | relative_url }}) — Swahili
 - [Svenska]({{ "/translation-questions/questions-sv/" | relative_url }}) — Swedish
 - [தமிழ்]({{ "/translation-questions/questions-ta/" | relative_url }}) — Tamil
