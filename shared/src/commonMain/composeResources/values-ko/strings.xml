@@ -442,7 +442,7 @@
     <string name="help_text_creating_markers_content_1">마커는 세 가지 방법으로 만들 수 있습니다. 검색창을 사용하여 저장하고 싶은 장소를 검색하거나, *주변 장소* 버튼을 사용하여 장소를 찾거나, *현재 위치* 버튼을 사용하는 것으로, 모두 홈 화면에서 찾을 수 있습니다. 원하는 장소를 찾으면 이를 선택하여 *위치 세부 정보* 화면으로 이동합니다. 이 화면에서 *마커로 저장* 버튼을 선택하세요.</string>
     <string name="help_text_creating_markers_content_2">이제 이 마커를 원하는 대로 설정할 수 있습니다. 마커의 이름을 변경할 수 있으며, 마커와 함께 안내될 추가 정보를 제공하는 메모를 추가할 수도 있습니다. 설정을 마쳤으면 *완료* 버튼을 선택하여 마커를 저장하세요.</string>
     <string name="help_text_customizing_markers_content_1">이전에 만든 마커의 이름을 변경하거나 메모를 추가하려면, *마커 및 경로* 페이지의 *마커* 탭에서 해당 마커를 선택한 다음 *마커 편집* 버튼을 선택하면 됩니다. 이를 통해 마커에 설명적이거나 유용한 별칭을 붙이고, 메모 필드를 사용하여 더 자세한 설명을 추가할 수 있습니다.</string>
-    <string name="help_text_customizing_markers_content_2">이 *편집* 화면에서 더 이상 필요하지 않은 마커를 삭제할 수도 있습니다.</string>
+    <string name="help_text_customizing_markers_content_2">이 *마커 편집* 화면에서 더 이상 필요하지 않은 마커를 삭제할 수도 있습니다.</string>
     <string name="help_text_routes_content_what">경로는 일련의 경유지로 구성됩니다. 각 경유지에 도착하면 안내를 받으며, 오디오 비콘은 자동으로 다음 경유지로 이동합니다.</string>
     <string name="help_text_routes_content_when">이미 잘 아는 장소에서 경로를 만들어 사용하면 올바른 길을 유지하는 데 도움이 됩니다. 또는 새로운 여정을 익히는 데 경로를 활용할 수도 있습니다.</string>
     <string name="help_text_routes_content_how_1">**경로 만들기 :**\n\n 먼저 *마커 및 경로*로 이동하여 *경로* 탭을 선택한 다음 *새 경로* 버튼을 선택합니다. 경로 이름을 지정하고 원하는 경우 설명을 추가한 다음, 이동하면서 경유지를 추가하거나 마커 목록에서 선택합니다. 경로를 편집하면 언제든지 경유지의 순서를 재배열할 수 있습니다.</string>
@@ -479,7 +479,7 @@
     <string name="faq_callouts_stopping_in_vehicle_question">차량에 타고 있을 때 일부 안내가 중지되는 이유는 무엇인가요?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">안내 횟수가 지나치게 많아지지 않도록, 차량으로 이동할 때는 교차로와 같은 일부 항목이 자동으로 안내되지 않습니다.</string>
     <string name="faq_miss_a_callout_question">안내를 이해하지 못했거나 주변 소음 때문에 놓쳤다면 어떻게 하나요?</string>
-    <string name="faq_miss_a_callout_answer">Soundscape에는 놓쳤을 수 있는 안내를 다시 확인할 수 있도록 최근 안내 목록이 있습니다. 이를 확인하려면 홈 화면에서 검색창을 탭하세요. 이 화면 하단에는 *최근 안내* 섹션이 있으며, 놓친 안내가 여기에 나열됩니다.</string>
+    <string name="faq_miss_a_callout_answer">Soundscape는 지난 안내 목록을 저장하지 않지만, 언제든지 주변 상황을 다시 설명하게 할 수 있습니다. *내 위치*는 현재 있는 곳을 알려 주고, *내 주변*과 *내 앞쪽*은 주변과 앞쪽에 있는 장소를 안내합니다. 세 버튼은 모두 홈 화면 하단에 있습니다. 헤드폰의 미디어 컨트롤을 *기본 모드*로 사용하는 경우, 재생 중인 경로가 없으면 ⏭ 다음을 눌러 *내 주변*을 안내받을 수 있습니다.</string>
     <string name="faq_section_how_soundscape_works">Soundscape는 어떻게 작동하나요?</string>
     <string name="faq_supported_phones_question">Soundscape는 어떤 휴대폰에서 실행되나요?</string>
     <string name="faq_supported_phones_answer">Soundscape는 현재 iOS 16 이상을 실행하는 iPhone과 Android 11 이상을 실행하는 Android 휴대폰에서 사용할 수 있습니다.</string>

@@ -382,7 +382,7 @@
     <string name="faq_callouts_stopping_in_vehicle_question">वाहन में होने पर कुछ कॉलआउट क्यों बंद हो जाते हैं?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">कॉलआउट की संख्या को अत्यधिक होने से रोकने के लिए, कुछ श्रेणियाँ, जैसे चौराहे, वाहन में यात्रा करते समय स्वचालित रूप से घोषित नहीं किए जाते।</string>
     <string name="faq_miss_a_callout_question">यदि मुझे कोई कॉलआउट समझ में नहीं आता या परिवेशी शोर के कारण छूट जाता है तो क्या होगा?</string>
-    <string name="faq_miss_a_callout_answer">Soundscape में आपके हाल के कॉलआउट की एक सूची होती है ताकि आप उन कॉलआउट को फिर से देख सकें जो आपसे छूट गए हों। इसे खोजने के लिए, होम स्क्रीन पर खोज बार पर टैप करें। इस स्क्रीन के नीचे, *हाल के कॉलआउट* का एक अनुभाग है जहाँ आपका छूटा हुआ कॉलआउट सूचीबद्ध होगा।</string>
+    <string name="faq_miss_a_callout_answer">Soundscape पिछले कॉलआउट की कोई सूची नहीं रखता, लेकिन आप कभी भी उससे अपने आसपास का विवरण फिर से सुन सकते हैं। *मेरा स्थान* बताता है कि आप कहाँ हैं, और *मेरे आसपास* और *मेरे आगे* आपके आसपास और आपके सामने की जगहों का कॉलआउट करते हैं। तीनों बटन होम स्क्रीन के नीचे हैं। यदि आप अपने हेडफ़ोन के मीडिया नियंत्रणों का उपयोग करते हैं और *मूल मोड* चुना हुआ है, तो कोई मार्ग न चलने पर ⏭ अगला *मेरे आसपास* कॉलआउट करता है।</string>
     <string name="faq_section_how_soundscape_works">Soundscape कैसे काम करता है?</string>
     <string name="faq_supported_phones_question">Soundscape किस फ़ोन पर चलता है?</string>
     <string name="faq_supported_phones_answer">Soundscape वर्तमान में iOS 16 या उसके बाद के संस्करण वाले iPhone के लिए, और Android 11 या उसके बाद के संस्करण चलाने वाले Android फ़ोन के लिए उपलब्ध है।</string>

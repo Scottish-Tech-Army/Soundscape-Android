@@ -1241,7 +1241,7 @@
     <string name="faq_callouts_stopping_in_vehicle_question">Proč se některá hlášení zastaví, když jsem ve vozidle?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">Aby počet hlášení nebyl ohromující, některé kategorie, jako jsou křižovatky, se při cestování vozidlem automaticky neoznamují.</string>
     <string name="faq_miss_a_callout_question">Co když hlášení nerozumím nebo mi unikne kvůli okolnímu hluku?</string>
-    <string name="faq_miss_a_callout_answer">Soundscape má seznam vašich nedávných hlášení, abyste se mohli vrátit k hlášením, která vám mohla uniknout. Chcete-li jej najít, klepněte na vyhledávací pole na domovské obrazovce. Ve spodní části této obrazovky je část *Nedávná hlášení*, kde bude uvedeno hlášení, které vám uniklo.</string>
+    <string name="faq_miss_a_callout_answer">Soundscape neuchovává seznam dřívějších hlášení, ale kdykoli ho můžete požádat, aby vám znovu popsal okolí. *Moje poloha* vám řekne, kde jste, a *Kolem mě* a *Přede mnou* oznámí místa kolem vás a před vámi. Všechna tři tlačítka jsou ve spodní části domovské obrazovky. Pokud používáte ovládání médií na sluchátkách a máte nastaven *Původní režim*, ⏭ Další oznámí *Kolem mě*, když se nepřehrává žádná trasa.</string>
     <string name="faq_section_how_soundscape_works">Jak Soundscape funguje?</string>
     <string name="faq_supported_phones_question">Na jakých telefonech Soundscape funguje?</string>
     <string name="faq_supported_phones_answer">Soundscape je momentálně k dispozici pro iPhony se systémem iOS 16 nebo novějším a pro telefony Android se systémem Android 11 nebo novějším.</string>

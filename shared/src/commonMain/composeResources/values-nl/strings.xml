@@ -376,7 +376,7 @@
     <string name="faq_callouts_stopping_in_vehicle_question">Waarom hoor ik bepaalde aankondigingen niet meer wanneer ik in een auto rijd?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">Om te voorkomen dat het aantal aankondigingen overweldigend wordt, worden bepaalde categorieën, zoals kruispunten, niet automatisch aangekondigd wanneer u in een voertuig reist.</string>
     <string name="faq_miss_a_callout_question">Wat moet ik doen als ik een aankondiging niet begrijp of niet hoor vanwege omgevingsgeluid?</string>
-    <string name="faq_miss_a_callout_answer">Soundscape heeft een lijst met uw recente aankondigingen zodat u aankondigingen die u gemist hebt opnieuw kunt beluisteren. Tik daarvoor op de zoekbalk op het startscherm. Onderaan dat scherm is een sectie *Recente aankondigingen* waarin de aankondiging die u gemist hebt, wordt weergegeven.</string>
+    <string name="faq_miss_a_callout_answer">Soundscape houdt geen lijst bij van eerdere aankondigingen, maar u kunt de app op elk moment vragen uw omgeving opnieuw te beschrijven. *Mijn locatie* vertelt u waar u bent, en *Om me heen* en *Vóór me* kondigen de plaatsen om u heen en vóór u aan. Alle drie de knoppen staan onderaan het startscherm. Als u de mediabediening van uw koptelefoon gebruikt en *Originele modus* is gekozen, roept ⏭ Volgende *Om me heen* op wanneer er geen route wordt afgespeeld.</string>
     <string name="faq_section_how_soundscape_works">Hoe werkt Soundscape?</string>
     <string name="faq_supported_phones_question">Op welke telefoon werkt Soundscape?</string>
     <string name="faq_supported_phones_answer">Soundscape is momenteel beschikbaar voor iPhones met iOS 16 of hoger, en voor telefoons met Android 11 of hoger.</string>

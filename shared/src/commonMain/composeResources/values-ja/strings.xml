@@ -372,7 +372,7 @@
     <string name="faq_callouts_stopping_in_vehicle_question">乗り物に乗っていると一部のコールアウトが停止するのはなぜですか?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">コールアウトの数が多くなりすぎないように、ユーザーが乗り物で移動している間は、交差点など一部のカテゴリについては自動的にアナウンスが停止されます。</string>
     <string name="faq_miss_a_callout_question">周辺の音でコールアウトがわからない場合や聞き逃した場合はどうしたらよいですか?</string>
-    <string name="faq_miss_a_callout_answer">Soundscape には、聞き逃したコールアウトを振り返るための「最近のコールアウト」一覧があります。確認するには、ホーム画面で検索バーをタップしてください。画面下部に *「最近のコールアウト」*セクションがあり、そこで聞き逃したコールアウトが表示されます。</string>
+    <string name="faq_miss_a_callout_answer">Soundscape は過去のコールアウトの一覧を保存しませんが、いつでも周囲の様子をもう一度説明させることができます。*「現在地」* は今いる場所を伝え、*「周辺」* と *「前方」* は周囲と前方にある場所をコールアウトします。3つのボタンはどれもホーム画面の下部にあります。ヘッドホンのメディアコントロールを *「オリジナルモード」* で使っている場合、ルートが再生されていないときは ⏭ 次へ で *「周辺」* をコールアウトします。</string>
     <string name="faq_section_how_soundscape_works">Soundscape はどのような仕組みになっていますか?</string>
     <string name="faq_supported_phones_question">どのスマートフォンで Soundscape を実行できますか?</string>
     <string name="faq_supported_phones_answer">Soundscape は現在、iOS 16 以降を搭載した iPhone と、Android 11 以降を搭載した Android スマートフォンで利用できます。</string>
