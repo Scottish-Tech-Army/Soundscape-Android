@@ -55,6 +55,16 @@ CLDR `pa`: `one` (n = 0..1), `other`. Compose Resources knows the locale.
 `confect_name_next_to` «%2$s ਦੇ ਨਾਲ %1$s», dead-end templates «%1$s, ਬੰਦ ਗਲੀ ਵੱਲ».
 Map names are substituted undeclined, so postpositions always follow the name.
 
+### PA-S2 — "spatial audio" is 3D ਆਵਾਜ਼, never ਸਥਾਨਕ (`agreed`, self-review 2026-09-30)
+
+ਸਥਾਨਕ means "local". Use «3D ਆਵਾਜ਼» for spatial audio and «ਦਿਸ਼ਾ ਵਾਲੀ ਘੋਸ਼ਣਾ» for a
+spatial callout. ਸਥਾਨਕ stays correct where "local" is meant (`settings_search_results_language_description`).
+
+### PA-S3 — "hold the phone flat" is ਪੱਧਰਾ, never ਸਿੱਧਾ (`agreed`, self-review 2026-09-30)
+
+ਸਿੱਧਾ reads as "straight/upright", the opposite orientation. Use «ਫ਼ੋਨ ਨੂੰ ਪੱਧਰਾ ਫੜੋ» /
+«ਕਿ ਉਹ ਪੱਧਰਾ ਰਹੇ (ਸਕ੍ਰੀਨ ਅਸਮਾਨ ਵੱਲ)». ਸਿੱਧਾ is still right for "straight ahead".
+
 ## Rejected
 
 Nothing yet.
@@ -65,9 +75,13 @@ Nothing yet.
 2. Callout «ਘੋਸ਼ਣਾ» and Audio Beacon «ਆਡੀਓ ਬੀਕਨ»: natural? (AI-only terms, asked for confirmation)
 3. Loanwords «ਮਾਰਕਰ», «ਰੂਟ», «ਸਲੀਪ», «ਸਨੂਜ਼»: would native Punjabi words be clearer?
 4. **The four detail levels** (ਵਿਸਤ੍ਰਿਤ / ਸਰਲ / ਜ਼ਰੂਰੀ / ਚੁੱਪ): distinct by ear?
-5. Anything else.
+5. «ਸੁਣ ਰਿਹਾ ਹਾਂ…» (`voice_cmd_listening`) gives the app a masculine "I". Acceptable, or use a passive «ਸੁਣਿਆ ਜਾ ਰਿਹਾ ਹੈ…»?
+6. Hamlet «ਢਾਣੀ» (regional) or «ਛੋਟਾ ਪਿੰਡ»? Simulate Location «ਟਿਕਾਣੇ ਦੀ ਨਕਲ»: does ਨਕਲ read as "copy"?
+7. "Hold the phone flat" is now «ਪੱਧਰਾ ਫੜੋ» (PA-S3): is that clear?
+8. Anything else.
 
 ## Provenance
 
 **2026-09-30 — language added**, whole corpus AI-translated via `/add-language`.
 No questionnaire published yet.
+**2026-09-30 — self-review** (`translation-review`): 22 fixes, chiefly PA-S2 and PA-S3.
