@@ -169,8 +169,9 @@ nominative is natural.
 > case is different for different words, there is no predictable pattern."
 > The dead-end string then went back to the nominative «тупик».
 
-The same problem is recorded, unresolved, as IS-G2 (Icelandic), PL-G1's open
-side (Polish). FR-G2 (French contractions), HU-A1 (Hungarian «a(z)») and
+The same problem is recorded, unresolved, as IS-G2 (Icelandic). Polish
+(PL-G2) asked and **declined** the label form (2026-09-30): the robotic
+nominative is acceptable there, so a reviewer may prefer no change. FR-G2 (French contractions), HU-A1 (Hungarian «a(z)») and
 TR-G1 (Turkish suffixes) are now resolved in code, see C18. The label form is the candidate fix to put to each
 language's reviewer. It isn't a rule to apply unasked, because it changes
 how the callout sounds. Finnish already dodges it with «kohteeseen %2$s».
@@ -449,3 +450,24 @@ nonsense when spoken, and this app is mostly heard.
   synthesiser will mispronounce it (unlike C12's loanwords, which the phone
   itself already uses).
 
+
+## C20 — A bare digit can't carry an ordinal or a case (`unconfirmed`, code)
+
+`relative_clock_direction` ("at %1$s o'clock") gets the clock position as a
+digit, and the speech engine chooses how to say it. In a language where the
+clock position is an ordinal in an oblique case, the engine guesses the
+cardinal and gets it wrong. No wording of the template can fix that.
+
+> **Case (pl, 2026-09-30):** «na godzinie 9» was spoken «na godzinie
+> dziewięciu» (cardinal locative). It should be «dziewiątej» (ordinal). The
+> reviewer's verdict on the resulting callouts: "quite nonsensical".
+
+Same shape: cs «na %1$s hodině», sk «na %1$s hodine», uk «на %1$s годині»
+(all ordinals in the locative). Slovenian «na %1$s. uri» uses an ordinal dot,
+which may or may not survive TTS. Russian «в %1$s часов» and Croatian
+«na %1$s sati» are cardinal and fine.
+
+**How to apply:** don't try to fix it in the string. The fix is in code: pass
+a localized clock-position word (twelve strings, `relative_clock_1`…`_12`, or
+one plural-free select) instead of a digit. Until then, record the problem in
+the language file rather than rewording the template.
