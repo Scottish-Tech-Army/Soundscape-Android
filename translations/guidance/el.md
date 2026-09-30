@@ -95,4 +95,4 @@ Most serious fixed:
 - `help_text_destination_beacons_what`: "can be muted or unmuted on the home screen" became "can be on mute or not, on the home screen": it no longer says the user can do it there.
 - `help_text_automatic_callouts_when_3`: Reads as if the app informs you "manually, by tapping": the tapping is the user's, not the app's.
 - `faq_use_with_wayfinding_apps_answer`: Drops "turn-by-turn", so it says Soundscape is not a navigation app at all;
-Held for a person: `ui_menu_hint` (reviewer: open question); `osm_tag_ferry_terminal` (reviewer: pending); `osm_tag_ferry_terminal_named` (reviewer: pending).
+Held for a person: `ui_menu_hint` (reviewer: open question). The two `osm_tag_ferry_terminal*` strings were made consistent with `osm_ferry_terminal*` («Τερματικός σταθμός φέρι», dropping «μποτ») later the same day.
