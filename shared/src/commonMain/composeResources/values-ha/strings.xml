@@ -173,7 +173,7 @@
     <string name="osm_summer_camp">Sansanin Bazara</string>
     <string name="osm_dance">Makarantar Rawa</string>
     <string name="osm_amusement_arcade">Wurin Wasannin Nishaɗi</string>
-    <string name="osm_adult_gaming_centre">Dakin Caca</string>
+    <string name="osm_adult_gaming_centre">Ɗakin Caca</string>
     <string name="osm_window_construction">Kamfanin Sana'ar Taga</string>
     <string name="osm_upholsterer">Mai Gyaran Kujeru</string>
     <string name="osm_shoemaker">Mai Yin Takalma</string>
@@ -228,9 +228,9 @@
     <string name="beacon_styles_signal">Sigina</string>
     <string name="beacon_styles_signal_slow">Sigina (A Hankali)</string>
     <string name="beacon_styles_signal_very_slow">Sigina (A Hankali Sosai)</string>
-    <string name="beacon_styles_mallet">Mari</string>
-    <string name="beacon_styles_mallet_slow">Mari (A Hankali)</string>
-    <string name="beacon_styles_mallet_very_slow">Mari (A Hankali Sosai)</string>
+    <string name="beacon_styles_mallet">Guduma</string>
+    <string name="beacon_styles_mallet_slow">Guduma (A Hankali)</string>
+    <string name="beacon_styles_mallet_very_slow">Guduma (A Hankali Sosai)</string>
     <string name="beacon_audio_beacon">Siginar Sauti</string>
     <string name="beacon_action_mute_beacon">Kashe Siginar Sauti</string>
     <string name="beacon_action_mute_beacon_acc_hint">kashe siginar sauti</string>
@@ -242,7 +242,7 @@
     <string name="talkback_default_activate">kunna</string>
     <string name="talkback_double_tap_template">Danna sau biyu don %1$s</string>
     <string name="preview_go_nearest_intersection">Tafi zuwa mafi kusancin mahaɗar hanya</string>
-    <string name="last_entry_in_list">da %1$s</string>
+    <string name="last_entry_in_list"> da %1$s</string>
     <string name="preview_include_unnamed_roads_title">Hanyoyin da Ba Su Da Suna</string>
     <string name="preview_include_unnamed_roads_title_description">Haɗa hanyoyin da ba su da suna a lokacin kwaikwayin wuri</string>
     <string name="location_detail_title_default">Cikakkun Bayanan Wuri</string>
@@ -380,7 +380,7 @@
     <string name="osm_brothel">Gidan Karuwai</string>
     <string name="osm_veterinary">Asibitin Dabbobi</string>
     <string name="osm_social_facility">Cibiyar Jin Ƙai</string>
-    <string name="osm_clinic">Karamin Asibiti</string>
+    <string name="osm_clinic">Ƙaramin Asibiti</string>
     <string name="osm_charging_station">Wurin Caji</string>
     <string name="osm_kindergarten">Makarantar Kula da Yara</string>
     <string name="osm_ice_cream">Shagon Ayisikirim</string>
@@ -483,7 +483,7 @@
     <string name="osm_australian_football">Ƙwallon Ƙafa ta Ostiraliya</string>
     <string name="osm_9pin">Wasan Bowling Mai Sandunan Tara</string>
     <string name="osm_vacant">Gini Wofi</string>
-    <string name="osm_lottery">Shagon Kacici-kacici</string>
+    <string name="osm_lottery">Shagon Tikitin Caca</string>
     <string name="osm_trophy">Shagon Kofuna</string>
     <string name="osm_music">Shagon Kayan Kiɗa</string>
     <string name="osm_games">Shagon Wasanni</string>
@@ -493,7 +493,7 @@
     <string name="osm_car">Mai Sayar da Mota</string>
     <string name="osm_electronics">Shagon Na'urorin Lantarki</string>
     <string name="osm_computer">Shagon Kwamfuta</string>
-    <string name="osm_furniture">Shagon Kayan Daki</string>
+    <string name="osm_furniture">Shagon Kayan Ɗaki</string>
     <string name="osm_candles">Shagon Kyandir</string>
     <string name="osm_hardware">Shagon Kayan Ƙarfe</string>
     <string name="osm_gas">Gidan Man Fetur</string>
@@ -538,7 +538,7 @@
     <string name="offline_maps_title">Taswirorin Offline</string>
     <string name="offline_map_details_title">Bayanan Taswirar Offline</string>
     <string name="offline_maps_loading">Ana Ɗorawa…</string>
-    <string name="offline_maps_downloading">Ana Zazzagewa %1$s</string>
+    <string name="offline_maps_downloading">Ana Zazzage %1$s</string>
     <string name="offline_maps_caching">Sabar tana shirya %1$s domin zazzagewa. Wannan na iya ɗaukan ‘yan mintuna sannan zazzagewar za ta fara kai tsaye.</string>
     <string name="offline_maps_free_space">%1$s ya rage</string>
     <string name="offline_maps_storage">Ana ajiye taswirori a %1$s wanda ke da %2$s da suka rage</string>
@@ -577,14 +577,14 @@
     <string name="settings_reset_button_hint">mayar da saitunan zuwa asalinsu sannan a sake kunna manhajar.</string>
     <string name="settings_reset_dialog_title">Ka Tabbata?</string>
     <string name="settings_reset_dialog_message">Mayar da saitunan zuwa asali zai share duk saitunan da ka tsara a manhajar. Kana son ci gaba?</string>
-    <string name="advanced_markers_and_routes_export_button">Fitar da Ma'ajin Alamu da Tafarkuna</string>
-    <string name="advanced_markers_and_routes_import_button">Shigo da Ma'ajin Alamu da Tafarkuna</string>
+    <string name="advanced_markers_and_routes_export_button">Fitar da Ma'ajin Alamomi da Tafarkuna</string>
+    <string name="advanced_markers_and_routes_import_button">Shigo da Ma'ajin Alamomi da Tafarkuna</string>
     <string name="advanced_markers_and_routes_export">Fitarwa</string>
-    <string name="markers_and_routes_import_success">Shigo da alamu da tafarkuna ya cika.</string>
-    <string name="markers_and_routes_import_failure">Shigo da alamu da tafarkuna ya kasa.</string>
-    <string name="advanced_markers_and_routes_clear_all_button">Share Duk Alamu da Tafarkuna</string>
-    <string name="advanced_markers_and_routes_clear_all_alert_message">Share dukkan alamu da tafarkuna ba za a iya mayar da shi baya ba. Kana son ci gaba?</string>
-    <string name="menu_advanced_markers_and_routes_clear_all_success">An Share Alamu da Tafarkuna</string>
+    <string name="markers_and_routes_import_success">Shigo da alamomi da tafarkuna ya cika.</string>
+    <string name="markers_and_routes_import_failure">Shigo da alamomi da tafarkuna ya kasa.</string>
+    <string name="advanced_markers_and_routes_clear_all_button">Share Duk Alamomi da Tafarkuna</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message">Share dukkan alamomi da tafarkuna ba za a iya mayar da shi baya ba. Kana son ci gaba?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success">An Share Alamomi da Tafarkuna</string>
     <string name="location_item_selected">An Zaɓa</string>
     <string name="location_item_not_selected">Ba a Zaɓa ba</string>
     <string name="location_item_move_up">Matsar da sama a jeri</string>
@@ -598,7 +598,17 @@
     <string name="new_version_info_text">Bayanin Sabon Fitowa</string>
     <string name="new_version_info_completed">Rufe Tattaunawar Sabon Fitowa</string>
     <string name="menu_open_source_licenses">Lasisin Buɗaɗɗiyar Software</string>
-    <string name="new_version_info_details">Wannan babban sabuntawa ne ga Soundscape. An inganta yanayin tafiya sosai. Idan kana tafiya da mota ko bas, Soundscape yanzu yana sanar da lambobin hanya, alkiblar tafiyarka, da wuraren zama da ke kusa. Yana kuma sanar idan ka ƙetare koguna, magudanan ruwa, mashigan ruwa da bakin teku. Da fatan za a sabunta taswirorinku na offline domin samun waɗannan sabbin fasalolin. Ga masu amfani a Burtaniya, tashoshin bas yanzu suna da bayanin da ya fi kyau sosai. Yanayin barci yanzu zai iya farkawa kai tsaye idan ya gano kana motsi kuma. Ba ka buƙatar tuna farkar da shi da kanka. Mun sake tsara lambar da ke ƙasa domin mu iya gina manhajar iOS daga wannan lambar. Wannan yana nufin cewa a nan gaba za mu iya fitar da manhajar iOS tare da duk fasalolin da muka ƙirƙira wa Android. Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta hanyar Tuntuɓi Taimako a babban menu.</string>
+    <string name="new_version_info_details">
+Wannan babban sabuntawa ne ga Soundscape.
+
+An inganta yanayin tafiya sosai. Idan kana tafiya da mota ko bas, Soundscape yanzu yana sanar da lambobin hanya, alkiblar tafiyarka, da wuraren zama da ke kusa. Yana kuma sanar idan ka ƙetare koguna, magudanan ruwa, mashigan ruwa da bakin teku. Da fatan za a sabunta taswirorinku na offline domin samun waɗannan sabbin fasalolin. Ga masu amfani a Burtaniya, tashoshin bas yanzu suna da bayanin da ya fi kyau sosai.
+
+Yanayin barci yanzu zai iya farkawa kai tsaye idan ya gano kana motsi kuma. Ba ka buƙatar tuna farkar da shi da kanka.
+
+Mun sake tsara lambar da ke ƙasa domin mu iya gina manhajar iOS daga wannan lambar. Wannan yana nufin cewa a nan gaba za mu iya fitar da manhajar iOS tare da duk fasalolin da muka ƙirƙira wa Android.
+
+Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta hanyar Tuntuɓi Tallafi a babban menu.
+</string>
     <string name="about_soundscape">Soundscape yana amfani da sabuwar fasahar sauti domin taimaka wa mutane su gina cikakkiyar fahimtar abin da ke kewaye da su. Wannan yana sa mutane su samu ƙarin ƙarfin gwiwa da ikon zagayawa da kansu.</string>
     <string name="copyright_notices">Soundscape ya dogara ga waɗannan kyawawan laburare da bayanai na wasu kamfanoni. Danna hanyoyin haɗin don ganin lasisinsu:</string>
     <string name="osm_copyright">[©Masu Ba da Gudunmawa na OpenStreetMap](https://www.openstreetmap.org/copyright) sun bayar da dukkan bayanan yanki na taswira da sauti da ake amfani da su a Soundscape.</string>
@@ -688,7 +698,7 @@
     <string name="osm_pitch">Filin Wasa</string>
     <string name="osm_swimming_pool">Wurin Iyo</string>
     <string name="osm_garden">Lambu</string>
-    <string name="osm_park">Fili</string>
+    <string name="osm_park">Filin Shaƙatawa</string>
     <string name="osm_picnic_table">Teburin Hutu</string>
     <string name="osm_picnic_site">Wurin Hutu</string>
     <string name="osm_information">Bayani</string>
@@ -721,7 +731,7 @@
     <string name="osm_hostel">Hostel</string>
     <string name="osm_caravan_site">Filin Ajiye Karavan</string>
     <string name="osm_weightlifting">Wurin Ɗaga Nauyi</string>
-    <string name="osm_taekwondo">Kulob din Taekwondo</string>
+    <string name="osm_taekwondo">Kulob ɗin Taekwondo</string>
     <string name="osm_swimming">Wurin Ninkaya</string>
     <string name="osm_surfing">Wurin Hawan Raƙuman Ruwa</string>
     <string name="osm_skating">Wurin Wasan Isketi</string>
@@ -734,7 +744,7 @@
     <string name="osm_horse_racing">Filin Tseren Dawaki</string>
     <string name="osm_dog_racing">Filin Tseren Karnuka</string>
     <string name="osm_climbing">Wurin Hawan Dutse</string>
-    <string name="osm_chess">Kulob din Dara</string>
+    <string name="osm_chess">Kulob ɗin Dara</string>
     <string name="osm_canadian_football">Filin Ƙwallon Ƙafa na Kanada</string>
     <string name="osm_beachvolleyball">Filin Wasan Ƙwallon Raga a Bakin Teku</string>
     <string name="osm_base">Sansanin Aiki</string>
@@ -774,7 +784,7 @@
     <string name="osm_stonemason">Maƙerin Dutse</string>
     <string name="osm_scaffolder">Mai Gina Dandamalin Gini</string>
     <string name="osm_sailmaker">Mai Yin Shirayen Jirgin Ruwa</string>
-    <string name="osm_photographic_laboratory">Dakin Wanke Hoto</string>
+    <string name="osm_photographic_laboratory">Ɗakin Wanke Hoto</string>
     <string name="osm_photographer">Mai Ɗaukar Hoto</string>
     <string name="osm_insulation">Kayan Hana Zafi da Sanyi</string>
     <string name="osm_electrician">Mai Lantarki</string>
@@ -825,7 +835,7 @@
     <string name="osm_water_tower">Hasumiyar Ruwa</string>
     <string name="osm_pumping_station">Tashar Famfo</string>
     <string name="osm_hot_water_tank">Tankin Ruwan Zafi</string>
-    <string name="osm_campanile">Hasumiyar Kararrawa</string>
+    <string name="osm_campanile">Hasumiyar Ƙararrawa</string>
     <string name="osm_sports_centre">Cibiyar Wasanni</string>
     <string name="osm_fitness_centre">Cibiyar Motsa Jiki</string>
     <string name="osm_beach_resort">Otal a Bakin Teku</string>
@@ -856,7 +866,7 @@
     <string name="osm_shrine">Wurin Ibada Mai Tsarki</string>
     <string name="osm_church">Coci</string>
     <string name="osm_historic_monument">Abin Tarihi Mai Muhimmanci</string>
-    <string name="osm_generic_landmark">Alamar Wuri</string>
+    <string name="osm_generic_landmark">Shahararren Wuri</string>
     <string name="osm_tourism_museum">Gidan Tarihi</string>
     <string name="osm_register_office">Ofishin Rijista</string>
     <string name="osm_grave_yard">Makabarta</string>
@@ -1083,7 +1093,7 @@
     <string name="help_configuration_section_title">Daidaita Soundscape</string>
     <string name="settings_help_section_beacons_and_pois">Siginar Sauti da Sanarwa</string>
     <string name="settings_help_section_home_screen_buttons">Maɓallan Wuri da Bincike</string>
-    <string name="help_config_voices_content">Soundscape na iya amfani da kowace muryar da ka sauke a wayarka ta Android a cikin saitunan fitarwar Rubutu-zuwa-Magana. A cikin manhajar Soundscape, don zaɓar murya dabam da wadda ta zo tare da Android, je zuwa *Saituna* daga babban menu, buɗe sashin *Sauti*, sannan ka zaɓi *Muryoyi*.</string>
+    <string name="help_config_voices_content">Soundscape na iya amfani da kowace muryar da ka sauke a wayarka ta Android a cikin saitunan fitarwar Rubutu-zuwa-Magana. A cikin manhajar Soundscape, don zaɓar murya dabam da wadda ta zo tare da Android, je zuwa *Saitunan* daga babban menu, buɗe sashin *Sauti*, sannan ka zaɓi *Muryoyi*.</string>
     <string name="help_config_voices_content_ios">Soundscape na iya amfani da kowace muryar da ka sauke a manhajar Saituna ta iOS, in ban da muryoyin Siri waɗanda ba su akwai ga Soundscape. Muna ba da shawarar zaɓar ɗaya daga cikin muryoyin *Enhanced* masu inganci mafi girma, amma dole ne ka fara sauke murya. Za ka iya sauke muryoyi a manhajar Saituna ta iOS ta hanyar zuwa Accessibility &gt; Read &amp; Speak &gt; Voices sannan ka danna murya. (A sigogin iOS kafin 26, ana kiran *Read &amp; Speak* da *Spoken Content*.) A cikin manhajar Soundscape, don zaɓar muryar da kake so, je zuwa *Saitunan* daga babban menu sannan daga *Sauti* ka zaɓi *Muryoyi*.</string>
     <string name="help_offline_page_title">Me ya sa Soundscape ke aiki ba tare da intanet ba?</string>
     <string name="help_offline_description">Idan babu haɗin intanet, ko hidimomin Soundscape ba sa aiki, Soundscape zai koma yanayin aiki ba tare da intanet ba. Zai ci gaba da aiki, amma wasu fasaloli na iya kasancewa iyakance.</string>
@@ -1135,7 +1145,7 @@
     <string name="osm_aircraft">Jirgin Sama</string>
     <string name="osm_digester">Tankin Narkar da Shara</string>
     <string name="osm_sally_port">Ƙofar Ɓoye</string>
-    <string name="osm_aerodrome">Karamin Filin Jirgin Sama</string>
+    <string name="osm_aerodrome">Ƙaramin Filin Jirgin Sama</string>
     <string name="osm_shopping_mall">Cibiyar Sayayya</string>
     <string name="osm_cinema">Silima</string>
     <string name="osm_rescue_station">Ofishin Ceto</string>
@@ -1146,10 +1156,10 @@
     <string name="osm_police">Ofishin ‘Yan Sanda</string>
     <string name="osm_embassy">Ofishin Jakadanci</string>
     <string name="osm_bus_station">Tashar Bas</string>
-    <string name="osm_station">Tashar</string>
+    <string name="osm_station">Tasha</string>
     <string name="osm_toll_booth">Wurin Biyan Haraji</string>
     <string name="osm_lift">Lif</string>
-    <string name="osm_unmanaged_crossing">Mahaɗar Ƙetarewa Marar Kulawa</string>
+    <string name="osm_unmanaged_crossing">Mashigin Ƙetare Titi Marar Kulawa</string>
     <string name="osm_pharmacy">Kantin Magani</string>
     <string name="osm_kneipp_water_cure">Wurin Maganin Ruwa na Kneipp</string>
     <string name="osm_food_court">Wurin Cin Abinci</string>
@@ -1224,7 +1234,7 @@
     <string name="osm_sport">Wurin Wasanni</string>
     <string name="osm_health_food">Abincin Lafiya</string>
     <string name="osm_events_venue">Wurin Taro</string>
-    <string name="tour_welcome">Barka da zuwa jagorar koyarwa. Wannan koyarwar za ta jagorance ka ta cikin manyan fasalolin app ɗin. Kana iya dakatar da koyarwar a kowane lokaci ta hanyar taɓa Soke Jagorar Koyarwa a cikin Manyan Zaɓuɓɓuka. Bari mu fara da Wurare na Kusa. Yana baka damar samun wuraren sha'awa. Maɓallin Wurare na Kusa yana kan allon Gida, ƙasa da sandar Bincike kaɗan. Taɓa shi yanzu don gwada shi.</string>
+    <string name="tour_welcome">Barka da zuwa jagorar koyarwa. Wannan koyarwar za ta jagorance ka ta cikin manyan fasalolin app ɗin. Kana iya dakatar da koyarwar a kowane lokaci ta hanyar taɓa Soke Jagorar Koyarwa a cikin Babban Menu. Bari mu fara da Wurare na Kusa. Yana baka damar samun wuraren sha'awa. Maɓallin Wurare na Kusa yana kan allon Gida, ƙasa da sandar Bincike kaɗan. Taɓa shi yanzu don gwada shi.</string>
     <string name="tour_select_place">Wurare na Kusa yana tsara wuraren sha'awa bisa nau'i. Ka duba wuraren da ke cikin jerin sannan ka zaɓi ɗaya.</string>
     <string name="tour_create_marker_started">Madalla! Yanzu kana kan allon Cikakkun Bayanan Wuri. Daga nan za ka iya ajiye wannan wurin a matsayin Alama, da kuma yin wasu ayyuka. Da Soundscape, kana iya yin alama a kan duk wani wuri da yake da muhimmanci a gare ka, kamar gidanka, tashar bas ɗinka, ko ma wurin da kake tsaye a yanzu. Gwada yanzu. Ajiye wannan wurin a matsayin alama ta hanyar taɓa Ajiye a Matsayin Alama.</string>
     <string name="tour_create_marker_done">Madalla! Yayin ƙirƙirar alama, kana iya gyara sunanta da ƙara bayanai. Gwada yanzu, kuma idan ka shirya, sai ka taɓa An Gama.</string>
@@ -1238,8 +1248,8 @@
     <string name="tour_beacon_demo">Yanzu kana iya jin siginar sauti. Tana kaɗawa daga alkiblar wurin da kake zuwa. Yayin da ka juya wayarka, za ka ji siginar tana motsi kuma tana canza yadda take sauti. Gwada yanzu.</string>
     <string name="tour_beacon_demo_locked">Idan an kulle wayarka, siginar za ta ci gaba da kaɗawa. Idan kana tafiya ko kana cikin abin hawa, app ɗin yana amfani da alkiblar tafiyarka wajen kunna siginar sauti. Duk da haka, ko da an kulle wayarka, kana iya riƙe ta a kwance a gabanka, kamar kamfas. Sai siginar ta yi amfani da alkiblar da wayarka take fuskanta. Gwada yanzu.</string>
     <string name="tour_stop_beacon">Idan ka shirya don dakatar da siginar sauti, taɓa maɓallin Tsayar da Tafarki.</string>
-    <string name="tour_finish">Wannan ya kammala koyarwar. Kana iya sake gudanar da ita daga manyan zaɓuɓɓuka. Muna fatan app ɗin zai amfane ka!</string>
-    <string name="tour_cancel">An soke jagorar koyarwa. Idan kana so, kana iya sake gudanar da ita daga manyan zaɓuɓɓuka.</string>
+    <string name="tour_finish">Wannan ya kammala koyarwar. Kana iya sake gudanar da ita daga babban menu. Muna fatan app ɗin zai amfane ka!</string>
+    <string name="tour_cancel">An soke jagorar koyarwa. Idan kana so, kana iya sake gudanar da ita daga babban menu.</string>
     <string name="menu_audio_tutorial">Jagorar Koyarwa</string>
     <string name="menu_audio_tutorial_cancel">Soke Jagorar Koyarwa</string>
     <string name="tour_continue_button">Ci gaba</string>
@@ -1262,7 +1272,7 @@
     <string name="voice_cmd_explain_dynamic_markers">Kana iya kuma fara tafarkuna da alamomi ta sunayensu, misali.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout">Kuskuren ƙarewar lokacin sadarwa a gane murya.</string>
     <string name="voice_cmd_speech_recognition_error_network">Kuskuren hanyar sadarwa a gane murya.</string>
-    <string name="voice_cmd_speech_recognition_error_audio">Kuskure wajen daukar sautin gane murya.</string>
+    <string name="voice_cmd_speech_recognition_error_audio">Kuskure wajen ɗaukar sautin gane murya.</string>
     <string name="voice_cmd_speech_recognition_error_server">Kuskuren sabar gane murya.</string>
     <string name="voice_cmd_speech_recognition_error_client">Kuskuren na'ura wajen gane murya.</string>
     <string name="voice_cmd_speech_recognition_error_speech_timeout">Saurarawa domin jin murya ta ƙare lokaci. Saurarawa ta tsaya. Da fatan za a sake gwadawa.</string>
@@ -1294,7 +1304,7 @@
     <string name="menu_exit_app">Fita daga Soundscape</string>
     <string name="offline_map_details_update">Sabunta taswira ta offline</string>
     <string name="first_launch_callouts_title">Ji Abin da ke Kewaye da Kai</string>
-    <string name="first_launch_callouts_message">Soundscape yana taimaka muku ku kasance da masaniyar inda kuke da kuma inda kuke zuwa ta hanyar sanar da ku hanyoyi, mahadar hanyoyi, da wurare masu ban sha'awa yayin da kuke kusantowa gare su.</string>
+    <string name="first_launch_callouts_message">Soundscape yana taimaka muku ku kasance da masaniyar inda kuke da kuma inda kuke zuwa ta hanyar sanar da ku hanyoyi, mahaɗar hanyoyi, da wurare masu ban sha'awa yayin da kuke kusantowa gare su.</string>
     <string name="first_launch_callouts_listen">Ku saurari misalin abin da Soundscape zai iya sanarwa a tafiyarku ta gaba</string>
     <string name="first_launch_callouts_listen_accessibility_label">Saurari</string>
     <string name="first_launch_callouts_example_1">Kafe</string>
@@ -1323,13 +1333,13 @@
     <string name="help_text_destination_beacons_how_1">**Don kafa siginar sauti :**\n\n Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko kuma ta danna ɗaya daga cikin maɓallan *Wurare na Kusa*, *Alamomi da Tafarkuna*, ko *Wurin da Kake Yanzu* sannan ku zaɓi wuri. Sannan daga allon *Cikakkun Bayanan Wuri*, zaɓi maɓallin *Fara Siginar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna siginar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allo.</string>
     <string name="help_text_destination_beacons_how_2">**Don cire siginar sauti ta yanzu :**\n\n Kawai danna maɓallin *Tsayar da Tafarki* a babban allo.</string>
     <string name="help_text_destination_beacons_how_3">**Don kashe siginar sauti :**\n\n Danna maɓallin *Kashe Siginar Sauti* kusa da maɓallin *Tsayar da Tafarki* a babban allo.</string>
-    <string name="help_text_automatic_callouts_what">Soundscape na iya gaya muku game da abubuwan da ke kewaye da ku yayin da kuke kusantowa gare su, ta hanyar sanar da sunayensu daga wajen da suke. Manhajar za ta yi wannan kai tsaye ga kowane irin abu kamar shaguna, tashoshin bas, har ma da mahadar hanyoyi. Za ku iya daidaita irin abin da manhajar ke sanarwa kai tsaye a sashen *Sarrafa Sanarwa* na allon *Saitunan*, kuma za ku iya kashe dukkan sanarwa idan kuna son manhajar ta yi shiru.</string>
+    <string name="help_text_automatic_callouts_what">Soundscape na iya gaya muku game da abubuwan da ke kewaye da ku yayin da kuke kusantowa gare su, ta hanyar sanar da sunayensu daga wajen da suke. Manhajar za ta yi wannan kai tsaye ga kowane irin abu kamar shaguna, tashoshin bas, har ma da mahaɗar hanyoyi. Za ku iya daidaita irin abin da manhajar ke sanarwa kai tsaye a sashen *Sarrafa Sanarwa* na allon *Saitunan*, kuma za ku iya kashe dukkan sanarwa idan kuna son manhajar ta yi shiru.</string>
     <string name="help_text_automatic_callouts_when_1">**Binciken sabon yanki :**\n\n Kunna sanarwa ta atomatik sannan ku yi tafiya don jin labarin shaguna daban-daban, gidajen abinci, da makamantansu yayin da kuke wucewa ta wurinsu.</string>
-    <string name="help_text_automatic_callouts_when_2">**Tafiya zuwa wani takamaiman wuri :**\n\n Idan kuna kan hanyarku zuwa wani takamaiman wuri, sanarwar mahadar hanyoyi ta atomatik na iya zama da amfani sosai. Sanarwar mahadar hanyoyi tana gaya muku tsarin mahadar yayin da kuke kusantowa, kuma tana tabbatar muku da titin da kuke kai idan kuka bar mahadar.</string>
+    <string name="help_text_automatic_callouts_when_2">**Tafiya zuwa wani takamaiman wuri :**\n\n Idan kuna kan hanyarku zuwa wani takamaiman wuri, sanarwar mahaɗar hanyoyi ta atomatik na iya zama da amfani sosai. Sanarwar mahaɗar hanyoyi tana gaya muku tsarin mahaɗar yayin da kuke kusantowa, kuma tana tabbatar muku da titin da kuke kai idan kuka bar mahaɗar.</string>
     <string name="help_text_automatic_callouts_when_3">**Idan kuna bukatar shiru :**\n\n Idan kuna gab da ƙetare titi ko kuna bukatar manhajar ta yi shiru kawai, za ku iya kashe sanarwa. Idan an kashe sanarwa, manhajar za ta ba ku bayani ne kawai idan kuka danna ɗaya daga cikin maɓallan *Inda Nake*, *Alamomin Kusa*, *Kewaye da Ni*, ko *Abin da ke Gabana* da kanku.</string>
     <string name="help_text_automatic_callouts_how_1">**Kunna ko kashe sanarwa :**\n\n Kashe sanarwa zai sa manhajar ta yi shiru. Ana iya kashe sanarwa a sashen *Sarrafa Sanarwa* na allon *Saitunan* ta hanyar sanya *Matakin Sanarwa* ya zama *Shiru*, kuma ana sake kunna su ta zaɓar kowane mataki na daban. A iPhone za ku iya yin haka ta hanyar neman Siri ya yi muku, kuma a Android haka zai yi aiki ta Gemini da zarar Google ya fitar da goyon baya a kai. Bugu da ƙari, za ku iya rage yawan maganar Soundscape mataki-mataki ta maɓallan sarrafa sauti na belun kunnenku: kowane danna *na baya* yana sauka mataki ɗaya ta *Cikakke*, *Sauƙaƙe*, *Muhimmi* da *Shiru*, sannan ƙarin danna ɗaya yana komawa *Cikakke*. Duba batun taimako na *Amfani da Maɓallan Sarrafa Sauti*. Ko kuma, za ku iya amfani da maɓallin *Barci* da ke a saman dama na babban allo don dakatar da Soundscape daga yin sanarwa har sai kun farkar da ita.</string>
     <string name="help_text_automatic_callouts_how_2">**Sarrafa irin sanarwar da kuke ji :**\n\n Don zaɓar irin abubuwan da Soundscape zai riƙa sanarwa kai tsaye, je zuwa allon *Saitunan* ta amfani da menu a allon *Gida*. A sashen *Sarrafa Sanarwa* na allon *Saitunan* ne kuke zaɓar yawan maganar manhajar da *Matakin Sanarwa*, ko za ta sanar da *Titina da Mahaɗun Hanyoyi*, da kuma waɗanne ne *Wuraren da za a Sanar*. Idan kuna son kashe dukkan sanarwa, sanya *Matakin Sanarwa* ya zama *Shiru*.</string>
-    <string name="help_text_my_location_what">Maɓallin *Inda Nake* yana ba ku bayani cikin sauri wanda ke taimaka muku sanin inda kuke a halin yanzu. *Inda Nake* yana gaya muku game da wurinku na yanzu wanda ya haɗa da irin abubuwa kamar alkiblar da kuke fuskanta, inda hanyoyi ko mahadar hanyoyi na kusa suke, da kuma inda wurare masu ban sha'awa na kusa suke.</string>
+    <string name="help_text_my_location_what">Maɓallin *Inda Nake* yana ba ku bayani cikin sauri wanda ke taimaka muku sanin inda kuke a halin yanzu. *Inda Nake* yana gaya muku game da wurinku na yanzu wanda ya haɗa da irin abubuwa kamar alkiblar da kuke fuskanta, inda hanyoyi ko mahaɗar hanyoyi na kusa suke, da kuma inda wurare masu ban sha'awa na kusa suke.</string>
     <string name="help_text_my_location_when">*Inda Nake* yana da amfani idan kuna bukatar sanin inda kuke ko wace alkibla kuke fuskanta.</string>
     <string name="help_text_my_location_how">Kamar sauran dukkan maɓallai huɗu da ke ƙasan babban allo, riƙe wayarku a kwance (fuska sama zuwa sama) tare da saman wayar yana nuni da alkiblar da kuke fuskanta kafin ku danna maɓallin *Inda Nake*. Wannan yana aiki kamar kamfas wanda ke gaya wa manhajar alkiblar da kuke fuskanta. Kawai, danna maɓallin *Inda Nake* sannan ku saurara.</string>
     <string name="help_text_nearby_markers_what">Maɓallin *Alamomin Kusa* yana gaya muku game da alamomi har guda huɗu waɗanda suka fi kusanci da ku. An ƙirƙiri *Alamomin Kusa* domin taimaka muku daidaita kanku ta amfani da wurare da kuka riga kuka sani.</string>
@@ -1341,12 +1351,12 @@
     <string name="help_text_ahead_of_me_what">Maɓallin *Abin da ke Gabana* yana gaya muku game da abubuwa har guda biyar da ke gabanku. An ƙirƙiri *Abin da ke Gabana* domin taimaka muku bincikar hanyar da ke gabanku yayin da kuke koyon sabon yanki.</string>
     <string name="help_text_ahead_of_me_when">Idan kuna tafiya a kan titi, gwada amfani da *Abin da ke Gabana* don gano wurare da abubuwan da ke zuwa a ɓangarorin biyu na titin da ke gabanku.</string>
     <string name="help_text_ahead_of_me_how">Kamar sauran dukkan maɓallai huɗu da ke ƙasan babban allo, riƙe wayarku a kwance (fuska sama zuwa sama) tare da saman wayar yana nuni da alkiblar da kuke fuskanta kafin ku danna maɓallin *Abin da ke Gabana*. Wannan yana aiki kamar kamfas wanda ke gaya wa manhajar alkiblar da kuke fuskanta. Kawai, danna maɓallin *Abin da ke Gabana* kuma za ku ji wurare masu ban sha'awa da dama, kusan duk suna gabanku.</string>
-    <string name="help_text_remote_control_what">Za ku iya samun damar wasu fasalulluka a cikin Soundscape ta amfani da maɓallan sarrafa kafofin watsa labarai da ke a belun kunnenku. Wannan aikin yana aiki tare da kowace irin belun kunne, ko waya ko Bluetooth, da ke da maɓallan sarrafa kamar Kunna, Dakata, Na Gaba, Na Baya da sauransu. Belun kunne daban-daban na iya samun maɓallai daban-daban saboda haka a duba jerin ayyukan da ke ƙasa domin sanin waɗanda ke akwai a gare ku.</string>
-    <string name="help_text_remote_control_when">Ana iya amfani da maɓallan sarrafa kafofin watsa labarai na belun kunne yayin da Soundscape ke aiki — ko kuna amfani da manhajar kai tsaye, ko tana aiki a bango, ko na'urarku tana kulle. Duk da haka, maɓallan sarrafa kafofin watsa labarai na belun kunne ba za su yi aiki da Soundscape ba idan kuna kunna sauti, kamar waƙa, podcast ko bidiyo, ta wata manhajar daban.</string>
-    <string name="help_text_remote_control_how">Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sashen *Saitunan* *Sarrafa Kafofin Watsa Labarai*. Yanayoyin sune:\n\n *Yanayin Asali*. \n\n⏯ Kunna/Dakata: Yana kunna ko kashe siginar sauti. \n\n⏭ Na Gaba: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar gaba a tafarkin. Idan ba a kunna wani tafarki ba, yana sanar da *Kewaye da Ni*.\n\n⏮ Na Baya: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar da ta gabata a tafarkin. Idan ba a kunna wani tafarki ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Sauƙaƙe*, *Muhimmi*, *Shiru*, sannan ya koma *Cikakke*.\n\n\n\n*Menu na Sauti*. \n\n\n\n⏭ Na Gaba yana motsawa cikin jerin zaɓuɓɓukan menu waɗanda manhajar ke bayyanawa ta rubutu-zuwa-murya, kuma yana komawa na farko bayan na ƙarshe. Sannan ⏯ Kunna/Dakata yana sa manhajar ta gudanar da zaɓin da aka bayyana. Akwai babban menu guda ɗaya wanda kawai ke da ƙananan menu a matsayin zaɓuɓɓuka. Kowane ƙaramin menu yana da ƙungiyar ayyuka masu kama da juna.\n\n⏮ Na Baya ba ya motsawa cikin menu. Maimakon haka yana canza *Matakin Sanarwa*, kamar yadda yake yi a Yanayin Asali, don haka maɓalli ɗaya yana rage maganar manhajar a kowane yanayi da kuke amfani da shi.</string>
+    <string name="help_text_remote_control_what">Za ku iya samun damar wasu fasalulluka a cikin Soundscape ta amfani da maɓallan sarrafa sauti da ke a belun kunnenku. Wannan aikin yana aiki tare da kowace irin belun kunne, ko waya ko Bluetooth, da ke da maɓallan sarrafa kamar Kunna, Dakata, Na Gaba, Na Baya da sauransu. Belun kunne daban-daban na iya samun maɓallai daban-daban saboda haka a duba jerin ayyukan da ke ƙasa domin sanin waɗanda ke akwai a gare ku.</string>
+    <string name="help_text_remote_control_when">Ana iya amfani da maɓallan sarrafa sauti na belun kunne yayin da Soundscape ke aiki — ko kuna amfani da manhajar kai tsaye, ko tana aiki a bango, ko na'urarku tana kulle. Duk da haka, maɓallan sarrafa sauti na belun kunne ba za su yi aiki da Soundscape ba idan kuna kunna sauti, kamar waƙa, podcast ko bidiyo, ta wata manhajar daban.</string>
+    <string name="help_text_remote_control_how">Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sashen *Saitunan* *Maɓallan Sarrafa Sauti*. Yanayoyin sune:\n\n *Yanayin Asali*. \n\n⏯ Kunna/Dakata: Yana kunna ko kashe siginar sauti. \n\n⏭ Na Gaba: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar gaba a tafarkin. Idan ba a kunna wani tafarki ba, yana sanar da *Kewaye da Ni*.\n\n⏮ Na Baya: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar da ta gabata a tafarkin. Idan ba a kunna wani tafarki ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Sauƙaƙe*, *Muhimmi*, *Shiru*, sannan ya koma *Cikakke*.\n\n\n\n*Menu na Sauti*. \n\n\n\n⏭ Na Gaba yana motsawa cikin jerin zaɓuɓɓukan menu waɗanda manhajar ke bayyanawa ta rubutu-zuwa-murya, kuma yana komawa na farko bayan na ƙarshe. Sannan ⏯ Kunna/Dakata yana sa manhajar ta gudanar da zaɓin da aka bayyana. Akwai babban menu guda ɗaya wanda kawai ke da ƙananan menu a matsayin zaɓuɓɓuka. Kowane ƙaramin menu yana da ƙungiyar ayyuka masu kama da juna.\n\n⏮ Na Baya ba ya motsawa cikin menu. Maimakon haka yana canza *Matakin Sanarwa*, kamar yadda yake yi a Yanayin Asali, don haka maɓalli ɗaya yana rage maganar manhajar a kowane yanayi da kuke amfani da shi.</string>
     <string name="help_text_markers_content_1">Da Soundscape, za ku iya yiwa duniyar ku alama tare da duk abin da kuke damuwa da shi, kamar alamomi a taswira.</string>
     <string name="help_text_markers_content_2">Za ku iya yiwa wuraren da suka shafe ku kai tsaye alama, kamar gidanku, ofishinku, ko kantin sayar da kayan abinci da kuka fi so. Za ku iya yiwa kowane wuri ko adireshi alama, kuma za ku iya yiwa abubuwan da ba a saba nunawa a taswira ba alama, misali: ƙofofin gine-gine ko wuraren shakatawa, maɓallan neman ƙetare hanya, wuraren ƙetarawa na masu tafiya da ƙasa, gadoji, tashoshin bas, ko ma bishiyar da karenku ya fi so. Ku yi amfani da waɗannan alamomin a matsayin abin lura a tafiyarku.</string>
-    <string name="help_text_markers_content_3">Domin jin daɗin wuraren da aka yiwa alama, Soundscape zai sanar da wuraren da aka yiwa alama kai tsaye yayin da kuke wucewa ko kusantowa gare su, ko kuma za ku iya amfani da maɓallin *Alamomin kusa* da ke ƙasan babban allo don jin sanarwar sararin samaniya ta wuraren da aka yiwa alama a kewaye da ku. Har ma kuna iya kafa siginar sauti a kan duk wani wurin da aka yiwa alama. Idan kuka yi haka, siginar sautin Soundscape da kuka saba da ita za ta kunna kuma za ku iya sarrafa ta kamar yadda aka saba.</string>
+    <string name="help_text_markers_content_3">Domin jin daɗin wuraren da aka yiwa alama, Soundscape zai sanar da wuraren da aka yiwa alama kai tsaye yayin da kuke wucewa ko kusantowa gare su, ko kuma za ku iya amfani da maɓallin *Alamomin kusa* da ke ƙasan babban allo don jin sanarwar sarari ta wuraren da aka yiwa alama a kewaye da ku. Har ma kuna iya kafa siginar sauti a kan duk wani wurin da aka yiwa alama. Idan kuka yi haka, siginar sautin Soundscape da kuka saba da ita za ta kunna kuma za ku iya sarrafa ta kamar yadda aka saba.</string>
     <string name="help_text_creating_markers_content_1">Za ku iya ƙirƙirar alamomi ta hanyoyi guda uku: neman wurin da kuke son ajiyewa ta amfani da sandar bincike, gano wani wuri ta amfani da maɓallin *Wurare na Kusa*, ko amfani da maɓallin *Wurin da Kake Yanzu*, dukkansu za a same su a babban allo. Da zarar kun sami wurin da kuke so, zaɓarsa zai kai ku zuwa allon *Cikakkun Bayanan Wuri*. A wannan allo, zaɓi maɓallin *Ajiye a matsayin Alama*.</string>
     <string name="help_text_creating_markers_content_2">Yanzu za ku sami zaɓi na daidaita wannan alama. Za ku iya canza sunan alamar, sannan kuma ku ƙara bayanin da za a sanar tare da alamar don ba da ƙarin bayani. Da zarar kun gama, zaɓi maɓallin *An Gama* don ajiye Alamarku.</string>
     <string name="help_text_customizing_markers_content_1">Idan kuna son sake wa sunan alamar da kuka riga kuka ƙirƙira, ko ƙara bayani a kanta, ku zaɓi alamar daga shafin *Alamomi* na shafin *Alamomi da Tafarkuna*, sannan ku zaɓi maɓallin *Gyara Alama*. Za ku iya amfani da wannan don ba wa alamomi sunayen laƙabi masu bayani ko amfani, da kuma ba su cikakken bayani ta amfani da filin bayani.</string>
@@ -1358,16 +1368,16 @@
     <string name="help_text_routes_content_how_3">**Raba tafarki :**\n\n Zaɓi tafarkinku a allon *Alamomi da Tafarkuna* sannan ku zaɓi zaɓin *Raba* ta amfani da duk zaɓuɓɓukan rabawa na yau da kullum da ke akwai gare ku.</string>
     <string name="share_title">Raba</string>
     <string name="faq_title">Tambayoyin da Ake Yawan Yi</string>
-    <string name="faq_title_abbreviated">TAY</string>
+    <string name="faq_title_abbreviated">Tambayoyi</string>
     <string name="faq_tips_title">Shawarwari</string>
     <string name="faq_section_what_is_soundscape">Menene Soundscape kuma yaya zan yi amfani da ita?</string>
     <string name="faq_when_to_use_soundscape_question">Yaushe ya kamata in yi amfani da Soundscape?</string>
-    <string name="faq_when_to_use_soundscape_answer">Soundscape tana da fasalulluka da amfanoni waɗanda suka shafi yanayi da lokuta daban-daban. Darajar Soundscape gare ku kuma na iya canzawa a kan lokaci, saboda haka yadda kuke amfani da ita yau na iya bambanta da yadda za ku yi amfani da ita a cikin wata uku. Mutane sukan yi tunani game da manhajoji ta fuskar *wace matsala ce wannan manhajar ta fi bayarwa mafita gare ta?* Hakika ana iya amfani da Soundscape domin takamaiman bukatu – kamar bin diddigin wurin da kuke zuwa yayin da kuke kai, taimaka muku daidaita kanku idan kuka fito daga tashar jirgin ƙasa, gane inda kuke idan kuka fita daga mota, ko neman sunayen tituna ko nisa zuwa mahadar hanya ta gaba. Duk da haka, falsafar da ke bayan Soundscape ita ce ta *haskaka duniyarku da sauti* – an tsara ta don amfani a duk lokacin da kuke waje, don ba ku masaniyar yanayi game da abin da ke kewaye da ku, kamar sunayen tituna da kuke a kai, alkiblar da kuke nufa, da sunayen shagunan da kuke wucewa. A wannan hanyar amfani, masu amfani da mu sun kira Soundscape a matsayin *kyakkyawar manhajar aboki*, wadda ke tallafawa *kwatsam samun abu mai kyau*, tana taimakawa wajen *cika giɓi a taswirar tunaninku*, kuma tana ba da ƙarin *ƙarfin gwiwa yayin tafiya*. Ga wasu misalan yadda masu amfani da mu ke amfani da Soundscape a rayuwarsu:\n\nSoundscape ta taimaka min in dawo kan hanya bayan na sauka daga bas na nufi wata hanyar da ba daidai ba.\n\nKo a garin da na zauna shekaru 3, na gina cikakkiyar hoto game da abin da ke kewaye da ni [tare da Soundscape].\n\nSautin 3D yana ƙara wa tafiyata kyau, domin ina jin haɗin kai da muhallina fiye da yadda nake…Na fi son gwada sabuwar hanya yanzu da nake da manhajar da zan yi amfani da ita.\n\nIna rasa jin daɗin yawo da lura da abubuwa kwatsam. Samun Soundscape yana da kyau – ba ya bukatar ƙoƙari don jin labarin abubuwan da ke kewaye da ni. Bayanin da ke da alaƙa yana da amfani kuma babbar manhaja ce don sanin yanayi da bincikar hanyoyin kasuwanci.\n\n[Na yi amfani da Soundscape] don gano wani mashaya a tsakiyar York. [Na] yi amfani da zaɓuɓɓuka da dama don farko in gano sannan in samu shi da gaske. Ta kai ni cikin mita 3 daga ƙofar – kyakkyawa sosai!</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape tana da fasalulluka da amfanoni waɗanda suka shafi yanayi da lokuta daban-daban. Darajar Soundscape gare ku kuma na iya canzawa a kan lokaci, saboda haka yadda kuke amfani da ita yau na iya bambanta da yadda za ku yi amfani da ita a cikin wata uku. Mutane sukan yi tunani game da manhajoji ta fuskar *wace matsala ce wannan manhajar ta fi bayarwa mafita gare ta?* Hakika ana iya amfani da Soundscape domin takamaiman bukatu – kamar bin diddigin wurin da kuke zuwa yayin da kuke kai, taimaka muku daidaita kanku idan kuka fito daga tashar jirgin ƙasa, gane inda kuke idan kuka fita daga mota, ko neman sunayen tituna ko nisa zuwa mahaɗar hanya ta gaba. Duk da haka, falsafar da ke bayan Soundscape ita ce ta *haskaka duniyarku da sauti* – an tsara ta don amfani a duk lokacin da kuke waje, don ba ku masaniyar yanayi game da abin da ke kewaye da ku, kamar sunayen tituna da kuke a kai, alkiblar da kuke nufa, da sunayen shagunan da kuke wucewa. A wannan hanyar amfani, masu amfani da mu sun kira Soundscape a matsayin *kyakkyawar manhajar aboki*, wadda ke tallafawa *kwatsam samun abu mai kyau*, tana taimakawa wajen *cika giɓi a taswirar tunaninku*, kuma tana ba da ƙarin *ƙarfin gwiwa yayin tafiya*. Ga wasu misalan yadda masu amfani da mu ke amfani da Soundscape a rayuwarsu:\n\nSoundscape ta taimaka min in dawo kan hanya bayan na sauka daga bas na nufi wata hanyar da ba daidai ba.\n\nKo a garin da na zauna shekaru 3, na gina cikakkiyar hoto game da abin da ke kewaye da ni [tare da Soundscape].\n\nSautin 3D yana ƙara wa tafiyata kyau, domin ina jin haɗin kai da muhallina fiye da yadda nake…Na fi son gwada sabuwar hanya yanzu da nake da manhajar da zan yi amfani da ita.\n\nIna rasa jin daɗin yawo da lura da abubuwa kwatsam. Samun Soundscape yana da kyau – ba ya bukatar ƙoƙari don jin labarin abubuwan da ke kewaye da ni. Bayanin da ke da alaƙa yana da amfani kuma babbar manhaja ce don sanin yanayi da bincikar hanyoyin kasuwanci.\n\n[Na yi amfani da Soundscape] don gano wani mashaya a tsakiyar York. [Na] yi amfani da zaɓuɓɓuka da dama don farko in gano sannan in samu shi da gaske. Ta kai ni cikin mita 3 daga ƙofar – kyakkyawa sosai!</string>
     <string name="faq_markers_function_question">Menene Alamomi kuma ta yaya zan cimma amfani mafi girma daga gare su?</string>
     <string name="faq_markers_function_answer">Alamomi wurare ne da kuka ajiye. Za su iya zama wurare da za a iya samu a cikin manhajar, ko kuma za su iya zama sabbin wurare da kuka ƙara da kanku. Za ku iya ajiye wurinku na yanzu a matsayin alama ta hanyar zaɓar maɓallin *Wurin da Kake Yanzu* a babban allo sannan ku zaɓi *Ajiye a matsayin Alama*. Za ku iya ajiye wasu wurare a matsayin alama ta hanyar neman wurin da kuke son ajiyewa ta amfani da sandar bincike, ko gano wani wuri ta amfani da maɓallin *Wurare na Kusa*, dukkansu za a same su a babban allon Soundscape. Da zarar kun sami wurin da kuke so, zaɓarsa zai kai ku zuwa allon *Cikakkun Bayanan Wuri*. A wannan allo, zaɓi maɓallin da ake kira *Ajiye a matsayin Alama*.</string>
     <string name="faq_section_getting_the_best_experience">Ta yaya zan samu mafi kyawun amfani daga Soundscape?</string>
     <string name="faq_what_can_I_set_question">Me zan iya kafawa a matsayin siginar sauti?</string>
-    <string name="faq_what_can_I_set_answer">Za ku iya kafa siginar sauti a kan kowane shago, wuri, wurin sha'awa, adireshi, ko mahadar hanyoyi. Akwai hanyoyi kaɗan da za ku iya ƙara alama a wani wuri. Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko ta danna ɗaya daga cikin maɓallan *Wurare na Kusa*, *Alamomi da Tafarkuna*, ko *Wurin da Kake Yanzu* sannan ku zaɓi wuri. Sannan daga allon *Cikakkun Bayanan Wuri*, zaɓi maɓallin *Fara Siginar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna siginar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allo.</string>
+    <string name="faq_what_can_I_set_answer">Za ku iya kafa siginar sauti a kan kowane shago, wuri, wurin sha'awa, adireshi, ko mahaɗar hanyoyi. Akwai hanyoyi kaɗan da za ku iya ƙara alama a wani wuri. Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko ta danna ɗaya daga cikin maɓallan *Wurare na Kusa*, *Alamomi da Tafarkuna*, ko *Wurin da Kake Yanzu* sannan ku zaɓi wuri. Sannan daga allon *Cikakkun Bayanan Wuri*, zaɓi maɓallin *Fara Siginar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna siginar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allo.</string>
     <string name="faq_how_to_use_beacon_question">Ta yaya zan fi amfana da siginar sauti?</string>
     <string name="faq_how_to_use_beacon_answer">Za ku iya tunanin siginar sauti a matsayin *tashar hasken jirgin ruwa domin kunnuwanku*: tana gaya muku inda wurin da kuke zuwa yake, a layi mikakke daga wurin da kuke yanzu. Kamar tashar hasken jirgin ruwa, ba ta gaya muku yadda za ku isa can ba – wataƙila za ku bukaci yin zaɓuka na tafiya a hanya domin guje wa cikas. Sautin da ke ci gaba da bugawa na siginar sauti yana zuwa daga alkiblar wurin da kuke zuwa, kuma yana taimaka muku ku ci gaba da sanin inda wurin yake dangane da ku yayin da kuke tafiya. Idan kuna tafiya kai tsaye zuwa wurin da kuke zuwa, ko kuka nuna wayar zuwa wurin, za ku ji sautin *ƙara* mai ƙarar sauti. Wannan yana taimaka muku ku gane ainihin alkiblar wurin, tun da alkiblar sautin bugawa wani lokaci na iya zama da wahalar ji a wurare masu hayaniya. Domin samun sautin *ƙara* mai ƙarar sauti, riƙe wayar a kwance sannan ka juya a hankali cikin da'ira; juya kanku zuwa hanya ɗaya da wayar zai ba ku mafi kyawun ƙwarewar sauti na sararin samaniya.\n\nWannan ƙira tana da sakamako na halitta kaɗan:\n\n1. Babu wata alkibla *daidai* ta tafiya idan ana amfani da siginar – tare da Soundscape kuku ne kuke zaɓar yadda za ku isa can;\n\n2. Sautin *ƙara* mai ƙarar sauti yana taimaka muku ganin alkiblar wurin da kuke zuwa kawai – ba ya gaya muku yadda za ku isa can;\n\n3. Idan gabaɗaya kun san yadda za ku isa wurin da kuke zuwa, kuna iya son kashe sautin siginar na tsawon mafi yawan tafiyarku sannan ku kunna shi ne kawai idan kuka kusanci wurin da kuke zuwa.</string>
     <string name="faq_why_does_beacon_disappear_question">Me ya sa siginar sauti kan ɓace wani lokaci?</string>
@@ -1376,23 +1386,23 @@
     <string name="faq_beacon_on_address_answer">Eh, za ku iya. Ba a jera adireshi ta atomatik ba amma ana iya samun su ta amfani da filin bincike. Domin ajiye wannan adireshin don kada ku sake nema shi, za ku iya ƙara shi a matsayin alama daga allon *Cikakkun Bayanan Wuri* ta hanyar zaɓar maɓallin *Ajiye a matsayin Alama*.</string>
     <string name="faq_beacon_on_home_question">Ta yaya zan kafa siginar sauti a gidana?</string>
     <string name="faq_beacon_on_home_answer">Soundscape tana goyan bayan kafa siginar sauti a kan adireshi. Don kafa siginar sauti a gidanku, ko wani adireshi dabam, nemo wuri ta amfani da sandar bincike a babban allo. Sannan a allon *Cikakkun Bayanan Wuri*, danna maɓallin *Fara Siginar Sauti*.</string>
-    <string name="faq_how_close_to_destination_question">Idan na kafa siginar sauti a wurin da zan zuwa, yaya kusa Soundscape za ta kai ni?</string>
+    <string name="faq_how_close_to_destination_question">Idan na kafa siginar sauti a wurin da zan je, yaya kusa Soundscape za ta kai ni?</string>
     <string name="faq_how_close_to_destination_answer">Soundscape na iya gano wurin da kuke zuwa a cikin 'yan mitoci, amma ba ƙasa da haka ba. Idan Soundscape ta gano cewa kun kusanci wurin da kuke zuwa, za ku ji sanarwa ta ƙarshe cewa wurin da kuke zuwa yana kusa, sannan siginar za ta kashe.</string>
-    <string name="faq_turn_beacon_back_on_question">Zan iya sake kunna siginar sauti idan na kusanci wurin da zan zuwa?</string>
+    <string name="faq_turn_beacon_back_on_question">Zan iya sake kunna siginar sauti idan na kusanci wurin da zan je?</string>
     <string name="faq_turn_beacon_back_on_answer">Eh, za ku iya sake kunna siginar sauti da zarar Soundscape ta kashe ta ta hanyar zaɓar maɓallin *Kunna Siginar Sauti*; duk da haka, tun da Sabis na Wuri daidai ne kawai kusan mita 10, ba za mu iya tabbatar da yadda siginar za ta yi aiki ba idan kun kasance cikin 'yan mitoci na wurin da kuke zuwa.</string>
-    <string name="faq_road_names_question">Me ya sa Soundscape ke sanar da sunayen hanyoyi sau biyu idan na kusanci mahadar hanyoyi?</string>
-    <string name="faq_road_names_answer">Domin daidaitawa da nau'o'in mahadar hanyoyi daban-daban, Soundscape tana bayyana mahadar hanyoyi a matsayin sassan hanyoyin da ke fita daga wuri guda. Soundscape tana amfani da sautin sararin samaniya don nuna sunayen hanyoyin da ke zuwa hagu, kai tsaye zuwa gaba, da dama, cikin wannan tsari. Idan bayanin mahadar ya fara da hanyar da kuke a kai maimakon wadda ke hagu, to mahadar ta zama siffar T a kwance, tare da hanyar da kuke a kai tana ci gaba zuwa gaba da wata hanya da ta haɗu daga dama. Haka nan, idan bayanin ya ƙunshi hanya zuwa hagu da dama kawai, za ku sani cewa hanyar da kuke a kai ta ƙare a siffar T a gabanku. Wannan hanyar bayyana mahadar hanyoyi kuma tana taimakawa a lokacin da hanya ta canza suna a mahadar.</string>
+    <string name="faq_road_names_question">Me ya sa Soundscape ke sanar da sunayen hanyoyi sau biyu idan na kusanci mahaɗar hanyoyi?</string>
+    <string name="faq_road_names_answer">Domin daidaitawa da nau'o'in mahaɗar hanyoyi daban-daban, Soundscape tana bayyana mahaɗar hanyoyi a matsayin sassan hanyoyin da ke fita daga wuri guda. Soundscape tana amfani da sautin sarari don nuna sunayen hanyoyin da ke zuwa hagu, kai tsaye zuwa gaba, da dama, cikin wannan tsari. Idan bayanin mahaɗar ya fara da hanyar da kuke a kai maimakon wadda ke hagu, to mahaɗar ta zama siffar T a kwance, tare da hanyar da kuke a kai tana ci gaba zuwa gaba da wata hanya da ta haɗu daga dama. Haka nan, idan bayanin ya ƙunshi hanya zuwa hagu da dama kawai, za ku sani cewa hanyar da kuke a kai ta ƙare a siffar T a gabanku. Wannan hanyar bayyana mahaɗar hanyoyi kuma tana taimakawa a lokacin da hanya ta canza suna a mahaɗar.</string>
     <string name="faq_why_not_every_business_question">Me ya sa Soundscape ba ta sanar da kowane shago da na wuce ba?</string>
     <string name="faq_why_not_every_business_answer">An tsara Soundscape don kada ta ba ku sanarwa da yawa. Bugu da ƙari, tana amfani da OpenStreetMap a matsayin tushen bayananta. OpenStreetMap (OSM, https://www.openstreetmap.org/) taswirar duniya ce da al'ummar masu ba da gudummawa ɗaya-ɗaya ke ginawa da gyarawa. Idan Soundscape ba ta sanar da wani shago ko wurin sha'awa ba, mafi yiwuwar dalili shi ne cewa wani memba na al'ummar OSM bai riga ya ƙara shagon a bayanan ba, ko a wasu lokutan bai sabunta shi ba.</string>
     <string name="faq_callouts_stopping_in_vehicle_question">Me ya sa wasu sanarwa ke tsayawa idan ina cikin mota?</string>
-    <string name="faq_callouts_stopping_in_vehicle_answer">Domin hana yawan sanarwa ya zama mai yawa, ba a sanar da wasu rukunoni, kamar mahadar hanyoyi, kai tsaye idan kuna tafiya cikin mota.</string>
+    <string name="faq_callouts_stopping_in_vehicle_answer">Domin hana yawan sanarwa ya zama mai yawa, ba a sanar da wasu rukunoni, kamar mahaɗar hanyoyi, kai tsaye idan kuna tafiya cikin mota.</string>
     <string name="faq_miss_a_callout_question">Yaya idan ban gane sanarwa ba ko na rasa ta saboda hayaniyar muhalli?</string>
     <string name="faq_miss_a_callout_answer">Soundscape tana da jerin sanarwar da kuka samu kwanan nan don ku iya sake dubawa ga sanarwar da kuka iya rasa. Don gano wannan, danna sandar bincike a babban allo. A ƙasan wannan allo, akwai sashen *Sanarwar Kwanan Nan* inda za a jera sanarwar da kuka rasa.</string>
     <string name="faq_section_how_soundscape_works">Yaya Soundscape ke aiki?</string>
     <string name="faq_supported_phones_question">A wace waya Soundscape ke aiki?</string>
     <string name="faq_supported_phones_answer">Soundscape a halin yanzu tana akwai ga iPhone masu tafiyar da iOS 16 ko sama da haka, da kuma wayoyin Android masu tafiyar da Android 11 ko sama da haka.</string>
     <string name="faq_supported_headsets_question">Wace belun kunne ya kamata in yi amfani da su tare da Soundscape?</string>
-    <string name="faq_supported_headsets_answer">Wace belun kunne kuke amfani da ita tare da Soundscape al'amari ne na zaɓin kai, kuma kowane zaɓi yana da amfanoni da rashin amfanoni. Buƙata guda ɗaya kawai ita ce amfani da belun kunne na stereo domin ku ci gajiyar sanarwar sautin 3D na sararin samaniya na Soundscape.</string>
+    <string name="faq_supported_headsets_answer">Wace belun kunne kuke amfani da ita tare da Soundscape al'amari ne na zaɓin kai, kuma kowane zaɓi yana da amfanoni da rashin amfanoni. Buƙata guda ɗaya kawai ita ce amfani da belun kunne na stereo domin ku ci gajiyar sanarwar sautin 3D na sarari na Soundscape.</string>
     <string name="faq_battery_impact_question">Ta yaya Soundscape ke shafar batirin wayata?</string>
     <string name="faq_battery_impact_answer">Rayuwar batir tana bambanta sosai dangane da samfuri da shekarun wayarku. Abin da ke fitar da batir mafi yawa shi ne kunna allo, don haka domin ƙara tsawon rayuwar batirin wayarku, ya kamata ku kiyaye allo a kulle a duk lokacin da za a iya. Domin taimakawa rage tasirin batir na wayarku, Soundscape tana da Yanayin Barci da Yanayin Jinkirtawa. Domin ƙara rage yawan batirin da kuke amfani da shi, idan ba kwa amfani da Soundscape, ya kamata ku tilasta rufe ta ta amfani da Mai Sauya Manhajoji na wayarku.</string>
     <string name="faq_sleep_mode_battery_question">Ta yaya zan yi amfani da Yanayin Barci don rage tasirin Soundscape a kan batirin wayata?</string>
@@ -1402,17 +1412,17 @@
     <string name="faq_headset_battery_impact_question">Ta yaya zaɓina na belun kunne ke shafar rayuwar batirin wayata?</string>
     <string name="faq_headset_battery_impact_answer">A gwaje-gwajenmu, cin batirin belun kunnen Bluetooth yana kama da na belun kunnen waya kuma bai kamata ya zama babban abin la'akari ba idan ana zaɓar belun kunne.</string>
     <string name="faq_background_battery_impact_question">Ta yaya tafiyar da Soundscape a bango ke shafar rayuwar batirin wayata?</string>
-    <string name="faq_background_battery_impact_answer">Soundscape tana amfani da Sabis na Wuri don gano inda kuke. A gwaje-gwajenmu, Soundscape ba ta cin batir fiye da yadda matsakaicin manhajar taswira ke yi ba; amma idan kuna damuwa game da cin batirin wayarku, ga wasu shawarwari kaɗan da za su taimaka rage yawan amfani:\n\n1. Kashe allon nuni gwargwadon iko idan ba ku hulɗa da manhajar.\n\n2. Idan ba kwa amfani da manhajar, ku rufe ta. Soundscape tana amfani da sabis na wuri koyaushe yayin da take aiki domin ta san wurinku a koda yaushe, ko da ba ku motsi. Kada ku manta da sake kunna manhajar idan kuka sake fara tafiyarku.\n\n3. A yanayin sanyi, ku kiyaye wayarku ta kasance mai dumi domin batirori suna aiki mafi rauni a yanayin zafi mai sanyi.</string>
+    <string name="faq_background_battery_impact_answer">Soundscape tana amfani da Sabis na Wuri don gano inda kuke. A gwaje-gwajenmu, Soundscape ba ta cin batir fiye da yadda matsakaicin manhajar taswira ke yi ba; amma idan kuna damuwa game da cin batirin wayarku, ga wasu shawarwari kaɗan da za su taimaka rage yawan amfani:\n\n1. Kashe allon nuni gwargwadon iko idan ba ku hulɗa da manhajar.\n\n2. Idan ba kwa amfani da manhajar, ku rufe ta. Soundscape tana amfani da sabis na wuri koyaushe yayin da take aiki domin ta san wurinku a koda yaushe, ko da ba ku motsi. Kada ku manta da sake kunna manhajar idan kuka sake fara tafiyarku.\n\n3. A yanayin sanyi, ku kiyaye wayarku ta kasance mai dumi domin batirori suna aiki mafi rauni a yanayi mai tsananin sanyi.</string>
     <string name="faq_mobile_data_use_question">Nawa bayanan waya Soundscape ke amfani da su?</string>
     <string name="faq_mobile_data_use_answer">Yawan bayanan wayar da ake amfani da su ya danganta da yadda kuke amfani da Soundscape. Mun tsara manhajar don amfani da ƙananan bayanai kawai idan kuna waje, ta hanyar yin abubuwa kamar ajiye wurare yayin da kuke yawo don kada ku sake sauke su duk lokacin da kuka koma wani wurin da kuka riga kuka je. Don rage yawan bayanan wayar da kuke amfani da su, ku tabbata kun haɗu da Wi-Fi a duk lokacin da za a iya, musamman don sauke manhajar. Idan ba kwa amfani da Soundscape, ya kamata ku yi amfani da maɓallin *Barci* don sanya Soundscape barci ko tilasta rufe manhajar.</string>
     <string name="faq_difference_from_map_apps_question">Ta yaya Soundscape ta bambanta da sauran manhajojin taswira?</string>
-    <string name="faq_difference_from_map_apps_answer">Soundscape tana ba da bayanin yanayi game da abin da ke kewaye da ku don taimakawa a bincike da nemo hanya. Ta amfani da sautin sararin samaniya, Soundscape za ta sanar da wurare masu ban sha'awa, wuraren shakatawa, hanyoyi, da mahadar hanyoyi daga alkiblar da suke a zahiri a muhallinku na kusa yayin da kuke tafiya. Misali, idan kuka wuce wani shago a hannun daminku, za ku ji sunan shagon yana zuwa daga hannun daminku. Yayin da kuke kusantar mahadar hanyoyi, za ku ji kowane sunan hanya yana zuwa daga alkiblar da take kai, farawa daga hagu, gaba sannan dama.\n\nMaimakon umarnin mataki-mataki kamar yadda sauran manhajojin taswira ke bayarwa, Soundscape za ta kunna siginar sauti a alkiblar wurin da kuke zuwa, wanda ke ba ku ikon nemo hanyarku ta duk hanyar da ta fi dacewa da ku, ta amfani da ƙarin masaniyar ku game da abin da ke kewaye da ku da wurin da kuke zuwa. An tsara Soundscape don aiki a bango, wanda ke baiwa dama amfani da wata manhajar umarnin mataki-mataki, yayin da take ci gaba da ba da masaniyar muhalli yayin da kuke kai zuwa wurin da kuke zuwa.</string>
+    <string name="faq_difference_from_map_apps_answer">Soundscape tana ba da bayanin yanayi game da abin da ke kewaye da ku don taimakawa a bincike da nemo hanya. Ta amfani da sautin sarari, Soundscape za ta sanar da wurare masu ban sha'awa, wuraren shakatawa, hanyoyi, da mahaɗar hanyoyi daga alkiblar da suke a zahiri a muhallinku na kusa yayin da kuke tafiya. Misali, idan kuka wuce wani shago a hannun daminku, za ku ji sunan shagon yana zuwa daga hannun daminku. Yayin da kuke kusantar mahaɗar hanyoyi, za ku ji kowane sunan hanya yana zuwa daga alkiblar da take kai, farawa daga hagu, gaba sannan dama.\n\nMaimakon umarnin mataki-mataki kamar yadda sauran manhajojin taswira ke bayarwa, Soundscape za ta kunna siginar sauti a alkiblar wurin da kuke zuwa, wanda ke ba ku ikon nemo hanyarku ta duk hanyar da ta fi dacewa da ku, ta amfani da ƙarin masaniyar ku game da abin da ke kewaye da ku da wurin da kuke zuwa. An tsara Soundscape don aiki a bango, wanda ke ba ku damar amfani da wata manhajar umarnin mataki-mataki, yayin da take ci gaba da ba da masaniyar muhalli yayin da kuke kai zuwa wurin da kuke zuwa.</string>
     <string name="faq_use_with_wayfinding_apps_question">Ta yaya zan yi amfani da Soundscape tare da manhajar nemo hanya?</string>
-    <string name="faq_use_with_wayfinding_apps_answer">An tsara Soundscape domin taimakawa cika bayanai game da muhallinku wanda wataƙila ba ku sani ba in ba haka ba. Ko da yake ba a tsara ta a matsayin manhajar umarnin mataki-mataki ba, ana iya amfani da ita tare da irin waɗannan manhajoji don ba da ƙarin bayani. Domin amfani da Soundscape tare da waɗannan manhajoji, fara manhajar jagorar tafiyarku da farko. Sannan, ku koma zuwa Soundscape ku kafa siginar sauti a kan wurin da kuke zuwa iri ɗaya da ke cikin manhajar jagorar. A wannan lokacin, manhajoji biyu za su kasance suna aiki kuma za ku ji umarnin tafiya daga manhajar jagorarku, yayin da kuke samun sabuntawa game da wurare masu ban sha'awa, mahadar hanyoyi, da nisan ku zuwa wurin da kuke zuwa daga Soundscape.</string>
+    <string name="faq_use_with_wayfinding_apps_answer">An tsara Soundscape domin taimakawa cika bayanai game da muhallinku wanda wataƙila ba ku sani ba in ba haka ba. Ko da yake ba a tsara ta a matsayin manhajar umarnin mataki-mataki ba, ana iya amfani da ita tare da irin waɗannan manhajoji don ba da ƙarin bayani. Domin amfani da Soundscape tare da waɗannan manhajoji, fara manhajar jagorar tafiyarku da farko. Sannan, ku koma zuwa Soundscape ku kafa siginar sauti a kan wurin da kuke zuwa iri ɗaya da ke cikin manhajar jagorar. A wannan lokacin, manhajoji biyu za su kasance suna aiki kuma za ku ji umarnin tafiya daga manhajar jagorarku, yayin da kuke samun sabuntawa game da wurare masu ban sha'awa, mahaɗar hanyoyi, da nisan ku zuwa wurin da kuke zuwa daga Soundscape.</string>
     <string name="faq_controlling_what_you_hear_question">Ta yaya zan sarrafa abin da nake ji da kuma lokacin da nake jin sa a Soundscape?</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape tana ba da hanyoyi da dama don sarrafa abin da kuke ji da lokacin da kuke ji shi:\n\n1. Dakatar da dukkan sauti nan take: Danna allo sau biyu da yatsu biyu don kashe dukkan sauti nan take, gami da duk wata sanarwa da ke kunna a halin yanzu da kuma siginar sauti idan tana kunne. Sanarwa za su sake farawa kai tsaye idan kuka kusanci mahadar hanyoyi ko wurin sha'awa na gaba, amma siginar sauti ba za ta yi haka ba. Zaɓi maɓallin *Kunna Siginar Sauti* a babban allo don sake jin siginar.\n\n2. Dakatar da sanarwa ta atomatik: Idan ba kwa tafiya ko kun riga kun isa wurin da kuke zuwa, wataƙila ba za ku bukaci Soundscape ta ci gaba da sanar da ku abubuwan da ke kewaye da ku ba. Maimakon fita daga manhajar, za ku iya sanya Soundscape a Yanayin Jinkirtawa sannan za ta sake farkawa idan kuka tafi, ko kuma za ku iya sanya Soundscape a Yanayin Barci sannan za ta ci gaba da kashewa har sai kun sake kunna ta. Ko kuma, za ku iya zaɓar *Saitunan* daga menu ku sanya *Matakin Sanarwa* ya zama *Shiru* a sashen *Sarrafa Sanarwa*.\n\n3. Dakatar da siginar sauti: Akwai yanayoyi da dama inda za ku iya kafa wurin da za ku zuwa amma ba kwa bukatar siginar sauti ta kunna. Misali, wataƙila kun san daidai yadda za ku isa wurin da kuke zuwa amma har yanzu kuna son sabuntawa ta atomatik game da nawa nisa kuke da shi. Ko kuma wataƙila kuna bukatar siginar sauti ne kawai idan kuka kusanci wurin da kuke zuwa. Ko da yaya lamarin yake, za ku iya zaɓar lokacin jin siginar ta hanyar sauya maɓallin *Kashe Siginar Sauti*/*Kunna Siginar Sauti* a babban allo.\n\nIdan har yanzu kuna son yin hulɗa da Soundscape amma ba kwa son jin sanarwa ta atomatik, za ku iya sanya *Matakin Sanarwa* ya zama *Shiru* a sashen *Sarrafa Sanarwa* na allon *Saitunan* daga menu. Ko kuma, idan ba za ku yi amfani da Soundscape ba, za ku iya sanya ta ko dai Yanayin Barci ko Yanayin Jinkirtawa ta amfani da maɓallin *Barci* a babban allo.</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape tana ba da hanyoyi da dama don sarrafa abin da kuke ji da lokacin da kuke ji shi:\n\n1. Dakatar da dukkan sauti nan take: Danna allo sau biyu da yatsu biyu don kashe dukkan sauti nan take, gami da duk wata sanarwa da ke kunna a halin yanzu da kuma siginar sauti idan tana kunne. Sanarwa za su sake farawa kai tsaye idan kuka kusanci mahaɗar hanyoyi ko wurin sha'awa na gaba, amma siginar sauti ba za ta yi haka ba. Zaɓi maɓallin *Kunna Siginar Sauti* a babban allo don sake jin siginar.\n\n2. Dakatar da sanarwa ta atomatik: Idan ba kwa tafiya ko kun riga kun isa wurin da kuke zuwa, wataƙila ba za ku bukaci Soundscape ta ci gaba da sanar da ku abubuwan da ke kewaye da ku ba. Maimakon fita daga manhajar, za ku iya sanya Soundscape a Yanayin Jinkirtawa sannan za ta sake farkawa idan kuka tafi, ko kuma za ku iya sanya Soundscape a Yanayin Barci sannan za ta ci gaba da kashewa har sai kun sake kunna ta. Ko kuma, za ku iya zaɓar *Saitunan* daga menu ku sanya *Matakin Sanarwa* ya zama *Shiru* a sashen *Sarrafa Sanarwa*.\n\n3. Dakatar da siginar sauti: Akwai yanayoyi da dama inda za ku iya kafa wurin da za ku je amma ba kwa bukatar siginar sauti ta kunna. Misali, wataƙila kun san daidai yadda za ku isa wurin da kuke zuwa amma har yanzu kuna son sabuntawa ta atomatik game da nawa nisa kuke da shi. Ko kuma wataƙila kuna bukatar siginar sauti ne kawai idan kuka kusanci wurin da kuke zuwa. Ko da yaya lamarin yake, za ku iya zaɓar lokacin jin siginar ta hanyar sauya maɓallin *Kashe Siginar Sauti*/*Kunna Siginar Sauti* a babban allo.\n\nIdan har yanzu kuna son yin hulɗa da Soundscape amma ba kwa son jin sanarwa ta atomatik, za ku iya sanya *Matakin Sanarwa* ya zama *Shiru* a sashen *Sarrafa Sanarwa* na allon *Saitunan* daga menu. Ko kuma, idan ba za ku yi amfani da Soundscape ba, za ku iya sanya ta ko dai Yanayin Barci ko Yanayin Jinkirtawa ta amfani da maɓallin *Barci* a babban allo.</string>
     <string name="faq_holding_phone_flat_question">Shin ina bukatar riƙe wayar a hannuna koyaushe?</string>
-    <string name="faq_holding_phone_flat_answer">A'a! Yayin tafiya za ku iya sanya wayar a jaka ko aljihu ko duk inda ya dace muku. Soundscape za ta yi amfani da alkiblar da kuke tafiya don gane wace sanarwa za ta sanar zuwa hagunku da damanku. Idan kuka daina motsi, Soundscape ba ta san alkiblar da kuke fuskanta ba. Idan siginar sauti tana kunne, za ku lura ta yi shiru har sai kun sake motsi. Za ku iya fitar da wayar don danna maɓallan wuri da bincike da ke ƙasan babban allo a kowane lokaci, amma ku tabbata kun riƙe wayar da saman wayar yana nuni da alkiblar da kuke fuskanta tare da allo yana fuskantar sama. A wannan matsayi na *kwance*, Soundscape za ta yi amfani da kamfas na wayar don gano alkiblar da kuke fuskanta sannan ta ba da sanarwar sararin samaniya daidai. Idan siginar tana kunne, za ku kuma lura ta koma ga cikakkiyar ƙarar sautinta.</string>
+    <string name="faq_holding_phone_flat_answer">A'a! Yayin tafiya za ku iya sanya wayar a jaka ko aljihu ko duk inda ya dace muku. Soundscape za ta yi amfani da alkiblar da kuke tafiya don gane wace sanarwa za ta sanar zuwa hagunku da damanku. Idan kuka daina motsi, Soundscape ba ta san alkiblar da kuke fuskanta ba. Idan siginar sauti tana kunne, za ku lura ƙararta ta ragu har sai kun sake motsi. Za ku iya fitar da wayar don danna maɓallan wuri da bincike da ke ƙasan babban allo a kowane lokaci, amma ku tabbata kun riƙe wayar da saman wayar yana nuni da alkiblar da kuke fuskanta tare da allo yana fuskantar sama. A wannan matsayi na *kwance*, Soundscape za ta yi amfani da kamfas na wayar don gano alkiblar da kuke fuskanta sannan ta ba da sanarwar sarari daidai. Idan siginar tana kunne, za ku kuma lura ta koma ga cikakkiyar ƙarar sautinta.</string>
     <string name="faq_what_is_osm_question">Menene OpenStreetMap kuma me ya sa muke amfani da ita don Soundscape?</string>
     <string name="faq_what_is_osm_answer">Soundscape tana amfani da bayanan taswira don ƙirƙirar sanarwowin sautinta. Babban tushen taswirar mu shi ne OpenStreetMap (www.openstreetmap.org). Wannan dandali ne na taswira da al'ummar masu ba da gudummawa suka ƙirƙira. Ƙungiyoyi da mutane za su iya amfani da kayan aikin OpenStreetMap don inganta bayanan da sanya wuraren su su fi sauƙin shiga.</string>
     <string name="faq_tip_beacon_quiet">Idan kuka sanya wayarku a aljihu kuka daina motsi, sautin siginar zai ragu domin Soundscape ba za ta iya sanin alkiblar da kuke fuskanta ba. Domin gyara wannan, ku sake fara tafiya, ko ku fitar da wayarku ku riƙe ta a kwance.</string>
@@ -1433,9 +1443,9 @@
     <string name="menu_manage_audio">Sauti</string>
     <string name="menu_manage_locale">Yanki</string>
     <string name="menu_manage_accessibility">Samun Dama</string>
-    <string name="menu_media_controls">Sarrafa Kafofin Watsa Labarai</string>
-    <string name="settings_section_media_controls">Yanayin sarrafa kafofin watsa labarai</string>
-    <string name="settings_section_media_controls_description">Wannan saiti yana sarrafa yadda maɓallan sarrafa kafofin watsa labarai da ke a belun kunnenku ko na'urar sarrafawa ke aiki.</string>
+    <string name="menu_media_controls">Maɓallan Sarrafa Sauti</string>
+    <string name="settings_section_media_controls">Yanayin maɓallan sarrafa sauti</string>
+    <string name="settings_section_media_controls_description">Wannan saiti yana sarrafa yadda maɓallan sarrafa sauti da ke a belun kunnenku ko na'urar sarrafawa ke aiki.</string>
     <string name="settings_media_controls_original">Yanayin Asali</string>
     <string name="settings_media_controls_voice_command">Umarnin Murya</string>
     <string name="settings_media_controls_audio_menu">Menu na Sauti</string>
@@ -1458,9 +1468,9 @@
     <string name="street_preview_exit">Fita daga kwaikwayon wuri</string>
     <string name="settings_travel_recording">Kunna rikodin tafiya</string>
     <string name="settings_mix_audio">Haɗa sauti da sauran manhajoji</string>
-    <string name="settings_mix_audio_description">Idan an kashe wannan, sauran manhajojin sauti za su dakata kuma maɓallan sarrafa kafofin watsa labarai na allon kulle za su kasance akwai</string>
+    <string name="settings_mix_audio_description">Idan an kashe wannan, sauran manhajojin sauti za su dakata kuma maɓallan sarrafa sauti na allon kulle za su kasance akwai</string>
     <string name="settings_head_tracking">Kunna bin diddigin kai</string>
-    <string name="settings_head_tracking_description">Sanya sautin sararin samaniya dangane da inda kanku yake fuskanta, ta amfani da bayanan motsi daga AirPods, Bose Frames, ko na'urar IMU ta Bluetooth ta waje da ake goyon baya. Yana daidaitawa kai tsaye yayin da kuke tafiya.</string>
+    <string name="settings_head_tracking_description">Sanya sautin sarari dangane da inda kanku yake fuskanta, ta amfani da bayanan motsi daga AirPods, Bose Frames, ko na'urar IMU ta Bluetooth ta waje da ake goyon baya. Yana daidaitawa kai tsaye yayin da kuke tafiya.</string>
     <string name="settings_show_map">Nuna taswira a allo</string>
     <string name="settings_debug_heading">Zaɓuɓɓukan Gyaran Kwaro</string>
     <string name="settings_search_results_language">Harshen Bincike</string>
@@ -1572,7 +1582,7 @@
     <string name="siri_short_detail">Matakin Sanarwa</string>
     <string name="siri_param_level">Mataki</string>
     <string name="siri_desc_callout_detail">Yana saita yawan abin da Soundscape ke faɗa yayin tafiyarka.</string>
-    <string name="intersection_approaching_intersection_distance">Mahaɗar hanya nisan %1$s</string>
+    <string name="intersection_approaching_intersection_distance">Mahaɗar hanya a nisan %1$s</string>
     <string name="microsoft_copyright">[Asalin manhajar Soundscape ©Microsoft Corporation](https://github.com/microsoft/soundscape) ta samar da sautukan Siginar Sauti da yawancin fassarorin, kuma an samar da ita don amfani ƙarƙashin [lasisin MIT](https://github.com/microsoft/soundscape/blob/main/LICENSE.txt).</string>
     <string name="soundscape_community_copyright">Masu sa kai na [Soundscape Community ©Soundscape Community contributors](https://github.com/soundscape-community/soundscape) sun inganta wasu daga cikin fassarorin, waɗanda aka samar don amfani ƙarƙashin [lasisin MIT](https://github.com/soundscape-community/soundscape/blob/main/LICENSE.txt).</string>
     <string name="help_gps_accuracy_page_title">Daidaiton GPS</string>
