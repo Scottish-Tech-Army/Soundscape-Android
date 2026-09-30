@@ -20,16 +20,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.navigation.NavHostController
 import org.commonmark.node.BulletList
 import org.commonmark.node.Emphasis
 import org.commonmark.node.HardLineBreak
@@ -44,11 +44,15 @@ import org.commonmark.node.StrongEmphasis
 import org.commonmark.node.Text
 import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.text.TextContentRenderer
-import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.navigation.SharedRoutes
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.menu_open_source_licenses
+import org.scottishtecharmy.soundscape.resources.ui_back_button_title
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 private fun Node.toLogText(): String {
@@ -152,8 +156,10 @@ fun List<Node>.withoutAnyRootHeading(): List<Node> {
 @Composable
 fun MarkdownHelpScreen(
     topic: String,
-    navController: NavHostController,
-    modifier: Modifier,
+    onNavigate: (String) -> Unit,
+    onNavigateUp: () -> Unit,
+    onOpenSourceLicenses: (() -> Unit)? = null,
+    modifier: Modifier = Modifier,
     structureLog: StructureLog = StructureLog {}
 ) {
     structureLog.start("HelpScreen")
@@ -185,8 +191,8 @@ fun MarkdownHelpScreen(
             structureLog.start("Scaffold topBar")
             CustomAppBar(
                 title = displayTitle,
-                navigationButtonTitle = stringResource(R.string.ui_back_button_title),
-                onNavigateUp = { navController.popBackStack() },
+                navigationButtonTitle = Res.string.ui_back_button_title.toString(),
+                onNavigateUp = onNavigateUp,
             )
             structureLog.end("Scaffold topBar")
         },
@@ -224,8 +230,8 @@ fun MarkdownHelpScreen(
                                 val fileName = helpTopic.getMarkdownFileName() ?: ""
                                 LinkButton(
                                     text = questionText,
-                                    route = "${HomeRoutes.Help.route}/${HelpTopic.MarkdownFaq(context, fileName, questionText).toRouteParam()}",
-                                    navController = navController,
+                                    route = "${SharedRoutes.HELP}/${HelpTopic.MarkdownFaq(context, fileName, questionText).toRouteParam()}",
+                                    onNavigate = onNavigate,
                                     structureLog = structureLog,
                                     logText = firstNode.toLogText()
                                 )
@@ -250,23 +256,23 @@ fun MarkdownHelpScreen(
                             }.trim()
                             LinkButton(
                                 text = text,
-                                route = "${HomeRoutes.Help.route}/${link.destination}",
-                                navController = navController,
+                                route = "${SharedRoutes.HELP}/${link.destination}",
+                                onNavigate = onNavigate,
                                 structureLog = structureLog,
                                 logText = link.toLogText()
                             )
                         } else {
                             val htmlContent = nodes.joinToString("") { htmlRenderer.render(it) }.trim()
-                             val text = AnnotatedString.fromHtml(
-                                 htmlString = htmlContent,
-                                 linkStyles = TextLinkStyles(
-                                     style = SpanStyle(
-                                         color = MaterialTheme.colorScheme.primary,
-                                         textDecoration = TextDecoration.Underline,
-                                     )
-                                 )
-                                 // TODO 2025-11-17 Hugh Greene: Add linkInteractionListener
-                             )
+                            val text = AnnotatedString.fromHtml(
+                                htmlString = htmlContent,
+                                linkStyles = TextLinkStyles(
+                                    style = SpanStyle(
+                                        color = MaterialTheme.colorScheme.primary,
+                                        textDecoration = TextDecoration.Underline,
+                                    )
+                                )
+                                // TODO 2025-11-17 Hugh Greene: Add linkInteractionListener
+                            )
                             structureLog.unstructured("Text for HTML section: '${nodes.toLogText()}'")
                             Text(
                                 text = text,
@@ -275,6 +281,23 @@ fun MarkdownHelpScreen(
                             )
                         }
                         structureLog.end("LazyColumn item")
+                    }
+                    item {
+                        if (helpTopic.getMarkdownFileName() == HelpTopic.ABOUT_SOUNDSCAPE_FILENAME
+                            && onOpenSourceLicenses != null
+                        ) {
+                            CustomButton(
+                                onClick = onOpenSourceLicenses,
+                                text = Res.string.menu_open_source_licenses.toString(),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .smallPadding()
+                                    .testTag("helpScreenOpenSourceLicenses"),
+                                shape = RoundedCornerShape(spacing.extraSmall),
+                                textStyle = MaterialTheme.typography.bodyLarge,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
                     }
                     structureLog.end("LazyColumn")
                 }
@@ -290,14 +313,12 @@ fun MarkdownHelpScreen(
 private fun LinkButton(
     text: String,
     route: String,
-    navController: NavHostController,
+    onNavigate: (String) -> Unit,
     structureLog: StructureLog,
     logText: String
 ) {
     Button(
-        onClick = {
-            navController.navigate(route)
-        },
+        onClick = { onNavigate(route) },
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(spacing.extraSmall),
         colors = currentAppButtonColors

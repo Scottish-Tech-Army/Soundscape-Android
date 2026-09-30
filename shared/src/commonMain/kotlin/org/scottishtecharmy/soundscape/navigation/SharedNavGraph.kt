@@ -34,6 +34,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.intents.IncomingIntent
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
@@ -560,17 +561,38 @@ fun SharedNavHost(
         }
 
         composable(SharedRoutes.HELP + "/{topic}") { backStackEntry ->
-            val topic = backStackEntry.arguments?.read { getString("topic") } ?: ""
-            SharedHelpScreen(
-                topic = topic,
-                onNavigate = { dest -> navController.navigate(dest) },
-                onNavigateUp = { navController.popBackStack() },
-                onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
-                    { navController.navigate(SharedRoutes.OPEN_SOURCE_LICENSES) }
-                } else {
-                    null
-                },
+            val topicParam = backStackEntry.arguments?.read { getString("topic") } ?: ""
+            val helpTopic = HelpTopic.fromRouteParam(topicParam)
+            val useMarkdownHelp = preferencesProvider.getBoolean(
+                PreferenceKeys.MARKDOWN_HELP,
+                PreferenceDefaults.MARKDOWN_HELP
             )
+            val showMarkdown = useMarkdownHelp
+                    || helpTopic is HelpTopic.MarkdownPage
+                    || helpTopic is HelpTopic.MarkdownFaq
+            if (showMarkdown) {
+                MarkdownHelpScreen(
+                    topic = topicParam,
+                    onNavigate = { dest -> navController.navigate(dest) },
+                    onNavigateUp = { navController.popBackStack() },
+                    onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
+                        { navController.navigate(SharedRoutes.OPEN_SOURCE_LICENSES) }
+                    } else {
+                        null
+                    },
+                )
+            } else {
+                SharedHelpScreen(
+                    topic = topicParam,
+                    onNavigate = { dest -> navController.navigate(dest) },
+                    onNavigateUp = { navController.popBackStack() },
+                    onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
+                        { navController.navigate(SharedRoutes.OPEN_SOURCE_LICENSES) }
+                    } else {
+                        null
+                    },
+                )
+            }
         }
 
         composable(SharedRoutes.OPEN_SOURCE_LICENSES) {

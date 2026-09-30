@@ -29,7 +29,6 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedAdvancedMarkersAn
 import org.scottishtecharmy.soundscape.screens.home.home.SharedDrawerContent
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
-import org.scottishtecharmy.soundscape.screens.home.home.SharedLanguageMismatchDialog
 import org.scottishtecharmy.soundscape.screens.home.home.SharedNewReleaseDialog
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
@@ -503,6 +502,7 @@ fun PreviewDrawerContent() {
         tutorialRunning = false,
         recordingEnabled = false,
         newReleaseDialog = null,
+        preferencesProvider = null,
     )
 }
 

@@ -37,12 +37,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.BuildConfig
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -62,7 +62,8 @@ fun DrawerContent(
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
     val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
-    val useMarkdownHelp = preferences?.getBoolean(MARKDOWN_HELP_KEY, MARKDOWN_HELP_DEFAULT) == true
+    val useMarkdownHelp =
+        preferences?.getBoolean(PreferenceKeys.MARKDOWN_HELP, PreferenceDefaults.MARKDOWN_HELP) == true
 
     ModalDrawerSheet(
         modifier = Modifier.requiredWidth(screenWidth),

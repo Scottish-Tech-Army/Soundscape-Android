@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.heading
@@ -654,32 +655,40 @@ fun SharedHelpScreen(
     onNavigateUp: () -> Unit,
     onOpenSourceLicenses: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
+    structureLog: StructureLog = StructureLog {},
 ) {
+    structureLog.start("HelpScreen")
+    val context = LocalContext.current
+
+    // Find our page
     var sections = Sections(Res.string.menu_help, emptyList())
-    if (topic.startsWith("page")) {
-        val key = topic.substring(4)
-        for (page in helpPages) {
-            if (page.titleId.key == key) {
-                sections = page
+    val helpTopic = HelpTopic.fromRouteParam(topic)
+    when (helpTopic) {
+        is HelpTopic.ResourcePage -> {
+            for (page in helpPages) {
+                if (page.titleId == helpTopic.titleId) {
+                    sections = page
+                }
             }
         }
-    } else if (topic.startsWith("faq")) {
-        val keys = topic.substring(3).split(".")
-        val questionRes = findStringResourceByKey(keys[0])
-        val answerRes = if (keys.size > 1) findStringResourceByKey(keys[1]) else null
-        if (questionRes != null && answerRes != null) {
+
+        is HelpTopic.ResourceFaq -> {
+            // We want to display the question and answer
             sections = Sections(
-                Res.string.faq_title_abbreviated,
+                R.string.faq_title_abbreviated,
                 listOf(
-                    Section(questionRes, SectionType.Title),
-                    Section(answerRes, SectionType.Paragraph)
+                    Section(helpTopic.questionId, SectionType.Title),
+                    Section(helpTopic.answerId, SectionType.Paragraph)
                 )
             )
         }
-    } else {
-        for (page in helpPages) {
-            if (page.titleId == Res.string.menu_help) {
-                sections = page
+
+        else -> {
+            // Default to home
+            for (page in helpPages) {
+                if (page.titleId == R.string.menu_help) {
+                    sections = page
+                }
             }
         }
     }
@@ -687,16 +696,20 @@ fun SharedHelpScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
+            structureLog.start("Scaffold topBar")
             CustomAppBar(
                 title = stringResource(sections.titleId),
                 navigationButtonTitle = stringResource(Res.string.ui_back_button_title),
                 onNavigateUp = onNavigateUp,
             )
+            structureLog.end("Scaffold topBar")
         },
         content = { padding ->
+            structureLog.start("Scaffold content")
             Box(
                 modifier = Modifier.padding(padding)
             ) {
+                structureLog.start("Box")
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
@@ -704,12 +717,16 @@ fun SharedHelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
+                    structureLog.start("LazyColumn")
                     items(sections.sections) { section ->
+                        structureLog.start("LazyColumn item")
                         Box(
                             modifier = Modifier.semantics(mergeDescendants = true) {}
                         ) {
                             when (section.type) {
                                 SectionType.Title -> {
+                                    val text = stringResource(section.textId)
+                                    structureLog.unstructured("Text for Title: '${text}'")
                                     Text(
                                         text = stringResource(section.textId),
                                         style = MaterialTheme.typography.titleMedium,
@@ -726,6 +743,8 @@ fun SharedHelpScreen(
 
                                 SectionType.Paragraph -> {
                                     val htmlText = markdownToHtml(stringResource(section.textId))
+                                    val text = parseHtmlToAnnotatedString(htmlText)
+                                    structureLog.unstructured("Text for HTML section: '${text}'")
                                     Text(
                                         text = parseHtmlToAnnotatedString(htmlText),
                                         style = MaterialTheme.typography.bodyMedium,
@@ -741,11 +760,17 @@ fun SharedHelpScreen(
                                 SectionType.Link, SectionType.Faq -> {
                                     Button(
                                         onClick = {
-                                            if (section.type == SectionType.Faq) {
-                                                onNavigate("${SharedRoutes.HELP}/faq${section.textId.key}.${section.faqAnswer?.key}")
+                                            val routeParam = if (section.type == SectionType.Faq) {
+                                                HelpTopic.ResourceFaq(
+                                                    context,
+                                                    section.textId,
+                                                    section.faqAnswer
+                                                ).toRouteParam()
                                             } else {
-                                                onNavigate("${SharedRoutes.HELP}/page${section.textId.key}")
+                                                HelpTopic.ResourcePage(context, section.textId)
+                                                    .toRouteParam()
                                             }
+                                            onNavigate("${SharedRoutes.HELP}/$routeParam")
                                         },
                                         modifier = Modifier
                                             .fillMaxWidth()
@@ -753,24 +778,33 @@ fun SharedHelpScreen(
                                         shape = RoundedCornerShape(spacing.extraSmall),
                                         colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                     ) {
+                                        structureLog.start("Button")
                                         Box(Modifier.weight(6f)) {
+                                            structureLog.start("Box for text")
+                                            val text = stringResource(section.textId)
+                                            structureLog.unstructured("Text for Button: '${text}'")
                                             Text(
-                                                text = stringResource(section.textId),
+                                                text = text,
                                                 textAlign = TextAlign.Start,
                                                 style = MaterialTheme.typography.titleMedium,
                                             )
+                                            structureLog.end("Box for text")
                                         }
                                         Box(Modifier.weight(1f)) {
+                                            structureLog.start("Box for icon")
                                             Icon(
                                                 Icons.Rounded.ChevronRight,
                                                 null,
                                                 modifier = Modifier.align(Alignment.CenterEnd)
                                             )
+                                            structureLog.end("Box for icon")
                                         }
+                                        structureLog.end("Button")
                                     }
                                 }
                             }
                         }
+                        structureLog.end("LazyColumn item")
                     }
                     item {
                         if (sections.titleId == Res.string.settings_about_app && onOpenSourceLicenses != null) {
@@ -787,8 +821,12 @@ fun SharedHelpScreen(
                             )
                         }
                     }
+                    structureLog.end("LazyColumn")
                 }
+                structureLog.end("Box")
             }
+            structureLog.end("Scaffold content")
         }
     )
+    structureLog.end("HelpScreen")
 }

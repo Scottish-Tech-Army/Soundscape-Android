@@ -9,10 +9,11 @@ import org.commonmark.node.Node
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.text.TextContentRenderer
 import androidx.preference.PreferenceManager
-import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_KEY
-import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.faq_title_abbreviated
+import org.scottishtecharmy.soundscape.resources.menu_help
 import java.io.IOException
 
 sealed class HelpTopic(protected val context: Context) {
@@ -24,8 +25,8 @@ sealed class HelpTopic(protected val context: Context) {
     abstract fun getDisplayTitle(): String
 
     class Home(context: Context) : HelpTopic(context) {
-        override fun toRouteParam(): String = "page${R.string.menu_help}"
-        override fun getDisplayTitle(): String = context.getString(R.string.menu_help)
+        override fun toRouteParam(): String = "page${Res.string.menu_help}"
+        override fun getDisplayTitle(): String = Res.string.menu_help.toString()
     }
 
     class ResourcePage(context: Context, val titleId: Int) : HelpTopic(context) {
@@ -35,7 +36,7 @@ sealed class HelpTopic(protected val context: Context) {
 
     class ResourceFaq(context: Context, val questionId: Int, val answerId: Int) : HelpTopic(context) {
         override fun toRouteParam(): String = "faq$questionId.$answerId"
-        override fun getDisplayTitle(): String = context.getString(R.string.faq_title_abbreviated)
+        override fun getDisplayTitle(): String = Res.string.faq_title_abbreviated.toString()
     }
 
     abstract class MarkdownHelpTopic(
@@ -125,7 +126,7 @@ sealed class HelpTopic(protected val context: Context) {
     {
         override fun toRouteParam(): String = "page:faq:${Uri.encode(fileName)}:${Uri.encode(question)}"
 
-        override fun getDisplayTitle(): String = context.getString(R.string.faq_title_abbreviated)
+        override fun getDisplayTitle(): String = Res.string.faq_title_abbreviated.toString()
     }
 
     companion object {
@@ -136,7 +137,7 @@ sealed class HelpTopic(protected val context: Context) {
         fun fromRouteParam(param: String): HelpTopic {
             val context = LocalContext.current
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-            val useMarkdownHelp = preferences.getBoolean(MARKDOWN_HELP_KEY, MARKDOWN_HELP_DEFAULT)
+            val useMarkdownHelp = preferences.getBoolean(PreferenceKeys.MARKDOWN_HELP, PreferenceDefaults.MARKDOWN_HELP)
 
             fun getHome(): HelpTopic {
                 return if (useMarkdownHelp) {
@@ -146,7 +147,7 @@ sealed class HelpTopic(protected val context: Context) {
                 }
             }
 
-            if (param == "page:${HELP_AND_TUTORIALS_FILENAME}" || param == "page${R.string.menu_help}" || param.isEmpty()) {
+            if (param == "page:${HELP_AND_TUTORIALS_FILENAME}" || param == "page${Res.string.menu_help}" || param.isEmpty()) {
                 return getHome()
             }
 
@@ -179,17 +180,8 @@ sealed class HelpTopic(protected val context: Context) {
                     }
                 }
                 param.startsWith("page") -> {
-                    val rest = Uri.decode(param.substring(4))
-                    val id = rest.toIntOrNull()
-                    if (id != null) {
-                        if (id == R.string.menu_help) {
-                            Home(context)
-                        } else {
-                            ResourcePage(context, id)
-                        }
-                    } else {
-                        MarkdownPage(context, rest)
-                    }
+                    val key = Uri.decode(param.substring(4))
+                    MarkdownPage(context, key)
                 }
                 param.endsWith(".md") -> MarkdownPage(context, Uri.decode(param))
                 else -> getHome()
