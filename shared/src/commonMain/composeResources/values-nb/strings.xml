@@ -259,13 +259,13 @@
     <string name="help_text_automatic_callouts_when_2">**Gå til et bestemt sted**:\n\n Når du er på vei til et bestemt sted, kan automatiske meldinger for veikryss være svært nyttige. Veikryssmeldinger kan fortelle deg om oppsettet til veikryss når du nærmer deg, og bekrefte veien du er på, når du forlater dem.</string>
     <string name="help_text_automatic_callouts_when_3">**Når du trenger stillhet**:\n\n Når du er i ferd med å krysse en vei eller bare vil at appen skal være stille, kan du slå av meldinger. Når meldinger er av, forteller appen bare informasjonen hvis du manuelt trykker på en av knappene *Min posisjon*, *Markører i nærheten*, *Rundt meg* eller *Foran meg*.</string>
     <string name="help_text_automatic_callouts_how_1">**Slå meldinger av eller på :**\n\n Å slå av meldinger gjør appen stille. Meldinger kan slås av i seksjonen *Administrer meldinger* på *Innstillinger*-skjermen ved å sette *Detaljnivå for meldinger* til *Lydløs*, og slås på igjen ved å velge et hvilket som helst annet nivå. På iPhone kan du gjøre det samme ved å be Siri om det, og på Android vil det samme fungere via Gemini når Google lanserer støtte for det. Du kan også gjøre Soundscape stillere ett trinn om gangen med mediekontrollknappene på hodetelefonene dine: hvert trykk på *forrige* går ett trinn ned gjennom *Detaljert*, *Forenklet*, *Grunnleggende* og *Lydløs*, og enda et trykk går tilbake til *Detaljert*. Se hjelpeemnet *Bruk mediekontroller*. Alternativt kan du bruke knappen *Sett i dvalemodus* øverst til høyre på startskjermen for å stoppe Soundscape fra å lese opp meldinger til du vekker appen.</string>
-    <string name="help_text_automatic_callouts_how_2">**Administrere hvilke meldinger du hører :**\n\n For å velge hvilke typer ting Soundscape automatisk skal lese opp, gå til skjermen *Innstillinger* via menyen på *Start*-skjermen. I seksjonen *Administrer meldinger* på *Innstillinger*-skjermen velger du hvor mye appen sier med *Detaljnivå for meldinger*, om den leser opp *Gater og veikryss*, og hvilke *Steder som skal leses opp*. Hvis du ønsker å slå av alle meldinger, setter du *Detaljnivå for meldinger* til *Lydløs*.</string>
+    <string name="help_text_automatic_callouts_how_2">**Administrere hvilke meldinger du hører :**\n\n For å velge hvilke typer ting Soundscape automatisk skal lese opp, gå til skjermen *Innstillinger* via menyen på startskjermen. I seksjonen *Administrer meldinger* på *Innstillinger*-skjermen velger du hvor mye appen sier med *Detaljnivå for meldinger*, om den leser opp *Gater og veikryss*, og hvilke *Steder som skal leses opp*. Hvis du ønsker å slå av alle meldinger, setter du *Detaljnivå for meldinger* til *Lydløs*.</string>
     <string name="help_text_my_location_what">Knappen *Min posisjon* gir deg raskt informasjon som hjelper deg med å finne ut hvor du er. *Min posisjon* forteller deg om nåværende posisjon deriblant ting som retningen du er vendt mot, hvor veier og veikryss i nærheten er og hvor interessepunkter i nærheten er.</string>
     <string name="help_text_my_location_when">*Min posisjon* er nyttig når du må finne ut hvor du er eller hvilken himmelretning du er vendt mot.</string>
     <string name="help_text_my_location_how">Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Min posisjon*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Min posisjon* og lytt.</string>
     <string name="help_text_nearby_markers_what">Knappen *Markører i nærheten* forteller deg om opptil fire markører som er nærmest deg. *Markører i nærheten* er beregnet på å hjelpe deg med å orientere deg selv ved å bruke steder du allerede vet om.</string>
     <string name="help_text_nearby_markers_when">Når du prøver å orientere deg i omgivelsene, kan du bruke *Markører i nærheten* til å høre om steder du kjenner til.</string>
-    <string name="help_text_nearby_markers_how">Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Markører i nærheten*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Markører i nærheten* så hører du fire markører i nærheten av deg.</string>
+    <string name="help_text_nearby_markers_how">Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Markører i nærheten*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Markører i nærheten* så hører du opptil fire markører i nærheten av deg.</string>
     <string name="help_text_around_me_what">Knappen *Rundt meg* forteller deg om én ting i hver av de fire kvadrantene rundt deg (foran deg, til høyre, bak deg og til venstre). *Rundt meg* er beregnet på å hjelpe deg med å orientere deg i omgivelsene.</string>
     <string name="help_text_around_me_when">Når du prøver å orientere deg i omgivelsene, kan du bruke *Rundt meg* til å høre om tingene rundt deg.</string>
     <string name="help_text_around_me_how">Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Rundt meg*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Rundt meg* så hører du fire interessepunkter rundt deg.</string>
@@ -279,9 +279,9 @@
     <string name="help_text_markers_content_2">Du kan markere steder som er personlige og relevante for deg, som hjemmet ditt, kontoret ditt eller din foretrukne dagligvarebutikk. Du kan markere et hvilket som helst sted eller en adresse, og du kan også markere ting som vanligvis ikke vises på kart, for eksempel: innganger til bygninger eller parker, fotgjengerknapper, fotgjengeroverganger, broer, busstopp eller til og med hundens yndlingstre. Bruk disse markørene som referanser når du går.</string>
     <string name="help_text_markers_content_3">For å oppleve markerte steder vil Soundscape automatisk lese opp markerte steder når du går forbi eller nærmer deg dem, eller du kan bruke knappen *Markører i nærheten* nederst på startskjermen for å høre en romlig opplesning av markerte steder rundt deg. Du kan til og med angi et lydsignal på et hvilket som helst markert sted. Når du gjør dette, vil du høre det velkjente Soundscape‑lydsignalet, og du kan bruke det som vanlig.</string>
     <string name="help_text_creating_markers_content_1">Du kan opprette markører på tre måter: ved å søke etter stedet du vil lagre i søkefeltet, finne et sted ved å bruke knappen *Steder i nærheten*, eller ved å bruke knappen *Nåværende posisjon*, som alle finnes på startskjermen. Når du har funnet stedet du ønsker, tar valg av stedet deg til skjermen *Posisjonsinformasjon*. På denne skjermen velger du knappen *Lagre som markør*.</string>
-    <string name="help_text_creating_markers_content_2">Du får nå mulighet til å tilpasse denne markøren. Du kan endre navnet på markøren, og du kan også legge til en annotasjon som vil bli opplest sammen med markøren for å gi litt ekstra informasjon. Når du er ferdig, velger du knappen *"Ferdig"* for å lagre markøren.</string>
+    <string name="help_text_creating_markers_content_2">Du får nå mulighet til å tilpasse denne markøren. Du kan endre navnet på markøren, og du kan også legge til en annotasjon som vil bli opplest sammen med markøren for å gi litt ekstra informasjon. Når du er ferdig, velger du knappen *Ferdig* for å lagre markøren.</string>
     <string name="help_text_customizing_markers_content_1">Hvis du vil gi en tidligere opprettet markør nytt navn eller legge til en annotasjon, velger du markøren fra fanen *Markører* på siden *Markører og ruter*, og deretter knappen *Rediger markør*. Du kan bruke dette til å gi markører beskrivende eller nyttige kallenavn, samt legge inn en lengre beskrivelse i annotasjonsfeltet.</string>
-    <string name="help_text_customizing_markers_content_2">Fra denne skjermen *"Rediger"* kan du også slette en markør hvis du ikke lenger trenger den.</string>
+    <string name="help_text_customizing_markers_content_2">Fra denne skjermen *Rediger* kan du også slette en markør hvis du ikke lenger trenger den.</string>
     <string name="help_text_routes_content_what">Ruter er en rekke veipunkter. Du blir informert når du kommer til hvert veipunkt, og lydsignalet går automatisk videre til neste veipunkt.</string>
     <string name="help_text_routes_content_when">Det kan hende du vil opprette og bruke en rute på et sted du allerede kjenner, for å holde deg på riktig vei. Eller du vil kanskje bruke en rute for å lære deg en ny reise.</string>
     <string name="help_text_routes_content_how_1">**Opprett en rute**:\n\n Gå først til *Markører og ruter*, velg fanen *Ruter* og velg deretter knappen *Ny rute*. Gi ruten et navn og en valgfri beskrivelse, og legg deretter til veipunkter mens du går, eller velg dem fra listen over markører. Du kan endre rekkefølgen på veipunktene langs ruten når som helst ved å redigere ruten.</string>
@@ -320,7 +320,7 @@
     <string name="osm_bench">Benk</string>
     <string name="osm_taxi_waiting_area">Venteområde for drosjer</string>
     <string name="osm_post_office">Postkontor</string>
-    <string name="osm_post_box">Postboks</string>
+    <string name="osm_post_box">Postkasse</string>
     <string name="osm_waste_basket">Søppelkurv</string>
     <string name="osm_shower">Dusj</string>
     <string name="osm_bike_parking">Sykkelparkering</string>
@@ -332,7 +332,7 @@
     <string name="osm_atm">Minibank</string>
     <string name="osm_bus_stop">Busstopp</string>
     <string name="osm_bus_stop_named">Busstopp: %1$s</string>
-    <string name="osm_recycling_bin">Gjenvinningsstasjon</string>
+    <string name="osm_recycling_bin">Gjenvinningsbeholder</string>
     <string name="osm_fountain">Fontene</string>
     <string name="osm_place_of_worship">Tilbedelsessted</string>
     <string name="osm_water_fountain">Drikkefontene</string>
@@ -351,7 +351,7 @@
     <string name="faq_tips_title">Tips</string>
     <string name="faq_section_what_is_soundscape">Hva er Soundscape og hvordan skal jeg bruke den?</string>
     <string name="faq_when_to_use_soundscape_question">Når bør jeg bruke Soundscape?</string>
-    <string name="faq_when_to_use_soundscape_answer">Soundscape har funksjoner og fordeler som dekker en rekke situasjoner og tidsperspektiver. Soundscapes verdi for deg kan også endre seg over tid, så hvordan du bruker appen i dag kan være annerledes enn hvordan du bruker den om tre måneder. Mange tenker på apper i form av *«hvilket problem løser denne appen?»* Soundscape kan absolutt brukes til konkrete behov – for eksempel å holde oversikt over en destinasjon mens du er på vei dit, hjelpe deg å orientere deg når du kommer ut av en t-banestasjon, finne retningen når du går ut av en bil, eller finne veinavnene eller avstanden til neste veikryss. Filosofien bak Soundscape er imidlertid å *«lyse opp verden din med lyd»* – appen er designet for å brukes når som helst du er ute, for å gi deg bevissthet om omgivelsene, for eksempel navnene på gatene du går i, hvilken retning du går, og navnene på virksomhetene du passerer. I denne bruksmodusen har brukere omtalt Soundscape som en *«hyggelig følgesvenn»*-app som understøtter *«serendipitet»*, hjelper til med å *«fylle inn hullene i ditt mentale kart»* og gir mer *«selvtillit når du går»*. Her er noen andre eksempler på hvordan brukerne våre bruker Soundscape i livet sitt:\n\nSoundscape hjalp meg å komme på rett spor igjen etter at jeg gikk av bussen og gikk i feil retning.\n\nSelv i byen hvor jeg har bodd i 3 år, har jeg fått et bedre bilde av hva som er rundt meg [med Soundscape].\n\n3D-lyden forbedrer opplevelsen av en gåtur, fordi jeg føler meg mer tilknyttet omgivelsene... Jeg er mer tilbøyelig til å prøve en ny rute nå som jeg har appen å bruke.\n\nJeg savner tilfeldighetene ved å gå rundt og legge merke til ting. Å ha Soundscape er hyggelig – det krever ingen innsats å høre om ting rundt meg. Den relasjonelle informasjonen er nyttig, og appen er flott for situasjonsforståelse og utforskning av handlegater.\n\n[Jeg brukte Soundscape] for å finne en pub midt i York. [Jeg] brukte flere av alternativene først for å lokalisere og deretter faktisk finne den. Den tok meg til innen 3 meter fra døren – fantastisk!</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape har funksjoner og fordeler som dekker en rekke situasjoner og tidsperspektiver. Soundscapes verdi for deg kan også endre seg over tid, så hvordan du bruker appen i dag kan være annerledes enn hvordan du bruker den om tre måneder. Mange tenker på apper i form av *«hvilket problem løser denne appen?»* Soundscape kan absolutt brukes til konkrete behov – for eksempel å holde oversikt over en destinasjon mens du er på vei dit, hjelpe deg å orientere deg når du kommer ut av en t-banestasjon, finne retningen når du går ut av en bil, eller finne veinavnene eller avstanden til neste veikryss. Filosofien bak Soundscape er imidlertid å *«lyse opp verden din med lyd»* – appen er designet for å brukes når som helst du er ute, for å gi deg bevissthet om omgivelsene, for eksempel navnene på gatene du går i, hvilken retning du går, og navnene på virksomhetene du passerer. I denne bruksmodusen har brukere omtalt Soundscape som en *«hyggelig følgesvenn»*-app som understøtter *«serendipitet»*, hjelper til med å *«fylle inn hullene i ditt mentale kart»* og gir mer *«selvtillit når du går»*. Her er noen andre eksempler på hvordan brukerne våre bruker Soundscape i livet sitt:\n\n«Soundscape hjalp meg å komme på rett spor igjen etter at jeg gikk av bussen og gikk i feil retning.»\n\n«Selv i byen hvor jeg har bodd i 3 år, har jeg fått et bedre bilde av hva som er rundt meg [med Soundscape].»\n\n«3D-lyden forbedrer opplevelsen av en gåtur, fordi jeg føler meg mer tilknyttet omgivelsene... Jeg er mer tilbøyelig til å prøve en ny rute nå som jeg har appen å bruke.»\n\n«Jeg savner tilfeldighetene ved å gå rundt og legge merke til ting. Å ha Soundscape er hyggelig – det krever ingen innsats å høre om ting rundt meg. Den relasjonelle informasjonen er nyttig, og appen er flott for situasjonsforståelse og utforskning av handlegater.»\n\n«[Jeg brukte Soundscape] for å finne en pub midt i York. [Jeg] brukte flere av alternativene først for å lokalisere og deretter faktisk finne den. Den tok meg til innen 3 meter fra døren – fantastisk!»</string>
     <string name="faq_markers_function_question">Hva er markører og hvordan får jeg mest mulig ut av dem?</string>
     <string name="faq_markers_function_answer">Markører er steder du har lagret. De kan være steder som finnes i appen, eller helt nye steder du har lagt til selv. Du kan lagre din nåværende posisjon som en markør ved å velge knappen *Nåværende posisjon* på startskjermen og deretter *Lagre som markør*. Du kan lagre andre steder som markører ved å søke etter stedet du vil lagre i søkefeltet, eller ved å finne et sted med knappen *Steder i nærheten*, begge tilgjengelige på Soundscapes startskjerm. Når du har funnet stedet du ønsker, tar valg av stedet deg til skjermen *Posisjonsinformasjon*. På denne skjermen velger du knappen *Lagre som markør*.</string>
     <string name="faq_section_getting_the_best_experience">Hvordan får jeg det beste ut av Soundscape?</string>
@@ -368,7 +368,7 @@
     <string name="faq_how_close_to_destination_question">Når jeg angir et lydsignal på en destinasjon, hvor nær bringer Soundscape meg?</string>
     <string name="faq_how_close_to_destination_answer">Soundscape kan fastslå posisjonen til destinasjonen din inntil flere meter, men ikke mindre. Når Soundscape fastslår at du nærmer deg destinasjonen, hører du en siste melding om at destinasjonen er i nærheten, og lydsignalet slås av.</string>
     <string name="faq_turn_beacon_back_on_question">Kan jeg slå på igjen lydsignalet når jeg nærmer meg destinasjonen?</string>
-    <string name="faq_turn_beacon_back_on_answer">Ja, du kan slå på lydsignalet igjen etter at Soundscape har slått det av ved å velge knappen *"Slå på lydsignal"*; men siden Stedstjenester bare er nøyaktige til omtrent 10 meter, kan vi ikke garantere hvordan lydsignalet oppfører seg når du er innen noen få meter fra destinasjonen.</string>
+    <string name="faq_turn_beacon_back_on_answer">Ja, du kan slå på lydsignalet igjen etter at Soundscape har slått det av ved å velge knappen *Slå på lydsignal*; men siden Stedstjenester bare er nøyaktige til omtrent 10 meter, kan vi ikke garantere hvordan lydsignalet oppfører seg når du er innen noen få meter fra destinasjonen.</string>
     <string name="faq_road_names_question">Hvorfor leser Soundscape opp veinavn to ganger når jeg nærmer meg et veikryss?</string>
     <string name="faq_road_names_answer">For å tilrettelegge for ulike typer veikryss beskriver Soundscape veikryss som segmenter med vei som går fra et felles punkt. Soundscape bruker romlig lyd til å indikere navnene på veiene som går til venstre, rett frem og til høyre, i den rekkefølgen. Hvis beskrivelsen av veikrysset begynner med veien du er på, i stedet for veien til venstre, danner veikrysset en liggende T, der veien du er på, fortsetter fremover og en vei kommer inn fra høyre. Hvis beskrivelsen bare omfatter en vei til venstre og høyre, vet du at veien du er på, slutter ved en T foran deg. Denne måten å beskrive veikryss på fungerer også når en vei bytter navn ved et veikryss.</string>
     <string name="faq_why_not_every_business_question">Hvorfor kunngjør ikke Soundscape hver virksomhet jeg går forbi?</string>
@@ -446,7 +446,7 @@
     <string name="first_launch_change_language">Endre språk</string>
     <string name="first_launch_change_language_hint">endre språket som appen bruker</string>
     <string name="osm_entrance">Inngang</string>
-    <string name="osm_main_entrance">Hovedinngang</string>
+    <string name="osm_main_entrance">hovedinngang</string>
     <string name="osm_entrance_named_with_destination">%1$s %2$s fra %3$s</string>
     <string name="osm_entrance_with_destination">%1$s %2$s</string>
     <string name="notification_text">Soundscape‑stedstjenesten kjører selv når telefonen er låst.</string>
@@ -481,7 +481,7 @@
     <string name="menu_share_recorded_route">Del reiseregistrering</string>
     <string name="confect_name_to_via">%1$s til %2$s via %3$s</string>
     <string name="confect_name_to">%1$s til %2$s</string>
-    <string name="confect_name_joins">%1$s som kobler %2$s og %3$s</string>
+    <string name="confect_name_joins">%1$s som forbinder %2$s og %3$s</string>
     <string name="confect_name_via">%1$s via %2$s</string>
     <string name="confect_name_pavement_next_to">Fortau ved %1$s</string>
     <string name="confect_name_pavement">Fortau</string>
@@ -532,7 +532,17 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markører og ruter er slettet</string>
     <string name="new_version_info_text">Informasjon om ny versjon</string>
     <string name="new_version_info_completed">Lukk dialog for ny versjon</string>
-    <string name="new_version_info_details">Dette er en stor oppdatering av Soundscape. Reisemodus er mye forbedret. Når du reiser med bil eller buss, kunngjør Soundscape nå veinumre, reiseretningen din og nærliggende tettsteder. Den kunngjør også når du krysser elver, kanaler, fjorder og bukter. Oppdater de offline-kartene dine for å få disse nye funksjonene. Beskrivelsene av busstopp er nå mye bedre for brukere i Storbritannia. Dvalemodus kan nå våkne automatisk når den oppdager at du beveger deg igjen. Du trenger ikke lenger huske å vekke den selv. Vi har omstrukturert den underliggende koden slik at vi kan bygge en iOS-app fra den samme koden. Dette betyr at vi i fremtiden kan lansere en iOS-app med alle funksjonene vi har laget for Android. Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via Kontakt brukerstøtte i hovedmenyen.</string>
+    <string name="new_version_info_details">
+Dette er en stor oppdatering av Soundscape.
+
+Reisemodus er mye forbedret. Når du reiser med bil eller buss, kunngjør Soundscape nå veinumre, reiseretningen din og nærliggende tettsteder. Den kunngjør også når du krysser elver, kanaler, fjorder og bukter. Oppdater de offline-kartene dine for å få disse nye funksjonene. Beskrivelsene av busstopp er nå mye bedre for brukere i Storbritannia.
+
+Dvalemodus kan nå våkne automatisk når den oppdager at du beveger deg igjen. Du trenger ikke lenger huske å vekke den selv.
+
+Vi har omstrukturert den underliggende koden slik at vi kan bygge en iOS-app fra den samme koden. Dette betyr at vi i fremtiden kan lansere en iOS-app med alle funksjonene vi har laget for Android.
+
+Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via Kontakt brukerstøtte i hovedmenyen.
+</string>
     <string name="menu_open_source_licenses">Lisenser for åpen kildekode</string>
     <string name="osm_tag_ferry_terminal">Fergeterminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s-fergeterminal</string>
@@ -540,7 +550,7 @@
     <string name="osm_school">Skole</string>
     <string name="osm_roof">Tak</string>
     <string name="osm_convenience">Nærbutikk</string>
-    <string name="osm_lift_gate">Heveport</string>
+    <string name="osm_lift_gate">Bom</string>
     <string name="osm_toilets">Toaletter</string>
     <string name="osm_parking">Parkering</string>
     <string name="osm_taxi">Taxiholdeplass</string>
@@ -608,7 +618,7 @@
     <string name="osm_hut">Hytte</string>
     <string name="osm_static_caravan">Stasjonær campingvogn</string>
     <string name="osm_bollard">Pullert</string>
-    <string name="osm_block">Blokk</string>
+    <string name="osm_block">Sperreblokk</string>
     <string name="osm_waste_disposal">Avfallscontainer</string>
     <string name="osm_photo_booth">Fotoautomat</string>
     <string name="osm_bbq">Grillplass</string>
@@ -669,7 +679,7 @@
     <string name="osm_camp_site">Campingplass</string>
     <string name="osm_rugby_league">Rugby league-bane</string>
     <string name="osm_roller_skating">Rulleskøytebane</string>
-    <string name="osm_multi">Flerbruk</string>
+    <string name="osm_multi">Flerbruksanlegg</string>
     <string name="osm_ice_hockey">Ishockeybane</string>
     <string name="osm_hapkido">Hapkido</string>
     <string name="osm_croquet">Krokettbane</string>
@@ -1272,7 +1282,7 @@
     <string name="callouts_mobility_description">Informasjon om veikryss og transport</string>
     <string name="callouts_audio_beacon_description">Oppdateringer om avstanden til lydsignalet når det er angitt</string>
     <string name="settings_search_results_language_description">Du kan la online‑søk bruke resultatets lokale språk, eller tvinge det til å returnere engelsk, fransk eller tysk.</string>
-    <string name="preview_go_hint">beveg deg i denne retningen til neste veikryss</string>
+    <string name="preview_go_hint">bevege deg i denne retningen til neste veikryss</string>
     <string name="error_message_route_not_found">Kunne ikke finne ruten i databasen.</string>
     <string name="error_message_deleting_route">Kunne ikke slette ruten.</string>
     <string name="error_message_saving_route">Kunne ikke lagre ruten.</string>
@@ -1329,7 +1339,7 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Talegjenkjenning: ukjent feil.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Talegjenkjenning støttes ikke på denne telefonen.</string>
     <string name="settings_voice_command_listening_prompt">Varsle ved lytting</string>
-    <string name="settings_voice_command_listening_prompt_description">Les opp en melding før talegjenkjenningen starter.</string>
+    <string name="settings_voice_command_listening_prompt_description">Les opp en lyttebeskjed før talegjenkjenningen starter.</string>
     <string name="settings_voice_command_microphone">Mikrofon</string>
     <string name="settings_voice_command_microphone_description">Velg hvilken mikrofon som skal brukes til talekommandoer.</string>
     <string name="battery_optimization_title">Batteribruk i bakgrunnen</string>
@@ -1422,7 +1432,7 @@
     </plurals>
     <string name="help_config_voices_content_ios">Soundscape kan bruke alle stemmene du har lastet ned i Innstillinger-appen på iOS, bortsett fra Siri-stemmene, som ikke er tilgjengelige for Soundscape. Vi anbefaler at du velger en av *Enhanced*-stemmene med høyere kvalitet, men først må du laste ned en stemme. Du kan laste ned stemmer i Innstillinger-appen på iOS ved å gå til Tilgjengelighet &gt; Opplest innhold &gt; Stemmer og trykke på en stemme. For å velge stemmen du vil ha i Soundscape‑appen, går du til *Innstillinger* fra hovedmenyen og velger deretter *Stemmer* under *Lyd*.</string>
     <string name="settings_mix_audio">Blande lyd med andre apper</string>
-    <string name="settings_mix_audio_description">Når deaktivert, vil andre lydapper pause og mediekontroller på låseskjermen bli tilgjengelige</string>
+    <string name="settings_mix_audio_description">Når dette er slått av, settes andre lydapper på pause, og mediekontrollene på låseskjermen blir tilgjengelige</string>
     <string name="settings_head_tracking">Aktiver hodesporing</string>
     <string name="settings_head_tracking_description">Posisjoner den romlige lyden i forhold til hvilken retning hodet ditt peker ved å bruke bevegelsesdata fra støttede AirPods, Bose Frames eller en ekstern Bluetooth‑IMU. Kalibreres automatisk mens du går.</string>
     <string name="sleep_snoozing">I pausemodus</string>
@@ -1534,7 +1544,7 @@
     <string name="legacy_migration_failed">Dataene dine kunne ikke importeres. Din forrige versjon av Soundscape har dem fortsatt — kontakt brukerstøtte fra Innstillinger, Hjelp.</string>
     <string name="legacy_migration_continue">Fortsett</string>
     <string name="callouts_bus_and_tram_stops">Buss- og trikkestopp</string>
-    <string name="callouts_bus_and_tram_stops_description">Annonser busstopp og trikkestopp når du passerer dem</string>
+    <string name="callouts_bus_and_tram_stops_description">Les opp busstopp og trikkestopp når du passerer dem</string>
     <string name="directions_approaching_name">Du nærmer deg %1$s</string>
     <string name="directions_generic_tram">trikk</string>
     <string name="ios_permission_location_when_in_use">Soundscape trenger posisjonen din for å gi lydnavigasjon og beskrive omgivelsene dine.</string>
@@ -1554,7 +1564,7 @@
     <string name="markers_sort_action_distance_ascending">sortere etter avstand, nærmeste først</string>
     <string name="markers_sort_action_distance_descending">sortere etter avstand, fjerneste først</string>
     <string name="callouts_verbosity">Detaljnivå for meldinger</string>
-    <string name="callouts_verbosity_description">Detaljnivået for meldinger styrer hvor mye Soundscape forteller deg mens du går. Modusen Detaljert leser opp alt i nærheten. Modusen Forenklet utelater mindre stier og serviceveier, og gjentar seg sjeldnere. Modusen Grunnleggende leser bare opp gater, veikryss og landemerker. Modusen Lydløs gir ingen automatiske meldinger i det hele tatt, men beholder lydsignaler, ruter og knappene på startskjermen.</string>
+    <string name="callouts_verbosity_description">Detaljnivået for meldinger styrer hvor mye Soundscape forteller deg mens du går. Modusen Detaljert leser opp alt i nærheten. Modusen Forenklet utelater mindre stier og stikkveier, og gjentar seg sjeldnere. Modusen Grunnleggende leser bare opp gater, veikryss og landemerker. Modusen Lydløs gir ingen automatiske meldinger i det hele tatt, men beholder lydsignaler, ruter og knappene på startskjermen.</string>
     <string name="callouts_verbosity_level_silent">Lydløs</string>
     <string name="callouts_verbosity_level_quiet">Grunnleggende</string>
     <string name="callouts_verbosity_level_balanced">Forenklet</string>
