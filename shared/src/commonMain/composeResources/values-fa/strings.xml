@@ -1445,7 +1445,7 @@
     <string name="directions_junction_with_ref_and_name">تقاطع %1$s، %2$s</string>
     <string name="directions_on_road">در %1$s</string>
     <string name="directions_on_road_and_settlement">در %1$s و نزدیک %2$s</string>
-    <string name="directions_on_road_at_junction">در %1$s، %2$s</string>
+    <string name="directions_on_road_at_junction">در %1$s، در %2$s</string>
     <string name="directions_at_junction_inline">در %1$s</string>
     <string name="directions_on_road_and_settlement_since">در %1$s و نزدیک %2$s، %3$s از %4$s</string>
     <string name="directions_towards_settlement">به سمت %1$s، به فاصله %2$s</string>
