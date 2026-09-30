@@ -1473,7 +1473,7 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="osm_motorway">Motorway</string>
     <!-- OpenStreetMap term trunk. A major road below motorway status.-->
     <string name="osm_trunk">Trunk Road</string>
-    <!-- OpenStreetMap term path. A generic unpaved or informal route for walking, cycling etc.-->
+    <!-- OpenStreetMap term path. Spoken for an unnamed footpath: a way for people on foot (sometimes also bikes or horses), paved or not, that isn't a road. It is also the %1$s of the confect_name_* descriptions ("Path to Moor Road"). Not a route that you follow: that is routes_title, and the two must not share a word. Use your language's everyday word for a footpath. -->
     <string name="osm_path">Path</string>
     <!-- OpenStreetMap term raceway. A track used for motor or animal racing.-->
     <string name="osm_raceway">Raceway</string>

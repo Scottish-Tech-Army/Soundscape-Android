@@ -85,3 +85,5 @@ Most serious fixed:
 - `confect_name_to_dead_end`: Inherited TA-G1 (C21): «%1$s முதல் முட்டுச்சந்து வரை» says 'from the path up to the dead end'.
 - `confect_name_to_dead_end_via`: Same TA-G1 'from … to' construction as confect_name_to_dead_end.
 Held for a person: `confect_name_to` (reviewer: candidate); `terms_of_use_medical_safety_disclaimer` (legal text).
+
+**2026-09-30 — `osm_path` no longer shares the Routes word.** It said «பாதை», the same word as `routes_title`, so a footpath sounded like a route. Now «ஒற்றையடிப் பாதை», a footpath word (AI choice, `unconfirmed`). The English comment now says Path means a footpath and must not share a word with Routes.

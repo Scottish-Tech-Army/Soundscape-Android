@@ -24,7 +24,7 @@ The a11y template `talkback_double_tap_template` is «%1$s ਦੋ ਵਾਰ ਟ�
 There is no `pa.lproj`, so Siri phrases stay in English; the help and FAQ text quotes
 them in English inside “ ”.
 
-Questions: `docs/translation-questions/questions-pa.md` (Q1…Q9).
+Questions: `docs/translation-questions/questions-pa.md` (Q1…Q10).
 
 ## Plurals
 
@@ -81,7 +81,8 @@ Nothing yet.
 6. Hamlet «ਢਾਣੀ» (regional) or «ਛੋਟਾ ਪਿੰਡ»? Simulate Location «ਟਿਕਾਣੇ ਦੀ ਨਕਲ»: does ਨਕਲ read as "copy"?
 7. "Hold the phone flat" is now «ਪੱਧਰਾ ਫੜੋ» (PA-S3): is that clear?
 8. **"Ahead" + road name** (`directions_ahead_road`, C24): «%1$s ਅੱਗੇ» since 2026-09-30, name first like «%1$s ਦੇ ਨੇੜੇ» (AI choice; was «ਅੱਗੇ %1$s»). Natural by ear?
-9. Anything else.
+9. **Path** (`osm_path` «ਰਸਤਾ» reads as "way / the way to somewhere", not a footpath (it is also the %1$s of «%1$s, %2$s ਵੱਲ»). Proposed «ਪਗਡੰਡੀ», which may sound rural; «ਪੈਦਲ ਰਸਤਾ» is taken by `osm_walking_path`. Which word?)
+10. Anything else.
 
 ## Provenance
 
