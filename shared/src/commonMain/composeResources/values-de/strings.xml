@@ -1346,7 +1346,7 @@
     <string name="settings_relative_directions_left_right">Links/Rechts</string>
     <string name="callout_settings_position_text">Entfernung und Richtung in Hinweisen zu Orten und Orientierungspunkten einbeziehen</string>
     <string name="callout_settings_position_description">Standardmäßig enthalten Hinweise zu Points of Interest keine Entfernung oder Richtung. Diese Einstellung fügt sie hinzu.</string>
-    <string name="relative_clock_direction">bei %1$s Uhr</string>
+    <string name="relative_clock_direction">auf %1$s Uhr</string>
     <string name="relative_degrees_direction">bei %1$s Grad</string>
     <string name="relative_left_right_direction_ahead">voraus</string>
     <string name="relative_left_right_direction_ahead_left">voraus links</string>

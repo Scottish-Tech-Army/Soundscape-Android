@@ -1346,7 +1346,7 @@
     <string name="settings_relative_directions_left_right">Sol/Sağ</string>
     <string name="callout_settings_position_text">İlgi noktalarını anons ederken mesafe ve yön bilgisini dahil et</string>
     <string name="callout_settings_position_description">Varsayılan olarak, ilgi noktalarına ilişkin anonslarda mesafe veya yön bilgisi yer almaz. Bu ayar bunları ekler.</string>
-    <string name="relative_clock_direction">saat %1$s'{DA}</string>
+    <string name="relative_clock_direction">saat %1$s yönünde</string>
     <string name="relative_degrees_direction">%1$s derecede</string>
     <string name="relative_left_right_direction_ahead">Ön</string>
     <string name="relative_left_right_direction_ahead_left">Ön-sol</string>

@@ -1653,7 +1653,7 @@
     <string name="confect_name_to_dead_end">%1$s spre fundătură</string>
     <string name="confect_name_to_dead_end_via">%1$s spre fundătură prin %2$s</string>
     <string name="relative_clock_hour_1">1</string>
-    <string name="relative_clock_hour_2">2</string>
+    <string name="relative_clock_hour_2">două</string>
     <string name="relative_clock_hour_3">3</string>
     <string name="relative_clock_hour_4">4</string>
     <string name="relative_clock_hour_5">5</string>
@@ -1663,5 +1663,5 @@
     <string name="relative_clock_hour_9">9</string>
     <string name="relative_clock_hour_10">10</string>
     <string name="relative_clock_hour_11">11</string>
-    <string name="relative_clock_hour_12">12</string>
+    <string name="relative_clock_hour_12">douăsprezece</string>
 </resources>

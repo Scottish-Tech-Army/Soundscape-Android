@@ -1350,7 +1350,7 @@
     <string name="settings_relative_directions_left_right">Izquierda/Derecha</string>
     <string name="callout_settings_position_text">Incluir la distancia y la dirección al anunciar puntos de interés</string>
     <string name="callout_settings_position_description">Por defecto, los avisos de puntos de interés no incluyen distancia ni dirección. Esta opción los añade.</string>
-    <string name="relative_clock_direction">a las %1$s en punto</string>
+    <string name="relative_clock_direction">a %1$s en punto</string>
     <string name="relative_degrees_direction">a %1$s grados</string>
     <string name="relative_left_right_direction_ahead">Adelante</string>
     <string name="relative_left_right_direction_ahead_left">Adelante a la izquierda</string>
@@ -1652,16 +1652,16 @@
     <string name="open_in_app_change">Elegir otra aplicación</string>
     <string name="confect_name_to_dead_end">%1$s {es:hacia un callejón sin salida}</string>
     <string name="confect_name_to_dead_end_via">%1$s {es:hacia un callejón sin salida} vía %2$s</string>
-    <string name="relative_clock_hour_1">1</string>
-    <string name="relative_clock_hour_2">2</string>
-    <string name="relative_clock_hour_3">3</string>
-    <string name="relative_clock_hour_4">4</string>
-    <string name="relative_clock_hour_5">5</string>
-    <string name="relative_clock_hour_6">6</string>
-    <string name="relative_clock_hour_7">7</string>
-    <string name="relative_clock_hour_8">8</string>
-    <string name="relative_clock_hour_9">9</string>
-    <string name="relative_clock_hour_10">10</string>
-    <string name="relative_clock_hour_11">11</string>
-    <string name="relative_clock_hour_12">12</string>
+    <string name="relative_clock_hour_1">la una</string>
+    <string name="relative_clock_hour_2">las 2</string>
+    <string name="relative_clock_hour_3">las 3</string>
+    <string name="relative_clock_hour_4">las 4</string>
+    <string name="relative_clock_hour_5">las 5</string>
+    <string name="relative_clock_hour_6">las 6</string>
+    <string name="relative_clock_hour_7">las 7</string>
+    <string name="relative_clock_hour_8">las 8</string>
+    <string name="relative_clock_hour_9">las 9</string>
+    <string name="relative_clock_hour_10">las 10</string>
+    <string name="relative_clock_hour_11">las 11</string>
+    <string name="relative_clock_hour_12">las 12</string>
 </resources>

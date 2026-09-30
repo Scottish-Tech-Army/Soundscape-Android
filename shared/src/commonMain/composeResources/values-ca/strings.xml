@@ -1470,7 +1470,7 @@
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events">Error en escoltar els esdeveniments de baixada del reconeixement de veu.</string>
     <string name="voice_cmd_speech_recognition_error_unknown">Error desconegut del reconeixement de veu.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Aquest telèfon no admet el reconeixement de veu.</string>
-    <string name="relative_clock_direction">a les %1$s en punt</string>
+    <string name="relative_clock_direction">a %1$s en punt</string>
     <string name="relative_degrees_direction">a %1$s graus</string>
     <string name="relative_left_right_direction_ahead">Davant</string>
     <string name="relative_left_right_direction_ahead_left">Davant a l'esquerra</string>
@@ -1652,16 +1652,16 @@
     <string name="open_in_app_change">Tria una altra aplicació</string>
     <string name="confect_name_to_dead_end">%1$s a carrer sense sortida</string>
     <string name="confect_name_to_dead_end_via">%1$s a carrer sense sortida per %2$s</string>
-    <string name="relative_clock_hour_1">1</string>
-    <string name="relative_clock_hour_2">2</string>
-    <string name="relative_clock_hour_3">3</string>
-    <string name="relative_clock_hour_4">4</string>
-    <string name="relative_clock_hour_5">5</string>
-    <string name="relative_clock_hour_6">6</string>
-    <string name="relative_clock_hour_7">7</string>
-    <string name="relative_clock_hour_8">8</string>
-    <string name="relative_clock_hour_9">9</string>
-    <string name="relative_clock_hour_10">10</string>
-    <string name="relative_clock_hour_11">11</string>
-    <string name="relative_clock_hour_12">12</string>
+    <string name="relative_clock_hour_1">la una</string>
+    <string name="relative_clock_hour_2">les dues</string>
+    <string name="relative_clock_hour_3">les 3</string>
+    <string name="relative_clock_hour_4">les 4</string>
+    <string name="relative_clock_hour_5">les 5</string>
+    <string name="relative_clock_hour_6">les 6</string>
+    <string name="relative_clock_hour_7">les 7</string>
+    <string name="relative_clock_hour_8">les 8</string>
+    <string name="relative_clock_hour_9">les 9</string>
+    <string name="relative_clock_hour_10">les 10</string>
+    <string name="relative_clock_hour_11">les 11</string>
+    <string name="relative_clock_hour_12">les 12</string>
 </resources>
