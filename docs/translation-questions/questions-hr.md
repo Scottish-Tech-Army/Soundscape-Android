@@ -88,12 +88,16 @@ toga?
 
 **Na engleskom:** „When should I use Soundscape?” i slično.
 
-**Kako sada zvuči:** „Kada bih **trebao/la** koristiti Soundscape?”, „…kako bih
-**smanjio/la** utjecaj Soundscapea na bateriju”.
+**Kako sada zvuči:** „Kada koristiti Soundscape?”, „Koje slušalice koristiti uz
+Soundscape?”, „Kako koristiti način rada Mirovanje za smanjenje utjecaja
+Soundscapea na bateriju telefona?”. Do 30. rujna je pisalo „Kada bih
+**trebao/la** koristiti Soundscape?” i „…kako bih **smanjio/la** utjecaj…”.
 
-**Što nas brine:** čitač zaslona izgovara kosu crtu naglas.
+**Što nas brine:** čitač zaslona je kosu crtu izgovarao naglas, pa smo pitanja
+preoblikovali bez roda. Novu formu smo odabrali mi; izvorni govornik je još
+nije čuo.
 
-**Pitanje:** je li bolje „Kada koristiti Soundscape?” i „Kako smanjiti…”?
+**Pitanje:** zvuče li nova pitanja prirodno, ili biste ih rekli drukčije?
 
 ### Q4 — „Odgođeno” *(Snooze)*
 

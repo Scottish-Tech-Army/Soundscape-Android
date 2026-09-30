@@ -39,7 +39,7 @@ conditional participle hints («utišali») composes correctly. There is one
 
 Rule C9, and Croatian is on its list. One string.
 
-### HR-G2 — Gender slashes in first-person FAQ questions (`agreed` defect, `unconfirmed` wording)
+### HR-G2 — Gender slashes in first-person FAQ questions (`agreed` defect, wording applied 2026-09-30, `unconfirmed`)
 
 Some FAQ questions are phrased in the *user's* voice, with slashed
 participles: `faq_when_to_use_soundscape_question` «Kada bih trebao/la
@@ -77,7 +77,7 @@ Nothing yet.
 
 1. Callout «najava»: natural?
 2. Beacon «zvučni svjetionik»: odd for a sound?
-3. FAQ headings: rephrase «Kada bih trebao/la…» as «Kada koristiti…»? (HR-G2)
+3. FAQ headings are now «Kada koristiti…», «Kako koristiti… za smanjenje…» (applied 2026-09-30). Natural? (HR-G2)
 4. Snooze «Odgođeno»: clear?
 5. Landmarks «znamenitosti»: too touristy?
 6. Is «Vi» right?
@@ -119,3 +119,5 @@ Most serious fixed:
 Held for a person: `faq_section_what_is_soundscape` (reviewer: unconfirmed); `faq_when_to_use_soundscape_question` (reviewer: unconfirmed); `faq_supported_headsets_question` (reviewer: unconfirmed); `faq_sleep_mode_battery_question` (reviewer: unconfirmed); `faq_snooze_mode_battery_question` (reviewer: unconfirmed).
 Also changed the same day:
 - `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+
+**2026-09-30 — HR-G2 wording applied, on Dave's request.** The five FAQ questions with «trebao/la» / «smanjio/la» were rephrased impersonally: `faq_section_what_is_soundscape` «…i kako ga koristiti?», `faq_when_to_use_soundscape_question` «Kada koristiti Soundscape?», `faq_supported_headsets_question` «Koje slušalice koristiti uz Soundscape?», and the two battery questions «Kako koristiti način rada Mirovanje/Odgoda za smanjenje utjecaja…». Q3 on the sheet now asks whether the new wording is natural. Still open: the six slashes inside the first-person testimonials in `faq_when_to_use_soundscape_answer`, which need a gender picked per quote.
