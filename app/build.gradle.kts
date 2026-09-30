@@ -197,6 +197,7 @@ android {
             "mr",
             "nb",
             "nl",
+            "pa",
             "pl",
             "pt",
             "pt-rBR",

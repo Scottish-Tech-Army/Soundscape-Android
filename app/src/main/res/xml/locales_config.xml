@@ -27,6 +27,7 @@
     <locale android:name="mr" /> <!-- Marathi -->
     <locale android:name="nb" /> <!-- Norwegian -->
     <locale android:name="nl" /> <!-- Dutch -->
+    <locale android:name="pa" /> <!-- Punjabi -->
     <locale android:name="pl" /> <!-- Polish -->
     <locale android:name="pt" /> <!-- Portuguese (Portugal) -->
     <locale android:name="pt-BR" /> <!-- Portuguese (Brazil) -->
