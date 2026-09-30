@@ -141,7 +141,7 @@
     <string name="osm_aikido">Aikido</string>
     <string name="osm_10pin">Kuglanje s deset čunjeva</string>
     <string name="osm_weapons">Trgovina oružjem</string>
-    <string name="osm_pet">Trgovina kućnim ljubimcima</string>
+    <string name="osm_pet">Trgovina za kućne ljubimce</string>
     <string name="osm_money_lender">Zajmodavac</string>
     <string name="osm_gift">Trgovina poklonima</string>
     <string name="osm_books">Knjižara</string>
@@ -448,7 +448,7 @@
     <string name="osm_telescope">Teleskop</string>
     <string name="osm_pier">Mol</string>
     <string name="osm_observatory">Opservatorij</string>
-    <string name="osm_reservoir">Vodospremnik</string>
+    <string name="osm_reservoir">Akumulacijsko jezero</string>
     <string name="osm_monument">Spomenik</string>
     <string name="osm_battlefield">Bojište</string>
     <string name="osm_planetarium">Planetarij</string>
@@ -512,7 +512,7 @@
     <string name="osm_museum">Muzej</string>
     <string name="osm_mall">Trgovački centar</string>
     <string name="osm_volcano">Vulkan</string>
-    <string name="osm_hot_spring">Toplice</string>
+    <string name="osm_hot_spring">Termalni izvor</string>
     <string name="osm_glacier">Ledenjak</string>
     <string name="osm_wastewater_plant">Postrojenje za pročišćavanje otpadnih voda</string>
     <string name="osm_offshore_platform">Platforma na moru</string>
@@ -634,7 +634,7 @@
     <string name="osm_parking_space">Parkirno mjesto</string>
     <string name="osm_motorcycle_parking">Parkiralište za motocikle</string>
     <string name="osm_city">Grad</string>
-    <string name="osm_town">Mjesto</string>
+    <string name="osm_town">Gradić</string>
     <string name="osm_neighbourhood">Četvrt</string>
     <string name="osm_village">Selo</string>
     <string name="osm_hamlet">Zaselak</string>
@@ -648,7 +648,7 @@
     <string name="osm_events_venue">Prostor za događanja</string>
     <string name="tour_welcome">Dobrodošli u vođeni vodič. Ovaj vodič provest će vas kroz glavne značajke aplikacije. Vodič možete zaustaviti u bilo kojem trenutku dodirom na Otkaži vođeni vodič u Glavnom izborniku. Počnimo s opcijom Mjesta u blizini. Omogućuje vam pronalaženje zanimljivih točaka. Gumb Mjesta u blizini nalazi se na Početnom zaslonu, odmah ispod trake za pretraživanje. Dodirnite ga sada kako biste ga isprobali.</string>
     <string name="tour_select_place">Mjesta u blizini grupiraju zanimljive točke prema vrsti. Pregledajte mjesta na popisima i odaberite jedno.</string>
-    <string name="tour_create_marker_started">Odlično! Sada ste na zaslonu Pojedinosti o lokaciji. Odavde možete spremiti ovu lokaciju kao oznaku, kao i izvesti druge radnje. Uz Soundscape možete označiti bilo koje mjesto koje vam je važno, poput svog doma, autobusne postaje ili čak mjesta na kojem trenutačno stojite. Isprobajte to sada. Spremite ovu lokaciju kao oznaku dodirom na Spremi kao oznaku.</string>
+    <string name="tour_create_marker_started">Odlično! Sada ste na zaslonu Pojedinosti o lokaciji. Odavde možete spremiti ovu lokaciju kao oznaku, kao i izvesti druge radnje. Uz Soundscape možete označiti bilo koje mjesto koje vam je važno, poput svog doma, autobusnog stajališta ili čak mjesta na kojem trenutačno stojite. Isprobajte to sada. Spremite ovu lokaciju kao oznaku dodirom na Spremi kao oznaku.</string>
     <string name="tour_create_marker_done">Odlično! Prilikom stvaranja oznake možete urediti njezin naziv i dodati bilješke. Isprobajte to sada, a kada budete spremni, dodirnite Gotovo.</string>
     <string name="tour_my_location">Sada kada znate kako koristiti oznake, pogledajmo neke druge značajke. Pri dnu zaslona nalaze se četiri gumba. Isprobat ćemo svaki od njih. Gumb s lijeve strane je Moja lokacija. Opisuje vašu trenutnu lokaciju. Pokušajte ga dodirnuti sada.</string>
     <string name="tour_around_me">Sljedeći gumb je Oko mene. On vam govori što se nalazi u blizini u svakom smjeru. Dodirnite Oko mene.</string>
@@ -1202,7 +1202,7 @@
     <string name="faq_when_to_use_soundscape_question">Kada bih trebao/la koristiti Soundscape?</string>
     <string name="faq_when_to_use_soundscape_answer">Soundscape ima značajke i prednosti koje obuhvaćaju razne situacije i vremenske okvire. Vrijednost koju vam Soundscape pruža također se može mijenjati tijekom vremena, pa se način na koji ga koristite danas može razlikovati od načina na koji ćete ga koristiti za tri mjeseca. Ljudi često razmišljaju o aplikacijama u smislu *koji problem ova aplikacija dobro rješava?* Soundscape se svakako može koristiti za određene potrebe – primjerice za praćenje odredišta dok se prema njemu krećete, za snalaženje pri izlasku iz stanice metroa, za orijentaciju nakon izlaska iz automobila ili za pronalaženje naziva ulica odnosno udaljenosti do sljedećeg raskrižja. Međutim, filozofija koja stoji iza Soundscapea jest *osvijetliti vaš svijet zvukom* – aplikacija je osmišljena da se koristi kad god ste vani, kako bi vam pružila ambijentalnu svijest o okolini, primjerice nazive ulica u kojima se nalazite, smjer u kojem se krećete i nazive trgovina pored kojih prolazite. U ovom načinu korištenja, naši korisnici opisuju Soundscape kao *ugodnog pratitelja* koji potiče *slučajna otkrića*, pomaže *popuniti praznine u vašoj mentalnoj karti* i pruža veće *samopouzdanje pri hodanju*. Evo nekoliko primjera kako naši korisnici koriste Soundscape u svom životu:\n\nSoundscape mi je pomogao da se vratim na pravi put nakon što sam izašao/la iz autobusa i krenuo/la u pogrešnom smjeru.\n\nČak i u gradu u kojem živim već 3 godine, izgradio/la sam bolju sliku onoga što me okružuje [uz pomoć Soundscapea].\n\n3D zvuk poboljšava moj doživljaj šetnje jer se osjećam povezanije sa svojom okolinom … vjerojatnije je da ću isprobati novu rutu sada kada imam aplikaciju koju mogu koristiti.\n\nNedostaje mi ono slučajno otkrivanje stvari dok hodam uokolo i primjećujem ih. Lijepo je imati Soundscape – ne zahtijeva nikakav trud da čujem o stvarima oko sebe. Informacije o odnosima u prostoru su korisne, a aplikacija je odlična za situacijsku svijest i istraživanje trgovačkih ulica.\n\n[Koristio/la sam Soundscape] da pronađem pub u centru Yorka. [Koristio/la] sam niz njegovih opcija kako bih ga najprije locirao/la, a zatim i doista pronašao/la. Doveo me na 3 metra od vrata – sjajno!</string>
     <string name="faq_markers_function_question">Što su oznake i kako da ih najbolje iskoristim?</string>
-    <string name="faq_markers_function_answer">Oznake su mjesta koja ste spremili. To mogu biti mjesta koja se mogu pronaći unutar aplikacije, ili potpuno nova mjesta koja ste sami dodali. Svoju trenutnu lokaciju možete spremiti kao oznaku odabirom gumba *Trenutačna lokacija* na početnom zaslonu, a zatim odabirom *Spremi kao oznaku*. Druge lokacije možete spremiti kao oznaku pretraživanjem mjesta koje želite spremiti pomoću trake za pretraživanje, ili pronalaženjem mjesta pomoću gumba *Mjesta u blizini*, oboje dostupno na početnom zaslonu Soundscapea. Kada pronađete željeno mjesto, odabirom istog otvorit će se zaslon *Detalji lokacije*. Na tom zaslonu odaberite gumb *Spremi kao oznaku*.</string>
+    <string name="faq_markers_function_answer">Oznake su mjesta koja ste spremili. To mogu biti mjesta koja se mogu pronaći unutar aplikacije, ili potpuno nova mjesta koja ste sami dodali. Svoju trenutnu lokaciju možete spremiti kao oznaku odabirom gumba *Trenutačna lokacija* na početnom zaslonu, a zatim odabirom *Spremi kao oznaku*. Druge lokacije možete spremiti kao oznaku pretraživanjem mjesta koje želite spremiti pomoću trake za pretraživanje, ili pronalaženjem mjesta pomoću gumba *Mjesta u blizini*, oboje dostupno na početnom zaslonu Soundscapea. Kada pronađete željeno mjesto, odabirom istog otvorit će se zaslon *Pojedinosti o lokaciji*. Na tom zaslonu odaberite gumb *Spremi kao oznaku*.</string>
     <string name="faq_section_getting_the_best_experience">Kako da najbolje iskoristim Soundscape?</string>
     <string name="faq_what_can_I_set_question">Što mogu postaviti kao svjetionik?</string>
     <string name="faq_what_can_I_set_answer">Zvučni svjetionik možete postaviti na bilo koju tvrtku, mjesto, zanimljivu točku, adresu ili raskrižje. Postoji nekoliko načina da dodate svjetionik na lokaciju. Najprije pogledajte detalje lokacije koristeći traku za pretraživanje kako biste pronašli mjesto, ili dodirom na gumb *Mjesta u blizini*, *Oznake i rute* ili *Trenutačna lokacija* i odabirom lokacije. Zatim na zaslonu *Pojedinosti o lokaciji* odaberite gumb *Postavi zvučni svjetionik*. Dodirom na njega vratit ćete se na početni zaslon i uključiti zvučni svjetionik koji dolazi iz smjera odabranog mjesta. Naziv mjesta, zajedno s udaljenošću i fizičkom adresom, ako je dostupna, sada će biti prikazani na glavnom zaslonu.</string>
@@ -1348,7 +1348,7 @@
     <string name="fab_add_route">Dodaj rutu</string>
     <string name="route_waypoint_progress">Ruta %1$s na putnoj točki %2$s od %3$s</string>
     <string name="route_beacon_progress">Svjetionik na %1$s</string>
-    <string name="home_screen_title">Soundscape početni zaslon</string>
+    <string name="home_screen_title">Početni zaslon Soundscapea</string>
     <string name="settings_reset_button">Vrati postavke na zadano</string>
     <string name="settings_reset_button_hint">vratili postavke na zadane vrijednosti i zatim ponovno pokrenuli aplikaciju.</string>
     <string name="settings_reset_dialog_title">Jeste li sigurni?</string>
@@ -1374,7 +1374,17 @@
     <string name="new_version_info_text">Informacije o novom izdanju</string>
     <string name="new_version_info_completed">Zatvori dijaloški okvir o novom izdanju</string>
     <string name="menu_open_source_licenses">Licence otvorenog koda</string>
-    <string name="new_version_info_details">Ovo je veliko ažuriranje Soundscapea. Način rada za putovanje znatno je poboljšan. Kada putujete automobilom ili autobusom, Soundscape sada najavljuje brojeve cesta, smjer vašeg kretanja i obližnja naselja. Najavljuje i kada prelazite rijeke, kanale, estuarije i zaljeve. Ažurirajte svoje izvanmrežne karte kako biste dobili te nove značajke. Opisi autobusnih stajališta sada su znatno bolji za korisnike u Ujedinjenom Kraljevstvu. Način rada Mirovanje sada se može automatski probuditi kada otkrije da se ponovno krećete. Više ga ne morate sami buditi. Preuredili smo temeljni kôd kako bismo iz istog kôda mogli izraditi i iOS aplikaciju. To znači da ćemo u budućnosti moći objaviti iOS aplikaciju sa svim značajkama koje smo izradili za Android. Molimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, putem opcije Kontaktirajte podršku u glavnom izborniku.</string>
+    <string name="new_version_info_details">
+Ovo je veliko ažuriranje Soundscapea.
+
+Način rada za putovanje znatno je poboljšan. Kada putujete automobilom ili autobusom, Soundscape sada najavljuje brojeve cesta, smjer vašeg kretanja i obližnja naselja. Najavljuje i kada prelazite rijeke, kanale, estuarije i zaljeve. Ažurirajte svoje izvanmrežne karte kako biste dobili te nove značajke. Opisi autobusnih stajališta sada su znatno bolji za korisnike u Ujedinjenom Kraljevstvu.
+
+Način rada Mirovanje sada se može automatski probuditi kada otkrije da se ponovno krećete. Više ga ne morate sami buditi.
+
+Preuredili smo temeljni kôd kako bismo iz istog kôda mogli izraditi i iOS aplikaciju. To znači da ćemo u budućnosti moći objaviti iOS aplikaciju sa svim značajkama koje smo izradili za Android.
+
+Molimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, putem opcije Kontaktiraj podršku u glavnom izborniku.
+</string>
     <string name="about_soundscape">Soundscape koristi inovativnu tehnologiju temeljenu na zvuku kako bi ljudima pomogao izgraditi bogatiju svijest o svojoj okolini. To ljude čini samopouzdanijima i sposobnijima za samostalno kretanje.</string>
     <string name="copyright_notices">Soundscape se oslanja na ove izvrsne vanjske biblioteke i podatke. Kliknite na poveznice kako biste vidjeli njihove licence:</string>
     <string name="osm_copyright">[©OpenStreetMap suradnici](https://www.openstreetmap.org/copyright) pružaju sve geografske podatke za izradu karata i zvuka koji se koriste u Soundscapeu.</string>
@@ -1541,13 +1551,13 @@
     <string name="action_no_other_waypoints">Nema drugih putnih točaka</string>
     <string name="action_service_not_running">Najprije otvorite Soundscape</string>
     <string name="legacy_migration_title">Uvoz spremljenih podataka</string>
-    <string name="legacy_migration_description">Vaše oznake i rute prenose se iz prethodne verzije Soundscape. Traženje mjesta na koja se odnose može potrajati trenutak.</string>
+    <string name="legacy_migration_description">Vaše oznake i rute prenose se iz prethodne verzije Soundscapea. Traženje mjesta na koja se odnose može potrajati trenutak.</string>
     <string name="legacy_migration_progress">Uvezeno %1$s od %2$s</string>
     <string name="legacy_migration_complete">Vaše oznake i rute spremne su za upotrebu.</string>
     <string name="legacy_migration_needs_map_data">Soundscape treba internetsku vezu kako bi pronašao mjesta koja ste spremili. Povežite se i pokušajte ponovno ili se tome vratite sljedeći put kada otvorite Soundscape.</string>
     <string name="legacy_migration_try_again">Pokušaj ponovno</string>
     <string name="legacy_migration_not_now">Ne sada</string>
-    <string name="legacy_migration_failed">Vaše podatke nije bilo moguće uvesti. Prethodna verzija Soundscape ih još uvijek ima — kontaktirajte podršku u Postavke, Pomoć.</string>
+    <string name="legacy_migration_failed">Vaše podatke nije bilo moguće uvesti. Prethodna verzija Soundscapea ih još uvijek ima — kontaktirajte podršku u izborniku Postavke, Pomoć.</string>
     <string name="legacy_migration_continue">Nastavi</string>
     <string name="callouts_bus_and_tram_stops">Autobusna i tramvajska stajališta</string>
     <string name="callouts_bus_and_tram_stops_description">Najavi autobusna i tramvajska stajališta dok prolazite pored njih</string>
