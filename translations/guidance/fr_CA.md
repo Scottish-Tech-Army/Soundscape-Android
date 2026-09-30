@@ -31,11 +31,16 @@ translators had made them differ. The rule now:
 3. **POI names (`osm_*`) are left as they are.** They already carry
    Québec usage that French lacks («Dépanneur», «Stationnement», «Hôtel de
    ville», «Guichet automatique bancaire», «Centre de jardinage»).
-4. **Terms follow French** (Dave): «point de repère» (Waypoint), «balise
-   sonore» (Beacon), and French's Callout usage. fr_CA's own «point de
-   cheminement», «annonce» and «balise audio» are gone. «balise sonore» is
-   unified even where Microsoft's fr-CA said «balise audio», matching what
-   French did.
+4. **Terms follow French** (Dave): since the French reviewer's answers
+   (2026-09-30) that means «annonce» (Callout), «étape» (Waypoint),
+   «croisement» (Intersection), «balise sonore» always in full (Beacon), and the
+   Simplifié / Essentiel level names. «balise sonore» is unified even where
+   Microsoft's fr-CA said «balise audio», matching what French did.
+   **Two exceptions, both earlier decisions of Dave's that the French change
+   did not override:** Sleep/Snooze keep Microsoft parity («Mettre en veille»,
+   «Désactivé temporairement», FRCA-T1) rather than French's «pause», and the
+   vehicle directions keep Microsoft's «Voyageant vers le Nord» /
+   «Se déplaçant vers l'est» rather than French's «Vous vous déplacez» (rule 1).
 
 **Rule for future passes:** translate fr first, then derive fr_CA by the
 layer above. Don't translate fr_CA independently, or the two drift apart
@@ -61,7 +66,9 @@ collision as Serbian SR-T1. Microsoft had «Désactivé temporairement» for
 Snooze. Something like «En veille automatique» / «En pause jusqu'au
 départ» is needed.
 
-### FRCA-G1 — «vers impasse» (`agreed` defect, `unconfirmed` wording)
+### FRCA-G1 — «vers impasse» (`agreed` defect; «vers une impasse» applied 2026-09-30, wording `unconfirmed`)
+
+**2026-09-30:** dead ends now have their own template (C21), which says «%1$s {fr:vers une impasse}», keeping fr_CA's «vers». French chose «menant à une impasse». The questionnaire (Q3) mentions both.
 
 «%1$s vers %2$s» gives «Sentier vers impasse», with no article. The same fix
 as FR-G1: «une impasse».
@@ -83,11 +90,11 @@ Nothing yet.
 
 Numbered as on the questionnaire.
 
-1. Callout «notification»: natural, or «annonce»? It clashes with the phone's
-   own notifications. The term came over from French, which is AI-only.
+1. «annonce» (Callout), «étape» (Waypoint), «croisement» (Intersection): all
+   carried over from the French reviewer's answers. Right for Quebec?
 2. Beacon «balise sonore»: natural? Also from French, AI-only.
-3. «Sentier vers une impasse»? The app now says «Sentier vers l’impasse» (FR-G2
-   adds the article). (FRCA-G1)
+3. «Sentier vers une impasse» (applied 2026-09-30), or French's «menant à une
+   impasse»? (FRCA-G1)
 4. «Tout est prêt!» instead of «Vous êtes prêt!»? (FRCA-R1)
 5. Articles now added before street names («sur la rue Sainte-Catherine», «le long
    du boulevard Saint-Laurent»). Right for Quebec? (FR-G2)
@@ -111,3 +118,5 @@ sweep.** Nothing uploaded.
 **2026-09-28 — Weblate checks pass.** The unit-symbol plurals had empty slots, now filled. `osm_dock` → «Bassin portuaire». FR-T2 is still open. Uploaded live.
 
 **2026-09-29 — Full review of all 1586 units, 13 fixes uploaded.** Checked against the French review of the same day. 1487 units match fr apart from the Canadian layer, which is applied everywhere. Of the 99 real differences, nearly all are Microsoft fr-CA wording, kept under rule 1: «Voyageant vers le Nord» / «Vers le Nord» next to «Se déplaçant vers l'est» / «Face à l'est», «Forum Aux Questions», «Démarrer un Itinéraire», «%1$s tout près». The inconsistent direction phrasing is Microsoft's and sits with FR-S2. 12 fixes carry today's French fixes across, because fr_CA had the same defects: quadrants, facing, wayfinding skills, «rues commerçantes», «commerce devant lequel je passe?», `osm_subway_named`, the two entrance templates → «{fr:de %1$s}» (C18), «notification spatiale», «annoncée» + *Terminé*, *Réactiver le son de la balise*, «libres». `callouts_panel_title` was already Microsoft fr-CA's «Écouter mon environnement». One fix is fr_CA's own: `osm_ferry_terminal_named` «%1$s terminal de ferry» → «Terminal de traversier %1$s» (word order, and matches `osm_tag_ferry_terminal_named`). `osm_drugstore` «Pharmacie» (same as pharmacy) was left as normal Québec usage. Uploaded with `--skip-validate`; all 13 re-fetched and matched exactly.
+
+**2026-09-30 — French reviewer's decisions carried over (Dave's request).** 119 strings. 81 were identical to the pre-change French, allowing for the Canadian layer, and took the new French plus the layer. 38 had Canadian or Microsoft wording of their own (or were new dead-end templates), and had the terms changed in place: annonce, croisement, étape (with agreement written by hand), balise sonore in full. The Siri help keeps the group word «Soundscape balise», and the stop phrase becomes «Soundscape arrête la balise sonore»: fr-CA has no phrase file of its own and falls back to fr.lproj. Not carried over: Sleep/Snooze (FRCA-T1) and the vehicle-direction wording (rule 1). The Siri catalog was regenerated from these strings, which also restores «Annonce» and «Étape suivante» there.

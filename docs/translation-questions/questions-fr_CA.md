@@ -33,9 +33,9 @@ la personne s'oriente elle-même.
 
 Quelques notions qui reviennent dans les questions :
 
-- **Notification** *(callout)* : un court message parlé sur ce devant quoi on
-  passe, par exemple « Café », « Trottoir à côté de rue Principale » ou « En
-  direction du nord le long de rue Principale ». On l'entend en son 3D, depuis
+- **Annonce** *(callout)* : un court message parlé sur ce devant quoi on
+  passe, par exemple « Café », « Trottoir à côté de la rue Principale » ou « En
+  direction du nord le long de la rue Principale ». On l'entend en son 3D, depuis
   la direction où se trouve l'endroit.
 - **Balise sonore** *(audio beacon)* : quand on choisit une destination, un son
   régulier et répété se fait entendre dans les écouteurs depuis la direction de
@@ -61,23 +61,24 @@ aide aussi.
 
 ---
 
-### Q1 — « Notification » ou « annonce »? *(Callout)*
+### Q1 — « Annonce » *(Callout, changed from «notification»)*
 
 **Quand on l'entend :** c'est le nom des courts messages parlés décrits
 plus haut. Il apparaît surtout dans les réglages, par exemple
-« Notifications automatiques ».
+« Annonces automatiques ».
 
 **En anglais :** « Callout », « Automatic Callouts ».
 
-**Ce que dit l'application :** « Notification », « Notifications
-automatiques ».
+**Ce que dit l'application :** « Annonce », « Annonces automatiques ». Avant,
+c'était « Notification ».
 
-**Ce qui nous fait hésiter :** « notification » désigne aussi les
-notifications du téléphone (messages, courriels…), ce qui peut prêter à
-confusion. « Annonce » serait peut-être plus clair.
+**Ce qui nous fait hésiter :** une personne de langue maternelle française
+(de France) a choisi « annonce », parce que « notification » désigne aussi les
+notifications du téléphone. Nous l'avons repris pour le Canada, ainsi que
+« étape » pour les points d'un itinéraire et « croisement » pour
+« intersection ».
 
-**La question :** lequel sonne le plus naturel : « notification », « annonce »,
-ou autre chose?
+**La question :** ces mots conviennent-ils au Québec, ou diriez-vous autre chose?
 
 ### Q2 — « Balise sonore » *(Audio Beacon)*
 
@@ -94,7 +95,7 @@ ne savons pas s'il évoque naturellement un son qui indique une direction.
 
 **La question :** est-ce naturel? Sinon, que diriez-vous?
 
-### Q3 — « Sentier vers impasse » *(Dead-end way description)*
+### Q3 — « Sentier vers une impasse » *(Dead-end way description)*
 
 **Quand on l'entend :** en marchant, quand on passe devant un embranchement.
 L'application dit où mène ce chemin.
@@ -102,10 +103,10 @@ L'application dit où mène ce chemin.
 **En anglais :** « Path to Moor Road », « Path to dead end ».
 
 **Ce que dit l'application :** « Sentier vers Moor Road », « Sentier vers
-l’impasse » (l'article est maintenant ajouté automatiquement).
+une impasse ».
 
-**Ce qui nous fait hésiter :** « vers l’impasse » est peut-être moins naturel
-que « Sentier vers une impasse » ou « Sentier sans issue ».
+**Ce qui nous fait hésiter :** en France, on a retenu « Sentier menant à une
+impasse », et « sans issue » a été jugé un peu anxiogène.
 
 **La question :** lequel préférez-vous ?
 
