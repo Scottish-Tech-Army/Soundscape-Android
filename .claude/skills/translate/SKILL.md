@@ -69,7 +69,8 @@ indistinguishable from this run's. `fetch` deletes its own outputs before writin
      translation's choices wherever the English didn't change. If the change needs
      nothing from this language (an English typo fix, say), don't rewrite it:
      acknowledge it instead, with
-     `python3 scripts/find-stale-translations.py --lang <code> --acknowledge <key> ...`.
+     `python3 scripts/find-stale-translations.py --lang <code> --acknowledge <key> ...`
+     (one language per call). Weblate still marks it "needs editing" until step 9 clears it.
    - **Plural units** have `source`/`target` objects of `{quantity: text}`. Translate every
      quantity the language uses (the same set as its other plurals) — see
      [[compose-plurals-select-on-int-only]].
@@ -124,6 +125,19 @@ indistinguishable from this run's. `fetch` deletes its own outputs before writin
    (the stale check only sees committed changes). Report a short table: language,
    untranslated/stale strings done, anything skipped or acknowledged.
 
+9. **If you acknowledged anything, clear Weblate's "needs editing" marks.** Weblate flags
+   every translation when its English changes and only unflags it when the text changes,
+   so an acknowledged string would count as untranslated there forever. Once the commit is
+   pushed and Weblate has pulled it (its repository status shows the commit), run
+   ```
+   python3 .claude/skills/translate/scripts/weblate_sync.py clear-needs-editing [--lang <code> ...]
+   ```
+   It is a dry run: it lists the units it would set back to translated, and holds any the
+   repo still has pending or whose Weblate text differs from the repo's. Check the list,
+   then rerun with `--apply`. This writes to a shared service, so ask the user first
+   unless they already asked for it in this session. It changes only the unit's state,
+   never its text, so Weblate's next update from the repo leaves it alone.
+
 ## Notes
 
 - **Translate the whole string, never just the part that changed** (rule C16 in
@@ -138,5 +152,6 @@ indistinguishable from this run's. `fetch` deletes its own outputs before writin
   from Weblate's old squash add-on carry the squash's time; see the script's docstring.
 - Weblate now only mirrors the repo and collects suggestions; it accepts no direct
   translations and never commits back. `weblate_sync.py` is kept for reading from it
-  (suggestions, statistics). Never upload through it: an upload would be overwritten by
-  Weblate's next update from the repo.
+  (suggestions, statistics), plus `clear-needs-editing` (step 9), which changes only unit
+  state. Never upload through it: an upload would be overwritten by Weblate's next update
+  from the repo.
