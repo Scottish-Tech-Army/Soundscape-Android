@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 A well-preserved Microsoft baseline, but Microsoft made two unusual term
 choices (PTBR-T1) that are worth putting to a speaker. The hints compose
 correctly. The Siri phrases (`pt-BR.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-pt_BR.md` (Q1…Q8).
+`docs/translation-questions/questions-pt_BR.md` (Q1…Q9).
 
 ## Glossary
 
@@ -80,7 +80,8 @@ wording. Measured on the Rio Grande do Sul extract: 93% of Portuguese-language s
 5. Callout «notificação»: confused with phone notifications?
 6. Siri phrases «Soundscape arredores / rota / sinalizador / parar sinalizador…»: natural?
 7. Articles are now chosen from the name («ao longo do Parque Ibirapuera»). Right? (PTBR-G1)
-8. Anything else.
+8. **The four detail levels** (Detalhado / Simplificado / Essencial / Silencioso), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+9. Anything else.
 
 ## Provenance
 

@@ -121,7 +121,19 @@ ste!“).
 
 **Vprašanje:** je to v redu?
 
-### Q6 — Še kaj? *(Anything else)*
+### Q6 — Štiri ravni podrobnosti *(Four detail levels, renamed 2026-09-30)*
+
+**Kdaj se sliši:** v nastavitvah, kjer po posluhu izberete, koliko aplikacija govori med hojo.
+
+**V angleščini:** „Detailed / Simplified / Essential / Silent“
+
+**Kako se sliši zdaj:** Podrobno / Poenostavljeno / Osnovno / Brez zvoka. Poenostavljeno izpusti manjše poti in se redkeje ponavlja; Osnovno napoveduje samo ulice, križišča in orientacijske točke.
+
+**Kaj nas skrbi:** pravkar smo preimenovali srednji ravni. Prej sta bili „Uravnoteženo“ in „Tiho“, vendar so naravni govorci drugih jezikov stara angleška imena ocenili kot nejasna: „Tiho“ zveni kot glasnost. Nova imena smo izbrali mi, ne naravni govorec slovenščine.
+
+**Vprašanje:** Ali se štiri ravni ob poslušanju zlahka razlikujejo in so razumljive? Bi srednji dve poimenovali drugače?
+
+### Q7 — Še kaj? *(Anything else)*
 
 Če se kakšen stavek sliši kot prevod iz angleščine, je predolg ali nejasen, nam
 sporočite.

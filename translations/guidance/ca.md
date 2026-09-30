@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Catalan.** It has been AI-only since
 2026-08-23. The hints compose with «Fes doble toc per %1$s». There is no
 `ca.lproj`, so the Siri phrases stay in English. Questions:
-`docs/translation-questions/questions-ca.md` (Q1…Q7).
+`docs/translation-questions/questions-ca.md` (Q1…Q8).
 
 ## Glossary
 
@@ -68,7 +68,8 @@ Nothing yet.
 4. Is «tu» right? The FAQ currently uses «vós» (CA-R2).
 5. Callout «avís de veu»: natural?
 6. Beacon «balisa sonora»: natural? (AI-only term, asked for confirmation)
-7. Anything else.
+7. **The four detail levels** (Detallat / Simplificat / Essencial / Silenciós), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
 
 ## Provenance
 

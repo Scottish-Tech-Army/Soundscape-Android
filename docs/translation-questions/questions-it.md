@@ -143,7 +143,19 @@ davanti a via o piazza.
 
 **La domanda:** suona giusto? Hai notato un nome che esce male?
 
-### Q7 — Altro? *(Anything else)*
+### Q7 — I quattro livelli di dettaglio *(Four detail levels, renamed 2026-09-30)*
+
+**Quando lo senti:** nelle impostazioni, dove si sceglie a orecchio quanto parla l'app durante il cammino.
+
+**In inglese:** "Detailed / Simplified / Essential / Silent"
+
+**Come suona ora:** Dettagliato / Semplificato / Essenziale / Silenzioso. Il Semplificato tralascia i sentieri minori e si ripete meno; l'Essenziale annuncia solo strade, incroci e punti di riferimento.
+
+**Cosa ci lascia in dubbio:** abbiamo appena rinominato i due livelli centrali. Prima erano "Bilanciato" e "Discreto", ma parlanti nativi di altre lingue trovavano poco chiari i vecchi nomi inglesi: "Quiet" faceva pensare al volume. I nuovi nomi li abbiamo scelti noi, non un madrelingua italiano.
+
+**La domanda:** i quattro livelli si distinguono e si capiscono bene all'ascolto? Chiameresti diversamente i due centrali?
+
+### Q8 — Altro? *(Anything else)*
 
 Se una frase sembra tradotta dall'inglese, è troppo lunga o poco chiara,
 faccelo sapere.

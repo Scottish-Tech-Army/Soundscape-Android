@@ -19,7 +19,7 @@ Read with [`_common.md`](_common.md).
 - «continuă la stânga» is descriptive (C11).
 - There is no `ro.lproj`, so the Siri phrases stay in English (PL-C1).
 
-Questions: `docs/translation-questions/questions-ro.md` (Q1…Q6).
+Questions: `docs/translation-questions/questions-ro.md` (Q1…Q7).
 
 ## Glossary
 
@@ -54,7 +54,8 @@ Nothing yet.
 3. Callout «anunț»: natural?
 4. Snooze «În amânare»: clear?
 5. Beacon «baliză audio»: natural?
-6. Anything else.
+6. **The four detail levels** (Detaliat / Simplificat / Esențial / Silențios), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+7. Anything else.
 
 ## Provenance
 

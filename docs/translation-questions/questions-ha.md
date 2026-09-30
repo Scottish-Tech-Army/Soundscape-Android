@@ -168,7 +168,23 @@ Gabana", "Alamomin Kusa"; koyarwa tana cewa "Gaba da Ni", "Alamomi Kusa da Ni".
 *Which names are best for the four buttons? And for Snooze, «Hutawa» or
 «Jinkirtawa»?*
 
-### Q7 — Wani abu kuma? *(Anything else)*
+### Q7 — Matakan bayani huɗu *(Four detail levels, renamed 2026-09-30)*
+
+**Lokacin da ake ji:** a cikin saituna, inda ake zaɓa ta hanyar saurare yawan abin da manhajar za ta faɗa yayin tafiya.
+*In the settings, where you choose by ear how much the app says as you walk.*
+
+**Da Turanci:** "Detailed / Simplified / Essential / Silent"
+
+**Yadda yake yanzu:** Cikakke / Sauƙaƙe / Muhimmi / Shiru. "Sauƙaƙe" yana tsallake ƙananan hanyoyi kuma yana maimaita ƙasa; "Muhimmi" yana sanar da tituna, mahaɗar hanyoyi da wuraren da aka sani kawai.
+*Simplified skips minor paths and repeats less; Essential only calls out streets, junctions and landmarks.*
+
+**Abin da ke damun mu:** yanzu muka canza sunayen matakai biyu na tsakiya. A da sun kasance "Daidaito" da "Kaɗan", amma masu jin wasu harsuna sun ga sunayen Turanci na da ba su da sauƙin fahimta. Mu ne muka zaɓi sababbin sunayen, ba mai jin Hausa a matsayin harshen uwa ba.
+*We have just renamed the middle two, which were «Daidaito» and «Kaɗan»: speakers of other languages found the old English names unclear. We chose the new names, not a Hausa speaker.*
+
+**Tambaya:** Shin matakan huɗu suna da sauƙin bambancewa da fahimta idan aka ji su? Za ka ba wa biyun na tsakiya wasu sunaye?
+*Are the four easy to tell apart by ear? Would you name the middle two differently?*
+
+### Q8 — Wani abu kuma? *(Anything else)*
 
 Idan wata jimla ta yi kama da fassara daga Turanci, ta yi tsayi, ko ba a fahimce
 ta ba, ku faɗa mana.

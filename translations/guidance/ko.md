@@ -24,7 +24,7 @@ Read with [`_common.md`](_common.md).
 - The Siri phrases (`ko.lproj`) match the help text.
 
 The questions are confirmation, not repair. Questions:
-`docs/translation-questions/questions-ko.md` (Q1…Q7).
+`docs/translation-questions/questions-ko.md` (Q1…Q8).
 
 ## Glossary
 
@@ -69,7 +69,8 @@ Nothing yet.
 4. Siri phrases «Soundscape 주변 / 경로 / 비콘…»: natural to say?
 5. Register: is 합니다체 right?
 6. Screen reader hints: is «두 번 탭하여 오디오 비콘 음소거하기» natural, and what does Android TalkBack say around the hint? (KO-B1)
-7. Anything else.
+7. **The four detail levels** (상세 / 간소화 / 핵심 / 무음), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
 
 ## Provenance
 

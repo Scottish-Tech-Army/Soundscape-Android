@@ -17,7 +17,7 @@ idiomaticity, because Hausa is the language here where machine translation
 is least reliable. **Treat every term as a guess until a speaker has seen
 it.** The template «Danna sau biyu don %1$s» composes with the hints. There
 is no `ha.lproj`, so the Siri phrases stay in English. Questions:
-`docs/translation-questions/questions-ha.md` (Q1…Q7).
+`docs/translation-questions/questions-ha.md` (Q1…Q8).
 
 ## Glossary
 
@@ -51,7 +51,8 @@ Nothing yet.
 4. «Titin X, ta juya hagu»: a description, or an instruction? (HA-S1)
 5. Register: respectful plural «ku» or singular «ka»? The app mixes them («Kun shirya!» vs «Yanzu kana iya jin…»).
 6. The four home-screen buttons have three names each (label «Matsayi Na» / help «Inda Nake» / directions «Wurina», and so on); which? Also Snooze «Hutawa» (UI) vs «Jinkirtawa» (FAQ).
-7. Anything else.
+7. **The four detail levels** (Cikakke / Sauƙaƙe / Muhimmi / Shiru), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
 
 ## Provenance
 

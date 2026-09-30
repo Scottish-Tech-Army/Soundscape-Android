@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 Italian is the best-preserved Microsoft baseline. The hints compose
 correctly («Tocca due volte per disattivare l'audiofaro»), «è sulla
 sinistra» is descriptive (C11), and the Siri phrases (`it.lproj`) match the
-help text. Questions: `docs/translation-questions/questions-it.md` (Q1…Q7).
+help text. Questions: `docs/translation-questions/questions-it.md` (Q1…Q8).
 
 ## Glossary
 
@@ -65,7 +65,8 @@ Nothing yet.
 4. «È tutto pronto!» instead of «Sei pronto!»? (IT-R1)
 5. Siri phrases «Soundscape dintorni / percorso / audiofaro / ferma audiofaro…»: natural?
 6. Articulated prepositions are now automatic («alla Scala», «sul Corso»). Right? (IT-G1)
-7. Anything else.
+7. **The four detail levels** (Dettagliato / Semplificato / Essenziale / Silenzioso), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
 
 ## Provenance
 

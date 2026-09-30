@@ -103,7 +103,19 @@ kommer ingen ihåg dem.
 
 **Frågan:** Låter de naturligt? Skulle du säga något annat?
 
-### Q4 — Något annat? *(Anything else)*
+### Q4 — De fyra detaljnivåerna *(Four detail levels, renamed 2026-09-30)*
+
+**När du hör det:** i inställningarna, där man väljer efter gehör hur mycket appen säger under promenaden.
+
+**På engelska:** "Detailed / Simplified / Essential / Silent"
+
+**Så låter det nu:** Detaljerad / Förenklad / Grundläggande / Tyst. Förenklad hoppar över mindre stigar och upprepar sig mer sällan; Grundläggande nämner bara gator, korsningar och landmärken.
+
+**Det här är vi osäkra på:** vi har precis döpt om de två mittersta nivåerna. Förut hette de "Balanserad" och "Lågmäld", men modersmålstalare av andra språk tyckte att de gamla engelska namnen var otydliga: "Quiet" lät som ljudvolym. De nya namnen valde vi, inte någon med svenska som modersmål.
+
+**Frågan:** Är de fyra nivåerna lätta att skilja åt och förstå när man hör dem? Skulle du kalla de två mittersta något annat?
+
+### Q5 — Något annat? *(Anything else)*
 
 Om en mening låter översatt från engelska, är för lång eller otydlig, säg gärna
 till.

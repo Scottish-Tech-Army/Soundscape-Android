@@ -139,7 +139,19 @@ rakendus „Metsa tänaval“. Kui nime ei saa käänata (nt „E20“), jääb 
 
 **Küsimus:** kas see kõlab õigesti? Kas teate nimesid, mida see valesti käänab?
 
-### Q7 — Midagi muud? *(Anything else)*
+### Q7 — Neli üksikasjalikkuse taset *(Four detail levels, renamed 2026-09-30)*
+
+**Millal see kõlab:** seadetes, kus valitakse kõrva järgi, kui palju rakendus teel räägib.
+
+**Inglise keeles:** „Detailed / Simplified / Essential / Silent“
+
+**Kuidas see praegu kõlab:** Üksikasjalik / Lihtsustatud / Põhiline / Hääletu. Lihtsustatud jätab väiksemad rajad välja ja kordab harvem; Põhiline teatab ainult tänavatest, ristmikest ja orientiiridest.
+
+**Mis meid kahtlema paneb:** nimetasime just kaks keskmist taset ümber. Enne olid need „Tasakaalustatud“ ja „Vaikne“, kuid teiste keelte emakeelsed kõnelejad pidasid vanu ingliskeelseid nimesid ebaselgeks: „Vaikne“ kõlab nagu helitugevus. Uued nimed valisime meie, mitte eesti keele emakeelne kõneleja.
+
+**Küsimus:** kas neli taset on kuuldes kergesti eristatavad ja arusaadavad? Kas nimetaksid kaks keskmist teisiti?
+
+### Q8 — Midagi muud? *(Anything else)*
 
 Kui mõni lause kõlab nagu tõlge inglise keelest, on liiga pikk või ebaselge,
 andke teada.

@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Arabic.** It has been AI-only since
 2026-08-22. The verbal-noun hints («كتم صوت المنارة الصوتية») compose with
 «انقر نقرًا مزدوجًا لـ %1$s». The authored Siri phrases (`ar.lproj`) match the
-help text. Questions: `docs/translation-questions/questions-ar.md` (Q1…Q6).
+help text. Questions: `docs/translation-questions/questions-ar.md` (Q1…Q7).
 
 ## Glossary
 
@@ -53,7 +53,8 @@ Nothing yet.
 3. «كل شيء جاهز!» instead of «أنت جاهز!»? (AR-R1)
 4. Snooze «غافٍ»: clear?
 5. Siri phrases «Soundscape المحيط / المسار / المنارة / أوقف المنارة…»: natural?
-6. Anything else.
+6. **The four detail levels** (مفصّل / مبسّط / أساسي / صامت), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+7. Anything else.
 
 ## Provenance
 

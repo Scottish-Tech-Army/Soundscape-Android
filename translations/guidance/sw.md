@@ -21,7 +21,7 @@ already work:
 - The «ku»-infinitive hints compose with «Gusa mara mbili %1$s».
 - There is no `sw.lproj`, so the Siri phrases stay in English.
 
-Questions: `docs/translation-questions/questions-sw.md` (Q1…Q5).
+Questions: `docs/translation-questions/questions-sw.md` (Q1…Q6).
 
 ## Glossary
 
@@ -54,7 +54,8 @@ Nothing yet.
 2. Is the Swahili generally natural, or does it read as machine translation?
 3. Callout «tangazo la sauti»: natural?
 4. Landmarks «vivutio»: too touristy?
-5. Anything else.
+5. **The four detail levels** (Kwa Kina / Rahisi / Muhimu / Kimya), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+6. Anything else.
 
 ## Provenance
 

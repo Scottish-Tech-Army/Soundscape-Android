@@ -160,7 +160,19 @@ için Türkçe bir meslek adı bilmiyoruz.
 **Soru:** "5 numaralı kavşak", "Kavşak 5" ya da başka bir biçim mi? Vapur mu,
 feribot mu? "Rigger" Türkçede nasıl denir?
 
-### Q8 — Başka bir şey? *(Anything else)*
+### Q8 — Dört ayrıntı düzeyi *(Four detail levels, renamed 2026-09-30)*
+
+**Ne zaman duyulur:** ayarlarda, uygulamanın yürürken ne kadar konuşacağının kulakla seçildiği yerde.
+
+**İngilizcesi:** "Detailed / Simplified / Essential / Silent"
+
+**Şu an nasıl:** Ayrıntılı / Sadeleştirilmiş / Temel / Sessiz. Sadeleştirilmiş küçük patikaları atlar ve daha az tekrar eder; Temel yalnızca caddeleri, kavşakları ve simge yerleri bildirir.
+
+**Bizi düşündüren:** ortadaki iki düzeyin adını az önce değiştirdik. Önceden "Dengeli" ve "Sakin" idiler, ancak başka dillerin anadili konuşurları eski İngilizce adları belirsiz buldu: "Quiet" ses düzeyi gibi geliyordu. Yeni adları anadili Türkçe olan biri değil, biz seçtik.
+
+**Soru:** Dört düzey duyulduğunda kolayca ayırt ediliyor ve anlaşılıyor mu? Ortadaki ikisine başka ad verir miydiniz?
+
+### Q9 — Başka bir şey? *(Anything else)*
 
 İngilizceden çevrilmiş gibi duran, çok uzun ya da anlaşılmayan bir cümle varsa
 bize bildirin.

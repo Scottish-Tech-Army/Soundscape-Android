@@ -14,7 +14,7 @@ Read with [`_common.md`](_common.md).
 **No native speaker has reviewed Slovak.** It has been AI-only since
 2026-08-21. There are two `agreed` defects: the C9 dead-end case, and an
 iOS-only VoiceOver template that doesn't fit the hints (SK-B1, the case
-that produced rule C13). Questions: `docs/translation-questions/questions-sk.md` (Q1…Q7).
+that produced rule C13). Questions: `docs/translation-questions/questions-sk.md` (Q1…Q8).
 
 ## Glossary
 
@@ -68,7 +68,8 @@ Nothing yet.
 4. Snooze «Drieme»: clear?
 5. Is vykanie right?
 6. Beacon «zvukový maják»: natural? (AI-only term, asked for confirmation)
-7. Anything else.
+7. **The four detail levels** (Podrobný / Zjednodušený / Základný / Bez zvuku), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
 
 ## Provenance
 

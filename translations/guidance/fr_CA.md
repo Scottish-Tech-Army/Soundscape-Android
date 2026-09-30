@@ -91,7 +91,8 @@ Numbered as on the questionnaire.
 4. «Tout est prêt!» instead of «Vous êtes prêt!»? (FRCA-R1)
 5. Articles now added before street names («sur la rue Sainte-Catherine», «le long
    du boulevard Saint-Laurent»). Right for Quebec? (FR-G2)
-6. Anything else.
+6. **The four detail levels** (Détaillé / Simplifié / Essentiel / Silencieux), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+7. Anything else.
 
 ## Provenance
 

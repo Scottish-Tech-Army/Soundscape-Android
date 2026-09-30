@@ -19,7 +19,7 @@ Read with [`_common.md`](_common.md).
   split (see `bg.md` BG-T4).
 - «%1$s, vede doleva» is descriptive (C11).
 
-One `agreed` defect. Questions: `docs/translation-questions/questions-cs.md` (Q1…Q7).
+One `agreed` defect. Questions: `docs/translation-questions/questions-cs.md` (Q1…Q8).
 
 ## Glossary
 
@@ -67,7 +67,8 @@ Nothing yet.
 4. Snooze «Dřímá»: clear?
 5. Is vykání right?
 6. Beacon «zvukový maják»: natural? (AI-only term, asked for confirmation)
-7. Anything else.
+7. **The four detail levels** (Podrobný / Zjednodušený / Základní / Bez zvuku), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
 
 ## Provenance
 

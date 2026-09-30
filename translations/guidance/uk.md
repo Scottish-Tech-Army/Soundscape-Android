@@ -20,7 +20,7 @@ Read with [`_common.md`](_common.md).
 | Waypoint | зупинка | `agreed` | ~~маршрутна точка~~ | Google Maps Ukrainian uses «зупинка» for a stop added to a route. «маршрутна точка» was a calque of our own doc's "route point" gloss (rule C1) |
 | Callout | оголошення | `confirmed` | ~~підказка~~ | Kept unchanged on the reporter's second look — see "Rejected". Ukrainian has no good word for this; «оголошення» is the settled least-bad choice, not an oversight |
 | Guided tutorial | Інтерактивний тур | `agreed` | ~~Керований навчальний посібник~~, ~~Навчання~~ | Reporter proposed it 2026-09-18 as provisional ("cannot find any real examples of usage in Ukrainian applications"), confirmed OK 2026-09-21. Also replaces «Навчання» in `tour_finish` |
-| Detail levels | Докладний / Збалансований / Тихий / Беззвучний | `confirmed` | — | `callouts_verbosity_level_*`. Reporter, 2026-09-25: "easy to understand and distinguish" as currently translated. Kept when the English became Simplified / Essential (C22, 2026-09-30): the names needn't be literal. The 2026-09-30 pass replaced them with «Спрощений / Основний» by mistake; restored the same day |
+| Detail levels | Докладний / Спрощений / Основний / Беззвучний | `agreed` (Dave), `unconfirmed` (speaker) | — | `callouts_verbosity_level_*`. The reporter confirmed the old «Збалансований / Тихий» as distinct on 2026-09-25. When the English became Simplified / Essential (C22, 2026-09-30), Dave overrode that confirmation for literal names, to be asked again (open question). Record the reporter's answer either way |
 | Dead end | тупик | `agreed` | ~~кінець дороги~~ | «кінець дороги» is "end of the road", not the street type. Reporter, 2026-09-21. See UK-G1 for the case it must take |
 
 ### Waypoint declension map (`agreed`, mechanical)
@@ -164,7 +164,8 @@ change was never the mechanical swap it appeared to be (rule C3).
 1. **The other 54 map-name templates (UK-G3).** The reporter is collecting
    notes on the callouts that sound wrong (2026-09-25). Apply those when they
    arrive, then ask about any of the 54 their notes don't cover.
-2. Anything else.
+2. **The four detail levels** (Докладний / Спрощений / Основний / Беззвучний), renamed 2026-09-30 (C22); the reporter had confirmed the old «Збалансований / Тихий», overridden by Dave for literal names: distinct by ear? Better names for the middle two?
+3. Anything else.
 
 *Answered and closed: the two locked terms, confirmed final, and the four detail levels, confirmed distinct (both 2026-09-25); undeclined destination names → the label form (UK-G2, 2026-09-25); the two callout questions, see "Rejected"; the guided-tutorial term, confirmed OK 2026-09-21; register, formal «ви» confirmed 2026-09-21.*
 

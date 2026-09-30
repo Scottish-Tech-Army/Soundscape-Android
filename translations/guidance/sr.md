@@ -16,7 +16,7 @@ Read with [`_common.md`](_common.md).
 2026-08-21. The VoiceOver template «Двапут додирните да %1$s» with
 present-tense hints («утишате») composes correctly. Traveling/Heading are
 «Путовање»/«Ходање», the correct vehicle/walking split. Questions:
-`docs/translation-questions/questions-sr.md` (Q1…Q7).
+`docs/translation-questions/questions-sr.md` (Q1…Q8).
 
 ## Glossary
 
@@ -69,7 +69,8 @@ Nothing yet.
 4. FAQ headings: «Како смањити…» instead of «…да бих смањио…»? (SR-G2)
 5. Snooze «Дремање»: clear?
 6. Is «Ви» right?
-7. Anything else.
+7. **The four detail levels** (Детаљно / Поједностављено / Основно / Без звука), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
+8. Anything else.
 
 ## Provenance
 
