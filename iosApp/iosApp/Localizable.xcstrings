@@ -165,6 +165,12 @@
             "value": "Vóór me"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੇਰੇ ਅੱਗੇ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -437,6 +443,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Om me heen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੇਰੇ ਆਲੇ-ਦੁਆਲੇ"
           }
         },
         "pl": {
@@ -713,6 +725,12 @@
             "value": "Baken"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -985,6 +1003,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bakeninformatie"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਦੀ ਜਾਣਕਾਰੀ"
           }
         },
         "pl": {
@@ -1261,6 +1285,12 @@
             "value": "Baken aankondigen"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਦੀ ਘੋਸ਼ਣਾ ਕਰੋ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -1533,6 +1563,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aankondiging"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੋਸ਼ਣਾ"
           }
         },
         "pl": {
@@ -1809,6 +1845,12 @@
             "value": "Detailniveau aankondigingen"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੋਸ਼ਣਾ ਦਾ ਵੇਰਵਾ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -2081,6 +2123,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Opdracht"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੁਕਮ"
           }
         },
         "pl": {
@@ -2357,6 +2405,12 @@
             "value": "Opdrachten"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੁਕਮ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -2629,6 +2683,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Route bedienen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ ਕੰਟਰੋਲ ਕਰੋ"
           }
         },
         "pl": {
@@ -2905,6 +2965,12 @@
             "value": "Beschrijft waar u bent en wat er om u heen is."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਦੱਸਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਿੱਥੇ ਹੋ ਅਤੇ ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ ਕੀ ਹੈ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -3177,6 +3243,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Detail"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਵੇਰਵਾ"
           }
         },
         "pl": {
@@ -3453,6 +3525,12 @@
             "value": "Uitgebreid"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਵਿਸਤ੍ਰਿਤ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -3725,6 +3803,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gereed"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੋ ਗਿਆ"
           }
         },
         "pl": {
@@ -4001,6 +4085,12 @@
             "value": "Essentieel"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜ਼ਰੂਰੀ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -4273,6 +4363,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Luisteren naar mijn omgeving"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੇਰਾ ਆਲਾ-ਦੁਆਲਾ ਸੁਣੋ"
           }
         },
         "pl": {
@@ -4549,6 +4645,12 @@
             "value": "Niveau"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪੱਧਰ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -4821,6 +4923,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lijst"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੂਚੀ"
           }
         },
         "pl": {
@@ -5097,6 +5205,12 @@
             "value": "Markering"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮਾਰਕਰ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -5369,6 +5483,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Markeringen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮਾਰਕਰ"
           }
         },
         "pl": {
@@ -5645,6 +5765,12 @@
             "value": "Baken dempen"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਮਿਊਟ ਕਰੋ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -5917,6 +6043,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mijn locatie"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੇਰਾ ਟਿਕਾਣਾ"
           }
         },
         "pl": {
@@ -6193,6 +6325,12 @@
             "value": "Markeringen in de buurt"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨੇੜਲੇ ਮਾਰਕਰ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -6465,6 +6603,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Volgende routepunt"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਗਲਾ ਮਾਰਗ ਬਿੰਦੂ"
           }
         },
         "pl": {
@@ -6741,6 +6885,12 @@
             "value": "Open Soundscape om dat af te ronden."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇਹ ਪੂਰਾ ਕਰਨ ਲਈ Soundscape ਖੋਲ੍ਹੋ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -7013,6 +7163,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vorige routepunt"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਿਛਲਾ ਮਾਰਗ ਬਿੰਦੂ"
           }
         },
         "pl": {
@@ -7289,6 +7445,12 @@
             "value": "Leest uw opgeslagen routes, uw opgeslagen markeringen of de opdrachten die u kunt zeggen voor."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੇ ਸੇਵ ਕੀਤੇ ਰੂਟ, ਸੇਵ ਕੀਤੇ ਮਾਰਕਰ, ਜਾਂ ਉਹ ਹੁਕਮ ਪੜ੍ਹ ਕੇ ਸੁਣਾਉਂਦਾ ਹੈ ਜੋ ਤੁਸੀਂ ਬੋਲ ਸਕਦੇ ਹੋ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -7561,6 +7723,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Route"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ"
           }
         },
         "pl": {
@@ -7837,6 +8005,12 @@
             "value": "Route-opdracht"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ ਹੁਕਮ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -8109,6 +8283,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Routes"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ"
           }
         },
         "pl": {
@@ -8385,6 +8565,12 @@
             "value": "Stelt een audiobaken in op een van uw opgeslagen markeringen."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੇ ਸੇਵ ਕੀਤੇ ਮਾਰਕਰਾਂ ਵਿੱਚੋਂ ਇੱਕ 'ਤੇ ਆਡੀਓ ਬੀਕਨ ਲਗਾਉਂਦਾ ਹੈ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -8657,6 +8843,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stelt in hoeveel Soundscape zegt terwijl u loopt."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੈਅ ਕਰਦਾ ਹੈ ਕਿ ਤੁਰਦੇ ਸਮੇਂ Soundscape ਕਿੰਨਾ ਬੋਲੇ।"
           }
         },
         "pl": {
@@ -8933,6 +9125,12 @@
             "value": "Stil"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਚੁੱਪ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -9205,6 +9403,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vereenvoudigd"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਰਲ"
           }
         },
         "pl": {
@@ -9481,6 +9685,12 @@
             "value": "Slaat routepunten over, dempt het baken of stopt de route."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮਾਰਗ ਬਿੰਦੂ ਛੱਡਦਾ ਹੈ, ਬੀਕਨ ਮਿਊਟ ਕਰਦਾ ਹੈ, ਜਾਂ ਰੂਟ ਰੋਕਦਾ ਹੈ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -9753,6 +9963,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Soundscape kon dat niet doen."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soundscape ਇਹ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
           }
         },
         "pl": {
@@ -10029,6 +10245,12 @@
             "value": "Baken starten"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਸ਼ੁਰੂ ਕਰੋ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -10301,6 +10523,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Route starten"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੂਟ ਸ਼ੁਰੂ ਕਰੋ"
           }
         },
         "pl": {
@@ -10577,6 +10805,12 @@
             "value": "Start een van uw opgeslagen routes."
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡੇ ਸੇਵ ਕੀਤੇ ਰੂਟਾਂ ਵਿੱਚੋਂ ਇੱਕ ਸ਼ੁਰੂ ਕਰਦਾ ਹੈ।"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -10849,6 +11083,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stoppen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੋਕੋ"
           }
         },
         "pl": {
@@ -11125,6 +11365,12 @@
             "value": "Baken stoppen"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬੀਕਨ ਰੋਕੋ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -11399,6 +11645,12 @@
             "value": "Omgeving"
           }
         },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਲਾ-ਦੁਆਲਾ"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -11671,6 +11923,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Zet het audiobaken uit."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਡੀਓ ਬੀਕਨ ਬੰਦ ਕਰਦਾ ਹੈ।"
           }
         },
         "pl": {
