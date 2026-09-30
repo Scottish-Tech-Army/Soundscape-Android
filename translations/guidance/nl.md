@@ -5,7 +5,7 @@
 | Weblate component | `androidkmp` |
 | Corpus at last sweep | 1522 units (2026-09-24) |
 | Baseline | Microsoft's professional nl-NL iOS localisation (C14). 209 of 359 shared keys still verbatim, 29 drifted |
-| Last native-speaker input | **none recorded** since Microsoft |
+| Last native-speaker input | 2026-09-28: one reviewer's answers to `questions-nl.md` Q1–Q5 (applied 2026-09-30, Dave's call not to wait for more). The pasted answer was cut off in Q3 |
 | Register | Formal «u», consistent with Microsoft, `confirmed` (baseline) |
 
 Read with [`_common.md`](_common.md).
@@ -21,15 +21,15 @@ match the help text. Questions: `docs/translation-questions/questions-nl.md` (Q1
 | English | Dutch | Status | Note |
 |---|---|---|---|
 | Callout | aankondiging | `agreed` (Dave, 2026-09-25; see NL-T1) | **Microsoft said «waarschuwing»**. See NL-T1 |
-| Audio Beacon | audiobaken | `confirmed` | Microsoft |
-| Marker | markering | `confirmed` | Microsoft |
+| Audio Beacon | audiobaken | `confirmed` | Microsoft; reviewer Q5 «prima» |
+| Marker | markering | `confirmed` | Microsoft; reviewer Q5: fine if used consistently. «opgeslagen plek» might read better in help prose (`provisional`, not swept) |
 | Waypoint | routepunt | `confirmed` | Microsoft |
 | Intersection | kruispunt | `confirmed` | Microsoft |
 | Sleep / Snooze | Slapen / Slaapstand ; Sluimerstand | `confirmed` | Microsoft |
 | Traveling / Heading | U rijdt / U loopt naar het noorden | `confirmed` | Microsoft. The vehicle/walking split, spelled out |
-| Detail levels | Gedetailleerd / Gebalanceerd / Rustig / Stil | `unconfirmed` | AI. Distinct |
+| Detail levels | Uitgebreid / Normaal / Beperkt / Stil | `agreed` | Reviewer (Q3). See NL-L1 |
 | Landmarks | herkenningspunten | `unconfirmed` | AI |
-| dead end | Doodlopende weg | `unconfirmed` | AI. See NL-G1 |
+| Way to a dead end | %1$s, doodlopend | `agreed` | New template `confect_name_to_dead_end` (code, 2026-09-30). See NL-G1 |
 
 ## Rules
 
@@ -43,7 +43,9 @@ callout as an alert. A later AI pass switched all of them (70 now, 0 left) to
 makes it a C14 case where the drift is probably right, but it replaced a
 professional choice, so get it confirmed and then defend it.
 
-### NL-B1 — VoiceOver: «om» needs «te» (`agreed` defect, `unconfirmed` wording)
+### NL-B1 — VoiceOver: «om» needs «te» (`agreed`; template «Dubbeltik: %1$s» 2026-09-30)
+
+Reviewer (Q1): would prefer «Tik dubbel om het audiobaken te dempen», but accepts «Dubbeltik: %1$s», dropping the article in the hints. The preferred form needs «te» in about 40 hints, and TalkBack on Android reads those hints too (C13), so the template-only fix was applied. Dropping articles from the hints isn't swept, because it's cosmetic and it would change what TalkBack says as well. The text below is the original diagnosis.
 
 «Dubbel tik om %1$s» + bare-infinitive hints («het audiobaken dempen») gives
 «Dubbel tik om het audiobaken dempen» (should be «…te dempen»). ~40 of the 43
@@ -51,7 +53,11 @@ hints are affected. Fix the **template only** (C13): «Dubbeltik: %1$s». While
 there, «Dubbel tik» should be «Dubbeltik», which is Microsoft's spelling and
 Apple's.
 
-### NL-G1 — «naar Doodlopende weg» (`agreed` defect, `unconfirmed` wording)
+### NL-G1 — Dead ends: «Pad, doodlopend» (`agreed`, code 2026-09-30)
+
+Reviewer (Q2): «Doodlopend pad». The path itself is the dead end, not somewhere it leads to. Dave chose a code fix. `confect_name_dead_end` and its use as the `%2$s` of `confect_name_to` are replaced by `confect_name_to_dead_end` («%1$s to dead end») and `confect_name_to_dead_end_via` («%1$s to dead end via %2$s») in `WayGenerator.kt` (`deadEndName`).
+
+The reviewer's exact «Doodlopend pad» was not possible. `%1$s` is either the way type **or a road's own name** («Ladywood to dead end»), so «Doodlopend Ladywood» would be wrong. And «doodlopend»/«doodlopende» would have to agree with the gender of the way type. Dutch uses **«%1$s, doodlopend»** / **«%1$s via %2$s, doodlopend»**, which keeps the reviewer's point and works for both. Every other language got its old output back, built from its own `confect_name_to` plus `confect_name_dead_end`. The text below is the original diagnosis.
 
 `confect_name_to` «%1$s naar %2$s» gives «Pad naar Doodlopende weg»: a
 capital letter mid-sentence and no article. Candidates: dead end →
@@ -59,22 +65,33 @@ capital letter mid-sentence and no article. Candidates: dead end →
 
 ### NL-C1 — Siri phrases are Dutch and live outside Weblate (`agreed`)
 
-The same coupling as FR-C1.
+The same coupling as FR-C1. **2026-09-30:** the reviewer (Q4) wants verbs («Soundscape, start de route», «…stop het baken»). Only the two phrases that already contain a verb changed: «Soundscape start de route» and «Soundscape stop het baken». They were changed in `nl.lproj/AppShortcuts.strings`, in `Localizable.xcstrings` ("You can say…") and in `help_text_assistant_commands_ios`. The group words omgeving / route / baken / lijst / detail stay as they are, because Siri needs the "<app> <group> <choice>" shape.
+
+### NL-L1 — Detail levels: Uitgebreid / Normaal / Beperkt / Stil (`agreed` 2026-09-30)
+
+Reviewer (Q3). «Gebalanceerd» was an anglicism, and «Rustig» sat too close to «Stil». 9 strings swept. This is the third language (after Polish and French) to reject the literal Balanced/Quiet. The iOS Siri detail choices have no Dutch entries at all (see FR-L1).
+
+### NL-S1 — Capitals only for real names (`confirmed` 2026-09-30)
+
+Reviewer (Q5). Common nouns stay lowercase mid-sentence («doodlopende weg», «markeringen»). Quoted UI labels keep their own capital («Tik op *Markeringen en routes*»), and so do the unquoted button names in `tour_*`, which name a button. Two prose uses fixed (`help_text_routes_content_how_1`, `faq_tip_create_marker_at_bus_stop`).
 
 ## Rejected
 
+- **«Tik dubbel om … te dempen»** (reviewer's first choice for Q1): it needs «te» in about 40 hints, which TalkBack also reads. Their accepted fallback «Dubbeltik: %1$s» was used instead.
+- **«Doodlopend pad»** exactly as written (Q2): it can't agree with road names or grammatical gender. See NL-G1.
+- **Verbs for every Siri group** (Q4): they'd break Siri's "<group> <choice>" shape.
+
 **«waarschuwing» for Callout** (2026-09-25). It is attractive: it's Microsoft's term, and the Community's native Dutch translators kept it in 21 edited strings. It was rejected because it means "warning", and because piecemeal Weblate edits don't settle a term. See NL-T1.
 
-## Open questions
+## Questionnaire round 1 — answered 2026-09-28
 
-Numbered as on the questionnaire.
+Q1 → NL-B1, Q2 → NL-G1, Q3 → NL-L1, Q4 → NL-C1, Q5 → «u» `confirmed`, NL-S1, glossary notes.
 
-1. VoiceOver: «Dubbeltik: het audiobaken dempen»? (NL-B1)
-2. «Pad naar een doodlopende weg» or «Doodlopend pad»? (NL-G1)
-3. The four detail levels (Gedetailleerd / Gebalanceerd / Rustig / Stil): clear?
-   «Gebalanceerd» may be an anglicism; «Rustig» and «Stil» sit close together.
-4. Siri phrases «Soundscape omgeving / route / baken / stop baken…»: natural?
-5. Anything else.
+## Open questions for round 2
+
+1. «Pad, doodlopend» / «Ladywood, doodlopend»: natural?
+2. The Q3 answer was cut off. Anything after «Stil»?
+3. In help texts, would «opgeslagen plek» read better than «markering»?
 
 ## Provenance
 
@@ -112,3 +129,5 @@ Numbered as on the questionnaire.
   - Sentence case for six OSM names.
 
 Uploaded with `--skip-validate`; all 32 re-fetched and matched exactly.
+
+**2026-09-30 — first reviewer's questionnaire applied.** Answers received 2026-09-28 and held until Dave chose to proceed. 12 strings in `/tmp/weblate-review/nl-findings.json`. Siri phrases changed in the iOS files. NL-G1 needed a code change (new dead-end templates) and values for all 45 languages.

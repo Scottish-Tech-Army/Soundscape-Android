@@ -16,8 +16,8 @@
 "${applicationName} route ${command}" = "${applicationName} route ${command}";
 "${applicationName} route" = "${applicationName} route";
 
-"${applicationName} start route ${route}" = "${applicationName} start route ${route}";
-"${applicationName} start route" = "${applicationName} start route";
+"${applicationName} start route ${route}" = "${applicationName} start de route ${route}";
+"${applicationName} start route" = "${applicationName} start de route";
 
 "${applicationName} beacon ${marker}" = "${applicationName} baken ${marker}";
 "${applicationName} beacon" = "${applicationName} baken";
@@ -25,7 +25,7 @@
 "${applicationName} list ${kind}" = "${applicationName} lijst ${kind}";
 "${applicationName} list" = "${applicationName} lijst";
 
-"${applicationName} stop beacon" = "${applicationName} stop baken";
+"${applicationName} stop beacon" = "${applicationName} stop het baken";
 
 "${applicationName} detail ${level}" = "${applicationName} detail ${level}";
 "${applicationName} detail" = "${applicationName} detail";
