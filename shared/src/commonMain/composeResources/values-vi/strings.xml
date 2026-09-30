@@ -1263,7 +1263,9 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Lỗi không xác định khi nhận dạng giọng nói.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Điện thoại này không hỗ trợ tính năng nhận dạng giọng nói.</string>
     <string name="relative_clock_direction">ở hướng %1$s giờ</string>
-    <string name="relative_degrees_direction">ở hướng %1$s độ</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="other">ở hướng %1$s độ</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Phía trước</string>
     <string name="relative_left_right_direction_ahead_left">Phía trước bên trái</string>
     <string name="relative_left_right_direction_ahead_right">Phía trước bên phải</string>

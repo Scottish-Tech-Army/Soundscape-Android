@@ -1471,7 +1471,11 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Error desconegut del reconeixement de veu.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Aquest telèfon no admet el reconeixement de veu.</string>
     <string name="relative_clock_direction">a %1$s en punt</string>
-    <string name="relative_degrees_direction">a %1$s graus</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">a %1$s grau</item>
+        <item quantity="many">a %1$s graus</item>
+        <item quantity="other">a %1$s graus</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Davant</string>
     <string name="relative_left_right_direction_ahead_left">Davant a l'esquerra</string>
     <string name="relative_left_right_direction_ahead_right">Davant a la dreta</string>

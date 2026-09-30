@@ -1365,7 +1365,12 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="callout_settings_position_text">Uwzględniaj odległość i kierunek w powiadomieniach o punktach zainteresowania</string>
     <string name="callout_settings_position_description">Domyślnie komunikaty o punktach zainteresowania nie zawierają odległości ani kierunku. To ustawienie je dodaje.</string>
     <string name="relative_clock_direction">na godzinie %1$s</string>
-    <string name="relative_degrees_direction">pod kątem %1$s stopni</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">pod kątem %1$s stopni</item>
+        <item quantity="few">pod kątem %1$s stopni</item>
+        <item quantity="many">pod kątem %1$s stopni</item>
+        <item quantity="other">pod kątem %1$s stopni</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Przed tobą</string>
     <string name="relative_left_right_direction_ahead_left">Przed tobą po lewej</string>
     <string name="relative_left_right_direction_ahead_right">Przed tobą po prawej</string>

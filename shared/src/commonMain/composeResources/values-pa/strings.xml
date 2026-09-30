@@ -1550,7 +1550,10 @@
     <string name="relative_clock_hour_10">10</string>
     <string name="relative_clock_hour_11">11</string>
     <string name="relative_clock_hour_12">12</string>
-    <string name="relative_degrees_direction">%1$s ਡਿਗਰੀ 'ਤੇ</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">%1$s ਡਿਗਰੀ 'ਤੇ</item>
+        <item quantity="other">%1$s ਡਿਗਰੀ 'ਤੇ</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">ਅੱਗੇ</string>
     <string name="relative_left_right_direction_ahead_left">ਅੱਗੇ ਖੱਬੇ</string>
     <string name="relative_left_right_direction_ahead_right">ਅੱਗੇ ਸੱਜੇ</string>

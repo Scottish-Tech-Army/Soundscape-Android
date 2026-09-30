@@ -1347,7 +1347,10 @@
     <string name="callout_settings_position_text">Afstand en richting opnemen bij het aankondigen van referentiepunten</string>
     <string name="callout_settings_position_description">Standaard bevatten aankondigingen over referentiepunten geen afstand of richting. Deze instelling voegt ze toe.</string>
     <string name="relative_clock_direction">op %1$s uur</string>
-    <string name="relative_degrees_direction">op %1$s graden</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">op %1$s graad</item>
+        <item quantity="other">op %1$s graden</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Vóór</string>
     <string name="relative_left_right_direction_ahead_left">Vóór links</string>
     <string name="relative_left_right_direction_ahead_right">Vóór rechts</string>

@@ -1278,7 +1278,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Hitilafu isiyojulikana ya utambuzi wa sauti.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Utambuzi wa sauti hautumiki kwenye simu hii.</string>
     <string name="relative_clock_direction">katika saa %1$s</string>
-    <string name="relative_degrees_direction">katika digrii %1$s</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">katika digrii %1$s</item>
+        <item quantity="other">katika digrii %1$s</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Mbele</string>
     <string name="relative_left_right_direction_ahead_left">Mbele kushoto</string>
     <string name="relative_left_right_direction_ahead_right">Mbele kulia</string>

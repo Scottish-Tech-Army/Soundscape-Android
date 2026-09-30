@@ -260,6 +260,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
 
     private fun pluralResId(key: PluralKey): PluralStringResource = when (key) {
         PluralKey.DistanceMeters -> Res.plurals.distance_format_meters
+        PluralKey.RelativeDegreesDirection -> Res.plurals.relative_degrees_direction
         PluralKey.DistanceFeet -> Res.plurals.distance_format_feet
         PluralKey.DistanceKm -> Res.plurals.distance_format_km
         PluralKey.DistanceKmA11y -> Res.plurals.distance_format_km_a11y
@@ -314,7 +315,6 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.RelativeClockHour10 -> Res.string.relative_clock_hour_10
         StringKey.RelativeClockHour11 -> Res.string.relative_clock_hour_11
         StringKey.RelativeClockHour12 -> Res.string.relative_clock_hour_12
-        StringKey.RelativeDegreesDirection -> Res.string.relative_degrees_direction
         StringKey.RelativeLeftRightDirectionAhead -> Res.string.relative_left_right_direction_ahead
         StringKey.RelativeLeftRightDirectionAheadRight -> Res.string.relative_left_right_direction_ahead_right
         StringKey.RelativeLeftRightDirectionRight -> Res.string.relative_left_right_direction_right

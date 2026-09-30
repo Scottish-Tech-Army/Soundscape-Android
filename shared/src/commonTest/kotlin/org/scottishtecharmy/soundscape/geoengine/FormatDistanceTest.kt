@@ -86,6 +86,22 @@ class FormatDistanceTest {
         )
     }
 
+    /**
+     * The angle chooses its own plural form, so a language whose noun changes with the number
+     * (Arabic «درجات» for 5 and 10, Romanian «de grade» from 20) can say it correctly.
+     */
+    @Test
+    fun degreesSelectPluralOnTheAngle() {
+        assertEquals(
+            "DistanceMeters[20](20), RelativeDegreesDirection[45](45)",
+            formatDistanceAndDirection(20.0, 45.0, localized, userHeading = 0.0, relativeDirectionMode = "Degrees"),
+        )
+        assertEquals(
+            "DistanceMeters[20](20), RelativeDegreesDirection[0](0)",
+            formatDistanceAndDirection(20.0, 2.0, localized, userHeading = 0.0, relativeDirectionMode = "Degrees"),
+        )
+    }
+
     /** With no Relative Direction chosen, a callout says left/right rather than a clock position. */
     @Test
     fun defaultRelativeDirectionIsLeftRight() {

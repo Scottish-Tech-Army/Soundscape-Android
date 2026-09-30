@@ -3015,8 +3015,11 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="relative_clock_hour_10">10</string>
     <string name="relative_clock_hour_11">11</string>
     <string name="relative_clock_hour_12">12</string>
-    <!-- Relative directions using degrees, %s is angle e.g. at 45 degrees. %1$s can be any whole number from 0 to 359, and the noun can’t change with it, so choose wording that reads correctly for every number (e.g. a degree sign, or a form where the noun doesn’t agree). -->
-    <string name="relative_degrees_direction">at %1$s degrees</string>
+    <!-- Relative directions using degrees, e.g. "at 45 degrees". %1$s is the angle, and the plural form is chosen by it. The app rounds to multiples of 5, so %1$s is always 0, 5, 10 … 355 and never 1: the "one" form is only reached in languages whose "one" includes 0 (French, Portuguese). Give every form your language has; they may all be the same. -->
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">at %1$s degree</item>
+        <item quantity="other">at %1$s degrees</item>
+    </plurals>
     <!-- Relative directions using left/right -->
     <string name="relative_left_right_direction_ahead">Ahead</string>
     <string name="relative_left_right_direction_ahead_left">Ahead left</string>

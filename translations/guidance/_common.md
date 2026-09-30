@@ -574,3 +574,20 @@ came out as «düz Moor Road» ("straight Moor Road"). It is replaced by
 old word plus « %1$s», so nothing sounds different except Turkish, which is
 now «İleride %1$s». A language whose word order wants the name first can now
 write «%1$s ileride».
+
+## C25 — Degrees are a plural now; the angle is always a multiple of 5 (code, 2026-09-30)
+
+`relative_degrees_direction` ("at %1$s degrees") is a `<plurals>` resource,
+selected on the angle. The app rounds the angle to a multiple of 5, so it is
+only ever 0, 5, 10 … 355. In most languages that reaches a single plural form,
+and the old wording was already right for every angle the app says.
+
+> **Case (2026-09-30 review):** ru, sr and uk reported «1 градусов» / «22
+> градусов». Those angles never occur: every multiple of 5 is Russian «many»
+> («градусов»), so the string was fine. The real cases are Arabic (5, 10, 105…
+> take the plural «درجات», 15–99 the singular «درجة»), Romanian («la 20 de
+> grade», but «la 5 grade») and a singular for 0° in French and Portuguese
+> («à 0 degré»).
+
+**How to apply:** give every category your language has. Check which ones
+multiples of 5 actually reach before calling a form wrong.

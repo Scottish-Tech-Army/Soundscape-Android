@@ -1343,7 +1343,9 @@
     <string name="callout_settings_position_text">在播报兴趣点时包含距离和方向</string>
     <string name="callout_settings_position_description">默认情况下，兴趣点的播报不包含距离或方向。启用此设置将添加这些信息。</string>
     <string name="relative_clock_direction">在%1$s点钟方向</string>
-    <string name="relative_degrees_direction">在%1$s度方向</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="other">在%1$s度方向</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">前方</string>
     <string name="relative_left_right_direction_ahead_left">前方偏左</string>
     <string name="relative_left_right_direction_ahead_right">前方偏右</string>

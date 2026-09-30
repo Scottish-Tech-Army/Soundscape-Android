@@ -1278,7 +1278,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">স্পিচ রিকগনিশন অজানা ত্রুটি।</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">এই ফোনে স্পিচ রিকগনিশন সমর্থিত নয়।</string>
     <string name="relative_clock_direction">ঘড়ির কাঁটার হিসাবে %1$s-টার দিকে</string>
-    <string name="relative_degrees_direction">%1$s ডিগ্রিতে</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">%1$s ডিগ্রিতে</item>
+        <item quantity="other">%1$s ডিগ্রিতে</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">সামনে</string>
     <string name="relative_left_right_direction_ahead_left">সামনে বাঁয়ে</string>
     <string name="relative_left_right_direction_ahead_right">সামনে ডানে</string>

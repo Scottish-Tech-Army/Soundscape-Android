@@ -1055,7 +1055,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">اسپیچ ریکگنیشن کی نامعلوم خرابی۔</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">اس فون پر اسپیچ ریکگنیشن سپورٹ نہیں ہے۔</string>
     <string name="relative_clock_direction">%1$s بجے کی سمت میں</string>
-    <string name="relative_degrees_direction">%1$s ڈگری پر</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">%1$s ڈگری پر</item>
+        <item quantity="other">%1$s ڈگری پر</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">آگے</string>
     <string name="relative_left_right_direction_ahead_left">آگے بائیں</string>
     <string name="relative_left_right_direction_ahead_right">آگے دائیں</string>

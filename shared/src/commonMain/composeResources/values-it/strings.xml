@@ -1351,7 +1351,11 @@
     <string name="callout_settings_position_text">Includi la distanza e la direzione quando vengono annunciati i punti di interesse</string>
     <string name="callout_settings_position_description">Per impostazione predefinita, le notifiche dei punti di interesse non includono distanza o direzione. Questa impostazione le aggiunge.</string>
     <string name="relative_clock_direction">a ore %1$s</string>
-    <string name="relative_degrees_direction">a %1$s gradi</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">a %1$s grado</item>
+        <item quantity="many">a %1$s gradi</item>
+        <item quantity="other">a %1$s gradi</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">avanti</string>
     <string name="relative_left_right_direction_ahead_left">avanti a sinistra</string>
     <string name="relative_left_right_direction_ahead_right">avanti a destra</string>

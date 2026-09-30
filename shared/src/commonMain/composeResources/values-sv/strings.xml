@@ -1347,7 +1347,10 @@
     <string name="callout_settings_position_text">Inkludera avstånd och riktning när intressepunkter läses upp</string>
     <string name="callout_settings_position_description">Som standard innehåller informationsljud om intressepunkter varken avstånd eller riktning. Den här inställningen lägger till dem.</string>
     <string name="relative_clock_direction">på klockan %1$s</string>
-    <string name="relative_degrees_direction">vid %1$s grader</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">vid %1$s grad</item>
+        <item quantity="other">vid %1$s grader</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">rakt fram</string>
     <string name="relative_left_right_direction_ahead_left">framåt till vänster</string>
     <string name="relative_left_right_direction_ahead_right">framåt till höger</string>

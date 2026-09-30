@@ -1278,7 +1278,10 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Kuskuren da ba a sani ba na gane murya.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Ba a goyon bayan gane murya a wannan wayar ba.</string>
     <string name="relative_clock_direction">a ƙarfe %1$s</string>
-    <string name="relative_degrees_direction">a digiri %1$s</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">a digiri %1$s</item>
+        <item quantity="other">a digiri %1$s</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Gaba</string>
     <string name="relative_left_right_direction_ahead_left">Gaba hagu</string>
     <string name="relative_left_right_direction_ahead_right">Gaba dama</string>

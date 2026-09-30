@@ -1160,7 +1160,12 @@
     <string name="voice_cmd_speech_recognition_error_unknown">Neznana napaka prepoznavanja govora.</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">Prepoznavanje govora na tem telefonu ni podprto.</string>
     <string name="relative_clock_direction">na %1$s. uri</string>
-    <string name="relative_degrees_direction">pri %1$s stopinjah</string>
+    <plurals name="relative_degrees_direction">
+        <item quantity="one">pri %1$s stopinjah</item>
+        <item quantity="two">pri %1$s stopinjah</item>
+        <item quantity="few">pri %1$s stopinjah</item>
+        <item quantity="other">pri %1$s stopinjah</item>
+    </plurals>
     <string name="relative_left_right_direction_ahead">Spredaj</string>
     <string name="relative_left_right_direction_ahead_left">Spredaj levo</string>
     <string name="relative_left_right_direction_ahead_right">Spredaj desno</string>
