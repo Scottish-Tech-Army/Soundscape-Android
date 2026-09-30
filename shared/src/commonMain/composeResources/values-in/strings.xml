@@ -243,7 +243,17 @@
     <string name="new_version_info_text">Informasi rilis baru</string>
     <string name="new_version_info_completed">Tutup dialog rilis baru</string>
     <string name="menu_open_source_licenses">Lisensi sumber terbuka</string>
-    <string name="new_version_info_details">Ini adalah pembaruan besar untuk Soundscape. Mode perjalanan jauh lebih baik sekarang. Saat Anda bepergian dengan mobil atau bus, Soundscape kini menyebutkan nomor jalan, arah perjalanan Anda, dan permukiman terdekat. Aplikasi juga memberi tahu saat Anda melintasi sungai, kanal, muara, dan teluk. Harap perbarui peta offline Anda untuk mendapatkan fitur-fitur baru ini. Deskripsi halte bus kini jauh lebih baik bagi pengguna di Inggris. Mode tidur kini dapat bangun secara otomatis saat mendeteksi bahwa Anda bergerak lagi. Anda tidak perlu lagi mengingat untuk membangunkannya sendiri. Kami menyusun ulang kode dasar aplikasi agar kami dapat membangun aplikasi iOS dari kode yang sama. Ini berarti di masa mendatang kami dapat merilis aplikasi iOS dengan semua fitur yang telah kami buat untuk Android. Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui Hubungi Dukungan di menu utama.</string>
+    <string name="new_version_info_details">
+Ini adalah pembaruan besar untuk Soundscape.
+
+Mode perjalanan jauh lebih baik sekarang. Saat Anda bepergian dengan mobil atau bus, Soundscape kini menyebutkan nomor jalan, arah perjalanan Anda, dan permukiman terdekat. Aplikasi juga memberi tahu saat Anda melintasi sungai, kanal, muara, dan teluk. Harap perbarui peta offline Anda untuk mendapatkan fitur-fitur baru ini. Deskripsi halte bus kini jauh lebih baik bagi pengguna di Inggris.
+
+Mode tidur kini dapat bangun secara otomatis saat mendeteksi bahwa Anda bergerak lagi. Anda tidak perlu lagi mengingat untuk membangunkannya sendiri.
+
+Kami menyusun ulang kode dasar aplikasi agar kami dapat membangun aplikasi iOS dari kode yang sama. Ini berarti di masa mendatang kami dapat merilis aplikasi iOS dengan semua fitur yang telah kami buat untuk Android.
+
+Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui Hubungi Dukungan di menu utama.
+</string>
     <string name="about_soundscape">Soundscape menggunakan teknologi berbasis audio yang inovatif untuk membantu orang membangun kesadaran yang lebih kaya akan lingkungan sekitar mereka. Hal ini membuat orang lebih percaya diri dan mampu bepergian secara mandiri.</string>
     <string name="copyright_notices">Soundscape bergantung pada pustaka dan data pihak ketiga yang luar biasa ini. Klik tautan untuk melihat lisensinya:</string>
     <string name="osm_copyright">[©Kontributor OpenStreetMap](https://www.openstreetmap.org/copyright) menyediakan semua data geo untuk pemetaan dan audio yang digunakan dalam Soundscape.</string>
@@ -298,7 +308,7 @@
     <string name="osm_office">Kantor</string>
     <string name="osm_school">Sekolah</string>
     <string name="osm_roof">Atap</string>
-    <string name="osm_convenience">Toko Serba Ada</string>
+    <string name="osm_convenience">Minimarket</string>
     <string name="osm_entrance">Pintu Masuk</string>
     <string name="osm_assembly_point">Titik Kumpul</string>
     <string name="osm_cycle_barrier">Penghalang Sepeda</string>
@@ -479,7 +489,7 @@
     <string name="osm_skateboard">Skateboard</string>
     <string name="osm_sailing">Berlayar</string>
     <string name="osm_safety_training">Pelatihan Keselamatan</string>
-    <string name="osm_rowing">Dayung</string>
+    <string name="osm_rowing">Mendayung</string>
     <string name="osm_model_aerodrome">Lapangan Pesawat Model</string>
     <string name="osm_korfball">Korfball</string>
     <string name="osm_ice_stock">Ice Stock</string>
@@ -535,7 +545,7 @@
     <string name="osm_shoemaker">Tukang Sepatu</string>
     <string name="osm_sawmill">Penggergajian Kayu</string>
     <string name="osm_bar">Bar</string>
-    <string name="osm_farm">Pertanian</string>
+    <string name="osm_farm">Lahan Pertanian</string>
     <string name="osm_bicycle">Toko Sepeda</string>
     <string name="osm_tailor">Penjahit</string>
     <string name="osm_locksmith">Tukang Kunci</string>
@@ -671,7 +681,7 @@
     <string name="osm_peak">Puncak</string>
     <string name="osm_storage_tank">Tangki Penyimpanan</string>
     <string name="osm_lighthouse">Mercusuar</string>
-    <string name="osm_beacon">Suar</string>
+    <string name="osm_beacon">Suar Navigasi</string>
     <string name="osm_port">Pelabuhan</string>
     <string name="osm_archaeological_site">Situs Arkeologi</string>
     <string name="osm_train_station">Stasiun Kereta Api</string>
@@ -697,7 +707,7 @@
     <string name="osm_gasometer">Tangki Gas</string>
     <string name="osm_water_park">Taman Air</string>
     <string name="osm_bandstand">Panggung Musik</string>
-    <string name="osm_wreck">Bangkai</string>
+    <string name="osm_wreck">Bangkai Kapal</string>
     <string name="osm_pillory">Tiang Pasung</string>
     <string name="osm_monastery">Biara</string>
     <string name="osm_locomotive">Lokomotif</string>
@@ -776,7 +786,7 @@
     <string name="talkback_default_activate">mengaktifkan</string>
     <string name="talkback_double_tap_template">Ketuk dua kali untuk %1$s</string>
     <string name="preview_go_nearest_intersection">Menuju persimpangan terdekat</string>
-    <string name="last_entry_in_list">dan %1$s</string>
+    <string name="last_entry_in_list"> dan %1$s</string>
     <string name="preview_include_unnamed_roads_title">Jalan Tanpa Nama</string>
     <string name="preview_include_unnamed_roads_title_description">Sertakan jalan tanpa nama selama simulasi lokasi</string>
     <string name="location_detail_title_default">Detail Lokasi</string>
@@ -819,7 +829,7 @@
     <string name="waypoint_title">Titik Rute</string>
     <string name="route_not_found">Rute tidak ditemukan</string>
     <string name="universal_links_alert_action_marker">Simpan sebagai Penanda</string>
-    <string name="universal_links_marker_share_message">Saya telah membagikan penanda Soundscape kepada Anda: %1$s.\n\nUntuk membuka di Soundscape gunakan %2$s.\n\n Untuk membuka di Google Maps gunakan %3$s.</string>
+    <string name="universal_links_marker_share_message">Saya telah membagikan penanda Soundscape kepada Anda: “%1$s”.\n\nUntuk membuka di Soundscape gunakan %2$s.\n\n Untuk membuka di Google Maps gunakan %3$s.</string>
     <string name="user_activity_save_marker_title">Simpan Penanda</string>
     <string name="routes_title">Rute</string>
     <string name="routes_action_deleted">Rute dihapus</string>
@@ -872,7 +882,7 @@
     <string name="callouts_audio_beacon_description">Pembaruan tentang jarak ke suar audio saat suar telah diatur</string>
     <string name="callouts_automatic_callouts">Pemberitahuan Otomatis</string>
     <string name="callouts_nothing_to_call_out_now">Tidak ada yang perlu diberitahukan saat ini</string>
-    <string name="callouts_nearby_markers">Penanda di Sekitar</string>
+    <string name="callouts_nearby_markers">Penanda Terdekat</string>
     <string name="callouts_no_nearby_markers">Tidak ada penanda di sekitar</string>
     <string name="callout_settings_position_text">Sertakan jarak dan arah saat memberitahukan tempat menarik</string>
     <string name="callout_settings_position_description">Secara default, pemberitahuan untuk tempat menarik tidak menyertakan jarak atau arah. Pengaturan ini menambahkannya.</string>
@@ -1209,8 +1219,8 @@
     <string name="osm_sport">Olahraga</string>
     <string name="osm_health_food">Toko Makanan Sehat</string>
     <string name="osm_events_venue">Tempat Acara</string>
-    <string name="tour_welcome">Selamat datang di tutorial terpandu. Tutorial ini akan memandu Anda melalui fitur-fitur utama aplikasi. Anda dapat menghentikan tutorial kapan saja dengan mengetuk Batalkan Tutorial Terpandu di Menu Utama. Mari kita mulai dengan Tempat di Sekitar. Fitur ini memungkinkan Anda menemukan titik minat. Tombol Tempat di Sekitar ada di layar Beranda, tepat di bawah bilah pencarian. Ketuk sekarang untuk mencobanya.</string>
-    <string name="tour_select_place">Tempat di Sekitar mengelompokkan titik minat berdasarkan jenisnya. Jelajahi tempat-tempat dalam daftar dan pilih salah satu.</string>
+    <string name="tour_welcome">Selamat datang di tutorial terpandu. Tutorial ini akan memandu Anda melalui fitur-fitur utama aplikasi. Anda dapat menghentikan tutorial kapan saja dengan mengetuk Batalkan Tutorial Terpandu di Menu Utama. Mari kita mulai dengan Tempat di Sekitar. Fitur ini memungkinkan Anda menemukan tempat menarik. Tombol Tempat di Sekitar ada di layar Beranda, tepat di bawah bilah pencarian. Ketuk sekarang untuk mencobanya.</string>
+    <string name="tour_select_place">Tempat di Sekitar mengelompokkan tempat menarik berdasarkan jenisnya. Jelajahi tempat-tempat dalam daftar dan pilih salah satu.</string>
     <string name="tour_create_marker_started">Bagus! Anda sekarang berada di layar Detail Lokasi. Dari sini Anda dapat menyimpan lokasi ini sebagai Penanda, beserta tindakan lainnya. Dengan Soundscape, Anda dapat menandai tempat apa pun yang penting bagi Anda, seperti rumah Anda, halte bus Anda, atau bahkan tempat Anda berdiri saat ini. Coba sekarang. Simpan lokasi ini sebagai penanda dengan mengetuk Simpan sebagai Penanda.</string>
     <string name="tour_create_marker_done">Bagus! Saat membuat penanda, Anda dapat mengedit namanya dan menambahkan catatan. Coba sekarang, dan jika sudah siap, ketuk Selesai.</string>
     <string name="tour_my_location">Sekarang setelah Anda tahu cara menggunakan Penanda, mari kita lihat beberapa fitur lainnya. Di bagian bawah layar terdapat empat tombol. Kita akan mencoba masing-masing. Tombol di sebelah kiri adalah Lokasi Saya. Tombol ini menjelaskan lokasi Anda saat ini. Coba ketuk sekarang.</string>
@@ -1346,7 +1356,7 @@
     <string name="faq_tips_title">Tips</string>
     <string name="faq_section_what_is_soundscape">Apa itu Soundscape dan bagaimana cara menggunakannya?</string>
     <string name="faq_when_to_use_soundscape_question">Kapan sebaiknya saya menggunakan Soundscape?</string>
-    <string name="faq_when_to_use_soundscape_answer">Soundscape memiliki fitur dan manfaat yang mencakup berbagai skenario dan rentang waktu. Nilai Soundscape bagi Anda juga dapat berubah seiring waktu, sehingga cara Anda menggunakannya hari ini mungkin berbeda dengan cara Anda menggunakannya tiga bulan mendatang. Orang sering memikirkan aplikasi dari segi *masalah apa yang paling bisa diselesaikan aplikasi ini?* Soundscape tentu dapat digunakan untuk kebutuhan tertentu – seperti memantau tujuan saat Anda menuju ke sana, membantu Anda mengetahui arah saat keluar dari stasiun metro, mengetahui posisi saat keluar dari mobil, atau mencari nama jalan atau jarak menuju persimpangan berikutnya. Namun, filosofi di balik Soundscape adalah *menerangi dunia Anda dengan suara* – aplikasi ini dirancang untuk digunakan kapan pun Anda sedang bepergian, untuk memberi Anda kesadaran ambien terhadap sekitar, seperti nama jalan yang Anda lalui, arah yang Anda tuju, dan nama bisnis yang Anda lewati. Dalam mode penggunaan ini, para pengguna kami menyebut Soundscape sebagai *teman perjalanan yang menyenangkan*, yang mendukung *kejutan-kejutan menyenangkan*, membantu *mengisi celah dalam peta mental Anda*, dan memberikan lebih banyak *kepercayaan diri saat berjalan*. Berikut beberapa contoh lain bagaimana pengguna kami menggunakan Soundscape dalam kehidupan mereka:\n\nSoundscape membantu saya kembali ke jalur yang benar setelah saya turun dari bus dan berjalan ke arah yang salah.\n\nBahkan di kota tempat saya tinggal selama 3 tahun, saya telah membangun gambaran yang lebih baik tentang apa yang ada di sekitar saya [dengan Soundscape].\n\nSuara 3D meningkatkan pengalaman jalan kaki saya, karena saya merasa lebih terhubung dengan lingkungan saya… Saya lebih cenderung mencoba rute baru sekarang karena saya memiliki aplikasi ini.\n\nSaya rindu kejutan-kejutan menyenangkan saat berjalan-jalan dan memperhatikan sekitar. Memiliki Soundscape sangat menyenangkan – tidak perlu usaha untuk mendengar tentang hal-hal di sekitar saya. Informasi relasionalnya berguna dan aplikasi ini sangat baik untuk kesadaran situasional dan menjelajahi kawasan komersial.\n\n[Saya menggunakan Soundscape] untuk menemukan sebuah pub di tengah kota York. [Saya] menggunakan berbagai opsinya untuk pertama-tama menemukan lokasinya lalu benar-benar mencapainya. Aplikasi ini membawa saya hingga jarak 3 meter dari pintu – luar biasa!</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape memiliki fitur dan manfaat yang mencakup berbagai skenario dan rentang waktu. Nilai Soundscape bagi Anda juga dapat berubah seiring waktu, sehingga cara Anda menggunakannya hari ini mungkin berbeda dengan cara Anda menggunakannya tiga bulan mendatang. Orang sering memikirkan aplikasi dari segi *masalah apa yang paling bisa diselesaikan aplikasi ini?* Soundscape tentu dapat digunakan untuk kebutuhan tertentu – seperti memantau tujuan saat Anda menuju ke sana, membantu Anda mengetahui arah saat keluar dari stasiun metro, mengetahui posisi saat keluar dari mobil, atau mencari nama jalan atau jarak menuju persimpangan berikutnya. Namun, filosofi di balik Soundscape adalah *menerangi dunia Anda dengan suara* – aplikasi ini dirancang untuk digunakan kapan pun Anda sedang bepergian, untuk memberi Anda kesadaran ambien terhadap sekitar, seperti nama jalan yang Anda lalui, arah yang Anda tuju, dan nama bisnis yang Anda lewati. Dalam mode penggunaan ini, para pengguna kami menyebut Soundscape sebagai *teman perjalanan yang menyenangkan*, yang mendukung *kejutan-kejutan menyenangkan*, membantu *mengisi celah dalam peta mental Anda*, dan memberikan lebih banyak *kepercayaan diri saat berjalan*. Berikut beberapa contoh lain bagaimana pengguna kami menggunakan Soundscape dalam kehidupan mereka:\n\n“Soundscape membantu saya kembali ke jalur yang benar setelah saya turun dari bus dan berjalan ke arah yang salah.”\n\n“Bahkan di kota tempat saya tinggal selama 3 tahun, saya telah membangun gambaran yang lebih baik tentang apa yang ada di sekitar saya [dengan Soundscape].”\n\n“Suara 3D meningkatkan pengalaman jalan kaki saya, karena saya merasa lebih terhubung dengan lingkungan saya… Saya lebih cenderung mencoba rute baru sekarang karena saya memiliki aplikasi ini.”\n\n“Saya rindu kejutan-kejutan menyenangkan saat berjalan-jalan dan memperhatikan sekitar. Memiliki Soundscape sangat menyenangkan – tidak perlu usaha untuk mendengar tentang hal-hal di sekitar saya. Informasi relasionalnya berguna dan aplikasi ini sangat baik untuk kesadaran situasional dan menjelajahi kawasan komersial.”\n\n“[Saya menggunakan Soundscape] untuk menemukan sebuah pub di tengah kota York. [Saya] menggunakan berbagai opsinya untuk pertama-tama menemukan lokasinya lalu benar-benar mencapainya. Aplikasi ini membawa saya hingga jarak 3 meter dari pintu – luar biasa!”</string>
     <string name="faq_markers_function_question">Apa itu Penanda dan bagaimana cara memanfaatkannya secara maksimal?</string>
     <string name="faq_markers_function_answer">Penanda adalah tempat yang telah Anda simpan. Bisa berupa tempat yang dapat ditemukan di dalam aplikasi, atau tempat yang sepenuhnya baru yang Anda tambahkan sendiri. Anda dapat menyimpan lokasi Anda saat ini sebagai penanda dengan memilih tombol *Lokasi Saat Ini* di layar utama, lalu memilih *Simpan sebagai Penanda*. Anda dapat menyimpan lokasi lain sebagai penanda dengan mencari tempat yang ingin Anda simpan menggunakan bilah pencarian, atau menemukan suatu tempat menggunakan tombol *Tempat di Sekitar*, yang keduanya dapat ditemukan di layar utama Soundscape. Setelah Anda menemukan tempat yang diinginkan, memilihnya akan membawa Anda ke layar *Detail Lokasi*. Di layar ini, pilih tombol bernama *Simpan sebagai Penanda*.</string>
     <string name="faq_section_getting_the_best_experience">Bagaimana cara mendapatkan pengalaman terbaik dari Soundscape?</string>
@@ -1423,7 +1433,7 @@
     <string name="settings_media_controls_original">Mode asli</string>
     <string name="settings_media_controls_voice_command">Perintah suara</string>
     <string name="settings_media_controls_audio_menu">Menu audio</string>
-    <string name="settings_voice_command_listening_prompt">Umumkan mendengarkan</string>
+    <string name="settings_voice_command_listening_prompt">Umumkan saat mendengarkan</string>
     <string name="settings_voice_command_listening_prompt_description">Ucapkan pesan mendengarkan sebelum pengenalan suara dimulai.</string>
     <string name="settings_voice_command_microphone">Mikrofon</string>
     <string name="settings_voice_command_microphone_description">Pilih mikrofon mana yang digunakan untuk perintah suara.</string>
@@ -1448,7 +1458,7 @@
     <string name="settings_show_map">Tampilkan peta di layar</string>
     <string name="settings_debug_heading">Opsi debug</string>
     <string name="settings_search_results_language">Bahasa pencarian</string>
-    <string name="settings_search_results_language_description">Anda dapat membiarkan pencarian daring menggunakan bahasa lokal dari hasil pencarian, atau memaksanya mengembalikan hasil dalam bahasa Inggris, Prancis, atau Jerman.</string>
+    <string name="settings_search_results_language_description">Anda dapat membiarkan pencarian online menggunakan bahasa lokal dari hasil pencarian, atau memaksanya mengembalikan hasil dalam bahasa Inggris, Prancis, atau Jerman.</string>
     <string name="menu_share_recorded_route">Bagikan rekaman perjalanan</string>
     <string name="confect_name_to_via">%1$s ke %2$s melalui %3$s</string>
     <string name="confect_name_to">%1$s ke %2$s</string>
@@ -1470,7 +1480,7 @@
     <string name="help_text_assistant_how">Tidak ada kalimat baku yang perlu dihafal. Mintalah apa yang Anda inginkan dengan kata-kata Anda sendiri, dan asisten akan mencocokkannya dengan salah satu tindakan di bawah ini. Nama rute dan penanda dicocokkan secara longgar, jadi sebagian nama biasanya sudah cukup.</string>
     <string name="help_text_assistant_how_ios">Semua perintah punya bentuk yang sama: *Soundscape*, lalu sebuah grup, lalu pilihan Anda. Anda bisa mengucapkan semuanya sekaligus, misalnya *Soundscape surroundings around me*, atau berhenti setelah grupnya dan Siri akan menanyakan mana yang Anda maksud. Jadi setiap grup bekerja seperti menu lisan, dan hanya ada tujuh yang perlu diingat.</string>
     <string name="help_text_assistant_commands">Anda dapat meminta Soundscape untuk:\n\nMenjelaskan *Lokasi Saya*, apa yang ada *Di Sekitar Saya*, atau apa yang ada *Di Depan Saya*.\n\nMengumumkan penanda tersimpan di dekat Anda.\n\nMemulai salah satu rute tersimpan Anda berdasarkan nama, berpindah ke titik rute berikutnya, kembali ke titik sebelumnya, menonaktifkan suara suar, atau menghentikan rute.\n\nMemasang suar audio pada salah satu penanda tersimpan Anda berdasarkan nama, atau mematikan suar.\n\nMengatur tingkat detail pemberitahuan ke *Senyap*, *Esensial*, *Sederhana*, atau *Rinci*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. *Senyap* mematikan pemberitahuan otomatis.\n\nMembacakan nama rute tersimpan atau penanda tersimpan Anda.</string>
-    <string name="help_text_assistant_commands_ios">*Soundscape surroundings* — lalu *Lokasi Saya*, *Di Sekitar Saya*, *Di Depan Saya*, atau *Penanda di Sekitar*.\n\n*Soundscape route* — lalu *Titik Rute Berikutnya*, *Titik Rute Sebelumnya*, *Nonaktifkan Suara Suar*, atau *Hentikan*.\n\n*Soundscape start route* — lalu nama salah satu rute tersimpan Anda.\n\n*Soundscape beacon* — lalu nama salah satu penanda tersimpan Anda.\n\n*Soundscape stop beacon*.\n\n*Soundscape detail* — lalu *Senyap*, *Esensial*, *Sederhana*, atau *Rinci*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. *Senyap* mematikan pemberitahuan otomatis.\n\n*Soundscape list* — lalu *Rute*, *Penanda*, atau *Perintah*.\n\nMengucapkan *Soundscape list commands* akan membacakan daftar perintah ini kepada Anda.</string>
+    <string name="help_text_assistant_commands_ios">*Soundscape surroundings* — lalu *Lokasi Saya*, *Di Sekitar Saya*, *Di Depan Saya*, atau *Penanda Terdekat*.\n\n*Soundscape route* — lalu *Titik Rute Berikutnya*, *Titik Rute Sebelumnya*, *Nonaktifkan Suara Suar*, atau *Hentikan*.\n\n*Soundscape start route* — lalu nama salah satu rute tersimpan Anda.\n\n*Soundscape beacon* — lalu nama salah satu penanda tersimpan Anda.\n\n*Soundscape stop beacon*.\n\n*Soundscape detail* — lalu *Senyap*, *Esensial*, *Sederhana*, atau *Rinci*, untuk mengubah seberapa banyak yang dikatakan Soundscape saat Anda berjalan. *Senyap* mematikan pemberitahuan otomatis.\n\n*Soundscape list* — lalu *Rute*, *Penanda*, atau *Perintah*.\n\nMengucapkan *Soundscape list commands* akan membacakan daftar perintah ini kepada Anda.</string>
     <string name="help_text_assistant_notes">Semuanya kecuali kedua daftar itu memerlukan Soundscape yang sedang berjalan. Jika tidak, asisten akan meminta Anda membuka Soundscape terlebih dahulu. Menyebutkan daftar rute dan penanda Anda tetap bisa dilakukan, karena hanya membacakan apa yang sudah Anda simpan.\n\nPerintah suara akan memerlukan ponsel dengan Android 16 atau yang lebih baru, serta asisten yang mendukung fungsi aplikasi. Sebelum Google merilis dukungan tersebut di Gemini, perintah suara belum akan berfungsi.</string>
     <string name="help_text_assistant_notes_ios">Perintah-perintah ini juga muncul di aplikasi Pintasan dan di aplikasi Pengaturan iOS pada bagian *Siri*, tempat Anda bisa melihat seluruh daftarnya dan menambahkan kalimat Anda sendiri untuk salah satunya.</string>
     <string name="action_route_started">Memulai %1$s</string>
