@@ -638,7 +638,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Balise"
+            "value": "Balise sonore"
           }
         },
         "ha": {
@@ -912,7 +912,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Renseignements sur la balise"
+            "value": "Renseignements sur la balise sonore"
           }
         },
         "ha": {
@@ -1186,7 +1186,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Annoncer la balise"
+            "value": "Annoncer la balise sonore"
           }
         },
         "ha": {
@@ -1460,7 +1460,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notification"
+            "value": "Annonce"
           }
         },
         "ha": {
@@ -1734,7 +1734,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Détail des notifications"
+            "value": "Détail des annonces"
           }
         },
         "ha": {
@@ -5570,7 +5570,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactiver le son de la balise"
+            "value": "Désactiver le son de la balise sonore"
           }
         },
         "ha": {
@@ -6392,7 +6392,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prochain point de repère"
+            "value": "Étape suivante"
           }
         },
         "ha": {
@@ -6940,7 +6940,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Point de repère précédent"
+            "value": "Étape précédente"
           }
         },
         "ha": {
@@ -9406,7 +9406,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passe des points de repère, coupe le son de la balise ou arrête l’itinéraire."
+            "value": "Passe des étapes, coupe le son de la balise sonore ou arrête l’itinéraire."
           }
         },
         "ha": {
@@ -9954,7 +9954,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarrer la balise"
+            "value": "Démarrer la balise sonore"
           }
         },
         "ha": {
@@ -11050,7 +11050,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrêter la balise"
+            "value": "Arrêter la balise sonore"
           }
         },
         "ha": {
