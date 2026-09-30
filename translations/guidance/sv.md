@@ -108,7 +108,7 @@ Numbered as on the questionnaire.
 
 Uploaded with `--skip-validate`; all 31 re-fetched and matched exactly.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 25 flagged, 19 applied in `78cd685bb`. Findings: `/tmp/translation-review/sv-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 25 flagged, 19 applied in `78cd685bb`. Findings: `translations/review/2026-09-30-all-languages/sv-findings.json`.
 Most serious fixed:
 - `help_text_assistant_what`: «det beror på att Google släpper stöd» means 'that is because Google releases support' — the opposite of 'that depends on Google releasing support'.
 - `street_description_until`: «tills» is a temporal conjunction ('until [time]');

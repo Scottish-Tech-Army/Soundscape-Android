@@ -1,0 +1,546 @@
+[
+ {
+  "context": "last_entry_in_list",
+  "source": " and %1$s",
+  "current": "da %1$s",
+  "suggested": " da %1$s",
+  "reason": "Leading space lost: StreetPreview.kt concatenates this straight onto the comma-joined list, so the preview reads 'Titin A, Titin Bda Titin C'. Restore the space as in the English ' and %1$s'.",
+  "category": "formatting"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Wannan babban sabuntawa ne ga Soundscape. An inganta yanayin tafiya sosai. Idan kana tafiya da mota ko bas, Soundscape yanzu yana sanar da lambobin hanya, alkiblar tafiyarka, da wuraren zama da ke kusa. Yana kuma sanar idan ka ƙetare koguna, magudanan ruwa, mashigan ruwa da bakin teku. Da fatan za a sabunta taswirorinku na offline domin samun waɗannan sabbin fasalolin. Ga masu amfani a Burtaniya, tashoshin bas yanzu suna da bayanin da ya fi kyau sosai. Yanayin barci yanzu zai iya farkawa kai tsaye idan ya gano kana motsi kuma. Ba ka buƙatar tuna farkar da shi da kanka. Mun sake tsara lambar da ke ƙasa domin mu iya gina manhajar iOS daga wannan lambar. Wannan yana nufin cewa a nan gaba za mu iya fitar da manhajar iOS tare da duk fasalolin da muka ƙirƙira wa Android. Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta hanyar Tuntuɓi Taimako a babban menu.",
+  "suggested": "\nWannan babban sabuntawa ne ga Soundscape.\n\nAn inganta yanayin tafiya sosai. Idan kana tafiya da mota ko bas, Soundscape yanzu yana sanar da lambobin hanya, alkiblar tafiyarka, da wuraren zama da ke kusa. Yana kuma sanar idan ka ƙetare koguna, magudanan ruwa, mashigan ruwa da bakin teku. Da fatan za a sabunta taswirorinku na offline domin samun waɗannan sabbin fasalolin. Ga masu amfani a Burtaniya, tashoshin bas yanzu suna da bayanin da ya fi kyau sosai.\n\nYanayin barci yanzu zai iya farkawa kai tsaye idan ya gano kana motsi kuma. Ba ka buƙatar tuna farkar da shi da kanka.\n\nMun sake tsara lambar da ke ƙasa domin mu iya gina manhajar iOS daga wannan lambar. Wannan yana nufin cewa a nan gaba za mu iya fitar da manhajar iOS tare da duk fasalolin da muka ƙirƙira wa Android.\n\nDa fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta hanyar Tuntuɓi Tallafi a babban menu.\n",
+  "reason": "All paragraph breaks collapsed into one block (the English has 5 paragraphs plus leading/trailing newlines, and the release-notes splitter uses paragraph breaks). Also names the menu item «Tuntuɓi Taimako» but the real label (menu_contact_support) is «Tuntuɓi Tallafi». Suggested: same text with the breaks restored and the label fixed.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_markers_content_3",
+  "source": "To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *Nearby markers* button at the bottom of the home screen to hear a spatial callout of marked places around you. You can even set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.",
+  "current": "Domin jin daɗin wuraren da aka yiwa alama, Soundscape zai sanar da wuraren da aka yiwa alama kai tsaye yayin da kuke wucewa ko kusantowa gare su, ko kuma za ku iya amfani da maɓallin *Alamomin kusa* da ke ƙasan babban allo don jin sanarwar sararin samaniya ta wuraren da aka yiwa alama a kewaye da ku. Har ma kuna iya kafa siginar sauti a kan duk wani wurin da aka yiwa alama. Idan kuka yi haka, siginar sautin Soundscape da kuka saba da ita za ta kunna kuma za ku iya sarrafa ta kamar yadda aka saba.",
+  "suggested": "Domin jin daɗin wuraren da aka yiwa alama, Soundscape zai sanar da wuraren da aka yiwa alama kai tsaye yayin da kuke wucewa ko kusantowa gare su, ko kuma za ku iya amfani da maɓallin *Alamomin kusa* da ke ƙasan babban allo don jin sanarwar sarari ta wuraren da aka yiwa alama a kewaye da ku. Har ma kuna iya kafa siginar sauti a kan duk wani wurin da aka yiwa alama. Idan kuka yi haka, siginar sautin Soundscape da kuka saba da ita za ta kunna kuma za ku iya sarrafa ta kamar yadda aka saba.",
+  "reason": "«sanarwar sararin samaniya» says 'outer-space/sky callout' for 'spatial callout' (sararin samaniya = sky, outer space). first_launch_welcome_description already uses «sautin sarari» for spatial audio. Also the button is called «Alamomin kusa» here (see the home-button finding).",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_how_to_use_beacon_answer",
+  "source": "You can think of the audible beacon like a *lighthouse for your ears*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *ring* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *ring*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.\\n\\nThis design has a few natural results:\\n\\n1. There is no *correct* direction to travel when using the beacon – with Soundscape, you choose how to get there;\\n\\n2. The higher-pitched *ring* only helps you pinpoint the direction of the destination – it does not tell you how to get there;\\n\\n3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.",
+  "current": "Za ku iya tunanin siginar sauti a matsayin *tashar hasken jirgin ruwa domin kunnuwanku*: tana gaya muku inda wurin da kuke zuwa yake, a layi mikakke daga wurin da kuke yanzu. Kamar tashar hasken jirgin ruwa, ba ta gaya muku yadda za ku isa can ba – wataƙila za ku bukaci yin zaɓuka na tafiya a hanya domin guje wa cikas. Sautin da ke ci gaba da bugawa na siginar sauti yana zuwa daga alkiblar wurin da kuke zuwa, kuma yana taimaka muku ku ci gaba da sanin inda wurin yake dangane da ku yayin da kuke tafiya. Idan kuna tafiya kai tsaye zuwa wurin da kuke zuwa, ko kuka nuna wayar zuwa wurin, za ku ji sautin *ƙara* mai ƙarar sauti. Wannan yana taimaka muku ku gane ainihin alkiblar wurin, tun da alkiblar sautin bugawa wani lokaci na iya zama da wahalar ji a wurare masu hayaniya. Domin samun sautin *ƙara* mai ƙarar sauti, riƙe wayar a kwance sannan ka juya a hankali cikin da'ira; juya kanku zuwa hanya ɗaya da wayar zai ba ku mafi kyawun ƙwarewar sauti na sararin samaniya.\\n\\nWannan ƙira tana da sakamako na halitta kaɗan:\\n\\n1. Babu wata alkibla *daidai* ta tafiya idan ana amfani da siginar – tare da Soundscape kuku ne kuke zaɓar yadda za ku isa can;\\n\\n2. Sautin *ƙara* mai ƙarar sauti yana taimaka muku ganin alkiblar wurin da kuke zuwa kawai – ba ya gaya muku yadda za ku isa can;\\n\\n3. Idan gabaɗaya kun san yadda za ku isa wurin da kuke zuwa, kuna iya son kashe sautin siginar na tsawon mafi yawan tafiyarku sannan ku kunna shi ne kawai idan kuka kusanci wurin da kuke zuwa.",
+  "suggested": "Za ku iya tunanin siginar sauti a matsayin *tashar hasken jirgin ruwa domin kunnuwanku*: tana gaya muku inda wurin da kuke zuwa yake, a layi mikakke daga wurin da kuke yanzu. Kamar tashar hasken jirgin ruwa, ba ta gaya muku yadda za ku isa can ba – wataƙila za ku bukaci yin zaɓuka na tafiya a hanya domin guje wa cikas. Sautin da ke ci gaba da bugawa na siginar sauti yana zuwa daga alkiblar wurin da kuke zuwa, kuma yana taimaka muku ku ci gaba da sanin inda wurin yake dangane da ku yayin da kuke tafiya. Idan kuna tafiya kai tsaye zuwa wurin da kuke zuwa, ko kuka nuna wayar zuwa wurin, za ku ji sautin *ƙara* mai ƙarar sauti. Wannan yana taimaka muku ku gane ainihin alkiblar wurin, tun da alkiblar sautin bugawa wani lokaci na iya zama da wahalar ji a wurare masu hayaniya. Domin samun sautin *ƙara* mai ƙarar sauti, riƙe wayar a kwance sannan ku juya a hankali cikin da'ira; juya kanku zuwa hanya ɗaya da wayar zai ba ku mafi kyawun ƙwarewar sauti na sarari.\\n\\nWannan ƙira tana da sakamako na halitta kaɗan:\\n\\n1. Babu wata alkibla *daidai* ta tafiya idan ana amfani da siginar – tare da Soundscape ku ne kuke zaɓar yadda za ku isa can;\\n\\n2. Sautin *ƙara* mai ƙarar sauti yana taimaka muku ganin alkiblar wurin da kuke zuwa kawai – ba ya gaya muku yadda za ku isa can;\\n\\n3. Idan gabaɗaya kun san yadda za ku isa wurin da kuke zuwa, kuna iya son kashe sautin siginar na tsawon mafi yawan tafiyarku sannan ku kunna shi ne kawai idan kuka kusanci wurin da kuke zuwa.",
+  "reason": "'spatial audio' rendered «sauti na sararin samaniya» (outer space). Also the typo «kuku ne» → «ku ne», and «ka juya» is singular in an otherwise plural (ku) paragraph. NEEDS A HUMAN too: 'higher-pitched *ring*' is «*ƙara* mai ƙarar sauti» ('a loud noise'), which says louder, not higher in pitch, and «ƙara» also reads as 'add'; not fixed here.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "A'a! Yayin tafiya za ku iya sanya wayar a jaka ko aljihu ko duk inda ya dace muku. Soundscape za ta yi amfani da alkiblar da kuke tafiya don gane wace sanarwa za ta sanar zuwa hagunku da damanku. Idan kuka daina motsi, Soundscape ba ta san alkiblar da kuke fuskanta ba. Idan siginar sauti tana kunne, za ku lura ta yi shiru har sai kun sake motsi. Za ku iya fitar da wayar don danna maɓallan wuri da bincike da ke ƙasan babban allo a kowane lokaci, amma ku tabbata kun riƙe wayar da saman wayar yana nuni da alkiblar da kuke fuskanta tare da allo yana fuskantar sama. A wannan matsayi na *kwance*, Soundscape za ta yi amfani da kamfas na wayar don gano alkiblar da kuke fuskanta sannan ta ba da sanarwar sararin samaniya daidai. Idan siginar tana kunne, za ku kuma lura ta koma ga cikakkiyar ƙarar sautinta.",
+  "suggested": "A'a! Yayin tafiya za ku iya sanya wayar a jaka ko aljihu ko duk inda ya dace muku. Soundscape za ta yi amfani da alkiblar da kuke tafiya don gane wace sanarwa za ta sanar zuwa hagunku da damanku. Idan kuka daina motsi, Soundscape ba ta san alkiblar da kuke fuskanta ba. Idan siginar sauti tana kunne, za ku lura ƙararta ta ragu har sai kun sake motsi. Za ku iya fitar da wayar don danna maɓallan wuri da bincike da ke ƙasan babban allo a kowane lokaci, amma ku tabbata kun riƙe wayar da saman wayar yana nuni da alkiblar da kuke fuskanta tare da allo yana fuskantar sama. A wannan matsayi na *kwance*, Soundscape za ta yi amfani da kamfas na wayar don gano alkiblar da kuke fuskanta sannan ta ba da sanarwar sarari daidai. Idan siginar tana kunne, za ku kuma lura ta koma ga cikakkiyar ƙarar sautinta.",
+  "reason": "The beacon gets quieter, but «za ku lura ta yi shiru» says it goes silent (the same error was fixed in faq_tip_beacon_quiet on 2026-09-29, «zai yi shiru» → «zai ragu»). Also 'spatial callouts' → «sanarwar sararin samaniya» (outer space).",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_road_names_answer",
+  "source": "To accommodate a variety of intersection layouts, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the names of the roads that go to the left, straight ahead, and to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection forms a sideways T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.",
+  "current": "Domin daidaitawa da nau'o'in mahadar hanyoyi daban-daban, Soundscape tana bayyana mahadar hanyoyi a matsayin sassan hanyoyin da ke fita daga wuri guda. Soundscape tana amfani da sautin sararin samaniya don nuna sunayen hanyoyin da ke zuwa hagu, kai tsaye zuwa gaba, da dama, cikin wannan tsari. Idan bayanin mahadar ya fara da hanyar da kuke a kai maimakon wadda ke hagu, to mahadar ta zama siffar T a kwance, tare da hanyar da kuke a kai tana ci gaba zuwa gaba da wata hanya da ta haɗu daga dama. Haka nan, idan bayanin ya ƙunshi hanya zuwa hagu da dama kawai, za ku sani cewa hanyar da kuke a kai ta ƙare a siffar T a gabanku. Wannan hanyar bayyana mahadar hanyoyi kuma tana taimakawa a lokacin da hanya ta canza suna a mahadar.",
+  "suggested": "Domin daidaitawa da nau'o'in mahaɗar hanyoyi daban-daban, Soundscape tana bayyana mahaɗar hanyoyi a matsayin sassan hanyoyin da ke fita daga wuri guda. Soundscape tana amfani da sautin sarari don nuna sunayen hanyoyin da ke zuwa hagu, kai tsaye zuwa gaba, da dama, cikin wannan tsari. Idan bayanin mahaɗar ya fara da hanyar da kuke a kai maimakon wadda ke hagu, to mahaɗar ta zama siffar T a kwance, tare da hanyar da kuke a kai tana ci gaba zuwa gaba da wata hanya da ta haɗu daga dama. Haka nan, idan bayanin ya ƙunshi hanya zuwa hagu da dama kawai, za ku sani cewa hanyar da kuke a kai ta ƙare a siffar T a gabanku. Wannan hanyar bayyana mahaɗar hanyoyi kuma tana taimakawa a lokacin da hanya ta canza suna a mahaɗar.",
+  "reason": "'spatial audio' rendered «sautin sararin samaniya» (outer space; use «sautin sarari» as in first_launch_welcome_description). Also «mahadar» is missing its hooked ɗ (glossary: «mahaɗar hanya»).",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_difference_from_map_apps_answer",
+  "source": "Soundscape provides an ambient description of your surroundings in aid of exploration and wayfinding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.\\n\\nInstead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.",
+  "current": "Soundscape tana ba da bayanin yanayi game da abin da ke kewaye da ku don taimakawa a bincike da nemo hanya. Ta amfani da sautin sararin samaniya, Soundscape za ta sanar da wurare masu ban sha'awa, wuraren shakatawa, hanyoyi, da mahadar hanyoyi daga alkiblar da suke a zahiri a muhallinku na kusa yayin da kuke tafiya. Misali, idan kuka wuce wani shago a hannun daminku, za ku ji sunan shagon yana zuwa daga hannun daminku. Yayin da kuke kusantar mahadar hanyoyi, za ku ji kowane sunan hanya yana zuwa daga alkiblar da take kai, farawa daga hagu, gaba sannan dama.\\n\\nMaimakon umarnin mataki-mataki kamar yadda sauran manhajojin taswira ke bayarwa, Soundscape za ta kunna siginar sauti a alkiblar wurin da kuke zuwa, wanda ke ba ku ikon nemo hanyarku ta duk hanyar da ta fi dacewa da ku, ta amfani da ƙarin masaniyar ku game da abin da ke kewaye da ku da wurin da kuke zuwa. An tsara Soundscape don aiki a bango, wanda ke baiwa dama amfani da wata manhajar umarnin mataki-mataki, yayin da take ci gaba da ba da masaniyar muhalli yayin da kuke kai zuwa wurin da kuke zuwa.",
+  "suggested": "Soundscape tana ba da bayanin yanayi game da abin da ke kewaye da ku don taimakawa a bincike da nemo hanya. Ta amfani da sautin sarari, Soundscape za ta sanar da wurare masu ban sha'awa, wuraren shakatawa, hanyoyi, da mahaɗar hanyoyi daga alkiblar da suke a zahiri a muhallinku na kusa yayin da kuke tafiya. Misali, idan kuka wuce wani shago a hannun daminku, za ku ji sunan shagon yana zuwa daga hannun daminku. Yayin da kuke kusantar mahaɗar hanyoyi, za ku ji kowane sunan hanya yana zuwa daga alkiblar da take kai, farawa daga hagu, gaba sannan dama.\\n\\nMaimakon umarnin mataki-mataki kamar yadda sauran manhajojin taswira ke bayarwa, Soundscape za ta kunna siginar sauti a alkiblar wurin da kuke zuwa, wanda ke ba ku ikon nemo hanyarku ta duk hanyar da ta fi dacewa da ku, ta amfani da ƙarin masaniyar ku game da abin da ke kewaye da ku da wurin da kuke zuwa. An tsara Soundscape don aiki a bango, wanda ke ba ku damar amfani da wata manhajar umarnin mataki-mataki, yayin da take ci gaba da ba da masaniyar muhalli yayin da kuke kai zuwa wurin da kuke zuwa.",
+  "reason": "'spatial audio' → «sautin sararin samaniya» (outer space); «wanda ke baiwa dama amfani» has lost its object ('which gives [you] the chance'), should be «wanda ke ba ku damar amfani»; «mahadar» missing hooked ɗ.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_supported_headsets_answer",
+  "source": "Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.",
+  "current": "Wace belun kunne kuke amfani da ita tare da Soundscape al'amari ne na zaɓin kai, kuma kowane zaɓi yana da amfanoni da rashin amfanoni. Buƙata guda ɗaya kawai ita ce amfani da belun kunne na stereo domin ku ci gajiyar sanarwar sautin 3D na sararin samaniya na Soundscape.",
+  "suggested": "Wace belun kunne kuke amfani da ita tare da Soundscape al'amari ne na zaɓin kai, kuma kowane zaɓi yana da amfanoni da rashin amfanoni. Buƙata guda ɗaya kawai ita ce amfani da belun kunne na stereo domin ku ci gajiyar sanarwar sautin 3D na sarari na Soundscape.",
+  "reason": "'3D spatial audio callouts' → «sanarwar sautin 3D na sararin samaniya» ('of outer space').",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_head_tracking_description",
+  "source": "Position spatial audio relative to where your head is facing, using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.",
+  "current": "Sanya sautin sararin samaniya dangane da inda kanku yake fuskanta, ta amfani da bayanan motsi daga AirPods, Bose Frames, ko na'urar IMU ta Bluetooth ta waje da ake goyon baya. Yana daidaitawa kai tsaye yayin da kuke tafiya.",
+  "suggested": "Sanya sautin sarari dangane da inda kanku yake fuskanta, ta amfani da bayanan motsi daga AirPods, Bose Frames, ko na'urar IMU ta Bluetooth ta waje da ake goyon baya. Yana daidaitawa kai tsaye yayin da kuke tafiya.",
+  "reason": "'spatial audio' → «sautin sararin samaniya» (outer space); first_launch_welcome_description uses «sautin sarari».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_background_battery_impact_answer",
+  "source": "Soundscape uses Location Services to determine where you are. In our tests, Soundscape does not consume any more battery than the average map app; but if you are concerned about your phone's battery consumption, the following are a few tips which will help lower usage:\\n\\n1. Turn the screen display off as much as possible when you are not interacting with the app.\\n\\n2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.\\n\\n3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.",
+  "current": "Soundscape tana amfani da Sabis na Wuri don gano inda kuke. A gwaje-gwajenmu, Soundscape ba ta cin batir fiye da yadda matsakaicin manhajar taswira ke yi ba; amma idan kuna damuwa game da cin batirin wayarku, ga wasu shawarwari kaɗan da za su taimaka rage yawan amfani:\\n\\n1. Kashe allon nuni gwargwadon iko idan ba ku hulɗa da manhajar.\\n\\n2. Idan ba kwa amfani da manhajar, ku rufe ta. Soundscape tana amfani da sabis na wuri koyaushe yayin da take aiki domin ta san wurinku a koda yaushe, ko da ba ku motsi. Kada ku manta da sake kunna manhajar idan kuka sake fara tafiyarku.\\n\\n3. A yanayin sanyi, ku kiyaye wayarku ta kasance mai dumi domin batirori suna aiki mafi rauni a yanayin zafi mai sanyi.",
+  "suggested": "Soundscape tana amfani da Sabis na Wuri don gano inda kuke. A gwaje-gwajenmu, Soundscape ba ta cin batir fiye da yadda matsakaicin manhajar taswira ke yi ba; amma idan kuna damuwa game da cin batirin wayarku, ga wasu shawarwari kaɗan da za su taimaka rage yawan amfani:\\n\\n1. Kashe allon nuni gwargwadon iko idan ba ku hulɗa da manhajar.\\n\\n2. Idan ba kwa amfani da manhajar, ku rufe ta. Soundscape tana amfani da sabis na wuri koyaushe yayin da take aiki domin ta san wurinku a koda yaushe, ko da ba ku motsi. Kada ku manta da sake kunna manhajar idan kuka sake fara tafiyarku.\\n\\n3. A yanayin sanyi, ku kiyaye wayarku ta kasance mai dumi domin batirori suna aiki mafi rauni a yanayi mai tsananin sanyi.",
+  "reason": "«a yanayin zafi mai sanyi» reads as 'in cold hot weather' (yanayin zafi = temperature/heat). Say 'in cold weather' plainly.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_how_close_to_destination_question",
+  "source": "When I set a beacon on a destination, how close will Soundscape get me there?",
+  "current": "Idan na kafa siginar sauti a wurin da zan zuwa, yaya kusa Soundscape za ta kai ni?",
+  "suggested": "Idan na kafa siginar sauti a wurin da zan je, yaya kusa Soundscape za ta kai ni?",
+  "reason": "«wurin da zan zuwa» is ungrammatical (future «zan» needs the verb «je», not the verbal noun «zuwa»).",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_question",
+  "source": "Can I turn the beacon back on when I am close to my destination?",
+  "current": "Zan iya sake kunna siginar sauti idan na kusanci wurin da zan zuwa?",
+  "suggested": "Zan iya sake kunna siginar sauti idan na kusanci wurin da zan je?",
+  "reason": "«wurin da zan zuwa» is ungrammatical; «zan je».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape tana ba da hanyoyi da dama don sarrafa abin da kuke ji da lokacin da kuke ji shi:\\n\\n1. Dakatar da dukkan sauti nan take: Danna allo sau biyu da yatsu biyu don kashe dukkan sauti nan take, gami da duk wata sanarwa da ke kunna a halin yanzu da kuma siginar sauti idan tana kunne. Sanarwa za su sake farawa kai tsaye idan kuka kusanci mahadar hanyoyi ko wurin sha'awa na gaba, amma siginar sauti ba za ta yi haka ba. Zaɓi maɓallin *Kunna Siginar Sauti* a babban allo don sake jin siginar.\\n\\n2. Dakatar da sanarwa ta atomatik: Idan ba kwa tafiya ko kun riga kun isa wurin da kuke zuwa, wataƙila ba za ku bukaci Soundscape ta ci gaba da sanar da ku abubuwan da ke kewaye da ku ba. Maimakon fita daga manhajar, za ku iya sanya Soundscape a Yanayin Jinkirtawa sannan za ta sake farkawa idan kuka tafi, ko kuma za ku iya sanya Soundscape a Yanayin Barci sannan za ta ci gaba da kashewa har sai kun sake kunna ta. Ko kuma, za ku iya zaɓar *Saitunan* daga menu ku sanya *Matakin Sanarwa* ya zama *Shiru* a sashen *Sarrafa Sanarwa*.\\n\\n3. Dakatar da siginar sauti: Akwai yanayoyi da dama inda za ku iya kafa wurin da za ku zuwa amma ba kwa bukatar siginar sauti ta kunna. Misali, wataƙila kun san daidai yadda za ku isa wurin da kuke zuwa amma har yanzu kuna son sabuntawa ta atomatik game da nawa nisa kuke da shi. Ko kuma wataƙila kuna bukatar siginar sauti ne kawai idan kuka kusanci wurin da kuke zuwa. Ko da yaya lamarin yake, za ku iya zaɓar lokacin jin siginar ta hanyar sauya maɓallin *Kashe Siginar Sauti*/*Kunna Siginar Sauti* a babban allo.\\n\\nIdan har yanzu kuna son yin hulɗa da Soundscape amma ba kwa son jin sanarwa ta atomatik, za ku iya sanya *Matakin Sanarwa* ya zama *Shiru* a sashen *Sarrafa Sanarwa* na allon *Saitunan* daga menu. Ko kuma, idan ba za ku yi amfani da Soundscape ba, za ku iya sanya ta ko dai Yanayin Barci ko Yanayin Jinkirtawa ta amfani da maɓallin *Barci* a babban allo.",
+  "suggested": "Soundscape tana ba da hanyoyi da dama don sarrafa abin da kuke ji da lokacin da kuke ji shi:\\n\\n1. Dakatar da dukkan sauti nan take: Danna allo sau biyu da yatsu biyu don kashe dukkan sauti nan take, gami da duk wata sanarwa da ke kunna a halin yanzu da kuma siginar sauti idan tana kunne. Sanarwa za su sake farawa kai tsaye idan kuka kusanci mahaɗar hanyoyi ko wurin sha'awa na gaba, amma siginar sauti ba za ta yi haka ba. Zaɓi maɓallin *Kunna Siginar Sauti* a babban allo don sake jin siginar.\\n\\n2. Dakatar da sanarwa ta atomatik: Idan ba kwa tafiya ko kun riga kun isa wurin da kuke zuwa, wataƙila ba za ku bukaci Soundscape ta ci gaba da sanar da ku abubuwan da ke kewaye da ku ba. Maimakon fita daga manhajar, za ku iya sanya Soundscape a Yanayin Jinkirtawa sannan za ta sake farkawa idan kuka tafi, ko kuma za ku iya sanya Soundscape a Yanayin Barci sannan za ta ci gaba da kashewa har sai kun sake kunna ta. Ko kuma, za ku iya zaɓar *Saitunan* daga menu ku sanya *Matakin Sanarwa* ya zama *Shiru* a sashen *Sarrafa Sanarwa*.\\n\\n3. Dakatar da siginar sauti: Akwai yanayoyi da dama inda za ku iya kafa wurin da za ku je amma ba kwa bukatar siginar sauti ta kunna. Misali, wataƙila kun san daidai yadda za ku isa wurin da kuke zuwa amma har yanzu kuna son sabuntawa ta atomatik game da nawa nisa kuke da shi. Ko kuma wataƙila kuna bukatar siginar sauti ne kawai idan kuka kusanci wurin da kuke zuwa. Ko da yaya lamarin yake, za ku iya zaɓar lokacin jin siginar ta hanyar sauya maɓallin *Kashe Siginar Sauti*/*Kunna Siginar Sauti* a babban allo.\\n\\nIdan har yanzu kuna son yin hulɗa da Soundscape amma ba kwa son jin sanarwa ta atomatik, za ku iya sanya *Matakin Sanarwa* ya zama *Shiru* a sashen *Sarrafa Sanarwa* na allon *Saitunan* daga menu. Ko kuma, idan ba za ku yi amfani da Soundscape ba, za ku iya sanya ta ko dai Yanayin Barci ko Yanayin Jinkirtawa ta amfani da maɓallin *Barci* a babban allo.",
+  "reason": "«wurin da za ku zuwa» is ungrammatical («za ku je»); «mahadar» missing hooked ɗ.",
+  "category": "meaning"
+ },
+ {
+  "context": "menu_media_controls",
+  "source": "Media Controls",
+  "current": "Sarrafa Kafofin Watsa Labarai",
+  "suggested": "Maɓallan Sarrafa Sauti",
+  "reason": "«Kafofin Watsa Labarai» means the news/broadcast media ('mass media'), not headphone play/pause buttons. The help page title already says «Amfani da Maɓallan Sarrafa Sauti»; use that wording for the menu so the help's reference matches. Siblings flagged separately.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_section_media_controls",
+  "source": "Media controls mode",
+  "current": "Yanayin sarrafa kafofin watsa labarai",
+  "suggested": "Yanayin maɓallan sarrafa sauti",
+  "reason": "«kafofin watsa labarai» = news media. Match the help page's «maɓallan sarrafa sauti».",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_section_media_controls_description",
+  "source": "This setting controls how the media control buttons on your headphones or remote work.",
+  "current": "Wannan saiti yana sarrafa yadda maɓallan sarrafa kafofin watsa labarai da ke a belun kunnenku ko na'urar sarrafawa ke aiki.",
+  "suggested": "Wannan saiti yana sarrafa yadda maɓallan sarrafa sauti da ke a belun kunnenku ko na'urar sarrafawa ke aiki.",
+  "reason": "«maɓallan sarrafa kafofin watsa labarai» = 'news-media control buttons'. Use «maɓallan sarrafa sauti» like the help page title.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_mix_audio_description",
+  "source": "When disabled, other audio apps will pause and lock screen media controls will be available",
+  "current": "Idan an kashe wannan, sauran manhajojin sauti za su dakata kuma maɓallan sarrafa kafofin watsa labarai na allon kulle za su kasance akwai",
+  "suggested": "Idan an kashe wannan, sauran manhajojin sauti za su dakata kuma maɓallan sarrafa sauti na allon kulle za su kasance akwai",
+  "reason": "«maɓallan sarrafa kafofin watsa labarai» = 'news-media control buttons'. Use «maɓallan sarrafa sauti» like the help page title.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_remote_control_what",
+  "source": "You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.",
+  "current": "Za ku iya samun damar wasu fasalulluka a cikin Soundscape ta amfani da maɓallan sarrafa kafofin watsa labarai da ke a belun kunnenku. Wannan aikin yana aiki tare da kowace irin belun kunne, ko waya ko Bluetooth, da ke da maɓallan sarrafa kamar Kunna, Dakata, Na Gaba, Na Baya da sauransu. Belun kunne daban-daban na iya samun maɓallai daban-daban saboda haka a duba jerin ayyukan da ke ƙasa domin sanin waɗanda ke akwai a gare ku.",
+  "suggested": "Za ku iya samun damar wasu fasalulluka a cikin Soundscape ta amfani da maɓallan sarrafa sauti da ke a belun kunnenku. Wannan aikin yana aiki tare da kowace irin belun kunne, ko waya ko Bluetooth, da ke da maɓallan sarrafa kamar Kunna, Dakata, Na Gaba, Na Baya da sauransu. Belun kunne daban-daban na iya samun maɓallai daban-daban saboda haka a duba jerin ayyukan da ke ƙasa domin sanin waɗanda ke akwai a gare ku.",
+  "reason": "«maɓallan sarrafa kafofin watsa labarai» = 'news-media control buttons'. Use «maɓallan sarrafa sauti» like the help page title.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_remote_control_when",
+  "source": "Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.",
+  "current": "Ana iya amfani da maɓallan sarrafa kafofin watsa labarai na belun kunne yayin da Soundscape ke aiki — ko kuna amfani da manhajar kai tsaye, ko tana aiki a bango, ko na'urarku tana kulle. Duk da haka, maɓallan sarrafa kafofin watsa labarai na belun kunne ba za su yi aiki da Soundscape ba idan kuna kunna sauti, kamar waƙa, podcast ko bidiyo, ta wata manhajar daban.",
+  "suggested": "Ana iya amfani da maɓallan sarrafa sauti na belun kunne yayin da Soundscape ke aiki — ko kuna amfani da manhajar kai tsaye, ko tana aiki a bango, ko na'urarku tana kulle. Duk da haka, maɓallan sarrafa sauti na belun kunne ba za su yi aiki da Soundscape ba idan kuna kunna sauti, kamar waƙa, podcast ko bidiyo, ta wata manhajar daban.",
+  "reason": "«maɓallan sarrafa kafofin watsa labarai» = 'news-media control buttons'. Use «maɓallan sarrafa sauti» like the help page title.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sashen *Saitunan* *Sarrafa Kafofin Watsa Labarai*. Yanayoyin sune:\\n\\n *Yanayin Asali*. \\n\\n⏯ Kunna/Dakata: Yana kunna ko kashe siginar sauti. \\n\\n⏭ Na Gaba: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar gaba a tafarkin. Idan ba a kunna wani tafarki ba, yana sanar da *Kewaye da Ni*.\\n\\n⏮ Na Baya: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar da ta gabata a tafarkin. Idan ba a kunna wani tafarki ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Sauƙaƙe*, *Muhimmi*, *Shiru*, sannan ya koma *Cikakke*.\\n\\n\\n\\n*Menu na Sauti*. \\n\\n\\n\\n⏭ Na Gaba yana motsawa cikin jerin zaɓuɓɓukan menu waɗanda manhajar ke bayyanawa ta rubutu-zuwa-murya, kuma yana komawa na farko bayan na ƙarshe. Sannan ⏯ Kunna/Dakata yana sa manhajar ta gudanar da zaɓin da aka bayyana. Akwai babban menu guda ɗaya wanda kawai ke da ƙananan menu a matsayin zaɓuɓɓuka. Kowane ƙaramin menu yana da ƙungiyar ayyuka masu kama da juna.\\n\\n⏮ Na Baya ba ya motsawa cikin menu. Maimakon haka yana canza *Matakin Sanarwa*, kamar yadda yake yi a Yanayin Asali, don haka maɓalli ɗaya yana rage maganar manhajar a kowane yanayi da kuke amfani da shi.",
+  "suggested": "Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sashen *Saitunan* *Maɓallan Sarrafa Sauti*. Yanayoyin sune:\\n\\n *Yanayin Asali*. \\n\\n⏯ Kunna/Dakata: Yana kunna ko kashe siginar sauti. \\n\\n⏭ Na Gaba: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar gaba a tafarkin. Idan ba a kunna wani tafarki ba, yana sanar da *Kewaye da Ni*.\\n\\n⏮ Na Baya: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar da ta gabata a tafarkin. Idan ba a kunna wani tafarki ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Sauƙaƙe*, *Muhimmi*, *Shiru*, sannan ya koma *Cikakke*.\\n\\n\\n\\n*Menu na Sauti*. \\n\\n\\n\\n⏭ Na Gaba yana motsawa cikin jerin zaɓuɓɓukan menu waɗanda manhajar ke bayyanawa ta rubutu-zuwa-murya, kuma yana komawa na farko bayan na ƙarshe. Sannan ⏯ Kunna/Dakata yana sa manhajar ta gudanar da zaɓin da aka bayyana. Akwai babban menu guda ɗaya wanda kawai ke da ƙananan menu a matsayin zaɓuɓɓuka. Kowane ƙaramin menu yana da ƙungiyar ayyuka masu kama da juna.\\n\\n⏮ Na Baya ba ya motsawa cikin menu. Maimakon haka yana canza *Matakin Sanarwa*, kamar yadda yake yi a Yanayin Asali, don haka maɓalli ɗaya yana rage maganar manhajar a kowane yanayi da kuke amfani da shi.",
+  "reason": "Names the setting as «*Saitunan* *Sarrafa Kafofin Watsa Labarai*» (news media). Must follow whatever menu_media_controls becomes; suggested assumes «Maɓallan Sarrafa Sauti».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_lottery",
+  "source": "Lottery Shop",
+  "current": "Shagon Kacici-kacici",
+  "suggested": "Shagon Tikitin Caca",
+  "reason": "«Kacici-kacici» means a riddle/puzzle, not a lottery.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_free_flying",
+  "source": "Free Flight",
+  "current": "Tashin Sama Kyauta",
+  "suggested": "Tashin Sama Kyauta",
+  "reason": "«Tashin Sama Kyauta» reads as 'flying for free' (kyauta = gratis). OSM free_flying is hang-gliding/paragliding (unpowered flight). Needs a native wording.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_station",
+  "source": "Station",
+  "current": "Tashar",
+  "suggested": "Tasha",
+  "reason": "«Tashar» is the linked form and needs a following noun ('station of…'); on its own it should be «Tasha».",
+  "category": "meaning"
+ },
+ {
+  "context": "beacon_styles_mallet",
+  "source": "Mallet",
+  "current": "Mari",
+  "suggested": "Guduma",
+  "reason": "«Mari» means a slap. A mallet is a (small) hammer, «Guduma»; the Slow/Very Slow variants would follow.",
+  "category": "meaning"
+ },
+ {
+  "context": "beacon_styles_mallet_slow",
+  "source": "Mallet (Slow)",
+  "current": "Mari (A Hankali)",
+  "suggested": "Guduma (A Hankali)",
+  "reason": "Follows beacon_styles_mallet: «Mari» = a slap, not a mallet.",
+  "category": "meaning"
+ },
+ {
+  "context": "beacon_styles_mallet_very_slow",
+  "source": "Mallet (Very Slow)",
+  "current": "Mari (A Hankali Sosai)",
+  "suggested": "Guduma (A Hankali Sosai)",
+  "reason": "Follows beacon_styles_mallet: «Mari» = a slap, not a mallet.",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_callouts_message",
+  "source": "Soundscape helps you stay aware of where you are and where you're going by calling out roads, intersections and points of interest as you approach them.",
+  "current": "Soundscape yana taimaka muku ku kasance da masaniyar inda kuke da kuma inda kuke zuwa ta hanyar sanar da ku hanyoyi, mahadar hanyoyi, da wurare masu ban sha'awa yayin da kuke kusantowa gare su.",
+  "suggested": "Soundscape yana taimaka muku ku kasance da masaniyar inda kuke da kuma inda kuke zuwa ta hanyar sanar da ku hanyoyi, mahaɗar hanyoyi, da wurare masu ban sha'awa yayin da kuke kusantowa gare su.",
+  "reason": "«mahadar» is missing its hooked ɗ; glossary and UI strings use «mahaɗar hanya». TTS pronounces d and ɗ differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_what",
+  "source": "Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *Manage Callouts* section of the *Settings* screen, and you can turn all callouts off when you want the app to be silent.",
+  "current": "Soundscape na iya gaya muku game da abubuwan da ke kewaye da ku yayin da kuke kusantowa gare su, ta hanyar sanar da sunayensu daga wajen da suke. Manhajar za ta yi wannan kai tsaye ga kowane irin abu kamar shaguna, tashoshin bas, har ma da mahadar hanyoyi. Za ku iya daidaita irin abin da manhajar ke sanarwa kai tsaye a sashen *Sarrafa Sanarwa* na allon *Saitunan*, kuma za ku iya kashe dukkan sanarwa idan kuna son manhajar ta yi shiru.",
+  "suggested": "Soundscape na iya gaya muku game da abubuwan da ke kewaye da ku yayin da kuke kusantowa gare su, ta hanyar sanar da sunayensu daga wajen da suke. Manhajar za ta yi wannan kai tsaye ga kowane irin abu kamar shaguna, tashoshin bas, har ma da mahaɗar hanyoyi. Za ku iya daidaita irin abin da manhajar ke sanarwa kai tsaye a sashen *Sarrafa Sanarwa* na allon *Saitunan*, kuma za ku iya kashe dukkan sanarwa idan kuna son manhajar ta yi shiru.",
+  "reason": "«mahadar» is missing its hooked ɗ; glossary and UI strings use «mahaɗar hanya». TTS pronounces d and ɗ differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_when_2",
+  "source": "**Walking to a specific location :**\\n\\n When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.",
+  "current": "**Tafiya zuwa wani takamaiman wuri :**\\n\\n Idan kuna kan hanyarku zuwa wani takamaiman wuri, sanarwar mahadar hanyoyi ta atomatik na iya zama da amfani sosai. Sanarwar mahadar hanyoyi tana gaya muku tsarin mahadar yayin da kuke kusantowa, kuma tana tabbatar muku da titin da kuke kai idan kuka bar mahadar.",
+  "suggested": "**Tafiya zuwa wani takamaiman wuri :**\\n\\n Idan kuna kan hanyarku zuwa wani takamaiman wuri, sanarwar mahaɗar hanyoyi ta atomatik na iya zama da amfani sosai. Sanarwar mahaɗar hanyoyi tana gaya muku tsarin mahaɗar yayin da kuke kusantowa, kuma tana tabbatar muku da titin da kuke kai idan kuka bar mahaɗar.",
+  "reason": "«mahadar» is missing its hooked ɗ; glossary and UI strings use «mahaɗar hanya». TTS pronounces d and ɗ differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_my_location_what",
+  "source": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "current": "Maɓallin *Inda Nake* yana ba ku bayani cikin sauri wanda ke taimaka muku sanin inda kuke a halin yanzu. *Inda Nake* yana gaya muku game da wurinku na yanzu wanda ya haɗa da irin abubuwa kamar alkiblar da kuke fuskanta, inda hanyoyi ko mahadar hanyoyi na kusa suke, da kuma inda wurare masu ban sha'awa na kusa suke.",
+  "suggested": "Maɓallin *Inda Nake* yana ba ku bayani cikin sauri wanda ke taimaka muku sanin inda kuke a halin yanzu. *Inda Nake* yana gaya muku game da wurinku na yanzu wanda ya haɗa da irin abubuwa kamar alkiblar da kuke fuskanta, inda hanyoyi ko mahaɗar hanyoyi na kusa suke, da kuma inda wurare masu ban sha'awa na kusa suke.",
+  "reason": "«mahadar» is missing its hooked ɗ; glossary and UI strings use «mahaɗar hanya». TTS pronounces d and ɗ differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape tana da fasalulluka da amfanoni waɗanda suka shafi yanayi da lokuta daban-daban. Darajar Soundscape gare ku kuma na iya canzawa a kan lokaci, saboda haka yadda kuke amfani da ita yau na iya bambanta da yadda za ku yi amfani da ita a cikin wata uku. Mutane sukan yi tunani game da manhajoji ta fuskar *wace matsala ce wannan manhajar ta fi bayarwa mafita gare ta?* Hakika ana iya amfani da Soundscape domin takamaiman bukatu – kamar bin diddigin wurin da kuke zuwa yayin da kuke kai, taimaka muku daidaita kanku idan kuka fito daga tashar jirgin ƙasa, gane inda kuke idan kuka fita daga mota, ko neman sunayen tituna ko nisa zuwa mahadar hanya ta gaba. Duk da haka, falsafar da ke bayan Soundscape ita ce ta *haskaka duniyarku da sauti* – an tsara ta don amfani a duk lokacin da kuke waje, don ba ku masaniyar yanayi game da abin da ke kewaye da ku, kamar sunayen tituna da kuke a kai, alkiblar da kuke nufa, da sunayen shagunan da kuke wucewa. A wannan hanyar amfani, masu amfani da mu sun kira Soundscape a matsayin *kyakkyawar manhajar aboki*, wadda ke tallafawa *kwatsam samun abu mai kyau*, tana taimakawa wajen *cika giɓi a taswirar tunaninku*, kuma tana ba da ƙarin *ƙarfin gwiwa yayin tafiya*. Ga wasu misalan yadda masu amfani da mu ke amfani da Soundscape a rayuwarsu:\\n\\nSoundscape ta taimaka min in dawo kan hanya bayan na sauka daga bas na nufi wata hanyar da ba daidai ba.\\n\\nKo a garin da na zauna shekaru 3, na gina cikakkiyar hoto game da abin da ke kewaye da ni [tare da Soundscape].\\n\\nSautin 3D yana ƙara wa tafiyata kyau, domin ina jin haɗin kai da muhallina fiye da yadda nake…Na fi son gwada sabuwar hanya yanzu da nake da manhajar da zan yi amfani da ita.\\n\\nIna rasa jin daɗin yawo da lura da abubuwa kwatsam. Samun Soundscape yana da kyau – ba ya bukatar ƙoƙari don jin labarin abubuwan da ke kewaye da ni. Bayanin da ke da alaƙa yana da amfani kuma babbar manhaja ce don sanin yanayi da bincikar hanyoyin kasuwanci.\\n\\n[Na yi amfani da Soundscape] don gano wani mashaya a tsakiyar York. [Na] yi amfani da zaɓuɓɓuka da dama don farko in gano sannan in samu shi da gaske. Ta kai ni cikin mita 3 daga ƙofar – kyakkyawa sosai!",
+  "suggested": "Soundscape tana da fasalulluka da amfanoni waɗanda suka shafi yanayi da lokuta daban-daban. Darajar Soundscape gare ku kuma na iya canzawa a kan lokaci, saboda haka yadda kuke amfani da ita yau na iya bambanta da yadda za ku yi amfani da ita a cikin wata uku. Mutane sukan yi tunani game da manhajoji ta fuskar *wace matsala ce wannan manhajar ta fi bayarwa mafita gare ta?* Hakika ana iya amfani da Soundscape domin takamaiman bukatu – kamar bin diddigin wurin da kuke zuwa yayin da kuke kai, taimaka muku daidaita kanku idan kuka fito daga tashar jirgin ƙasa, gane inda kuke idan kuka fita daga mota, ko neman sunayen tituna ko nisa zuwa mahaɗar hanya ta gaba. Duk da haka, falsafar da ke bayan Soundscape ita ce ta *haskaka duniyarku da sauti* – an tsara ta don amfani a duk lokacin da kuke waje, don ba ku masaniyar yanayi game da abin da ke kewaye da ku, kamar sunayen tituna da kuke a kai, alkiblar da kuke nufa, da sunayen shagunan da kuke wucewa. A wannan hanyar amfani, masu amfani da mu sun kira Soundscape a matsayin *kyakkyawar manhajar aboki*, wadda ke tallafawa *kwatsam samun abu mai kyau*, tana taimakawa wajen *cika giɓi a taswirar tunaninku*, kuma tana ba da ƙarin *ƙarfin gwiwa yayin tafiya*. Ga wasu misalan yadda masu amfani da mu ke amfani da Soundscape a rayuwarsu:\\n\\nSoundscape ta taimaka min in dawo kan hanya bayan na sauka daga bas na nufi wata hanyar da ba daidai ba.\\n\\nKo a garin da na zauna shekaru 3, na gina cikakkiyar hoto game da abin da ke kewaye da ni [tare da Soundscape].\\n\\nSautin 3D yana ƙara wa tafiyata kyau, domin ina jin haɗin kai da muhallina fiye da yadda nake…Na fi son gwada sabuwar hanya yanzu da nake da manhajar da zan yi amfani da ita.\\n\\nIna rasa jin daɗin yawo da lura da abubuwa kwatsam. Samun Soundscape yana da kyau – ba ya bukatar ƙoƙari don jin labarin abubuwan da ke kewaye da ni. Bayanin da ke da alaƙa yana da amfani kuma babbar manhaja ce don sanin yanayi da bincikar hanyoyin kasuwanci.\\n\\n[Na yi amfani da Soundscape] don gano wani mashaya a tsakiyar York. [Na] yi amfani da zaɓuɓɓuka da dama don farko in gano sannan in samu shi da gaske. Ta kai ni cikin mita 3 daga ƙofar – kyakkyawa sosai!",
+  "reason": "«mahadar» is missing its hooked ɗ; glossary and UI strings use «mahaɗar hanya». TTS pronounces d and ɗ differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_what_can_I_set_answer",
+  "source": "You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.",
+  "current": "Za ku iya kafa siginar sauti a kan kowane shago, wuri, wurin sha'awa, adireshi, ko mahadar hanyoyi. Akwai hanyoyi kaɗan da za ku iya ƙara alama a wani wuri. Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko ta danna ɗaya daga cikin maɓallan *Wurare na Kusa*, *Alamomi da Tafarkuna*, ko *Wurin da Kake Yanzu* sannan ku zaɓi wuri. Sannan daga allon *Cikakkun Bayanan Wuri*, zaɓi maɓallin *Fara Siginar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna siginar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allo.",
+  "suggested": "Za ku iya kafa siginar sauti a kan kowane shago, wuri, wurin sha'awa, adireshi, ko mahaɗar hanyoyi. Akwai hanyoyi kaɗan da za ku iya ƙara alama a wani wuri. Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko ta danna ɗaya daga cikin maɓallan *Wurare na Kusa*, *Alamomi da Tafarkuna*, ko *Wurin da Kake Yanzu* sannan ku zaɓi wuri. Sannan daga allon *Cikakkun Bayanan Wuri*, zaɓi maɓallin *Fara Siginar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna siginar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allo.",
+  "reason": "«mahadar» is missing its hooked ɗ; glossary and UI strings use «mahaɗar hanya». TTS pronounces d and ɗ differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_road_names_question",
+  "source": "Why does Soundscape call out road names twice when I approach an intersection?",
+  "current": "Me ya sa Soundscape ke sanar da sunayen hanyoyi sau biyu idan na kusanci mahadar hanyoyi?",
+  "suggested": "Me ya sa Soundscape ke sanar da sunayen hanyoyi sau biyu idan na kusanci mahaɗar hanyoyi?",
+  "reason": "«mahadar» is missing its hooked ɗ; glossary and UI strings use «mahaɗar hanya». TTS pronounces d and ɗ differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_callouts_stopping_in_vehicle_answer",
+  "source": "In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.",
+  "current": "Domin hana yawan sanarwa ya zama mai yawa, ba a sanar da wasu rukunoni, kamar mahadar hanyoyi, kai tsaye idan kuna tafiya cikin mota.",
+  "suggested": "Domin hana yawan sanarwa ya zama mai yawa, ba a sanar da wasu rukunoni, kamar mahaɗar hanyoyi, kai tsaye idan kuna tafiya cikin mota.",
+  "reason": "«mahadar» is missing its hooked ɗ; glossary and UI strings use «mahaɗar hanya». TTS pronounces d and ɗ differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_use_with_wayfinding_apps_answer",
+  "source": "Soundscape is designed to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.",
+  "current": "An tsara Soundscape domin taimakawa cika bayanai game da muhallinku wanda wataƙila ba ku sani ba in ba haka ba. Ko da yake ba a tsara ta a matsayin manhajar umarnin mataki-mataki ba, ana iya amfani da ita tare da irin waɗannan manhajoji don ba da ƙarin bayani. Domin amfani da Soundscape tare da waɗannan manhajoji, fara manhajar jagorar tafiyarku da farko. Sannan, ku koma zuwa Soundscape ku kafa siginar sauti a kan wurin da kuke zuwa iri ɗaya da ke cikin manhajar jagorar. A wannan lokacin, manhajoji biyu za su kasance suna aiki kuma za ku ji umarnin tafiya daga manhajar jagorarku, yayin da kuke samun sabuntawa game da wurare masu ban sha'awa, mahadar hanyoyi, da nisan ku zuwa wurin da kuke zuwa daga Soundscape.",
+  "suggested": "An tsara Soundscape domin taimakawa cika bayanai game da muhallinku wanda wataƙila ba ku sani ba in ba haka ba. Ko da yake ba a tsara ta a matsayin manhajar umarnin mataki-mataki ba, ana iya amfani da ita tare da irin waɗannan manhajoji don ba da ƙarin bayani. Domin amfani da Soundscape tare da waɗannan manhajoji, fara manhajar jagorar tafiyarku da farko. Sannan, ku koma zuwa Soundscape ku kafa siginar sauti a kan wurin da kuke zuwa iri ɗaya da ke cikin manhajar jagorar. A wannan lokacin, manhajoji biyu za su kasance suna aiki kuma za ku ji umarnin tafiya daga manhajar jagorarku, yayin da kuke samun sabuntawa game da wurare masu ban sha'awa, mahaɗar hanyoyi, da nisan ku zuwa wurin da kuke zuwa daga Soundscape.",
+  "reason": "«mahadar» is missing its hooked ɗ; glossary and UI strings use «mahaɗar hanya». TTS pronounces d and ɗ differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_clinic",
+  "source": "Clinic",
+  "current": "Karamin Asibiti",
+  "suggested": "Ƙaramin Asibiti",
+  "reason": "Spelling: «Karamin» is missing its hooked letter («Ƙaramin»); siblings spell it correctly, and TTS pronounces the two differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_aerodrome",
+  "source": "Aerodrome",
+  "current": "Karamin Filin Jirgin Sama",
+  "suggested": "Ƙaramin Filin Jirgin Sama",
+  "reason": "Spelling: «Karamin» is missing its hooked letter («Ƙaramin»); siblings spell it correctly, and TTS pronounces the two differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_adult_gaming_centre",
+  "source": "Gambling Arcade",
+  "current": "Dakin Caca",
+  "suggested": "Ɗakin Caca",
+  "reason": "Spelling: «Dakin» is missing its hooked letter («Ɗakin»); siblings spell it correctly, and TTS pronounces the two differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_photographic_laboratory",
+  "source": "Photographic Laboratory",
+  "current": "Dakin Wanke Hoto",
+  "suggested": "Ɗakin Wanke Hoto",
+  "reason": "Spelling: «Dakin» is missing its hooked letter («Ɗakin»); siblings spell it correctly, and TTS pronounces the two differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_furniture",
+  "source": "Furniture Shop",
+  "current": "Shagon Kayan Daki",
+  "suggested": "Shagon Kayan Ɗaki",
+  "reason": "Spelling: «Daki» is missing its hooked letter («Ɗaki»); siblings spell it correctly, and TTS pronounces the two differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_taekwondo",
+  "source": "Taekwondo Club",
+  "current": "Kulob din Taekwondo",
+  "suggested": "Kulob ɗin Taekwondo",
+  "reason": "Spelling: «din» is missing its hooked letter («ɗin»); siblings spell it correctly, and TTS pronounces the two differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_chess",
+  "source": "Chess Club",
+  "current": "Kulob din Dara",
+  "suggested": "Kulob ɗin Dara",
+  "reason": "Spelling: «din» is missing its hooked letter («ɗin»); siblings spell it correctly, and TTS pronounces the two differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_campanile",
+  "source": "Bell Tower",
+  "current": "Hasumiyar Kararrawa",
+  "suggested": "Hasumiyar Ƙararrawa",
+  "reason": "Spelling: «Kararrawa» is missing its hooked letter («Ƙararrawa»); siblings spell it correctly, and TTS pronounces the two differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "voice_cmd_speech_recognition_error_audio",
+  "source": "Speech recognition error recording the audio.",
+  "current": "Kuskure wajen daukar sautin gane murya.",
+  "suggested": "Kuskure wajen ɗaukar sautin gane murya.",
+  "reason": "Spelling: «daukar» is missing its hooked letter («ɗaukar»); siblings spell it correctly, and TTS pronounces the two differently.",
+  "category": "terminology"
+ },
+ {
+  "context": "advanced_markers_and_routes_export_button",
+  "source": "Export markers and routes database",
+  "current": "Fitar da Ma'ajin Alamu da Tafarkuna",
+  "suggested": "Fitar da Ma'ajin Alamomi da Tafarkuna",
+  "reason": "Marker plural is «Alamomi» everywhere else (glossary, Markers tab, «Alamomi da Tafarkuna»); these Advanced screen strings use «alamu», which is also the ordinary word for 'signs/indications'.",
+  "category": "terminology"
+ },
+ {
+  "context": "advanced_markers_and_routes_import_button",
+  "source": "Import markers and routes database",
+  "current": "Shigo da Ma'ajin Alamu da Tafarkuna",
+  "suggested": "Shigo da Ma'ajin Alamomi da Tafarkuna",
+  "reason": "Marker plural is «Alamomi» everywhere else (glossary, Markers tab, «Alamomi da Tafarkuna»); these Advanced screen strings use «alamu», which is also the ordinary word for 'signs/indications'.",
+  "category": "terminology"
+ },
+ {
+  "context": "advanced_markers_and_routes_clear_all_button",
+  "source": "Delete all markers and routes",
+  "current": "Share Duk Alamu da Tafarkuna",
+  "suggested": "Share Duk Alamomi da Tafarkuna",
+  "reason": "Marker plural is «Alamomi» everywhere else (glossary, Markers tab, «Alamomi da Tafarkuna»); these Advanced screen strings use «alamu», which is also the ordinary word for 'signs/indications'.",
+  "category": "terminology"
+ },
+ {
+  "context": "menu_advanced_markers_and_routes_clear_all_success",
+  "source": "Markers and routes deleted",
+  "current": "An Share Alamu da Tafarkuna",
+  "suggested": "An Share Alamomi da Tafarkuna",
+  "reason": "Marker plural is «Alamomi» everywhere else (glossary, Markers tab, «Alamomi da Tafarkuna»); these Advanced screen strings use «alamu», which is also the ordinary word for 'signs/indications'.",
+  "category": "terminology"
+ },
+ {
+  "context": "markers_and_routes_import_success",
+  "source": "Import of markers and routes completed.",
+  "current": "Shigo da alamu da tafarkuna ya cika.",
+  "suggested": "Shigo da alamomi da tafarkuna ya cika.",
+  "reason": "Marker plural is «Alamomi» everywhere else (glossary, Markers tab, «Alamomi da Tafarkuna»); these Advanced screen strings use «alamu», which is also the ordinary word for 'signs/indications'.",
+  "category": "terminology"
+ },
+ {
+  "context": "markers_and_routes_import_failure",
+  "source": "Import of markers and routes failed.",
+  "current": "Shigo da alamu da tafarkuna ya kasa.",
+  "suggested": "Shigo da alamomi da tafarkuna ya kasa.",
+  "reason": "Marker plural is «Alamomi» everywhere else (glossary, Markers tab, «Alamomi da Tafarkuna»); these Advanced screen strings use «alamu», which is also the ordinary word for 'signs/indications'.",
+  "category": "terminology"
+ },
+ {
+  "context": "advanced_markers_and_routes_clear_all_alert_message",
+  "source": "Deleting all markers and routes cannot be undone. Do you want to continue?",
+  "current": "Share dukkan alamu da tafarkuna ba za a iya mayar da shi baya ba. Kana son ci gaba?",
+  "suggested": "Share dukkan alamomi da tafarkuna ba za a iya mayar da shi baya ba. Kana son ci gaba?",
+  "reason": "Marker plural is «Alamomi» everywhere else (glossary, Markers tab, «Alamomi da Tafarkuna»); these Advanced screen strings use «alamu», which is also the ordinary word for 'signs/indications'.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_generic_landmark",
+  "source": "Landmark",
+  "current": "Alamar Wuri",
+  "suggested": "Shahararren Wuri",
+  "reason": "«Alamar Wuri» ('place marker') uses the Marker word «alama», so a landmark POI will sound like one of the user's own markers. The glossary's Landmark term is «shahararrun wurare» (singular «shahararren wuri»).",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_unmanaged_crossing",
+  "source": "Unmanaged Crosswalk",
+  "current": "Mahaɗar Ƙetarewa Marar Kulawa",
+  "suggested": "Mashigin Ƙetare Titi Marar Kulawa",
+  "reason": "«Mahaɗar» is the Intersection term; a crosswalk is «Mashigin Ƙetare Titi» (osm_crossing). This reads as 'unmanaged intersection'.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_park",
+  "source": "Park",
+  "current": "Fili",
+  "suggested": "Filin Shaƙatawa",
+  "reason": "«Fili» just means an open field/space; public_park is «Filin Shaƙatawa na Jama'a» and the help text says «wurin shakatawa» for park.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_config_voices_content",
+  "source": "Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *Settings* from the main menu, expand the *Audio* section, and then select *Voices*.",
+  "current": "Soundscape na iya amfani da kowace muryar da ka sauke a wayarka ta Android a cikin saitunan fitarwar Rubutu-zuwa-Magana. A cikin manhajar Soundscape, don zaɓar murya dabam da wadda ta zo tare da Android, je zuwa *Saituna* daga babban menu, buɗe sashin *Sauti*, sannan ka zaɓi *Muryoyi*.",
+  "suggested": "Soundscape na iya amfani da kowace muryar da ka sauke a wayarka ta Android a cikin saitunan fitarwar Rubutu-zuwa-Magana. A cikin manhajar Soundscape, don zaɓar murya dabam da wadda ta zo tare da Android, je zuwa *Saitunan* daga babban menu, buɗe sashin *Sauti*, sannan ka zaɓi *Muryoyi*.",
+  "reason": "Says «*Saituna*», but the Settings screen title and every other help string say «*Saitunan*».",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_welcome",
+  "source": "Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.",
+  "current": "Barka da zuwa jagorar koyarwa. Wannan koyarwar za ta jagorance ka ta cikin manyan fasalolin app ɗin. Kana iya dakatar da koyarwar a kowane lokaci ta hanyar taɓa Soke Jagorar Koyarwa a cikin Manyan Zaɓuɓɓuka. Bari mu fara da Wurare na Kusa. Yana baka damar samun wuraren sha'awa. Maɓallin Wurare na Kusa yana kan allon Gida, ƙasa da sandar Bincike kaɗan. Taɓa shi yanzu don gwada shi.",
+  "suggested": "Barka da zuwa jagorar koyarwa. Wannan koyarwar za ta jagorance ka ta cikin manyan fasalolin app ɗin. Kana iya dakatar da koyarwar a kowane lokaci ta hanyar taɓa Soke Jagorar Koyarwa a cikin Babban Menu. Bari mu fara da Wurare na Kusa. Yana baka damar samun wuraren sha'awa. Maɓallin Wurare na Kusa yana kan allon Gida, ƙasa da sandar Bincike kaɗan. Taɓa shi yanzu don gwada shi.",
+  "reason": "Calls the main menu «manyan zaɓuɓɓuka» ('main options'), but the menu is «Babban Menu» (menu_main_menu) and the help says «babban menu». A blind user following the tutorial needs the real name.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_finish",
+  "source": "That completes the tutorial. You can run it again from the main menu. We hope you find the app useful!",
+  "current": "Wannan ya kammala koyarwar. Kana iya sake gudanar da ita daga manyan zaɓuɓɓuka. Muna fatan app ɗin zai amfane ka!",
+  "suggested": "Wannan ya kammala koyarwar. Kana iya sake gudanar da ita daga babban menu. Muna fatan app ɗin zai amfane ka!",
+  "reason": "Calls the main menu «manyan zaɓuɓɓuka» ('main options'), but the menu is «Babban Menu» (menu_main_menu) and the help says «babban menu». A blind user following the tutorial needs the real name.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_cancel",
+  "source": "The guided tutorial has been cancelled. If you wish, you can run it again from the main menu.",
+  "current": "An soke jagorar koyarwa. Idan kana so, kana iya sake gudanar da ita daga manyan zaɓuɓɓuka.",
+  "suggested": "An soke jagorar koyarwa. Idan kana so, kana iya sake gudanar da ita daga babban menu.",
+  "reason": "Calls the main menu «manyan zaɓuɓɓuka» ('main options'), but the menu is «Babban Menu» (menu_main_menu) and the help says «babban menu». A blind user following the tutorial needs the real name.",
+  "category": "terminology"
+ },
+ {
+  "context": "ui_action_button_my_location",
+  "source": "My\\nLocation",
+  "current": "Matsayi\\nNa",
+  "suggested": "Matsayi\\nNa",
+  "reason": "HELD on Q6, no change proposed. The four home buttons have three names each: labels «Matsayi Na» / «Alamomi Kusa» / «Kewaye Na» / «Gaba Na», help «Inda Nake» / «Alamomin Kusa» / «Kewaye da Ni» / «Abin da ke Gabana», and tour/voice commands «Wurina» / «Alamomi Kusa da Ni» / «Gaba da Ni». The tutorial tells the user to tap buttons by names they won't hear. Also «Matsayi» is the Waypoint term. The nearby-markers label also drops «na», which callouts_nearby_markers «Alamomi na Kusa» keeps.",
+  "category": "terminology"
+ },
+ {
+  "context": "menu_route_next_waypoint",
+  "source": "Next waypoint",
+  "current": "Tasha ta gaba",
+  "suggested": "Tasha ta gaba",
+  "reason": "HELD on Q2, no change proposed. Waypoint is «matsayi» in the UI (route_detail_action_next «Matsayi na Gaba», waypoint_title) but «tasha» here, in menu_route_previous_waypoint, the routes help and help_text_remote_control_how. It's a split corpus, and the glossary notes that «matsayi» may not mean a route stop.",
+  "category": "terminology"
+ },
+ {
+  "context": "location_detail_add_waypoint_new_hint",
+  "source": "add this marker as a waypoint on your route",
+  "current": "ƙara wannan alama a matsayin matsayi a tafarkinka",
+  "suggested": "ƙara wannan alama a matsayin matsayi a tafarkinka",
+  "reason": "«a matsayin matsayi» ('as a position position'): the Waypoint term collides with «a matsayin» ('as'), which is a tautology to the ear (C2). This goes away if Q2 picks «tasha». No change until Q2 is answered.",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_permissions_notification",
+  "source": "Notifications",
+  "current": "Sanarwa",
+  "suggested": "Sanarwa",
+  "reason": "'Notifications' and 'Callout' are both «Sanarwa». Android's Hausa UI uses «sanarwa» for notifications, so the Callout term overlaps the system's own word. That bears on Q3, and it isn't a string fix.",
+  "category": "terminology"
+ },
+ {
+  "context": "directions_name_goes_left",
+  "source": "%1$s, goes left",
+  "current": "%1$s, ta juya hagu",
+  "suggested": "%1$s, ta juya hagu",
+  "reason": "HA-S1/Q4 open. «ta juya hagu» ('it turned left') uses the turn verb, but the onboarding examples of the same callout (first_launch_callouts_example_3/4) say «ya nufi hagu/dama» ('heads left'), which describes the road unambiguously (C11). The two should match. Also applies to directions_name_goes_right. Candidate for the reviewer: «%1$s, ta nufi hagu».",
+  "category": "meaning"
+ },
+ {
+  "context": "intersection_approaching_intersection_distance",
+  "source": "Intersection in %1$s",
+  "current": "Mahaɗar hanya nisan %1$s",
+  "suggested": "Mahaɗar hanya a nisan %1$s",
+  "reason": "«Mahaɗar hanya nisan %1$s» has no preposition ('intersection distance 50 m'). «a nisan» reads naturally, as in «mai nisan %2$s» elsewhere.",
+  "category": "tone"
+ },
+ {
+  "context": "offline_maps_downloading",
+  "source": "Downloading %1$s",
+  "current": "Ana Zazzagewa %1$s",
+  "suggested": "Ana Zazzage %1$s",
+  "reason": "«Ana Zazzagewa %1$s» puts the intransitive verbal noun before an object. The transitive form is «Ana zazzage %1$s».",
+  "category": "tone"
+ },
+ {
+  "context": "faq_title_abbreviated",
+  "source": "FAQ",
+  "current": "TAY",
+  "suggested": "Tambayoyi",
+  "reason": "«TAY» is an invented acronym that a screen reader will spell out letter by letter. Hausa has no established abbreviation for FAQ, so use a short word.",
+  "category": "tone"
+ },
+ {
+  "context": "street_description_relative_before",
+  "source": "On %1$s just before %2$s",
+  "current": "A kan %1$s kafin %2$s kai tsaye",
+  "suggested": "A kan %1$s kafin %2$s kai tsaye",
+  "reason": "'just before' → «kafin %2$s kai tsaye», but «kai tsaye» means 'directly/automatically' and reads oddly after the name. Needs a native phrasing (same in street_description_relative_after).",
+  "category": "tone"
+ },
+ {
+  "context": "faq_section_what_is_soundscape",
+  "source": "What is Soundscape and how should I use it?",
+  "current": "Menene Soundscape kuma yaya zan yi amfani da ita?",
+  "suggested": "Menene Soundscape kuma yaya zan yi amfani da ita?",
+  "reason": "The corpus is split on Soundscape's grammatical gender. UI, help and callouts mostly use masculine «yana/shi» (about_soundscape, sleep_sleeping_message, action_no_location), but the FAQ, first_launch_permissions_message, ios_permission_* and help_text_automatic_callouts_how_1 use feminine «tana/ita». Pick one for a speaker to confirm; not fixable string by string.",
+  "category": "tone"
+ }
+]

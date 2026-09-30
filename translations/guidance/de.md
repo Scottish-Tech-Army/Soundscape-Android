@@ -105,7 +105,7 @@ restore. Microsoft itself had mixed «Ruhemodus» and «Ruhemodus aktivieren». 
 `*„…“*` in the routes help, «Bildschirm „Startbildschirm“». Also the word order in 4 named
 stations/terminals («Bahnhof %1$s»), and 3 slashes read aloud. Held: Q5 («Mark.» label).
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 33 flagged, 28 applied in `b6cd77f7e`. Findings: `/tmp/translation-review/de-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 33 flagged, 28 applied in `b6cd77f7e`. Findings: `translations/review/2026-09-30-all-languages/de-findings.json`.
 Most serious fixed:
 - `directions_on_road_and_settlement_since`: «seit» is temporal ("since a time");
 - `street_description_since`: Same as the train variant: «125 m seit 32nd Street» uses temporal «seit» for a distance;

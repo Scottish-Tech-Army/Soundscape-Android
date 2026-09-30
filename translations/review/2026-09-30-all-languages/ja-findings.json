@@ -1,0 +1,354 @@
+[
+ {
+  "context": "confect_name_to",
+  "source": "%1$s to %2$s",
+  "current": "%1$s から %2$s へ",
+  "suggested": "%2$s へ続く%1$s",
+  "reason": "JA-G1 (agreed defect, C10): «%1$s から %2$s へ» says \"from the path to Moor Road\"; %1$s is the way type, so it should be \"a %1$s leading to %2$s\". Candidate wording from ja.md, unconfirmed by a speaker.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_via",
+  "source": "%1$s to %2$s via %3$s",
+  "current": "%1$s から %2$s へ（%3$s 経由）",
+  "suggested": "%2$s へ続く%1$s（%3$s 経由）",
+  "reason": "JA-G1 applies to _via too (ja.md): «から…へ» makes the way the starting point. Rebuilt as \"%1$s leading to %2$s (via %3$s)\", matching the bracket style of confect_name_via.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s から 行き止まり へ",
+  "suggested": "%1$s（行き止まり）",
+  "reason": "Inherited the JA-G1 «から…へ» defect when C21 built it from confect_name_to + dead end: «小道 から 行き止まり へ» = \"from the path to the dead end\", with stray spaces around 行き止まり. %1$s may be a road name, so a label form avoids agreement: \"%1$s (dead end)\".",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%1$s から 行き止まり へ（%2$s 経由）",
+  "suggested": "%1$s（%2$s 経由、行き止まり）",
+  "reason": "Same JA-G1/C21 defect as confect_name_to_dead_end («から 行き止まり へ» = \"from X to the dead end\").",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_routes_content_what",
+  "source": "Routes are a series of waypoints. You will be informed on arrival at each waypoint, and the Audio Beacon will automatically advance to the next waypoint.",
+  "current": "ルートは複数のウェイポイントです。各ウェイポイントに到着するたびに通知され、音声ビーコンが次のウェイポイントを自動的に案内します。",
+  "suggested": "ルートは一連のウェイポイントで構成されます。各ウェイポイントに到着するたびに通知され、音声ビーコンは自動的に次のウェイポイントへ移動します。",
+  "reason": "«ルートは複数のウェイポイントです» says \"a route is several waypoints\"; source is \"a series of waypoints\". Also \"advance to the next waypoint\" became \"guides to the next waypoint\"; the beacon moves on.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_beacon",
+  "source": "Beacon",
+  "current": "ビーコン",
+  "suggested": "航路標識",
+  "reason": "OSM navigational beacon rendered «ビーコン», the same word the app uses for its own audio beacon. A POI callout of «ビーコン» would sound like the app's beacon feature. Use the maritime/aviation term.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_nearby_markers",
+  "source": "The final button is Nearby Markers, which announces saved places around you. Tap Nearby Markers to try that.",
+  "current": "最後のボタンは「近くのマーカー」で、保存した場所を周囲から案内します。「近くのマーカー」をタップして試してみてください。",
+  "suggested": "最後のボタンは「近くのマーカー」で、周囲にある保存した場所を読み上げます。「近くのマーカー」をタップして試してみてください。",
+  "reason": "«保存した場所を周囲から案内します» (\"guides saved places from the surroundings\") garbles \"announces saved places around you\".",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_lock_gate",
+  "source": "Lock Gate",
+  "current": "ロックゲート",
+  "suggested": "閘門",
+  "reason": "«ロックゲート» is a bare transliteration; the Japanese term for a canal lock gate is «閘門».",
+  "category": "terminology"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "これは Soundscape の大型アップデートです。移動モードが大幅に改善されました。車やバスで移動する際に、道路番号、進行方向、近くの集落が読み上げられるようになりました。また、川、運河、入り江、湾を渡るときにも読み上げが行われます。これらの新機能を利用するには、オフラインマップを更新してください。英国のユーザー向けには、バス停の説明が大幅に改善されました。スリープ モードは、再び移動していることを検知すると自動的に解除されるようになりました。ご自身で解除する手間はもう必要ありません。同じコードから iOS アプリを構築できるように、基盤となるコードを再構成しました。これにより、将来的には Android 向けに作成したすべての機能を備えた iOS アプリをリリースできるようになります。どんなに些細な問題でも、引き続きメインメニューのサポートに連絡オプションからご報告ください。",
+  "suggested": "これは Soundscape の大型アップデートです。移動モードが大幅に改善されました。車やバスで移動する際に、道路番号、進行方向、近くの集落が読み上げられるようになりました。また、川、運河、入り江、湾を渡るときにも読み上げが行われます。これらの新機能を利用するには、オフラインマップを更新してください。英国のユーザー向けには、バス停の説明が大幅に改善されました。スリープ モードは、再び移動していることを検知すると自動的に解除されるようになりました。ご自身で解除する手間はもう必要ありません。同じコードから iOS アプリを構築できるように、基盤となるコードを再構成しました。これにより、将来的には Android 向けに作成したすべての機能を備えた iOS アプリをリリースできるようになります。どんなに些細な問題でも、引き続きメインメニューの「サポートに連絡」からご報告ください。",
+  "reason": "\"through Contact Support in the main menu\" became «メインメニューのサポートに連絡オプションから», which runs the menu label into the sentence; quote the label (menu_contact_support «サポートに連絡»). Separately, the source's paragraph breaks are lost, but de and other languages are flat too and the dialog splits on sentences, so that part is not ja-specific.",
+  "category": "tone"
+ },
+ {
+  "context": "terms_of_use_message",
+  "source": "Your use of Soundscape is subject to the terms of the %1$s and the terms set out below (together, the *\"Terms of Use\"*).",
+  "current": "Soundscape のご利用は %1$s の規約および以下に定める条件（総称して「使用条件」）に従うものとします。",
+  "suggested": "Soundscape のご利用は %1$s の規約および以下に定める条件（総称して*「使用条件」*）に従うものとします。",
+  "reason": "Source wraps the defined term in *…* markup (*\"Terms of Use\"*); the translation drops the asterisks.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "ここでこのマーカーをカスタマイズできます。名前を変更したり、マーカーと一緒に読み上げる注記を追加して補足情報を付けることができます。完了したら [完了] を選択してマーカーを保存してください。",
+  "suggested": "ここでこのマーカーをカスタマイズできます。名前を変更したり、マーカーと一緒に読み上げる注記を追加して補足情報を付けることができます。完了したら *「完了」* を選択してマーカーを保存してください。",
+  "reason": "*Done* UI-name markup replaced by [完了] brackets; the rest of the help corpus uses *「…」*.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "この [編集] 画面では、不要になったマーカーを削除することもできます。",
+  "suggested": "この *「マーカーを編集」* 画面では、不要になったマーカーを削除することもできます。",
+  "reason": "*Edit* UI-name markup replaced by [編集]; the note says *Edit* is markers_edit_screen_title_edit («マーカーを編集»), so name the screen by its real title with *「…」*.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_3",
+  "source": "**Sharing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "current": "**ルートを共有する**:\\n\\n[マーカーおよびルート] 画面でルートを選択し、通常の共有オプションを使って [共有する] を選択します。",
+  "suggested": "**ルートを共有する：**\\n\\n*「マーカーおよびルート」* 画面でルートを選択し、通常の共有オプションを使って *「共有する」* を選択します。",
+  "reason": "*Markers and Routes* and *Share* markup replaced by [..] brackets (4 asterisks lost), and the heading colon moved outside the bold unlike sibling how_1/how_2 («**…：**»).",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_beacon_on_home_answer",
+  "source": "Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location using the search bar on the main screen. Then on the *Location Details* screen, tap the *Start Audio Beacon* button.",
+  "current": "Soundscape は住所に対してビーコンを設定できます。自宅やその他の住所にビーコンを設定するには、メイン画面の検索バーで場所を検索してください。次に、[場所の詳細] 画面で [音声ビーコンを開始] ボタンをタップします。",
+  "suggested": "Soundscape は住所に対してビーコンを設定できます。自宅やその他の住所にビーコンを設定するには、メイン画面の検索バーで場所を検索してください。次に、*「場所の詳細」* 画面で *「音声ビーコンを開始」* ボタンをタップします。",
+  "reason": "*Location Details* and *Start Audio Beacon* markup replaced by [..] brackets; siblings use *「…」*.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "はい。Soundscape がビーコンをオフにしたあとでも、メイン画面の「ビーコンのミュートを解除」ボタンを選択すればビーコンを再度オンにできます。ただし、位置情報サービスの精度は約 10 メートル程度のため、目的地の数メートル以内に入ったときのビーコンの挙動は保証できません。",
+  "suggested": "はい。Soundscape がビーコンをオフにしたあとでも、メイン画面の*「ビーコンのミュートを解除」*ボタンを選択すればビーコンを再度オンにできます。ただし、位置情報サービスの精度は約 10 メートル程度のため、目的地の数メートル以内に入ったときのビーコンの挙動は保証できません。",
+  "reason": "*unmute beacon button* markup dropped; faq_controlling_what_you_hear_answer renders the same phrase as *「ビーコンのミュートを解除」*.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_miss_a_callout_answer",
+  "source": "Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the home screen. At the bottom of this screen, there is a section for *Recent Callouts* where the callout you missed will be listed.",
+  "current": "Soundscape には、聞き逃したコールアウトを振り返るための「最近のコールアウト」一覧があります。確認するには、ホーム画面で検索バーをタップしてください。画面下部に「最近のコールアウト」セクションがあり、そこで聞き逃したコールアウトが表示されます。",
+  "suggested": "Soundscape には、聞き逃したコールアウトを振り返るための「最近のコールアウト」一覧があります。確認するには、ホーム画面で検索バーをタップしてください。画面下部に *「最近のコールアウト」*セクションがあり、そこで聞き逃したコールアウトが表示されます。",
+  "reason": "*Recent Callouts* markup dropped (source has it once, on the section name; the first 「最近のコールアウト」 is the generic list).",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_mobile_data_use_answer",
+  "source": "The amount of mobile data used depends on how you use Soundscape. We have designed the app to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to redownload them every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *Sleep* button to put Soundscape to sleep or force close the app.",
+  "current": "モバイルデータの使用量は Soundscape の使い方によって異なります。このアプリは、移動中にポイントを保存しておけば同じ場所に戻った際に再度ダウンロードする必要がないなど、外出時のデータ使用を抑えるよう設計されています。モバイルデータ使用量を減らすには、可能な限り Wi‑Fi に接続する（特にアプリのダウンロード時）ようにしてください。使用していないときは「スリープ」ボタンで Soundscape をスリープにするか、アプリを強制終了してください。",
+  "suggested": "モバイルデータの使用量は Soundscape の使い方によって異なります。このアプリは、移動中にポイントを保存しておけば同じ場所に戻った際に再度ダウンロードする必要がないなど、外出時のデータ使用を抑えるよう設計されています。モバイルデータ使用量を減らすには、可能な限り Wi‑Fi に接続する（特にアプリのダウンロード時）ようにしてください。使用していないときは*「スリープ」* ボタンで Soundscape をスリープにするか、アプリを強制終了してください。",
+  "reason": "*Sleep* UI-name markup dropped.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "いいえ！歩いているときはスマートフォンをバッグやポケットなど使いやすい場所に入れてかまいません。Soundscape は歩行方向を使って左右どちらのコールアウトを再生するかを判断します。立ち止まっているときは、Soundscape はどちらを向いているか分からなくなります。音声ビーコンがオンの場合、歩き始めるまで音が小さくなるのに気づくでしょう。いつでも端末を取り出してホーム画面下部の位置情報や探索ボタンを押すことができますが、その際は端末の上端を自分が向いている方向に向け、画面を空（天）に向けて水平に持ってください。この「水平」な姿勢にすると端末のコンパスが向きを検出し、正確な空間コールアウトが提供されます。ビーコンがオンの場合は、音量が元に戻るのも確認できるでしょう。",
+  "suggested": "いいえ！歩いているときはスマートフォンをバッグやポケットなど使いやすい場所に入れてかまいません。Soundscape は歩行方向を使って左右どちらのコールアウトを再生するかを判断します。立ち止まっているときは、Soundscape はどちらを向いているか分からなくなります。音声ビーコンがオンの場合、歩き始めるまで音が小さくなるのに気づくでしょう。いつでも端末を取り出してホーム画面下部の位置情報や探索ボタンを押すことができますが、その際は端末の上端を自分が向いている方向に向け、画面を空（天）に向けて水平に持ってください。この *「水平」* な姿勢にすると端末のコンパスが向きを検出し、正確な空間コールアウトが提供されます。ビーコンがオンの場合は、音量が元に戻るのも確認できるでしょう。",
+  "reason": "*flat* emphasis markup dropped.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_assistant_how_ios",
+  "source": "Every command has the same shape: *\"Soundscape\"*, then a group, then your choice. You can say the whole thing at once, for example *\"Soundscape surroundings around me\"*, or you can stop after the group and Siri will ask which one you want. So each group works as a spoken menu, and there are only seven of them to remember.",
+  "current": "すべてのコマンドは同じ形をしています。*Soundscape*、次にグループ、次にあなたの選択です。たとえば *Soundscape 周辺 周辺* のように一度に全部言うこともできますし、グループまで言って止めれば、Siri がどれを選ぶか尋ねます。つまり各グループは音声メニューとして働き、覚えるのは 7 つだけです。",
+  "suggested": "すべてのコマンドは同じ形をしています。*Soundscape*、次にグループ、次にあなたの選択です。たとえば *Soundscape 周辺 周辺* のように一度に全部言うこともできますし、グループまで言って止めれば、Siri がどれを選ぶか尋ねます。つまり各グループは音声メニューとして働き、覚えるのは 7 つだけです。",
+  "reason": "The worked example reads «Soundscape 周辺 周辺»: the Siri group word (ja.lproj «周辺») is the same as the Around Me choice (help_orient_page_title «周辺»), and likewise «Soundscape 詳細 詳細» for detail+Detailed. Spoken, the repetition sounds like a mistake. Needs a new group word in ja.lproj AppShortcuts.strings plus this text together (JA-C1, questionnaire Q5), so no string-only fix.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_defibrillator",
+  "source": "Defibrillator",
+  "current": "除細動器（AED）",
+  "suggested": "AED",
+  "reason": "POI name carries a redundant synonym in brackets/slash («除細動器（AED）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_chalet",
+  "source": "Chalet",
+  "current": "シャレー（山小屋）",
+  "suggested": "シャレー",
+  "reason": "POI name carries a redundant synonym in brackets/slash («シャレー（山小屋）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_table_soccer",
+  "source": "Table Soccer",
+  "current": "テーブルサッカー（フーズボール）",
+  "suggested": "テーブルサッカー",
+  "reason": "POI name carries a redundant synonym in brackets/slash («テーブルサッカー（フーズボール）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_skateboard",
+  "source": "Skateboarding",
+  "current": "スケートボード場（スケートパーク）",
+  "suggested": "スケートパーク",
+  "reason": "POI name carries a redundant synonym in brackets/slash («スケートボード場（スケートパーク）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_rowing",
+  "source": "Rowing",
+  "current": "ローイング（ボート）施設",
+  "suggested": "ボート競技施設",
+  "reason": "POI name carries a redundant synonym in brackets/slash («ローイング（ボート）施設»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_antiques",
+  "source": "Antique Shop",
+  "current": "アンティークショップ（骨董品店）",
+  "suggested": "骨董品店",
+  "reason": "POI name carries a redundant synonym in brackets/slash («アンティークショップ（骨董品店）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_user",
+  "source": "User",
+  "current": "ユーザー（利用者）",
+  "suggested": "利用者",
+  "reason": "POI name carries a redundant synonym in brackets/slash («ユーザー（利用者）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_bunker",
+  "source": "Bunker",
+  "current": "地下壕（バンカー）",
+  "suggested": "地下壕",
+  "reason": "POI name carries a redundant synonym in brackets/slash («地下壕（バンカー）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_paddle_tennis",
+  "source": "Paddle Tennis",
+  "current": "パデル（パドルテニス）コート",
+  "suggested": "パデルコート",
+  "reason": "POI name carries a redundant synonym in brackets/slash («パデル（パドルテニス）コート»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_e_cigarette",
+  "source": "E-Cigarette Shop",
+  "current": "電子タバコ販売店（VAPE）",
+  "suggested": "電子タバコ販売店",
+  "reason": "POI name carries a redundant synonym in brackets/slash («電子タバコ販売店（VAPE）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_bakery",
+  "source": "Bakery Shop",
+  "current": "ベーカリー（パン屋）",
+  "suggested": "パン屋",
+  "reason": "POI name carries a redundant synonym in brackets/slash («ベーカリー（パン屋）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_stonemason",
+  "source": "Stonemason",
+  "current": "石工（ストーンメイソン）",
+  "suggested": "石工",
+  "reason": "POI name carries a redundant synonym in brackets/slash («石工（ストーンメイソン）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_dressmaker",
+  "source": "Dressmaker",
+  "current": "洋裁師（仕立て屋）",
+  "suggested": "洋裁店",
+  "reason": "POI name carries a redundant synonym in brackets/slash («洋裁師（仕立て屋）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_kiosk",
+  "source": "Kiosk",
+  "current": "キオスク（売店）",
+  "suggested": "売店",
+  "reason": "POI name carries a redundant synonym in brackets/slash («キオスク（売店）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_roundhouse",
+  "source": "Roundhouse",
+  "current": "円形機関車庫（ラウンドハウス）",
+  "suggested": "扇形機関庫",
+  "reason": "POI name carries a redundant synonym in brackets/slash («円形機関車庫（ラウンドハウス）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_beach",
+  "source": "Beach",
+  "current": "海岸（ビーチ）",
+  "suggested": "ビーチ",
+  "reason": "POI name carries a redundant synonym in brackets/slash («海岸（ビーチ）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_fitness_centre",
+  "source": "Fitness Centre",
+  "current": "フィットネスセンター（ジム）",
+  "suggested": "フィットネスセンター",
+  "reason": "POI name carries a redundant synonym in brackets/slash («フィットネスセンター（ジム）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_customer_service",
+  "source": "Customer Service",
+  "current": "案内窓口（カスタマーサービス）",
+  "suggested": "カスタマーサービス",
+  "reason": "POI name carries a redundant synonym in brackets/slash («案内窓口（カスタマーサービス）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_platform",
+  "source": "Platform",
+  "current": "ホーム（プラットフォーム）",
+  "suggested": "ホーム",
+  "reason": "POI name carries a redundant synonym in brackets/slash («ホーム（プラットフォーム）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_bicycle_rental",
+  "source": "Bicycle Rental",
+  "current": "レンタサイクル（自転車レンタル）",
+  "suggested": "レンタサイクル",
+  "reason": "POI name carries a redundant synonym in brackets/slash («レンタサイクル（自転車レンタル）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_full_height_turnstile",
+  "source": "Full-Height Turnstile",
+  "current": "全高回転ゲート（ターンスタイル）",
+  "suggested": "全高回転ゲート",
+  "reason": "POI name carries a redundant synonym in brackets/slash («全高回転ゲート（ターンスタイル）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_parachuting",
+  "source": "Parachuting Site",
+  "current": "パラシューティング（スカイダイビング）降下地点",
+  "suggested": "スカイダイビング降下場",
+  "reason": "POI name carries a redundant synonym in brackets/slash («パラシューティング（スカイダイビング）降下地点»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_lifeguard_place",
+  "source": "Lifeguard Post",
+  "current": "ライフガード（救護監視所）",
+  "suggested": "ライフガード監視所",
+  "reason": "POI name carries a redundant synonym in brackets/slash («ライフガード（救護監視所）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_alpine_hut",
+  "source": "Alpine Hut",
+  "current": "山小屋（登山者用避難小屋）",
+  "suggested": "山小屋",
+  "reason": "POI name carries a redundant synonym in brackets/slash («山小屋（登山者用避難小屋）»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ },
+ {
+  "context": "osm_toboggan",
+  "source": "Toboggan",
+  "current": "トボガン／そりコース",
+  "suggested": "そりコース",
+  "reason": "POI name carries a redundant synonym in brackets/slash («トボガン／そりコース»), which TTS reads out in full in every callout and list. Keep one name. (Explanatory brackets on obscure UK objects, e.g. kissing_gate, were left alone.)",
+  "category": "tone"
+ }
+]

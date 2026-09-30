@@ -1,0 +1,314 @@
+[
+  {
+    "context": "new_version_info_details",
+    "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+    "current": "هذا تحديث كبير لتطبيق Soundscape. تحسّن وضع التنقل كثيرًا. عندما تتنقل بالسيارة أو الحافلة، أصبح Soundscape الآن ينادي بأرقام الطرق واتجاه سيرك والمستوطنات القريبة. كما ينادي عند عبورك الأنهار والقنوات والمصبات والخلجان. يُرجى تحديث خرائطك بدون اتصال للحصول على هذه الميزات الجديدة. وأصبحت أوصاف محطات الحافلات الآن أفضل بكثير للمستخدمين في المملكة المتحدة. يمكن لوضع النوم الآن أن يستيقظ تلقائيًا عند اكتشافه أنك تتحرك مرة أخرى. لم تعد بحاجة إلى تذكر إيقاظه بنفسك. لقد أعدنا تنظيم الكود الأساسي حتى نتمكن من بناء تطبيق لنظام iOS من الكود نفسه. هذا يعني أنه بإمكاننا في المستقبل إصدار تطبيق لنظام iOS بجميع الميزات التي بنيناها لنظام Android. يُرجى الاستمرار في الإبلاغ عن أي مشكلات، مهما كانت صغيرة، عبر التواصل مع الدعم في القائمة الرئيسية.",
+    "suggested": "\nهذا تحديث كبير لتطبيق Soundscape.\n\nتحسّن وضع التنقل كثيرًا. عندما تتنقل بالسيارة أو الحافلة، أصبح Soundscape الآن ينادي بأرقام الطرق واتجاه سيرك والمستوطنات القريبة. كما ينادي عند عبورك الأنهار والقنوات والمصبات والخلجان. يُرجى تحديث خرائطك بدون اتصال للحصول على هذه الميزات الجديدة. وأصبحت أوصاف محطات الحافلات الآن أفضل بكثير للمستخدمين في المملكة المتحدة.\n\nيمكن لوضع النوم الآن أن يستيقظ تلقائيًا عند اكتشافه أنك تتحرك مرة أخرى. لم تعد بحاجة إلى تذكر إيقاظه بنفسك.\n\nلقد أعدنا تنظيم الكود الأساسي حتى نتمكن من بناء تطبيق لنظام iOS من الكود نفسه. هذا يعني أنه بإمكاننا في المستقبل إصدار تطبيق لنظام iOS بجميع الميزات التي بنيناها لنظام Android.\n\nيُرجى الاستمرار في الإبلاغ عن أي مشكلات، مهما كانت صغيرة، عبر التواصل مع الدعم في القائمة الرئيسية.\n",
+    "reason": "The English has five paragraphs separated by blank lines (and a leading/trailing line break); the translation runs them all together, so the release dialog loses its paragraph breaks. Text is unchanged, only the breaks are restored.",
+    "category": "formatting"
+  },
+  {
+    "context": "last_entry_in_list",
+    "source": " and %1$s",
+    "current": "و%1$s",
+    "suggested": " و%1$s",
+    "reason": "English ' and %1$s' carries a leading space because it is appended straight after the previous road name (StreetPreview.kt: joinToString(\", \") + this). Without the space the street preview shows 'Road BوRoad C', with و glued to the previous name. (Separately, the code joins the other items with a Latin ', ' rather than the Arabic '، '.)",
+    "category": "formatting"
+  },
+  {
+    "context": "help_text_automatic_callouts_how_1",
+    "source": "**Turning callouts on or off :**\\n\\n Turning callouts off will silence the app. Callouts can be turned off in the *Manage Callouts* section of the *Settings* screen by setting *Callout Detail* to *Silent*, and turned back on by choosing any other level. On iPhone you can do the same by asking Siri, and on Android the same will work through Gemini once Google releases support for it. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *previous* moves down through *Detailed*, *Simplified*, *Essential* and *Silent*, and one more press goes back to *Detailed*. See the *Using Media Controls* help topic. Alternatively, you can use the *Sleep* button in the top-right corner of the home screen to stop Soundscape from making callouts until you wake it up.",
+    "current": "**تفعيل النداءات الصوتية أو إيقافها:**\\n\\n سيؤدي إيقاف النداءات الصوتية إلى إسكات التطبيق. يمكن إيقاف النداءات الصوتية من قسم *إدارة النداءات الصوتية* في شاشة *الإعدادات* بضبط *تفاصيل النداءات الصوتية* على *صامت*، وإعادة تفعيلها باختيار أي مستوى آخر. ويمكنك على iPhone فعل الشيء نفسه بأن تطلب ذلك من Siri، أما على Android فسيعمل ذلك عبر Gemini بمجرد أن تطلق Google الدعم له. كما يمكنك خفض كلام Soundscape درجة بدرجة باستخدام أزرار التحكم بالوسائط في سماعاتك: كل ضغطة على *السابق* تنزل درجة واحدة عبر *مفصّل* و*مبسّط* و*أساسي* و*صامت*، وضغطة أخرى تعود إلى *مفصّل*. راجع موضوع المساعدة *استخدام أزرار التحكم بالوسائط*. بدلًا من ذلك، يمكنك استخدام زر *نوم* في الزاوية العلوية اليمنى من الشاشة الرئيسية لإيقاف Soundscape عن إصدار النداءات الصوتية حتى توقظه.",
+    "suggested": "**تفعيل النداءات الصوتية أو إيقافها:**\\n\\n سيؤدي إيقاف النداءات الصوتية إلى إسكات التطبيق. يمكن إيقاف النداءات الصوتية من قسم *إدارة النداءات الصوتية* في شاشة *الإعدادات* بضبط *تفاصيل النداءات الصوتية* على *صامت*، وإعادة تفعيلها باختيار أي مستوى آخر. ويمكنك على iPhone فعل الشيء نفسه بأن تطلب ذلك من Siri، أما على Android فسيعمل ذلك عبر Gemini بمجرد أن تطلق Google الدعم له. كما يمكنك خفض كلام Soundscape درجة بدرجة باستخدام أزرار التحكم بالوسائط في سماعاتك: كل ضغطة على *السابق* تنزل درجة واحدة عبر *مفصّل* و*مبسّط* و*أساسي* و*صامت*، وضغطة أخرى تعود إلى *مفصّل*. راجع موضوع المساعدة *استخدام أزرار التحكم بالوسائط*. بدلًا من ذلك، يمكنك استخدام زر *نوم* في الزاوية العلوية اليسرى من الشاشة الرئيسية لإيقاف Soundscape عن إصدار النداءات الصوتية حتى توقظه.",
+    "reason": "The app supports RTL, so in Arabic the home top bar is mirrored: the Sleep button (TopAppBar actions, SharedHomeTopAppBar.kt) sits in the top-LEFT corner, not the top-right. Blind users following this text would be sent to the menu button.",
+    "category": "meaning"
+  },
+  {
+    "context": "faq_sleep_mode_battery_answer",
+    "source": "To put Soundscape into Sleep Mode, select the *Sleep* button in the top-right corner of the home screen. When you select this, Soundscape will stop using Location Services and mobile data until you wake it up.",
+    "current": "لوضع Soundscape في وضع النوم، اختر زر *نوم* في الزاوية العلوية اليمنى من الشاشة الرئيسية. عند اختيار ذلك، سيتوقف Soundscape عن استخدام خدمات الموقع وبيانات الجوال حتى توقظه.",
+    "suggested": "لوضع Soundscape في وضع النوم، اختر زر *نوم* في الزاوية العلوية اليسرى من الشاشة الرئيسية. عند اختيار ذلك، سيتوقف Soundscape عن استخدام خدمات الموقع وبيانات الجوال حتى توقظه.",
+    "reason": "The app supports RTL, so in Arabic the home top bar is mirrored: the Sleep button (TopAppBar actions, SharedHomeTopAppBar.kt) sits in the top-LEFT corner, not the top-right.",
+    "category": "meaning"
+  },
+  {
+    "context": "faq_snooze_mode_battery_answer",
+    "source": "To put Soundscape into Snooze Mode, select the *Sleep* button in the top-right corner of the home screen. Once Soundscape’s in Sleep Mode, select the *Wake On Leave* button and Soundscape will go in to a low power state until you leave your current location.",
+    "current": "لوضع Soundscape في وضع الغفوة، اختر زر *نوم* في الزاوية العلوية اليمنى من الشاشة الرئيسية. بمجرد دخول Soundscape في وضع النوم، اختر زر *الاستيقاظ عند المغادرة* وسينتقل Soundscape إلى حالة استهلاك طاقة منخفض حتى تغادر موقعك الحالي.",
+    "suggested": "لوضع Soundscape في وضع الغفوة، اختر زر *نوم* في الزاوية العلوية اليسرى من الشاشة الرئيسية. بمجرد دخول Soundscape في وضع النوم، اختر زر *الاستيقاظ عند المغادرة* وسينتقل Soundscape إلى حالة استهلاك طاقة منخفض حتى تغادر موقعك الحالي.",
+    "reason": "The app supports RTL, so in Arabic the home top bar is mirrored: the Sleep button (TopAppBar actions, SharedHomeTopAppBar.kt) sits in the top-LEFT corner, not the top-right.",
+    "category": "meaning"
+  },
+  {
+    "context": "tour_my_location",
+    "source": "Now that you know how to use Markers, let's look at some of the other features. At the bottom of the screen are four buttons. We'll try each one. The button on the left is My Location. It describes your current location. Try tapping it now.",
+    "current": "الآن بعد أن تعرفت على كيفية استخدام العلامات، لننظر إلى بعض الميزات الأخرى. في أسفل الشاشة توجد أربعة أزرار. سنجرّب كل واحد منها. الزر الموجود على اليسار هو موقعي. وهو يصف موقعك الحالي. جرّب النقر عليه الآن.",
+    "suggested": "الآن بعد أن تعرفت على كيفية استخدام العلامات، لننظر إلى بعض الميزات الأخرى. في أسفل الشاشة توجد أربعة أزرار. سنجرّب كل واحد منها. الزر الموجود على اليمين هو موقعي. وهو يصف موقعك الحالي. جرّب النقر عليه الآن.",
+    "reason": "The bottom button row (SharedHomeBottomAppBar.kt, a plain Row) is mirrored in RTL, so in Arabic My Location is the right-most button, not the left one. The tutorial tells a blind user to find it on the wrong side.",
+    "category": "meaning"
+  },
+  {
+    "context": "relative_clock_direction",
+    "source": "at %1$s o'clock",
+    "current": "عند الساعة %1$s",
+    "suggested": "باتجاه الساعة %1$s",
+    "reason": "«عند الساعة 3» is how Arabic says a time of day ('at three o'clock'), so a callout like «مقهى، عند الساعة 3» sounds like an opening time rather than a direction. «باتجاه الساعة 3» ('in the direction of 3 o'clock') makes it a bearing. Worth checking with a speaker whether TTS should also get ordinal hour words (الثالثة) via relative_clock_hour_* (C20).",
+    "category": "meaning"
+  },
+  {
+    "context": "street_description_since",
+    "source": "On %1$s, %2$s since %3$s",
+    "current": "على %1$s، %2$s منذ %3$s",
+    "suggested": "على %1$s، %2$s بعد %3$s",
+    "reason": "«منذ» is temporal only ('since [a time]'); «125 م منذ الشارع 32» doesn't express distance travelled past a place. «بعد» ('125 m after 32nd Street') does.",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_on_road_and_settlement_since",
+    "source": "On %1$s and close to %2$s, %3$s since %4$s",
+    "current": "على %1$s وقريبًا من %2$s، %3$s منذ %4$s",
+    "suggested": "على %1$s وقريبًا من %2$s، %3$s بعد %4$s",
+    "reason": "Same as street_description_since: «منذ» is temporal, not spatial; «%3$s بعد %4$s» ('N km after <last station>') is the natural spatial form.",
+    "category": "meaning"
+  },
+  {
+    "context": "confect_name_joins",
+    "source": "%1$s that joins %2$s and %3$s",
+    "current": "%1$s الذي يصل بين %2$s و%3$s",
+    "suggested": "%1$s يصل بين %2$s و%3$s",
+    "reason": "%1$s is an indefinite way type («ممر», «طريق خدمة»), and Arabic uses no relative pronoun after an indefinite noun: «ممر الذي يصل…» is ungrammatical; «ممر يصل بين…» is correct.",
+    "category": "meaning"
+  },
+  {
+    "context": "faq_how_to_use_beacon_answer",
+    "source": "You can think of the audible beacon like a *lighthouse for your ears*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *ring* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *ring*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.\\n\\nThis design has a few natural results:\\n\\n1. There is no *correct* direction to travel when using the beacon – with Soundscape, you choose how to get there;\\n\\n2. The higher-pitched *ring* only helps you pinpoint the direction of the destination – it does not tell you how to get there;\\n\\n3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.",
+    "current": "يمكنك اعتبار المنارة الصوتية المسموعة بمثابة *منارة بحرية للأذنين*، تُعلمك بمكان وجهتك بالنسبة لموقعك، كما لو كنت تسير في خط مستقيم. مثل المنارة البحرية، لا تخبرك بكيفية الوصول إلى هناك - فقد تحتاج مع ذلك إلى اختيار طريقك أثناء السير للالتفاف حول العوائق. الصوت الإيقاعي المستمر للمنارة الصوتية يُبَث بشكل مكاني من اتجاه الوجهة، ويساعدك على البقاء واعيًا بموقع الوجهة بالنسبة لك أثناء مشيك. عندما تسير مباشرة نحو الوجهة، أو توجّه الهاتف نحو الوجهة، سيُسمع صوت *رنين* أعلى حدة. تتيح لك هذه الميزة تحديد اتجاه الوجهة بدقة، لأن اتجاه الصوت الإيقاعي قد يكون أحيانًا صعب الإدراك في البيئات الصاخبة. عند البحث عن صوت *الرنين* الأعلى حدة، أمسك الهاتف بشكل أفقي واستدر ببطء في دائرة؛ سيضمن تدوير رأسك للإشارة إلى نفس اتجاه الهاتف حصولك على أفضل تجربة صوت مكاني.\\n\\nلهذا التصميم بعض النتائج الطبيعية:\\n\\n1. لا يوجد اتجاه *صحيح* للسير فيه عند استخدام المنارة الصوتية؛ بل يمكنك مع Soundscape اختيار الطريقة التي تريدها للوصول إلى هناك؛\\n\\n2. يساعدك صوت *الرنين* الأعلى حدة على تحديد اتجاه الوجهة فقط - وهو ليس إشارة إلى كيفية الوصول إليها؛\\n\\n3. إذا كنت تعرف عمومًا كيفية الوصول إلى وجهتك، فقد ترغب في كتم المنارة الصوتية لمعظم رحلتك وتشغيلها فقط عند اقترابك من وجهتك.",
+    "suggested": "يمكنك اعتبار المنارة الصوتية المسموعة بمثابة *منارة بحرية للأذنين*، تُعلمك بمكان وجهتك في خط مستقيم من موقعك الحالي. مثل المنارة البحرية، لا تخبرك بكيفية الوصول إلى هناك - فقد تحتاج مع ذلك إلى اختيار طريقك أثناء السير للالتفاف حول العوائق. الصوت الإيقاعي المستمر للمنارة الصوتية يُبَث بشكل مكاني من اتجاه الوجهة، ويساعدك على البقاء واعيًا بموقع الوجهة بالنسبة لك أثناء مشيك. عندما تسير مباشرة نحو الوجهة، أو توجّه الهاتف نحو الوجهة، سيُسمع صوت *رنين* أعلى حدة. تتيح لك هذه الميزة تحديد اتجاه الوجهة بدقة، لأن اتجاه الصوت الإيقاعي قد يكون أحيانًا صعب الإدراك في البيئات الصاخبة. عند البحث عن صوت *الرنين* الأعلى حدة، أمسك الهاتف بشكل أفقي واستدر ببطء في دائرة؛ سيضمن تدوير رأسك للإشارة إلى نفس اتجاه الهاتف حصولك على أفضل تجربة صوت مكاني.\\n\\nلهذا التصميم بعض النتائج الطبيعية:\\n\\n1. لا يوجد اتجاه *صحيح* للسير فيه عند استخدام المنارة الصوتية؛ بل يمكنك مع Soundscape اختيار الطريقة التي تريدها للوصول إلى هناك؛\\n\\n2. يساعدك صوت *الرنين* الأعلى حدة على تحديد اتجاه الوجهة فقط - وهو ليس إشارة إلى كيفية الوصول إليها؛\\n\\n3. إذا كنت تعرف عمومًا كيفية الوصول إلى وجهتك، فقد ترغب في كتم المنارة الصوتية لمعظم رحلتك وتشغيلها فقط عند اقترابك من وجهتك.",
+    "reason": "'it tells you where your destination is, in a straight line from your current location' became '…relative to your location, as if you were walking in a straight line', which suggests the user should walk straight. The rest of the string is fine.",
+    "category": "meaning"
+  },
+  {
+    "context": "faq_tip_create_marker_at_bus_stop",
+    "source": "If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.",
+    "current": "إذا كان هناك مسار حافلة تستقلّه بانتظام، فاضبط محطتي الركوب والنزول كعلامات. بهذه الطريقة سيتم حفظها لتتمكن من العثور عليها مرة أخرى بسهولة، فقط انتقل إلى *العلامات والمسارات* من الشاشة الرئيسية وابحث عنها في صفحة *العلامات*. يمكنك ضبط منارة صوتية عليها وستحصل على تحديثات دورية حول مدى اقترابك من محطة النزول. ملاحظة: يمكنك إيقاف تشغيل الصوت الإيقاعي وستظل تحصل على تحديثات المسافة أثناء الطريق.",
+    "suggested": "إذا كان هناك مسار حافلة تستقلّه بانتظام، فاحفظ محطتي الركوب والنزول كعلامات. بهذه الطريقة سيتم حفظها لتتمكن من العثور عليها مرة أخرى بسهولة، فقط انتقل إلى *العلامات والمسارات* من الشاشة الرئيسية وابحث عنها في صفحة *العلامات*. يمكنك ضبط منارة صوتية عليها وستحصل على تحديثات دورية حول مدى اقترابك من محطة النزول. ملاحظة: يمكنك إيقاف تشغيل الصوت الإيقاعي وستظل تحصل على تحديثات المسافة أثناء الطريق.",
+    "reason": "'save your pickup and exit stops as Markers' became «فاضبط … كعلامات» ('set them as markers'); «اضبط» is the verb used for setting a beacon throughout, so this blurs saving a marker with setting a beacon. «احفظ» matches «حفظ كعلامة».",
+    "category": "terminology"
+  },
+  {
+    "context": "help_text_remote_control_how",
+    "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+    "current": "هناك وضعان لتشغيل عناصر التحكم في الوسائط. يمكن اختيار الوضع من قسم *الإعدادات* *عناصر التحكم في الوسائط*. الوضعان هما:\\n\\n *الوضع الأصلي*. \\n\\n⏯ تشغيل/إيقاف مؤقت: يشغّل صوت المنارة ويوقفه. \\n\\n⏭ التالي: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار التالية. إذا لم يكن هناك مسار قيد التشغيل، ينادي بـ *حولي*.\\n\\n⏮ السابق: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار السابقة. إذا لم يكن هناك مسار قيد التشغيل، يغيّر *تفاصيل النداءات الصوتية* درجة واحدة أهدأ مع كل ضغطة: *مفصّل*، *مبسّط*، *أساسي*، *صامت*، ثم يعود إلى *مفصّل*.\\n\\n\\n\\n*قائمة الصوت*. \\n\\n\\n\\n⏭ التالي ينتقل بين سلسلة من خيارات القائمة التي يصفها التطبيق عبر تحويل النص إلى كلام، ويعود إلى الخيار الأول بعد الأخير. ثم يجعل ⏯ تشغيل/إيقاف مؤقت التطبيق ينفّذ الخيار الموصوف. هناك قائمة واحدة في المستوى الأعلى لا تحتوي إلا على قوائم فرعية كخيارات. وتضم كل قائمة فرعية مجموعة من الإجراءات المتشابهة.\\n\\n⏮ السابق لا ينتقل بين خيارات القائمة. بل يغيّر *تفاصيل النداءات الصوتية* تمامًا كما في الوضع الأصلي، فيخفض الزر نفسه كلام التطبيق أيًا كان الوضع الذي تستخدمه.",
+    "suggested": "هناك وضعان لتشغيل عناصر التحكم في الوسائط. يمكن اختيار الوضع من قسم *الإعدادات* *عناصر التحكم بالوسائط*. الوضعان هما:\\n\\n *الوضع الأصلي*. \\n\\n⏯ تشغيل/إيقاف مؤقت: يشغّل صوت المنارة ويوقفه. \\n\\n⏭ التالي: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار التالية. إذا لم يكن هناك مسار قيد التشغيل، ينادي بـ *حولي*.\\n\\n⏮ السابق: إذا كان هناك مسار قيد التشغيل، ينقل المنارة الصوتية إلى نقطة المسار السابقة. إذا لم يكن هناك مسار قيد التشغيل، يغيّر *تفاصيل النداءات الصوتية* درجة واحدة أهدأ مع كل ضغطة: *مفصّل*، *مبسّط*، *أساسي*، *صامت*، ثم يعود إلى *مفصّل*.\\n\\n\\n\\n*قائمة الصوت*. \\n\\n\\n\\n⏭ التالي ينتقل بين سلسلة من خيارات القائمة التي يصفها التطبيق عبر تحويل النص إلى كلام، ويعود إلى الخيار الأول بعد الأخير. ثم يجعل ⏯ تشغيل/إيقاف مؤقت التطبيق ينفّذ الخيار الموصوف. هناك قائمة واحدة في المستوى الأعلى لا تحتوي إلا على قوائم فرعية كخيارات. وتضم كل قائمة فرعية مجموعة من الإجراءات المتشابهة.\\n\\n⏮ السابق لا ينتقل بين خيارات القائمة. بل يغيّر *تفاصيل النداءات الصوتية* تمامًا كما في الوضع الأصلي، فيخفض الزر نفسه كلام التطبيق أيًا كان الوضع الذي تستخدمه.",
+    "reason": "The starred UI name *Media Controls* must match the settings section label `menu_media_controls` «عناصر التحكم بالوسائط»; the text has «عناصر التحكم في الوسائط».",
+    "category": "terminology"
+  },
+  {
+    "context": "osm_path",
+    "source": "Path",
+    "current": "مسار",
+    "suggested": "درب",
+    "reason": "«مسار» is also the app's word for Route («المسار», «نقطة المسار»), so a callout like «مسار إلى طريق مور» or «مسار، يتجه يسارًا» can be heard as a saved route. A distinct word such as «درب» (or «ممر», as in osm_walking_path) avoids the collision (C5). Needs a native check.",
+    "category": "terminology"
+  },
+  {
+    "context": "directions_along_facing_n",
+    "source": "Facing north along %1$s",
+    "current": "مواجهة الشمال عبر %1$s",
+    "suggested": "مواجهة الشمال على %1$s",
+    "reason": "«عبر» means 'across/via'; 'facing north along X' said as «مواجهة الشمال عبر X» suggests facing across the road. The user is standing on the road: «على %1$s».",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_facing_ne",
+    "source": "Facing northeast along %1$s",
+    "current": "مواجهة الشمال الشرقي عبر %1$s",
+    "suggested": "مواجهة الشمال الشرقي على %1$s",
+    "reason": "«عبر» means 'across/via'; 'facing north along X' said as «مواجهة الشمال عبر X» suggests facing across the road. The user is standing on the road: «على %1$s».",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_facing_e",
+    "source": "Facing east along %1$s",
+    "current": "مواجهة الشرق عبر %1$s",
+    "suggested": "مواجهة الشرق على %1$s",
+    "reason": "«عبر» means 'across/via'; 'facing north along X' said as «مواجهة الشمال عبر X» suggests facing across the road. The user is standing on the road: «على %1$s».",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_facing_se",
+    "source": "Facing southeast along %1$s",
+    "current": "مواجهة الجنوب الشرقي عبر %1$s",
+    "suggested": "مواجهة الجنوب الشرقي على %1$s",
+    "reason": "«عبر» means 'across/via'; 'facing north along X' said as «مواجهة الشمال عبر X» suggests facing across the road. The user is standing on the road: «على %1$s».",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_facing_s",
+    "source": "Facing south along %1$s",
+    "current": "مواجهة الجنوب عبر %1$s",
+    "suggested": "مواجهة الجنوب على %1$s",
+    "reason": "«عبر» means 'across/via'; 'facing north along X' said as «مواجهة الشمال عبر X» suggests facing across the road. The user is standing on the road: «على %1$s».",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_facing_sw",
+    "source": "Facing southwest along %1$s",
+    "current": "مواجهة الجنوب الغربي عبر %1$s",
+    "suggested": "مواجهة الجنوب الغربي على %1$s",
+    "reason": "«عبر» means 'across/via'; 'facing north along X' said as «مواجهة الشمال عبر X» suggests facing across the road. The user is standing on the road: «على %1$s».",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_facing_w",
+    "source": "Facing west along %1$s",
+    "current": "مواجهة الغرب عبر %1$s",
+    "suggested": "مواجهة الغرب على %1$s",
+    "reason": "«عبر» means 'across/via'; 'facing north along X' said as «مواجهة الشمال عبر X» suggests facing across the road. The user is standing on the road: «على %1$s».",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_facing_nw",
+    "source": "Facing northwest along %1$s",
+    "current": "مواجهة الشمال الغربي عبر %1$s",
+    "suggested": "مواجهة الشمال الغربي على %1$s",
+    "reason": "«عبر» means 'across/via'; 'facing north along X' said as «مواجهة الشمال عبر X» suggests facing across the road. The user is standing on the road: «على %1$s».",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_traveling_n",
+    "source": "Traveling north along %1$s",
+    "current": "التوجه نحو الشمال عبر %1$s",
+    "suggested": "التوجه نحو الشمال على طول %1$s",
+    "reason": "«عبر» reads as 'via/across'; 'along' is «على طول», which the walking variants (directions_along_heading_*) already use.",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_traveling_ne",
+    "source": "Traveling northeast along %1$s",
+    "current": "التوجه نحو الشمال الشرقي عبر %1$s",
+    "suggested": "التوجه نحو الشمال الشرقي على طول %1$s",
+    "reason": "«عبر» reads as 'via/across'; 'along' is «على طول», which the walking variants (directions_along_heading_*) already use.",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_traveling_e",
+    "source": "Traveling east along %1$s",
+    "current": "التوجه نحو الشرق عبر %1$s",
+    "suggested": "التوجه نحو الشرق على طول %1$s",
+    "reason": "«عبر» reads as 'via/across'; 'along' is «على طول», which the walking variants (directions_along_heading_*) already use.",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_traveling_se",
+    "source": "Traveling southeast along %1$s",
+    "current": "التوجه نحو الجنوب الشرقي عبر %1$s",
+    "suggested": "التوجه نحو الجنوب الشرقي على طول %1$s",
+    "reason": "«عبر» reads as 'via/across'; 'along' is «على طول», which the walking variants (directions_along_heading_*) already use.",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_traveling_s",
+    "source": "Traveling south along %1$s",
+    "current": "التوجه نحو الجنوب عبر %1$s",
+    "suggested": "التوجه نحو الجنوب على طول %1$s",
+    "reason": "«عبر» reads as 'via/across'; 'along' is «على طول», which the walking variants (directions_along_heading_*) already use.",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_traveling_sw",
+    "source": "Traveling southwest along %1$s",
+    "current": "التوجه نحو الجنوب الغربي عبر %1$s",
+    "suggested": "التوجه نحو الجنوب الغربي على طول %1$s",
+    "reason": "«عبر» reads as 'via/across'; 'along' is «على طول», which the walking variants (directions_along_heading_*) already use.",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_traveling_w",
+    "source": "Traveling west along %1$s",
+    "current": "التوجه نحو الغرب عبر %1$s",
+    "suggested": "التوجه نحو الغرب على طول %1$s",
+    "reason": "«عبر» reads as 'via/across'; 'along' is «على طول», which the walking variants (directions_along_heading_*) already use.",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_traveling_nw",
+    "source": "Traveling northwest along %1$s",
+    "current": "التوجه نحو الشمال الغربي عبر %1$s",
+    "suggested": "التوجه نحو الشمال الغربي على طول %1$s",
+    "reason": "«عبر» reads as 'via/across'; 'along' is «على طول», which the walking variants (directions_along_heading_*) already use.",
+    "category": "meaning"
+  },
+  {
+    "context": "directions_along_heading_n",
+    "source": "Heading north along %1$s",
+    "current": "متجه نحو الشمال على طول %1$s",
+    "suggested": "السير نحو الشمال على طول %1$s",
+    "reason": "The masculine participle «متجه» agrees with the user (AR-R1) and differs from the sibling directions_heading_* («السير نحو …»). The verbal noun is gender-neutral and consistent.",
+    "category": "gender"
+  },
+  {
+    "context": "directions_along_heading_ne",
+    "source": "Heading northeast along %1$s",
+    "current": "متجه نحو الشمال الشرقي على طول %1$s",
+    "suggested": "السير نحو الشمال الشرقي على طول %1$s",
+    "reason": "The masculine participle «متجه» agrees with the user (AR-R1) and differs from the sibling directions_heading_* («السير نحو …»). The verbal noun is gender-neutral and consistent.",
+    "category": "gender"
+  },
+  {
+    "context": "directions_along_heading_e",
+    "source": "Heading east along %1$s",
+    "current": "متجه نحو الشرق على طول %1$s",
+    "suggested": "السير نحو الشرق على طول %1$s",
+    "reason": "The masculine participle «متجه» agrees with the user (AR-R1) and differs from the sibling directions_heading_* («السير نحو …»). The verbal noun is gender-neutral and consistent.",
+    "category": "gender"
+  },
+  {
+    "context": "directions_along_heading_se",
+    "source": "Heading southeast along %1$s",
+    "current": "متجه نحو الجنوب الشرقي على طول %1$s",
+    "suggested": "السير نحو الجنوب الشرقي على طول %1$s",
+    "reason": "The masculine participle «متجه» agrees with the user (AR-R1) and differs from the sibling directions_heading_* («السير نحو …»). The verbal noun is gender-neutral and consistent.",
+    "category": "gender"
+  },
+  {
+    "context": "directions_along_heading_s",
+    "source": "Heading south along %1$s",
+    "current": "متجه نحو الجنوب على طول %1$s",
+    "suggested": "السير نحو الجنوب على طول %1$s",
+    "reason": "The masculine participle «متجه» agrees with the user (AR-R1) and differs from the sibling directions_heading_* («السير نحو …»). The verbal noun is gender-neutral and consistent.",
+    "category": "gender"
+  },
+  {
+    "context": "directions_along_heading_sw",
+    "source": "Heading southwest along %1$s",
+    "current": "متجه نحو الجنوب الغربي على طول %1$s",
+    "suggested": "السير نحو الجنوب الغربي على طول %1$s",
+    "reason": "The masculine participle «متجه» agrees with the user (AR-R1) and differs from the sibling directions_heading_* («السير نحو …»). The verbal noun is gender-neutral and consistent.",
+    "category": "gender"
+  },
+  {
+    "context": "directions_along_heading_w",
+    "source": "Heading west along %1$s",
+    "current": "متجه نحو الغرب على طول %1$s",
+    "suggested": "السير نحو الغرب على طول %1$s",
+    "reason": "The masculine participle «متجه» agrees with the user (AR-R1) and differs from the sibling directions_heading_* («السير نحو …»). The verbal noun is gender-neutral and consistent.",
+    "category": "gender"
+  },
+  {
+    "context": "directions_along_heading_nw",
+    "source": "Heading northwest along %1$s",
+    "current": "متجه نحو الشمال الغربي على طول %1$s",
+    "suggested": "السير نحو الشمال الغربي على طول %1$s",
+    "reason": "The masculine participle «متجه» agrees with the user (AR-R1) and differs from the sibling directions_heading_* («السير نحو …»). The verbal noun is gender-neutral and consistent.",
+    "category": "gender"
+  },
+  {
+    "context": "first_launch_prompt_title",
+    "source": "You're ready!",
+    "current": "أنت جاهز!",
+    "suggested": "أنت جاهز!",
+    "reason": "Masculine «أنت جاهز!» forces a gender on the user; the translator comment asks for a gender-free phrasing (C15). An impersonal «كل شيء جاهز!» is already put to the reviewer as Q3 (AR-R1), so left for that answer.",
+    "category": "gender"
+  }
+]

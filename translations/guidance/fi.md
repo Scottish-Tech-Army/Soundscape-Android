@@ -123,7 +123,7 @@ AI passes.** **2026-09-24 — corpus sweep.** Nothing uploaded.
 
 Left for a native speaker: `relative_clock_direction` «kello %1$s» can read as a time of day. Uploaded with `--skip-validate`; all 38 re-fetched and matched exactly.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 31 flagged, 28 applied in `09c4a4e03`. Findings: `/tmp/translation-review/fi-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 31 flagged, 28 applied in `09c4a4e03`. Findings: `translations/review/2026-09-30-all-languages/fi-findings.json`.
 Most serious fixed:
 - `faq_how_close_to_destination_answer`: "to within several meters, but not less" is about precision;
 - `osm_beauty`: OSM shop=beauty is a beauty salon (services), not a cosmetics shop.

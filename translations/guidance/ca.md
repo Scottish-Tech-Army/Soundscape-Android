@@ -80,7 +80,7 @@ Nothing uploaded.
 
 **2026-09-29 — European batch review.** 3 hints drifted from «Fes doble toc per %1$s» («Mostra…», «restableix…») → infinitives; `annotation_description_hint` «ajudar-vos» → «ajudar-te». 4 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live. **Held:** 24 long strings (21 FAQ answers, `settings_section_media_controls_description`, `settings_head_tracking_description`, `offline_map_storage_description`, `accessibility_screen_reader_enabled`, `new_version_info_details`) are in «vós» while the rest of the app is «tu» (CA-R2, Q4).
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 33 flagged, 18 applied in `016b5b435`. Findings: `/tmp/translation-review/ca-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 33 flagged, 18 applied in `016b5b435`. Findings: `translations/review/2026-09-30-all-languages/ca-findings.json`.
 Most serious fixed:
 - `directions_name_goes_left`: «gira a l'esquerra» sounds exactly like the imperative "turn left!", so a blind user may hear a turn instruction the app never gives (C11, CA-S1).
 - `directions_name_goes_right`: Same as goes_left: «gira a la dreta» is heard as the instruction "turn right!" (C11, CA-S1).

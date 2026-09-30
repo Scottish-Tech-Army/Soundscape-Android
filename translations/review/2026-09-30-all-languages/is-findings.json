@@ -1,0 +1,634 @@
+[
+ {
+  "context": "osm_intersection",
+  "category": "meaning",
+  "source": "Intersection",
+  "current": "Gatnamot",
+  "suggested": "Gatnamót",
+  "reason": "Typo «Gatnamot» (missing ó) in a label spoken in callouts; the glossary term is «gatnamót»"
+ },
+ {
+  "context": "route_detail_action_start_route",
+  "category": "meaning",
+  "source": "Start Route",
+  "current": "Upphaf leiðar",
+  "suggested": "Hefja leið",
+  "reason": "«Upphaf leiðar» is the noun \"start of the route\", not the action \"Start Route\"; the button needs a verb like its sibling «Stöðva leið»"
+ },
+ {
+  "context": "route_detail_action_start_route_reverse",
+  "category": "meaning",
+  "source": "Start Route in Reverse",
+  "current": "Upphaf leiðar í öfugri röð",
+  "suggested": "Hefja leið í öfugri röð",
+  "reason": "Same as route_detail_action_start_route: noun «Upphaf leiðar» instead of the action"
+ },
+ {
+  "context": "route_detail_action_edit",
+  "category": "meaning",
+  "source": "Edit Route",
+  "current": "Uppfæra Leið",
+  "suggested": "Breyta leið",
+  "reason": "«Uppfæra» means \"update\", not \"edit\", and «Leið» is wrongly capitalised mid-label; «Breyta» is what the rest of the corpus uses for edit («Breyta staðsetningu», «breyta nafni leiðarinnar»)"
+ },
+ {
+  "context": "markers_edit_screen_title_edit",
+  "category": "meaning",
+  "source": "Edit Marker",
+  "current": "Uppfæra Merki",
+  "suggested": "Breyta merki",
+  "reason": "«Uppfæra Merki» means \"update Marker\", with a stray capital; edit is «Breyta» elsewhere in the corpus"
+ },
+ {
+  "context": "help_text_customizing_markers_content_1",
+  "category": "terminology",
+  "source": "If you want to rename a marker you previously created, or add an annotation to it, select the marker from the *Markers* tab of the *Markers and Routes* page, and then select the *Edit Marker* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.",
+  "current": "Ef þú vilt endurnefna merki sem þú bjóst til áður eða bæta við athugasemd skaltu velja merkið á flipanum *Merki* á síðunni *Merki og leiðir* og velja svo hnappinn *Uppfæra Merki*. Þú getur gefið merkjunum lýsandi eða gagnleg gælunöfn og bætt við lengri lýsingu í athugasemdareitinn.",
+  "suggested": "Ef þú vilt endurnefna merki sem þú bjóst til áður eða bæta við athugasemd skaltu velja merkið á flipanum *Merki* á síðunni *Merki og leiðir* og velja svo hnappinn *Breyta merki*. Þú getur gefið merkjunum lýsandi eða gagnleg gælunöfn og bætt við lengri lýsingu í athugasemdareitinn.",
+  "reason": "Quotes the Edit Marker label; follow the fix to markers_edit_screen_title_edit («Breyta merki»)"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "category": "formatting",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Frá þessum *\"Uppfæra\"* skjá geturðu einnig eytt merki ef þú þarft það ekki lengur.",
+  "suggested": "Á skjánum *Breyta merki* geturðu einnig eytt merki ef þú þarft ekki lengur á því að halda.",
+  "reason": "Literal quotes inside the *…* UI name, and «Uppfæra» follows the old Edit label; the screen is *Breyta merki*"
+ },
+ {
+  "context": "help_text_routes_content_how_2",
+  "category": "terminology",
+  "source": "**Editing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select *Edit Route*. From here you can add and remove waypoints, as well as edit the name and description of the route.",
+  "current": "**Að breyta leið :**\\n\\nVeldu leiðina þína á skjánum *Merki og leiðir* og veldu síðan *Uppfæra Leið*. Héðan geturðu bætt við og fjarlægt leiðarpunkta og breytt nafni og lýsingu leiðarinnar.",
+  "suggested": "**Að breyta leið :**\\n\\nVeldu leiðina þína á skjánum *Merki og leiðir* og veldu síðan *Breyta leið*. Héðan geturðu bætt við og fjarlægt leiðarpunkta og breytt nafni og lýsingu leiðarinnar.",
+  "reason": "Quotes the Edit Route label; follow the fix to route_detail_action_edit («Breyta leið»)"
+ },
+ {
+  "context": "tour_start_beacon",
+  "category": "meaning",
+  "source": "You're now on the Markers tab which lists all your saved markers. Select a marker, and when the Location Details screen appears, tap Start Audio Beacon.",
+  "current": "Nú ertu á flipanum Merki sem sýnir öll vistuð merkin þín. Veldu eitt merki og þegar upplýsingasíða staðarins birtist, ýttu á „Hljóðviti“ til að kveikja á hljóðvitanum.",
+  "suggested": "Nú ertu á flipanum Merki sem sýnir öll vistuð merkin þín. Veldu eitt merki og þegar upplýsingasíða staðarins birtist, ýttu á „Kveikja á hljóðvita“.",
+  "reason": "Tells the user to tap a button called «Hljóðviti», which doesn't exist; the button is «Kveikja á hljóðvita» (location_detail_action_beacon)"
+ },
+ {
+  "context": "faq_callouts_stopping_in_vehicle_answer",
+  "category": "meaning",
+  "source": "In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.",
+  "current": "Til að koma í veg fyrir of miklar upplýsingar greinir Soundscape á milli þess þegar notandi er í bíl eða á gangi. og miðlar upplýsingum eftir því.",
+  "suggested": "Til að tilkynningarnar verði ekki yfirþyrmandi eru sumir flokkar, til dæmis gatnamót, ekki tilkynntir sjálfkrafa þegar þú ferðast í ökutæki.",
+  "reason": "Loose paraphrase that loses the point (intersections and some other categories aren't called out in a vehicle) and has a stray «. og» mid-sentence"
+ },
+ {
+  "context": "faq_why_does_beacon_disappear_answer",
+  "category": "terminology",
+  "source": "Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.",
+  "current": "Hljóðmerki Soundscape er í grundvallaratriðum stefnuvísbending sem segir þér hvert áfangastaðurinn þinn er miðað við þá átt sem þú snýrð í. Þegar Soundscape er óviss um í hvaða átt þú snýrð lækkar það hljóðstyrk merkisins. Oftast gerist þetta ef þú hefur verið að ganga með símann geymdan í vasa eða tösku og hættir að hreyfa þig, til dæmis til að fara yfir götu. Merkið verður háværara þegar þú byrjar að hreyfa þig aftur, eða ef þú heldur símanum flatt og beinir honum í þá átt sem þú snýrð í.",
+  "suggested": "Hljóðviti Soundscape er í grundvallaratriðum stefnuvísbending sem segir þér hvert áfangastaðurinn þinn er miðað við þá átt sem þú snýrð í. Þegar Soundscape er óviss um í hvaða átt þú snýrð lækkar það hljóðstyrk hljóðvitans. Oftast gerist þetta ef þú hefur verið að ganga með símann geymdan í vasa eða tösku og hættir að hreyfa þig, til dæmis til að fara yfir götu. Hljóðvitinn verður háværari þegar þú byrjar að hreyfa þig aftur, eða ef þú heldur símanum flatt og beinir honum í þá átt sem þú snýrð í.",
+  "reason": "Calls the beacon «Hljóðmerki» / «merkisins» / «Merkið», but «merki» is the confirmed term for Marker, so a listener hears \"the marker gets louder\". Use «hljóðviti» as everywhere else"
+ },
+ {
+  "context": "help_text_markers_content_3",
+  "category": "meaning",
+  "source": "To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *Nearby markers* button at the bottom of the home screen to hear a spatial callout of marked places around you. You can even set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.",
+  "current": "Til að upplifa vistuð merki mun Soundscape sjálfkrafa tilkynna vistuð merki þegar þú gengur framhjá þeim eða nálgast þau. Þú getur líka notað hnappinn *Nálæg merki* neðst á heimaskjánum til að heyra rúmsnertilega tilkynningu um vistuð merki í kringum þig. Þú getur jafnvel sett hljóðvita á hvaða vistað merki sem er. Þá munt þú heyra hljóðvitann úr Soundscape eins og venjulega og geta notað hann á sama hátt.",
+  "suggested": "Til að upplifa vistuð merki mun Soundscape sjálfkrafa tilkynna vistuð merki þegar þú gengur framhjá þeim eða nálgast þau. Þú getur líka notað hnappinn *Nálæg merki* neðst á heimaskjánum til að heyra tilkynningu í rúmhljóði um vistuð merki í kringum þig. Þú getur jafnvel sett hljóðvita á hvaða vistað merki sem er. Þá munt þú heyra hljóðvitann úr Soundscape eins og venjulega og geta notað hann á sama hátt.",
+  "reason": "«rúmsnertilega» is not a word (roughly \"space-touching\"); spatial audio is «rúmhljóð», as in first_launch_welcome_description"
+ },
+ {
+  "context": "faq_road_names_answer",
+  "category": "meaning",
+  "source": "To accommodate a variety of intersection layouts, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the names of the roads that go to the left, straight ahead, and to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection forms a sideways T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.",
+  "current": "Til að lýsa margvíslegum gatnamótum lýsir Soundscape þeim sem vegaálmum sem liggja frá sameiginlegum punkti. Soundscape notar rúmsnertilegt hljóð til að segja til um nöfn gatnanna sem liggja til vinstri, beint áfram og til hægri, í þeirri röð. Ef lýsingin byrjar á götunni sem þú ert á frekar en götu til vinstri, mynda gatnamótin T sem liggur á hliðinni, þar sem gatan sem þú ert á heldur áfram og önnur gata mætir frá hægri. Á sama hátt, ef lýsingin nefnir aðeins götu til vinstri og hægri, veistu að gatan sem þú ert á endar í T fram undan. Þessi aðferð virkar einnig þegar gata skiptir um nafn á gatnamótunum.",
+  "suggested": "Til að lýsa margvíslegum gatnamótum lýsir Soundscape þeim sem vegaálmum sem liggja frá sameiginlegum punkti. Soundscape notar rúmhljóð til að segja til um nöfn gatnanna sem liggja til vinstri, beint áfram og til hægri, í þeirri röð. Ef lýsingin byrjar á götunni sem þú ert á frekar en götu til vinstri, mynda gatnamótin T sem liggur á hliðinni, þar sem gatan sem þú ert á heldur áfram og önnur gata mætir frá hægri. Á sama hátt, ef lýsingin nefnir aðeins götu til vinstri og hægri, veistu að gatan sem þú ert á endar í T fram undan. Þessi aðferð virkar einnig þegar gata skiptir um nafn á gatnamótunum.",
+  "reason": "«rúmsnertilegt hljóð» is not a word; spatial audio is «rúmhljóð»"
+ },
+ {
+  "context": "faq_difference_from_map_apps_answer",
+  "category": "meaning",
+  "source": "Soundscape provides an ambient description of your surroundings in aid of exploration and wayfinding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.\\n\\nInstead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.",
+  "current": "Soundscape veitir umhverfislýsingu um það sem er í kringum þig til að auðvelda könnun og leiðsögn. Með rúmsnertilegum hljóðum mun Soundscape tilkynna áhugaverða staði, garða, götur og gatnamót frá þeirri átt sem þau eru í í nánasta umhverfi þínu meðan þú gengur. Til dæmis, ef þú gengur framhjá verslun hægra megin mun þú heyra nafnið á versluninni berast frá hægri. Þegar þú nálgast gatnamót munu nöfn götanna heyrast frá þeirri átt sem þær liggja, fyrst frá vinstri, síðan beint framundan og svo frá hægri.\\n\\nÍ stað skref fyrir skref leiðbeininga sem mörg önnur kortaforrit bjóða upp á, spilar Soundscape heyranlegan hljóðvita í þá átt sem áfangastaðurinn er. Þetta gerir þér kleift að komast þangað á þann hátt sem hentar þér best með aukinni umhverfisvitund og betri hugmynd um staðsetningu áfangastaðarins. Soundscape er hannað til að halda áfram að keyra í bakgrunni, svo þú getur notað skref fyrir skref leiðsagnarforrit samhliða, á meðan Soundscape heldur áfram að veita umhverfisupplýsingar meðan þú ferð að áfangastað.",
+  "suggested": "Soundscape veitir umhverfislýsingu um það sem er í kringum þig til að auðvelda könnun og leiðsögn. Með rúmhljóði mun Soundscape tilkynna áhugaverða staði, garða, götur og gatnamót frá þeirri átt sem þau eru í í nánasta umhverfi þínu meðan þú gengur. Til dæmis, ef þú gengur framhjá verslun hægra megin mun þú heyra nafnið á versluninni berast frá hægri. Þegar þú nálgast gatnamót munu nöfn götanna heyrast frá þeirri átt sem þær liggja, fyrst frá vinstri, síðan beint framundan og svo frá hægri.\\n\\nÍ stað skref fyrir skref leiðbeininga sem mörg önnur kortaforrit bjóða upp á, spilar Soundscape heyranlegan hljóðvita í þá átt sem áfangastaðurinn er. Þetta gerir þér kleift að komast þangað á þann hátt sem hentar þér best með aukinni umhverfisvitund og betri hugmynd um staðsetningu áfangastaðarins. Soundscape er hannað til að halda áfram að keyra í bakgrunni, svo þú getur notað skref fyrir skref leiðsagnarforrit samhliða, á meðan Soundscape heldur áfram að veita umhverfisupplýsingar meðan þú ferð að áfangastað.",
+  "reason": "«rúmsnertilegum hljóðum» is not a word; spatial audio is «rúmhljóð»"
+ },
+ {
+  "context": "settings_head_tracking_description",
+  "category": "meaning",
+  "source": "Position spatial audio relative to where your head is facing, using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.",
+  "current": "Staðsettu staðbundið hljóð miðað við þá átt sem höfuðið snýr í, með því að nota hreyfigögn frá studdum AirPods, Bose Frames eða ytri Bluetooth IMU. Stillist sjálfkrafa meðan þú gengur.",
+  "suggested": "Staðsetur rúmhljóð miðað við þá átt sem höfuðið snýr í, með því að nota hreyfigögn frá studdum AirPods, Bose Frames eða ytri Bluetooth IMU. Stillist sjálfkrafa meðan þú gengur.",
+  "reason": "«staðbundið hljóð» means \"local sound\", not spatial audio («rúmhljóð»); the imperative «Staðsettu» also reads as an instruction to the user rather than a description of the setting"
+ },
+ {
+  "context": "faq_what_can_I_set_question",
+  "category": "meaning",
+  "source": "What can I set as a beacon?",
+  "current": "Hvað get ég virkjað sem hljóðvita?",
+  "suggested": "Á hvað get ég sett hljóðvita?",
+  "reason": "«Hvað get ég virkjað sem hljóðvita?» asks \"what can I activate as a beacon\"; the question is what you can set a beacon ON"
+ },
+ {
+  "context": "faq_markers_function_answer",
+  "category": "meaning",
+  "source": "Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *Current Location* button on the home screen and then selecting *Save as Marker*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *Places Nearby* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *Location Details* screen. On this screen, select the button called *Save as Marker*.",
+  "current": "Merki eru staðir sem þú hefur vistað. Þau geta verið staðir sem finnast í forritinu eða alveg nýir staðir sem þú bættir við sjálfur. Þú getur vistað núverandi staðsetningu sem merki með því að velja hnappinn *staðsetning* á heimaskjánum og síðan *Vista sem merki*. Þú getur vistað aðra staði sem merki með því að leita að staðnum með leitarstikunni eða finna hann með hnappnum *Nálægir staðir*, sem báðir eru á heimaskjánum. Þegar þú finnur staðinn sem þú vilt og velur hann færðu upp skjáinn *Upplýsingar um staðsetningu*. Á þeim skjá skaltu velja hnappinn *Vista sem merki*.",
+  "suggested": "Merki eru staðir sem þú hefur vistað. Þau geta verið staðir sem finnast í forritinu eða alveg nýir staðir sem þú hefur bætt við. Þú getur vistað núverandi staðsetningu sem merki með því að velja hnappinn *Núverandi staðsetning* á heimaskjánum og síðan *Vista sem merki*. Þú getur vistað aðra staði sem merki með því að leita að staðnum með leitarstikunni eða finna hann með hnappnum *Nálægir staðir*, sem báðir eru á heimaskjánum. Þegar þú finnur staðinn sem þú vilt og velur hann færðu upp skjáinn *Upplýsingar um staðsetningu*. Á þeim skjá skaltu velja hnappinn *Vista sem merki*.",
+  "reason": "Button name given as *staðsetning*; the real label is *Núverandi staðsetning* (search_use_current_location). Also «bættir við sjálfur» forces the masculine (IS-G3) where no agreement is needed"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "category": "meaning",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape býður upp á nokkra vegu til að stýra því sem þú heyrir og hvenær:\\n\\n1. Hætta strax öllum hljóðum: Tvíbankaðu skjánum með tveimur fingrum til að slökkva strax á öllu hljóði, þar með talið á öllum tilkynningum sem eru í spilun og hljóðvitanum ef hann er kveiktur. Tilkynningar hefjast aftur sjálfkrafa þegar þú nálgast næstu gatnamót eða áhugaverðan stað, en hljóðvitinn ekki. Veldu hnappinn *virkja hljóðvita* á aðalskjánum til að byrja að heyra hljóðvitann aftur.\\n\\n2. Slökkva á sjálfvirkum tilkynningum: Þegar þú ert ekki á ferð eða hefur náð áfangastað þarftu líklega ekki að Soundscape haldi áfram að tilkynna um hluti í kringum þig. Í stað þess að loka forritinu geturðu sett Soundscape í lúra-ham og það vekur sig sjálfkrafa þegar þú yfirgefur staðinn, eða sett það í dvalaham og þá verður það slökkt þar til þú kveikir á því aftur. Að öðrum kosti geturðu farið í *Stillingar* úr valmyndinni og stillt *Nákvæmni tilkynninga* á *Þögult* í kaflanum *Stjórna tilkynningum*.\\n\\n3. Stöðva hljóðvitann: Það geta verið margar aðstæður þar sem þú setur áfangastað en þarft ekki hljóðvitann. Til dæmis gætirðu vitað hvernig á að komast þangað en viljað samt reglulegar fjarlægðaruppfærslur, eða þú gætir viljað hljóðvitann aðeins þegar þú nálgast áfangastað. Hvað sem því líður geturðu valið hvenær þú heyrir hljóðvitann með því að skipta um hnappinn *slökkva á hljóðvita*/*virkja hljóðvita* á aðalskjánum.\\n\\nEf þú vilt eiga samskipti við Soundscape en ekki heyra sjálfvirkar tilkynningar geturðu stillt *Nákvæmni tilkynninga* á *Þögult* í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape geturðu sett það í dvalaham eða lúra-ham með hnappnum *Fara í dvala* á heimaskjánum.",
+  "suggested": "Soundscape býður upp á nokkra vegu til að stýra því sem þú heyrir og hvenær:\\n\\n1. Hætta strax öllum hljóðum: Tvíbankaðu skjánum með tveimur fingrum til að slökkva strax á öllu hljóði, þar með talið á öllum tilkynningum sem eru í spilun og hljóðvitanum ef hann er kveiktur. Tilkynningar hefjast aftur sjálfkrafa þegar þú nálgast næstu gatnamót eða áhugaverðan stað, en hljóðvitinn ekki. Veldu hnappinn *virkja hljóðvita* á aðalskjánum til að byrja að heyra hljóðvitann aftur.\\n\\n2. Slökkva á sjálfvirkum tilkynningum: Þegar þú ert ekki á ferð eða hefur náð áfangastað þarftu líklega ekki að Soundscape haldi áfram að tilkynna um hluti í kringum þig. Í stað þess að loka forritinu geturðu sett Soundscape í lúra-ham og það vekur sig sjálfkrafa þegar þú yfirgefur staðinn, eða sett það í dvalaham og þá verður það slökkt þar til þú kveikir á því aftur. Að öðrum kosti geturðu farið í *Stillingar* úr valmyndinni og stillt *Nákvæmni tilkynninga* á *Þögult* í kaflanum *Stjórna tilkynningum*.\\n\\n3. Stöðva hljóðvitann: Það geta verið margar aðstæður þar sem þú setur áfangastað en þarft ekki hljóðvitann. Til dæmis gætirðu vitað hvernig á að komast þangað en viljað samt reglulegar fjarlægðaruppfærslur, eða þú gætir viljað hljóðvitann aðeins þegar þú nálgast áfangastað. Hvað sem því líður geturðu valið hvenær þú heyrir hljóðvitann með hnappnum *slökkva á hljóðvita*/*virkja hljóðvita* á aðalskjánum.\\n\\nEf þú vilt eiga samskipti við Soundscape en ekki heyra sjálfvirkar tilkynningar geturðu stillt *Nákvæmni tilkynninga* á *Þögult* í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape geturðu sett það í dvalaham eða lúra-ham með hnappnum *Fara í dvala* á heimaskjánum.",
+  "reason": "«skipta um hnappinn» means \"replace the button\"; the sense is toggling with the button"
+ },
+ {
+  "context": "offline_maps_nearby",
+  "category": "meaning",
+  "source": "Nearby offline maps",
+  "current": "Nálæg niðurhlaðin kort",
+  "suggested": "Nálæg ónettengd kort",
+  "reason": "«Nálæg niðurhlaðin kort» says \"nearby downloaded maps\", but this list is of maps near you that are available to download; the screen title uses «Ónettengd kort»"
+ },
+ {
+  "context": "offline_maps_loading_manifest",
+  "category": "meaning",
+  "source": "Loading list of offline maps",
+  "current": "Sæki lista yfir niðurhlaðin kort",
+  "suggested": "Sæki lista yfir ónettengd kort",
+  "reason": "«lista yfir niðurhlaðin kort» says \"list of downloaded maps\"; it is the list of offline maps available on the server"
+ },
+ {
+  "context": "help_text_destination_beacons_when",
+  "category": "meaning",
+  "source": "Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.",
+  "current": "Það er gagnlegt að setja hljóðvita þegar þú vilt fylgjast með þekktu kennileiti meðan þú kannar nýtt svæði, eða þegar þú ert á leið einhvers staðar og vilt fá upplýsingar um umhverfið á leiðinni. Hljóðvitinn gefur ekki skref-fyrir-skref leiðbeiningar; hann spilar samfellda hljóðsögn sem segir þér í hvaða átt hljóðvitinn er miðað við núverandi staðsetningu þína. Með því að nota hljóðvitann ásamt færni þinni í leiðsögn og jafnvel uppáhalds leiðsagnarforritinu þínu geturðu sjálfur valið hvernig þú ferð að ná til staðarins.",
+  "suggested": "Það er gagnlegt að setja hljóðvita þegar þú vilt fylgjast með þekktu kennileiti meðan þú kannar nýtt svæði, eða þegar þú ert á leið eitthvert og vilt fá upplýsingar um umhverfið á leiðinni. Hljóðvitinn gefur ekki skref-fyrir-skref leiðbeiningar; hann spilar samfellt hljóð sem segir þér í hvaða átt hljóðvitinn er miðað við núverandi staðsetningu þína. Með því að nota hljóðvitann ásamt færni þinni í leiðsögn og jafnvel uppáhalds leiðsagnarforritinu þínu geturðu valið hvernig þú ferð að ná til staðarins.",
+  "reason": "«hljóðsögn» is not a word (a continuous audible sound is «samfellt hljóð»); «á leið einhvers staðar» should be «einhvert» (motion); «geturðu sjálfur valið» forces the masculine needlessly (IS-G3)"
+ },
+ {
+  "context": "osm_department_store",
+  "category": "meaning",
+  "source": "Department Store",
+  "current": "Vöruhús",
+  "suggested": "Stórverslun",
+  "reason": "«Vöruhús» is also used for osm_warehouse, so a department store and a warehouse sound identical; «Stórverslun» is the department store"
+ },
+ {
+  "context": "osm_geyser",
+  "category": "meaning",
+  "source": "Geyser",
+  "current": "Geysir",
+  "suggested": "Goshver",
+  "reason": "«Geysir» is the proper name of one geyser; the generic noun is «goshver»"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_question",
+  "category": "tone",
+  "source": "When should I use Soundscape?",
+  "current": "Hvenar skal nota Soundscape?",
+  "suggested": "Hvenær ætti ég að nota Soundscape?",
+  "reason": "Typo «Hvenar» (for «Hvenær») and stilted «skal»"
+ },
+ {
+  "context": "faq_sleep_mode_battery_question",
+  "category": "tone",
+  "source": "How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "Hvernig nota ég í dvala ham til að spara rafhlöðuna?",
+  "suggested": "Hvernig nota ég dvalaham til að spara rafhlöðuna?",
+  "reason": "Ungrammatical «nota ég í dvala ham»; the noun is «dvalaham»"
+ },
+ {
+  "context": "faq_snooze_mode_battery_question",
+  "category": "tone",
+  "source": "How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "Hvernig nýti ég möguleikann á því að láta Soundscape lura til að spara rafhlöðu?",
+  "suggested": "Hvernig nýti ég möguleikann á því að láta Soundscape lúra til að spara rafhlöðu?",
+  "reason": "Typo «lura» for «lúra»"
+ },
+ {
+  "context": "faq_background_battery_impact_question",
+  "category": "tone",
+  "source": "How does running Soundscape in the background impact my phone's battery life?",
+  "current": "Hvaða áhrif hefur það á rafhlöðu að keyra Soundscape í bakrunni?",
+  "suggested": "Hvaða áhrif hefur það á rafhlöðu að keyra Soundscape í bakgrunni?",
+  "reason": "Typo «bakrunni» for «bakgrunni»"
+ },
+ {
+  "context": "faq_mobile_data_use_question",
+  "category": "tone",
+  "source": "How much mobile data does Soundscape use?",
+  "current": "Hversu miklum gagnamagni notar Soundscape?",
+  "suggested": "Hversu mikið gagnamagn notar Soundscape?",
+  "reason": "«Hversu miklum gagnamagni notar» mixes the dative into an accusative object"
+ },
+ {
+  "context": "faq_difference_from_map_apps_question",
+  "category": "tone",
+  "source": "How is Soundscape different from other map apps?",
+  "current": "Hver er sérstaða Soundscape fram yfir önnur smbærileg forrit?",
+  "suggested": "Hver er sérstaða Soundscape umfram önnur kortaforrit?",
+  "reason": "Typo «smbærileg», and the question is about map apps specifically"
+ },
+ {
+  "context": "faq_battery_impact_answer",
+  "category": "tone",
+  "source": "Battery life varies significantly depending on the model and age of your phone. The biggest drain on your battery is having the screen on, so to maximize your phone's battery life, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape has a Sleep and a Snooze Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.",
+  "current": "Endingu rafhlöðu ræðst mjög af gerð og aldri símans. Mest dregur úr rafhlöðu að hafa skjáinn á, svo til að hámarka endingu rafhlöðu símans skaltu hafa skjáinn læstan eins og kostur er. Til að draga úr áhrifum á rafhlöðu síman þíns hefur Soundscape dvalaham og lúra-ham. Til að minnka rafhlöðunotkun enn frekar ættir þú að loka forritinu í forritaskiptum símans (App Switcher) þegar þú notar það ekki.",
+  "suggested": "Ending rafhlöðu ræðst mjög af gerð og aldri símans. Mest dregur úr rafhlöðu að hafa skjáinn á, svo til að hámarka endingu rafhlöðu símans skaltu hafa skjáinn læstan eins og kostur er. Til að draga úr áhrifum á rafhlöðu símans þíns hefur Soundscape dvalaham og lúra-ham. Til að minnka rafhlöðunotkun enn frekar ættir þú að loka forritinu í forritaskiptum símans (App Switcher) þegar þú notar það ekki.",
+  "reason": "Case errors: «Endingu rafhlöðu ræðst» needs the nominative «Ending»; «síman þíns» should be «símans þíns»"
+ },
+ {
+  "context": "faq_miss_a_callout_answer",
+  "category": "tone",
+  "source": "Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the home screen. At the bottom of this screen, there is a section for *Recent Callouts* where the callout you missed will be listed.",
+  "current": "Soundscape geymir lista yfir nýlegar tilkynningar svo þú getir farið yfir tilkynningar sem þú missti af. Til að finna þetta, bankaðu á leitarstikuna á heimaskjánum. Neðst á þessum skjá er hluti sem heitir *Nýlegar tilkynningar* þar sem tilkynningin sem þú missti af verður skráð.",
+  "suggested": "Soundscape geymir lista yfir nýlegar tilkynningar svo þú getir farið yfir tilkynningar sem þú misstir af. Til að finna þetta, bankaðu á leitarstikuna á heimaskjánum. Neðst á þessum skjá er hluti sem heitir *Nýlegar tilkynningar* þar sem tilkynningin sem þú misstir af verður skráð.",
+  "reason": "Second-person past is «misstir», not «missti» (twice)"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "category": "formatting",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn snýr upp að himni) og toppinn á símanum í þá átt sem þú snýrð áður en þú ýtir á *\"fyrir framan mig\"* hnappinn. Þetta virkar eins og áttaviti og segir forritinu hvaða átt þú snýrð. Ýttu einfaldlega á *\"fyrir framan mig\"* hnappinn og þú munt heyra nokkur áhugaverð staði sem eru um það bil fyrir framan þig.",
+  "suggested": "Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn snýr upp að himni) og toppinn á símanum í þá átt sem þú snýrð áður en þú ýtir á *Fyrir framan mig* hnappinn. Þetta virkar eins og áttaviti og segir forritinu hvaða átt þú snýrð. Ýttu einfaldlega á *Fyrir framan mig* hnappinn og þú munt heyra nokkra áhugaverða staði sem eru um það bil fyrir framan þig.",
+  "reason": "Button name written in lowercase inside literal quotes (*\"fyrir framan mig\"*) instead of the label *Fyrir framan mig*; also «nokkur áhugaverð staði» mixes genders (staður is masculine: «nokkra áhugaverða staði»)"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "category": "formatting",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "Nú færðu kost á að sérsníða þetta merki. Þú getur breytt nafni merkisins og bætt við athugasemd sem verður lesin upp ásamt merkinu til að gefa frekari upplýsingar. Þegar þú ert búinn skaltu velja *\"lokið\"* til að vista merkið.",
+  "suggested": "Nú færðu kost á að sérsníða þetta merki. Þú getur breytt nafni merkisins og bætt við athugasemd sem verður lesin upp ásamt merkinu til að gefa frekari upplýsingar. Að því loknu skaltu velja *Lokið* til að vista merkið.",
+  "reason": "Button name *\"lokið\"* in lowercase inside literal quotes, not the label *Lokið*; «Þegar þú ert búinn» forces the masculine (IS-G3) where a neutral phrasing is easy"
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "category": "formatting",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Að búa til leið:**\\n\\nFyrst skaltu fara í *\"Merki og leiðir\"*, velja flipann *\"Leiðir\"* og síðan hnappinn *\"Ný leið\"*. Gefðu leiðinni nafn og valfrjálsa lýsingu, bættu síðan við leiðarpunktum eftir því sem þú ferð eða veldu þá af listanum þínum yfir merki. Þú getur breytt röð leiðarpunktanna meðfram leið hvenær sem er með því að breyta leiðinni.",
+  "suggested": "**Að búa til leið:**\\n\\nFyrst skaltu fara í *Merki og leiðir*, velja flipann *Leiðir* og síðan hnappinn *Ný leið*. Gefðu leiðinni nafn og valfrjálsa lýsingu, bættu síðan við leiðarpunktum eftir því sem þú ferð eða veldu þá af listanum þínum yfir merki. Þú getur breytt röð leiðarpunktanna meðfram leið hvenær sem er með því að breyta leiðinni.",
+  "reason": "Literal double quotes inside the *…* UI names, which the English doesn't have and which show on screen"
+ },
+ {
+  "context": "help_text_routes_content_how_3",
+  "category": "formatting",
+  "source": "**Sharing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "current": "**Deila leið :**\\n\\nVeldu leiðina þína á skjánum *\"Merki og leiðir\"* og veldu síðan valkostinn *\"Deila\"* með þeim hefðbundnu deilingarmöguleikum sem í boði eru.",
+  "suggested": "**Deila leið :**\\n\\nVeldu leiðina þína á skjánum *Merki og leiðir* og veldu síðan valkostinn *Deila* með þeim hefðbundnu deilingarmöguleikum sem í boði eru.",
+  "reason": "Literal double quotes inside the *…* UI names, which the English doesn't have"
+ },
+ {
+  "context": "faq_tip_turning_off_auto_callouts",
+  "category": "formatting",
+  "source": "To keep using Soundscape without hearing automatic callouts, set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *Sleep* button on the home screen.",
+  "current": "Til að halda áfram að nota Soundscape án þess að heyra sjálfvirkar tilkynningar skaltu stilla *Nákvæmni tilkynninga* á *Þögult* í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape um stund geturðu í staðinn sett það í dvalaham eða lúra-ham með hnappnum *fara í dvala* á heimaskjánum.",
+  "suggested": "Til að halda áfram að nota Soundscape án þess að heyra sjálfvirkar tilkynningar skaltu stilla *Nákvæmni tilkynninga* á *Þögult* í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape um stund geturðu í staðinn sett það í dvalaham eða lúra-ham með hnappnum *Fara í dvala* á heimaskjánum.",
+  "reason": "Button label lowercased (*fara í dvala*); the label is *Fara í dvala*, as in the sibling FAQ strings"
+ },
+ {
+  "context": "help_text_assistant_commands",
+  "category": "formatting",
+  "source": "You can ask Soundscape to:\\n\\nDescribe *My Location*, what is *Around Me*, or what is *Ahead of Me*.\\n\\nCall out the saved markers near you.\\n\\nStart one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.\\n\\nSet an audio beacon on one of your saved markers by name, or switch the beacon off.\\n\\nSet the callout detail to *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\nRead back the names of your saved routes or your saved markers.",
+  "current": "Þú getur beðið Soundscape um að:\\n\\nLýsa *mín staðsetning*, hvað er *í kringum mig* eða hvað er *fyrir framan mig*.\\n\\nLesa upp vistuðu merkin nálægt þér.\\n\\nRæsa eina af vistuðu leiðunum þínum eftir heiti, fara á næsta leiðarpunkt, fara aftur á þann fyrri, slökkva á hljóðvitanum eða stöðva leiðina.\\n\\nSetja hljóðvita á eitt af vistuðu merkjunum þínum eftir heiti, eða slökkva á hljóðvitanum.\\n\\nStilla nákvæmni tilkynninga á *Þögult*, *Nauðsynlegt*, *Einfaldað* eða *Ítarlegt*, til að breyta því hversu mikið Soundscape segir á meðan þú gengur. *Þögult* slekkur á sjálfvirkum tilkynningum.\\n\\nLesa upp heiti vistuðu leiðanna þinna eða vistuðu merkjanna þinna.",
+  "suggested": "Þú getur beðið Soundscape um að:\\n\\nLýsa *Mín staðsetning*, hvað er *Í kringum mig* eða hvað er *Fyrir framan mig*.\\n\\nLesa upp vistuðu merkin nálægt þér.\\n\\nRæsa eina af vistuðu leiðunum þínum eftir heiti, fara á næsta leiðarpunkt, fara aftur á þann fyrri, slökkva á hljóðvitanum eða stöðva leiðina.\\n\\nSetja hljóðvita á eitt af vistuðu merkjunum þínum eftir heiti, eða slökkva á hljóðvitanum.\\n\\nStilla nákvæmni tilkynninga á *Þögult*, *Nauðsynlegt*, *Einfaldað* eða *Ítarlegt*, til að breyta því hversu mikið Soundscape segir á meðan þú gengur. *Þögult* slekkur á sjálfvirkum tilkynningum.\\n\\nLesa upp heiti vistuðu leiðanna þinna eða vistuðu merkjanna þinna.",
+  "reason": "UI names lowercased (*mín staðsetning*, *í kringum mig*, *fyrir framan mig*); the button labels are capitalised, as in help_text_assistant_commands_ios"
+ },
+ {
+  "context": "new_version_info_details",
+  "category": "formatting",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Þetta er stór uppfærsla á Soundscape. Ferðahamur hefur batnað mikið. Þegar þú ferðast með bíl eða strætó tilkynnir Soundscape nú vegnúmer, akstursátt þína og nærliggjandi byggðir. Það tilkynnir einnig þegar þú ferð yfir ár, síki, firði og flóa. Uppfærðu ónettengdu kortin þín til að fá þessa nýju eiginleika. Lýsingar á strætóstoppistöðvum eru nú mun betri fyrir notendur í Bretlandi. Dvalastilling getur nú vaknað sjálfkrafa þegar hún skynjar að þú sért á hreyfingu að nýju. Þú þarft ekki lengur að muna eftir að vekja hana. Við endurskipulögðum undirliggjandi kóða svo við getum byggt iOS-forrit úr sama kóða. Þetta þýðir að í framtíðinni getum við gefið út iOS-forrit með öllum þeim eiginleikum sem við höfum búið til fyrir Android. Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hversu lítil þau eru, í gegnum valmöguleikann Hafa samband við þjónustuver í aðalvalmyndinni.",
+  "suggested": "\nÞetta er stór uppfærsla á Soundscape.\n\nFerðahamur hefur batnað mikið. Þegar þú ferðast með bíl eða strætó tilkynnir Soundscape nú vegnúmer, akstursátt þína og nærliggjandi byggðir. Það tilkynnir einnig þegar þú ferð yfir ár, síki, firði og flóa. Uppfærðu ónettengdu kortin þín til að fá þessa nýju eiginleika. Lýsingar á strætóstoppistöðvum eru nú mun betri fyrir notendur í Bretlandi.\n\nDvalahamur getur nú vaknað sjálfkrafa þegar hann skynjar að þú sért á hreyfingu að nýju. Þú þarft ekki lengur að muna eftir að vekja hann.\n\nVið endurskipulögðum undirliggjandi kóða svo við getum byggt iOS-forrit úr sama kóða. Þetta þýðir að í framtíðinni getum við gefið út iOS-forrit með öllum þeim eiginleikum sem við höfum búið til fyrir Android.\n\nVinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hversu lítil þau eru, í gegnum valmöguleikann Hafa samband við þjónustuver í aðalvalmyndinni.\n",
+  "reason": "The English paragraph breaks (leading \\n and blank lines between the five paragraphs) are gone, so the dialog renders as one block. Also «Dvalastilling … hana» where the term is «dvalahamur»"
+ },
+ {
+  "context": "general_error_add_marker_error",
+  "category": "tone",
+  "source": "We are having trouble marking this place. Try again later.",
+  "current": "Erfiðleikar við að merkja staðsetningu. Reynið síðar.",
+  "suggested": "Erfiðlega gengur að merkja þennan stað. Reyndu aftur síðar.",
+  "reason": "«Reynið síðar» is the plural/formal imperative; the corpus addresses the user as «þú» everywhere else («Reyndu aftur»)"
+ },
+ {
+  "context": "terms_of_use_medical_safety_disclaimer",
+  "category": "tone",
+  "source": "You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\\n\\nSafety Notice\\n\\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.",
+  "current": "Þú viðurkennir að Soundscape (1) er ekki hannað, ætlað eða gert aðgengilegt sem lækningatæki og (2) er ekki hannað eða ætlað til að koma í stað faglegrar læknisráðgjafar, greiningar, meðferðar eða mats og ætti ekki að vera notað í stað faglegrar læknisráðgjafar, greiningar, meðferðar eða mats.\\n\\nÖryggistilkynning\\n\\nSoundscape er leiðsögutæki og ætti ekki að nota í stað hreyfifærni, meðvitundar um umhverfi þitt og góðrar dómgreindar. Gætið varúðar þegar þið röltið um umhverfið þar sem kortlagningargögnin sem eru hluti af Soundscape forritinu eru tekin úr þriðja aðila forriti og því geta verið takmarkanir á nákvæmni upplýsinganna sem kynntar eru.",
+  "suggested": "Þú viðurkennir að Soundscape (1) er ekki hannað, ætlað eða gert aðgengilegt sem lækningatæki og (2) er ekki hannað eða ætlað til að koma í stað faglegrar læknisráðgjafar, greiningar, meðferðar eða mats og ætti ekki að vera notað í stað faglegrar læknisráðgjafar, greiningar, meðferðar eða mats.\\n\\nÖryggistilkynning\\n\\nSoundscape er leiðsögutæki og ætti ekki að nota í stað hreyfifærni, meðvitundar um umhverfi þitt og góðrar dómgreindar. Gættu varúðar þegar þú ferðast um umhverfið þar sem kortlagningargögnin sem eru hluti af Soundscape-forritinu eru tekin úr þriðja aðila forriti og því geta verið takmarkanir á nákvæmni upplýsinganna sem kynntar eru.",
+  "reason": "«Gætið varúðar þegar þið röltið» switches to the plural «þið» and uses «rölta» (\"stroll\"); the rest of the text is «þú». «Soundscape forritinu» also needs its hyphen"
+ },
+ {
+  "context": "faq_tip_create_marker_at_bus_stop",
+  "category": "tone",
+  "source": "If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.",
+  "current": "Ef þú tekur reglulega ákveðna strætisvagnaleið skaltu vista uppstignings- og niðurstigningarstaðina sem merki. Þá verða þeir vistaðir svo þú finnur þá auðveldlega aftur. Farðu í *Merki og leiðir* frá heimaskjánum og finndu þá síðan á síðunni *Merki*. Þú getur sett hljóðvita á þá til að fá reglulegar uppfærslur um hversu nálægt þú ert niðurstigningarstaðnum. Athugið: þú getur slökkt á taktfasta hljóðinu og færð samt fjarlægðaruppfærslur á leiðinni.",
+  "suggested": "Ef þú tekur reglulega ákveðna strætisvagnaleið skaltu vista uppstignings- og niðurstigningarstaðina sem merki. Þá verða þeir vistaðir svo þú finnur þá auðveldlega aftur. Farðu í *Merki og leiðir* frá heimaskjánum og finndu þá síðan á síðunni *Merki*. Þú getur sett hljóðvita á þá til að fá reglulegar uppfærslur um hversu nálægt þú ert niðurstigningarstaðnum. Athugaðu: þú getur slökkt á taktfasta hljóðinu og færð samt fjarlægðaruppfærslur á leiðinni.",
+  "reason": "«Athugið» is the plural/formal imperative; «þú» register elsewhere"
+ },
+ {
+  "context": "first_launch_beacon_message_2",
+  "category": "tone",
+  "source": "Listen to the available audio beacons and select your preference.",
+  "current": "Hlusta á tiltæka hljóðvita og veldu þann sem þér hentar best.",
+  "suggested": "Hlustaðu á tiltæka hljóðvita og veldu þann sem þér hentar best.",
+  "reason": "Mixes an infinitive («Hlusta») with an imperative («veldu»); both should be imperatives"
+ },
+ {
+  "context": "first_launch_beacon_message_3",
+  "category": "tone",
+  "source": "This can be changed later in app settings.",
+  "current": "Þetta má breyta síðar í stillingum forritsins.",
+  "suggested": "Þessu má breyta síðar í stillingum forritsins.",
+  "reason": "«breyta» governs the dative: «Þessu má breyta», not «Þetta»"
+ },
+ {
+  "context": "preview_go_nearest_intersection",
+  "category": "tone",
+  "source": "Go to nearest intersection",
+  "current": "Fara á nálægustu gatnamót",
+  "suggested": "Fara á næstu gatnamót",
+  "reason": "«nálægustu» is not a standard superlative; \"nearest\" is «næstu»"
+ },
+ {
+  "context": "route_detail_action_next_disabled_hint",
+  "category": "tone",
+  "source": "Inactive because the route is already at the end",
+  "current": "Óvirkt vegna þess að leiðin er þegar í enda",
+  "suggested": "Óvirkt vegna þess að leiðin er þegar á enda",
+  "reason": "«í enda» is unidiomatic; \"at the end\" is «á enda»"
+ },
+ {
+  "context": "settings_section_media_controls",
+  "category": "tone",
+  "source": "Media controls mode",
+  "current": "Ham fjölmiðlastýringa",
+  "suggested": "Hamur fjölmiðlastýringa",
+  "reason": "Title is in the accusative «Ham»; a standalone label needs the nominative «Hamur»"
+ },
+ {
+  "context": "settings_mix_audio_description",
+  "category": "tone",
+  "source": "When disabled, other audio apps will pause and lock screen media controls will be available",
+  "current": "Ef þetta er óvirkt munu önnur hljóðforrit stöðvast og fjölmiðlahnappir á læstum skjá verða tiltækar",
+  "suggested": "Ef þetta er óvirkt munu önnur hljóðforrit stöðvast og fjölmiðlahnappar á læstum skjá verða tiltækir",
+  "reason": "«fjölmiðlahnappir … tiltækar»: the plural of «hnappur» is «hnappar», and the masculine adjective is «tiltækir»"
+ },
+ {
+  "context": "markers_and_routes_import_success",
+  "category": "tone",
+  "source": "Import of markers and routes completed.",
+  "current": "Innflutningur merkja og leiða lokið.",
+  "suggested": "Innflutningi merkja og leiða lokið.",
+  "reason": "«Innflutningur … lokið» needs the dative, like «Niðurhal lokið»/«Leið lokið»: «Innflutningi … lokið»"
+ },
+ {
+  "context": "tour_finish",
+  "category": "tone",
+  "source": "That completes the tutorial. You can run it again from the main menu. We hope you find the app useful!",
+  "current": "Þetta lýkur leiðsögunámskeiðinu. Þú getur keyrt það aftur úr aðalvalmyndinni. Við vonum að þú finnur forritið gagnlegt!",
+  "suggested": "Þetta lýkur leiðsögunámskeiðinu. Þú getur keyrt það aftur úr aðalvalmyndinni. Við vonum að forritið komi þér að gagni!",
+  "reason": "«að þú finnur» needs the subjunctive, and \"find the app useful\" is a calque"
+ },
+ {
+  "context": "tour_cancel",
+  "category": "tone",
+  "source": "The guided tutorial has been cancelled. If you wish, you can run it again from the main menu.",
+  "current": "Leiðsögunámskeiðið hefur verið hætt. Ef þú vilt geturðu keyrt það aftur úr aðalvalmyndinni.",
+  "suggested": "Hætt hefur verið við leiðsögunámskeiðið. Ef þú vilt geturðu keyrt það aftur úr aðalvalmyndinni.",
+  "reason": "«Leiðsögunámskeiðið hefur verið hætt» is ungrammatical («hætta» is intransitive); use «Hætt hefur verið við»"
+ },
+ {
+  "context": "behavior_experiences_route_nav_title",
+  "category": "tone",
+  "source": "Route Details",
+  "current": "Upplýsingar leiðar",
+  "suggested": "Upplýsingar um leið",
+  "reason": "«Upplýsingar leiðar» is stilted; the sibling is «Upplýsingar um staðsetningu»"
+ },
+ {
+  "context": "relative_left_right_direction_ahead",
+  "category": "tone",
+  "source": "Ahead",
+  "current": "Framan",
+  "suggested": "Fyrir framan",
+  "reason": "A bare «Framan» isn't a standalone direction in Icelandic; «Fyrir framan» (or «Framundan») is"
+ },
+ {
+  "context": "relative_left_right_direction_behind",
+  "category": "tone",
+  "source": "Behind",
+  "current": "Aftan",
+  "suggested": "Fyrir aftan",
+  "reason": "A bare «Aftan» isn't a standalone direction; «Fyrir aftan» is"
+ },
+ {
+  "context": "faq_tip_hold_phone_flat",
+  "category": "tone",
+  "source": "Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.",
+  "current": "Soundscape virkar best þegar þú heldur símanum flötum með skjáinn snúinn upp að himni og topp síma snúinn frá þér.",
+  "suggested": "Soundscape virkar best þegar þú heldur símanum flötum með skjáinn snúinn upp að himni og toppinn á símanum snúinn frá þér.",
+  "reason": "«topp síma snúinn frá þér» drops the article; the corpus elsewhere says «toppinn á símanum»"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "category": "tone",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape hefur eiginleika og kosti sem spanna fjölbreyttar aðstæður og tímaramma. Gildi Soundscape fyrir þig getur einnig breyst með tímanum, þannig að notkun þín í dag getur verið önnur en eftir þrjá mánuði. Fólk hugsar oft um öpp út frá spurningunni *„hvaða vandamál leysir þetta app vel?“* Vissulega er hægt að nota Soundscape fyrir tiltekin verkefni – eins og að fylgjast með áfangastað á leiðinni þangað, að átta sig þegar þú kemur út úr neðanjarðarlestarstöð, að átta sig þegar þú stígur út úr bíl, eða að finna götunöfnin fyrir næstu gatnamót eða fjarlægðina að þeim. Hins vegar er heimspekin á bak við Soundscape sú að *„lýsa upp heiminn þinn með hljóði“* – forritið er hannað til að vera notað hvenær sem þú ert á ferðinni, til að veita þér umhverfisvitund, eins og nöfn gatnanna sem þú ert á, í hvaða átt þú ert að fara og nöfn fyrirtækja sem þú ferð framhjá. Í þessum notkunarmáta hafa notendur okkar vísað til Soundscape sem *„góðs fylgiforrits“*, sem styður *„tilviljun“*, hjálpar til við að *„fylla í eyðurnar í hugarkortinu þínu“* og veitir meira *„öryggi þegar maður gengur“*. Hér eru nokkur önnur dæmi um hvernig notendur okkar nota Soundscape í lífi sínu:\\n\\n„Soundscape hjálpaði mér að komast aftur á rétta braut eftir að ég fór úr strætó og fór í ranga átt.“\\n\\n„Jafnvel í bænum þar sem ég hef búið í 3 ár hef ég byggt upp betri mynd af því sem er í kringum mig [með Soundscape].“\\n\\n„Þrívíddarhljóðið eykur upplifun mína af göngu, þar sem ég finn mig tengdari umhverfi mínu ... Ég er líklegri til að prófa nýja leið núna þegar ég hef forritið til að nota.“\\n\\n„Ég sakna tilviljunarinnar við að ganga um og taka eftir hlutum. Að hafa Soundscape er fínt - það krefst engra fyrirhafnar að heyra um hluti í kringum mig. Tengslaupplýsingarnar eru gagnlegar og er frábært forrit til að átta sig á aðstæðum og kanna viðskiptagöng.“\\n\\n„[Ég notaði Soundscape] til að finna krá í miðri York. [Ég] notaði ýmsa möguleika til að finna hana fyrst og svo í raun og veru. Það færði mig innan við þriggja metra frá dyrunum – frábært!“",
+  "suggested": "Soundscape hefur eiginleika og kosti sem spanna fjölbreyttar aðstæður og tímaramma. Gildi Soundscape fyrir þig getur einnig breyst með tímanum, þannig að notkun þín í dag getur verið önnur en eftir þrjá mánuði. Fólk hugsar oft um öpp út frá spurningunni *„hvaða vandamál leysir þetta app vel?“* Vissulega er hægt að nota Soundscape fyrir tiltekin verkefni – eins og að fylgjast með áfangastað á leiðinni þangað, að átta sig þegar þú kemur út úr neðanjarðarlestarstöð, að átta sig þegar þú stígur út úr bíl, eða að finna götunöfnin fyrir næstu gatnamót eða fjarlægðina að þeim. Hins vegar er heimspekin á bak við Soundscape sú að *„lýsa upp heiminn þinn með hljóði“* – forritið er hannað til að vera notað hvenær sem þú ert á ferðinni, til að veita þér umhverfisvitund, eins og nöfn gatnanna sem þú ert á, í hvaða átt þú ert að fara og nöfn fyrirtækja sem þú ferð framhjá. Í þessum notkunarmáta hafa notendur okkar vísað til Soundscape sem *„góðs fylgiforrits“*, sem styður *„tilviljun“*, hjálpar til við að *„fylla í eyðurnar í hugarkortinu þínu“* og veitir meira *„öryggi þegar maður gengur“*. Hér eru nokkur önnur dæmi um hvernig notendur okkar nota Soundscape í lífi sínu:\\n\\n„Soundscape hjálpaði mér að komast aftur á rétta braut eftir að ég fór úr strætó og fór í ranga átt.“\\n\\n„Jafnvel í bænum þar sem ég hef búið í 3 ár hef ég byggt upp betri mynd af því sem er í kringum mig [með Soundscape].“\\n\\n„Þrívíddarhljóðið eykur upplifun mína af göngu, þar sem ég finn mig tengdari umhverfi mínu ... Ég er líklegri til að prófa nýja leið núna þegar ég hef forritið til að nota.“\\n\\n„Ég sakna tilviljunarinnar við að ganga um og taka eftir hlutum. Að hafa Soundscape er fínt - það krefst engrar fyrirhafnar að heyra um hluti í kringum mig. Tengslaupplýsingarnar eru gagnlegar og þetta er frábært forrit til að átta sig á aðstæðum og kanna verslunargötur.“\\n\\n„[Ég notaði Soundscape] til að finna krá í miðri York. [Ég] notaði ýmsa möguleika til að finna hana fyrst og svo í raun og veru. Það færði mig innan við þriggja metra frá dyrunum – frábært!“",
+  "reason": "Three slips in the user quotes: «viðskiptagöng» means \"business tunnels\" (commercial corridors are shopping streets, «verslunargötur»), «engra fyrirhafnar» should be the singular «engrar», and «…gagnlegar og er frábært forrit» has no subject"
+ },
+ {
+  "context": "osm_bus_station",
+  "category": "formatting",
+  "source": "Bus Station",
+  "current": "Rútu-/strætóstöð",
+  "suggested": "Strætó- og rútustöð",
+  "reason": "The slash in «Rútu-/strætóstöð» is read aloud or garbled by TTS (IS-G3 names the same problem)"
+ },
+ {
+  "context": "osm_obstacle_course",
+  "category": "tone",
+  "source": "Obstacle Course",
+  "current": "Hindrunabraut",
+  "suggested": "Hindrunarbraut",
+  "reason": "Typo: the linking form is «Hindrunar-»"
+ },
+ {
+  "context": "osm_silo",
+  "category": "tone",
+  "source": "Silo",
+  "current": "Sílo",
+  "suggested": "Síló",
+  "reason": "Spelled «Sílo»; the Icelandic word is «síló»"
+ },
+ {
+  "context": "osm_10pin",
+  "category": "tone",
+  "source": "Tenpin Bowling",
+  "current": "10-pinna bowling",
+  "suggested": "Keilusalur",
+  "reason": "«10-pinna bowling» leaves English in a spoken label; tenpin bowling is «keila», the venue «keilusalur»"
+ },
+ {
+  "context": "osm_bunker",
+  "category": "tone",
+  "source": "Bunker",
+  "current": "Bunkeri",
+  "suggested": "Byrgi",
+  "reason": "«Bunkeri» is an anglicism; the Icelandic word is «byrgi»"
+ },
+ {
+  "context": "osm_crematorium",
+  "category": "tone",
+  "source": "Crematorium",
+  "current": "Krematoríum",
+  "suggested": "Bálstofa",
+  "reason": "«Krematoríum» is a loan; the Icelandic word is «bálstofa»"
+ },
+ {
+  "context": "osm_planetarium",
+  "category": "tone",
+  "source": "Planetarium",
+  "current": "Plánetaríum",
+  "suggested": "Stjörnuver",
+  "reason": "«Plánetaríum»; the usual Icelandic word is «stjörnuver»"
+ },
+ {
+  "context": "osm_crypt",
+  "category": "tone",
+  "source": "Crypt",
+  "current": "Krypta",
+  "suggested": "Grafhvelfing",
+  "reason": "«Krypta» is a loan; the Icelandic word is «grafhvelfing»"
+ },
+ {
+  "context": "osm_sauna",
+  "category": "tone",
+  "source": "Sauna",
+  "current": "Sauna",
+  "suggested": "Gufubað",
+  "reason": "English left in place; sauna is «gufubað»"
+ },
+ {
+  "context": "osm_stile",
+  "category": "tone",
+  "source": "Stile",
+  "current": "Stigi yfir girðingu",
+  "suggested": "Prílur",
+  "reason": "Icelandic has a word for a stile: «prílur»"
+ },
+ {
+  "context": "osm_cattle_grid",
+  "category": "tone",
+  "source": "Cattle Guard",
+  "current": "Nautagrind",
+  "suggested": "Rimlahlið",
+  "reason": "«Nautagrind» is a calque; a cattle grid is a «rimlahlið»"
+ },
+ {
+  "context": "route_waypoint_progress",
+  "category": "terminology",
+  "source": "Route %1$s at waypoint %2$s of %3$s",
+  "current": "Leið %1$s, áfangapunktur %2$s af %3$s",
+  "suggested": "Leið %1$s, leiðarpunktur %2$s af %3$s",
+  "reason": "«áfangapunktur» where the confirmed Waypoint term is «leiðarpunktur» (26 other uses)"
+ },
+ {
+  "context": "beacon_styles_mallet_slow",
+  "category": "terminology",
+  "source": "Mallet (Slow)",
+  "current": "Sleggja, hægt",
+  "suggested": "Kjuði, hægt",
+  "reason": "Base style is «Kjuði» (beacon_styles_mallet) but the slow variants say «Sleggja» (sledgehammer); the comment says Mallet is used the same way in all three"
+ },
+ {
+  "context": "beacon_styles_mallet_very_slow",
+  "category": "terminology",
+  "source": "Mallet (Very Slow)",
+  "current": "Sleggja, mjög hægt",
+  "suggested": "Kjuði, mjög hægt",
+  "reason": "Same as beacon_styles_mallet_slow: «Sleggja» vs the base style «Kjuði»"
+ },
+ {
+  "context": "directions_along_facing_n",
+  "category": "terminology",
+  "source": "Facing north along %1$s",
+  "current": "Þú stefnir í norður eftir %1$s",
+  "suggested": "Þú snýrð í norður eftir %1$s",
+  "reason": "The other seven facing-along strings say «Þú snýrð í …», but north says «Þú stefnir í», the wording used for heading-along, so facing and heading sound the same for north"
+ },
+ {
+  "context": "terms_of_use_message",
+  "category": "terminology",
+  "source": "Your use of Soundscape is subject to the terms of the %1$s and the terms set out below (together, the *\"Terms of Use\"*).",
+  "current": "Notkun þín á Soundscape er háð skilmálum %1$s og skilmálunum sem settir eru fram hér að neðan (saman kallaðir *skilmálar notkunar*).",
+  "suggested": "Notkun þín á Soundscape er háð skilmálum %1$s og skilmálunum sem settir eru fram hér að neðan (saman kallaðir *Notkunarskilmálar*).",
+  "reason": "The defined term reads *skilmálar notkunar*, but the title and checkbox call the same thing «Notkunarskilmálar»/«skilmála»"
+ },
+ {
+  "context": "tour_create_marker_done",
+  "category": "gender",
+  "source": "Great! When creating a marker, you can edit its name and add notes. Try that now, and when you're ready, tap Done.",
+  "current": "Frábært! Þegar þú býrð til merki geturðu breytt nafni þess og bætt við athugasemdum. Prófaðu það núna, og þegar þú ert tilbúin/n ýttu á „Lokið“.",
+  "suggested": "Frábært! Þegar þú býrð til merki geturðu breytt nafni þess og bætt við athugasemdum. Prófaðu það núna og ýttu svo á „Lokið“.",
+  "reason": "Slash form «tilbúin/n» is read aloud by TTS (IS-G3); here the adjective can simply be dropped"
+ },
+ {
+  "context": "tour_stop_beacon",
+  "category": "gender",
+  "source": "When you're ready to stop the beacon, tap the Stop Route button.",
+  "current": "Þegar þú ert tilbúinn að stöðva hljóðvitann skaltu ýta á hnappinn „Stöðva leið“.",
+  "suggested": "Þegar þú vilt stöðva hljóðvitann skaltu ýta á hnappinn „Stöðva leið“.",
+  "reason": "«tilbúinn» forces the masculine (IS-G3); «Þegar þú vilt» avoids agreement"
+ },
+ {
+  "context": "help_text_automatic_callouts_when_3",
+  "category": "gender",
+  "source": "**When you need silence :**\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.",
+  "current": "**Þegar þú þarft þögn:**\\n\\nÞegar þú ætlar að fara yfir veg eða þarft einfaldlega að forritið sé hljótt, geturðu slökkt á tilkynningum. Þegar tilkynningar eru slökktar mun forritið aðeins gefa þér upplýsingar ef þú ýtir sjálfur á einn af hnöppunum *Mín staðsetning*, *Nálæg merki*, *Í kringum mig* eða *Fyrir framan mig*.",
+  "suggested": "**Þegar þú þarft þögn:**\\n\\nÞegar þú ætlar að fara yfir veg eða þarft einfaldlega að forritið sé hljótt, geturðu slökkt á tilkynningum. Þegar tilkynningar eru slökktar mun forritið aðeins gefa þér upplýsingar ef þú ýtir á einn af hnöppunum *Mín staðsetning*, *Nálæg merki*, *Í kringum mig* eða *Fyrir framan mig*.",
+  "reason": "«ýtir sjálfur» forces the masculine (IS-G3); «sjálfur» can be dropped without losing meaning"
+ },
+ {
+  "context": "first_launch_prompt_title",
+  "category": "gender",
+  "source": "You're ready!",
+  "current": "Þú ert tilbúin/n!",
+  "suggested": "Þú ert tilbúin/n!",
+  "reason": "Slash form «tilbúin/n» is read aloud by a screen reader (IS-G3, Q4). «Allt er tilbúið!» is the obvious candidate, but the file says the wording needs a speaker"
+ },
+ {
+  "context": "first_launch_prompt_message",
+  "category": "gender",
+  "source": "You are ready for your first walk with Soundscape. To get started, choose a nearby destination and start the audio beacon — you’ll hear it playing in the direction of your destination.",
+  "current": "Þú ert tilbúin/n fyrir fyrstu gönguna með Soundscape. Til að byrja skaltu velja nálægan áfangastað og kveikja á hljóðvitanum — þú heyrir hann hljóma úr átt áfangastaðarins.",
+  "suggested": "Þú ert tilbúin/n fyrir fyrstu gönguna með Soundscape. Til að byrja skaltu velja nálægan áfangastað og kveikja á hljóðvitanum — þú heyrir hann hljóma úr átt áfangastaðarins.",
+  "reason": "Slash form «tilbúin/n» (IS-G3, Q4). Candidate: «Allt er tilbúið fyrir fyrstu gönguna þína með Soundscape.» Wording needs a speaker"
+ },
+ {
+  "context": "tour_welcome",
+  "category": "gender",
+  "source": "Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.",
+  "current": "Velkomin/n í leiðsögunámskeiðið. Þetta námskeið leiðir þig í gegnum helstu eiginleika forritsins. Þú getur hætt námskeiðinu hvenær sem er með því að velja „Hætta leiðsögunámskeiði“ í aðalvalmyndinni. Byrjum á „Nálægir staðir“. Það gerir þér kleift að finna áhugaverða staði. Hnappurinn „Nálægir staðir“ er á heimaskjánum beint undir leitarstikunni. Ýttu á hann núna til að prófa.",
+  "suggested": "Velkomin/n í leiðsögunámskeiðið. Þetta námskeið leiðir þig í gegnum helstu eiginleika forritsins. Þú getur hætt námskeiðinu hvenær sem er með því að velja „Hætta leiðsögunámskeiði“ í aðalvalmyndinni. Byrjum á „Nálægir staðir“. Það gerir þér kleift að finna áhugaverða staði. Hnappurinn „Nálægir staðir“ er á heimaskjánum beint undir leitarstikunni. Ýttu á hann núna til að prófa.",
+  "reason": "Slash form «Velkomin/n» read aloud (IS-G3, Q4); needs a speaker for a gender-free welcome"
+ },
+ {
+  "context": "first_launch_welcome_title",
+  "category": "gender",
+  "source": "Welcome!",
+  "current": "Velkomin!",
+  "suggested": "Velkomin!",
+  "reason": "«Velkomin!» is feminine/plural only (IS-G3, Q4); left for the speaker question"
+ },
+ {
+  "context": "help_text_destination_beacons_what",
+  "category": "gender",
+  "source": "Setting a beacon on a nearby location allows Soundscape to keep you informed by playing a sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.",
+  "current": "Með því að setja hljóðvita á nálægan stað getur Soundscape haldið þér upplýstum með því að spila hljóð úr þeirri átt sem staðurinn er. Hljóðvitann má þagga eða virkja aftur á heimaskjánum. Einnig sýnir Soundscape upplýsingar um staðinn á heimaskjánum, þar á meðal fjarlægðina að honum og heimilisfang hans, ef það er til.",
+  "suggested": "Með því að setja hljóðvita á nálægan stað getur Soundscape haldið þér upplýstum með því að spila hljóð úr þeirri átt sem staðurinn er. Hljóðvitann má þagga eða virkja aftur á heimaskjánum. Einnig sýnir Soundscape upplýsingar um staðinn á heimaskjánum, þar á meðal fjarlægðina að honum og heimilisfang hans, ef það er til.",
+  "reason": "«haldið þér upplýstum» is masculine/plural dative (IS-G3); a neutral phrasing needs a speaker"
+ }
+]

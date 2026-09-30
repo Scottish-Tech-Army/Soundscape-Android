@@ -1,0 +1,354 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "This is a major update to Soundscape. Travel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK. Sleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself. We reorganised the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android. Please continue to report any problems, however small, through Contact Support in the main menu.",
+  "suggested": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganised the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "reason": "All paragraph breaks (and the leading/trailing newline) of the source were collapsed into one paragraph; the release-notes splitter uses them, so the dialog reads as one block",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_automatic_callouts_when_3",
+  "source": "**When you need silence :**\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.",
+  "current": "**When you need silence**:\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *\"My Location\"*, *\"Nearby Markers\"*, *\"Around Me\"*, or *\"Ahead of Me\"* buttons.",
+  "suggested": "**When you need silence**:\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_what",
+  "source": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "current": "The *\"My Location\"* button quickly gives you information that helps you figure out where you currently are. *\"My Location\"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "suggested": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_when",
+  "source": "*My Location* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "current": "*\"My Location\"* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "suggested": "*My Location* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *\"My Location\"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *\"My Location\"* button and listen.",
+  "suggested": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_what",
+  "source": "The *Nearby Markers* button tells you about up to four markers that are closest to you. *Nearby Markers* is intended to help you orient yourself using places you already know about.",
+  "current": "The *\"Nearby Markers\"* button tells you about up to four markers that are closest to you. *\"Nearby Markers\"* is intended to help you orient yourself using places you already know about.",
+  "suggested": "The *Nearby Markers* button tells you about up to four markers that are closest to you. *Nearby Markers* is intended to help you orient yourself using places you already know about.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Nearby Markers* to hear about the locations of places you know of.",
+  "current": "When you are trying to get your bearings and orient yourself to your surroundings, use *\"Nearby Markers\"* to hear about the locations of places you know of.",
+  "suggested": "When you are trying to get your bearings and orient yourself to your surroundings, use *Nearby Markers* to hear about the locations of places you know of.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "current": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *\"Nearby Markers\"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *\"Nearby Markers\"* button and you will hear up to four markers near you.",
+  "suggested": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_what",
+  "source": "The *Around Me* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *Around Me* is intended to help you orient yourself to your surroundings.",
+  "current": "The *\"Around Me\"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *\"Around Me\"* is intended to help you orient yourself to your surroundings.",
+  "suggested": "The *Around Me* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *Around Me* is intended to help you orient yourself to your surroundings.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Around Me* to hear about the things around you.",
+  "current": "When you are trying to get your bearings and orient yourself to your surroundings, use *\"Around Me\"* to hear about the things around you.",
+  "suggested": "When you are trying to get your bearings and orient yourself to your surroundings, use *Around Me* to hear about the things around you.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *\"Around Me\"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *\"Around Me\"* button and you will hear four points of interest arranged around you.",
+  "suggested": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_ahead_of_me_when",
+  "source": "When you are walking down the street, try using *Ahead of Me* to discover the places and things coming up on either side of the street ahead.",
+  "current": "When you are walking down the street, try using *\"Ahead of Me\"* to discover the places and things coming up on either side of the street ahead.",
+  "suggested": "When you are walking down the street, try using *Ahead of Me* to discover the places and things coming up on either side of the street ahead.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *\"Ahead of Me\"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *\"Ahead of Me\"* button and you will hear several points of interest all roughly ahead of you.",
+  "suggested": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "From this *\"Edit\"* screen you can also delete a marker if you no longer need it.",
+  "suggested": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Creating a route**:\\n\\n First, go to *\"Markers and Routes\"*, select the *\"Routes\"* tab, and then select the *\"New Route\"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "suggested": "**Creating a route**:\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_3",
+  "source": "**Sharing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "current": "**Sharing a route :**\\n\\n Select your route on the *\"Markers and Routes\"* screen and then select the option to *\"Share\"* using all of the usual share options available to you.",
+  "suggested": "**Sharing a route:**\\n\\nSelect your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass, and the stray space before the colon in the bold heading is still there",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *\"unmute beacon button\"*; however, since Location Services is only accurate to about 10 metres, we cannot guarantee the behaviour of the beacon when you are within a few metres of your destination.",
+  "suggested": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 metres, we cannot guarantee the behaviour of the beacon when you are within a few metres of your destination.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "markers_no_markers_hint_1",
+  "source": "Create markers for your favorite destinations, waypoints on a route, or any locations you want called out. Choose a location, or your current location, from the home screen and select *Save as Marker*.",
+  "current": "Create markers for your favourite destinations, waypoints on a route, or any locations you want called out. Choose a location, or your current location, from the home screen and select *\"Save as Marker\"*.",
+  "suggested": "Create markers for your favourite destinations, waypoints on a route, or any locations you want called out. Choose a location, or your current location, from the home screen and select *Save as Marker*.",
+  "reason": "UI names are wrapped as *\"Name\"* where the source (and sibling help strings such as help_text_ahead_of_me_what) use plain *Name*; leftover quotes from before the 2026-09-28 UI-name markup pass",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_destination_beacons_how_3",
+  "source": "**To mute the audible beacon :**\\n\\n Tap the *Mute Beacon* button next to the *Stop Route* button on the home screen.",
+  "current": "**To mute the audible beacon :**\\n\\n Tap the *Mute Beacon* button next to the *Stop Route* button on the home screen.",
+  "suggested": "**To mute the audible beacon:**\\n\\nTap the *Mute Beacon* button next to the *Stop Route* button on the home screen.",
+  "reason": "Heading keeps the source's French-style space before the colon, which every sibling heading in en_GB has already dropped (the source defect itself is in the English too)",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_assistant_how_ios",
+  "source": "Every command has the same shape: *\"Soundscape\"*, then a group, then your choice. You can say the whole thing at once, for example *\"Soundscape surroundings around me\"*, or you can stop after the group and Siri will ask which one you want. So each group works as a spoken menu, and there are only seven of them to remember.",
+  "current": "Every command has the same shape: *Soundscape*, then a group, then your choice. You can say the whole thing at once, for example *Soundscape surroundings around me*, or you can stop after the group and Siri will ask which one you want. So each group works as a spoken menu, and there are only seven of them to remember.",
+  "suggested": "Every command has the same shape: *\"Soundscape\"*, then a group, then your choice. You can say the whole thing at once, for example *\"Soundscape surroundings around me\"*, or you can stop after the group and Siri will ask which one you want. So each group works as a spoken menu, and there are only seven of them to remember.",
+  "reason": "The quotes marking the exact words to say to Siri (*\"Soundscape surroundings\"*) were removed, so the spoken phrases now look the same as the UI-name labels (*My Location*); the source uses the quotes to tell them apart",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_assistant_commands_ios",
+  "source": "*\"Soundscape surroundings\"* — then *My Location*, *Around Me*, *Ahead of Me* or *Nearby Markers*.\\n\\n*\"Soundscape route\"* — then *Next Waypoint*, *Previous Waypoint*, *Mute Beacon* or *Stop*.\\n\\n*\"Soundscape start route\"* — then the name of one of your saved routes.\\n\\n*\"Soundscape beacon\"* — then the name of one of your saved markers.\\n\\n*\"Soundscape stop beacon\"*.\\n\\n*\"Soundscape detail\"* — then *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\n*\"Soundscape list\"* — then *Routes*, *Markers* or *Commands*.\\n\\nSaying *\"Soundscape list commands\"* reads this list of commands back to you.",
+  "current": "*Soundscape surroundings* — then *My Location*, *Around Me*, *Ahead of Me* or *Nearby Markers*.\\n\\n*Soundscape route* — then *Next Waypoint*, *Previous Waypoint*, *Mute Beacon* or *Stop*.\\n\\n*Soundscape start route* — then the name of one of your saved routes.\\n\\n*Soundscape beacon* — then the name of one of your saved markers.\\n\\n*Soundscape stop beacon*.\\n\\n*Soundscape detail* — then *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\n*Soundscape list* — then *Routes*, *Markers* or *Commands*.\\n\\nSaying *Soundscape list commands* reads this list of commands back to you.",
+  "suggested": "*\"Soundscape surroundings\"* — then *My Location*, *Around Me*, *Ahead of Me* or *Nearby Markers*.\\n\\n*\"Soundscape route\"* — then *Next Waypoint*, *Previous Waypoint*, *Mute Beacon* or *Stop*.\\n\\n*\"Soundscape start route\"* — then the name of one of your saved routes.\\n\\n*\"Soundscape beacon\"* — then the name of one of your saved markers.\\n\\n*\"Soundscape stop beacon\"*.\\n\\n*\"Soundscape detail\"* — then *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\n*\"Soundscape list\"* — then *Routes*, *Markers* or *Commands*.\\n\\nSaying *\"Soundscape list commands\"* reads this list of commands back to you.",
+  "reason": "The quotes marking the exact words to say to Siri (*\"Soundscape surroundings\"*) were removed, so the spoken phrases now look the same as the UI-name labels (*My Location*); the source uses the quotes to tell them apart",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_train_station",
+  "source": "Train Station",
+  "current": "Train station",
+  "suggested": "Train Station",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_train_station_named",
+  "source": "%1$s Train Station",
+  "current": "%1$s Train station",
+  "suggested": "%1$s Train Station",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_tram_stop",
+  "source": "Tram Stop",
+  "current": "Tram stop",
+  "suggested": "Tram Stop",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_tram_stop_named",
+  "source": "Tram Stop: %1$s",
+  "current": "Tram stop: %1$s",
+  "suggested": "Tram Stop: %1$s",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_ferry_terminal",
+  "source": "Ferry Terminal",
+  "current": "Ferry terminal",
+  "suggested": "Ferry Terminal",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_ferry_terminal_named",
+  "source": "%1$s Ferry Terminal",
+  "current": "%1$s ferry terminal",
+  "suggested": "%1$s Ferry Terminal",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_dry_cleaning",
+  "source": "Dry Cleaning",
+  "current": "Dry cleaning",
+  "suggested": "Dry Cleaning",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_copyshop",
+  "source": "Copy Shop",
+  "current": "Copy shop",
+  "suggested": "Copy Shop",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_water_polo",
+  "source": "Water Polo",
+  "current": "Water polo",
+  "suggested": "Water Polo",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_table_soccer",
+  "source": "Table Soccer",
+  "current": "Table football",
+  "suggested": "Table Football",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_table_tennis",
+  "source": "Table Tennis",
+  "current": "Table tennis",
+  "suggested": "Table Tennis",
+  "reason": "Sentence case in a Title Case family: siblings are «Bus Stop», «Bus Stop: %1$s», «Bus Station», osm_tag_ferry_terminal_named «%1$s Ferry Terminal»; «Milngavie Train station» mixes both",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_bike_parking",
+  "source": "Bike Parking",
+  "current": "Bike Parking",
+  "suggested": "Cycle Parking",
+  "reason": "osm_bicycle_parking is «Cycle Parking» in en_GB; the same thing is called two names",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_shopping_mall",
+  "source": "Shopping Mall",
+  "current": "Shopping Mall",
+  "suggested": "Shopping Centre",
+  "reason": "osm_mall is already «Shopping Centre» in en_GB; «Shopping Mall» is the American term and splits the two",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_bakery",
+  "source": "Bakery Shop",
+  "current": "Bakery Shop",
+  "suggested": "Bakery",
+  "reason": "«Bakery Shop» is redundant; en_GB already dropped «Shop» from Florist, Deli, Herbalist, Pharmacy, Pawnbroker",
+  "category": "tone"
+ },
+ {
+  "context": "osm_glaziery",
+  "source": "Glazier Shop",
+  "current": "Glazier Shop",
+  "suggested": "Glazier",
+  "reason": "«Glazier Shop» is unidiomatic; a glazier is a trade, cf. en_GB «Window Fitter», «Carpet Fitter»",
+  "category": "tone"
+ },
+ {
+  "context": "osm_boutique",
+  "source": "Boutique Shop",
+  "current": "Boutique Shop",
+  "suggested": "Boutique",
+  "reason": "«Boutique Shop» is redundant, as with en_GB «Florist», «Deli»",
+  "category": "tone"
+ },
+ {
+  "context": "osm_lawyer",
+  "source": "Lawyer",
+  "current": "Lawyer",
+  "suggested": "Solicitor",
+  "reason": "UK high-street law firms are «Solicitors»; «Lawyer» reads American as a place label (cf. «Estate Agent», «Chemist»)",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_when_1",
+  "source": "**Exploring a new area :**\\n\\n Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.",
+  "current": "**Exploring a new area**:\\n\\n Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.",
+  "suggested": "**Exploring a new area**:\\n\\n Turn automatic callouts on and walk around to hear about all of the different shops, restaurants, and the like as you pass them.",
+  "reason": "Generic retail \"stores\" is American; UK says «shops» here (EN-T2 keeps «grocery store» and «Convenience Store» only)",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_stone",
+  "source": "Stone",
+  "current": "Standing Stone",
+  "suggested": "Stone",
+  "reason": "Keyed on the bare value \"stone\" (natural=stone, historic=stone): usually a notable boulder or erratic. «Standing Stone» narrows it to a menhir, which is a different tag",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_surveillance",
+  "source": "Surveillance",
+  "current": "Surveillance Area",
+  "suggested": "Surveillance Area",
+  "reason": "«Surveillance Area» suggests a zone, but man_made=surveillance is nearly always a single CCTV camera; «CCTV Camera» may be better, needs a human call",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_subway",
+  "source": "Subway Station",
+  "current": "Underground station",
+  "suggested": "Underground station",
+  "reason": "«Underground station» is London branding; Glasgow's own system is «the Subway» and Newcastle's «Metro». A neutral «Metro Station» or keeping «Subway Station» may fit UK users better; also sentence case in a Title Case family. Needs a UK speaker",
+  "category": "tone"
+ },
+ {
+  "context": "osm_subway_named",
+  "source": "%1$s Subway Station",
+  "current": "%1$s underground station",
+  "suggested": "%1$s underground station",
+  "reason": "Same as osm_subway: «%1$s underground station» calls a Glasgow Subway stop an «underground station»; lower-case too",
+  "category": "tone"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "suggested": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "reason": "CROSS-LANGUAGE: the source says Next \"calls out *What's Around Me*\", but the button is *Around Me* (help_orient_page_title); fix the English and every language follows",
+  "category": "meaning"
+ }
+]

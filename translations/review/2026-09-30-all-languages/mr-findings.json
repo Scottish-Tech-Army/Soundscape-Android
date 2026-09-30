@@ -1,0 +1,194 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "हे Soundscape चे एक मोठे अपडेट आहे. प्रवास मोडमध्ये खूप सुधारणा झाली आहे. तुम्ही कार किंवा बसने प्रवास करता तेव्हा Soundscape आता रस्त्यांचे क्रमांक, तुमच्या प्रवासाची दिशा आणि जवळपासच्या वस्त्या सांगते. नद्या, कालवे, खाड्या आणि उपसागर ओलांडतानाही ते सूचना देते. ही नवीन वैशिष्ट्ये मिळवण्यासाठी कृपया तुमचे ऑफलाइन नकाशे अपडेट करा. युनायटेड किंग्डममधील वापरकर्त्यांसाठी बस थांब्यांचे वर्णन आता खूप चांगले झाले आहे. तुम्ही पुन्हा हालचाल करत असल्याचे लक्षात आल्यावर झोप मोड आता आपोआप जागा होऊ शकतो. तो स्वतः जागा करण्याचे लक्षात ठेवण्याची आता गरज नाही. आम्ही अंतर्गत कोडची पुनर्रचना केली आहे जेणेकरून त्याच कोडमधून iOS अॅप तयार करता येईल. याचा अर्थ भविष्यात आम्ही Android साठी तयार केलेल्या सर्व वैशिष्ट्यांसह iOS अॅप रिलीज करू शकतो. कृपया कोणत्याही समस्या, त्या कितीही लहान असोत, मुख्य मेनूमधील Contact Support द्वारे कळवत राहा.",
+  "suggested": "\nहे Soundscape चे एक मोठे अपडेट आहे.\n\nप्रवास मोडमध्ये खूप सुधारणा झाली आहे. तुम्ही कार किंवा बसने प्रवास करता तेव्हा Soundscape आता रस्त्यांचे क्रमांक, तुमच्या प्रवासाची दिशा आणि जवळपासच्या वस्त्या सांगते. नद्या, कालवे, खाड्या आणि उपसागर ओलांडतानाही ते सूचना देते. ही नवीन वैशिष्ट्ये मिळवण्यासाठी कृपया तुमचे ऑफलाइन नकाशे अपडेट करा. युनायटेड किंग्डममधील वापरकर्त्यांसाठी बस थांब्यांचे वर्णन आता खूप चांगले झाले आहे.\n\nतुम्ही पुन्हा हालचाल करत असल्याचे लक्षात आल्यावर झोप मोड आता आपोआप जागा होऊ शकतो. तो स्वतः जागा करण्याचे लक्षात ठेवण्याची आता गरज नाही.\n\nआम्ही अंतर्गत कोडची पुनर्रचना केली आहे जेणेकरून त्याच कोडमधून iOS अॅप तयार करता येईल. याचा अर्थ भविष्यात आम्ही Android साठी तयार केलेल्या सर्व वैशिष्ट्यांसह iOS अॅप रिलीज करू शकतो.\n\nकृपया कोणत्याही समस्या, त्या कितीही लहान असोत, मुख्य मेनूमधील ‘सपोर्टशी संपर्क साधा’ द्वारे कळवत राहा.\n",
+  "category": "formatting",
+  "reason": "All paragraph breaks (and the leading/trailing newline) were dropped, so the dialog shows one wall of text; the release-notes splitter now uses paragraph breaks (7ca86e582). Also 'Contact Support' was left in English although the menu item is «सपोर्टशी संपर्क साधा»."
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "बंद रस्ता कडे जाणारा %1$s",
+  "suggested": "%1$s, बंद रस्त्याकडे",
+  "category": "meaning",
+  "reason": "«बंद रस्ता कडे» is ungrammatical: «कडे» needs the oblique «बंद रस्त्याकडे». «जाणारा» also forces masculine agreement on %1$s, which the note forbids: the commonest way type «वाट» (Path) is feminine, giving «…जाणारा वाट». A label form avoids agreement. MR-T1 (whether «बंद रस्ता» sounds like 'road closed', e.g. «%1$s, पुढे रस्ता नाही») is still open for a native speaker."
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%2$s मार्गे बंद रस्ता कडे जाणारा %1$s",
+  "suggested": "%1$s, %2$s मार्गे बंद रस्त्याकडे",
+  "category": "meaning",
+  "reason": "Same as confect_name_to_dead_end: «बंद रस्ता कडे» needs the oblique «बंद रस्त्याकडे», and «जाणारा» must not agree with %1$s (feminine «वाट» gives «…जाणारा वाट»)."
+ },
+ {
+  "context": "confect_name_to",
+  "source": "%1$s to %2$s",
+  "current": "%2$s कडे जाणारा %1$s",
+  "suggested": "%2$s कडे जाणारा %1$s",
+  "category": "gender",
+  "reason": "«जाणारा» is masculine, but %1$s is a way type from osm_* strings and the commonest one, osm_path «वाट» (also «पायवाट», «पायऱ्या»), is feminine: «Moor Road कडे जाणारा वाट» is ungrammatical. No single participle fits every way type; options are a label form («%1$s, %2$s कडे», C17) or making the way-type nouns all masculine. Needs a native speaker; the C10 relative-clause structure itself is right."
+ },
+ {
+  "context": "confect_name_to_via",
+  "source": "%1$s to %2$s via %3$s",
+  "current": "%3$s मार्गे %2$s कडे जाणारा %1$s",
+  "suggested": "%3$s मार्गे %2$s कडे जाणारा %1$s",
+  "category": "gender",
+  "reason": "«जाणारा» is masculine, but %1$s is a way type from osm_* strings and the commonest one, osm_path «वाट» (also «पायवाट», «पायऱ्या»), is feminine: «Moor Road कडे जाणारा वाट» is ungrammatical. No single participle fits every way type; options are a label form («%1$s, %2$s कडे», C17) or making the way-type nouns all masculine. Needs a native speaker; the C10 relative-clause structure itself is right."
+ },
+ {
+  "context": "confect_name_joins",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%2$s आणि %3$s यांना जोडणारा %1$s",
+  "suggested": "%2$s आणि %3$s यांना जोडणारा %1$s",
+  "category": "gender",
+  "reason": "«जोडणारा» is masculine, but %1$s is a way type from osm_* strings and the commonest one, osm_path «वाट» (also «पायवाट», «पायऱ्या»), is feminine: «Moor Road कडे जोडणारा वाट» is ungrammatical. No single participle fits every way type; options are a label form («%1$s, %2$s कडे», C17) or making the way-type nouns all masculine. Needs a native speaker; the C10 relative-clause structure itself is right."
+ },
+ {
+  "context": "faq_markers_function_question",
+  "source": "What are Markers and how do I get the most out of them?",
+  "current": "मार्कर म्हणजे काय आणि त्यांचा जास्तीत जास्त फायदा मी कसा घेऊ शकतो?",
+  "suggested": "मार्कर म्हणजे काय आणि त्यांचा जास्तीत जास्त फायदा कसा घेता येईल?",
+  "category": "gender",
+  "reason": "«मी … घेऊ शकतो» is masculine first person, so a woman reading the FAQ is addressed as a man. The impersonal «घेता येईल» is gender-free (same spirit as C15)."
+ },
+ {
+  "context": "faq_section_getting_the_best_experience",
+  "source": "How do I get the best out of Soundscape?",
+  "current": "मी Soundscape चा सर्वोत्तम वापर कसा करू शकतो?",
+  "suggested": "Soundscape चा सर्वोत्तम वापर कसा करता येईल?",
+  "category": "gender",
+  "reason": "«मी … करू शकतो» is masculine first person; «करता येईल» is gender-free (C15)."
+ },
+ {
+  "context": "faq_what_can_I_set_question",
+  "source": "What can I set as a beacon?",
+  "current": "मी बीकन म्हणून काय सेट करू शकतो?",
+  "suggested": "बीकन म्हणून काय सेट करता येईल?",
+  "category": "gender",
+  "reason": "«मी … सेट करू शकतो» is masculine first person; «सेट करता येईल» is gender-free (C15)."
+ },
+ {
+  "context": "faq_beacon_on_address_question",
+  "source": "Can I set a beacon on an address?",
+  "current": "मी एखाद्या पत्त्यावर बीकन सेट करू शकतो का?",
+  "suggested": "एखाद्या पत्त्यावर बीकन सेट करता येईल का?",
+  "category": "gender",
+  "reason": "«मी … सेट करू शकतो का» is masculine first person; «सेट करता येईल का» is gender-free (C15)."
+ },
+ {
+  "context": "faq_turn_beacon_back_on_question",
+  "source": "Can I turn the beacon back on when I am close to my destination?",
+  "current": "मी माझ्या गंतव्यस्थानाजवळ असताना बीकन पुन्हा सुरू करू शकतो का?",
+  "suggested": "माझ्या गंतव्यस्थानाजवळ असताना बीकन पुन्हा सुरू करता येईल का?",
+  "category": "gender",
+  "reason": "«मी … सुरू करू शकतो का» is masculine first person; «सुरू करता येईल का» is gender-free (C15)."
+ },
+ {
+  "context": "faq_tip_create_marker_at_bus_stop",
+  "source": "If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.",
+  "current": "जर तुम्ही एखादा बस मार्ग नियमितपणे वापरत असाल, तर तुमचे चढण्याचे आणि उतरण्याचे थांबे मार्कर म्हणून सेट करा. अशा प्रकारे ते सेव्ह केले जातील आणि तुम्हाला ते सहज पुन्हा सापडतील, फक्त होम स्क्रीनवरून *मार्कर आणि मार्ग* वर जा आणि *मार्कर* पानावर ते शोधा. तुम्ही त्यांच्यावर बीकन सेट करू शकता आणि तुमचे उतरण्याचे थांबे किती जवळ आले आहे याबद्दल तुम्हाला वेळोवेळी माहिती मिळेल. टीप: तुम्ही तालबद्ध आवाज बंद करू शकता आणि तरीही तुम्हाला वाटेत अंतराची माहिती मिळत राहील.",
+  "suggested": "जर तुम्ही एखादा बस मार्ग नियमितपणे वापरत असाल, तर तुमचे चढण्याचे आणि उतरण्याचे थांबे मार्कर म्हणून सेट करा. अशा प्रकारे ते सेव्ह केले जातील आणि तुम्हाला ते सहज पुन्हा सापडतील, फक्त होम स्क्रीनवरून *मार्कर आणि मार्ग* वर जा आणि *मार्कर* पानावर ते शोधा. तुम्ही त्यांच्यावर बीकन सेट करू शकता आणि तुमचा उतरण्याचा थांबा किती जवळ आला आहे याबद्दल तुम्हाला वेळोवेळी माहिती मिळेल. टीप: तुम्ही तालबद्ध आवाज बंद करू शकता आणि तरीही तुम्हाला वाटेत अंतराची माहिती मिळत राहील.",
+  "category": "meaning",
+  "reason": "«तुमचे उतरण्याचे थांबे किती जवळ आले आहे» mixes a plural subject with a singular verb; the English is one exit stop: «तुमचा उतरण्याचा थांबा किती जवळ आला आहे»."
+ },
+ {
+  "context": "faq_tip_turning_beacon_off",
+  "source": "You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.",
+  "current": "होम स्क्रीनवरील म्यूट बटण वापरून तुम्ही बीकनचा तालबद्ध आवाज चालू किंवा बंद करू शकता. बीकन म्यूट केले असले तरीही तुम्हाला दर सुमारे ५० मीटरने तुमच्या गंतव्यस्थानापर्यंतच्या अंतराबद्दल माहिती मिळत राहील.",
+  "suggested": "होम स्क्रीनवरील म्यूट बटण वापरून तुम्ही बीकनचा तालबद्ध आवाज चालू किंवा बंद करू शकता. बीकन म्यूट केले असले तरीही तुम्हाला दर सुमारे 50 मीटरने तुमच्या गंतव्यस्थानापर्यंतच्या अंतराबद्दल माहिती मिळत राहील.",
+  "category": "formatting",
+  "reason": "Uses Devanagari digits «५०» where the rest of the corpus (help text, FAQ, distances) uses Western digits («10 मीटर», «3 मीटर»)."
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "मी तुमच्यासोबत एक Soundscape मार्कर सामायिक केला आहे: %1$s.\\n\\nSoundscape मध्ये उघडण्यासाठी %2$s वापरा.\\n\\n Google Maps मध्ये उघडण्यासाठी %3$s वापरा.",
+  "suggested": "मी तुमच्यासोबत एक Soundscape मार्कर सामायिक केला आहे: “%1$s”.\\n\\nSoundscape मध्ये उघडण्यासाठी %2$s वापरा.\\n\\n Google Maps मध्ये उघडण्यासाठी %3$s वापरा.",
+  "category": "formatting",
+  "reason": "The quotation marks around the marker name %1$s were dropped; typographic quotes keep the name set off in the shared message."
+ },
+ {
+  "context": "search_synonyms_supermarket",
+  "source": "supermarket, grocery store, grocer",
+  "current": "सुपरमार्केट, मॉल, मार्ट",
+  "suggested": "सुपरमार्केट, मार्ट, डिपार्टमेंटल स्टोअर",
+  "category": "meaning",
+  "reason": "«मॉल» means a shopping mall, which OSM tags separately (osm_mall «मॉल»); as a synonym it makes a search for 'mall' return supermarkets."
+ },
+ {
+  "context": "osm_pitch",
+  "source": "Pitch",
+  "current": "खेळपट्टी",
+  "suggested": "क्रीडा मैदान",
+  "category": "meaning",
+  "reason": "«खेळपट्टी» in Marathi usage means a cricket pitch specifically; OSM pitch is any marked playing area (tennis court, football pitch…)."
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "या *संपादन* स्क्रीनवरून तुम्ही एखादा मार्कर आवश्यक नसल्यास हटवूही शकता.",
+  "suggested": "या *मार्कर संपादित करा* स्क्रीनवरून तुम्ही एखादा मार्कर आवश्यक नसल्यास हटवूही शकता.",
+  "category": "terminology",
+  "reason": "UI name *Edit* is markers_edit_screen_title_edit, which is «मार्कर संपादित करा» on screen; «*संपादन*» doesn't match anything the user hears."
+ },
+ {
+  "context": "location_detail_action_edit_hint",
+  "source": "change the marker name or add additional notes",
+  "current": "मार्करचे नाव बदलणे किंवा अतिरिक्त नोंदी जोडण्या",
+  "suggested": "मार्करचे नाव बदलण्यासाठी किंवा अतिरिक्त नोंदी जोडण्या",
+  "category": "tone",
+  "reason": "Coordinated hint mixes a bare verbal noun («-णे») with the final «-ण्या»; after the template it reads «…-णे किंवा …-ण्यासाठी डबल टॅप करा», where only the last verb takes «साठी». Putting «-ण्यासाठी» on the earlier verbs keeps MR-B1's ending on the last one."
+ },
+ {
+  "context": "search_button_markers_accessibility_hint",
+  "source": "select or edit your saved markers and routes",
+  "current": "तुमचे जतन केलेले मार्कर आणि मार्ग निवडणे किंवा संपादित करण्या",
+  "suggested": "तुमचे जतन केलेले मार्कर आणि मार्ग निवडण्यासाठी किंवा संपादित करण्या",
+  "category": "tone",
+  "reason": "Coordinated hint mixes a bare verbal noun («-णे») with the final «-ण्या»; after the template it reads «…-णे किंवा …-ण्यासाठी डबल टॅप करा», where only the last verb takes «साठी». Putting «-ण्यासाठी» on the earlier verbs keeps MR-B1's ending on the last one."
+ },
+ {
+  "context": "route_detail_action_edit_hint",
+  "source": "change or reorder the waypoints in the route",
+  "current": "मार्गातील मार्ग बिंदू बदलणे किंवा पुन्हा क्रमवारी लावण्या",
+  "suggested": "मार्गातील मार्ग बिंदू बदलण्यासाठी किंवा पुन्हा क्रमवारी लावण्या",
+  "category": "tone",
+  "reason": "Coordinated hint mixes a bare verbal noun («-णे») with the final «-ण्या»; after the template it reads «…-णे किंवा …-ण्यासाठी डबल टॅप करा», where only the last verb takes «साठी». Putting «-ण्यासाठी» on the earlier verbs keeps MR-B1's ending on the last one."
+ },
+ {
+  "context": "search_button_current_location_accessibility_hint",
+  "source": "preview, mark, or share your current location with a friend",
+  "current": "तुमचे सध्याचे स्थान पूर्वावलोकन करणे, चिन्हांकित करणे किंवा मित्रासोबत सामायिक करण्या",
+  "suggested": "तुमचे सध्याचे स्थान पूर्वावलोकन करण्यासाठी, चिन्हांकित करण्यासाठी किंवा मित्रासोबत सामायिक करण्या",
+  "category": "tone",
+  "reason": "Coordinated hint mixes a bare verbal noun («-णे») with the final «-ण्या»; after the template it reads «…-णे किंवा …-ण्यासाठी डबल टॅप करा», where only the last verb takes «साठी». Putting «-ण्यासाठी» on the earlier verbs keeps MR-B1's ending on the last one."
+ },
+ {
+  "context": "osm_window_blind",
+  "source": "Window Blind Shop",
+  "current": "झडप पडदा दुकान",
+  "suggested": "ब्लाइंड्सचे दुकान",
+  "category": "meaning",
+  "reason": "«झडप» means a flap or valve, so «झडप पडदा» is an unusual coinage for window blinds; the loanword «ब्लाइंड्स» is what shops use."
+ },
+ {
+  "context": "help_text_automatic_callouts_how_2",
+  "source": "**Managing which callouts you hear :**\\n\\n To choose the types of things Soundscape will automatically call out, go to the *Settings* screen using the menu on the *Home* screen. The *Manage Callouts* section of the *Settings* screen is where you choose how much the app says with *Callout Detail*, whether it calls out *Streets and Junctions*, and which *Places to Call Out*. If you wish to turn off all callouts, set *Callout Detail* to *Silent*.",
+  "current": "**तुम्हाला कोणत्या ध्वनी सूचना ऐकू येतात हे व्यवस्थापित करणे :**\\n\\n Soundscape आपोआप कोणत्या प्रकारच्या गोष्टींबद्दल सांगेल हे निवडण्यासाठी, *मुख्यपृष्ठ* स्क्रीनवरील मेनू वापरून *सेटिंग्ज* स्क्रीनवर जा. *सेटिंग्ज* स्क्रीनच्या *ध्वनी सूचना व्यवस्थापित करा* विभागातच तुम्ही *ध्वनी सूचना तपशील* ने अॅप किती सांगेल हे ठरवता, *रस्ते आणि चौक* सांगायचे की नाही हे ठरवता, आणि *सांगायची ठिकाणे* कोणती हे निवडता. तुम्हाला सर्व ध्वनी सूचना बंद करायच्या असल्यास, *ध्वनी सूचना तपशील* हा *निःशब्द* वर ठेवा.",
+  "suggested": "**तुम्हाला कोणत्या ध्वनी सूचना ऐकू येतात हे व्यवस्थापित करणे :**\\n\\n Soundscape आपोआप कोणत्या प्रकारच्या गोष्टींबद्दल सांगेल हे निवडण्यासाठी, *मुख्यपृष्ठ* स्क्रीनवरील मेनू वापरून *सेटिंग्ज* स्क्रीनवर जा. *सेटिंग्ज* स्क्रीनच्या *ध्वनी सूचना व्यवस्थापित करा* विभागातच तुम्ही *ध्वनी सूचना तपशील* ने अॅप किती सांगेल हे ठरवता, *रस्ते आणि चौक* सांगायचे की नाही हे ठरवता, आणि *सांगायची ठिकाणे* कोणती हे निवडता. तुम्हाला सर्व ध्वनी सूचना बंद करायच्या असल्यास, *ध्वनी सूचना तपशील* हा *निःशब्द* वर ठेवा.",
+  "category": "terminology",
+  "reason": "The home screen is named three ways across the corpus: «मुख्य स्क्रीन» (20), «होम स्क्रीन» (6) and «मुख्यपृष्ठ» (here and tour_welcome). Worth settling on one; no confident choice without a native speaker."
+ },
+ {
+  "context": "osm_beacon",
+  "source": "Beacon",
+  "current": "बीकन",
+  "suggested": "बीकन",
+  "category": "terminology",
+  "reason": "OSM navigational beacon uses «बीकन», the same word as the app's Audio Beacon, so a callout of a physical beacon may be heard as the audio beacon (C19). Flag for a native speaker."
+ }
+]

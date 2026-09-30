@@ -1,0 +1,266 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Aquesta és una actualització important de Soundscape. El mode de viatge ha millorat molt. Quan viatgeu amb cotxe o autobús, Soundscape ara anuncia els números de carretera, la vostra direcció de desplaçament i els nuclis de població propers. També anuncia quan creueu rius, canals, estuaris i badies. Actualitzeu els vostres mapes fora de línia per obtenir aquestes funcions noves. Les descripcions de les parades d'autobús ara són molt millors per als usuaris del Regne Unit. El mode de repòs ara es pot desactivar automàticament quan detecta que torneu a moure-us. Ja no cal que recordeu desactivar-lo vosaltres mateixos. Hem reorganitzat el codi subjacent perquè puguem crear una aplicació per a iOS a partir del mateix codi. Això vol dir que en el futur podrem publicar una aplicació per a iOS amb totes les funcions que hem creat per a Android. Continueu informant-nos de qualsevol problema, per petit que sigui, mitjançant Contacta amb el suport tècnic al menú principal.",
+  "suggested": "\nAquesta és una actualització important de Soundscape.\n\nEl mode de viatge ha millorat molt. Quan viatgeu amb cotxe o autobús, Soundscape ara anuncia els números de carretera, la vostra direcció de desplaçament i els nuclis de població propers. També anuncia quan creueu rius, canals, estuaris i badies. Actualitzeu els vostres mapes fora de línia per obtenir aquestes funcions noves. Les descripcions de les parades d'autobús ara són molt millors per als usuaris del Regne Unit.\n\nEl mode de repòs ara es pot desactivar automàticament quan detecta que torneu a moure-us. Ja no cal que recordeu desactivar-lo vosaltres mateixos.\n\nHem reorganitzat el codi subjacent perquè puguem crear una aplicació per a iOS a partir del mateix codi. Això vol dir que en el futur podrem publicar una aplicació per a iOS amb totes les funcions que hem creat per a Android.\n\nContinueu informant-nos de qualsevol problema, per petit que sigui, mitjançant Contacta amb el suport al menú principal.\n",
+  "reason": "All paragraph breaks (and the leading/trailing newline) are lost, so the release notes run as one block and can't be split into paragraphs; also names the menu item «Contacta amb el suport tècnic» but the real label (menu_contact_support) is «Contacta amb el suport». Fix keeps the vós register, which is held under CA-R2.",
+  "category": "formatting"
+ },
+ {
+  "context": "tour_welcome",
+  "source": "Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.",
+  "current": "Benvingut/da al tutorial guiat. Aquest tutorial et guiarà per les funcions principals de l'aplicació. Pots aturar el tutorial en qualsevol moment tocant Cancel·la el tutorial guiat al Menú principal. Comencem amb Llocs propers. Et permet trobar punts d'interès. El botó Llocs propers es troba a la pantalla d'inici, just a sota de la Barra de cerca. Toca'l ara per provar-ho.",
+  "suggested": "Et donem la benvinguda al tutorial guiat. Aquest tutorial et guiarà per les funcions principals de l'aplicació. Pots aturar el tutorial en qualsevol moment tocant Cancel·la el tutorial guiat al Menú principal. Comencem amb Llocs propers. Et permet trobar punts d'interès. El botó Llocs propers es troba a la pantalla d'inici, just a sota de la Barra de cerca. Toca'l ara per provar-ho.",
+  "reason": "«Benvingut/da» puts a slash in front of a screen reader, which reads it aloud. The C15 comment on this string forbids slashes and brackets. «Et donem la benvinguda» is gender-free and matches the tu register.",
+  "category": "gender"
+ },
+ {
+  "context": "first_launch_welcome_title",
+  "source": "Welcome!",
+  "current": "Benvingut!",
+  "suggested": "Et donem la benvinguda!",
+  "reason": "«Benvingut!» is masculine (C15, CA-R1). «Et donem la benvinguda!» is the usual gender-free form. CA-R1 is still an open question (Q3), so check it with the reviewer before applying.",
+  "category": "gender"
+ },
+ {
+  "context": "directions_name_goes_left",
+  "source": "%1$s, goes left",
+  "current": "%1$s, gira a l'esquerra",
+  "suggested": "%1$s, va cap a l'esquerra",
+  "reason": "«gira a l'esquerra» sounds exactly like the imperative \"turn left!\", so a blind user may hear a turn instruction the app never gives (C11, CA-S1). «va cap a l'esquerra» describes the road, and first_launch_callouts_example_3 already uses it.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_name_goes_right",
+  "source": "%1$s, goes right",
+  "current": "%1$s, gira a la dreta",
+  "suggested": "%1$s, va cap a la dreta",
+  "reason": "Same as goes_left: «gira a la dreta» is heard as the instruction \"turn right!\" (C11, CA-S1). first_launch_callouts_example_4 already says «va cap a la dreta».",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s a carrer sense sortida",
+  "suggested": "%1$s, sense sortida",
+  "reason": "«Camí a carrer sense sortida» has no article and the wrong preposition, and it calls every dead-end way a «carrer» (CA-G1). C21 lets the way itself be described as a dead end. %1$s can be a way type or a proper name, and «, sense sortida» works for both without needing agreement.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%1$s a carrer sense sortida per %2$s",
+  "suggested": "%1$s per %2$s, sense sortida",
+  "reason": "Same defect as confect_name_to_dead_end (CA-G1): «a carrer sense sortida per» has no article and the wrong preposition. Use the same label form.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_direction",
+  "source": "at %1$s o'clock",
+  "current": "a les %1$s en punt",
+  "suggested": "a les %1$s en punt",
+  "reason": "«a les %1$s en punt» is wrong for hour 1: Catalan says «a la una», not «a les 1». «en punt» (\"sharp\") is also odd for a direction; «a les 3» is enough. Fixing hour 1 means changing the template and the relative_clock_hour_* words together (C20), e.g. «a %1$s» + «la una», «les dues»…, which needs a TTS check. No confident fix.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_away_from_settlement",
+  "source": "away from %1$s, %2$s behind you",
+  "current": "lluny de %1$s, a %2$s darrere teu",
+  "suggested": "allunyant-te de %1$s, a %2$s darrere teu",
+  "reason": "«lluny de %1$s» means \"far from X\", a static position. The source describes moving away from a settlement that is behind you. «allunyant-te de %1$s» conveys the motion and matches the tu register.",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_battery_impact_answer",
+  "source": "Battery life varies significantly depending on the model and age of your phone. The biggest drain on your battery is having the screen on, so to maximize your phone's battery life, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape has a Sleep and a Snooze Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.",
+  "current": "La durada de la bateria varia significativament segons el model i l'antiguitat del vostre telèfon. El factor que més consumeix bateria és tenir la pantalla encesa, així que per maximitzar la durada de la bateria del vostre telèfon, hauríeu de mantenir la pantalla bloquejada sempre que sigui possible. Per ajudar a minimitzar l'impacte en la bateria del telèfon, Soundscape té un mode de repòs i un mode de repòs amb represa automàtica. Per reduir encara més el consum de bateria, quan no utilitzeu Soundscape, hauríeu de tancar-lo forçosament mitjançant el canviador d'aplicacions del telèfon.",
+  "suggested": "La durada de la bateria varia significativament segons el model i l'antiguitat del vostre telèfon. El factor que més consumeix bateria és tenir la pantalla encesa, així que per maximitzar la durada de la bateria del vostre telèfon, hauríeu de mantenir la pantalla bloquejada sempre que sigui possible. Per ajudar a minimitzar l'impacte en la bateria del telèfon, Soundscape té un mode de repòs i un mode d'espera. Per reduir encara més el consum de bateria, quan no utilitzeu Soundscape, hauríeu de tancar-lo forçosament mitjançant el canviador d'aplicacions del telèfon.",
+  "reason": "Snooze is «En espera» / «mode d'espera» in the glossary and in sleep_snoozing and sleep_sleeping_wake_on_leave_message. «mode de repòs amb represa automàtica» is a second, longer name for the same mode. Only the term is changed; the vós register stays held under CA-R2.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_snooze_mode_battery_question",
+  "source": "How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "Com utilitzo el mode de repòs amb represa automàtica per minimitzar l'impacte de Soundscape en la bateria del meu telèfon?",
+  "suggested": "Com utilitzo el mode d'espera per minimitzar l'impacte de Soundscape en la bateria del meu telèfon?",
+  "reason": "Snooze is «En espera» / «mode d'espera» in the glossary and in sleep_snoozing and sleep_sleeping_wake_on_leave_message. «mode de repòs amb represa automàtica» is a second, longer name for the same mode. Only the term is changed; the vós register stays held under CA-R2.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_snooze_mode_battery_answer",
+  "source": "To put Soundscape into Snooze Mode, select the *Sleep* button in the top-right corner of the home screen. Once Soundscape’s in Sleep Mode, select the *Wake On Leave* button and Soundscape will go in to a low power state until you leave your current location.",
+  "current": "Per posar Soundscape en mode de repòs amb represa automàtica, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla principal. Un cop Soundscape estigui en mode de repòs, seleccioneu el botó *Desperta en sortir* i Soundscape passarà a un estat de baix consum fins que abandoneu la vostra ubicació actual.",
+  "suggested": "Per posar Soundscape en mode d'espera, seleccioneu el botó *Repòs* a la cantonada superior dreta de la pantalla principal. Un cop Soundscape estigui en mode de repòs, seleccioneu el botó *Desperta en sortir* i Soundscape passarà a un estat de baix consum fins que abandoneu la vostra ubicació actual.",
+  "reason": "Snooze is «En espera» / «mode d'espera» in the glossary and in sleep_snoozing and sleep_sleeping_wake_on_leave_message. «mode de repòs amb represa automàtica» is a second, longer name for the same mode. Only the term is changed; the vós register stays held under CA-R2.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape ofereix diverses maneres de controlar què sentiu i quan:\\n\\n1. Aturar immediatament tot l'àudio: toqueu dues vegades la pantalla amb dos dits per aturar immediatament tot l'àudio, inclòs qualsevol avís de veu que s'estigui reproduint i la balisa si està activada. Els avisos de veu es reprendran automàticament quan us apropeu a la propera cruïlla o punt d'interès, però la balisa audible no. Seleccioneu el *botó d'activar el so de la balisa* a la pantalla principal per tornar a sentir la balisa.\\n\\n2. Aturar els avisos de veu automàtics: quan no esteu viatjant o heu arribat a una destinació, probablement no necessitareu que Soundscape continuï notificant-vos coses del vostre voltant. En lloc de sortir de l'aplicació, podeu posar Soundscape en mode de repòs amb represa automàtica i es tornarà a activar quan marxeu, o podeu posar Soundscape en mode de repòs i romandrà desactivat fins que el torneu a activar. Alternativament, podeu seleccionar *Configuració* des del menú i posar *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu*.\\n\\n3. Aturar la balisa: hi ha diversos escenaris en què podríeu definir una destinació però no necessitar la balisa audible activada. Per exemple, potser sabeu exactament com arribar a la vostra destinació però encara voleu actualitzacions automàtiques sobre la distància que us hi separa. O potser només necessiteu la balisa sonora quan us apropeu a la vostra destinació. Sigui com sigui, podeu triar quan sentir la balisa alternant el botó *silencia la balisa*/*activa el so de la balisa* a la pantalla principal.\\n\\nSi encara voleu interactuar amb Soundscape però no voleu sentir avisos de veu automàtics, podeu posar *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. O, si no utilitzareu Soundscape, podeu posar-lo en mode de repòs o en mode de repòs amb represa automàtica utilitzant el botó *Repòs* a la pantalla principal.",
+  "suggested": "Soundscape ofereix diverses maneres de controlar què sentiu i quan:\\n\\n1. Aturar immediatament tot l'àudio: toqueu dues vegades la pantalla amb dos dits per aturar immediatament tot l'àudio, inclòs qualsevol avís de veu que s'estigui reproduint i la balisa si està activada. Els avisos de veu es reprendran automàticament quan us apropeu a la propera cruïlla o punt d'interès, però la balisa audible no. Seleccioneu el *botó d'activar el so de la balisa* a la pantalla principal per tornar a sentir la balisa.\\n\\n2. Aturar els avisos de veu automàtics: quan no esteu viatjant o heu arribat a una destinació, probablement no necessitareu que Soundscape continuï notificant-vos coses del vostre voltant. En lloc de sortir de l'aplicació, podeu posar Soundscape en mode d'espera i es tornarà a activar quan marxeu, o podeu posar Soundscape en mode de repòs i romandrà desactivat fins que el torneu a activar. Alternativament, podeu seleccionar *Configuració* des del menú i posar *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu*.\\n\\n3. Aturar la balisa: hi ha diversos escenaris en què podríeu definir una destinació però no necessitar la balisa audible activada. Per exemple, potser sabeu exactament com arribar a la vostra destinació però encara voleu actualitzacions automàtiques sobre la distància que us hi separa. O potser només necessiteu la balisa sonora quan us apropeu a la vostra destinació. Sigui com sigui, podeu triar quan sentir la balisa alternant el botó *silencia la balisa*/*activa el so de la balisa* a la pantalla principal.\\n\\nSi encara voleu interactuar amb Soundscape però no voleu sentir avisos de veu automàtics, podeu posar *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. O, si no utilitzareu Soundscape, podeu posar-lo en mode de repòs o en mode d'espera utilitzant el botó *Repòs* a la pantalla principal.",
+  "reason": "Snooze is «En espera» / «mode d'espera» in the glossary and in sleep_snoozing and sleep_sleeping_wake_on_leave_message. «mode de repòs amb represa automàtica» is a second, longer name for the same mode. Only the term is changed; the vós register stays held under CA-R2.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_tip_turning_off_auto_callouts",
+  "source": "To keep using Soundscape without hearing automatic callouts, set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *Sleep* button on the home screen.",
+  "current": "Per continuar utilitzant Soundscape sense sentir avisos de veu automàtics, poseu *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. Si no utilitzareu Soundscape durant una estona, podeu posar-lo en mode de repòs o en mode de repòs amb represa automàtica utilitzant el botó *Repòs* a la pantalla principal.",
+  "suggested": "Per continuar utilitzant Soundscape sense sentir avisos de veu automàtics, poseu *Detall dels avisos de veu* a *Silenciós* a la secció *Gestiona els avisos de veu* de la pantalla *Configuració* des del menú. Si no utilitzareu Soundscape durant una estona, podeu posar-lo en mode de repòs o en mode d'espera utilitzant el botó *Repòs* a la pantalla principal.",
+  "reason": "Snooze is «En espera» / «mode d'espera» in the glossary and in sleep_snoozing and sleep_sleeping_wake_on_leave_message. «mode de repòs amb represa automàtica» is a second, longer name for the same mode. Only the term is changed; the vós register stays held under CA-R2.",
+  "category": "terminology"
+ },
+ {
+  "context": "route_detail_edit_remove_waypoint_alert_message",
+  "source": "%1$s will be removed from this route. The marker itself will not be deleted. Do you want to continue?",
+  "current": "%1$s es traurà d'aquesta ruta. El marcador en si no se suprimirà. Voleu continuar?",
+  "suggested": "%1$s es traurà d'aquesta ruta. El marcador en si no se suprimirà. Voleu continuar?",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «…Vols continuar?».",
+  "category": "tone"
+ },
+ {
+  "context": "route_detail_edit_delete_alert_message",
+  "source": "Deleting this route cannot be undone. The markers in it will not be deleted. Do you want to continue?",
+  "current": "Suprimir aquesta ruta no es pot desfer. Els marcadors que conté no se suprimiran. Voleu continuar?",
+  "suggested": "Suprimir aquesta ruta no es pot desfer. Els marcadors que conté no se suprimiran. Voleu continuar?",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «…Vols continuar?».",
+  "category": "tone"
+ },
+ {
+  "context": "markers_action_delete_alert_message",
+  "source": "Deleting this marker cannot be undone, and it will also be removed from any routes that use it. Do you want to continue?",
+  "current": "Suprimir aquest marcador no es pot desfer, i també es traurà de totes les rutes que l'utilitzin. Voleu continuar?",
+  "suggested": "Suprimir aquest marcador no es pot desfer, i també es traurà de totes les rutes que l'utilitzin. Voleu continuar?",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «…Vols continuar?».",
+  "category": "tone"
+ },
+ {
+  "context": "advanced_markers_and_routes_clear_all_alert_message",
+  "source": "Deleting all markers and routes cannot be undone. Do you want to continue?",
+  "current": "Suprimir tots els marcadors i rutes no es pot desfer. Voleu continuar?",
+  "suggested": "Suprimir tots els marcadors i rutes no es pot desfer. Voleu continuar?",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «…Vols continuar?».",
+  "category": "tone"
+ },
+ {
+  "context": "settings_reset_dialog_title",
+  "source": "Are you sure?",
+  "current": "Esteu segur?",
+  "suggested": "Esteu segur?",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «N'estàs segur? (still masculine; «Vols continuar?» would be gender-free)». Also: «Esteu segur?» / «N'estàs segur?» are masculine; «Vols continuar?» is gender-free.",
+  "category": "tone"
+ },
+ {
+  "context": "settings_reset_dialog_message",
+  "source": "Resetting the settings will delete all of the settings you have configured in the app. Do you want to continue?",
+  "current": "En restablir la configuració se suprimiran tots els ajustos que heu configurat a l'aplicació. Voleu continuar?",
+  "suggested": "En restablir la configuració se suprimiran tots els ajustos que heu configurat a l'aplicació. Voleu continuar?",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «…tots els ajustos que has configurat… Vols continuar?».",
+  "category": "tone"
+ },
+ {
+  "context": "first_launch_permissions_required_for_voice_control",
+  "source": "This permission is optional, but is required if you want to use voice commands to control the app",
+  "current": "Aquest permís és opcional, però és necessari si voleu utilitzar ordres de veu per controlar l'aplicació",
+  "suggested": "Aquest permís és opcional, però és necessari si voleu utilitzar ordres de veu per controlar l'aplicació",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «…si vols utilitzar ordres de veu…».",
+  "category": "tone"
+ },
+ {
+  "context": "battery_optimization_message",
+  "source": "Soundscape requires unrestricted battery usage to keep providing audio navigation when your phone is locked. Please allow unrestricted battery usage in the next dialog. If you close Soundscape, all services will stop and the app will no longer use battery.",
+  "current": "Soundscape necessita un ús de bateria sense restriccions per continuar proporcionant navegació per àudio quan el telèfon estigui bloquejat. Permeteu l'ús de bateria sense restriccions al següent diàleg. Si tanqueu Soundscape, tots els serveis s'aturaran i l'aplicació deixarà d'utilitzar bateria.",
+  "suggested": "Soundscape necessita un ús de bateria sense restriccions per continuar proporcionant navegació per àudio quan el telèfon estigui bloquejat. Permeteu l'ús de bateria sense restriccions al següent diàleg. Si tanqueu Soundscape, tots els serveis s'aturaran i l'aplicació deixarà d'utilitzar bateria.",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «Permet l'ús… Si tanques Soundscape…».",
+  "category": "tone"
+ },
+ {
+  "context": "settings_voice_command_microphone_description",
+  "source": "Choose which microphone to use for voice commands.",
+  "current": "Trieu quin micròfon utilitzar per a les ordres de veu.",
+  "suggested": "Trieu quin micròfon utilitzar per a les ordres de veu.",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «Tria quin micròfon…».",
+  "category": "tone"
+ },
+ {
+  "context": "settings_search_results_language_description",
+  "source": "You can let online search use the local language of the result, or force it to return English, French, or German.",
+  "current": "Podeu deixar que la cerca en línia utilitzi l'idioma local del resultat, o forçar-la a retornar resultats en anglès, francès o alemany.",
+  "suggested": "Podeu deixar que la cerca en línia utilitzi l'idioma local del resultat, o forçar-la a retornar resultats en anglès, francès o alemany.",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «Pots deixar que…».",
+  "category": "tone"
+ },
+ {
+  "context": "accessibility_screen_reader_disabled",
+  "source": "Because you do not have a screen reader enabled, we assume you want to see the graphical maps in the app. You can change this setting here, or just continue.",
+  "current": "Com que no teniu cap lector de pantalla activat, suposem que voleu veure els mapes gràfics a l'aplicació. Podeu canviar aquesta configuració aquí, o simplement continuar.",
+  "suggested": "Com que no teniu cap lector de pantalla activat, suposem que voleu veure els mapes gràfics a l'aplicació. Podeu canviar aquesta configuració aquí, o simplement continuar.",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «Com que no tens cap lector de pantalla activat, suposem que vols veure… Pots canviar…».",
+  "category": "tone"
+ },
+ {
+  "context": "copyright_notices",
+  "source": "Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:",
+  "current": "Soundscape depèn d'aquestes excel·lents biblioteques i dades de tercers. Feu clic als enllaços per veure'n les llicències:",
+  "suggested": "Soundscape depèn d'aquestes excel·lents biblioteques i dades de tercers. Feu clic als enllaços per veure'n les llicències:",
+  "reason": "Uses «vós» in an app that is otherwise «tu». Part of the CA-R2 minority, but missing from ca.md's list of 24 held strings, so add it there. Hold until Q4 is answered, like the rest of CA-R2. tu form: «Fes clic als enllaços…».",
+  "category": "tone"
+ },
+ {
+  "context": "osm_college",
+  "source": "College",
+  "current": "Col·legi",
+  "suggested": "Centre d'educació superior",
+  "reason": "In Catalan, «col·legi» means a primary or secondary school. The note says this tag is higher or further education, so the callout names the wrong kind of place.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_bowls",
+  "source": "Bowls",
+  "current": "Bitlles",
+  "suggested": "Bitlles",
+  "reason": "«Bitlles» is ninepins/skittles, but the note says this is lawn bowls. A candidate is «Joc de boles sobre gespa»; a native speaker should confirm the usual name.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_obstacle_course",
+  "source": "Obstacle Course",
+  "current": "Cursa d'obstacles",
+  "suggested": "Circuit d'obstacles",
+  "reason": "«Cursa d'obstacles» is an obstacle race (an event). The tag is the course itself (a place).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_wreck",
+  "source": "Wreck",
+  "current": "Naufragi",
+  "suggested": "Restes d'un naufragi",
+  "reason": "«Naufragi» is the event of a shipwreck. The map feature is the wreck itself.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_tag_ferry_terminal_named",
+  "source": "%1$s Ferry Terminal",
+  "current": "Terminal de ferri %1$s",
+  "suggested": "Terminal de ferri de %1$s",
+  "reason": "Inconsistent with osm_ferry_terminal_named «Terminal de ferri de %1$s» (same English) and osm_train_station_named «Estació de tren de %1$s».",
+  "category": "terminology"
+ },
+ {
+  "context": "universal_links_marker_share_message",
+  "source": "I've shared a Soundscape marker with you: \"%1$s\".\\n\\nTo open in Soundscape use %2$s.\\n\\n To open in Google Maps use %3$s.",
+  "current": "He compartit un marcador de Soundscape amb tu: %1$s.\\n\\nPer obrir-lo a Soundscape utilitza %2$s.\\n\\n Per obrir-lo a Google Maps utilitza %3$s.",
+  "suggested": "He compartit un marcador de Soundscape amb tu: «%1$s».\\n\\nPer obrir-lo a Soundscape utilitza %2$s.\\n\\n Per obrir-lo a Google Maps utilitza %3$s.",
+  "reason": "The quotes around the marker name %1$s were dropped, so the name runs into the sentence. Use typographic quotes (Compose shows \\\" literally).",
+  "category": "formatting"
+ },
+ {
+  "context": "help_configuration_section_title",
+  "source": "Configuring Soundscape",
+  "current": "Configurant Soundscape",
+  "suggested": "Configuració de Soundscape",
+  "reason": "Gerund title «Configurant Soundscape» is a calque of \"Configuring\". Catalan headings use a noun.",
+  "category": "tone"
+ }
+]

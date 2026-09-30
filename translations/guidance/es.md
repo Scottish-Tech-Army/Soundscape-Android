@@ -364,7 +364,7 @@ ES-M1. The only fix left is the `*Marcadores cercanos*` markup in
 
 **2026-09-30 — medical disclaimer: "advice", not "device".** The all-language review found `terms_of_use_medical_safety_disclaimer` rendering "professional medical advice" as «sustituir un dispositivo, diagnóstico…», present since the earliest version in the repo. Changed that one phrase to «sustituir el asesoramiento, diagnóstico, tratamiento o criterio médico profesional», on Dave's request. The rest of the legal text, and its formal «usted», are unchanged.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 21 flagged, 5 applied in `1d77c7310`. Findings: `/tmp/translation-review/es-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 21 flagged, 5 applied in `1d77c7310`. Findings: `translations/review/2026-09-30-all-languages/es-findings.json`.
 Most serious fixed:
 - `location_detail_exit_full_screen_hint`: This is a contentDescription (label), like its sibling location_detail_full_screen_hint «Poner el mapa…», not a 'Double tap to' fragment;
 - `osm_entrance_named_with_destination`: %1$s (destination) and %3$s (road) are map names after bare prepositions;

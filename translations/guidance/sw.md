@@ -77,7 +77,7 @@ The extra *…* pair around the "tacks" word went with the sentence. The rest of
 
 **2026-09-29 — full review.** 29 fixes. Around Me button «Pande Zangu» → «Karibu Nami», the name used in 12 help and tour strings. Voices «Sauti» collided with the Audio section «Sauti» → «Aina za Sauti» (the Android help already said so; iOS help updated). Beacon «mwongozo wa sauti» / «Kiashiria» (5 strings) → «beacon ya sauti» like everywhere else (SW-T1 still asks whether to replace «beacon»). Help button names now match the labels («Zima/Washa Sauti ya Beacon», «Taarifa za Mahali», «Imekamilika»). 11 hints → ku-infinitives. Four crossing callouts «Inapita» ("it passes") → «Unapita». Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 27 flagged, 25 applied in `8f0a0ed45`. Findings: `/tmp/translation-review/sw-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 27 flagged, 25 applied in `8f0a0ed45`. Findings: `translations/review/2026-09-30-all-languages/sw-findings.json`.
 Most serious fixed:
 - `help_text_nearby_markers_when`: 'mahali ulipo alama unazozifahamu' says 'where you are markers you know' (ulipo = where YOU are);
 - `faq_use_with_wayfinding_apps_answer`: 'mahali panapoenda sawa na kile kilichopo' is garbled ('the place where it goes, same as what is in');

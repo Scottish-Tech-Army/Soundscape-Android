@@ -1,0 +1,298 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Esta é uma atualização importante do Soundscape. O modo de viagem está muito melhorado. Quando viaja de carro ou autocarro, o Soundscape anuncia agora números de estrada, a sua direção de viagem e localidades próximas. Também anuncia quando atravessa rios, canais, esteiros e baías. Atualize os seus mapas offline para obter estas novas funcionalidades. As descrições das paragens de autocarro estão agora muito melhores para os utilizadores no Reino Unido. O Modo de Suspensão pode agora despertar automaticamente ao detetar que voltou a movimentar‑se. Já não precisa de se lembrar de o ativar manualmente. Reorganizámos o código subjacente para que possamos criar uma aplicação iOS a partir do mesmo código. Isto significa que, no futuro, poderemos lançar uma aplicação iOS com todas as funcionalidades que criámos para o Android. Continue a comunicar quaisquer problemas, por pequenos que sejam, através da opção Contactar o apoio ao cliente no menu principal.",
+  "suggested": "\nEsta é uma atualização importante do Soundscape.\n\nO modo de viagem está muito melhorado. Quando viaja de carro ou autocarro, o Soundscape anuncia agora números de estrada, a sua direção de viagem e localidades próximas. Também anuncia quando atravessa rios, canais, esteiros e baías. Atualize os seus mapas offline para obter estas novas funcionalidades. As descrições das paragens de autocarro estão agora muito melhores para os utilizadores no Reino Unido.\n\nO Modo de Suspensão pode agora despertar automaticamente ao detetar que voltou a movimentar‑se. Já não precisa de se lembrar de o ativar manualmente.\n\nReorganizámos o código subjacente para que possamos criar uma aplicação iOS a partir do mesmo código. Isto significa que, no futuro, poderemos lançar uma aplicação iOS com todas as funcionalidades que criámos para o Android.\n\nContinue a comunicar quaisquer problemas, por pequenos que sejam, através da opção Contactar o apoio ao cliente no menu principal.\n",
+  "reason": "Paragraph breaks lost: the English has five paragraphs (plus leading/trailing newline) and the dialog now splits on paragraph breaks; the translation is one run-on block.",
+  "category": "formatting"
+ },
+ {
+  "context": "first_launch_prompt_title",
+  "source": "You're ready!",
+  "current": "Está pronto!",
+  "suggested": "Está tudo pronto!",
+  "reason": "PT-R1 agreed defect: «Está pronto!» is masculine; Microsoft's gender-free «Está tudo pronto!» fits the translator comment (C15).",
+  "category": "gender"
+ },
+ {
+  "context": "first_launch_welcome_title",
+  "source": "Welcome!",
+  "current": "Bem-vindo!",
+  "suggested": "Boas-vindas!",
+  "reason": "C15: «Bem-vindo!» assumes a male user; the comment asks for gender-free phrasing. «Boas-vindas!» is neutral and idiomatic in pt-PT.",
+  "category": "gender"
+ },
+ {
+  "context": "tour_welcome",
+  "source": "Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.",
+  "current": "Bem‑vindo ao tutorial guiado. Este tutorial irá guiá‑lo pelas principais funcionalidades da aplicação. Pode interromper o tutorial a qualquer momento tocando em Cancelar Tutorial Guiado no Menu Principal. Vamos começar por Locais nas Proximidades. Permite‑lhe encontrar pontos de interesse. O botão Locais nas Proximidades encontra‑se no ecrã principal, logo abaixo da barra de pesquisa. Toque nele agora para experimentar.",
+  "suggested": "Boas-vindas ao tutorial guiado. Este tutorial irá guiá‑lo pelas principais funcionalidades da aplicação. Pode interromper o tutorial a qualquer momento tocando em Cancelar Tutorial Guiado no Menu Principal. Vamos começar por Locais nas Proximidades. Permite‑lhe encontrar pontos de interesse. O botão Locais nas Proximidades encontra‑se no ecrã principal, logo abaixo da barra de pesquisa. Toque nele agora para experimentar.",
+  "reason": "C15 names tour_welcome: «Bem‑vindo ao tutorial guiado» is masculine. «Boas-vindas ao tutorial guiado» is neutral.",
+  "category": "gender"
+ },
+ {
+  "context": "first_launch_prompt_message",
+  "source": "You are ready for your first walk with Soundscape. To get started, choose a nearby destination and start the audio beacon — you’ll hear it playing in the direction of your destination.",
+  "current": "Está pronto para a primeira caminhada com o Soundscape. Para começar, escolha um destino nas proximidades e inicie o sinal de áudio — irá ouvi‑lo a tocar vindo da direção do seu destino.",
+  "suggested": "Está tudo pronto para a sua primeira caminhada com o Soundscape. Para começar, escolha um destino nas proximidades e inicie o sinal de áudio — irá ouvi‑lo a tocar vindo da direção do seu destino.",
+  "reason": "Same C15 problem as the title: «Está pronto para…» is masculine. A gender-free opening avoids agreement.",
+  "category": "gender"
+ },
+ {
+  "context": "tour_create_marker_done",
+  "source": "Great! When creating a marker, you can edit its name and add notes. Try that now, and when you're ready, tap Done.",
+  "current": "Excelente! Ao criar um marco, pode editar o nome e adicionar notas. Experimente agora e, quando estiver pronto, toque em OK.",
+  "suggested": "Excelente! Ao criar um marco, pode editar o nome e adicionar notas. Experimente agora e, quando quiser, toque em OK.",
+  "reason": "«quando estiver pronto» forces the masculine on the user (C15); «quando quiser» is neutral and natural.",
+  "category": "gender"
+ },
+ {
+  "context": "tour_stop_beacon",
+  "source": "When you're ready to stop the beacon, tap the Stop Route button.",
+  "current": "Quando estiver pronto para parar o sinal, toque no botão \"Parar Rota\".",
+  "suggested": "Quando quiser parar o sinal, toque no botão \"Parar Rota\".",
+  "reason": "«Quando estiver pronto para parar» is masculine (C15); «Quando quiser parar» is neutral.",
+  "category": "gender"
+ },
+ {
+  "context": "siri_short_surroundings",
+  "source": "Surroundings",
+  "current": "Redor",
+  "suggested": "Arredores",
+  "reason": "The spoken Siri phrase (pt.lproj AppShortcuts.strings, help_text_assistant_commands_ios) is «Soundscape arredores», but the shortcut's short name is «Redor», a word not in the phrase and odd on its own.",
+  "category": "terminology"
+ },
+ {
+  "context": "preview_go_nearest_intersection",
+  "source": "Go to nearest intersection",
+  "current": "Ir para a interseção mais próxima",
+  "suggested": "Ir para o cruzamento mais próximo",
+  "reason": "Glossary Intersection = «cruzamento» (confirmed); this is the only string in the corpus using «interseção».",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "Sim, é possível reativar o sinal após o Soundscape o desativar selecionando o *\"botão ativar sinal\"*; no entanto, visto que os Serviços de localização só são precisos até uma distância aproximada de 10 metros, não podemos garantir o comportamento do sinal quando se encontrar a apenas alguns metros do destino.",
+  "suggested": "Sim, é possível reativar o sinal após o Soundscape o desativar selecionando o botão *Ativar Sinal*; no entanto, visto que os Serviços de localização só são precisos até uma distância aproximada de 10 metros, não podemos garantir o comportamento do sinal quando se encontrar a apenas alguns metros do destino.",
+  "reason": "Names the button as *\"botão ativar sinal\"*; the real label is «Ativar Sinal» (beacon_action_unmute_beacon), as used in faq_controlling_what_you_hear_answer.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_tip_turning_beacon_off",
+  "source": "You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.",
+  "current": "Pode ativar e desativar o som rítmico do sinal utilizando o botão Desativar no ecrã principal. Se o sinal estiver desativado, continuará a receber atualizações sobre a distância a que se encontra do destino aproximadamente a cada 50 metros.",
+  "suggested": "Pode ativar e desativar o som rítmico do sinal utilizando o botão Desativar Sinal no ecrã principal. Se o sinal estiver desativado, continuará a receber atualizações sobre a distância a que se encontra do destino aproximadamente a cada 50 metros.",
+  "reason": "Calls the mute button «Desativar»; its label is «Desativar Sinal» (beacon_action_mute_beacon).",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_optical_telegraph",
+  "source": "Optical Telegraph",
+  "current": "Telégrafo óptico",
+  "suggested": "Telégrafo ótico",
+  "reason": "Pre-reform spelling «óptico»; the 2026-09-29 pass replaced pre-reform forms («Eléctrico» → «elétrico»).",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_optician",
+  "source": "Optician",
+  "current": "Óptico",
+  "suggested": "Ótica",
+  "reason": "Pre-reform «Óptico», and it names a person where the POI is the shop; pt-PT signs say «Ótica».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_sailmaker",
+  "source": "Sailmaker",
+  "current": "Confeccionador de velas (para embarcações)",
+  "suggested": "Fabricante de velas (para embarcações)",
+  "reason": "Pre-reform spelling «Confeccionador» (post-1990 «confecionador»); «Fabricante de velas» is the plainer term.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_bag",
+  "source": "Bag Shop",
+  "current": "Loja de bolsas",
+  "suggested": "Loja de malas",
+  "reason": "«bolsas» for bags is Brazilian usage; pt-PT says «malas» (luggage and handbags).",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_life_ring",
+  "source": "Life Ring",
+  "current": "Anel salva-vidas",
+  "suggested": "Boia salva-vidas",
+  "reason": "«Anel salva-vidas» is a calque; the pt-PT object is a «boia salva-vidas».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_lifeguard_place",
+  "source": "Lifeguard Post",
+  "current": "Posto de Salva-vidas",
+  "suggested": "Posto de nadadores-salvadores",
+  "reason": "«Salva-vidas» for the lifeguard is Brazilian; pt-PT says «nadador-salvador», which osm_lifeguard_base already uses. Also the stray capital S.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_lifeguard_tower",
+  "source": "Lifeguard Tower",
+  "current": "Torre de salva-vidas",
+  "suggested": "Torre de nadadores-salvadores",
+  "reason": "Same as osm_lifeguard_place: pt-PT lifeguard is «nadador-salvador».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_lifeguard_platform",
+  "source": "Lifeguard Platform",
+  "current": "Plataforma de salva-vidas",
+  "suggested": "Plataforma de nadadores-salvadores",
+  "reason": "Same as osm_lifeguard_place: pt-PT lifeguard is «nadador-salvador».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_pier",
+  "source": "Pier",
+  "current": "Pier",
+  "suggested": "Cais",
+  "reason": "«Pier» is left in English (Brazil writes «píer»); pt-PT uses «cais» or «pontão».",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "O Soundscape tem funcionalidades e vantagens que abrangem uma variedade de cenários e escalas temporais. O valor do Soundscape para si também pode mudar ao longo do tempo, pelo que a forma como o utiliza hoje pode ser diferente da forma como o utilizará daqui a três meses. As pessoas pensam frequentemente nas aplicações em termos de *\"que problema é que esta aplicação resolve bem?\"* O Soundscape pode certamente ser utilizado para necessidades específicas – como acompanhar um destino enquanto se dirige para lá, ajudá‑lo a orientar‑se quando sai de uma estação de metro, situar‑se ao sair de um carro, ou descobrir os nomes das ruas ou a distância até ao cruzamento seguinte. No entanto, a filosofia por trás do Soundscape é *\"iluminar o seu mundo com som\"* – foi concebido para ser utilizado sempre que estiver na rua, para lhe dar uma perceção ambiente do que o rodeia, como os nomes das ruas em que se encontra, a direção em que segue e os nomes dos estabelecimentos por onde passa. Neste modo de utilização, os nossos utilizadores referem‑se ao Soundscape como uma *\"boa aplicação de companhia\"*, que favorece a *\"serendipidade\"*, ajuda a *\"preencher as lacunas do seu mapa mental\"* e proporciona mais *\"confiança ao caminhar\"*. Aqui ficam mais alguns exemplos de como os nossos utilizadores usam o Soundscape na sua vida:\\n\\n\"O Soundscape ajudou‑me a voltar ao caminho certo depois de sair do autocarro e seguir na direção errada.\"\\n\\n\"Mesmo na cidade onde vivo há 3 anos, consegui construir uma melhor imagem do que me rodeia [com o Soundscape].\"\\n\\n\"O som 3D melhora a minha experiência de caminhada, pois sinto‑me mais ligado ao ambiente… Agora que tenho a aplicação, é mais provável que experimente uma rota nova.\"\\n\\n\"Tenho saudades da serendipidade de andar ao acaso e reparar em coisas. O Soundscape é útil, não requer qualquer esforço para ouvir informações sobre o que me rodeia. As informações relacionais são úteis e esta é uma aplicação excelente para deteção situacional e explorar áreas comerciais.\"\\n\\n\"[Utilizei o Soundscape] para localizar um pub no meio de York. [Eu] utilizei um conjunto de opções da aplicação primeiro para o localizar e depois para o encontrar de facto. Deixou-me a 3 metros da porta – brilhante!\"",
+  "suggested": "O Soundscape tem funcionalidades e vantagens que abrangem uma variedade de cenários e escalas temporais. O valor do Soundscape para si também pode mudar ao longo do tempo, pelo que a forma como o utiliza hoje pode ser diferente da forma como o utilizará daqui a três meses. As pessoas pensam frequentemente nas aplicações em termos de *\"que problema é que esta aplicação resolve bem?\"* O Soundscape pode certamente ser utilizado para necessidades específicas – como acompanhar um destino enquanto se dirige para lá, ajudá‑lo a orientar‑se quando sai de uma estação de metro, situar‑se ao sair de um carro, ou descobrir os nomes das ruas ou a distância até ao cruzamento seguinte. No entanto, a filosofia por trás do Soundscape é *\"iluminar o seu mundo com som\"* – foi concebido para ser utilizado sempre que estiver na rua, para lhe dar uma perceção ambiente do que o rodeia, como os nomes das ruas em que se encontra, a direção em que segue e os nomes dos estabelecimentos por onde passa. Neste modo de utilização, os nossos utilizadores referem‑se ao Soundscape como uma *\"boa aplicação de companhia\"*, que favorece a *\"serendipidade\"*, ajuda a *\"preencher as lacunas do seu mapa mental\"* e proporciona mais *\"confiança ao caminhar\"*. Aqui ficam mais alguns exemplos de como os nossos utilizadores usam o Soundscape na sua vida:\\n\\n\"O Soundscape ajudou‑me a voltar ao caminho certo depois de sair do autocarro e seguir na direção errada.\"\\n\\n\"Mesmo na cidade onde vivo há 3 anos, consegui construir uma melhor imagem do que me rodeia [com o Soundscape].\"\\n\\n\"O som 3D melhora a minha experiência de caminhada, pois sinto‑me mais ligado ao ambiente… Agora que tenho a aplicação, é mais provável que experimente uma rota nova.\"\\n\\n\"Tenho saudades da serendipidade de andar ao acaso e reparar em coisas. O Soundscape é útil, não requer qualquer esforço para ouvir informações sobre o que me rodeia. As informações relacionais são úteis e esta é uma aplicação excelente para consciência situacional e explorar áreas comerciais.\"\\n\\n\"[Utilizei o Soundscape] para localizar um pub no meio de York. [Eu] utilizei um conjunto de opções da aplicação primeiro para o localizar e depois para o encontrar de facto. Deixou-me a 3 metros da porta – brilhante!\"",
+  "reason": "\"situational awareness\" is rendered «deteção situacional» (\"situational detection\"); the established term is «consciência situacional».",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_voice_command_listening_prompt_description",
+  "source": "Speak a listening prompt before voice recognition starts.",
+  "current": "Reproduzir um aviso sonoro antes de iniciar o reconhecimento de voz.",
+  "suggested": "Anunciar por voz que está a ouvir antes de iniciar o reconhecimento de voz.",
+  "reason": "\"Speak a listening prompt\" became «Reproduzir um aviso sonoro» (\"play a sound\"); the setting speaks a prompt, as its title «Anunciar início de escuta» says.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_biergarten",
+  "source": "Beer Garden",
+  "current": "Jardim de cerveja",
+  "suggested": "Cervejaria ao ar livre",
+  "reason": "«Jardim de cerveja» is a word-for-word calque with no meaning in Portuguese; describe the place.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_game_feeding",
+  "source": "Game Feeding",
+  "current": "Alimentação de caça",
+  "suggested": "Comedouro para animais de caça",
+  "reason": "«Alimentação de caça» reads as \"game food\" / \"feeding by hunting\"; the POI is a feeding station for wild game.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_my_location_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior apontada para a extremidade voltada para a direção em que está virado antes de premir o botão *\"A Minha Localização\"*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *\"A Minha Localização\"* e ouvir.",
+  "suggested": "Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior do telemóvel apontada na direção em que está virado antes de premir o botão *\"A Minha Localização\"*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *\"A Minha Localização\"* e ouvir.",
+  "reason": "«a parte superior apontada para a extremidade voltada para a direção em que está virado» (\"the top pointed at the end facing the direction you face\") is garbled; the English just says the top of the phone points where you face. The same wording is in the three sibling _how strings.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_nearby_markers_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "current": "Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior apontada para a extremidade voltada para a direção em que está virado antes de premir o botão *\"Marcos nas Proximidades\"*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *\"Marcos nas Proximidades\"* e ouvirá até quatro marcos nas proximidades.",
+  "suggested": "Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior do telemóvel apontada na direção em que está virado antes de premir o botão *\"Marcos nas Proximidades\"*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *\"Marcos nas Proximidades\"* e ouvirá até quatro marcos nas proximidades.",
+  "reason": "Same garbled phrase as help_text_my_location_how: «apontada para a extremidade voltada para a direção…».",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_around_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior apontada para a extremidade voltada para a direção em que está virado antes de premir o botão *Em Meu Redor*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *Em Meu Redor* e ouvirá quatro pontos de interesse dispostos à sua volta.",
+  "suggested": "Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior do telemóvel apontada na direção em que está virado antes de premir o botão *Em Meu Redor*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *Em Meu Redor* e ouvirá quatro pontos de interesse dispostos à sua volta.",
+  "reason": "Same garbled phrase as help_text_my_location_how: «apontada para a extremidade voltada para a direção…».",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior apontada para a extremidade voltada para a direção em que está virado antes de premir o botão *\"À Minha Frente\"*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *\"À Minha Frente\"* e ouvirá vários pontos de interesse localizados sensivelmente à sua frente.",
+  "suggested": "Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior do telemóvel apontada na direção em que está virado antes de premir o botão *\"À Minha Frente\"*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *\"À Minha Frente\"* e ouvirá vários pontos de interesse localizados sensivelmente à sua frente.",
+  "reason": "Same garbled phrase as help_text_my_location_how: «apontada para a extremidade voltada para a direção…».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_how_close_to_destination_answer",
+  "source": "Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.",
+  "current": "O Soundscape pode determinar a localização do seu destino com uma precisão de alguns metros, mas não menos. Quando o Soundscape determinar que está perto do destino, ouvirá um aviso final que o destino está por perto e o sinal será desativado.",
+  "suggested": "O Soundscape pode determinar a localização do seu destino com uma precisão de alguns metros, mas não menos. Quando o Soundscape determinar que está perto do destino, ouvirá um aviso final de que o destino está por perto e o sinal será desativado.",
+  "reason": "Missing «de»: «um aviso final que o destino está por perto» should be «um aviso final de que…».",
+  "category": "tone"
+ },
+ {
+  "context": "help_text_destination_beacons_how_1",
+  "source": "**To set a beacon :**\\n\\n First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.",
+  "current": "**Para definir um sinal :**\\n\\n Primeiro, visualize os detalhes de uma localização, usando a barra de pesquisa para procurar um local ou tocando num dos botões *Locais nas Proximidades*, *Marcos e Rotas* ou *Localização Atual* e selecionando uma localização. Depois, no ecrã *Detalhes da Localização*, selecione o botão *Iniciar Sinal de Áudio*. Ao tocar neste botão será retornado ao ecrã principal e será ativado um sinal audível vindo da direção do local selecionado. O nome do local, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal.",
+  "suggested": "**Para definir um sinal :**\\n\\n Primeiro, visualize os detalhes de uma localização, usando a barra de pesquisa para procurar um local ou tocando num dos botões *Locais nas Proximidades*, *Marcos e Rotas* ou *Localização Atual* e selecionando uma localização. Depois, no ecrã *Detalhes da Localização*, selecione o botão *Iniciar Sinal de Áudio*. Ao tocar neste botão, regressa ao ecrã principal e é ativado um sinal audível vindo da direção do local selecionado. O nome do local, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal.",
+  "reason": "«será retornado ao ecrã principal» (\"you will be returned\") is awkward in pt-PT; «regressa ao ecrã principal» is natural.",
+  "category": "tone"
+ },
+ {
+  "context": "faq_what_can_I_set_answer",
+  "source": "You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.",
+  "current": "Pode definir um sinal de áudio em qualquer empresa, local, ponto de interesse, endereço ou cruzamento. Existem várias formas de adicionar um sinal numa localização. Primeiro, visualize os detalhes de uma localização usando a barra de pesquisa para procurar um local, ou tocando num dos botões *Locais nas Proximidades*, *Marcos e Rotas* ou *Localização Atual* e selecionando um local. Depois, no ecrã *Detalhes da Localização*, selecione o botão *Iniciar Sinal de Áudio*. Ao tocar neste botão será retornado ao ecrã principal e será ativado um sinal audível vindo da direção do local selecionado. O nome do local, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal.",
+  "suggested": "Pode definir um sinal de áudio em qualquer empresa, local, ponto de interesse, endereço ou cruzamento. Existem várias formas de adicionar um sinal numa localização. Primeiro, visualize os detalhes de uma localização usando a barra de pesquisa para procurar um local, ou tocando num dos botões *Locais nas Proximidades*, *Marcos e Rotas* ou *Localização Atual* e selecionando um local. Depois, no ecrã *Detalhes da Localização*, selecione o botão *Iniciar Sinal de Áudio*. Ao tocar neste botão, regressa ao ecrã principal e é ativado um sinal audível vindo da direção do local selecionado. O nome do local, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal.",
+  "reason": "Same awkward «será retornado ao ecrã principal» as help_text_destination_beacons_how_1.",
+  "category": "tone"
+ },
+ {
+  "context": "relative_clock_direction",
+  "source": "at %1$s o'clock",
+  "current": "às %1$s horas",
+  "suggested": "às %1$s horas",
+  "reason": "«às %1$s horas» gives «às 1 horas» for position 1 (should be «à 1 hora»). No hour word alone can fix it. One option (C20) is template «%1$s» with relative_clock_hour_1 «à 1 hora» and the others «às N horas». Needs a decision, so no fix proposed.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_config_voices_content_ios",
+  "source": "Soundscape can use any of the voices you have downloaded in the iOS Settings app, except for the Siri voices, which are not available to Soundscape. We recommend choosing one of the higher quality *Enhanced* voices, but you will first need to download a voice. You can download voices in the iOS Settings app by going to Accessibility > Read & Speak > Voices and tapping on a voice. (In iOS versions prior to 26, *Read & Speak* is known as *Spoken Content*.) Within the Soundscape app, to select the voice you want, go to *Settings* from the main menu and then from *Audio* select *Voices*.",
+  "current": "O Soundscape pode utilizar quaisquer vozes que tenha transferido nas Definições do iOS, exceto as vozes da Siri, que não estão disponíveis para o Soundscape. Recomendamos escolher uma das vozes *Enhanced* (Aprimoradas), de qualidade superior, mas terá primeiro de transferir uma voz. Pode transferir vozes em Definições > Acessibilidade > Conteúdo Falado > Vozes, tocando na voz que pretende. Na aplicação Soundscape, para selecionar a voz que pretende, aceda a *Definições* no menu principal e depois, em *Áudio*, selecione *Vozes*.",
+  "suggested": "O Soundscape pode utilizar quaisquer vozes que tenha transferido nas Definições do iOS, exceto as vozes da Siri, que não estão disponíveis para o Soundscape. Recomendamos escolher uma das vozes *Enhanced* (Aprimoradas), de qualidade superior, mas terá primeiro de transferir uma voz. Pode transferir vozes em Definições > Acessibilidade > Conteúdo Falado > Vozes, tocando na voz que pretende. Na aplicação Soundscape, para selecionar a voz que pretende, aceda a *Definições* no menu principal e depois, em *Áudio*, selecione *Vozes*.",
+  "reason": "Leaves *Enhanced* in English with a Brazilian gloss «Aprimoradas»; pt-PT iOS labels these voices «Melhorada». The path uses the pre-iOS 26 «Conteúdo Falado» (provenance marks this unconfirmed). Check on a pt-PT device before changing.",
+  "category": "terminology"
+ },
+ {
+  "context": "terms_of_use_medical_safety_disclaimer",
+  "source": "You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\\n\\nSafety Notice\\n\\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.",
+  "current": "Aceita que o Soundscape (1) não foi concebido, não se destina nem foi disponibilizado como dispositivo médico, e (2) não foi concebido nem se destina a substituir conselhos, diagnósticos ou tratamentos médicos profissionais e não deve ser utilizado para substituir conselhos, diagnósticos ou tratamentos médicos profissionais.\\n\\nAviso de Segurança\\n\\nO Soundscape é um auxiliar de navegação e não deve ser utilizado em substituição de competências de mobilidade, estar ciente do ambiente que o rodeia e senso comum. Tome cuidado quando navegar, visto que os dados de mapeamento incorporados no Soundscape são capturados a partir de um programa de terceiros e, consequentemente, poderão existir limitações relativas à exatidão das informações apresentadas.",
+  "suggested": "Aceita que o Soundscape (1) não foi concebido, não se destina nem foi disponibilizado como dispositivo médico, e (2) não foi concebido nem se destina a substituir conselhos, diagnósticos ou tratamentos médicos profissionais e não deve ser utilizado para substituir conselhos, diagnósticos ou tratamentos médicos profissionais.\\n\\nAviso de Segurança\\n\\nO Soundscape é um auxiliar de navegação e não deve ser utilizado em substituição de competências de mobilidade, estar ciente do ambiente que o rodeia e senso comum. Tome cuidado quando navegar, visto que os dados de mapeamento incorporados no Soundscape são capturados a partir de um programa de terceiros e, consequentemente, poderão existir limitações relativas à exatidão das informações apresentadas.",
+  "reason": "Legal text, human review only. «senso comum» (\"common sense\") translates \"good judgement\" (better «bom senso»), and \"or judgment\" is dropped from both lists of professional advice. Flagged for a human; not machine-fixed.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_facing_n",
+  "source": "Facing north",
+  "current": "Virado para norte",
+  "suggested": "Virado para norte",
+  "reason": "The whole Microsoft-baseline \"facing\" family («Virado para …», «está virado» in 11 help strings) is masculine. It is long-standing Microsoft wording (C14), so this is flagged for the reviewer, not changed.",
+  "category": "gender"
+ },
+ {
+  "context": "osm_garages",
+  "source": "Garages",
+  "current": "Oficinas",
+  "suggested": "Oficinas",
+  "reason": "CROSS-LANGUAGE: the English comment says \"Workshops for vehicle repair\", but OSM building=garages means a row of lock-up garages for parking. That led pt (and probably others) to «Oficinas» where «Garagens» is meant. Fix the comment first.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s {pt:para beco sem saída}",
+  "suggested": "%1$s {pt:para beco sem saída}",
+  "reason": "PT-G1: the resolver turns «{pt:para beco sem saída}» into «para o beco sem saída», so the missing-article defect is gone. «%1$s sem saída» («Caminho sem saída») would be more idiomatic. Ask the reviewer (PT-G1 open question 1).",
+  "category": "tone"
+ }
+]

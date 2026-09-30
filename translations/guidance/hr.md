@@ -111,7 +111,7 @@ Nothing yet.
 
 Uploaded with `--skip-validate`; all 23 re-fetched and matched exactly.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 31 flagged, 10 applied in `11d1b69a1`. Findings: `/tmp/translation-review/hr-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 31 flagged, 10 applied in `11d1b69a1`. Findings: `translations/review/2026-09-30-all-languages/hr-findings.json`.
 Most serious fixed:
 - `legacy_migration_description`: «prethodne verzije Soundscape» leaves the app name undeclined;
 - `legacy_migration_failed`: Undeclined «verzija Soundscape» (should be «Soundscapea»), and «u Postavke, Pomoć» puts the screen name in the wrong case after «u»;

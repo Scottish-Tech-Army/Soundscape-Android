@@ -1,0 +1,633 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Aceasta este o actualizare majoră pentru Soundscape. Modul Călătorie este mult îmbunătățit. Când călătorești cu mașina sau cu autobuzul, Soundscape anunță acum numerele drumurilor, direcția ta de deplasare și localitățile din apropiere. De asemenea, anunță când traversezi râuri, canale, estuare și golfuri. Actualizează-ți hărțile offline pentru a beneficia de aceste funcții noi. Descrierile stațiilor de autobuz sunt acum mult mai bune pentru utilizatorii din Regatul Unit. Modul Repaus se poate acum reactiva automat atunci când detectează că te miști din nou. Nu mai trebuie să îți amintești să îl reactivezi manual. Am reorganizat codul de bază, astfel încât să putem construi o aplicație iOS din același cod. Acest lucru înseamnă că, pe viitor, vom putea lansa o aplicație iOS cu toate funcțiile pe care le-am creat pentru Android. Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin intermediul opțiunii Contactează asistența din meniul principal.",
+  "suggested": "\nAceasta este o actualizare majoră pentru Soundscape.\n\nModul Călătorie este mult îmbunătățit. Când călătorești cu mașina sau cu autobuzul, Soundscape anunță acum numerele drumurilor, direcția ta de deplasare și localitățile din apropiere. De asemenea, anunță când traversezi râuri, canale, estuare și golfuri. Actualizează-ți hărțile offline pentru a beneficia de aceste funcții noi. Descrierile stațiilor de autobuz sunt acum mult mai bune pentru utilizatorii din Regatul Unit.\n\nModul Repaus se poate acum reactiva automat atunci când detectează că te miști din nou. Nu mai trebuie să îți amintești să îl reactivezi manual.\n\nAm reorganizat codul de bază, astfel încât să putem construi o aplicație iOS din același cod. Acest lucru înseamnă că, pe viitor, vom putea lansa o aplicație iOS cu toate funcțiile pe care le-am creat pentru Android.\n\nTe rugăm să continui să ne raportezi orice problemă, oricât de mică, prin intermediul opțiunii Contactează asistența din meniul principal.\n",
+  "reason": "All paragraph breaks of the source were lost, so the dialog (which is split on paragraph breaks) shows one run-on block; restores the source's \\n layout without changing any words.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_automatic_callouts_when_3",
+  "source": "**When you need silence :**\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.",
+  "current": "**Când ai nevoie de liniște:**\\n\\n Când ești pe punctul de a traversa o stradă sau pur și simplu ai nevoie ca aplicația să fie silențioasă, poți dezactiva anunțurile. Când anunțurile sunt dezactivate, aplicația te va informa doar dacă apeși manual unul dintre butoanele *\"Locația mea\"*, *\"Marcaje din apropiere\"*, *\"În jurul meu\"* sau *\"Înaintea mea\"*.",
+  "suggested": "**Când ai nevoie de liniște:**\\n\\n Când ești pe punctul de a traversa o stradă sau pur și simplu ai nevoie ca aplicația să fie silențioasă, poți dezactiva anunțurile. Când anunțurile sunt dezactivate, aplicația te va informa doar dacă apeși manual unul dintre butoanele *Locația mea*, *Marcaje din apropiere*, *În jurul meu* sau *Înaintea mea*.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_what",
+  "source": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "current": "Butonul *\"Locația mea\"* îți oferă rapid informații care te ajută să îți dai seama unde te afli în prezent. *\"Locația mea\"* te informează despre locația ta curentă, inclusiv direcția în care ești orientat, unde se află drumurile sau intersecțiile din apropiere și unde sunt punctele de interes din apropiere.",
+  "suggested": "Butonul *Locația mea* îți oferă rapid informații care te ajută să îți dai seama unde te afli în prezent. *Locația mea* te informează despre locația ta curentă, inclusiv direcția în care ești orientat, unde se află drumurile sau intersecțiile din apropiere și unde sunt punctele de interes din apropiere.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_when",
+  "source": "*My Location* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "current": "*\"Locația mea\"* este util atunci când trebuie să îți dai seama unde te afli sau în ce direcție cardinală ești orientat.",
+  "suggested": "*Locația mea* este util atunci când trebuie să îți dai seama unde te afli sau în ce direcție cardinală ești orientat.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *\"Locația mea\"*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *\"Locația mea\"* și ascultă.",
+  "suggested": "La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *Locația mea*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *Locația mea* și ascultă.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_what",
+  "source": "The *Nearby Markers* button tells you about up to four markers that are closest to you. *Nearby Markers* is intended to help you orient yourself using places you already know about.",
+  "current": "Butonul *\"Marcaje din apropiere\"* te informează despre până la patru marcaje care sunt cele mai aproape de tine. *\"Marcaje din apropiere\"* este conceput pentru a te ajuta să te orientezi folosind locuri pe care le cunoști deja.",
+  "suggested": "Butonul *Marcaje din apropiere* te informează despre până la patru marcaje care sunt cele mai aproape de tine. *Marcaje din apropiere* este conceput pentru a te ajuta să te orientezi folosind locuri pe care le cunoști deja.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Nearby Markers* to hear about the locations of places you know of.",
+  "current": "Când încerci să te orientezi și să te familiarizezi cu împrejurimile, folosește *\"Marcaje din apropiere\"* pentru a auzi despre locațiile locurilor pe care le cunoști.",
+  "suggested": "Când încerci să te orientezi și să te familiarizezi cu împrejurimile, folosește *Marcaje din apropiere* pentru a auzi despre locațiile locurilor pe care le cunoști.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "current": "La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *\"Marcaje din apropiere\"*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *\"Marcaje din apropiere\"* și vei auzi până la patru marcaje din apropierea ta.",
+  "suggested": "La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *Marcaje din apropiere*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *Marcaje din apropiere* și vei auzi până la patru marcaje din apropierea ta.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_what",
+  "source": "The *Around Me* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *Around Me* is intended to help you orient yourself to your surroundings.",
+  "current": "Butonul *\"În jurul meu\"* te informează despre câte un lucru din fiecare dintre cele patru cadrane din jurul tău (în față, la dreapta, în spate și la stânga). *\"În jurul meu\"* este conceput pentru a te ajuta să te orientezi în raport cu împrejurimile.",
+  "suggested": "Butonul *În jurul meu* te informează despre câte un lucru din fiecare dintre cele patru cadrane din jurul tău (în față, la dreapta, în spate și la stânga). *În jurul meu* este conceput pentru a te ajuta să te orientezi în raport cu împrejurimile.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Around Me* to hear about the things around you.",
+  "current": "Când încerci să te orientezi și să te familiarizezi cu împrejurimile, folosește *\"În jurul meu\"* pentru a auzi despre lucrurile din jurul tău.",
+  "suggested": "Când încerci să te orientezi și să te familiarizezi cu împrejurimile, folosește *În jurul meu* pentru a auzi despre lucrurile din jurul tău.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *\"În jurul meu\"*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *\"În jurul meu\"* și vei auzi patru puncte de interes dispuse în jurul tău.",
+  "suggested": "La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *În jurul meu*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *În jurul meu* și vei auzi patru puncte de interes dispuse în jurul tău.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_ahead_of_me_when",
+  "source": "When you are walking down the street, try using *Ahead of Me* to discover the places and things coming up on either side of the street ahead.",
+  "current": "Când mergi pe stradă, încearcă să folosești *\"Înaintea mea\"* pentru a descoperi locurile și lucrurile care urmează de ambele părți ale străzii din față.",
+  "suggested": "Când mergi pe stradă, încearcă să folosești *Înaintea mea* pentru a descoperi locurile și lucrurile care urmează de ambele părți ale străzii din față.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *\"Înaintea mea\"*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *\"Înaintea mea\"* și vei auzi mai multe puncte de interes aflate aproximativ în fața ta.",
+  "suggested": "La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *Înaintea mea*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *Înaintea mea* și vei auzi mai multe puncte de interes aflate aproximativ în fața ta.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "Acum vei avea opțiunea de a personaliza acest marcaj. Poți schimba numele marcajului și poți adăuga o adnotare care va fi anunțată împreună cu marcajul pentru a oferi informații suplimentare. După ce ai terminat, selectează butonul *\"Gata\"* pentru a salva marcajul.",
+  "suggested": "Acum vei avea opțiunea de a personaliza acest marcaj. Poți schimba numele marcajului și poți adăuga o adnotare care va fi anunțată împreună cu marcajul pentru a oferi informații suplimentare. După ce ai terminat, selectează butonul *Gata* pentru a salva marcajul.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Crearea unei rute:**\\n\\n Mai întâi, accesează *\"Marcaje și rute\"*, selectează fila *\"Rute\"* și apoi selectează butonul *\"Rută nouă\"*. Dă rutei un nume și o descriere opțională, apoi adaugă puncte de traseu pe parcurs sau alege-le din lista ta de marcaje. Poți rearanja ordinea punctelor de traseu de-a lungul unei rute oricând prin editarea rutei.",
+  "suggested": "**Crearea unei rute:**\\n\\n Mai întâi, accesează *Marcaje și rute*, selectează fila *Rute* și apoi selectează butonul *Rută nouă*. Dă rutei un nume și o descriere opțională, apoi adaugă puncte de traseu pe parcurs sau alege-le din lista ta de marcaje. Poți rearanja ordinea punctelor de traseu de-a lungul unei rute oricând prin editarea rutei.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_3",
+  "source": "**Sharing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "current": "**Partajarea unei rute:**\\n\\n Selectează ruta ta de pe ecranul *\"Marcaje și rute\"* și apoi selectează opțiunea *\"Partajează\"* folosind toate opțiunile obișnuite de partajare disponibile.",
+  "suggested": "**Partajarea unei rute:**\\n\\n Selectează ruta ta de pe ecranul *Marcaje și rute* și apoi selectează opțiunea *Partajează* folosind toate opțiunile obișnuite de partajare disponibile.",
+  "reason": "UI names are wrapped in both *…* and straight quotes; the source uses *…* only, and sibling strings (help_text_ahead_of_me_what, the FAQ) use no quotes. Drops the extra quotes.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Din acest ecran *\"Editare\"* poți, de asemenea, șterge un marcaj dacă nu mai ai nevoie de el.",
+  "suggested": "Din acest ecran *Editează marcaj* poți, de asemenea, șterge un marcaj dacă nu mai ai nevoie de el.",
+  "reason": "UI name *Edit* is markers_edit_screen_title_edit («Editează marcaj»), but the text says «\"Editare\"» in quotes, which is not the label the user hears.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "Da, poți reporni baliza după ce Soundscape o oprește selectând *\"butonul de activare a sunetului balizei\"*; totuși, deoarece Serviciile de localizare au o precizie de doar aproximativ 10 metri, nu putem garanta comportamentul balizei când te afli la câțiva metri de destinație.",
+  "suggested": "Da, poți reporni baliza după ce Soundscape o oprește selectând butonul *Activează sunetul balizei*; totuși, deoarece Serviciile de localizare au o precizie de doar aproximativ 10 metri, nu putem garanta comportamentul balizei când te afli la câțiva metri de destinație.",
+  "reason": "Names the button by a paraphrase in quotes instead of its real label «Activează sunetul balizei» (as faq_controlling_what_you_hear_answer does).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "Există 2 moduri de operare pentru controalele media. Modul poate fi selectat în secțiunea *Setări* -> *Controale media*. Modurile sunt:\\n\\n *Mod original*. \\n\\n⏯ Redare/Pauză: Comută sunetul balizei audio pornit/oprit. \\n\\n⏭ Următorul: Dacă o rută este redată, mută baliza audio la punctul de traseu următor din rută. Dacă nicio rută nu este redată, anunță *În jurul meu*.\\n\\n⏮ Anterior: Dacă o rută este redată, mută baliza audio la punctul de traseu anterior din rută. Dacă nicio rută nu este redată, schimbă *Detaliul anunțurilor*, cu un nivel mai discret la fiecare apăsare: *Detaliat*, *Simplificat*, *Esențial*, *Silențios*, apoi înapoi la *Detaliat*.\\n\\n\\n\\n*Meniu audio*. \\n\\n\\n\\n⏭ Următorul parcurge o serie de opțiuni dintr-un meniu pe care aplicația le descrie prin text în vorbire, revenind la prima după ultima. ⏯ Redare/Pauză declanșează apoi aplicația să execute opțiunea descrisă. Există un singur meniu de nivel superior care are doar submeniuri ca opțiuni. Fiecare submeniu conține un grup de acțiuni similare.\\n\\n⏮ Anterior nu parcurge meniul. În schimb, schimbă *Detaliul anunțurilor*, exact ca în modul original, astfel încât același buton face aplicația mai discretă în oricare dintre moduri.",
+  "suggested": "Există 2 moduri de operare pentru controalele media. Modul poate fi selectat în secțiunea *Controale media* din *Setări*. Modurile sunt:\\n\\n *Mod original*. \\n\\n⏯ Redare/Pauză: Comută sunetul balizei audio pornit/oprit. \\n\\n⏭ Următorul: Dacă o rută este redată, mută baliza audio la punctul de traseu următor din rută. Dacă nicio rută nu este redată, anunță *În jurul meu*.\\n\\n⏮ Anterior: Dacă o rută este redată, mută baliza audio la punctul de traseu anterior din rută. Dacă nicio rută nu este redată, schimbă *Detaliul anunțurilor*, cu un nivel mai discret la fiecare apăsare: *Detaliat*, *Simplificat*, *Esențial*, *Silențios*, apoi înapoi la *Detaliat*.\\n\\n\\n\\n*Meniu audio*. \\n\\n\\n\\n⏭ Următorul parcurge o serie de opțiuni dintr-un meniu pe care aplicația le descrie prin text în vorbire, revenind la prima după ultima. ⏯ Redare/Pauză declanșează apoi aplicația să execute opțiunea descrisă. Există un singur meniu de nivel superior care are doar submeniuri ca opțiuni. Fiecare submeniu conține un grup de acțiuni similare.\\n\\n⏮ Anterior nu parcurge meniul. În schimb, schimbă *Detaliul anunțurilor*, exact ca în modul original, astfel încât același buton face aplicația mai discretă în oricare dintre moduri.",
+  "reason": "Added «->», which a screen reader reads out as punctuation; the source has no arrow.",
+  "category": "formatting"
+ },
+ {
+  "context": "first_launch_permissions_title",
+  "source": "App Permissions",
+  "current": "Permisiuni aplicației",
+  "suggested": "Permisiunile aplicației",
+  "reason": "Ungrammatical: a genitive/dative «aplicației» needs the articled head noun «Permisiunile».",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_automatic_callouts_what",
+  "source": "Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *Manage Callouts* section of the *Settings* screen, and you can turn all callouts off when you want the app to be silent.",
+  "current": "Soundscape te poate informa despre lucrurile din jur pe măsură ce te apropii de ele, anunțându-le numele din direcția în care se află. Aplicația va face acest lucru automat pentru tot felul de elemente, cum ar fi afaceri, stații de autobuz și chiar intersecții. Poți configura ce anunță aplicația în mod automat în secțiunea *Gestionare anunțuri* din ecranul *Setări*, iar poți dezactiva toate anunțurile când dorești ca aplicația să fie silențioasă.",
+  "suggested": "Soundscape te poate informa despre lucrurile din jur pe măsură ce te apropii de ele, anunțându-le numele din direcția în care se află. Aplicația va face acest lucru automat pentru tot felul de elemente, cum ar fi afaceri, stații de autobuz și chiar intersecții. Poți configura ce anunță aplicația în mod automat în secțiunea *Gestionare anunțuri* din ecranul *Setări*, și poți dezactiva toate anunțurile când dorești ca aplicația să fie silențioasă.",
+  "reason": "«iar» is contrastive and cannot introduce a second clause with the same subject like this; «și» is the natural connector.",
+  "category": "tone"
+ },
+ {
+  "context": "help_text_assistant_how_ios",
+  "source": "Every command has the same shape: *\"Soundscape\"*, then a group, then your choice. You can say the whole thing at once, for example *\"Soundscape surroundings around me\"*, or you can stop after the group and Siri will ask which one you want. So each group works as a spoken menu, and there are only seven of them to remember.",
+  "current": "Toate comenzile au aceeași formă: *Soundscape*, apoi un grup, apoi alegerea ta. Poți spune totul dintr-o dată, de exemplu *Soundscape surroundings around me*, sau te poți opri după grup, iar Siri te va întreba pe care o vrei. Astfel, fiecare grup funcționează ca un meniu vorbit, iar sunt doar șapte de reținut.",
+  "suggested": "Toate comenzile au aceeași formă: *Soundscape*, apoi un grup, apoi alegerea ta. Poți spune totul dintr-o dată, de exemplu *Soundscape surroundings around me*, sau te poți opri după grup, iar Siri te va întreba pe care o vrei. Astfel, fiecare grup funcționează ca un meniu vorbit, și sunt doar șapte de reținut.",
+  "reason": "«iar sunt doar șapte» is ungrammatical; «și» is needed.",
+  "category": "tone"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape oferă mai multe modalități de a controla ce auzi și când:\\n\\n1. Oprești imediat tot sunetul: Atinge de două ori ecranul cu două degete pentru a opri imediat tot sunetul, inclusiv orice anunț care se redă în acel moment și baliza, dacă este activă. Anunțurile vor relua automat când te apropii de următoarea intersecție sau punct de interes, însă baliza audibilă nu va porni automat. Selectează butonul *Activează sunetul balizei* de pe ecranul principal pentru a relua redarea balizei.\\n\\n2. Dezactivezi anunțurile automate: Când nu te deplasezi sau ai ajuns la destinație, probabil nu vei avea nevoie ca Soundscape să mai anunțe lucruri din jur. În loc să închizi aplicația, poți pune Soundscape în modul Amânare și se va trezi când pleci, sau poți pune Soundscape în modul Repaus și va rămâne oprit până când îl pornești din nou. Alternativ, poți selecta *Setări* din meniu și seta *Detaliul anunțurilor* pe *Silențios* în secțiunea *Gestionare anunțuri*.\\n\\n3. Oprești baliza: Există situații în care setezi o destinație, dar nu ai nevoie ca baliza audibilă să fie activă. De exemplu, poate știi exact cum să ajungi la destinație, dar dorești în continuare actualizări automate despre cât de departe ești. Sau poate ai nevoie de baliza audio doar pe măsură ce te apropii de destinație. Oricare ar fi cazul, poți alege când să auzi baliza comutând butonul *Dezactivează sunetul balizei*/*Activează sunetul balizei* de pe ecranul principal.\\n\\nDacă totuși vrei să interacționezi cu Soundscape, dar nu dorești să auzi anunțuri automate, poți seta *Detaliul anunțurilor* pe *Silențios* în secțiunea *Gestionare anunțuri* a ecranului *Setări* din meniu. Sau, dacă nu vei folosi Soundscape, îl poți pune în modul Repaus sau Amânare folosind butonul *Repaus* de pe ecranul principal.",
+  "suggested": "Soundscape oferă mai multe modalități de a controla ce auzi și când:\\n\\n1. Oprești imediat tot sunetul: Atinge de două ori ecranul cu două degete pentru a opri imediat tot sunetul, inclusiv orice anunț care se redă în acel moment și baliza, dacă este activă. Anunțurile se vor relua automat când te apropii de următoarea intersecție sau punct de interes, însă baliza audibilă nu va porni automat. Selectează butonul *Activează sunetul balizei* de pe ecranul principal pentru a relua redarea balizei.\\n\\n2. Dezactivezi anunțurile automate: Când nu te deplasezi sau ai ajuns la destinație, probabil nu vei avea nevoie ca Soundscape să mai anunțe lucruri din jur. În loc să închizi aplicația, poți pune Soundscape în modul Amânare și se va trezi când pleci, sau poți pune Soundscape în modul Repaus și va rămâne oprit până când îl pornești din nou. Alternativ, poți selecta *Setări* din meniu și seta *Detaliul anunțurilor* pe *Silențios* în secțiunea *Gestionare anunțuri*.\\n\\n3. Oprești baliza: Există situații în care setezi o destinație, dar nu ai nevoie ca baliza audibilă să fie activă. De exemplu, poate știi exact cum să ajungi la destinație, dar dorești în continuare actualizări automate despre cât de departe ești. Sau poate ai nevoie de baliza audio doar pe măsură ce te apropii de destinație. Oricare ar fi cazul, poți alege când să auzi baliza comutând butonul *Dezactivează sunetul balizei*/*Activează sunetul balizei* de pe ecranul principal.\\n\\nDacă totuși vrei să interacționezi cu Soundscape, dar nu dorești să auzi anunțuri automate, poți seta *Detaliul anunțurilor* pe *Silențios* în secțiunea *Gestionare anunțuri* a ecranului *Setări* din meniu. Sau, dacă nu vei folosi Soundscape, îl poți pune în modul Repaus sau Amânare folosind butonul *Repaus* de pe ecranul principal.",
+  "reason": "«a relua» is transitive; intransitive \"resume\" needs the reflexive «se vor relua».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_tip_turning_beacon_off",
+  "source": "You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.",
+  "current": "Poți activa și dezactiva sunetul ritmic al balizei folosind butonul de dezactivare a sunetului de pe ecranul principal. Dacă baliza este dezactivată, vei primi în continuare actualizări despre distanța până la destinație aproximativ la fiecare 50 de metri.",
+  "suggested": "Poți activa și dezactiva sunetul ritmic al balizei folosind butonul de dezactivare a sunetului de pe ecranul principal. Dacă sunetul balizei este dezactivat, vei primi în continuare actualizări despre distanța până la destinație aproximativ la fiecare 50 de metri.",
+  "reason": "\"If the beacon is muted\" became \"if the beacon is switched off\"; distance updates only continue when it is muted, so the sentence now contradicts itself.",
+  "category": "meaning"
+ },
+ {
+  "context": "action_item_not_found",
+  "source": "That's no longer saved in Soundscape",
+  "current": "Asta nu mai este salvată în Soundscape",
+  "suggested": "Acest element nu mai este salvat în Soundscape",
+  "reason": "«Asta» with feminine «salvată» has no referent and reads oddly when spoken; a neutral subject fits a route or a marker.",
+  "category": "tone"
+ },
+ {
+  "context": "menu_manage_locale",
+  "source": "Locale",
+  "current": "Localizare",
+  "suggested": "Limbă și regiune",
+  "reason": "«Localizare» in this app means location-finding (Serviciile de localizare, Serviciul de localizare Soundscape), so the Locale settings group sounds like a GPS setting.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_relative_directions_clockface",
+  "source": "Clock face",
+  "current": "Fața ceasului",
+  "suggested": "Cadran de ceas",
+  "reason": "«Fața ceasului» is a calque; the Romanian term for a clock face is «cadran».",
+  "category": "tone"
+ },
+ {
+  "context": "first_launch_headphones_title",
+  "source": "Listening to Soundscape",
+  "current": "Ascultând Soundscape",
+  "suggested": "Cum asculți Soundscape",
+  "reason": "A bare gerund as a screen title reads as a fragment in Romanian; «Cum asculți Soundscape» says what the screen is about.",
+  "category": "tone"
+ },
+ {
+  "context": "osm_entrance_named_with_destination",
+  "source": "%1$s %2$s from %3$s",
+  "current": "%1$s %2$s din %3$s",
+  "suggested": "%1$s %2$s dinspre %3$s",
+  "reason": "\"from Hills Road\" means the entrance is reached from that road; «din» reads as \"in/out of the road\", «dinspre» is \"from the direction of\".",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_near_road_and_settlement",
+  "source": "Near %1$s and close to %2$s",
+  "current": "Lângă %1$s și în apropierea %2$s",
+  "suggested": "Lângă %1$s și aproape de %2$s",
+  "reason": "«în apropierea» governs the genitive, but settlement names arrive in the nominative («în apropierea Cluj-Napoca», «în apropierea Brașov»). «aproape de» takes the plain form, so every name works (C17).",
+  "category": "gender"
+ },
+ {
+  "context": "directions_on_road_and_settlement",
+  "source": "On %1$s and close to %2$s",
+  "current": "Pe %1$s și în apropierea %2$s",
+  "suggested": "Pe %1$s și aproape de %2$s",
+  "reason": "«în apropierea» governs the genitive, but settlement names arrive in the nominative («în apropierea Cluj-Napoca», «în apropierea Brașov»). «aproape de» takes the plain form, so every name works (C17).",
+  "category": "gender"
+ },
+ {
+  "context": "directions_on_road_and_settlement_since",
+  "source": "On %1$s and close to %2$s, %3$s since %4$s",
+  "current": "Pe %1$s și în apropierea %2$s, %3$s de la %4$s",
+  "suggested": "Pe %1$s și aproape de %2$s, %3$s de la %4$s",
+  "reason": "«în apropierea» governs the genitive, but settlement names arrive in the nominative («în apropierea Cluj-Napoca», «în apropierea Brașov»). «aproape de» takes the plain form, so every name works (C17).",
+  "category": "gender"
+ },
+ {
+  "context": "directions_close_to_settlement_inline",
+  "source": "close to %1$s",
+  "current": "în apropierea %1$s",
+  "suggested": "aproape de %1$s",
+  "reason": "«în apropierea» governs the genitive, but settlement names arrive in the nominative («în apropierea Cluj-Napoca», «în apropierea Brașov»). «aproape de» takes the plain form, so every name works (C17).",
+  "category": "gender"
+ },
+ {
+  "context": "directions_crossing_waterway",
+  "source": "Passing over %1$s",
+  "current": "Trecere pe deasupra %1$s",
+  "suggested": "Trecere peste %1$s",
+  "reason": "«pe deasupra» governs the genitive, which a nominative river/railway name can't supply («pe deasupra Dunărea»); «peste» takes the plain form (C17).",
+  "category": "gender"
+ },
+ {
+  "context": "directions_away_from_settlement",
+  "source": "away from %1$s, %2$s behind you",
+  "current": "departe de %1$s, %2$s în spatele tău",
+  "suggested": "îndepărtându-te de %1$s, la %2$s în urma ta",
+  "reason": "\"away from X\" here means moving away from it (the settlement is behind); «departe de» means \"far from\", which says nothing about direction.",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_heading_n",
+  "source": "Heading north",
+  "current": "Îndreptare spre nord",
+  "suggested": "Te îndrepți spre nord",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\", so the callout sounds like \"correction to the north\". «Te îndrepți spre …» is indicative only (the imperative would be «îndreaptă-te»), so it can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_along_heading_n",
+  "source": "Heading north along %1$s",
+  "current": "Îndreptare spre nord pe %1$s",
+  "suggested": "Te îndrepți spre nord pe %1$s",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\"; «Te îndrepți spre …» describes the walking direction and can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_heading_ne",
+  "source": "Heading northeast",
+  "current": "Îndreptare spre nord-est",
+  "suggested": "Te îndrepți spre nord-est",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\", so the callout sounds like \"correction to the north\". «Te îndrepți spre …» is indicative only (the imperative would be «îndreaptă-te»), so it can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_along_heading_ne",
+  "source": "Heading northeast along %1$s",
+  "current": "Îndreptare spre nord-est pe %1$s",
+  "suggested": "Te îndrepți spre nord-est pe %1$s",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\"; «Te îndrepți spre …» describes the walking direction and can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_heading_e",
+  "source": "Heading east",
+  "current": "Îndreptare spre est",
+  "suggested": "Te îndrepți spre est",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\", so the callout sounds like \"correction to the north\". «Te îndrepți spre …» is indicative only (the imperative would be «îndreaptă-te»), so it can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_along_heading_e",
+  "source": "Heading east along %1$s",
+  "current": "Îndreptare spre est pe %1$s",
+  "suggested": "Te îndrepți spre est pe %1$s",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\"; «Te îndrepți spre …» describes the walking direction and can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_heading_se",
+  "source": "Heading southeast",
+  "current": "Îndreptare spre sud-est",
+  "suggested": "Te îndrepți spre sud-est",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\", so the callout sounds like \"correction to the north\". «Te îndrepți spre …» is indicative only (the imperative would be «îndreaptă-te»), so it can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_along_heading_se",
+  "source": "Heading southeast along %1$s",
+  "current": "Îndreptare spre sud-est pe %1$s",
+  "suggested": "Te îndrepți spre sud-est pe %1$s",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\"; «Te îndrepți spre …» describes the walking direction and can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_heading_s",
+  "source": "Heading south",
+  "current": "Îndreptare spre sud",
+  "suggested": "Te îndrepți spre sud",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\", so the callout sounds like \"correction to the north\". «Te îndrepți spre …» is indicative only (the imperative would be «îndreaptă-te»), so it can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_along_heading_s",
+  "source": "Heading south along %1$s",
+  "current": "Îndreptare spre sud pe %1$s",
+  "suggested": "Te îndrepți spre sud pe %1$s",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\"; «Te îndrepți spre …» describes the walking direction and can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_heading_sw",
+  "source": "Heading southwest",
+  "current": "Îndreptare spre sud-vest",
+  "suggested": "Te îndrepți spre sud-vest",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\", so the callout sounds like \"correction to the north\". «Te îndrepți spre …» is indicative only (the imperative would be «îndreaptă-te»), so it can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_along_heading_sw",
+  "source": "Heading southwest along %1$s",
+  "current": "Îndreptare spre sud-vest pe %1$s",
+  "suggested": "Te îndrepți spre sud-vest pe %1$s",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\"; «Te îndrepți spre …» describes the walking direction and can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_heading_w",
+  "source": "Heading west",
+  "current": "Îndreptare spre vest",
+  "suggested": "Te îndrepți spre vest",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\", so the callout sounds like \"correction to the north\". «Te îndrepți spre …» is indicative only (the imperative would be «îndreaptă-te»), so it can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_along_heading_w",
+  "source": "Heading west along %1$s",
+  "current": "Îndreptare spre vest pe %1$s",
+  "suggested": "Te îndrepți spre vest pe %1$s",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\"; «Te îndrepți spre …» describes the walking direction and can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_heading_nw",
+  "source": "Heading northwest",
+  "current": "Îndreptare spre nord-vest",
+  "suggested": "Te îndrepți spre nord-vest",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\", so the callout sounds like \"correction to the north\". «Te îndrepți spre …» is indicative only (the imperative would be «îndreaptă-te»), so it can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_along_heading_nw",
+  "source": "Heading northwest along %1$s",
+  "current": "Îndreptare spre nord-vest pe %1$s",
+  "suggested": "Te îndrepți spre nord-vest pe %1$s",
+  "reason": "The noun «Îndreptare» mainly means \"correction/straightening\"; «Te îndrepți spre …» describes the walking direction and can't be heard as an instruction (C11).",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_prompt_title",
+  "source": "You're ready!",
+  "current": "Ești pregătit!",
+  "suggested": "Totul este gata!",
+  "reason": "Masculine «pregătit»; the translator comment asks for a gender-free phrasing (C15, RO-R1 open question 2).",
+  "category": "gender"
+ },
+ {
+  "context": "first_launch_prompt_message",
+  "source": "You are ready for your first walk with Soundscape. To get started, choose a nearby destination and start the audio beacon — you’ll hear it playing in the direction of your destination.",
+  "current": "Ești pregătit pentru prima ta plimbare cu Soundscape. Pentru a începe, alege o destinație din apropiere și pornește baliza audio — o vei auzi din direcția destinației tale.",
+  "suggested": "Totul este pregătit pentru prima ta plimbare cu Soundscape. Pentru a începe, alege o destinație din apropiere și pornește baliza audio — o vei auzi din direcția destinației tale.",
+  "reason": "Same masculine «Ești pregătit» as first_launch_prompt_title on the same screen; the impersonal form avoids the user's gender (C15).",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_markers_content_3",
+  "source": "To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *Nearby markers* button at the bottom of the home screen to hear a spatial callout of marked places around you. You can even set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.",
+  "current": "Pentru a experimenta locurile marcate, Soundscape va anunța automat marcajele pe măsură ce treci pe lângă ele sau te apropii de ele, sau poți folosi butonul *Marcaje din apropiere* din partea de jos a ecranului principal pentru a auzi un anunț spațial al marcajelor din jurul tău. Poți chiar să setezi o baliză audio pentru orice loc marcat. Când faci acest lucru, baliza audio Soundscape cu care ești familiarizat(ă) va fi redată și o poți folosi ca de obicei.",
+  "suggested": "Pentru a experimenta locurile marcate, Soundscape va anunța automat marcajele pe măsură ce treci pe lângă ele sau te apropii de ele, sau poți folosi butonul *Marcaje din apropiere* din partea de jos a ecranului principal pentru a auzi un anunț spațial al marcajelor din jurul tău. Poți chiar să setezi o baliză audio pentru orice loc marcat. Când faci acest lucru, baliza audio Soundscape pe care o cunoști deja va fi redată și o poți folosi ca de obicei.",
+  "reason": "«familiarizat(ă)» puts brackets in front of a screen reader, which C15 forbids; «pe care o cunoști deja» needs no gender.",
+  "category": "gender"
+ },
+ {
+  "context": "bytes_format_b_a11y",
+  "source": {
+   "one": "%1$s byte",
+   "other": "%1$s bytes"
+  },
+  "current": {
+   "one": "%1$s octet",
+   "few": "%1$s octeți",
+   "other": "%1$s octeți"
+  },
+  "suggested": {
+   "one": "%1$s octet",
+   "few": "%1$s octeți",
+   "other": "%1$s de octeți"
+  },
+  "reason": "The \"other\" plural form (20 and above) needs «de» in Romanian («100 de octeți»), as distance_format_meters/_km already have; screen readers will say «100 octeți».",
+  "category": "gender"
+ },
+ {
+  "context": "bytes_format_kb_a11y",
+  "source": {
+   "one": "%1$s kilobyte",
+   "other": "%1$s kilobytes"
+  },
+  "current": {
+   "one": "%1$s kilooctet",
+   "few": "%1$s kiloocteți",
+   "other": "%1$s kiloocteți"
+  },
+  "suggested": {
+   "one": "%1$s kilooctet",
+   "few": "%1$s kiloocteți",
+   "other": "%1$s de kiloocteți"
+  },
+  "reason": "The \"other\" plural form (20 and above) needs «de» in Romanian («100 de octeți»), as distance_format_meters/_km already have; screen readers will say «100 octeți».",
+  "category": "gender"
+ },
+ {
+  "context": "bytes_format_mb_a11y",
+  "source": {
+   "one": "%1$s megabyte",
+   "other": "%1$s megabytes"
+  },
+  "current": {
+   "one": "%1$s megaoctet",
+   "few": "%1$s megaocteți",
+   "other": "%1$s megaocteți"
+  },
+  "suggested": {
+   "one": "%1$s megaoctet",
+   "few": "%1$s megaocteți",
+   "other": "%1$s de megaocteți"
+  },
+  "reason": "The \"other\" plural form (20 and above) needs «de» in Romanian («100 de octeți»), as distance_format_meters/_km already have; screen readers will say «100 octeți».",
+  "category": "gender"
+ },
+ {
+  "context": "bytes_format_gb_a11y",
+  "source": {
+   "one": "%1$s gigabyte",
+   "other": "%1$s gigabytes"
+  },
+  "current": {
+   "one": "%1$s gigaoctet",
+   "few": "%1$s gigaocteți",
+   "other": "%1$s gigaocteți"
+  },
+  "suggested": {
+   "one": "%1$s gigaoctet",
+   "few": "%1$s gigaocteți",
+   "other": "%1$s de gigaocteți"
+  },
+  "reason": "The \"other\" plural form (20 and above) needs «de» in Romanian («100 de octeți»), as distance_format_meters/_km already have; screen readers will say «100 octeți».",
+  "category": "gender"
+ },
+ {
+  "context": "bytes_format_tb_a11y",
+  "source": {
+   "one": "%1$s terabyte",
+   "other": "%1$s terabytes"
+  },
+  "current": {
+   "one": "%1$s teraoctet",
+   "few": "%1$s teraocteți",
+   "other": "%1$s teraocteți"
+  },
+  "suggested": {
+   "one": "%1$s teraoctet",
+   "few": "%1$s teraocteți",
+   "other": "%1$s de teraocteți"
+  },
+  "reason": "The \"other\" plural form (20 and above) needs «de» in Romanian («100 de octeți»), as distance_format_meters/_km already have; screen readers will say «100 octeți».",
+  "category": "gender"
+ },
+ {
+  "context": "help_config_voices_content_ios",
+  "source": "Soundscape can use any of the voices you have downloaded in the iOS Settings app, except for the Siri voices, which are not available to Soundscape. We recommend choosing one of the higher quality *Enhanced* voices, but you will first need to download a voice. You can download voices in the iOS Settings app by going to Accessibility > Read & Speak > Voices and tapping on a voice. (In iOS versions prior to 26, *Read & Speak* is known as *Spoken Content*.) Within the Soundscape app, to select the voice you want, go to *Settings* from the main menu and then from *Audio* select *Voices*.",
+  "current": "Soundscape poate folosi oricare dintre vocile descărcate în aplicația Setări din iOS, cu excepția vocilor Siri, care nu sunt disponibile pentru Soundscape. Îți recomandăm să alegi una dintre vocile *Enhanced*, de calitate superioară, dar mai întâi trebuie să descarci o voce. Poți descărca voci în aplicația Setări din iOS accesând Accesibilitate > Conținut vorbit > Voci și atingând o voce. Pentru a selecta vocea dorită în aplicația Soundscape, accesează *Setări* din meniul principal, apoi, din *Audio*, selectează *Voci*.",
+  "suggested": "Soundscape poate folosi oricare dintre vocile descărcate în aplicația Configurări din iOS, cu excepția vocilor Siri, care nu sunt disponibile pentru Soundscape. Îți recomandăm să alegi una dintre vocile *Enhanced*, de calitate superioară, dar mai întâi trebuie să descarci o voce. Poți descărca voci în aplicația Configurări din iOS accesând Accesibilitate > Conținut vorbit > Voci și atingând o voce. Pentru a selecta vocea dorită în aplicația Soundscape, accesează *Setări* din meniul principal, apoi, din *Audio*, selectează *Voci*.",
+  "reason": "The iOS Settings app is «Configurări» in Romanian, and help_text_assistant_notes_ios already calls it that. (*Setări* for Soundscape's own screen stays.)",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_tag_ferry_terminal_named",
+  "source": "%1$s Ferry Terminal",
+  "current": "Terminal de feribot %1$s",
+  "suggested": "Terminalul de feribot %1$s",
+  "reason": "Inconsistent with osm_ferry_terminal_named «Terminalul de feribot %1$s» for the same thing; a named terminal takes the article (compare «Gara %1$s», «Stația de metrou %1$s»).",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_highway",
+  "source": "Highway",
+  "current": "Autostradă",
+  "suggested": "Șosea",
+  "reason": "Same word as osm_motorway, so the two road classes sound identical; \"Highway\" here is a major public road, which is «șosea».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_glaziery",
+  "source": "Glazier Shop",
+  "current": "Sticlărie",
+  "suggested": "Geamgerie",
+  "reason": "«Sticlărie» is a glassware shop; a glazier (windows, glass fitting) is a «geamgerie».",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_bus_station",
+  "source": "Bus Station",
+  "current": "Stație de autobuz",
+  "suggested": "Autogară",
+  "reason": "Same as osm_bus_stop, so a bus terminal is announced as a bus stop; a bus station is an «autogară».",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_beacon",
+  "source": "Beacon",
+  "current": "Baliză",
+  "suggested": "Baliză de navigație",
+  "reason": "The same bare word as the Audio Beacon (baliză audio, and plain «Baliză» in the Siri shortcut), so a map feature is called out with the name of the app's own feature (C5).",
+  "category": "terminology"
+ },
+ {
+  "context": "offline_maps_free_space",
+  "source": "%1$s free",
+  "current": "%1$s liber",
+  "suggested": "%1$s spațiu liber",
+  "reason": "«32 GB liber» doesn't agree (a plural amount with a singular adjective); «spațiu liber» avoids agreement.",
+  "category": "tone"
+ },
+ {
+  "context": "offline_maps_storage",
+  "source": "Maps are saved to %1$s which has %2$s free",
+  "current": "Hărțile sunt salvate pe %1$s care are %2$s liber",
+  "suggested": "Hărțile sunt salvate pe %1$s care are %2$s spațiu liber",
+  "reason": "Same agreement problem as offline_maps_free_space («31,3 GB liber»).",
+  "category": "tone"
+ },
+ {
+  "context": "settings_reset_dialog_title",
+  "source": "Are you sure?",
+  "current": "Sunteți sigur?",
+  "suggested": "Ești sigur?",
+  "reason": "Formal «Sunteți» in a «tu» app; the next line of the same dialog says «Vrei să continui?».",
+  "category": "tone"
+ },
+ {
+  "context": "first_launch_callouts_example_3",
+  "source": "Main Street goes left",
+  "current": "Strada Principală merge la stânga",
+  "suggested": "Strada Principală continuă la stânga",
+  "reason": "The example is meant to sound like a real callout, which is directions_name_goes_left «%1$s, continuă la stânga».",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_callouts_example_4",
+  "source": "Main Street goes right",
+  "current": "Strada Principală merge la dreapta",
+  "suggested": "Strada Principală continuă la dreapta",
+  "reason": "The example is meant to sound like a real callout, which is directions_name_goes_right «%1$s, continuă la dreapta».",
+  "category": "terminology"
+ },
+ {
+  "context": "terms_of_use_medical_safety_disclaimer",
+  "source": "You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\\n\\nSafety Notice\\n\\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.",
+  "current": "Recunoașteți că Soundscape (1) nu este conceput, destinat sau pus la dispoziție ca dispozitiv medical și (2) nu este conceput sau destinat să fie un substitut pentru sfatul, diagnosticul, tratamentul sau judecata medicală profesională și nu trebuie utilizat pentru a înlocui sau ca substitut al sfatului, diagnosticului, tratamentului sau judecății medicale profesionale.\\n\\nAviz de siguranță\\n\\nSoundscape este un ajutor de navigare și nu trebuie utilizat în locul abilităților de mobilitate, al conștienței mediului înconjurător și al bunului simț. Fiți precauți când navigați în mediul dumneavoastră, deoarece datele cartografice încorporate în programul Soundscape sunt preluate dintr-un program terț, și prin urmare pot exista limitări în ceea ce privește acuratețea informațiilor prezentate.",
+  "suggested": "Recunoașteți că Soundscape (1) nu este conceput, destinat sau pus la dispoziție ca dispozitiv medical și (2) nu este conceput sau destinat să fie un substitut pentru sfatul, diagnosticul, tratamentul sau judecata medicală profesională și nu trebuie utilizat pentru a înlocui sau ca substitut al sfatului, diagnosticului, tratamentului sau judecății medicale profesionale.\\n\\nAviz de siguranță\\n\\nSoundscape este un ajutor de navigare și nu trebuie utilizat în locul abilităților de mobilitate, al conștienței mediului înconjurător și al bunului simț. Fiți precauți când navigați în mediul dumneavoastră, deoarece datele cartografice încorporate în programul Soundscape sunt preluate dintr-un program terț, și prin urmare pot exista limitări în ceea ce privește acuratețea informațiilor prezentate.",
+  "reason": "Only string in formal «dumneavoastră» register («Recunoașteți», «Fiți precauți») while the rest of the app, including terms_of_use_message, uses «tu». Legal text, so a human should decide (RO-R1).",
+  "category": "tone"
+ },
+ {
+  "context": "relative_clock_hour_2",
+  "source": "2",
+  "current": "2",
+  "suggested": "2",
+  "reason": "«la ora %1$s» needs the feminine numeral («ora două», «ora douăsprezece»). If the Romanian TTS reads «la ora 2» as «doi», set hour_2 to «două» and hour_12 to «douăsprezece» (C20). Needs a check on a device.",
+  "category": "gender"
+ }
+]

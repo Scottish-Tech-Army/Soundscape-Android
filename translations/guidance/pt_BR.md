@@ -108,7 +108,7 @@ the imperative hint that broke the TalkBack template, lost `*…*` in the routes
 stations/terminals, and {pt:…} markers were added in 4 templates (railway, tunnel, both entrances,
 which had a fixed «do»). Held: `first_launch_prompt_message` «pronto(a)» (with Q4).
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 35 flagged, 28 applied in `8354b2eab`. Findings: `/tmp/translation-review/pt_BR-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 35 flagged, 28 applied in `8354b2eab`. Findings: `translations/review/2026-09-30-all-languages/pt_BR-findings.json`.
 Most serious fixed:
 - `help_text_my_location_how`: «na direção para a qual você estava voltado antes de pressionar» says "the direction you WERE facing before pressing";
 - `help_text_nearby_markers_how`: «na direção para a qual você estava voltado antes de pressionar» says "the direction you WERE facing before pressing";

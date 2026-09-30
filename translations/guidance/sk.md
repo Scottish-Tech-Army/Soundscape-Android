@@ -84,7 +84,7 @@ Nothing yet.
 
 **2026-09-29 — European batch review.** `location_detail_title_default` «Podrobnosti o polohe» → «Podrobnosti o mieste», so the screen title matches the three help texts and the tour that name it (and cs «Podrobnosti o místě»). Hints left alone: SK-B1 still open. 1 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 46 flagged, 25 applied in `b1415a6eb`. Findings: `/tmp/translation-review/sk-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 46 flagged, 25 applied in `b1415a6eb`. Findings: `translations/review/2026-09-30-all-languages/sk-findings.json`.
 Most serious fixed:
 - `help_text_section_title_when`: «použil(a)» puts a bracketed ending in a help heading that TalkBack reads aloud;
 - `universal_links_marker_share_message`: «Zdieľal(a)» forces a bracketed gender form (C15);

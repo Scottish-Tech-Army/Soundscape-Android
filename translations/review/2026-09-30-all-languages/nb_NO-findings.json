@@ -1,0 +1,178 @@
+[
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape har funksjoner og fordeler som dekker en rekke situasjoner og tidsperspektiver. Soundscapes verdi for deg kan også endre seg over tid, så hvordan du bruker appen i dag kan være annerledes enn hvordan du bruker den om tre måneder. Mange tenker på apper i form av *«hvilket problem løser denne appen?»* Soundscape kan absolutt brukes til konkrete behov – for eksempel å holde oversikt over en destinasjon mens du er på vei dit, hjelpe deg å orientere deg når du kommer ut av en t-banestasjon, finne retningen når du går ut av en bil, eller finne veinavnene eller avstanden til neste veikryss. Filosofien bak Soundscape er imidlertid å *«lyse opp verden din med lyd»* – appen er designet for å brukes når som helst du er ute, for å gi deg bevissthet om omgivelsene, for eksempel navnene på gatene du går i, hvilken retning du går, og navnene på virksomhetene du passerer. I denne bruksmodusen har brukere omtalt Soundscape som en *«hyggelig følgesvenn»*-app som understøtter *«serendipitet»*, hjelper til med å *«fylle inn hullene i ditt mentale kart»* og gir mer *«selvtillit når du går»*. Her er noen andre eksempler på hvordan brukerne våre bruker Soundscape i livet sitt:\\n\\nSoundscape hjalp meg å komme på rett spor igjen etter at jeg gikk av bussen og gikk i feil retning.\\n\\nSelv i byen hvor jeg har bodd i 3 år, har jeg fått et bedre bilde av hva som er rundt meg [med Soundscape].\\n\\n3D-lyden forbedrer opplevelsen av en gåtur, fordi jeg føler meg mer tilknyttet omgivelsene... Jeg er mer tilbøyelig til å prøve en ny rute nå som jeg har appen å bruke.\\n\\nJeg savner tilfeldighetene ved å gå rundt og legge merke til ting. Å ha Soundscape er hyggelig – det krever ingen innsats å høre om ting rundt meg. Den relasjonelle informasjonen er nyttig, og appen er flott for situasjonsforståelse og utforskning av handlegater.\\n\\n[Jeg brukte Soundscape] for å finne en pub midt i York. [Jeg] brukte flere av alternativene først for å lokalisere og deretter faktisk finne den. Den tok meg til innen 3 meter fra døren – fantastisk!",
+  "suggested": "Soundscape har funksjoner og fordeler som dekker en rekke situasjoner og tidsperspektiver. Soundscapes verdi for deg kan også endre seg over tid, så hvordan du bruker appen i dag kan være annerledes enn hvordan du bruker den om tre måneder. Mange tenker på apper i form av *«hvilket problem løser denne appen?»* Soundscape kan absolutt brukes til konkrete behov – for eksempel å holde oversikt over en destinasjon mens du er på vei dit, hjelpe deg å orientere deg når du kommer ut av en t-banestasjon, finne retningen når du går ut av en bil, eller finne veinavnene eller avstanden til neste veikryss. Filosofien bak Soundscape er imidlertid å *«lyse opp verden din med lyd»* – appen er designet for å brukes når som helst du er ute, for å gi deg bevissthet om omgivelsene, for eksempel navnene på gatene du går i, hvilken retning du går, og navnene på virksomhetene du passerer. I denne bruksmodusen har brukere omtalt Soundscape som en *«hyggelig følgesvenn»*-app som understøtter *«serendipitet»*, hjelper til med å *«fylle inn hullene i ditt mentale kart»* og gir mer *«selvtillit når du går»*. Her er noen andre eksempler på hvordan brukerne våre bruker Soundscape i livet sitt:\\n\\n«Soundscape hjalp meg å komme på rett spor igjen etter at jeg gikk av bussen og gikk i feil retning.»\\n\\n«Selv i byen hvor jeg har bodd i 3 år, har jeg fått et bedre bilde av hva som er rundt meg [med Soundscape].»\\n\\n«3D-lyden forbedrer opplevelsen av en gåtur, fordi jeg føler meg mer tilknyttet omgivelsene... Jeg er mer tilbøyelig til å prøve en ny rute nå som jeg har appen å bruke.»\\n\\n«Jeg savner tilfeldighetene ved å gå rundt og legge merke til ting. Å ha Soundscape er hyggelig – det krever ingen innsats å høre om ting rundt meg. Den relasjonelle informasjonen er nyttig, og appen er flott for situasjonsforståelse og utforskning av handlegater.»\\n\\n«[Jeg brukte Soundscape] for å finne en pub midt i York. [Jeg] brukte flere av alternativene først for å lokalisere og deretter faktisk finne den. Den tok meg til innen 3 meter fra døren – fantastisk!»",
+  "reason": "The five user testimonials lost their quotation marks, so they read (and are heard) as Soundscape's own first-person claims rather than quoted users; restored as «…».",
+  "category": "meaning"
+ },
+ {
+  "context": "preview_go_hint",
+  "source": "move in this direction to the next intersection",
+  "current": "beveg deg i denne retningen til neste veikryss",
+  "suggested": "bevege deg i denne retningen til neste veikryss",
+  "reason": "Accessibility hint is an imperative («beveg»); NB-B1 requires infinitives because it is substituted into «Dobbelttrykk for å %1$s».",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "current": "Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Markører i nærheten*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Markører i nærheten* så hører du fire markører i nærheten av deg.",
+  "suggested": "Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Markører i nærheten*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Markører i nærheten* så hører du opptil fire markører i nærheten av deg.",
+  "reason": "English says \"up to four markers\"; «fire markører» promises exactly four. Microsoft's wording has the same omission, so this is a real error rather than drift (C14).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_post_box",
+  "source": "Post Box",
+  "current": "Postboks",
+  "suggested": "Postkasse",
+  "reason": "«Postboks» is a P.O. box (rented box at a post office); a street box for posting letters is «postkasse», which is also what search_synonyms_post_box uses. Microsoft's term, but an error (C14).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_recycling_bin",
+  "source": "Recycling Bin",
+  "current": "Gjenvinningsstasjon",
+  "suggested": "Gjenvinningsbeholder",
+  "reason": "«Gjenvinningsstasjon» is a large municipal recycling centre you drive to; a recycling bin is a single container. Called out on the street, it points the user at the wrong kind of place.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_lift_gate",
+  "source": "Lift Gate",
+  "current": "Heveport",
+  "suggested": "Bom",
+  "reason": "A lift gate (barrier=lift_gate) is a boom barrier, «bom» in Norwegian; «Heveport» is not an established term and suggests a garage-style door.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_block",
+  "source": "Block",
+  "current": "Blokk",
+  "suggested": "Sperreblokk",
+  "reason": "barrier=block is a concrete/stone obstacle block; «Blokk» on its own is heard as an apartment block (boligblokk) or a notepad.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_multi",
+  "source": "Multi-use",
+  "current": "Flerbruk",
+  "suggested": "Flerbruksanlegg",
+  "reason": "«Flerbruk» (\"multiple use\") is not a place name; the sibling sport facilities are all named as places (-bane, -anlegg).",
+  "category": "meaning"
+ },
+ {
+  "context": "callouts_verbosity_description",
+  "source": "Callout detail controls how much Soundscape tells you about as you walk. Detailed mode calls out everything nearby. Simplified mode leaves out minor paths and service roads, and repeats itself less often. Essential mode calls out streets, junctions and landmarks only. Silent mode makes no automatic callouts at all, leaving beacons, routes and the buttons on the home screen.",
+  "current": "Detaljnivået for meldinger styrer hvor mye Soundscape forteller deg mens du går. Modusen Detaljert leser opp alt i nærheten. Modusen Forenklet utelater mindre stier og serviceveier, og gjentar seg sjeldnere. Modusen Grunnleggende leser bare opp gater, veikryss og landemerker. Modusen Lydløs gir ingen automatiske meldinger i det hele tatt, men beholder lydsignaler, ruter og knappene på startskjermen.",
+  "suggested": "Detaljnivået for meldinger styrer hvor mye Soundscape forteller deg mens du går. Modusen Detaljert leser opp alt i nærheten. Modusen Forenklet utelater mindre stier og stikkveier, og gjentar seg sjeldnere. Modusen Grunnleggende leser bare opp gater, veikryss og landemerker. Modusen Lydløs gir ingen automatiske meldinger i det hele tatt, men beholder lydsignaler, ruter og knappene på startskjermen.",
+  "reason": "Service roads are called out as «Stikkvei» (osm_service_road, Microsoft's term), but this description of what Simplified leaves out calls them «serviceveier»; a listener can't connect the two.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_2",
+  "source": "**Managing which callouts you hear :**\\n\\n To choose the types of things Soundscape will automatically call out, go to the *Settings* screen using the menu on the *Home* screen. The *Manage Callouts* section of the *Settings* screen is where you choose how much the app says with *Callout Detail*, whether it calls out *Streets and Junctions*, and which *Places to Call Out*. If you wish to turn off all callouts, set *Callout Detail* to *Silent*.",
+  "current": "**Administrere hvilke meldinger du hører :**\\n\\n For å velge hvilke typer ting Soundscape automatisk skal lese opp, gå til skjermen *Innstillinger* via menyen på *Start*-skjermen. I seksjonen *Administrer meldinger* på *Innstillinger*-skjermen velger du hvor mye appen sier med *Detaljnivå for meldinger*, om den leser opp *Gater og veikryss*, og hvilke *Steder som skal leses opp*. Hvis du ønsker å slå av alle meldinger, setter du *Detaljnivå for meldinger* til *Lydløs*.",
+  "suggested": "**Administrere hvilke meldinger du hører :**\\n\\n For å velge hvilke typer ting Soundscape automatisk skal lese opp, gå til skjermen *Innstillinger* via menyen på startskjermen. I seksjonen *Administrer meldinger* på *Innstillinger*-skjermen velger du hvor mye appen sier med *Detaljnivå for meldinger*, om den leser opp *Gater og veikryss*, og hvilke *Steder som skal leses opp*. Hvis du ønsker å slå av alle meldinger, setter du *Detaljnivå for meldinger* til *Lydløs*.",
+  "reason": "«*Start*-skjermen» marks \"Start\" as a UI label, but no screen is called that; every other string says «startskjermen».",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "Du får nå mulighet til å tilpasse denne markøren. Du kan endre navnet på markøren, og du kan også legge til en annotasjon som vil bli opplest sammen med markøren for å gi litt ekstra informasjon. Når du er ferdig, velger du knappen *\"Ferdig\"* for å lagre markøren.",
+  "suggested": "Du får nå mulighet til å tilpasse denne markøren. Du kan endre navnet på markøren, og du kan også legge til en annotasjon som vil bli opplest sammen med markøren for å gi litt ekstra informasjon. Når du er ferdig, velger du knappen *Ferdig* for å lagre markøren.",
+  "reason": "Leftover straight quotes inside the UI-name markup (the English dropped them in 2842d5a00); every other UI name is plain *…*.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "Fra denne skjermen *\"Rediger\"* kan du også slette en markør hvis du ikke lenger trenger den.",
+  "suggested": "Fra denne skjermen *Rediger* kan du også slette en markør hvis du ikke lenger trenger den.",
+  "reason": "Leftover straight quotes inside the UI-name markup (the English dropped them in 2842d5a00); every other UI name is plain *…*.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "Ja, du kan slå på lydsignalet igjen etter at Soundscape har slått det av ved å velge knappen *\"Slå på lydsignal\"*; men siden Stedstjenester bare er nøyaktige til omtrent 10 meter, kan vi ikke garantere hvordan lydsignalet oppfører seg når du er innen noen få meter fra destinasjonen.",
+  "suggested": "Ja, du kan slå på lydsignalet igjen etter at Soundscape har slått det av ved å velge knappen *Slå på lydsignal*; men siden Stedstjenester bare er nøyaktige til omtrent 10 meter, kan vi ikke garantere hvordan lydsignalet oppfører seg når du er innen noen få meter fra destinasjonen.",
+  "reason": "Leftover straight quotes inside the UI-name markup (the English dropped them in 2842d5a00); every other UI name is plain *…*.",
+  "category": "formatting"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Dette er en stor oppdatering av Soundscape. Reisemodus er mye forbedret. Når du reiser med bil eller buss, kunngjør Soundscape nå veinumre, reiseretningen din og nærliggende tettsteder. Den kunngjør også når du krysser elver, kanaler, fjorder og bukter. Oppdater de offline-kartene dine for å få disse nye funksjonene. Beskrivelsene av busstopp er nå mye bedre for brukere i Storbritannia. Dvalemodus kan nå våkne automatisk når den oppdager at du beveger deg igjen. Du trenger ikke lenger huske å vekke den selv. Vi har omstrukturert den underliggende koden slik at vi kan bygge en iOS-app fra den samme koden. Dette betyr at vi i fremtiden kan lansere en iOS-app med alle funksjonene vi har laget for Android. Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via Kontakt brukerstøtte i hovedmenyen.",
+  "suggested": "\nDette er en stor oppdatering av Soundscape.\n\nReisemodus er mye forbedret. Når du reiser med bil eller buss, kunngjør Soundscape nå veinumre, reiseretningen din og nærliggende tettsteder. Den kunngjør også når du krysser elver, kanaler, fjorder og bukter. Oppdater de offline-kartene dine for å få disse nye funksjonene. Beskrivelsene av busstopp er nå mye bedre for brukere i Storbritannia.\n\nDvalemodus kan nå våkne automatisk når den oppdager at du beveger deg igjen. Du trenger ikke lenger huske å vekke den selv.\n\nVi har omstrukturert den underliggende koden slik at vi kan bygge en iOS-app fra den samme koden. Dette betyr at vi i fremtiden kan lansere en iOS-app med alle funksjonene vi har laget for Android.\n\nFortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via Kontakt brukerstøtte i hovedmenyen.\n",
+  "reason": "All 10 line breaks of the English (its paragraph structure) were dropped. Harmless in the dialog today, which splits on \". \", but paragraph breaks are now a split point too (7ca86e582) and should match the source.",
+  "category": "formatting"
+ },
+ {
+  "context": "confect_name_joins",
+  "source": "%1$s that joins %2$s and %3$s",
+  "current": "%1$s som kobler %2$s og %3$s",
+  "suggested": "%1$s som forbinder %2$s og %3$s",
+  "reason": "«kobler X og Y» is ungrammatical without «sammen»; «forbinder» is the natural verb for a way that joins two roads.",
+  "category": "tone"
+ },
+ {
+  "context": "settings_mix_audio_description",
+  "source": "When disabled, other audio apps will pause and lock screen media controls will be available",
+  "current": "Når deaktivert, vil andre lydapper pause og mediekontroller på låseskjermen bli tilgjengelige",
+  "suggested": "Når dette er slått av, settes andre lydapper på pause, og mediekontrollene på låseskjermen blir tilgjengelige",
+  "reason": "«Når deaktivert, vil andre lydapper pause» is an anglicism: Norwegian «pause» isn't used intransitively, and the participle clause has no subject.",
+  "category": "tone"
+ },
+ {
+  "context": "terms_of_use_service_agreement",
+  "source": "Scottish Tech Army Services Agreement",
+  "current": "Scottish Tech Army tjenesteavtale",
+  "suggested": "Scottish Tech Armys tjenesteavtale",
+  "reason": "Name and noun are just juxtaposed («Scottish Tech Army tjenesteavtale»), which isn't Norwegian; it lands in «vilkårene i %1$s», so it needs the genitive (or a hyphenated compound).",
+  "category": "tone"
+ },
+ {
+  "context": "settings_voice_command_listening_prompt_description",
+  "source": "Speak a listening prompt before voice recognition starts.",
+  "current": "Les opp en melding før talegjenkjenningen starter.",
+  "suggested": "Les opp en lyttebeskjed før talegjenkjenningen starter.",
+  "reason": "«melding» is this language's confirmed term for Callout; using it for the voice-command listening prompt blurs the two.",
+  "category": "terminology"
+ },
+ {
+  "context": "callouts_bus_and_tram_stops_description",
+  "source": "Announce bus stops and tram stops as you pass them",
+  "current": "Annonser busstopp og trikkestopp når du passerer dem",
+  "suggested": "Les opp busstopp og trikkestopp når du passerer dem",
+  "reason": "«Annonser» (advertise/announce) is used nowhere else for callouts; the other settings descriptions use «lese opp».",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_main_entrance",
+  "source": "main entrance",
+  "current": "Hovedinngang",
+  "suggested": "hovedinngang",
+  "reason": "Source is lowercase because it is substituted mid-phrase in osm_entrance_named_with_destination («%1$s %2$s fra %3$s»); the capital gives «Supermarked Hovedinngang fra …» on screen.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_adult_gaming_centre",
+  "source": "Gambling Arcade",
+  "current": "Spillehall",
+  "suggested": "Spillehall",
+  "reason": "«Spillehall» (gambling arcade) and osm_amusement_arcade «Spillhall» are near-identical by ear for two different kinds of place. Needs a native speaker to choose distinct names.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_kissing_gate",
+  "source": "Kissing Gate",
+  "current": "Kissing-gate",
+  "suggested": "Kissing-gate",
+  "reason": "«Kissing-gate» (and osm_hampshire_gate «Hampshire-gate») keep English words that a Norwegian voice will mispronounce and a Norwegian listener won't recognise. There may be no settled Norwegian term, so a native speaker should decide.",
+  "category": "terminology"
+ }
+]

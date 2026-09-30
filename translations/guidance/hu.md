@@ -89,7 +89,7 @@ Nothing uploaded.
 
 **2026-09-29 — European batch review.** 6 hints were «te» verb forms or capitalised («megtekintsd», «kilépj», «válassz», «zárd be…», «Térkép…») → verbal nouns like the rest. Help: «Hely részletei» → «Helyszín adatai» (3), «Közösségi közlekedés» → «Tömegközlekedés» (1). 10 uploaded. Live strings re-checked before upload; uploaded with `--skip-validate` and verified live.
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 49 flagged, 45 applied in `ac6f12f08`. Findings: `/tmp/translation-review/hu-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 49 flagged, 45 applied in `ac6f12f08`. Findings: `translations/review/2026-09-30-all-languages/hu-findings.json`.
 Most serious fixed:
 - `callouts_verbosity_description`: Wrong article before vowel-initial level names: «A Egyszerűsített», «A Alapvető» must be «Az …» (this string is not run through resolveGrammarMarkers as «a(z)», so it is
 - `help_text_automatic_callouts_how_1`: Wrong article: «a *előző*» must be «az *előző*» (vowel-initial word).

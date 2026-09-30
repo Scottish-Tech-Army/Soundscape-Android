@@ -1,0 +1,170 @@
+[
+ {
+  "context": "faq_battery_impact_answer",
+  "source": "Battery life varies significantly depending on the model and age of your phone. The biggest drain on your battery is having the screen on, so to maximize your phone's battery life, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape has a Sleep and a Snooze Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.",
+  "current": "อายุการใช้งานแบตเตอรี่แตกต่างกันอย่างมากขึ้นอยู่กับรุ่นโทรศัพท์ที่คุณใช้และอายุการใช้งาน สิ่งที่ทำให้แบตเตอรี่หมดเร็วที่สุดคือการเปิดหน้าจอค้างไว้ ดังนั้นเพื่อยืดอายุการใช้งานแบตเตอรี่ของโทรศัพท์ คุณควรล็อกหน้าจอไว้เมื่อทำได้ เพื่อช่วยลดผลกระทบต่อแบตเตอรี่โทรศัพท์ Soundscape มีโหมดสลีปและโหมดเลื่อนเวลา เพื่อลดปริมาณการใช้แบตเตอรี่เพิ่มเติม เมื่อคุณไม่ได้ใช้งาน Soundscape คุณควรบังคับปิดแอปผ่านตัวสลับแอปของโทรศัพท์",
+  "suggested": "อายุการใช้งานแบตเตอรี่แตกต่างกันอย่างมากขึ้นอยู่กับรุ่นโทรศัพท์ที่คุณใช้และอายุการใช้งาน สิ่งที่ทำให้แบตเตอรี่หมดเร็วที่สุดคือการเปิดหน้าจอค้างไว้ ดังนั้นเพื่อยืดอายุการใช้งานแบตเตอรี่ของโทรศัพท์ คุณควรล็อกหน้าจอไว้เมื่อทำได้ เพื่อช่วยลดผลกระทบต่อแบตเตอรี่โทรศัพท์ Soundscape มีโหมดสลีปและโหมดสนูซ เพื่อลดปริมาณการใช้แบตเตอรี่เพิ่มเติม เมื่อคุณไม่ได้ใช้งาน Soundscape คุณควรบังคับปิดแอปผ่านตัวสลับแอปของโทรศัพท์",
+  "reason": "Snooze mode is «สนูซ» everywhere else (sleep_snoozing «กำลังสนูซ», sleep_sleeping_wake_on_leave_message «โหมดสนูซ», glossary Sleep/Snooze = สลีป/สนูซ), but this FAQ calls it «โหมดเลื่อนเวลา» — a split corpus for one mode (C12)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_snooze_mode_battery_question",
+  "source": "How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "จะใช้โหมดเลื่อนเวลาเพื่อลดผลกระทบของ Soundscape ต่อแบตเตอรี่โทรศัพท์ได้อย่างไร?",
+  "suggested": "จะใช้โหมดสนูซเพื่อลดผลกระทบของ Soundscape ต่อแบตเตอรี่โทรศัพท์ได้อย่างไร?",
+  "reason": "Snooze mode is «สนูซ» everywhere else (sleep_snoozing «กำลังสนูซ», sleep_sleeping_wake_on_leave_message «โหมดสนูซ», glossary Sleep/Snooze = สลีป/สนูซ), but this FAQ calls it «โหมดเลื่อนเวลา» — a split corpus for one mode (C12)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_snooze_mode_battery_answer",
+  "source": "To put Soundscape into Snooze Mode, select the *Sleep* button in the top-right corner of the home screen. Once Soundscape’s in Sleep Mode, select the *Wake On Leave* button and Soundscape will go in to a low power state until you leave your current location.",
+  "current": "หากต้องการให้ Soundscape เข้าสู่โหมดเลื่อนเวลา ให้เลือกปุ่ม *โหมดสลีป* ที่มุมขวาบนของหน้าจอหลัก เมื่อ Soundscape อยู่ในโหมดสลีปแล้ว ให้เลือกปุ่ม *ปลุกเมื่อออกจากพื้นที่* และ Soundscape จะเข้าสู่สถานะประหยัดพลังงานจนกว่าคุณจะออกจากตำแหน่งปัจจุบัน",
+  "suggested": "หากต้องการให้ Soundscape เข้าสู่โหมดสนูซ ให้เลือกปุ่ม *โหมดสลีป* ที่มุมขวาบนของหน้าจอหลัก เมื่อ Soundscape อยู่ในโหมดสลีปแล้ว ให้เลือกปุ่ม *ปลุกเมื่อออกจากพื้นที่* และ Soundscape จะเข้าสู่สถานะประหยัดพลังงานจนกว่าคุณจะออกจากตำแหน่งปัจจุบัน",
+  "reason": "Snooze mode is «สนูซ» everywhere else (sleep_snoozing «กำลังสนูซ», sleep_sleeping_wake_on_leave_message «โหมดสนูซ», glossary Sleep/Snooze = สลีป/สนูซ), but this FAQ calls it «โหมดเลื่อนเวลา» — a split corpus for one mode (C12)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape มีวิธีการควบคุมสิ่งที่คุณได้ยินและเวลาที่ได้ยินหลายวิธี:\\n\\n1. หยุดเสียงทั้งหมดทันที: แตะหน้าจอสองครั้งด้วยสองนิ้วเพื่อปิดเสียงทั้งหมดทันที รวมถึงการแจ้งเตือนที่กำลังเล่นอยู่และบีคอนหากเปิดอยู่ การแจ้งเตือนจะกลับมาทำงานโดยอัตโนมัติเมื่อคุณเข้าใกล้ทางแยกหรือสถานที่น่าสนใจถัดไป แต่บีคอนเสียงจะไม่กลับมาทำงานเอง เลือกปุ่ม *เปิดเสียงบีคอน* บนหน้าจอหลักเพื่อกลับมาฟังบีคอนอีกครั้ง\\n\\n2. หยุดการแจ้งเตือนอัตโนมัติ: เมื่อคุณไม่ได้เดินทางหรือถึงจุดหมายปลายทางแล้ว คุณอาจไม่ต้องการให้ Soundscape แจ้งเตือนสิ่งต่างๆ รอบตัวต่อไป แทนที่จะออกจากแอป คุณสามารถให้ Soundscape เข้าสู่โหมดเลื่อนเวลา และแอปจะปลุกขึ้นอีกครั้งเมื่อคุณออกจากที่นั่น หรือคุณสามารถให้ Soundscape เข้าสู่โหมดสลีป และแอปจะปิดอยู่จนกว่าคุณจะเปิดกลับมาอีกครั้ง อีกทางหนึ่งคือเลือก *การตั้งค่า* จากเมนู แล้วตั้ง *ระดับรายละเอียดการแจ้งเตือน* เป็น *เงียบสนิท* ในส่วน *จัดการการแจ้งเตือนด้วยเสียง*\\n\\n3. หยุดบีคอน: มีหลายสถานการณ์ที่คุณอาจตั้งจุดหมายปลายทางแต่ไม่ต้องการให้บีคอนเสียงเปิดอยู่ ตัวอย่างเช่น คุณอาจทราบวิธีเดินทางไปยังจุดหมายปลายทางอยู่แล้ว แต่ยังต้องการการอัปเดตอัตโนมัติเกี่ยวกับระยะทางที่เหลือ หรือคุณอาจต้องการบีคอนเสียงเฉพาะเมื่อใกล้ถึงจุดหมายปลายทางเท่านั้น ไม่ว่าจะเป็นกรณีใด คุณสามารถเลือกเวลาที่จะฟังบีคอนได้โดยสลับปุ่ม *ปิดเสียงบีคอน*/*เปิดเสียงบีคอน* บนหน้าจอหลัก\\n\\nหากคุณยังต้องการใช้งาน Soundscape แต่ไม่ต้องการฟังการแจ้งเตือนอัตโนมัติ คุณสามารถตั้ง *ระดับรายละเอียดการแจ้งเตือน* เป็น *เงียบสนิท* ได้ในส่วน *จัดการการแจ้งเตือนด้วยเสียง* ของหน้าจอ *การตั้งค่า* จากเมนู หรือหากคุณจะไม่ใช้งาน Soundscape คุณสามารถให้แอปเข้าสู่โหมดสลีปหรือโหมดเลื่อนเวลาโดยใช้ปุ่ม *โหมดสลีป* บนหน้าจอหลัก",
+  "suggested": "Soundscape มีวิธีการควบคุมสิ่งที่คุณได้ยินและเวลาที่ได้ยินหลายวิธี:\\n\\n1. หยุดเสียงทั้งหมดทันที: แตะหน้าจอสองครั้งด้วยสองนิ้วเพื่อปิดเสียงทั้งหมดทันที รวมถึงการแจ้งเตือนที่กำลังเล่นอยู่และบีคอนหากเปิดอยู่ การแจ้งเตือนจะกลับมาทำงานโดยอัตโนมัติเมื่อคุณเข้าใกล้ทางแยกหรือสถานที่น่าสนใจถัดไป แต่บีคอนเสียงจะไม่กลับมาทำงานเอง เลือกปุ่ม *เปิดเสียงบีคอน* บนหน้าจอหลักเพื่อกลับมาฟังบีคอนอีกครั้ง\\n\\n2. หยุดการแจ้งเตือนอัตโนมัติ: เมื่อคุณไม่ได้เดินทางหรือถึงจุดหมายปลายทางแล้ว คุณอาจไม่ต้องการให้ Soundscape แจ้งเตือนสิ่งต่างๆ รอบตัวต่อไป แทนที่จะออกจากแอป คุณสามารถให้ Soundscape เข้าสู่โหมดสนูซ และแอปจะปลุกขึ้นอีกครั้งเมื่อคุณออกจากที่นั่น หรือคุณสามารถให้ Soundscape เข้าสู่โหมดสลีป และแอปจะปิดอยู่จนกว่าคุณจะเปิดกลับมาอีกครั้ง อีกทางหนึ่งคือเลือก *การตั้งค่า* จากเมนู แล้วตั้ง *ระดับรายละเอียดการแจ้งเตือน* เป็น *เงียบสนิท* ในส่วน *จัดการการแจ้งเตือนด้วยเสียง*\\n\\n3. หยุดบีคอน: มีหลายสถานการณ์ที่คุณอาจตั้งจุดหมายปลายทางแต่ไม่ต้องการให้บีคอนเสียงเปิดอยู่ ตัวอย่างเช่น คุณอาจทราบวิธีเดินทางไปยังจุดหมายปลายทางอยู่แล้ว แต่ยังต้องการการอัปเดตอัตโนมัติเกี่ยวกับระยะทางที่เหลือ หรือคุณอาจต้องการบีคอนเสียงเฉพาะเมื่อใกล้ถึงจุดหมายปลายทางเท่านั้น ไม่ว่าจะเป็นกรณีใด คุณสามารถเลือกเวลาที่จะฟังบีคอนได้โดยสลับปุ่ม *ปิดเสียงบีคอน*/*เปิดเสียงบีคอน* บนหน้าจอหลัก\\n\\nหากคุณยังต้องการใช้งาน Soundscape แต่ไม่ต้องการฟังการแจ้งเตือนอัตโนมัติ คุณสามารถตั้ง *ระดับรายละเอียดการแจ้งเตือน* เป็น *เงียบสนิท* ได้ในส่วน *จัดการการแจ้งเตือนด้วยเสียง* ของหน้าจอ *การตั้งค่า* จากเมนู หรือหากคุณจะไม่ใช้งาน Soundscape คุณสามารถให้แอปเข้าสู่โหมดสลีปหรือโหมดสนูซโดยใช้ปุ่ม *โหมดสลีป* บนหน้าจอหลัก",
+  "reason": "Snooze mode is «สนูซ» everywhere else (sleep_snoozing «กำลังสนูซ», sleep_sleeping_wake_on_leave_message «โหมดสนูซ», glossary Sleep/Snooze = สลีป/สนูซ), but this FAQ calls it «โหมดเลื่อนเวลา» — a split corpus for one mode (C12)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_tip_turning_off_auto_callouts",
+  "source": "To keep using Soundscape without hearing automatic callouts, set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *Sleep* button on the home screen.",
+  "current": "หากต้องการใช้งาน Soundscape ต่อไปโดยไม่ฟังการแจ้งเตือนอัตโนมัติ ให้ตั้ง *ระดับรายละเอียดการแจ้งเตือน* เป็น *เงียบสนิท* ในส่วน *จัดการการแจ้งเตือนด้วยเสียง* ของหน้าจอ *การตั้งค่า* จากเมนู หากคุณจะไม่ใช้งาน Soundscape สักระยะ คุณสามารถให้แอปเข้าสู่โหมดสลีปหรือโหมดเลื่อนเวลาแทนได้ โดยใช้ปุ่ม *โหมดสลีป* บนหน้าจอหลัก",
+  "suggested": "หากต้องการใช้งาน Soundscape ต่อไปโดยไม่ฟังการแจ้งเตือนอัตโนมัติ ให้ตั้ง *ระดับรายละเอียดการแจ้งเตือน* เป็น *เงียบสนิท* ในส่วน *จัดการการแจ้งเตือนด้วยเสียง* ของหน้าจอ *การตั้งค่า* จากเมนู หากคุณจะไม่ใช้งาน Soundscape สักระยะ คุณสามารถให้แอปเข้าสู่โหมดสลีปหรือโหมดสนูซแทนได้ โดยใช้ปุ่ม *โหมดสลีป* บนหน้าจอหลัก",
+  "reason": "Snooze mode is «สนูซ» everywhere else (sleep_snoozing «กำลังสนูซ», sleep_sleeping_wake_on_leave_message «โหมดสนูซ», glossary Sleep/Snooze = สลีป/สนูซ), but this FAQ calls it «โหมดเลื่อนเวลา» — a split corpus for one mode (C12)",
+  "category": "terminology"
+ },
+ {
+  "context": "directions_away_from_settlement",
+  "source": "away from %1$s, %2$s behind you",
+  "current": "ห่างจาก %1$s โดยมี %2$s อยู่ด้านหลังคุณ",
+  "suggested": "ออกห่างจาก %1$s ซึ่งอยู่ด้านหลังคุณ %2$s",
+  "reason": "%2$s is a distance (\"away from Strathblane, 5.0 km behind you\"); «โดยมี %2$s อยู่ด้านหลังคุณ» says \"with 5 km behind you\", which makes the distance the thing behind you rather than the settlement",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_name_is_currently",
+  "source": "%1$s is currently %2$s.",
+  "current": "ขณะนี้ %1$s อยู่ที่ %2$s",
+  "suggested": "ขณะนี้ %1$s อยู่ห่างออกไป %2$s",
+  "reason": "%2$s is a distance plus direction (\"700 metres, north west\"); «อยู่ที่ 700 เมตร» reads \"is located at 700 metres\" — «อยู่ห่างออกไป» (is … away) is how the other distance strings (callouts_audio_beacon_distance) put it",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_name_is_currently_street_address",
+  "source": "%1$s is currently %2$s. Street address is %3$s.",
+  "current": "ขณะนี้ %1$s อยู่ที่ %2$s ที่อยู่คือ %3$s",
+  "suggested": "ขณะนี้ %1$s อยู่ห่างออกไป %2$s ที่อยู่คือ %3$s",
+  "reason": "Same sentence as directions_name_is_currently (translator note asks to keep them consistent); «อยู่ที่ %2$s» with a distance reads \"is located at 700 metres\"",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s ไปยัง ทางตัน",
+  "suggested": "%1$s ไปยังทางตัน",
+  "reason": "Stray space inside «ไปยัง ทางตัน» (left over from concatenating confect_name_to + the old confect_name_dead_end, C21); TTS will pause mid-phrase",
+  "category": "formatting"
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%1$s ไปยัง ทางตัน ผ่าน %2$s",
+  "suggested": "%1$s ไปยังทางตัน ผ่าน %2$s",
+  "reason": "Same stray space as confect_name_to_dead_end: «ไปยัง ทางตัน» splits one phrase",
+  "category": "formatting"
+ },
+ {
+  "context": "first_launch_callouts_example_3",
+  "source": "Main Street goes left",
+  "current": "ถนนเมนสตรีทอยู่ทางซ้าย",
+  "suggested": "ถนนเมนสตรีท ไปทางซ้าย",
+  "reason": "Example of the real callout directions_name_goes_left («%1$s, ไปทางซ้าย», the road *leads* left), but «อยู่ทางซ้าย» means \"is on the left\" — a different meaning from what the app will actually say (C11)",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_callouts_example_4",
+  "source": "Main Street goes right",
+  "current": "ถนนเมนสตรีทอยู่ทางขวา",
+  "suggested": "ถนนเมนสตรีท ไปทางขวา",
+  "reason": "Same as example_3: «อยู่ทางขวา» (\"is on the right\") doesn't match the real callout «ไปทางขวา» (leads right)",
+  "category": "meaning"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "\nนี่คือการอัปเดตครั้งใหญ่ของ Soundscape\n\nโหมดการเดินทางได้รับการปรับปรุงอย่างมาก เมื่อคุณเดินทางโดยรถยนต์หรือรถบัส Soundscape จะแจ้งเตือนหมายเลขถนน ทิศทางการเดินทางของคุณ และชุมชนใกล้เคียง รวมถึงแจ้งเตือนเมื่อคุณข้ามแม่น้ำ คลอง ปากแม่น้ำ และอ่าว โปรดอัปเดตแผนที่ออฟไลน์ของคุณเพื่อรับฟีเจอร์ใหม่เหล่านี้ สำหรับผู้ใช้ในสหราชอาณาจักร ป้ายรถประจำทางตอนนี้มีคำอธิบายที่ดีขึ้นมาก\n\nโหมดสลีปจะปลุกตัวเองโดยอัตโนมัติเมื่อตรวจพบว่าคุณเคลื่อนที่อีกครั้ง คุณจึงไม่ต้องจำไว้ปลุกเอง\n\nเราได้ปรับโครงสร้างโค้ดพื้นฐานใหม่เพื่อให้สร้างแอป iOS จากโค้ดชุดเดียวกันได้ ซึ่งหมายความว่าในอนาคตเราจะสามารถเปิดตัวแอป iOS ที่มีฟีเจอร์ทั้งหมดที่เราสร้างไว้สำหรับ Android ได้\n\nโปรดแจ้งปัญหาใด ๆ ที่คุณพบ ไม่ว่าจะเล็กน้อยเพียงใด ผ่านทาง Contact Support ในเมนูหลัก\n",
+  "suggested": "\nนี่คือการอัปเดตครั้งใหญ่ของ Soundscape\n\nโหมดการเดินทางได้รับการปรับปรุงอย่างมาก เมื่อคุณเดินทางโดยรถยนต์หรือรถบัส Soundscape จะแจ้งเตือนหมายเลขถนน ทิศทางการเดินทางของคุณ และชุมชนใกล้เคียง รวมถึงแจ้งเตือนเมื่อคุณข้ามแม่น้ำ คลอง ปากแม่น้ำ และอ่าว โปรดอัปเดตแผนที่ออฟไลน์ของคุณเพื่อรับฟีเจอร์ใหม่เหล่านี้ สำหรับผู้ใช้ในสหราชอาณาจักร ป้ายรถประจำทางตอนนี้มีคำอธิบายที่ดีขึ้นมาก\n\nโหมดสลีปจะปลุกตัวเองโดยอัตโนมัติเมื่อตรวจพบว่าคุณเคลื่อนที่อีกครั้ง คุณจึงไม่ต้องจำไว้ปลุกเอง\n\nเราได้ปรับโครงสร้างโค้ดพื้นฐานใหม่เพื่อให้สร้างแอป iOS จากโค้ดชุดเดียวกันได้ ซึ่งหมายความว่าในอนาคตเราจะสามารถเปิดตัวแอป iOS ที่มีฟีเจอร์ทั้งหมดที่เราสร้างไว้สำหรับ Android ได้\n\nโปรดแจ้งปัญหาใด ๆ ที่คุณพบ ไม่ว่าจะเล็กน้อยเพียงใด ผ่านทาง ติดต่อฝ่ายสนับสนุน ในเมนูหลัก\n",
+  "reason": "The menu item is left in English («Contact Support»); the real Thai menu label is «ติดต่อฝ่ายสนับสนุน» (menu_contact_support), so a user listening for it won't find it",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_welcome",
+  "source": "Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.",
+  "current": "ยินดีต้อนรับสู่บทเรียนแนะนำการใช้งาน บทเรียนนี้จะแนะนำคุณเกี่ยวกับฟีเจอร์หลักของแอป คุณสามารถหยุดบทเรียนได้ทุกเมื่อโดยแตะที่ ยกเลิกบทเรียนแนะนำ ในเมนูหลัก มาเริ่มกันที่ สถานที่ใกล้เคียง ซึ่งช่วยให้คุณค้นหาสถานที่น่าสนใจได้ ปุ่มสถานที่ใกล้เคียงอยู่บนหน้าจอหลัก ใต้แถบค้นหา แตะปุ่มนี้เพื่อลองใช้งานได้เลย",
+  "suggested": "ยินดีต้อนรับสู่บทเรียนแนะนำการใช้งาน บทเรียนนี้จะแนะนำคุณเกี่ยวกับฟีเจอร์หลักของแอป คุณสามารถหยุดบทเรียนได้ทุกเมื่อโดยแตะที่ ยกเลิกบทเรียนแนะนำการใช้งาน ในเมนูหลัก มาเริ่มกันที่ สถานที่ใกล้เคียง ซึ่งช่วยให้คุณค้นหาสถานที่น่าสนใจได้ ปุ่มสถานที่ใกล้เคียงอยู่บนหน้าจอหลัก ใต้แถบค้นหา แตะปุ่มนี้เพื่อลองใช้งานได้เลย",
+  "reason": "Names the menu item as «ยกเลิกบทเรียนแนะนำ», but the actual item (menu_audio_tutorial_cancel) is «ยกเลิกบทเรียนแนะนำการใช้งาน»; the tutorial tells the user what to listen for, so it should match",
+  "category": "terminology"
+ },
+ {
+  "context": "accessibility_title",
+  "source": "Accessibility",
+  "current": "การช่วยเหลือการเข้าถึง",
+  "suggested": "การช่วยการเข้าถึง",
+  "reason": "Two words for Accessibility: this onboarding title says «การช่วยเหลือการเข้าถึง», the settings group (menu_manage_accessibility) says «การช่วยการเข้าถึง». Pick one; Android's own Thai label is «การช่วยเหลือพิเศษ», which a reviewer may prefer for both",
+  "category": "terminology"
+ },
+ {
+  "context": "beacon_action_mute_beacon_acc_hint",
+  "source": "mute the audio beacon",
+  "current": "ปิดเสียงบีคอนเสียง",
+  "suggested": "ปิดเสียงบีคอน",
+  "reason": "«ปิดเสียงบีคอนเสียง» repeats «เสียง» (\"mute the sound beacon-sound\") and is heard after every focus on the button; the button label itself is «ปิดเสียงบีคอน»",
+  "category": "tone"
+ },
+ {
+  "context": "beacon_action_unmute_beacon_acc_hint",
+  "source": "unmute the audio beacon",
+  "current": "เปิดเสียงบีคอนเสียง",
+  "suggested": "เปิดเสียงบีคอน",
+  "reason": "«เปิดเสียงบีคอนเสียง» repeats «เสียง»; the button label is «เปิดเสียงบีคอน»",
+  "category": "tone"
+ },
+ {
+  "context": "faq_how_to_use_beacon_answer",
+  "source": "You can think of the audible beacon like a *lighthouse for your ears*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *ring* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *ring*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.\\n\\nThis design has a few natural results:\\n\\n1. There is no *correct* direction to travel when using the beacon – with Soundscape, you choose how to get there;\\n\\n2. The higher-pitched *ring* only helps you pinpoint the direction of the destination – it does not tell you how to get there;\\n\\n3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.",
+  "current": "คุณสามารถนึกภาพบีคอนเสียงเป็นเหมือน *ประภาคารสำหรับหู* ที่แจ้งให้คุณทราบว่าจุดหมายปลายทางของคุณอยู่ที่ใดเมื่อเทียบกับตำแหน่งปัจจุบันของคุณ ในแนวเส้นตรง เช่นเดียวกับประภาคาร บีคอนไม่ได้บอกวิธีเดินทางไปถึง คุณอาจยังต้องเลือกเส้นทางระหว่างทางเพื่อหลบสิ่งกีดขวาง เสียงจังหวะต่อเนื่องของบีคอนเสียงจะถูกจัดตำแหน่งเชิงพื้นที่จากทิศทางของจุดหมายปลายทาง และช่วยให้คุณรับรู้ตำแหน่งของจุดหมายปลายทางเทียบกับคุณขณะเดิน เมื่อคุณเดินตรงไปยังจุดหมายปลายทาง หรือชี้โทรศัพท์ไปทางจุดหมายปลายทาง คุณจะได้ยินเสียง *กระดิ่ง* ที่มีระดับเสียงสูงขึ้น ฟีเจอร์นี้ช่วยให้คุณระบุทิศทางของจุดหมายปลายทางได้อย่างแม่นยำ เนื่องจากบางครั้งทิศทางของเสียงจังหวะอาจรับรู้ได้ยากในสภาพแวดล้อมที่มีเสียงดัง เมื่อค้นหาเสียง *กระดิ่ง* ที่มีระดับเสียงสูง ให้ถือโทรศัพท์ในแนวราบแล้วค่อยๆ หมุนตัวเป็นวงกลม การหันศีรษะไปในทิศทางเดียวกับโทรศัพท์จะช่วยให้คุณได้รับประสบการณ์เสียงเชิงพื้นที่ที่ดีที่สุด\\n\\nการออกแบบนี้มีผลตามธรรมชาติหลายประการ:\\n\\n1. ไม่มีทิศทาง *ที่ถูกต้อง* สำหรับการเดินทางเมื่อใช้บีคอน แต่คุณสามารถเลือกวิธีเดินทางไปถึงได้ด้วยตัวเองด้วย Soundscape\\n\\n2. เสียง *กระดิ่ง* ที่มีระดับเสียงสูงช่วยให้คุณระบุทิศทางของจุดหมายปลายทางได้เท่านั้น ไม่ได้บ่งชี้ว่าคุณควรเดินทางไปอย่างไร\\n\\n3. หากโดยทั่วไปคุณทราบวิธีเดินทางไปยังจุดหมายปลายทางอยู่แล้ว คุณอาจต้องการปิดเสียงบีคอนตลอดการเดินทางส่วนใหญ่ และเปิดเฉพาะเมื่อคุณเข้าใกล้จุดหมายปลายทางมากขึ้น",
+  "suggested": "คุณสามารถนึกภาพบีคอนเสียงเป็นเหมือน *ประภาคารสำหรับหู* ที่แจ้งให้คุณทราบว่าจุดหมายปลายทางของคุณอยู่ที่ใดเมื่อเทียบกับตำแหน่งปัจจุบันของคุณ ในแนวเส้นตรง เช่นเดียวกับประภาคาร บีคอนไม่ได้บอกวิธีเดินทางไปถึง คุณอาจยังต้องเลือกเส้นทางระหว่างทางเพื่อหลบสิ่งกีดขวาง เสียงจังหวะต่อเนื่องของบีคอนจะดังมาจากทิศทางของจุดหมายปลายทาง และช่วยให้คุณรับรู้ตำแหน่งของจุดหมายปลายทางเทียบกับคุณขณะเดิน เมื่อคุณเดินตรงไปยังจุดหมายปลายทาง หรือชี้โทรศัพท์ไปทางจุดหมายปลายทาง คุณจะได้ยินเสียง *กระดิ่ง* ที่มีระดับเสียงสูงขึ้น ฟีเจอร์นี้ช่วยให้คุณระบุทิศทางของจุดหมายปลายทางได้อย่างแม่นยำ เนื่องจากบางครั้งทิศทางของเสียงจังหวะอาจรับรู้ได้ยากในสภาพแวดล้อมที่มีเสียงดัง เมื่อค้นหาเสียง *กระดิ่ง* ที่มีระดับเสียงสูง ให้ถือโทรศัพท์ในแนวราบแล้วค่อยๆ หมุนตัวเป็นวงกลม การหันศีรษะไปในทิศทางเดียวกับโทรศัพท์จะช่วยให้คุณได้รับประสบการณ์เสียงเชิงพื้นที่ที่ดีที่สุด\\n\\nการออกแบบนี้มีผลตามธรรมชาติหลายประการ:\\n\\n1. ไม่มีทิศทาง *ที่ถูกต้อง* สำหรับการเดินทางเมื่อใช้บีคอน แต่คุณสามารถเลือกวิธีเดินทางไปถึงได้ด้วยตัวเองด้วย Soundscape\\n\\n2. เสียง *กระดิ่ง* ที่มีระดับเสียงสูงช่วยให้คุณระบุทิศทางของจุดหมายปลายทางได้เท่านั้น ไม่ได้บ่งชี้ว่าคุณควรเดินทางไปอย่างไร\\n\\n3. หากโดยทั่วไปคุณทราบวิธีเดินทางไปยังจุดหมายปลายทางอยู่แล้ว คุณอาจต้องการปิดเสียงบีคอนตลอดการเดินทางส่วนใหญ่ และเปิดเฉพาะเมื่อคุณเข้าใกล้จุดหมายปลายทางมากขึ้น",
+  "reason": "Current English says the sound \"comes from the direction of the destination\"; «จะถูกจัดตำแหน่งเชิงพื้นที่จาก» (\"is spatially positioned from\") is a leftover of the older \"is spatialized\" wording and reads as jargon",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_on_road_and_settlement_since",
+  "source": "On %1$s and close to %2$s, %3$s since %4$s",
+  "current": "บน %1$s และใกล้ %2$s, %3$s นับตั้งแต่ %4$s",
+  "suggested": "บน %1$s และใกล้ %2$s มาแล้ว %3$s นับจาก %4$s",
+  "reason": "\"1.6 km since Westerton\": «%3$s นับตั้งแต่ %4$s» leaves the distance hanging; street_description_since already uses the clearer «มาแล้ว %2$s นับจาก %3$s» for the same idea",
+  "category": "tone"
+ },
+ {
+  "context": "osm_tomb",
+  "source": "Tomb",
+  "current": "สุสาน",
+  "suggested": "หลุมฝังศพ",
+  "reason": "«สุสาน» is also osm_grave_yard (Graveyard), so a single tomb and a whole cemetery sound identical; note says \"burial monument or chamber\"",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_name_continues_ahead",
+  "source": "%1$s, continues ahead",
+  "current": "%1$s, ตรงไปข้างหน้า",
+  "suggested": "%1$s, ตรงไปข้างหน้า",
+  "reason": "C11 check for a native speaker: «ตรงไปข้างหน้า» is also the everyday turn instruction \"go straight ahead\"; «ไปทางซ้าย/ขวา» are ambiguous the same way. Probably fine as a road description, but worth confirming it doesn't sound like an instruction",
+  "category": "tone"
+ }
+]

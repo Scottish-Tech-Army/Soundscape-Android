@@ -1,0 +1,330 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Это крупное обновление Soundscape. Режим передвижения значительно улучшен. При поездке на автомобиле или автобусе Soundscape теперь озвучивает номера дорог, направление вашего движения и близлежащие населённые пункты. Также объявляется пересечение рек, каналов, заливов и бухт. Пожалуйста, обновите офлайн-карты, чтобы получить эти новые возможности. Описания автобусных остановок теперь стали намного лучше для пользователей в Великобритании. Спящий режим теперь может выходить из сна автоматически, когда обнаруживает, что вы снова начали движение. Вам больше не нужно помнить о том, чтобы выводить его из сна самостоятельно. Мы реорганизовали основной код, чтобы можно было создать приложение для iOS на его основе. Это означает, что в будущем мы сможем выпустить приложение для iOS со всеми функциями, которые мы создали для Android. Пожалуйста, продолжайте сообщать о любых проблемах, какими бы незначительными они ни были, через опцию Связаться со службой поддержки в главном меню.",
+  "suggested": "\nЭто крупное обновление Soundscape.\n\nРежим передвижения значительно улучшен. При поездке на автомобиле или автобусе Soundscape теперь озвучивает номера дорог, направление вашего движения и близлежащие населённые пункты. Также объявляется пересечение рек, каналов, заливов и бухт. Пожалуйста, обновите офлайн-карты, чтобы получить эти новые возможности. Описания автобусных остановок теперь стали намного лучше для пользователей в Великобритании.\n\nСпящий режим теперь может выходить из сна автоматически, когда обнаруживает, что вы снова начали движение. Вам больше не нужно помнить о том, чтобы выводить его из сна самостоятельно.\n\nМы реорганизовали основной код, чтобы можно было создать приложение для iOS на его основе. Это означает, что в будущем мы сможем выпустить приложение для iOS со всеми функциями, которые мы создали для Android.\n\nПожалуйста, продолжайте сообщать о любых проблемах, какими бы незначительными они ни были, через опцию Связаться со службой поддержки в главном меню.\n",
+  "reason": "All 10 line breaks of the source (leading/trailing and paragraph breaks) were dropped, so the release notes run as one block; wording kept, breaks restored.",
+  "category": "formatting"
+ },
+ {
+  "context": "directions_away_from_settlement",
+  "source": "away from %1$s, %2$s behind you",
+  "current": "в стороне от %1$s, %2$s позади вас",
+  "suggested": "удаляясь от %1$s, %2$s позади вас",
+  "reason": "«в стороне от» means 'off to one side of', not 'moving away from'; the callout says the town is beside the road rather than behind. (The nominative-name-after-preposition issue, C17, remains as in the 'towards' sibling.)",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_direction",
+  "source": "at %1$s o'clock",
+  "current": "в %1$s часов",
+  "suggested": "на %1$s",
+  "reason": "«в %1$s часов» only agrees for 5-12: the digit arrives bare, so 1-4 are spoken «в один часов», «в три часов». Now that C20 gives each hour its own string, move the noun into the hour strings (see relative_clock_hour_*); «на три часа» is also the usual Russian for a clock-face direction, «в три часа» sounds like a time of day. Must be applied together with the hour strings.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_1",
+  "source": "1",
+  "current": "1",
+  "suggested": "1 час",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_2",
+  "source": "2",
+  "current": "2",
+  "suggested": "2 часа",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_3",
+  "source": "3",
+  "current": "3",
+  "suggested": "3 часа",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_4",
+  "source": "4",
+  "current": "4",
+  "suggested": "4 часа",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_5",
+  "source": "5",
+  "current": "5",
+  "suggested": "5 часов",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_6",
+  "source": "6",
+  "current": "6",
+  "suggested": "6 часов",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_7",
+  "source": "7",
+  "current": "7",
+  "suggested": "7 часов",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_8",
+  "source": "8",
+  "current": "8",
+  "suggested": "8 часов",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_9",
+  "source": "9",
+  "current": "9",
+  "suggested": "9 часов",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_10",
+  "source": "10",
+  "current": "10",
+  "suggested": "10 часов",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_11",
+  "source": "11",
+  "current": "11",
+  "suggested": "11 часов",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_clock_hour_12",
+  "source": "12",
+  "current": "12",
+  "suggested": "12 часов",
+  "reason": "Carries the correctly agreeing «час/часа/часов» for the new relative_clock_direction «на %1$s» (C20). Apply only together with that template change.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_left_right_direction_left",
+  "source": "Left",
+  "current": "Налево",
+  "suggested": "Слева",
+  "reason": "«Налево» is a direction of motion ('turn/go to the left'); this labels where a place is, like the siblings «Впереди слева», «Позади слева» and the setting name «Слева/Справа».",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_left_right_direction_right",
+  "source": "Right",
+  "current": "Направо",
+  "suggested": "Справа",
+  "reason": "«Направо» is a direction of motion ('go to the right'); this labels where a place is, like the siblings «Впереди справа», «Позади справа».",
+  "category": "meaning"
+ },
+ {
+  "context": "stationary_on_way",
+  "source": "Not moving on %1$s",
+  "current": "Нет движения на %1$s",
+  "suggested": "Вы стоите на %1$s",
+  "reason": "«Нет движения на %1$s» reads as 'there is no traffic on <road>'; the string means the user is standing still on it.",
+  "category": "meaning"
+ },
+ {
+  "context": "terms_of_use_message",
+  "source": "Your use of Soundscape is subject to the terms of the %1$s and the terms set out below (together, the *\"Terms of Use\"*).",
+  "current": "Использование вами Soundscape регулируется условиями %1$s и условиями, изложенными ниже (совместно именуемыми *«Условия использования»*).",
+  "suggested": "Использование вами Soundscape регулируется условиями документа «%1$s» и условиями, изложенными ниже (совместно именуемыми *«Условия использования»*).",
+  "reason": "C9: %1$s is terms_of_use_service_agreement («Соглашение о…», nominative), but «условиями» governs the genitive, giving «условиями Соглашение о…». Introducing it with «документа «…»» keeps the nominative correct.",
+  "category": "meaning"
+ },
+ {
+  "context": "terms_of_use_service_agreement",
+  "source": "Scottish Tech Army Services Agreement",
+  "current": "Соглашение о предоставлении услуг Шотландской технической армии",
+  "suggested": "Соглашение об оказании услуг Scottish Tech Army",
+  "reason": "The organisation's name is translated literally («Шотландской технической армии», 'Scottish technical army'), which reads as a military body and isn't the name anyone would look up; keep the proper name.",
+  "category": "terminology"
+ },
+ {
+  "context": "sleep_wake_up_now",
+  "source": "Wake Up Now",
+  "current": "Проснуться сейчас",
+  "suggested": "Разбудить сейчас",
+  "reason": "Button acts on the app, like its sibling «Разбудить, когда я уйду» and the message text «Нажмите кнопку ниже, чтобы разбудить Soundscape»; «Проснуться сейчас» sounds like an instruction to the user to wake up.",
+  "category": "tone"
+ },
+ {
+  "context": "sleep_sleeping_message",
+  "source": "Soundscape is currently sleeping. Sleep mode stops Soundscape from using Location Services or downloading data. This saves battery when you are not using Soundscape. Tap the button below to wake up Soundscape.",
+  "current": "Soundscape в настоящее время находится в спящем режиме. Спящий режим не даёт Soundscape использовать службы местоположения и скачивать данные. Это экономит заряд батареи, когда вы не используете Soundscape. Нажмите кнопку ниже, чтобы разбудить Soundscape.",
+  "suggested": "Soundscape в настоящее время находится в спящем режиме. Спящий режим не даёт Soundscape использовать Службы геолокации и скачивать данные. Это экономит заряд батареи, когда вы не используете Soundscape. Нажмите кнопку ниже, чтобы разбудить Soundscape.",
+  "reason": "iOS 'Location Services' is «Службы геолокации» in the sibling wake-on-leave message, the permission screen and 4 FAQ strings; this is the only «службы местоположения».",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "Да — вы можете снова включить маяк после того, как Soundscape его отключит, нажав кнопку *\"Включить маяк\"*; однако, поскольку службы определения местоположения имеют точность примерно до 10 метров, мы не можем гарантировать поведение маяка, когда вы находитесь в пределах нескольких метров от пункта назначения.",
+  "suggested": "Да — вы можете снова включить маяк после того, как Soundscape его отключит, нажав кнопку *Включить маяк*; однако, поскольку Службы геолокации имеют точность примерно до 10 метров, мы не можем гарантировать поведение маяка, когда вы находитесь в пределах нескольких метров от пункта назначения.",
+  "reason": "Button name in straight ASCII quotes inside the markup (every sibling uses plain *…* or *«…»*), and 'Location Services' is «Службы геолокации» everywhere else.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "Теперь вы сможете настроить эту отметку. Можно изменить её название и добавить аннотацию, которая будет озвучиваться вместе с отметкой, чтобы дать дополнительную информацию. Когда закончите, нажмите кнопку *\"Готово\"*, чтобы сохранить отметку.",
+  "suggested": "Теперь вы сможете настроить эту отметку. Можно изменить её название и добавить аннотацию, которая будет озвучиваться вместе с отметкой, чтобы дать дополнительную информацию. Когда закончите, нажмите кнопку *«Готово»*, чтобы сохранить отметку.",
+  "reason": "Straight ASCII quotes inside the button markup; the other help strings use typographic *«…»*.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "На экране *\"Изменить\"* вы также можете удалить отметку, если она вам больше не нужна.",
+  "suggested": "На экране *«Изменить»* вы также можете удалить отметку, если она вам больше не нужна.",
+  "reason": "Straight ASCII quotes inside the markup; the other help strings use typographic *«…»*.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_road_names_answer",
+  "source": "To accommodate a variety of intersection layouts, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the names of the roads that go to the left, straight ahead, and to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection forms a sideways T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.",
+  "current": "Чтобы учитывать разные формы перекрёстков, Soundscape описывает перекрёстки как сегменты дорог, отходящие из общей точки. Soundscape использует пространственное аудио, чтобы назвать дороги, идущие налево, прямо и направо, — в таком порядке. Если описание перекрёстка начинается с дороги, на которой вы находитесь, а не с той, что слева, перекрёсток образует лежащую на боку букву T: ваша дорога продолжается вперёд, а справа к ней подходит другая дорога. Аналогично, если в описании есть только дороги слева и справа, значит ваша дорога заканчивается T‑образным перекрёстком перед вами. Такой способ описания также работает, когда дорога меняет название на перекрёстке.",
+  "suggested": "Чтобы учитывать разные формы перекрёстков, Soundscape описывает перекрёстки как сегменты дорог, отходящие из общей точки. Soundscape использует пространственное аудио, чтобы назвать дороги, идущие налево, прямо и направо, — в таком порядке. Если описание перекрёстка начинается с дороги, на которой вы находитесь, а не с той, что слева, перекрёсток образует лежащую на боку букву Т: ваша дорога продолжается вперёд, а справа к ней подходит другая дорога. Аналогично, если в описании есть только дороги слева и справа, значит ваша дорога заканчивается Т‑образным перекрёстком перед вами. Такой способ описания также работает, когда дорога меняет название на перекрёстке.",
+  "reason": "Latin 'T' in «букву T» / «T‑образным»: a Russian voice may read it as the English letter name. Cyrillic «Т» is the normal spelling (Т‑образный перекрёсток).",
+  "category": "tone"
+ },
+ {
+  "context": "faq_difference_from_map_apps_answer",
+  "source": "Soundscape provides an ambient description of your surroundings in aid of exploration and wayfinding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.\\n\\nInstead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.",
+  "current": "Soundscape даёт фоновое описание вашего окружения, чтобы помочь в исследовании местности и ориентировании. С помощью пространственного (3D) аудио Soundscape будет озвучивать объекты интереса, парки, дороги и перекрёстки с той стороны, где они действительно находятся в вашем непосредственном окружении, по мере того как вы идёте. Например, если вы проходите мимо магазина справа, вы услышите его название, исходящее справа. При приближении к перекрёстку вы будете слышать названия дорог, каждое — с той стороны, куда оно уходит: сначала слева, затем прямо, затем справа.\\n\\nВместо пошаговых указаний (turn‑by‑turn), которые часто дают другие картографические приложения, Soundscape воспроизводит слышимый звуковой маяк в направлении вашего пункта назначения, давая вам возможность добираться туда так, как удобнее именно вам, опираясь на повышенную осведомлённость об окружении и о расположении цели. Soundscape разработан для работы в фоновом режиме, так что вы можете одновременно использовать приложение для пошаговой навигации, а Soundscape при этом продолжит обеспечивать вас информацией об окружающей обстановке во время движения к месту назначения.",
+  "suggested": "Soundscape даёт фоновое описание вашего окружения, чтобы помочь в исследовании местности и ориентировании. С помощью пространственного (3D) аудио Soundscape будет озвучивать объекты интереса, парки, дороги и перекрёстки с той стороны, где они действительно находятся в вашем непосредственном окружении, по мере того как вы идёте. Например, если вы проходите мимо магазина справа, вы услышите его название, исходящее справа. При приближении к перекрёстку вы будете слышать названия дорог, каждое — с той стороны, куда оно уходит: сначала слева, затем прямо, затем справа.\\n\\nВместо пошаговых указаний, которые часто дают другие картографические приложения, Soundscape воспроизводит слышимый звуковой маяк в направлении вашего пункта назначения, давая вам возможность добираться туда так, как удобнее именно вам, опираясь на повышенную осведомлённость об окружении и о расположении цели. Soundscape разработан для работы в фоновом режиме, так что вы можете одновременно использовать приложение для пошаговой навигации, а Soundscape при этом продолжит обеспечивать вас информацией об окружающей обстановке во время движения к месту назначения.",
+  "reason": "English '(turn‑by‑turn)' left in the Russian sentence is read aloud by a Russian voice with a Russian accent; «пошаговых указаний» already says it.",
+  "category": "tone"
+ },
+ {
+  "context": "faq_use_with_wayfinding_apps_answer",
+  "source": "Soundscape is designed to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.",
+  "current": "Soundscape предназначен для того, чтобы восполнять подробности об окружении, которые вы могли бы не заметить. Хотя он не является приложением для пошаговой навигации, его можно использовать совместно с такими приложениями для получения дополнительных сведений. Чтобы использовать Soundscape вместе с навигацией, сначала запустите ваше навигационное приложение. Затем переключитесь в Soundscape и установите маяк на ту же цель, что и в навигации. В этот момент оба приложения будут работать одновременно: вы будете слышать указания при ходьбе от навигационного приложения и получать от Soundscape обновления о точках интереса, перекрёстках и расстоянии до пункта назначения.",
+  "suggested": "Soundscape предназначен для того, чтобы восполнять подробности об окружении, которые вы могли бы не заметить. Хотя он не является приложением для пошаговой навигации, его можно использовать совместно с такими приложениями для получения дополнительных сведений. Чтобы использовать Soundscape вместе с навигацией, сначала запустите ваше навигационное приложение. Затем переключитесь в Soundscape и установите маяк на ту же цель, что и в навигации. В этот момент оба приложения будут работать одновременно: вы будете слышать указания при ходьбе от навигационного приложения и получать от Soundscape обновления о объектах интереса, перекрёстках и расстоянии до пункта назначения.",
+  "reason": "Only place in the corpus using «точки интереса»; 'point of interest' is «объект интереса» everywhere else.",
+  "category": "terminology"
+ },
+ {
+  "context": "first_launch_callouts_listen_accessibility_label",
+  "source": "Listen",
+  "current": "Слушайте",
+  "suggested": "Прослушать",
+  "reason": "Button label is the imperative «Слушайте» ('Listen!'); TalkBack reads it as a command. Russian button labels use the infinitive, as elsewhere in this corpus («Продолжить», «Изменить язык»).",
+  "category": "tone"
+ },
+ {
+  "context": "ui_action_button_nearby_markers_acc_hint",
+  "source": "hear about nearby places that you have marked",
+  "current": "послушать о ближайших местах, которые вы отметили",
+  "suggested": "узнать о ближайших местах, которые вы отметили",
+  "reason": "«послушать о» is unidiomatic ('listen about'); the three sibling home-button hints use «узнать о».",
+  "category": "tone"
+ },
+ {
+  "context": "markers_no_markers_hint_1",
+  "source": "Create markers for your favorite destinations, waypoints on a route, or any locations you want called out. Choose a location, or your current location, from the home screen and select *Save as Marker*.",
+  "current": "Создайте отметки для ваших любимых пунктов назначения, путевых точек или любых других мест, которые вы хотите обозначить. Выберите местоположение или ваше текущее местоположение на главном экране и нажмите *Сохранить как отметку*.",
+  "suggested": "Создайте отметки для ваших любимых пунктов назначения, путевых точек или любых других мест, о которых вы хотите слышать уточнения. Выберите местоположение или ваше текущее местоположение на главном экране и нажмите *Сохранить как отметку*.",
+  "reason": "'Locations you want called out' became «которые вы хотите обозначить» ('want to designate'); the point is that Soundscape announces them.",
+  "category": "meaning"
+ },
+ {
+  "context": "settings_media_controls_audio_menu",
+  "source": "Audio menu",
+  "current": "Аудио меню",
+  "suggested": "Аудиоменю",
+  "reason": "Written as two words «Аудио меню» here and «Аудио-меню» in help_text_remote_control_how; the compound is one word, «аудиоменю» (like «аудионавигация» in this corpus).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "Существует 2 режима работы кнопок управления мультимедиа. Режим можно выбрать в разделе *Настройки* *Элементы управления мультимедиа*. Режимы:\\n\\n *Исходный режим*. \\n\\n⏯ Воспроизведение/Пауза: переключает звук звукового маяка (включить/выключить). \\n\\n⏭ Следующий: если воспроизводится маршрут, перемещает звуковой маяк к следующей путевой точке маршрута. Если маршрут не воспроизводится, выполняет уточнение *Вокруг меня*.\\n\\n⏮ Предыдущий: если воспроизводится маршрут, перемещает звуковой маяк к предыдущей путевой точке маршрута. Если маршрут не воспроизводится, изменяет *Подробность уточнений* на один уровень тише при каждом нажатии: *Подробный*, *Упрощённый*, *Основной*, *Беззвучный* и обратно к *Подробный*.\\n\\n\\n\\n*Аудио-меню*. \\n\\n\\n\\n⏭ Следующий перемещается по ряду пунктов меню, которые приложение озвучивает с помощью синтеза речи, и после последнего возвращается к первому. ⏯ Воспроизведение/Пауза затем выполняет описанную опцию. Существует одно меню верхнего уровня, в котором в качестве пунктов присутствуют только подменю. Каждое подменю содержит группу схожих действий.\\n\\n⏮ Предыдущий не перемещается по меню. Вместо этого он изменяет *Подробность уточнений* точно так же, как в исходном режиме, поэтому одна и та же кнопка приглушает приложение в любом из режимов.",
+  "suggested": "Существует 2 режима работы кнопок управления мультимедиа. Режим можно выбрать в разделе *Настройки* *Элементы управления мультимедиа*. Режимы:\\n\\n *Исходный режим*. \\n\\n⏯ Воспроизведение/Пауза: переключает звук звукового маяка (включить/выключить). \\n\\n⏭ Следующий: если воспроизводится маршрут, перемещает звуковой маяк к следующей путевой точке маршрута. Если маршрут не воспроизводится, выполняет уточнение *Вокруг меня*.\\n\\n⏮ Предыдущий: если воспроизводится маршрут, перемещает звуковой маяк к предыдущей путевой точке маршрута. Если маршрут не воспроизводится, изменяет *Подробность уточнений* на один уровень тише при каждом нажатии: *Подробный*, *Упрощённый*, *Основной*, *Беззвучный* и обратно к *Подробный*.\\n\\n\\n\\n*Аудиоменю*. \\n\\n\\n\\n⏭ Следующий перемещается по ряду пунктов меню, которые приложение озвучивает с помощью синтеза речи, и после последнего возвращается к первому. ⏯ Воспроизведение/Пауза затем выполняет описанную опцию. Существует одно меню верхнего уровня, в котором в качестве пунктов присутствуют только подменю. Каждое подменю содержит группу схожих действий.\\n\\n⏮ Предыдущий не перемещается по меню. Вместо этого он изменяет *Подробность уточнений* точно так же, как в исходном режиме, поэтому одна и та же кнопка приглушает приложение в любом из режимов.",
+  "reason": "Must match the setting name, which is spelt differently (see settings_media_controls_audio_menu); «аудиоменю» is one word.",
+  "category": "terminology"
+ },
+ {
+  "context": "marker_name_description_hint",
+  "source": "edit the marker name",
+  "current": "изменить имя отметки",
+  "suggested": "изменить название отметки",
+  "reason": "A marker has a «название» everywhere else (location_detail_action_edit_hint «изменить название отметки», help pages); «имя» appears only here and in tour_create_marker_done.",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_create_marker_done",
+  "source": "Great! When creating a marker, you can edit its name and add notes. Try that now, and when you're ready, tap Done.",
+  "current": "Отлично! При создании отметки вы можете изменить её имя и добавить заметки. Попробуйте сейчас, а когда будете готовы, нажмите «Готово».",
+  "suggested": "Отлично! При создании отметки вы можете изменить её название и добавить заметки. Попробуйте сейчас, а когда будете готовы, нажмите «Готово».",
+  "reason": "«имя» for a marker's name; the rest of the corpus says «название отметки».",
+  "category": "terminology"
+ },
+ {
+  "context": "callouts_verbosity_description",
+  "source": "Callout detail controls how much Soundscape tells you about as you walk. Detailed mode calls out everything nearby. Simplified mode leaves out minor paths and service roads, and repeats itself less often. Essential mode calls out streets, junctions and landmarks only. Silent mode makes no automatic callouts at all, leaving beacons, routes and the buttons on the home screen.",
+  "current": "Подробность уточнений определяет, о скольком Soundscape рассказывает вам во время ходьбы. Режим Подробный озвучивает всё, что находится рядом. Режим Упрощённый пропускает второстепенные дорожки и служебные проезды и реже повторяется. Режим Основной озвучивает только улицы, перекрёстки и достопримечательности. Режим Беззвучный не выдаёт автоматических уточнений вовсе, оставляя маяки, маршруты и кнопки на главном экране.",
+  "suggested": "Подробность уточнений определяет, о скольком Soundscape рассказывает вам во время ходьбы. Режим Подробный озвучивает всё, что находится рядом. Режим Упрощённый пропускает второстепенные дорожки и подъездные дороги и реже повторяется. Режим Основной озвучивает только улицы, перекрёстки и достопримечательности. Режим Беззвучный не выдаёт автоматических уточнений вовсе, оставляя маяки, маршруты и кнопки на главном экране.",
+  "reason": "Says Simplified leaves out «служебные проезды», but the callout for a service road is «Подъездная дорога» (osm_service_road), so the listener can't connect the two.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_ahead_of_me_what",
+  "source": "The *Ahead of Me* button tells you about up to five things ahead of you. *Ahead of Me* is intended to help you explore the way ahead of yourself when you are learning about a new area.",
+  "current": "Кнопка *Передо мной* сообщает не более чем о пяти объектах, расположенных перед вами. *Передо мной* предназначена помочь вам исследовать то, что находится впереди, когда вы знакомитесь с новой местностью.",
+  "suggested": "Кнопка *«Передо мной»* сообщает не более чем о пяти объектах, расположенных перед вами. *«Передо мной»* предназначена помочь вам исследовать то, что находится впереди, когда вы знакомитесь с новой местностью.",
+  "reason": "The button name is unquoted here, while all the sibling help strings for the four buttons (after the 2026-09-29 fix) use *«…»*. Button name itself is still open question Q7.",
+  "category": "formatting"
+ },
+ {
+  "context": "osm_silo",
+  "source": "Silo",
+  "current": "Силос",
+  "suggested": "Силосная башня",
+  "reason": "«Силос» alone mostly means silage (the fodder); the structure is «силосная башня» (or «силосное хранилище»).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_town",
+  "source": "Town",
+  "current": "Посёлок",
+  "suggested": "Посёлок",
+  "reason": "«Посёлок» is a village-type settlement; a UK/European town (Milngavie, Strathblane) is a «город» in Russian. But «Город» is already osm_city, so a native speaker should choose («Городок», «Небольшой город», or accept «Город» for both).",
+  "category": "meaning"
+ },
+ {
+  "context": "directions_at_poi",
+  "source": "At %1$s",
+  "current": "В %1$s",
+  "suggested": "В %1$s",
+  "reason": "C17: «В %1$s» with a nominative POI name reads as motion ('into Starbucks') or with the wrong case («В парк»). Same shape in «Рядом с %1$s», «Приближаемся к %1$s», «На %1$s», «вдоль %1$s», confect_name_to «к %2$s». A label form («Рядом: %1$s») is the candidate to put to a reviewer, not to apply unasked.",
+  "category": "meaning"
+ },
+ {
+  "context": "relative_degrees_direction",
+  "source": "at %1$s degrees",
+  "current": "под углом %1$s градусов",
+  "suggested": "под углом %1$s градусов",
+  "reason": "CROSS-LANGUAGE: «под углом %1$s градусов» can't agree with 1, 2-4, 21, 22… («1 градусов», «22 градусов»), because the angle arrives as a bare number in a plain string. Needs a plurals resource (or per-value strings like C20) in code; any language with numeric agreement has this.",
+  "category": "meaning"
+ }
+]

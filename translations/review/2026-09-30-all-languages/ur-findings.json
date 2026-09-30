@@ -1,0 +1,354 @@
+[
+ {
+  "context": "osm_clockmaker",
+  "source": "Clockmaker",
+  "current": "دیواری گھڑی ساز (to distinguish from Watchmaker Shop)",
+  "suggested": "گھڑی ساز",
+  "reason": "English translator note '(to distinguish from Watchmaker Shop)' leaked into the translation and is read aloud as part of the POI callout",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_welcome_description",
+  "source": "Navigate with confidence using Soundscape spatial audio",
+  "current": "Soundscape کی مقامی آڈیو کے ذریعے اعتماد کے ساتھ راستہ تلاش کریں",
+  "suggested": "Soundscape کی مکانی آڈیو کے ذریعے اعتماد کے ساتھ راستہ تلاش کریں",
+  "reason": "«مقامی آڈیو» means 'local audio'; spatial audio is «مکانی آڈیو» everywhere else in the corpus",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_how_to_use_beacon_answer",
+  "source": "You can think of the audible beacon like a *lighthouse for your ears*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *ring* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *ring*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.\\n\\nThis design has a few natural results:\\n\\n1. There is no *correct* direction to travel when using the beacon – with Soundscape, you choose how to get there;\\n\\n2. The higher-pitched *ring* only helps you pinpoint the direction of the destination – it does not tell you how to get there;\\n\\n3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.",
+  "current": "آپ آڈیو بیکن کو *اپنے کانوں کے لیے لائٹ ہاؤس* کے طور پر سوچ سکتے ہیں: یہ آپ کو بتاتا ہے کہ آپ کی منزل، سیدھی لکیر میں، آپ کے موجودہ مقام کے نسبت کہاں ہے۔ لائٹ ہاؤس کی طرح، یہ آپ کو یہ نہیں بتاتا کہ وہاں کیسے پہنچنا ہے – رکاوٹوں سے بچنے کے لیے آپ کو راستے میں نیویگیشن کے فیصلے کرنے پڑ سکتے ہیں۔ آڈیو بیکن کی مسلسل تال والی آواز منزل کی سمت سے آتی ہے، اور چلتے ہوئے آپ کو یہ جاننے میں مدد دیتی ہے کہ منزل آپ کے نسبت کس طرف ہے۔ جب آپ منزل کی طرف براہِ راست چل رہے ہوں، یا فون کو منزل کی طرف موڑیں، تو ایک بلند سر والی *رنگ* آواز سنائی دے گی۔ چونکہ شور والے ماحول میں تال والی آواز کی سمت محسوس کرنا کبھی کبھار مشکل ہوتا ہے، اس لیے یہ آپ کو منزل کی سمت درست طور پر متعین کرنے کے قابل بناتی ہے۔ بلند سر والی *رنگ* کو تلاش کرتے وقت، فون کو چپٹا پکڑیں اور آہستہ آہستہ گھومیں؛ اپنے سر کو فون کی سمت میں موڑنے سے آپ کو بہترین مکانی آڈیو تجربہ حاصل ہوگا۔\\n\\nاس ڈیزائن کے چند فطری نتائج ہیں:\\n\\n1. بیکن استعمال کرتے وقت سفر کرنے کی کوئی *درست* سمت نہیں ہوتی – Soundscape کے ساتھ آپ خود منتخب کرتے ہیں کہ وہاں کیسے پہنچنا ہے؛\\n\\n2. بلند سر والی *رنگ* صرف منزل کی سمت متعین کرنے میں آپ کی مدد کرتی ہے – یہ نہیں بتاتی کہ آپ کو وہاں کیسے پہنچنا چاہیے؛\\n\\n3. اگر آپ کو عام طور پر معلوم ہے کہ اپنی منزل تک کیسے پہنچنا ہے، تو آپ اپنے سفر کے زیادہ تر حصے کے لیے بیکن خاموش رکھنا اور صرف منزل کے قریب پہنچنے پر اسے آن کرنا چاہ سکتے ہیں۔",
+  "suggested": "آپ آڈیو بیکن کو *اپنے کانوں کے لیے لائٹ ہاؤس* کے طور پر سوچ سکتے ہیں: یہ آپ کو بتاتا ہے کہ آپ کی منزل، سیدھی لکیر میں، آپ کے موجودہ مقام کے نسبت کہاں ہے۔ لائٹ ہاؤس کی طرح، یہ آپ کو یہ نہیں بتاتا کہ وہاں کیسے پہنچنا ہے – رکاوٹوں سے بچنے کے لیے آپ کو راستے میں نیویگیشن کے فیصلے کرنے پڑ سکتے ہیں۔ آڈیو بیکن کی مسلسل تال والی آواز منزل کی سمت سے آتی ہے، اور چلتے ہوئے آپ کو یہ جاننے میں مدد دیتی ہے کہ منزل آپ کے نسبت کس طرف ہے۔ جب آپ منزل کی طرف براہِ راست چل رہے ہوں، یا فون کو منزل کی طرف موڑیں، تو ایک بلند سر والی *گھنٹی* کی آواز سنائی دے گی۔ چونکہ شور والے ماحول میں تال والی آواز کی سمت محسوس کرنا کبھی کبھار مشکل ہوتا ہے، اس لیے یہ آپ کو منزل کی سمت درست طور پر متعین کرنے کے قابل بناتی ہے۔ بلند سر والی *گھنٹی* کو تلاش کرتے وقت، فون کو چپٹا پکڑیں اور آہستہ آہستہ گھومیں؛ اپنے سر کو فون کی سمت میں موڑنے سے آپ کو بہترین مکانی آڈیو تجربہ حاصل ہوگا۔\\n\\nاس ڈیزائن کے چند فطری نتائج ہیں:\\n\\n1. بیکن استعمال کرتے وقت سفر کرنے کی کوئی *درست* سمت نہیں ہوتی – Soundscape کے ساتھ آپ خود منتخب کرتے ہیں کہ وہاں کیسے پہنچنا ہے؛\\n\\n2. بلند سر والی *گھنٹی* صرف منزل کی سمت متعین کرنے میں آپ کی مدد کرتی ہے – یہ نہیں بتاتی کہ آپ کو وہاں کیسے پہنچنا چاہیے؛\\n\\n3. اگر آپ کو عام طور پر معلوم ہے کہ اپنی منزل تک کیسے پہنچنا ہے، تو آپ اپنے سفر کے زیادہ تر حصے کے لیے بیکن خاموش رکھنا اور صرف منزل کے قریب پہنچنے پر اسے آن کرنا چاہ سکتے ہیں۔",
+  "reason": "*ring* rendered «رنگ», which in Urdu means 'colour' (a TTS voice reads it as rang); the sound is a bell-like ring",
+  "category": "meaning"
+ },
+ {
+  "context": "trademark_disclaimer",
+  "source": "All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.",
+  "current": "تمام تھرڈ پارٹی مصنوعات، کمپنی کے ناموں اور لوگوز کے ٹریڈ مارکس یا رجسٹرڈ ٹریڈ مارکس ہیں اور ان کے متعلقہ مالکان کی ملکیت ہیں۔",
+  "suggested": "تمام تھرڈ پارٹی مصنوعات اور کمپنیوں کے نام اور لوگوز ٹریڈ مارکس یا رجسٹرڈ ٹریڈ مارکس ہیں اور اپنے متعلقہ مالکان کی ملکیت ہیں۔",
+  "reason": "Ungrammatical: «…کمپنی کے ناموں اور لوگوز کے ٹریڈ مارکس… ہیں» says 'the trademarks of company names and logos are…', losing the subject",
+  "category": "meaning"
+ },
+ {
+  "context": "first_launch_callouts_title",
+  "source": "Hear Your Surroundings",
+  "current": "اپنے ارد گرد کی آوازیں سنیں",
+  "suggested": "اپنے اردگرد کے بارے میں سنیں",
+  "reason": "«اپنے ارد گرد کی آوازیں سنیں» = 'hear the sounds around you'; the screen is about hearing descriptions of your surroundings (callouts), as in callouts_panel_title",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_tip_beacon_quiet",
+  "source": "If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.",
+  "current": "اگر آپ اپنا فون جیب میں رکھیں اور چلنا بند کر دیں، تو بیکن کی آواز خاموش ہو جائے گی کیونکہ Soundscape یہ نہیں بتا سکتا کہ آپ کس سمت کا رخ کیے ہوئے ہیں۔ اسے حل کرنے کے لیے دوبارہ چلنا شروع کریں، یا اپنا فون باہر نکال کر چپٹا پکڑیں۔",
+  "suggested": "اگر آپ اپنا فون جیب میں رکھیں اور چلنا بند کر دیں، تو بیکن کی آواز دھیمی ہو جائے گی کیونکہ Soundscape یہ نہیں جان سکتا کہ آپ کس سمت کا رخ کیے ہوئے ہیں۔ اسے حل کرنے کے لیے دوبارہ چلنا شروع کریں، یا اپنا فون باہر نکال کر چپٹا پکڑیں۔",
+  "reason": "'gets quieter' became «خاموش ہو جائے گی» (goes silent), and 'cannot tell which way' became «نہیں بتا سکتا» (cannot say) instead of 'cannot determine'",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "نہیں! چلتے وقت آپ فون کو بیگ، جیب یا جہاں بھی آسان ہو رکھ سکتے ہیں۔ Soundscape آپ کی چلنے کی سمت کا استعمال کر کے یہ معلوم کرے گا کہ آپ کی بائیں اور دائیں طرف کون سے کالآؤٹس کا اعلان کرنا ہے۔ جب آپ چلنا بند کر دیتے ہیں، تو Soundscape کو یہ معلوم نہیں ہوتا کہ آپ کس سمت کا رخ کیے ہوئے ہیں۔ اگر قابلِ سماعت بیکن آن ہو، تو آپ محسوس کریں گے کہ جب تک آپ دوبارہ چلنا شروع نہ کریں یہ خاموش ہو جاتا ہے۔ آپ کسی بھی وقت ہوم اسکرین کے نیچے موجود مقام اور دریافت کے بٹن دبانے کے لیے فون باہر نکال سکتے ہیں، لیکن یقینی بنائیں کہ فون کا اوپری حصہ اسی سمت میں ہو جس طرف آپ کا رخ ہے اور اسکرین آسمان کی طرف ہو۔ اس *چپٹی* حالت میں، Soundscape فون کے کمپاس کا استعمال کر کے یہ معلوم کرے گا کہ آپ کس سمت کا رخ کیے ہوئے ہیں اور درست مکانی کالآؤٹس فراہم کرے گا۔ اگر بیکن آن ہو، تو آپ یہ بھی محسوس کریں گے کہ یہ پوری آواز پر واپس آ جاتا ہے۔",
+  "suggested": "نہیں! چلتے وقت آپ فون کو بیگ، جیب یا جہاں بھی آسان ہو رکھ سکتے ہیں۔ Soundscape آپ کی چلنے کی سمت کا استعمال کر کے یہ معلوم کرے گا کہ آپ کی بائیں اور دائیں طرف کون سے کالآؤٹس کا اعلان کرنا ہے۔ جب آپ چلنا بند کر دیتے ہیں، تو Soundscape کو یہ معلوم نہیں ہوتا کہ آپ کس سمت کا رخ کیے ہوئے ہیں۔ اگر قابلِ سماعت بیکن آن ہو، تو آپ محسوس کریں گے کہ جب تک آپ دوبارہ چلنا شروع نہ کریں اس کی آواز دھیمی ہو جاتی ہے۔ آپ کسی بھی وقت ہوم اسکرین کے نیچے موجود مقام اور دریافت کے بٹن دبانے کے لیے فون باہر نکال سکتے ہیں، لیکن یقینی بنائیں کہ فون کا اوپری حصہ اسی سمت میں ہو جس طرف آپ کا رخ ہے اور اسکرین آسمان کی طرف ہو۔ اس *چپٹی* حالت میں، Soundscape فون کے کمپاس کا استعمال کر کے یہ معلوم کرے گا کہ آپ کس سمت کا رخ کیے ہوئے ہیں اور درست مکانی کالآؤٹس فراہم کرے گا۔ اگر بیکن آن ہو، تو آپ یہ بھی محسوس کریں گے کہ یہ پوری آواز پر واپس آ جاتا ہے۔",
+  "reason": "'you will notice it get quiet' became «یہ خاموش ہو جاتا ہے» (it goes silent); the beacon only gets quieter",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_glacier",
+  "source": "Glacier",
+  "current": "برفانی تودہ",
+  "suggested": "گلیشیئر",
+  "reason": "«برفانی تودہ» usually means an avalanche or ice block; a glacier is «گلیشیئر»",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_dormitory",
+  "source": "Dormitory",
+  "current": "خوابگاہ",
+  "suggested": "اقامت گاہ",
+  "reason": "«خوابگاہ» means a bedroom; a dormitory building is «اقامت گاہ» (osm_hostel already uses «ہاسٹل»)",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_wreck",
+  "source": "Wreck",
+  "current": "ملبہ",
+  "suggested": "جہاز کا ملبہ",
+  "reason": "«ملبہ» is plain 'debris' (same as osm_debris); OSM historic=wreck is a shipwreck",
+  "category": "meaning"
+ },
+ {
+  "context": "search_synonyms_hotel",
+  "source": "hotel, accommodation",
+  "current": "گیسٹ ہاؤس، قیام گاہ",
+  "suggested": "گیسٹ ہاؤس، قیام گاہ",
+  "reason": "The everyday word «ہوٹل» is missing from the hotel synonyms (it only appears under restaurants), so typing «ہوٹل» won't find hotels. Possibly deliberate because «ہوٹل» also means an eatery in Pakistan; needs a native-speaker call",
+  "category": "meaning"
+ },
+ {
+  "context": "action_route_started",
+  "source": "Starting %1$s",
+  "current": "%1$s شروع کر رہا ہوں",
+  "suggested": "%1$s شروع کیا جا رہا ہے",
+  "reason": "«شروع کر رہا ہوں» is first-person masculine ('I am starting'); the app shouldn't speak as a gendered 'I'. Matches voice_cmd_starting_route's impersonal form",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_section_title_when",
+  "source": "When would I use it?",
+  "current": "میں اسے کب استعمال کروں گا؟",
+  "suggested": "اسے کب استعمال کیا جائے؟",
+  "reason": "«میں اسے کب استعمال کروں گا؟» forces the masculine on the reader; an impersonal form avoids it",
+  "category": "gender"
+ },
+ {
+  "context": "faq_what_can_I_set_question",
+  "source": "What can I set as a beacon?",
+  "current": "میں بیکن کے طور پر کیا سیٹ کر سکتا ہوں؟",
+  "suggested": "بیکن کے طور پر کیا سیٹ کیا جا سکتا ہے؟",
+  "reason": "First-person masculine «کر سکتا ہوں»; an impersonal passive avoids gendering the user",
+  "category": "gender"
+ },
+ {
+  "context": "faq_beacon_on_address_question",
+  "source": "Can I set a beacon on an address?",
+  "current": "کیا میں کسی پتے پر بیکن سیٹ کر سکتا ہوں؟",
+  "suggested": "کیا کسی پتے پر بیکن سیٹ کیا جا سکتا ہے؟",
+  "reason": "First-person masculine «کر سکتا ہوں»",
+  "category": "gender"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_question",
+  "source": "Can I turn the beacon back on when I am close to my destination?",
+  "current": "کیا میں اپنی منزل کے قریب پہنچنے پر بیکن دوبارہ آن کر سکتا ہوں؟",
+  "suggested": "کیا منزل کے قریب پہنچنے پر بیکن دوبارہ آن کیا جا سکتا ہے؟",
+  "reason": "First-person masculine «کر سکتا ہوں»",
+  "category": "gender"
+ },
+ {
+  "context": "faq_how_close_to_destination_question",
+  "source": "When I set a beacon on a destination, how close will Soundscape get me there?",
+  "current": "جب میں کسی منزل پر بیکن سیٹ کرتا ہوں، Soundscape مجھے کتنا قریب لے جائے گا؟",
+  "suggested": "کسی منزل پر بیکن سیٹ کرنے کے بعد Soundscape مجھے اس کے کتنا قریب لے جائے گا؟",
+  "reason": "First-person masculine «سیٹ کرتا ہوں»",
+  "category": "gender"
+ },
+ {
+  "context": "faq_why_not_every_business_question",
+  "source": "Why doesn’t Soundscape announce every business that I pass?",
+  "current": "Soundscape ہر اس کاروبار کا اعلان کیوں نہیں کرتا جس کے پاس سے میں گزرتا ہوں؟",
+  "suggested": "Soundscape ہر اس کاروبار کا اعلان کیوں نہیں کرتا جس کے پاس سے میرا گزر ہوتا ہے؟",
+  "reason": "First-person masculine «گزرتا ہوں»",
+  "category": "gender"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_question",
+  "source": "How do I control what I hear and when I hear it in Soundscape?",
+  "current": "میں Soundscape میں کیا اور کب سنتا ہوں اسے کیسے کنٹرول کروں؟",
+  "suggested": "Soundscape میں کیا اور کب سنائی دے، اسے میں کیسے کنٹرول کروں؟",
+  "reason": "First-person masculine «سنتا ہوں»",
+  "category": "gender"
+ },
+ {
+  "context": "help_config_voices_content",
+  "source": "Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *Settings* from the main menu, expand the *Audio* section, and then select *Voices*.",
+  "current": "Soundscape آپ کے اینڈرائیڈ فون کی Text-to-speech آؤٹ پٹ سیٹنگز میں ڈاؤن لوڈ کی گئی کسی بھی آواز کو استعمال کر سکتا ہے۔ Soundscape ایپ کے اندر، ڈیفالٹ اینڈرائیڈ آواز کے علاوہ کوئی اور آواز منتخب کرنے کے لیے، مرکزی مینو سے *سیٹنگز* پر جائیں، *آڈیو* سیکشن کو پھیلائیں، اور پھر *آوازیں* منتخب کریں۔",
+  "suggested": "Soundscape آپ کے اینڈرائیڈ فون کی Text-to-speech آؤٹ پٹ سیٹنگز میں ڈاؤن لوڈ کی گئی کسی بھی آواز کو استعمال کر سکتا ہے۔ Soundscape ایپ کے اندر، ڈیفالٹ اینڈرائیڈ آواز کے علاوہ کوئی اور آواز منتخب کرنے کے لیے، مرکزی مینو سے *ترتیبات* پر جائیں، *آڈیو* سیکشن کو پھیلائیں، اور پھر *آوازیں* منتخب کریں۔",
+  "reason": "The *Settings* UI name is written «سیٹنگز», but the screen is titled «ترتیبات» (settings_screen_title, and help_config_voices_content_ios)",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_what",
+  "source": "Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *Manage Callouts* section of the *Settings* screen, and you can turn all callouts off when you want the app to be silent.",
+  "current": "Soundscape آپ کو اپنے ارد گرد کی چیزوں کے بارے میں بتا سکتا ہے جب آپ ان کے قریب پہنچتے ہیں، ان کا نام اس سمت سے پکار کر جہاں وہ واقع ہیں۔ ایپ یہ کام خودکار طور پر کاروباروں، بس اسٹاپس، اور یہاں تک کہ چوراہوں جیسی ہر قسم کی چیزوں کے لیے کرتی ہے۔ آپ *سیٹنگز* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں یہ ترتیب دے سکتے ہیں کہ ایپ خودکار طور پر کیا اعلان کرے، اور جب آپ چاہیں کہ ایپ خاموش رہے تو تمام کالآؤٹس بند کر سکتے ہیں۔",
+  "suggested": "Soundscape آپ کو اپنے ارد گرد کی چیزوں کے بارے میں بتا سکتا ہے جب آپ ان کے قریب پہنچتے ہیں، ان کا نام اس سمت سے پکار کر جہاں وہ واقع ہیں۔ ایپ یہ کام خودکار طور پر کاروباروں، بس اسٹاپس، اور یہاں تک کہ چوراہوں جیسی ہر قسم کی چیزوں کے لیے کرتی ہے۔ آپ *ترتیبات* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں یہ ترتیب دے سکتے ہیں کہ ایپ خودکار طور پر کیا اعلان کرے، اور جب آپ چاہیں کہ ایپ خاموش رہے تو تمام کالآؤٹس بند کر سکتے ہیں۔",
+  "reason": "The *Settings* UI name is written «سیٹنگز», but the screen is titled «ترتیبات» (settings_screen_title, and help_config_voices_content_ios)",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_1",
+  "source": "**Turning callouts on or off :**\\n\\n Turning callouts off will silence the app. Callouts can be turned off in the *Manage Callouts* section of the *Settings* screen by setting *Callout Detail* to *Silent*, and turned back on by choosing any other level. On iPhone you can do the same by asking Siri, and on Android the same will work through Gemini once Google releases support for it. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *previous* moves down through *Detailed*, *Simplified*, *Essential* and *Silent*, and one more press goes back to *Detailed*. See the *Using Media Controls* help topic. Alternatively, you can use the *Sleep* button in the top-right corner of the home screen to stop Soundscape from making callouts until you wake it up.",
+  "current": "**کالآؤٹس آن یا آف کرنا:**\\n\\n کالآؤٹس بند کرنے سے ایپ خاموش ہو جائے گی۔ کالآؤٹس کو *سیٹنگز* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کر کے بند کیا جا سکتا ہے، اور کوئی بھی دوسری سطح منتخب کر کے دوبارہ آن کیا جا سکتا ہے۔ iPhone پر یہی کام آپ Siri سے کہہ کر کروا سکتے ہیں، اور Android پر Google کی جانب سے سپورٹ جاری ہوتے ہی یہی کام Gemini کے ذریعے ہو سکے گا۔ آپ اپنے ہیڈفونز کے میڈیا کنٹرول بٹنوں سے Soundscape کو ایک ایک درجہ کم بھی کر سکتے ہیں: *پچھلا* دبانے پر ہر بار سطح *تفصیلی*، *سادہ*، *ضروری* اور *خاموش* سے ہوتی ہوئی ایک درجہ نیچے جاتی ہے، اور ایک بار مزید دبانے پر واپس *تفصیلی* پر آ جاتی ہے۔ *میڈیا کنٹرولز کا استعمال* مدد کا موضوع دیکھیں۔ متبادل کے طور پر، آپ ہوم اسکرین کے اوپری دائیں کونے میں موجود *نیند* بٹن کا استعمال کر کے Soundscape کو کالآؤٹس کرنے سے روک سکتے ہیں جب تک آپ اسے جگا نہ دیں۔",
+  "suggested": "**کالآؤٹس آن یا آف کرنا:**\\n\\n کالآؤٹس بند کرنے سے ایپ خاموش ہو جائے گی۔ کالآؤٹس کو *ترتیبات* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کر کے بند کیا جا سکتا ہے، اور کوئی بھی دوسری سطح منتخب کر کے دوبارہ آن کیا جا سکتا ہے۔ iPhone پر یہی کام آپ Siri سے کہہ کر کروا سکتے ہیں، اور Android پر Google کی جانب سے سپورٹ جاری ہوتے ہی یہی کام Gemini کے ذریعے ہو سکے گا۔ آپ اپنے ہیڈفونز کے میڈیا کنٹرول بٹنوں سے Soundscape کو ایک ایک درجہ کم بھی کر سکتے ہیں: *پچھلا* دبانے پر ہر بار سطح *تفصیلی*، *سادہ*، *ضروری* اور *خاموش* سے ہوتی ہوئی ایک درجہ نیچے جاتی ہے، اور ایک بار مزید دبانے پر واپس *تفصیلی* پر آ جاتی ہے۔ *میڈیا کنٹرولز کا استعمال* مدد کا موضوع دیکھیں۔ متبادل کے طور پر، آپ ہوم اسکرین کے اوپری دائیں کونے میں موجود *نیند* بٹن کا استعمال کر کے Soundscape کو کالآؤٹس کرنے سے روک سکتے ہیں جب تک آپ اسے جگا نہ دیں۔",
+  "reason": "The *Settings* UI name is written «سیٹنگز», but the screen is titled «ترتیبات» (settings_screen_title, and help_config_voices_content_ios)",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_2",
+  "source": "**Managing which callouts you hear :**\\n\\n To choose the types of things Soundscape will automatically call out, go to the *Settings* screen using the menu on the *Home* screen. The *Manage Callouts* section of the *Settings* screen is where you choose how much the app says with *Callout Detail*, whether it calls out *Streets and Junctions*, and which *Places to Call Out*. If you wish to turn off all callouts, set *Callout Detail* to *Silent*.",
+  "current": "**آپ کون سے کالآؤٹس سنتے ہیں اسے منظم کرنا:**\\n\\n ان اقسام کی چیزیں منتخب کرنے کے لیے جنہیں Soundscape خودکار طور پر پکارے گا، *ہوم* اسکرین پر مینو کا استعمال کر کے *سیٹنگز* اسکرین پر جائیں۔ *سیٹنگز* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں ہی آپ *کالآؤٹ تفصیل* سے یہ طے کرتے ہیں کہ ایپ کتنا بولے، آیا وہ *سڑکیں اور چوراہے* پکارے، اور *پکارے جانے والے مقامات* کون سے ہوں۔ اگر آپ تمام کالآؤٹس بند کرنا چاہتے ہیں تو *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کریں۔",
+  "suggested": "**آپ کون سے کالآؤٹس سنتے ہیں اسے منظم کرنا:**\\n\\n ان اقسام کی چیزیں منتخب کرنے کے لیے جنہیں Soundscape خودکار طور پر پکارے گا، *ہوم* اسکرین پر مینو کا استعمال کر کے *ترتیبات* اسکرین پر جائیں۔ *ترتیبات* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں ہی آپ *کالآؤٹ تفصیل* سے یہ طے کرتے ہیں کہ ایپ کتنا بولے، آیا وہ *سڑکیں اور چوراہے* پکارے، اور *پکارے جانے والے مقامات* کون سے ہوں۔ اگر آپ تمام کالآؤٹس بند کرنا چاہتے ہیں تو *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کریں۔",
+  "reason": "The *Settings* UI name is written «سیٹنگز», but the screen is titled «ترتیبات» (settings_screen_title, and help_config_voices_content_ios)",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "میڈیا کنٹرولز کے کام کرنے کے 2 موڈز ہیں۔ موڈ کو *سیٹنگز* کے *میڈیا کنٹرولز* حصے میں منتخب کیا جا سکتا ہے۔ موڈز یہ ہیں:\\n\\n *اوریجنل موڈ۔* \\n\\n⏯ پلے/پاز: بیکن آڈیو کو آن اور آف کرتا ہے۔ \\n\\n⏭ نیکسٹ: اگر کوئی روٹ چل رہا ہو تو آڈیو بیکن کو روٹ کے اگلے ویپوائنٹ پر منتقل کرتا ہے۔ اگر کوئی روٹ نہیں چل رہا تو *میرے اردگرد* پکارتا ہے۔\\n\\n⏮ پریوئس: اگر کوئی روٹ چل رہا ہو تو آڈیو بیکن کو روٹ کے پچھلے ویپوائنٹ پر منتقل کرتا ہے۔ اگر کوئی روٹ نہیں چل رہا تو ہر بار دبانے پر *کالآؤٹ تفصیل* ایک درجہ کم ہو جاتی ہے: *تفصیلی*، *سادہ*، *ضروری*، *خاموش*، اور پھر واپس *تفصیلی*۔\\n\\n\\n\\n*آڈیو مینو۔* \\n\\n\\n\\n⏭ نیکسٹ مینو کے مختلف اختیارات کے سلسلے میں آگے بڑھتا ہے جنہیں ایپ ٹیکسٹ ٹو اسپیچ کے ذریعے بیان کرتی ہے، اور آخری کے بعد دوبارہ پہلے پر آ جاتا ہے۔ اس کے بعد ⏯ پلے/پاز ایپ کو بیان کردہ اختیار انجام دینے کے لیے فعال کرتا ہے۔ صرف ایک اعلیٰ ترین سطح کا مینو ہوتا ہے جس میں صرف ذیلی مینوز بطور اختیارات ہوتے ہیں۔ ہر ذیلی مینو میں ملتے جلتے ممکنہ اعمال کا ایک گروپ ہوتا ہے۔\\n\\n⏮ پریوئس مینو میں حرکت نہیں کرتا۔ اس کے بجائے یہ *کالآؤٹ تفصیل* کو بالکل ویسے ہی بدلتا ہے جیسے اوریجنل موڈ میں، چنانچہ آپ جو بھی موڈ استعمال کریں، وہی بٹن ایپ کو کم بولنے پر لے آتا ہے۔",
+  "suggested": "میڈیا کنٹرولز کے کام کرنے کے 2 موڈز ہیں۔ موڈ کو *ترتیبات* کے *میڈیا کنٹرولز* حصے میں منتخب کیا جا سکتا ہے۔ موڈز یہ ہیں:\\n\\n *اوریجنل موڈ۔* \\n\\n⏯ پلے/پاز: بیکن آڈیو کو آن اور آف کرتا ہے۔ \\n\\n⏭ نیکسٹ: اگر کوئی روٹ چل رہا ہو تو آڈیو بیکن کو روٹ کے اگلے ویپوائنٹ پر منتقل کرتا ہے۔ اگر کوئی روٹ نہیں چل رہا تو *میرے اردگرد* پکارتا ہے۔\\n\\n⏮ پریوئس: اگر کوئی روٹ چل رہا ہو تو آڈیو بیکن کو روٹ کے پچھلے ویپوائنٹ پر منتقل کرتا ہے۔ اگر کوئی روٹ نہیں چل رہا تو ہر بار دبانے پر *کالآؤٹ تفصیل* ایک درجہ کم ہو جاتی ہے: *تفصیلی*، *سادہ*، *ضروری*، *خاموش*، اور پھر واپس *تفصیلی*۔\\n\\n\\n\\n*آڈیو مینو۔* \\n\\n\\n\\n⏭ نیکسٹ مینو کے مختلف اختیارات کے سلسلے میں آگے بڑھتا ہے جنہیں ایپ ٹیکسٹ ٹو اسپیچ کے ذریعے بیان کرتی ہے، اور آخری کے بعد دوبارہ پہلے پر آ جاتا ہے۔ اس کے بعد ⏯ پلے/پاز ایپ کو بیان کردہ اختیار انجام دینے کے لیے فعال کرتا ہے۔ صرف ایک اعلیٰ ترین سطح کا مینو ہوتا ہے جس میں صرف ذیلی مینوز بطور اختیارات ہوتے ہیں۔ ہر ذیلی مینو میں ملتے جلتے ممکنہ اعمال کا ایک گروپ ہوتا ہے۔\\n\\n⏮ پریوئس مینو میں حرکت نہیں کرتا۔ اس کے بجائے یہ *کالآؤٹ تفصیل* کو بالکل ویسے ہی بدلتا ہے جیسے اوریجنل موڈ میں، چنانچہ آپ جو بھی موڈ استعمال کریں، وہی بٹن ایپ کو کم بولنے پر لے آتا ہے۔",
+  "reason": "The *Settings* UI name is written «سیٹنگز», but the screen is titled «ترتیبات» (settings_screen_title, and help_config_voices_content_ios)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "Soundscape آپ کو کیا اور کب سننا ہے یہ کنٹرول کرنے کے کئی طریقے فراہم کرتا ہے:\\n\\n1. تمام آڈیو کو فوری طور پر روکیں: تمام آڈیو کو فوری طور پر بند کرنے کے لیے دو انگلیوں سے اسکرین کو ڈبل ٹیپ کریں، بشمول کوئی بھی چلتا ہوا کالآؤٹ اور بیکن اگر وہ آن ہو۔ جب آپ اگلے چوراہے یا دلچسپی کے مقام کے قریب پہنچیں گے تو کالآؤٹس خودکار طور پر دوبارہ شروع ہو جائیں گے، لیکن قابلِ سماعت بیکن ایسا نہیں کرے گا۔ بیکن دوبارہ سننے کے لیے مرکزی اسکرین پر *بیکن کی آواز بحال کریں بٹن* منتخب کریں۔\\n\\n2. خودکار کالآؤٹس روکیں: جب آپ سفر نہ کر رہے ہوں یا اپنی منزل تک پہنچ چکے ہوں، تو ممکن ہے آپ کو Soundscape کی جانب سے اپنے ارد گرد کی چیزوں کے بارے میں مسلسل آگاہ کیے جانے کی ضرورت نہ ہو۔ ایپ سے باہر نکلنے کے بجائے، آپ Soundscape کو اسنوز موڈ میں ڈال سکتے ہیں اور جب آپ یہاں سے جائیں گے تو یہ دوبارہ جاگ اٹھے گا، یا آپ Soundscape کو سلیپ موڈ میں ڈال سکتے ہیں اور یہ اس وقت تک بند رہے گا جب تک آپ اسے دوبارہ آن نہ کریں۔ متبادل کے طور پر، آپ مینو سے *سیٹنگز* منتخب کر کے *کالآؤٹس کا نظم کریں* حصے میں *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کر سکتے ہیں۔\\n\\n3. بیکن روکیں: کئی مواقع ایسے ہو سکتے ہیں جہاں آپ کوئی منزل سیٹ کریں لیکن قابلِ سماعت بیکن آن ہونے کی ضرورت نہ ہو۔ مثال کے طور پر، ممکن ہے آپ کو بالکل معلوم ہو کہ اپنی منزل تک کیسے پہنچنا ہے لیکن پھر بھی آپ یہ چاہتے ہوں کہ آپ کتنی دور ہیں اس کے بارے میں خودکار اپ ڈیٹس ملتی رہیں۔ یا ممکن ہے آپ کو صرف اپنی منزل کے قریب پہنچنے پر آڈیو بیکن کی ضرورت ہو۔ صورتحال جو بھی ہو، آپ مرکزی اسکرین پر *بیکن خاموش کریں*/*بیکن کی آواز بحال کریں* بٹن کو ٹوگل کر کے یہ منتخب کر سکتے ہیں کہ بیکن کب سننا ہے۔\\n\\nاگر آپ اب بھی Soundscape کے ساتھ تعامل کرنا چاہتے ہیں لیکن خودکار کالآؤٹس نہیں سننا چاہتے، تو آپ مینو سے *سیٹنگز* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں جا کر *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کر سکتے ہیں۔ یا، اگر آپ Soundscape استعمال نہیں کریں گے، تو آپ ہوم اسکرین پر *نیند* بٹن کا استعمال کر کے اسے سلیپ یا اسنوز موڈ میں ڈال سکتے ہیں۔",
+  "suggested": "Soundscape آپ کو کیا اور کب سننا ہے یہ کنٹرول کرنے کے کئی طریقے فراہم کرتا ہے:\\n\\n1. تمام آڈیو کو فوری طور پر روکیں: تمام آڈیو کو فوری طور پر بند کرنے کے لیے دو انگلیوں سے اسکرین کو ڈبل ٹیپ کریں، بشمول کوئی بھی چلتا ہوا کالآؤٹ اور بیکن اگر وہ آن ہو۔ جب آپ اگلے چوراہے یا دلچسپی کے مقام کے قریب پہنچیں گے تو کالآؤٹس خودکار طور پر دوبارہ شروع ہو جائیں گے، لیکن قابلِ سماعت بیکن ایسا نہیں کرے گا۔ بیکن دوبارہ سننے کے لیے مرکزی اسکرین پر *بیکن کی آواز بحال کریں بٹن* منتخب کریں۔\\n\\n2. خودکار کالآؤٹس روکیں: جب آپ سفر نہ کر رہے ہوں یا اپنی منزل تک پہنچ چکے ہوں، تو ممکن ہے آپ کو Soundscape کی جانب سے اپنے ارد گرد کی چیزوں کے بارے میں مسلسل آگاہ کیے جانے کی ضرورت نہ ہو۔ ایپ سے باہر نکلنے کے بجائے، آپ Soundscape کو اسنوز موڈ میں ڈال سکتے ہیں اور جب آپ یہاں سے جائیں گے تو یہ دوبارہ جاگ اٹھے گا، یا آپ Soundscape کو نیند موڈ میں ڈال سکتے ہیں اور یہ اس وقت تک بند رہے گا جب تک آپ اسے دوبارہ آن نہ کریں۔ متبادل کے طور پر، آپ مینو سے *ترتیبات* منتخب کر کے *کالآؤٹس کا نظم کریں* حصے میں *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کر سکتے ہیں۔\\n\\n3. بیکن روکیں: کئی مواقع ایسے ہو سکتے ہیں جہاں آپ کوئی منزل سیٹ کریں لیکن قابلِ سماعت بیکن آن ہونے کی ضرورت نہ ہو۔ مثال کے طور پر، ممکن ہے آپ کو بالکل معلوم ہو کہ اپنی منزل تک کیسے پہنچنا ہے لیکن پھر بھی آپ یہ چاہتے ہوں کہ آپ کتنی دور ہیں اس کے بارے میں خودکار اپ ڈیٹس ملتی رہیں۔ یا ممکن ہے آپ کو صرف اپنی منزل کے قریب پہنچنے پر آڈیو بیکن کی ضرورت ہو۔ صورتحال جو بھی ہو، آپ مرکزی اسکرین پر *بیکن خاموش کریں*/*بیکن کی آواز بحال کریں* بٹن کو ٹوگل کر کے یہ منتخب کر سکتے ہیں کہ بیکن کب سننا ہے۔\\n\\nاگر آپ اب بھی Soundscape کے ساتھ تعامل کرنا چاہتے ہیں لیکن خودکار کالآؤٹس نہیں سننا چاہتے، تو آپ مینو سے *ترتیبات* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں جا کر *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کر سکتے ہیں۔ یا، اگر آپ Soundscape استعمال نہیں کریں گے، تو آپ ہوم اسکرین پر *نیند* بٹن کا استعمال کر کے اسے نیند یا اسنوز موڈ میں ڈال سکتے ہیں۔",
+  "reason": "The *Settings* UI name is written «سیٹنگز», but the screen is titled «ترتیبات» (settings_screen_title, and help_config_voices_content_ios); also «سلیپ موڈ» for Sleep, where the button and glossary use «نیند»",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_tip_turning_off_auto_callouts",
+  "source": "To keep using Soundscape without hearing automatic callouts, set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *Sleep* button on the home screen.",
+  "current": "خودکار کالآؤٹس سنے بغیر Soundscape استعمال کرتے رہنے کے لیے، مینو سے *سیٹنگز* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کریں۔ اگر آپ کچھ عرصے کے لیے Soundscape استعمال نہیں کریں گے، تو اس کے بجائے ہوم اسکرین پر موجود *نیند* بٹن کا استعمال کر کے اسے نیند یا اسنوز موڈ میں ڈال دیں۔",
+  "suggested": "خودکار کالآؤٹس سنے بغیر Soundscape استعمال کرتے رہنے کے لیے، مینو سے *ترتیبات* اسکرین کے *کالآؤٹس کا نظم کریں* حصے میں *کالآؤٹ تفصیل* کو *خاموش* پر سیٹ کریں۔ اگر آپ کچھ عرصے کے لیے Soundscape استعمال نہیں کریں گے، تو اس کے بجائے ہوم اسکرین پر موجود *نیند* بٹن کا استعمال کر کے اسے نیند یا اسنوز موڈ میں ڈال دیں۔",
+  "reason": "The *Settings* UI name is written «سیٹنگز», but the screen is titled «ترتیبات» (settings_screen_title, and help_config_voices_content_ios)",
+  "category": "terminology"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "یہ Soundscape کی ایک بڑی اپ ڈیٹ ہے۔ سفری موڈ میں کافی بہتری کی گئی ہے۔ جب آپ گاڑی یا بس سے سفر کر رہے ہوں، تو Soundscape اب سڑکوں کے نمبر، آپ کے سفر کی سمت اور قریبی آبادیوں کا اعلان کرتا ہے۔ یہ اس وقت بھی اعلان کرتا ہے جب آپ دریا، نہر، دہانے اور خلیج عبور کرتے ہیں۔ ان نئی خصوصیات سے فائدہ اٹھانے کے لیے براہ کرم اپنے آف لائن نقشے اپ ڈیٹ کریں۔ برطانیہ کے صارفین کے لیے بس اسٹاپس کی تفصیلات اب کہیں بہتر ہیں۔ سلیپ موڈ اب خود بخود بیدار ہو جاتا ہے جب یہ محسوس کرے کہ آپ دوبارہ حرکت میں ہیں۔ اب آپ کو خود اسے بیدار کرنا یاد رکھنے کی ضرورت نہیں۔ ہم نے بنیادی کوڈ کو از سرِ نو ترتیب دیا ہے تاکہ ہم اسی کوڈ سے ایک iOS ایپ بنا سکیں۔ اس کا مطلب ہے کہ مستقبل میں ہم ایک ایسی iOS ایپ جاری کر سکیں گے جس میں وہ تمام خصوصیات ہوں گی جو ہم نے Android کے لیے بنائی ہیں۔ براہ کرم اپنے مسائل کی اطلاع دیتے رہیں، چاہے وہ کتنے ہی چھوٹے کیوں نہ ہوں، مرکزی مینو میں 'معاونت سے رابطہ کریں' کے ذریعے۔",
+  "suggested": "یہ Soundscape کی ایک بڑی اپ ڈیٹ ہے۔ سفری موڈ میں کافی بہتری کی گئی ہے۔ جب آپ گاڑی یا بس سے سفر کر رہے ہوں، تو Soundscape اب سڑکوں کے نمبر، آپ کے سفر کی سمت اور قریبی آبادیوں کا اعلان کرتا ہے۔ یہ اس وقت بھی اعلان کرتا ہے جب آپ دریا، نہر، دہانے اور خلیج عبور کرتے ہیں۔ ان نئی خصوصیات سے فائدہ اٹھانے کے لیے براہ کرم اپنے آف لائن نقشے اپ ڈیٹ کریں۔ برطانیہ کے صارفین کے لیے بس اسٹاپس کی تفصیلات اب کہیں بہتر ہیں۔ نیند موڈ اب خود بخود بیدار ہو جاتا ہے جب یہ محسوس کرے کہ آپ دوبارہ حرکت میں ہیں۔ اب آپ کو خود اسے بیدار کرنا یاد رکھنے کی ضرورت نہیں۔ ہم نے بنیادی کوڈ کو از سرِ نو ترتیب دیا ہے تاکہ ہم اسی کوڈ سے ایک iOS ایپ بنا سکیں۔ اس کا مطلب ہے کہ مستقبل میں ہم ایک ایسی iOS ایپ جاری کر سکیں گے جس میں وہ تمام خصوصیات ہوں گی جو ہم نے Android کے لیے بنائی ہیں۔ براہ کرم اپنے مسائل کی اطلاع دیتے رہیں، چاہے وہ کتنے ہی چھوٹے کیوں نہ ہوں، مرکزی مینو میں 'معاونت سے رابطہ کریں' کے ذریعے۔",
+  "reason": "Sleep mode is the loanword «سلیپ موڈ», but the button (*نیند*), sleep_sleeping_message and the glossary use «نیند» (and faq_tip_turning_off_auto_callouts says «نیند یا اسنوز موڈ»)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_battery_impact_answer",
+  "source": "Battery life varies significantly depending on the model and age of your phone. The biggest drain on your battery is having the screen on, so to maximize your phone's battery life, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape has a Sleep and a Snooze Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.",
+  "current": "بیٹری کی مدت اس بات پر نمایاں طور پر منحصر ہوتی ہے کہ آپ کے فون کا ماڈل کیا ہے اور وہ کتنا پرانا ہے۔ آپ کی بیٹری پر سب سے زیادہ بوجھ اسکرین کے آن رہنے سے پڑتا ہے، اس لیے اپنے فون کی بیٹری کی مدت کو زیادہ سے زیادہ رکھنے کے لیے، جب بھی ممکن ہو اسکرین کو لاک رکھیں۔ فون کی بیٹری پر اثر کو کم کرنے میں مدد کے لیے، Soundscape میں سلیپ موڈ اور اسنوز موڈ موجود ہیں۔ اپنی بیٹری کے استعمال کو مزید کم کرنے کے لیے، جب آپ Soundscape استعمال نہ کر رہے ہوں، تو آپ کو اسے اپنے فون کے ایپ سوئچر کے ذریعے زبردستی بند کر دینا چاہیے۔",
+  "suggested": "بیٹری کی مدت اس بات پر نمایاں طور پر منحصر ہوتی ہے کہ آپ کے فون کا ماڈل کیا ہے اور وہ کتنا پرانا ہے۔ آپ کی بیٹری پر سب سے زیادہ بوجھ اسکرین کے آن رہنے سے پڑتا ہے، اس لیے اپنے فون کی بیٹری کی مدت کو زیادہ سے زیادہ رکھنے کے لیے، جب بھی ممکن ہو اسکرین کو لاک رکھیں۔ فون کی بیٹری پر اثر کو کم کرنے میں مدد کے لیے، Soundscape میں نیند موڈ اور اسنوز موڈ موجود ہیں۔ اپنی بیٹری کے استعمال کو مزید کم کرنے کے لیے، جب آپ Soundscape استعمال نہ کر رہے ہوں، تو آپ کو اسے اپنے فون کے ایپ سوئچر کے ذریعے زبردستی بند کر دینا چاہیے۔",
+  "reason": "Sleep mode is the loanword «سلیپ موڈ», but the button (*نیند*), sleep_sleeping_message and the glossary use «نیند» (and faq_tip_turning_off_auto_callouts says «نیند یا اسنوز موڈ»)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_sleep_mode_battery_question",
+  "source": "How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?",
+  "current": "میں اپنے فون کی بیٹری پر Soundscape کے اثر کو کم کرنے کے لیے سلیپ موڈ کیسے استعمال کروں؟",
+  "suggested": "میں اپنے فون کی بیٹری پر Soundscape کے اثر کو کم کرنے کے لیے نیند موڈ کیسے استعمال کروں؟",
+  "reason": "Sleep mode is the loanword «سلیپ موڈ», but the button (*نیند*), sleep_sleeping_message and the glossary use «نیند» (and faq_tip_turning_off_auto_callouts says «نیند یا اسنوز موڈ»)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_sleep_mode_battery_answer",
+  "source": "To put Soundscape into Sleep Mode, select the *Sleep* button in the top-right corner of the home screen. When you select this, Soundscape will stop using Location Services and mobile data until you wake it up.",
+  "current": "Soundscape کو سلیپ موڈ میں ڈالنے کے لیے، ہوم اسکرین کے اوپری دائیں کونے میں موجود *نیند* بٹن منتخب کریں۔ اسے منتخب کرنے پر، Soundscape لوکیشن سروسز اور موبائل ڈیٹا کا استعمال بند کر دے گا جب تک آپ اسے جگا نہ دیں۔",
+  "suggested": "Soundscape کو نیند موڈ میں ڈالنے کے لیے، ہوم اسکرین کے اوپری دائیں کونے میں موجود *نیند* بٹن منتخب کریں۔ اسے منتخب کرنے پر، Soundscape لوکیشن سروسز اور موبائل ڈیٹا کا استعمال بند کر دے گا جب تک آپ اسے جگا نہ دیں۔",
+  "reason": "Sleep mode is the loanword «سلیپ موڈ», but the button (*نیند*), sleep_sleeping_message and the glossary use «نیند» (and faq_tip_turning_off_auto_callouts says «نیند یا اسنوز موڈ»)",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_snooze_mode_battery_answer",
+  "source": "To put Soundscape into Snooze Mode, select the *Sleep* button in the top-right corner of the home screen. Once Soundscape’s in Sleep Mode, select the *Wake On Leave* button and Soundscape will go in to a low power state until you leave your current location.",
+  "current": "Soundscape کو اسنوز موڈ میں ڈالنے کے لیے، ہوم اسکرین کے اوپری دائیں کونے میں موجود *نیند* بٹن منتخب کریں۔ ایک بار جب Soundscape سلیپ موڈ میں آ جائے، تو *روانگی پر جاگیں* بٹن منتخب کریں اور Soundscape ایک کم بجلی والی حالت میں چلا جائے گا جب تک آپ اپنا موجودہ مقام نہ چھوڑ دیں۔",
+  "suggested": "Soundscape کو اسنوز موڈ میں ڈالنے کے لیے، ہوم اسکرین کے اوپری دائیں کونے میں موجود *نیند* بٹن منتخب کریں۔ ایک بار جب Soundscape نیند موڈ میں آ جائے، تو *روانگی پر جاگیں* بٹن منتخب کریں اور Soundscape ایک کم بجلی والی حالت میں چلا جائے گا جب تک آپ اپنا موجودہ مقام نہ چھوڑ دیں۔",
+  "reason": "Sleep mode is the loanword «سلیپ موڈ», but the button (*نیند*), sleep_sleeping_message and the glossary use «نیند» (and faq_tip_turning_off_auto_callouts says «نیند یا اسنوز موڈ»)",
+  "category": "terminology"
+ },
+ {
+  "context": "directions_my_location",
+  "source": "My Location",
+  "current": "میری لوکیشن",
+  "suggested": "میرا مقام",
+  "reason": "The My Location button is «میرا مقام» (ui_action_button_my_location and every help page), but this string (help page title, audio menu item, iOS intent wording) says «میری لوکیشن»",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_assistant_commands",
+  "source": "You can ask Soundscape to:\\n\\nDescribe *My Location*, what is *Around Me*, or what is *Ahead of Me*.\\n\\nCall out the saved markers near you.\\n\\nStart one of your saved routes by name, move on to the next waypoint, go back to the previous one, mute the beacon, or stop the route.\\n\\nSet an audio beacon on one of your saved markers by name, or switch the beacon off.\\n\\nSet the callout detail to *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\nRead back the names of your saved routes or your saved markers.",
+  "current": "آپ Soundscape سے کہہ سکتے ہیں کہ:\\n\\n*میری لوکیشن* بتائے، *میرے اردگرد* کیا ہے، یا *میرے آگے* کیا ہے۔\\n\\nآپ کے قریب محفوظ کیے گئے مارکرز بتائے۔\\n\\nآپ کے کسی محفوظ روٹ کو نام سے شروع کرے، اگلے ویپوائنٹ پر جائے، پچھلے پر واپس جائے، بیکن خاموش کرے، یا روٹ روک دے۔\\n\\nآپ کے کسی محفوظ مارکر پر نام سے آڈیو بیکن سیٹ کرے، یا بیکن بند کر دے۔\\n\\nکالآؤٹ تفصیل کو *خاموش*، *ضروری*، *سادہ* یا *تفصیلی* پر سیٹ کرے، تاکہ چلتے ہوئے Soundscape کتنا بولے یہ بدل جائے۔ *خاموش* کرنے سے خودکار کالآؤٹس بند ہو جاتے ہیں۔\\n\\nآپ کے محفوظ روٹس یا محفوظ مارکرز کے نام پڑھ کر سنائے۔",
+  "suggested": "آپ Soundscape سے کہہ سکتے ہیں کہ:\\n\\n*میرا مقام* بتائے، *میرے اردگرد* کیا ہے، یا *میرے آگے* کیا ہے۔\\n\\nآپ کے قریب محفوظ کیے گئے مارکرز بتائے۔\\n\\nآپ کے کسی محفوظ روٹ کو نام سے شروع کرے، اگلے ویپوائنٹ پر جائے، پچھلے پر واپس جائے، بیکن خاموش کرے، یا روٹ روک دے۔\\n\\nآپ کے کسی محفوظ مارکر پر نام سے آڈیو بیکن سیٹ کرے، یا بیکن بند کر دے۔\\n\\nکالآؤٹ تفصیل کو *خاموش*، *ضروری*، *سادہ* یا *تفصیلی* پر سیٹ کرے، تاکہ چلتے ہوئے Soundscape کتنا بولے یہ بدل جائے۔ *خاموش* کرنے سے خودکار کالآؤٹس بند ہو جاتے ہیں۔\\n\\nآپ کے محفوظ روٹس یا محفوظ مارکرز کے نام پڑھ کر سنائے۔",
+  "reason": "*My Location* is «میری لوکیشن» here but the button is labelled «میرا مقام»; change together with directions_my_location",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_assistant_commands_ios",
+  "source": "*\"Soundscape surroundings\"* — then *My Location*, *Around Me*, *Ahead of Me* or *Nearby Markers*.\\n\\n*\"Soundscape route\"* — then *Next Waypoint*, *Previous Waypoint*, *Mute Beacon* or *Stop*.\\n\\n*\"Soundscape start route\"* — then the name of one of your saved routes.\\n\\n*\"Soundscape beacon\"* — then the name of one of your saved markers.\\n\\n*\"Soundscape stop beacon\"*.\\n\\n*\"Soundscape detail\"* — then *Silent*, *Essential*, *Simplified* or *Detailed*, to change how much Soundscape says as you walk. *Silent* turns automatic callouts off.\\n\\n*\"Soundscape list\"* — then *Routes*, *Markers* or *Commands*.\\n\\nSaying *\"Soundscape list commands\"* reads this list of commands back to you.",
+  "current": "*Soundscape surroundings* — پھر *میری لوکیشن*، *میرے اردگرد*، *میرے آگے* یا *قریبی مارکرز*۔\\n\\n*Soundscape route* — پھر *اگلا ویپوائنٹ*، *پچھلا ویپوائنٹ*، *بیکن خاموش کریں* یا *روکیں*۔\\n\\n*Soundscape start route* — پھر اپنے کسی محفوظ روٹ کا نام۔\\n\\n*Soundscape beacon* — پھر اپنے کسی محفوظ مارکر کا نام۔\\n\\n*Soundscape stop beacon*۔\\n\\n*Soundscape detail* — پھر *خاموش*، *ضروری*، *سادہ* یا *تفصیلی*، تاکہ چلتے ہوئے Soundscape کتنا بولے یہ بدل جائے۔ *خاموش* کرنے سے خودکار کالآؤٹس بند ہو جاتے ہیں۔\\n\\n*Soundscape list* — پھر *روٹس*، *مارکرز* یا *کمانڈز*۔\\n\\n*Soundscape list commands* کہنے پر کمانڈز کی یہ فہرست آپ کو پڑھ کر سنائی جاتی ہے۔",
+  "suggested": "*Soundscape surroundings* — پھر *میرا مقام*، *میرے اردگرد*، *میرے آگے* یا *قریبی مارکرز*۔\\n\\n*Soundscape route* — پھر *اگلا ویپوائنٹ*، *پچھلا ویپوائنٹ*، *بیکن خاموش کریں* یا *روکیں*۔\\n\\n*Soundscape start route* — پھر اپنے کسی محفوظ روٹ کا نام۔\\n\\n*Soundscape beacon* — پھر اپنے کسی محفوظ مارکر کا نام۔\\n\\n*Soundscape stop beacon*۔\\n\\n*Soundscape detail* — پھر *خاموش*، *ضروری*، *سادہ* یا *تفصیلی*، تاکہ چلتے ہوئے Soundscape کتنا بولے یہ بدل جائے۔ *خاموش* کرنے سے خودکار کالآؤٹس بند ہو جاتے ہیں۔\\n\\n*Soundscape list* — پھر *روٹس*، *مارکرز* یا *کمانڈز*۔\\n\\n*Soundscape list commands* کہنے پر کمانڈز کی یہ فہرست آپ کو پڑھ کر سنائی جاتی ہے۔",
+  "reason": "*My Location* is «میری لوکیشن» here but the button is labelled «میرا مقام»; change together with directions_my_location",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_my_location",
+  "source": "Now that you know how to use Markers, let's look at some of the other features. At the bottom of the screen are four buttons. We'll try each one. The button on the left is My Location. It describes your current location. Try tapping it now.",
+  "current": "اب جب کہ آپ جانتے ہیں کہ مارکرز کیسے استعمال کرتے ہیں، آئیے کچھ دوسری خصوصیات دیکھتے ہیں۔ اسکرین کے نیچے چار بٹن موجود ہیں۔ ہم انہیں باری باری آزمائیں گے۔ بائیں طرف کا بٹن میری لوکیشن ہے، جو آپ کی موجودہ لوکیشن بتاتا ہے۔ ابھی اس پر ٹیپ کر کے آزمائیں۔",
+  "suggested": "اب جب کہ آپ جانتے ہیں کہ مارکرز کیسے استعمال کرتے ہیں، آئیے کچھ دوسری خصوصیات دیکھتے ہیں۔ اسکرین کے نیچے چار بٹن موجود ہیں۔ ہم انہیں باری باری آزمائیں گے۔ بائیں طرف کا بٹن میرا مقام ہے، جو آپ کا موجودہ مقام بتاتا ہے۔ ابھی اس پر ٹیپ کر کے آزمائیں۔",
+  "reason": "Names the button «میری لوکیشن», but the button a tutorial user is told to tap is labelled «میرا مقام»",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_create_marker_started",
+  "source": "Great! You're now on the Location Details screen. From here you can save this location as a Marker, along with other actions. With Soundscape, you can mark any place that matters to you, such as your home, your bus stop, or even the spot where you are standing. Try it now. Save this location as a marker by tapping Save as Marker.",
+  "current": "بہت خوب! اب آپ لوکیشن کی تفصیلات کی اسکرین پر ہیں۔ یہ اسکرین آپ کو مختلف اقدامات میں سے انتخاب کرنے دیتی ہے، جن میں لوکیشن کو مارکر کے طور پر محفوظ کرنا بھی شامل ہے۔ Soundscape کے ساتھ، آپ اپنے اردگرد کی کسی بھی اہم چیز کو نشان زد کر سکتے ہیں۔ مثال کے طور پر، آپ اپنے گھر، اپنے بس اسٹاپ، یا صرف اُس جگہ کو نشان زد کر سکتے ہیں جہاں آپ موجود ہیں۔ آئیے آزما کر دیکھتے ہیں۔ \"مارکر کے طور پر محفوظ کریں\" پر ٹیپ کر کے اس لوکیشن کو مارکر کے طور پر محفوظ کریں۔",
+  "suggested": "بہت خوب! اب آپ مقام کی تفصیلات کی اسکرین پر ہیں۔ یہ اسکرین آپ کو مختلف اقدامات میں سے انتخاب کرنے دیتی ہے، جن میں مقام کو مارکر کے طور پر محفوظ کرنا بھی شامل ہے۔ Soundscape کے ساتھ، آپ اپنے اردگرد کی کسی بھی اہم چیز کو نشان زد کر سکتے ہیں۔ مثال کے طور پر، آپ اپنے گھر، اپنے بس اسٹاپ، یا صرف اُس جگہ کو نشان زد کر سکتے ہیں جہاں آپ موجود ہیں۔ آئیے آزما کر دیکھتے ہیں۔ \"بطور مارکر محفوظ کریں\" پر ٹیپ کر کے اس مقام کو مارکر کے طور پر محفوظ کریں۔",
+  "reason": "Names the screen «لوکیشن کی تفصیلات» and the button «مارکر کے طور پر محفوظ کریں», but their real labels are «مقام کی تفصیلات» (location_detail_title_default) and «بطور مارکر محفوظ کریں» (universal_links_alert_action_marker)",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_start_beacon",
+  "source": "You're now on the Markers tab which lists all your saved markers. Select a marker, and when the Location Details screen appears, tap Start Audio Beacon.",
+  "current": "اب آپ مارکرز ٹیب پر ہیں جس میں آپ کے تمام محفوظ کردہ مارکرز کی فہرست ہے۔ ایک مارکر منتخب کریں، اور جب لوکیشن کی تفصیلات کی اسکرین ظاہر ہو تو \"آڈیو بیکن شروع کریں\" پر ٹیپ کریں۔",
+  "suggested": "اب آپ مارکرز ٹیب پر ہیں جس میں آپ کے تمام محفوظ کردہ مارکرز کی فہرست ہے۔ ایک مارکر منتخب کریں، اور جب مقام کی تفصیلات کی اسکرین ظاہر ہو تو \"آڈیو بیکن شروع کریں\" پر ٹیپ کریں۔",
+  "reason": "Names the screen «لوکیشن کی تفصیلات», but it's titled «مقام کی تفصیلات»",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "اب آپ کے پاس اس مارکر کو حسبِ ضرورت بنانے کا اختیار ہوگا۔ آپ مارکر کا نام تبدیل کر سکتے ہیں، اور اضافی معلومات فراہم کرنے کے لیے ایک نوٹ بھی شامل کر سکتے ہیں جو مارکر کے ساتھ پکارا جائے گا۔ مکمل ہونے پر، اپنے مارکر کو محفوظ کرنے کے لیے *مکمل* بٹن منتخب کریں۔",
+  "suggested": "اب آپ کے پاس اس مارکر کو حسبِ ضرورت بنانے کا اختیار ہوگا۔ آپ مارکر کا نام تبدیل کر سکتے ہیں، اور اضافی معلومات فراہم کرنے کے لیے ایک نوٹ بھی شامل کر سکتے ہیں جو مارکر کے ساتھ پکارا جائے گا۔ مکمل ہونے پر، اپنے مارکر کو محفوظ کرنے کے لیے *ہو گیا* بٹن منتخب کریں۔",
+  "reason": "*Done* is «مکمل», but the button is «ہو گیا» (general_alert_done; also tour_create_marker_done and the edit-location instructions)",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_intersection",
+  "source": "Intersection",
+  "current": "تقاطع",
+  "suggested": "چوراہا",
+  "reason": "Intersection is «تقاطع» here, but the glossary and every other string use «چوراہا»",
+  "category": "terminology"
+ },
+ {
+  "context": "street_description_intersection",
+  "source": "Near intersection of %1$s",
+  "current": "%1$s کے تقاطع کے قریب",
+  "suggested": "%1$s کے چوراہے کے قریب",
+  "reason": "«تقاطع» for intersection; the glossary and other callouts use «چوراہا»",
+  "category": "terminology"
+ },
+ {
+  "context": "accessibility_title",
+  "source": "Accessibility",
+  "current": "قابل رسائی",
+  "suggested": "رسائی",
+  "reason": "«قابل رسائی» is the adjective 'accessible'; the menu item for the same section is «رسائی» (menu_manage_accessibility)",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_mineshaft",
+  "source": "Mine Shaft",
+  "current": "کان کا عمودی راستہ / کان کا کنواں",
+  "suggested": "کان کا کنواں",
+  "reason": "Two alternatives separated by a slash are both read aloud in the callout",
+  "category": "tone"
+ },
+ {
+  "context": "osm_caravan_site",
+  "source": "Caravan Site",
+  "current": "کیریوان پارک / رہائشی گاڑیوں کی جگہ",
+  "suggested": "کیریوان پارک",
+  "reason": "Two alternatives separated by a slash are both read aloud in the callout",
+  "category": "tone"
+ },
+ {
+  "context": "osm_static_caravan",
+  "source": "Static Caravan",
+  "current": "ساکن کیریوان (پارک شدہ رہائشی گاڑی)",
+  "suggested": "رہائشی کیریوان",
+  "reason": "A long gloss in brackets is read aloud as part of the POI name; the bracketed explanation belongs to a translator, not a callout",
+  "category": "tone"
+ }
+]

@@ -1,0 +1,274 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Questo è un importante aggiornamento di Soundscape. La modalità Viaggio è molto migliorata. Quando viaggi in auto o in autobus, Soundscape ora annuncia i numeri delle strade, la tua direzione di marcia e i centri abitati vicini. Annuncia anche quando attraversi fiumi, canali, estuari e baie. Aggiorna le tue mappe offline per ottenere queste nuove funzionalità. Le descrizioni delle fermate degli autobus sono ora molto migliori per gli utenti nel Regno Unito. La modalità Sospendi ora può riattivarsi automaticamente quando rileva che ti stai muovendo di nuovo. Non devi più ricordarti di riattivarla manualmente. Abbiamo riorganizzato il codice sottostante in modo da poter creare un'app iOS a partire dallo stesso codice. Questo significa che in futuro potremo rilasciare un'app iOS con tutte le funzionalità che abbiamo creato per Android. Continua a segnalarci eventuali problemi, per quanto piccoli, tramite l'opzione Contatta l'assistenza nel menu principale.",
+  "suggested": "\nQuesto è un importante aggiornamento di Soundscape.\n\nLa modalità Viaggio è molto migliorata. Quando viaggi in auto o in autobus, Soundscape ora annuncia i numeri delle strade, la tua direzione di marcia e i centri abitati vicini. Annuncia anche quando attraversi fiumi, canali, estuari e baie. Aggiorna le tue mappe offline per ottenere queste nuove funzionalità. Le descrizioni delle fermate degli autobus sono ora molto migliori per gli utenti nel Regno Unito.\n\nLa modalità Sospendi ora può riattivarsi automaticamente quando rileva che ti stai muovendo di nuovo. Non devi più ricordarti di riattivarla manualmente.\n\nAbbiamo riorganizzato il codice sottostante in modo da poter creare un'app iOS a partire dallo stesso codice. Questo significa che in futuro potremo rilasciare un'app iOS con tutte le funzionalità che abbiamo creato per Android.\n\nContinua a segnalarci eventuali problemi, per quanto piccoli, tramite l'opzione Contatta l'assistenza nel menu principale.\n",
+  "category": "formatting",
+  "reason": "All paragraph breaks of the English were dropped, so the release notes run as one block (commit 7ca86e582 splits on paragraph breaks). Suggested text is identical, with the English's line breaks restored."
+ },
+ {
+  "context": "confect_name_to",
+  "source": "%1$s to %2$s",
+  "current": "%1$s {it:a %2$s}",
+  "suggested": "%1$s che porta {it:a %2$s}",
+  "category": "meaning",
+  "reason": "IT-G1 open: «Sentiero a Via Roma» reads as a location, not a way leading somewhere. «che porta a» is the guidance's own candidate and keeps the article-fusing marker («che porta alla Scala»). Needs the reviewer's answer to questionnaire Q3."
+ },
+ {
+  "context": "confect_name_to_via",
+  "source": "%1$s to %2$s via %3$s",
+  "current": "%1$s {it:a %2$s} tramite %3$s",
+  "suggested": "%1$s che porta {it:a %2$s} tramite %3$s",
+  "category": "meaning",
+  "reason": "Same as confect_name_to (IT-G1): «Sentiero a Via Roma tramite…» → «Sentiero che porta a Via Roma tramite…». Change together with confect_name_to."
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s {it:a vicolo cieco}",
+  "suggested": "%1$s senza uscita",
+  "category": "meaning",
+  "reason": "«Sentiero {it:a vicolo cieco}» wraps a common noun in the map-name marker and gives «Sentiero a vicolo cieco» (IT-G1 defect, still unfixed). Now that the dead end has its own template (C21), Italian can describe the way itself: «Sentiero senza uscita», «Via Roma senza uscita». Works for a proper name in %1$s too."
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%1$s {it:a vicolo cieco} tramite %2$s",
+  "suggested": "%1$s senza uscita tramite %2$s",
+  "category": "meaning",
+  "reason": "Same as confect_name_to_dead_end (IT-G1/C21): «Sentiero a vicolo cieco tramite…» → «Sentiero senza uscita tramite…»."
+ },
+ {
+  "context": "tour_welcome",
+  "source": "Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby. It lets you find points of interest. The Places Nearby button is on the Home screen, just below the Search bar. Tap it now to try it.",
+  "current": "Benvenuto nel tutorial guidato. Questo tutorial ti guiderà attraverso le principali funzionalità dell'app. Puoi interrompere il tutorial in qualsiasi momento toccando Annulla tutorial guidato nel menu principale. Iniziamo con Luoghi nelle vicinanze. Ti permette di trovare punti di interesse. Il pulsante Luoghi nelle vicinanze si trova nella schermata iniziale, subito sotto la barra di ricerca. Toccalo ora per provarlo.",
+  "suggested": "Ti diamo il benvenuto nel tutorial guidato. Questo tutorial ti guiderà attraverso le principali funzionalità dell'app. Puoi interrompere il tutorial in qualsiasi momento toccando Annulla tutorial guidato nel menu principale. Iniziamo con Luoghi nelle vicinanze. Ti permette di trovare punti di interesse. Il pulsante Luoghi nelle vicinanze si trova nella schermata iniziale, subito sotto la barra di ricerca. Toccalo ora per provarlo.",
+  "category": "gender",
+  "reason": "«Benvenuto» is masculine, and the translator comment explicitly asks for gender-free phrasing (C15). «Ti diamo il benvenuto» avoids agreement. Rest of the string unchanged."
+ },
+ {
+  "context": "first_launch_prompt_title",
+  "source": "You're ready!",
+  "current": "Sei pronto!",
+  "suggested": "È tutto pronto!",
+  "category": "gender",
+  "reason": "IT-R1/C15: «Sei pronto!» is masculine. «È tutto pronto!» is the guidance's candidate (questionnaire Q4)."
+ },
+ {
+  "context": "first_launch_prompt_message",
+  "source": "You are ready for your first walk with Soundscape. To get started, choose a nearby destination and start the audio beacon — you’ll hear it playing in the direction of your destination.",
+  "current": "Sei pronto per la tua prima passeggiata con Soundscape. Per iniziare, scegli una destinazione vicina e avvia l'audiofaro: lo sentirai suonare nella direzione della tua destinazione.",
+  "suggested": "È tutto pronto per la tua prima passeggiata con Soundscape. Per iniziare, scegli una destinazione vicina e avvia l'audiofaro: lo sentirai suonare nella direzione della tua destinazione.",
+  "category": "gender",
+  "reason": "Sibling of first_launch_prompt_title (C4): «Sei pronto per…» is masculine too. Change it along with the title."
+ },
+ {
+  "context": "tour_create_marker_done",
+  "source": "Great! When creating a marker, you can edit its name and add notes. Try that now, and when you're ready, tap Done.",
+  "current": "Perfetto! Quando crei un indicatore puoi modificarne il nome e aggiungere note. Prova ora e, quando sei pronto, tocca Fatto.",
+  "suggested": "Perfetto! Quando crei un indicatore puoi modificarne il nome e aggiungere note. Prova ora e, quando hai finito, tocca Fatto.",
+  "category": "gender",
+  "reason": "«quando sei pronto» is masculine (C15). «quando hai finito» needs no agreement."
+ },
+ {
+  "context": "tour_stop_beacon",
+  "source": "When you're ready to stop the beacon, tap the Stop Route button.",
+  "current": "Quando sei pronto per interrompere l'audiofaro, tocca il pulsante \"Interrompi Percorso\".",
+  "suggested": "Quando vuoi interrompere l'audiofaro, tocca il pulsante \"Interrompi Percorso\".",
+  "category": "gender",
+  "reason": "«Quando sei pronto per interrompere» is masculine (C15). «Quando vuoi interrompere» needs no agreement."
+ },
+ {
+  "context": "settings_reset_dialog_title",
+  "source": "Are you sure?",
+  "current": "Sei sicuro?",
+  "suggested": "Confermi?",
+  "category": "gender",
+  "reason": "«Sei sicuro?» is masculine (C15). «Confermi?» is a standard gender-free confirmation title."
+ },
+ {
+  "context": "directions_facing_n",
+  "source": "Facing north",
+  "current": "Sei rivolto verso nord",
+  "suggested": "Sei rivolto verso nord",
+  "category": "gender",
+  "reason": "Not a fix. All 16 directions_facing_* / directions_along_facing_* use «Sei rivolto» and all 16 *_heading_* use «Sei diretto». These are masculine, and they're among the callouts heard most often. This is Microsoft's baseline wording, and Italian generic masculine is common. Worth asking the reviewer whether e.g. «Rivolto verso nord» → «Guardi verso nord» / «Direzione nord» is preferred."
+ },
+ {
+  "context": "ui_menu_hint",
+  "source": "open the menu",
+  "current": "apri il menu",
+  "suggested": "aprire il menu",
+  "category": "formatting",
+  "reason": "Talkback hint that always follows «Tocca due volte per» (translator comment). An imperative gives «Tocca due volte per apri il menu». Every other hint is an infinitive."
+ },
+ {
+  "context": "settings_keep_value",
+  "source": "keep",
+  "current": "mantieni",
+  "suggested": "mantenere",
+  "category": "formatting",
+  "reason": "Used as a talkbackHint (SettingsComponents.kt), so the frame is «Tocca due volte per …». An imperative «mantieni» is ungrammatical there."
+ },
+ {
+  "context": "settings_use_value",
+  "source": "use",
+  "current": "usa",
+  "suggested": "usare",
+  "category": "formatting",
+  "reason": "Same as settings_keep_value: it's a talkbackHint, so it needs the infinitive."
+ },
+ {
+  "context": "first_launch_change_language_hint",
+  "source": "change the language used for the app",
+  "current": "modifica la lingua utilizzata dall'app",
+  "suggested": "modificare la lingua utilizzata dall'app",
+  "category": "formatting",
+  "reason": "Hint fragment, which should be an infinitive like the other *_hint strings («Tocca due volte per modificare…»)."
+ },
+ {
+  "context": "places_nearby_selection_description",
+  "source": "choose from a list of places nearby",
+  "current": "scegli da un elenco di luoghi nelle vicinanze",
+  "suggested": "scegliere da un elenco di luoghi nelle vicinanze",
+  "category": "formatting",
+  "reason": "Its siblings (all_places_nearby_description etc.) are infinitive hint fragments («vedere un elenco…»). This one is an imperative, «scegli»."
+ },
+ {
+  "context": "first_launch_beacon_message_2",
+  "source": "Listen to the available audio beacons and select your preference.",
+  "current": "Ascolta gli audiofaro disponibili e seleziona la tua preferenza.",
+  "suggested": "Ascolta gli audiofari disponibili e seleziona la tua preferenza.",
+  "category": "meaning",
+  "reason": "Plural agreement error: «gli audiofaro» should be «gli audiofari». The plural is used elsewhere, e.g. callouts_verbosity_description."
+ },
+ {
+  "context": "settings_help_section_beacons_and_pois",
+  "source": "Beacons and Callouts",
+  "current": "Audiofaro e notifiche",
+  "suggested": "Audiofari e notifiche",
+  "category": "meaning",
+  "reason": "English \"Beacons\" is plural, but «Audiofaro» is singular. A help section title."
+ },
+ {
+  "context": "callouts_verbosity_description",
+  "source": "Callout detail controls how much Soundscape tells you about as you walk. Detailed mode calls out everything nearby. Simplified mode leaves out minor paths and service roads, and repeats itself less often. Essential mode calls out streets, junctions and landmarks only. Silent mode makes no automatic callouts at all, leaving beacons, routes and the buttons on the home screen.",
+  "current": "Il dettaglio delle notifiche controlla quante cose Soundscape ti racconta mentre cammini. La modalità Dettagliato annuncia tutto ciò che si trova nelle vicinanze. La modalità Semplificato tralascia i sentieri secondari e le strade di servizio, e si ripete meno spesso. La modalità Essenziale annuncia solo strade, incroci e punti di riferimento. La modalità Silenzioso non produce alcuna notifica automatica, lasciando gli audiofari, i percorsi e i pulsanti della schermata principale.",
+  "suggested": "Il dettaglio delle notifiche controlla quante cose Soundscape ti racconta mentre cammini. La modalità Dettagliato annuncia tutto ciò che si trova nelle vicinanze. La modalità Semplificato tralascia i sentieri secondari e le strade di servizio, e si ripete meno spesso. La modalità Essenziale annuncia solo strade, incroci e punti di riferimento. La modalità Silenzioso non produce alcuna notifica automatica: restano attivi gli audiofari, i percorsi e i pulsanti della schermata principale.",
+  "category": "meaning",
+  "reason": "«lasciando gli audiofari, i percorsi e i pulsanti» is a literal \"leaving\". In Italian it reads as \"abandoning/leaving behind\" them, the opposite of the meaning (they still work). Rest unchanged."
+ },
+ {
+  "context": "markers_no_markers_hint_1",
+  "source": "Create markers for your favorite destinations, waypoints on a route, or any locations you want called out. Choose a location, or your current location, from the home screen and select *Save as Marker*.",
+  "current": "Crea indicatori per le tue destinazioni preferite, waypoint su un percorso o posizioni per cui desideri ricevere notifiche. Scegli una posizione, o la tua posizione attuale, nella schermata iniziale e seleziona *Salva come Indicatore*.",
+  "suggested": "Crea indicatori per le tue destinazioni preferite, waypoint su un percorso o posizioni per cui desideri ricevere notifiche. Scegli una posizione, o la tua posizione attuale, nella schermata iniziale e seleziona *Salva come indicatore*.",
+  "category": "terminology",
+  "reason": "The quoted button name «*Salva come Indicatore*» doesn't match the real label universal_links_alert_action_marker «Salva come indicatore», which every other help string uses."
+ },
+ {
+  "context": "faq_tip_create_marker_at_bus_stop",
+  "source": "If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.",
+  "current": "Se prendi regolarmente una linea di autobus, salva le fermate di salita e discesa come Indicatori. In questo modo saranno salvate e potrai ritrovarle facilmente. Vai su *Indicatori e Percorsi* dalla schermata iniziale, poi cercale nella pagina *Indicatori*. Puoi impostare un audiofaro su di esse per ricevere aggiornamenti periodici su quanto sei vicino alla fermata di uscita. Nota: puoi disattivare il suono ritmico e continuare comunque a ricevere aggiornamenti sulla distanza lungo il percorso.",
+  "suggested": "Se prendi regolarmente una linea di autobus, salva le fermate di salita e discesa come Indicatori. In questo modo saranno salvate e potrai ritrovarle facilmente. Vai su *Indicatori e Percorsi* dalla schermata iniziale, poi cercale nella pagina *Indicatori*. Puoi impostare un audiofaro su di esse per ricevere aggiornamenti periodici su quanto sei vicino alla fermata di discesa. Nota: puoi disattivare il suono ritmico e continuare comunque a ricevere aggiornamenti sulla distanza lungo il percorso.",
+  "category": "meaning",
+  "reason": "«fermata di uscita» is a calque of \"exit stop\". The same string already says «fermate di salita e discesa», and «fermata di discesa» is the natural term."
+ },
+ {
+  "context": "fab_add_route",
+  "source": "Add Route",
+  "current": "Aggiungi il percorso",
+  "suggested": "Aggiungi percorso",
+  "category": "tone",
+  "reason": "Content description for the add-route button. «Aggiungi il percorso» (with the article) implies a specific route. The other action labels have no article («Aggiungi elemento», «Nuovo Percorso»)."
+ },
+ {
+  "context": "osm_boules",
+  "source": "Boules",
+  "current": "Bocce / pétanque",
+  "suggested": "Bocce",
+  "category": "tone",
+  "reason": "The slash in «Bocce / pétanque» is read aloud by TTS. «Bocce» is the everyday Italian term for this sport."
+ },
+ {
+  "context": "osm_bowls",
+  "source": "Bowls",
+  "current": "Bowls",
+  "suggested": "Bocce su prato",
+  "category": "meaning",
+  "reason": "Left in English. Lawn bowls is «bocce su prato» (or «bowls su prato») in Italian, and an Italian TTS voice will mispronounce «Bowls»."
+ },
+ {
+  "context": "osm_rugby_league",
+  "source": "Rugby League",
+  "current": "Rugby League",
+  "suggested": "Rugby a 13",
+  "category": "meaning",
+  "reason": "Left in English. The Italian name is «rugby a 13» (and «Rugby Union» is already «Rugby»), so the two codes stay distinct by ear."
+ },
+ {
+  "context": "osm_orienteering",
+  "source": "Orienteering",
+  "current": "Orientamento",
+  "suggested": "Orienteering",
+  "category": "meaning",
+  "reason": "«Orientamento» is the general word (orientation, guidance). As a POI it's ambiguous, especially in an orientation app. The sport is called «orienteering» in Italian (FISO)."
+ },
+ {
+  "context": "osm_drugstore",
+  "source": "Drugstore",
+  "current": "Drogheria",
+  "suggested": "Parafarmacia",
+  "category": "meaning",
+  "reason": "«Drogheria» in current Italian means a grocer/spice shop. The comment describes a store selling medicines, toiletries and convenience items, which Italians call a «parafarmacia». Needs a native check."
+ },
+ {
+  "context": "osm_town",
+  "source": "Town",
+  "current": "Paese",
+  "suggested": "Cittadina",
+  "category": "terminology",
+  "reason": "«Paese» is the usual word for a village, and «Villaggio» (osm_village) sounds like a holiday village. Suggest town «Cittadina», village «Paese», keeping hamlet «Frazione». Needs a native check."
+ },
+ {
+  "context": "osm_village",
+  "source": "Village",
+  "current": "Villaggio",
+  "suggested": "Paese",
+  "category": "terminology",
+  "reason": "See osm_town: «Villaggio» for an ordinary village sounds foreign/touristic. Italian says «paese». Change it together with osm_town so the two stay distinct."
+ },
+ {
+  "context": "osm_garages",
+  "source": "Garages",
+  "current": "Officine",
+  "suggested": "Officine",
+  "category": "meaning",
+  "reason": "CROSS-LANGUAGE: OSM building=garages is a block of lock-up garages for storing cars («box auto»), but the English comment says \"Workshops for vehicle repair and storage of cars\". «Officine» (workshops) follows the comment. Fix the comment first (C7), then «Box auto»."
+ },
+ {
+  "context": "faq_why_does_beacon_disappear_question",
+  "source": "Why does the audible beacon disappear sometimes?",
+  "current": "Perché a volte l'audiofaro acustico scompare?",
+  "suggested": "Perché a volte l'audiofaro acustico scompare?",
+  "category": "tone",
+  "reason": "«audiofaro acustico» is a tautology (C2): «audio-» already makes it acoustic. Same in faq_why_does_beacon_disappear_answer. It's Microsoft's baseline wording (C14), so it's flagged for the reviewer rather than changed. The fix would be to drop «acustico»."
+ },
+ {
+  "context": "directions_crossing_waterway",
+  "source": "Passing over %1$s",
+  "current": "Passaggio sopra %1$s",
+  "suggested": "Passaggio sopra %1$s",
+  "category": "meaning",
+  "reason": "«Passaggio sopra %1$s» puts a bare name after «sopra», so a river name comes out without its article («sopra Tevere»). The marker system only covers a/di/da/in/su. Flagged for the reviewer, together with directions_going_under_railway (the same «sotto %1$s»)."
+ },
+ {
+  "context": "help_text_my_location_what",
+  "source": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "current": "Il pulsante *\"La mia posizione\"* ti fornisce rapidamente informazioni che ti aiutano a capire dove ti trovi attualmente. *\"La mia posizione\"* ti indica la tua posizione attuale, comprese altre informazioni come la direzione verso cui sei rivolto, dove sono le strade o gli incroci e dove si trovano i punti di interesse nelle vicinanze.",
+  "suggested": "Il pulsante *\"La mia posizione\"* ti fornisce rapidamente informazioni che ti aiutano a capire dove ti trovi attualmente. *\"La mia posizione\"* ti indica la tua posizione attuale, comprese altre informazioni come la direzione verso cui sei rivolto, dove sono le strade o gli incroci e dove si trovano i punti di interesse nelle vicinanze.",
+  "category": "formatting",
+  "reason": "Microsoft baseline wraps button names in both italics and quotes (*\"La mia posizione\"*). The same happens in help_text_my_location_when/_how, help_text_nearby_markers_*, help_text_around_me_*, help_text_ahead_of_me_when and help_text_creating_markers_content_2. Newer strings use plain *La mia posizione*. It's harmless but inconsistent, so it's not changed (C14)."
+ }
+]

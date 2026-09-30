@@ -1,0 +1,330 @@
+[
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "यह Soundscape का एक बड़ा अपडेट है। यात्रा मोड में काफी सुधार हुआ है। जब आप कार या बस से यात्रा करते हैं, तो Soundscape अब सड़क नंबर, आपकी यात्रा की दिशा और आस-पास की बस्तियों की घोषणा करता है। यह नदियों, नहरों, ज्वारनदमुखों और खाड़ियों को पार करते समय भी घोषणा करता है। ये नई सुविधाएँ पाने के लिए कृपया अपने ऑफ़लाइन मानचित्र अपडेट करें। यूके के उपयोगकर्ताओं के लिए बस स्टॉप के विवरण अब काफी बेहतर हो गए हैं। स्लीप मोड अब यह पता चलने पर कि आप फिर से आगे बढ़ रहे हैं, अपने आप जाग सकता है। अब आपको इसे स्वयं जगाना याद रखने की ज़रूरत नहीं है। हमने अंतर्निहित कोड को पुनर्गठित किया है ताकि हम उसी कोड से एक iOS ऐप बना सकें। इसका मतलब है कि भविष्य में हम Android के लिए बनाई गई सभी सुविधाओं के साथ एक iOS ऐप जारी कर सकेंगे। कृपया मुख्य मेनू में सहायता से संपर्क करें विकल्प के ज़रिए अपनी किसी भी समस्या की जानकारी देते रहें, चाहे वह कितनी भी छोटी क्यों न हो।",
+  "suggested": "\nयह Soundscape का एक बड़ा अपडेट है।\n\nयात्रा मोड में काफी सुधार हुआ है। जब आप कार या बस से यात्रा करते हैं, तो Soundscape अब सड़क नंबर, आपकी यात्रा की दिशा और आस-पास की बस्तियों की घोषणा करता है। यह नदियों, नहरों, ज्वारनदमुखों और खाड़ियों को पार करते समय भी घोषणा करता है। ये नई सुविधाएँ पाने के लिए कृपया अपने ऑफ़लाइन मानचित्र अपडेट करें। यूके के उपयोगकर्ताओं के लिए बस स्टॉप के विवरण अब काफी बेहतर हो गए हैं।\n\nस्लीप मोड अब यह पता चलने पर कि आप फिर से आगे बढ़ रहे हैं, अपने आप जाग सकता है। अब आपको इसे स्वयं जगाना याद रखने की ज़रूरत नहीं है।\n\nहमने अंतर्निहित कोड को पुनर्गठित किया है ताकि हम उसी कोड से एक iOS ऐप बना सकें। इसका मतलब है कि भविष्य में हम Android के लिए बनाई गई सभी सुविधाओं के साथ एक iOS ऐप जारी कर सकेंगे।\n\nकृपया मुख्य मेनू में सहायता से संपर्क करें विकल्प के ज़रिए अपनी किसी भी समस्या की जानकारी देते रहें, चाहे वह कितनी भी छोटी क्यों न हो।\n",
+  "reason": "All paragraph breaks (and the leading/trailing newline) were dropped; the dialog is split on paragraph breaks, so the whole release note runs as one block.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_difference_from_map_apps_answer",
+  "source": "Soundscape provides an ambient description of your surroundings in aid of exploration and wayfinding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.\\n\\nInstead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.",
+  "current": "Soundscape अन्वेषण और मार्ग‑निर्धारण में मदद करने के लिए आपके आसपास का परिवेश ऑडियो के माध्यम से बताता है। स्थानिक ऑडियो का उपयोग करते हुए, Soundscape चलते‑फिरते आपके आस‑पास के रुचि के स्थानों, पार्कों, रास्तों और चौराहों की घोषणा उसी दिशा से करेगा जहाँ वे भौतिक रूप से स्थित हैं। उदाहरण के लिए, यदि आप किसी दुकान के दाहिनी ओर से गुजरते हैं, तो आपको उस दुकान का नाम दाहिनी ओर से सुनाई देगा। जैसे ही आप किसी चौराहे के पास पहुँचते हैं, आप बाईं ओर से शुरू होकर आगे और दाहिनी ओर तक, प्रत्येक सड़क का नाम उस दिशा से सुनेंगे।\\n\\nअन्य नक्शा ऐप्स की तरह मोड़‑दर‑मोड़ दिशा‑निर्देश देने के बजाय, Soundscape आपकी मंज़िल की दिशा में एक श्रव्य ऑडियो बीकन चलाता है, जिससे आप अपनी परिवेशी जागरूकता और आपकी मंज़िल के स्थान का उपयोग करके जो तरीका आपके लिए सबसे अच्छा हो उससे वहाँ पहुँचने का निर्णय ले सकें। Soundscape को बैकग्राउंड में चलने के लिए डिज़ाइन किया गया है, ताकि आप किसी मोड़‑दर‑मोड़ नेविगेशन ऐप का उपयोग करते हुए भी अपनी मंज़िल की ओर जाते समय परिवेशी जानकारी सुनते रहें।",
+  "suggested": "Soundscape अन्वेषण और मार्ग‑निर्धारण में मदद करने के लिए आपके आसपास का परिवेश ऑडियो के माध्यम से बताता है। स्थानिक ऑडियो का उपयोग करते हुए, Soundscape चलते‑फिरते आपके आस‑पास के रुचि के स्थानों, पार्कों, रास्तों और चौराहों की घोषणा उसी दिशा से करेगा जहाँ वे भौतिक रूप से स्थित हैं। उदाहरण के लिए, यदि आप अपनी दाहिनी ओर की किसी दुकान के पास से गुज़रते हैं, तो आपको उस दुकान का नाम दाहिनी ओर से सुनाई देगा। जैसे ही आप किसी चौराहे के पास पहुँचते हैं, आप बाईं ओर से शुरू होकर आगे और दाहिनी ओर तक, प्रत्येक सड़क का नाम उस दिशा से सुनेंगे।\\n\\nअन्य नक्शा ऐप्स की तरह मोड़‑दर‑मोड़ दिशा‑निर्देश देने के बजाय, Soundscape आपकी मंज़िल की दिशा में एक श्रव्य ऑडियो बीकन चलाता है, जिससे आप अपनी परिवेशी जागरूकता और आपकी मंज़िल के स्थान का उपयोग करके जो तरीका आपके लिए सबसे अच्छा हो उससे वहाँ पहुँचने का निर्णय ले सकें। Soundscape को बैकग्राउंड में चलने के लिए डिज़ाइन किया गया है, ताकि आप किसी मोड़‑दर‑मोड़ नेविगेशन ऐप का उपयोग करते हुए भी अपनी मंज़िल की ओर जाते समय परिवेशी जानकारी सुनते रहें।",
+  "reason": "\"किसी दुकान के दाहिनी ओर से गुजरते हैं\" means passing along the shop's right-hand side, which puts the shop on the user's LEFT; the source says the shop is on your right.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_automatic_callouts_what",
+  "source": "Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *Manage Callouts* section of the *Settings* screen, and you can turn all callouts off when you want the app to be silent.",
+  "current": "जब आप किसी चीज़ के पास पहुँचते हैं, तो Soundscape आपको उसके उस दिशा से उसका नाम बोलकर उसके बारे में बता सकता है जहाँ वह स्थित है। ऐप यह व्यवसायों, बस स्टॉप और यहाँ तक कि चौराहों जैसी विभिन्न चीज़ों के लिए स्वचालित रूप से करेगा। आप यह सेट कर सकते हैं कि ऐप स्वचालित रूप से क्या‑क्या घोषित करे — *सेटिंग्स* स्क्रीन के *कॉलआउट प्रबंधित करें* अनुभाग में — और जब आप चाहते हैं कि ऐप शांत रहे, तो आप सभी कॉलआउट्स बंद कर सकते हैं।",
+  "suggested": "जब आप किसी चीज़ के पास पहुँचते हैं, तो Soundscape उसका नाम उसी दिशा से बोलकर, जहाँ वह स्थित है, आपको उसके बारे में बता सकता है। ऐप यह व्यवसायों, बस स्टॉप और यहाँ तक कि चौराहों जैसी विभिन्न चीज़ों के लिए स्वचालित रूप से करेगा। आप यह सेट कर सकते हैं कि ऐप स्वचालित रूप से क्या‑क्या घोषित करे — *सेटिंग्स* स्क्रीन के *कॉलआउट प्रबंधित करें* अनुभाग में — और जब आप चाहते हैं कि ऐप शांत रहे, तो आप सभी कॉलआउट्स बंद कर सकते हैं।",
+  "reason": "Ungrammatical first sentence (\"उसके उस दिशा से उसका नाम\" - उसके does not agree with दिशा, and the clause order is garbled); rewritten so it plainly says the name is spoken from the direction the thing is in.",
+  "category": "meaning"
+ },
+ {
+  "context": "trademark_disclaimer",
+  "source": "All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.",
+  "current": "सभी तृतीय‑पक्ष उत्पादों, कंपनी नामों और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।",
+  "suggested": "सभी तृतीय‑पक्ष उत्पाद, कंपनी नाम और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।",
+  "reason": "Broken grammar: the subject list is in the oblique case (\"उत्पादों, कंपनी नामों\") with no postposition, so the sentence does not parse.",
+  "category": "meaning"
+ },
+ {
+  "context": "sleep_wake_up_now",
+  "source": "Wake Up Now",
+  "current": "अभी जागें",
+  "suggested": "अभी जगाएँ",
+  "reason": "\"अभी जागें\" tells the user to wake up; the button wakes the app. Use the causative, matching \"जब मैं निकलूँ तब जगाएँ\" and \"Soundscape को जगाने के लिए\".",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to",
+  "source": "%1$s to %2$s",
+  "current": "%1$s से %2$s तक",
+  "suggested": "%1$s से %2$s तक",
+  "reason": "HI-G1 (agreed defect): «%1$s से %2$s तक» says \"from the path to Moor Road\" (C10). The recorded candidate «%2$s तक जाने वाला %1$s» needs वाला/वाली to agree with %1$s (पथ m. vs सड़क f.), so needs a reviewer; the gender-free label form «%1$s, %2$s की ओर» (\"Path, towards Moor Road\", C17) is an alternative to put to them.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_via",
+  "source": "%1$s to %2$s via %3$s",
+  "current": "%1$s से %2$s, %3$s के रास्ते",
+  "suggested": "%1$s से %2$s, %3$s के रास्ते",
+  "reason": "HI-G1 applies here too: «%1$s से %2$s, %3$s के रास्ते» reads \"from the path to Moor Road, by way of steps\". Candidate (reviewer to choose, as confect_name_to): «%1$s, %3$s से होकर %2$s की ओर».",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end",
+  "source": "%1$s to dead end",
+  "current": "%1$s से बंद गली तक",
+  "suggested": "%1$s से बंद गली तक",
+  "reason": "Inherits HI-G1 (C21): «%1$s से बंद गली तक» says \"from the path to a dead end\". A gender-free label form that also works when %1$s is a road name would be «%1$s, आगे बंद गली»; needs the same reviewer decision as confect_name_to.",
+  "category": "meaning"
+ },
+ {
+  "context": "confect_name_to_dead_end_via",
+  "source": "%1$s to dead end via %2$s",
+  "current": "%1$s से बंद गली, %2$s के रास्ते",
+  "suggested": "%1$s से बंद गली, %2$s के रास्ते",
+  "reason": "Inherits HI-G1 (C21): «%1$s से बंद गली, %2$s के रास्ते» says \"from the path to a dead end, by way of steps\". Candidate: «%1$s, %2$s से होकर आगे बंद गली»; decide with confect_name_to.",
+  "category": "meaning"
+ },
+ {
+  "context": "talkback_double_tap_template",
+  "source": "Double tap to %1$s",
+  "current": "दो बार टैप करें %1$s",
+  "suggested": "दो बार टैप करें %1$s",
+  "reason": "HI-B1 (agreed defect, still open): «दो बार टैप करें %1$s» + imperative hints makes VoiceOver say two commands back to back. Fix the template first (C13), e.g. «%1$s — इसके लिए दो बार टैप करें»; wording awaits a Hindi VoiceOver/TalkBack user (Q5).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_cliff",
+  "source": "Cliff",
+  "current": "चट्टान",
+  "suggested": "खड़ी चट्टान",
+  "reason": "Cliff and Rock (osm_rock) are both «चट्टान», so the two POI types are indistinguishable by ear; a cliff is a steep rock face.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_spring",
+  "source": "Spring",
+  "current": "चश्मा",
+  "suggested": "जल स्रोत",
+  "reason": "«चश्मा» is correct but heard alone its everyday sense is spectacles (cf. osm_optician «चश्मे की दुकान»); a spoken POI type needs the unambiguous word.",
+  "category": "meaning"
+ },
+ {
+  "context": "sleep_sleeping_wake_on_leave_message",
+  "source": "Soundscape is currently snoozing. When you leave your current location, Soundscape will automatically wake up. Snoozing uses Location Services in a low power mode to save your phone's battery. Tap the button below to wake up now.",
+  "current": "Soundscape वर्तमान में स्नूज़ मोड में है। जब आप अपने वर्तमान स्थान को छोड़ेंगे, तो Soundscape स्वचालित रूप से जाग जाएगा। स्नूज़ मोड आपके फ़ोन की बैटरी बचाने के लिए लो‑पावर मोड में लोकेशन सर्विसेज़ का उपयोग करता है। Soundscape को अभी जगाने के लिए नीचे दिए गए बटन पर टैप करें।",
+  "suggested": "Soundscape वर्तमान में स्नूज़ मोड में है। जब आप अपने वर्तमान स्थान को छोड़ेंगे, तो Soundscape स्वचालित रूप से जाग जाएगा। स्नूज़ मोड आपके फ़ोन की बैटरी बचाने के लिए लो‑पावर मोड में स्थान सेवाओं का उपयोग करता है। Soundscape को अभी जगाने के लिए नीचे दिए गए बटन पर टैप करें।",
+  "reason": "Location Services is «स्थान सेवाएँ» everywhere else (sleep_sleeping_message, faq_sleep_mode_battery_answer); this uses the loanword «लोकेशन सर्विसेज़».",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_background_battery_impact_answer",
+  "source": "Soundscape uses Location Services to determine where you are. In our tests, Soundscape does not consume any more battery than the average map app; but if you are concerned about your phone's battery consumption, the following are a few tips which will help lower usage:\\n\\n1. Turn the screen display off as much as possible when you are not interacting with the app.\\n\\n2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.\\n\\n3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.",
+  "current": "आप कहाँ हैं यह निर्धारित करने के लिए Soundscape लोकेशन सर्विसेज़ का उपयोग करता है। हमारे परीक्षणों में, Soundscape औसत नक्शा ऐप से अधिक बैटरी का उपभोग नहीं करता; लेकिन यदि आप अपने फ़ोन की बैटरी खपत के बारे में चिंतित हैं, तो निम्नलिखित कुछ सुझाव हैं जो उपयोग कम करने में मदद करेंगे:\\n\\n1. जब आप ऐप के साथ इंटरैक्ट नहीं कर रहे हों तो जितना संभव हो स्क्रीन डिस्प्ले बंद रखें।\\n\\n2. जब ऐप का उपयोग न कर रहे हों, तो इसे बंद कर दें। Soundscape चलने के दौरान लगातार लोकेशन सर्विसेज़ का उपयोग करता है ताकि उसे हमेशा आपका स्थान पता रहे, तब भी जब आप नहीं चल रहे हों। अपनी यात्रा फिर से शुरू करते समय ऐप को पुनः आरंभ करना न भूलें।\\n\\n3. ठंड के मौसम में, अपने फ़ोन को गर्म रखें क्योंकि बैटरियाँ ठंडे तापमान में कम अच्छा प्रदर्शन करती हैं।",
+  "suggested": "आप कहाँ हैं यह निर्धारित करने के लिए Soundscape स्थान सेवाओं का उपयोग करता है। हमारे परीक्षणों में, Soundscape औसत नक्शा ऐप से अधिक बैटरी का उपभोग नहीं करता; लेकिन यदि आप अपने फ़ोन की बैटरी खपत के बारे में चिंतित हैं, तो निम्नलिखित कुछ सुझाव हैं जो उपयोग कम करने में मदद करेंगे:\\n\\n1. जब आप ऐप के साथ इंटरैक्ट नहीं कर रहे हों तो जितना संभव हो स्क्रीन डिस्प्ले बंद रखें।\\n\\n2. जब ऐप का उपयोग न कर रहे हों, तो इसे बंद कर दें। Soundscape चलने के दौरान लगातार स्थान सेवाओं का उपयोग करता है ताकि उसे हमेशा आपका स्थान पता रहे, तब भी जब आप नहीं चल रहे हों। अपनी यात्रा फिर से शुरू करते समय ऐप को पुनः आरंभ करना न भूलें।\\n\\n3. ठंड के मौसम में, अपने फ़ोन को गर्म रखें क्योंकि बैटरियाँ ठंडे तापमान में कम अच्छा प्रदर्शन करती हैं।",
+  "reason": "Location Services rendered «लोकेशन सर्विसेज़» (twice) instead of the corpus term «स्थान सेवाएँ».",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_turn_beacon_back_on_answer",
+  "source": "Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *unmute beacon button*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.",
+  "current": "हाँ, Soundscape द्वारा बीकन बंद करने के बाद आप *\"बीकन अनम्यूट करें\"* बटन चुनकर इसे फिर से चालू कर सकते हैं; हालाँकि, चूँकि लोकेशन सर्विसेज़ केवल लगभग 10 मीटर तक सटीक है, हम आपकी मंज़िल से कुछ मीटर के भीतर होने पर बीकन के व्यवहार की गारंटी नहीं दे सकते।",
+  "suggested": "हाँ, Soundscape द्वारा बीकन बंद करने के बाद आप *बीकन अनम्यूट करें* बटन चुनकर इसे फिर से चालू कर सकते हैं; हालाँकि, चूँकि स्थान सेवाएँ केवल लगभग 10 मीटर तक सटीक हैं, हम आपकी मंज़िल से कुछ मीटर के भीतर होने पर बीकन के व्यवहार की गारंटी नहीं दे सकते।",
+  "reason": "Location Services rendered «लोकेशन सर्विसेज़» instead of «स्थान सेवाएँ»; also the UI name is wrapped in quotes as well as asterisks.",
+  "category": "terminology"
+ },
+ {
+  "context": "settings_help_section_home_screen_buttons",
+  "source": "Location and Exploration Buttons",
+  "current": "लोकेशन और अन्वेषण बटन",
+  "suggested": "स्थान और अन्वेषण बटन",
+  "reason": "\"Location\" is «स्थान» throughout (मेरा स्थान, स्थान विवरण); the loanword «लोकेशन» is used only here and in faq_holding_phone_flat_answer.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "नहीं! चलते समय आप फ़ोन को बैग, जेब या जहाँ सुविधाजनक हो वहाँ रख सकते हैं। Soundscape यह पता लगाने के लिए आपकी चलने की दिशा का उपयोग करेगा कि कौन‑सी कॉलआउट आपके बाएँ और दाएँ बतानी है। जब आप रुकते हैं तो Soundscape यह नहीं जानता कि आप किस दिशा की ओर मुख कर रहे हैं। यदि श्रव्य बीकन चालू है तो आप देखेंगे कि इसकी आवाज़ शांत हो जाती है जब तक आप फिर से चलना शुरू न करें। आप किसी भी समय फ़ोन निकालकर होम स्क्रीन के नीचे स्थित लोकेशन और अन्वेषण बटन दबा सकते हैं, पर ध्यान रखें कि फ़ोन को इस तरह पकड़े रखें कि फ़ोन का ऊपरी हिस्सा उस दिशा की ओर इशारा करे जिस दिशा में आप मुख कर रहे हैं और स्क्रीन आकाश की ओर हो। इस *सपाट* स्थिति में, Soundscape फ़ोन के कम्पास का उपयोग करके यह निर्धारित करेगा कि आप किस दिशा में हैं और सटीक स्थानिक कॉलआउट देगा। यदि बीकन चालू है तो आप देखेंगे कि उसकी आवाज़ फिर से पूरी तीव्रता पर लौट आती है।",
+  "suggested": "नहीं! चलते समय आप फ़ोन को बैग, जेब या जहाँ सुविधाजनक हो वहाँ रख सकते हैं। Soundscape यह पता लगाने के लिए आपकी चलने की दिशा का उपयोग करेगा कि कौन‑सी कॉलआउट आपके बाएँ और दाएँ बतानी है। जब आप रुकते हैं तो Soundscape यह नहीं जानता कि आप किस दिशा की ओर मुख कर रहे हैं। यदि श्रव्य बीकन चालू है तो आप देखेंगे कि इसकी आवाज़ शांत हो जाती है जब तक आप फिर से चलना शुरू न करें। आप किसी भी समय फ़ोन निकालकर होम स्क्रीन के नीचे स्थित स्थान और अन्वेषण बटन दबा सकते हैं, पर ध्यान रखें कि फ़ोन को इस तरह पकड़े रखें कि फ़ोन का ऊपरी हिस्सा उस दिशा की ओर इशारा करे जिस दिशा में आप मुख कर रहे हैं और स्क्रीन आकाश की ओर हो। इस *सपाट* स्थिति में, Soundscape फ़ोन के कम्पास का उपयोग करके यह निर्धारित करेगा कि आप किस दिशा में हैं और सटीक स्थानिक कॉलआउट देगा। यदि बीकन चालू है तो आप देखेंगे कि उसकी आवाज़ फिर से पूरी तीव्रता पर लौट आती है।",
+  "reason": "«लोकेशन और अन्वेषण बटन» should match the help section title and the corpus term «स्थान».",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_creating_markers_content_2",
+  "source": "You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.",
+  "current": "अब आपके पास इस मार्कर को अनुकूलित करने का विकल्प होगा। आप मार्कर का नाम बदल सकते हैं, और एक विवरण नोट भी जोड़ सकते हैं जो अतिरिक्त जानकारी प्रदान करने के लिए मार्कर के साथ बोला जाएगा। एक बार पूरा होने पर, अपना मार्कर सहेजने के लिए *\"पूर्ण\"* बटन चुनें।",
+  "suggested": "अब आपके पास इस मार्कर को अनुकूलित करने का विकल्प होगा। आप मार्कर का नाम बदल सकते हैं, और एक विवरण नोट भी जोड़ सकते हैं जो अतिरिक्त जानकारी प्रदान करने के लिए मार्कर के साथ बोला जाएगा। एक बार पूरा होने पर, अपना मार्कर सहेजने के लिए *हो गया* बटन चुनें।",
+  "reason": "UI name *Done* is `general_alert_done` = «हो गया», but the text says «पूर्ण» (and adds quotes inside the asterisks), so the user is told to press a button that does not exist.",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_customizing_markers_content_2",
+  "source": "From this *Edit* screen you can also delete a marker if you no longer need it.",
+  "current": "इस *\"संपादन\"* स्क्रीन से आप किसी मार्कर को हटा भी सकते हैं यदि आपको अब उसकी आवश्यकता नहीं है।",
+  "suggested": "इस *मार्कर संपादित करें* स्क्रीन से आप किसी मार्कर को हटा भी सकते हैं यदि आपको अब उसकी आवश्यकता नहीं है।",
+  "reason": "UI name *Edit* is `markers_edit_screen_title_edit` = «मार्कर संपादित करें», not «संपादन»; also drop the quotes inside the asterisks.",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_intersection",
+  "source": "Intersection",
+  "current": "जंक्शन",
+  "suggested": "चौराहा",
+  "reason": "Glossary term for Intersection is «चौराहा» (used in every callout and help string); «जंक्शन» is reserved for numbered motorway junctions (directions_junction_with_ref).",
+  "category": "terminology"
+ },
+ {
+  "context": "osm_unmanaged_crossing",
+  "source": "Unmanaged Crosswalk",
+  "current": "अनियंत्रित क्रॉसवॉक",
+  "suggested": "अनियंत्रित पैदल यात्री क्रॉसिंग",
+  "reason": "Crossing is «पैदल यात्री क्रॉसिंग» in osm_crossing and help text; «क्रॉसवॉक» appears only here.",
+  "category": "terminology"
+ },
+ {
+  "context": "faq_what_can_I_set_answer",
+  "source": "You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.",
+  "current": "आप किसी भी व्यवसाय, स्थान, रुचि के बिंदु, पते या चौराहे पर ऑडियो बीकन सेट कर सकते हैं। किसी स्थान पर बीकन जोड़ने के कुछ तरीके हैं। सबसे पहले किसी स्थान के विवरण देखने के लिए खोज बार का उपयोग करके स्थान खोजें, या *पास के स्थान*, *मार्कर और मार्ग* या *वर्तमान स्थान* बटनों में से किसी एक को टैप करके कोई स्थान चुनें। फिर *स्थान विवरण* स्क्रीन पर *ऑडियो बीकन शुरू करें* बटन चुनें। इसे टैप करने पर आप होम स्क्रीन पर लौटेंगे और आपके द्वारा चुने गए स्थान की दिशा से आने वाला श्रव्य बीकन चालू हो जाएगा। स्थान का नाम, उसकी दूरी और भौतिक पता (यदि उपलब्ध हो) अब मुख्य स्क्रीन पर प्रदर्शित होगा।",
+  "suggested": "आप किसी भी व्यवसाय, स्थान, रुचि के स्थान, पते या चौराहे पर ऑडियो बीकन सेट कर सकते हैं। किसी स्थान पर बीकन जोड़ने के कुछ तरीके हैं। सबसे पहले किसी स्थान के विवरण देखने के लिए खोज बार का उपयोग करके स्थान खोजें, या *पास के स्थान*, *मार्कर और मार्ग* या *वर्तमान स्थान* बटनों में से किसी एक को टैप करके कोई स्थान चुनें। फिर *स्थान विवरण* स्क्रीन पर *ऑडियो बीकन शुरू करें* बटन चुनें। इसे टैप करने पर आप होम स्क्रीन पर लौटेंगे और आपके द्वारा चुने गए स्थान की दिशा से आने वाला श्रव्य बीकन चालू हो जाएगा। स्थान का नाम, उसकी दूरी और भौतिक पता (यदि उपलब्ध हो) अब मुख्य स्क्रीन पर प्रदर्शित होगा।",
+  "reason": "Point of interest is «रुचि के स्थान» everywhere else; «रुचि के बिंदु» only here.",
+  "category": "terminology"
+ },
+ {
+  "context": "menu_manage_accessibility",
+  "source": "Accessibility",
+  "current": "पहुँच-योग्यता",
+  "suggested": "सुगम्यता",
+  "reason": "Accessibility is «सुगम्यता» on the onboarding screen (accessibility_title) but «पहुँच-योग्यता» here; one term should be used (check what Android's own Hindi settings say, often «सुलभता»).",
+  "category": "terminology"
+ },
+ {
+  "context": "tour_my_location",
+  "source": "Now that you know how to use Markers, let's look at some of the other features. At the bottom of the screen are four buttons. We'll try each one. The button on the left is My Location. It describes your current location. Try tapping it now.",
+  "current": "अब जब आप मार्कर का उपयोग करना जान गए हैं, तो आइए कुछ अन्य सुविधाएँ देखें। स्क्रीन के नीचे चार बटन हैं। हम हर एक को आज़माएँगे। बाईं ओर का बटन मेरा स्थान है। यह आपके वर्तमान स्थान का वर्णन करता है। अभी इस पर टैप करके देखें।",
+  "suggested": "अब जब आपको मार्कर का उपयोग करना आ गया है, तो आइए कुछ अन्य सुविधाएँ देखें। स्क्रीन के नीचे चार बटन हैं। हम हर एक को आज़माएँगे। बाईं ओर का बटन मेरा स्थान है। यह आपके वर्तमान स्थान का वर्णन करता है। अभी इस पर टैप करके देखें।",
+  "reason": "«जान गए हैं» is masculine; the user's gender is unknown (C15). Gender-free phrasing.",
+  "category": "gender"
+ },
+ {
+  "context": "help_text_automatic_callouts_when_3",
+  "source": "**When you need silence :**\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.",
+  "current": "**जब आपको शांति चाहिए :**\\n\\n जब आप सड़क पार करने वाले हों या बस ऐप को चुप रखना चाहते हों, तो आप कॉलआउट बंद कर सकते हैं। जब कॉलआउट बंद हों, तो ऐप आपको केवल तभी जानकारी देगा जब आप स्वयं *\"मेरा स्थान\"*, *\"पास के मार्कर\"*, *\"मेरे आसपास\"*, या *\"मेरे आगे\"* बटनों में से किसी एक पर टैप करें।",
+  "suggested": "**जब आपको शांति चाहिए :**\\n\\n जब आप सड़क पार करने वाले हों या बस ऐप को चुप रखना चाहते हों, तो आप कॉलआउट बंद कर सकते हैं। जब कॉलआउट बंद हों, तो ऐप आपको केवल तभी जानकारी देगा जब आप स्वयं *मेरा स्थान*, *पास के मार्कर*, *मेरे आसपास*, या *मेरे आगे* बटनों में से किसी एक पर टैप करें।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_what",
+  "source": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "current": "*\"मेरा स्थान\"* बटन आपको जल्दी से ऐसी जानकारी देता है जो यह समझने में मदद करती है कि आप वर्तमान में कहाँ हैं। *\"मेरा स्थान\"* आपको आपके वर्तमान स्थान के बारे में बताता है, जिसमें आप किस दिशा का सामना कर रहे हैं, आसपास की सड़कें या चौराहे कहाँ हैं, और पास के रुचि के स्थान कहाँ हैं।",
+  "suggested": "*मेरा स्थान* बटन आपको जल्दी से ऐसी जानकारी देता है जो यह समझने में मदद करती है कि आप वर्तमान में कहाँ हैं। *मेरा स्थान* आपको आपके वर्तमान स्थान के बारे में बताता है, जिसमें आप किस दिशा का सामना कर रहे हैं, आसपास की सड़कें या चौराहे कहाँ हैं, और पास के रुचि के स्थान कहाँ हैं।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_when",
+  "source": "*My Location* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "current": "*\"मेरा स्थान\"* तब उपयोगी होता है जब आपको यह पता लगाना हो कि आप कहाँ हैं या आप किस दिशा का सामना कर रहे हैं।",
+  "suggested": "*मेरा स्थान* तब उपयोगी होता है जब आपको यह पता लगाना हो कि आप कहाँ हैं या आप किस दिशा का सामना कर रहे हैं।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_my_location_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "होम स्क्रीन के नीचे चारों बटनों की तरह, *\"मेरा स्थान\"* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *\"मेरा स्थान\"* बटन पर टैप करें और सुनें।",
+  "suggested": "होम स्क्रीन के नीचे चारों बटनों की तरह, *मेरा स्थान* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *मेरा स्थान* बटन पर टैप करें और सुनें।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_what",
+  "source": "The *Nearby Markers* button tells you about up to four markers that are closest to you. *Nearby Markers* is intended to help you orient yourself using places you already know about.",
+  "current": "*\"पास के मार्कर\"* बटन आपको आपके सबसे निकट के चार मार्करों के बारे में बताता है। *\"पास के मार्कर\"* का उद्देश्य आपको उन स्थानों का उपयोग करके अपनी दिशा समझने में मदद करना है जिनके बारे में आप पहले से जानते हैं।",
+  "suggested": "*पास के मार्कर* बटन आपको आपके सबसे निकट के चार मार्करों के बारे में बताता है। *पास के मार्कर* का उद्देश्य आपको उन स्थानों का उपयोग करके अपनी दिशा समझने में मदद करना है जिनके बारे में आप पहले से जानते हैं।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Nearby Markers* to hear about the locations of places you know of.",
+  "current": "जब आप अपनी दिशा समझने और अपने परिवेश से तालमेल बिठाने की कोशिश कर रहे हों, तो *\"पास के मार्कर\"* का उपयोग करके उन स्थानों की स्थिति के बारे में सुनें जिन्हें आप जानते हैं।",
+  "suggested": "जब आप अपनी दिशा समझने और अपने परिवेश से तालमेल बिठाने की कोशिश कर रहे हों, तो *पास के मार्कर* का उपयोग करके उन स्थानों की स्थिति के बारे में सुनें जिन्हें आप जानते हैं।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_nearby_markers_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Nearby Markers* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Nearby Markers* button and you will hear up to four markers near you.",
+  "current": "होम स्क्रीन के नीचे चारों बटनों की तरह, *\"पास के मार्कर\"* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *\"पास के मार्कर\"* बटन पर टैप करें और आप अपने पास के चार मार्करों के बारे में सुनेंगे।",
+  "suggested": "होम स्क्रीन के नीचे चारों बटनों की तरह, *पास के मार्कर* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *पास के मार्कर* बटन पर टैप करें और आप अपने पास के चार मार्करों के बारे में सुनेंगे।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_what",
+  "source": "The *Around Me* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *Around Me* is intended to help you orient yourself to your surroundings.",
+  "current": "*\"मेरे आसपास\"* बटन आपके चारों ओर के चार चतुर्थांशों (आगे, दाईं ओर, पीछे और बाईं ओर) में से प्रत्येक में एक चीज़ के बारे में बताता है। *\"मेरे आसपास\"* का उद्देश्य आपको अपने परिवेश से परिचित होने में मदद करना है।",
+  "suggested": "*मेरे आसपास* बटन आपके चारों ओर के चार चतुर्थांशों (आगे, दाईं ओर, पीछे और बाईं ओर) में से प्रत्येक में एक चीज़ के बारे में बताता है। *मेरे आसपास* का उद्देश्य आपको अपने परिवेश से परिचित होने में मदद करना है।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_when",
+  "source": "When you are trying to get your bearings and orient yourself to your surroundings, use *Around Me* to hear about the things around you.",
+  "current": "जब आप अपनी दिशा समझने और अपने परिवेश से तालमेल बिठाने की कोशिश कर रहे हों, तो *\"मेरे आसपास\"* का उपयोग करके अपने आसपास की चीज़ों के बारे में सुनें।",
+  "suggested": "जब आप अपनी दिशा समझने और अपने परिवेश से तालमेल बिठाने की कोशिश कर रहे हों, तो *मेरे आसपास* का उपयोग करके अपने आसपास की चीज़ों के बारे में सुनें।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_around_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Around Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Around Me* button and you will hear four points of interest arranged around you.",
+  "current": "होम स्क्रीन के नीचे चारों बटनों की तरह, *\"मेरे आसपास\"* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *\"मेरे आसपास\"* बटन पर टैप करें और आप अपने चारों ओर व्यवस्थित चार रुचि के स्थानों के बारे में सुनेंगे।",
+  "suggested": "होम स्क्रीन के नीचे चारों बटनों की तरह, *मेरे आसपास* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *मेरे आसपास* बटन पर टैप करें और आप अपने चारों ओर व्यवस्थित चार रुचि के स्थानों के बारे में सुनेंगे।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_ahead_of_me_when",
+  "source": "When you are walking down the street, try using *Ahead of Me* to discover the places and things coming up on either side of the street ahead.",
+  "current": "जब आप सड़क पर चल रहे हों, तो *\"मेरे आगे\"* का उपयोग करके आगे सड़क के दोनों ओर आने वाले स्थानों और चीज़ों की खोज करें।",
+  "suggested": "जब आप सड़क पर चल रहे हों, तो *मेरे आगे* का उपयोग करके आगे सड़क के दोनों ओर आने वाले स्थानों और चीज़ों की खोज करें।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_ahead_of_me_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.",
+  "current": "होम स्क्रीन के नीचे चारों बटनों की तरह, *\"मेरे आगे\"* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *\"मेरे आगे\"* बटन पर टैप करें और आप अपने लगभग सामने के कई रुचि के स्थानों के बारे में सुनेंगे।",
+  "suggested": "होम स्क्रीन के नीचे चारों बटनों की तरह, *मेरे आगे* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *मेरे आगे* बटन पर टैप करें और आप अपने लगभग सामने के कई रुचि के स्थानों के बारे में सुनेंगे।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**मार्ग बनाना :**\\n\\n सबसे पहले, *\"मार्कर और मार्ग\"* पर जाएँ, *\"मार्ग\"* टैब चुनें, और फिर *\"नया मार्ग\"* बटन चुनें। मार्ग को एक नाम और वैकल्पिक विवरण दें, फिर चलते-चलते मार्ग बिंदु जोड़ें या अपनी मार्कर सूची से उन्हें चुनें। आप किसी भी समय मार्ग को संपादित करके मार्ग बिंदुओं के क्रम को पुनर्व्यवस्थित कर सकते हैं।",
+  "suggested": "**मार्ग बनाना :**\\n\\n सबसे पहले, *मार्कर और मार्ग* पर जाएँ, *मार्ग* टैब चुनें, और फिर *नया मार्ग* बटन चुनें। मार्ग को एक नाम और वैकल्पिक विवरण दें, फिर चलते-चलते मार्ग बिंदु जोड़ें या अपनी मार्कर सूची से उन्हें चुनें। आप किसी भी समय मार्ग को संपादित करके मार्ग बिंदुओं के क्रम को पुनर्व्यवस्थित कर सकते हैं।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_how_3",
+  "source": "**Sharing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select the option to *Share* using all of the usual share options available to you.",
+  "current": "**मार्ग साझा करना :**\\n\\n *\"मार्कर और मार्ग\"* स्क्रीन पर अपना मार्ग चुनें और फिर आपके लिए उपलब्ध सभी सामान्य शेयर विकल्पों का उपयोग करके *\"साझा करें\"* का विकल्प चुनें।",
+  "suggested": "**मार्ग साझा करना :**\\n\\n *मार्कर और मार्ग* स्क्रीन पर अपना मार्ग चुनें और फिर आपके लिए उपलब्ध सभी सामान्य शेयर विकल्पों का उपयोग करके *साझा करें* का विकल्प चुनें।",
+  "reason": "UI names are wrapped in quotes inside the *…* markup (*\"…\"*); the English uses bare *…*, and sibling strings (e.g. help_text_ahead_of_me_what) do too.",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_battery_impact_answer",
+  "source": "Battery life varies significantly depending on the model and age of your phone. The biggest drain on your battery is having the screen on, so to maximize your phone's battery life, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape has a Sleep and a Snooze Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.",
+  "current": "बैटरी की जीवन‑शक्ति आपके फ़ोन के मॉडल और उसकी उम्र पर काफी निर्भर करती है। बैटरी का सबसे बड़ा उपयोग तब होता है जब स्क्रीन चालू रहती है, इसलिए अपनी फ़ोन की बैटरी जीवन को अधिकतम करने के लिए जहाँ संभव हो स्क्रीन लॉक रखें। आपके फ़ोन की बैटरी पर प्रभाव कम करने के लिए, Soundscape एक *स्लीप* मोड और एक *स्नूज़* मोड प्रदान करता है। इसके अतिरिक्त, जब आप Soundscape का उपयोग नहीं कर रहे हों तो फ़ोन के ऐप स्विचर के माध्यम से ऐप को बलपूर्वक बंद कर देना बैटरी की खपत और कम कर देगा।",
+  "suggested": "बैटरी की जीवन‑शक्ति आपके फ़ोन के मॉडल और उसकी उम्र पर काफी निर्भर करती है। बैटरी का सबसे बड़ा उपयोग तब होता है जब स्क्रीन चालू रहती है, इसलिए अपनी फ़ोन की बैटरी जीवन को अधिकतम करने के लिए जहाँ संभव हो स्क्रीन लॉक रखें। आपके फ़ोन की बैटरी पर प्रभाव कम करने के लिए, Soundscape एक स्लीप मोड और एक स्नूज़ मोड प्रदान करता है। इसके अतिरिक्त, जब आप Soundscape का उपयोग नहीं कर रहे हों तो फ़ोन के ऐप स्विचर के माध्यम से ऐप को बलपूर्वक बंद कर देना बैटरी की खपत और कम कर देगा।",
+  "reason": "Adds *…* markup around स्लीप/स्नूज़ that the English does not have (these are mode names, not UI labels here).",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_snooze_mode_battery_answer",
+  "source": "To put Soundscape into Snooze Mode, select the *Sleep* button in the top-right corner of the home screen. Once Soundscape’s in Sleep Mode, select the *Wake On Leave* button and Soundscape will go in to a low power state until you leave your current location.",
+  "current": "Soundscape को *स्नूज़* मोड में डालने के लिए होम स्क्रीन के ऊपर‑दाएँ कोने में स्थित *स्लीप* बटन चुनें। एक बार जब Soundscape स्लीप मोड में हो जाए, तो *जब मैं निकलूँ तब जगाएँ* बटन चुनें और Soundscape तब तक लो‑पावर स्थिति में चला जाएगा जब तक आप अपने वर्तमान स्थान को नहीं छोड़ते।",
+  "suggested": "Soundscape को स्नूज़ मोड में डालने के लिए होम स्क्रीन के ऊपर‑दाएँ कोने में स्थित *स्लीप* बटन चुनें। एक बार जब Soundscape स्लीप मोड में हो जाए, तो *जब मैं निकलूँ तब जगाएँ* बटन चुनें और Soundscape तब तक लो‑पावर स्थिति में चला जाएगा जब तक आप अपने वर्तमान स्थान को नहीं छोड़ते।",
+  "reason": "Adds *…* around स्नूज़ in \"Snooze Mode\", which is not a UI name in the English (only *Sleep* and *Wake On Leave* are).",
+  "category": "formatting"
+ },
+ {
+  "context": "faq_when_to_use_soundscape_answer",
+  "source": "Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *\"what problem is this app good at solving?\"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *\"lighting up your world with sound\"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, helps *\"fill in the gaps in your mental map\"*, and provides more *\"confidence when walking\"*. Here are some other examples of how our users are using Soundscape in their life:\\n\\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\\n\\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\\n\\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\\n\\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\\n\\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"",
+  "current": "Soundscape में ऐसी सुविधाएँ और लाभ हैं जो विभिन्न परिदृश्यों और समय-सीमाओं में उपयोगी हैं। Soundscape का आपके लिए मूल्य समय के साथ बदल भी सकता है, इसलिए आज आप इसका जैसे उपयोग करते हैं वह तीन महीने बाद के उपयोग से भिन्न हो सकता है। लोग अक्सर ऐप्स के बारे में सोचते हैं कि *यह ऐप कौन सी समस्या हल करने में अच्छा है?* Soundscape का उपयोग निश्चित रूप से विशिष्ट ज़रूरतों के लिए किया जा सकता है – जैसे कि वहाँ जाते समय किसी मंज़िल पर नज़र रखना, मेट्रो स्टेशन से बाहर निकलने पर अपनी दिशा समझना, कार से उतरने पर अपनी स्थिति जानना, या अगले चौराहे के लिए सड़क के नाम या दूरी जानना। हालाँकि, Soundscape के पीछे का दर्शन *ध्वनि से आपकी दुनिया को रोशन करना* है – यह आपके बाहर होने पर कभी भी उपयोग के लिए डिज़ाइन किया गया है ताकि आपको अपने परिवेश की जागरूकता मिले, जैसे कि आप जिन सड़कों पर हैं उनके नाम, आप किस दिशा में जा रहे हैं, और जिन व्यवसायों के पास से गुज़र रहे हैं उनके नाम। इस उपयोग मोड में, हमारे उपयोगकर्ताओं ने Soundscape को एक *अच्छा साथी ऐप* कहा है, जो *अप्रत्याशित खोजों* का समर्थन करता है, *आपके मानसिक नक्शे में अंतराल भरने* में मदद करता है, और *चलते समय अधिक आत्मविश्वास* देता है। यहाँ कुछ और उदाहरण हैं कि हमारे उपयोगकर्ता Soundscape को अपने जीवन में कैसे उपयोग कर रहे हैं:\\n\\nSoundscape ने मुझे वापस सही रास्ते पर लाने में मदद की जब मैं बस से उतरकर गलत दिशा में चला गया था।\\n\\nजिस शहर में मैं 3 साल से रह रहा हूँ, वहाँ भी मैंने [Soundscape के साथ] अपने आसपास क्या है इसकी बेहतर तस्वीर बनाई है।\\n\\n3D ध्वनि मेरी सैर के अनुभव को बढ़ाती है, क्योंकि मैं अपने वातावरण से अधिक जुड़ा हुआ महसूस करता हूँ…अब जब मेरे पास यह ऐप है तो मैं नया रास्ता आज़माने की अधिक संभावना रखता हूँ।\\n\\nमुझे इधर-उधर घूमने और चीज़ें देखने की अप्रत्याशित खोजें याद आती हैं। Soundscape होना अच्छा है – अपने आसपास की चीज़ों के बारे में सुनने में कोई प्रयास नहीं लगता। संबंधपरक जानकारी उपयोगी है और यह स्थितिजन्य जागरूकता और व्यापारिक गलियारों की खोज के लिए एक शानदार ऐप है।\\n\\n[मैंने Soundscape का उपयोग किया] यॉर्क के बीचोंबीच एक पब खोजने के लिए। [मैंने] पहले उसका पता लगाने और फिर वास्तव में उसे ढूँढने के लिए इसके कई विकल्पों का उपयोग किया। इसने मुझे दरवाज़े से 3 मीटर के भीतर पहुँचा दिया – शानदार!",
+  "suggested": "Soundscape में ऐसी सुविधाएँ और लाभ हैं जो विभिन्न परिदृश्यों और समय-सीमाओं में उपयोगी हैं। Soundscape का आपके लिए मूल्य समय के साथ बदल भी सकता है, इसलिए आज आप इसका जैसे उपयोग करते हैं वह तीन महीने बाद के उपयोग से भिन्न हो सकता है। लोग अक्सर ऐप्स के बारे में सोचते हैं कि *यह ऐप कौन सी समस्या हल करने में अच्छा है?* Soundscape का उपयोग निश्चित रूप से विशिष्ट ज़रूरतों के लिए किया जा सकता है – जैसे कि वहाँ जाते समय किसी मंज़िल पर नज़र रखना, मेट्रो स्टेशन से बाहर निकलने पर अपनी दिशा समझना, कार से उतरने पर अपनी स्थिति जानना, या अगले चौराहे के लिए सड़क के नाम या दूरी जानना। हालाँकि, Soundscape के पीछे का दर्शन *ध्वनि से आपकी दुनिया को रोशन करना* है – यह आपके बाहर होने पर कभी भी उपयोग के लिए डिज़ाइन किया गया है ताकि आपको अपने परिवेश की जागरूकता मिले, जैसे कि आप जिन सड़कों पर हैं उनके नाम, आप किस दिशा में जा रहे हैं, और जिन व्यवसायों के पास से गुज़र रहे हैं उनके नाम। इस उपयोग मोड में, हमारे उपयोगकर्ताओं ने Soundscape को एक *अच्छा साथी ऐप* कहा है, जो *अप्रत्याशित खोजों* का समर्थन करता है, *आपके मानसिक नक्शे में अंतराल भरने* में मदद करता है, और *चलते समय अधिक आत्मविश्वास* देता है। यहाँ कुछ और उदाहरण हैं कि हमारे उपयोगकर्ता Soundscape को अपने जीवन में कैसे उपयोग कर रहे हैं:\\n\\n“Soundscape ने मुझे वापस सही रास्ते पर लाने में मदद की जब मैं बस से उतरकर गलत दिशा में चला गया था।”\\n\\n“जिस शहर में मैं 3 साल से रह रहा हूँ, वहाँ भी मैंने [Soundscape के साथ] अपने आसपास क्या है इसकी बेहतर तस्वीर बनाई है।”\\n\\n“3D ध्वनि मेरी सैर के अनुभव को बढ़ाती है, क्योंकि मैं अपने वातावरण से अधिक जुड़ा हुआ महसूस करता हूँ…अब जब मेरे पास यह ऐप है तो मैं नया रास्ता आज़माने की अधिक संभावना रखता हूँ।”\\n\\n“मुझे इधर-उधर घूमने और चीज़ें देखने की अप्रत्याशित खोजें याद आती हैं। Soundscape होना अच्छा है – अपने आसपास की चीज़ों के बारे में सुनने में कोई प्रयास नहीं लगता। संबंधपरक जानकारी उपयोगी है और यह स्थितिजन्य जागरूकता और व्यापारिक गलियारों की खोज के लिए एक शानदार ऐप है।”\\n\\n“[मैंने Soundscape का उपयोग किया] यॉर्क के बीचोंबीच एक पब खोजने के लिए। [मैंने] पहले उसका पता लगाने और फिर वास्तव में उसे ढूँढने के लिए इसके कई विकल्पों का उपयोग किया। इसने मुझे दरवाज़े से 3 मीटर के भीतर पहुँचा दिया – शानदार!”",
+  "reason": "The five user testimonials lost their quotation marks, so they read as the app's own claims in the first person. Restored with typographic quotes.",
+  "category": "formatting"
+ }
+]

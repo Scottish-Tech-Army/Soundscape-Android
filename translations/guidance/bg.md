@@ -163,7 +163,7 @@ Not changed, now questionnaire Q9 and Q10:
 - "Points of interest" is mostly «забележителности», the landmarks word (one setting says «интересни места»).
 - Button labels use the informal imperative («Спри маршрута», «Чуй околността си») under an otherwise formal «Вие» register (BG-R1).
 
-**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 21 flagged, 15 applied in `dc35e8edb`. Findings: `/tmp/translation-review/bg-findings.json`.
+**2026-09-30 — all-language review, no speaker involved.** All 1598 units read by `/translation-review-all`; 21 flagged, 15 applied in `dc35e8edb`. Findings: `translations/review/2026-09-30-all-languages/bg-findings.json`.
 Most serious fixed:
 - `osm_block`: barrier=block is a large concrete block across a path.
 - `osm_shed`: «Навес» is an open canopy/lean-to;

@@ -1,0 +1,394 @@
+[
+ {
+  "context": "callouts_verbosity_description",
+  "source": "Callout detail controls how much Soundscape tells you about as you walk. Detailed mode calls out everything nearby. Simplified mode leaves out minor paths and service roads, and repeats itself less often. Essential mode calls out streets, junctions and landmarks only. Silent mode makes no automatic callouts at all, leaving beacons, routes and the buttons on the home screen.",
+  "current": "A közlések részletessége szabályozza, hogy a Soundscape mennyi mindenről tájékoztatja séta közben. A Részletes mód mindent bemond a közelben. A Egyszerűsített mód kihagyja a kisebb ösvényeket és a kiszolgáló utakat, és ritkábban ismétli magát. A Alapvető mód csak utcákat, kereszteződéseket és nevezetességeket mond be. A Néma mód egyáltalán nem ad automatikus közléseket, de a hangjelzők, az útvonalak és a kezdőképernyő gombjai megmaradnak.",
+  "suggested": "A közlések részletessége szabályozza, hogy a Soundscape mennyi mindenről tájékoztat séta közben. A Részletes mód mindent bemond a közelben. Az Egyszerűsített mód kihagyja a kisebb ösvényeket és a kiszolgáló utakat, és ritkábban ismétli magát. Az Alapvető mód csak utcákat, kereszteződéseket és nevezetességeket mond be. A Néma mód egyáltalán nem ad automatikus közléseket, de a hangjelzők, az útvonalak és a kezdőképernyő gombjai megmaradnak.",
+  "reason": "Wrong article before vowel-initial level names: «A Egyszerűsített», «A Alapvető» must be «Az …» (this string is not run through resolveGrammarMarkers as «a(z)», so it is read as written). Also «tájékoztatja» is Ön-register in a te-register settings screen.",
+  "category": "meaning"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_1",
+  "source": "**Turning callouts on or off :**\\n\\n Turning callouts off will silence the app. Callouts can be turned off in the *Manage Callouts* section of the *Settings* screen by setting *Callout Detail* to *Silent*, and turned back on by choosing any other level. On iPhone you can do the same by asking Siri, and on Android the same will work through Gemini once Google releases support for it. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *previous* moves down through *Detailed*, *Simplified*, *Essential* and *Silent*, and one more press goes back to *Detailed*. See the *Using Media Controls* help topic. Alternatively, you can use the *Sleep* button in the top-right corner of the home screen to stop Soundscape from making callouts until you wake it up.",
+  "current": "**A közlések be- vagy kikapcsolása:**\\n\\n A közlések kikapcsolása elnémítja az alkalmazást. A közléseket a *Beállítások* képernyő *Közlések kezelése* részében kapcsolhatja ki úgy, hogy a *Közlések részletessége* beállítást *Néma* értékre állítja, és bármely másik szint kiválasztásával kapcsolhatja vissza. iPhone-on ugyanezt úgy teheti meg, hogy megkéri rá a Sirit, Androidon pedig a Geminin keresztül fog működni, amint a Google kiadja hozzá a támogatást. A Soundscape-et fokozatosan is halkíthatja a fülhallgatója médiavezérlő gombjaival: a *előző* minden egyes megnyomása egy szinttel lejjebb lép a *Részletes*, *Egyszerűsített*, *Alapvető* és *Néma* szinteken, egy további megnyomás pedig visszatér a *Részletes* szintre. Lásd a *Médiavezérlők használata* súgótémakört. Ehelyett használhatja az *Alvás* gombot is a kezdőképernyő jobb felső sarkában, hogy leállítsa a Soundscape közléseit, amíg fel nem ébreszti.",
+  "suggested": "**A közlések be- vagy kikapcsolása:**\\n\\n A közlések kikapcsolása elnémítja az alkalmazást. A közléseket a *Beállítások* képernyő *Közlések kezelése* részében kapcsolhatja ki úgy, hogy a *Közlések részletessége* beállítást *Néma* értékre állítja, és bármely másik szint kiválasztásával kapcsolhatja vissza. iPhone-on ugyanezt úgy teheti meg, hogy megkéri rá a Sirit, Androidon pedig a Geminin keresztül fog működni, amint a Google kiadja hozzá a támogatást. A Soundscape-et fokozatosan is halkíthatja a fülhallgatója médiavezérlő gombjaival: az *előző* minden egyes megnyomása egy szinttel lejjebb lép a *Részletes*, *Egyszerűsített*, *Alapvető* és *Néma* szinteken, egy további megnyomás pedig visszatér a *Részletes* szintre. Lásd a *Médiavezérlők használata* súgótémakört. Ehelyett használhatja az *Alvás* gombot is a kezdőképernyő jobb felső sarkában, hogy leállítsa a Soundscape közléseit, amíg fel nem ébreszti.",
+  "reason": "Wrong article: «a *előző*» must be «az *előző*» (vowel-initial word).",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_holding_phone_flat_answer",
+  "source": "No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the home screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *flat* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.",
+  "current": "Nem! Séta közben eltehet a telefont egy táskába, zsebbe, vagy bárhová, ahol kényelmes. A Soundscape a haladási irányát fogja használni annak megállapítására, hogy mely közléseket mondja be a bal, illetve a jobb oldaláról. Amikor megáll, a Soundscape nem tudja, merre néz. Ha a hallható hangjelző be van kapcsolva, észre fogja venni, hogy elhalkul, amíg újra el nem indul. Bármikor előveheti a telefont, hogy megnyomja a kezdőképernyő alján található helyzet- és felfedezőgombokat, de ilyenkor ügyeljen arra, hogy a telefon teteje abba az irányba mutasson, amerre néz, a képernyő pedig az ég felé nézzen. Ebben a *vízszintes* helyzetben a Soundscape a telefon iránytűjét használja annak meghatározására, merre néz, és pontos térbeli közléseket ad. Ha a hangjelző be van kapcsolva, azt is észre fogja venni, hogy visszaáll a teljes hangerőre.",
+  "suggested": "Nem! Séta közben elteheti a telefont egy táskába, zsebbe, vagy bárhová, ahol kényelmes. A Soundscape a haladási irányát fogja használni annak megállapítására, hogy mely közléseket mondja be a bal, illetve a jobb oldaláról. Amikor megáll, a Soundscape nem tudja, merre néz. Ha a hallható hangjelző be van kapcsolva, észre fogja venni, hogy elhalkul, amíg újra el nem indul. Bármikor előveheti a telefont, hogy megnyomja a kezdőképernyő alján található helyzet- és felfedezőgombokat, de ilyenkor ügyeljen arra, hogy a telefon teteje abba az irányba mutasson, amerre néz, a képernyő pedig az ég felé nézzen. Ebben a *vízszintes* helyzetben a Soundscape a telefon iránytűjét használja annak meghatározására, merre néz, és pontos térbeli közléseket ad. Ha a hangjelző be van kapcsolva, azt is észre fogja venni, hogy visszaáll a teljes hangerőre.",
+  "reason": "Conjugation error: definite object «a telefont» needs the definite form «elteheti», not «eltehet».",
+  "category": "meaning"
+ },
+ {
+  "context": "faq_controlling_what_you_hear_answer",
+  "source": "Soundscape provides several ways to control what you hear and when:\\n\\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *unmute beacon button* on the main screen to resume hearing the beacon.\\n\\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape into Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you turn it back on. Alternatively, you can select *Settings* from the menu and set *Callout Detail* to *Silent* in the *Manage Callouts* section.\\n\\n3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *mute beacon*/*unmute beacon* button on the main screen.\\n\\nIf you still want to interact with Soundscape but don’t want to hear automatic callouts, you can set *Callout Detail* to *Silent* in the *Manage Callouts* section of the *Settings* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *Sleep* button on the home screen.",
+  "current": "A Soundscape több módot is kínál arra, hogy szabályozza, mit és mikor hall:\\n\\n1. Minden hang azonnali leállítása: Koppintson duplán a képernyőre két ujjal, hogy azonnal kikapcsoljon minden hangot, beleértve az éppen lejátszott közlést és a hangjelzőt, ha az be van kapcsolva. A közlések automatikusan folytatódnak, amikor a következő kereszteződéshez vagy érdekes helyhez közeledik, de a hallható hangjelző nem. Válassza a *hangjelző némításának feloldása* gombot a főképernyőn, hogy ismét hallja a hangjelzőt.\\n\\n2. Automatikus közlések leállítása: Amikor nem utazik, vagy elérte a célpontját, valószínűleg nincs szüksége arra, hogy a Soundscape továbbra is tájékoztassa a környezetében lévő dolgokról. Ahelyett, hogy kilépne az alkalmazásból, Szundi módba állíthatja a Soundscape-et, amely újra felébred, amikor elindul, vagy Alvó módba állíthatja, amely kikapcsolva marad, amíg vissza nem kapcsolja. Ehelyett kiválaszthatja a *Beállítások* menüpontot, és a *Közlések kezelése* részben a *Közlések részletessége* beállítást *Néma* értékre állíthatja.\\n\\n3. A hangjelző leállítása: Számos olyan helyzet van, amikor beállíthat egy célpontot, de nincs szüksége bekapcsolt hallható hangjelzőre. Előfordulhat például, hogy pontosan tudja, hogyan jusson el a célpontjához, de mégis szeretne automatikus frissítéseket kapni arról, milyen messze van tőle. Vagy csak akkor van szüksége a hangjelzőre, amikor közeledik a célpontjához. Bármelyik esetről is legyen szó, a főképernyőn a *hangjelző némítása*/*hangjelző némításának feloldása* gomb átváltásával döntheti el, mikor hallja a hangjelzőt.\\n\\nHa továbbra is szeretne interakcióba lépni a Soundscape-pel, de nem szeretne automatikus közléseket hallani, a menüből elérhető *Beállítások* képernyő *Közlések kezelése* részében a *Közlések részletessége* beállítást *Néma* értékre állíthatja. Vagy ha nem fogja használni a Soundscape-et, Alvó vagy Szundi módba állíthatja a kezdőképernyőn található *Alvás* gombbal.",
+  "suggested": "A Soundscape több módot is kínál arra, hogy szabályozza, mit és mikor hall:\\n\\n1. Minden hang azonnali leállítása: Koppintson duplán a képernyőre két ujjal, hogy azonnal kikapcsoljon minden hangot, beleértve az éppen lejátszott közlést és a hangjelzőt, ha az be van kapcsolva. A közlések automatikusan folytatódnak, amikor a következő kereszteződéshez vagy érdekes helyhez közeledik, de a hallható hangjelző nem. Válassza a *hangjelző némításának feloldása* gombot a főképernyőn, hogy ismét hallja a hangjelzőt.\\n\\n2. Automatikus közlések leállítása: Amikor nem utazik, vagy elérte a célpontját, valószínűleg nincs szüksége arra, hogy a Soundscape továbbra is tájékoztassa a környezetében lévő dolgokról. Ahelyett, hogy kilépne az alkalmazásból, Szundi módba állíthatja a Soundscape-et, amely újra felébred, amikor elhagyja a jelenlegi helyét, vagy Alvó módba állíthatja, amely kikapcsolva marad, amíg vissza nem kapcsolja. Ehelyett kiválaszthatja a *Beállítások* menüpontot, és a *Közlések kezelése* részben a *Közlések részletessége* beállítást *Néma* értékre állíthatja.\\n\\n3. A hangjelző leállítása: Számos olyan helyzet van, amikor beállíthat egy célpontot, de nincs szüksége bekapcsolt hallható hangjelzőre. Előfordulhat például, hogy pontosan tudja, hogyan jusson el a célpontjához, de mégis szeretne automatikus frissítéseket kapni arról, milyen messze van tőle. Vagy csak akkor van szüksége a hangjelzőre, amikor közeledik a célpontjához. Bármelyik esetről is legyen szó, a főképernyőn a *hangjelző némítása*/*hangjelző némításának feloldása* gomb átváltásával döntheti el, mikor hallja a hangjelzőt.\\n\\nHa továbbra is szeretne interakcióba lépni a Soundscape-pel, de nem szeretne automatikus közléseket hallani, a menüből elérhető *Beállítások* képernyő *Közlések kezelése* részében a *Közlések részletessége* beállítást *Néma* értékre állíthatja. Vagy ha nem fogja használni a Soundscape-et, Alvó vagy Szundi módba állíthatja a kezdőképernyőn található *Alvás* gombbal.",
+  "reason": "Snooze wakes when you LEAVE your current location, but «amikor elindul» says \"when you set off/start moving\", which is a different trigger (sleep_wake_on_leave and faq_snooze_mode_battery_answer describe it as leaving).",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_mast",
+  "source": "Mast",
+  "current": "Árboc",
+  "suggested": "Antennaárboc",
+  "reason": "«Árboc» is a ship's mast; the OSM tag is a mast holding antennas, so the spoken callout suggests a boat. «Antennaárboc» names the actual object.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_tax",
+  "source": "Tax Office",
+  "current": "Adóhivatal",
+  "suggested": "Adótanácsadó iroda",
+  "reason": "Note says an office giving tax advice (OSM office=tax, alias of tax_advisor); «Adóhivatal» means the government tax authority.",
+  "category": "meaning"
+ },
+ {
+  "context": "osm_adult_gaming_centre",
+  "source": "Gambling Arcade",
+  "current": "Játékterem",
+  "suggested": "Nyerőgépterem",
+  "reason": "Rendered identically to osm_amusement_arcade («Játékterem»), losing the gambling sense of \"Gambling Arcade\"; a user can't tell a children's arcade from a slot-machine hall by ear.",
+  "category": "meaning"
+ },
+ {
+  "context": "voice_cmd_speech_recognition_error_network_timeout",
+  "source": "Speech recognition network timeout error.",
+  "current": "Hibás beszédfelismerés: hálózati időtúllépés.",
+  "suggested": "Beszédfelismerési hiba: hálózati időtúllépés.",
+  "reason": "«Hibás beszédfelismerés» means \"incorrect/faulty recognition\" (as if it misheard), not \"speech recognition error\"; «Beszédfelismerési hiba:» is the usual error label, matching the other voice_cmd_* errors that say «Hiba történt…».",
+  "category": "tone"
+ },
+ {
+  "context": "voice_cmd_speech_recognition_error_network",
+  "source": "Speech recognition network error.",
+  "current": "Hibás beszédfelismerés: hálózati hiba.",
+  "suggested": "Beszédfelismerési hiba: hálózati hiba.",
+  "reason": "«Hibás beszédfelismerés» means \"incorrect/faulty recognition\" (as if it misheard), not \"speech recognition error\"; «Beszédfelismerési hiba:» is the usual error label, matching the other voice_cmd_* errors that say «Hiba történt…».",
+  "category": "tone"
+ },
+ {
+  "context": "voice_cmd_speech_recognition_error_server",
+  "source": "Speech recognition server error.",
+  "current": "Hibás beszédfelismerés: kiszolgálóhiba.",
+  "suggested": "Beszédfelismerési hiba: kiszolgálóhiba.",
+  "reason": "«Hibás beszédfelismerés» means \"incorrect/faulty recognition\" (as if it misheard), not \"speech recognition error\"; «Beszédfelismerési hiba:» is the usual error label, matching the other voice_cmd_* errors that say «Hiba történt…».",
+  "category": "tone"
+ },
+ {
+  "context": "voice_cmd_speech_recognition_error_client",
+  "source": "Speech recognition client error.",
+  "current": "Hibás beszédfelismerés: kliensoldali hiba.",
+  "suggested": "Beszédfelismerési hiba: kliensoldali hiba.",
+  "reason": "«Hibás beszédfelismerés» means \"incorrect/faulty recognition\" (as if it misheard), not \"speech recognition error\"; «Beszédfelismerési hiba:» is the usual error label, matching the other voice_cmd_* errors that say «Hiba történt…».",
+  "category": "tone"
+ },
+ {
+  "context": "voice_cmd_speech_recognition_busy",
+  "source": "Speech recognition busy error.",
+  "current": "Hibás beszédfelismerés: a szolgáltatás foglalt.",
+  "suggested": "Beszédfelismerési hiba: a szolgáltatás foglalt.",
+  "reason": "«Hibás beszédfelismerés» means \"incorrect/faulty recognition\" (as if it misheard), not \"speech recognition error\"; «Beszédfelismerési hiba:» is the usual error label, matching the other voice_cmd_* errors that say «Hiba történt…».",
+  "category": "tone"
+ },
+ {
+  "context": "voice_cmd_speech_recognition_error_too_many_requests",
+  "source": "Speech recognition too many requests error.",
+  "current": "Hibás beszédfelismerés: túl sok kérés.",
+  "suggested": "Beszédfelismerési hiba: túl sok kérés.",
+  "reason": "«Hibás beszédfelismerés» means \"incorrect/faulty recognition\" (as if it misheard), not \"speech recognition error\"; «Beszédfelismerési hiba:» is the usual error label, matching the other voice_cmd_* errors that say «Hiba történt…».",
+  "category": "tone"
+ },
+ {
+  "context": "voice_cmd_speech_recognition_error_server_disconnected",
+  "source": "Speech recognition server disconnected error.",
+  "current": "Hibás beszédfelismerés: a kiszolgáló kapcsolata megszakadt.",
+  "suggested": "Beszédfelismerési hiba: a kiszolgáló kapcsolata megszakadt.",
+  "reason": "«Hibás beszédfelismerés» means \"incorrect/faulty recognition\" (as if it misheard), not \"speech recognition error\"; «Beszédfelismerési hiba:» is the usual error label, matching the other voice_cmd_* errors that say «Hiba történt…».",
+  "category": "tone"
+ },
+ {
+  "context": "help_text_automatic_callouts_how_2",
+  "source": "**Managing which callouts you hear :**\\n\\n To choose the types of things Soundscape will automatically call out, go to the *Settings* screen using the menu on the *Home* screen. The *Manage Callouts* section of the *Settings* screen is where you choose how much the app says with *Callout Detail*, whether it calls out *Streets and Junctions*, and which *Places to Call Out*. If you wish to turn off all callouts, set *Callout Detail* to *Silent*.",
+  "current": "**Annak kezelése, hogy milyen közléseket hall :**\\n\\n Ha ki szeretné választani, hogy a Soundscape milyen típusú dolgokat mondjon be automatikusan, lépjen a *Beállítások* képernyőre a *Kezdőképernyő* menüjén keresztül. A *Beállítások* képernyő *Közlések kezelése* részében választhatja ki a *Közlések részletessége* beállítással, hogy mennyit mondjon az alkalmazás, hogy bemondja-e az *Utcák és kereszteződések* elemeit, és hogy melyek a *Bemondandó helyek*. Ha az összes közlést ki szeretné kapcsolni, állítsa a *Közlések részletessége* beállítást *Néma* értékre.",
+  "suggested": "**Annak kezelése, hogy milyen közléseket hall:**\\n\\n Ha ki szeretné választani, hogy a Soundscape milyen típusú dolgokat mondjon be automatikusan, lépjen a *Beállítások* képernyőre a *Kezdőképernyő* menüjén keresztül. A *Beállítások* képernyő *Közlések kezelése* részében választhatja ki a *Közlések részletessége* beállítással, hogy mennyit mondjon az alkalmazás, hogy bemondja-e az *Utcák és kereszteződések* elemeit, és hogy melyek a *Bemondandó helyek*. Ha az összes közlést ki szeretné kapcsolni, állítsa a *Közlések részletessége* beállítást *Néma* értékre.",
+  "reason": "Heading keeps the English space before the colon («hall :**»); Hungarian has no space there and every sibling heading in this corpus already dropped it.",
+  "category": "formatting"
+ },
+ {
+  "context": "last_entry_in_list",
+  "source": " and %1$s",
+  "current": "és %1$s",
+  "suggested": "és %1$s",
+  "reason": "CROSS-LANGUAGE: the English \" and %1$s\" has a leading space because StreetPreview.kt appends it straight after the comma-joined list; «és %1$s» without the space gives «Váci utca, Deák térés Király utca». About half the languages lost the leading space (Weblate/XML trims it), so a code-side fix (add the space in code, as was done for number_decimal_separator_a11y) is better than per-language patches.",
+  "category": "formatting"
+ },
+ {
+  "context": "new_version_info_details",
+  "source": "\nThis is a major update to Soundscape.\n\nTravel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.\n\nSleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.\n\nWe reorganized the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.\n\nPlease continue to report any problems, however small, through Contact Support in the main menu.\n",
+  "current": "Ez egy jelentős frissítés a Soundscape számára. Az utazási mód sokat javult. Amikor autóval vagy busszal utazik, a Soundscape mostantól bemondja az útszámokat, a haladási irányát és a közeli településeket. Bemondja azt is, amikor folyókon, csatornákon, torkolatokon és öblökön kel át. Kérjük, frissítse offline térképeit, hogy megkapja ezeket az új funkciókat. Az Egyesült Királyságban élő felhasználók számára a buszmegállók leírása mostantól sokkal jobb. Az Alvó mód mostantól automatikusan felébredhet, amikor érzékeli, hogy Ön ismét mozog. Többé nem kell emlékeznie arra, hogy Önnek kell felébresztenie. Átszerveztük az alapul szolgáló kódot, hogy ugyanabból a kódból iOS-alkalmazást is tudjunk készíteni. Ez azt jelenti, hogy a jövőben olyan iOS-alkalmazást tudunk kiadni, amely az Androidra épített összes funkciót tartalmazza. Kérjük, továbbra is jelentse a felmerülő problémákat, bármilyen kicsik is legyenek, a főmenü Támogatás elérése funkcióján keresztül.",
+  "suggested": "Ez egy jelentős frissítés a Soundscape számára. Az utazási mód sokat javult. Amikor autóval vagy busszal utazik, a Soundscape mostantól bemondja az útszámokat, a haladási irányát és a közeli településeket. Bemondja azt is, amikor folyókon, csatornákon, torkolatokon és öblökön kel át. Kérjük, frissítse offline térképeit, hogy megkapja ezeket az új funkciókat. Az Egyesült Királyságban élő felhasználók számára a buszmegállók leírása mostantól sokkal jobb. Az Alvó mód mostantól automatikusan felébredhet, amikor érzékeli, hogy Ön ismét mozog. Többé nem kell emlékeznie arra, hogy Önnek kell felébresztenie. Átszerveztük az alapul szolgáló kódot, hogy ugyanabból a kódból iOS-alkalmazást is tudjunk készíteni. Ez azt jelenti, hogy a jövőben olyan iOS-alkalmazást tudunk kiadni, amely az Androidra épített összes funkciót tartalmazza. Kérjük, továbbra is jelentse a felmerülő problémákat, bármilyen kicsik is legyenek, a főmenü Támogatás elérése funkcióján keresztül.",
+  "reason": "CROSS-LANGUAGE: the English has paragraph breaks (real newlines) and the release-notes splitter now uses them, but 43 of 45 translations are a single run-on paragraph. Hungarian-specific extras for whoever retranslates: «a főmenü Támogatás elérése funkcióján» doesn't match the menu label menu_contact_support «Kapcsolatfelvétel az ügyfélszolgálattal», and the text is Ön-register in a te-register UI.",
+  "category": "formatting"
+ },
+ {
+  "context": "help_text_routes_content_what",
+  "source": "Routes are a series of waypoints. You will be informed on arrival at each waypoint, and the Audio Beacon will automatically advance to the next waypoint.",
+  "current": "Az útvonalak útpontok sorozatai. Minden útpont elérésekor értesítést kap, és a hangjelző automatikusan a következő útpontra vált.",
+  "suggested": "Az útvonalak útvonalpontok sorozatai. Minden útvonalpont elérésekor értesítést kap, és a hangjelző automatikusan a következő útvonalpontra vált.",
+  "reason": "Waypoint is «útvonalpont» in the glossary and 19 other strings (including the Previous/Next Waypoint buttons); these say «útpont», splitting the term (C12).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_routes_content_how_1",
+  "source": "**Creating a route :**\\n\\n First, go to *Markers and Routes*, select the *Routes* tab, and then select the *New Route* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.",
+  "current": "**Útvonal létrehozása:**\\n\\n Először lépjen a *Jelölők és útvonalak* menübe, válassza az *Útvonalak* lapot, majd válassza az *Új útvonal* gombot. Adjon nevet az útvonalnak, és opcionálisan írjon hozzá leírást, majd adjon hozzá útpontokat útközben, vagy válassza ki őket a jelölőlistájából. Az útvonal szerkesztésével bármikor átrendezheti az útpontok sorrendjét.",
+  "suggested": "**Útvonal létrehozása:**\\n\\n Először lépjen a *Jelölők és útvonalak* menübe, válassza az *Útvonalak* lapot, majd válassza az *Új útvonal* gombot. Adjon nevet az útvonalnak, és opcionálisan írjon hozzá leírást, majd adjon hozzá útvonalpontokat útközben, vagy válassza ki őket a jelölőlistájából. Az útvonal szerkesztésével bármikor átrendezheti az útvonalpontok sorrendjét.",
+  "reason": "Waypoint is «útvonalpont» in the glossary and 19 other strings (including the Previous/Next Waypoint buttons); these say «útpont», splitting the term (C12).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_routes_content_how_2",
+  "source": "**Editing a route :**\\n\\n Select your route on the *Markers and Routes* screen and then select *Edit Route*. From here you can add and remove waypoints, as well as edit the name and description of the route.",
+  "current": "**Útvonal szerkesztése:**\\n\\n Válassza ki az útvonalát a *Jelölők és útvonalak* képernyőn, majd válassza az *Útvonal szerkesztése* lehetőséget. Innen hozzáadhat és eltávolíthat útpontokat, valamint szerkesztheti az útvonal nevét és leírását.",
+  "suggested": "**Útvonal szerkesztése:**\\n\\n Válassza ki az útvonalát a *Jelölők és útvonalak* képernyőn, majd válassza az *Útvonal szerkesztése* lehetőséget. Innen hozzáadhat és eltávolíthat útvonalpontokat, valamint szerkesztheti az útvonal nevét és leírását.",
+  "reason": "Waypoint is «útvonalpont» in the glossary and 19 other strings (including the Previous/Next Waypoint buttons); these say «útpont», splitting the term (C12).",
+  "category": "terminology"
+ },
+ {
+  "context": "route_waypoint_progress",
+  "source": "Route %1$s at waypoint %2$s of %3$s",
+  "current": "%1$s útvonal, %2$s. útpont (összesen %3$s)",
+  "suggested": "%1$s útvonal, %2$s. útvonalpont (összesen %3$s)",
+  "reason": "Waypoint is «útvonalpont» in the glossary and 19 other strings (including the Previous/Next Waypoint buttons); these say «útpont», splitting the term (C12).",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_remote_control_how",
+  "source": "There are 2 modes of operation for the media controls. The mode can be selected in the *Settings* *Media Controls* section. The modes are:\\n\\n *Original mode*. \\n\\n⏯ Play/Pause: Toggles the beacon audio on and off. \\n\\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *What's Around Me*.\\n\\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back change the *Callout Detail*, one step quieter with each press: *Detailed*, *Simplified*, *Essential*, *Silent*, and back to *Detailed*.\\n\\n\\n\\n*Audio menu*. \\n\\n\\n\\n⏭ Next moves through a series of menu options which the app describes via text to speech, returning to the first one after the last. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.\\n\\n⏮ Previous does not move through the menu. Instead it changes the *Callout Detail*, exactly as it does in Original mode, so the same button quietens the app whichever mode you use.",
+  "current": "A médiavezérlőknek 2 üzemmódja van. Az üzemmód a *Beállítások* *Médiavezérlők* részében választható ki. Az üzemmódok a következők:\\n\\n *Eredeti mód*. \\n\\n⏯ Lejátszás/Szünet: Be- vagy kikapcsolja a hangjelző hangját. \\n\\n⏭ Következő: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal következő útpontjára mozgatja. Ha nincs útvonal lejátszás alatt, bemondja a *Körülöttem* adatait.\\n\\n⏮ Előző: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal előző útpontjára mozgatja. Ha nincs útvonal lejátszás alatt, minden egyes megnyomással egy szinttel halkabbra állítja a *Közlések részletessége* beállítást: *Részletes*, *Egyszerűsített*, *Alapvető*, *Néma*, majd vissza a *Részletes* szintre.\\n\\n\\n\\n*Hangmenü*. \\n\\n\\n\\n⏭ Következő végiglépked egy sor menüopción, amelyeket az alkalmazás szövegfelolvasással ismertet, és az utolsó után visszatér az elsőhöz. Az ⏯ Lejátszás/Szünet ezután elindítja az ismertetett opció végrehajtását. Van egy egyetlen felső szintű menü, amelynek csak almenük az opciói. Minden almenü hasonló lehetséges műveletek egy csoportját tartalmazza.\\n\\n⏮ Előző nem lépked végig a menün. Ehelyett a *Közlések részletessége* beállítást módosítja, pontosan úgy, mint Eredeti módban, így ugyanaz a gomb halkítja az alkalmazást bármelyik módot is használja.",
+  "suggested": "A médiavezérlőknek 2 üzemmódja van. Az üzemmód a *Beállítások* *Médiavezérlők* részében választható ki. Az üzemmódok a következők:\\n\\n *Eredeti mód*. \\n\\n⏯ Lejátszás/Szünet: Be- vagy kikapcsolja a hangjelző hangját. \\n\\n⏭ Következő: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal következő útvonalpontjára mozgatja. Ha nincs útvonal lejátszás alatt, bemondja a *Körülöttem* adatait.\\n\\n⏮ Előző: Ha egy útvonal van lejátszás alatt, a hangjelzőt az útvonal előző útvonalpontjára mozgatja. Ha nincs útvonal lejátszás alatt, minden egyes megnyomással egy szinttel halkabbra állítja a *Közlések részletessége* beállítást: *Részletes*, *Egyszerűsített*, *Alapvető*, *Néma*, majd vissza a *Részletes* szintre.\\n\\n\\n\\n*Hangmenü*. \\n\\n\\n\\n⏭ Következő végiglépked egy sor menüopción, amelyeket az alkalmazás szövegfelolvasással ismertet, és az utolsó után visszatér az elsőhöz. Az ⏯ Lejátszás/Szünet ezután elindítja az ismertetett opció végrehajtását. Egyetlen felső szintű menü van, amelynek csak almenük az opciói. Minden almenü hasonló lehetséges műveletek egy csoportját tartalmazza.\\n\\n⏮ Előző nem lépked végig a menün. Ehelyett a *Közlések részletessége* beállítást módosítja, pontosan úgy, mint Eredeti módban, így ugyanaz a gomb halkítja az alkalmazást bármelyik módot is használja.",
+  "reason": "Waypoint written «útpont» (glossary and the Next/Previous Waypoint buttons use «útvonalpont»); also «Van egy egyetlen felső szintű menü» is ungrammatical doubling (\"there is a single one\").",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_my_location_what",
+  "source": "The *My Location* button quickly gives you information that helps you figure out where you currently are. *My Location* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.",
+  "current": "A *Saját helyzet* gomb gyorsan olyan információkat ad, amelyek segítenek kideríteni, hol tartózkodik éppen. A *Saját helyzet* tájékoztatja a jelenlegi helyéről, például arról, hogy merre néz, hol vannak a közeli utak vagy kereszteződések, és hol találhatók a közeli érdekes helyek.",
+  "suggested": "A *Saját helyzetem* gomb gyorsan olyan információkat ad, amelyek segítenek kideríteni, hol tartózkodik éppen. A *Saját helyzetem* tájékoztatja a jelenlegi helyéről, például arról, hogy merre néz, hol vannak a közeli utak vagy kereszteződések, és hol találhatók a közeli érdekes helyek.",
+  "reason": "UI name *My Location* is directions_my_location «Saját helyzetem» (as tour_my_location and help_text_assistant_commands say); these four help strings write «Saját helyzet».",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_my_location_when",
+  "source": "*My Location* is useful when you need to figure out where you are or what cardinal direction you are facing.",
+  "current": "*Saját helyzet* akkor hasznos, ha ki kell derítenie, hol van, vagy hogy melyik égtáj felé néz.",
+  "suggested": "*Saját helyzetem* akkor hasznos, ha ki kell derítenie, hol van, vagy hogy melyik égtáj felé néz.",
+  "reason": "UI name *My Location* is directions_my_location «Saját helyzetem» (as tour_my_location and help_text_assistant_commands say); these four help strings write «Saját helyzet».",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_my_location_how",
+  "source": "As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *My Location* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *My Location* button and listen.",
+  "current": "Mint a kezdőképernyő alján található mind a négy gomb esetében, tartsa a telefonját vízszintesen (a képernyővel az ég felé), és a telefon teteje mutasson abba az irányba, amerre néz, mielőtt megnyomja a *Saját helyzet* gombot. Ez iránytűként működik, és megmondja az alkalmazásnak, merre néz. Egyszerűen koppintson a *Saját helyzet* gombra, és hallgassa meg.",
+  "suggested": "Mint a kezdőképernyő alján található mind a négy gomb esetében, tartsa a telefonját vízszintesen (a képernyővel az ég felé), és a telefon teteje mutasson abba az irányba, amerre néz, mielőtt megnyomja a *Saját helyzetem* gombot. Ez iránytűként működik, és megmondja az alkalmazásnak, merre néz. Egyszerűen koppintson a *Saját helyzetem* gombra, és hallgassa meg.",
+  "reason": "UI name *My Location* is directions_my_location «Saját helyzetem» (as tour_my_location and help_text_assistant_commands say); these four help strings write «Saját helyzet».",
+  "category": "terminology"
+ },
+ {
+  "context": "help_text_automatic_callouts_when_3",
+  "source": "**When you need silence :**\\n\\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.",
+  "current": "**Amikor csendre van szüksége:**\\n\\n Amikor éppen át készül kelni egy úton, vagy egyszerűen csak azt szeretné, hogy az alkalmazás csendben legyen, kikapcsolhatja a közléseket. Ha a közlések ki vannak kapcsolva, az alkalmazás csak akkor ad tájékoztatást, ha kézzel megérinti a *Saját helyzet*, a *Közeli jelölők*, a *Körülöttem* vagy az *Előttem* gombok egyikét.",
+  "suggested": "**Amikor csendre van szüksége:**\\n\\n Amikor éppen át készül kelni egy úton, vagy egyszerűen csak azt szeretné, hogy az alkalmazás csendben legyen, kikapcsolhatja a közléseket. Ha a közlések ki vannak kapcsolva, az alkalmazás csak akkor ad tájékoztatást, ha kézzel megérinti a *Saját helyzetem*, a *Közeli jelölők*, a *Körülöttem* vagy az *Előttem* gombok egyikét.",
+  "reason": "UI name *My Location* is directions_my_location «Saját helyzetem» (as tour_my_location and help_text_assistant_commands say); these four help strings write «Saját helyzet».",
+  "category": "terminology"
+ },
+ {
+  "context": "menu_manage_callouts",
+  "source": "Manage callouts",
+  "current": "Közlések kezelése",
+  "suggested": "Közlések kezelése",
+  "reason": "Callout is split three ways: glossary «bejelentés» (15 strings: Allow Callouts, Automatic Callouts, Call out Beacon, Siri «Bejelentés»…), «közlés» (30 strings: this settings section, Callout Detail «Közlések részletessége», callouts_verbosity_set, most help/FAQ), plus the verb «bemond» and «bemondás» in callouts_bus_and_tram_stops_description. A user hears «Bejelentések engedélyezése» and «Közlések kezelése» on the same settings screen (C12 split corpus). Needs one noun chosen (open question 4 in hu.md) before a sweep; the verb «bemond» can stay.",
+  "category": "terminology"
+ },
+ {
+  "context": "location_detail_adjust_marker_location_instructions",
+  "source": "Drag the map to move the marker's location. Tap on Done to keep the new location, or Cancel to leave it unchanged.",
+  "current": "Húzza a térképet a jelölő helyzetének áthelyezéséhez. Koppintson a Kész gombra az új helyzet megtartásához, vagy a Mégse gombra, ha változatlanul szeretné hagyni.",
+  "suggested": "Húzd a térképet a jelölő helyzetének áthelyezéséhez. Koppints a Kész gombra az új helyzet megtartásához, vagy a Mégse gombra, ha változatlanul szeretnéd hagyni.",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "route_detail_edit_remove_waypoint_alert_message",
+  "source": "%1$s will be removed from this route. The marker itself will not be deleted. Do you want to continue?",
+  "current": "%1$s kikerül ebből az útvonalból. Maga a jelölő nem törlődik. Szeretné folytatni?",
+  "suggested": "%1$s kikerül ebből az útvonalból. Maga a jelölő nem törlődik. Szeretnéd folytatni?",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "route_detail_edit_delete_alert_message",
+  "source": "Deleting this route cannot be undone. The markers in it will not be deleted. Do you want to continue?",
+  "current": "Az útvonal törlése nem vonható vissza. A benne lévő jelölők nem törlődnek. Szeretné folytatni?",
+  "suggested": "Az útvonal törlése nem vonható vissza. A benne lévő jelölők nem törlődnek. Szeretnéd folytatni?",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "markers_action_delete_alert_message",
+  "source": "Deleting this marker cannot be undone, and it will also be removed from any routes that use it. Do you want to continue?",
+  "current": "A jelölő törlése nem vonható vissza, és minden olyan útvonalból is kikerül, amely használja. Szeretné folytatni?",
+  "suggested": "A jelölő törlése nem vonható vissza, és minden olyan útvonalból is kikerül, amely használja. Szeretnéd folytatni?",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "advanced_markers_and_routes_clear_all_alert_message",
+  "source": "Deleting all markers and routes cannot be undone. Do you want to continue?",
+  "current": "Az összes jelölő és útvonal törlése nem vonható vissza. Szeretné folytatni?",
+  "suggested": "Az összes jelölő és útvonal törlése nem vonható vissza. Szeretnéd folytatni?",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "settings_reset_dialog_title",
+  "source": "Are you sure?",
+  "current": "Biztos benne?",
+  "suggested": "Biztos vagy benne?",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "settings_reset_dialog_message",
+  "source": "Resetting the settings will delete all of the settings you have configured in the app. Do you want to continue?",
+  "current": "A beállítások visszaállítása törli az összes beállítást, amelyet az alkalmazásban konfigurált. Szeretné folytatni?",
+  "suggested": "A beállítások visszaállítása törli az összes beállítást, amelyet az alkalmazásban konfiguráltál. Szeretnéd folytatni?",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "callouts_places_to_call_out_description",
+  "source": "Which kinds of place are called out as you pass them. Tick as many as you like, or tick Everything or No Places. Your markers are always called out.",
+  "current": "Milyen típusú helyeket mondjon be az alkalmazás, amikor elhalad mellettük. Jelöljön be annyit, amennyit szeretne, vagy jelölje be a Minden vagy a Nincsenek helyek lehetőséget. A jelölőit mindig bemondja.",
+  "suggested": "Milyen típusú helyeket mondjon be az alkalmazás, amikor elhaladsz mellettük. Jelölj be annyit, amennyit szeretnél, vagy jelöld be a Minden vagy a Nincsenek helyek lehetőséget. A jelölőidet mindig bemondja.",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "callouts_streets_and_junctions_description",
+  "source": "Intersections ahead and the road you are on",
+  "current": "Az Ön előtt lévő kereszteződések és az az út, amelyen halad",
+  "suggested": "Az előtted lévő kereszteződések és az út, amelyen haladsz",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "callouts_bus_and_tram_stops_description",
+  "source": "Announce bus stops and tram stops as you pass them",
+  "current": "Busz- és villamosmegállók bemondása, amikor elhalad mellettük",
+  "suggested": "Busz- és villamosmegállók bemondása, amikor elhaladsz mellettük",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register. («elhalad» is Ön/3rd person).",
+  "category": "tone"
+ },
+ {
+  "context": "first_launch_permissions_required_for_voice_control",
+  "source": "This permission is optional, but is required if you want to use voice commands to control the app",
+  "current": "Ez az engedély opcionális, de szükséges, ha hangparancsokkal szeretné vezérelni az alkalmazást",
+  "suggested": "Ez az engedély opcionális, de szükséges, ha hangparancsokkal szeretnéd vezérelni az alkalmazást",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register. Onboarding otherwise uses te («Válaszd ki», «Koppints»).",
+  "category": "tone"
+ },
+ {
+  "context": "battery_optimization_message",
+  "source": "Soundscape requires unrestricted battery usage to keep providing audio navigation when your phone is locked. Please allow unrestricted battery usage in the next dialog. If you close Soundscape, all services will stop and the app will no longer use battery.",
+  "current": "A Soundscape-nek korlátlan akkumulátorhasználatra van szüksége ahhoz, hogy a telefon zárolt állapotában is folytatni tudja a hangos navigációt. Kérjük, engedélyezze a korlátlan akkumulátorhasználatot a következő párbeszédpanelen. Ha bezárja a Soundscape-et, minden szolgáltatás leáll, és az alkalmazás többé nem fog akkumulátort használni.",
+  "suggested": "A Soundscape-nek korlátlan akkumulátorhasználatra van szüksége ahhoz, hogy a telefon zárolt állapotában is folytatni tudja a hangos navigációt. Kérjük, engedélyezd a korlátlan akkumulátorhasználatot a következő párbeszédpanelen. Ha bezárod a Soundscape-et, minden szolgáltatás leáll, és az alkalmazás többé nem fog akkumulátort használni.",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register. Shown during te-register onboarding.",
+  "category": "tone"
+ },
+ {
+  "context": "accessibility_screen_reader_enabled",
+  "source": "Because you have a screen reader enabled, we recommend turning off the graphical maps in the app. You can change this setting here, or just continue.",
+  "current": "Mivel be van kapcsolva egy képernyőolvasó, azt javasoljuk, hogy kapcsolja ki az alkalmazás grafikus térképeit. Ezt a beállítást itt módosíthatja, vagy egyszerűen folytathatja.",
+  "suggested": "Mivel be van kapcsolva egy képernyőolvasó, azt javasoljuk, hogy kapcsold ki az alkalmazás grafikus térképeit. Ezt a beállítást itt módosíthatod, vagy egyszerűen folytathatod.",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register. Shown during te-register onboarding.",
+  "category": "tone"
+ },
+ {
+  "context": "accessibility_screen_reader_disabled",
+  "source": "Because you do not have a screen reader enabled, we assume you want to see the graphical maps in the app. You can change this setting here, or just continue.",
+  "current": "Mivel nincs bekapcsolva képernyőolvasó, feltételezzük, hogy szeretné látni az alkalmazás grafikus térképeit. Ezt a beállítást itt módosíthatja, vagy egyszerűen folytathatja.",
+  "suggested": "Mivel nincs bekapcsolva képernyőolvasó, feltételezzük, hogy szeretnéd látni az alkalmazás grafikus térképeit. Ezt a beállítást itt módosíthatod, vagy egyszerűen folytathatod.",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register. Shown during te-register onboarding.",
+  "category": "tone"
+ },
+ {
+  "context": "offline_maps_extract_damaged",
+  "source": "Damaged - delete and download again",
+  "current": "Sérült – törölje, és töltse le újra",
+  "suggested": "Sérült – töröld, és töltsd le újra",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "settings_search_results_language_description",
+  "source": "You can let online search use the local language of the result, or force it to return English, French, or German.",
+  "current": "Engedélyezheti, hogy az online keresés a találat helyi nyelvét használja, vagy kényszerítheti, hogy angol, francia vagy német nyelven adjon vissza eredményeket.",
+  "suggested": "Engedélyezheted, hogy az online keresés a találat helyi nyelvét használja, vagy kényszerítheted, hogy angol, francia vagy német nyelven adjon vissza eredményeket.",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "settings_voice_command_microphone_description",
+  "source": "Choose which microphone to use for voice commands.",
+  "current": "Válassza ki, melyik mikrofont használja a hangparancsokhoz.",
+  "suggested": "Válaszd ki, melyik mikrofont használja az alkalmazás a hangparancsokhoz.",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register. «használja» is also ambiguous (you vs the app).",
+  "category": "tone"
+ },
+ {
+  "context": "settings_head_tracking_description",
+  "source": "Position spatial audio relative to where your head is facing, using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.",
+  "current": "A térbeli hangot a feje irányához igazítja, a támogatott AirPods, Bose Frames vagy egy külső Bluetooth IMU mozgásadatai alapján. Séta közben automatikusan kalibrálódik.",
+  "suggested": "A térbeli hangot a fejed irányához igazítja, a támogatott AirPods, Bose Frames vagy egy külső Bluetooth IMU mozgásadatai alapján. Séta közben automatikusan kalibrálódik.",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "offline_map_storage_description",
+  "source": "You can download maps and store them on your phone so that Soundscape works without an Internet connection. By default, maps are saved to external storage on your phone, but you can choose a different location here.",
+  "current": "Letöltheti a térképeket és eltárolhatja őket a telefonján, hogy a Soundscape internetkapcsolat nélkül is működjön. Alapértelmezés szerint a térképek a telefon külső tárhelyére kerülnek, de itt választhat másik helyet is.",
+  "suggested": "Letöltheted a térképeket és eltárolhatod őket a telefonodon, hogy a Soundscape internetkapcsolat nélkül is működjön. Alapértelmezés szerint a térképek a telefon külső tárhelyére kerülnek, de itt választhatsz másik helyet is.",
+  "reason": "HU-R1 says the UI is «te»; this UI string uses «Ön» forms, so the same screen flow switches register.",
+  "category": "tone"
+ },
+ {
+  "context": "help_text_destination_beacons_what",
+  "source": "Setting a beacon on a nearby location allows Soundscape to keep you informed by playing a sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.",
+  "current": "Ha hangjelzőt állít be egy közeli helyre, a Soundscape folyamatosan tájékoztatja Önt azáltal, hogy hangot játszik le az adott hely irányából. Ez a hangjelző a kezdőképernyőn némítható vagy visszakapcsolható. Emellett a Soundscape megjeleníti a hely adatait a kezdőképernyőn, beleértve a távolságát és – ha ismert – az utcacímét.",
+  "suggested": "Ha hangjelzőt állít be egy közeli helyre, a Soundscape folyamatosan tájékoztatja Önt azáltal, hogy hangot játszik le az adott hely irányából. Ez a hangjelző a kezdőképernyőn némítható vagy visszakapcsolható. Emellett a Soundscape megjeleníti a hely adatait a kezdőképernyőn, beleértve a távolságát és – ha ismert – az utcacímét.",
+  "reason": "Register split is much larger than hu.md records (~14 strings): every help_text_* and faq_* answer (~70 strings), the iOS permission prompts, the Siri/assistant spoken replies (siri_desc_*, siri_error_needs_app, action_no_location, action_at_route_start/end, action_service_not_running, action_no_such_callout_detail) are all «Ön», while the UI, onboarding and tutorial are «te». The UI-side stragglers are flagged separately with te fixes; the help/FAQ/assistant block needs the HU-R1 decision, so no fix here. Update the count in hu.md.",
+  "category": "tone"
+ },
+ {
+  "context": "markers_no_markers_hint_1",
+  "source": "Create markers for your favorite destinations, waypoints on a route, or any locations you want called out. Choose a location, or your current location, from the home screen and select *Save as Marker*.",
+  "current": "Hozz létre jelölőket kedvenc célpontjaidhoz, útvonalpontokhoz vagy bármely helyhez, amelyet szeretnél, hogy bejelentsen az alkalmazás. Válassz ki egy helyet – vagy a jelenlegi tartózkodási helyedet – a kezdőképernyőn, majd válaszd a *Mentés jelölőként* lehetőséget.",
+  "suggested": "Hozz létre jelölőket kedvenc célpontjaidhoz, útvonalpontokhoz vagy bármely helyhez, amelyről szeretnéd, hogy az alkalmazás bejelentse. Válassz ki egy helyet – vagy a jelenlegi tartózkodási helyedet – a kezdőképernyőn, majd válaszd a *Mentés jelölőként* lehetőséget.",
+  "reason": "«amelyet szeretnél, hogy bejelentsen az alkalmazás» is a word-for-word calque (\"which you want that the app calls out\") and ungrammatical.",
+  "category": "tone"
+ },
+ {
+  "context": "first_launch_soundscape_language_text",
+  "source": "Select the language you would like Soundscape to use. You can always change your selection in the app settings.",
+  "current": "Válaszd ki a nyelvet, amelyet szeretnél, hogy a Soundscape használjon. A választásodat bármikor módosíthatod az alkalmazás beállításaiban.",
+  "suggested": "Válaszd ki, milyen nyelvet használjon a Soundscape. A választásodat bármikor módosíthatod az alkalmazás beállításaiban.",
+  "reason": "«a nyelvet, amelyet szeretnél, hogy a Soundscape használjon» is an ungrammatical calque of \"the language you would like Soundscape to use\".",
+  "category": "tone"
+ }
+]
