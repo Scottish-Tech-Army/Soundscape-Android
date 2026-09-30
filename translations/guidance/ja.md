@@ -22,7 +22,7 @@ are the default when a term is disputed. Everything Microsoft never had is
 AI. Treat everything as `unconfirmed` until a speaker weighs in.
 
 The authored Siri phrases (`ja.lproj`) match the help text. Questions:
-`docs/translation-questions/questions-ja.md` (Q1…Q8).
+`docs/translation-questions/questions-ja.md` (Q1…Q9).
 
 ## Glossary
 
@@ -74,7 +74,8 @@ Nothing yet.
 5. Siri phrases «Soundscape 周辺 / ルート / ビーコン…»: natural to say?
 6. Is the です/ます register right?
 7. Beacon «音声ビーコン»: natural? (AI-only term, asked for confirmation)
-8. Anything else.
+8. **"Ahead" + road name** (`directions_ahead_road`, C24): «前方に%1$s» since 2026-09-30 (AI choice; was «前方 %1$s» with no particle). Natural, or «%1$sが前方に» / «この先 %1$s»?
+9. Anything else.
 
 ## Provenance
 

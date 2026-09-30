@@ -15,7 +15,7 @@ Read with [`_common.md`](_common.md).
 2026-08-22. Callout is consistently the native «அறிவிப்பு» (65). The
 VoiceOver hints are «-க்க» infinitives that compose correctly with «%1$s
 இரட்டை தட்டவும்». One `agreed` grammar defect: TA-G1. Questions:
-`docs/translation-questions/questions-ta.md` (Q1…Q7).
+`docs/translation-questions/questions-ta.md` (Q1…Q8).
 
 ## Glossary
 
@@ -65,7 +65,8 @@ Nothing yet.
 4. The four detail levels (விரிவு / எளிமை / அத்தியாவசியம் / மௌனம்), renamed 2026-09-30 (C22) partly because «அமைதி» and «மௌனம்» were too close: clear by ear now? (TA-T1)
 5. «%2$s நோக்கிச் செல்லும் %1$s» for "path to Moor Road"? (TA-G1)
 6. Is «நீங்கள்» right?
-7. Anything else.
+7. **"Ahead" + road name** (`directions_ahead_road`, C24): «%1$s முன்னால்» since 2026-09-30, name first like «%1$s அருகில்» (AI choice; was «முன்னால் %1$s»). Natural by ear, or heard as "in front of the road"?
+8. Anything else.
 
 ## Provenance
 

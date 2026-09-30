@@ -24,7 +24,7 @@ Read with [`_common.md`](_common.md).
 - The Siri phrases (`ko.lproj`) match the help text.
 
 The questions are confirmation, not repair. Questions:
-`docs/translation-questions/questions-ko.md` (Q1…Q9).
+`docs/translation-questions/questions-ko.md` (Q1…Q10).
 
 ## Glossary
 
@@ -71,7 +71,8 @@ Nothing yet.
 6. Screen reader hints: is «두 번 탭하여 오디오 비콘 음소거하기» natural, and what does Android TalkBack say around the hint? (KO-B1)
 7. **The four detail levels** (상세 / 간소화 / 핵심 / 무음), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
 8. `help_config_voices_content_ios`: iOS calls Enhanced voices «고품질», not «고급»? Check on a Korean iPhone. (all-language review 2026-09-30)
-9. Anything else.
+9. **"Ahead" + road name** (`directions_ahead_road`, C24): «앞쪽에 %1$s» since 2026-09-30 (AI choice; was «앞쪽 %1$s» with no particle). Natural, or «%1$s이(가) 앞에 있습니다»?
+10. Anything else.
 
 ## Provenance
 

@@ -17,7 +17,7 @@ Read with [`_common.md`](_common.md).
 - `confect_name_to` «%2$s कडे जाणारा %1$s» is the model C10 answer.
 - The VoiceOver template «%1$sसाठी डबल टॅप करा» composes correctly.
 
-Questions: `docs/translation-questions/questions-mr.md` (Q1…Q7).
+Questions: `docs/translation-questions/questions-mr.md` (Q1…Q8).
 
 ## Glossary
 
@@ -61,7 +61,8 @@ Nothing yet.
 4. Dead end: does «बंद रस्ता» sound like "road closed"? (MR-T1)
 5. Is «तुम्ही» right?
 6. **The four detail levels** (तपशीलवार / सरलीकृत / आवश्यक / निःशब्द), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
-7. Anything else.
+7. **"Ahead" + road name** (`directions_ahead_road`, C24): «%1$s पुढे» since 2026-09-30, name first like «%1$s जवळ» (AI choice; was «पुढे %1$s»). Natural by ear, or heard as "in front of the road"?
+8. Anything else.
 
 ## Provenance
 
