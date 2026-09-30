@@ -106,7 +106,7 @@
     <string name="waypoint_title">Teekonnapunkt</string>
     <string name="route_not_found">Marsruuti ei leitud</string>
     <string name="universal_links_alert_action_marker">Salvesta markerina</string>
-    <string name="universal_links_marker_share_message">Jagasin sinuga Soundscape'i markerit: %1$s.\n\nSelle Soundscape'is avamiseks kasuta %2$s.\n\n Google Mapsis avamiseks kasuta %3$s.</string>
+    <string name="universal_links_marker_share_message">Jagasin sinuga Soundscape'i markerit: „%1$s“.\n\nSelle Soundscape'is avamiseks kasuta %2$s.\n\n Google Mapsis avamiseks kasuta %3$s.</string>
     <string name="user_activity_save_marker_title">Salvesta marker</string>
     <string name="routes_title">Marsruudid</string>
     <string name="routes_action_deleted">Marsruut kustutatud</string>
@@ -478,8 +478,8 @@
     <string name="settings_theme_contrast_medium">Keskmine</string>
     <string name="settings_theme_contrast_high">Kõrge</string>
     <string name="settings_list_item_description">%1$s on valik %2$s %3$s-st</string>
-    <string name="settings_keep_value">jäta</string>
-    <string name="settings_use_value">kasuta</string>
+    <string name="settings_keep_value">säilitada</string>
+    <string name="settings_use_value">kasutada</string>
     <string name="street_preview_exit">Välju asukoha simulatsioonist</string>
     <string name="settings_travel_recording">Luba reisi salvestamine</string>
     <string name="settings_mix_audio">Sega heli teiste rakendustega</string>
@@ -561,7 +561,17 @@
     <string name="new_version_info_text">Uue versiooni teave</string>
     <string name="new_version_info_completed">Sulge uue versiooni dialoog</string>
     <string name="menu_open_source_licenses">Avatud lähtekoodi litsentsid</string>
-    <string name="new_version_info_details">See on Soundscape'i suur uuendus. Reisimisrežiim on palju paremaks muutunud. Kui liigud autoga või bussiga, teatab Soundscape nüüd teenumbritest, sinu liikumissuunast ja lähedal asuvatest asulatest. Samuti teatatakse, kui ületad jõgesid, kanaleid, mereväinu ja lahtesid. Palun uuenda oma võrguühenduseta kaarte, et need uued võimalused kätte saada. Ühendkuningriigi kasutajatele on bussipeatuste kirjeldused nüüd palju paremad. Unerežiim võib nüüd automaatselt üles ärgata, kui tuvastab, et oled uuesti liikuma hakanud. Sa ei pea enam ise selle äratamist meeles pidama. Korraldasime aluskoodi ümber, et saaksime samast koodist ehitada ka iOS-i rakenduse. See tähendab, et tulevikus saame välja anda iOS-i rakenduse koos kõigi Androidi jaoks loodud funktsioonidega. Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikesed, kasutades peamenüüs valikut Võta ühendust toega.</string>
+    <string name="new_version_info_details">
+See on Soundscape'i suur uuendus.
+
+Reisimisrežiim on palju paremaks muutunud. Kui liigud autoga või bussiga, teatab Soundscape nüüd teenumbritest, sinu liikumissuunast ja lähedal asuvatest asulatest. Samuti teatatakse, kui ületad jõgesid, kanaleid, mereväinu ja lahtesid. Palun uuenda oma võrguühenduseta kaarte, et need uued võimalused kätte saada. Ühendkuningriigi kasutajatele on bussipeatuste kirjeldused nüüd palju paremad.
+
+Unerežiim võib nüüd automaatselt üles ärgata, kui tuvastab, et oled uuesti liikuma hakanud. Sa ei pea enam ise selle äratamist meeles pidama.
+
+Korraldasime aluskoodi ümber, et saaksime samast koodist ehitada ka iOS-i rakenduse. See tähendab, et tulevikus saame välja anda iOS-i rakenduse koos kõigi Androidi jaoks loodud funktsioonidega.
+
+Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikesed, kasutades peamenüüs valikut Võta ühendust toega.
+</string>
     <string name="about_soundscape">Soundscape kasutab uuenduslikku helipõhist tehnoloogiat, mis aitab inimestel oma ümbrusest paremini teadlik olla. See muudab inimesed enesekindlamaks ja võimaldab neil iseseisvalt liikuda.</string>
     <string name="copyright_notices">Soundscape tugineb nendele suurepärastele kolmandate osapoolte teekidele ja andmetele. Klõpsa linkidel, et vaadata nende litsentse:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) pakuvad kõiki geoandmeid, mida Soundscape kaartide ja heli jaoks kasutab.</string>
@@ -920,8 +930,8 @@
     <string name="osm_public_building">Avalik hoone</string>
     <string name="osm_clock">Kell</string>
     <string name="osm_casino">Kasiino</string>
-    <string name="osm_ferry_terminal">Parvlaevaterminal</string>
-    <string name="osm_ferry_terminal_named">%1$s parvlaevaterminal</string>
+    <string name="osm_ferry_terminal">Praamiterminal</string>
+    <string name="osm_ferry_terminal_named">%1$s praamiterminal</string>
     <string name="osm_stadium">Staadion</string>
     <string name="osm_dam">Tamm</string>
     <string name="osm_dock">Dokk</string>
@@ -1025,7 +1035,7 @@
     <string name="directions_on_road_and_settlement">{Teel %1$s} ja %2$s lähedal</string>
     <string name="directions_on_road_at_junction">{Teel %1$s}, %2$s juures</string>
     <string name="directions_at_junction_inline">%1$s juures</string>
-    <string name="directions_on_road_and_settlement_since">{Teel %1$s} ja %2$s lähedal, %3$s alates peatusest %4$s</string>
+    <string name="directions_on_road_and_settlement_since">%1$s, %2$s lähedal, %3$s alates peatusest %4$s</string>
     <string name="directions_towards_settlement">%1$s suunas, %2$s kaugusel</string>
     <string name="directions_away_from_settlement">asulast %1$s eemale, %2$s selja taga</string>
     <string name="directions_near_settlement_inline">%1$s lähedal</string>
@@ -1209,7 +1219,7 @@
     <string name="directions_cardinal_south">Lõuna</string>
     <string name="directions_cardinal_south_west">Edel</string>
     <string name="directions_cardinal_west">Lääs</string>
-    <string name="directions_cardinal_north_west">Loe</string>
+    <string name="directions_cardinal_north_west">Loode</string>
     <string name="directions_cardinal_north_abb">P</string>
     <string name="directions_cardinal_north_east_abb">KI</string>
     <string name="directions_cardinal_east_abb">I</string>
@@ -1282,13 +1292,13 @@
         <item quantity="other">%1$s terabaiti</item>
     </plurals>
     <string name="ui_action_button_my_location">Minu\nasukoht</string>
-    <string name="ui_action_button_my_location_acc_hint">kuulata oma praegust asukohta</string>
+    <string name="ui_action_button_my_location_acc_hint">kuulda oma praegusest asukohast</string>
     <string name="ui_action_button_nearby_markers">Lähedal\nmarkerid</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">kuulata lähedal asuvatest markeritest</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">kuulda lähedal asuvatest markeritest</string>
     <string name="ui_action_button_around_me">Minu\nümber</string>
-    <string name="ui_action_button_around_me_acc_hint">kuulata kohtadest neljas suunas sinu ümber</string>
+    <string name="ui_action_button_around_me_acc_hint">kuulda kohtadest neljas suunas sinu ümber</string>
     <string name="ui_action_button_ahead_of_me">Minu\nees</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">kuulata sinu ees asuvatest kohtadest</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">kuulda sinu ees asuvatest kohtadest</string>
     <string name="menu_route">Marsruudi juhtimine</string>
     <string name="menu_route_next_waypoint">Järgmine teekonnapunkt</string>
     <string name="menu_route_previous_waypoint">Eelmine teekonnapunkt</string>
@@ -1399,7 +1409,7 @@
     <string name="help_text_creating_markers_content_2">Nüüd saate seda markerit kohandada. Saate muuta markeri nime ja lisada ka märkuse, mida teatatakse koos markeriga, et anda lisateavet. Kui olete valmis, valige markeri salvestamiseks nupp *Valmis*.</string>
     <string name="help_text_customizing_markers_content_1">Kui soovite ümber nimetada varem loodud markeri või lisada sellele märkuse, valige marker lehe *Markerid ja marsruudid* vahekaardilt *Markerid* ja seejärel valige nupp *Muuda markerit*. Nii saate anda markeritele kirjeldavaid või kasulikke hüüdnimesid ning lisada neile märkuse väljal pikema kirjelduse.</string>
     <string name="help_text_customizing_markers_content_2">Ekraanilt *Muuda* saate markeri ka kustutada, kui te seda enam ei vaja.</string>
-    <string name="help_text_routes_content_what">Marsruudid on teekonnapunktide jada. Teid teavitatakse iga teekonnapunkti saabumisel ja helimajakas liigub automaatselt järgmisele teekonnapunktile.</string>
+    <string name="help_text_routes_content_what">Marsruudid on teekonnapunktide jada. Teid teavitatakse igasse teekonnapunkti jõudmisel ja helimajakas liigub automaatselt järgmisele teekonnapunktile.</string>
     <string name="help_text_routes_content_when">Võite soovida luua ja kasutada marsruuti kohas, mida juba tunnete, et püsida õigel teel. Või võite soovida kasutada marsruuti selleks, et õppida tundma uut teekonda.</string>
     <string name="help_text_routes_content_how_1">**Marsruudi loomine:**\n\n Kõigepealt minge lehele *Markerid ja marsruudid*, valige vahekaart *Marsruudid* ja seejärel nupp *Uus marsruut*. Andke marsruudile nimi ja soovi korral kirjeldus, seejärel lisage teekonnapunkte, kas liikudes või valides neid oma markerite loendist. Teekonnapunktide järjekorda marsruudil saate igal ajal muuta, muutes marsruuti.</string>
     <string name="help_text_routes_content_how_2">**Marsruudi muutmine:**\n\n Valige oma marsruut ekraanil *Markerid ja marsruudid* ja seejärel valige *Muuda marsruuti*. Siit saate lisada ja eemaldada teekonnapunkte ning muuta marsruudi nime ja kirjeldust.</string>
@@ -1430,7 +1440,7 @@
     <string name="faq_turn_beacon_back_on_answer">Jah, saate helimajaka uuesti sisse lülitada, kui Soundscape on selle välja lülitanud, valides *helimajaka vaigistuse tühistamise nupu*; kuna aga asukohateenused on täpsed ainult umbes 10 meetri ulatuses, ei saa me tagada helimajaka käitumist, kui olete oma sihtkohast mõne meetri kaugusel.</string>
     <string name="faq_road_names_question">Miks Soundscape teatab tänavanimesid kaks korda, kui lähenen ristmikule?</string>
     <string name="faq_road_names_answer">Erinevate ristmikukujude arvestamiseks kirjeldab Soundscape ristmikke kui teelõike, mis lähtuvad ühisest punktist. Soundscape kasutab ruumilist heli, et näidata vasakule, otse edasi ja paremale suunduvate teede nimesid, selles järjekorras. Kui ristmiku kirjeldus algab teega, millel te olete, mitte vasakpoolse teega, siis moodustab ristmik külili pööratud T-tähe, kus tee, millel te olete, jätkub edasi ja paremalt lõikub sellega tee. Samamoodi, kui kirjeldus sisaldab ainult vasak- ja parempoolset teed, teate, et tee, millel te olete, lõpeb T-kujulise ristmikuga teie ees. See ristmike kirjeldamise meetod töötab ka siis, kui tee muudab ristmikul nime.</string>
-    <string name="faq_why_not_every_business_question">Miks Soundscape ei teata iga ettevõtet, millest mööda kõnnin?</string>
+    <string name="faq_why_not_every_business_question">Miks Soundscape ei teata igast ettevõttest, millest mööda kõnnin?</string>
     <string name="faq_why_not_every_business_answer">Soundscape on loodud nii, et see ei annaks liiga palju häälteateid. Lisaks kasutab see andmeallikana OpenStreetMapi. OpenStreetMap (OSM, https://www.openstreetmap.org/) on maailmakaart, mille on loonud ja mida toimetab üksikutest kaastöötajatest koosnev kogukond. Kui Soundscape ei teata ettevõttest või huvipunktist, on kõige tõenäolisem põhjus see, et OSM-i kogukonna liige pole seda ettevõtet veel andmetesse lisanud või mõnel juhul uuendanud.</string>
     <string name="faq_callouts_stopping_in_vehicle_question">Miks mõned häälteated peatuvad, kui olen sõidukis?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">Selleks, et häälteadete hulk ei muutuks ülekoormavaks, ei teatata mõnda kategooriat, näiteks ristmikke, automaatselt, kui liigute sõidukiga.</string>
@@ -1458,11 +1468,11 @@
     <string name="faq_use_with_wayfinding_apps_question">Kuidas kasutada Soundscape'i koos orienteerumisrakendusega?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape on loodud aitama täita üksikasju teie ümbruse kohta, millest te muidu ei pruugiks teadlik olla. Kuigi see ei ole loodud samm-sammulise navigatsioonirakendusena, saab seda kasutada koos selliste rakendustega, et pakkuda täiendavat teavet. Soundscape'i nende rakendustega kasutamiseks käivitage kõigepealt oma navigatsioonirakendus. Seejärel liikuge Soundscape'i juurde ja seadke helimajakas samale sihtkohale, mis on navigatsioonirakenduses. Sel hetkel töötavad mõlemad rakendused ning te kuulete kõndimisjuhiseid oma navigatsioonirakendusest, saades samal ajal Soundscape'ist värskendusi huvipunktide, ristmike ja sihtkoha kauguse kohta.</string>
     <string name="faq_controlling_what_you_hear_question">Kuidas kontrollida, mida ja millal ma Soundscape'is kuulen?</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape pakub mitmeid võimalusi, kuidas kontrollida, mida ja millal kuulete:\n\n1. Kogu heli koheseks peatamiseks: puudutage ekraani kahe sõrmega korraga, et koheselt välja lülitada kogu heli, sealhulgas praegu esitatav häälteade ja helimajakas, kui see on sisse lülitatud. Häälteated jätkuvad automaatselt, kui lähenete järgmisele ristmikule või huvipunktile, kuid kuuldav helimajakas mitte. Helimajaka uuesti kuulmiseks valige põhikuval *helimajaka vaigistuse tühistamise nupp*.\n\n2. Automaatsete häälteadete peatamine: kui te ei liigu või olete jõudnud sihtkohta, ei ole teil tõenäoliselt vaja, et Soundscape jätkaks teavitamist ümbritsevatest asjadest. Rakendusest väljumise asemel saate lülitada Soundscape'i uinakurežiimi, mis ärkab uuesti, kui lahkute, või lülitada Soundscape'i unerežiimi, mis jääb väljalülitatuks, kuni selle uuesti sisse lülitate. Teise võimalusena saate menüüst valida *Seadistused* ja seada jaotises *Halda häälteateid* valiku *Häälteadete detailsus* väärtusele *Hääletu*.\n\n3. Helimajaka peatamine: on mitmeid olukordi, kus võite seada sihtkoha, kuid ei vaja kuuldavat helimajakat sisselülitatuna. Näiteks võite täpselt teada, kuidas oma sihtkohta jõuda, kuid soovite siiski automaatseid värskendusi selle kohta, kui kaugel olete. Või vajate helimajakat ainult siis, kui sihtkohale lähenete. Igal juhul saate valida, millal helimajakat kuulete, lülitades põhikuval nuppu *vaigista helimajakas*/*tühista helimajaka vaigistus*.\n\nKui soovite Soundscape'iga siiski suhelda, kuid ei soovi kuulda automaatseid häälteateid, saate menüüst ekraani *Seadistused* jaotises *Halda häälteateid* seada valiku *Häälteadete detailsus* väärtusele *Hääletu*. Või kui te ei kavatse Soundscape'i kasutada, saate selle lülitada kas unerežiimi või uinakurežiimi, kasutades avakuval nuppu *Unerežiim*.</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape pakub mitmeid võimalusi, kuidas kontrollida, mida ja millal kuulete:\n\n1. Kogu heli koheseks peatamiseks: puudutage ekraani kahe sõrmega kaks korda, et koheselt välja lülitada kogu heli, sealhulgas praegu esitatav häälteade ja helimajakas, kui see on sisse lülitatud. Häälteated jätkuvad automaatselt, kui lähenete järgmisele ristmikule või huvipunktile, kuid kuuldav helimajakas mitte. Helimajaka uuesti kuulmiseks valige põhikuval *helimajaka vaigistuse tühistamise nupp*.\n\n2. Automaatsete häälteadete peatamine: kui te ei liigu või olete jõudnud sihtkohta, ei ole teil tõenäoliselt vaja, et Soundscape jätkaks teavitamist ümbritsevatest asjadest. Rakendusest väljumise asemel saate lülitada Soundscape'i uinakurežiimi, mis ärkab uuesti, kui lahkute, või lülitada Soundscape'i unerežiimi, mis jääb väljalülitatuks, kuni selle uuesti sisse lülitate. Teise võimalusena saate menüüst valida *Seadistused* ja seada jaotises *Halda häälteateid* valiku *Häälteadete detailsus* väärtusele *Hääletu*.\n\n3. Helimajaka peatamine: on mitmeid olukordi, kus võite seada sihtkoha, kuid ei vaja kuuldavat helimajakat sisselülitatuna. Näiteks võite täpselt teada, kuidas oma sihtkohta jõuda, kuid soovite siiski automaatseid värskendusi selle kohta, kui kaugel olete. Või vajate helimajakat ainult siis, kui sihtkohale lähenete. Igal juhul saate valida, millal helimajakat kuulete, lülitades põhikuval nuppu *vaigista helimajakas*/*tühista helimajaka vaigistus*.\n\nKui soovite Soundscape'iga siiski suhelda, kuid ei soovi kuulda automaatseid häälteateid, saate menüüst ekraani *Seadistused* jaotises *Halda häälteateid* seada valiku *Häälteadete detailsus* väärtusele *Hääletu*. Või kui te ei kavatse Soundscape'i kasutada, saate selle lülitada kas unerežiimi või uinakurežiimi, kasutades avakuval nuppu *Unerežiim*.</string>
     <string name="faq_holding_phone_flat_question">Kas pean telefoni kogu aeg käes hoidma?</string>
     <string name="faq_holding_phone_flat_answer">Ei! Kõndides võite panna telefoni kotti, taskusse või kuhu iganes mugav on. Soundscape kasutab teie kõndimise suunda, et otsustada, milliseid häälteateid vasakul ja paremal teatada. Kui te seiskute, ei tea Soundscape, millises suunas te vaatate. Kui kuuldav helimajakas on sisse lülitatud, märkate, et see muutub vaiksemaks, kuni hakkate uuesti liikuma. Saate telefoni igal ajal välja võtta, et vajutada avakuva allosas olevaid asukoha- ja avastamisnuppe, kuid veenduge, et hoiate telefoni nii, et telefoni ülaosa on suunatud sinnapoole, kuhu vaatate, ja ekraan on suunatud taeva poole. Selles *tasapinnalises* asendis kasutab Soundscape telefoni kompassi, et määrata, millises suunas te vaatate, ja pakkuda täpseid ruumilisi häälteateid. Kui helimajakas on sisse lülitatud, märkate ka, et see naaseb täieliku helitugevuseni.</string>
     <string name="faq_what_is_osm_question">Mis on OpenStreetMap ja miks me kasutame seda Soundscape'i jaoks?</string>
-    <string name="faq_what_is_osm_answer">Soundscape kasutab helihäälteadete loomiseks kaardiandmeid. Meie peamine kaardiandmete allikas on OpenStreetMap (www.openstreetmap.org). See on kaardiplatvorm, mille on loonud kaastöötajate kogukond. Organisatsioonid ja üksikisikud saavad kasutada OpenStreetMapi tööriistu, et andmeid parandada ja muuta oma ruumid ligipääsetavamaks.</string>
+    <string name="faq_what_is_osm_answer">Soundscape kasutab häälteadete loomiseks kaardiandmeid. Meie peamine kaardiandmete allikas on OpenStreetMap (www.openstreetmap.org). See on kaardiplatvorm, mille on loonud kaastöötajate kogukond. Organisatsioonid ja üksikisikud saavad kasutada OpenStreetMapi tööriistu, et andmeid parandada ja muuta oma ruumid ligipääsetavamaks.</string>
     <string name="faq_tip_beacon_quiet">Kui panete telefoni taskusse ja seiskute, muutub helimajaka heli vaiksemaks, kuna Soundscape ei tea, millises suunas te vaatate. Selle parandamiseks hakake uuesti kõndima või võtke telefon välja ja hoidke seda tasapinnaliselt.</string>
     <string name="faq_tip_setting_beacon_on_address">Helimajaka saate seada igale aadressile. Otsige aadressi põhikuva otsinguriba abil. Seejärel valige aadress otsingutulemustest, et avada ekraan *Asukoha üksikasjad*. Sellel ekraanil on suvand *Käivita helimajakas* selle aadressi kohta. Nii saate seada helimajaka ettevõtetele, kohtadele, huvipunktidele ja eluasemetele, mida OpenStreetMapis ei ole.</string>
     <string name="faq_tip_finding_bus_stops">Lähedal asuvaid bussipeatusi leiate, valides loendis *Lähedal asuvad kohad* filtri *Ühistransport*.</string>
@@ -1471,7 +1481,7 @@
     <string name="faq_tip_hold_phone_flat">Soundscape töötab kõige paremini, kui hoiate telefoni tasapinnaliselt, ekraan taeva poole ja telefoni ülaosa endast eemale suunatuna.</string>
     <string name="faq_tip_create_marker_at_bus_stop">Kui kasutate regulaarselt mõnda bussiliini, salvestage oma pealemineku- ja mahaminekupeatused markeritena. Nii jäävad need salvestatuks ja leiate need hõlpsalt uuesti — minge lihtsalt avakuvalt lehele *Markerid ja marsruudid* ja leidke need lehelt *Markerid*. Saate neile seada helimajaka ning saate perioodilisi värskendusi selle kohta, kui lähedal olete oma mahaminekupeatusele. Märkus: saate rütmilise heli välja lülitada ja saate teekonnal ikkagi kauguse värskendusi.</string>
     <string name="no_language_selected">Keelt ei ole valitud</string>
-    <string name="callouts_audio_beacon_distance">Majakas on praegu %1$s kaugusel</string>
+    <string name="callouts_audio_beacon_distance">Helimajakas on praegu %1$s kaugusel</string>
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s %2$s kõrval</string>
     <string name="street_description_relative_near">{Tänaval %1$s}, %2$s lähedal</string>
@@ -1485,10 +1495,10 @@
     <string name="help_text_assistant_when">Häälkäsklustest on kasu siis, kui telefon on taskus, käed on hõivatud või sa ei taha nupu vajutamiseks peatuda. Need töötavad ajal, mil Soundscape on taustal ja telefon on lukus, ning häälteate küsimine ei ava rakendust.\n\nKuulab sinu assistent, mitte Soundscape, nii et rakendus ei hõiva kunagi mikrofoni ja sinu Bluetooth-kõrvaklapid jäävad kõrge helikvaliteediga režiimi, selle asemel et lülituda kõnedeks kasutatavasse madalama kvaliteediga režiimi.</string>
     <string name="help_text_assistant_how">Pähe õppida pole vaja ühtki kindlat fraasi. Küsi seda, mida soovid, oma sõnadega ja assistent sobitab selle ühega allpool loetletud toimingutest. Marsruutide ja markerite nimesid sobitatakse vabalt, seega piisab tavaliselt osast nimest.</string>
     <string name="help_text_assistant_how_ios">Kõigil käsklustel on sama kuju: *Soundscape*, seejärel rühm ja seejärel sinu valik. Võid öelda kõik korraga, näiteks *Soundscape surroundings around me*, või peatuda pärast rühma ja siis küsib Siri, millist sa soovid. Nii toimib iga rühm nagu räägitud menüü ja neid on meelde jätta ainult seitse.</string>
-    <string name="help_text_assistant_commands">Võid paluda Soundscape'il:\n\nKirjeldada *Minu asukoht*, mis on *Minu ümber* või mis on *Minu ees*.\n\nTeatada sinu lähedal olevad salvestatud markerid.\n\nKäivitada mõne oma salvestatud marsruudi nime järgi, liikuda järgmisele teekonnapunktile, minna tagasi eelmisele, summutada majaka või marsruut peatada.\n\nSeada helimajaka mõnele oma salvestatud markerile nime järgi või majakas välja lülitada.\n\nSeada häälteadete detailsuse tasemele *Hääletu*, *Põhiline*, *Lihtsustatud* või *Üksikasjalik*, et muuta, kui palju Soundscape kõndides räägib. *Hääletu* lülitab automaatsed häälteated välja.\n\nLugeda ette sinu salvestatud marsruutide või salvestatud markerite nimed.</string>
+    <string name="help_text_assistant_commands">Võid paluda Soundscape'il:\n\nKirjeldada *Minu asukoht*, mis on *Minu ümber* või mis on *Minu ees*.\n\nTeatada sinu lähedal olevatest salvestatud markeritest.\n\nKäivitada mõne oma salvestatud marsruudi nime järgi, liikuda järgmisele teekonnapunktile, minna tagasi eelmisele, summutada majaka või marsruut peatada.\n\nSeada helimajaka mõnele oma salvestatud markerile nime järgi või majakas välja lülitada.\n\nSeada häälteadete detailsuse tasemele *Hääletu*, *Põhiline*, *Lihtsustatud* või *Üksikasjalik*, et muuta, kui palju Soundscape kõndides räägib. *Hääletu* lülitab automaatsed häälteated välja.\n\nLugeda ette sinu salvestatud marsruutide või salvestatud markerite nimed.</string>
     <string name="help_text_assistant_commands_ios">*Soundscape surroundings* — seejärel *Minu asukoht*, *Minu ümber*, *Minu ees* või *Lähedal asuvad markerid*.\n\n*Soundscape route* — seejärel *Järgmine teekonnapunkt*, *Eelmine teekonnapunkt*, *Summuta helimajakas* või *Peata*.\n\n*Soundscape start route* — seejärel mõne oma salvestatud marsruudi nimi.\n\n*Soundscape beacon* — seejärel mõne oma salvestatud markeri nimi.\n\n*Soundscape stop beacon*.\n\n*Soundscape detail* — seejärel *Hääletu*, *Põhiline*, *Lihtsustatud* või *Üksikasjalik*, et muuta, kui palju Soundscape kõndides räägib. *Hääletu* lülitab automaatsed häälteated välja.\n\n*Soundscape list* — seejärel *Marsruudid*, *Markerid* või *Käsklused*.\n\nKui ütled *Soundscape list commands*, loetakse see käskluste loend sulle ette.</string>
     <string name="help_text_assistant_notes">Kõik peale kahe loendi eeldab, et Soundscape töötab. Kui see nii ei ole, ütleb assistent, et avaksid kõigepealt Soundscape'i. Marsruutide ja markerite loetlemine toimib mõlemal juhul, sest see loeb ette ainult seda, mille oled juba salvestanud.\n\nHäälkäsklused hakkavad eeldama telefoni, milles on Android 16 või uuem, ja assistenti, mis toetab rakendusefunktsioone. Kuni Google pole seda tuge Geminis välja andnud, need ei tööta.</string>
-    <string name="help_text_assistant_notes_ios">Käsklused ilmuvad ka rakenduses Käsud ja iOS-i rakenduses Seaded jaotises *Siri*, kus näed kogu loendit ja saad igaühele lisada oma sõnastuse.</string>
+    <string name="help_text_assistant_notes_ios">Käsklused ilmuvad ka rakenduses Otseteed ja iOS-i rakenduses Seaded jaotises *Siri*, kus näed kogu loendit ja saad igaühele lisada oma sõnastuse.</string>
     <string name="action_route_started">Käivitan marsruudi %1$s</string>
     <string name="action_route_stopped">Marsruut peatatud</string>
     <string name="action_beacon_started">Helimajakas seatud kohale %1$s</string>
@@ -1535,7 +1545,7 @@
     <string name="legacy_migration_continue">Jätka</string>
     <string name="callouts_bus_and_tram_stops">Bussi- ja trammipeatused</string>
     <string name="callouts_bus_and_tram_stops_description">Teavita bussi- ja trammipeatustest, kui neist möödud</string>
-    <string name="directions_approaching_name">Läheneb %1$s</string>
+    <string name="directions_approaching_name">Lähenemas: %1$s</string>
     <string name="directions_generic_tram">trammis</string>
     <string name="ios_permission_location_when_in_use">Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ja kirjeldada teie ümbrust.</string>
     <string name="ios_permission_location_always">Soundscape vajab teie asukohta, et pakkuda helinavigatsiooni ka siis, kui rakendus töötab taustal.</string>
@@ -1601,7 +1611,7 @@
     <string name="search_synonyms_convenience">esmatarbekauplus, poeke</string>
     <string name="search_synonyms_bus_stop">bussipeatus, peatus</string>
     <string name="search_synonyms_train_station">raudteejaam, rongijaam, jaam</string>
-    <string name="search_synonyms_post_office">postkontor, pakiautomaat, post</string>
+    <string name="search_synonyms_post_office">postkontor, postiasutus, post</string>
     <string name="search_synonyms_post_box">postkast</string>
     <string name="search_synonyms_doctors">arst, perearst, perearstikeskus, tervisekeskus, kliinik</string>
     <string name="search_synonyms_dentist">hambaarst, hambaravi</string>
