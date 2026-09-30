@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Weblate component | `androidkmp` |
-| Corpus at last sweep | 1586 units (2026-09-30) |
+| Corpus at last sweep | 1598 units (2026-09-30) |
 | Last native-speaker input | 2026-09-30: answers to all ten questions on `questions-pl.md` (Q1–Q10). Earlier: 2026-09-29 written feedback on *beacon*, plus two Weblate edits by `trc695`, probably the same person |
 | Reporter platform | — |
 
@@ -22,7 +22,7 @@ nobody has looked at are still `unconfirmed`.
 A review pack was prepared for the first reviewer:
 
 - `docs/translation-questions/questions-pl.md` — the numbered open questions below
-  (Q1…Q5, round 2 since 2026-09-30), in the same layout as every other language.
+  (Q1…Q9, round 2 since 2026-09-30), in the same layout as every other language.
 - `translations/review/pl-full/07-nowe-teksty.md` — the per-text review of the 27
   strings added 2026-09-23, which was the published sheet until 2026-09-25.
 - `translations/review/pl-full/` — the whole corpus split by area, plus
@@ -308,7 +308,7 @@ Q10 → PL-D1.
 
 ## Open questions for round 2
 
-Numbered as on `questions-pl.md` (round 2, 2026-09-30); Q5 is "anything else".
+Numbered as on `questions-pl.md` (round 2, 2026-09-30); Q9 is "anything else". Q5–Q8 were added after the 2026-09-30 full review.
 
 1. **«Do celu: 105 metrów»** (`callouts_audio_beacon_distance`, spoken while
    walking to a beacon). Natural? Should the scavenger-hunt «Ustawiono
@@ -321,6 +321,27 @@ Numbered as on `questions-pl.md` (round 2, 2026-09-30); Q5 is "anything else".
    dziewiątej» more natural for clock positions? Did the engine say
    «piętnastu metrów» even with a comma before «na godzinie»?
 4. **Detail levels after the English rename**: Szczegółowy / Uproszczony / Podstawowy / Wyciszony. You chose «Uproszczony» for the third level, which now says only the essentials. Is «Podstawowy» right there, with «Uproszczony» one level up?
+5. **Facing callouts are masculine only** (C15). `directions_facing_*`
+   «Jesteś zwrócony na północ» and `directions_along_facing_*` «Stoisz
+   zwrócony na północ wzdłuż %1$s», 16 strings heard every time the user
+   stands still. The help texts were changed to «patrzysz» in the same
+   review, but these callouts were left for a speaker. Options: «Patrzysz
+   na północ (wzdłuż …)», «Stoisz twarzą na północ (wzdłuż …)», «Kierunek:
+   północ», or keep. Walking («Idziesz na…») and vehicle («Poruszasz się
+   na…») forms are already neutral.
+6. **Tunnels** (`directions_entering_tunnel`, `_named`): «Wejście do
+   tunelu» reads as a noun, like a sign. Mostly heard in a vehicle, where
+   «Wjazd do tunelu» is natural, but the string also covers footpath and
+   railway tunnels. Options: «Wjazd do…» always, «Tunel» / «Tunel: %1$s», or
+   keep. The named form puts the OSM name after «do» undeclined, which PL-G2
+   accepts.
+7. **Beacon style «Upadek»** (`beacon_styles_drop`): "a fall", for the sound
+   of an object dropped on a hard floor. May suggest a person falling.
+   Candidates «Stuknięcie», «Stuk», «Kropla». Must stay distinct from
+   «Stukot» (Tactile).
+8. **«Droga główna» twice**: `osm_trunk` (Trunk Road) and `osm_highway`
+   (Highway) both say it. OSM Poland tags expressways (S roads) as
+   highway=trunk, so «Droga ekspresowa» may be right for trunk.
 
 ## Provenance
 
@@ -398,3 +419,20 @@ Swept into 76 units in `/tmp/translation-review/pl-findings.json`: 74 `agreed`,
 2 inventory-only (PL-D1 scavenger hunt). The 2026-09-29 findings file was kept
 as `pl-findings.2026-09-29.json`. The 74 `agreed` fixes were uploaded with `--skip-validate` the same day and verified live, all 74 matching. Q10's clock-position fault
 is a code problem, recorded as `_common.md` C20.
+
+**2026-09-30 — full AI review, no speaker involved.** All 1598 units read
+against the English. 83 flagged, 62 applied (commit `626de0a3a`), 21 left for a
+person. Applied: meaning and grammar errors (unnamed train/tram line gave «Na
+pociąg», so `directions_generic_train`/`_tram` are now «linii kolejowej» /
+«linii tramwajowej»; the two-finger gesture had lost «dwukrotnie»; `osm_chemist`
+«Apteka» → «Drogeria» and «drogeria» dropped from the pharmacy search synonyms;
+`help_text_automatic_callouts_how_2` broken by the «Powiadamiaj o miejscach»
+rename; lost paragraph breaks in `new_version_info_details`), 23 masculine-only
+forms in help, FAQ and tutorial (C15, «jesteś zwrócony» → «patrzysz»), and
+terminology. `ui_action_button_my_location` «Moja\npozycja» → «Moja\nlokalizacja»:
+«pozycja» came from the 2026-08-20 AI pass `03968a047`, replacing a truncated
+«lokaliz», not from a speaker. Check that it fits the button at large font
+sizes. Left for a person: Q5–Q8 above, plus `number_decimal_separator_a11y`,
+which is a code problem in every language (the translations lost the spaces
+around « point », so VoiceOver gets «1przecinek5»). Findings are in
+`/tmp/translation-review/pl-findings.json`.
