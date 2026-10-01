@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.concurrent.Volatile
@@ -42,10 +43,28 @@ class HeadingHold {
     /**
      * Takes the travel heading from [userGeometry], if it has one. Called once per location update
      * with the geometry the callouts are built from.
+     *
+     * [course] is the fix's GPS course if its accuracy is within
+     * TravelHeadingEstimator.MAXIMUM_ROAD_COURSE_ACCURACY_DEGREES, whether or not it was used. One
+     * that disagrees with the held heading by more than [CONTRADICTING_COURSE_DEGREES] drops it:
+     * the user has turned, even if not by a course good enough to steer by. Standing still doesn't
+     * produce courses that good - iOS reports 180° then, and the ToFabricBazaar Pixel had 8 in
+     * the whole walk - but manoeuvring does. Replaying androidTravel, a car turning about a car park
+     * slowly enough for StationaryDetector to call it stationary had the hold describe what lay
+     * 100-250° away from where it was going; at one of those moments the fix's own course, rated
+     * 67°, was within 10° of it.
      */
-    fun update(userGeometry: UserGeometry) {
-        val heading = userGeometry.getTravelHeading() ?: return
-        held = Held(heading, userGeometry.location, userGeometry.timestampMilliseconds)
+    fun update(userGeometry: UserGeometry, course: Double? = null) {
+        val heading = userGeometry.getTravelHeading()
+        if (heading != null) {
+            held = Held(heading, userGeometry.location, userGeometry.timestampMilliseconds)
+            return
+        }
+        val current = held ?: return
+        if ((course != null) &&
+            (calculateHeadingOffset(course, current.heading) > CONTRADICTING_COURSE_DEGREES)
+        )
+            held = null
     }
 
     /** The held heading if it is still fresh enough at [location] and [nowMilliseconds]. */
@@ -60,5 +79,6 @@ class HeadingHold {
     companion object {
         const val MAXIMUM_AGE_MILLISECONDS = 60_000L
         const val MAXIMUM_DISTANCE_METRES = 25.0
+        const val CONTRADICTING_COURSE_DEGREES = 60.0
     }
 }

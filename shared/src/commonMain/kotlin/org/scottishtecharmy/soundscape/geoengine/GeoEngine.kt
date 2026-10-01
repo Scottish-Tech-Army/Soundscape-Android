@@ -647,7 +647,14 @@ class GeoEngine {
                     // update, not only the ones the callouts get to run on, or a busy audio engine
                     // would let a fresh heading go unrecorded.
                     val calloutGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
-                    headingHold.update(calloutGeometry)
+                    headingHold.update(
+                        calloutGeometry,
+                        location.takeIf {
+                            it.hasBearing && it.hasBearingAccuracy &&
+                                (it.bearingAccuracyDegrees <
+                                    TravelHeadingEstimator.MAXIMUM_ROAD_COURSE_ACCURACY_DEGREES)
+                        }?.bearing?.toDouble()
+                    )
 
                     if ((!listener.isAudioEngineBusy() || streetPreview.running) && !listener.menuActive) {
                         val callout =
