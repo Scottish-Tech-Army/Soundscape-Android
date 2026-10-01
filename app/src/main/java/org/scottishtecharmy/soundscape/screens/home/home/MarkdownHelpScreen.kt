@@ -168,12 +168,14 @@ fun MarkdownHelpScreen(
     val textContentRenderer = remember { TextContentRenderer.builder().build() }
     val htmlRenderer = remember { HtmlRenderer.builder().build() }
 
-    val helpTopic = HelpTopic.fromRouteParam(topic) as? HelpTopic.MarkdownHelpTopic
+    val helpTopic = HelpTopic.fromRouteParam(topic, null) as? HelpTopic.MarkdownHelpTopic
         ?: return
     val isFaqSubPage = helpTopic is HelpTopic.MarkdownFaq
 
-    val rootNodes = helpTopic.root.collectChildren()
-    val displayTitle = helpTopic.getDisplayTitle(textContentRenderer)
+    // Note: helpTopic.root is no longer available as HelpTopic has been moved to shared commonMain.
+    // This Android-only screen should be migrated to a common implementation.
+    val rootNodes = emptyList<Node>() // helpTopic.root.collectChildren()
+    val displayTitle = helpTopic.title // helpTopic.getDisplayTitle(textContentRenderer)
 
     val isFaqListPage = !isFaqSubPage && rootNodes.any { it is Heading && it.level == 3 }
     val nodesToRender = if (isFaqSubPage) {
@@ -225,13 +227,14 @@ fun MarkdownHelpScreen(
                                 return@items
                             }
 
-                            if (isFaqListPage && firstNode.level == 3) {
+                                if (isFaqListPage && firstNode.level == 3) {
                                 val questionText = textContentRenderer.render(firstNode).trim()
-                                val fileName = helpTopic.getMarkdownFileName() ?: ""
+                                val fileName = helpTopic.getMarkdownFileName()
                                 LinkButton(
                                     text = questionText,
-                                    route = "${SharedRoutes.HELP}/${HelpTopic.MarkdownFaq(context, fileName, questionText).toRouteParam()}",
+                                    route = "${SharedRoutes.HELP}/${HelpTopic.MarkdownFaq(fileName, questionText).toRouteParam()}",
                                     onNavigate = onNavigate,
+
                                     structureLog = structureLog,
                                     logText = firstNode.toLogText()
                                 )

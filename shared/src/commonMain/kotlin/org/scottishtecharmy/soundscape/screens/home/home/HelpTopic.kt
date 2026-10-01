@@ -1,80 +1,100 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import androidx.compose.runtime.Composable
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.platform.readResourceText
+import org.scottishtecharmy.soundscape.platform.getDefaultLanguage
+import org.scottishtecharmy.soundscape.platform.getDefaultLanguageTag
+import org.scottishtecharmy.soundscape.platform.urlEncode
+import org.scottishtecharmy.soundscape.platform.urlDecode
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.faq_title_abbreviated
 import org.scottishtecharmy.soundscape.resources.menu_help
-import java.util.Locale
+import org.intellij.markdown.flavours.commonmark.CommonMarkFlavourDescriptor
+import org.intellij.markdown.parser.MarkdownParser
+import org.intellij.markdown.MarkdownElementTypes
+import org.intellij.markdown.MarkdownTokenTypes
+import org.intellij.markdown.ast.getTextInNode
 
-sealed class HelpTopic(protected val context: Context) {
-    // This class uses Uri.encode/decode because FAQ entries may contain "?", which is otherwise
+sealed class HelpTopic {
+    // This class uses urlEncode/decode because FAQ entries may contain "?", which is otherwise
     // interpreted as a query parameter, breaking the routing.
 
     abstract fun toRouteParam(): String
 
+    @Composable
     abstract fun getDisplayTitle(): String
 
-    class Home(context: Context) : HelpTopic(context) {
-        override fun toRouteParam(): String = "page${Res.string.menu_help}"
-        override fun getDisplayTitle(): String = Res.string.menu_help.toString()
+    class Home : HelpTopic() {
+        override fun toRouteParam(): String = "page${Res.string.menu_help.key}"
+        @Composable
+        override fun getDisplayTitle(): String = stringResource(Res.string.menu_help)
     }
 
-    class ResourcePage(context: Context, val titleId: Int) : HelpTopic(context) {
-        override fun toRouteParam(): String = "page$titleId"
-        override fun getDisplayTitle(): String = context.getString(titleId)
+    class ResourcePage(val titleId: StringResource) : HelpTopic() {
+        override fun toRouteParam(): String = "page${titleId.key}"
+        @Composable
+        override fun getDisplayTitle(): String = stringResource(titleId)
     }
 
-    class ResourceFaq(context: Context, val questionId: Int, val answerId: Int) : HelpTopic(context) {
-        override fun toRouteParam(): String = "faq$questionId.$answerId"
-        override fun getDisplayTitle(): String = Res.string.faq_title_abbreviated.toString()
+    class ResourceFaq(val questionId: StringResource, val answerId: StringResource) : HelpTopic() {
+        override fun toRouteParam(): String = "faq${questionId.key}.${answerId.key}"
+        @Composable
+        override fun getDisplayTitle(): String = stringResource(Res.string.faq_title_abbreviated)
     }
 
     abstract class MarkdownHelpTopic(
-        context: Context,
         val fileName: String
-    )
-        : HelpTopic(context) {
+    ) : HelpTopic() {
 
         private val content: String by lazy {
-            loadMarkdownAsset(context) ?: "# Error\n\nFailed to load help content" }
+            loadMarkdownAsset() ?: "# Error\n\nFailed to load help content"
+        }
 
-        val root: Node by lazy {
+        val title: String by lazy {
             val processedContent = content.processMarkdownContent()
-            val parser: Parser = Parser.builder().build()
-            parser.parse(processedContent) ?: org.commonmark.node.Text("Failed to parse content")
-        }
-
-        fun getDisplayTitle(textContentRenderer: TextContentRenderer): String {
-            val rootNode = root
-            val firstNode = rootNode.firstChild
-            if (firstNode is Heading && firstNode.level == 1) {
-                return textContentRenderer.render(firstNode).trim()
+            val flavour = CommonMarkFlavourDescriptor()
+            val tree = MarkdownParser(flavour).buildMarkdownTreeFromString(processedContent)
+            
+            // Look for the first level 1 heading
+            val h1 = tree.children.find { it.type == MarkdownElementTypes.ATX_1 }
+            if (h1 != null) {
+                h1.children.find { it.type == MarkdownElementTypes.ATX_CONTENT }
+                    ?.getTextInNode(processedContent)?.toString()?.trim() ?: getFallbackTitle()
+            } else {
+                getFallbackTitle()
             }
-            return getDisplayTitle()
         }
 
-        fun getMarkdownFileName(): String? =
+        abstract fun getFallbackTitle(): String
+
+        @Composable
+        override fun getDisplayTitle(): String = title
+
+        fun getMarkdownFileName(): String =
             if (fileName.endsWith(".md")) fileName else "$fileName.md"
 
-        protected open fun loadMarkdownAsset(context: Context): String? {
-            val fileName = getMarkdownFileName() ?: return null
+        protected open fun loadMarkdownAsset(): String? {
+            val fileName = getMarkdownFileName()
 
-            val locale = Locale.getDefault()
-            val localeTag = locale.toLanguageTag() // e.g., en-GB
-            val lang = locale.language // e.g., en
+            val localeTag = getDefaultLanguageTag()
+            val lang = getDefaultLanguage()
 
             val candidatePaths = listOf(
                 "help/$localeTag/$fileName",
                 "help/$lang/$fileName",
                 "help/en-GB/$fileName",
                 "help/en/$fileName",
-            ).distinct() // in case $localTag and $lang are the same, or are "en[-GB]".
+            ).distinct()
 
             for (path in candidatePaths) {
                 try {
-                    return context.assets.open(path).bufferedReader().use { it.readText() }
-                } catch (_: IOException) {
+                    return readResourceText(path)
+                } catch (_: Exception) {
                     // Try next path
                 }
             }
@@ -96,28 +116,28 @@ sealed class HelpTopic(protected val context: Context) {
             }
 
             // Resolve {% link ... %} tags
-            // Replace {% link path/to/file.md %}, {% link file.md %}, etc. with just the filename file.md
             return content.replace(Regex("""\{% link (?:[^/]+/)*([^ ]+\.md) %\}"""), "$1")
         }
-
     }
 
-
-    class MarkdownPage(context: Context, fileName: String) : MarkdownHelpTopic(context, fileName) {
+    class MarkdownPage(fileName: String) : MarkdownHelpTopic(fileName) {
         override fun toRouteParam(): String {
             val name = if (fileName.endsWith(".md")) fileName else "$fileName.md"
-            return "page:${Uri.encode(name)}"
+            return "page:${urlEncode(name)}"
         }
 
-        override fun getDisplayTitle(): String = fileName.removeSuffix(".md")
+        override fun getFallbackTitle(): String = fileName.removeSuffix(".md")
     }
 
-    class MarkdownFaq(context: Context, fileName: String, val question: String)
-        : MarkdownHelpTopic(context, fileName)
+    class MarkdownFaq(fileName: String, val question: String)
+        : MarkdownHelpTopic(fileName)
     {
-        override fun toRouteParam(): String = "page:faq:${Uri.encode(fileName)}:${Uri.encode(question)}"
+        override fun toRouteParam(): String = "page:faq:${urlEncode(fileName)}:${urlEncode(question)}"
 
-        override fun getDisplayTitle(): String = Res.string.faq_title_abbreviated.toString()
+        @Composable
+        override fun getDisplayTitle(): String = stringResource(Res.string.faq_title_abbreviated)
+
+        override fun getFallbackTitle(): String = "FAQ"
     }
 
     companion object {
@@ -125,56 +145,59 @@ sealed class HelpTopic(protected val context: Context) {
         const val ABOUT_SOUNDSCAPE_FILENAME = "help-about-soundscape.md"
 
         @Composable
-        fun fromRouteParam(param: String): HelpTopic {
-            val context = LocalContext.current
-            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-            val useMarkdownHelp = preferences.getBoolean(PreferenceKeys.MARKDOWN_HELP, PreferenceDefaults.MARKDOWN_HELP)
+        fun fromRouteParam(param: String, preferences: PreferencesProvider? = null): HelpTopic {
+            val useMarkdownHelp = preferences?.getBoolean(PreferenceKeys.MARKDOWN_HELP, PreferenceDefaults.MARKDOWN_HELP) ?: false
 
             fun getHome(): HelpTopic {
                 return if (useMarkdownHelp) {
-                    MarkdownPage(context, HELP_AND_TUTORIALS_FILENAME)
+                    MarkdownPage(HELP_AND_TUTORIALS_FILENAME)
                 } else {
-                    Home(context)
+                    Home()
                 }
             }
 
-            if (param == "page:${HELP_AND_TUTORIALS_FILENAME}" || param == "page${Res.string.menu_help}" || param.isEmpty()) {
+            if (param == "page:${HELP_AND_TUTORIALS_FILENAME}" || param == "page${Res.string.menu_help.key}" || param.isEmpty()) {
                 return getHome()
             }
 
             return when {
                 param.startsWith("page:") -> {
-                    val rest = Uri.decode(param.substring(5))
+                    val rest = urlDecode(param.substring(5))
                     if (rest.startsWith("faq:")) {
                         val parts = rest.substring(4).split(":", limit = 2)
                         if (parts.size == 2) {
-                            MarkdownFaq(context, Uri.decode(parts[0]), Uri.decode(parts[1]))
+                            MarkdownFaq(urlDecode(parts[0]), urlDecode(parts[1]))
                         } else {
-                            Home(context)
+                            Home()
                         }
                     } else {
-                        MarkdownPage(context, rest)
+                        MarkdownPage(rest)
                     }
                 }
                 param.startsWith("faq") -> {
                     val ids = param.substring(3).split(".")
                     if (ids.size == 2) {
-                        val qId = ids[0].toIntOrNull()
-                        val aId = ids[1].toIntOrNull()
+                        val qId = findStringResourceByKey(ids[0])
+                        val aId = findStringResourceByKey(ids[1])
                         if (qId != null && aId != null) {
-                            ResourceFaq(context, qId, aId)
+                            ResourceFaq(qId, aId)
                         } else {
-                            Home(context)
+                            Home()
                         }
                     } else {
-                        Home(context)
+                        Home()
                     }
                 }
                 param.startsWith("page") -> {
-                    val key = Uri.decode(param.substring(4))
-                    MarkdownPage(context, key)
+                    val key = urlDecode(param.substring(4))
+                    val res = findStringResourceByKey(key)
+                    if (res != null) {
+                        ResourcePage(res)
+                    } else {
+                        MarkdownPage(key)
+                    }
                 }
-                param.endsWith(".md") -> MarkdownPage(context, Uri.decode(param))
+                param.endsWith(".md") -> MarkdownPage(urlDecode(param))
                 else -> getHome()
             }
         }

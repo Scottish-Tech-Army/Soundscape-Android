@@ -45,6 +45,7 @@ import org.scottishtecharmy.soundscape.resources.universal_links_marker_share_me
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
+import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.screens.home.home.OpenSourceLicensesViewModel
 import org.scottishtecharmy.soundscape.screens.home.home.SharedAdvancedMarkersAndRoutesSettingsScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
@@ -562,11 +563,11 @@ fun SharedNavHost(
 
         composable(SharedRoutes.HELP + "/{topic}") { backStackEntry ->
             val topicParam = backStackEntry.arguments?.read { getString("topic") } ?: ""
-            val helpTopic = HelpTopic.fromRouteParam(topicParam)
-            val useMarkdownHelp = preferencesProvider.getBoolean(
+            val helpTopic = HelpTopic.fromRouteParam(topicParam, preferencesProvider)
+            val useMarkdownHelp = preferencesProvider?.getBoolean(
                 PreferenceKeys.MARKDOWN_HELP,
                 PreferenceDefaults.MARKDOWN_HELP
-            )
+            ) ?: false
             val showMarkdown = useMarkdownHelp
                     || helpTopic is HelpTopic.MarkdownPage
                     || helpTopic is HelpTopic.MarkdownFaq
@@ -591,6 +592,7 @@ fun SharedNavHost(
                     } else {
                         null
                     },
+                    preferencesProvider = preferencesProvider,
                 )
             }
         }

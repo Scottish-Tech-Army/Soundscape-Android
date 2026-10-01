@@ -19,7 +19,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.heading
@@ -655,14 +654,14 @@ fun SharedHelpScreen(
     onNavigateUp: () -> Unit,
     onOpenSourceLicenses: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
+    preferencesProvider: org.scottishtecharmy.soundscape.preferences.PreferencesProvider? = null,
     structureLog: StructureLog = StructureLog {},
 ) {
     structureLog.start("HelpScreen")
-    val context = LocalContext.current
 
     // Find our page
     var sections = Sections(Res.string.menu_help, emptyList())
-    val helpTopic = HelpTopic.fromRouteParam(topic)
+    val helpTopic = HelpTopic.fromRouteParam(topic, preferencesProvider)
     when (helpTopic) {
         is HelpTopic.ResourcePage -> {
             for (page in helpPages) {
@@ -675,7 +674,7 @@ fun SharedHelpScreen(
         is HelpTopic.ResourceFaq -> {
             // We want to display the question and answer
             sections = Sections(
-                R.string.faq_title_abbreviated,
+                Res.string.faq_title_abbreviated,
                 listOf(
                     Section(helpTopic.questionId, SectionType.Title),
                     Section(helpTopic.answerId, SectionType.Paragraph)
@@ -686,7 +685,7 @@ fun SharedHelpScreen(
         else -> {
             // Default to home
             for (page in helpPages) {
-                if (page.titleId == R.string.menu_help) {
+                if (page.titleId == Res.string.menu_help) {
                     sections = page
                 }
             }
@@ -760,15 +759,14 @@ fun SharedHelpScreen(
                                 SectionType.Link, SectionType.Faq -> {
                                     Button(
                                         onClick = {
-                                            val routeParam = if (section.type == SectionType.Faq) {
+                                            // TODO 2016-10-01 HughG: Make a FaqSection subclass so we can't have null faqAnswer.
+                                            val routeParam = if (section.type == SectionType.Faq && section.faqAnswer != null) {
                                                 HelpTopic.ResourceFaq(
-                                                    context,
                                                     section.textId,
                                                     section.faqAnswer
                                                 ).toRouteParam()
                                             } else {
-                                                HelpTopic.ResourcePage(context, section.textId)
-                                                    .toRouteParam()
+                                                HelpTopic.ResourcePage(section.textId).toRouteParam()
                                             }
                                             onNavigate("${SharedRoutes.HELP}/$routeParam")
                                         },
