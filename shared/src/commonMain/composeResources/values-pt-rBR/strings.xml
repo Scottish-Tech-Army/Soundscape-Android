@@ -537,7 +537,17 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Favoritos e rotas excluídos</string>
     <string name="new_version_info_text">Informações da nova versão</string>
     <string name="new_version_info_completed">Fechar diálogo da nova versão</string>
-    <string name="new_version_info_details">Esta é uma grande atualização do Soundscape. O modo Viagem melhorou muito. Quando você viaja de carro ou ônibus, o Soundscape agora anuncia números de rodovias, sua direção de deslocamento e localidades próximas. Ele também anuncia quando você cruza rios, canais, braços de mar e baías. Atualize seus mapas offline para obter esses novos recursos. As descrições dos pontos de ônibus estão agora muito melhores para os usuários no Reino Unido. O modo Suspensão agora pode despertar automaticamente quando detecta que você está se movendo novamente. Você não precisa mais se lembrar de reativá‑lo manualmente. Reorganizamos o código subjacente para que possamos criar um aplicativo iOS a partir do mesmo código. Isso significa que, no futuro, poderemos lançar um aplicativo iOS com todos os recursos que criamos para o Android. Continue relatando quaisquer problemas, por menores que sejam, através da opção Contatar o suporte no menu principal.</string>
+    <string name="new_version_info_details">
+Esta é uma grande versão beta do Soundscape, com muitas melhorias e mudanças.
+
+Se você não quiser mais participar do beta, acesse a página do Soundscape na Play Store, onde vai encontrar uma opção para deixar de participar.
+
+Ao tocar no botão “Notas de versão completas” abaixo, você vai para a página da web com as notas de versão completas. Vale muito a pena lê-las, porque há muitos recursos novos.
+
+Estamos sempre buscando melhorar nossas traduções e, no mesmo site das notas de versão, há uma página que explica como você pode ajudar. Muitas das traduções são feitas por IA e com certeza podem ser melhoradas com a ajuda de falantes nativos.
+
+Continue relatando quaisquer problemas, por menores que sejam, por meio de “Contatar o suporte” no menu principal.
+</string>
     <string name="menu_open_source_licenses">Licenças de código aberto</string>
     <string name="osm_tag_ferry_terminal">Terminal de Balsa</string>
     <string name="osm_tag_ferry_terminal_named">Terminal de Balsa %1$s</string>

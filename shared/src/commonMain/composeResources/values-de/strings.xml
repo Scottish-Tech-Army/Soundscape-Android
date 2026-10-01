@@ -533,7 +533,17 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markierungen und Routen gelöscht</string>
     <string name="new_version_info_text">Informationen zur neuen Version</string>
     <string name="new_version_info_completed">Dialog zur neuen Version schließen</string>
-    <string name="new_version_info_details">Dies ist ein umfangreiches Update für Soundscape. Der Reisemodus wurde deutlich verbessert. Wenn Sie mit dem Auto oder Bus unterwegs sind, sagt Soundscape jetzt Straßennummern, Ihre Fahrtrichtung und nahe gelegene Ortschaften an. Außerdem wird angesagt, wenn Sie Flüsse, Kanäle, Meeresarme und Buchten überqueren. Bitte aktualisieren Sie Ihre Offline‑Karten, um diese neuen Funktionen zu erhalten. Die Beschreibungen von Bushaltestellen sind für Nutzer im Vereinigten Königreich jetzt deutlich besser. Der Ruhemodus kann jetzt automatisch aufwachen, wenn er erkennt, dass Sie sich wieder bewegen. Sie müssen ihn nicht mehr selbst aufwecken. Wir haben den zugrunde liegenden Code umstrukturiert, damit wir aus demselben Code eine iOS‑App erstellen können. Das bedeutet, dass wir in Zukunft eine iOS‑App mit allen Funktionen veröffentlichen können, die wir für Android entwickelt haben. Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support kontaktieren“ im Hauptmenü.</string>
+    <string name="new_version_info_details">
+Dies ist eine umfangreiche Beta-Version von Soundscape mit vielen Verbesserungen und Änderungen.
+
+Wenn Sie nicht mehr an der Beta teilnehmen möchten, finden Sie auf der Soundscape-Seite im Play Store eine Option, mit der Sie Ihre Teilnahme beenden können.
+
+Wenn Sie unten auf die Schaltfläche „Vollständige Versionshinweise“ tippen, gelangen Sie zur Webseite mit den vollständigen Versionshinweisen. Es lohnt sich sehr, sie zu lesen, denn es gibt viele neue Funktionen.
+
+Wir möchten unsere Übersetzungen ständig verbessern, und auf derselben Website wie die Versionshinweise gibt es eine Seite, die erklärt, wie Sie dabei helfen können. Viele der Übersetzungen wurden mit KI erstellt und lassen sich mit der Hilfe von Muttersprachlern sicher noch verbessern.
+
+Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support kontaktieren“ im Hauptmenü.
+</string>
     <string name="menu_open_source_licenses">Open-Source-Lizenzen</string>
     <string name="osm_tag_ferry_terminal">Fährterminal</string>
     <string name="osm_tag_ferry_terminal_named">Fährterminal %1$s</string>

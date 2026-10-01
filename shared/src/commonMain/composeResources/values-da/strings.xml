@@ -534,15 +534,15 @@
     <string name="new_version_info_text">Oplysninger om ny udgivelse</string>
     <string name="new_version_info_completed">Luk dialog om ny udgivelse</string>
     <string name="new_version_info_details">
-Dette er en større opdatering til Soundscape.
+Dette er en stor betaudgivelse af Soundscape med masser af forbedringer og ændringer.
 
-Rejsetilstand er meget forbedret. Når du rejser med bil eller bus, annoncerer Soundscape nu vejnumre, din rejseretning og nærliggende bebyggelser. Den annoncerer også, når du krydser floder, kanaler, fjorde og bugter. Opdater venligst dine offline-kort for at få disse nye funktioner. Beskrivelser af busstoppesteder er nu meget bedre for brugere i Storbritannien.
+Hvis du ikke længere vil deltage i betaen, kan du gå til Soundscapes side i Play Butik, hvor du finder en mulighed for at stoppe din deltagelse.
 
-Dvaletilstand kan nu vågne automatisk, når den registrerer, at du bevæger dig igen. Du behøver ikke længere at huske at vække den selv.
+Når du trykker på knappen »Fulde udgivelsesnoter« nedenfor, kommer du til websiden med de fulde udgivelsesnoter. De er absolut værd at læse, for der er mange nye funktioner.
 
-Vi har omstruktureret den underliggende kode, så vi kan bygge en iOS-app ud fra den samme kode. Det betyder, at vi i fremtiden kan udgive en iOS-app med alle de funktioner, vi har bygget til Android.
+Vi arbejder hele tiden på at forbedre vores oversættelser, og på det samme websted som udgivelsesnoterne er der en side, der forklarer, hvordan du kan hjælpe. Mange af oversættelserne er lavet med AI og kan helt sikkert forbedres med hjælp fra folk, der har sproget som modersmål.
 
-Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er, via Kontakt support i hovedmenuen.
+Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er, via »Kontakt support« i hovedmenuen.
 </string>
     <string name="menu_open_source_licenses">Open source-licenser</string>
     <string name="osm_office">Kontor</string>

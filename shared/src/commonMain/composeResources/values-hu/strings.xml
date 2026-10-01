@@ -1359,7 +1359,17 @@
     <string name="new_version_info_text">Új kiadás információi</string>
     <string name="new_version_info_completed">Új kiadás párbeszédpanel bezárása</string>
     <string name="menu_open_source_licenses">Nyílt forráskódú licencek</string>
-    <string name="new_version_info_details">Ez egy jelentős frissítés a Soundscape számára. Az utazási mód sokat javult. Amikor autóval vagy busszal utazik, a Soundscape mostantól bemondja az útszámokat, a haladási irányát és a közeli településeket. Bemondja azt is, amikor folyókon, csatornákon, torkolatokon és öblökön kel át. Kérjük, frissítse offline térképeit, hogy megkapja ezeket az új funkciókat. Az Egyesült Királyságban élő felhasználók számára a buszmegállók leírása mostantól sokkal jobb. Az Alvó mód mostantól automatikusan felébredhet, amikor érzékeli, hogy Ön ismét mozog. Többé nem kell emlékeznie arra, hogy Önnek kell felébresztenie. Átszerveztük az alapul szolgáló kódot, hogy ugyanabból a kódból iOS-alkalmazást is tudjunk készíteni. Ez azt jelenti, hogy a jövőben olyan iOS-alkalmazást tudunk kiadni, amely az Androidra épített összes funkciót tartalmazza. Kérjük, továbbra is jelentse a felmerülő problémákat, bármilyen kicsik is legyenek, a főmenü Támogatás elérése funkcióján keresztül.</string>
+    <string name="new_version_info_details">
+Ez a Soundscape egy jelentős béta kiadása, amely számos fejlesztést és változást tartalmaz.
+
+Ha már nem szeretne részt venni a bétában, keresse fel a Soundscape oldalát a Play Áruházban, ahol talál egy lehetőséget a részvétel befejezésére.
+
+Az alábbi „Teljes kiadási megjegyzések” gombra koppintva megnyílik a teljes kiadási megjegyzéseket tartalmazó weboldal. Érdemes elolvasni őket, mert sok új funkció van.
+
+Folyamatosan igyekszünk javítani a fordításainkat, és ugyanazon a webhelyen, ahol a kiadási megjegyzések is találhatók, van egy oldal, amely elmagyarázza, hogyan segíthet. A fordítások nagy részét mesterséges intelligencia készíti, és anyanyelvi beszélők segítségével biztosan jobbá tehetők.
+
+Kérjük, továbbra is jelezze nekünk a felmerülő problémákat, bármilyen kicsik is legyenek, a főmenü „Kapcsolatfelvétel az ügyfélszolgálattal” pontján keresztül.
+</string>
     <string name="about_soundscape">A Soundscape innovatív, hangalapú technológiát használ, hogy segítsen az embereknek gazdagabb tudatosságot kialakítani a környezetükről. Ettől az emberek magabiztosabbá válnak, és önállóan tudnak közlekedni.</string>
     <string name="copyright_notices">A Soundscape ezekre a kiváló, harmadik féltől származó könyvtárakra és adatokra épül. Kattintson a linkekre a licenceik megtekintéséhez:</string>
     <string name="osm_copyright">[©OpenStreetMap közreműködők](https://www.openstreetmap.org/copyright) biztosítják a Soundscape-ben használt térképészeti és hangos adatok teljes geoadatkészletét.</string>

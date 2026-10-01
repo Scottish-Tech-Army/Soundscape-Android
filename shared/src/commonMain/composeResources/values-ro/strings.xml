@@ -513,15 +513,15 @@
     <string name="new_version_info_completed">Închide dialogul noii versiuni</string>
     <string name="menu_open_source_licenses">Licențe open source</string>
     <string name="new_version_info_details">
-Aceasta este o actualizare majoră pentru Soundscape.
+Aceasta este o versiune beta importantă a Soundscape, cu multe îmbunătățiri și modificări.
 
-Modul Călătorie este mult îmbunătățit. Când călătorești cu mașina sau cu autobuzul, Soundscape anunță acum numerele drumurilor, direcția ta de deplasare și localitățile din apropiere. De asemenea, anunță când traversezi râuri, canale, estuare și golfuri. Actualizează-ți hărțile offline pentru a beneficia de aceste funcții noi. Descrierile stațiilor de autobuz sunt acum mult mai bune pentru utilizatorii din Regatul Unit.
+Dacă nu mai vrei să participi la versiunea beta, poți accesa pagina Soundscape din Magazin Play, unde vei găsi o opțiune care îți permite să renunți la participare.
 
-Modul Repaus se poate acum reactiva automat atunci când detectează că te miști din nou. Nu mai trebuie să îți amintești să îl reactivezi manual.
+Dacă atingi butonul „Note complete despre versiune” de mai jos, vei ajunge la pagina web cu notele complete despre versiune. Merită cu adevărat citite, deoarece există multe funcții noi.
 
-Am reorganizat codul de bază, astfel încât să putem construi o aplicație iOS din același cod. Acest lucru înseamnă că, pe viitor, vom putea lansa o aplicație iOS cu toate funcțiile pe care le-am creat pentru Android.
+Căutăm mereu să ne îmbunătățim traducerile, iar pe același site cu notele despre versiune există o pagină care explică cum poți ajuta. Multe dintre traduceri sunt făcute cu ajutorul AI și pot fi cu siguranță îmbunătățite cu ajutorul vorbitorilor nativi.
 
-Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin intermediul opțiunii Contactează asistența din meniul principal.
+Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin „Contactează asistența” din meniul principal.
 </string>
     <string name="about_soundscape">Soundscape folosește tehnologie audio inovatoare pentru a ajuta oamenii să își dezvolte o conștientizare mai bogată a împrejurimilor. Astfel, oamenii devin mai încrezători și se pot deplasa în mod independent.</string>
     <string name="osm_office_building">Clădire de birouri</string>

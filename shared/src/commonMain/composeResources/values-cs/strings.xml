@@ -1391,7 +1391,17 @@
     <string name="new_version_info_text">Informace o nové verzi</string>
     <string name="new_version_info_completed">Zavřít dialog o nové verzi</string>
     <string name="menu_open_source_licenses">Licence open source</string>
-    <string name="new_version_info_details">Toto je zásadní aktualizace Soundscape. Cestovní režim je výrazně vylepšen. Když cestujete autem nebo autobusem, Soundscape nyní hlásí čísla silnic, směr vaší jízdy a blízká sídla. Také hlásí, když překračujete řeky, kanály, zálivy a fjordy. Aktualizujte prosím své offline mapy, abyste tyto nové funkce získali. Popisy autobusových zastávek jsou nyní pro uživatele ve Spojeném království mnohem lepší. Režim spánku se nyní může automaticky probudit, jakmile zjistí, že se opět pohybujete. Už si nemusíte pamatovat, že ho máte probudit sami. Přeuspořádali jsme základní kód, abychom z něj mohli vytvořit i aplikaci pro iOS. To znamená, že v budoucnu budeme moci vydat aplikaci pro iOS se všemi funkcemi, které jsme vytvořili pro Android. Nahlašujte nám prosím i nadále jakékoli problémy, ať jsou sebemenší, prostřednictvím možnosti Kontaktovat podporu v hlavní nabídce.</string>
+    <string name="new_version_info_details">
+Toto je velká beta verze aplikace Soundscape se spoustou vylepšení a změn.
+
+Pokud se už nechcete účastnit beta verze, přejděte na stránku Soundscape v Obchodě Play, kde najdete možnost účast ukončit.
+
+Klepnutím na tlačítko „Úplné poznámky k verzi“ níže otevřete webovou stránku s úplnými poznámkami k verzi. Rozhodně stojí za přečtení, protože obsahují mnoho nových funkcí.
+
+Neustále se snažíme naše překlady zlepšovat a na stejném webu jako poznámky k verzi najdete stránku, která vysvětluje, jak můžete pomoci. Velkou část překladů vytváří umělá inteligence a s pomocí rodilých mluvčích je jistě lze vylepšit.
+
+Nahlašujte nám prosím i nadále jakékoli problémy, ať jsou sebemenší, prostřednictvím možnosti „Kontaktovat podporu“ v hlavní nabídce.
+</string>
     <string name="about_soundscape">Soundscape využívá inovativní technologii založenou na zvuku, která lidem pomáhá vytvořit si bohatší povědomí o svém okolí. Díky tomu jsou lidé sebevědomější a dokážou se pohybovat samostatně.</string>
     <string name="copyright_notices">Soundscape staví na těchto vynikajících knihovnách a datech třetích stran. Kliknutím na odkazy zobrazíte jejich licence:</string>
     <string name="osm_copyright">[©přispěvatelé OpenStreetMap](https://www.openstreetmap.org/copyright) poskytují veškerá geografická data pro mapování a zvuk používaná v Soundscape.</string>

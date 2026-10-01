@@ -519,15 +519,15 @@
     <string name="new_version_info_completed">Yeni sürüm iletişim kutusunu kapat</string>
     <string name="menu_open_source_licenses">Açık kaynak lisansları</string>
     <string name="new_version_info_details">
-Bu, Soundscape için önemli bir güncellemedir.
+Bu, birçok iyileştirme ve değişiklik içeren büyük bir Soundscape Beta sürümüdür.
 
-Seyahat modu önemli ölçüde geliştirildi. Arabayla veya otobüsle seyahat ederken Soundscape artık yol numaralarını, seyahat yönünüzü ve yakındaki yerleşim yerlerini anons ediyor. Ayrıca nehirleri, kanalları, haliçleri ve körfezleri geçerken de anons yapıyor. Bu yeni özelliklerden yararlanmak için lütfen çevrimdışı haritalarınızı güncelleyin. Birleşik Krallık'taki kullanıcılar için otobüs durağı açıklamaları artık çok daha iyi.
+Artık Beta'ya katılmak istemiyorsanız Play Store'daki Soundscape sayfasına gidebilirsiniz; orada katılımınızı sonlandırmanızı sağlayan bir seçenek bulacaksınız.
 
-Uyku modu, tekrar hareket ettiğinizi algıladığında artık otomatik olarak uyanıyor. Onu kendiniz uyandırmayı hatırlamanıza gerek yok.
+Aşağıdaki “Tüm sürüm notları” düğmesine dokunduğunuzda tüm sürüm notlarının bulunduğu web sayfasına gidersiniz. Çok sayıda yeni özellik olduğu için bunları okumaya kesinlikle değer.
 
-Aynı koddan bir iOS uygulaması oluşturabilmemiz için temel kodu yeniden düzenledik. Bu, gelecekte Android için oluşturduğumuz tüm özelliklere sahip bir iOS uygulaması yayınlayabileceğimiz anlamına geliyor.
+Çevirilerimizi her zaman geliştirmeye çalışıyoruz ve sürüm notlarıyla aynı web sitesinde nasıl yardımcı olabileceğinizi açıklayan bir sayfa var. Çevirilerin çoğu yapay zekâ ile yapılmıştır ve ana dili bu dil olan kişilerin yardımıyla kesinlikle daha iyi hâle getirilebilir.
 
-Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana menüdeki Destek ile İletişime Geç seçeneği aracılığıyla bildirmeye devam edin.
+Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana menüdeki “Destek ile iletişime geç” seçeneği aracılığıyla bildirmeye devam edin.
 </string>
     <string name="about_soundscape">Soundscape, insanların çevrelerini daha derinlemesine kavramalarına yardımcı olmak için yenilikçi ses tabanlı teknolojiyi kullanır; böylece daha özgüvenli ve bağımsız biçimde dolaşabilirler.</string>
     <string name="osm_office_building">Ofis Binası</string>

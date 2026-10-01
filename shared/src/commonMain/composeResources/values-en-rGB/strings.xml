@@ -532,15 +532,15 @@
     <string name="advanced_markers_and_routes_clear_all_alert_message">Deleting all markers and routes cannot be undone. Do you want to continue?</string>
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markers and routes deleted</string>
     <string name="new_version_info_details">
-This is a major update to Soundscape.
+This is a major Beta release for Soundscape containing lots of improvements and changes.
 
-Travel mode is much improved. When you travel by car or bus, Soundscape now calls out road numbers, your direction of travel, and nearby settlements. It also calls out when you cross rivers, canals, firths, and bays. Please update your offline maps to get these new features. Bus stop descriptions are now much better for users in the UK.
+If you no longer want to take part in the Beta, you can go to the Soundscape Play Store page and you will find an option there to let you stop participating.
 
-Sleep mode can now wake automatically when it detects that you are moving again. You no longer need to remember to wake it yourself.
+Tapping the “Full release notes” button below will take you to the web page with the full release notes. These are well worth reading as there are a lot of new features.
 
-We reorganised the underlying code so that we can build an iOS app from the same code. This means that in the future, we can release an iOS app with all of the features we have built for Android.
+We are always looking to improve our translations and on the same website as the release notes there is a page explaining how you can help. Much of the translations are done by AI and can definitely be improved with native speakers' help.
 
-Please continue to report any problems, however small, through Contact Support in the main menu.
+Please continue to report any problems, however small, through “Contact support” in the main menu.
 </string>
     <string name="new_version_info_text">Release Notes</string>
     <string name="new_version_info_completed">Close Release Notes</string>

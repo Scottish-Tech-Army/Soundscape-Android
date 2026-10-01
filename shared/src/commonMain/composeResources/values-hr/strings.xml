@@ -1376,15 +1376,15 @@
     <string name="new_version_info_completed">Zatvori dijaloški okvir o novom izdanju</string>
     <string name="menu_open_source_licenses">Licence otvorenog koda</string>
     <string name="new_version_info_details">
-Ovo je veliko ažuriranje Soundscapea.
+Ovo je veliko beta izdanje aplikacije Soundscape s mnogo poboljšanja i promjena.
 
-Način rada za putovanje znatno je poboljšan. Kada putujete automobilom ili autobusom, Soundscape sada najavljuje brojeve cesta, smjer vašeg kretanja i obližnja naselja. Najavljuje i kada prelazite rijeke, kanale, estuarije i zaljeve. Ažurirajte svoje izvanmrežne karte kako biste dobili te nove značajke. Opisi autobusnih stajališta sada su znatno bolji za korisnike u Ujedinjenom Kraljevstvu.
+Ako više ne želite sudjelovati u beta programu, otvorite stranicu aplikacije Soundscape u Trgovini Play, gdje ćete pronaći opciju za prekid sudjelovanja.
 
-Način rada Mirovanje sada se može automatski probuditi kada otkrije da se ponovno krećete. Više ga ne morate sami buditi.
+Dodirom gumba „Cjelovite bilješke o izdanju“ ispod otvorit ćete web-stranicu s cjelovitim bilješkama o izdanju. Svakako ih vrijedi pročitati jer ima mnogo novih značajki.
 
-Preuredili smo temeljni kôd kako bismo iz istog kôda mogli izraditi i iOS aplikaciju. To znači da ćemo u budućnosti moći objaviti iOS aplikaciju sa svim značajkama koje smo izradili za Android.
+Uvijek nastojimo poboljšati naše prijevode, a na istom web-mjestu gdje su bilješke o izdanju nalazi se stranica koja objašnjava kako možete pomoći. Velik dio prijevoda izradila je umjetna inteligencija i sigurno se mogu poboljšati uz pomoć izvornih govornika.
 
-Molimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, putem opcije Kontaktiraj podršku u glavnom izborniku.
+Molimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, putem opcije „Kontaktiraj podršku“ u glavnom izborniku.
 </string>
     <string name="about_soundscape">Soundscape koristi inovativnu tehnologiju temeljenu na zvuku kako bi ljudima pomogao izgraditi bogatiju svijest o svojoj okolini. To ljude čini samopouzdanijima i sposobnijima za samostalno kretanje.</string>
     <string name="copyright_notices">Soundscape se oslanja na ove izvrsne vanjske biblioteke i podatke. Kliknite na poveznice kako biste vidjeli njihove licence:</string>

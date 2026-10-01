@@ -563,15 +563,15 @@
     <string name="new_version_info_completed">Sulge uue versiooni dialoog</string>
     <string name="menu_open_source_licenses">Avatud lähtekoodi litsentsid</string>
     <string name="new_version_info_details">
-See on Soundscape'i suur uuendus.
+See on Soundscape'i suur beetaversioon, mis sisaldab palju täiustusi ja muudatusi.
 
-Reisimisrežiim on palju paremaks muutunud. Kui liigud autoga või bussiga, teatab Soundscape nüüd teenumbritest, sinu liikumissuunast ja lähedal asuvatest asulatest. Samuti teatatakse, kui ületad jõgesid, kanaleid, mereväinu ja lahtesid. Palun uuenda oma võrguühenduseta kaarte, et need uued võimalused kätte saada. Ühendkuningriigi kasutajatele on bussipeatuste kirjeldused nüüd palju paremad.
+Kui sa ei soovi enam beetaversioonis osaleda, mine Soundscape'i lehele Play poes, kust leiad valiku osalemise lõpetamiseks.
 
-Unerežiim võib nüüd automaatselt üles ärgata, kui tuvastab, et oled uuesti liikuma hakanud. Sa ei pea enam ise selle äratamist meeles pidama.
+Allolevale nupule „Täielikud versioonimärkused“ toksates jõuad veebilehele, kus on täielikud versioonimärkused. Neid tasub kindlasti lugeda, sest uusi funktsioone on palju.
 
-Korraldasime aluskoodi ümber, et saaksime samast koodist ehitada ka iOS-i rakenduse. See tähendab, et tulevikus saame välja anda iOS-i rakenduse koos kõigi Androidi jaoks loodud funktsioonidega.
+Püüame oma tõlkeid pidevalt parandada ja samal veebisaidil, kus on versioonimärkused, on leht, mis selgitab, kuidas saad aidata. Paljud tõlked on tehtud tehisintellekti abil ja emakeelekõnelejate abiga saab neid kindlasti paremaks muuta.
 
-Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikesed, kasutades peamenüüs valikut Võta ühendust toega.
+Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikesed, peamenüü valiku „Võta ühendust toega“ kaudu.
 </string>
     <string name="about_soundscape">Soundscape kasutab uuenduslikku helipõhist tehnoloogiat, mis aitab inimestel oma ümbrusest paremini teadlik olla. See muudab inimesed enesekindlamaks ja võimaldab neil iseseisvalt liikuda.</string>
     <string name="copyright_notices">Soundscape tugineb nendele suurepärastele kolmandate osapoolte teekidele ja andmetele. Klõpsa linkidel, et vaadata nende litsentse:</string>

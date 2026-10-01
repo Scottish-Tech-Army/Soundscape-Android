@@ -1001,15 +1001,15 @@
     <string name="new_version_info_completed">Funga dirisha la toleo jipya</string>
     <string name="menu_open_source_licenses">Leseni za chanzo huria</string>
     <string name="new_version_info_details">
-Hili ni sasisho kubwa la Soundscape.
+Hili ni toleo kubwa la Beta la Soundscape lenye maboresho na mabadiliko mengi.
 
-Hali ya usafiri imeboreshwa sana. Unaposafiri kwa gari au basi, Soundscape sasa hutangaza namba za barabara, mwelekeo wa safari yako na makazi yaliyo karibu. Pia hutangaza unapovuka mito, mifereji, hori na ghuba. Tafadhali sasisha ramani zako za nje ya mtandao ili kupata vipengele hivi vipya. Maelezo ya vituo vya basi sasa ni bora zaidi kwa watumiaji nchini Uingereza.
+Ikiwa hutaki tena kushiriki katika Beta, unaweza kwenda kwenye ukurasa wa Soundscape katika Play Store, ambapo utapata chaguo la kuacha kushiriki.
 
-Hali ya kulala sasa inaweza kuamka kiotomatiki inapogundua kuwa unatembea tena. Hutahitaji tena kukumbuka kuiamsha wewe mwenyewe.
+Kugusa kitufe cha “Maelezo kamili ya toleo” hapa chini kutakupeleka kwenye ukurasa wa wavuti wenye maelezo kamili ya toleo. Yanafaa sana kusomwa kwa sababu kuna vipengele vingi vipya.
 
-Tumepanga upya msimbo wa msingi ili tuweze kujenga programu ya iOS kutoka msimbo huohuo. Hii inamaanisha kuwa siku zijazo tunaweza kutoa programu ya iOS yenye vipengele vyote tulivyounda kwa ajili ya Android.
+Daima tunatafuta njia za kuboresha tafsiri zetu, na kwenye tovuti ileile yenye maelezo ya toleo kuna ukurasa unaoeleza jinsi unavyoweza kusaidia. Tafsiri nyingi zimefanywa na AI na hakika zinaweza kuboreshwa kwa msaada wa wazungumzaji asilia.
 
-Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia Wasiliana na Usaidizi kwenye menyu kuu.
+Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “Wasiliana na Usaidizi” kwenye menyu kuu.
 </string>
     <string name="about_soundscape">Soundscape hutumia teknolojia bunifu ya sauti kuwasaidia watu kujenga uelewa mpana zaidi wa mazingira yanayowazunguka. Hii huwafanya watu kuwa na ujasiri zaidi na uwezo wa kutembea kwa kujitegemea.</string>
     <string name="copyright_notices">Soundscape hutegemea maktaba na data hizi nzuri za wahusika wengine. Bofya viungo ili kuona leseni zake:</string>

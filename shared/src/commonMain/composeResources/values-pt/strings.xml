@@ -538,15 +538,15 @@
     <string name="new_version_info_text">Novidades desta versão</string>
     <string name="new_version_info_completed">Fechar o diálogo da nova versão</string>
     <string name="new_version_info_details">
-Esta é uma atualização importante do Soundscape.
+Esta é uma versão beta importante do Soundscape, com muitas melhorias e alterações.
 
-O modo de viagem está muito melhorado. Quando viaja de carro ou autocarro, o Soundscape anuncia agora números de estrada, a sua direção de viagem e localidades próximas. Também anuncia quando atravessa rios, canais, esteiros e baías. Atualize os seus mapas offline para obter estas novas funcionalidades. As descrições das paragens de autocarro estão agora muito melhores para os utilizadores no Reino Unido.
+Se já não quiser participar na versão beta, aceda à página do Soundscape na Play Store, onde encontrará uma opção para deixar de participar.
 
-O Modo de Suspensão pode agora despertar automaticamente ao detetar que voltou a movimentar‑se. Já não precisa de se lembrar de o ativar manualmente.
+Ao tocar no botão «Notas de versão completas» abaixo, irá para a página web com as notas de versão completas. Vale mesmo a pena lê-las, pois há muitas funcionalidades novas.
 
-Reorganizámos o código subjacente para que possamos criar uma aplicação iOS a partir do mesmo código. Isto significa que, no futuro, poderemos lançar uma aplicação iOS com todas as funcionalidades que criámos para o Android.
+Procuramos sempre melhorar as nossas traduções e, no mesmo site das notas de versão, há uma página que explica como pode ajudar. Muitas das traduções são feitas por IA e podem certamente ser melhoradas com a ajuda de falantes nativos.
 
-Continue a comunicar quaisquer problemas, por pequenos que sejam, através da opção Contactar o apoio ao cliente no menu principal.
+Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «Contactar o apoio ao cliente» no menu principal.
 </string>
     <string name="menu_open_source_licenses">Licenças de código aberto</string>
     <string name="osm_tag_ferry_terminal">Terminal de ferry</string>

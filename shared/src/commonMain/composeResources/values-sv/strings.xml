@@ -534,15 +534,15 @@
     <string name="new_version_info_text">Information om ny version</string>
     <string name="new_version_info_completed">Stäng dialogrutan om ny version</string>
     <string name="new_version_info_details">
-Det här är en stor uppdatering av Soundscape.
+Det här är en stor betaversion av Soundscape med massor av förbättringar och ändringar.
 
-Reseläget är mycket bättre. När du reser med bil eller buss läser Soundscape nu upp vägnummer, din färdriktning och närliggande orter. Appen läser också upp när du korsar floder, kanaler, fjordar och vikar. Uppdatera dina offlinekartor för att få dessa nya funktioner. Beskrivningarna av busshållplatser är nu mycket bättre för användare i Storbritannien.
+Om du inte längre vill delta i betan kan du gå till Soundscapes sida i Play Butik, där du hittar ett alternativ för att sluta delta.
 
-Viloläget kan nu vakna automatiskt när det upptäcker att du rör dig igen. Du behöver inte längre komma ihåg att väcka det själv.
+Om du trycker på knappen ”Fullständiga versionsanteckningar” nedan kommer du till webbsidan med de fullständiga versionsanteckningarna. De är verkligen värda att läsa, eftersom det finns många nya funktioner.
 
-Vi har omstrukturerat den underliggande koden så att vi kan bygga en iOS-app från samma kod. Det innebär att vi i framtiden kan släppa en iOS-app med alla funktioner vi har byggt för Android.
+Vi försöker hela tiden förbättra våra översättningar, och på samma webbplats som versionsanteckningarna finns en sida som förklarar hur du kan hjälpa till. Många av översättningarna är gjorda med AI och kan säkert förbättras med hjälp av personer som har språket som modersmål.
 
-Fortsätt gärna rapportera eventuella problem, hur små de än är, via alternativet Kontakta supporten i huvudmenyn.
+Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kontakta supporten” i huvudmenyn.
 </string>
     <string name="menu_open_source_licenses">Licenser för öppen källkod</string>
     <string name="osm_tag_ferry_terminal">Färjeterminal</string>

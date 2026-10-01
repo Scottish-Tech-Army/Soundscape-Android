@@ -660,15 +660,15 @@
     <string name="new_version_info_completed">Tanca el diàleg de la nova versió</string>
     <string name="menu_open_source_licenses">Llicències de codi obert</string>
     <string name="new_version_info_details">
-Aquesta és una actualització important de Soundscape.
+Aquesta és una versió beta important de Soundscape amb moltes millores i canvis.
 
-El mode de viatge ha millorat molt. Quan viatgeu amb cotxe o autobús, Soundscape ara anuncia els números de carretera, la vostra direcció de desplaçament i els nuclis de població propers. També anuncia quan creueu rius, canals, estuaris i badies. Actualitzeu els vostres mapes fora de línia per obtenir aquestes funcions noves. Les descripcions de les parades d'autobús ara són molt millors per als usuaris del Regne Unit.
+Si ja no vols participar en la beta, pots anar a la pàgina de Soundscape a Play Store, on trobaràs una opció per deixar de participar-hi.
 
-El mode de repòs ara es pot desactivar automàticament quan detecta que torneu a moure-us. Ja no cal que recordeu desactivar-lo vosaltres mateixos.
+Si toques el botó «Notes de la versió completes» de sota, aniràs a la pàgina web amb les notes de la versió completes. Val molt la pena llegir-les, perquè hi ha moltes funcions noves.
 
-Hem reorganitzat el codi subjacent perquè puguem crear una aplicació per a iOS a partir del mateix codi. Això vol dir que en el futur podrem publicar una aplicació per a iOS amb totes les funcions que hem creat per a Android.
+Sempre intentem millorar les traduccions, i al mateix lloc web que les notes de la versió hi ha una pàgina que explica com pots ajudar. Moltes de les traduccions les fa la IA i sens dubte es poden millorar amb l'ajuda de parlants nadius.
 
-Continueu informant-nos de qualsevol problema, per petit que sigui, mitjançant Contacta amb el suport al menú principal.
+Continua informant-nos de qualsevol problema, per petit que sigui, mitjançant «Contacta amb el suport» al menú principal.
 </string>
     <string name="about_soundscape">Soundscape utilitza tecnologia innovadora basada en l'àudio per ajudar les persones a desenvolupar una consciència més rica del seu entorn. Això fa que les persones tinguin més confiança i puguin moure's de manera autònoma.</string>
     <string name="copyright_notices">Soundscape depèn d'aquestes excel·lents biblioteques i dades de tercers. Feu clic als enllaços per veure'n les llicències:</string>
