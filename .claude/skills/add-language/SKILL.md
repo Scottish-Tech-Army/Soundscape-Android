@@ -109,19 +109,20 @@ what's actually there:
    region distinguishes it from another variant of the same base language,
    e.g. `en-rGB`, `fr-rCA`, `pt-rBR`, `zh-rCN` — but plain `nb`, `et` for
    single-variant languages). This is the `<qualifier>` from the gate check,
-   and what `app/build.gradle.kts`'s `localeFilters` and
-   `DocumentationScreens.kt`'s `localeMap` keys use.
+   and what `app/build.gradle.kts`'s `localeFilters`,
+   `DocumentationScreens.kt`'s `localeMap` keys and `PreviewTest.kt`'s
+   `locale` use.
 3. **Web/BCP-47 code** (plain hyphen, no `r`) — e.g. `en-GB`, `fr-CA`,
    `pt-BR`, `zh-CN`. Used in `locales_config.xml`, `docs/_config.yml`, and as
    `DocumentationScreens.kt`'s `localeMap` values / `parentLabels` keys.
 
 State your determination for all three forms back to the user before
-editing, so a wrong guess is caught before it's baked into six files.
+editing, so a wrong guess is caught before it's baked into eight files.
 
 ### Edits
 
 Make each of these, inserting alphabetically to match the surrounding list
-(all six lists are currently in the same alphabetical order by code — keep
+(the lists are currently in the same alphabetical order by code — keep
 them in sync with each other):
 
 1. `app/build.gradle.kts` — add the Android-qualifier code to the
@@ -147,6 +148,15 @@ them in sync with each other):
    the target language), `layout: page`, `has_toc: true`, `nav_order: 1`,
    `lang: <web code>`, `permalink: /users/user.html`,
    `machine-translated: true`.
+7. `app/src/screenshotTest/kotlin/org/scottishtecharmy/soundscape/PreviewTest.kt`
+   — add a `@Preview` to **both** `@LocalePreviews` and `@TallLocalePreviews`,
+   copying a neighbour's shape, with `name` the language code (form 1, e.g.
+   `nb_NO`) and `locale` the Android qualifier (form 2, e.g. `nb`). The name
+   is what `screenshots.yaml` publishes the language's screenshot zip as.
+8. `docs/help-translate.md` — when the language's questionnaire is listed
+   there, end its line with
+   ` · [screenshots]({{ page.screenshots }}/screenshots-<language code>.zip)`.
+   The zip only exists after `screenshots.yaml` next runs on upstream.
 
 Do not touch `values-<qualifier>/strings.xml` in this phase — it's Phase 1's, and it
 only changes through `strings_sync.py apply`.
