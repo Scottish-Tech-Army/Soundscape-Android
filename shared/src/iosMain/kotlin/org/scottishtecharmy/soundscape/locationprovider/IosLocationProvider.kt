@@ -18,6 +18,33 @@ import platform.darwin.NSObject
 /** How old CLLocationManager's cached fix may be before it is ignored on start. */
 private const val MAX_CACHED_FIX_AGE_SECONDS = 60.0
 
+/**
+ * Converts CoreLocation's courseAccuracy onto Android's bearingAccuracyDegrees scale, which is
+ * the one the geoengine's MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES was set on.
+ *
+ * CoreLocation is far more pessimistic about its course than Android. Measured on a walk recorded
+ * on an iPhone and a Pixel side by side (ToFabricBazaar-iOS/-pixel), comparing each iPhone course
+ * with the Pixel's at the same moment:
+ *
+ *   reported courseAccuracy   fixes   actual error, 68th / 90th percentile
+ *          45-60°               411            8.8° / 16.9°
+ *          60-90°               350           10.5° / 17.8°
+ *          90-180°               56           12.6° / 29.7°
+ *
+ * The iPhone reported a median of 57° against the Pixel's 7°, so taken at face value the 45° gate
+ * threw away three quarters of the iPhone's walking courses, and with the phone locked in a pocket
+ * that left no heading at all - intersections and field-of-view searches were then made facing
+ * north. Halved, the figure still sits above the actual 90th-percentile error in every band, while
+ * letting 93% of walking courses through.
+ *
+ * Standing still is unaffected: CoreLocation reports exactly 180° then, which halves to 90° and
+ * stays well outside the gate.
+ *
+ * Changing this changes what a recording's bearingAccuracyDegrees means, so it needs a
+ * GpxRecorder.RECORDER_VERSION bump.
+ */
+private const val COURSE_ACCURACY_SCALE = 0.5
+
 class IosLocationProvider : LocationProvider() {
 
     private val locationManager = CLLocationManager()
@@ -96,6 +123,8 @@ class IosLocationProvider : LocationProvider() {
      * GeoEngine.createUserGeometry, where a bearing with no accuracy beside it is trusted
      * ungated, and GeoEngine.startMonitoringLocation, where the stationary detector's
      * "moving by bearing" input is false for every fix if hasBearingAccuracy never gets set.
+     *
+     * The course accuracy is also rescaled onto Android's scale - see COURSE_ACCURACY_SCALE.
      */
     @OptIn(ExperimentalForeignApi::class)
     internal fun onLocationUpdate(location: CLLocation) {
@@ -105,7 +134,8 @@ class IosLocationProvider : LocationProvider() {
                 longitude = longitude,
                 accuracy = location.horizontalAccuracy.toFloat(),
                 bearing = location.course.toFloat(),
-                bearingAccuracyDegrees = location.courseAccuracy.toFloat(),
+                bearingAccuracyDegrees =
+                    (location.courseAccuracy * COURSE_ACCURACY_SCALE).toFloat(),
                 speed = location.speed.toFloat(),
                 speedAccuracyMetersPerSecond = location.speedAccuracy.toFloat(),
                 hasAccuracy = location.horizontalAccuracy >= 0,

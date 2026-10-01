@@ -51,6 +51,7 @@ import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.locationprovider.isAccuracyUsable
 import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
@@ -230,7 +231,7 @@ class GeoEngine {
         var travelHeading: Double? = null
         if (location?.hasBearing == true) {
             if (location.hasBearingAccuracy) {
-                if (location.bearingAccuracyDegrees < 45.0)
+                if (location.bearingAccuracyDegrees < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES)
                     travelHeading = location.bearing.toDouble()
             } else {
                 travelHeading = location.bearing.toDouble()
@@ -572,7 +573,8 @@ class GeoEngine {
                                         null,
                                     unfilteredLocation.hasBearing &&
                                         unfilteredLocation.hasBearingAccuracy &&
-                                        (unfilteredLocation.bearingAccuracyDegrees < 45.0),
+                                        (unfilteredLocation.bearingAccuracyDegrees <
+                                            MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES),
                                     nowMillis
                                 )
 

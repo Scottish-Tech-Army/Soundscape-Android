@@ -79,6 +79,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAda
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.PluralKey
 import org.scottishtecharmy.soundscape.i18n.StringKey
+import org.scottishtecharmy.soundscape.locationprovider.MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES
 import org.scottishtecharmy.soundscape.locationprovider.MAXIMUM_USABLE_ACCURACY_METRES
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
@@ -4204,6 +4205,28 @@ class MvtTileTest {
         }
     }
 
+    /**
+     * The travel heading GeoEngine.createUserGeometry would have taken from this track point.
+     *
+     * A recorded course is gated on its accuracy exactly as in production, which leaves no travel
+     * heading at all when the course isn't trusted - and so, with the phone locked in a pocket, no
+     * heading at all. Passing the course through regardless made a replay of a poor-course
+     * recording look better than the journey it recorded: an iPhone walk (ToFabricBazaar-iOS)
+     * replayed with a heading on every fix, when the app had had one on a quarter of them.
+     *
+     * [computedHeading], the bearing from the previous position, is only for GPX exported from
+     * other apps or written by hand, which carries no course at all.
+     */
+    private fun recordedTravelHeading(position: Feature, computedHeading: Double): Double? {
+        val heading = position.properties?.get("heading") as? Double? ?: return computedHeading
+        val bearingAccuracy = position.properties?.get("bearingAccuracy") as? Double?
+        return if ((bearingAccuracy == null) ||
+            (bearingAccuracy < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES))
+            heading
+        else
+            null
+    }
+
     fun testMovingGrid(
         gpxFilename: String,
         calloutFilename: String,
@@ -4346,7 +4369,8 @@ class MvtTileTest {
                     LngLatAlt(rawLocation.longitude, rawLocation.latitude),
                     accuracy,
                     (position.properties?.get("heading") != null) &&
-                        (bearingAccuracy != null) && (bearingAccuracy < 45.0),
+                        (bearingAccuracy != null) &&
+                        (bearingAccuracy < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES),
                     timestamp
                 )
 
@@ -4403,8 +4427,7 @@ class MvtTileTest {
                 // be missing so we need to mock it up.
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
-                    travelHeading = position.properties?.get("heading") as? Double?
-                        ?: travelHeading,
+                    travelHeading = recordedTravelHeading(position, travelHeading),
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
@@ -4649,8 +4672,7 @@ class MvtTileTest {
 
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
-                    travelHeading = position.properties?.get("heading") as? Double?
-                        ?: travelHeading,
+                    travelHeading = recordedTravelHeading(position, travelHeading),
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
