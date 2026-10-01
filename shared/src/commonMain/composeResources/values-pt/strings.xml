@@ -512,6 +512,7 @@
     <string name="offline_map_storage_description">Pode transferir mapas e armazená‑los no telemóvel para que o Soundscape funcione sem ligação à Internet. Por predefinição, os mapas são guardados no armazenamento externo do telemóvel, mas pode escolher aqui outra localização.</string>
     <string name="offline_map_wifi_only">Usar apenas Wi-Fi para transferir o mapa</string>
     <string name="text_field_clear_text">Limpar Texto</string>
+    <string name="text_field_paste">Colar</string>
     <string name="marker_name_description_hint">editar o nome do marco</string>
     <string name="annotation_description_hint">adicionar uma nota opcional que o ajude a reconhecer este marco mais tarde</string>
     <string name="route_name_description_hint">editar o nome da rota</string>

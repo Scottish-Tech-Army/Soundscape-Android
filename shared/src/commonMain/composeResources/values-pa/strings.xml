@@ -676,6 +676,7 @@
     <string name="accessibility_screen_reader_enabled">ਕਿਉਂਕਿ ਤੁਹਾਡਾ ਸਕ੍ਰੀਨ ਰੀਡਰ ਚਾਲੂ ਹੈ, ਅਸੀਂ ਸਲਾਹ ਦਿੰਦੇ ਹਾਂ ਕਿ ਐਪ ਵਿੱਚ ਦਿਖਾਈ ਦੇਣ ਵਾਲੇ ਨਕਸ਼ੇ ਬੰਦ ਕਰ ਦਿਓ। ਤੁਸੀਂ ਇਹ ਸੈਟਿੰਗ ਇੱਥੇ ਬਦਲ ਸਕਦੇ ਹੋ, ਜਾਂ ਬੱਸ ਜਾਰੀ ਰੱਖੋ।</string>
     <string name="accessibility_screen_reader_disabled">ਕਿਉਂਕਿ ਤੁਹਾਡਾ ਸਕ੍ਰੀਨ ਰੀਡਰ ਚਾਲੂ ਨਹੀਂ ਹੈ, ਅਸੀਂ ਮੰਨਦੇ ਹਾਂ ਕਿ ਤੁਸੀਂ ਐਪ ਵਿੱਚ ਦਿਖਾਈ ਦੇਣ ਵਾਲੇ ਨਕਸ਼ੇ ਦੇਖਣਾ ਚਾਹੁੰਦੇ ਹੋ। ਤੁਸੀਂ ਇਹ ਸੈਟਿੰਗ ਇੱਥੇ ਬਦਲ ਸਕਦੇ ਹੋ, ਜਾਂ ਬੱਸ ਜਾਰੀ ਰੱਖੋ।</string>
     <string name="text_field_clear_text">ਲਿਖਤ ਸਾਫ਼ ਕਰੋ</string>
+    <string name="text_field_paste">ਪੇਸਟ ਕਰੋ</string>
     <string name="marker_name_description_hint">ਮਾਰਕਰ ਦਾ ਨਾਮ ਸੋਧਣ ਲਈ</string>
     <string name="annotation_description_hint">ਇਸ ਮਾਰਕਰ ਨੂੰ ਬਾਅਦ ਵਿੱਚ ਪਛਾਣਨ ਲਈ ਕੋਈ ਚੋਣਵਾਂ ਨੋਟ ਜੋੜਨ ਲਈ</string>
     <string name="route_name_description_hint">ਰੂਟ ਦਾ ਨਾਮ ਸੋਧਣ ਲਈ</string>

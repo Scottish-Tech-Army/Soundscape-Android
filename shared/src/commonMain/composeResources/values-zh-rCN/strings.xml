@@ -1009,6 +1009,7 @@
     <string name="accessibility_screen_reader_enabled">由于您启用了屏幕阅读器，我们建议关闭应用中的图形地图。您可以在此更改该设置，或直接继续。</string>
     <string name="accessibility_screen_reader_disabled">由于您未启用屏幕阅读器，我们认为您希望在应用中显示图形地图。您可以在此更改该设置，或直接继续。</string>
     <string name="text_field_clear_text">清除文本</string>
+    <string name="text_field_paste">粘贴</string>
     <string name="marker_name_description_hint">编辑标记点名称</string>
     <string name="annotation_description_hint">添加可选备注，帮助您以后识别此标记点</string>
     <string name="route_name_description_hint">编辑路线名称</string>

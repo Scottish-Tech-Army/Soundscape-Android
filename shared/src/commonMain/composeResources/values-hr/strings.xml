@@ -1340,6 +1340,7 @@
     <string name="accessibility_screen_reader_enabled">Budući da imate omogućen čitač zaslona, preporučujemo da isključite grafičke karte u aplikaciji. Tu postavku možete promijeniti ovdje ili jednostavno nastaviti.</string>
     <string name="accessibility_screen_reader_disabled">Budući da nemate omogućen čitač zaslona, pretpostavljamo da želite vidjeti grafičke karte u aplikaciji. Tu postavku možete promijeniti ovdje ili jednostavno nastaviti.</string>
     <string name="text_field_clear_text">Obriši tekst</string>
+    <string name="text_field_paste">Zalijepi</string>
     <string name="marker_name_description_hint">uredili naziv oznake</string>
     <string name="annotation_description_hint">dodali neobaveznu napomenu koja će vam kasnije pomoći prepoznati ovu oznaku</string>
     <string name="route_name_description_hint">uredili naziv rute</string>

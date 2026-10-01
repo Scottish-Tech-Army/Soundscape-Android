@@ -516,6 +516,7 @@
     <string name="offline_map_storage_description">Możesz pobierać mapy i zapisywać je w telefonie, aby Soundscape działał bez połączenia z internetem. Domyślnie mapy są zapisywane w pamięci zewnętrznej telefonu, ale tutaj możesz wybrać inną lokalizację.</string>
     <string name="offline_map_wifi_only">Pobieranie map tylko przez sieci WiFi</string>
     <string name="text_field_clear_text">Usuń tekst</string>
+    <string name="text_field_paste">Wklej</string>
     <string name="marker_name_description_hint">edytować nazwę znacznika</string>
     <string name="annotation_description_hint">dodać opcjonalną adnotację, aby łatwiej rozpoznawać ten znacznik później</string>
     <string name="route_name_description_hint">edytować nazwę trasy</string>

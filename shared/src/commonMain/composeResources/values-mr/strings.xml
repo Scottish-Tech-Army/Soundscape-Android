@@ -844,6 +844,7 @@
     <string name="accessibility_screen_reader_enabled">तुम्ही स्क्रीन रीडर सक्षम केलेला असल्यामुळे, आम्ही अ‍ॅपमधील ग्राफिकल नकाशे बंद करण्याची शिफारस करतो. तुम्ही येथे हे सेटिंग बदलू शकता, किंवा फक्त पुढे सुरू ठेवू शकता.</string>
     <string name="accessibility_screen_reader_disabled">तुम्ही स्क्रीन रीडर सक्षम केलेला नसल्यामुळे, आम्ही असे गृहीत धरतो की तुम्हाला अ‍ॅपमध्ये ग्राफिकल नकाशे दिसावेत असे वाटते. तुम्ही येथे हे सेटिंग बदलू शकता, किंवा फक्त पुढे सुरू ठेवू शकता.</string>
     <string name="text_field_clear_text">मजकूर साफ करा</string>
+    <string name="text_field_paste">पेस्ट करा</string>
     <string name="marker_name_description_hint">मार्करचे नाव संपादित करण्या</string>
     <string name="annotation_description_hint">हा मार्कर नंतर ओळखण्यास मदत करणारी ऐच्छिक टीप जोडण्या</string>
     <string name="route_name_description_hint">मार्गाचे नाव संपादित करण्या</string>

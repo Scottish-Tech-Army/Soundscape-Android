@@ -512,6 +512,7 @@
     <string name="offline_map_storage_description">Puoi scaricare le mappe e salvarle sul telefono in modo che Soundscape funzioni senza connessione Internet. Per impostazione predefinita le mappe vengono salvate nella memoria esterna del telefono, ma qui puoi scegliere una posizione diversa.</string>
     <string name="offline_map_wifi_only">Utilizzare il WiFi solo per scaricare la mappa</string>
     <string name="text_field_clear_text">Cancella testo</string>
+    <string name="text_field_paste">Incolla</string>
     <string name="marker_name_description_hint">modificare il nome dell'indicatore</string>
     <string name="annotation_description_hint">aggiungere una nota facoltativa per aiutarti a riconoscere questo indicatore in seguito</string>
     <string name="route_name_description_hint">modificare il nome del percorso</string>

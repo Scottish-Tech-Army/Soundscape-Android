@@ -564,6 +564,7 @@
     <string name="accessibility_screen_reader_enabled">Tunda kana da mai karanta allo yana aiki, muna ba da shawarar ka kashe taswirorin zane-zane a cikin manhajar. Za ka iya canza wannan saitin a nan, ko kuma ka ci gaba kawai.</string>
     <string name="accessibility_screen_reader_disabled">Tunda ba ka da mai karanta allo yana aiki, muna zaton kana son ganin taswirorin zane-zane a cikin manhajar. Za ka iya canza wannan saitin a nan, ko kuma ka ci gaba kawai.</string>
     <string name="text_field_clear_text">Share Rubutu</string>
+    <string name="text_field_paste">Liƙa</string>
     <string name="marker_name_description_hint">gyara sunan alama</string>
     <string name="annotation_description_hint">ƙara bayanin da ba dole ba don taimaka maka gane wannan alama nan gaba</string>
     <string name="route_name_description_hint">gyara sunan tafarki</string>

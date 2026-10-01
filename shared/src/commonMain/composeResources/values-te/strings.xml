@@ -742,6 +742,7 @@
     <string name="accessibility_screen_reader_enabled">మీరు స్క్రీన్ రీడర్‌ను ప్రారంభించి ఉన్నందున, యాప్‌లోని గ్రాఫికల్ మ్యాప్‌లను ఆఫ్ చేయాలని మేము సిఫార్సు చేస్తున్నాము. మీరు ఆ సెట్టింగ్‌ను ఇక్కడ మార్చవచ్చు, లేదా కొనసాగించవచ్చు.</string>
     <string name="accessibility_screen_reader_disabled">మీరు స్క్రీన్ రీడర్‌ను ప్రారంభించనందున, యాప్‌లో గ్రాఫికల్ మ్యాప్‌లను చూడాలని మీరు కోరుకుంటున్నారని మేము భావిస్తున్నాము. మీరు ఆ సెట్టింగ్‌ను ఇక్కడ మార్చవచ్చు, లేదా కొనసాగించవచ్చు.</string>
     <string name="text_field_clear_text">టెక్స్ట్‌ను క్లియర్ చేయండి</string>
+    <string name="text_field_paste">అతికించండి</string>
     <string name="marker_name_description_hint">మార్కర్ పేరును సవరించడానికి</string>
     <string name="annotation_description_hint">ఈ మార్కర్‌ను తర్వాత గుర్తించడంలో సహాయపడేలా ఐచ్ఛిక గమనికను జోడించడానికి</string>
     <string name="route_name_description_hint">రూట్ పేరును సవరించడానికి</string>

@@ -1324,6 +1324,7 @@
     <string name="accessibility_screen_reader_enabled">Mivel be van kapcsolva egy képernyőolvasó, azt javasoljuk, hogy kapcsolja ki az alkalmazás grafikus térképeit. Ezt a beállítást itt módosíthatja, vagy egyszerűen folytathatja.</string>
     <string name="accessibility_screen_reader_disabled">Mivel nincs bekapcsolva képernyőolvasó, feltételezzük, hogy szeretné látni az alkalmazás grafikus térképeit. Ezt a beállítást itt módosíthatja, vagy egyszerűen folytathatja.</string>
     <string name="text_field_clear_text">Szöveg törlése</string>
+    <string name="text_field_paste">Beillesztés</string>
     <string name="marker_name_description_hint">a jelölő nevének szerkesztése</string>
     <string name="annotation_description_hint">opcionális megjegyzés hozzáadása, amely segít később felismerni ezt a jelölőt</string>
     <string name="route_name_description_hint">az útvonal nevének szerkesztése</string>

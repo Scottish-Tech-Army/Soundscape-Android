@@ -483,6 +483,7 @@
     <string name="accessibility_screen_reader_enabled">Ekran okuyucu etkin olduğundan, uygulamadaki grafik haritaları kapatmanızı öneririz. Bu ayarı burada değiştirebilir ya da devam edebilirsiniz.</string>
     <string name="accessibility_screen_reader_disabled">Ekran okuyucu etkin olmadığından, uygulamada grafik haritaların gösterilmesini istediğinizi varsayıyoruz. Bu ayarı burada değiştirebilir ya da devam edebilirsiniz.</string>
     <string name="text_field_clear_text">Metni Temizle</string>
+    <string name="text_field_paste">Yapıştır</string>
     <string name="marker_name_description_hint">kayıtlı nokta adını düzenlemek</string>
     <string name="annotation_description_hint">bu kayıtlı noktayı daha sonra tanımanıza yardımcı olacak isteğe bağlı bir not eklemek</string>
     <string name="route_name_description_hint">rota adını düzenlemek</string>

@@ -387,6 +387,7 @@
     <string name="accessibility_screen_reader_enabled">Vì bạn đã bật trình đọc màn hình, chúng tôi khuyên bạn nên tắt bản đồ đồ họa trong ứng dụng. Bạn có thể thay đổi cài đặt đó tại đây, hoặc chỉ cần tiếp tục.</string>
     <string name="accessibility_screen_reader_disabled">Vì bạn chưa bật trình đọc màn hình, chúng tôi cho rằng bạn muốn hiển thị bản đồ đồ họa trong ứng dụng. Bạn có thể thay đổi cài đặt đó tại đây, hoặc chỉ cần tiếp tục.</string>
     <string name="text_field_clear_text">Xóa văn bản</string>
+    <string name="text_field_paste">Dán</string>
     <string name="marker_name_description_hint">chỉnh sửa tên điểm đánh dấu</string>
     <string name="annotation_description_hint">thêm ghi chú tùy chọn để giúp bạn nhận ra điểm đánh dấu này sau này</string>
     <string name="route_name_description_hint">chỉnh sửa tên lộ trình</string>

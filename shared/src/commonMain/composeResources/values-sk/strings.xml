@@ -1356,6 +1356,7 @@
     <string name="accessibility_screen_reader_enabled">Keďže máte zapnutú čítačku obrazovky, odporúčame vypnúť grafické mapy v aplikácii. Toto nastavenie môžete zmeniť tu, alebo jednoducho pokračovať ďalej.</string>
     <string name="accessibility_screen_reader_disabled">Keďže nemáte zapnutú čítačku obrazovky, predpokladáme, že chcete v aplikácii vidieť grafické mapy. Toto nastavenie môžete zmeniť tu, alebo jednoducho pokračovať ďalej.</string>
     <string name="text_field_clear_text">Vymazať text</string>
+    <string name="text_field_paste">Prilepiť</string>
     <string name="marker_name_description_hint">upraviť názov značky</string>
     <string name="annotation_description_hint">pridať voliteľnú poznámku, ktorá vám pomôže túto značku neskôr rozpoznať</string>
     <string name="route_name_description_hint">upraviť názov trasy</string>

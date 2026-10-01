@@ -1340,6 +1340,7 @@
     <string name="accessibility_screen_reader_enabled">Пошто имате омогућен читач екрана, препоручујемо да искључите графичке мапе у апликацији. Ово подешавање можете променити овде, или само наставити даље.</string>
     <string name="accessibility_screen_reader_disabled">Пошто немате омогућен читач екрана, претпостављамо да желите да видите графичке мапе у апликацији. Ово подешавање можете променити овде, или само наставити даље.</string>
     <string name="text_field_clear_text">Обриши текст</string>
+    <string name="text_field_paste">Налепи</string>
     <string name="marker_name_description_hint">уредите назив маркера</string>
     <string name="annotation_description_hint">додате необавезну напомену која ће вам помоћи да касније препознате овај маркер</string>
     <string name="route_name_description_hint">уредите назив руте</string>

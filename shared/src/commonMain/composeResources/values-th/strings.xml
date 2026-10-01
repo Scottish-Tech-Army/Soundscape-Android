@@ -772,6 +772,7 @@
     <string name="accessibility_screen_reader_enabled">เนื่องจากคุณเปิดใช้งานโปรแกรมอ่านหน้าจอ เราขอแนะนำให้ปิดแผนที่แบบกราฟิกในแอป คุณสามารถเปลี่ยนการตั้งค่านี้ได้ที่นี่ หรือดำเนินการต่อได้เลย</string>
     <string name="accessibility_screen_reader_disabled">เนื่องจากคุณไม่ได้เปิดใช้งานโปรแกรมอ่านหน้าจอ เราจึงสันนิษฐานว่าคุณต้องการให้แสดงแผนที่แบบกราฟิกในแอป คุณสามารถเปลี่ยนการตั้งค่านี้ได้ที่นี่ หรือดำเนินการต่อได้เลย</string>
     <string name="text_field_clear_text">ล้างข้อความ</string>
+    <string name="text_field_paste">วาง</string>
     <string name="marker_name_description_hint">แก้ไขชื่อหมุด</string>
     <string name="annotation_description_hint">เพิ่มบันทึกเพิ่มเติม (ไม่บังคับ) เพื่อช่วยให้คุณจดจำหมุดนี้ได้ในภายหลัง</string>
     <string name="route_name_description_hint">แก้ไขชื่อเส้นทาง</string>

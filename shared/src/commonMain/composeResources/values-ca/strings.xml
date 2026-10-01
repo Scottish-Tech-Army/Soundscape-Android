@@ -624,6 +624,7 @@
     <string name="accessibility_screen_reader_enabled">Com que teniu un lector de pantalla activat, us recomanem desactivar els mapes gràfics de l'aplicació. Podeu canviar aquesta configuració aquí, o simplement continuar.</string>
     <string name="accessibility_screen_reader_disabled">Com que no teniu cap lector de pantalla activat, suposem que voleu veure els mapes gràfics a l'aplicació. Podeu canviar aquesta configuració aquí, o simplement continuar.</string>
     <string name="text_field_clear_text">Esborra el text</string>
+    <string name="text_field_paste">Enganxa</string>
     <string name="marker_name_description_hint">editar el nom del marcador</string>
     <string name="annotation_description_hint">afegir una nota opcional per ajudar-te a reconèixer aquest marcador més endavant</string>
     <string name="route_name_description_hint">editar el nom de la ruta</string>

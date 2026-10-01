@@ -507,6 +507,7 @@
     <string name="offline_map_storage_description">Voit ladata karttoja ja tallentaa ne puhelimeesi, jotta Soundscape toimii ilman Internet-yhteyttä. Oletusarvoisesti kartat tallennetaan puhelimesi ulkoiseen tallennustilaan, mutta voit valita tässä toisen sijainnin.</string>
     <string name="offline_map_wifi_only">Käytä vain Wi‑Fiä kartan lataamiseen</string>
     <string name="text_field_clear_text">Tyhjennä teksti</string>
+    <string name="text_field_paste">Liitä</string>
     <string name="marker_name_description_hint">muokataksesi merkitsimen nimeä</string>
     <string name="annotation_description_hint">lisätäksesi valinnaisen muistiinpanon, joka auttaa tunnistamaan tämän merkitsimen myöhemmin</string>
     <string name="route_name_description_hint">muokataksesi reitin nimeä</string>

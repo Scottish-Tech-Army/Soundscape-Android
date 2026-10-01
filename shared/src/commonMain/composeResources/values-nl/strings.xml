@@ -507,6 +507,7 @@
     <string name="offline_map_storage_description">U kunt kaarten downloaden en op uw telefoon opslaan zodat Soundscape zonder internetverbinding werkt. Standaard worden kaarten opgeslagen in de externe opslag van uw telefoon, maar u kunt hier een andere locatie kiezen.</string>
     <string name="offline_map_wifi_only">Alleen Wi‑Fi gebruiken voor kaartdownload</string>
     <string name="text_field_clear_text">Tekst wissen</string>
+    <string name="text_field_paste">Plakken</string>
     <string name="marker_name_description_hint">de naam van de markering bewerken</string>
     <string name="annotation_description_hint">een optionele aantekening toevoegen om u later te helpen deze markering te herkennen</string>
     <string name="route_name_description_hint">de naam van de route bewerken</string>

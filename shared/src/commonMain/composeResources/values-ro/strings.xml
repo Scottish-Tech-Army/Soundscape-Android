@@ -478,6 +478,7 @@
     <string name="accessibility_screen_reader_enabled">Deoarece ai un cititor de ecran activat, îți recomandăm să dezactivezi hărțile grafice din aplicație. Poți modifica această setare aici sau pur și simplu să continui.</string>
     <string name="accessibility_screen_reader_disabled">Deoarece nu ai un cititor de ecran activat, presupunem că vrei să vezi hărțile grafice din aplicație. Poți modifica această setare aici sau pur și simplu să continui.</string>
     <string name="text_field_clear_text">Șterge textul</string>
+    <string name="text_field_paste">Lipește</string>
     <string name="marker_name_description_hint">a edita numele marcajului</string>
     <string name="annotation_description_hint">a adăuga o notă opțională care să te ajute să recunoști acest marcaj mai târziu</string>
     <string name="route_name_description_hint">a edita numele rutei</string>

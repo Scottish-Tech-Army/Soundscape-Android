@@ -474,6 +474,7 @@
     <string name="accessibility_screen_reader_enabled">चूँकि आपने स्क्रीन रीडर सक्षम किया है, हम ऐप में ग्राफ़िकल मानचित्र बंद करने की सलाह देते हैं। आप यह सेटिंग यहाँ बदल सकते हैं, या बस आगे बढ़ सकते हैं।</string>
     <string name="accessibility_screen_reader_disabled">चूँकि आपने स्क्रीन रीडर सक्षम नहीं किया है, हम मानते हैं कि आप ऐप में ग्राफ़िकल मानचित्र देखना चाहते हैं। आप यह सेटिंग यहाँ बदल सकते हैं, या बस आगे बढ़ सकते हैं।</string>
     <string name="text_field_clear_text">टेक्स्ट साफ़ करें</string>
+    <string name="text_field_paste">पेस्ट करें</string>
     <string name="marker_name_description_hint">मार्कर का नाम संपादित करें</string>
     <string name="annotation_description_hint">इस मार्कर को बाद में पहचानने में मदद के लिए एक वैकल्पिक नोट जोड़ें</string>
     <string name="route_name_description_hint">मार्ग का नाम संपादित करें</string>

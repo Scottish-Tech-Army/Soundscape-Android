@@ -387,6 +387,7 @@
     <string name="accessibility_screen_reader_enabled">যেহেতু আপনার স্ক্রিন রিডার চালু আছে, তাই আমরা অ্যাপের গ্রাফিক্যাল মানচিত্র বন্ধ রাখার পরামর্শ দিই। আপনি এখানে এই সেটিং পরিবর্তন করতে পারেন, অথবা শুধু চালিয়ে যেতে পারেন।</string>
     <string name="accessibility_screen_reader_disabled">যেহেতু আপনার কোনো স্ক্রিন রিডার চালু নেই, তাই আমরা ধরে নিচ্ছি যে আপনি অ্যাপে গ্রাফিক্যাল মানচিত্র দেখতে চান। আপনি এখানে এই সেটিং পরিবর্তন করতে পারেন, অথবা শুধু চালিয়ে যেতে পারেন।</string>
     <string name="text_field_clear_text">টেক্সট মুছুন</string>
+    <string name="text_field_paste">পেস্ট করুন</string>
     <string name="marker_name_description_hint">মার্কারের নাম সম্পাদনা করতে</string>
     <string name="annotation_description_hint">এই মার্কারটি পরে চিনতে সাহায্য করার জন্য একটি ঐচ্ছিক নোট যোগ করতে</string>
     <string name="route_name_description_hint">রুটের নাম সম্পাদনা করতে</string>
