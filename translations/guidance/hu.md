@@ -18,7 +18,7 @@ names, picked new words for Beacon and Callout, and leaned towards «Ön»
 for the register. The VoiceOver template «Duplán koppintva: %1$s» with verbal-noun
 hints is already the colon frame that C13 recommends. There is no
 `hu.lproj`, so the Siri phrases stay in English. Questions:
-`docs/translation-questions/questions-hu.md` (Q1…Q6).
+`docs/translation-questions/questions-hu.md` (Q1…Q3).
 
 ## Glossary
 
@@ -181,6 +181,10 @@ often. The corpus mixed three words for one concept (C12 split corpus):
 
 1. Road numbers (HU-G3): is «az M7-es úton» right for every road class, or
    do motorways want «autópályán» rather than «úton»?
+2. Register switch (HU-R1): do the AI-converted «Ön» UI strings sound
+   natural? «Készen áll!» on its own can read as "something is ready";
+   also «Üdvözöljük!», «Biztos benne?», `tour_create_marker_done`.
+3. Anything else.
 
 ## Provenance
 

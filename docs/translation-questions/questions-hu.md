@@ -8,18 +8,18 @@ permalink: /translation-questions/questions-hu/
 
 # A Soundscape magyar fordítása — néhány kérdés
 
-> Küldd el a válaszaidat e-mailben a **soundscapeAndroid@scottishtecharmy.support** címre, és a tárgyban add meg a nyelvet.
+> Küldje el a válaszait e-mailben a **soundscapeAndroid@scottishtecharmy.support** címre, és a tárgyban adja meg a nyelvet.
 
 
 *Hungarian translation — questions for native-speaker reviewers. English
 glosses in italics are for the maintainer.*
 
-Szia, és köszönjük, hogy vállaltad, hogy átnézed.
+Üdvözöljük, és köszönjük, hogy vállalta, hogy átnézi.
 
-A Soundscape magyar fordítása anyanyelvi segítség nélkül készült, ezért a
-véleményed nagyon értékes számunkra. **Nem kell ismerned vagy telepítened az
-alkalmazást:** minden kérdésnél megtalálod, hol hangzik el a szöveg, mi az
-angol eredeti, és most hogyan szól magyarul.
+A Soundscape magyar fordítása nagyrészt anyanyelvi segítség nélkül
+készült, ezért a véleménye nagyon értékes számunkra. **Nem kell ismernie
+vagy telepítenie az alkalmazást:** minden kérdésnél megtalálja, hol hangzik
+el a szöveg, mi az angol eredeti, és most hogyan szól magyarul.
 
 ## Mi a Soundscape?
 
@@ -31,16 +31,16 @@ maga tájékozódhasson.
 
 Néhány fogalom, amely a kérdésekben előkerül:
 
-- **Bejelentés** *(callout)*: rövid hangüzenet arról, ami mellett éppen
-  elhaladsz, például „Kávézó”, „Járda a Fő utca mellett” vagy „Gyaloglás
+- **Bemondás** *(callout)*: rövid hangüzenet arról, ami mellett éppen
+  elhalad, például „Kávézó”, „Járda a Fő utca mellett” vagy „Gyaloglás
   észak felé az Andrássy úton”. Térhatású hangon szól, abból az irányból,
   ahol a dolog van.
-- **Hangjelző** *(audio beacon)*: ha kiválasztasz egy célpontot, egy
+- **Irányjelző hang** *(audio beacon)*: ha kiválaszt egy célpontot, egy
   folyamatos, ismétlődő hang szól, amely a fülhallgatóban a célpont
-  irányából hallatszik. Ha elfordulsz, a hang is „elmozdul”, így hallásból
+  irányából hallatszik. Ha elfordul, a hang is „elmozdul”, így hallásból
   lehet a cél felé menni.
 - **Jelölő** és **útvonal** *(marker, route)*: elmentett helyek, illetve
-  ezek sorozata, amelyen a hangjelző végigvezet.
+  ezek sorozata, amelyen az irányjelző hang végigvezet.
 
 A vak felhasználók **képernyőolvasóval** kezelik a telefont (Androidon
 TalkBack, iPhone-on VoiceOver): minden gombot és szöveget gépi hang olvas
@@ -48,115 +48,70 @@ fel. Ezért az alkalmazás szövegeit szinte mindig *hallják*, nem olvassák, �
 gyakran séta közben, zajban. A legfontosabb tehát, hogy hallgatva rövid,
 érthető és természetes legyen.
 
-Ha érdekel, a fogalmak részletes leírása angolul
+Ha érdekli, a fogalmak részletes leírása angolul
 [itt olvasható]({{ "/developers/translation-terminology.html" | relative_url }}).
 
-## Hogyan válaszolj
+## Amit már eldöntöttünk *(Settled, 2026-10-01)*
 
-Egyszerűen válaszolj e-mailben, és írd meg a kérdés számát („Q1: szerintem…”).
-Nem kell mindenre válaszolnod. Ha valami már jó, egy rövid „OK” is sokat
-segít.
+Egy anyanyelvi beszélő válaszai alapján:
+
+- Az alkalmazás mindenhol **magáz** (korábban a gombok és a bevezető
+  tegeztek, a súgó magázott).
+- *Audio beacon* = **irányjelző hang** (korábban „hangjelző”).
+- *Callout* = mindenhol **bemondás** (korábban „bejelentés”, „közlés” és
+  „bemondás” keveredett).
+- Az „a/az” névelőt és az utcanév ragozását az alkalmazás maga választja
+  ki: „az Andrássy úton”, „a Váci utcán”. Az útszámok mostantól képzőt
+  kapnak: „az M7-es úton”, „a 8-as úton”.
+- A négy részletességi szint neve marad: Részletes / Egyszerűsített /
+  Alapvető / Néma.
+
+## Hogyan válaszoljon
+
+Egyszerűen válaszoljon e-mailben, és írja meg a kérdés számát („Q1:
+szerintem…”). Nem kell mindenre válaszolnia. Ha valami már jó, egy rövid
+„OK” is sokat segít.
 
 ---
 
-### Q1 — „a” vagy „az” a nevek előtt *(automatic a/az)*
+### Q1 — Autópályák: „úton” vagy „autópályán”? *(Motorways)*
 
-**Mikor hallod:** szinte minden bejelentésben, amely utcát vagy helyet nevez
-meg, séta közben.
+**Mikor hallja:** autóban vagy buszon utazva (utazási mód), amikor az
+alkalmazás bemondja, melyik úton halad.
 
-**Angolul:** „Heading north along Main Street”, „Sidewalk next to Main
-Street”.
+**Angolul:** „Traveling north along M7”
 
-**Most így szól:** „Gyaloglás észak felé **az** Andrássy úton”, „Járda **a**
-Rákóczi út mellett”.
+**Most így szól:** „Haladás észak felé az M7-es úton”
 
-**Amiben bizonytalanok vagyunk:** a fordítás nem tudhatja előre, milyen név
-kerül a mondatba, ezért a szövegben „a(z)” áll. Ezt a gépi hang furcsán
-olvasta fel (a zárójelekkel vagy betűzve), ezért most az alkalmazás maga
-választ a behelyettesített név alapján:
+**Amiben bizonytalanok vagyunk:** az alkalmazás az útszámból nem tudja,
+hogy autópályáról, autóútról vagy főútról van-e szó, ezért mindig az „úton”
+alakot használja. Autópályán ez furcsán hathat.
 
-- magánhangzóval kezdődő szó előtt „az”, egyébként „a”: az Andrássy, a Rákóczi;
-- rövidítéseknél és útszámoknál a betű kiejtése számít: az M7 (em), az SZTE
-  (esz), de a BKV (bé);
-- számoknál a kimondott alak: az 1-es (egy), az 5 (öt), az 1000 (ezer), de
-  a 12 (tizenkettő), a 100 (száz).
+**A kérdés:** elfogadható az „az M7-es úton” autópályára is, vagy
+mindenképp „az M7-es autópályán” kellene?
 
-Hasonlóan az utcanév végét is ragozza: korábban „az Andrássy út úton”
-hangzott el, most „az Andrássy úton”, „a Váci utcán”, „a Deák téren”, „a Hősök
-terén”. Ha a névben nincs ilyen szó (például „M7”), marad „az M7 úton”.
+### Q2 — A magázás a gombokon és a bevezetőben *(Register switch)*
 
-**A kérdés:** helyesek ezek a szabályok? Tudsz olyan esetet, ahol rossz
-névelőt vagy rossz ragot választana?
+**Mikor hallja:** az első indításkor, a bemutatóban és a párbeszédablakokban.
 
-### Q2 — Tegezés vagy magázás? *(Mixed register)*
+**Angolul:** „You're ready!”, „Welcome!”, „Are you sure?”, „Great! When
+creating a marker, you can edit its name and add notes. Try that now, and
+when you're ready, tap Done.”
 
-**Mikor hallod:** az egész alkalmazásban.
+**Most így szól:** „Készen áll!”, „Üdvözöljük!”, „Biztos benne?”,
+„Nagyszerű! Jelölő létrehozásakor szerkesztheti a nevét, és megjegyzéseket
+is hozzáadhat. Próbálja ki most, és amikor kész van, koppintson a Kész
+gombra.”
 
-**Most így szól:** a gombok, a bevezető és az első indítás tegeznek:
-„Készen állsz!”, „Koppints a Jelölők és útvonalak lehetőségre”. A súgóoldalak
-viszont magáznak: „Ha hangjelzőt állít be egy közeli helyre, a Soundscape
-folyamatosan tájékoztatja Önt…”.
+**Amiben bizonytalanok vagyunk:** ezeket a szövegeket tegezésből írtuk át
+magázásra, anyanyelvi ellenőrzés nélkül. A „Készen áll!” önmagában úgy is
+érthető, hogy „valami elkészült”.
 
-**Amiben bizonytalanok vagyunk:** a kettő keveredése biztosan hiba, de nem
-tudjuk, melyik illik jobban egy ilyen alkalmazáshoz. A felhasználók
-felnőttek, sokan idősebbek is.
+**A kérdés:** természetesen hangzanak így? Ha nem, hogyan mondaná?
 
-**A kérdés:** tegezzen vagy magázzon az alkalmazás mindenhol?
-
-### Q3 — „Hangjelző” *(Audio Beacon)*
-
-**Mikor hallod:** amikor a felhasználó kiválaszt egy célpontot, és a
-célpont irányából folyamatos hang szól (lásd fent). A szó a gombokon és a
-bejelentésekben is szerepel.
-
-**Angolul:** „Audio Beacon”.
-
-**Most így szól:** „Hangjelző”; például „Most hallhatod a hangjelzőt. A célod
-irányából szól.”
-
-**Amiben bizonytalanok vagyunk:** a „hangjelző” a hétköznapokban inkább
-berregőt, csipogót vagy az autó dudáját jelenti. Nem tudjuk, hogy egy vak
-felhasználó ebből megérti-e, hogy egy irányt mutató hangról van szó.
-
-**A kérdés:** természetes így? Ha nem, mit mondanál helyette?
-
-### Q4 — „Bejelentés” *(Callout)*
-
-**Mikor hallod:** a rövid hangüzenetek neve (lásd fent). Leginkább a
-beállításokban szerepel, például „Automatikus bejelentések” vagy „Az összes
-bejelentés be- vagy kikapcsolása”.
-
-**Angolul:** „Callout”, „Automatic Callouts”.
-
-**Most így szól:** „Bejelentés”, „Automatikus bejelentések”.
-
-**Amiben bizonytalanok vagyunk:** a „bejelentés” hivatalosnak hathat (mint
-egy hivatalban tett bejelentés). A „bemondás” (mint a villamoson vagy a
-pályaudvaron) talán közelebb áll, az „értesítés” viszont összekeverhető a
-telefon saját értesítéseivel. Ráadásul most három szó keveredik: „bejelentés”
-(például „Bejelentések engedélyezése”), „közlés” (például „Közlések kezelése”,
-„Közlések részletessége”) és néhol „bemondás”. Ugyanazon a beállítási
-képernyőn egymás után hallható a „Bejelentések engedélyezése” és a „Közlések
-kezelése”.
-
-**A kérdés:** melyik legyen az egyetlen szó mindenhol: „bejelentés”,
-„közlés”, „bemondás”, vagy valami más?
-
-### Q5 — A négy részletességi szint *(Four detail levels, renamed 2026-09-30)*
-
-**Mikor hallod:** a beállításokban, ahol hallás alapján választod ki, mennyit beszéljen az alkalmazás útközben.
-
-**Angolul:** „Detailed / Simplified / Essential / Silent”
-
-**Most így szól:** Részletes / Egyszerűsített / Alapvető / Néma. Az Egyszerűsített kihagyja a kisebb ösvényeket és ritkábban ismétel; az Alapvető csak utcákat, kereszteződéseket és tájékozódási pontokat jelent be.
-
-**Amiben bizonytalanok vagyunk:** épp most neveztük át a két középső szintet. Korábban „Kiegyensúlyozott” és „Csendes” volt a nevük, de más nyelvek anyanyelvi beszélői a régi angol neveket nem találták világosnak: a „Csendes” hangerőnek hangzik. Az új neveket mi választottuk, nem magyar anyanyelvű.
-
-**A kérdés:** Könnyű hallás alapján megkülönböztetni és megérteni a négy szintet? Máshogy neveznéd a két középsőt?
-
-### Q6 — Valami más? *(Anything else)*
+### Q3 — Valami más? *(Anything else)*
 
 Ha egy mondat angolból fordítottnak hangzik, túl hosszú vagy nem érthető,
-szólj nekünk.
+szóljon nekünk.
 
 Köszönjük szépen!
