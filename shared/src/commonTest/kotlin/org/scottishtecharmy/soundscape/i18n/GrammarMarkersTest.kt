@@ -123,9 +123,36 @@ class GrammarMarkersTest {
 
     @Test
     fun hungarianRoadCaseFallsBackToUtonForOtherNames() {
-        assertEquals("Az M7 úton", hu("A(z) M7{úton}"))
         assertEquals("A Rudas fürdő úton", hu("A(z) Rudas fürdő{úton}"))
         assertEquals("Az M1 (Bécsi út) úton", hu("A(z) M1 (Bécsi út){úton}"))
+    }
+
+    @Test
+    fun hungarianRoadCaseGivesRouteNumbersTheirSuffix() {
+        assertEquals("Az M7-es úton", hu("A(z) M7{úton}"))    // hét
+        assertEquals("az M0-s úton", hu("a(z) M0{úton}"))     // nulla
+        assertEquals("az M5-ös úton", hu("a(z) M5{úton}"))    // öt
+        assertEquals("a 8-as úton", hu("a(z) 8{úton}"))       // nyolc
+        assertEquals("a 6-os úton", hu("a(z) 6{úton}"))       // hat
+        assertEquals("a 35-ös úton", hu("a(z) 35{úton}"))     // harmincöt
+        assertEquals("a 70-es úton", hu("a(z) 70{úton}"))     // hetven
+        assertEquals("a 30-as úton", hu("a(z) 30{úton}"))     // harminc
+        assertEquals("a 100-as úton", hu("a(z) 100{úton}"))   // száz
+        assertEquals("az 1000-es úton", hu("a(z) 1000{úton}")) // ezer
+        // Already written with its suffix: left alone.
+        assertEquals("az M7-es úton", hu("a(z) M7-es{úton}"))
+    }
+
+    @Test
+    fun hungarianNumberSuffixFollowsTheLastWordSaid() {
+        val expected = mapOf(
+            "1" to "-es", "2" to "-es", "3" to "-as", "4" to "-es", "5" to "-ös",
+            "6" to "-os", "7" to "-es", "8" to "-as", "9" to "-es", "0" to "-s",
+            "10" to "-es", "20" to "-as", "30" to "-as", "40" to "-es", "50" to "-es",
+            "60" to "-as", "70" to "-es", "80" to "-as", "90" to "-es",
+            "200" to "-as", "2000" to "-es", "121" to "-es", "86" to "-os",
+        )
+        for ((digits, suffix) in expected) assertEquals(suffix, hungarianNumberSuffix(digits), digits)
     }
 
     @Test
