@@ -16,11 +16,11 @@ for f in "$target_dir"/*; do
 
   filename=$(basename -- "$f")
 
-  # Split on "_" and take 2nd field as LANGUAGE
-  IFS=_ read -r part1 language rest <<< "$filename"
-
-  # Skip files not matching expected pattern
-  [[ -n "$language" && -n "$rest" ]] || continue
+  # Filenames are <Test>_<Preview name>_<hash>_<n>.png. The preview name is a
+  # language code that can itself contain "_" (pt_BR, zh_Hans), so take
+  # everything between the test name and the hash rather than one field.
+  [[ "$filename" =~ ^[^_]+_(.+)_[0-9a-f]+_[0-9]+\.png$ ]] || continue
+  language="${BASH_REMATCH[1]}"
 
   mkdir -p -- "$target_dir/$language"
   mv -- "$f" "$target_dir/$language/"
