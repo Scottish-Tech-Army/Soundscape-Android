@@ -27,6 +27,7 @@ import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
+import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
@@ -4220,10 +4221,17 @@ class MvtTileTest {
      * replayed with a heading on every fix, when the app had had one on a quarter of them.
      *
      * [computedHeading], the bearing from the previous position, is only for GPX exported from
-     * other apps or written by hand, which carries no course at all.
+     * other apps or written by hand, which carries no course at all - [recordsCourses] false. In a
+     * recording that does carry courses, a point without one is a fix the receiver gave no course
+     * for, and the app had no travel heading for it either.
      */
-    private fun recordedTravelHeading(position: Feature, computedHeading: Double): Double? {
-        val heading = position.properties?.get("heading") as? Double? ?: return computedHeading
+    private fun recordedTravelHeading(
+        position: Feature,
+        computedHeading: Double,
+        recordsCourses: Boolean
+    ): Double? {
+        val heading = position.properties?.get("heading") as? Double?
+            ?: return if (recordsCourses) null else computedHeading
         val bearingAccuracy = position.properties?.get("bearingAccuracy") as? Double?
         return if ((bearingAccuracy == null) ||
             (bearingAccuracy < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES))
@@ -4250,7 +4258,10 @@ class MvtTileTest {
         // against each other rather than trusting the rail one alone.
         val railMatchArbiter = RailMatchArbiter()
         val stationaryDetector = StationaryDetector()
+        val headingHold = HeadingHold()
         val gps = parseGpxFromFile(gpxFilename)
+        // See recordedTravelHeading
+        val recordsCourses = gps.features.any { it.properties?.get("heading") != null }
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
@@ -4432,7 +4443,7 @@ class MvtTileTest {
                 // be missing so we need to mock it up.
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
-                    travelHeading = recordedTravelHeading(position, travelHeading),
+                    travelHeading = recordedTravelHeading(position, travelHeading, recordsCourses),
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
@@ -4440,10 +4451,17 @@ class MvtTileTest {
                         mapMatchFilter, railMapMatchFilter, speed, stationary
                     ),
                     timestampMilliseconds = timestamp,
+                    heldHeading = headingHold.heading(
+                        LngLatAlt(location.longitude, location.latitude),
+                        gridState.ruler,
+                        timestamp
+                    ),
                     unobservedMillis = unobservedMillis,
                     stationary = stationary,
                     stationaryMillis = stationaryDetector.stationaryMillis
                 )
+                // Fed once per fix from the geometry the callouts use, as GeoEngine does.
+                headingHold.update(userGeometry)
 
                 // Neither of these is a callout - they're state changes the callout text can't
                 // show, and which are the whole point of the stationary work: whether a ride
@@ -4614,6 +4632,8 @@ class MvtTileTest {
         settlementGrid.start(offlineExtractPath)
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
+        // See recordedTravelHeading
+        val recordsCourses = gps.features.any { it.properties?.get("heading") != null }
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
@@ -4679,7 +4699,7 @@ class MvtTileTest {
 
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
-                    travelHeading = recordedTravelHeading(position, travelHeading),
+                    travelHeading = recordedTravelHeading(position, travelHeading, recordsCourses),
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
