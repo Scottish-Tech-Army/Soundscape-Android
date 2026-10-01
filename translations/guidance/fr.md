@@ -292,7 +292,7 @@ Reviewer (Q6): *"un mot plus commun et généralisable que carrefour et moins fo
 
 ### FR-S3 — No «ça sonne comme» for "it sounds like" (`agreed` 2026-10-01)
 
-**Round 2 (Q5):** *"en français on ne dit pas « ça sonne comme » suivi d’une liste d’options ou réglages, contrairement à l’anglais et l’espagnol. On dirait plutôt « ce que ça donne » ou « le rendu sonore est … »."* No app string uses «sonner» (checked 2026-10-01). The hit is our own questionnaire, whose field «Comment ça sonne aujourd’hui :» should be «Ce que ça donne aujourd’hui :» (fr and fr_CA sheets). Applies to any future French user guide.
+**Round 2 (Q5):** *"en français on ne dit pas « ça sonne comme » suivi d’une liste d’options ou réglages, contrairement à l’anglais et l’espagnol. On dirait plutôt « ce que ça donne » ou « le rendu sonore est … »."* No app string uses «sonner» (checked 2026-10-01). The hit was our own questionnaire: the fr field «Comment ça sonne aujourd’hui :» is now «Ce que ça donne aujourd’hui :», and the fr_CA intro changed the same way (2026-10-01). Applies to any future French user guide.
 
 ## Questionnaire round 2 — answered 2026-10-01
 
@@ -302,6 +302,7 @@ Q1 → FR-T2 `confirmed`, Q2 → FR-T3, Q3 → FR-B2 relaxed, Q4 → FR-L1 «Min
 
 1. Introduction term: you wrote «balise audio»; the app says «balise sonore». Is «balise sonore» fine, or do you prefer «balise audio»?
 2. «Minimal» as level 3 (Détaillé / Simplifié / Minimal / Silencieux): does it now sound clearly ranked?
+3. Anything else.
 
 ## fr_CA is derived from this file
 
