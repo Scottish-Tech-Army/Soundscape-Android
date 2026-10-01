@@ -1259,13 +1259,25 @@ class AutoCallout(
                     (userGeometry.timestampMilliseconds - last) < verbosity.minimumPoiGapMs
                 } ?: false
 
-        // Get nearby markers that are ahead of us in our field of view
+        // Get nearby markers that are ahead of us in our field of view - or, with no heading to say
+        // which way is ahead, the nearest ones in any direction within the same distance. A marker
+        // is something the user chose to be told about, so missing one is worse than hearing about
+        // one that's behind them, and the callout gives its direction regardless.
         val triangle = getFovTriangle(userGeometry)
-        val markers = gridState.markerTree?.getNearestCollectionWithinTriangle(
-            triangle,
-            5,
-            userGeometry.ruler
-        )
+        val markers = if (triangle != null) {
+            gridState.markerTree?.getNearestCollectionWithinTriangle(
+                triangle,
+                5,
+                userGeometry.ruler
+            )
+        } else {
+            gridState.markerTree?.getNearestCollection(
+                userGeometry.location,
+                userGeometry.fovDistance,
+                5,
+                userGeometry.ruler
+            )
+        }
 
         // Get a list of the 10 nearest POI that are within search range, adding in the markers
         val pois = gridState.getFeatureTree(TreeId.SELECTED_SUPER_CATEGORIES).getNearestCollection(

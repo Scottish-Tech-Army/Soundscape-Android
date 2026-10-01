@@ -377,8 +377,20 @@ fun buildAheadOfMeCallout(
                 val triangle = getFovTriangle(userGeometry)
                 val featureTree = gridState.getFeatureTree(TreeId.PLACES_AND_LANDMARKS)
 
-                val featuresAhead =
+                // With no heading there is no "ahead" to search, so give the nearest places in any
+                // direction instead. Each is spoken with its compass direction (see below), so the
+                // answer is still true; searching due north instead used to describe whatever lay
+                // north as being ahead.
+                val featuresAhead = if (triangle != null) {
                     featureTree.getNearestCollectionWithinTriangle(triangle, 5, userGeometry.ruler)
+                } else {
+                    featureTree.getNearestCollection(
+                        userGeometry.location,
+                        userGeometry.fovDistance,
+                        5,
+                        userGeometry.ruler
+                    )
+                }
                 val list: MutableList<PositionedString> = mutableListOf()
                 for (feature in featuresAhead) {
 
