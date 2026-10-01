@@ -68,6 +68,7 @@ import org.scottishtecharmy.soundscape.platform.ClearDialogScrim
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackLive
+import org.scottishtecharmy.soundscape.screens.talkbackPasteAction
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -137,6 +138,16 @@ fun MainSearchBar(
             ClearDialogScrim()
             val keyboardController = LocalSoftwareKeyboardController.current
 
+            // Run the search for whatever is in the field, ignoring a field with nothing in it.
+            val triggerSearch = {
+                val trimmed = query.trim()
+                if (trimmed.isNotEmpty()) {
+                    searchLocation.value = userLocation
+                    keyboardController?.hide()
+                    onTriggerSearch(trimmed)
+                }
+            }
+
             LaunchedEffect(expanded) {
                 if (expanded) {
                     focusRequester.requestFocus()
@@ -178,20 +189,17 @@ fun MainSearchBar(
                                 cursorBrush = SolidColor(colors.primary),
                                 textStyle = textStyle,
                                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                                keyboardActions = KeyboardActions(
-                                    onSearch = {
-                                        val trimmed = query.trim()
-                                        if (trimmed.isNotEmpty()) {
-                                            searchLocation.value = userLocation
-                                            keyboardController?.hide()
-                                            onTriggerSearch(trimmed)
-                                        }
-                                    }
-                                ),
+                                keyboardActions = KeyboardActions(onSearch = { triggerSearch() }),
                                 modifier = Modifier
                                     .weight(1f)
                                     .focusRequester(focusRequester)
-                                    .testTag("mainSearchBarTextField"),
+                                    .testTag("mainSearchBarTextField")
+                                    // A screen reader user has no Search key to press after
+                                    // pasting, so search for what they pasted straight away.
+                                    .talkbackPasteAction { pasted ->
+                                        query += pasted
+                                        triggerSearch()
+                                    },
                                 decorationBox = { inner ->
                                     Box(Modifier.fillMaxWidth()) {
                                         if (query.isEmpty()) {
