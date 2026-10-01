@@ -24,6 +24,7 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.buildNearbyMarkersCall
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildWhatsAroundMeCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
+import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
@@ -135,6 +136,9 @@ class GeoEngine {
     // see StationaryDetector. Driven below, ahead of the matchers, since the arbiter reads it.
     private var stationaryDetector = StationaryDetector()
     private var userStationary = false
+    // The last trusted travel heading, kept through a pause - see HeadingHold. Updated once per
+    // location update below, read by every UserGeometry built.
+    private var headingHold = HeadingHold()
 
     // Running total of the time fixes have been arriving too inaccurate to place, and the
     // bookkeeping behind it - see UserGeometry.unobservedMillis and
@@ -267,6 +271,7 @@ class GeoEngine {
             currentBeacon = beaconLocation,
             inStreetPreview = streetPreview.running,
             timestampMilliseconds = currentTimeMillis(),
+            heldHeading = headingHold.heading(latLng, ruler, currentTimeMillis()),
             unobservedMillis = unobservedMillis,
             // Also decided when the filters ran, and for the same reason: a UserGeometry is one
             // location update, and whether the user has gone anywhere is a question about the last
@@ -622,10 +627,16 @@ class GeoEngine {
                         listener.tileGridUpdated()
                     }
 
+                    // Built once and used for both: the hold has to be fed on every location
+                    // update, not only the ones the callouts get to run on, or a busy audio engine
+                    // would let a fresh heading go unrecorded.
+                    val calloutGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
+                    headingHold.update(calloutGeometry)
+
                     if ((!listener.isAudioEngineBusy() || streetPreview.running) && !listener.menuActive) {
                         val callout =
                             autoCallout.updateLocation(
-                                getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
+                                calloutGeometry,
                                 gridState,
                                 settlementGrid
                             )
