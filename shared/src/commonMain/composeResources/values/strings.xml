@@ -1304,6 +1304,8 @@
     <string name="accessibility_screen_reader_disabled">Because you do not have a screen reader enabled, we assume you want to see the graphical maps in the app. You can change this setting here, or just continue.</string>
     <!-- Content description for button which clears text edit boxes -->
     <string name="text_field_clear_text">Clear Text</string>
+    <!-- Name of the VoiceOver action which pastes the clipboard into a text edit box -->
+    <string name="text_field_paste">Paste</string>
     <!-- Content description for marker name - always preceded by "Double tap to " -->
     <string name="marker_name_description_hint">edit the marker name</string>
     <!-- Content description for annotation edit text field - always preceded by "Double tap to " -->
