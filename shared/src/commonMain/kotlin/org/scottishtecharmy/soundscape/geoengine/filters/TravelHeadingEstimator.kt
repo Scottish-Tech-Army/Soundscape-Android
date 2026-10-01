@@ -20,7 +20,9 @@ import kotlin.concurrent.Volatile
  *    user's actual path often enough (bends, the wrong Way at a junction) to take the 90th
  *    percentile error from 31° to 53°. UserGeometry.snappedHeading still lines the course up with
  *    the road when the two are close.
- * 3. The bearing over the last [MOVEMENT_BASELINE_METRES] of the user's own positions, as it is.
+ * 3. The bearing over the last [MOVEMENT_BASELINE_METRES] of the user's own positions, as it is -
+ *    but only if the last [STRAIGHTNESS_BASELINE_METRES] of their path were nearly straight (see
+ *    [MINIMUM_STRAIGHTNESS]).
  *
  * Null when none of those has anything to say. UserGeometry only uses the result while the user is
  * in motion, so a bearing worked out from standing-still jitter is never acted on.
@@ -89,17 +91,43 @@ class TravelHeadingEstimator {
 
     /**
      * The bearing from the newest fix back to the most recent one at least
-     * [MOVEMENT_BASELINE_METRES] from it, within [MOVEMENT_WINDOW_MILLISECONDS] of now.
+     * [MOVEMENT_BASELINE_METRES] from it, within [MOVEMENT_WINDOW_MILLISECONDS] of now - provided
+     * the path back to the most recent fix [STRAIGHTNESS_BASELINE_METRES] away is at least
+     * [MINIMUM_STRAIGHTNESS] straight.
+     *
+     * The straightness test is what keeps GPS wander out. Replaying androidTravel, which spends
+     * 50 minutes inside about 90m of one spot with fixes jumping about at up to 4 m/s, the
+     * movement bearing there was no better than random: 85° median error against where the user
+     * actually went next. Wander does produce short straight runs, so the 5m bearing alone can't
+     * tell; over 15m it mostly can. Measured over every movement bearing in the GPX fixtures
+     * outside that spell, against the bearing to where the user was next 15m away:
+     *
+     *                                  fixes, error 50th / 68th / 90th percentile
+     *   no test                        2478,    14° / 31° / 119°
+     *   15m at least 0.9 straight      1610,     9° / 18° /  61°
+     *   (the ones it drops)             868,    37° / 76° / 150°
+     *
+     * and inside the spell it drops 186 of the 259. The cost is that after a sharp turn
+     * there is no movement bearing until about 13m past it - where, lagging the turn, it was
+     * wrong anyway.
      */
     private fun movementBearing(ruler: Ruler, nowMilliseconds: Long): Double? {
         val fixes = recent
         val newest = fixes.lastOrNull() ?: return null
         if (nowMilliseconds - newest.timestampMilliseconds > MOVEMENT_WINDOW_MILLISECONDS)
             return null
+        var bearing: Double? = null
+        var path = 0.0
+        var later = newest
         for (i in fixes.size - 2 downTo 0) {
             val earlier = fixes[i]
-            if (ruler.distance(earlier.location, newest.location) >= MOVEMENT_BASELINE_METRES)
-                return (ruler.bearing(earlier.location, newest.location) + 360.0) % 360.0
+            path += ruler.distance(earlier.location, later.location)
+            later = earlier
+            val net = ruler.distance(earlier.location, newest.location)
+            if ((bearing == null) && (net >= MOVEMENT_BASELINE_METRES))
+                bearing = (ruler.bearing(earlier.location, newest.location) + 360.0) % 360.0
+            if (net >= STRAIGHTNESS_BASELINE_METRES)
+                return if (net / path >= MINIMUM_STRAIGHTNESS) bearing else null
         }
         return null
     }
@@ -122,6 +150,9 @@ class TravelHeadingEstimator {
         const val ALONG_ROAD_DEGREES = 60.0
 
         const val MOVEMENT_BASELINE_METRES = 5.0
+        const val STRAIGHTNESS_BASELINE_METRES = 15.0
+        /** Net distance over path length - see movementBearing. */
+        const val MINIMUM_STRAIGHTNESS = 0.9
         const val MOVEMENT_WINDOW_MILLISECONDS = 30_000L
     }
 }
