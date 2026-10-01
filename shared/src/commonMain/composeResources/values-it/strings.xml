@@ -538,15 +538,15 @@
     <string name="new_version_info_text">Informazioni sulla nuova versione</string>
     <string name="new_version_info_completed">Chiudi il dialogo delle novità</string>
     <string name="new_version_info_details">
-Questo è un importante aggiornamento di Soundscape.
+Questa è un'importante versione beta di Soundscape, con molti miglioramenti e modifiche.
 
-La modalità Viaggio è molto migliorata. Quando viaggi in auto o in autobus, Soundscape ora annuncia i numeri delle strade, la tua direzione di marcia e i centri abitati vicini. Annuncia anche quando attraversi fiumi, canali, estuari e baie. Aggiorna le tue mappe offline per ottenere queste nuove funzionalità. Le descrizioni delle fermate degli autobus sono ora molto migliori per gli utenti nel Regno Unito.
+Se non vuoi più partecipare alla beta, puoi andare alla pagina di Soundscape sul Play Store, dove troverai un'opzione per interrompere la partecipazione.
 
-La modalità Sospendi ora può riattivarsi automaticamente quando rileva che ti stai muovendo di nuovo. Non devi più ricordarti di riattivarla manualmente.
+Toccando il pulsante «Note di rilascio complete» qui sotto, aprirai la pagina web con le note di rilascio complete. Vale davvero la pena leggerle, perché ci sono molte nuove funzionalità.
 
-Abbiamo riorganizzato il codice sottostante in modo da poter creare un'app iOS a partire dallo stesso codice. Questo significa che in futuro potremo rilasciare un'app iOS con tutte le funzionalità che abbiamo creato per Android.
+Cerchiamo sempre di migliorare le nostre traduzioni e sullo stesso sito delle note di rilascio c'è una pagina che spiega come puoi aiutarci. Molte traduzioni sono fatte con l'IA e possono sicuramente essere migliorate con l'aiuto di madrelingua.
 
-Continua a segnalarci eventuali problemi, per quanto piccoli, tramite l'opzione Contatta l'assistenza nel menu principale.
+Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta l'assistenza» nel menu principale.
 </string>
     <string name="menu_open_source_licenses">Licenze open source</string>
     <string name="osm_tag_ferry_terminal">Terminal dei traghetti</string>

@@ -534,15 +534,15 @@
     <string name="new_version_info_text">Uuden julkaisun tiedot</string>
     <string name="new_version_info_completed">Sulje uuden julkaisun valintaikkuna</string>
     <string name="new_version_info_details">
-Tämä on suuri päivitys Soundscapeen.
+Tämä on Soundscapen suuri beetajulkaisu, jossa on paljon parannuksia ja muutoksia.
 
-Matkustustila on parantunut huomattavasti. Kun matkustat autolla tai bussilla, Soundscape ilmoittaa nyt tienumerot, kulkusuuntasi ja lähellä olevat taajamat. Se ilmoittaa myös, kun ylität jokia, kanavia, vuonoja ja lahtia. Päivitä offline-karttasi saadaksesi nämä uudet ominaisuudet käyttöön. Linja-autopysäkkien kuvaukset ovat nyt paljon parempia Ison-Britannian käyttäjille.
+Jos et enää halua osallistua beetaan, voit siirtyä Soundscapen sivulle Play Kaupassa, josta löydät vaihtoehdon osallistumisen lopettamiseen.
 
-Lepotila voi nyt herätä automaattisesti, kun se havaitsee sinun liikkuvan taas. Sinun ei enää tarvitse muistaa herättää sitä itse.
+Kun napautat alla olevaa ”Täydelliset julkaisutiedot” -painiketta, pääset verkkosivulle, jolla ovat täydelliset julkaisutiedot. Ne kannattaa todella lukea, sillä uusia ominaisuuksia on paljon.
 
-Järjestimme taustalla olevan koodin uudelleen, jotta voimme rakentaa iOS-sovelluksen samasta koodista. Tämä tarkoittaa, että voimme tulevaisuudessa julkaista iOS-sovelluksen, jossa on kaikki Androidille rakentamamme ominaisuudet.
+Pyrimme jatkuvasti parantamaan käännöksiämme, ja samalla verkkosivustolla kuin julkaisutiedot on sivu, joka kertoo, miten voit auttaa. Monet käännöksistä on tehty tekoälyllä, ja niitä voi varmasti parantaa äidinkielisten puhujien avulla.
 
-Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahansa, valikon Ota yhteyttä tukeen -vaihtoehdon kautta.
+Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahansa, päävalikon ”Ota yhteyttä tukeen” -vaihtoehdon kautta.
 </string>
     <string name="menu_open_source_licenses">Avoimen lähdekoodin lisenssit</string>
     <string name="osm_tag_ferry_terminal">Lauttaterminaali</string>

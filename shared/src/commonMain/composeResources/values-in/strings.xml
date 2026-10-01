@@ -245,15 +245,15 @@
     <string name="new_version_info_completed">Tutup dialog rilis baru</string>
     <string name="menu_open_source_licenses">Lisensi sumber terbuka</string>
     <string name="new_version_info_details">
-Ini adalah pembaruan besar untuk Soundscape.
+Ini adalah rilis Beta besar untuk Soundscape yang berisi banyak peningkatan dan perubahan.
 
-Mode perjalanan jauh lebih baik sekarang. Saat Anda bepergian dengan mobil atau bus, Soundscape kini menyebutkan nomor jalan, arah perjalanan Anda, dan permukiman terdekat. Aplikasi juga memberi tahu saat Anda melintasi sungai, kanal, muara, dan teluk. Harap perbarui peta offline Anda untuk mendapatkan fitur-fitur baru ini. Deskripsi halte bus kini jauh lebih baik bagi pengguna di Inggris.
+Jika Anda tidak ingin lagi ikut serta dalam Beta, buka halaman Soundscape di Play Store dan Anda akan menemukan opsi untuk berhenti berpartisipasi.
 
-Mode tidur kini dapat bangun secara otomatis saat mendeteksi bahwa Anda bergerak lagi. Anda tidak perlu lagi mengingat untuk membangunkannya sendiri.
+Mengetuk tombol “Catatan rilis lengkap” di bawah akan membawa Anda ke halaman web berisi catatan rilis lengkap. Catatan ini sangat layak dibaca karena ada banyak fitur baru.
 
-Kami menyusun ulang kode dasar aplikasi agar kami dapat membangun aplikasi iOS dari kode yang sama. Ini berarti di masa mendatang kami dapat merilis aplikasi iOS dengan semua fitur yang telah kami buat untuk Android.
+Kami selalu berupaya meningkatkan terjemahan kami, dan di situs web yang sama dengan catatan rilis terdapat halaman yang menjelaskan cara Anda dapat membantu. Banyak terjemahan dibuat oleh AI dan tentu dapat diperbaiki dengan bantuan penutur asli.
 
-Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui Hubungi Dukungan di menu utama.
+Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi Dukungan” di menu utama.
 </string>
     <string name="about_soundscape">Soundscape menggunakan teknologi berbasis audio yang inovatif untuk membantu orang membangun kesadaran yang lebih kaya akan lingkungan sekitar mereka. Hal ini membuat orang lebih percaya diri dan mampu bepergian secara mandiri.</string>
     <string name="copyright_notices">Soundscape bergantung pada pustaka dan data pihak ketiga yang luar biasa ini. Klik tautan untuk melihat lisensinya:</string>

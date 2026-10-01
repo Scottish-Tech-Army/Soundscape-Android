@@ -537,7 +537,17 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Marqueurs et itinéraires supprimés</string>
     <string name="new_version_info_text">Informations sur la nouvelle version</string>
     <string name="new_version_info_completed">Fermer les informations sur la nouvelle version</string>
-    <string name="new_version_info_details">Ceci est une mise à jour majeure de Soundscape. Le mode Voyage a été nettement amélioré. Lorsque vous voyagez en voiture ou en bus, Soundscape annonce désormais les numéros de route, votre sens de déplacement et les localités à proximité. Il annonce également lorsque vous traversez des rivières, des canaux, des estuaires et des baies. Veuillez mettre à jour vos cartes hors ligne pour bénéficier de ces nouvelles fonctionnalités. Les descriptions des arrêts de bus sont désormais bien meilleures pour les utilisateurs au Royaume-Uni. Le mode Mettre en veille peut désormais se réactiver automatiquement lorsqu’il détecte que vous vous remettez en mouvement. Vous n’avez plus besoin de penser à le réactiver vous-même. Nous avons réorganisé le code sous-jacent afin de pouvoir créer une appli iOS à partir du même code. Cela signifie qu’à l’avenir, nous pourrons publier une appli iOS avec toutes les fonctionnalités que nous avons créées pour Android. Merci de continuer à nous signaler tout problème, aussi minime soit-il, via l’option Contacter le support dans le menu principal.</string>
+    <string name="new_version_info_details">
+Ceci est une version bêta majeure de Soundscape, avec de nombreuses améliorations et modifications.
+
+Si vous ne souhaitez plus participer à la bêta, rendez-vous sur la page de Soundscape dans le Play Store : vous y trouverez une option pour arrêter votre participation.
+
+En appuyant sur le bouton « Notes de version complètes » ci-dessous, vous accéderez à la page web contenant les notes de version complètes. Elles valent vraiment la peine d’être lues, car les nouveautés sont nombreuses.
+
+Nous cherchons toujours à améliorer nos traductions, et sur le même site web que les notes de version, une page explique comment vous pouvez nous aider. Une grande partie des traductions est réalisée par l’IA et peut sans aucun doute être améliorée avec l’aide de locuteurs natifs.
+
+Merci de continuer à nous signaler tout problème, aussi minime soit-il, via « Contacter le support » dans le menu principal.
+</string>
     <string name="menu_open_source_licenses">Licences open source</string>
     <string name="osm_tag_ferry_terminal">Terminal de traversier</string>
     <string name="osm_tag_ferry_terminal_named">Terminal de traversier %1$s</string>

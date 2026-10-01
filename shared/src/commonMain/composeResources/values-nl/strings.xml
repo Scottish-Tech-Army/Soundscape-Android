@@ -533,7 +533,17 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markeringen en routes verwijderd</string>
     <string name="new_version_info_text">Informatie over de nieuwe release</string>
     <string name="new_version_info_completed">Nieuwe releasedialoog sluiten</string>
-    <string name="new_version_info_details">Dit is een grote update voor Soundscape. De reismodus is sterk verbeterd. Wanneer u met de auto of bus reist, kondigt Soundscape nu wegnummers, uw rijrichting en nabijgelegen plaatsen aan. Ook wordt aangekondigd wanneer u rivieren, kanalen, zeearmen en baaien oversteekt. Werk uw offline kaarten bij om deze nieuwe functies te krijgen. De beschrijvingen van bushaltes zijn nu veel beter voor gebruikers in het Verenigd Koninkrijk. De slaapstand kan nu automatisch ontwaken wanneer wordt gedetecteerd dat u weer in beweging bent. U hoeft er niet langer aan te denken deze zelf te wekken. We hebben de onderliggende code gereorganiseerd, zodat we een iOS-app kunnen bouwen vanuit dezelfde code. Dit betekent dat we in de toekomst een iOS-app kunnen uitbrengen met alle functies die we voor Android hebben ontwikkeld. Meld eventuele problemen die u tegenkomt, hoe klein ook, via de optie Contact opnemen met ondersteuning in het hoofdmenu.</string>
+    <string name="new_version_info_details">
+Dit is een grote bètarelease van Soundscape met veel verbeteringen en wijzigingen.
+
+Als u niet langer aan de bèta wilt deelnemen, gaat u naar de Soundscape-pagina in de Play Store. Daar vindt u een optie om uw deelname te beëindigen.
+
+Als u hieronder op de knop “Volledige releaseopmerkingen” tikt, gaat u naar de webpagina met de volledige releaseopmerkingen. Die zijn zeker de moeite waard om te lezen, want er zijn veel nieuwe functies.
+
+We willen onze vertalingen altijd verbeteren en op dezelfde website als de releaseopmerkingen staat een pagina die uitlegt hoe u kunt helpen. Veel vertalingen zijn met AI gemaakt en kunnen zeker beter met hulp van moedertaalsprekers.
+
+Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteuning” in het hoofdmenu.
+</string>
     <string name="menu_open_source_licenses">Open-sourcelicenties</string>
     <string name="osm_tag_ferry_terminal">Veerterminal</string>
     <string name="osm_tag_ferry_terminal_named">Veerterminal %1$s</string>

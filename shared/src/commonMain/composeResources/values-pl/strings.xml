@@ -542,15 +542,15 @@
     <string name="new_version_info_text">Informacje o nowej wersji</string>
     <string name="new_version_info_completed">Zamknij okno informacji o nowej wersji</string>
     <string name="new_version_info_details">
-To poważna aktualizacja aplikacji Soundscape.
+To duża wersja beta aplikacji Soundscape z wieloma ulepszeniami i zmianami.
 
-Tryb podróży został znacznie ulepszony. Podczas podróży samochodem lub autobusem Soundscape powiadamia teraz o numerach dróg, kierunku jazdy i pobliskich miejscowościach. Informuje też, gdy przekraczasz rzeki, kanały, estuaria i zatoki. Zaktualizuj swoje mapy offline, aby korzystać z tych nowych funkcji. Opisy przystanków autobusowych są teraz znacznie lepsze dla użytkowników w Wielkiej Brytanii.
+Jeśli nie chcesz już uczestniczyć w programie beta, przejdź na stronę Soundscape w Sklepie Play, gdzie znajdziesz opcję rezygnacji z udziału.
 
-Tryb uśpienia może teraz budzić się automatycznie, gdy wykryje, że znów jesteś w ruchu. Nie musisz już pamiętać, aby wybudzić go samodzielnie.
+Dotknięcie przycisku „Pełne informacje o wersji” poniżej przeniesie cię na stronę internetową z pełnymi informacjami o wersji. Naprawdę warto je przeczytać, bo jest wiele nowych funkcji.
 
-Zreorganizowaliśmy kod źródłowy aplikacji, dzięki czemu możemy zbudować aplikację iOS z tego samego kodu. Oznacza to, że w przyszłości będziemy mogli wydać aplikację iOS ze wszystkimi funkcjami, które stworzyliśmy dla Androida.
+Stale staramy się ulepszać nasze tłumaczenia, a w tej samej witrynie co informacje o wersji znajduje się strona z wyjaśnieniem, jak możesz pomóc. Wiele tłumaczeń wykonała sztuczna inteligencja i z pomocą rodzimych użytkowników języka z pewnością można je ulepszyć.
 
-Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomocą opcji Kontakt z pomocą techniczną w menu głównym.
+Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomocą opcji „Kontakt z pomocą techniczną” w menu głównym.
 </string>
     <string name="menu_open_source_licenses">Licencje open source</string>
     <string name="osm_tag_ferry_terminal">Terminal promowy</string>

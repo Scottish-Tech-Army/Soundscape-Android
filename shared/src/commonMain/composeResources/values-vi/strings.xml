@@ -423,15 +423,15 @@
     <string name="new_version_info_completed">Đóng hộp thoại phiên bản mới</string>
     <string name="menu_open_source_licenses">Giấy phép mã nguồn mở</string>
     <string name="new_version_info_details">
-Đây là một bản cập nhật lớn cho Soundscape.
+Đây là một bản phát hành Beta lớn của Soundscape với rất nhiều cải tiến và thay đổi.
 
-Chế độ Di chuyển đã được cải thiện đáng kể. Khi bạn di chuyển bằng ô tô hoặc xe buýt, Soundscape giờ đây thông báo số hiệu đường, hướng di chuyển của bạn và các khu dân cư gần đó. Ứng dụng cũng thông báo khi bạn băng qua sông, kênh đào, cửa sông và vịnh. Vui lòng cập nhật bản đồ ngoại tuyến của bạn để có được các tính năng mới này. Đối với người dùng ở Vương quốc Anh, mô tả về các điểm dừng xe buýt hiện đã tốt hơn nhiều.
+Nếu bạn không muốn tham gia Beta nữa, hãy truy cập trang Soundscape trên Cửa hàng Play, tại đó bạn sẽ thấy tùy chọn để ngừng tham gia.
 
-Chế độ Ngủ giờ đây tự động thức dậy khi phát hiện bạn di chuyển trở lại. Bạn không còn cần phải nhớ tự đánh thức nó nữa.
+Nhấn vào nút “Ghi chú phát hành đầy đủ” bên dưới sẽ đưa bạn đến trang web có ghi chú phát hành đầy đủ. Những ghi chú này rất đáng đọc vì có rất nhiều tính năng mới.
 
-Chúng tôi đã tái cấu trúc mã nguồn bên dưới để có thể xây dựng ứng dụng iOS từ cùng một mã nguồn. Điều này có nghĩa là trong tương lai chúng tôi có thể phát hành một ứng dụng iOS với tất cả các tính năng mà chúng tôi đã tạo ra cho Android.
+Chúng tôi luôn tìm cách cải thiện bản dịch của mình, và trên cùng trang web với ghi chú phát hành có một trang giải thích cách bạn có thể giúp đỡ. Phần lớn bản dịch được thực hiện bằng AI và chắc chắn có thể được cải thiện nhờ sự giúp đỡ của người bản ngữ.
 
-Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải, dù nhỏ đến đâu, qua mục Liên hệ hỗ trợ trong menu chính.
+Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải, dù nhỏ đến đâu, qua “Liên hệ hỗ trợ” trong menu chính.
 </string>
     <string name="about_soundscape">Soundscape sử dụng công nghệ âm thanh sáng tạo để giúp mọi người xây dựng nhận thức sâu sắc hơn về môi trường xung quanh, nhờ đó họ có thể di chuyển tự tin và độc lập hơn.</string>
     <string name="copyright_notices">Soundscape dựa trên các thư viện và dữ liệu tuyệt vời của bên thứ ba này. Nhấn vào các liên kết để xem giấy phép của chúng:</string>

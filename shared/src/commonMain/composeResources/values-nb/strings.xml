@@ -534,15 +534,15 @@
     <string name="new_version_info_text">Informasjon om ny versjon</string>
     <string name="new_version_info_completed">Lukk dialog for ny versjon</string>
     <string name="new_version_info_details">
-Dette er en stor oppdatering av Soundscape.
+Dette er en stor betautgivelse av Soundscape med mange forbedringer og endringer.
 
-Reisemodus er mye forbedret. Når du reiser med bil eller buss, kunngjør Soundscape nå veinumre, reiseretningen din og nærliggende tettsteder. Den kunngjør også når du krysser elver, kanaler, fjorder og bukter. Oppdater de offline-kartene dine for å få disse nye funksjonene. Beskrivelsene av busstopp er nå mye bedre for brukere i Storbritannia.
+Hvis du ikke lenger vil delta i betaen, kan du gå til Soundscape-siden i Play Butikk, der finner du et alternativ for å avslutte deltakelsen.
 
-Dvalemodus kan nå våkne automatisk når den oppdager at du beveger deg igjen. Du trenger ikke lenger huske å vekke den selv.
+Når du trykker på knappen «Fullstendige versjonsmerknader» nedenfor, kommer du til nettsiden med de fullstendige versjonsmerknadene. De er absolutt verdt å lese, for det er mange nye funksjoner.
 
-Vi har omstrukturert den underliggende koden slik at vi kan bygge en iOS-app fra den samme koden. Dette betyr at vi i fremtiden kan lansere en iOS-app med alle funksjonene vi har laget for Android.
+Vi jobber hele tiden med å forbedre oversettelsene våre, og på det samme nettstedet som versjonsmerknadene finnes det en side som forklarer hvordan du kan hjelpe. Mange av oversettelsene er laget med KI og kan helt sikkert forbedres med hjelp fra folk som har språket som morsmål.
 
-Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via Kontakt brukerstøtte i hovedmenyen.
+Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via «Kontakt brukerstøtte» i hovedmenyen.
 </string>
     <string name="menu_open_source_licenses">Lisenser for åpen kildekode</string>
     <string name="osm_tag_ferry_terminal">Fergeterminal</string>

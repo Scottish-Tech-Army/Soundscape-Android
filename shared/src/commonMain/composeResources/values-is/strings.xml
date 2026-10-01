@@ -534,15 +534,15 @@
     <string name="new_version_info_text">Upplýsingar um nýja útgáfu</string>
     <string name="new_version_info_completed">Loka útgáfuupplýsingum</string>
     <string name="new_version_info_details">
-Þetta er stór uppfærsla á Soundscape.
+Þetta er stór beta-útgáfa af Soundscape með fjölda endurbóta og breytinga.
 
-Ferðahamur hefur batnað mikið. Þegar þú ferðast með bíl eða strætó tilkynnir Soundscape nú vegnúmer, akstursátt þína og nærliggjandi byggðir. Það tilkynnir einnig þegar þú ferð yfir ár, síki, firði og flóa. Uppfærðu ónettengdu kortin þín til að fá þessa nýju eiginleika. Lýsingar á strætóstoppistöðvum eru nú mun betri fyrir notendur í Bretlandi.
+Ef þú vilt ekki lengur taka þátt í beta-prófuninni geturðu farið á síðu Soundscape í Play Store, þar sem þú finnur valkost til að hætta þátttöku.
 
-Dvalahamur getur nú vaknað sjálfkrafa þegar hann skynjar að þú sért á hreyfingu að nýju. Þú þarft ekki lengur að muna eftir að vekja hann.
+Ef þú ýtir á hnappinn „Fullar útgáfuupplýsingar“ hér fyrir neðan ferðu á vefsíðuna með öllum útgáfuupplýsingunum. Það er vel þess virði að lesa þær, því þar eru margir nýir eiginleikar.
 
-Við endurskipulögðum undirliggjandi kóða svo við getum byggt iOS-forrit úr sama kóða. Þetta þýðir að í framtíðinni getum við gefið út iOS-forrit með öllum þeim eiginleikum sem við höfum búið til fyrir Android.
+Við viljum alltaf bæta þýðingarnar okkar og á sama vef og útgáfuupplýsingarnar er síða sem útskýrir hvernig þú getur hjálpað. Margar þýðinganna eru gerðar með gervigreind og þær má örugglega bæta með hjálp fólks sem talar málið að móðurmáli.
 
-Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hversu lítil þau eru, í gegnum valmöguleikann Hafa samband við þjónustuver í aðalvalmyndinni.
+Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hversu lítil þau eru, í gegnum „Hafa samband við þjónustuver“ í aðalvalmyndinni.
 </string>
     <string name="menu_open_source_licenses">Leyfi opins hugbúnaðar</string>
     <string name="osm_tag_ferry_terminal">Ferjuhöfn</string>

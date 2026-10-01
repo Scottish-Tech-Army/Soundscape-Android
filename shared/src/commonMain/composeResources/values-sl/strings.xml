@@ -347,7 +347,17 @@
     <string name="new_version_info_text">Informacije o novi različici</string>
     <string name="new_version_info_completed">Zapri pogovorno okno o novi različici</string>
     <string name="menu_open_source_licenses">Licence odprte kode</string>
-    <string name="new_version_info_details">To je velika posodobitev Soundscapea. Način potovanja je precej boljši. Ko potujete z avtomobilom ali avtobusom, Soundscape zdaj napoveduje številke cest, vašo smer potovanja in bližnja naselja. Prav tako vas obvesti, ko prečkate reke, kanale, morske rokave in zalive. Posodobite svoje zemljevide brez povezave, da pridobite te nove funkcije. Opisi avtobusnih postajališč so zdaj veliko boljši za uporabnike v Združenem kraljestvu. Način spanja se lahko zdaj samodejno prebudi, ko zazna, da se spet premikate. Ni ga več treba ročno prebuditi. Osnovno kodo smo preuredili, da lahko iz iste kode izdelamo aplikacijo za iOS. To pomeni, da bomo v prihodnosti lahko izdali aplikacijo za iOS z vsemi funkcijami, ki smo jih ustvarili za Android. Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne se vam zdijo, prek možnosti Kontaktiraj podporo v glavnem meniju.</string>
+    <string name="new_version_info_details">
+To je velika beta izdaja aplikacije Soundscape s številnimi izboljšavami in spremembami.
+
+Če ne želite več sodelovati v beta programu, odprite stran aplikacije Soundscape v Trgovini Play, kjer boste našli možnost za prekinitev sodelovanja.
+
+Če spodaj tapnete gumb „Celotne opombe ob izdaji“, se bo odprla spletna stran s celotnimi opombami ob izdaji. Res jih je vredno prebrati, saj je novih funkcij veliko.
+
+Vedno si prizadevamo izboljšati naše prevode, na istem spletnem mestu kot opombe ob izdaji pa je stran, ki pojasnjuje, kako lahko pomagate. Veliko prevodov je ustvarila umetna inteligenca in jih je s pomočjo naravnih govorcev zagotovo mogoče izboljšati.
+
+Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne se vam zdijo, prek možnosti „Stik s podporo“ v glavnem meniju.
+</string>
     <string name="about_soundscape">Soundscape uporablja inovativno zvočno tehnologijo, ki ljudem pomaga ustvariti bogatejšo zavest o svoji okolici. Zaradi tega so ljudje bolj samozavestni in se lahko samostojno gibljejo.</string>
     <string name="copyright_notices">Soundscape temelji na teh odličnih zunanjih knjižnicah in podatkih. Kliknite povezave, če si želite ogledati njihove licence:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) zagotavljajo vse geografske podatke za zemljevide in zvok, uporabljene v aplikaciji Soundscape.</string>
