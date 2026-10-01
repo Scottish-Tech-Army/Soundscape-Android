@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
+import org.scottishtecharmy.soundscape.geoengine.filters.TravelHeadingEstimator
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -139,6 +140,9 @@ class GeoEngine {
     // The last trusted travel heading, kept through a pause - see HeadingHold. Updated once per
     // location update below, read by every UserGeometry built.
     private var headingHold = HeadingHold()
+    // Which way the user is travelling when the GPS course alone can't say - see
+    // TravelHeadingEstimator. Fed every accepted fix below.
+    private var travelHeadingEstimator = TravelHeadingEstimator()
 
     // Running total of the time fixes have been arriving too inaccurate to place, and the
     // bookkeeping behind it - see UserGeometry.unobservedMillis and
@@ -232,14 +236,18 @@ class GeoEngine {
             else
                 null
 
-        var travelHeading: Double? = null
-        if (location?.hasBearing == true) {
-            if (location.hasBearingAccuracy) {
-                if (location.bearingAccuracyDegrees < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES)
-                    travelHeading = location.bearing.toDouble()
-            } else {
-                travelHeading = location.bearing.toDouble()
-            }
+        // The road heading comes from the engine's own matcher, not the mapMatchFilter parameter:
+        // the audio engine's geometry passes none, and its travel heading should agree with the
+        // callouts' one.
+        val travelHeading = location?.let {
+            travelHeadingEstimator.estimate(
+                bearing = if (it.hasBearing) it.bearing.toDouble() else null,
+                bearingAccuracy =
+                    if (it.hasBearingAccuracy) it.bearingAccuracyDegrees.toDouble() else null,
+                roadHeading = this.mapMatchFilter.matchedLocation?.heading,
+                ruler = ruler,
+                nowMilliseconds = currentTimeMillis(),
+            )
         }
 
         val speed = speedFromLocation(location)
@@ -549,6 +557,14 @@ class GeoEngine {
                         withContext(gridState.treeContext) {
                             locationProvider.locationFlow.value?.let { unfilteredLocation ->
                                 val unfilteredSpeed = speedFromLocation(unfilteredLocation)
+
+                                travelHeadingEstimator.addFix(
+                                    LngLatAlt(
+                                        unfilteredLocation.longitude,
+                                        unfilteredLocation.latitude
+                                    ),
+                                    nowMillis
+                                )
 
                                 // Ahead of both matchers, because RailMatchArbiter reads the
                                 // verdict below. MvtTileTest.testMovingGrid mirrors this ordering
