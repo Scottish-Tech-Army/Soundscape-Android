@@ -40,8 +40,8 @@ Bayanan sigogin da suka gabata suna shafin
   tashoshin bas a Biritaniya suna amfani da sunayensu na hukuma.
 * **Sabbin harsuna ashirin**, wanda ya kai jimillar 46. An kuma fassara wannan gidan yanar gizon
   takardun.
-* **Farkawa idan ka tashi.** Yanayin barci yanzu zai iya farkar da Soundscape sake idan ka bar
-  wurin da ka sa shi ya yi barci.
+* **Farka Idan Na Tafi.** Idan ka sa Soundscape a Yanayin Barci, sabon maɓallin *Farka Idan Na Tafi*
+  zai sa shi a Yanayin Jinkirtawa maimakon haka, kuma zai farka da kansa idan ka bar wurin.
 * **Nisa mafi gajarta kuma na dabi'a**, tare da manyan ma'auni idan kana tafiya da sauri.
 * **Hanyar fita mai sauri.** *Fita daga Soundscape* yanzu yana saman babban menu.
 * **Ingantawar taswirorin da ba sa bukatar intanet**, ciki har da sabunta taswirar da aka riga aka
@@ -202,11 +202,11 @@ Fassara aikin al'umma ne kuma muna maraba da taimakonka, ko gyaran ka a inda wan
 sosai ba. Ana iya inganta kowane rubutu a
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Yanayin barci
+### Yanayin Barci
 
-Yanayin barci ya samu **farkawa idan ka tashi**. Idan ka sa Soundscape ya yi barci, za ka iya
-neman ya farka da zarar ka bar yankin. Wannan yana da amfani idan ka isa wani wuri kuma kana son
-shiru har sai lokacin da za ka sake tashi.
+Yanayin Barci yana da sabon maɓalli, ***Farka Idan Na Tafi***. Idan ka zaɓe shi, Soundscape zai
+shiga Yanayin Jinkirtawa: zai yi shiru har sai ka bar yankin, sannan ya farka da kansa. Wannan yana
+da amfani idan ka isa wani wuri kuma kana son shiru har sai lokacin da za ka sake tashi.
 
 ### Nisa da magana
 

@@ -40,8 +40,8 @@ Informacje o starszych wersjach znajdują się na stronie
   w Wielkiej Brytanii używają swoich oficjalnych nazw.
 * **Dwadzieścia nowych języków**, co daje łącznie 46. Ta witryna z dokumentacją również została
   przetłumaczona.
-* **Budzenie przy wyjściu.** Tryb uśpienia może teraz obudzić Soundscape, gdy opuścisz miejsce, w
-  którym go uśpiłeś.
+* **Obudź mnie, gdy opuszczę to miejsce.** Gdy usypiasz Soundscape, nowy przycisk *Obudź mnie, gdy
+  opuszczę to miejsce* przełącza aplikację w Tryb drzemki, a ta budzi się sama, gdy odejdziesz.
 * **Krótsze, bardziej naturalne odległości**, z większymi jednostkami, gdy poruszasz się szybko.
 * **Szybsze wyjście.** *Zamknij Soundscape* znajduje się teraz na górze menu głównego.
 * **Ulepszenia map offline**, w tym aktualizacja już pobranej mapy oraz mapa dostępnych regionów na
@@ -203,9 +203,9 @@ się źle. Każdy tekst można poprawić na
 
 ### Tryb uśpienia
 
-Tryb uśpienia zyskał **budzenie przy wyjściu**. Gdy usypiasz Soundscape, możesz poprosić, by obudził
-się, gdy tylko opuścisz okolicę. Przydaje się to, gdy gdzieś docierasz i chcesz mieć spokój, dopóki
-znów nie wyruszysz.
+Tryb uśpienia ma nowy przycisk: ***Obudź mnie, gdy opuszczę to miejsce***. Po jego wybraniu
+Soundscape przechodzi w Tryb drzemki: milczy, dopóki nie opuścisz okolicy, a potem budzi się sam.
+Przydaje się to, gdy gdzieś docierasz i chcesz mieć spokój, dopóki znów nie wyruszysz.
 
 ### Odległości i mowa
 

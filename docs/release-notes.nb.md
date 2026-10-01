@@ -41,8 +41,9 @@ Merknader for eldre versjoner finnes på siden
   navnene sine.
 * **Tjue nye språk**, slik at det nå er 46 til sammen. Også dette dokumentasjonsnettstedet er
   oversatt.
-* **Vekking ved avreise.** Hvilemodus kan nå vekke Soundscape igjen når du forlater stedet der du
-  satte den i hvile.
+* **Vekk meg når jeg forlater stedet.** Når du setter Soundscape i dvalemodus, setter den nye
+  knappen *Vekk meg når jeg forlater stedet* den i stedet i pausemodus, og den våkner av seg selv
+  når du drar.
 * **Kortere, mer naturlige avstander**, med større enheter når du beveger deg raskt.
 * **En raskere vei ut.** *Avslutt Soundscape* ligger nå øverst i hovedmenyen.
 * **Forbedringer av frakoblede kart**, blant annet oppdatering av et allerede nedlastet kart og et
@@ -197,11 +198,11 @@ Oversettelser er fellesarbeid, og vi tar gjerne imot hjelpen din, eller rettelse
 dårlig. Enhver tekst kan forbedres på
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Hvilemodus
+### Dvalemodus
 
-Hvilemodus har fått **vekking ved avreise**. Når du setter Soundscape i hvile, kan du be den våkne
-igjen så snart du forlater området, noe som er nyttig når du kommer fram et sted og vil ha ro til du
-drar videre.
+Dvalemodus har fått en ny knapp, ***Vekk meg når jeg forlater stedet***. Når du velger den, går
+Soundscape i pausemodus: den er stille til du forlater området, og våkner så av seg selv. Det er
+nyttig når du kommer fram et sted og vil ha ro til du drar videre.
 
 ### Avstander og tale
 

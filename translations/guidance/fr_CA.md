@@ -134,3 +134,5 @@ Also changed the same day:
 - `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).
 
 **2026-10-01 — French round-2 decisions carried over.** 41 strings: «Essentiel» → «Minimal» (7) and the relaxed «balise» rule (34), changed in place on fr_CA's own text. For the 35 that matched the old French, the result equals the new French plus the Canadian layer (checked). Not carried over: «Reprendre au déplacement» (FRCA-T1 keeps Microsoft's Sleep wording); asked as questionnaire Q7 instead. Siri catalog regenerated.
+
+**2026-10-01 — release notes rebuilt (C26).** `docs/release-notes.fr-CA.md` still said «notification», «intersection», «point de repère» and «Essentiel». It was rebuilt from the fr notes plus the Canadian layer, with Microsoft's labels (*Renseignements supplémentaires*, *Sortir de veille quand je m’éloigne*), and «autobus»/«tramway» kept in prose.

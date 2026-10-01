@@ -206,3 +206,5 @@ Confirmed HU-A1 and the detail-level names; new terms HU-T1 (Beacon) and
 HU-T2 (Callout); HU-G3 (route-number suffix, code); HU-R1 «Ön» decided by
 Dave. Applied the same day: 186 strings (77 Beacon, 41 Callout, 95 register,
 with overlaps). HU-G3 done in code the same day.
+
+**2026-10-01 — release notes.** `docs/release-notes.hu.md` moved to «irányjelző hang» and «bemondás» (C26); its sleep passage now quotes *Felébredés távozáskor*.

@@ -37,15 +37,16 @@ Les notes des versions précédentes se trouvent sur la page
 * **Ouvrir un lieu dans une autre application de cartes**, comme Google Maps, depuis les détails de
   l’emplacement ou depuis les listes.
 * **Plus d’informations sur la balise sonore à l’écran d’accueil.** Elle affiche maintenant la distance et
-  la direction, et propose des actions de lecteur d’écran pour annoncer la balise sonore, en savoir plus ou
+  la direction, et propose des actions de lecteur d’écran pour annoncer la balise, en savoir plus ou
   l’enregistrer comme marqueur.
 * **De meilleures adresses et de meilleurs noms de lieux.** Les lieux sans adresse propre reçoivent
   désormais la rue et le quartier où ils se trouvent, les numéros de rue sont rattachés au bon côté
   de la chaussée, et les arrêts de bus en Grande-Bretagne utilisent leur nom officiel.
 * **Vingt nouvelles langues**, portant le total à 46. Ce site de documentation est également
   traduit.
-* **Reprise au départ.** Le mode pause peut désormais réactiver Soundscape lorsque vous quittez
-  l'endroit où vous l'avez mis en pause.
+* **Reprendre au déplacement.** Lorsque vous mettez Soundscape en pause, le nouveau bouton
+  *Reprendre au déplacement* le met en pause jusqu’au départ : il reprend de lui-même dès que vous
+  quittez les lieux.
 * **Des distances plus courtes et plus naturelles**, avec des unités plus grandes lorsque vous vous
   déplacez rapidement.
 * **Une sortie plus rapide.** *Quitter Soundscape* figure désormais en haut du menu principal.
@@ -124,9 +125,9 @@ Ce que l’on nous dit le plus souvent au sujet de Soundscape, c’est qu’il p
 animés comme un centre-ville. La section *Gérer les annonces* des *Réglages* propose maintenant
 trois réglages à la place de l’ancienne liste d’interrupteurs :
 
-* **Détail des annonces** vaut Silencieux, Essentiel, Simplifié ou Détaillé. *Détaillé* est ce que
+* **Détail des annonces** vaut Silencieux, Minimal, Simplifié ou Détaillé. *Détaillé* est ce que
   Soundscape a toujours fait, et c’est la valeur de départ. *Simplifié* laisse de côté les petits
-  chemins et les voies de service et se répète moins souvent. *Essentiel* n’annonce que les rues, les
+  chemins et les voies de service et se répète moins souvent. *Minimal* n’annonce que les rues, les
   croisements et les repères. *Silencieux* ne fait plus aucune annonce automatique, tandis que
   les balises sonores, les itinéraires et les boutons de l’écran d’accueil continuent de fonctionner. Il
   remplace l’ancien interrupteur *Autoriser les annonces* : si vous l’aviez désactivé, vous
@@ -140,7 +141,7 @@ trois réglages à la place de l’ancienne liste d’interrupteurs :
 
 Le bon niveau de détail change au fil de la marche, et vous n’avez donc pas à passer par les
 Réglages pour le modifier. Appuyer sur *précédent* sur vos écouteurs baisse le Détail des
-annonces d’un niveau à la fois, de Détaillé à Simplifié, Essentiel puis Silencieux, avant de
+annonces d’un niveau à la fois, de Détaillé à Simplifié, Minimal puis Silencieux, avant de
 revenir à Détaillé. Le nouveau niveau est annoncé à chaque fois. Cela fonctionne dans les deux modes
 des contrôles multimédias, ce qui change un peu les boutons des écouteurs :
 
@@ -180,10 +181,10 @@ sonore*.
 
 ### La balise sonore et les marqueurs
 
-* La balise sonore de l’écran d’accueil affiche maintenant sa **distance et sa direction**, et un lecteur
+* La balise de l’écran d’accueil affiche maintenant sa **distance et sa direction**, et un lecteur
   d’écran la lit par exemple ainsi : « Balise sonore sur Milngavie Library, 390 mètres, sud-est ». Les
   itinéraires affichent de la même façon la distance jusqu’à l’étape en cours.
-* La balise sonore a trois **actions de lecteur d’écran** : *Annoncer la balise sonore* dit où elle se trouve,
+* La balise a trois **actions de lecteur d’écran** : *Annoncer la balise* dit où elle se trouve,
   *Informations supplémentaires* ajoute l’adresse, et *Ajouter aux marqueurs* l’enregistre.
 * Vous pouvez de nouveau **déplacer un marqueur** en faisant glisser la carte depuis l’écran
   *Modifier le marqueur*.
@@ -222,9 +223,10 @@ corrections lorsqu'une formulation se lit mal. Chaque chaîne peut être amélio
 
 ### Mode pause
 
-Le mode pause dispose désormais de la **reprise au départ**. Lorsque vous mettez Soundscape en pause,
-vous pouvez lui demander de reprendre dès que vous quittez les lieux, ce qui est utile quand vous
-arrivez quelque part et souhaitez le silence jusqu'à votre prochain départ.
+Le mode pause a un nouveau bouton, ***Reprendre au déplacement***. Si vous le choisissez, Soundscape
+reste en pause jusqu’au départ : il garde le silence jusqu’à ce que vous quittiez les lieux, puis
+reprend de lui-même, ce qui est utile quand vous arrivez quelque part et souhaitez le silence
+jusqu’à votre prochain départ.
 
 ### Distances et parole
 

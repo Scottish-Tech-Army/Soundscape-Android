@@ -24,26 +24,26 @@ A korábbi verziók megjegyzései a
   halad, és az utazását írja le a közvetlen környezete helyett.
 * **Jelzés vizek és vasútvonalak keresztezésekor.** A folyókat, csatornákat, öblöket és
   vasútvonalakat bemondja, amikor áthalad rajtuk — gyalog és utazás közben egyaránt.
-* **Megválaszthatja, mennyit beszél a Soundscape.** Az új *Közlések részletessége* beállítás
+* **Megválaszthatja, mennyit beszél a Soundscape.** Az új *Bemondások részletessége* beállítás
   csendesebbé teszi a Soundscape-et a zsúfolt helyeken, a *Bemondandó helyek* listában pedig
   kiválaszthatja, milyen fajta helyekről halljon. A részletességet séta közben a fejhallgató gombjaival
   is módosíthatja.
 * **Tudja, milyen messze van a következő kereszteződés.** A kereszteződéseket egyenletes távolságban
-  mondja be, amikor közeledik, és a közlés most azt is megmondja, milyen messze van a járdaszegély.
+  mondja be, amikor közeledik, és a bemondás most azt is megmondja, milyen messze van a járdaszegély.
 * **Kereshet helytípusra vagy koordinátákra.** Keressen rá a „gyógyszertár” vagy a „buszmegálló”
   szóra, és megtalálja a legközelebbieket, bármi is a nevük, vagy illesszen be koordinátákat,
   térképhivatkozást vagy Plus Code-ot.
 * **Megnyithat egy helyet egy másik térképalkalmazásban**, például a Google Térképben, a helyszín
   adataiból vagy a listákból.
-* **Többet tud a hangjelző a kezdőképernyőn.** Most már mutatja a távolságot és az irányt, és
-  képernyőolvasó-műveletei vannak a hangjelző bejelentéséhez, további információkhoz és jelölőként
+* **Többet tud az irányjelző hang a kezdőképernyőn.** Most már mutatja a távolságot és az irányt, és
+  képernyőolvasó-műveletei vannak az irányjelző hang bemondásához, további információkhoz és jelölőként
   való mentéséhez.
 * **Jobb címek és helynevek.** A saját címmel nem rendelkező helyek mostantól megkapják az utcát és a
   területet, ahol vannak, a házszámok az utca megfelelő oldalához társulnak, a nagy-britanniai
   buszmegállók pedig a hivatalos nevüket használják.
 * **Húsz új nyelv**, így összesen 46. Ez a dokumentációs webhely is lefordításra került.
-* **Ébresztés távozáskor.** Az alvó mód mostantól fel tudja ébreszteni a Soundscape-et, amikor
-  elhagyja azt a helyet, ahol alvó módba tette.
+* **Felébredés távozáskor.** Amikor Alvó módba teszi a Soundscape-et, az új *Felébredés távozáskor*
+  gomb helyette Szundi módba állítja, és az alkalmazás magától felébred, amikor elhagyja a helyet.
 * **Rövidebb, természetesebb távolságok**, nagyobb mértékegységekkel, amikor gyorsan halad.
 * **Gyorsabb kilépés.** A *Kilépés a Soundscape-ből* mostantól a főmenü tetején van.
 * **Offline térkép fejlesztések**, köztük egy már letöltött térkép helyben történő frissítése és az
@@ -96,12 +96,12 @@ hogy azelőtt értesüljön valamiről, mielőtt elhaladna mellette.
 
 ### Kereszteződések
 
-A kereszteződések bejelentésével kapcsolatban a leggyakoribb kérdés az volt, hogy valójában milyen
+A kereszteződések bemondásával kapcsolatban a leggyakoribb kérdés az volt, hogy valójában milyen
 messze van a kereszteződés. Most a Soundscape megmondja: „Kereszteződés 30 méter távolságra”. A
 távolságot annak az utcának a járdaszegélyéig méri, amelyen át fog kelni, nem a kereszteződés
 közepéig, mert valójában ott áll meg.
 
-A közlés egyenletesebb ponton is érkezik. Korábban 45 vagy 10 méterrel előtte is jöhetett, és semmi
+A bemondás egyenletesebb ponton is érkezik. Korábban 45 vagy 10 méterrel előtte is jöhetett, és semmi
 nem különböztette meg a kettőt. Most megvárja, amíg a kereszteződés körülbelül 30 méterre van, így a
 távolság minden alkalommal nagyjából ugyanazt jelenti.
 
@@ -114,28 +114,28 @@ is lefedi, így a gyalogoshidat és az aluljárót is leírja.
 ### Mennyit beszéljen a Soundscape
 
 A leggyakrabban azt halljuk a Soundscape-ről, hogy túl sokat beszél a zsúfolt helyeken, például a
-belvárosban. A *Beállítások* *Közlések kezelése* szakaszában a régi kapcsolólista helyett most három
+belvárosban. A *Beállítások* *Bemondások kezelése* szakaszában a régi kapcsolólista helyett most három
 beállítás van:
 
-* **Közlések részletessége**: Néma, Alapvető, Egyszerűsített vagy Részletes. A *Részletes* az, amit a
+* **Bemondások részletessége**: Néma, Alapvető, Egyszerűsített vagy Részletes. A *Részletes* az, amit a
   Soundscape mindig is csinált, és innen indul. A *Egyszerűsített* kihagyja a kisebb ösvényeket és a
   szervizutakat, és ritkábban ismétli magát. A *Alapvető* csak az utcákat, a kereszteződéseket és a
-  nevezetességeket mondja be. A *Néma* egyáltalán nem ad automatikus közléseket, a hangjelzők, az
-  útvonalak és a kezdőképernyő gombjai azonban továbbra is működnek. A régi *Bejelentések
+  nevezetességeket mondja be. A *Néma* egyáltalán nem ad automatikus bemondásokat, az irányjelző hangok, az
+  útvonalak és a kezdőképernyő gombjai azonban továbbra is működnek. A régi *Bemondások
   engedélyezése* kapcsolót váltja fel; ha az ki volt kapcsolva, a részletesség most Némára van állítva.
 * Az **Utcák és kereszteződések** be- vagy kikapcsolja a kereszteződésekről és az éppen használt
-  utcáról szóló közléseket.
+  utcáról szóló bemondásokat.
 * A **Bemondandó helyek** egy bejelölhető lista: Minden, Nevezetességek, Tömegközlekedés, Étel és ital,
   Élelmiszerboltok és közértek, Bankok és bankautomaták vagy Nincsenek helyek. Annyit jelöljön be,
   amennyit szeretne, például nevezetességeket és buszmegállókat. A jelölőit mindig bemondja.
 
 A megfelelő részletesség séta közben változik, ezért a módosításához nem kell a Beállításokba mennie.
-A fejhallgató *Előző* gombjának megnyomásával a közlések részletessége egyszerre egy szinttel lejjebb
+A fejhallgató *Előző* gombjának megnyomásával a bemondások részletessége egyszerre egy szinttel lejjebb
 kerül, Részletesről Egyszerűsítetton és Alapvetően át Némáig, majd újra Részletesre. Az új szintet
 minden alkalommal kimondja. Ez a médiavezérlők mindkét módjában működik, ezért a fejhallgató gombjai
 kissé megváltoztak:
 
-* *Eredeti módban* a *Következő* most a *Magam körül* közlést adja, ha nem fut útvonal, a *Saját
+* *Eredeti módban* a *Következő* most a *Magam körül* bemondást adja, ha nem fut útvonal, a *Saját
   helyzet* pedig már nincs a gombokon. Útvonal közben a *Következő* és az *Előző* továbbra is az
   útvonalpontok között lép.
 * *Hangmenü* módban az *Előző* már nem lép vissza a menüben. A *Következő* továbbra is végigmegy
@@ -164,15 +164,15 @@ A keresősáv most már többet ért a helyneveknél:
 A helyszín adataiban új gomb van, a **Megnyitás térképalkalmazásban**, amely felsorolja a telefonon
 lévő térkép- és navigációs alkalmazásokat. Jelölje be a *Mindig ezzel az alkalmazással* lehetőséget,
 és a gomb például *Megnyitás itt: Google Térkép* lesz, és azonnal megnyitja; hosszú megnyomással újra
-megjelenik a lista. A *Közeli helyek* és a *Jelölők* listában a *Hangjelző indítása* mellett a
+megjelenik a lista. A *Közeli helyek* és a *Jelölők* listában az *Irányjelző hang indítása* mellett a
 *Megnyitás itt:…* és a *Megosztás* képernyőolvasó-művelet is elérhető.
 
-### A hangjelző és a jelölők
+### Az irányjelző hang és a jelölők
 
-* A kezdőképernyőn lévő hangjelző most mutatja a **távolságot és az irányt**, a képernyőolvasó pedig
-  például így olvassa fel: „Hangjelző itt: Milngavie Library, 390 méter, délkelet”. Az útvonalak
+* A kezdőképernyőn lévő irányjelző hang most mutatja a **távolságot és az irányt**, a képernyőolvasó pedig
+  például így olvassa fel: „Irányjelző hang itt: Milngavie Library, 390 méter, délkelet”. Az útvonalak
   ugyanígy mutatják a távolságot az aktuális útvonalpontig.
-* A hangjelzőnek három **képernyőolvasó-művelete** van: a *Hangjelző bejelentése* megmondja, hol van,
+* Az irányjelző hangnak három **képernyőolvasó-művelete** van: az *Irányjelző hang bemondása* megmondja, hol van,
   a *További információ* hozzáadja a címet, a *Hozzáadás a jelölőkhöz* pedig elmenti.
 * Újra **áthelyezhet egy jelölőt** a térkép húzásával a *Jelölő szerkesztése* képernyőn.
 
@@ -209,9 +209,9 @@ rosszul olvasható. Bármely szöveg javítható a
 
 ### Alvó mód
 
-Az alvó mód megkapta az **ébresztés távozáskor** funkciót. Amikor alvó módba teszi a Soundscape-et,
-megkérheti, hogy ébredjen fel, amint elhagyja a területet. Ez akkor hasznos, amikor megérkezik
-valahová, és csendet szeretne, amíg újra el nem indul.
+Az Alvó módnak új gombja van: ***Felébredés távozáskor***. Ha ezt választja, a Soundscape Szundi
+módba kerül: csendben marad, amíg el nem hagyja a területet, majd magától felébred. Ez akkor
+hasznos, amikor megérkezik valahová, és csendet szeretne, amíg újra el nem indul.
 
 ### Távolságok és beszéd
 

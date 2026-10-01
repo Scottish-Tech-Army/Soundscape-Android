@@ -39,8 +39,8 @@ Maelezo ya matoleo ya zamani yako kwenye ukurasa wa
   yalipo, namba za nyumba huoanishwa na upande sahihi wa barabara, na vituo vya basi nchini Uingereza
   hutumia majina yao rasmi.
 * **Lugha mpya ishirini**, na hivyo jumla kufikia 46. Tovuti hii ya nyaraka pia imetafsiriwa.
-* **Kuamka unapoondoka.** Hali ya usingizi sasa inaweza kuiamsha Soundscape unapoondoka mahali
-  ulipoiweka usingizini.
+* **Amka Ukiondoka.** Unapoiweka Soundscape katika Hali ya Kulala, kitufe kipya cha *Amka Ukiondoka*
+  kinaiweka badala yake katika Hali ya Kusinzia, nayo huamka yenyewe unapoondoka mahali hapo.
 * **Umbali mfupi na wa asili zaidi**, kwa vipimo vikubwa unaposonga kwa kasi.
 * **Njia ya haraka ya kutoka.** *Toka Soundscape* sasa iko juu kabisa ya menyu kuu.
 * **Maboresho ya ramani zisizohitaji intaneti**, ikijumuisha kusasisha ramani iliyopakuliwa palepale
@@ -201,11 +201,11 @@ Tafsiri ni kazi ya jamii na tunakaribisha msaada wako, au marekebisho pale ambap
 vizuri. Maandishi yoyote yanaweza kuboreshwa kwenye
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Hali ya usingizi
+### Hali ya Kulala
 
-Hali ya usingizi imepata **kuamka unapoondoka**. Unapoiweka Soundscape usingizini, unaweza kuiomba
-iamke mara tu utakapoondoka eneo hilo. Hii husaidia unapofika mahali na kutaka utulivu hadi
-utakapoondoka tena.
+Hali ya Kulala ina kitufe kipya, ***Amka Ukiondoka***. Ukikichagua, Soundscape huingia katika Hali
+ya Kusinzia: hukaa kimya hadi utakapoondoka eneo hilo, kisha huamka yenyewe. Hii husaidia unapofika
+mahali na kutaka utulivu hadi utakapoondoka tena.
 
 ### Umbali na usemi
 

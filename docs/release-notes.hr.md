@@ -40,8 +40,8 @@ Bilješke za starija izdanja nalaze se na stranici
   se nalaze, kućni brojevi pridružuju se ispravnoj strani ulice, a autobusna stajališta u Velikoj
   Britaniji koriste svoje službene nazive.
 * **Dvadeset novih jezika**, čime ih je ukupno 46. Prevedeno je i ovo dokumentacijsko web-mjesto.
-* **Buđenje pri odlasku.** Način mirovanja sada može probuditi Soundscape kada napustite mjesto na
-  kojem ste ga uspavali.
+* **Probudi pri odlasku.** Kada Soundscape stavite u način rada Mirovanje, novi gumb *Probudi pri
+  odlasku* umjesto toga ga prebacuje u način rada Odgoda, pa se sam probudi kada odete s mjesta.
 * **Kraće, prirodnije udaljenosti**, s većim jedinicama kada se krećete brzo.
 * **Brži izlaz.** *Izađi iz Soundscapea* sada je na vrhu glavnog izbornika.
 * **Poboljšanja izvanmrežnih karata**, uključujući ažuriranje već preuzete karte i kartu dostupnih
@@ -196,11 +196,11 @@ Prijevodi su rad zajednice i rado ćemo primiti vašu pomoć ili ispravke ondje 
 Svaki se tekst može poboljšati na
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Način mirovanja
+### Način rada Mirovanje
 
-Način mirovanja dobio je **buđenje pri odlasku**. Kada uspavate Soundscape, možete ga zamoliti da se
-probudi čim napustite područje, što je korisno kada negdje stignete i želite mir dok ponovno ne
-krenete.
+Način rada Mirovanje ima novi gumb, ***Probudi pri odlasku***. Kada ga odaberete, Soundscape prelazi
+u način rada Odgoda: ostaje tih dok ne napustite područje, a zatim se sam probudi, što je korisno
+kada negdje stignete i želite mir dok ponovno ne krenete.
 
 ### Udaljenosti i govor
 

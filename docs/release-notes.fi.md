@@ -41,8 +41,8 @@ Vanhempien versioiden tiedot löytyvät sivulta
   Isossa-Britanniassa käyttävät virallisia nimiään.
 * **Kaksikymmentä uutta kieltä**, joten niitä on nyt yhteensä 46. Myös tämä dokumentaatiosivusto on
   käännetty.
-* **Herätys lähdettäessä.** Lepotila voi nyt herättää Soundscapen, kun poistut paikasta, jossa asetit
-  sen lepäämään.
+* **Herää kun poistut.** Kun siirrät Soundscapen lepotilaan, uusi *Herää kun poistut* -painike
+  siirtää sen sen sijaan odotustilaan, ja se herää itsestään, kun lähdet paikalta.
 * **Lyhyemmät, luontevammat etäisyydet**, suuremmilla yksiköillä kun liikut nopeasti.
 * **Nopeampi uloskäynti.** *Poistu Soundscapesta* on nyt päävalikon ylimpänä.
 * **Parannuksia offline-karttoihin**, muun muassa jo ladatun kartan päivittäminen ja kartta
@@ -203,9 +203,9 @@ lukeutuu huonosti. Mitä tahansa tekstiä voi parantaa osoitteessa
 
 ### Lepotila
 
-Lepotila on saanut **herätyksen lähdettäessä**. Kun asetat Soundscapen lepäämään, voit pyytää sitä
-heräämään heti kun poistut alueelta. Tämä on hyödyllistä, kun saavut jonnekin ja haluat rauhaa siihen
-asti kunnes lähdet taas liikkeelle.
+Lepotilassa on uusi painike, ***Herää kun poistut***. Kun valitset sen, Soundscape siirtyy
+odotustilaan: se pysyy hiljaa, kunnes poistut alueelta, ja herää sitten itsestään. Tämä on
+hyödyllistä, kun saavut jonnekin ja haluat rauhaa siihen asti, kunnes lähdet taas liikkeelle.
 
 ### Etäisyydet ja puhe
 

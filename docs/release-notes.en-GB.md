@@ -36,8 +36,8 @@ Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release
   and area they're in, house numbers are matched to the correct side of the street, and bus stops
   in Great Britain use their official names.
 * **Twenty new languages**, bringing the total to 46. The documentation website is translated too.
-* **Wake on leave.** Sleep mode can now wake Soundscape up again when you leave the place where you
-  put it to sleep.
+* **Wake On Leave.** When you put Soundscape to sleep, a new *Wake On Leave* button snoozes it
+  instead, and it wakes up by itself when you leave.
 * **Shorter, more natural distances**, using larger units when you're moving quickly.
 * **A quicker way out.** *Exit Soundscape* is now at the top of the main menu.
 * **Offline map improvements**, including updating a downloaded map in place and a map of the
@@ -198,9 +198,9 @@ reads badly. Any string can be improved at
 
 ### Sleep mode
 
-Sleep mode has gained **wake on leave**. When you put Soundscape to sleep you can ask it to wake up
-again once you leave the area, which is useful when you arrive somewhere and want it quiet until
-you next set off.
+Sleep mode has a new button, ***Wake On Leave***. Choosing it puts Soundscape into snooze mode: it
+stays quiet until you leave the area and then wakes up by itself, which is useful when you arrive
+somewhere and want it quiet until you next set off.
 
 ### Distances and speech
 

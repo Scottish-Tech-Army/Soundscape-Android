@@ -40,8 +40,8 @@ Notele pentru versiunile mai vechi se află pe pagina
   în care se află, numerele de casă sunt asociate părții corecte a străzii, iar stațiile de autobuz
   din Marea Britanie folosesc denumirile lor oficiale.
 * **Douăzeci de limbi noi**, ajungând la 46 în total. Și acest site de documentație a fost tradus.
-* **Trezire la plecare.** Modul de repaus poate acum trezi Soundscape când părăsiți locul în care
-  l-ați pus în repaus.
+* **Trezire la plecare.** Când puneți Soundscape în modul Repaus, noul buton *Trezire la plecare* îl
+  trece în schimb în modul Amânare, iar aplicația se trezește singură când plecați.
 * **Distanțe mai scurte și mai firești**, cu unități mai mari când vă deplasați rapid.
 * **O ieșire mai rapidă.** *Ieșire din Soundscape* se află acum în partea de sus a meniului principal.
 * **Îmbunătățiri ale hărților offline**, inclusiv actualizarea pe loc a unei hărți deja descărcate și
@@ -203,11 +203,11 @@ Traducerile sunt muncă a comunității și primim cu plăcere ajutorul dumneavo
 acolo unde ceva se citește prost. Orice text poate fi îmbunătățit la
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Modul de repaus
+### Modul Repaus
 
-Modul de repaus a primit **trezirea la plecare**. Când puneți Soundscape în repaus, îi puteți cere să
-se trezească imediat ce părăsiți zona, ceea ce este util când ajungeți undeva și vreți liniște până
-când porniți din nou.
+Modul Repaus are un buton nou, ***Trezire la plecare***. Dacă îl alegeți, Soundscape trece în modul
+Amânare: rămâne tăcut până când părăsiți zona, apoi se trezește singur, ceea ce este util când
+ajungeți undeva și vreți liniște până când porniți din nou.
 
 ### Distanțe și vorbire
 

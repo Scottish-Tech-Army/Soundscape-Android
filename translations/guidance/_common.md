@@ -598,3 +598,20 @@ and the old wording was already right for every angle the app says.
 
 **How to apply:** give every category your language has. Check which ones
 multiples of 5 actually reach before calling a form wrong.
+
+## C26 — Docs pages must use the app's own labels and terms (2026-10-01)
+
+The translated docs pages (`docs/release-notes.<lang>.md`, marked `machine-translated: true`) were translated without the app's glossary, so they name features in their own words. **Case (JJ, Spanish):** the release notes call Sleep «modo de reposo» and the new button «despertar al salir», while the app says «modo de suspensión», «modo de aplazamiento» and *Reactivar al salir* (ES-D1). A blind user who hears «reposo» can't find anything with that name in the app.
+
+It isn't only Spanish. On 2026-10-01, 41 of the 45 translated release notes didn't contain the app's exact `sleep_wake_on_leave` label, its `sleep_sleep` label, or either. Exact matching overcounts a little, because labels inflect inside sentences. The term changes made on 2026-10-01 (hu Beacon/Callout, fr «Reprendre au déplacement» / «Minimal») have also made the hu, fr and fr-CA notes stale.
+
+**Partly a source problem.** The English notes write "**wake on leave**" in lowercase, as a feature name, and never say that it puts Soundscape into snooze. Proposed English, quoting the button as it appears in the app:
+
+> * ***Wake On Leave.*** When you put Soundscape to sleep, a new *Wake On Leave* button snoozes it instead, and it wakes up by itself when you leave.
+>
+> Sleep mode has a new button, ***Wake On Leave***. Choosing it puts Soundscape into snooze mode: it stays quiet until you leave the area and then wakes up by itself, which is useful when you arrive somewhere and want it quiet until you next set off.
+
+**Applied 2026-10-01:** the English (and en-GB) bullet and section were rewritten as above, and the two passages were retranslated in all 44 other languages. Each quotes that language's `sleep_wake_on_leave` label exactly and uses the sleep/snooze mode names from its `faq_snooze_mode_battery_answer`. The same pass brought the fr and hu notes up to the 2026-10-01 terms. fr-CA was rebuilt from the fr notes plus the Canadian layer (it still said «notification» and «intersection»), keeping «autobus»/«tramway» in prose and fr_CA's own Sleep labels.
+
+**How to apply:** when translating or revising a docs page, quote button and setting names exactly as that language's `strings.xml` has them (in `*…*`, like the help texts), and use the glossary in `translations/guidance/<code>.md` for concepts. When a glossary term changes, grep that language's docs pages for the old term as well.
+

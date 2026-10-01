@@ -42,8 +42,9 @@ Le note delle versioni precedenti si trovano nella pagina
   via e la zona in cui si trovano, i numeri civici vengono associati al lato corretto della strada e
   le fermate degli autobus in Gran Bretagna usano i nomi ufficiali.
 * **Venti nuove lingue**, per un totale di 46. Anche questo sito di documentazione è tradotto.
-* **Risveglio all'uscita.** La modalità di sospensione può ora risvegliare Soundscape quando lasci
-  il luogo in cui l'hai messo a riposo.
+* **Riattiva quando mi allontano.** Quando metti Soundscape in modalità Sospendi, il nuovo pulsante
+  *Riattiva quando mi allontano* lo mette invece in modalità Posponi, e si riattiva da solo quando
+  lasci il luogo.
 * **Distanze più brevi e naturali**, con unità più grandi quando ti muovi velocemente.
 * **Un'uscita più rapida.** *Esci da Soundscape* è ora in cima al menu principale.
 * **Miglioramenti alle mappe offline**, tra cui l'aggiornamento di una mappa già scaricata e una
@@ -210,11 +211,11 @@ Le traduzioni sono un lavoro collettivo e accogliamo volentieri il tuo aiuto, o 
 quando qualcosa si legge male. Ogni stringa può essere migliorata su
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Modalità di sospensione
+### Modalità Sospendi
 
-La modalità di sospensione ha guadagnato il **risveglio all'uscita**. Quando metti Soundscape a
-riposo puoi chiedergli di risvegliarsi non appena lasci la zona: utile quando arrivi da qualche
-parte e vuoi silenzio fino alla prossima partenza.
+La modalità Sospendi ha un nuovo pulsante, ***Riattiva quando mi allontano***. Se lo scegli,
+Soundscape passa in modalità Posponi: resta in silenzio finché non lasci la zona e poi si riattiva
+da solo. È utile quando arrivi da qualche parte e vuoi silenzio fino alla prossima partenza.
 
 ### Distanze e voce
 

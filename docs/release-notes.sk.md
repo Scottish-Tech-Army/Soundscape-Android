@@ -40,8 +40,8 @@ Poznámky k starším verziám nájdete na stránke
   ktorej ležia, súpisné čísla sa priraďujú k správnej strane ulice a autobusové zastávky vo Veľkej
   Británii používajú svoje oficiálne názvy.
 * **Dvadsať nových jazykov**, teda spolu 46. Preložený bol aj tento dokumentačný web.
-* **Prebudenie pri odchode.** Režim spánku dokáže teraz Soundscape opäť prebudiť, keď opustíte
-  miesto, kde ste ho uspali.
+* **Prebudiť pri odchode.** Keď Soundscape prepnete do Režimu spánku, nové tlačidlo *Prebudiť pri
+  odchode* ho namiesto toho prepne do režimu Driemanie a aplikácia sa sama prebudí, keď odídete.
 * **Kratšie, prirodzenejšie vzdialenosti**, s väčšími jednotkami, keď sa pohybujete rýchlo.
 * **Rýchlejšia cesta von.** *Ukončiť Soundscape* je teraz na začiatku hlavnej ponuky.
 * **Vylepšenia offline máp**, vrátane aktualizácie už stiahnutej mapy a mapy dostupných oblastí na
@@ -199,9 +199,9 @@ Akýkoľvek text možno vylepšiť na
 
 ### Režim spánku
 
-Režim spánku získal **prebudenie pri odchode**. Keď Soundscape uspíte, môžete ho požiadať, aby sa
-prebudil, len čo opustíte oblasť. Hodí sa to, keď niekam prídete a chcete pokoj, kým sa opäť
-nevydáte na cestu.
+Režim spánku má nové tlačidlo ***Prebudiť pri odchode***. Keď ho vyberiete, Soundscape prejde do
+režimu Driemanie: zostane potichu, kým neopustíte oblasť, a potom sa sám prebudí. Hodí sa to, keď
+niekam prídete a chcete pokoj, kým sa opäť nevydáte na cestu.
 
 ### Vzdialenosti a reč
 

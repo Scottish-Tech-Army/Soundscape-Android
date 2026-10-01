@@ -39,8 +39,8 @@ Nótur fyrir eldri útgáfur eru á síðunni
   hverfið sem þeir eru í, húsnúmer eru tengd réttri hlið götunnar og strætóstoppistöðvar í Bretlandi
   nota opinber heiti sín.
 * **Tuttugu ný tungumál**, samtals eru þau nú 46. Þessi skjölunarvefur hefur einnig verið þýddur.
-* **Vakning við brottför.** Svefnstilling getur nú vakið Soundscape aftur þegar þú yfirgefur staðinn
-  þar sem þú svæfðir hana.
+* **Vakna við brottför.** Þegar þú setur Soundscape í dvala setur nýi hnappurinn *Vakna við
+  brottför* forritið í staðinn í lúra-ham, og það vaknar sjálft þegar þú ferð.
 * **Styttri og eðlilegri vegalengdir**, með stærri einingum þegar þú ferð hratt yfir.
 * **Fljótlegri leið út.** *Loka Soundscape* er nú efst í aðalvalmyndinni.
 * **Endurbætur á ónettengdum kortum**, meðal annars uppfærsla á þegar sóttu korti á staðnum og kort
@@ -196,11 +196,11 @@ Egypsk arabíska var sameinuð arabísku og lúganda var dregin til baka, þar s
 Hvaða texta sem er má bæta á
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Svefnstilling
+### Dvalahamur
 
-Svefnstillingin hefur fengið **vakningu við brottför**. Þegar þú svæfir Soundscape geturðu beðið hana
-um að vakna um leið og þú yfirgefur svæðið, sem er gagnlegt þegar þú kemur eitthvað og vilt ró þar til
-þú leggur af stað næst.
+Dvalahamurinn hefur fengið nýjan hnapp, ***Vakna við brottför***. Ef þú velur hann fer Soundscape í
+lúra-ham: forritið þegir þar til þú yfirgefur svæðið og vaknar svo sjálft, sem er gagnlegt þegar þú
+kemur eitthvert og vilt ró þar til þú leggur af stað næst.
 
 ### Vegalengdir og tal
 

@@ -41,8 +41,8 @@ Opmerkingen bij oudere versies staan op de pagina
   waarin ze liggen, huisnummers worden aan de juiste kant van de straat gekoppeld en bushaltes in
   Groot-Brittannië gebruiken hun officiële namen.
 * **Twintig nieuwe talen**, waarmee het totaal op 46 komt. Ook deze documentatiewebsite is vertaald.
-* **Wekken bij vertrek.** De slaapstand kan Soundscape nu weer wekken zodra u de plek verlaat waar u
-  hem in slaap hebt gezet.
+* **Wek bij vertrek.** Wanneer u Soundscape in de slaapstand zet, zet de nieuwe knop *Wek bij
+  vertrek* hem in plaats daarvan in de sluimerstand, en hij wordt vanzelf wakker zodra u vertrekt.
 * **Kortere, natuurlijkere afstanden**, met grotere eenheden wanneer u zich snel verplaatst.
 * **Sneller afsluiten.** *Soundscape afsluiten* staat nu bovenaan het hoofdmenu.
 * **Verbeteringen aan offlinekaarten**, waaronder het bijwerken van een reeds gedownloade kaart en
@@ -209,9 +209,9 @@ leest. Elke tekst kan worden verbeterd op
 
 ### Slaapstand
 
-De slaapstand heeft **wekken bij vertrek** gekregen. Wanneer u Soundscape in slaap zet, kunt u hem
-vragen weer wakker te worden zodra u het gebied verlaat. Dat is handig wanneer u ergens aankomt en
-rust wilt tot u weer vertrekt.
+De slaapstand heeft een nieuwe knop: ***Wek bij vertrek***. Als u die kiest, gaat Soundscape in de
+sluimerstand: hij blijft stil tot u het gebied verlaat en wordt dan vanzelf wakker. Dat is handig
+wanneer u ergens aankomt en rust wilt tot u weer vertrekt.
 
 ### Afstanden en spraak
 

@@ -360,3 +360,5 @@ Also changed the same day:
 - `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).
 
 **2026-10-01 — round-2 answers (Q1–Q5).** Confirmed «étape» and the Sleep labels; changed Wake On Leave, the third detail level and the bare-«balise» rule; FR-S3 is about our questionnaire, not the app. Swept into 43 units in `/tmp/translation-review/fr-findings.json` (FR-B2 34, FR-L1 7, FR-T3 2, with overlaps). Nothing applied. fr_CA not yet checked against these.
+
+**2026-10-01 — release notes (C26).** `docs/release-notes.fr.md`: «Minimal», «balise» after the first mention, *Annoncer la balise*, and the sleep passage quotes *Reprendre au déplacement*.
