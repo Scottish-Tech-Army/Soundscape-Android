@@ -183,7 +183,7 @@
     </plurals>
     <string name="ui_action_button_my_location">Mein\nStandort</string>
     <string name="ui_action_button_my_location_acc_hint">Informationen zu Ihrem aktuellen Standort hören</string>
-    <string name="ui_action_button_nearby_markers">Mark.\nin Nähe</string>
+    <string name="ui_action_button_nearby_markers">Markierungen\nin der Nähe</string>
     <string name="ui_action_button_nearby_markers_acc_hint">Informationen zu markierten Orten in Ihrer Nähe hören</string>
     <string name="ui_action_button_around_me">Um mich\nherum</string>
     <string name="ui_action_button_around_me_acc_hint">Informationen zu Orten in den vier Quadranten um Sie herum hören</string>

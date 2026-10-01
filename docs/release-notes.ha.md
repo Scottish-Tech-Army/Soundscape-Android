@@ -132,8 +132,8 @@ Danna *Na Baya* a belun kunne yana rage Matakin Sanarwa mataki ɗaya a kowane lo
 Sauƙaƙe da Muhimmi zuwa Shiru, sannan ya koma Cikakke. Ana faɗin sabon matakin kowane lokaci. Wannan yana aiki
 a duka yanayoyin biyu na maɓallan sarrafawa, shi ya sa maɓallan belun kunne suka ɗan canza:
 
-* A *Yanayin Asali*, idan babu tafarkin da ake kunnawa, *Na Gaba* yanzu yana sanar da *Kewaye Na*, kuma
-  *Matsayi Na* ba ya kan maɓallai kuma. Yayin kunna tafarki, *Na Gaba* da *Na Baya* har yanzu suna motsawa
+* A *Yanayin Asali*, idan babu tafarkin da ake kunnawa, *Na Gaba* yanzu yana sanar da *Kewaye da Ni*, kuma
+  *Wurina* ba ya kan maɓallai kuma. Yayin kunna tafarki, *Na Gaba* da *Na Baya* har yanzu suna motsawa
   tsakanin tashoshi.
 * A yanayin *Menu na Sauti*, *Na Baya* ba ya komawa baya a menu kuma. *Na Gaba* har yanzu yana ci gaba a
   cikinsa kuma *Kunna/Dakata* har yanzu yana zaɓa. Alamomi da tafarkuna a menu yanzu an jera su bisa suna,

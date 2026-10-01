@@ -129,3 +129,5 @@ Most serious fixed:
 - `osm_beauty`: OSM shop=beauty is a beauty salon (services), not a cosmetics shop.
 - `osm_adult_gaming_centre`: Same word as osm_amusement_arcade «Pelihalli», so the two can't be told apart.
 Held for a person: `terms_of_use_message` (legal text); `terms_of_use_service_agreement` (legal text).
+
+**2026-10-01 — home-button names.** `help_text_assistant_commands_ios` said *Lähellä olevat merkitsimet*; Siri and the button say «Lähiympäristön merkitsimet» (C27).

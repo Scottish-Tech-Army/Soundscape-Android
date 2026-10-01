@@ -79,3 +79,5 @@ Held for a person: `first_launch_prompt_title` (reviewer: open question).
 Also changed the same day:
 - `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
 - `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).
+
+**2026-10-01 — home-button names.** Nearby Markers button «Marcaje\naproape» → «Marcaje din\napropiere» (C27).

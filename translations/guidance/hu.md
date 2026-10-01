@@ -208,3 +208,5 @@ Dave. Applied the same day: 186 strings (77 Beacon, 41 Callout, 95 register,
 with overlaps). HU-G3 done in code the same day.
 
 **2026-10-01 — release notes.** `docs/release-notes.hu.md` moved to «irányjelző hang» and «bemondás» (C26); its sleep passage now quotes *Felébredés távozáskor*.
+
+**2026-10-01 — home-button names.** Home buttons renamed to the names the tour, help and Siri use: «Saját\nhelyzetem», «Körülöttem», «Előttem» (were «Saját helyzet», «Magam körül», «Előre nézve»). The tour told users to tap «Körülöttem». Release notes too (C27).

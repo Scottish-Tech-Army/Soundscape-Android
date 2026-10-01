@@ -101,3 +101,5 @@ Most serious fixed:
 - `directions_cardinal_north_west`: «Loe» is the imperative 'read!', not a compass point;
 - `faq_controlling_what_you_hear_answer`: The gesture is a two-finger DOUBLE tap;
 - `ui_action_button_my_location_acc_hint`: «kuulata oma praegust asukohta» means 'to listen to your current location';
+
+**2026-10-01 — home-button names.** Nearby Markers button «Lähedal\nmarkerid» → «Lähedal asuvad\nmarkerid» (C27).

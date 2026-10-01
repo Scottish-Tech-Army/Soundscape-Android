@@ -113,3 +113,5 @@ Most serious fixed:
 Held for a person: `talkback_double_tap_template` (reviewer: open question); `confect_name_to_dead_end` (reviewer: open question); `confect_name_to_dead_end_via` (reviewer: Q2).
 Also changed the same day:
 - `ecf310fc7`: `relative_clock_direction` changed so it no longer sounds like a time of day (C20).
+
+**2026-10-01 — home-button names.** Nearby Markers button «Mark.\nin Nähe» → «Markierungen\nin der Nähe», the name everywhere else (C27).

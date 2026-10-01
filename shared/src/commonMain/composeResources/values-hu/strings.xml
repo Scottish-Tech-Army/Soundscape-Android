@@ -1053,13 +1053,13 @@
         <item quantity="one">%1$s terabájt</item>
         <item quantity="other">%1$s terabájt</item>
     </plurals>
-    <string name="ui_action_button_my_location">Saját\nhelyzet</string>
+    <string name="ui_action_button_my_location">Saját\nhelyzetem</string>
     <string name="ui_action_button_my_location_acc_hint">a jelenlegi helyzete meghallgatása</string>
     <string name="ui_action_button_nearby_markers">Közeli\njelölők</string>
     <string name="ui_action_button_nearby_markers_acc_hint">a közeli, Ön által megjelölt helyek meghallgatása</string>
-    <string name="ui_action_button_around_me">Magam\nkörül</string>
+    <string name="ui_action_button_around_me">Körülöttem</string>
     <string name="ui_action_button_around_me_acc_hint">az Ön körüli négy irányban található helyek meghallgatása</string>
-    <string name="ui_action_button_ahead_of_me">Előre\nnézve</string>
+    <string name="ui_action_button_ahead_of_me">Előttem</string>
     <string name="ui_action_button_ahead_of_me_acc_hint">az Ön előtt lévő helyek meghallgatása</string>
     <string name="menu_route">Útvonal vezérlése</string>
     <string name="menu_route_next_waypoint">Következő útvonalpont</string>

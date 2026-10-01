@@ -122,3 +122,5 @@ Most serious fixed:
 Held for a person: `terms_of_use_message` (legal text); `terms_of_use_service_agreement` (legal text); `help_text_ahead_of_me_what` (reviewer: open question).
 Also changed the same day:
 - `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
+
+**2026-10-01 — home-button names.** Ahead of Me button «Впереди\nменя» → «Передо\nмной»; help and tour «Отметки рядом» → «Ближайшие отметки» (5 strings) (C27).

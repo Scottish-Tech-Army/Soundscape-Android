@@ -114,3 +114,5 @@ Most serious fixed:
 - `street_description_until`: «tills» is a temporal conjunction ('until [time]');
 - `street_description_since`: «sedan» is temporal ('since [time]');
 Held for a person: `terms_of_use_medical_safety_disclaimer` (legal text).
+
+**2026-10-01 — home-button names.** Nearby Markers button «Markörer\nnära» → «Platsmarkörer\ni närheten» (C27).

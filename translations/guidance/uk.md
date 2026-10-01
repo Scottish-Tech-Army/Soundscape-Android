@@ -246,3 +246,5 @@ Most serious fixed:
 - `faq_why_does_beacon_disappear_answer`: The answer is about the direction you are *facing* when you stop;
 - `first_launch_headphones_title`: «Як звучить Soundscape» is "What Soundscape sounds like";
 Held for a person: `directions_along_heading_n` (reviewer: awaiting); `directions_along_heading_ne` (reviewer: awaiting); `directions_along_heading_e` (reviewer: awaiting); `directions_along_heading_se` (reviewer: awaiting); `directions_along_heading_s` (reviewer: awaiting); `directions_along_heading_sw` (reviewer: awaiting); `directions_along_heading_w` (reviewer: awaiting); `directions_along_heading_nw` (reviewer: awaiting).
+
+**2026-10-01 — home-button names.** My Location button «Моє\nмісце» → «Моє\nмісцезнаходження» (C27); release notes too.

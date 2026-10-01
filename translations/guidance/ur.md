@@ -77,3 +77,5 @@ Most serious fixed:
 - `faq_how_to_use_beacon_answer`: *ring* rendered «رنگ», which in Urdu means 'colour' (a TTS voice reads it as rang);
 Also changed the same day:
 - `cc4943378`: help, FAQ and tutorial now give the mirrored right-to-left button positions (Sleep top-left, My Location right-most), `_common.md` C23.
+
+**2026-10-01 — home-button names.** `tour_my_location` said «میری لوکیشن»; the button says «میرا مقام» (C27).
