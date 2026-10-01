@@ -29,6 +29,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.filters.HeadingHold
 import org.scottishtecharmy.soundscape.geoengine.filters.StationaryDetector
+import org.scottishtecharmy.soundscape.geoengine.filters.TravelHeadingEstimator
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
@@ -67,6 +68,7 @@ import org.scottishtecharmy.soundscape.locationprovider.GpxReplayLocationProvide
 import org.scottishtecharmy.soundscape.locationprovider.toSoundscapeLocation
 import org.scottishtecharmy.soundscape.platform.parseGpxTimestamp
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
@@ -4212,32 +4214,33 @@ class MvtTileTest {
     }
 
     /**
-     * The travel heading GeoEngine.createUserGeometry would have taken from this track point.
-     *
-     * A recorded course is gated on its accuracy exactly as in production, which leaves no travel
-     * heading at all when the course isn't trusted - and so, with the phone locked in a pocket, no
-     * heading at all. Passing the course through regardless made a replay of a poor-course
-     * recording look better than the journey it recorded: an iPhone walk (ToFabricBazaar-iOS)
-     * replayed with a heading on every fix, when the app had had one on a quarter of them.
+     * The travel heading GeoEngine.createUserGeometry would have taken from this track point: from
+     * the same TravelHeadingEstimator, fed the same raw fixes and the same road match, so a
+     * recorded course is only believed as far as production believes it. Passing the course
+     * through regardless made a replay of a poor-course recording look better than the journey it
+     * recorded: an iPhone walk (ToFabricBazaar-iOS) replayed with a heading on every fix, when the
+     * app had had one on a quarter of them.
      *
      * [computedHeading], the bearing from the previous position, is only for GPX exported from
-     * other apps or written by hand, which carries no course at all - [recordsCourses] false. In a
-     * recording that does carry courses, a point without one is a fix the receiver gave no course
-     * for, and the app had no travel heading for it either.
+     * other apps or written by hand, which carries no course at all - [recordsCourses] false.
      */
     private fun recordedTravelHeading(
         position: Feature,
         computedHeading: Double,
-        recordsCourses: Boolean
+        recordsCourses: Boolean,
+        estimator: TravelHeadingEstimator,
+        roadHeading: Double?,
+        ruler: Ruler,
+        timestamp: Long,
     ): Double? {
-        val heading = position.properties?.get("heading") as? Double?
-            ?: return if (recordsCourses) null else computedHeading
-        val bearingAccuracy = position.properties?.get("bearingAccuracy") as? Double?
-        return if ((bearingAccuracy == null) ||
-            (bearingAccuracy < MAXIMUM_TRUSTED_COURSE_ACCURACY_DEGREES))
-            heading
-        else
-            null
+        if (!recordsCourses) return computedHeading
+        return estimator.estimate(
+            bearing = position.properties?.get("heading") as? Double?,
+            bearingAccuracy = position.properties?.get("bearingAccuracy") as? Double?,
+            roadHeading = roadHeading,
+            ruler = ruler,
+            nowMilliseconds = timestamp,
+        )
     }
 
     fun testMovingGrid(
@@ -4262,6 +4265,7 @@ class MvtTileTest {
         val gps = parseGpxFromFile(gpxFilename)
         // See recordedTravelHeading
         val recordsCourses = gps.features.any { it.properties?.get("heading") != null }
+        val travelHeadingEstimator = TravelHeadingEstimator()
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
@@ -4324,6 +4328,10 @@ class MvtTileTest {
             val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
                 ?: fallbackTime
             fallbackTime = timestamp + 1000L
+            // Every fix past the accuracy gate, unfiltered, as GeoEngine feeds it.
+            travelHeadingEstimator.addFix(
+                LngLatAlt(rawLocation.longitude, rawLocation.latitude), timestamp
+            )
 
             if (blindSinceLastUsableFix) {
                 lastUsableFixMillis?.let { unobservedMillis += timestamp - it }
@@ -4443,7 +4451,10 @@ class MvtTileTest {
                 // be missing so we need to mock it up.
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
-                    travelHeading = recordedTravelHeading(position, travelHeading, recordsCourses),
+                    travelHeading = recordedTravelHeading(
+                        position, travelHeading, recordsCourses, travelHeadingEstimator,
+                        mapMatchFilter.matchedLocation?.heading, gridState.ruler, timestamp
+                    ),
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
@@ -4634,6 +4645,7 @@ class MvtTileTest {
         val gps = parseGpxFromFile(gpxFilename)
         // See recordedTravelHeading
         val recordsCourses = gps.features.any { it.properties?.get("heading") != null }
+        val travelHeadingEstimator = TravelHeadingEstimator()
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
@@ -4696,10 +4708,16 @@ class MvtTileTest {
                 val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
                     ?: fallbackTime
                 fallbackTime = timestamp + 1000L
+                travelHeadingEstimator.addFix(
+                    LngLatAlt(rawLocation.longitude, rawLocation.latitude), timestamp
+                )
 
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
-                    travelHeading = recordedTravelHeading(position, travelHeading, recordsCourses),
+                    travelHeading = recordedTravelHeading(
+                        position, travelHeading, recordsCourses, travelHeadingEstimator,
+                        mapMatchFilter.matchedLocation?.heading, gridState.ruler, timestamp
+                    ),
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
