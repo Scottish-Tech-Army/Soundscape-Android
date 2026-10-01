@@ -258,7 +258,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Попереду Мене"
+            "value": "Попереду мене"
           }
         },
         "ur": {
@@ -538,7 +538,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Навколо Мене"
+            "value": "Навколо мене"
           }
         },
         "ur": {
@@ -674,7 +674,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző"
+            "value": "Irányjelző hang"
           }
         },
         "id": {
@@ -954,7 +954,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző adatai"
+            "value": "Irányjelző hang adatai"
           }
         },
         "id": {
@@ -1204,7 +1204,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Annoncer la balise sonore"
+            "value": "Annoncer la balise"
           }
         },
         "fr-CA": {
@@ -1234,7 +1234,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző bejelentése"
+            "value": "Irányjelző hang bemondása"
           }
         },
         "id": {
@@ -1514,7 +1514,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bejelentés"
+            "value": "Bemondás"
           }
         },
         "id": {
@@ -1794,7 +1794,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Közlések részletessége"
+            "value": "Bemondások részletessége"
           }
         },
         "id": {
@@ -3254,7 +3254,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Szczegóły"
+            "value": "Szczegółowość"
           }
         },
         "pt": {
@@ -4004,7 +4004,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Essentiel"
+            "value": "Minimal"
           }
         },
         "fr-CA": {
@@ -4314,7 +4314,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Halld a környezetedet"
+            "value": "A környezetem meghallgatása"
           }
         },
         "id": {
@@ -5684,7 +5684,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactiver le son de la balise sonore"
+            "value": "Désactiver le son de la balise"
           }
         },
         "fr-CA": {
@@ -5714,7 +5714,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző némítása"
+            "value": "Irányjelző hang némítása"
           }
         },
         "id": {
@@ -6144,7 +6144,7 @@
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "میری لوکیشن"
+            "value": "میرا مقام"
           }
         },
         "vi": {
@@ -6280,7 +6280,7 @@
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Penanda di Sekitar"
+            "value": "Penanda Terdekat"
           }
         },
         "is": {
@@ -8514,7 +8514,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelzőt állít be valamelyik mentett jelölőjén."
+            "value": "Irányjelző hangot állít be valamelyik mentett jelölőjén."
           }
         },
         "id": {
@@ -9604,7 +9604,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passe des étapes, coupe le son de la balise sonore ou arrête l’itinéraire."
+            "value": "Passe des étapes, coupe le son de la balise ou arrête l’itinéraire."
           }
         },
         "fr-CA": {
@@ -9634,7 +9634,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Útvonalpontokat ugrik át, elnémítja a hangjelzőt, vagy leállítja az útvonalat."
+            "value": "Útvonalpontokat ugrik át, elnémítja az irányjelző hangot, vagy leállítja az útvonalat."
           }
         },
         "id": {
@@ -10164,7 +10164,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarrer la balise sonore"
+            "value": "Démarrer la balise"
           }
         },
         "fr-CA": {
@@ -10194,7 +10194,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző indítása"
+            "value": "Irányjelző hang indítása"
           }
         },
         "id": {
@@ -10444,7 +10444,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarrer l’Itinéraire"
+            "value": "Démarrer l’itinéraire"
           }
         },
         "fr-CA": {
@@ -10486,7 +10486,7 @@
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Upphaf leiðar"
+            "value": "Hefja leið"
           }
         },
         "it": {
@@ -11284,7 +11284,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrêter la balise sonore"
+            "value": "Arrêter la balise"
           }
         },
         "fr-CA": {
@@ -11314,7 +11314,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hangjelző leállítása"
+            "value": "Irányjelző hang leállítása"
           }
         },
         "id": {
@@ -11492,7 +11492,7 @@
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Обкръжение"
+            "value": "Околност"
           }
         },
         "bn": {
@@ -11660,7 +11660,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Redor"
+            "value": "Arredores"
           }
         },
         "pt-BR": {
@@ -11844,7 +11844,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactive la balise sonore."
+            "value": "Désactive la balise."
           }
         },
         "fr-CA": {
@@ -11874,7 +11874,7 @@
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kikapcsolja a hangjelzőt."
+            "value": "Kikapcsolja az irányjelző hangot."
           }
         },
         "id": {
