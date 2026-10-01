@@ -242,7 +242,7 @@
     </plurals>
     <string name="ui_action_button_my_location">Locația\nmea</string>
     <string name="ui_action_button_my_location_acc_hint">a asculta informații despre locația ta curentă</string>
-    <string name="ui_action_button_nearby_markers">Marcaje\naproape</string>
+    <string name="ui_action_button_nearby_markers">Marcaje din\napropiere</string>
     <string name="ui_action_button_nearby_markers_acc_hint">a asculta despre locurile din apropiere pe care le-ai marcat</string>
     <string name="ui_action_button_around_me">În jurul\nmeu</string>
     <string name="ui_action_button_around_me_acc_hint">a asculta despre locuri în cele patru cadrane din jurul tău</string>

@@ -135,8 +135,8 @@ kerül, Részletesről Egyszerűsítetton és Alapvetően át Némáig, majd új
 minden alkalommal kimondja. Ez a médiavezérlők mindkét módjában működik, ezért a fejhallgató gombjai
 kissé megváltoztak:
 
-* *Eredeti módban* a *Következő* most a *Magam körül* bemondást adja, ha nem fut útvonal, a *Saját
-  helyzet* pedig már nincs a gombokon. Útvonal közben a *Következő* és az *Előző* továbbra is az
+* *Eredeti módban* a *Következő* most a *Körülöttem* bemondást adja, ha nem fut útvonal, a *Saját
+  helyzetem* pedig már nincs a gombokon. Útvonal közben a *Következő* és az *Előző* továbbra is az
   útvonalpontok között lép.
 * *Hangmenü* módban az *Előző* már nem lép vissza a menüben. A *Következő* továbbra is végigmegy
   rajta, a *Lejátszás/Szünet* pedig továbbra is kiválaszt. A menüben a jelölők és útvonalak most név

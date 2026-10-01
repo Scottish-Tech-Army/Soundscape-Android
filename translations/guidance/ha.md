@@ -72,3 +72,5 @@ Most serious fixed:
 - `faq_holding_phone_flat_answer`: The beacon gets quieter, but «za ku lura ta yi shiru» says it goes silent (the same error was fixed in faq_tip_beacon_quiet on 2026-09-29, «zai yi shiru» → «zai ragu»).
 - `faq_road_names_answer`: 'spatial audio' rendered «sautin sararin samaniya» (outer space;
 Held for a person: `faq_how_to_use_beacon_answer` (reviewer: NEEDS A HUMAN).
+
+**2026-10-01 — home-button names.** Home buttons and help unified on the Siri names: «Wurina», «Kewaye da Ni», «Gaba da Ni», «Alamomi na Kusa». The buttons, tour and help had used three different sets (C27).
