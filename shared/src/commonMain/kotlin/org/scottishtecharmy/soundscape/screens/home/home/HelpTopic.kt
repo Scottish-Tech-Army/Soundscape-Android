@@ -51,7 +51,7 @@ sealed class HelpTopic {
         val fileName: String
     ) : HelpTopic() {
 
-        private val content: String by lazy {
+        val content: String by lazy {
             loadMarkdownAsset() ?: "# Error\n\nFailed to load help content"
         }
 
@@ -63,7 +63,7 @@ sealed class HelpTopic {
             // Look for the first level 1 heading
             val h1 = tree.children.find { it.type == MarkdownElementTypes.ATX_1 }
             if (h1 != null) {
-                h1.children.find { it.type == MarkdownElementTypes.ATX_CONTENT }
+                h1.children.find { it.type == MarkdownTokenTypes.ATX_CONTENT }
                     ?.getTextInNode(processedContent)?.toString()?.trim() ?: getFallbackTitle()
             } else {
                 getFallbackTitle()

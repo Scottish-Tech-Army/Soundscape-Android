@@ -485,7 +485,10 @@ dependencies {
     implementation(libs.commonmark)
 
     testImplementation(libs.json)
+    testImplementation(libs.robolectric)
 
+    testFixturesImplementation(project(":shared"))
+    testFixturesImplementation(libs.androidx.preference.ktx)
     testFixturesImplementation(platform(libs.androidx.compose.bom))
     testFixturesImplementation(libs.ui.test.junit4)
     testFixturesImplementation(libs.androidx.media3.common)

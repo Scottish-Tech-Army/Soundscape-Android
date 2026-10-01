@@ -44,10 +44,12 @@ import org.commonmark.node.StrongEmphasis
 import org.commonmark.node.Text
 import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.text.TextContentRenderer
+import org.commonmark.parser.Parser
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.menu_open_source_licenses
 import org.scottishtecharmy.soundscape.resources.ui_back_button_title
+import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
@@ -172,10 +174,12 @@ fun MarkdownHelpScreen(
         ?: return
     val isFaqSubPage = helpTopic is HelpTopic.MarkdownFaq
 
-    // Note: helpTopic.root is no longer available as HelpTopic has been moved to shared commonMain.
-    // This Android-only screen should be migrated to a common implementation.
-    val rootNodes = emptyList<Node>() // helpTopic.root.collectChildren()
-    val displayTitle = helpTopic.title // helpTopic.getDisplayTitle(textContentRenderer)
+    val rootNodes = remember(helpTopic.content) {
+        val parser = Parser.builder().build()
+        val root = parser.parse(helpTopic.content)
+        root.collectChildren()
+    }
+    val displayTitle = helpTopic.title
 
     val isFaqListPage = !isFaqSubPage && rootNodes.any { it is Heading && it.level == 3 }
     val nodesToRender = if (isFaqSubPage) {

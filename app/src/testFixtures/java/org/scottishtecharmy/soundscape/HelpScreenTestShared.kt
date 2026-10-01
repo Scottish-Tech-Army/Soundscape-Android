@@ -8,6 +8,9 @@ import org.junit.Assert.fail
 import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.screens.home.home.Sections
 import org.scottishtecharmy.soundscape.screens.home.home.helpPages
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.*
+import org.jetbrains.compose.resources.StringResource
 import java.util.Locale
 
 object HelpScreenTestShared {
@@ -19,39 +22,34 @@ object HelpScreenTestShared {
      * Maps resource titleId to markdown filenames for help pages.
      * This is used by tests to generate markdown-style route fragments.
      */
-    private val titleIdToMarkdownFilename: Map<Int, String> = mapOf(
-        R.string.voice_voices to "help-voices.md",
-        R.string.help_remote_page_title to "help-using-media-controls.md",
-        R.string.beacon_audio_beacon to "help-audio-beacon.md",
-        R.string.callouts_automatic_callouts to "help-automatic-callouts.md",
-        R.string.directions_my_location to "help-my-location.md",
-        R.string.help_orient_page_title to "help-around-me.md",
-        R.string.help_explore_page_title to "help-ahead-of-me.md",
-        R.string.callouts_nearby_markers to "help-nearby-markers.md",
-        R.string.markers_title to "help-markers.md",
-        R.string.routes_title to "help-routes.md",
-        R.string.help_creating_markers_page_title to "help-creating-markers.md",
-        R.string.help_edit_markers_page_title to "help-customizing-markers.md",
-        R.string.faq_title to "help-frequently-asked-questions.md",
-        R.string.faq_tips_title to "help-tips.md",
-        R.string.help_offline_page_title to "help-why-is-soundscape-working-offline-.md",
-        R.string.menu_help to HelpTopic.HELP_AND_TUTORIALS_FILENAME,
-        R.string.settings_about_app to HelpTopic.ABOUT_SOUNDSCAPE_FILENAME,
+    private val titleIdToMarkdownFilename: Map<StringResource, String> = mapOf(
+        Res.string.voice_voices to "help-voices.md",
+        Res.string.help_remote_page_title to "help-using-media-controls.md",
+        Res.string.beacon_audio_beacon to "help-audio-beacon.md",
+        Res.string.callouts_automatic_callouts to "help-automatic-callouts.md",
+        Res.string.directions_my_location to "help-my-location.md",
+        Res.string.help_orient_page_title to "help-around-me.md",
+        Res.string.help_explore_page_title to "help-ahead-of-me.md",
+        Res.string.callouts_nearby_markers to "help-nearby-markers.md",
+        Res.string.markers_title to "help-markers.md",
+        Res.string.routes_title to "help-routes.md",
+        Res.string.help_creating_markers_page_title to "help-creating-markers.md",
+        Res.string.help_edit_markers_page_title to "help-customizing-markers.md",
+        Res.string.faq_title to "help-frequently-asked-questions.md",
+        Res.string.faq_tips_title to "help-tips.md",
+        Res.string.help_offline_page_title to "help-why-is-soundscape-working-offline-.md",
+        Res.string.menu_help to HelpTopic.HELP_AND_TUTORIALS_FILENAME,
+        Res.string.settings_about_app to HelpTopic.ABOUT_SOUNDSCAPE_FILENAME,
     )
 
     /**
      * Retrieves a string resource for the default locale (e.g., from `values/strings.xml`).
      *
-     * @param id The ID of the string resource to retrieve (e.g., R.string.something).
+     * @param res The StringResource to retrieve.
      * @return The string value from the default resource file.
      */
-    private fun getDefaultString(id: Int): String {
-        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-        val defaultConfig = targetContext.resources.configuration
-        // Use Locale.ROOT to be explicit about the base resource
-        defaultConfig.setLocale(Locale.ROOT)
-        val defaultContext = targetContext.createConfigurationContext(defaultConfig)
-        return defaultContext.getString(id)
+    private fun getDefaultString(res: StringResource): String {
+        return kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(res) }
     }
 
     @OptIn(UnstableApi::class)
@@ -70,7 +68,7 @@ object HelpScreenTestShared {
             }
             testTopic.startsWith("faq_") -> {
                 val title = Uri.decode(testTopic.substring(4))
-                val faqFileName = titleIdToMarkdownFilename[R.string.faq_title]
+                val faqFileName = titleIdToMarkdownFilename[Res.string.faq_title]
                     ?: _fail("Failed to find markdown filename for FAQ page")
                 "page:faq:${Uri.encode(faqFileName)}:${Uri.encode(title)}"
             }

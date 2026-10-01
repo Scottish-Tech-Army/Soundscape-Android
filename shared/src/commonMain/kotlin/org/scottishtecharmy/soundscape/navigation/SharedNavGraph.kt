@@ -50,6 +50,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.OpenSourceLicensesViewM
 import org.scottishtecharmy.soundscape.screens.home.home.SharedAdvancedMarkersAndRoutesSettingsScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
+import org.scottishtecharmy.soundscape.screens.home.home.SharedMarkdownHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenEffect
@@ -572,7 +573,7 @@ fun SharedNavHost(
                     || helpTopic is HelpTopic.MarkdownPage
                     || helpTopic is HelpTopic.MarkdownFaq
             if (showMarkdown) {
-                MarkdownHelpScreen(
+                SharedMarkdownHelpScreen(
                     topic = topicParam,
                     onNavigate = { dest -> navController.navigate(dest) },
                     onNavigateUp = { navController.popBackStack() },
