@@ -65,15 +65,15 @@ Hungarian writes «a Váci utcáig». It now writes «a(z) %3$s{-ig}» (C18): a 
 lengthens, other letters take «ig», numbers and abbreviations keep «-ig» («az
 M7-ig»). Use `{-ig}` for any new "as far as X" template.
 
-### HU-G3 — A bare route number takes «-es» before «úton» (`agreed`, needs a code change)
+### HU-G3 — A bare route number takes «-es» before «úton» (`fixed` in code, 2026-10-01)
 
 Reviewer, Q1: *"'az M7 úton' (az emhét úton) would sound more naturally as
 'az M7-es úton' (az emhetes úton)."* Hungarian names a road by its number
 with the adjectival suffix (az M7-es, a 8-as főút, az M0-s), so a name
 without a street word must not just get « úton» appended. This is the
 fallback branch of `{úton}` in `GrammarMarkers.kt` (HU-G1), so **no
-translation changes**: the code should write «%s-es úton» when the name
-ends in a digit. The suffix follows the last spoken number word (vowel
+translation changes**: when the name ends in a digit the code now writes
+«M7-es úton» (`hungarianNumberSuffix()`). The suffix follows the last spoken number word (vowel
 harmony):
 
 | ends in | said | suffix |
@@ -201,4 +201,4 @@ Most serious fixed:
 Confirmed HU-A1 and the detail-level names; new terms HU-T1 (Beacon) and
 HU-T2 (Callout); HU-G3 (route-number suffix, code); HU-R1 «Ön» decided by
 Dave. Applied the same day: 186 strings (77 Beacon, 41 Callout, 95 register,
-with overlaps). HU-G3's code change not yet made.
+with overlaps). HU-G3 done in code the same day.

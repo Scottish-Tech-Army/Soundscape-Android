@@ -72,9 +72,10 @@ private fun hungarianNumberStartsWithVowel(digits: String): Boolean {
 // Hungarian street names carry their street type («Andrássy út», «Váci utca», «Deák tér»), so a
 // template can't add its own «úton» ("on the road") without saying it twice: «az Andrássy út úton».
 // «%1$s{úton}» puts the name's own street word into the case the sentence needs instead
-// («az Andrássy úton», «a Váci utcán», «a Deák téren»). A name without a known street word (a
-// route number such as «M7», a foreign name) keeps the plain « úton», which is what the templates
-// said before, so nothing reads worse than it did.
+// («az Andrássy úton», «a Váci utcán», «a Deák téren»). A route number is named with the
+// adjectival suffix, «az M7-es úton», «a 8-as úton» (see [hungarianNumberSuffix]). Any other name
+// without a known street word (a foreign name) keeps the plain « úton», which is what the
+// templates said before, so nothing reads worse than it did.
 private val hungarianRoadCase = Regex("\\{úton\\}")
 
 // Street words as they end a name, with the form "on/in it" takes. Matched against the end of the
@@ -109,7 +110,11 @@ internal fun resolveHungarianRoadCase(text: String): String {
         val lower = word.lowercase()
         val key = hungarianStreetWordsLongestFirst.firstOrNull { lower.endsWith(it) }
         if (key == null) {
-            out.append(before).append(" úton")
+            out.append(before)
+            if (before.lastOrNull()?.isDigit() == true) {
+                out.append(hungarianNumberSuffix(before.takeLastWhile { it.isDigit() }))
+            }
+            out.append(" úton")
         } else {
             val stem = before.dropLast(key.length)
             var form = hungarianStreetWords.getValue(key)
@@ -123,6 +128,35 @@ internal fun resolveHungarianRoadCase(text: String): String {
     }
     return out.append(text.substring(last)).toString()
 }
+
+/**
+ * The adjectival suffix a number takes when it names a road: «M7-es», «8-as», «M5-ös», «6-os»,
+ * «M0-s». Vowel harmony follows the last word said, which is the last non-zero digit's word:
+ * the units (egy, kettő, három…), else the tens (tíz, húsz, harminc…), else száz (-as) or
+ * ezer (-es).
+ */
+internal fun hungarianNumberSuffix(digits: String): String {
+    val number = digits.trimStart('0')
+    if (number.isEmpty()) return "-s" // nulla
+    val units = number.last()
+    if (units != '0') return "-" + HUNGARIAN_UNITS_SUFFIX.getValue(units)
+    val tens = number.getOrNull(number.length - 2) ?: '0'
+    if (tens != '0') return "-" + HUNGARIAN_TENS_SUFFIX.getValue(tens)
+    val hundreds = number.getOrNull(number.length - 3) ?: '0'
+    return if (hundreds != '0') "-as" else "-es" // száz, ezer
+}
+
+// egy, kettő, három, négy, öt, hat, hét, nyolc, kilenc
+private val HUNGARIAN_UNITS_SUFFIX = mapOf(
+    '1' to "es", '2' to "es", '3' to "as", '4' to "es", '5' to "ös",
+    '6' to "os", '7' to "es", '8' to "as", '9' to "es",
+)
+
+// tíz, húsz, harminc, negyven, ötven, hatvan, hetven, nyolcvan, kilencven
+private val HUNGARIAN_TENS_SUFFIX = mapOf(
+    '1' to "es", '2' to "as", '3' to "as", '4' to "es", '5' to "es",
+    '6' to "as", '7' to "es", '8' to "as", '9' to "es",
+)
 
 // «%3$s{-ig}» is the terminative ("as far as X"), which Hungarian writes onto the name itself:
 // a final a/e lengthens («Váci utcáig», «Hősök teréig», «Astoriáig»), any other letter just
