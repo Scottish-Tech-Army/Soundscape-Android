@@ -43,7 +43,7 @@ Bilješke za starija izdanja nalaze se na stranici
 * **Probudi pri odlasku.** Kada Soundscape stavite u način rada Mirovanje, novi gumb *Probudi pri
   odlasku* umjesto toga ga prebacuje u način rada Odgoda, pa se sam probudi kada odete s mjesta.
 * **Kraće, prirodnije udaljenosti**, s većim jedinicama kada se krećete brzo.
-* **Brži izlaz.** *Izađi iz Soundscapea* sada je na vrhu glavnog izbornika.
+* **Brži izlaz.** *Izađi iz aplikacije Soundscape* sada je na vrhu glavnog izbornika.
 * **Poboljšanja izvanmrežnih karata**, uključujući ažuriranje već preuzete karte i kartu dostupnih
   regija na ovom web-mjestu.
 * **Mnogo rada na pristupačnosti** s TalkBackom, osobito oko uvodnih zaslona.
@@ -155,7 +155,7 @@ Pojedinosti o lokaciji imaju novi gumb **Otvori u aplikaciji za karte**, koji na
 karte i navigaciju na vašem telefonu. Označite *Uvijek koristi ovu aplikaciju* i gumb se mijenja,
 primjerice u *Otvori u aplikaciji Google karte*, te je odmah otvara; dugi pritisak vraća popis.
 Popisi *Mjesta u blizini* i *Oznake* također imaju radnje za čitač zaslona *Otvori u aplikaciji…* i
-*Podijeli*, uz *Postavi zvučni svjetionik*.
+*Podijeli*.
 
 ### Svjetionik i oznake
 
@@ -231,12 +231,12 @@ smislene natuknice ondje gdje ih uopće nije bilo.
 
 ### Izbornici i navigacija
 
-* **Izađi iz Soundscapea** sada je prva stavka glavnog izbornika umjesto da bude niže.
+* **Izađi iz aplikacije Soundscape** sada je prva stavka glavnog izbornika umjesto da bude niže.
 * Glavni izbornik više ne ostavlja vidljivu traku zaslona sa strane, što je korisnicima čitača zaslona
   davalo zbunjujuće dodatno područje za dodir.
 * Sistemska gesta natrag više ne preskače razinu dok pregledavate kategorije u Mjestima u blizini.
 * *Zvučni vodič* preimenovan je u **vođeni vodič**.
-* Postavke su pospremljene, a *Vrati na zadano* sada ispravno briše sve.
+* Postavke su pospremljene, a *Vrati postavke na zadano* sada ispravno briše sve.
 
 ### Stabilnost
 

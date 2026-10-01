@@ -172,7 +172,7 @@ In den Standortdetails gibt es eine neue Taste **In Karten-App öffnen**, die di
 Navigations-Apps auf Ihrem Telefon auflistet. Kreuzen Sie *Immer diese App verwenden* an, dann heißt
 die Taste zum Beispiel *In Google Maps öffnen* und öffnet die App sofort; langes Drücken bringt die
 Liste zurück. Die Listen *Orte in der Nähe* und *Markierungen* haben außerdem die Screenreader-Aktionen
-*In … öffnen* und *Teilen*, neben *Audiobeacon starten*.
+*In … öffnen* und *Teilen*.
 
 ### Beacon und Markierungen
 
@@ -260,7 +260,7 @@ dort, wo bislang gar keine hinterlegt waren.
 * Die Zurück-Geste des Systems überspringt keine Ebene mehr, wenn Sie unter „Orte in der Nähe“ durch
   Kategorien blättern.
 * Das *Audio-Tutorial* heißt jetzt **Geführtes Tutorial**.
-* Die Einstellungen wurden aufgeräumt, und *Auf Standardwerte zurücksetzen* setzt nun wirklich alles
+* Die Einstellungen wurden aufgeräumt, und *Einstellungen auf Standardwerte zurücksetzen* setzt nun wirklich alles
   zurück.
 
 ### Stabilität

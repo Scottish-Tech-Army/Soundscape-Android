@@ -43,7 +43,7 @@ Les notes de versions anteriors són a la pàgina
 * **Desperta en sortir.** Quan poseu Soundscape en mode de repòs, el nou botó *Desperta en sortir*
   el posa en mode d'espera, i es desperta sol quan deixeu el lloc.
 * **Distàncies més curtes i naturals**, amb unitats més grans quan us desplaceu ràpid.
-* **Una sortida més ràpida.** *Sortir de Soundscape* ara és a la part superior del menú principal.
+* **Una sortida més ràpida.** *Surt de Soundscape* ara és a la part superior del menú principal.
 * **Millores als mapes fora de línia**, com ara actualitzar in situ un mapa ja baixat i un mapa de les
   regions disponibles en aquest lloc web.
 * **Molta feina d'accessibilitat** amb TalkBack, sobretot al voltant de les pantalles inicials.
@@ -161,7 +161,7 @@ Els detalls de la ubicació tenen un botó nou, **Obre a l'aplicació de mapes**
 aplicacions de mapes i de navegació del vostre telèfon. Marqueu *Utilitza sempre aquesta aplicació* i
 el botó passa a ser, per exemple, *Obre a Google Maps*, que l'obre directament; una pulsació llarga torna
 a mostrar la llista. Les llistes *Llocs propers* i *Marcadors* també tenen les accions del lector de
-pantalla *Obre a…* i *Comparteix*, al costat d'*Inicia la balisa sonora*.
+pantalla *Obre a…* i *Comparteix*.
 
 ### La balisa i els marcadors
 
@@ -238,12 +238,12 @@ posen el verb al final, i indicacions sensates allà on no n'hi havia cap.
 
 ### Menús i navegació
 
-* **Sortir de Soundscape** ara és el primer element del menú principal, en comptes d'estar més avall.
+* **Surt de Soundscape** ara és el primer element del menú principal, en comptes d'estar més avall.
 * El menú principal ja no deixa veure una franja de pantalla en un costat, cosa que donava a qui fa
   servir lector de pantalla una àrea addicional confusa per tocar.
 * El gest de tornada del sistema ja no salta un nivell quan navegueu per categories a Llocs propers.
 * El *tutorial d'àudio* ha passat a dir-se **tutorial guiat**.
-* La configuració s'ha endreçat, i *Restablir els valors per defecte* ara ho neteja tot correctament.
+* La configuració s'ha endreçat, i *Restableix la configuració als valors predeterminats* ara ho neteja tot correctament.
 
 ### Estabilitat
 

@@ -153,8 +153,7 @@ Otsinguriba mõistab nüüd enamat kui kohanimesid:
 Asukoha üksikasjades on uus nupp **Ava kaardirakenduses**, mis loetleb teie telefoni kaardi- ja
 navigeerimisrakendused. Märkige *Kasuta alati seda rakendust* ja nupp muutub näiteks *Ava rakenduses
 Google Maps* ning avab selle kohe; pikk vajutus toob loendi tagasi. Loenditel *Lähedal asuvad kohad*
-ja *Markerid* on ka ekraanilugeja toimingud *Ava rakenduses…* ja *Jaga*, toimingu *Käivita
-helimajakas* kõrval.
+ja *Markerid* on ka ekraanilugeja toimingud *Ava rakenduses…* ja *Jaga*.
 
 ### Helimajakas ja markerid
 
@@ -237,7 +236,7 @@ kus neid polnud üldse määratud.
 * Süsteemi tagasiliigutus ei jäta enam taset vahele, kui sirvid kategooriaid jaotises Lähedal asuvad
   kohad.
 * *Heliõpetus* on ümber nimetatud **juhendatud õpetuseks**.
-* Sätted on korrastatud ja *Lähtesta vaikeväärtustele* tühjendab nüüd kõik korralikult.
+* Sätted on korrastatud ja *Lähtesta seadistused vaikeväärtustele* tühjendab nüüd kõik korralikult.
 
 ### Stabiilsus
 

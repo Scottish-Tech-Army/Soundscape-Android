@@ -155,7 +155,7 @@ Søgelinjen forstår nu mere end stednavne:
 Oplysninger om placering har en ny knap, **Åbn i kortapp**, som viser kort- og navigationsapps på din
 telefon. Sæt flueben i *Brug altid denne app*, så hedder knappen fx *Åbn i Google Maps* og åbner den
 med det samme; et langt tryk henter listen frem igen. Listerne *Steder i nærheden* og *Mærker* har
-også skærmlæserhandlingerne *Åbn i …* og *Del* ved siden af *Start lydfyr*.
+også skærmlæserhandlingerne *Åbn i …* og *Del*.
 
 ### Lydfyret og mærker
 
@@ -237,8 +237,8 @@ udsagnsordet sidst, og fornuftige hjælpetekster, hvor der slet ingen var.
   et forvirrende ekstra område at trykke på.
 * Systemets tilbage-bevægelse springer ikke længere et niveau over, når du gennemser kategorier under
   Steder i nærheden.
-* *Lydvejledningen* er omdøbt til **guidet vejledning**.
-* Indstillingerne er ryddet op, og *Nulstil til standardværdier* rydder nu alt korrekt.
+* *Lydvejledningen* har fået et nyt navn: **Guidet tutorial**.
+* Indstillingerne er ryddet op, og *Gendan standardindstillinger* rydder nu alt korrekt.
 
 ### Stabilitet
 

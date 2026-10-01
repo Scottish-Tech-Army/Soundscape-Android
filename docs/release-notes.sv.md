@@ -158,7 +158,7 @@ Sökfältet förstår nu mer än platsnamn:
 Platsuppgifterna har en ny knapp, **Öppna i kartapp**, som listar kart- och navigeringsapparna på din
 telefon. Kryssa i *Använd alltid den här appen* så heter knappen till exempel *Öppna i Google Maps*
 och öppnar den direkt; ett långt tryck tar fram listan igen. Listorna *Platser i närheten* och
-*Platsmarkörer* har också skärmläsaråtgärderna *Öppna i …* och *Dela*, bredvid *Ställ in ljudfyr*.
+*Platsmarkörer* har också skärmläsaråtgärderna *Öppna i …* och *Dela*.
 
 ### Ljudfyren och platsmarkörer
 
@@ -240,8 +240,8 @@ vettiga tips där inga alls hade angetts.
   förvirrande extra område att trycka på.
 * Systemets bakåtgest hoppar inte längre över en nivå när du bläddrar bland kategorier i Platser i
   närheten.
-* *Ljudhandledningen* har bytt namn till **guidad handledning**.
-* Inställningarna har städats upp, och *Återställ standardvärden* rensar nu allt ordentligt.
+* *Ljudhandledningen* har fått ett nytt namn: **Guidad självstudie**.
+* Inställningarna har städats upp, och *Återställ inställningarna till standard* rensar nu allt ordentligt.
 
 ### Stabilitet
 

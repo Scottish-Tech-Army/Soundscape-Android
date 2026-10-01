@@ -42,7 +42,7 @@ Maelezo ya matoleo ya zamani yako kwenye ukurasa wa
 * **Amka Ukiondoka.** Unapoiweka Soundscape katika Hali ya Kulala, kitufe kipya cha *Amka Ukiondoka*
   kinaiweka badala yake katika Hali ya Kusinzia, nayo huamka yenyewe unapoondoka mahali hapo.
 * **Umbali mfupi na wa asili zaidi**, kwa vipimo vikubwa unaposonga kwa kasi.
-* **Njia ya haraka ya kutoka.** *Toka Soundscape* sasa iko juu kabisa ya menyu kuu.
+* **Njia ya haraka ya kutoka.** *Ondoka Soundscape* sasa iko juu kabisa ya menyu kuu.
 * **Maboresho ya ramani zisizohitaji intaneti**, ikijumuisha kusasisha ramani iliyopakuliwa palepale
   na ramani ya maeneo yanayopatikana kwenye tovuti hii.
 * **Kazi nyingi ya ufikivu** pamoja na TalkBack, hasa katika skrini za mwanzo.
@@ -158,8 +158,7 @@ Upau wa utafutaji sasa unaelewa zaidi ya majina ya mahali:
 Taarifa za Mahali zina kitufe kipya, **Fungua katika programu ya ramani**, kinachoorodhesha programu za
 ramani na uelekezaji kwenye simu yako. Chagua *Tumia programu hii kila wakati* na kitufe kitakuwa, kwa
 mfano, *Fungua katika Google Maps*, na kuifungua mara moja; kubonyeza kwa muda mrefu hurudisha orodha.
-Orodha za *Sehemu za Karibu* na *Alama* pia zina vitendo vya kisoma skrini *Fungua katika…* na *Shiriki*,
-kando ya *Anzisha Beacon ya Sauti*.
+Orodha za *Sehemu za Karibu* na *Alama* pia zina vitendo vya kisoma skrini *Fungua katika…* na *Shiriki*.
 
 ### Beacon na alama
 
@@ -237,12 +236,12 @@ zinazoweka kitenzi mwishoni, na vidokezo vyenye maana pale ambapo hapakuwa na ch
 
 ### Menyu na uelekezaji
 
-* **Toka Soundscape** sasa ni kipengee cha kwanza kwenye menyu kuu, badala ya kuwa chini zaidi.
+* **Ondoka Soundscape** sasa ni kipengee cha kwanza kwenye menyu kuu, badala ya kuwa chini zaidi.
 * Menyu kuu haiachi tena ukanda wa skrini upande mmoja, jambo lililowapa watumiaji wa visomaji skrini
   eneo la ziada la kugusa lililokuwa likichanganya.
 * Ishara ya kurudi nyuma ya mfumo hairuki tena ngazi unapovinjari makundi katika Maeneo ya Karibu.
-* *Mafunzo ya sauti* yamepewa jina jipya **mafunzo yenye mwongozo**.
-* Mipangilio imepangwa upya, na *Rejesha chaguo-msingi* sasa hufuta kila kitu ipasavyo.
+* *Mafunzo ya sauti* yana jina jipya: **Mafunzo elekezi**.
+* Mipangilio imepangwa upya, na *Rejesha mipangilio kwa chaguomsingi* sasa hufuta kila kitu ipasavyo.
 
 ### Uthabiti
 

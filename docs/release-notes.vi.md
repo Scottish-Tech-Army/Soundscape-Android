@@ -155,7 +155,7 @@ Thanh tìm kiếm giờ hiểu nhiều hơn tên địa điểm:
 Chi tiết vị trí có nút mới **Mở trong ứng dụng bản đồ**, liệt kê các ứng dụng bản đồ và chỉ đường trên
 điện thoại của bạn. Đánh dấu *Luôn dùng ứng dụng này* và nút sẽ đổi thành, ví dụ, *Mở trong Google Maps*,
 mở ngay ứng dụng đó; nhấn giữ sẽ hiện lại danh sách. Các danh sách *Địa điểm gần đây* và *Điểm đánh dấu*
-cũng có thao tác trình đọc màn hình *Mở trong…* và *Chia sẻ*, bên cạnh *Bắt đầu đèn hiệu âm thanh*.
+cũng có thao tác trình đọc màn hình *Mở trong…* và *Chia sẻ*.
 
 ### Đèn hiệu và điểm đánh dấu
 
@@ -237,8 +237,8 @@ chỗ vốn chẳng có gợi ý nào.
   hình một vùng chạm phụ gây bối rối.
 * Cử chỉ quay lại của hệ thống không còn bỏ qua một cấp khi bạn duyệt các danh mục trong «Địa điểm gần
   đây».
-* *Hướng dẫn bằng âm thanh* đã được đổi tên thành **hướng dẫn có dẫn dắt**.
-* Phần cài đặt đã được sắp xếp lại, và *Đặt lại về mặc định* giờ xóa mọi thứ đúng cách.
+* *Hướng dẫn bằng âm thanh* có tên mới: **Hướng dẫn từng bước**.
+* Phần cài đặt đã được sắp xếp lại, và *Đặt lại cài đặt về mặc định* giờ xóa mọi thứ đúng cách.
 
 ### Độ ổn định
 

@@ -44,7 +44,7 @@ Vanhempien versioiden tiedot löytyvät sivulta
 * **Herää kun poistut.** Kun siirrät Soundscapen lepotilaan, uusi *Herää kun poistut* -painike
   siirtää sen sen sijaan odotustilaan, ja se herää itsestään, kun lähdet paikalta.
 * **Lyhyemmät, luontevammat etäisyydet**, suuremmilla yksiköillä kun liikut nopeasti.
-* **Nopeampi uloskäynti.** *Poistu Soundscapesta* on nyt päävalikon ylimpänä.
+* **Nopeampi uloskäynti.** *Sulje Soundscape* on nyt päävalikon ylimpänä.
 * **Parannuksia offline-karttoihin**, muun muassa jo ladatun kartan päivittäminen ja kartta
   saatavilla olevista alueista tällä sivustolla.
 * **Paljon saavutettavuustyötä** TalkBackin parissa, erityisesti aloitusnäytöissä.
@@ -160,7 +160,7 @@ Sijainnin tiedoissa on uusi painike, **Avaa karttasovelluksessa**, joka luettele
 ja navigointisovellukset. Valitse *Käytä aina tätä sovellusta*, niin painikkeessa lukee esimerkiksi
 *Avaa sovelluksessa Google Maps* ja se avaa sovelluksen heti; pitkä painallus tuo luettelon takaisin.
 *Lähiympäristön paikat*- ja *Merkitsimet*-luetteloissa on myös näytönlukijan toiminnot *Avaa
-sovelluksessa…* ja *Jaa*, *Käynnistä äänimajakka* -toiminnon vieressä.
+sovelluksessa…* ja *Jaa*.
 
 ### Majakka ja merkitsimet
 
@@ -237,12 +237,12 @@ järkevät vihjeet siellä missä niitä ei ollut lainkaan.
 
 ### Valikot ja navigointi
 
-* **Poistu Soundscapesta** on nyt päävalikon ensimmäinen kohta sen sijaan että olisi alempana.
+* **Sulje Soundscape** on nyt päävalikon ensimmäinen kohta sen sijaan että olisi alempana.
 * Päävalikko ei enää jätä näkyviin kaistaletta näytöstä toiselle reunalle, mikä antoi ruudunlukijan
   käyttäjille hämmentävän ylimääräisen kosketusalueen.
 * Järjestelmän paluuele ei enää ohita tasoa, kun selaat luokkia Lähellä olevat paikat -näkymässä.
-* *Ääniopas* on nimetty uudelleen **ohjatuksi oppaaksi**.
-* Asetukset on siistitty, ja *Palauta oletusarvot* tyhjentää nyt kaiken kunnolla.
+* *Ääniopas* on saanut uuden nimen: **Opastettu tutoriaali**.
+* Asetukset on siistitty, ja *Palauta oletusasetukset* tyhjentää nyt kaiken kunnolla.
 
 ### Vakaus
 

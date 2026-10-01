@@ -164,7 +164,7 @@ Os detalhes da localização têm um novo botão, **Abrir numa aplicação de ma
 aplicações de mapas e de navegação do seu telemóvel. Assinale *Usar sempre esta aplicação* e o botão
 passa a dizer, por exemplo, *Abrir em Google Maps*, abrindo-a de imediato; um toque longo volta a
 mostrar a lista. As listas *Locais nas Proximidades* e *Marcos* também têm as ações do leitor de
-ecrã *Abrir em…* e *Partilhar*, ao lado de *Iniciar Sinal de Áudio*.
+ecrã *Abrir em…* e *Partilhar*.
 
 ### O sinal e os marcos
 
@@ -248,7 +248,7 @@ em idiomas que colocam o verbo no fim, e sugestões sensatas onde não existia n
 * O gesto de retroceder do sistema já não salta um nível quando percorre categorias em Locais
   próximos.
 * O *tutorial áudio* passou a chamar-se **tutorial guiado**.
-* As definições foram arrumadas e *Repor predefinições* limpa agora tudo corretamente.
+* As definições foram arrumadas e *Repor as definições para os valores predefinidos* limpa agora tudo corretamente.
 
 ### Estabilidade
 

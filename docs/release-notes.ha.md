@@ -132,8 +132,8 @@ Danna *Na Baya* a belun kunne yana rage Matakin Sanarwa mataki ɗaya a kowane lo
 Sauƙaƙe da Muhimmi zuwa Shiru, sannan ya koma Cikakke. Ana faɗin sabon matakin kowane lokaci. Wannan yana aiki
 a duka yanayoyin biyu na maɓallan sarrafawa, shi ya sa maɓallan belun kunne suka ɗan canza:
 
-* A *Yanayin Asali*, idan babu tafarkin da ake kunnawa, *Na Gaba* yanzu yana sanar da *Kewaye da Ni*, kuma
-  *Inda Nake* ba ya kan maɓallai kuma. Yayin kunna tafarki, *Na Gaba* da *Na Baya* har yanzu suna motsawa
+* A *Yanayin Asali*, idan babu tafarkin da ake kunnawa, *Na Gaba* yanzu yana sanar da *Kewaye Na*, kuma
+  *Matsayi Na* ba ya kan maɓallai kuma. Yayin kunna tafarki, *Na Gaba* da *Na Baya* har yanzu suna motsawa
   tsakanin tashoshi.
 * A yanayin *Menu na Sauti*, *Na Baya* ba ya komawa baya a menu kuma. *Na Gaba* har yanzu yana ci gaba a
   cikinsa kuma *Kunna/Dakata* har yanzu yana zaɓa. Alamomi da tafarkuna a menu yanzu an jera su bisa suna,
@@ -160,7 +160,7 @@ Sandar bincike yanzu tana fahimtar fiye da sunayen wurare:
 Cikakkun Bayanan Wuri suna da sabon maɓalli, **Buɗe a manhajar taswira**, wanda ke jera manhajojin taswira da
 na kewayawa a wayarka. Zaɓi *Yi amfani da wannan manhaja koyaushe* sai maɓallin ya zama, misali, *Buɗe a
 Google Maps*, ya buɗe ta nan take; latsawa na tsawon lokaci yana dawo da jerin. Jerin *Wurare na Kusa* da
-*Alamomi* suma suna da ayyukan mai karanta allo *Buɗe a…* da *Raba*, kusa da *Fara Siginar Sauti*.
+*Alamomi* suma suna da ayyukan mai karanta allo *Buɗe a…* da *Raba*.
 
 ### Siginar sauti da alamomi
 
@@ -243,8 +243,8 @@ sanya aikatau a karshe, da kuma shawarwari masu ma'ana inda babu su ko kadan.
 * Babban menu ba ya sake barin wani bangare na fuska a gefe, wanda ya kan ba masu amfani da masu
   karanta fuska wani wuri na karin taba mai rudarwa.
 * Alamar komawa baya ta na'urar ba ta sake tsallake mataki idan kana duba nau'o'i a Wuraren Kusa.
-* An canza sunan *Koyarwar Sauti* zuwa **Koyarwar Jagora**.
-* An tsara saitunan, kuma *Mayar da zuwa tsoho* yanzu yana share komai yadda ya kamata.
+* *Koyarwar Sauti* ta sami sabon suna: **Jagorar Koyarwa**.
+* An tsara saitunan, kuma *Mayar da Saitunan zuwa Asali* yanzu yana share komai yadda ya kamata.
 
 ### Kwanciyar hankali
 

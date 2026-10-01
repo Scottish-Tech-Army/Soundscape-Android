@@ -162,8 +162,7 @@ Bilah pencarian kini memahami lebih dari sekadar nama tempat:
 Detail Lokasi punya tombol baru, **Buka di Aplikasi Peta**, yang menampilkan aplikasi peta dan navigasi
 di ponsel Anda. Centang *Selalu gunakan aplikasi ini* dan tombol berubah menjadi, misalnya, *Buka di
 Google Maps*, yang langsung membukanya; tekan lama untuk memunculkan daftar lagi. Daftar *Tempat di
-Sekitar* dan *Penanda* juga punya aksi pembaca layar *Buka di…* dan *Bagikan*, di samping *Mulai Suar
-Audio*.
+Sekitar* dan *Penanda* juga punya aksi pembaca layar *Buka di…* dan *Bagikan*.
 
 ### Suar dan penanda
 
@@ -247,7 +246,7 @@ kata kerja di akhir, serta petunjuk yang masuk akal di tempat yang sebelumnya ti
 * Gestur kembali sistem tidak lagi melewati satu tingkat saat Anda menelusuri kategori di «Tempat
   Terdekat».
 * *Tutorial audio* berganti nama menjadi **tutorial terpandu**.
-* Pengaturan telah dirapikan, dan *Setel ulang ke bawaan* kini benar-benar membersihkan semuanya.
+* Pengaturan telah dirapikan, dan *Atur ulang pengaturan ke default* kini benar-benar membersihkan semuanya.
 
 ### Kestabilan
 

@@ -168,7 +168,7 @@ Los detalles de la ubicación tienen un botón nuevo, **Abrir en aplicación de 
 aplicaciones de mapas y de navegación de tu teléfono. Marca *Usar siempre esta aplicación* y el botón
 pasa a ser, por ejemplo, *Abrir en Google Maps*, y la abre directamente; una pulsación larga vuelve a
 mostrar la lista. Las listas *Lugares cercanos* y *Marcadores* también tienen las acciones del lector
-de pantalla *Abrir en…* y *Compartir*, junto a *Iniciar señal de audio*.
+de pantalla *Abrir en…* y *Compartir*.
 
 ### La señal y los marcadores
 
@@ -254,7 +254,7 @@ ninguna.
 * El gesto de retroceso del sistema ya no se salta un nivel cuando navegas por categorías en Lugares
   cercanos.
 * El *tutorial de audio* pasa a llamarse **tutorial guiado**.
-* Los ajustes se han ordenado, y *Restablecer valores predeterminados* borra ahora todo
+* Los ajustes se han ordenado, y *Restablecer los ajustes a los valores predeterminados* borra ahora todo
   correctamente.
 
 ### Estabilidad
