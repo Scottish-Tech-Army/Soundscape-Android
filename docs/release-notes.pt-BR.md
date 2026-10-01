@@ -44,7 +44,7 @@ As notas de versões anteriores estão na página
   *Despertar quando eu sair* o coloca no modo Soneca, e ele desperta sozinho quando você sai do
   local.
 * **Distâncias mais curtas e naturais**, com unidades maiores quando você se desloca rapidamente.
-* **Uma saída mais rápida.** *Sair do Soundscape* agora fica no topo do menu principal.
+* **Uma saída mais rápida.** *Fechar o Soundscape* agora fica no topo do menu principal.
 * **Melhorias nos mapas off-line**, incluindo a atualização de um mapa já baixado e um mapa das
   regiões disponíveis neste site.
 * **Muito trabalho de acessibilidade** com o TalkBack, especialmente nas telas iniciais.
@@ -164,7 +164,7 @@ Os detalhes da localização têm um botão novo, **Abrir em um aplicativo de ma
 aplicativos de mapas e de navegação do seu celular. Marque *Sempre usar este aplicativo* e o botão
 passa a ser, por exemplo, *Abrir em Google Maps*, abrindo-o na hora; um toque longo traz a lista de
 volta. As listas *Locais Próximos* e *Favoritos* também têm as ações do leitor de tela *Abrir em…* e
-*Compartilhar*, ao lado de *Iniciar Sinalizador Sonoro*.
+*Compartilhar*.
 
 ### O sinalizador e os favoritos
 
@@ -241,13 +241,13 @@ o verbo no fim, e dicas sensatas onde não havia nenhuma.
 
 ### Menus e navegação
 
-* **Sair do Soundscape** agora é o primeiro item do menu principal, em vez de ficar mais abaixo.
+* **Fechar o Soundscape** agora é o primeiro item do menu principal, em vez de ficar mais abaixo.
 * O menu principal não deixa mais aparecer uma faixa da tela em uma das laterais, que dava a quem
   usa leitor de tela uma área extra confusa para tocar.
 * O gesto de voltar do sistema não pula mais um nível quando você navega pelas categorias em Lugares
   próximos.
 * O *tutorial de áudio* passou a se chamar **tutorial guiado**.
-* As configurações foram organizadas, e *Restaurar padrões* agora limpa tudo corretamente.
+* As configurações foram organizadas, e *Redefinir Ajustes Padrão* agora limpa tudo corretamente.
 
 ### Estabilidade
 

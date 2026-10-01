@@ -158,7 +158,7 @@ Søkefeltet forstår nå mer enn stedsnavn:
 Posisjonsinformasjonen har en ny knapp, **Åpne i kartapp**, som viser kart- og navigasjonsappene på
 telefonen din. Kryss av for *Bruk alltid denne appen*, så heter knappen for eksempel *Åpne i Google
 Maps* og åpner den med én gang; et langt trykk henter listen fram igjen. Listene *Steder i nærheten*
-og *Markører* har også skjermleserhandlingene *Åpne i …* og *Del*, ved siden av *Start lydsignal*.
+og *Markører* har også skjermleserhandlingene *Åpne i …* og *Del*.
 
 ### Lydsignalet og markører
 
@@ -239,8 +239,8 @@ verbet sist, og fornuftige hint der det ikke var satt noen i det hele tatt.
   et forvirrende ekstra område å trykke på.
 * Systemets tilbakebevegelse hopper ikke lenger over et nivå når du blar gjennom kategorier i Steder i
   nærheten.
-* *Lydveiledningen* har byttet navn til **veiledet opplæring**.
-* Innstillingene er ryddet, og *Tilbakestill til standardverdier* tømmer nå alt riktig.
+* *Lydveiledningen* har fått nytt navn: **Veiledet gjennomgang**.
+* Innstillingene er ryddet, og *Tilbakestill innstillingene til standard* tømmer nå alt riktig.
 
 ### Stabilitet
 

@@ -133,7 +133,7 @@ słyszysz nowy poziom. Działa to w obu trybach sterowania multimediami, dlatego
 trochę się zmieniły:
 
 * W *Trybie oryginalnym* *Następny* uruchamia teraz *Wokół mnie*, gdy żadna trasa nie jest odtwarzana,
-  a *Moja pozycja* nie jest już na przyciskach. Podczas odtwarzania trasy *Następny* i *Poprzedni*
+  a *Moja lokalizacja* nie jest już na przyciskach. Podczas odtwarzania trasy *Następny* i *Poprzedni*
   nadal przechodzą między punktami trasy.
 * W trybie *Menu audio* *Poprzedni* nie cofa się już w menu. *Następny* nadal po nim przechodzi, a
   *Odtwórz/Pauza* nadal wybiera. Znaczniki i trasy są teraz w menu ułożone według nazw, a po
@@ -160,7 +160,7 @@ W szczegółach lokalizacji jest nowy przycisk **Otwórz w aplikacji z mapami**,
 aplikacje z mapami i nawigacją na twoim telefonie. Zaznacz *Zawsze używaj tej aplikacji*, a przycisk
 zmieni się na przykład na *Otwórz w aplikacji Mapy Google* i od razu ją otworzy; długie naciśnięcie
 przywraca listę. Listy *Miejsca w pobliżu* i *Znaczniki* mają też akcje czytnika ekranu
-*Otwórz w aplikacji…* i *Udostępnij*, obok *Uruchom dźwięk naprowadzający*.
+*Otwórz w aplikacji…* i *Udostępnij*.
 
 ### Naprowadzanie i znaczniki
 
@@ -242,7 +242,7 @@ stawiają czasownik na końcu, oraz sensowne podpowiedzi tam, gdzie nie było ż
   mylący dodatkowy obszar do stuknięcia.
 * Systemowy gest cofania nie pomija już poziomu, gdy przeglądasz kategorie w Miejscach w pobliżu.
 * *Samouczek dźwiękowy* został przemianowany na **samouczek prowadzony**.
-* Ustawienia zostały uporządkowane, a *Przywróć wartości domyślne* czyści teraz wszystko poprawnie.
+* Ustawienia zostały uporządkowane, a *Przywróć ustawienia domyślne* czyści teraz wszystko poprawnie.
 
 ### Stabilność
 

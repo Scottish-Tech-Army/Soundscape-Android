@@ -42,7 +42,7 @@ Opombe za starejše različice so na strani
 * **Prebudi ob odhodu.** Ko Soundscape preklopite v način spanja, ga novi gumb *Prebudi ob odhodu*
   namesto tega preklopi v način dremeža, in aplikacija se sama prebudi, ko odidete.
 * **Krajše, bolj naravne razdalje**, z večjimi enotami, ko se premikate hitro.
-* **Hitrejši izhod.** *Izhod iz Soundscapea* je zdaj na vrhu glavnega menija.
+* **Hitrejši izhod.** *Zapri Soundscape* je zdaj na vrhu glavnega menija.
 * **Izboljšave zemljevidov brez povezave**, vključno s posodobitvijo že prenesenega zemljevida in
   zemljevidom razpoložljivih regij na tem spletnem mestu.
 * **Veliko dela na dostopnosti** s TalkBackom, zlasti pri uvodnih zaslonih.
@@ -155,7 +155,7 @@ Podrobnosti lokacije imajo nov gumb **Odpri v aplikaciji za zemljevide**, ki nav
 zemljevide in navigacijo v vašem telefonu. Označite *Vedno uporabi to aplikacijo* in gumb se spremeni,
 na primer v *Odpri v aplikaciji Google Zemljevidi*, in jo takoj odpre; dolg pritisk znova prikaže
 seznam. Seznama *Kraji v bližini* in *Oznake* imata tudi dejanji za bralnik zaslona *Odpri v
-aplikaciji…* in *Deli*, poleg *Zaženi zvočni svetilnik*.
+aplikaciji…* in *Deli*.
 
 ### Svetilnik in oznake
 
@@ -232,12 +232,12 @@ postavljajo na konec, in smiselne namige tam, kjer jih sploh ni bilo.
 
 ### Meniji in navigacija
 
-* **Izhod iz Soundscapea** je zdaj prva postavka glavnega menija, namesto da bi bila niže.
+* **Zapri Soundscape** je zdaj prva postavka glavnega menija, namesto da bi bila niže.
 * Glavni meni ob strani ne pušča več vidnega pasu zaslona, kar je uporabnikom bralnikov zaslona dajalo
   zmedeno dodatno območje za dotik.
 * Sistemska poteza za nazaj ne preskoči več ravni, ko brskate po kategorijah v Kraji v bližini.
-* *Zvočni vodnik* se zdaj imenuje **vodeni vodnik**.
-* Nastavitve so pospravljene, *Ponastavi na privzeto* pa zdaj pravilno počisti vse.
+* *Zvočni vodnik* ima novo ime: **Vodena vadnica**.
+* Nastavitve so pospravljene, *Ponastavi nastavitve na privzete vrednosti* pa zdaj pravilno počisti vse.
 
 ### Stabilnost
 

@@ -43,7 +43,7 @@ Notele pentru versiunile mai vechi se află pe pagina
 * **Trezire la plecare.** Când puneți Soundscape în modul Repaus, noul buton *Trezire la plecare* îl
   trece în schimb în modul Amânare, iar aplicația se trezește singură când plecați.
 * **Distanțe mai scurte și mai firești**, cu unități mai mari când vă deplasați rapid.
-* **O ieșire mai rapidă.** *Ieșire din Soundscape* se află acum în partea de sus a meniului principal.
+* **O ieșire mai rapidă.** *Ieși din Soundscape* se află acum în partea de sus a meniului principal.
 * **Îmbunătățiri ale hărților offline**, inclusiv actualizarea pe loc a unei hărți deja descărcate și
   o hartă a regiunilor disponibile pe acest site.
 * **Multă muncă de accesibilitate** cu TalkBack, mai ales în jurul ecranelor introductive.
@@ -161,7 +161,7 @@ Detaliile locației au un buton nou, **Deschide în aplicația de hărți**, car
 hărți și navigație de pe telefon. Bifați *Folosește întotdeauna această aplicație* și butonul devine,
 de exemplu, *Deschide în Google Maps*, deschizând-o imediat; o apăsare lungă aduce înapoi lista.
 Listele *Locuri din apropiere* și *Marcaje* au și acțiunile pentru cititorul de ecran *Deschide în…*
-și *Partajează*, alături de *Pornește baliza audio*.
+și *Partajează*.
 
 ### Baliza și marcajele
 
@@ -239,13 +239,13 @@ limbile care pun verbul la final și indicații utile acolo unde nu fusese setat
 
 ### Meniuri și navigare
 
-* **Ieșire din Soundscape** este acum primul element din meniul principal, în loc să fie mai jos.
+* **Ieși din Soundscape** este acum primul element din meniul principal, în loc să fie mai jos.
 * Meniul principal nu mai lasă vizibilă o fâșie a ecranului într-o parte, care le oferea utilizatorilor
   de cititoare de ecran o zonă suplimentară derutantă de atins.
 * Gestul de revenire al sistemului nu mai sare peste un nivel când parcurgeți categorii în Locuri din
   apropiere.
 * *Tutorialul audio* a fost redenumit **tutorial ghidat**.
-* Setările au fost ordonate, iar *Resetare la valorile implicite* șterge acum totul corect.
+* Setările au fost ordonate, iar *Resetare setări la valorile implicite* șterge acum totul corect.
 
 ### Stabilitate
 

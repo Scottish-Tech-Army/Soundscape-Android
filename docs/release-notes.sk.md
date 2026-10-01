@@ -155,7 +155,7 @@ Podrobnosti o mieste majú nové tlačidlo **Otvoriť v mapovej aplikácii**, kt
 navigačné aplikácie vo vašom telefóne. Zaškrtnite *Vždy používať túto aplikáciu* a tlačidlo sa zmení
 napríklad na *Otvoriť v aplikácii Mapy Google* a otvorí ju hneď; dlhé stlačenie vráti zoznam.
 Zoznamy *Miesta v okolí* a *Značky* majú aj akcie pre čítačku obrazovky *Otvoriť v aplikácii…* a
-*Zdieľať*, vedľa *Spustiť zvukový maják*.
+*Zdieľať*.
 
 ### Maják a značky
 
@@ -237,8 +237,8 @@ sloveso na koniec, a zmysluplné pokyny tam, kde neboli nastavené žiadne.
 * Hlavná ponuka už nenecháva po strane vidieť pruh obrazovky, ktorý používateľom čítačiek dával
   mätúcu ďalšiu plochu na ťuknutie.
 * Systémové gesto späť už nepreskakuje úroveň, keď prechádzate kategórie v Miestach v okolí.
-* *Zvukový sprievodca* bol premenovaný na **riadeného sprievodcu**.
-* Nastavenia boli upratané a *Obnoviť predvolené hodnoty* teraz správne vymaže všetko.
+* *Zvukový sprievodca* má nový názov: **Sprievodca aplikáciou**.
+* Nastavenia boli upratané a *Obnoviť predvolené nastavenia* teraz správne vymaže všetko.
 
 ### Stabilita
 

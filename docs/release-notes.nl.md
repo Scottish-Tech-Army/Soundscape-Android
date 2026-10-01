@@ -164,8 +164,7 @@ De zoekbalk begrijpt nu meer dan alleen plaatsnamen:
 In de locatiedetails staat een nieuwe knop **Openen in kaart-app**, met een lijst van de kaart- en
 navigatie-apps op uw telefoon. Vink *Altijd deze app gebruiken* aan en de knop heet bijvoorbeeld
 *Openen in Google Maps* en opent die meteen; lang drukken toont de lijst weer. De lijsten *Plaatsen in
-de buurt* en *Markeringen* hebben ook de schermlezeracties *Openen in…* en *Delen*, naast
-*Audiobaken starten*.
+de buurt* en *Markeringen* hebben ook de schermlezeracties *Openen in…* en *Delen*.
 
 ### Het baken en markeringen
 
@@ -248,8 +247,8 @@ die het werkwoord achteraan plaatsen, en zinnige hints waar er helemaal geen war
   een verwarrend extra tikgebied gaf.
 * Het terugveeggebaar van het systeem slaat geen niveau meer over wanneer u door categorieën bladert
   in Plaatsen in de buurt.
-* De *audiotutorial* heet nu **begeleide tutorial**.
-* De instellingen zijn opgeruimd, en *Standaardwaarden herstellen* wist nu werkelijk alles.
+* De *audiotutorial* heeft een nieuwe naam: **Geleide zelfstudie**.
+* De instellingen zijn opgeruimd, en *Instellingen terugzetten naar standaardwaarden* wist nu werkelijk alles.
 
 ### Stabiliteit
 

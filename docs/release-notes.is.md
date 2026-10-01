@@ -154,8 +154,7 @@ Leitarstikan skilur nú meira en staðanöfn:
 Upplýsingar um staðsetningu hafa nýjan hnapp, **Opna í kortaforriti**, sem sýnir korta- og
 leiðsöguforritin í símanum. Hakaðu við *Nota alltaf þetta forrit* og þá heitir hnappurinn til dæmis
 *Opna í Google Maps* og opnar það strax; langt ýtt kallar listann aftur fram. Listarnir *Nálægir
-staðir* og *Merki* hafa líka skjálesaraaðgerðirnar *Opna í…* og *Deila*, við hliðina á *Kveikja á
-hljóðvita*.
+staðir* og *Merki* hafa líka skjálesaraaðgerðirnar *Opna í…* og *Deila*.
 
 ### Hljóðvitinn og merki
 
@@ -234,8 +233,8 @@ Afar mikil vinna hefur farið í hegðun skjálesara, einkum á kynningarskjánu
 * Aðalvalmyndin skilur ekki lengur eftir ræmu af skjánum öðrum megin, sem gaf notendum skjálesara
   ruglingslegt aukasvæði til að snerta.
 * Til baka-bending kerfisins sleppir ekki lengur þrepi þegar þú flettir flokkum í Staðir í nágrenninu.
-* *Hljóðleiðsögnin* heitir nú **leidd kennsla**.
-* Stillingar hafa verið teknar til og *Endurstilla á sjálfgefið* hreinsar nú allt rétt.
+* *Hljóðleiðsögnin* hefur fengið nýtt nafn: **Leiðsögunámskeið**.
+* Stillingar hafa verið teknar til og *Endurstilla stillingar í sjálfgefið ástand* hreinsar nú allt rétt.
 
 ### Stöðugleiki
 

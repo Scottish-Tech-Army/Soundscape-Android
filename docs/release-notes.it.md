@@ -168,7 +168,7 @@ I dettagli della posizione hanno un nuovo pulsante, **Apri in un'app di mappe**,
 mappe e di navigazione del telefono. Spunta *Usa sempre questa app* e il pulsante diventa, per
 esempio, *Apri in Google Maps*, e la apre subito; una pressione prolungata fa tornare l'elenco. Gli
 elenchi *Luoghi nelle vicinanze* e *Indicatori* hanno anche le azioni per lo screen reader *Apri in…*
-e *Condividi*, accanto ad *Avvia audiofaro*.
+e *Condividi*.
 
 ### L'audiofaro e gli indicatori
 
@@ -254,7 +254,7 @@ stata impostata alcuna.
 * Il gesto di ritorno di sistema non salta più un livello mentre sfogli le categorie in Luoghi nelle
   vicinanze.
 * Il *tutorial audio* è stato rinominato **tutorial guidato**.
-* Le impostazioni sono state riordinate e *Ripristina i valori predefiniti* ora cancella davvero
+* Le impostazioni sono state riordinate e *Ripristina impostazioni predefinite* ora cancella davvero
   tutto.
 
 ### Stabilità

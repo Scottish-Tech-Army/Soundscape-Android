@@ -164,8 +164,7 @@ A keresősáv most már többet ért a helyneveknél:
 A helyszín adataiban új gomb van, a **Megnyitás térképalkalmazásban**, amely felsorolja a telefonon
 lévő térkép- és navigációs alkalmazásokat. Jelölje be a *Mindig ezzel az alkalmazással* lehetőséget,
 és a gomb például *Megnyitás itt: Google Térkép* lesz, és azonnal megnyitja; hosszú megnyomással újra
-megjelenik a lista. A *Közeli helyek* és a *Jelölők* listában az *Irányjelző hang indítása* mellett a
-*Megnyitás itt:…* és a *Megosztás* képernyőolvasó-művelet is elérhető.
+megjelenik a lista. A *Közeli helyek* és a *Jelölők* listában a *Megnyitás itt:…* és a *Megosztás* képernyőolvasó-művelet is elérhető.
 
 ### Az irányjelző hang és a jelölők
 
@@ -247,8 +246,8 @@ felolvasása, helyes „koppintson duplán a...” súgók az igét a végére h
   zavaró további koppintási területet adott.
 * A rendszer vissza mozdulata már nem ugrik át egy szintet, amikor a Közeli helyek kategóriái között
   böngészik.
-* A *hangos oktatóanyag* neve **vezetett oktatóanyag** lett.
-* A beállítások rendezettebbek lettek, és az *Alaphelyzetbe állítás* mostantól helyesen töröl mindent.
+* A *hangos oktatóanyag* új neve: **Vezetett bemutató**.
+* A beállítások rendezettebbek lettek, és a *Beállítások visszaállítása alapértelmezettre* mostantól helyesen töröl mindent.
 
 ### Stabilitás
 

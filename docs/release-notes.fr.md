@@ -176,8 +176,7 @@ Les détails de l’emplacement ont un nouveau bouton **Ouvrir dans une applicat
 liste les applications de cartes et de navigation de votre téléphone. Cochez *Toujours utiliser
 cette application* et le bouton devient, par exemple, *Ouvrir dans Google Maps*, qui l’ouvre tout de
 suite ; un appui long fait revenir la liste. Les listes *Emplacements à proximité* et *Marqueurs* ont
-aussi les actions de lecteur d’écran *Ouvrir dans…* et *Partager*, à côté de *Démarrer la balise
-sonore*.
+aussi les actions de lecteur d’écran *Ouvrir dans…* et *Partager*.
 
 ### La balise sonore et les marqueurs
 
@@ -266,7 +265,7 @@ phrase, et des indications pertinentes là où il n'y en avait aucune.
 * Le geste de retour du système ne saute plus un niveau lorsque vous parcourez les catégories dans
   Lieux à proximité.
 * Le *tutoriel audio* a été renommé **tutoriel guidé**.
-* Les réglages ont été réorganisés, et *Réinitialiser les valeurs par défaut* efface désormais
+* Les réglages ont été réorganisés, et *Réinitialiser les réglages par défaut* efface désormais
   correctement tout.
 
 ### Stabilité

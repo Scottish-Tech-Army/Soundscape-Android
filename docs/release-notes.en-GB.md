@@ -155,7 +155,7 @@ The search bar now understands more than place names:
 Location Details has a new **Open in Maps App** button, which lists the map and navigation apps on
 your phone. Tick *Always use this app* and the button changes to, for example, *Open in Google
 Maps*, opening it straight away; a long press brings the list back. The Places Nearby and Markers
-lists have *Open in* and *Share* screen reader actions as well, alongside *Start Beacon*.
+lists have *Open in* and *Share* screen reader actions as well.
 
 ### The beacon and markers
 
@@ -238,7 +238,7 @@ sensible hints where none had been set at all.
   reader users a confusing extra area to tap.
 * The system back gesture no longer skips a level when you're browsing categories in Places Nearby.
 * The *Audio Tutorial* has been renamed the **Guided Tutorial**.
-* Settings has been tidied, and *Reset to defaults* now properly clears everything.
+* Settings has been tidied, and *Reset settings to defaults* now properly clears everything.
 
 ### Stability
 

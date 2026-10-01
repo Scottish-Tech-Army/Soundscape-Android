@@ -44,7 +44,7 @@ Daha eski sürümlerin notları
 * **Ayrıldığımda Uyandır.** Soundscape'i Uyku Modu'na aldığınızda, yeni *Ayrıldığımda Uyandır*
   düğmesi onu bunun yerine Erteleme Modu'na alır ve oradan ayrıldığınızda kendiliğinden uyanır.
 * **Daha kısa, daha doğal mesafeler**, hızlı hareket ederken daha büyük birimlerle.
-* **Daha hızlı çıkış.** *Soundscape'ten çık* artık ana menünün en üstünde.
+* **Daha hızlı çıkış.** *Soundscape'ten Çık* artık ana menünün en üstünde.
 * **Çevrimdışı harita iyileştirmeleri**, indirilmiş bir haritanın yerinde güncellenmesi ve bu sitede
   mevcut bölgelerin haritası dahil.
 * **Çok sayıda erişilebilirlik çalışması** TalkBack ile, özellikle tanıtım ekranları çevresinde.
@@ -159,7 +159,7 @@ Arama çubuğu artık yer adlarından fazlasını anlıyor:
 Konum Ayrıntıları'nda telefonunuzdaki harita ve navigasyon uygulamalarını listeleyen yeni bir
 **Harita Uygulamasında Aç** düğmesi var. *Her zaman bu uygulamayı kullan* seçeneğini işaretlerseniz
 düğme örneğin *Google Haritalar ile Aç* olur ve uygulamayı hemen açar; uzun basış listeyi geri getirir.
-*Yakındaki Yerler* ve *Kayıtlı Noktalar* listelerinde de *Sesli İşareti Başlat*'ın yanında *… ile Aç*
+*Yakındaki Yerler* ve *Kayıtlı Noktalar* listelerinde de *… ile Aç*
 ve *Paylaş* ekran okuyucu eylemleri var.
 
 ### Sesli işaret ve kayıtlı noktalar
@@ -236,12 +236,12 @@ hiç ayarlanmamış yerlerde anlamlı ipuçları yer alıyor.
 
 ### Menüler ve gezinme
 
-* **Soundscape'ten çık** artık daha aşağıda değil, ana menünün ilk öğesi.
+* **Soundscape'ten Çık** artık daha aşağıda değil, ana menünün ilk öğesi.
 * Ana menü artık bir kenarda ekranın bir şeridini görünür bırakmıyor; bu, ekran okuyucu kullananlara
   kafa karıştırıcı fazladan bir dokunma alanı veriyordu.
 * Sistemin geri hareketi, Yakındaki Yerler içinde kategorilere göz atarken artık bir düzeyi atlamıyor.
-* *Sesli öğretici*, **rehberli öğretici** olarak yeniden adlandırıldı.
-* Ayarlar düzenlendi ve *Varsayılanlara sıfırla* artık her şeyi doğru biçimde temizliyor.
+* *Sesli öğretici*nin yeni adı: **Kılavuzlu Eğitim**.
+* Ayarlar düzenlendi ve *Ayarları varsayılana sıfırla* artık her şeyi doğru biçimde temizliyor.
 
 ### Kararlılık
 

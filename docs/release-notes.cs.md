@@ -151,8 +151,7 @@ Vyhledávací pole teď rozumí víc než jen názvům míst:
 Podrobnosti o místě mají nové tlačítko **Otevřít v mapové aplikaci**, které vypíše mapové a navigační
 aplikace ve vašem telefonu. Zaškrtněte *Vždy používat tuto aplikaci* a tlačítko se změní například na
 *Otevřít v aplikaci Mapy Google* a otevře ji hned; dlouhé stisknutí vrátí seznam. Seznamy *Místa v
-okolí* a *Značky* mají také akce pro čtečku obrazovky *Otevřít v aplikaci…* a *Sdílet*, vedle
-*Spustit zvukový maják*.
+okolí* a *Značky* mají také akce pro čtečku obrazovky *Otevřít v aplikaci…* a *Sdílet*.
 
 ### Maják a značky
 
@@ -233,8 +232,8 @@ konec, a smysluplné nápovědy tam, kde žádné nastaveny nebyly.
 * Hlavní nabídka už nenechává po straně vidět pruh obrazovky, který uživatelům čteček dával matoucí
   další plochu ke klepnutí.
 * Systémové gesto zpět už nepřeskakuje úroveň, když procházíte kategorie v Místech v okolí.
-* *Zvukový průvodce* byl přejmenován na **řízeného průvodce**.
-* Nastavení bylo uklizeno a *Obnovit výchozí hodnoty* nyní správně vymaže vše.
+* *Zvukový průvodce* má nový název: **Průvodce aplikací**.
+* Nastavení bylo uklizeno a *Obnovit výchozí nastavení* nyní správně vymaže vše.
 
 ### Stabilita
 
