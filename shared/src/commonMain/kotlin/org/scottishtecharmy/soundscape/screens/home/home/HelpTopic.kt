@@ -1,20 +1,11 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import android.content.Context
-import android.net.Uri
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import org.commonmark.node.Heading
-import org.commonmark.node.Node
-import org.commonmark.parser.Parser
-import org.commonmark.renderer.text.TextContentRenderer
-import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.faq_title_abbreviated
 import org.scottishtecharmy.soundscape.resources.menu_help
-import java.io.IOException
+import java.util.Locale
 
 sealed class HelpTopic(protected val context: Context) {
     // This class uses Uri.encode/decode because FAQ entries may contain "?", which is otherwise
@@ -69,7 +60,7 @@ sealed class HelpTopic(protected val context: Context) {
         protected open fun loadMarkdownAsset(context: Context): String? {
             val fileName = getMarkdownFileName() ?: return null
 
-            val locale = java.util.Locale.getDefault()
+            val locale = Locale.getDefault()
             val localeTag = locale.toLanguageTag() // e.g., en-GB
             val lang = locale.language // e.g., en
 
