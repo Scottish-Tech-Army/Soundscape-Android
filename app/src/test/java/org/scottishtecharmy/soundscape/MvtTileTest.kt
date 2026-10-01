@@ -4472,7 +4472,12 @@ class MvtTileTest {
                     stationaryMillis = stationaryDetector.stationaryMillis
                 )
                 // Fed once per fix from the geometry the callouts use, as GeoEngine does.
-                headingHold.update(userGeometry)
+                val holdCourse = (position.properties?.get("heading") as? Double?)?.takeIf {
+                    val accuracy = position.properties?.get("bearingAccuracy") as? Double?
+                    (accuracy != null) &&
+                        (accuracy < TravelHeadingEstimator.MAXIMUM_ROAD_COURSE_ACCURACY_DEGREES)
+                }
+                headingHold.update(userGeometry, holdCourse)
 
                 // Neither of these is a callout - they're state changes the callout text can't
                 // show, and which are the whole point of the stationary work: whether a ride

@@ -84,6 +84,24 @@ class HeadingHoldTest {
     }
 
     @Test
+    fun testAContradictingCourseDropsTheHold() {
+        // Turning while too slow to count as moving: the course isn't trusted enough to steer by,
+        // but it does say the user is no longer going the held way.
+        val hold = HeadingHold()
+        hold.update(walking(180.0, at(0.0, 0.0), 0L))
+        hold.update(standing(at(0.0, -1.0), 1_000L), course = 300.0)
+        assertNull(hold.heading(at(0.0, -1.0), ruler, 2_000L))
+    }
+
+    @Test
+    fun testAnAgreeingCourseKeepsTheHold() {
+        val hold = HeadingHold()
+        hold.update(walking(180.0, at(0.0, 0.0), 0L))
+        hold.update(standing(at(0.0, -1.0), 1_000L), course = 220.0)
+        assertEquals(180.0, hold.heading(at(0.0, -1.0), ruler, 2_000L))
+    }
+
+    @Test
     fun testANewerHeadingReplacesTheOldOne() {
         val hold = HeadingHold()
         hold.update(walking(180.0, at(0.0, 0.0), 0L))
