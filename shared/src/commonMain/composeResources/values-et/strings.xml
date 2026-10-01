@@ -527,6 +527,7 @@
     <string name="accessibility_screen_reader_enabled">Kuna sul on ekraanilugeja sisse lülitatud, soovitame rakenduses graafilised kaardid välja lülitada. Saad selle seadistuse siin muuta või lihtsalt jätkata.</string>
     <string name="accessibility_screen_reader_disabled">Kuna sul ei ole ekraanilugeja sisse lülitatud, eeldame, et soovid rakenduses graafilisi kaarte näha. Saad selle seadistuse siin muuta või lihtsalt jätkata.</string>
     <string name="text_field_clear_text">Tühjenda tekst</string>
+    <string name="text_field_paste">Kleebi</string>
     <string name="marker_name_description_hint">muuta markeri nime</string>
     <string name="annotation_description_hint">lisada valikuline märkus, mis aitab seda markerit hiljem ära tunda</string>
     <string name="route_name_description_hint">muuta marsruudi nime</string>

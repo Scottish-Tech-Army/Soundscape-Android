@@ -387,6 +387,7 @@
     <string name="accessibility_screen_reader_enabled">چونکہ آپ نے اسکرین ریڈر فعال کیا ہوا ہے، ہم تجویز کرتے ہیں کہ ایپ میں گرافیکل نقشے بند کر دیے جائیں۔ آپ یہ سیٹنگ یہاں تبدیل کر سکتے ہیں، یا بس آگے بڑھ سکتے ہیں۔</string>
     <string name="accessibility_screen_reader_disabled">چونکہ آپ نے اسکرین ریڈر فعال نہیں کیا ہوا، ہم یہ فرض کرتے ہیں کہ آپ ایپ میں گرافیکل نقشے دیکھنا چاہتے ہیں۔ آپ یہ سیٹنگ یہاں تبدیل کر سکتے ہیں، یا بس آگے بڑھ سکتے ہیں۔</string>
     <string name="text_field_clear_text">متن صاف کریں</string>
+    <string name="text_field_paste">پیسٹ کریں</string>
     <string name="marker_name_description_hint">مارکر کے نام میں ترمیم کرنے</string>
     <string name="annotation_description_hint">بعد میں اس مارکر کو پہچاننے میں مدد کے لیے ایک اختیاری نوٹ شامل کرنے</string>
     <string name="route_name_description_hint">روٹ کے نام میں ترمیم کرنے</string>

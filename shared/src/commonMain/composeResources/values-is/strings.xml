@@ -507,6 +507,7 @@
     <string name="offline_map_storage_description">Þú getur hlaðið niður kortum og vistað þau í símanum svo Soundscape virki án nettengingar. Sjálfgefið eru kortin vistuð í ytri geymslu símans, en hér geturðu valið annan stað.</string>
     <string name="offline_map_wifi_only">Nota aðeins Wi‑Fi til að hlaða niður kortum</string>
     <string name="text_field_clear_text">Hreinsa texta</string>
+    <string name="text_field_paste">Líma</string>
     <string name="marker_name_description_hint">breyta nafni merkisins</string>
     <string name="annotation_description_hint">bæta við valfrjálsri athugasemd til að auðkenna þetta merki síðar</string>
     <string name="route_name_description_hint">breyta nafni leiðarinnar</string>

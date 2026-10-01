@@ -1464,6 +1464,7 @@
     <string name="accessibility_screen_reader_enabled">Тъй като имате включен четец на екрана, препоръчваме да изключите графичните карти в приложението. Можете да промените тази настройка тук или просто да продължите.</string>
     <string name="accessibility_screen_reader_disabled">Тъй като нямате включен четец на екрана, приемаме, че искате да виждате графичните карти в приложението. Можете да промените тази настройка тук или просто да продължите.</string>
     <string name="text_field_clear_text">Изчисти текста</string>
+    <string name="text_field_paste">Постави</string>
     <string name="marker_name_description_hint">редактиране на името на маркера</string>
     <string name="annotation_description_hint">добавяне на незадължителна бележка, която да ви помогне да разпознаете този маркер по-късно</string>
     <string name="route_name_description_hint">редактиране на името на маршрута</string>

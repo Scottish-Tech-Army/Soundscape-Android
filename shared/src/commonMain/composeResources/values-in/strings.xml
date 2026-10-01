@@ -209,6 +209,7 @@
     <string name="accessibility_screen_reader_enabled">Karena Anda mengaktifkan pembaca layar, kami menyarankan untuk menonaktifkan peta grafis di aplikasi. Anda dapat mengubah pengaturan ini di sini, atau langsung melanjutkan.</string>
     <string name="accessibility_screen_reader_disabled">Karena Anda tidak mengaktifkan pembaca layar, kami berasumsi Anda ingin melihat peta grafis di aplikasi. Anda dapat mengubah pengaturan ini di sini, atau langsung melanjutkan.</string>
     <string name="text_field_clear_text">Hapus Teks</string>
+    <string name="text_field_paste">Tempel</string>
     <string name="marker_name_description_hint">mengedit nama penanda</string>
     <string name="annotation_description_hint">menambahkan catatan opsional untuk membantu Anda mengenali penanda ini nanti</string>
     <string name="route_name_description_hint">mengedit nama rute</string>

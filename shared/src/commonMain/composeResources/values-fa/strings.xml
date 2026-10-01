@@ -509,6 +509,7 @@
     <string name="offline_map_storage_description">می‌توانید نقشه‌ها را دانلود کرده و روی گوشی خود ذخیره کنید تا ساند‌اسکیپ بدون اتصال به اینترنت کار کند. به‌صورت پیش‌فرض نقشه‌ها در حافظه‌ی خارجی گوشی شما ذخیره می‌شوند، اما می‌توانید در اینجا محل دیگری را انتخاب کنید.</string>
     <string name="offline_map_wifi_only">فقط از وای‌فای برای دانلود نقشه استفاده شود</string>
     <string name="text_field_clear_text">پاک کردن متن</string>
+    <string name="text_field_paste">جای‌گذاری</string>
     <string name="marker_name_description_hint">نام نشانه را ویرایش کنید</string>
     <string name="annotation_description_hint">یک یادداشت اختیاری اضافه کنید تا بعداً این نشانه را راحت‌تر بشناسید</string>
     <string name="route_name_description_hint">نام مسیر را ویرایش کنید</string>

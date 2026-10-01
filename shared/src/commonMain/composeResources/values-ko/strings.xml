@@ -594,6 +594,7 @@
     <string name="accessibility_screen_reader_enabled">화면 읽기 프로그램이 켜져 있으므로, 앱의 그래픽 지도를 끄는 것을 권장합니다. 여기에서 이 설정을 변경하거나 그냥 계속 진행할 수 있습니다.</string>
     <string name="accessibility_screen_reader_disabled">화면 읽기 프로그램이 켜져 있지 않으므로, 앱에 그래픽 지도를 표시하기를 원하는 것으로 간주합니다. 여기에서 이 설정을 변경하거나 그냥 계속 진행할 수 있습니다.</string>
     <string name="text_field_clear_text">텍스트 지우기</string>
+    <string name="text_field_paste">붙여넣기</string>
     <string name="marker_name_description_hint">마커 이름 편집</string>
     <string name="annotation_description_hint">나중에 이 마커를 알아볼 수 있도록 선택적으로 메모 추가</string>
     <string name="route_name_description_hint">경로 이름 편집</string>

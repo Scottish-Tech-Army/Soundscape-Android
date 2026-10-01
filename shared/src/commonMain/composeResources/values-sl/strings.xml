@@ -1496,6 +1496,7 @@
     <string name="accessibility_screen_reader_enabled">Ker imate vklopljen bralnik zaslona, priporočamo, da izklopite grafične zemljevide v aplikaciji. To nastavitev lahko spremenite tukaj ali pa preprosto nadaljujete.</string>
     <string name="accessibility_screen_reader_disabled">Ker nimate vklopljenega bralnika zaslona, predvidevamo, da želite v aplikaciji videti grafične zemljevide. To nastavitev lahko spremenite tukaj ali pa preprosto nadaljujete.</string>
     <string name="text_field_clear_text">Počisti besedilo</string>
+    <string name="text_field_paste">Prilepi</string>
     <string name="marker_name_description_hint">urejanje imena oznake</string>
     <string name="annotation_description_hint">dodajanje neobvezne opombe, ki vam bo pomagala pozneje prepoznati to oznako</string>
     <string name="route_name_description_hint">urejanje imena poti</string>

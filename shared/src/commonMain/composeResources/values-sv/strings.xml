@@ -508,6 +508,7 @@
     <string name="offline_map_storage_description">Du kan ladda ned kartor och lagra dem på telefonen så att Soundscape fungerar utan internetanslutning. Som standard sparas kartor på telefonens externa lagring, men du kan välja en annan plats här.</string>
     <string name="offline_map_wifi_only">Använd endast Wi‑Fi för att ladda ned kartor</string>
     <string name="text_field_clear_text">Rensa text</string>
+    <string name="text_field_paste">Klistra in</string>
     <string name="marker_name_description_hint">redigera platsmarkörens namn</string>
     <string name="annotation_description_hint">lägga till en valfri anteckning som hjälper dig att känna igen den här platsmarkören senare</string>
     <string name="route_name_description_hint">redigera ruttens namn</string>

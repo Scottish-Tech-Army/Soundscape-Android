@@ -507,6 +507,7 @@
     <string name="offline_map_storage_description">Μπορείτε να κατεβάσετε χάρτες και να τους αποθηκεύσετε στο τηλέφωνό σας ώστε το Soundscape να λειτουργεί χωρίς σύνδεση στο Internet. Από προεπιλογή, οι χάρτες αποθηκεύονται στον εξωτερικό αποθηκευτικό χώρο του τηλεφώνου σας, αλλά μπορείτε να επιλέξετε εδώ διαφορετική τοποθεσία.</string>
     <string name="offline_map_wifi_only">Χρησιμοποιήστε μόνο Wi‑Fi για τη λήψη χαρτών</string>
     <string name="text_field_clear_text">Καθαρισμός κειμένου</string>
+    <string name="text_field_paste">Επικόλληση</string>
     <string name="marker_name_description_hint">επεξεργαστείτε το όνομα του δείκτη</string>
     <string name="annotation_description_hint">προσθέστε μια προαιρετική σημείωση για να αναγνωρίσετε αυτόν τον δείκτη αργότερα</string>
     <string name="route_name_description_hint">επεξεργαστείτε το όνομα της διαδρομής</string>

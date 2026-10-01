@@ -431,6 +431,7 @@
     <string name="accessibility_screen_reader_enabled">நீங்கள் ஸ்கிரீன் ரீடரை இயக்கியிருப்பதால், செயலியில் உள்ள வரைகலை வரைபடங்களை அணைக்குமாறு பரிந்துரைக்கிறோம். இந்த அமைப்பை இங்கே மாற்றலாம், அல்லது தொடரலாம்.</string>
     <string name="accessibility_screen_reader_disabled">நீங்கள் ஸ்கிரீன் ரீடரை இயக்காததால், செயலியில் வரைகலை வரைபடங்களைப் பார்க்க விரும்புகிறீர்கள் என்று நாங்கள் கருதுகிறோம். இந்த அமைப்பை இங்கே மாற்றலாம், அல்லது தொடரலாம்.</string>
     <string name="text_field_clear_text">உரையை அழி</string>
+    <string name="text_field_paste">ஒட்டு</string>
     <string name="marker_name_description_hint">குறிப்பானின் பெயரைத் திருத்த</string>
     <string name="annotation_description_hint">இந்த குறிப்பானை பின்னர் அடையாளம் காண உதவும் விருப்பக் குறிப்பைச் சேர்க்க</string>
     <string name="route_name_description_hint">பாதையின் பெயரைத் திருத்த</string>

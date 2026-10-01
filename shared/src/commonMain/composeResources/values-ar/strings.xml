@@ -804,6 +804,7 @@
     <string name="accessibility_screen_reader_enabled">نظرًا لتفعيل قارئ الشاشة لديك، نوصي بإيقاف الخرائط الرسومية في التطبيق. يمكنك تغيير هذا الإعداد هنا، أو المتابعة فحسب.</string>
     <string name="accessibility_screen_reader_disabled">نظرًا لعدم تفعيل قارئ شاشة لديك، نفترض أنك تريد رؤية الخرائط الرسومية في التطبيق. يمكنك تغيير هذا الإعداد هنا، أو المتابعة فحسب.</string>
     <string name="text_field_clear_text">مسح النص</string>
+    <string name="text_field_paste">لصق</string>
     <string name="marker_name_description_hint">تعديل اسم العلامة</string>
     <string name="annotation_description_hint">إضافة ملاحظة اختيارية لمساعدتك على التعرف على هذه العلامة لاحقًا</string>
     <string name="route_name_description_hint">تعديل اسم المسار</string>

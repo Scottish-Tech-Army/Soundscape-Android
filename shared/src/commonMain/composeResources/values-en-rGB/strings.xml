@@ -506,6 +506,7 @@
     <string name="offline_map_storage_title">Offline map storage</string>
     <string name="offline_map_storage_description">You can download maps and store them on your phone so that Soundscape works without an Internet connection. By default, maps are saved to external storage on your phone, but you can choose a different location here.</string>
     <string name="text_field_clear_text">Clear Text</string>
+    <string name="text_field_paste">Paste</string>
     <string name="marker_name_description_hint">edit the marker name</string>
     <string name="annotation_description_hint">add an optional note to help you recognise this marker later</string>
     <string name="route_name_description_hint">edit the route name</string>

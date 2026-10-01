@@ -503,6 +503,7 @@
     <string name="offline_map_storage_description">マップをダウンロードして端末に保存しておくと、インターネット接続がない環境でも Soundscape を使用できます。デフォルトではマップは端末の外部ストレージに保存されますが、ここで別の保存先を選択できます。</string>
     <string name="offline_map_wifi_only">マップのダウンロードは Wi‑Fi のみを使用する</string>
     <string name="text_field_clear_text">テキストをクリア</string>
+    <string name="text_field_paste">ペースト</string>
     <string name="marker_name_description_hint">マーカー名を編集します</string>
     <string name="annotation_description_hint">後でこのマーカーを認識するのに役立つ任意のメモを追加します</string>
     <string name="route_name_description_hint">ルート名を編集します</string>

@@ -516,6 +516,7 @@
     <string name="offline_map_storage_description">Щоб Soundscape міг працювати без підключення до Інтернету, ви можете завантажувати карти та зберігати їх на телефоні. За замовчуванням карти зберігаються в зовнішньому сховищі вашого телефона, але тут ви можете вибрати інше місце.</string>
     <string name="offline_map_wifi_only">Використовувати тільки Wi‑Fi для завантаження карт</string>
     <string name="text_field_clear_text">Очистити текст</string>
+    <string name="text_field_paste">Вставити</string>
     <string name="marker_name_description_hint">редагувати назву мітки</string>
     <string name="annotation_description_hint">додати необов'язкову примітку, щоб легше впізнати цю мітку пізніше</string>
     <string name="route_name_description_hint">редагувати назву маршруту</string>

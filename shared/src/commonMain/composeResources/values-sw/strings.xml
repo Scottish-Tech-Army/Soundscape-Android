@@ -965,6 +965,7 @@
     <string name="accessibility_screen_reader_enabled">Kwa kuwa umewasha kisoma skrini, tunapendekeza uzime ramani za picha kwenye programu. Unaweza kubadilisha mpangilio huu hapa, au uendelee tu.</string>
     <string name="accessibility_screen_reader_disabled">Kwa kuwa hujawasha kisoma skrini, tunadhani unataka kuona ramani za picha kwenye programu. Unaweza kubadilisha mpangilio huu hapa, au uendelee tu.</string>
     <string name="text_field_clear_text">Futa Maandishi</string>
+    <string name="text_field_paste">Bandika</string>
     <string name="marker_name_description_hint">kuhariri jina la alama</string>
     <string name="annotation_description_hint">kuongeza maelezo ya hiari yatakayokusaidia kutambua alama hii baadaye</string>
     <string name="route_name_description_hint">kuhariri jina la njia</string>
