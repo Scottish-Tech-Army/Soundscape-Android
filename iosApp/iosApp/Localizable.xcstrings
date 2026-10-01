@@ -1210,7 +1210,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Annoncer la balise sonore"
+            "value": "Annoncer la balise"
           }
         },
         "ha": {
@@ -4010,7 +4010,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Essentiel"
+            "value": "Minimal"
           }
         },
         "ha": {
@@ -5690,7 +5690,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactiver le son de la balise sonore"
+            "value": "Désactiver le son de la balise"
           }
         },
         "ha": {
@@ -9610,7 +9610,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Passe des étapes, coupe le son de la balise sonore ou arrête l’itinéraire."
+            "value": "Passe des étapes, coupe le son de la balise ou arrête l’itinéraire."
           }
         },
         "ha": {
@@ -10170,7 +10170,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarrer la balise sonore"
+            "value": "Démarrer la balise"
           }
         },
         "ha": {
@@ -11290,7 +11290,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrêter la balise sonore"
+            "value": "Arrêter la balise"
           }
         },
         "ha": {
@@ -11850,7 +11850,7 @@
         "fr-CA": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactive la balise sonore."
+            "value": "Désactive la balise."
           }
         },
         "ha": {

@@ -88,10 +88,13 @@ guidée, par exemple « Vous pouvez maintenant entendre la balise sonore. Elle e
 
 **En anglais :** « Audio Beacon ».
 
-**Ce que dit l'application :** « Balise sonore ».
+**Ce que dit l'application :** « Balise sonore » à la première mention et dans
+les titres; ensuite, et avec une action, simplement « balise » (« Désactiver le
+son de la balise », « Démarrer la balise »).
 
 **Ce qui nous fait hésiter :** le terme vient d'une traduction automatique; nous
-ne savons pas s'il évoque naturellement un son qui indique une direction.
+ne savons pas s'il évoque naturellement un son qui indique une direction. La
+version d'origine de Microsoft pour le Canada disait « balise audio ».
 
 **La question :** est-ce naturel? Sinon, que diriez-vous?
 
@@ -141,19 +144,48 @@ croissant) y sont, mais il en manque peut-être.
 **La question :** est-ce que ça sonne juste au Québec ? Voyez-vous un type de voie
 qui sort mal ?
 
-### Q6 — Les quatre niveaux de détail *(Four detail levels, renamed 2026-09-30)*
+### Q6 — Les quatre niveaux de détail *(Four detail levels)*
 
-**Quand on l'entend :** dans les réglages, où l'on choisit à l'oreille ce que l'application dit en chemin.
+**Quand on l'entend :** dans les réglages, où l'on choisit à l'oreille ce que
+l'application dit en chemin.
 
-**En anglais :** « Detailed / Simplified / Essential / Silent »
+**En anglais :** « Detailed / Simplified / Essential / Silent ».
 
-**Ce que dit l'application :** Détaillé / Simplifié / Essentiel / Silencieux. Le Simplifié laisse de côté les petits chemins et se répète moins; l'Essentiel n'annonce que les rues, les intersections et les repères.
+**Ce que dit l'application :** Détaillé / Simplifié / Minimal / Silencieux.
+« Le mode Simplifié laisse de côté les chemins secondaires et les voies de
+service, et se répète moins souvent. Le mode Minimal n’annonce que les rues, les
+croisements et les repères. »
 
-**Ce qui nous fait hésiter :** nous venons de renommer les deux niveaux du milieu. Avant, c'était « Équilibré » et « Discret », mais des locuteurs natifs d'autres langues trouvaient les anciens noms anglais peu clairs : « Quiet » faisait penser au volume. Les nouveaux noms ont été choisis par nous, pas par un locuteur natif du français canadien.
+**Ce qui nous fait hésiter :** en France, « Essentiel » ne permettait pas de
+savoir s'il disait plus ou moins que « Simplifié »; il a été remplacé par
+« Minimal ». Nous l'avons repris pour le Canada.
 
-**La question :** se distinguent-ils bien à l'oreille? Nommeriez-vous autrement les deux du milieu?
+**La question :** les quatre niveaux se distinguent-ils bien à l'oreille, dans
+le bon ordre?
 
-### Q7 — Autre chose? *(Anything else)*
+### Q7 — « Mettre en veille » et « Sortir de veille quand je m’éloigne » *(Sleep and Wake On Leave)*
+
+**Quand on l'entend :** sur le bouton de l'écran d'accueil qui met
+Soundscape en pause, et quand l'application dit dans quel état elle est.
+
+**En anglais :** « Sleep », « Sleeping », « Snoozing », « Wake On Leave »,
+« Wake Up Now ».
+
+**Ce que dit l'application :** « Mettre en veille », « En veille »,
+« Désactivé temporairement », « Sortir de veille quand je m’éloigne »,
+« Sortir de veille maintenant ».
+
+**Ce qui nous fait hésiter :** ces libellés viennent de la version d'origine de
+Microsoft. En France, on a choisi « Mettre en pause », « En pause »,
+« En pause jusqu'au départ », « Reprendre au déplacement » et « Reprendre
+maintenant » : « veille » fait penser à l'appareil plutôt qu'à l'application,
+et « Reprendre quand je pars » a été jugé trop long et peu naturel.
+« Sortir de veille quand je m’éloigne » est encore plus long.
+
+**La question :** gardez-vous les libellés actuels, ou les mots de France
+conviennent-ils mieux au Québec? Sinon, que diriez-vous?
+
+### Q8 — Autre chose? *(Anything else)*
 
 Si une phrase sonne comme une traduction de l'anglais, est trop longue ou peu
 claire, dites-le-nous.
