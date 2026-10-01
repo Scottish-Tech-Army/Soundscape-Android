@@ -100,6 +100,11 @@ jobs:
           fi
           gh release upload "$tag" zips/*.zip --clobber
 
+          # Remove any zip this run didn't produce, e.g. for a language since dropped.
+          gh release view "$tag" --json assets --jq '.assets[].name' | while read -r name; do
+            [[ -f "zips/$name" ]] || gh release delete-asset "$tag" "$name" --yes
+          done
+
       # Also kept as a single artifact on the run, for checking a run before relying
       # on the release.
       - uses: actions/upload-artifact@v7
