@@ -20,8 +20,8 @@ La traduction canadienne vient en partie de l'application originale de
 Microsoft, mais beaucoup de textes sont nouveaux et n'ont jamais été relus par
 une personne dont c'est la langue maternelle. **Vous n'avez pas besoin de
 connaître ni d'installer l'application :** pour chaque question, vous trouverez
-ici quand le texte se fait entendre, ce qu'il dit en anglais et comment il
-sonne en français à l'heure actuelle.
+ici quand le texte se fait entendre, ce qu'il dit en anglais et ce que ça
+donne en français à l'heure actuelle.
 
 ## Qu'est-ce que Soundscape?
 
