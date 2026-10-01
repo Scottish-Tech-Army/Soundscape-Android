@@ -99,7 +99,7 @@ jobs:
       # Set version
       - name: Set 'git describe --tags' as version
         id: get-version
-        run: echo "VERSION=$(git describe --tags)" >> $GITHUB_OUTPUT
+        run: echo "VERSION=$(git describe --tags --match 'soundscape-*')" >> $GITHUB_OUTPUT
 
       - name: Setup tile and search providers
         uses: ./.github/actions/write-provider-config

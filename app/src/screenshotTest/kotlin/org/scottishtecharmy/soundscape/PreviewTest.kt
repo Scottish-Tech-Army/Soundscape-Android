@@ -84,330 +84,333 @@ import org.scottishtecharmy.soundscape.services.ServiceConnection
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
+// Each preview is named with its language's Weblate code, the one the translation
+// questionnaires use (docs/translation-questions/questions-<code>.md). The images are sorted
+// into a folder per name, and screenshots.yaml publishes each as screenshots-<code>.zip.
 @Preview(
-    name = "Arabic",
+    name = "ar",
     locale = "ar",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Bulgarian",
+    name = "bg",
     locale = "bg",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Bengali",
+    name = "bn",
     locale = "bn",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Catalan",
+    name = "ca",
     locale = "ca",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Czech",
+    name = "cs",
     locale = "cs",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Danish",
+    name = "da",
     locale = "da",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "German",
+    name = "de",
     locale = "de",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Greek",
+    name = "el",
     locale = "el",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "English",
+    name = "en",
     locale = "en",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "English (UK)",
+    name = "en_GB",
     locale = "en-rGB",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Spanish",
+    name = "es",
     locale = "es",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Estonian",
+    name = "et",
     locale = "et",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Persian",
+    name = "fa",
     locale = "fa",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Finnish",
+    name = "fi",
     locale = "fi",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "French",
+    name = "fr",
     locale = "fr",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "French (Canada)",
+    name = "fr_CA",
     locale = "fr-rCA",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Hausa",
+    name = "ha",
     locale = "ha",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Hindi",
+    name = "hi",
     locale = "hi",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Croatian",
+    name = "hr",
     locale = "hr",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Hungarian",
+    name = "hu",
     locale = "hu",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Indonesian",
+    name = "id",
     locale = "id",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Icelandic",
+    name = "is",
     locale = "is",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Italian",
+    name = "it",
     locale = "it",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Japanese",
+    name = "ja",
     locale = "ja",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Korean",
+    name = "ko",
     locale = "ko",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Marathi",
+    name = "mr",
     locale = "mr",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Norwegian",
+    name = "nb_NO",
     locale = "nb",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Netherlands",
+    name = "nl",
     locale = "nl",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Punjabi",
+    name = "pa",
     locale = "pa",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Polish",
+    name = "pl",
     locale = "pl",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Portuguese",
+    name = "pt",
     locale = "pt",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Portuguese (Brazil)",
+    name = "pt_BR",
     locale = "pt-rBR",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Romanian",
+    name = "ro",
     locale = "ro",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Russian",
+    name = "ru",
     locale = "ru",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Slovak",
+    name = "sk",
     locale = "sk",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Slovenian",
+    name = "sl",
     locale = "sl",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Serbian",
+    name = "sr",
     locale = "sr",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Swedish",
+    name = "sv",
     locale = "sv",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Swahili",
+    name = "sw",
     locale = "sw",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Tamil",
+    name = "ta",
     locale = "ta",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Telugu",
+    name = "te",
     locale = "te",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Thai",
+    name = "th",
     locale = "th",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Turkish",
+    name = "tr",
     locale = "tr",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Ukrainian",
+    name = "uk",
     locale = "uk",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Urdu",
+    name = "ur",
     locale = "ur",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Vietnamese",
+    name = "vi",
     locale = "vi",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
 )
 @Preview(
-    name = "Chinese",
+    name = "zh_Hans",
     locale = "zh",
     group = "Language",
     showBackground = true,
@@ -422,329 +425,329 @@ annotation class LocalePreviews
 const val TALL_DEVICE = "spec:width=360dp,height=2000dp,dpi=320"
 
 @Preview(
-    name = "Arabic",
+    name = "ar",
     locale = "ar",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Bulgarian",
+    name = "bg",
     locale = "bg",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Bengali",
+    name = "bn",
     locale = "bn",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Catalan",
+    name = "ca",
     locale = "ca",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Czech",
+    name = "cs",
     locale = "cs",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Danish",
+    name = "da",
     locale = "da",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "German",
+    name = "de",
     locale = "de",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Greek",
+    name = "el",
     locale = "el",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "English",
+    name = "en",
     locale = "en",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "English (UK)",
+    name = "en_GB",
     locale = "en-rGB",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Spanish",
+    name = "es",
     locale = "es",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Estonian",
+    name = "et",
     locale = "et",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Persian",
+    name = "fa",
     locale = "fa",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Finnish",
+    name = "fi",
     locale = "fi",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "French",
+    name = "fr",
     locale = "fr",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "French (Canada)",
+    name = "fr_CA",
     locale = "fr-rCA",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Hausa",
+    name = "ha",
     locale = "ha",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Hindi",
+    name = "hi",
     locale = "hi",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Croatian",
+    name = "hr",
     locale = "hr",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Hungarian",
+    name = "hu",
     locale = "hu",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Indonesian",
+    name = "id",
     locale = "id",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Icelandic",
+    name = "is",
     locale = "is",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Italian",
+    name = "it",
     locale = "it",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Japanese",
+    name = "ja",
     locale = "ja",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Korean",
+    name = "ko",
     locale = "ko",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Marathi",
+    name = "mr",
     locale = "mr",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Norwegian",
+    name = "nb_NO",
     locale = "nb",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Netherlands",
+    name = "nl",
     locale = "nl",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Punjabi",
+    name = "pa",
     locale = "pa",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Polish",
+    name = "pl",
     locale = "pl",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Portuguese",
+    name = "pt",
     locale = "pt",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Portuguese (Brazil)",
+    name = "pt_BR",
     locale = "pt-rBR",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Romanian",
+    name = "ro",
     locale = "ro",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Russian",
+    name = "ru",
     locale = "ru",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Slovak",
+    name = "sk",
     locale = "sk",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Slovenian",
+    name = "sl",
     locale = "sl",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Serbian",
+    name = "sr",
     locale = "sr",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Swedish",
+    name = "sv",
     locale = "sv",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Swahili",
+    name = "sw",
     locale = "sw",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Tamil",
+    name = "ta",
     locale = "ta",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Telugu",
+    name = "te",
     locale = "te",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Thai",
+    name = "th",
     locale = "th",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Turkish",
+    name = "tr",
     locale = "tr",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Ukrainian",
+    name = "uk",
     locale = "uk",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Urdu",
+    name = "ur",
     locale = "ur",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Vietnamese",
+    name = "vi",
     locale = "vi",
     group = "Language",
     showBackground = true,
     device = TALL_DEVICE
 )
 @Preview(
-    name = "Chinese",
+    name = "zh_Hans",
     locale = "zh",
     group = "Language",
     showBackground = true,
