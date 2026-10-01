@@ -153,8 +153,15 @@ fun getRoadsDescriptionFromFov(
     minimumTier: RoadTier = RoadTier.OTHER,
 ): IntersectionDescription {
 
-    // Create FOV triangle
-    val triangle = getFovTriangle(userGeometry)
+    // Without a heading there's no telling which junction the user will reach next - the nearest
+    // one may well be behind them - and the description of a junction is relative to the road it is
+    // approached along. So say nothing about junctions rather than describe one that may be the
+    // wrong one. With no intersection, addIntersectionCalloutFromDescription falls back to naming
+    // the road ahead, which needs a heading too, so this is silent until there is one.
+    val triangle = getFovTriangle(userGeometry) ?: return IntersectionDescription(
+        nearestRoad = userGeometry.mapMatchedWay,
+        userGeometry = userGeometry
+    )
 
     val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
     val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)

@@ -26,7 +26,7 @@ class MarkersTest {
         val markersTree = FeatureTree(markersFeatureCollectionTest)
 
         // I'm just reusing the Intersection functions here for the markers test
-        val triangle = getFovTriangle(userGeometry)
+        val triangle = getFovTriangle(userGeometry)!!
         val nearestMarker =
             markersTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
         val nearestPoint = nearestMarker!!.geometry as Point

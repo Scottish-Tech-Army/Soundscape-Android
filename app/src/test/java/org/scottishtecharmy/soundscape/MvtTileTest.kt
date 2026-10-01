@@ -4091,10 +4091,15 @@ class MvtTileTest {
 
     @Test
     fun testGetNearestCollectionWithinTriangle(){
-        val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245), fovDistance = 2000.0)
+        // Facing north: the triangle needs a heading, and this is the one it always measured.
+        val userGeometry = UserGeometry(
+            LngLatAlt(-4.313, 55.945245),
+            phoneHeading = 0.0,
+            fovDistance = 2000.0
+        )
         val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 2)
 
-        val triangle = getFovTriangle(userGeometry, true)
+        val triangle = getFovTriangle(userGeometry, true)!!
 
         val duration = measureTime {
             val collection = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
@@ -4470,12 +4475,14 @@ class MvtTileTest {
                 )
                 if (callout != null) {
                     // We've got a new callout, so add it to our geoJSON as a triangle for the
-                    // FOV that was used to create it, along with the text from the callouts.
+                    // FOV that was used to create it, along with the text from the callouts. With
+                    // no heading there was no FOV, so the callout is placed at the location.
                     callOutText.write("\nCallout\n".toByteArray())
                     calloutCount++
-                    val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry, true))
                     val fovFeature = Feature()
-                    fovFeature.geometry = polygon
+                    fovFeature.geometry = getFovTriangle(userGeometry, true)
+                        ?.let { createPolygonFromTriangle(it) }
+                        ?: Point(userGeometry.location)
                     fovFeature.properties = HashMap<String, Any?>().apply {
                         for (positionedString in callout.positionedStrings.withIndex()) {
                             callOutText.write("\t${positionedString.value.text}\n".toByteArray())
