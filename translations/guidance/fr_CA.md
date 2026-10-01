@@ -33,8 +33,9 @@ translators had made them differ. The rule now:
    ville», «Guichet automatique bancaire», «Centre de jardinage»).
 4. **Terms follow French** (Dave): since the French reviewer's answers
    (2026-09-30) that means «annonce» (Callout), «étape» (Waypoint),
-   «croisement» (Intersection), «balise sonore» always in full (Beacon), and the
-   Simplifié / Essentiel level names. «balise sonore» is unified even where
+   «croisement» (Intersection), Beacon «balise sonore» on first mention and
+   «balise» after it or with an action (FR-B2, 2026-10-01), and the
+   Simplifié / Minimal level names (FR-L1, 2026-10-01). «balise sonore» is unified even where
    Microsoft's fr-CA said «balise audio», matching what French did.
    **Two exceptions, both earlier decisions of Dave's that the French change
    did not override:** Sleep/Snooze keep Microsoft parity («Mettre en veille»,
@@ -92,14 +93,15 @@ Numbered as on the questionnaire.
 
 1. «annonce» (Callout), «étape» (Waypoint), «croisement» (Intersection): all
    carried over from the French reviewer's answers. Right for Quebec?
-2. Beacon «balise sonore»: natural? Also from French, AI-only.
+2. Beacon «balise sonore», «balise» once named or with an action: natural? Also from French, AI-only. Microsoft's fr-CA said «balise audio».
 3. «Sentier vers une impasse» (applied 2026-09-30), or French's «menant à une
    impasse»? (FRCA-G1)
 4. «Tout est prêt!» instead of «Vous êtes prêt!»? (FRCA-R1)
 5. Articles now added before street names («sur la rue Sainte-Catherine», «le long
    du boulevard Saint-Laurent»). Right for Quebec? (FR-G2)
-6. **The four detail levels** (Détaillé / Simplifié / Essentiel / Silencieux), renamed 2026-09-30 (C22) and retranslated literally: distinct by ear? Better names for the middle two?
-7. Anything else.
+6. **The four detail levels** (Détaillé / Simplifié / Minimal / Silencieux, «Minimal» from French FR-L1): distinct by ear, in the right order?
+7. **Sleep/Snooze (FRCA-T1):** keep Microsoft's «Mettre en veille» / «Sortir de veille quand je m’éloigne», or take French's «Mettre en pause» / «Reprendre au déplacement»? The French reviewer found «Reprendre quand je pars» too long; the Microsoft label is longer still.
+8. Anything else.
 
 ## Provenance
 
@@ -130,3 +132,5 @@ Held for a person: `first_launch_prompt_title` (reviewer: Open question).
 Also changed the same day:
 - `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
 - `f4fd7a092`: `relative_degrees_direction` is a plural now, and this language's forms differ by angle (C25).
+
+**2026-10-01 — French round-2 decisions carried over.** 41 strings: «Essentiel» → «Minimal» (7) and the relaxed «balise» rule (34), changed in place on fr_CA's own text. For the 35 that matched the old French, the result equals the new French plus the Canadian layer (checked). Not carried over: «Reprendre au déplacement» (FRCA-T1 keeps Microsoft's Sleep wording); asked as questionnaire Q7 instead. Siri catalog regenerated.
