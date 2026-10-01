@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -34,6 +35,8 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
@@ -221,12 +224,16 @@ private fun HomeBottomAppBarButton(
         restingColors
     }
 
+    // The label's line breaks only lay it out on the button. A screen reader reads them as a
+    // pause, and a word hyphenated across them («Oma si-\njaintini») as two broken pieces.
+    val spokenLabel = text.replace("-\n", "").replace('\n', ' ')
+
     // Every one of these buttons starts a callout, and on iOS VoiceOver would otherwise speak
     // the button's label and play its activation click over the top of it. StartsSpeechControl
     // swaps in a native accessibility proxy carrying the traits that tell VoiceOver to keep
     // quiet for a control that makes its own sound. A plain layout wrapper on Android.
     StartsSpeechControl(
-        label = text,
+        label = spokenLabel,
         hint = accessibilityHint,
         identifier = buttonTestTag,
         onActivate = onClick,
@@ -259,10 +266,21 @@ private fun HomeBottomAppBarButton(
                         },
                 )
                 Spacer(modifier = Modifier.height(spacing.small))
+                // Each line of the label is drawn whole and shrunk to fit, rather than wrapped:
+                // a long word (Finnish «Lähiympäristön», Ukrainian «місцезнаходження») would
+                // otherwise be split mid-word across lines.
+                val style = MaterialTheme.typography.labelMedium
                 Text(
                     text = text,
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.labelMedium,
+                    style = style,
+                    softWrap = false,
+                    maxLines = text.count { it == '\n' } + 1,
+                    autoSize = TextAutoSize.StepBased(
+                        minFontSize = style.fontSize * 0.6f,
+                        maxFontSize = style.fontSize,
+                    ),
+                    modifier = Modifier.clearAndSetSemantics { contentDescription = spokenLabel },
                 )
             }
         }
