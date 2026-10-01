@@ -56,8 +56,12 @@ internal actual fun rememberSoundscapePreferenceFlow(): MutableStateFlow<Prefere
 }
 
 @Suppress("UNCHECKED_CAST")
-private fun SharedPreferences.asPreferences(): Preferences =
-    MapPreferences(all.filterValues { it != null } as Map<String, Any>)
+private fun SharedPreferences.asPreferences(): Preferences {
+    // Never null on a device, but layoutlib's SharedPreferences returns null when the
+    // screenshot tests render the Settings screen.
+    val all: Map<String, *>? = all
+    return MapPreferences((all ?: emptyMap<String, Any>()).filterValues { it != null } as Map<String, Any>)
+}
 
 private fun SharedPreferences.write(edits: PreferenceEdits) {
     if (edits.removed.isEmpty() && edits.changed.isEmpty()) return

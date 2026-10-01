@@ -1,0 +1,73 @@
+name: Generate test screenshots
+
+# Renders every Compose preview in app/src/screenshotTest in every app language
+# and uploads them sorted into one folder per language, so that a native speaker
+# can check their translation in context without running the app.
+#
+# This used to be a step in build-app.yaml, but rendering everything in one JVM
+# ran out of memory, and the release build is the wrong place for a slow optional
+# step. Here the tests are split across parallel shards by the first letter of
+# the test name, then merged back into one artifact.
+
+on:
+  # Run by hand from the Actions tab when translations want reviewing.
+  workflow_dispatch:
+
+jobs:
+  render:
+    name: Render screenshots (${{ matrix.shard.name }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # Every test in ThemeTestClass must match exactly one shard. The Settings
+        # sections and help pages render on a tall device, so the shards holding
+        # them (H, S) are kept smaller.
+        shard:
+          - { name: a-g, letters: "A B C D E F G" }
+          - { name: h-l, letters: "H I J K L" }
+          - { name: m-r, letters: "M N O P Q R" }
+          - { name: s-z, letters: "S T U V W X Y Z" }
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup JDK + Gradle
+        uses: ./.github/actions/setup-jdk-gradle
+
+      - name: Render screenshots
+        run: |
+          filters=()
+          for letter in ${{ matrix.shard.letters }}; do
+            filters+=(--tests "org.scottishtecharmy.soundscape.ThemeTestClass.${letter}*")
+          done
+          ./gradlew updateDebugScreenshotTest "${filters[@]}"
+
+      - name: Sort screenshots by language
+        run: ./categorise.sh app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: screenshots-${{ matrix.shard.name }}
+          path: app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    name: Merge screenshots
+    needs: render
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: screenshots-*
+          path: screenshots
+          merge-multiple: true
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: test-screenshots
+          path: screenshots/
+          if-no-files-found: error
