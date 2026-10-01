@@ -52,13 +52,8 @@ import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.IntRect
-import androidx.compose.ui.unit.IntSize
-import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.window.Popup
-import androidx.compose.ui.window.PopupPositionProvider
-import androidx.compose.ui.window.PopupProperties
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
@@ -69,6 +64,7 @@ import org.scottishtecharmy.soundscape.resources.search_searching
 import org.scottishtecharmy.soundscape.resources.settings_section_search
 import org.scottishtecharmy.soundscape.resources.text_field_clear_text
 import org.scottishtecharmy.soundscape.resources.ui_back_button_title
+import org.scottishtecharmy.soundscape.platform.ClearDialogScrim
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackLive
@@ -130,24 +126,15 @@ fun MainSearchBar(
         }
     }
 
-    // Fullscreen search overlay. Pin to (0, 0) in window coordinates so it covers
-    // the top bar on Android instead of docking at the collapsed search bar's anchor.
-    val fullscreenPositionProvider = remember {
-        object : PopupPositionProvider {
-            override fun calculatePosition(
-                anchorBounds: IntRect,
-                windowSize: IntSize,
-                layoutDirection: LayoutDirection,
-                popupContentSize: IntSize,
-            ): IntOffset = IntOffset.Zero
-        }
-    }
+    // Fullscreen search overlay. This is a Dialog rather than a Popup because a
+    // Popup is a panel sub-window, and TalkBack doesn't offer its Copy/Paste editing
+    // actions for text fields in it.
     if (expanded) {
-        Popup(
-            popupPositionProvider = fullscreenPositionProvider,
+        Dialog(
             onDismissRequest = { expanded = false },
-            properties = PopupProperties(focusable = true)
+            properties = DialogProperties(usePlatformDefaultWidth = false)
         ) {
+            ClearDialogScrim()
             val keyboardController = LocalSoftwareKeyboardController.current
 
             LaunchedEffect(expanded) {
