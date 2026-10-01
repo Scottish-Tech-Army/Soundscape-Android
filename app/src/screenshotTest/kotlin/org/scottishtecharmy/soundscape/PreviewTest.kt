@@ -5,14 +5,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import com.android.tools.screenshot.PreviewTest
+import java.util.Locale
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
+import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
+import org.scottishtecharmy.soundscape.platform.appVersionMinorTrimmed
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
@@ -29,7 +43,6 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedAdvancedMarkersAn
 import org.scottishtecharmy.soundscape.screens.home.home.SharedDrawerContent
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
-import org.scottishtecharmy.soundscape.screens.home.home.SharedLanguageMismatchDialog
 import org.scottishtecharmy.soundscape.screens.home.home.SharedNewReleaseDialog
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
@@ -39,14 +52,21 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocati
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.OfflineMapsUiState
+import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMapExtractDetails
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMapsScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.home.settings.SharedSettingsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteUiState
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteViewModel
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddWaypointsDialog
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.SharedAddAndEditRouteScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.SharedRouteDetailsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
+import org.scottishtecharmy.soundscape.screens.migration.LegacyMigrationScreenContent
+import org.scottishtecharmy.soundscape.screens.migration.LegacyMigrationUiState
 import org.scottishtecharmy.soundscape.screens.onboarding.accessibility.AccessibilityOnboardingScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeacons
 import org.scottishtecharmy.soundscape.screens.onboarding.battery.BatteryOptimization
@@ -58,11 +78,43 @@ import org.scottishtecharmy.soundscape.screens.onboarding.listening.Listening
 import org.scottishtecharmy.soundscape.screens.onboarding.permissions.PermissionsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.terms.TermsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
+import org.scottishtecharmy.soundscape.services.BeaconState
+import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.services.ServiceConnection
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Preview(
     name = "Arabic",
     locale = "ar",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Bulgarian",
+    locale = "bg",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Bengali",
+    locale = "bn",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Catalan",
+    locale = "ca",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Czech",
+    locale = "cs",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
@@ -96,8 +148,22 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
     device = "id:small_phone"
 )
 @Preview(
+    name = "English (UK)",
+    locale = "en-rGB",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
     name = "Spanish",
     locale = "es",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Estonian",
+    locale = "et",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
@@ -124,8 +190,43 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
     device = "id:small_phone"
 )
 @Preview(
+    name = "French (Canada)",
+    locale = "fr-rCA",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Hausa",
+    locale = "ha",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
     name = "Hindi",
     locale = "hi",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Croatian",
+    locale = "hr",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Hungarian",
+    locale = "hu",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Indonesian",
+    locale = "id",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
@@ -152,6 +253,20 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
     device = "id:small_phone"
 )
 @Preview(
+    name = "Korean",
+    locale = "ko",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Marathi",
+    locale = "mr",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
     name = "Norwegian",
     locale = "nb",
     group = "Language",
@@ -166,6 +281,13 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
     device = "id:small_phone"
 )
 @Preview(
+    name = "Punjabi",
+    locale = "pa",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
     name = "Polish",
     locale = "pl",
     group = "Language",
@@ -173,8 +295,15 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
     device = "id:small_phone"
 )
 @Preview(
-    name = "Portuguese (Brasil)",
+    name = "Portuguese",
     locale = "pt",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Portuguese (Brazil)",
+    locale = "pt-rBR",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
@@ -194,8 +323,57 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
     device = "id:small_phone"
 )
 @Preview(
+    name = "Slovak",
+    locale = "sk",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Slovenian",
+    locale = "sl",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Serbian",
+    locale = "sr",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
     name = "Swedish",
     locale = "sv",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Swahili",
+    locale = "sw",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Tamil",
+    locale = "ta",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Telugu",
+    locale = "te",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Thai",
+    locale = "th",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
@@ -215,6 +393,20 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
     device = "id:small_phone"
 )
 @Preview(
+    name = "Urdu",
+    locale = "ur",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
+    name = "Vietnamese",
+    locale = "vi",
+    group = "Language",
+    showBackground = true,
+    device = "id:small_phone"
+)
+@Preview(
     name = "Chinese",
     locale = "zh",
     group = "Language",
@@ -223,6 +415,343 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 )
 annotation class LocalePreviews
 
+/**
+ * A phone-width screen tall enough to show the whole of a long scrolling page, so that a native
+ * speaker can read all of its text in one image.
+ */
+const val TALL_DEVICE = "spec:width=360dp,height=2000dp,dpi=320"
+
+@Preview(
+    name = "Arabic",
+    locale = "ar",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Bulgarian",
+    locale = "bg",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Bengali",
+    locale = "bn",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Catalan",
+    locale = "ca",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Czech",
+    locale = "cs",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Danish",
+    locale = "da",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "German",
+    locale = "de",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Greek",
+    locale = "el",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "English",
+    locale = "en",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "English (UK)",
+    locale = "en-rGB",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Spanish",
+    locale = "es",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Estonian",
+    locale = "et",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Persian",
+    locale = "fa",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Finnish",
+    locale = "fi",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "French",
+    locale = "fr",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "French (Canada)",
+    locale = "fr-rCA",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Hausa",
+    locale = "ha",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Hindi",
+    locale = "hi",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Croatian",
+    locale = "hr",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Hungarian",
+    locale = "hu",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Indonesian",
+    locale = "id",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Icelandic",
+    locale = "is",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Italian",
+    locale = "it",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Japanese",
+    locale = "ja",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Korean",
+    locale = "ko",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Marathi",
+    locale = "mr",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Norwegian",
+    locale = "nb",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Netherlands",
+    locale = "nl",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Punjabi",
+    locale = "pa",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Polish",
+    locale = "pl",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Portuguese",
+    locale = "pt",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Portuguese (Brazil)",
+    locale = "pt-rBR",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Romanian",
+    locale = "ro",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Russian",
+    locale = "ru",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Slovak",
+    locale = "sk",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Slovenian",
+    locale = "sl",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Serbian",
+    locale = "sr",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Swedish",
+    locale = "sv",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Swahili",
+    locale = "sw",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Tamil",
+    locale = "ta",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Telugu",
+    locale = "te",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Thai",
+    locale = "th",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Turkish",
+    locale = "tr",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Ukrainian",
+    locale = "uk",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Urdu",
+    locale = "ur",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Vietnamese",
+    locale = "vi",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+@Preview(
+    name = "Chinese",
+    locale = "zh",
+    group = "Language",
+    showBackground = true,
+    device = TALL_DEVICE
+)
+annotation class TallLocalePreviews
+
 @Preview(name = "SmallFont", fontScale = 0.85f, group = "FontScale", device = "id:small_phone")
 @Preview(name = "LargeFont", fontScale = 1.15f, group = "FontScale", device = "id:small_phone")
 annotation class FontSizePreviews
@@ -230,6 +759,15 @@ annotation class FontSizePreviews
 @LocalePreviews
 @FontSizePreviews
 annotation class CustomPreviews
+
+@Preview(name = "SmallFont", fontScale = 0.85f, group = "FontScale", device = TALL_DEVICE)
+@Preview(name = "LargeFont", fontScale = 1.15f, group = "FontScale", device = TALL_DEVICE)
+annotation class TallFontSizePreviews
+
+/** For long scrolling pages: [CustomPreviews] on a [TALL_DEVICE]. */
+@TallLocalePreviews
+@TallFontSizePreviews
+annotation class TallCustomPreviews
 
 /**
  * This test is designed to spot theme issues where text or icons are set to the wrong color.
@@ -248,7 +786,10 @@ const val testTheme = false
  */
 private object PreviewPreferencesProvider : PreferencesProvider {
     override fun getBoolean(key: String, default: Boolean): Boolean = default
-    override fun getString(key: String, default: String): String = default
+    // Report this release's dialog as already seen, otherwise it covers every Home preview.
+    // It has a preview of its own, NewReleaseDialogPreview.
+    override fun getString(key: String, default: String): String =
+        if (key == PreferenceKeys.LAST_NEW_RELEASE) appVersionMinorTrimmed() else default
     override fun getFloat(key: String, default: Float): Float = default
     override fun putBoolean(key: String, value: Boolean) {}
     override fun putString(key: String, value: String) {}
@@ -272,6 +813,26 @@ private fun previewMarkersList(): List<LocationDescription> = listOf(
     previewLocation("Coffee shop"),
     previewLocation("Library"),
 )
+
+private fun previewRoute(): RouteWithMarkers = RouteWithMarkers(
+    RouteEntity(name = "Morning loop", description = "A short walk through the park and back via the cafe."),
+    listOf(
+        MarkerEntity(name = "Home", longitude = -4.2518, latitude = 55.8642),
+        MarkerEntity(name = "Park gate", longitude = -4.2530, latitude = 55.8650),
+        MarkerEntity(name = "Coffee shop", longitude = -4.2540, latitude = 55.8660),
+    ),
+)
+
+/** The route editor only touches the database when saving, so nothing here is ever called. */
+private val previewRouteDao = java.lang.reflect.Proxy.newProxyInstance(
+    RouteDao::class.java.classLoader,
+    arrayOf(RouteDao::class.java),
+) { _, _, _ -> null } as RouteDao
+
+private object PreviewServiceConnection : ServiceConnection {
+    override val serviceBoundState: StateFlow<Boolean> = MutableStateFlow(false)
+    override val service: MediaControllableService? = null
+}
 
 private val previewBeaconTypes = listOf("Original", "Current", "Tactile", "Ping")
 
@@ -697,10 +1258,160 @@ fun RoutesDetailsPopulatedPreview() {
 }
 
 // ---------------------------------------------------------------------------
+// Home states with their own text: beacon set, route playing, street preview.
+// ---------------------------------------------------------------------------
+
+@Preview(showBackground = true)
+@Composable
+fun HomeBeaconPreview() {
+    BaseHomePreview(
+        HomeState(
+            location = previewLngLatAlt(),
+            beaconState = BeaconState(location = previewLngLatAlt(), name = "Coffee shop"),
+        ),
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeRoutePlayingPreview() {
+    BaseHomePreview(
+        HomeState(
+            location = previewLngLatAlt(),
+            beaconState = BeaconState(location = previewLngLatAlt(), name = "Park gate"),
+            currentRouteData = RoutePlayerState(routeData = previewRoute(), currentWaypoint = 1),
+        ),
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeStreetPreviewPreview() {
+    BaseHomePreview(
+        HomeState(
+            location = previewLngLatAlt(),
+            streetPreviewState = StreetPreviewState(
+                enabled = StreetPreviewEnabled.ON,
+                choices = listOf(
+                    StreetPreviewChoice(0.0, "Buchanan Street", Way()),
+                    StreetPreviewChoice(90.0, "Gordon Street", Way()),
+                    StreetPreviewChoice(180.0, "Buchanan Street", Way()),
+                ),
+            ),
+        ),
+    )
+}
+
+// ---------------------------------------------------------------------------
+// Settings, one preview per expandable section.
+// ---------------------------------------------------------------------------
+
+@Composable
+private fun SettingsSectionPreview(section: String) {
+    SharedSettingsScreen(
+        onNavigateUp = {},
+        beaconTypes = previewBeaconTypes,
+        preferencesProvider = PreviewPreferencesProvider,
+        onNavigateToAdvancedMarkersAndRoutes = {},
+        onResetSettings = {},
+        initialExpandedSection = section,
+    )
+}
+
+// ---------------------------------------------------------------------------
+// Route editing
+// ---------------------------------------------------------------------------
+
+@Preview(showBackground = true)
+@Composable
+fun AddAndEditRoutePreview() {
+    val holder = remember {
+        AddAndEditRouteViewModel(previewRouteDao, PreviewServiceConnection).apply {
+            initializeFromImport(previewRoute())
+        }
+    }
+    SharedAddAndEditRouteScreen(
+        holder = holder,
+        isEditing = true,
+        userLocation = previewLngLatAlt(),
+        heading = 0f,
+        getCurrentLocationDescription = { previewLocation("Current location") },
+        onNavigateUp = {},
+        onSaveComplete = {},
+        onDeleteComplete = {},
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AddWaypointsDialogPreview() {
+    AddWaypointsDialog(
+        uiState = AddAndEditRouteUiState(
+            markers = previewMarkersList(),
+            toggledMembers = previewMarkersList().take(2),
+        ),
+        placesNearbyUiState = PlacesNearbyUiState(userLocation = previewLngLatAlt()),
+        modifier = Modifier,
+        onAddWaypointComplete = {},
+        onClickFolder = { _, _ -> },
+        onClickBack = {},
+        onSelectLocation = {},
+        onToggleMember = {},
+        createAndAddMarker = { _, _, _, _ -> },
+        userLocation = previewLngLatAlt(),
+        getCurrentLocationDescription = { previewLocation("Current location") },
+        heading = 0f,
+    )
+}
+
+// ---------------------------------------------------------------------------
+// Offline map extract details + legacy iOS migration
+// ---------------------------------------------------------------------------
+
+@Preview(showBackground = true)
+@Composable
+fun OfflineMapExtractDetailsPreview() {
+    val extract = remember {
+        Feature().apply {
+            properties = hashMapOf<String, Any?>(
+                "name" to "Glasgow",
+                "city_names" to listOf("Glasgow", "Paisley", "East Kilbride"),
+                "extract-size-string" to "120 MB",
+            )
+        }
+    }
+    SharedOfflineMapExtractDetails(
+        extract = extract,
+        downloadExtract = { _, _ -> },
+        deleteExtract = {},
+        local = false,
+        userLocation = previewLngLatAlt(),
+        preferencesProvider = PreviewPreferencesProvider,
+    )
+}
+
+@Composable
+private fun LegacyMigrationPreview(state: LegacyMigrationUiState) {
+    LegacyMigrationScreenContent(state = state, onRetry = {}, onContinue = {})
+}
+
+// ---------------------------------------------------------------------------
 // Screenshot test wrappers — the screenshot plugin renders these (multiplied
 // by @CustomPreviews). Each one applies the SoundscapeTheme so the captured
 // screenshot matches in-app rendering.
 // ---------------------------------------------------------------------------
+
+/**
+ * [SoundscapeTheme] for the screenshot wrappers below. Strings fetched outside composition, such
+ * as the distance and direction under each marker, are resolved against Locale.getDefault(),
+ * which the preview's locale leaves alone, so without this they would always be in English. In
+ * the app the two locales always agree.
+ */
+@Composable
+private fun PreviewTheme(content: @Composable () -> Unit) {
+    Locale.setDefault(LocalConfiguration.current.locales[0])
+    SoundscapeTheme(testTheme = testTheme, content = content)
+}
 
 class ThemeTestClass {
 
@@ -708,223 +1419,377 @@ class ThemeTestClass {
     @Composable
     @PreviewTest
     fun PreviewWelcomeTest() {
-        SoundscapeTheme(testTheme = testTheme) { PreviewWelcome() }
+        PreviewTheme { PreviewWelcome() }
     }
 
-    @CustomPreviews
+    @TallCustomPreviews
     @Composable
     @PreviewTest
     fun TermsPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { TermsPreview() }
+        PreviewTheme { TermsPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun LanguagePreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { LanguagePreview() }
+        PreviewTheme { LanguagePreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun ListeningPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { ListeningPreview() }
+        PreviewTheme { ListeningPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun HearingPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { HearingPreview() }
+        PreviewTheme { HearingPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun AudioBeaconsPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { AudioBeaconPreview() }
+        PreviewTheme { AudioBeaconPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun AccessibilityPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { AccessibilityOnboardingScreenPreview() }
+        PreviewTheme { AccessibilityOnboardingScreenPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun FinishPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { FinishPreview() }
+        PreviewTheme { FinishPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun PermissionsPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { PermissionsScreenPreview() }
+        PreviewTheme { PermissionsScreenPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun BatteryOptimizationPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { BatteryOptimizationPreview() }
+        PreviewTheme { BatteryOptimizationPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun HomePreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { HomePreview() }
+        PreviewTheme { HomePreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun HomeRoutePreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { HomeRoutePreview() }
+        PreviewTheme { HomeRoutePreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun HomeSearchPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { HomeSearchPreview() }
+        PreviewTheme { HomeSearchPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun SleepScreenPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { SleepScreenPreview() }
+        PreviewTheme { SleepScreenPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun AdvancedMarkersAndRoutesSettingsPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { AdvancedMarkersAndRoutesSettingsPreview() }
+        PreviewTheme { AdvancedMarkersAndRoutesSettingsPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun OpenSourceLicensesPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { OpenSourceLicensesPreview() }
+        PreviewTheme { OpenSourceLicensesPreview() }
     }
 
-    @CustomPreviews
+    @TallCustomPreviews
     @Composable
     @PreviewTest
     fun HelpScreenMenuPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { HelpScreenMenuPreview() }
+        PreviewTheme { HelpScreenMenuPreview() }
     }
 
-    @CustomPreviews
+    @TallCustomPreviews
     @Composable
     @PreviewTest
     fun BeaconHelpPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { BeaconHelpPreview() }
+        PreviewTheme { BeaconHelpPreview() }
     }
 
-    @CustomPreviews
+    @TallCustomPreviews
     @Composable
     @PreviewTest
     fun VoicesHelpPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { VoicesHelpPreview() }
+        PreviewTheme { VoicesHelpPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun PreviewDrawerContentTest() {
-        SoundscapeTheme(testTheme = testTheme) { PreviewDrawerContent() }
+        PreviewTheme { PreviewDrawerContent() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun AudioTourDialogTestTest() {
-        SoundscapeTheme(testTheme = testTheme) { AudioTourDialogTest() }
+        PreviewTheme { AudioTourDialogTest() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun NewReleaseDialogPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { NewReleaseDialogPreview() }
+        PreviewTheme { NewReleaseDialogPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun SettingsPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { SettingsPreview() }
+        PreviewTheme { SettingsPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun LocationDetailsPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { LocationDetailsPreview() }
+        PreviewTheme { LocationDetailsPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun SaveAndEditMarkerPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { SaveAndEditMarkerPreview() }
+        PreviewTheme { SaveAndEditMarkerPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun OfflineMapsScreenPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { OfflineMapsScreenPreview() }
+        PreviewTheme { OfflineMapsScreenPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun OfflineMapsScreenDownloadingPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { OfflineMapsScreenDownloadingPreview() }
+        PreviewTheme { OfflineMapsScreenDownloadingPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun PlacesNearbyPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { PlacesNearbyPreview() }
+        PreviewTheme { PlacesNearbyPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun MarkersScreenPopulatedPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { MarkersScreenPopulatedPreview() }
+        PreviewTheme { MarkersScreenPopulatedPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun RoutesScreenPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { RoutesScreenPreview() }
+        PreviewTheme { RoutesScreenPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun RoutesScreenPopulatedPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { RoutesScreenPopulatedPreview() }
+        PreviewTheme { RoutesScreenPopulatedPreview() }
     }
 
     @CustomPreviews
     @Composable
     @PreviewTest
     fun RoutesDetailsPopulatedPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { RoutesDetailsPopulatedPreview() }
+        PreviewTheme { RoutesDetailsPopulatedPreview() }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun HomeBeaconPreviewTest() {
+        PreviewTheme { HomeBeaconPreview() }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun HomeRoutePlayingPreviewTest() {
+        PreviewTheme { HomeRoutePlayingPreview() }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun HomeStreetPreviewPreviewTest() {
+        PreviewTheme { HomeStreetPreviewPreview() }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsCalloutsPreviewTest() {
+        PreviewTheme { SettingsSectionPreview("callouts") }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsAudioPreviewTest() {
+        PreviewTheme { SettingsSectionPreview("audio") }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsSearchPreviewTest() {
+        PreviewTheme { SettingsSectionPreview("search") }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsAccessibilityPreviewTest() {
+        PreviewTheme { SettingsSectionPreview("accessibility") }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsLanguagePreviewTest() {
+        PreviewTheme { SettingsSectionPreview("language") }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsStoragePreviewTest() {
+        PreviewTheme { SettingsSectionPreview("storage") }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsDebugPreviewTest() {
+        PreviewTheme { SettingsSectionPreview("debug") }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun FaqHelpPreviewTest() {
+        PreviewTheme { SharedHelpScreen(topic = "pagefaq_title", onNavigate = {}, onNavigateUp = {}) }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun TipsHelpPreviewTest() {
+        PreviewTheme { SharedHelpScreen(topic = "pagefaq_tips_title", onNavigate = {}, onNavigateUp = {}) }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun OfflineHelpPreviewTest() {
+        PreviewTheme { SharedHelpScreen(topic = "pagehelp_offline_page_title", onNavigate = {}, onNavigateUp = {}) }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun GpsAccuracyHelpPreviewTest() {
+        PreviewTheme { SharedHelpScreen(topic = "pagehelp_gps_accuracy_page_title", onNavigate = {}, onNavigateUp = {}) }
+    }
+
+    @TallCustomPreviews
+    @Composable
+    @PreviewTest
+    fun FaqAnswerHelpPreviewTest() {
+        PreviewTheme { SharedHelpScreen(topic = "faqfaq_what_is_osm_question.faq_what_is_osm_answer", onNavigate = {}, onNavigateUp = {}) }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun AddAndEditRoutePreviewTest() {
+        PreviewTheme { AddAndEditRoutePreview() }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun AddWaypointsDialogPreviewTest() {
+        PreviewTheme { AddWaypointsDialogPreview() }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun OfflineMapExtractDetailsPreviewTest() {
+        PreviewTheme { OfflineMapExtractDetailsPreview() }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun LegacyMigrationRunningPreviewTest() {
+        PreviewTheme { LegacyMigrationPreview(LegacyMigrationUiState.Running(12, 40)) }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun LegacyMigrationFinishedPreviewTest() {
+        PreviewTheme { LegacyMigrationPreview(LegacyMigrationUiState.Finished(40)) }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun LegacyMigrationNeedsMapDataPreviewTest() {
+        PreviewTheme { LegacyMigrationPreview(LegacyMigrationUiState.NeedsMapData) }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun LegacyMigrationFailedPreviewTest() {
+        PreviewTheme { LegacyMigrationPreview(LegacyMigrationUiState.Failed) }
     }
 }

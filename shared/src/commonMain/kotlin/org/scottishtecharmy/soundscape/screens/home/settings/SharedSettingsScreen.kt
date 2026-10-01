@@ -162,6 +162,8 @@ fun SharedSettingsScreen(
     onBeaconPreviewStart: ((String) -> Unit)? = null,
     onBeaconPreviewUpdate: ((String) -> Unit)? = null,
     onBeaconPreviewStop: ((Boolean, String?) -> Unit)? = null,
+    /** The section that starts expanded, e.g. "callouts". Used by the screenshot tests. */
+    initialExpandedSection: String? = null,
     modifier: Modifier = Modifier,
 ) {
     val showResetDialog = rememberSaveable { mutableStateOf(false) }
@@ -190,7 +192,7 @@ fun SharedSettingsScreen(
             },
         )
     }
-    val expandedSection = rememberSaveable { mutableStateOf<String?>(null) }
+    val expandedSection = rememberSaveable { mutableStateOf(initialExpandedSection) }
 
     val textColor = MaterialTheme.colorScheme.onBackground
     val backgroundColor = MaterialTheme.colorScheme.background
