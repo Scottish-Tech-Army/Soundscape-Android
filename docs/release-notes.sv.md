@@ -40,8 +40,9 @@ Information om äldre versioner finns på sidan
   i, husnummer kopplas till rätt sida av gatan, och busshållplatser i Storbritannien använder sina
   officiella namn.
 * **Tjugo nya språk**, vilket ger totalt 46. Även den här dokumentationswebbplatsen är översatt.
-* **Väckning vid avfärd.** Viloläget kan nu väcka Soundscape igen när du lämnar platsen där du
-  försatte det i vila.
+* **Väck Soundscape när jag lämnar.** När du försätter Soundscape i viloläge sätter den nya knappen
+  *Väck Soundscape när jag lämnar* det i stället i snoozeläge, och det vaknar av sig självt när du
+  går.
 * **Kortare, mer naturliga avstånd**, med större enheter när du rör dig snabbt.
 * **En snabbare väg ut.** *Avsluta Soundscape* ligger nu överst i huvudmenyn.
 * **Förbättringar av offlinekartor**, bland annat uppdatering av en redan hämtad karta och en karta
@@ -200,9 +201,9 @@ läses illa. Varje textsträng kan förbättras på
 
 ### Viloläge
 
-Viloläget har fått **väckning vid avfärd**. När du försätter Soundscape i vila kan du be det vakna
-igen så snart du lämnar området, vilket är praktiskt när du kommer fram någonstans och vill ha lugn
-tills du ger dig av igen.
+Viloläget har en ny knapp, ***Väck Soundscape när jag lämnar***. När du väljer den går Soundscape i
+snoozeläge: det är tyst tills du lämnar området och vaknar sedan av sig självt, vilket är praktiskt
+när du kommer fram någonstans och vill ha lugn tills du ger dig av igen.
 
 ### Avstånd och tal
 

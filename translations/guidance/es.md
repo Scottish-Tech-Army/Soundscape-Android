@@ -127,6 +127,20 @@ name's own «El» contracts («del Corte Inglés»). Streets named after a perso
 («Juan B. Justo», most of Buenos Aires) take no article and are left as they are.
 **New templates must wrap map-name prepositions.**
 
+### ES-D1 — Web pages use the app's Sleep/Snooze words (`fixed` 2026-10-01, JJ)
+
+**JJ, 2026-10-01:** *"the release notes for Soundscape in Spanish uses the term "reposo" for Snooze Mode rather than the app's term "aplazamiento". The word "reposo" is confusing because it could mean "sleep" or "snooze" depending on the context. "Reposo" sort of means "rest" in English, and if you think about it, a rest could be either sleeping or just taking a break without actually fully sleeping. I think the web release notes should use the same terms from Microsoft to avoid confusion."*
+
+`docs/release-notes.es.md` (machine-translated) says «modo de reposo» and «despertar al salir». The app says Sleep = «modo de suspensión» (button *Suspender*, status «Suspendiendo»), Snooze = «modo de aplazamiento» (status «Posponiendo»), and the button between them is *Reactivar al salir*. All are Microsoft's and `confirmed` in the glossary above. **«reposo» is never used** for either mode, on any page. The English notes caused part of this (C26): they call the feature "wake on leave" in lowercase and never mention snooze, so the translation had nothing to anchor to.
+
+Applied 2026-10-01, after the English was fixed (C26), to the bullet and the section:
+
+> * ***Reactivar al salir.*** Cuando suspendes Soundscape, el nuevo botón *Reactivar al salir* lo pone en modo de aplazamiento, y se reactiva solo cuando sales del lugar.
+>
+> ### Modo de suspensión
+>
+> El modo de suspensión tiene un nuevo botón, ***Reactivar al salir***. Al elegirlo, Soundscape pasa al modo de aplazamiento: se queda en silencio hasta que abandonas la zona y entonces se reactiva solo, algo útil cuando llegas a algún sitio y quieres silencio hasta que vuelvas a salir.
+
 ## Rejected
 
 - **«puntos de ruta» in `routes_no_routes_hint_1`** and **«Ahora no» for
@@ -373,3 +387,5 @@ Held back as legal text, then fixed on request the same day (below).
 Also changed the same day:
 - `ecf310fc7`: the clock-position template and the twelve `relative_clock_hour_*` words were fixed together so every hour agrees (see `_common.md` C20).
 - `daa34bc2d`: `terms_of_use_medical_safety_disclaimer` said «dispositivo» (device) for "advice"; now «el asesoramiento». See the entry above.
+
+**2026-10-01 — JJ: release notes say «reposo» (ES-D1).** Not an app string: `docs/release-notes.es.md`. Recorded the rule and the replacement text; nothing edited. The same gap exists in most languages' release notes (C26).

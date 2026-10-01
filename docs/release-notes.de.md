@@ -43,8 +43,9 @@ Hinweise zu älteren Versionen finden Sie auf der Seite
   Bushaltestellen in Großbritannien verwenden ihre offiziellen Namen.
 * **Zwanzig neue Sprachen**, womit es nun insgesamt 46 sind. Auch diese Dokumentationswebsite wurde
   übersetzt.
-* **Aufwachen beim Verlassen.** Der Schlafmodus kann Soundscape nun wieder aufwecken, wenn Sie den
-  Ort verlassen, an dem Sie ihn in den Schlafmodus versetzt haben.
+* **Beim Verlassen aufwecken.** Wenn Sie Soundscape in den Ruhemodus versetzen, schaltet die neue
+  Schaltfläche *Beim Verlassen aufwecken* stattdessen in den Standbymodus, und Soundscape wacht von
+  selbst auf, sobald Sie den Ort verlassen.
 * **Kürzere, natürlichere Entfernungsangaben**, mit größeren Einheiten, wenn Sie schnell unterwegs
   sind.
 * **Ein schnellerer Weg hinaus.** *Soundscape beenden* steht jetzt ganz oben im Hauptmenü.
@@ -214,11 +215,12 @@ ist Soundscape nun in 46 Sprachen verfügbar, und auch diese Dokumentationswebsi
 Korrekturen, wenn sich etwas schlecht liest. Jede Zeichenkette kann unter
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/> verbessert werden.
 
-### Schlafmodus
+### Ruhemodus
 
-Der Schlafmodus hat **Aufwachen beim Verlassen** erhalten. Wenn Sie Soundscape in den Schlafmodus
-versetzen, können Sie es bitten, wieder aufzuwachen, sobald Sie das Gebiet verlassen. Das ist
-nützlich, wenn Sie irgendwo ankommen und Ruhe haben möchten, bis Sie wieder aufbrechen.
+Der Ruhemodus hat eine neue Schaltfläche: ***Beim Verlassen aufwecken***. Wenn Sie sie wählen,
+wechselt Soundscape in den Standbymodus: Es bleibt still, bis Sie das Gebiet verlassen, und wacht
+dann von selbst auf. Das ist nützlich, wenn Sie irgendwo ankommen und Ruhe haben möchten, bis Sie
+wieder aufbrechen.
 
 ### Entfernungen und Sprachausgabe
 

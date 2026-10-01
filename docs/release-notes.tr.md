@@ -41,8 +41,8 @@ Daha eski sürümlerin notları
   bölgeyi alıyor, kapı numaraları sokağın doğru tarafıyla eşleştiriliyor ve Büyük Britanya'daki otobüs
   durakları resmi adlarını kullanıyor.
 * **Yirmi yeni dil**, böylece toplam 46 oldu. Bu belge sitesi de çevrildi.
-* **Ayrılınca uyanma.** Uyku modu artık, onu uyuttuğunuz yerden ayrıldığınızda Soundscape'i yeniden
-  uyandırabiliyor.
+* **Ayrıldığımda Uyandır.** Soundscape'i Uyku Modu'na aldığınızda, yeni *Ayrıldığımda Uyandır*
+  düğmesi onu bunun yerine Erteleme Modu'na alır ve oradan ayrıldığınızda kendiliğinden uyanır.
 * **Daha kısa, daha doğal mesafeler**, hızlı hareket ederken daha büyük birimlerle.
 * **Daha hızlı çıkış.** *Soundscape'ten çık* artık ana menünün en üstünde.
 * **Çevrimdışı harita iyileştirmeleri**, indirilmiş bir haritanın yerinde güncellenmesi ve bu sitede
@@ -200,11 +200,11 @@ metin yoktu.
 memnuniyetle karşılarız. Her metin şu adreste iyileştirilebilir:
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Uyku modu
+### Uyku Modu
 
-Uyku modu **ayrılınca uyanma** özelliğini kazandı. Soundscape'i uyuttuğunuzda, bölgeden ayrılır
-ayrılmaz uyanmasını isteyebilirsiniz; bu, bir yere vardığınızda ve yeniden yola çıkana kadar sessizlik
-istediğinizde işe yarar.
+Uyku Modu'nda yeni bir düğme var: ***Ayrıldığımda Uyandır***. Bunu seçtiğinizde Soundscape Erteleme
+Modu'na geçer: bölgeden ayrılana kadar sessiz kalır, sonra kendiliğinden uyanır. Bu, bir yere
+vardığınızda ve yeniden yola çıkana kadar sessizlik istediğinizde işe yarar.
 
 ### Mesafeler ve konuşma
 

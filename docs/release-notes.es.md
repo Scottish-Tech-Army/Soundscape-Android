@@ -43,8 +43,8 @@ Las notas de versiones anteriores están en la página
   correcto de la calle y las paradas de autobús de Gran Bretaña usan sus nombres oficiales.
 * **Veinte idiomas nuevos**, hasta un total de 46. Este sitio de documentación también está
   traducido.
-* **Despertar al salir.** El modo de reposo ya puede despertar Soundscape cuando abandonas el lugar
-  donde lo dejaste en reposo.
+* **Reactivar al salir.** Cuando suspendes Soundscape, el nuevo botón *Reactivar al salir* lo pone
+  en modo de aplazamiento, y se reactiva solo cuando sales del lugar.
 * **Distancias más cortas y naturales**, con unidades mayores cuando te desplazas rápido.
 * **Una salida más rápida.** *Salir de Soundscape* está ahora en la parte superior del menú
   principal.
@@ -210,11 +210,11 @@ Las traducciones son un trabajo comunitario y agradecemos tu ayuda, o tus correc
 se lea mal. Cualquier cadena puede mejorarse en
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Modo de reposo
+### Modo de suspensión
 
-El modo de reposo ha ganado el **despertar al salir**. Cuando pones Soundscape en reposo, puedes
-pedirle que se despierte en cuanto abandones la zona, algo útil cuando llegas a algún sitio y
-quieres silencio hasta que vuelvas a salir.
+El modo de suspensión tiene un nuevo botón, ***Reactivar al salir***. Al elegirlo, Soundscape pasa
+al modo de aplazamiento: se queda en silencio hasta que abandonas la zona y entonces se reactiva
+solo, algo útil cuando llegas a algún sitio y quieres silencio hasta que vuelvas a salir.
 
 ### Distancias y voz
 

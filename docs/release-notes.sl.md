@@ -39,8 +39,8 @@ Opombe za starejše različice so na strani
   katerem so, hišne številke se pripišejo pravi strani ulice, avtobusna postajališča v Veliki
   Britaniji pa uporabljajo svoja uradna imena.
 * **Dvajset novih jezikov**, skupaj torej 46. Prevedeno je tudi to dokumentacijsko spletno mesto.
-* **Bujenje ob odhodu.** Način spanja lahko zdaj znova zbudi Soundscape, ko zapustite kraj, kjer ste
-  ga uspavali.
+* **Prebudi ob odhodu.** Ko Soundscape preklopite v način spanja, ga novi gumb *Prebudi ob odhodu*
+  namesto tega preklopi v način dremeža, in aplikacija se sama prebudi, ko odidete.
 * **Krajše, bolj naravne razdalje**, z večjimi enotami, ko se premikate hitro.
 * **Hitrejši izhod.** *Izhod iz Soundscapea* je zdaj na vrhu glavnega menija.
 * **Izboljšave zemljevidov brez povezave**, vključno s posodobitvijo že prenesenega zemljevida in
@@ -198,8 +198,9 @@ besedilo je mogoče izboljšati na
 
 ### Način spanja
 
-Način spanja je dobil **bujenje ob odhodu**. Ko Soundscape uspavate, ga lahko prosite, naj se zbudi,
-takoj ko zapustite območje. To je koristno, ko nekam prispete in želite mir, dokler znova ne krenete.
+Način spanja ima nov gumb, ***Prebudi ob odhodu***. Ko ga izberete, Soundscape preide v način
+dremeža: ostane tiho, dokler ne zapustite območja, nato pa se sam prebudi. To je koristno, ko nekam
+prispete in želite mir, dokler znova ne krenete.
 
 ### Razdalje in govor
 

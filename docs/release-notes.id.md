@@ -41,8 +41,8 @@ Catatan untuk versi lama ada di halaman
   nama jalan dan kawasan tempatnya berada, nomor rumah dicocokkan dengan sisi jalan yang benar, dan
   halte bus di Britania Raya memakai nama resminya.
 * **Dua puluh bahasa baru**, sehingga totalnya menjadi 46. Situs dokumentasi ini juga diterjemahkan.
-* **Bangun saat pergi.** Mode tidur kini dapat membangunkan Soundscape lagi ketika Anda meninggalkan
-  tempat Anda menidurkannya.
+* **Bangun Saat Pergi.** Saat Anda memasukkan Soundscape ke Mode Tidur, tombol baru *Bangun Saat
+  Pergi* akan memasukkannya ke Mode Tunda, dan Soundscape bangun sendiri ketika Anda pergi.
 * **Jarak yang lebih ringkas dan wajar**, dengan satuan lebih besar saat Anda bergerak cepat.
 * **Jalan keluar yang lebih cepat.** *Keluar dari Soundscape* kini berada di bagian atas menu utama.
 * **Peningkatan peta luring**, termasuk memperbarui peta yang sudah diunduh di tempatnya dan peta
@@ -205,11 +205,11 @@ Terjemahan adalah kerja komunitas dan kami menyambut bantuan Anda, atau koreksi 
 janggal. Setiap teks dapat diperbaiki di
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Mode tidur
+### Mode Tidur
 
-Mode tidur kini punya **bangun saat pergi**. Ketika Anda menidurkan Soundscape, Anda dapat memintanya
-bangun begitu Anda meninggalkan kawasan tersebut. Ini berguna ketika Anda tiba di suatu tempat dan
-ingin tenang sampai berangkat lagi.
+Mode Tidur kini punya tombol baru, ***Bangun Saat Pergi***. Jika Anda memilihnya, Soundscape masuk
+ke Mode Tunda: Soundscape tetap diam sampai Anda meninggalkan kawasan tersebut, lalu bangun sendiri.
+Ini berguna ketika Anda tiba di suatu tempat dan ingin tenang sampai berangkat lagi.
 
 ### Jarak dan ucapan
 

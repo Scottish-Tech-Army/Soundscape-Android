@@ -39,8 +39,8 @@ Ghi chú của các phiên bản cũ hơn nằm ở trang
   khu vực nơi chúng tọa lạc, số nhà được khớp với đúng bên đường, và các điểm dừng xe buýt ở Vương
   quốc Anh dùng tên chính thức của chúng.
 * **Hai mươi ngôn ngữ mới**, nâng tổng số lên 46. Trang tài liệu này cũng đã được dịch.
-* **Thức dậy khi rời đi.** Chế độ ngủ giờ có thể đánh thức Soundscape khi bạn rời khỏi nơi mà bạn đã
-  cho nó ngủ.
+* **Thức dậy khi rời đi.** Khi bạn đưa Soundscape vào Chế độ Ngủ, nút *Thức dậy khi rời đi* mới sẽ
+  chuyển ứng dụng sang Chế độ Tạm nghỉ, và ứng dụng tự thức dậy khi bạn rời đi.
 * **Khoảng cách ngắn gọn, tự nhiên hơn**, dùng đơn vị lớn hơn khi bạn di chuyển nhanh.
 * **Lối thoát nhanh hơn.** *Thoát Soundscape* giờ nằm ở đầu menu chính.
 * **Cải tiến bản đồ ngoại tuyến**, bao gồm cập nhật tại chỗ một bản đồ đã tải và một bản đồ các khu
@@ -197,11 +197,11 @@ Bản dịch là công sức của cộng đồng và chúng tôi hoan nghênh s
 những chỗ đọc lên chưa ổn. Mọi văn bản đều có thể được cải thiện tại
 <https://hosted.weblate.org/projects/soundscape-android/androidkmp/>.
 
-### Chế độ ngủ
+### Chế độ Ngủ
 
-Chế độ ngủ đã có thêm **thức dậy khi rời đi**. Khi bạn cho Soundscape ngủ, bạn có thể yêu cầu nó thức
-dậy ngay khi bạn rời khỏi khu vực, điều này hữu ích khi bạn tới nơi nào đó và muốn yên tĩnh cho tới
-lần khởi hành kế tiếp.
+Chế độ Ngủ có thêm nút mới ***Thức dậy khi rời đi***. Khi chọn nút này, Soundscape chuyển sang Chế
+độ Tạm nghỉ: ứng dụng im lặng cho tới khi bạn rời khỏi khu vực rồi tự thức dậy, điều này hữu ích khi
+bạn tới nơi nào đó và muốn yên tĩnh cho tới lần khởi hành kế tiếp.
 
 ### Khoảng cách và lời nói
 

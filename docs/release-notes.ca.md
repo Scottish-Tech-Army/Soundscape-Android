@@ -40,8 +40,8 @@ Les notes de versions anteriors són a la pàgina
   són, els números de porta s'associen al costat correcte del carrer, i les parades d'autobús de la
   Gran Bretanya fan servir els seus noms oficials.
 * **Vint llengües noves**, fins a un total de 46. Aquest lloc de documentació també està traduït.
-* **Despertar en marxar.** El mode de repòs ara pot despertar Soundscape quan deixeu el lloc on el
-  vau adormir.
+* **Desperta en sortir.** Quan poseu Soundscape en mode de repòs, el nou botó *Desperta en sortir*
+  el posa en mode d'espera, i es desperta sol quan deixeu el lloc.
 * **Distàncies més curtes i naturals**, amb unitats més grans quan us desplaceu ràpid.
 * **Una sortida més ràpida.** *Sortir de Soundscape* ara és a la part superior del menú principal.
 * **Millores als mapes fora de línia**, com ara actualitzar in situ un mapa ja baixat i un mapa de les
@@ -204,9 +204,9 @@ cosa es llegeixi malament. Qualsevol text es pot millorar a
 
 ### Mode de repòs
 
-El mode de repòs ha guanyat el **despertar en marxar**. Quan poseu Soundscape en repòs, podeu
-demanar-li que es desperti tan bon punt deixeu la zona, cosa útil quan arribeu a un lloc i voleu
-silenci fins que torneu a sortir.
+El mode de repòs té un botó nou, ***Desperta en sortir***. Si el trieu, Soundscape passa al mode
+d'espera: es queda en silenci fins que deixeu la zona i llavors es desperta sol, cosa útil quan
+arribeu a un lloc i voleu silenci fins que torneu a sortir.
 
 ### Distàncies i veu
 

@@ -40,8 +40,8 @@ Noter til ældre versioner findes på siden
   i, husnumre knyttes til den rigtige side af gaden, og busstoppesteder i Storbritannien bruger deres
   officielle navne.
 * **Tyve nye sprog**, så der nu er 46 i alt. Også dette dokumentationswebsted er oversat.
-* **Vækning ved afgang.** Dvaletilstand kan nu vække Soundscape igen, når du forlader det sted, hvor
-  du satte den i dvale.
+* **Væk, når jeg forlader stedet.** Når du sætter Soundscape i dvale, kan den nye knap *Væk, når jeg
+  forlader stedet* i stedet sætte den i slumretilstand, så den vågner af sig selv, når du går.
 * **Kortere, mere naturlige afstande**, med større enheder når du bevæger dig hurtigt.
 * **En hurtigere vej ud.** *Afslut Soundscape* ligger nu øverst i hovedmenuen.
 * **Forbedringer af offlinekort**, herunder opdatering af et allerede hentet kort og et kort over de
@@ -198,9 +198,9 @@ læses dårligt. Enhver tekst kan forbedres på
 
 ### Dvaletilstand
 
-Dvaletilstand har fået **vækning ved afgang**. Når du sætter Soundscape i dvale, kan du bede den
-vågne igen, så snart du forlader området, hvilket er nyttigt, når du ankommer et sted og vil have ro,
-indtil du tager af sted igen.
+Dvaletilstand har fået en ny knap, ***Væk, når jeg forlader stedet***. Når du vælger den, går
+Soundscape i slumretilstand: den er stille, indtil du forlader området, og vågner så af sig selv.
+Det er nyttigt, når du ankommer et sted og vil have ro, indtil du tager af sted igen.
 
 ### Afstande og tale
 

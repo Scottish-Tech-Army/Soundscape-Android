@@ -38,8 +38,8 @@ Vanemate versioonide märkmed on lehel
   nad asuvad, majanumbrid seotakse tänava õige poolega ning Suurbritannia bussipeatused kasutavad oma
   ametlikke nimesid.
 * **Kakskümmend uut keelt**, kokku on neid nüüd 46. Ka see dokumentatsioonisait on tõlgitud.
-* **Ärkamine lahkumisel.** Unerežiim suudab nüüd Soundscape'i uuesti äratada, kui lahkud kohast, kus
-  ta magama panid.
+* **Ärka lahkumisel.** Kui lülitad Soundscape'i unerežiimi, paneb uus nupp *Ärka lahkumisel* selle
+  hoopis uinakurežiimi ja see ärkab ise, kui sa lahkud.
 * **Lühemad, loomulikumad vahemaad**, suuremate ühikutega, kui liigud kiiresti.
 * **Kiirem väljumine.** *Välju Soundscape'ist* on nüüd peamenüü ülaosas.
 * **Võrguühenduseta kaartide parandused**, sealhulgas juba alla laaditud kaardi kohapealne uuendamine
@@ -197,8 +197,9 @@ Iga teksti saab parandada aadressil
 
 ### Unerežiim
 
-Unerežiim sai **ärkamise lahkumisel**. Kui paned Soundscape'i magama, võid paluda tal ärgata niipea,
-kui piirkonnast lahkud. See on kasulik, kui kuhugi jõuad ja tahad vaikust kuni järgmise väljumiseni.
+Unerežiimil on uus nupp ***Ärka lahkumisel***. Kui selle valid, läheb Soundscape uinakurežiimi: see
+vaikib, kuni piirkonnast lahkud, ja ärkab siis ise. See on kasulik, kui kuhugi jõuad ja tahad
+vaikust kuni järgmise väljumiseni.
 
 ### Vahemaad ja kõne
 
