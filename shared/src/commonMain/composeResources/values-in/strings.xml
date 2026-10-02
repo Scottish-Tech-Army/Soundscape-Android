@@ -857,7 +857,6 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="search_use_current_location">Lokasi Saat Ini</string>
     <string name="search_nearby_screen_title">Tempat di Sekitar</string>
     <string name="search_view_markers">Penanda dan Rute</string>
-    <string name="search_button_markers_accessibility_hint">memilih atau mengedit penanda dan rute yang telah disimpan</string>
     <string name="search_button_nearby_accessibility_hint">menjelajahi restoran, halte transit, dan lainnya di sekitar Anda</string>
     <string name="search_button_current_location_accessibility_hint">melihat pratinjau, menandai, atau membagikan lokasi Anda saat ini kepada teman</string>
     <string name="filter_all">Semua Tempat</string>
@@ -1229,7 +1228,6 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="tour_ahead">Tombol berikutnya adalah Di Depan Saya. Ini memberi tahu Anda apa yang ada di depan Anda. Ketuk Di Depan Saya.</string>
     <string name="tour_nearby_markers">Tombol terakhir adalah Penanda Terdekat, yang mengumumkan tempat tersimpan di sekitar Anda. Ketuk Penanda Terdekat untuk mencobanya.</string>
     <string name="tour_markers_and_routes">Anda telah berhasil membuat penanda. Mari kita mainkan suar audio untuk memandu kita ke lokasi tersebut. Ketuk Penanda dan Rute, tepat di bawah Tempat di Sekitar.</string>
-    <string name="tour_markers">Layar Penanda dan Rute memiliki dua tab. Satu tab berisi daftar rute, yang merupakan daftar putar penanda. Tab lainnya berisi daftar penanda satu per satu. Ketuk Penanda untuk beralih ke tab tersebut dan menemukan penanda yang telah Anda buat.</string>
     <string name="tour_start_beacon">Anda sekarang berada di tab Penanda yang menampilkan semua penanda tersimpan Anda. Pilih sebuah penanda, dan saat layar Detail Lokasi muncul, ketuk Mulai Suar Audio.</string>
     <string name="tour_beacon_demo">Sekarang Anda dapat mendengar suar audio. Suara ini diputar dari arah tujuan Anda. Saat Anda memutar ponsel, Anda akan mendengar suar bergerak dan berubah suaranya. Coba sekarang.</string>
     <string name="tour_beacon_demo_locked">Saat ponsel Anda terkunci, suar tetap akan diputar. Jika Anda sedang berjalan atau berada dalam kendaraan, aplikasi menggunakan arah perjalanan Anda untuk memutar suar audio. Namun, meskipun ponsel terkunci, Anda dapat memegangnya secara datar di depan Anda, seperti kompas. Suar kemudian menggunakan arah hadap ponsel Anda. Coba sekarang.</string>

@@ -115,7 +115,6 @@
     <string name="search_use_current_location">当前位置</string>
     <string name="search_nearby_screen_title">附近地点</string>
     <string name="search_view_markers">标记点和路线</string>
-    <string name="search_button_markers_accessibility_hint">选择或编辑您已保存的标记点和路线</string>
     <string name="search_button_nearby_accessibility_hint">探索附近的餐厅、公交站点等地点</string>
     <string name="search_button_current_location_accessibility_hint">预览、标记或与朋友分享您的当前位置</string>
     <string name="filter_all">所有地点</string>
@@ -824,7 +823,6 @@
     <string name="tour_ahead">下一个按钮是前方。它会告诉您前面有什么。点击前方。</string>
     <string name="tour_nearby_markers">最后一个按钮是附近标记点，它会播报您周围已保存的地点。点击附近标记点来试试。</string>
     <string name="tour_markers_and_routes">您已成功创建了一个标记点。接下来让我们启动音频信标来引导我们前往该位置。点击附近地点下方的标记点和路线。</string>
-    <string name="tour_markers">标记点和路线屏幕有两个选项卡。一个显示路线，即由标记点组成的播放列表；另一个显示各个标记点。点击标记点切换到该选项卡，找到您创建的标记点。</string>
     <string name="tour_start_beacon">您现在进入了标记点选项卡，这里列出了您所有已保存的标记点。选择一个标记点，当位置详情屏幕出现时，点击启动音频信标。</string>
     <string name="tour_beacon_demo">您现在可以听到音频信标了。它从您目的地的方向传来。当您转动手机时，可以听到信标移动、声音发生变化。现在试试看。</string>
     <string name="tour_beacon_demo_locked">即使手机锁屏，信标仍会继续播放。如果您在步行或乘车，应用会使用您的行进方向来播放音频信标。不过，即使在锁屏状态下，您也可以像使用指南针一样将手机平放在面前，此时信标会使用手机指向的方向。现在试试看。</string>

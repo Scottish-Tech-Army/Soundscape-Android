@@ -72,6 +72,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedit
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddWaypointsDialog
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.SharedAddAndEditRouteScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.SharedAddMarkerScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.SharedRouteDetailsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
 import org.scottishtecharmy.soundscape.screens.migration.LegacyMigrationScreenContent
@@ -979,7 +980,6 @@ fun HomeRoutePreview() {
     BaseHomePreview(
         HomeState(
             location = previewLngLatAlt(),
-            routesTabSelected = true,
         ),
     )
 }
@@ -1203,6 +1203,34 @@ fun PlacesNearbyPreview() {
             title = "Places nearby",
         ),
         onSelectItem = {},
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MarkersScreenPreview() {
+    MarkersScreen(
+        uiState = MarkersAndRoutesUiState(markers = true),
+        clearErrorMessage = {},
+        onCycleSort = {},
+        userLocation = previewLngLatAlt(),
+        onSelectItem = {},
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AddMarkerScreenPreview() {
+    SharedAddMarkerScreen(
+        placesNearbyUiState = PlacesNearbyUiState(userLocation = previewLngLatAlt()),
+        userLocation = previewLngLatAlt(),
+        heading = 0f,
+        preferencesProvider = null,
+        getCurrentLocationDescription = { previewLocation("Current location") },
+        onClickFolder = { _, _ -> },
+        onClickBack = {},
+        onCancel = {},
+        onSave = {},
     )
 }
 
@@ -1641,6 +1669,20 @@ class ThemeTestClass {
     @PreviewTest
     fun PlacesNearbyPreviewTest() {
         PreviewTheme { PlacesNearbyPreview() }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun MarkersScreenPreviewTest() {
+        PreviewTheme { MarkersScreenPreview() }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun AddMarkerScreenPreviewTest() {
+        PreviewTheme { AddMarkerScreenPreview() }
     }
 
     @CustomPreviews

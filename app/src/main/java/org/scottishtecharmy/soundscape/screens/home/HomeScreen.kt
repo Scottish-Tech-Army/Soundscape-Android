@@ -209,6 +209,20 @@ fun HomeScreen(
                 }
             },
             onGetOfflineAddress = { location -> viewModel.getOfflineAddress(location) },
+            onSpeak = { text ->
+                serviceConnection.soundscapeService?.speakCallout(
+                    org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout(
+                        positionedStrings = listOf(
+                            org.scottishtecharmy.soundscape.geoengine.PositionedString(
+                                text = text,
+                                type = org.scottishtecharmy.soundscape.audio.AudioType.STANDARD,
+                            )
+                        ),
+                        filter = false,
+                    ),
+                    false,
+                )
+            },
             onGetLanguageMismatch = { getLanguageMismatch() },
             provideLocationProvider = {
                 if (org.scottishtecharmy.soundscape.hasPlayServices(context)) {

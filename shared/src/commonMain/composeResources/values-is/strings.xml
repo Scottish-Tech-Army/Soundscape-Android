@@ -96,7 +96,6 @@
     <string name="search_use_current_location">Núverandi staðsetning</string>
     <string name="search_nearby_screen_title">Nálægir staðir</string>
     <string name="search_view_markers">Merki og leiðir</string>
-    <string name="search_button_markers_accessibility_hint">velja eða breyta vistuðum merkjum og leiðum</string>
     <string name="search_button_nearby_accessibility_hint">skoða nálæga veitingastaði, stoppistöðvar og fleira</string>
     <string name="search_button_current_location_accessibility_hint">forskoða, merkja eða deila núverandi staðsetningu þinni með vini</string>
     <string name="filter_all">Allir staðir</string>
@@ -1244,7 +1243,6 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="tour_ahead">Næsti hnappurinn er „Fyrir framan mig“. Hann segir þér hvað er fyrir framan þig. Ýttu á „Fyrir framan mig“.</string>
     <string name="tour_nearby_markers">Síðasti hnappurinn er „Nálæg merki“, sem segir frá vistuðum stöðum í kringum þig. Ýttu á „Nálæg merki“ til að prófa.</string>
     <string name="tour_markers_and_routes">Þú hefur nú búið til merki. Við skulum spila hljóðvita til að leiða okkur að þeim stað. Ýttu á „Merki og leiðir“, beint undir „Nálægir staðir“.</string>
-    <string name="tour_markers">Skjárinn „Merki og leiðir“ hefur tvo flipa. Annar flipinn sýnir leiðir, sem eru spilunarlistar af merkjum. Hinn sýnir einstök merki. Ýttu á „Merki“ til að fara á þann flipa og finna merkið sem þú bjóst til.</string>
     <string name="tour_start_beacon">Nú ertu á flipanum Merki sem sýnir öll vistuð merkin þín. Veldu eitt merki og þegar upplýsingasíða staðarins birtist, ýttu á „Kveikja á hljóðvita“.</string>
     <string name="tour_beacon_demo">Nú geturðu heyrt hljóðvitann. Hann heyrist úr átt áfangastaðarins. Þegar þú snýrð símanum heyrirðu hljóðvitann færa sig og hljóðið breytast. Prófaðu það núna.</string>
     <string name="tour_beacon_demo_locked">Þó síminn sé læstur mun hljóðvitinn samt spila. Ef þú ert að ganga eða í ökutæki notar forritið stefnu ferðalagsins til að spila hljóðvitann. Jafnvel þegar síminn er læstur geturðu hins vegar haldið honum flötum fyrir framan þig eins og áttavita. Þá notar hljóðvitinn þá stefnu sem síminn vísar í. Prófaðu það núna.</string>

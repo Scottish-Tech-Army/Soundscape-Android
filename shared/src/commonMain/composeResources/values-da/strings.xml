@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Aktuel placering</string>
     <string name="search_nearby_screen_title">Steder i nærheden</string>
     <string name="search_view_markers">Mærker og ruter</string>
-    <string name="search_button_markers_accessibility_hint">vælge eller redigere dine gemte mærker og ruter</string>
     <string name="search_button_nearby_accessibility_hint">udforske nærliggende restauranter, stoppesteder og mere</string>
     <string name="search_button_current_location_accessibility_hint">forhåndsvise, gemme eller dele din aktuelle placering med en ven</string>
     <string name="filter_all">Alle steder</string>
@@ -1244,7 +1243,6 @@ Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er,
     <string name="tour_ahead">Den næste knap er »Foran mig«. Den fortæller dig, hvad der er foran dig. Tryk på »Foran mig«.</string>
     <string name="tour_nearby_markers">Den sidste knap er »Mærker i nærheden«, som annoncerer gemte steder omkring dig. Tryk på »Mærker i nærheden« for at prøve.</string>
     <string name="tour_markers_and_routes">Du har nu oprettet et mærke. Lad os afspille et lydfyr, der kan guide os til den placering. Tryk på Mærker og Ruter, lige under Steder i nærheden.</string>
-    <string name="tour_markers">Skærmen Mærker og Ruter har to faner. Den ene fane viser ruter, som er playlister af mærker. Den anden fane viser individuelle mærker. Tryk på Mærker for at skifte til den fane og finde det mærke, du oprettede.</string>
     <string name="tour_start_beacon">Du er nu på fanen Mærker, som viser alle dine gemte mærker. Vælg et mærke, og når skærmen Oplysninger om placering vises, skal du trykke på Start lydfyr.</string>
     <string name="tour_beacon_demo">Du kan nu høre lydfyret. Det afspilles fra retningen af din destination. Når du drejer telefonen, kan du høre lydfyret bevæge sig og ændre klang. Prøv det nu.</string>
     <string name="tour_beacon_demo_locked">Når din telefon er låst, vil lydfyret stadig spille. Hvis du går eller er i et køretøj, bruger appen din bevægelsesretning til at afspille lydfyret. Men selv når telefonen er låst, kan du holde den fladt foran dig som et kompas. Så bruger lydfyret den retning, telefonen peger i. Prøv det nu.</string>

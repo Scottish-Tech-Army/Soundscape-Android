@@ -75,15 +75,6 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun setRoutesAndMarkersTab_updatesState() = runTest {
-        val vm = HomeViewModel(FakeServiceConnection())
-
-        vm.setRoutesAndMarkersTab(false)
-
-        assertFalse(vm.state.value.routesTabSelected)
-    }
-
-    @Test
     fun onTriggerSearch_populatesSearchItemsAndTogglesProgress() = runTest {
         val service = FakeMediaControllableService()
         val expected = listOf(LocationDescription(name = "Cafe", location = LngLatAlt(-4.25, 55.86)))

@@ -312,7 +312,6 @@
     <string name="search_use_current_location">Wurin da Kake Yanzu</string>
     <string name="search_nearby_screen_title">Wurare na Kusa</string>
     <string name="search_view_markers">Alamomi da Tafarkuna</string>
-    <string name="search_button_markers_accessibility_hint">zaɓi ko gyara alamomi da tafarkunan da ka ajiye</string>
     <string name="search_button_nearby_accessibility_hint">bincika gidajen cin abinci na kusa, tashoshin sufuri da sauransu</string>
     <string name="search_button_current_location_accessibility_hint">kwaikwayi, sanya alama, ko raba wurin da kake yanzu da aboki</string>
     <string name="filter_all">Dukkan Wurare</string>
@@ -1244,7 +1243,6 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="tour_ahead">Maɓallin na gaba shi ne Gaba da Ni. Yana gaya maka abin da ke gabanka. Taɓa Gaba da Ni.</string>
     <string name="tour_nearby_markers">Maɓallin na ƙarshe shi ne Alamomi na Kusa, wanda ke sanar da wuraren da aka ajiye kewaye da kai. Taɓa Alamomi na Kusa don gwada wannan.</string>
     <string name="tour_markers_and_routes">Yanzu ka yi nasarar ƙirƙirar alama. Bari mu kunna siginar sauti don ta jagorance mu zuwa wannan wurin. Taɓa Alamomi da Tafarkuna, ƙasa da Wurare na Kusa kaɗan.</string>
-    <string name="tour_markers">Allon Alamomi da Tafarkuna yana da shafuka guda biyu. Shafi ɗaya yana lissafa tafarkuna, wato jerin alamomi da ake kunnawa bi da bi. Ɗayan kuma yana lissafa alamomi ɗaya-ɗaya. Taɓa Alamomi don canzawa zuwa wannan shafin domin neman alamar da ka ƙirƙira.</string>
     <string name="tour_start_beacon">Yanzu kana kan shafin Alamomi wanda ke lissafa duk alamomin da ka ajiye. Zaɓi alama, kuma idan allon Cikakkun Bayanan Wuri ya bayyana, taɓa Fara Siginar Sauti.</string>
     <string name="tour_beacon_demo">Yanzu kana iya jin siginar sauti. Tana kaɗawa daga alkiblar wurin da kake zuwa. Yayin da ka juya wayarka, za ka ji siginar tana motsi kuma tana canza yadda take sauti. Gwada yanzu.</string>
     <string name="tour_beacon_demo_locked">Idan an kulle wayarka, siginar za ta ci gaba da kaɗawa. Idan kana tafiya ko kana cikin abin hawa, app ɗin yana amfani da alkiblar tafiyarka wajen kunna siginar sauti. Duk da haka, ko da an kulle wayarka, kana iya riƙe ta a kwance a gabanka, kamar kamfas. Sai siginar ta yi amfani da alkiblar da wayarka take fuskanta. Gwada yanzu.</string>

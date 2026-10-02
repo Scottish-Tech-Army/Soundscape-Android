@@ -134,7 +134,6 @@
     <string name="search_use_current_location">Ubicació actual</string>
     <string name="search_nearby_screen_title">Llocs propers</string>
     <string name="search_view_markers">Marcadors i rutes</string>
-    <string name="search_button_markers_accessibility_hint">seleccionar o editar els marcadors i rutes desats</string>
     <string name="search_button_nearby_accessibility_hint">explorar restaurants propers, parades de transport i més</string>
     <string name="search_button_current_location_accessibility_hint">previsualitzar, marcar o compartir la teva ubicació actual amb un amic</string>
     <string name="filter_all">Tots els llocs</string>
@@ -1437,7 +1436,6 @@ Continua informant-nos de qualsevol problema, per petit que sigui, mitjançant �
     <string name="tour_ahead">El següent botó és Davant meu. Et diu què hi ha davant teu. Toca Davant meu.</string>
     <string name="tour_nearby_markers">L'últim botó és Marcadors propers, que anuncia els llocs desats al teu voltant. Toca Marcadors propers per provar-ho.</string>
     <string name="tour_markers_and_routes">Ara ja has creat un marcador correctament. Reproduïm una balisa sonora per guiar-nos fins a aquesta ubicació. Toca Marcadors i rutes, just a sota de Llocs propers.</string>
-    <string name="tour_markers">La pantalla Marcadors i rutes té dues pestanyes. Una pestanya llista les rutes, que són llistes de reproducció de marcadors. L'altra llista els marcadors individuals. Toca Marcadors per canviar a aquesta pestanya i trobar el marcador que has creat.</string>
     <string name="tour_start_beacon">Ara ets a la pestanya Marcadors, que llista tots els teus marcadors desats. Selecciona un marcador i, quan aparegui la pantalla de detalls de la ubicació, toca Inicia la balisa sonora.</string>
     <string name="tour_beacon_demo">Ara pots sentir la balisa sonora. Sona des de la direcció de la teva destinació. Quan gires el telèfon, sents com la balisa es mou i canvia de so. Prova-ho ara.</string>
     <string name="tour_beacon_demo_locked">Quan el telèfon estigui bloquejat, la balisa continuarà sonant. Si estàs caminant o en un vehicle, l'aplicació utilitza la direcció del teu desplaçament per reproduir la balisa sonora. Tanmateix, fins i tot amb el telèfon bloquejat, el pots sostenir pla davant teu, com una brúixola. Aleshores la balisa utilitza la direcció cap a la qual apunta el telèfon. Prova-ho ara.</string>

@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Nåværende posisjon</string>
     <string name="search_nearby_screen_title">Steder i nærheten</string>
     <string name="search_view_markers">Markører og ruter</string>
-    <string name="search_button_markers_accessibility_hint">velge eller redigere lagrede markører og ruter</string>
     <string name="search_button_nearby_accessibility_hint">utforske restauranter, holdeplasser og mer i nærheten</string>
     <string name="search_button_current_location_accessibility_hint">forhåndsvise, merke eller dele din nåværende posisjon med en venn</string>
     <string name="filter_all">Alle steder</string>
@@ -1244,7 +1243,6 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="tour_ahead">Neste knapp er Foran meg. Den forteller deg hva som er foran deg. Trykk på Foran meg.</string>
     <string name="tour_nearby_markers">Den siste knappen er Markører i nærheten, som leser opp lagrede steder rundt deg. Trykk på Markører i nærheten for å prøve.</string>
     <string name="tour_markers_and_routes">Du har nå opprettet en markør. La oss spille av et lydsignal som kan veilede oss til dette stedet. Trykk på Markører og ruter, rett under Steder i nærheten.</string>
-    <string name="tour_markers">Skjermen Markører og ruter har to faner. Én fane viser ruter, som er spillelister av markører. Den andre viser individuelle markører. Trykk på Markører for å bytte til den fanen og finne markøren du opprettet.</string>
     <string name="tour_start_beacon">Du er nå på fanen Markører som viser alle lagrede markører. Velg en markør, og når skjermen Posisjonsinformasjon vises, trykk på Start lydsignal.</string>
     <string name="tour_beacon_demo">Nå kan du høre lydsignalet. Det spilles fra retningen til destinasjonen din. Når du snur telefonen, kan du høre at lydsignalet beveger seg og endrer lyd. Prøv det nå.</string>
     <string name="tour_beacon_demo_locked">Når telefonen er låst, vil lydsignalet fortsatt spilles. Hvis du går eller er i et kjøretøy, bruker appen reiseretningen din til å spille av lydsignalet. Selv når telefonen er låst kan du imidlertid holde den flatt foran deg, som et kompass. Da bruker lydsignalet retningen telefonen peker mot. Prøv det nå.</string>

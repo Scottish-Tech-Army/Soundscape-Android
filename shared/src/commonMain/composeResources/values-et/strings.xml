@@ -133,7 +133,6 @@
     <string name="search_use_current_location">Praegune asukoht</string>
     <string name="search_nearby_screen_title">Lähedal asuvad kohad</string>
     <string name="search_view_markers">Markerid ja marsruudid</string>
-    <string name="search_button_markers_accessibility_hint">valida või muuta oma salvestatud markereid ja marsruute</string>
     <string name="search_button_nearby_accessibility_hint">avastada lähedal asuvaid restorane, ühistranspordipeatusi ja muud</string>
     <string name="search_button_current_location_accessibility_hint">vaadata eelvaadet, märkida või jagada oma praegust asukohta sõbraga</string>
     <string name="filter_all">Kõik kohad</string>
@@ -1097,7 +1096,6 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="tour_ahead">Järgmine nupp on Minu ees. See ütleb sulle, mis on sinu ees. Puuduta valikut Minu ees.</string>
     <string name="tour_nearby_markers">Viimane nupp on Lähedal asuvad markerid, mis teatab sinu ümber asuvatest salvestatud kohtadest. Puuduta valikut Lähedal asuvad markerid, et seda proovida.</string>
     <string name="tour_markers_and_routes">Oled nüüd edukalt loonud markeri. Mängime helimajaka, mis juhatab meid sellesse asukohta. Puuduta valikut Markerid ja marsruudid, mis asub kohe Lähedal asuvate kohtade all.</string>
-    <string name="tour_markers">Kuval Markerid ja marsruudid on kaks vahekaarti. Üks vahekaart loetleb marsruute, mis on markerite esitusloendid. Teine loetleb üksikuid markereid. Puuduta valikut Markerid, et sellele vahekaardile lülituda ja leida enda loodud marker.</string>
     <string name="tour_start_beacon">Oled nüüd vahekaardil Markerid, kus on loetletud kõik sinu salvestatud markerid. Vali marker ja kui ilmub asukoha üksikasjade kuva, puuduta valikut Käivita helimajakas.</string>
     <string name="tour_beacon_demo">Nüüd kuuled helimajakat. See mängib sihtkoha suunast. Kui telefoni pöörad, kuuled, kuidas majakas liigub ja selle heli muutub. Proovi seda nüüd.</string>
     <string name="tour_beacon_demo_locked">Kui su telefon on lukustatud, mängib majakas endiselt. Kui kõnnid või sõidad sõidukis, kasutab rakendus helimajaka mängimisel sinu liikumissuunda. Kuid isegi kui telefon on lukustatud, võid hoida seda enda ees lamedalt, nagu kompassi. Siis kasutab majakas suunda, kuhu telefon on suunatud. Proovi seda nüüd.</string>

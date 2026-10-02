@@ -137,7 +137,6 @@
     <string name="search_use_current_location">Mevcut Konum</string>
     <string name="search_nearby_screen_title">Yakındaki Yerler</string>
     <string name="search_view_markers">Kayıtlı Noktalar ve Rotalar</string>
-    <string name="search_button_markers_accessibility_hint">kaydettiğiniz kayıtlı noktaları ve rotaları seçmek veya düzenlemek</string>
     <string name="search_button_nearby_accessibility_hint">yakındaki restoranları, toplu taşıma duraklarını ve daha fazlasını keşfetmek</string>
     <string name="search_button_current_location_accessibility_hint">mevcut konumunuzu önizlemek, işaretlemek veya bir arkadaşınızla paylaşmak</string>
     <string name="filter_all">Tüm Yerler</string>
@@ -1282,7 +1281,6 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="tour_ahead">Bir sonraki düğme Önümde. Bu düğme, önünüzde ne olduğunu söyler. Önümde'ye dokunun.</string>
     <string name="tour_nearby_markers">Son düğme, çevrenizdeki kayıtlı yerleri duyuran Yakındaki Kayıtlı Noktalar'dır. Denemek için Yakındaki Kayıtlı Noktalar'a dokunun.</string>
     <string name="tour_markers_and_routes">Bir kayıtlı noktayı başarıyla oluşturdunuz. Şimdi o konuma gitmek için bir sesli işaret çalalım. Yakındaki Yerler'in hemen altındaki Kayıtlı Noktalar ve Rotalar'a dokunun.</string>
-    <string name="tour_markers">Kayıtlı Noktalar ve Rotalar ekranında iki sekme vardır. Biri kayıtlı nokta listeleri olan rotaları, diğeri ise tek tek kayıtlı noktaları gösterir. O sekmeye geçip oluşturduğunuz kayıtlı noktayı bulmak için Kayıtlı Noktalar'a dokunun.</string>
     <string name="tour_start_beacon">Şu anda tüm kayıtlı noktalarınızı listeleyen Kayıtlı Noktalar sekmesindesiniz. Bir kayıtlı nokta seçin; Konum Ayrıntıları ekranı açıldığında Sesli İşareti Başlat'a dokunun.</string>
     <string name="tour_beacon_demo">Sesli işareti artık duyabilirsiniz. Ses, hedefinizin bulunduğu yönden gelir. Telefonunuzu çevirdikçe işaretin hareket ettiğini ve sesinin değiştiğini duyacaksınız. Şimdi deneyin.</string>
     <string name="tour_beacon_demo_locked">Telefonunuz kilitli olsa bile işaret çalmaya devam eder. Yürüyorsanız veya bir araçtaysanız uygulama, sesli işareti çalarken hareket yönünüzü kullanır. Ancak kilitliyken bile telefonu bir pusula gibi önünüzde düz tutabilirsiniz; bu durumda işaret, telefonun gösterdiği yönü kullanır. Şimdi deneyin.</string>

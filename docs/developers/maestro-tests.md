@@ -103,7 +103,7 @@ flows, so they must run in this order:
 | 2 | `HomePage.yaml` | Exercises the home screen controls (My Location, Around Me, Ahead of Me, menu, sleep). |
 | 3 | `LocationDetails.yaml` | Creates markers **A** and **B** that later flows rely on. |
 | 4 | `PlacesNearby.yaml` | Scrolls and opens entries in the Places Nearby list. |
-| 5 | `MarkersAndRoutes.yaml` | Tab switching, sorting, and editing marker **A**. |
+| 5 | `Markers.yaml` | Sorting, editing marker **A**, and creating marker **C** with the New button. |
 | 6 | `RouteCreation.yaml` | Builds a route from markers **A** and **B**. |
 | 7 | `FullScreenMap.yaml` | Toggles the full-screen map on the home screen. |
 
@@ -190,8 +190,8 @@ A few small reusable flows take parameters via `env:` and are called with
         screen: Home
   ```
 
-  Supported screens are `Home`, `LocationDetails`, `PlacesNearby`,
-  `MarkersAndRoutes`, `RouteDetails` and `Settings`; an unknown name fails the
+  Supported screens are `Home`, `LocationDetails`, `PlacesNearby`, `Markers`,
+  `Routes`, `RouteDetails` and `Settings`; an unknown name fails the
   flow with a clear message. Add a new entry to the `anchors` map in the file to
   support another screen.
 
@@ -396,7 +396,7 @@ For each matrix combination it then:
    status=1`), and the step fails at the end if any flow failed:
 
    ```bash
-   status=0; for flow in Onboarding HomePage LocationDetails PlacesNearby MarkersAndRoutes RouteCreation; do \
+   status=0; for flow in Onboarding HomePage LocationDetails PlacesNearby Markers RouteCreation; do \
        maestro test --format=junit --output="maestro_outputs/report-$flow.xml" \
            --test-output-dir=maestro_outputs --no-ansi "maestro/$flow.yaml" || status=1; \
    done; exit $status

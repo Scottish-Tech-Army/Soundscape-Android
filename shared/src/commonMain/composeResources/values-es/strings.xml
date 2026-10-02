@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Ubicación actual</string>
     <string name="search_nearby_screen_title">Lugares cercanos</string>
     <string name="search_view_markers">Marcadores y rutas</string>
-    <string name="search_button_markers_accessibility_hint">seleccionar o editar tus marcadores y rutas guardados</string>
     <string name="search_button_nearby_accessibility_hint">explorar restaurantes, paradas de transporte, etcétera</string>
     <string name="search_button_current_location_accessibility_hint">previsualizar, marcar o compartir tu ubicación actual con un amigo</string>
     <string name="filter_all">Todos los lugares</string>
@@ -1248,7 +1247,6 @@ Sigue informándonos de cualquier problema, por pequeño que sea, a través de �
     <string name="tour_ahead">El siguiente botón es «Delante de mí». Te indica lo que hay frente a ti. Pulsa «Delante de mí».</string>
     <string name="tour_nearby_markers">El último botón es «Marcadores cercanos», que anuncia los lugares guardados a tu alrededor. Pulsa «Marcadores cercanos» para probarlo.</string>
     <string name="tour_markers_and_routes">Has creado un marcador correctamente. Reproduzcamos una señal de audio para guiarnos hasta esa ubicación. Pulsa «Marcadores y rutas», justo debajo de «Lugares cercanos».</string>
-    <string name="tour_markers">La pantalla «Marcadores y rutas» tiene dos pestañas. Una pestaña muestra las rutas, que son listas de reproducción de marcadores. La otra muestra los marcadores individuales. Pulsa «Marcadores» para cambiar a esa pestaña y encontrar el marcador que has creado.</string>
     <string name="tour_start_beacon">Ahora estás en la pestaña Marcadores, que muestra todos tus marcadores guardados. Selecciona un marcador y, cuando aparezca la pantalla Detalles de la ubicación, pulsa «Iniciar señal de audio».</string>
     <string name="tour_beacon_demo">Ahora puedes oír la señal de audio. Suena desde la dirección de tu destino. Al girar el teléfono, puedes oír cómo la señal se desplaza y cómo varía su sonido. Pruébalo ahora.</string>
     <string name="tour_beacon_demo_locked">Aunque tu teléfono esté bloqueado, la señal de audio seguirá reproduciéndose. Si caminas o vas en un vehículo, la aplicación usa la dirección de tu desplazamiento para reproducir la señal de audio. Sin embargo, incluso con el teléfono bloqueado, puedes sostenerlo plano frente a ti, como una brújula. Entonces la señal usa la dirección hacia la que apunta el teléfono. Pruébalo ahora.</string>

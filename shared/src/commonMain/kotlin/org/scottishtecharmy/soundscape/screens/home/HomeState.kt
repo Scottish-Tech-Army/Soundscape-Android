@@ -21,7 +21,6 @@ data class HomeState(
     val searchItems: List<LocationDescription>? = null,
     // The last search was made offline with no offline maps to search
     val searchWithoutOfflineMaps: Boolean = false,
-    val routesTabSelected: Boolean = true,
     val permissionsRequired: Boolean = false,
     /** Which "hear my surroundings" button has an in-flight callout, or null
      *  when no callout is playing. Drives the pulse animation on the active

@@ -18,5 +18,5 @@ appId: org.scottishtecharmy.soundscape
 - runFlow: HomePage.yaml
 - runFlow: LocationDetails.yaml
 - runFlow: PlacesNearby.yaml
-- runFlow: MarkersAndRoutes.yaml
+- runFlow: Markers.yaml
 - runFlow: RouteCreation.yaml

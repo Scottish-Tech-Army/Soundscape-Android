@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Localização Atual</string>
     <string name="search_nearby_screen_title">Locais nas Proximidades</string>
     <string name="search_view_markers">Marcos e Rotas</string>
-    <string name="search_button_markers_accessibility_hint">selecionar ou editar os seus marcos e rotas guardados</string>
     <string name="search_button_nearby_accessibility_hint">explorar restaurantes, paragens de transportes e outros locais nas proximidades</string>
     <string name="search_button_current_location_accessibility_hint">pré‑visualizar, marcar ou partilhar a sua localização atual com um amigo</string>
     <string name="filter_all">Todos os Locais</string>
@@ -1248,7 +1247,6 @@ Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «
     <string name="tour_ahead">O próximo botão é «À Minha Frente». Ele indica o que se encontra à sua frente. Toque em «À Minha Frente».</string>
     <string name="tour_nearby_markers">O botão final é «Marcos nas Proximidades», que anuncia os locais guardados à sua volta. Toque em «Marcos nas Proximidades» para experimentar.</string>
     <string name="tour_markers_and_routes">Criou agora um marco com sucesso. Vamos reproduzir um sinal de áudio para nos guiar até essa localização. Toque em Marcos e Rotas, logo abaixo de Locais nas Proximidades.</string>
-    <string name="tour_markers">O ecrã Marcos e Rotas tem dois separadores. Um separador lista as rotas, que são listas de reprodução de marcos. O outro lista os marcos individuais. Toque em Marcos para mudar para esse separador e encontrar o marco que criou.</string>
     <string name="tour_start_beacon">Está agora no separador «Marcos», que lista todos os marcos guardados. Selecione um marco e, quando aparecer o ecrã «Detalhes da Localização», toque em «Iniciar Sinal de Áudio».</string>
     <string name="tour_beacon_demo">Agora pode ouvir o sinal de áudio. Ele é reproduzido a partir da direção do seu destino. Ao rodar o telemóvel, ouvirá o sinal deslocar‑se e alterar a forma como soa. Experimente agora.</string>
     <string name="tour_beacon_demo_locked">Mesmo com o telemóvel bloqueado, o sinal continuará a ser reproduzido. Se estiver a caminhar ou num veículo, a aplicação utiliza a direção da sua deslocação para reproduzir o sinal de áudio. Contudo, mesmo com o telemóvel bloqueado, pode segurá‑lo plano à sua frente, como uma bússola. Nesse caso, o sinal usa a direção para a qual o telemóvel está apontado. Experimente agora.</string>

@@ -96,7 +96,6 @@
     <string name="search_use_current_location">Bieżąca lokalizacja</string>
     <string name="search_nearby_screen_title">Miejsca w pobliżu</string>
     <string name="search_view_markers">Znaczniki i trasy</string>
-    <string name="search_button_markers_accessibility_hint">wybrać lub edytować zapisane znaczniki i trasy</string>
     <string name="search_button_nearby_accessibility_hint">odkrywać pobliskie restauracje, przystanki transportu publicznego i inne miejsca</string>
     <string name="search_button_current_location_accessibility_hint">wyświetlić podgląd, oznaczyć lub udostępnić znajomemu swoją bieżącą lokalizację</string>
     <string name="filter_all">Wszystkie miejsca</string>
@@ -1252,7 +1251,6 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="tour_ahead">Następny przycisk to „Przede mną”. Mówi o tym, co znajduje się przed Tobą. Stuknij „Przede mną”.</string>
     <string name="tour_nearby_markers">Ostatni przycisk to „Bliskie znaczniki”, który powiadamia o zapisanych miejscach wokół Ciebie. Stuknij „Bliskie znaczniki”, aby to wypróbować.</string>
     <string name="tour_markers_and_routes">Znacznik został utworzony. Uruchomimy dźwięk naprowadzający, który poprowadzi nas do tej lokalizacji. Stuknij „Znaczniki i trasy”, tuż pod „Miejsca w pobliżu”.</string>
-    <string name="tour_markers">Ekran „Znaczniki i trasy” ma dwie karty. Jedna wyświetla trasy, czyli listy odtwarzania znaczników. Druga wyświetla pojedyncze znaczniki. Stuknij „Znaczniki”, aby przejść na tę kartę i znaleźć utworzony przed chwilą znacznik.</string>
     <string name="tour_start_beacon">Jesteś teraz na karcie „Znaczniki”, gdzie widoczne są wszystkie zapisane znaczniki. Wybierz znacznik, a gdy pojawi się ekran „Szczegóły lokalizacji”, stuknij „Uruchom dźwięk naprowadzający”.</string>
     <string name="tour_beacon_demo">Teraz możesz usłyszeć dźwięk naprowadzający. Odtwarzany jest z kierunku Twojego celu. Gdy obracasz telefon, usłyszysz, jak dźwięk naprowadzający przesuwa się i zmienia brzmienie. Wypróbuj to teraz.</string>
     <string name="tour_beacon_demo_locked">Gdy telefon jest zablokowany, dźwięk naprowadzający nadal będzie odtwarzany. Jeśli idziesz lub jedziesz pojazdem, aplikacja używa kierunku Twojego ruchu do odtwarzania dźwięku naprowadzającego. Jednak nawet gdy telefon jest zablokowany, możesz trzymać go płasko przed sobą jak kompas. Wtedy naprowadzanie użyje kierunku, w którym telefon wskazuje. Wypróbuj to teraz.</string>

@@ -134,7 +134,6 @@
     <string name="search_use_current_location">Trenutna lokacija</string>
     <string name="search_nearby_screen_title">Kraji v bližini</string>
     <string name="search_view_markers">Oznake in poti</string>
-    <string name="search_button_markers_accessibility_hint">izbiro ali urejanje shranjenih oznak in poti</string>
     <string name="search_button_nearby_accessibility_hint">raziskovanje bližnjih restavracij, postajališč javnega prevoza in drugega</string>
     <string name="search_button_current_location_accessibility_hint">predogled, označitev ali deljenje trenutne lokacije s prijateljem</string>
     <string name="filter_all">Vsi kraji</string>
@@ -1125,7 +1124,6 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="tour_ahead">Naslednji gumb je Pred menoj. Pove vam, kaj je pred vami. Tapnite Pred menoj.</string>
     <string name="tour_nearby_markers">Zadnji gumb je Oznake v bližini, ki naznani shranjena mesta v vaši okolici. Tapnite Oznake v bližini, da to preizkusite.</string>
     <string name="tour_markers_and_routes">Uspešno ste ustvarili oznako. Predvajajmo zvočni svetilnik, ki nas bo vodil do te lokacije. Tapnite Oznake in poti, tik pod Kraji v bližini.</string>
-    <string name="tour_markers">Zaslon Oznake in poti ima dva zavihka. Eden prikazuje poti, ki so seznami predvajanja oznak. Drugi prikazuje posamezne oznake. Tapnite Oznake, da preklopite na ta zavihek in poiščete oznako, ki ste jo ustvarili.</string>
     <string name="tour_start_beacon">Zdaj ste na zavihku Oznake, kjer so navedene vse vaše shranjene oznake. Izberite oznako, in ko se prikaže zaslon s podrobnostmi lokacije, tapnite Zaženi zvočni svetilnik.</string>
     <string name="tour_beacon_demo">Zdaj slišite zvočni svetilnik. Predvaja se iz smeri vašega cilja. Ko obrnete telefon, slišite, kako se svetilnik premika in spreminja svoj zvok. Poskusite zdaj.</string>
     <string name="tour_beacon_demo_locked">Ko je vaš telefon zaklenjen, se svetilnik še vedno predvaja. Če hodite ali ste v vozilu, aplikacija pri predvajanju zvočnega svetilnika uporabi smer vašega gibanja. Tudi ko je telefon zaklenjen, pa ga lahko držite plosko pred seboj, kot kompas. Svetilnik takrat uporabi smer, v katero je usmerjen telefon. Poskusite zdaj.</string>
