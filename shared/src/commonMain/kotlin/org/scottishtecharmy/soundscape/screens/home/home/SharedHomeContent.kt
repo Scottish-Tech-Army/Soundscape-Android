@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -48,6 +49,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.runtime.mutableIntStateOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -199,6 +205,30 @@ fun SharedHomeContent(
     var mapInteracting by remember { mutableStateOf(false) }
     val contentScrollState = rememberScrollState()
 
+    // The map takes whatever height the rest of the scrolling content leaves free, so that the
+    // home screen fits without scrolling where it can. It's never smaller than MAP_MIN_HEIGHT,
+    // or taller than it is wide; if even the minimum doesn't fit, the screen scrolls as before.
+    // Until the first layout has been measured the map keeps its old fixed shape.
+    val density = LocalDensity.current
+    var viewportHeightPx by remember { mutableIntStateOf(0) }
+    var contentHeightPx by remember { mutableIntStateOf(0) }
+    var mapSlotSize by remember { mutableStateOf(IntSize.Zero) }
+    val mapSlotHeight: Dp? =
+        if (viewportHeightPx == 0 || contentHeightPx == 0 || mapSlotSize == IntSize.Zero) {
+            null
+        } else {
+            with(density) {
+                val minPx = MAP_MIN_HEIGHT.roundToPx()
+                val otherContentPx = contentHeightPx - mapSlotSize.height
+                (viewportHeightPx - otherContentPx)
+                    .coerceIn(minPx, mapSlotSize.width.coerceAtLeast(minPx))
+                    .toDp()
+            }
+        }
+    fun Modifier.mapSlot(defaultAspectRatio: Float) =
+        (if (mapSlotHeight != null) height(mapSlotHeight) else aspectRatio(defaultAspectRatio))
+            .onSizeChanged { mapSlotSize = it }
+
     Box(modifier = modifier.fillMaxSize()) {
         Column(
             verticalArrangement = Arrangement.spacedBy(spacing.small),
@@ -212,7 +242,14 @@ fun SharedHomeContent(
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(spacing.small),
-                modifier = Modifier.verticalScroll(contentScrollState, enabled = !mapInteracting),
+                modifier = Modifier
+                    .weight(1f)
+                    .onSizeChanged { viewportHeightPx = it.height }
+                    .verticalScroll(contentScrollState, enabled = !mapInteracting)
+                    // The scroll container stretches short content to fill the viewport, which
+                    // would hide free space from the map sizing; measure the natural height.
+                    .wrapContentHeight(Alignment.Top)
+                    .onSizeChanged { contentHeightPx = it.height },
             ) {
                 NavigationButton(
                     onClick = { onNavigate(SharedRoutes.PLACES_NEARBY) },
@@ -397,7 +434,7 @@ fun SharedHomeContent(
                                 }
                             }
                             if (showMap) {
-                                Row(modifier = Modifier.fillMaxWidth().aspectRatio(2.0f)) {
+                                Row(modifier = Modifier.fillMaxWidth().mapSlot(2.0f)) {
                                     PlatformMapContainer(
                                         beaconLocation = beaconState?.location,
                                         routeData = routePlayerState.routeData,
@@ -506,7 +543,7 @@ fun SharedHomeContent(
                             userSymbolRotation = heading,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .aspectRatio(1f)
+                                .mapSlot(1f)
                                 .mediumPadding(),
                             onInteractionChanged = { mapInteracting = it },
                         )
@@ -540,3 +577,6 @@ fun SharedHomeContent(
         }
     }
 }
+
+/** The smallest the home screen map shrinks to when fitting it into the free space. */
+private val MAP_MIN_HEIGHT = 160.dp
