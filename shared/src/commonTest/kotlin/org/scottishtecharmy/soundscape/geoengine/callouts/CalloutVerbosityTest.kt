@@ -57,6 +57,35 @@ class CalloutVerbosityTest {
     private fun junction(vararg ways: Way) = Intersection().apply { members.addAll(ways) }
 
     @Test
+    fun travelRoadsNarrowWithTheLevel() {
+        val residential = road("Kessington Road", "minor")
+        val mainRoad = road("Hope Street", "tertiary")
+        val serviceRoad = road(null, "service")
+        // Classed minor, but numbered - a route number is what a journey is followed by
+        val numbered = road("Main Street", "minor").apply { ref = "B8030" }
+
+        assertTrue(CalloutVerbosity.QUIET.allowsTravelOn(mainRoad))
+        assertTrue(CalloutVerbosity.QUIET.allowsTravelOn(numbered))
+        assertFalse(CalloutVerbosity.QUIET.allowsTravelOn(residential))
+        assertTrue(CalloutVerbosity.BALANCED.allowsTravelOn(residential))
+        assertFalse(CalloutVerbosity.BALANCED.allowsTravelOn(serviceRoad))
+        assertTrue(CalloutVerbosity.DETAILED.allowsTravelOn(serviceRoad))
+    }
+
+    @Test
+    fun eachTravelLevelSaysNoMoreThanTheOneAboveIt() {
+        val (quiet, balanced, detailed) =
+            listOf(CalloutVerbosity.QUIET, CalloutVerbosity.BALANCED, CalloutVerbosity.DETAILED)
+        for ((quieter, louder) in listOf(quiet to balanced, balanced to detailed)) {
+            assertTrue(quieter.travelMinimumRoadTier >= louder.travelMinimumRoadTier)
+            assertTrue(quieter.travelMinimumGapMs >= louder.travelMinimumGapMs)
+            assertTrue(quieter.travelRoadHistoryExpiryMs >= louder.travelRoadHistoryExpiryMs)
+            assertTrue(!quieter.travelMinorJunctions || louder.travelMinorJunctions)
+            assertTrue(!quieter.travelTransitStops || louder.travelTransitStops)
+        }
+    }
+
+    @Test
     fun roadTiersFollowHighwayClass() {
         assertEquals(RoadTier.MAJOR, RoadTier.of(road("A81", "primary")))
         assertEquals(RoadTier.MAJOR, RoadTier.of(road("Hope Street", "tertiary")))
