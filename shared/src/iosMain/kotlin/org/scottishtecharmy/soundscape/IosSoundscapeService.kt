@@ -617,22 +617,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     fun saveMarker(locationDescription: LocationDescription) {
         scope.launch {
             try {
-                var name = locationDescription.name
-                if (name.isEmpty()) {
-                    name = locationDescription.description ?: "Unknown"
-                }
-                val marker = org.scottishtecharmy.soundscape.database.local.model.MarkerEntity(
-                    markerId = locationDescription.databaseId,
-                    name = name,
-                    fullAddress = locationDescription.description ?: "",
-                    longitude = locationDescription.location.longitude,
-                    latitude = locationDescription.location.latitude
-                )
-                if (locationDescription.databaseId != 0L) {
-                    routeDao.updateMarker(marker)
-                } else {
-                    routeDao.insertMarker(marker)
-                }
+                org.scottishtecharmy.soundscape.database.saveMarker(locationDescription, routeDao)
                 markersOrRoutesChanged()
                 audioEngine.createEarcon(
                     "file:///android_asset/Sounds/sense_poi.wav",

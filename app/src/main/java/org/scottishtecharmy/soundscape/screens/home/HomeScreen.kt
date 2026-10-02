@@ -277,16 +277,7 @@ fun HomeScreen(
             // ROUTE_DETAILS in the shared graph.
             onSaveMarker = { desc ->
                 callbackScope.launch {
-                    val name = desc.name.ifEmpty { desc.description ?: "Unknown" }
-                    val marker = org.scottishtecharmy.soundscape.database.local.model.MarkerEntity(
-                        markerId = desc.databaseId,
-                        name = name,
-                        fullAddress = desc.description ?: "",
-                        longitude = desc.location.longitude,
-                        latitude = desc.location.latitude,
-                    )
-                    if (desc.databaseId != 0L) routeDao.updateMarker(marker)
-                    else routeDao.insertMarker(marker)
+                    org.scottishtecharmy.soundscape.database.saveMarker(desc, routeDao)
                     audioTour.onMarkerCreateDone()
                 }
             },
