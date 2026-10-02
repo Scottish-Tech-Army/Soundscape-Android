@@ -170,8 +170,13 @@ fun HomeScreen(
                 // populates currentRouteFlow and lets SharedHomeContent render
                 // the playback card with stop/mute controls.
                 serviceConnection.soundscapeService?.startBeacon(LngLatAlt(lng, lat), name)
+                // Moves the guided tutorial on from "start the beacon", as on iOS
+                audioTour.onBeaconStarted()
             },
-            onStopBeacon = { serviceConnection.soundscapeService?.destroyBeacon() },
+            onStopBeacon = {
+                serviceConnection.soundscapeService?.destroyBeacon()
+                audioTour.onBeaconStopped()
+            },
             onStartRoute = { routeId -> serviceConnection.routeStart(routeId) },
             onStartRouteInReverse = { routeId ->
                 serviceConnection.soundscapeService?.routeStartReverse(routeId)
