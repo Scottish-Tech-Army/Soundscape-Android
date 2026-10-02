@@ -4542,9 +4542,10 @@ class MvtTileTest {
     /**
      * Replays four recorded walks - Central Station up Buchanan Street, from home through
      * Milngavie town centre to the station, and to and from Tesco in Milngavie, which goes along
-     * the footpaths through the precinct and Lennox Park - at each CalloutVerbosity level, writing
-     * the callouts to gpxFiles/<walk>-<level>.txt for comparison. Each level must say no more than
-     * the one above it, and Silent must say nothing.
+     * the footpaths through the precinct and Lennox Park - and a bus from Buchanan Bus Station to
+     * Milngavie, for the travel callouts, at each CalloutVerbosity level, writing the callouts to
+     * gpxFiles/<walk>-<level>.txt for comparison. Each level must say no more than the one above
+     * it, and Silent must say nothing.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     // Sixteen full replays - four walks at four levels - so it keeps the whole-corpus company
@@ -4555,7 +4556,8 @@ class MvtTileTest {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
         for (walk in listOf(
-            "CentralToBuchananStreet", "ToTown", "WalkToTesco-samsung", "WalkFromTesco-pixel"
+            "CentralToBuchananStreet", "ToTown", "WalkToTesco-samsung", "WalkFromTesco-pixel",
+            "BusTripToMilngavie"
         )) {
             val counts = CalloutVerbosity.entries.associateWith { level ->
                 val preferences = MvtTestPreferences().apply {

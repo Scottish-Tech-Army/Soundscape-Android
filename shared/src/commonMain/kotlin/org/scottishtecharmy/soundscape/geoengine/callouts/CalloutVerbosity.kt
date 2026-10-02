@@ -125,8 +125,10 @@ private fun angleBetween(a: Double, b: Double): Double = abs(((a - b) % 360.0 + 
 /**
  * The "how much should Soundscape say" setting. Each level is a bundle of thresholds over the
  * walking callouts - which junctions are worth a callout, which POIs, how long something already
- * mentioned stays quiet, and how closely POI callouts may follow each other. Travel (vehicle)
- * callouts, beacons, routes, markers and manual callouts are unaffected.
+ * mentioned stays quiet, and how closely POI callouts may follow each other - and over the travel
+ * (vehicle) callouts, which have thresholds of their own: what is worth hearing from a car or a
+ * bus is not what is worth hearing on foot. Beacons, routes, markers and manual callouts are
+ * unaffected, as are the callouts on a train.
  *
  * DETAILED is the behaviour from before the setting existed, and is what a null
  * PreferencesProvider gets, so that the tests which build AutoCallout directly are unchanged.
@@ -154,6 +156,27 @@ enum class CalloutVerbosity(
     val roadHistoryExpiryMs: Long,
     /** The shortest gap allowed between two POI callouts (markers excepted). */
     val minimumPoiGapMs: Long,
+    /**
+     * The least important road worth describing while travelling - see [allowsTravelOn]. In a
+     * vehicle a residential street is somewhere passed on the way to somewhere else, so the
+     * quieter levels leave them out, where walking keeps them.
+     */
+    val travelMinimumRoadTier: RoadTier,
+    /**
+     * The shortest gap between two descriptions of the road being travelled. The road changes
+     * far faster in a vehicle than on foot, so this is what keeps a run of turns from being a
+     * run of callouts.
+     */
+    val travelMinimumGapMs: Long,
+    /** How long a road description stays quiet - the travel counterpart of roadHistoryExpiryMs. */
+    val travelRoadHistoryExpiryMs: Long,
+    /**
+     * Whether a minor junction (secondary road and below) may be named after a quiet spell - see
+     * travellingReverseGeocodeName. Major junctions are always named.
+     */
+    val travelMinorJunctions: Boolean,
+    /** Whether bus and tram stops are announced on the approach while travelling. */
+    val travelTransitStops: Boolean,
 ) {
     SILENT(
         preferenceValue = "Silent",
@@ -163,12 +186,21 @@ enum class CalloutVerbosity(
         poiHistoryTrimRadiusMetres = 200.0,
         roadHistoryExpiryMs = 5 * 60_000L,
         minimumPoiGapMs = 30_000L,
+        travelMinimumRoadTier = RoadTier.MAJOR,
+        travelMinimumGapMs = 60_000L,
+        travelRoadHistoryExpiryMs = 5 * 60_000L,
+        travelMinorJunctions = false,
+        travelTransitStops = false,
     ),
     // Quiet keeps every street junction, the same as Balanced: in a city-centre grid such as
     // Glasgow's nearly every street is "minor" in OSM - Gordon Street, St Vincent Street, West
     // George Street - and requiring a MAJOR road left a walk up Buchanan Street with two junction
     // callouts from Central Station to the bus station. Those junctions are exactly what someone
     // walking needs, so Quiet is quieter about places instead.
+    //
+    // Travelling is the other way round: the streets of a housing estate are only passed through,
+    // so Quiet names main and numbered roads, the major junctions on them, and the landmarks
+    // passed, and at most one road description a minute.
     QUIET(
         preferenceValue = "Quiet",
         minimumIntersectionTier = RoadTier.MINOR,
@@ -177,6 +209,11 @@ enum class CalloutVerbosity(
         poiHistoryTrimRadiusMetres = 200.0,
         roadHistoryExpiryMs = 5 * 60_000L,
         minimumPoiGapMs = 30_000L,
+        travelMinimumRoadTier = RoadTier.MAJOR,
+        travelMinimumGapMs = 60_000L,
+        travelRoadHistoryExpiryMs = 5 * 60_000L,
+        travelMinorJunctions = false,
+        travelTransitStops = false,
     ),
     BALANCED(
         preferenceValue = "Balanced",
@@ -186,6 +223,11 @@ enum class CalloutVerbosity(
         poiHistoryTrimRadiusMetres = 100.0,
         roadHistoryExpiryMs = 2 * 60_000L,
         minimumPoiGapMs = 15_000L,
+        travelMinimumRoadTier = RoadTier.MINOR,
+        travelMinimumGapMs = 30_000L,
+        travelRoadHistoryExpiryMs = 2 * 60_000L,
+        travelMinorJunctions = true,
+        travelTransitStops = true,
     ),
     DETAILED(
         preferenceValue = "Detailed",
@@ -195,7 +237,19 @@ enum class CalloutVerbosity(
         poiHistoryTrimRadiusMetres = 50.0,
         roadHistoryExpiryMs = 30_000L,
         minimumPoiGapMs = 0L,
+        travelMinimumRoadTier = RoadTier.OTHER,
+        travelMinimumGapMs = 0L,
+        travelRoadHistoryExpiryMs = 60_000L,
+        travelMinorJunctions = true,
+        travelTransitStops = true,
     );
+
+    /**
+     * Whether the road being travelled along is worth describing at this level. A numbered road
+     * always is, whatever its class: a route number is what a passenger follows a journey by.
+     */
+    fun allowsTravelOn(way: Way): Boolean =
+        (way.ref != null) || (RoadTier.of(way) >= travelMinimumRoadTier)
 
     companion object {
         fun fromPreference(value: String?): CalloutVerbosity =

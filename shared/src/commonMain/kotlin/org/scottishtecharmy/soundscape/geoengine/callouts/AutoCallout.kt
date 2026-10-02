@@ -82,6 +82,8 @@ class AutoCallout(
     private val vehicleLandmarkFilter = LocationUpdateFilter(10000, 50.0)
     private val vehicleLandmarkCalloutHistory = CalloutHistory()
     private val roadSettleTracker = RoadSettleTracker()
+    // When the last road description was made - see CalloutVerbosity.travelMinimumGapMs.
+    private var lastRoadSenseCalloutMs: Long? = null
     // An announced crossing or stop is forgotten once well clear of it - see updateSweepWindow.
     // Must exceed the largest lookahead below, or something announced at range is forgotten while
     // still being approached and announced again on the next fix.
@@ -247,6 +249,7 @@ class AutoCallout(
         intersectionCalloutHistory.expiryPeriodMilliseconds = verbosity.roadHistoryExpiryMs
         poiCalloutHistory.expiryPeriodMilliseconds = verbosity.poiHistoryExpiryMs
         poiCalloutHistory.trimRadiusMetres = verbosity.poiHistoryTrimRadiusMetres
+        roadSenseCalloutHistory.expiryPeriodMilliseconds = verbosity.travelRoadHistoryExpiryMs
     }
 
     private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
@@ -339,8 +342,23 @@ class AutoCallout(
         // RoadSettleTracker. Before the location filter is updated, so the callout is made on the
         // first fix after the road settles rather than up to 10s later. A train is matched to a
         // railway rather than a road, so this has nothing to say about one.
-        if (!userGeometry.probablyOnTrain() && !roadSettleTracker.settled()) {
+        val probablyOnTrain = userGeometry.probablyOnTrain()
+        if (!probablyOnTrain && !roadSettleTracker.settled()) {
             return null
+        }
+
+        // The callout detail's travel thresholds - see CalloutVerbosity. Like the settling above,
+        // these are about roads, so a train keeps describing its line and stations as it always
+        // has. The matched road rather than whatever the description falls back to: without a
+        // match there is nothing to judge the road by, and saying something is better than not.
+        val verbosity = verbosity()
+        if (!probablyOnTrain) {
+            val way = userGeometry.mapMatchedWay
+            if ((way != null) && !verbosity.allowsTravelOn(way)) return null
+            val last = lastRoadSenseCalloutMs
+            if ((last != null) &&
+                ((userGeometry.timestampMilliseconds - last) < verbosity.travelMinimumGapMs)
+            ) return null
         }
 
         // Update time/location filter for our new position
@@ -349,7 +367,7 @@ class AutoCallout(
         // Reverse geocode the current location (this is the iOS name for the function)
         val result = describeReverseGeocode(
             userGeometry, gridState, settlementState, localized, lastStationTracker,
-            notableVehicleEventTracker
+            notableVehicleEventTracker, verbosity.travelMinorJunctions
         )
         if (result != null) {
             val callout = TrackedCallout(
@@ -369,6 +387,7 @@ class AutoCallout(
                 // Filter out
                 return null
             }
+            lastRoadSenseCalloutMs = userGeometry.timestampMilliseconds
 
             // Check that the geocode has changed before returning a callout describing it
             return callout
@@ -519,6 +538,7 @@ class AutoCallout(
         // travellingReverseGeocodeName. Suppressed shortly after losing rail lock too, since
         // probablyOnTrain() can flicker false for an instant mid-journey.
         if (userGeometry.probablyOnTrain() || recentlyOnTrain(userGeometry)) return null
+        if (!verbosity().travelTransitStops) return null
         val way = userGeometry.mapMatchedWay ?: return null
 
         val found = transitStopAhead(userGeometry, way) ?: return null

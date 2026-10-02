@@ -405,6 +405,7 @@ private fun travellingReverseGeocodeName(
     localized: LocalizedStrings?,
     lastStationTracker: LastStationTracker? = null,
     notableEventTracker: NotableVehicleEventTracker? = null,
+    allowMinorJunctions: Boolean = true,
 ): ReverseGeocodeText? {
     val location = userGeometry.location
     if (!gridState.isLocationWithinGrid(location)) return null
@@ -520,13 +521,15 @@ private fun travellingReverseGeocodeName(
     if (!probablyOnTrain) {
         val junctionTree = gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS)
         val nearbyJunctions = junctionTree.getNearestCollection(location, 500.0, 5, gridState.ruler)
-        val allowMinorJunctions = notableEventTracker?.quietFor(
+        // The callout detail can rule minor junctions out altogether - see
+        // CalloutVerbosity.travelMinorJunctions.
+        val minorJunctionsEligible = allowMinorJunctions && (notableEventTracker?.quietFor(
             userGeometry.timestampMilliseconds, MINOR_JUNCTION_QUIET_THRESHOLD_MS
-        ) ?: true
+        ) ?: true)
         val nearestJunction = nearbyJunctions.features.firstOrNull { feature ->
             when ((feature as MvtFeature).properties?.get("class") as? String) {
                 in majorHighwayJunctionClasses -> true
-                in minorHighwayJunctionClasses -> allowMinorJunctions
+                in minorHighwayJunctionClasses -> minorJunctionsEligible
                 else -> false
             }
         } as MvtFeature?
@@ -772,11 +775,12 @@ fun describeReverseGeocode(
     localized: LocalizedStrings?,
     lastStationTracker: LastStationTracker? = null,
     notableEventTracker: NotableVehicleEventTracker? = null,
+    allowMinorJunctions: Boolean = true,
 ): PositionedString? {
     val description =
         travellingReverseGeocodeName(
             userGeometry, gridState, settlementGrid, localized, lastStationTracker,
-            notableEventTracker
+            notableEventTracker, allowMinorJunctions
         ) ?: return null
     return PositionedString(
         text = description.text,
