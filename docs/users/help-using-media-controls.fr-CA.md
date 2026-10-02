@@ -25,9 +25,9 @@ Il existe 2 modes de fonctionnement pour les contrôles multimédias. Le mode se
 
 ⏯ Lecture/Pause : active ou désactive le son de la balise sonore. 
 
-⏭ Suivant : si un itinéraire est en cours de lecture, déplace la balise sonore vers l’étape suivante de l’itinéraire. Si aucun itinéraire n’est en cours, annonce *Autour de moi*.
+⏭ Suivant : si un itinéraire est en cours de lecture, déplace la balise vers l’étape suivante de l’itinéraire. Si aucun itinéraire n’est en cours, annonce *Autour de moi*.
 
-⏮ Précédent : si un itinéraire est en cours de lecture, déplace la balise sonore vers l’étape précédente de l’itinéraire. Si aucun itinéraire n’est en cours, modifie le *Détail des annonces*, d’un niveau plus discret à chaque appui : *Détaillé*, *Simplifié*, *Essentiel*, *Silencieux*, puis retour à *Détaillé*.
+⏮ Précédent : si un itinéraire est en cours de lecture, déplace la balise vers l’étape précédente de l’itinéraire. Si aucun itinéraire n’est en cours, modifie le *Détail des annonces*, d’un niveau plus discret à chaque appui : *Détaillé*, *Simplifié*, *Minimal*, *Silencieux*, puis retour à *Détaillé*.
 
 
 

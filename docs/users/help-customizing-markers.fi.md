@@ -9,7 +9,7 @@ permalink: /users/help-customizing-markers.html
 
 # Merkitsimien mukauttaminen
 
-Jos haluat nimetä aiemmin luomasi merkitsimen uudelleen tai lisätä siihen lisätietoja, valitse merkitsin *Merkitsimet ja reitit* -sivun *Merkitsimet*‑välilehdeltä ja napauta sitten *Muokkaa merkitsintä* -painiketta. Tämän avulla voit antaa merkitsimille kuvaavia tai hyödyllisiä lempinimiä sekä kirjoittaa pidemmän kuvauksen *Lisätiedot*-kenttään.
+Jos haluat nimetä aiemmin luomasi merkitsimen uudelleen tai lisätä siihen lisätietoja, valitse merkitsin *Merkitsimet*-näytöltä ja napauta sitten *Muokkaa merkitsintä* -painiketta. Tämän avulla voit antaa merkitsimille kuvaavia tai hyödyllisiä lempinimiä sekä kirjoittaa pidemmän kuvauksen *Lisätiedot*-kenttään.
 
 Tältä *Muokkaa merkitsintä* -näytöltä voit myös poistaa merkitsimen, jos et enää tarvitse sitä.
 

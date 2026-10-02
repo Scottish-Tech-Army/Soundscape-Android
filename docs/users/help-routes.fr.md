@@ -21,13 +21,13 @@ Vous pouvez créer et utiliser un itinéraire dans un endroit que vous connaisse
 
 **Création d’un itinéraire :**
 
- Tout d’abord, allez dans *Marqueurs et itinéraires*, sélectionnez l’onglet *Itinéraires*, puis sélectionnez le bouton *Nouvel itinéraire*. Donnez à l’itinéraire un nom et une description facultative, puis ajoutez des étapes à mesure que vous vous déplacez ou choisissez-les dans votre liste de marqueurs. Vous pouvez réorganiser l’ordre des étapes sur un itinéraire à tout moment en modifiant l’itinéraire.
+ Tout d’abord, sélectionnez *Itinéraires* sur l’écran d’accueil, puis sélectionnez le bouton *Nouveau* dans le coin supérieur droit de l’écran. Donnez à l’itinéraire un nom et une description facultative, puis ajoutez des étapes à mesure que vous vous déplacez ou choisissez-les dans votre liste de marqueurs. Vous pouvez réorganiser l’ordre des étapes sur un itinéraire à tout moment en modifiant l’itinéraire.
 
 **Modification d’un itinéraire :**
 
-Sélectionnez votre itinéraire sur l’écran *Marqueurs et itinéraires* puis choisissez *Modifier l’itinéraire*. À partir d’ici, vous pouvez ajouter ou supprimer des étapes, ainsi que modifier le nom et la description de l’itinéraire.
+Sélectionnez votre itinéraire sur l’écran *Itinéraires* puis choisissez *Modifier l’itinéraire*. À partir d’ici, vous pouvez ajouter ou supprimer des étapes, ainsi que modifier le nom et la description de l’itinéraire.
 
 **Partage d’un itinéraire :**
 
- Sélectionnez votre itinéraire sur l’écran *Marqueurs et itinéraires* puis sélectionnez l’option *Partager* en utilisant les options de partage habituelles à votre disposition.
+ Sélectionnez votre itinéraire sur l’écran *Itinéraires* puis sélectionnez l’option *Partager* en utilisant les options de partage habituelles à votre disposition.
 

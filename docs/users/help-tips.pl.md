@@ -13,7 +13,7 @@ Pobliskie przystanki autobusowe znajdziesz, wybierając filtr *„Transport publ
 
 Możesz ustawić dźwięk naprowadzający na dowolny adres. Na ekranie głównym wyszukaj adres za pomocą paska wyszukiwania. Następnie wybierz adres w wynikach wyszukiwania, aby otworzyć ekran *„Szczegóły lokalizacji”*. Ten ekran zawiera opcję *„Uruchom dźwięk naprowadzający”* dla tego adresu. W ten sposób możesz ustawić naprowadzanie na firmy, miejsca, punkty zainteresowania i domy, których nie ma w OpenStreetMap.
 
-Jeśli regularnie korzystasz z określonej linii autobusowej, zapisz przystanki, na których wsiadasz i wysiadasz, jako znaczniki. Dzięki temu zostaną zapisane i łatwo je odnajdziesz. Przejdź do *„Znaczniki i trasy”* na ekranie głównym, a następnie znajdź je na stronie *„Znaczniki”*. Możesz ustawić na nich dźwięk naprowadzający, aby otrzymywać okresowe informacje o tym, jak blisko jesteś przystanku, na którym chcesz wysiąść. Uwaga: możesz wyłączyć rytmiczny dźwięk i nadal otrzymywać aktualizacje odległości w trakcie trasy.
+Jeśli regularnie korzystasz z określonej linii autobusowej, zapisz przystanki, na których wsiadasz i wysiadasz, jako znaczniki. Dzięki temu zostaną zapisane i łatwo je odnajdziesz. Aby je znaleźć, wybierz *„Znaczniki”* na ekranie głównym. Możesz ustawić na nich dźwięk naprowadzający, aby otrzymywać okresowe informacje o tym, jak blisko jesteś przystanku, na którym chcesz wysiąść. Uwaga: możesz wyłączyć rytmiczny dźwięk i nadal otrzymywać aktualizacje odległości w trakcie trasy.
 
 Jeśli włożysz telefon do kieszeni i się zatrzymasz, dźwięk naprowadzający przycicha, ponieważ Soundscape nie wie, w którą stronę patrzysz. Aby to naprawić, zacznij znów iść albo wyjmij telefon i trzymaj go płasko.
 

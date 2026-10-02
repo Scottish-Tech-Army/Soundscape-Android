@@ -9,7 +9,7 @@ permalink: /users/help-creating-markers.html
 
 # Skapa platsmarkörer
 
-Du kan skapa platsmarkörer på tre sätt: söka efter platsen du vill spara via sökfältet, hitta en plats med knappen *Platser i närheten*, eller använda knappen *Aktuell plats* — alla finns på startskärmen. När du hittat platsen du vill spara väljer du den så kommer du till skärmen *Platsuppgifter*. På den skärmen trycker du på knappen *Spara som platsmarkör*.
+Det snabbaste sättet att skapa en platsmarkör är från skärmen *Platsmarkörer*: välj knappen *Ny* uppe till höger på skärmen och välj sedan *Aktuell plats* eller en plats i någon av kategorierna under *Platser i närheten*. Du kan också spara vilken plats som helst som du hittar från startskärmen, med sökfältet, knappen *Platser i närheten* eller knappen *Aktuell plats*. När du väljer en plats kommer du till skärmen *Platsuppgifter*, där du väljer knappen *Spara som platsmarkör*.
 
 Du får nu möjlighet att anpassa platsmarkören. Du kan ändra dess namn och lägga till en anteckning som kommer att läsas upp tillsammans med platsmarkören för att ge extra information. När du är klar väljer du knappen *”Klart”* för att spara platsmarkören.
 

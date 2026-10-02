@@ -15,9 +15,9 @@ Amikor nincs internetkapcsolat, vagy a Soundscape szolgáltatásai nem működne
 
 ## Korlátozások
 
-A közlések továbbra is működnek azokon a területeken, amelyeken korábban már átmentél, mivel a Soundscape elmenti őket a közlési előzményeidbe. Hangjelzőt is elhelyezhetsz, vagy jelölőt hozhatsz létre olyan helyeken, amelyek már szerepelnek a közlési előzményeidben.
+A bemondások továbbra is működnek azokon a területeken, amelyeken korábban már átment, mivel a Soundscape elmenti őket a bemondási előzményeibe. Irányjelző hangot is elhelyezhet, vagy jelölőt hozhat létre olyan helyeken, amelyek már szerepelnek a bemondási előzményeiben.
 
-## Mit tehetsz?
+## Mit tehet?
 
-A Soundscape megpróbálja folytatni a normál működést, amint a telefonodnak jó internetkapcsolata lesz, akár Wi-Fi-n, akár mobiladaton keresztül. Ha a telefonodnak jó a kapcsolata, de a Soundscape mégsem tér vissza a normál működéshez, akkor lehetséges, hogy üzemzavar van a Soundscape szolgáltatásaiban.
+A Soundscape megpróbálja folytatni a normál működést, amint a telefonjának jó internetkapcsolata lesz, akár Wi-Fi-n, akár mobiladaton keresztül. Ha a telefonjának jó a kapcsolata, de a Soundscape mégsem tér vissza a normál működéshez, akkor lehetséges, hogy üzemzavar van a Soundscape szolgáltatásaiban.
 

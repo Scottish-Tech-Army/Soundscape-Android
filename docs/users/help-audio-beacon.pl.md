@@ -21,7 +21,7 @@ Ustawienie naprowadzania dźwiękowego jest przydatne, gdy chcesz mieć na oku z
 
 **Aby ustawić dźwięk naprowadzający:**
 
- Najpierw wyświetl szczegóły lokalizacji, wyszukując miejsce w pasku wyszukiwania lub stukając w jeden z przycisków *„Miejsca w pobliżu”*, *„Znaczniki i trasy”* lub *„Bieżąca lokalizacja”* i wybierając lokalizację. Następnie na ekranie *„Szczegóły lokalizacji”* wybierz przycisk *„Uruchom dźwięk naprowadzający”*. Stuknięcie tego przycisku spowoduje powrót do ekranu głównego i włączenie dźwięku naprowadzającego dochodzącego z kierunku wybranej lokalizacji. Nazwa miejsca wraz z jego odległością oraz fizycznym adresem (jeśli dostępny) zostaną teraz wyświetlone na ekranie głównym.
+ Najpierw wyświetl szczegóły lokalizacji, wyszukując miejsce w pasku wyszukiwania lub stukając w jeden z przycisków *„Miejsca w pobliżu”*, *„Znaczniki”* lub *„Bieżąca lokalizacja”* i wybierając lokalizację. Następnie na ekranie *„Szczegóły lokalizacji”* wybierz przycisk *„Uruchom dźwięk naprowadzający”*. Stuknięcie tego przycisku spowoduje powrót do ekranu głównego i włączenie dźwięku naprowadzającego dochodzącego z kierunku wybranej lokalizacji. Nazwa miejsca wraz z jego odległością oraz fizycznym adresem (jeśli dostępny) zostaną teraz wyświetlone na ekranie głównym.
 
 **Aby zakończyć bieżące naprowadzanie:**
 

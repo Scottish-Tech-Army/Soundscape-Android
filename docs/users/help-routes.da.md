@@ -21,13 +21,13 @@ Du vil måske oprette og bruge en rute et sted, du allerede kender, så du kan h
 
 **Oprette en rute**:
 
-Gå først til *Mærker og ruter*, vælg fanen *Ruter*, og vælg derefter knappen *Ny rute*. Giv ruten et navn og en valgfri beskrivelse, og tilføj derefter vejpunkter, mens du går, eller vælg dem på listen over mærker. Du kan til enhver tid omarrangere rækkefølgen af vejpunkterne langs en rute ved at redigere ruten.
+Vælg først *Ruter* på startskærmen, og vælg derefter knappen *Ny* i øverste højre hjørne af skærmen. Giv ruten et navn og en valgfri beskrivelse, og tilføj derefter vejpunkter, mens du går, eller vælg dem på listen over mærker. Du kan til enhver tid omarrangere rækkefølgen af vejpunkterne langs en rute ved at redigere ruten.
 
 **Redigering af en rute:**
 
- Vælg din rute på skærmen *Mærker og ruter* og vælg derefter *Rediger rute*. Herfra kan du tilføje og fjerne vejpunkter samt redigere rutens navn og beskrivelse.
+ Vælg din rute på skærmen *Ruter* og vælg derefter *Rediger rute*. Herfra kan du tilføje og fjerne vejpunkter samt redigere rutens navn og beskrivelse.
 
 **Deling af en rute :**
 
- Vælg din rute på skærmen *Mærker og ruter* og vælg derefter muligheden *Del* ved hjælp af de sædvanlige delingsmuligheder, der er tilgængelige for dig.
+ Vælg din rute på skærmen *Ruter* og vælg derefter muligheden *Del* ved hjælp af de sædvanlige delingsmuligheder, der er tilgængelige for dig.
 

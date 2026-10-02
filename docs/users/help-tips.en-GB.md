@@ -13,7 +13,7 @@ You can find nearby bus stops by selecting the *Public Transport* filter in the 
 
 You can set a beacon on any address. From the main screen, search for the address using the search bar. Then select the address in the search results to open a *Location Details* screen. This screen has an option to *Start Audio Beacon* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
-If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *Markers and Routes* from the home screen, then find them on the *Markers* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
+If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Select *Markers* on the home screen to find them. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 
 If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
 

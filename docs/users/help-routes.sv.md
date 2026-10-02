@@ -21,13 +21,13 @@ Du kanske vill skapa och använda en rutt på en plats som du redan känner till
 
 **Skapa en rutt:**
 
- Gå först till *Platsmarkörer och rutter*, välj fliken *Rutter* och välj sedan knappen *Ny rutt*. Ge rutten ett namn och en valfri beskrivning och lägg sedan till brytpunkter när du går eller välj dem från listan med platsmarkörer. Du kan när som helst ändra ordningen på brytpunkterna längs en rutt genom att redigera rutten.
+ Välj först *Rutter* på startskärmen och välj sedan knappen *Ny* uppe till höger på skärmen. Ge rutten ett namn och en valfri beskrivning och lägg sedan till brytpunkter när du går eller välj dem från listan med platsmarkörer. Du kan när som helst ändra ordningen på brytpunkterna längs en rutt genom att redigera rutten.
 
 **Redigera en rutt:**
 
-Välj din rutt på skärmen *Platsmarkörer och rutter* och välj sedan *Redigera rutt*. Här kan du lägga till och ta bort brytpunkter samt ändra ruttnamn och beskrivning.
+Välj din rutt på skärmen *Rutter* och välj sedan *Redigera rutt*. Här kan du lägga till och ta bort brytpunkter samt ändra ruttnamn och beskrivning.
 
 **Dela en rutt :**
 
- Välj din rutt på skärmen *”Platsmarkörer och rutter”* och välj sedan alternativet *”Dela”* med de vanliga delningsalternativ som finns tillgängliga.
+ Välj din rutt på skärmen *”Rutter”* och välj sedan alternativet *”Dela”* med de vanliga delningsalternativ som finns tillgängliga.
 

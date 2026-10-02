@@ -13,7 +13,7 @@ Yakındaki otobüs duraklarını *Yakındaki Yerler* listesindeki *Toplu Taşım
 
 Herhangi bir adrese işaret ayarlayabilirsiniz. Ana ekrandaki arama çubuğunu kullanarak adresi arayın. Ardından *Konum Ayrıntıları* ekranını açmak için arama sonuçlarında adresi seçin. Bu ekranda, o adres için *Sesli İşareti Başlat* seçeneği bulunur. Bu şekilde, OpenStreetMap'te bulunmayan işletmelere, yerlere, ilgi noktalarına ve konutlara da işaret ayarlayabilirsiniz.
 
-Düzenli olarak kullandığınız bir otobüs hattı varsa, bindiğiniz ve indiğiniz durakları kayıtlı nokta olarak kaydedin. Böylece kaydedilmiş olurlar ve onları kolayca yeniden bulabilirsiniz; ana ekrandan *Kayıtlı Noktalar ve Rotalar*'a gidip *Kayıtlı Noktalar* sayfasında bulabilirsiniz. Onlara bir işaret ayarlayarak iniş durağınıza ne kadar yaklaştığınız hakkında düzenli güncellemeler alabilirsiniz. Not: ritmik sesi kapatsanız bile yol boyunca mesafe güncellemelerini almaya devam edersiniz.
+Düzenli olarak kullandığınız bir otobüs hattı varsa, bindiğiniz ve indiğiniz durakları kayıtlı nokta olarak kaydedin. Böylece kaydedilmiş olurlar ve onları kolayca yeniden bulabilirsiniz. Onları bulmak için ana ekranda *Kayıtlı Noktalar*'ı seçin. Onlara bir işaret ayarlayarak iniş durağınıza ne kadar yaklaştığınız hakkında düzenli güncellemeler alabilirsiniz. Not: ritmik sesi kapatsanız bile yol boyunca mesafe güncellemelerini almaya devam edersiniz.
 
 Telefonunuzu cebinize koyup hareketsiz kalırsanız, Soundscape hangi yöne baktığınızı belirleyemediği için işaret sesi kısılır. Bunu düzeltmek için tekrar yürümeye başlayın veya telefonu çıkarıp düz tutun.
 

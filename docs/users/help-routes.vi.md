@@ -21,13 +21,13 @@ Bạn có thể muốn tạo và sử dụng một lộ trình ở nơi bạn đ
 
 **Tạo một lộ trình :**
 
- Trước tiên, hãy vào *Điểm đánh dấu và lộ trình*, chọn thẻ *Lộ trình*, rồi chọn nút *Lộ trình mới*. Đặt tên cho lộ trình và thêm mô tả (không bắt buộc), sau đó thêm các điểm dừng trong khi di chuyển hoặc chọn chúng từ danh sách Điểm đánh dấu của bạn. Bạn có thể sắp xếp lại thứ tự các điểm dừng trên lộ trình bất cứ lúc nào bằng cách chỉnh sửa lộ trình.
+ Trước tiên, hãy chọn *Lộ trình* trên màn hình chính, rồi chọn nút *Tạo mới* ở góc trên bên phải màn hình. Đặt tên cho lộ trình và thêm mô tả (không bắt buộc), sau đó thêm các điểm dừng trong khi di chuyển hoặc chọn chúng từ danh sách Điểm đánh dấu của bạn. Bạn có thể sắp xếp lại thứ tự các điểm dừng trên lộ trình bất cứ lúc nào bằng cách chỉnh sửa lộ trình.
 
 **Chỉnh sửa một lộ trình :**
 
- Chọn lộ trình của bạn trên màn hình *Điểm đánh dấu và lộ trình* rồi chọn *Chỉnh sửa lộ trình*. Từ đây bạn có thể thêm và xóa các điểm dừng, cũng như chỉnh sửa tên và mô tả của lộ trình.
+ Chọn lộ trình của bạn trên màn hình *Lộ trình* rồi chọn *Chỉnh sửa lộ trình*. Từ đây bạn có thể thêm và xóa các điểm dừng, cũng như chỉnh sửa tên và mô tả của lộ trình.
 
 **Chia sẻ một lộ trình :**
 
- Chọn lộ trình của bạn trên màn hình *Điểm đánh dấu và lộ trình* rồi chọn tùy chọn *Chia sẻ*, sử dụng tất cả các tùy chọn chia sẻ thông thường có sẵn cho bạn.
+ Chọn lộ trình của bạn trên màn hình *Lộ trình* rồi chọn tùy chọn *Chia sẻ*, sử dụng tất cả các tùy chọn chia sẻ thông thường có sẵn cho bạn.
 

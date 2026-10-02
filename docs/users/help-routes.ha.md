@@ -21,13 +21,13 @@ Kuna iya son ƙirƙira da amfani da tafarki a wani wuri da kuka riga kuka sani, 
 
 **Ƙirƙirar tafarki :**
 
- Da farko, je zuwa *Alamomi da Tafarkuna*, zaɓi shafin *Tafarkuna*, sannan ku zaɓi maɓallin *Sabon Tafarki*. Ku ba tafarkin suna da kuma bayanin da ba dole ba ne, sannan ku ƙara tashoshi yayin da kuke ci gaba ko ku zaɓe su daga jerin Alamominku. Za ku iya sake tsara jerin tashoshi a kan tafarki a kowane lokaci ta hanyar gyara tafarkin.
+ Da farko, zaɓi *Tafarkuna* a babban allo, sannan ku zaɓi maɓallin *Sabo* da ke a saman dama na allo. Ku ba tafarkin suna da kuma bayanin da ba dole ba ne, sannan ku ƙara tashoshi yayin da kuke ci gaba ko ku zaɓe su daga jerin Alamominku. Za ku iya sake tsara jerin tashoshi a kan tafarki a kowane lokaci ta hanyar gyara tafarkin.
 
 **Gyara tafarki :**
 
- Zaɓi tafarkinku a allon *Alamomi da Tafarkuna* sannan ku zaɓi *Gyara Tafarki*. Daga nan za ku iya ƙarawa da cire tashoshi, da kuma gyara sunan da bayanin tafarkin.
+ Zaɓi tafarkinku a allon *Tafarkuna* sannan ku zaɓi *Gyara Tafarki*. Daga nan za ku iya ƙarawa da cire tashoshi, da kuma gyara sunan da bayanin tafarkin.
 
 **Raba tafarki :**
 
- Zaɓi tafarkinku a allon *Alamomi da Tafarkuna* sannan ku zaɓi zaɓin *Raba* ta amfani da duk zaɓuɓɓukan rabawa na yau da kullum da ke akwai gare ku.
+ Zaɓi tafarkinku a allon *Tafarkuna* sannan ku zaɓi zaɓin *Raba* ta amfani da duk zaɓuɓɓukan rabawa na yau da kullum da ke akwai gare ku.
 

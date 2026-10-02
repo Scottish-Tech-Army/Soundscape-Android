@@ -13,7 +13,7 @@ Du kan hitta busshållplatser i närheten genom att välja filtret *Kollektivtra
 
 Du kan ställa in en ljudfyr på vilken adress som helst. Från huvudskärmen söker du efter adressen med sökfältet. Välj sedan adressen i sökresultaten för att öppna skärmen *Platsuppgifter*. Den här skärmen har alternativet *Ställ in ljudfyr* för adressen. På så vis kan du ställa in en ljudfyr på företag, platser, intressepunkter och bostäder som inte finns i OpenStreetMap.
 
-Om du regelbundet åker en viss busslinje kan du spara dina påstignings‑ och avstigningshållplatser som platsmarkörer. Då sparas de så att du enkelt hittar dem igen. Gå till *Platsmarkörer och rutter* från startskärmen och hitta dem sedan på sidan *Platsmarkörer*. Du kan ställa in en ljudfyr på dem för att få regelbundna uppdateringar om hur nära du är din avstigningshållplats. Obs: du kan stänga av det rytmiska ljudet och ändå få avståndsuppdateringar under resans gång.
+Om du regelbundet åker en viss busslinje kan du spara dina påstignings‑ och avstigningshållplatser som platsmarkörer. Då sparas de så att du enkelt hittar dem igen. Välj *Platsmarkörer* på startskärmen för att hitta dem. Du kan ställa in en ljudfyr på dem för att få regelbundna uppdateringar om hur nära du är din avstigningshållplats. Obs: du kan stänga av det rytmiska ljudet och ändå få avståndsuppdateringar under resans gång.
 
 Om du lägger telefonen i fickan och slutar gå blir ljudfyren tystare eftersom Soundscape inte vet vilket håll du står åt. Du löser det genom att börja gå igen, eller ta upp telefonen och hålla den plant.
 

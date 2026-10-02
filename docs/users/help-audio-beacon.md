@@ -19,7 +19,7 @@ Setting a beacon is useful when you want to keep track of a familiar landmark as
 
 **To set a beacon :**
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers and Routes*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.
 
 **To remove the current beacon :**
 

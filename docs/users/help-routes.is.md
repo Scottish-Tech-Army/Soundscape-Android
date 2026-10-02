@@ -21,13 +21,13 @@ Leið er röð af leiðarpunktum. Þér verður tilkynnt þegar þú kemur að h
 
 **Að búa til leið:**
 
-Fyrst skaltu fara í *Merki og leiðir*, velja flipann *Leiðir* og síðan hnappinn *Ný leið*. Gefðu leiðinni nafn og valfrjálsa lýsingu, bættu síðan við leiðarpunktum eftir því sem þú ferð eða veldu þá af listanum þínum yfir merki. Þú getur breytt röð leiðarpunktanna meðfram leið hvenær sem er með því að breyta leiðinni.
+Fyrst skaltu velja *Leiðir* á heimaskjánum og síðan hnappinn *Nýtt* efst í hægra horni skjásins. Gefðu leiðinni nafn og valfrjálsa lýsingu, bættu síðan við leiðarpunktum eftir því sem þú ferð eða veldu þá af listanum þínum yfir merki. Þú getur breytt röð leiðarpunktanna meðfram leið hvenær sem er með því að breyta leiðinni.
 
 **Að breyta leið :**
 
-Veldu leiðina þína á skjánum *Merki og leiðir* og veldu síðan *Breyta leið*. Héðan geturðu bætt við og fjarlægt leiðarpunkta og breytt nafni og lýsingu leiðarinnar.
+Veldu leiðina þína á skjánum *Leiðir* og veldu síðan *Breyta leið*. Héðan geturðu bætt við og fjarlægt leiðarpunkta og breytt nafni og lýsingu leiðarinnar.
 
 **Deila leið :**
 
-Veldu leiðina þína á skjánum *Merki og leiðir* og veldu síðan valkostinn *Deila* með þeim hefðbundnu deilingarmöguleikum sem í boði eru.
+Veldu leiðina þína á skjánum *Leiðir* og veldu síðan valkostinn *Deila* með þeim hefðbundnu deilingarmöguleikum sem í boði eru.
 

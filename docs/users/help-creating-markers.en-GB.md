@@ -9,7 +9,7 @@ permalink: /users/help-creating-markers.html
 
 # Creating Markers
 
-You can create markers in three ways: by searching for the place you want to save using the search bar, by finding somewhere using the *Places Nearby* button, or by using the *Current Location* button — all of which are on the home screen. Once you have found the place you want, selecting it will open the *Location Details* screen. On that screen, select the *Save as Marker* button.
+The quickest way to create a marker is from the *Markers* screen: select the *New* button at the top right of the screen, then choose *Current Location* or a place in one of the *Places Nearby* categories. You can also save any place you find from the home screen, using the search bar, the *Places Nearby* button or the *Current Location* button. Selecting a place opens the *Location Details* screen, where you select the *Save as Marker* button.
 
 You will now have the option to customise this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.
 

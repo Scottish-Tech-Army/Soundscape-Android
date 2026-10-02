@@ -13,7 +13,7 @@ Sie finden nahegelegene Bushaltestellen, indem Sie in der Liste *„Orte in der 
 
 Sie können auf jede Adresse ein Beacon setzen. Suchen Sie dazu auf dem Startbildschirm über die Suchleiste nach der Adresse. Wählen Sie dann die Adresse in den Suchergebnissen aus, um den Bildschirm *„Standortdetails“* zu öffnen. Auf diesem Bildschirm gibt es die Option *„Audiobeacon starten“* für die Adresse. Auf diese Weise können Sie Beacons auf Geschäfte, Orte, Points of Interest und Wohnhäuser setzen, die nicht in OpenStreetMap erfasst sind.
 
-Wenn Sie eine Buslinie regelmäßig nutzen, speichern Sie Ihre Ein‑ und Ausstiegshaltestellen als Markierungen. So sind sie gespeichert und leicht wiederzufinden. Gehen Sie vom Startbildschirm zu *„Markierungen und Routen“* und suchen Sie sie dann auf der Seite *„Markierungen“*. Sie können ein Beacon darauf setzen, um regelmäßig zu erfahren, wie nahe Sie Ihrer Ausstiegshaltestelle sind. Hinweis: Sie können den rhythmischen Ton ausschalten und erhalten trotzdem weiterhin Entfernungsangaben.
+Wenn Sie eine Buslinie regelmäßig nutzen, speichern Sie Ihre Ein‑ und Ausstiegshaltestellen als Markierungen. So sind sie gespeichert und leicht wiederzufinden. Wählen Sie auf dem Startbildschirm *„Markierungen“*, um sie zu finden. Sie können ein Beacon darauf setzen, um regelmäßig zu erfahren, wie nahe Sie Ihrer Ausstiegshaltestelle sind. Hinweis: Sie können den rhythmischen Ton ausschalten und erhalten trotzdem weiterhin Entfernungsangaben.
 
 Wenn Sie Ihr Telefon in die Tasche stecken und stehen bleiben, wird der Beacon‑Ton leiser, weil Soundscape nicht erkennen kann, in welche Richtung Sie blicken. Um das zu beheben, gehen Sie wieder los oder nehmen Sie Ihr Telefon heraus und halten Sie es flach.
 

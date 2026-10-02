@@ -21,13 +21,13 @@ Unaweza kutaka kuunda na kutumia njia mahali unapopafahamu tayari, ili ikusaidie
 
 **Kuunda njia :**
 
- Kwanza, nenda kwenye *Alama na Njia*, chagua kichupo cha *Njia*, kisha chagua kitufe cha *Njia Mpya*. Ipe njia jina na maelezo ya hiari, kisha ongeza vituo unavyoendelea au uvichague kutoka kwenye orodha yako ya Alama. Unaweza kupanga upya mpangilio wa vituo katika njia wakati wowote kwa kuhariri njia hiyo.
+ Kwanza, chagua *Njia* kwenye skrini ya mwanzo, kisha chagua kitufe cha *Mpya* kilichopo kona ya juu kulia ya skrini. Ipe njia jina na maelezo ya hiari, kisha ongeza vituo unavyoendelea au uvichague kutoka kwenye orodha yako ya Alama. Unaweza kupanga upya mpangilio wa vituo katika njia wakati wowote kwa kuhariri njia hiyo.
 
 **Kuhariri njia :**
 
- Chagua njia yako kwenye skrini ya *Alama na Njia* kisha chagua *Hariri Njia*. Kutoka hapa unaweza kuongeza na kuondoa vituo, pamoja na kuhariri jina na maelezo ya njia.
+ Chagua njia yako kwenye skrini ya *Njia* kisha chagua *Hariri Njia*. Kutoka hapa unaweza kuongeza na kuondoa vituo, pamoja na kuhariri jina na maelezo ya njia.
 
 **Kushiriki njia :**
 
- Chagua njia yako kwenye skrini ya *Alama na Njia* kisha chagua chaguo la *Shiriki* ukitumia chaguo zote za kawaida za kushiriki zinazopatikana kwako.
+ Chagua njia yako kwenye skrini ya *Njia* kisha chagua chaguo la *Shiriki* ukitumia chaguo zote za kawaida za kushiriki zinazopatikana kwako.
 

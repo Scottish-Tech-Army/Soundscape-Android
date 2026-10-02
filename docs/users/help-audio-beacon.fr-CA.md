@@ -11,17 +11,17 @@ permalink: /users/help-audio-beacon.html
 
 ## De quoi s’agit-il?
 
-La définition d’une balise sonore à un emplacement situé à proximité permet à Soundscape de vous tenir informé en lisant un son provenant de la direction de cet emplacement. Le son de cette balise sonore peut être désactivé ou réactivé depuis l’écran d’accueil. En outre, Soundscape affiche des informations sur l’emplacement sur l’écran d’accueil, notamment la distance pour s’y rendre et son adresse si celle-ci est connue.
+La définition d’une balise sonore à un emplacement situé à proximité permet à Soundscape de vous tenir informé en lisant un son provenant de la direction de cet emplacement. Le son de cette balise peut être désactivé ou réactivé depuis l’écran d’accueil. En outre, Soundscape affiche des informations sur l’emplacement sur l’écran d’accueil, notamment la distance pour s’y rendre et son adresse si celle-ci est connue.
 
 ## Utilisation
 
-La définition d’une balise sonore est utile pour effectuer le suivi d’un repère familier quand vous explorez un nouvel environnement ou lorsque vous allez quelque part et que vous souhaitez rester informé de ce qui vous entoure sur votre trajet. La fonctionnalité de balise sonore ne vous fournit pas un itinéraire détaillé, mais émet un son audible continu vous indiquant la direction de la balise sonore, en fonction de votre emplacement actuel. Grâce à la balise sonore, vos compétences d’orientation et même votre appli de navigation préférée, vous pouvez choisir comment accéder à des emplacements situés à proximité par vous-même.
+La définition d’une balise sonore est utile pour effectuer le suivi d’un repère familier quand vous explorez un nouvel environnement ou lorsque vous allez quelque part et que vous souhaitez rester informé de ce qui vous entoure sur votre trajet. La fonctionnalité de balise ne vous fournit pas un itinéraire détaillé, mais émet un son audible continu vous indiquant la direction de la balise, en fonction de votre emplacement actuel. Grâce à la balise, vos compétences d’orientation et même votre appli de navigation préférée, vous pouvez choisir comment accéder à des emplacements situés à proximité par vous-même.
 
 ## Fonctionnement
 
 **Pour définir une balise sonore :**
 
-Tout d’abord, consultez les détails d’un emplacement en utilisant la barre de recherche pour rechercher un lieu, ou en appuyant sur l’un des boutons *Emplacements à proximité*, *Marqueurs et Itinéraires* ou *Emplacement actuel* et en sélectionnant un emplacement. Ensuite, depuis l’écran *Détails de l’emplacement*, sélectionnez le bouton *Démarrer la balise sonore*. En appuyant dessus, vous revenez à l’écran d’accueil et activez une balise sonore émise depuis la direction du lieu sélectionné. Le nom du lieu ainsi que sa distance et son adresse physique, si disponibles, seront désormais affichés sur l’écran principal.
+Tout d’abord, consultez les détails d’un emplacement en utilisant la barre de recherche pour rechercher un lieu, ou en appuyant sur l’un des boutons *Emplacements à proximité*, *Marqueurs* ou *Emplacement actuel* et en sélectionnant un emplacement. Ensuite, depuis l’écran *Détails de l’emplacement*, sélectionnez le bouton *Démarrer la balise*. En appuyant dessus, vous revenez à l’écran d’accueil et activez une balise émise depuis la direction du lieu sélectionné. Le nom du lieu ainsi que sa distance et son adresse physique, si disponibles, seront désormais affichés sur l’écran principal.
 
 **Pour supprimer la balise sonore actuelle :**
 
@@ -29,5 +29,5 @@ Appuyez simplement sur le bouton *Arrêter l’Itinéraire* sur l’écran d’a
 
 **Pour couper le son de la balise sonore :**
 
-Appuyez sur le bouton *Désactiver le son de la balise sonore* à côté du bouton *Arrêter l’Itinéraire* sur l’écran d’accueil.
+Appuyez sur le bouton *Désactiver le son de la balise* à côté du bouton *Arrêter l’Itinéraire* sur l’écran d’accueil.
 

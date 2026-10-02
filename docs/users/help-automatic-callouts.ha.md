@@ -25,7 +25,7 @@ Soundscape na iya gaya muku game da abubuwan da ke kewaye da ku yayin da kuke ku
 
 **Idan kuna bukatar shiru :**
 
- Idan kuna gab da ƙetare titi ko kuna bukatar manhajar ta yi shiru kawai, za ku iya kashe sanarwa. Idan an kashe sanarwa, manhajar za ta ba ku bayani ne kawai idan kuka danna ɗaya daga cikin maɓallan *Inda Nake*, *Alamomin Kusa*, *Kewaye da Ni*, ko *Abin da ke Gabana* da kanku.
+ Idan kuna gab da ƙetare titi ko kuna bukatar manhajar ta yi shiru kawai, za ku iya kashe sanarwa. Idan an kashe sanarwa, manhajar za ta ba ku bayani ne kawai idan kuka danna ɗaya daga cikin maɓallan *Wurina*, *Alamomi na Kusa*, *Kewaye da Ni*, ko *Gaba da Ni* da kanku.
 
 ## Yaya yake aiki?
 

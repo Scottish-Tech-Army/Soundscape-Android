@@ -9,7 +9,7 @@ permalink: /users/help-creating-markers.html
 
 # Izrada oznaka
 
-Oznake možete stvoriti na tri načina: pretraživanjem mjesta koje želite spremiti pomoću trake za pretraživanje, pronalaženjem mjesta pomoću gumba *Mjesta u blizini* ili pomoću gumba *Trenutačna lokacija*, a sve to možete pronaći na početnom zaslonu. Kada pronađete željeno mjesto, odabirom istog otvorit će se zaslon *Pojedinosti o lokaciji*. Na tom zaslonu odaberite gumb *Spremi kao oznaku*.
+Oznaku najbrže stvarate na zaslonu *Oznake*: odaberite gumb *Nova* u gornjem desnom kutu zaslona, a zatim odaberite *Trenutačna lokacija* ili mjesto u jednoj od kategorija *Mjesta u blizini*. Možete spremiti i bilo koje mjesto koje pronađete s početnog zaslona, pomoću trake za pretraživanje, gumba *Mjesta u blizini* ili gumba *Trenutačna lokacija*. Odabirom mjesta otvara se zaslon *Pojedinosti o lokaciji*, na kojem odaberete gumb *Spremi kao oznaku*.
 
 Sada ćete imati mogućnost prilagoditi ovu oznaku. Možete promijeniti naziv oznake, a možete dodati i napomenu koja će se izgovoriti zajedno s oznakom kako biste dobili dodatne informacije. Kada završite, odaberite gumb *Gotovo* kako biste spremili svoju oznaku.
 

@@ -21,13 +21,13 @@ Es posible que quieras crear y usar una ruta en un lugar que ya conoces, para ay
 
 **Creación de una ruta**:
 
- en primer lugar, ve a *Marcadores y rutas*, y selecciona la pestaña *Rutas* y el botón *Nueva ruta*. Asigna un nombre y una descripción opcional a la ruta, luego agrega puntos de ruta a medida que avances o elígelos en tu lista de marcadores. Puedes reorganizar el orden de los puntos de ruta a lo largo de una ruta en cualquier momento editando la ruta.
+ en primer lugar, selecciona *Rutas* en la pantalla principal y, a continuación, el botón *Nuevo* de la esquina superior derecha de la pantalla. Asigna un nombre y una descripción opcional a la ruta, luego agrega puntos de ruta a medida que avances o elígelos en tu lista de marcadores. Puedes reorganizar el orden de los puntos de ruta a lo largo de una ruta en cualquier momento editando la ruta.
 
 **Edición de una ruta**:
 
- selecciona tu ruta en la página *Marcadores y rutas* y, a continuación, *Editar ruta*. Desde aquí, puedes agregar y eliminar puntos de ruta, así como editar el nombre y la descripción de la ruta.
+ selecciona tu ruta en la pantalla *Rutas* y, a continuación, *Editar ruta*. Desde aquí, puedes agregar y eliminar puntos de ruta, así como editar el nombre y la descripción de la ruta.
 
 **Uso compartido de una ruta**:
 
- selecciona tu ruta en la página *«Marcadores y rutas»* y, a continuación, la opción *«Compartir ruta»* utilizando todas las opciones de uso compartido habituales disponibles para ti.
+ selecciona tu ruta en la pantalla *«Rutas»* y, a continuación, la opción *«Compartir ruta»* utilizando todas las opciones de uso compartido habituales disponibles para ti.
 

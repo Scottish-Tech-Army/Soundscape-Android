@@ -21,7 +21,7 @@ Nastavenie majáka je užitočné, keď si chcete udržiavať prehľad o známom
 
 **Nastavenie majáka:**
 
- Najprv zobrazte podrobnosti o mieste – buď vyhľadaním miesta pomocou vyhľadávacieho poľa, alebo ťuknutím na jedno z tlačidiel *Miesta v okolí*, *Značky a trasy* alebo *Aktuálna poloha* a výberom miesta. Potom na obrazovke *Podrobnosti o mieste* vyberte tlačidlo *Spustiť zvukový maják*. Ťuknutím naň sa vrátite na domovskú obrazovku a zapne sa zvukový maják prichádzajúci zo smeru vybraného miesta. Na hlavnej obrazovke sa teraz zobrazí názov miesta spolu s jeho vzdialenosťou a fyzickou adresou, ak je k dispozícii.
+ Najprv zobrazte podrobnosti o mieste – buď vyhľadaním miesta pomocou vyhľadávacieho poľa, alebo ťuknutím na jedno z tlačidiel *Miesta v okolí*, *Značky* alebo *Aktuálna poloha* a výberom miesta. Potom na obrazovke *Podrobnosti o mieste* vyberte tlačidlo *Spustiť zvukový maják*. Ťuknutím naň sa vrátite na domovskú obrazovku a zapne sa zvukový maják prichádzajúci zo smeru vybraného miesta. Na hlavnej obrazovke sa teraz zobrazí názov miesta spolu s jeho vzdialenosťou a fyzickou adresou, ak je k dispozícii.
 
 **Odstránenie aktuálneho majáka:**
 

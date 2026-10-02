@@ -21,13 +21,13 @@ Pot morda želite ustvariti in uporabiti na kraju, ki ga že poznate, da ostanet
 
 **Ustvarjanje poti :**
 
- Najprej odprite *Oznake in poti*, izberite zavihek *Poti* in nato izberite gumb *Nova pot*. Poti dajte ime in neobvezen opis, nato pa dodajajte točke poti sproti ali jih izberite s seznama oznak. Vrstni red točk poti lahko kadar koli spremenite z urejanjem poti.
+ Najprej na domačem zaslonu izberite *Poti* in nato izberite gumb *Nova* v zgornjem desnem kotu zaslona. Poti dajte ime in neobvezen opis, nato pa dodajajte točke poti sproti ali jih izberite s seznama oznak. Vrstni red točk poti lahko kadar koli spremenite z urejanjem poti.
 
 **Urejanje poti :**
 
- Izberite svojo pot na zaslonu *Oznake in poti* in nato izberite *Uredi pot*. Od tu lahko dodajate in odstranjujete točke poti ter urejate ime in opis poti.
+ Izberite svojo pot na zaslonu *Poti* in nato izberite *Uredi pot*. Od tu lahko dodajate in odstranjujete točke poti ter urejate ime in opis poti.
 
 **Deljenje poti :**
 
- Izberite svojo pot na zaslonu *Oznake in poti* in nato izberite možnost *Deli* z vsemi običajnimi možnostmi deljenja, ki so vam na voljo.
+ Izberite svojo pot na zaslonu *Poti* in nato izberite možnost *Deli* z vsemi običajnimi možnostmi deljenja, ki so vam na voljo.
 

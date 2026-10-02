@@ -13,7 +13,7 @@ Lähedal asuvaid bussipeatusi leiate, valides loendis *Lähedal asuvad kohad* fi
 
 Helimajaka saate seada igale aadressile. Otsige aadressi põhikuva otsinguriba abil. Seejärel valige aadress otsingutulemustest, et avada ekraan *Asukoha üksikasjad*. Sellel ekraanil on suvand *Käivita helimajakas* selle aadressi kohta. Nii saate seada helimajaka ettevõtetele, kohtadele, huvipunktidele ja eluasemetele, mida OpenStreetMapis ei ole.
 
-Kui kasutate regulaarselt mõnda bussiliini, salvestage oma pealemineku- ja mahaminekupeatused markeritena. Nii jäävad need salvestatuks ja leiate need hõlpsalt uuesti — minge lihtsalt avakuvalt lehele *Markerid ja marsruudid* ja leidke need lehelt *Markerid*. Saate neile seada helimajaka ning saate perioodilisi värskendusi selle kohta, kui lähedal olete oma mahaminekupeatusele. Märkus: saate rütmilise heli välja lülitada ja saate teekonnal ikkagi kauguse värskendusi.
+Kui kasutate regulaarselt mõnda bussiliini, salvestage oma pealemineku- ja mahaminekupeatused markeritena. Nii jäävad need salvestatuks ja leiate need hõlpsalt uuesti. Nende leidmiseks valige avakuval *Markerid*. Saate neile seada helimajaka ning saate perioodilisi värskendusi selle kohta, kui lähedal olete oma mahaminekupeatusele. Märkus: saate rütmilise heli välja lülitada ja saate teekonnal ikkagi kauguse värskendusi.
 
 Kui panete telefoni taskusse ja seiskute, muutub helimajaka heli vaiksemaks, kuna Soundscape ei tea, millises suunas te vaatate. Selle parandamiseks hakake uuesti kõndima või võtke telefon välja ja hoidke seda tasapinnaliselt.
 

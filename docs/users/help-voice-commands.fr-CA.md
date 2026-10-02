@@ -13,7 +13,7 @@ permalink: /users/help-voice-commands.html
 
 Soundscape est prêt pour Gemini, mais Gemini ne peut pas encore l’utiliser : cela dépend de la publication par Google de la prise en charge des fonctions d’appli Android dans Gemini. Une fois que ce sera fait, vous pourrez demander à Gemini d’effectuer des actions dans Soundscape sans toucher votre téléphone : entendre une annonce, démarrer l’un de vos itinéraires ou placer une balise sonore sur l’un de vos marqueurs. Tout autre assistant prenant en charge les fonctions d’appli Android pourra en faire autant.
 
-Soundscape répondra avec sa propre voix, avec les annonces et les sons de balise sonore que vous connaissez déjà, plutôt que de laisser l’assistant lire un résumé. Ainsi, ce que vous entendrez proviendra toujours de la direction qu’il décrit.
+Soundscape répondra avec sa propre voix, avec les annonces et les sons de balise que vous connaissez déjà, plutôt que de laisser l’assistant lire un résumé. Ainsi, ce que vous entendrez proviendra toujours de la direction qu’il décrit.
 
 ## Utilisation
 
@@ -33,9 +33,9 @@ Annoncer les marqueurs enregistrés près de vous.
 
 Démarrer l’un de vos itinéraires enregistrés en le nommant, passer à l’étape suivante, revenir à la précédente, couper le son de la balise sonore ou arrêter l’itinéraire.
 
-Placer une balise sonore sur l’un de vos marqueurs enregistrés en le nommant, ou désactiver la balise sonore.
+Placer une balise sur l’un de vos marqueurs enregistrés en le nommant, ou désactiver la balise.
 
-Régler le détail des annonces sur *Silencieux*, *Essentiel*, *Simplifié* ou *Détaillé*, pour modifier la quantité d’informations que Soundscape annonce pendant que vous marchez. *Silencieux* désactive les annonces automatiques.
+Régler le détail des annonces sur *Silencieux*, *Minimal*, *Simplifié* ou *Détaillé*, pour modifier la quantité d’informations que Soundscape annonce pendant que vous marchez. *Silencieux* désactive les annonces automatiques.
 
 Lire les noms de vos itinéraires enregistrés ou de vos marqueurs enregistrés.
 

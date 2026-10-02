@@ -21,7 +21,7 @@ Das Platzieren eines Beacons ist nützlich, wenn Sie bei der Erkundung eines neu
 
 **Zum Platzieren eines Beacons:**
 
-Zuerst zeigen Sie die Details eines Ortes an, indem Sie entweder die Suchleiste verwenden, um nach einem Ort zu suchen, oder auf eine der Schaltflächen *„Orte in der Nähe“*, *„Markierungen und Routen“* oder *„Aktueller Standort“* tippen und einen Ort auswählen. Wählen Sie dann auf dem Bildschirm *„Standortdetails“* die Schaltfläche *„Audiobeacon starten“* aus. Wenn Sie diese antippen, kehren Sie zum Startbildschirm zurück und ein hörbares Beacon wird aus der Richtung des ausgewählten Ortes abgespielt. Der Name des Ortes sowie seine Entfernung und gegebenenfalls seine physische Adresse werden nun auf dem Hauptbildschirm angezeigt.
+Zuerst zeigen Sie die Details eines Ortes an, indem Sie entweder die Suchleiste verwenden, um nach einem Ort zu suchen, oder auf eine der Schaltflächen *„Orte in der Nähe“*, *„Markierungen“* oder *„Aktueller Standort“* tippen und einen Ort auswählen. Wählen Sie dann auf dem Bildschirm *„Standortdetails“* die Schaltfläche *„Audiobeacon starten“* aus. Wenn Sie diese antippen, kehren Sie zum Startbildschirm zurück und ein hörbares Beacon wird aus der Richtung des ausgewählten Ortes abgespielt. Der Name des Ortes sowie seine Entfernung und gegebenenfalls seine physische Adresse werden nun auf dem Hauptbildschirm angezeigt.
 
 **Zum Entfernen des aktuellen Beacons:**
 

@@ -21,13 +21,13 @@ Mogelijk wilt u een route maken en gebruiken op een plek die u al kent, zodat u 
 
 **Een route maken :**
 
- Ga eerst naar *Markeringen en routes*, selecteer het tabblad *Routes* en de knop *Nieuwe route*. Geef de route een naam en een optionele beschrijving, voeg vervolgens routepunten toe of selecteer ze uit uw lijst met markeringen. U kunt de volgorde van de routepunten op een route altijd wijzigen door de route te bewerken.
+ Selecteer eerst *Routes* op het startscherm en daarna de knop *Nieuw* rechtsboven in het scherm. Geef de route een naam en een optionele beschrijving, voeg vervolgens routepunten toe of selecteer ze uit uw lijst met markeringen. U kunt de volgorde van de routepunten op een route altijd wijzigen door de route te bewerken.
 
 **Een route bewerken :**
 
-Selecteer uw route op het scherm *Markeringen en routes* en kies vervolgens *Route bewerken*. Vanaf daar kunt u routepunten toevoegen en verwijderen, en de naam en beschrijving van de route bewerken.
+Selecteer uw route op het scherm *Routes* en kies vervolgens *Route bewerken*. Vanaf daar kunt u routepunten toevoegen en verwijderen, en de naam en beschrijving van de route bewerken.
 
 **Een route delen :**
 
- Selecteer uw route op het scherm *Markeringen en routes* en kies vervolgens de optie *Delen* met de gebruikelijke deelopties die voor u beschikbaar zijn.
+ Selecteer uw route op het scherm *Routes* en kies vervolgens de optie *Delen* met de gebruikelijke deelopties die voor u beschikbaar zijn.
 

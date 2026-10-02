@@ -13,7 +13,7 @@ Pode encontrar paragens de autocarro nas proximidades selecionando o filtro *Tra
 
 Pode definir um sinal em qualquer endereço. No ecrã principal, pesquise o endereço com a barra de pesquisa. Depois, selecione o endereço nos resultados da pesquisa para abrir o ecrã *Detalhes da Localização*. Este ecrã tem a opção *Iniciar Sinal de Áudio* para esse endereço. Desta forma, pode definir um sinal em empresas, locais, pontos de interesse e habitações que não constam do OpenStreetMap.
 
-Se utiliza regularmente uma linha de autocarro, guarde as suas paragens de entrada e saída como Marcos. Deste modo ficam guardadas e poderá encontrá‑las facilmente. Aceda a *Marcos e Rotas* a partir do ecrã principal e depois procure‑as na página *Marcos*. Pode definir um sinal sobre essas paragens para receber atualizações periódicas sobre a distância até à sua paragem de saída. Nota: pode desativar o som rítmico e continuar a receber atualizações de distância ao longo do percurso.
+Se utiliza regularmente uma linha de autocarro, guarde as suas paragens de entrada e saída como Marcos. Deste modo ficam guardadas e poderá encontrá‑las facilmente. Selecione *Marcos* no ecrã principal para as encontrar. Pode definir um sinal sobre essas paragens para receber atualizações periódicas sobre a distância até à sua paragem de saída. Nota: pode desativar o som rítmico e continuar a receber atualizações de distância ao longo do percurso.
 
 Se guardar o telemóvel no bolso e ficar imóvel, o som do sinal fica mais baixo porque o Soundscape não consegue identificar para que direção está virado. Para o resolver, comece novamente a caminhar, ou pegue no telemóvel e segure‑o numa posição plana.
 

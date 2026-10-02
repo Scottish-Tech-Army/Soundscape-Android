@@ -21,13 +21,13 @@ Les rutes són una sèrie de punts de ruta. Se t'informarà en arribar a cada pu
 
 **Crear una ruta:**
 
- Primer, ves a *Marcadors i rutes*, selecciona la pestanya *Rutes* i tot seguit selecciona el botó *Ruta nova*. Dona un nom a la ruta i, opcionalment, una descripció, i tot seguit afegeix punts de ruta a mesura que avances o tria'ls de la teva llista de marcadors. Pots reorganitzar l'ordre dels punts de ruta en qualsevol moment editant la ruta.
+ Primer, selecciona *Rutes* a la pantalla principal i tot seguit selecciona el botó *Nou* a la cantonada superior dreta de la pantalla. Dona un nom a la ruta i, opcionalment, una descripció, i tot seguit afegeix punts de ruta a mesura que avances o tria'ls de la teva llista de marcadors. Pots reorganitzar l'ordre dels punts de ruta en qualsevol moment editant la ruta.
 
 **Editar una ruta:**
 
- Selecciona la teva ruta a la pantalla *Marcadors i rutes* i tot seguit selecciona *Edita la ruta*. Des d'aquí pots afegir i eliminar punts de ruta, així com editar el nom i la descripció de la ruta.
+ Selecciona la teva ruta a la pantalla *Rutes* i tot seguit selecciona *Edita la ruta*. Des d'aquí pots afegir i eliminar punts de ruta, així com editar el nom i la descripció de la ruta.
 
 **Compartir una ruta:**
 
- Selecciona la teva ruta a la pantalla *Marcadors i rutes* i tot seguit selecciona l'opció *Comparteix* utilitzant totes les opcions de compartició habituals disponibles.
+ Selecciona la teva ruta a la pantalla *Rutes* i tot seguit selecciona l'opció *Comparteix* utilitzant totes les opcions de compartició habituals disponibles.
 

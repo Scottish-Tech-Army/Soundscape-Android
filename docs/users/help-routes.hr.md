@@ -21,13 +21,13 @@ Rutu možda želite stvoriti i koristiti na mjestu koje već poznajete, kako bis
 
 **Stvaranje rute:**
 
- Najprije otvorite *Oznake i rute*, odaberite karticu *Rute*, a zatim odaberite gumb *Nova ruta*. Dajte ruti naziv i, po želji, opis, a zatim dodajte putne točke usput ili ih odaberite sa svog popisa oznaka. Redoslijed putnih točaka možete u bilo kojem trenutku promijeniti uređivanjem rute.
+ Najprije na početnom zaslonu odaberite *Rute*, a zatim odaberite gumb *Nova* u gornjem desnom kutu zaslona. Dajte ruti naziv i, po želji, opis, a zatim dodajte putne točke usput ili ih odaberite sa svog popisa oznaka. Redoslijed putnih točaka možete u bilo kojem trenutku promijeniti uređivanjem rute.
 
 **Uređivanje rute:**
 
- Odaberite svoju rutu na zaslonu *Oznake i rute*, a zatim odaberite *Uredi rutu*. Ovdje možete dodavati i uklanjati putne točke, kao i uređivati naziv i opis rute.
+ Odaberite svoju rutu na zaslonu *Rute*, a zatim odaberite *Uredi rutu*. Ovdje možete dodavati i uklanjati putne točke, kao i uređivati naziv i opis rute.
 
 **Dijeljenje rute:**
 
- Odaberite svoju rutu na zaslonu *Oznake i rute*, a zatim odaberite opciju *Podijeli*, koristeći sve uobičajene opcije dijeljenja koje su vam dostupne.
+ Odaberite svoju rutu na zaslonu *Rute*, a zatim odaberite opciju *Podijeli*, koristeći sve uobičajene opcije dijeljenja koje su vam dostupne.
 

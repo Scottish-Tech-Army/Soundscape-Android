@@ -9,7 +9,7 @@ permalink: /users/help-creating-markers.html
 
 # Tworzenie znaczników
 
-Możesz tworzyć znaczniki na trzy sposoby: wyszukując miejsce, które chcesz zapisać, za pomocą paska wyszukiwania; znajdując miejsce przy użyciu przycisku *„Miejsca w pobliżu”*; lub korzystając z przycisku *„Bieżąca lokalizacja”* — wszystkie te opcje są dostępne na ekranie głównym. Gdy znajdziesz miejsce, które chcesz zapisać, wybierz je, aby przejść do ekranu *„Szczegóły lokalizacji”*. Na tym ekranie wybierz przycisk *„Zapisz jako znacznik”*.
+Najszybciej utworzysz znacznik na ekranie *„Znaczniki”*: wybierz przycisk *„Nowy”* w prawym górnym rogu ekranu, a następnie wybierz *„Bieżąca lokalizacja”* lub miejsce z jednej z kategorii *„Miejsca w pobliżu”*. Możesz też zapisać dowolne miejsce znalezione z ekranu głównego, korzystając z paska wyszukiwania, przycisku *„Miejsca w pobliżu”* lub przycisku *„Bieżąca lokalizacja”*. Wybranie miejsca przenosi cię do ekranu *„Szczegóły lokalizacji”*, na którym wybierasz przycisk *„Zapisz jako znacznik”*.
 
 Otrzymasz teraz możliwość dostosowania znacznika. Możesz zmienić jego nazwę oraz dodać adnotację, która będzie odtwarzana wraz ze znacznikiem, aby dostarczyć dodatkowych informacji. Po zakończeniu wybierz przycisk *„Gotowe”*, aby zapisać znacznik.
 

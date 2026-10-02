@@ -21,13 +21,13 @@ Este posibil să dorești să creezi și să folosești o rută într-un loc pe 
 
 **Crearea unei rute:**
 
- Mai întâi, accesează *Marcaje și rute*, selectează fila *Rute* și apoi selectează butonul *Rută nouă*. Dă rutei un nume și o descriere opțională, apoi adaugă puncte de traseu pe parcurs sau alege-le din lista ta de marcaje. Poți rearanja ordinea punctelor de traseu de-a lungul unei rute oricând prin editarea rutei.
+ Mai întâi, selectează *Rute* pe ecranul principal și apoi selectează butonul *Nou* din colțul din dreapta sus al ecranului. Dă rutei un nume și o descriere opțională, apoi adaugă puncte de traseu pe parcurs sau alege-le din lista ta de marcaje. Poți rearanja ordinea punctelor de traseu de-a lungul unei rute oricând prin editarea rutei.
 
 **Editarea unei rute :**
 
- Selectează ruta pe ecranul *Marcaje și rute* și apoi selectează *Editează ruta*. De aici poți adăuga și elimina puncte de traseu, precum și edita numele și descrierea rutei.
+ Selectează ruta pe ecranul *Rute* și apoi selectează *Editează ruta*. De aici poți adăuga și elimina puncte de traseu, precum și edita numele și descrierea rutei.
 
 **Partajarea unei rute:**
 
- Selectează ruta ta de pe ecranul *Marcaje și rute* și apoi selectează opțiunea *Partajează* folosind toate opțiunile obișnuite de partajare disponibile.
+ Selectează ruta ta de pe ecranul *Rute* și apoi selectează opțiunea *Partajează* folosind toate opțiunile obișnuite de partajare disponibile.
 

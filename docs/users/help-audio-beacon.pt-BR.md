@@ -21,7 +21,7 @@ A definição de um sinalizador será útil quando você quiser rastrear um pont
 
 **Para definir um sinalizador :**
 
- Primeiro, visualize os detalhes de uma localização usando a barra de pesquisa para procurar um lugar, ou tocando em um dos botões *Locais Próximos*, *Favoritos e Rotas* ou *Localização Atual* e selecionando uma localização. Em seguida, na tela *Detalhes da Localização*, selecione o botão *Iniciar Sinalizador Sonoro*. Ao tocar nele, você retornará à tela inicial e será ativado um sinalizador audível vindo da direção do local selecionado. O nome do local, juntamente com sua distância e endereço físico, se disponível, será exibido na tela principal.
+ Primeiro, visualize os detalhes de uma localização usando a barra de pesquisa para procurar um lugar, ou tocando em um dos botões *Locais Próximos*, *Favoritos* ou *Localização Atual* e selecionando uma localização. Em seguida, na tela *Detalhes da Localização*, selecione o botão *Iniciar Sinalizador Sonoro*. Ao tocar nele, você retornará à tela inicial e será ativado um sinalizador audível vindo da direção do local selecionado. O nome do local, juntamente com sua distância e endereço físico, se disponível, será exibido na tela principal.
 
 **Para remover o sinalizador atual :**
 

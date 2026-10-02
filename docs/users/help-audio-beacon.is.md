@@ -21,7 +21,7 @@ Með því að setja hljóðvita á nálægan stað getur Soundscape haldið þ�
 
 **Til að setja hljóðvita :**
 
-Fyrst skoðaðu upplýsingar um stað með því að nota leitarstikuna eða velja einn af hnöppunum *Nálægir staðir*, *Merki og leiðir* eða *Núverandi staðsetning* og velja staðinn. Veldu síðan hnappinn *Kveikja á hljóðvita* á skjánum *Upplýsingar um staðsetningu*. Með því að ýta á hann snýrðu aftur á heimaskjáinn og kveikir á heyranlegum hljóðvita sem heyrist úr þeirri átt sem staðurinn er. Nafn staðarins, ásamt fjarlægð og heimilisfangi ef það er tiltækt, verður nú sýnt á aðalskjánum.
+Fyrst skoðaðu upplýsingar um stað með því að nota leitarstikuna eða velja einn af hnöppunum *Nálægir staðir*, *Merki* eða *Núverandi staðsetning* og velja staðinn. Veldu síðan hnappinn *Kveikja á hljóðvita* á skjánum *Upplýsingar um staðsetningu*. Með því að ýta á hann snýrðu aftur á heimaskjáinn og kveikir á heyranlegum hljóðvita sem heyrist úr þeirri átt sem staðurinn er. Nafn staðarins, ásamt fjarlægð og heimilisfangi ef það er tiltækt, verður nú sýnt á aðalskjánum.
 
 **Til að fjarlægja núverandi hljóðvita :**
 

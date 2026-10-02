@@ -13,7 +13,7 @@ Puedes encontrar paradas de autobús cercanas seleccionando el filtro *Transport
 
 Puedes establecer una señal en cualquier dirección. Desde la pantalla principal, busca la dirección con la barra de búsqueda. A continuación, selecciona la dirección en los resultados de búsqueda para abrir la pantalla *Detalles de la ubicación*. Esta pantalla incluye la opción *Iniciar señal de audio* para esa dirección. De este modo, puedes establecer una señal en negocios, lugares, puntos de interés y viviendas que no estén en OpenStreetMap.
 
-Si usas una línea de autobús con regularidad, guarda tus paradas de subida y bajada como Marcadores. Así quedarán guardadas y podrás encontrarlas fácilmente. Ve a *Marcadores y rutas* desde la pantalla principal y búscalas después en la página *Marcadores*. Puedes establecer una señal en ellas para recibir actualizaciones periódicas sobre lo cerca que estás de tu parada de bajada. Nota: puedes desactivar el sonido rítmico y seguir recibiendo actualizaciones de la distancia durante el recorrido.
+Si usas una línea de autobús con regularidad, guarda tus paradas de subida y bajada como Marcadores. Así quedarán guardadas y podrás encontrarlas fácilmente. Selecciona *Marcadores* en la pantalla principal para encontrarlas. Puedes establecer una señal en ellas para recibir actualizaciones periódicas sobre lo cerca que estás de tu parada de bajada. Nota: puedes desactivar el sonido rítmico y seguir recibiendo actualizaciones de la distancia durante el recorrido.
 
 Si metes el teléfono en el bolsillo y dejas de moverte, el sonido de la señal baja de volumen porque Soundscape no puede saber hacia qué dirección estás orientado. Para solucionarlo, empieza a andar de nuevo, o saca el teléfono y mantenlo en posición horizontal.
 

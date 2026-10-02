@@ -21,13 +21,13 @@ Anda mungkin ingin membuat dan menggunakan rute di tempat yang sudah Anda kenal,
 
 **Membuat rute :**
 
- Pertama, buka *Penanda dan Rute*, pilih tab *Rute*, lalu pilih tombol *Rute Baru*. Beri nama rute dan deskripsi opsional, lalu tambahkan titik rute sambil berjalan atau pilih dari daftar Penanda Anda. Anda dapat menyusun ulang urutan titik rute di sepanjang rute kapan saja dengan mengedit rute tersebut.
+ Pertama, pilih *Rute* di layar utama, lalu pilih tombol *Baru* di pojok kanan atas layar. Beri nama rute dan deskripsi opsional, lalu tambahkan titik rute sambil berjalan atau pilih dari daftar Penanda Anda. Anda dapat menyusun ulang urutan titik rute di sepanjang rute kapan saja dengan mengedit rute tersebut.
 
 **Mengedit rute :**
 
- Pilih rute Anda di layar *Penanda dan Rute* lalu pilih *Edit Rute*. Dari sini Anda dapat menambah dan menghapus titik rute, serta mengedit nama dan deskripsi rute.
+ Pilih rute Anda di layar *Rute* lalu pilih *Edit Rute*. Dari sini Anda dapat menambah dan menghapus titik rute, serta mengedit nama dan deskripsi rute.
 
 **Membagikan rute :**
 
- Pilih rute Anda di layar *Penanda dan Rute* lalu pilih opsi *Bagikan* menggunakan semua opsi berbagi biasa yang tersedia untuk Anda.
+ Pilih rute Anda di layar *Rute* lalu pilih opsi *Bagikan* menggunakan semua opsi berbagi biasa yang tersedia untuk Anda.
 

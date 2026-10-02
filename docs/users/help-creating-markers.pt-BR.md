@@ -9,7 +9,7 @@ permalink: /users/help-creating-markers.html
 
 # Criando Favoritos
 
-Você pode criar favoritos de três maneiras: procurando o lugar que deseja salvar usando a barra de pesquisa, encontrando um local com o botão *Locais Próximos* ou usando o botão *Localização Atual*, todos disponíveis na tela inicial. Depois de localizar o lugar desejado, selecioná‑lo levará você à tela *Detalhes da Localização*. Nessa tela, selecione o botão *Salvar como Favorito*.
+A maneira mais rápida de criar um favorito é pela tela *Favoritos*: selecione o botão *Novo* no canto superior direito da tela e, em seguida, escolha *Localização Atual* ou um local em uma das categorias de *Locais Próximos*. Você também pode salvar qualquer lugar que encontrar na tela inicial, usando a barra de pesquisa, o botão *Locais Próximos* ou o botão *Localização Atual*. Ao selecionar um lugar, você vai para a tela *Detalhes da Localização*, onde seleciona o botão *Salvar como Favorito*.
 
 Agora você terá a opção de personalizar esse favorito. Você pode alterar o nome do favorito e também adicionar uma anotação que será anunciada junto com o favorito para fornecer informações extras. Quando terminar, selecione o botão *“Concluído”* para salvar seu favorito.
 

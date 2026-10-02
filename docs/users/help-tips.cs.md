@@ -13,7 +13,7 @@ Blízké autobusové zastávky můžete najít výběrem filtru *Veřejná dopra
 
 Maják můžete nastavit na jakoukoli adresu. Na hlavní obrazovce vyhledejte adresu pomocí vyhledávacího pole. Poté výběrem adresy ve výsledcích hledání otevřete obrazovku *Podrobnosti o místě*. Na této obrazovce je možnost *Spustit zvukový maják* na dané adrese. Tímto způsobem můžete nastavit maják na podniky, místa, body zájmu a obydlí, která nejsou v OpenStreetMap.
 
-Pokud pravidelně jezdíte určitou autobusovou linkou, uložte si zastávky nástupu a výstupu jako značky. Budou tak uloženy a snadno je zase najdete. Přejděte na *Značky a trasy* na domovské obrazovce a poté je najděte na stránce *Značky*. Můžete si na nich nastavit maják a pravidelně dostávat aktualizace o tom, jak blízko jste své výstupní zastávce. Poznámka: rytmický zvuk můžete vypnout a přesto budete cestou dostávat aktualizace o vzdálenosti.
+Pokud pravidelně jezdíte určitou autobusovou linkou, uložte si zastávky nástupu a výstupu jako značky. Budou tak uloženy a snadno je zase najdete. Najdete je po výběru *Značky* na domovské obrazovce. Můžete si na nich nastavit maják a pravidelně dostávat aktualizace o tom, jak blízko jste své výstupní zastávce. Poznámka: rytmický zvuk můžete vypnout a přesto budete cestou dostávat aktualizace o vzdálenosti.
 
 Pokud si dáte telefon do kapsy a přestanete se pohybovat, zvuk majáku ztichne, protože Soundscape nemůže poznat, kterým směrem jste otočeni. Napravíte to tím, že se znovu vydáte na cestu, nebo telefon vytáhnete a budete jej držet naplocho.
 

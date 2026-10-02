@@ -21,7 +21,7 @@ Mengatur suar berguna saat Anda ingin memantau tempat yang familiar ketika menje
 
 **Untuk mengatur suar :**
 
- Pertama, lihat detail suatu lokasi dengan menggunakan bilah pencarian untuk mencari tempat, atau ketuk salah satu tombol *Tempat di Sekitar*, *Penanda dan Rute*, atau *Lokasi Saat Ini* lalu pilih lokasi. Lalu dari layar *Detail Lokasi*, pilih tombol *Mulai Suar Audio*. Mengetuk tombol ini akan membawa Anda kembali ke layar utama dan mengaktifkan suar yang terdengar dari arah tempat yang Anda pilih. Nama tempat beserta jaraknya dan alamat fisiknya, jika tersedia, kini akan ditampilkan di layar utama.
+ Pertama, lihat detail suatu lokasi dengan menggunakan bilah pencarian untuk mencari tempat, atau ketuk salah satu tombol *Tempat di Sekitar*, *Penanda*, atau *Lokasi Saat Ini* lalu pilih lokasi. Lalu dari layar *Detail Lokasi*, pilih tombol *Mulai Suar Audio*. Mengetuk tombol ini akan membawa Anda kembali ke layar utama dan mengaktifkan suar yang terdengar dari arah tempat yang Anda pilih. Nama tempat beserta jaraknya dan alamat fisiknya, jika tersedia, kini akan ditampilkan di layar utama.
 
 **Untuk menghapus suar saat ini :**
 

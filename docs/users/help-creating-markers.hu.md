@@ -9,7 +9,7 @@ permalink: /users/help-creating-markers.html
 
 # Jelölők létrehozása
 
-Jelölőket háromféleképpen hozhat létre: a keresősáv segítségével rákereshet a menteni kívánt helyre, megkeresheti a *Közeli helyek* gombbal, vagy használhatja a *Jelenlegi hely* gombot – ezek mindegyike megtalálható a kezdőképernyőn. Miután megtalálta a kívánt helyet, a kiválasztása a *Helyszín adatai* képernyőre viszi. Ezen a képernyőn válassza ki a *Mentés jelölőként* gombot.
+Jelölőt a leggyorsabban a *Jelölők* képernyőn hozhat létre: válassza a képernyő jobb felső sarkában lévő *Új* gombot, majd válassza a *Jelenlegi hely* lehetőséget vagy egy helyet a *Közeli helyek* valamelyik kategóriájából. A kezdőképernyőn talált bármely helyet is elmentheti a keresősávval, a *Közeli helyek* gombbal vagy a *Jelenlegi hely* gombbal. Egy hely kiválasztása a *Helyszín adatai* képernyőre viszi, ahol a *Mentés jelölőként* gombot kell választania.
 
 Ekkor lehetősége lesz testre szabni ezt a jelölőt. Módosíthatja a jelölő nevét, és megjegyzést is hozzáadhat, amelyet a jelölővel együtt fog bemondani a rendszer, hogy további információt nyújtson. Ha végzett, válassza a *Kész* gombot a jelölő mentéséhez.
 

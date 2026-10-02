@@ -21,7 +21,7 @@ Kuweka beacon ni muhimu unapotaka kufuatilia kivutio unachokifahamu wakati unach
 
 **Kuweka beacon :**
 
- Kwanza, tazama maelezo ya mahali kwa kutumia upau wa utafutaji kutafuta mahali, au kwa kugusa moja ya vitufe vya *Sehemu za Karibu*, *Alama na Njia*, au *Mahali Nilipo Sasa* kisha uchague mahali. Kisha kutoka kwenye skrini ya *Taarifa za Mahali*, chagua kitufe cha *Anzisha Beacon ya Sauti*. Kugusa hii kutakurudisha kwenye skrini ya mwanzo na kuwasha beacon inayosikika ikitoka upande wa mahali ulipochagua. Jina la mahali pamoja na umbali wake na anwani yake ya kimwili, ikiwa inajulikana, sasa vitaonyeshwa kwenye skrini kuu.
+ Kwanza, tazama maelezo ya mahali kwa kutumia upau wa utafutaji kutafuta mahali, au kwa kugusa moja ya vitufe vya *Sehemu za Karibu*, *Alama*, au *Mahali Nilipo Sasa* kisha uchague mahali. Kisha kutoka kwenye skrini ya *Taarifa za Mahali*, chagua kitufe cha *Anzisha Beacon ya Sauti*. Kugusa hii kutakurudisha kwenye skrini ya mwanzo na kuwasha beacon inayosikika ikitoka upande wa mahali ulipochagua. Jina la mahali pamoja na umbali wake na anwani yake ya kimwili, ikiwa inajulikana, sasa vitaonyeshwa kwenye skrini kuu.
 
 **Kuondoa beacon ya sasa :**
 

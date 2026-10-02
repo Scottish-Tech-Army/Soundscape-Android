@@ -21,13 +21,13 @@ Trasu si možno budete chcieť vytvoriť a použiť na mieste, ktoré už pozná
 
 **Vytvorenie trasy:**
 
- Najprv prejdite na *Značky a trasy*, vyberte kartu *Trasy* a potom tlačidlo *Nová trasa*. Zadajte názov trasy a voliteľný popis, a potom priebežne pridávajte body trasy alebo ich vyberte zo svojho zoznamu značiek. Poradie bodov na trase môžete kedykoľvek zmeniť úpravou trasy.
+ Najprv na domovskej obrazovke vyberte *Trasy* a potom tlačidlo *Nová* v pravom hornom rohu obrazovky. Zadajte názov trasy a voliteľný popis, a potom priebežne pridávajte body trasy alebo ich vyberte zo svojho zoznamu značiek. Poradie bodov na trase môžete kedykoľvek zmeniť úpravou trasy.
 
 **Úprava trasy:**
 
- Vyberte svoju trasu na obrazovke *Značky a trasy* a potom vyberte *Upraviť trasu*. Odtiaľto môžete pridávať a odstraňovať body trasy, ako aj upravovať názov a popis trasy.
+ Vyberte svoju trasu na obrazovke *Trasy* a potom vyberte *Upraviť trasu*. Odtiaľto môžete pridávať a odstraňovať body trasy, ako aj upravovať názov a popis trasy.
 
 **Zdieľanie trasy:**
 
- Vyberte svoju trasu na obrazovke *Značky a trasy* a potom vyberte možnosť *Zdieľať* pomocou ktorejkoľvek z bežných možností zdieľania, ktoré máte k dispozícii.
+ Vyberte svoju trasu na obrazovke *Trasy* a potom vyberte možnosť *Zdieľať* pomocou ktorejkoľvek z bežných možností zdieľania, ktoré máte k dispozícii.
 

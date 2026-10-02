@@ -21,7 +21,7 @@ Helimajaka seadmine on kasulik, kui soovite jälgida tuttavat maamärki uue piir
 
 **Helimajaka seadmine:**
 
- Kõigepealt vaadake asukoha üksikasju, kasutades kas otsinguriba koha otsimiseks või puudutades ühte nuppudest *Lähedal asuvad kohad*, *Markerid ja marsruudid* või *Praegune asukoht* ja valides asukoha. Seejärel valige ekraanil *Asukoha üksikasjad* nupp *Käivita helimajakas*. Selle puudutamine viib teid tagasi avakuvale ja lülitab sisse kuuldava helimajaka valitud koha suunast. Koha nimi koos selle kauguse ja füüsilise aadressiga, kui see on saadaval, kuvatakse nüüd põhikuval.
+ Kõigepealt vaadake asukoha üksikasju, kasutades kas otsinguriba koha otsimiseks või puudutades ühte nuppudest *Lähedal asuvad kohad*, *Markerid* või *Praegune asukoht* ja valides asukoha. Seejärel valige ekraanil *Asukoha üksikasjad* nupp *Käivita helimajakas*. Selle puudutamine viib teid tagasi avakuvale ja lülitab sisse kuuldava helimajaka valitud koha suunast. Koha nimi koos selle kauguse ja füüsilise aadressiga, kui see on saadaval, kuvatakse nüüd põhikuval.
 
 **Praeguse helimajaka eemaldamine:**
 

@@ -21,7 +21,7 @@ Setarea unei balize este utilă atunci când vrei să urmărești un reper famil
 
 **Pentru a seta o baliză :**
 
- Mai întâi, vizualizează detaliile unei locații fie folosind bara de căutare pentru a căuta un loc, fie atingând unul din butoanele *Locuri din apropiere*, *Marcaje și rute* sau *Locația curentă* și selectând o locație. Apoi, din ecranul *Detalii locație*, selectează butonul *Pornește baliza audio*. Atingând acest buton vei reveni la ecranul principal și vei activa o baliză audibilă emisă din direcția locului selectat. Numele locului, împreună cu distanța până la acesta și adresa sa fizică, dacă sunt disponibile, vor fi afișate acum pe ecranul principal.
+ Mai întâi, vizualizează detaliile unei locații fie folosind bara de căutare pentru a căuta un loc, fie atingând unul din butoanele *Locuri din apropiere*, *Marcaje* sau *Locația curentă* și selectând o locație. Apoi, din ecranul *Detalii locație*, selectează butonul *Pornește baliza audio*. Atingând acest buton vei reveni la ecranul principal și vei activa o baliză audibilă emisă din direcția locului selectat. Numele locului, împreună cu distanța până la acesta și adresa sa fizică, dacă sunt disponibile, vor fi afișate acum pe ecranul principal.
 
 **Pentru a elimina baliza curentă :**
 

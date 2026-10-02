@@ -21,7 +21,7 @@ Kafa siginar sauti yana da amfani idan kuna son bin diddigin wani sanannen wuri 
 
 **Don kafa siginar sauti :**
 
- Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko kuma ta danna ɗaya daga cikin maɓallan *Wurare na Kusa*, *Alamomi da Tafarkuna*, ko *Wurin da Kake Yanzu* sannan ku zaɓi wuri. Sannan daga allon *Cikakkun Bayanan Wuri*, zaɓi maɓallin *Fara Siginar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna siginar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allo.
+ Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko kuma ta danna ɗaya daga cikin maɓallan *Wurare na Kusa*, *Alamomi*, ko *Wurin da Kake Yanzu* sannan ku zaɓi wuri. Sannan daga allon *Cikakkun Bayanan Wuri*, zaɓi maɓallin *Fara Siginar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna siginar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allo.
 
 **Don cire siginar sauti ta yanzu :**
 

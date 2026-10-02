@@ -9,7 +9,7 @@ permalink: /users/help-creating-markers.html
 
 # Merkitsimien luominen
 
-Voit luoda merkitsimiä kolmella tavalla: etsimällä tallennettavan paikan hakupalkin avulla, etsimällä paikan *Lähiympäristön paikat* -painikkeella tai käyttämällä *Nykyinen sijainti* -painiketta, jotka kaikki löytyvät aloitusnäytöltä. Kun olet löytänyt haluamasi paikan, sen valitseminen vie sinut *Sijainnin tiedot* -näytölle. Tältä näytöltä valitse *Tallenna merkitsimenä* -painike.
+Nopeimmin luot merkitsimen *Merkitsimet*-näytöllä: valitse näytön oikeassa yläkulmassa oleva *Uusi*-painike ja valitse sitten *Nykyinen sijainti* tai paikka jostakin *Lähiympäristön paikat* -luokasta. Voit myös tallentaa minkä tahansa aloitusnäytöltä löytämäsi paikan hakupalkin, *Lähiympäristön paikat* -painikkeen tai *Nykyinen sijainti* -painikkeen avulla. Paikan valitseminen vie sinut *Sijainnin tiedot* -näytölle, jolla valitset *Tallenna merkitsimenä* -painikkeen.
 
 Nyt voit mukauttaa tätä merkitsintä. Voit muuttaa merkitsimen nimeä ja lisätä merkitsimelle lisätietoja, jotka luetaan merkitsimen yhteydessä. Kun olet valmis, valitse *Valmis* tallentaaksesi merkitsimen.
 
