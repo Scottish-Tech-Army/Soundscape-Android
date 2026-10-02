@@ -23,7 +23,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
-import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
+import org.scottishtecharmy.soundscape.screens.home.home.SharedMarkdownHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.StructureLog
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
@@ -73,7 +73,7 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
         topic: String,
         structureLog: StructureLog
     ) {
-        MarkdownHelpScreen(
+        SharedMarkdownHelpScreen(
             topic = topic,
             onNavigate = {},
             onNavigateUp = {},

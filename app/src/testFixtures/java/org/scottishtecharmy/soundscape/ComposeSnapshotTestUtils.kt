@@ -15,9 +15,7 @@ import kotlin.io.path.writeText
 
 /**
  * Dumps the full layout and semantics tree as a deterministic string.
- * Includes modifiers, bounds, and semantics properties.
- *
- * @author ChatGPT (via Hugh Greene)
+ * Includes test tags, text content, and bounds.
  */
 @Suppress("unused") // It's used in HelpScreenLayoutTest but IntelliJ is confused by the same dir being in multiple sourceSets.
 fun ComposeTestRule.dumpLayoutTree(): String {
@@ -45,29 +43,14 @@ fun ComposeTestRule.dumpLayoutTree(): String {
     return sb.toString()
 }
 
-private val regexForLambdas = Regex("(\\$[0-9]+|ExternalSyntheticLambda[^@]+)+@")
-private val regexForObjectIds = Regex("@[0-9a-f]+")
-
 /**
  * Dumps the full layout and semantics tree as a deterministic string.
- * Includes modifiers, bounds, and semantics properties.
+ * Includes test tags, text content, and bounds.
  *
  * @author ChatGPT (via Hugh Greene)
  */
 private fun SemanticsNode.layoutInfo(): String {
     val bounds = this.boundsInRoot
-    // Simplified modifier info for testing (truncate long chains)
-    val modifiers = this.layoutInfo.getModifierInfo().joinToString(", ") {
-        it.toString()
-            // Strip anonymous and synthetic lambda names, because are irrelevant diffs.
-            .replace(regexForLambdas, "\\$<N>@")
-            // Strip explicit object IDs, because they might appear as meaningless diffs.
-            .replace(regexForObjectIds, "@<id>")
-            // Ignore the fact that we're switching to a new help screen class name.
-            .replace("MarkdownHelpScreen", "HelpScreen")
-            // Ignore (for now) the fact that we refactored the regression tests.
-            .replace("HelpScreenRegressionTestBase", "HelpScreenRegressionTest")
-    }
     return "(bounds=${bounds.toShortString()})"
 }
 
