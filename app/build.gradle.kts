@@ -120,6 +120,13 @@ android {
 
         debug {
             buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
+            // -PdebugAppIdSuffix=.something installs a debug build alongside the Play release
+            // instead of over it, so testing on a phone doesn't mean wiping its data. Firebase
+            // needs a matching client for the new package name: add one to a local
+            // app/src/debug/google-services.json (app/src/debug/ is gitignored).
+            (project.findProperty("debugAppIdSuffix") as String?)?.let {
+                applicationIdSuffix = it
+            }
         }
 
         release {
