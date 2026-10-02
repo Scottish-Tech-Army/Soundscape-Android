@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.addSidewalk
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateSmallestAngleBetweenLines
 import org.scottishtecharmy.soundscape.geoengine.utils.clone
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
@@ -48,6 +49,48 @@ private const val RAW_DISTANCE_OVERRIDE_RATIO = 0.3
 // non-null without matchedFollower itself individually reaching LOCKED-level confidence (e.g.
 // while its route is being handed off to a freshly-extended follower) before confidence is lost.
 private const val GRACE_TICKS_AFTER_LOSING_CONFIDENCE = 5
+
+// How far the vehicle has to have moved since the last fix for the bearing between them to say
+// which way it is going along a road - see travellingAgainstOneway.
+private const val ONEWAY_MINIMUM_MOVEMENT_METRES = 15.0
+
+// How far from a oneway road's own direction the travel bearing has to be before the vehicle is
+// taken to be going against it. Not 90: the bearing is the chord between two fixes, which cuts
+// across a bend or a turn, and replaying iphoneTravel through Glasgow's one-way grid put genuine
+// matches as much as 153 degrees off at corners. Matches on the wrong carriageway of a dual
+// carriageway - the case this is for - were all over 160 (the M80 in Motorway, the A81 and A82 in
+// BusTripToMilngavie).
+private const val ONEWAY_AGAINST_DEGREES = 160.0
+
+/**
+ * Whether travelling on [bearing] past [location] goes the wrong way along [way] - a oneway road
+ * (OpenMapTiles' `oneway`: 1 with its digitised direction, -1 against it) being driven against
+ * its direction. That is almost always the other carriageway of a dual carriageway, ten or twenty
+ * metres away and so within the match radius at road speed, rather than somebody actually
+ * driving the wrong way.
+ *
+ * A bus in a contraflow lane would be rejected too, since the tiles don't carry `oneway:bus`.
+ * Railways carry no `oneway`, so the rail network is unaffected.
+ */
+private fun travellingAgainstOneway(
+    way: Way,
+    location: LngLatAlt,
+    bearing: Double,
+    ruler: Ruler
+): Boolean {
+    val oneway = when (val value = way.properties?.get("oneway")) {
+        is Number -> value.toInt()
+        is String -> value.toIntOrNull() ?: 0
+        else -> 0
+    }
+    if (oneway == 0) return false
+    val line = way.geometry as? LineString ?: return false
+    if (line.coordinates.size < 2) return false
+    val tangent = ruler.distanceToLineString(location, line).heading
+    val alongDigitised = calculateHeadingOffset(bearing, tangent)
+    val offset = if (oneway > 0) alongDigitised else 180.0 - alongDigitised
+    return offset > ONEWAY_AGAINST_DEGREES
+}
 
 enum class RoadFollowerState {
     LOCKED,
@@ -875,6 +918,14 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
 
         val drivingSelection = useDrivingFollowerSelection(vehicleMode)
 
+        // The direction of travel, for ruling out roads being driven against their oneway - see
+        // travellingAgainstOneway. Only in a vehicle and on the road network: on foot a oneway
+        // street can be walked either way.
+        val travelBearing = lastLocation?.takeIf {
+            vehicleMode && (networkTree == null) &&
+                (gridState.ruler.distance(it, location) >= ONEWAY_MINIMUM_MOVEMENT_METRES)
+        }?.let { bearingFromTwoPoints(it, location) }
+
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
         val previouslyMatchedFollower = matchedFollower
@@ -908,6 +959,13 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
                 // onto one (e.g. during a momentary low-speed reading near a junction, which
                 // briefly widens the search to TreeId.WAYS_SELECTION - see matchTree) be selected
                 // as the match, even though it's still tracked here in the follower list.
+                continue
+            }
+            if ((travelBearing != null) &&
+                travellingAgainstOneway(way, location, travelBearing, gridState.ruler)
+            ) {
+                // The other carriageway - kept in the follower list in case the bearing was
+                // misleading, but not selected.
                 continue
             }
 
