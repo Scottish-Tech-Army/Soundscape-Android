@@ -208,6 +208,11 @@ private fun walkOneDirection(
     // that is what makes them the same road.
     val roadName = cursor.way.name
     val roadRef = cursor.way.ref
+    // A slip road is not the road it leaves or joins, even when it carries the same ref - and on
+    // a motorway it usually does, so without this every junction would offer two continuations
+    // and the walk would stop at the first one. Unless the walk starts on a slip road, when it is
+    // the thing being followed.
+    val followingRamp = cursor.way.isRamp
     var way = cursor.way
     var stepForwards = forwards
     // Where on the current Way the walk enters it: at the cursor to begin with, then at whichever
@@ -266,7 +271,9 @@ private fun walkOneDirection(
             // single answer and guessing would be worse than stopping - which is what a staggered
             // junction of two same-named arms looks like from here.
             else -> {
-                val sameRoad = candidates.filter { sameRoad(it, roadName, roadRef) }
+                val sameRoad = candidates.filter {
+                    sameRoad(it, roadName, roadRef) && (followingRamp || !it.isRamp)
+                }
                 sameRoad.singleOrNull()
                 // A JOINER carries no name to match on - it's the synthetic zero-length link
                 // across a tile boundary (see GridState.joinTileEdgeIntersections) - so it's the

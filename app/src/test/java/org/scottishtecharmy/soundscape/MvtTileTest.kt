@@ -2779,20 +2779,26 @@ class MvtTileTest {
             .filter { it.name == "St George's Cross" }
 
     /**
-     * A junction records the road it is on - the M8 - and nothing else: not the A804, which
-     * passes within 14m of junction 17.
+     * A junction is recorded on the carriageway and slip road it sits on, and on nothing else -
+     * not the A804, which passes within 14m of junction 17.
      */
     @Test
-    fun testHighwayJunctionsRecordTheirRoad() {
+    fun testHighwayJunctionsAttachToTheirCarriageway() {
         val gridState = getGridStateForLocation(stGeorgesCrossLocation, MAX_ZOOM_LEVEL, 3)
         val junctions = stGeorgesCross(gridState)
         assertTrue(junctions.isNotEmpty())
-        for (junction in junctions) {
-            val roads = junction.junctionRoads
-            assertNotNull(roads)
-            assertTrue("$roads", "M8" in roads!!)
-            assertFalse("$roads", "A804" in roads)
-        }
+
+        val carrying = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .map { it as Way }
+            .filter { way ->
+                way.alongWayFeatures(AlongWayKind.HIGHWAY_JUNCTION).any { it.feature in junctions }
+            }
+        assertTrue(carrying.any { it.ref == "M8" && !it.isRamp })
+        assertTrue(carrying.any { it.isRamp })
+        assertTrue(
+            "Junction 17 attached to non-motorway Ways: ${carrying.map { it.featureValue }}",
+            carrying.all { it.featureValue == "motorway" }
+        )
     }
 
     /**
@@ -2834,8 +2840,8 @@ class MvtTileTest {
 
     /**
      * A road running north through [location], with a junction of [junctionClass] on it 50m
-     * ahead, recorded the way GridState.attachHighwayJunctionsToRoads records one, since a junction
-     * is only named to somebody on its road. Real tile data doesn't reliably offer minor junctions
+     * ahead, recorded the way GridState.attachHighwayJunctionsToWays records one, since a junction
+     * is only found along the road being travelled. Real tile data doesn't reliably offer minor junctions
      * at a stable test location.
      */
     private fun roadWithJunction(
@@ -2848,10 +2854,7 @@ class MvtTileTest {
             featureType = "highway"
             featureValue = "highway_junction"
             setProperty("class", junctionClass)
-            junctionRoads = setOf("Test Road")
         }
-        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(junction) })
         return Way().apply {
             geometry = LineString(
                 ruler.offset(location, 0.0, -100.0), ruler.offset(location, 0.0, 200.0)
@@ -2860,6 +2863,15 @@ class MvtTileTest {
             featureType = "highway"
             featureValue = "primary"
             length = 300.0
+            addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = 150.0,
+                    point = (junction.geometry as Point).coordinates,
+                    kind = AlongWayKind.HIGHWAY_JUNCTION,
+                    name = junctionName,
+                    feature = junction
+                )
+            )
         }
     }
 

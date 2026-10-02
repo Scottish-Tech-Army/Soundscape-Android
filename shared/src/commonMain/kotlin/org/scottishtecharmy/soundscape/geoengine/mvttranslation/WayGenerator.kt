@@ -98,6 +98,18 @@ enum class WayEnd(
 private val DirectionLookup = Direction.entries.toTypedArray()
 
 class Way : MvtFeature() {
+    /**
+     * True for a slip road - OpenMapTiles classes a motorway_link as "motorway" and marks it with
+     * `ramp`, rather than giving it a class of its own. A slip road often carries its motorway's
+     * ref too, so ref alone can't tell it from the carriageway.
+     */
+    val isRamp: Boolean
+        get() = when (val ramp = properties?.get("ramp")) {
+            is Boolean -> ramp
+            is Number -> ramp.toLong() != 0L
+            is String -> (ramp == "1") || (ramp == "yes")
+            else -> false
+        }
     var length = 0.0                            // We could easily calculate this from the segments.
 
     var intersections = arrayOf<Intersection?>(null, null)  // Intersections at either end

@@ -8,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.nextAlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.WayCursor
 import org.scottishtecharmy.soundscape.geoengine.utils.WayContinuation
 import org.scottishtecharmy.soundscape.geoengine.utils.AlongWayFeatureAhead
+import org.scottishtecharmy.soundscape.geoengine.utils.forEachAlongWayFeatureAhead
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
@@ -392,48 +393,49 @@ private data class ReverseGeocodeText(
 private const val stationAtDistanceMetres = 200.0
 private const val stationApproachingDistanceMetres = 500.0
 
-// How far away a junction is described as the one the vehicle is "at". Ahead reaches far enough
-// to be heard before the exit at motorway speed; behind only covers the moment of passing, since a
-// junction already passed is no longer where the vehicle is. With no direction of travel there is
-// no telling ahead from behind, so both ways get the shorter reach.
+// How far along the road a junction is described as the one the vehicle is "at". Ahead reaches
+// far enough to be heard before the exit at motorway speed; behind only covers the moment of
+// passing, since a junction already passed is no longer where the vehicle is. With no direction of
+// travel there is no telling ahead from behind, so both ways get the shorter reach.
 private const val junctionAheadDistanceMetres = 500.0
 private const val junctionBehindDistanceMetres = 200.0
 
 /**
- * The nearest junction on [road] that [eligible] accepts - one whose MvtFeature.junctionRoads
- * includes the road's ref or name, so either carriageway's junction node counts but a junction on
- * a road passing nearby doesn't.
- *
- * Searched for around the vehicle rather than walked along the road, as transit stops are. A
- * walk sees only the carriageway being driven, and a junction with an exit on one side only has
- * its node on that side alone; and on a motorway the walk stops short, at every slip road which
- * carries the motorway's ref and so can't be told from the carriageway itself.
+ * The nearest junction along the road from [cursor] that [eligible] accepts - see
+ * AlongWayKind.HIGHWAY_JUNCTION. Followed by name or ref through other junctions, the same as the
+ * transit stop lookahead, since a motorway is split into a new Way at every one of them; the
+ * walk keeps to the carriageway rather than turning off down a slip road (see Way.isRamp).
  */
 private fun highwayJunctionOnRoad(
-    userGeometry: UserGeometry,
-    gridState: GridState,
-    road: Way,
+    cursor: WayCursor,
     eligible: (MvtFeature) -> Boolean
 ): MvtFeature? {
-    val identities = listOfNotNull(road.ref, road.name)
-    if (identities.isEmpty()) return null
-    val location = userGeometry.location
-    val heading = userGeometry.snappedHeading()
-    return gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS)
-        .getNearestCollection(location, junctionAheadDistanceMetres, 10, gridState.ruler)
-        .features
-        .map { it as MvtFeature }
-        .filter { junction ->
-            val roads = junction.junctionRoads ?: return@filter false
-            if (identities.none { it in roads } || !eligible(junction)) return@filter false
-            val point = (junction.geometry as? Point)?.coordinates ?: return@filter false
-            val ahead = heading != null && calculateHeadingOffset(
-                heading, gridState.ruler.bearing(location, point)
-            ) <= 90.0
-            val reach = if (ahead) junctionAheadDistanceMetres else junctionBehindDistanceMetres
-            gridState.ruler.distance(location, point) <= reach
+    fun nearestFrom(from: WayCursor, maxDistance: Double): AlongWayFeatureAhead? {
+        var found: AlongWayFeatureAhead? = null
+        forEachAlongWayFeatureAhead(from, maxDistance, WayContinuation.SAME_ROAD) { ahead ->
+            val junction = ahead.feature.feature
+            if ((ahead.feature.kind == AlongWayKind.HIGHWAY_JUNCTION) &&
+                (junction != null) && eligible(junction)
+            ) {
+                found = ahead
+                false
+            } else {
+                true
+            }
         }
-        .minByOrNull { gridState.ruler.distance(location, (it.geometry as Point).coordinates) }
+        return found
+    }
+
+    val forwards = cursor.forwards
+    val candidates = if (forwards == null) {
+        listOfNotNull(nearestFrom(cursor, junctionBehindDistanceMetres))
+    } else {
+        listOfNotNull(
+            nearestFrom(cursor, junctionAheadDistanceMetres),
+            nearestFrom(cursor.copy(forwards = !forwards), junctionBehindDistanceMetres)
+        )
+    }
+    return candidates.minByOrNull { it.distance }?.feature?.feature
 }
 
 /** The nearest named station within [maxDistance] along the line from [cursor], or null. */
@@ -568,11 +570,13 @@ private fun travellingReverseGeocodeName(
         val minorJunctionsEligible = allowMinorJunctions && (notableEventTracker?.quietFor(
             userGeometry.timestampMilliseconds, MINOR_JUNCTION_QUIET_THRESHOLD_MS
         ) ?: true)
-        val nearestJunction = highwayJunctionOnRoad(userGeometry, gridState, nearestRoad) { junction ->
-            when (junction.properties?.get("class") as? String) {
-                in majorHighwayJunctionClasses -> true
-                in minorHighwayJunctionClasses -> minorJunctionsEligible
-                else -> false
+        val nearestJunction = userGeometry.cursorOn(nearestRoad)?.let { cursor ->
+            highwayJunctionOnRoad(cursor) { junction ->
+                when (junction.properties?.get("class") as? String) {
+                    in majorHighwayJunctionClasses -> true
+                    in minorHighwayJunctionClasses -> minorJunctionsEligible
+                    else -> false
+                }
             }
         }
         if (nearestJunction != null) {
