@@ -265,6 +265,7 @@
     <string name="route_detail_action_start_route_reverse">เริ่มเส้นทางแบบย้อนกลับ</string>
     <string name="route_detail_action_start_route_reverse_hint">เริ่มเล่นเส้นทางนี้แบบย้อนกลับ</string>
     <string name="route_reverse_name">%1$s แบบย้อนกลับ</string>
+    <string name="route_detail_edit_no_waypoints">เพิ่มจุดผ่านทางก่อนเริ่มเส้นทาง</string>
     <string name="route_detail_action_stop_route_hint">หยุดเล่นเส้นทางนี้</string>
     <string name="route_detail_action_share_hint">แชร์เส้นทางนี้กับแอปอื่น</string>
     <string name="route_detail_action_edit_hint">เปลี่ยนแปลงหรือจัดลำดับจุดผ่านทางในเส้นทางใหม่</string>
@@ -292,7 +293,7 @@
     <string name="user_activity_save_marker_title">บันทึกหมุด</string>
     <string name="routes_title">เส้นทาง</string>
     <string name="routes_action_deleted">ลบเส้นทางแล้ว</string>
-    <string name="routes_no_routes_title">เริ่มต้นใช้งานจุดผ่านทางในเส้นทาง</string>
+    <string name="routes_no_routes_title">เริ่มต้นใช้งานเส้นทาง</string>
     <string name="routes_no_routes_hint_1">สร้างเส้นทางสำหรับตัวคุณเองหรือผู้อื่น ใช้ปุ่ม “ใหม่” ที่มุมขวาบนของหน้าจอ แล้วเพิ่มหมุดเป็นจุดผ่านทางเพื่อประกอบขึ้นเป็นเส้นทาง</string>
     <string name="routes_no_routes_hint_2">ขณะที่คุณเดินตามเส้นทาง Soundscape จะแจ้งเมื่อคุณมาถึงแต่ละจุดผ่านทาง จากนั้นบีคอนเสียงจะเลื่อนไปยังจุดผ่านทางถัดไปโดยอัตโนมัติ</string>
     <string name="routes_sort_by_name">เรียงตามชื่อ</string>

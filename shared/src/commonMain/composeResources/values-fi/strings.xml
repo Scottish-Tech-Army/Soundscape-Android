@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Tallenna merkitsin</string>
     <string name="routes_title">Reitit</string>
     <string name="routes_action_deleted">Reitti poistettu</string>
-    <string name="routes_no_routes_title">Reittipisteiden käytön aloittaminen</string>
+    <string name="routes_no_routes_title">Reittien käytön aloittaminen</string>
     <string name="routes_no_routes_hint_1">Luo reitti itsellesi tai jollekulle toiselle. Käytä näytön oikeassa yläkulmassa olevaa ”Uusi”-painiketta ja lisää sitten joukko merkitsimiä reittipisteiksi, niin reitti muodostuu.</string>
     <string name="routes_no_routes_hint_2">Kun kuljet reittiäsi, Soundscape ilmoittaa jokaisesta reittipisteestä, kun saavut sille. Tämän jälkeen äänimajakka siirtyy automaattisesti seuraavaan reittipisteeseen.</string>
     <string name="routes_sort_by_name">Lajittele nimen mukaan</string>
@@ -1351,6 +1351,7 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="route_detail_action_start_route_reverse">Aloita reitti takaperin</string>
     <string name="route_detail_action_start_route_reverse_hint">toistaaksesi tämän reitin takaperin</string>
     <string name="route_reverse_name">%1$s takaperin</string>
+    <string name="route_detail_edit_no_waypoints">Lisää reittipisteitä ennen reitin aloittamista.</string>
     <string name="callouts_no_nearby_markers">Lähellä ei ole merkitsimiä</string>
     <string name="stationary_on_way">Ei liikettä {tiellä %1$s}</string>
     <string name="settings_relative_directions_text">Suhteellisten suuntien tila</string>

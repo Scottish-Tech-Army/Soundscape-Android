@@ -1033,6 +1033,7 @@
     <string name="route_detail_action_start_route_reverse">রুট বিপরীত ক্রমে শুরু করুন</string>
     <string name="route_detail_action_start_route_reverse_hint">এই রুটটি বিপরীত ক্রমে প্লেব্যাক শুরু করতে</string>
     <string name="route_reverse_name">%1$s বিপরীত ক্রমে</string>
+    <string name="route_detail_edit_no_waypoints">রুট শুরু করার আগে ওয়েপয়েন্ট যোগ করুন।</string>
     <string name="route_detail_action_stop_route_hint">এই রুটের প্লেব্যাক বন্ধ করতে</string>
     <string name="route_detail_action_share_hint">অন্য অ্যাপের সাথে এই রুটটি শেয়ার করতে</string>
     <string name="route_detail_action_edit_hint">রুটের ওয়েপয়েন্টগুলো পরিবর্তন বা পুনর্বিন্যাস করতে</string>
@@ -1060,7 +1061,7 @@
     <string name="user_activity_save_marker_title">মার্কার সংরক্ষণ করুন</string>
     <string name="routes_title">রুট</string>
     <string name="routes_action_deleted">রুট মুছে ফেলা হয়েছে</string>
-    <string name="routes_no_routes_title">রুট ওয়েপয়েন্ট দিয়ে শুরু করা</string>
+    <string name="routes_no_routes_title">রুট দিয়ে শুরু করা</string>
     <string name="routes_no_routes_hint_1">নিজের জন্য বা অন্য কারো জন্য একটি রুট তৈরি করুন। স্ক্রিনের উপরের ডান কোণে থাকা “নতুন” বোতাম ব্যবহার করুন, তারপর রুটটি গড়ে তুলতে মার্কারের একটি সেট ওয়েপয়েন্ট হিসেবে যোগ করুন।</string>
     <string name="routes_no_routes_hint_2">আপনি যখন আপনার রুট ধরে হাঁটবেন, প্রতিটি ওয়েপয়েন্টে পৌঁছানোর সময় Soundscape সেটি ঘোষণা করবে। এরপর অডিও বীকন স্বয়ংক্রিয়ভাবে পরবর্তী ওয়েপয়েন্টে চলে যাবে।</string>
     <string name="routes_sort_by_name">নাম অনুযায়ী সাজান</string>

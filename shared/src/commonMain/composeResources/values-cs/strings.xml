@@ -803,6 +803,7 @@
     <string name="route_detail_action_start_route_reverse">Spustit trasu v opačném pořadí</string>
     <string name="route_detail_action_start_route_reverse_hint">spustíte přehrávání této trasy v opačném pořadí</string>
     <string name="route_reverse_name">%1$s pozpátku</string>
+    <string name="route_detail_edit_no_waypoints">Před spuštěním trasy přidejte trasové body.</string>
     <string name="route_detail_action_stop_route_hint">zastavíte přehrávání této trasy</string>
     <string name="route_detail_action_share_hint">sdílíte tuto trasu s jinou aplikací</string>
     <string name="route_detail_action_edit_hint">změníte nebo přeuspořádáte trasové body v trase</string>
@@ -830,7 +831,7 @@
     <string name="user_activity_save_marker_title">Uložit značku</string>
     <string name="routes_title">Trasy</string>
     <string name="routes_action_deleted">Trasa byla odstraněna</string>
-    <string name="routes_no_routes_title">Začínáme s trasovými body</string>
+    <string name="routes_no_routes_title">Začínáme s trasami</string>
     <string name="routes_no_routes_hint_1">Vytvořte trasu pro sebe nebo pro někoho jiného. Použijte tlačítko „Nová“ v pravém horním rohu obrazovky a poté přidejte sadu značek jako trasové body a sestavte z nich trasu.</string>
     <string name="routes_no_routes_hint_2">Když půjdete po své trase, Soundscape oznámí každý trasový bod, jakmile k němu dorazíte. Zvukový maják se poté automaticky přesune na další trasový bod.</string>
     <string name="routes_sort_by_name">Řadit podle názvu</string>

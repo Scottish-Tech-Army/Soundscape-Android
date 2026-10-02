@@ -265,6 +265,7 @@
     <string name="route_detail_action_start_route_reverse">Fara Tafarki a Baya</string>
     <string name="route_detail_action_start_route_reverse_hint">fara kunna wannan tafarki a baya</string>
     <string name="route_reverse_name">%1$s a baya</string>
+    <string name="route_detail_edit_no_waypoints">Ƙara matsayai kafin ka fara tafarki.</string>
     <string name="route_detail_action_stop_route_hint">dakatar da kunna wannan tafarki</string>
     <string name="route_detail_action_share_hint">raba wannan tafarki da wani app</string>
     <string name="route_detail_action_edit_hint">canza ko sake tsara matsayai a cikin tafarki</string>
@@ -292,7 +293,7 @@
     <string name="user_activity_save_marker_title">Ajiye Alama</string>
     <string name="routes_title">Tafarkuna</string>
     <string name="routes_action_deleted">An share tafarki</string>
-    <string name="routes_no_routes_title">Fara Amfani da Matsayan Tafarki</string>
+    <string name="routes_no_routes_title">Fara Amfani da Tafarkuna</string>
     <string name="routes_no_routes_hint_1">Ƙirƙiri tafarki don kanka ko don wani. Yi amfani da maɓallin “Sabo” da ke a saman dama na allo, sannan ka ƙara jerin alamomi a matsayin matsayai domin gina tafarkin.</string>
     <string name="routes_no_routes_hint_2">Yayin da kake tafiya a tafarkinka, Soundscape zai sanar da kowane matsayi idan ka isa gare shi. Sannan siginar sauti za ta koma matsayi na gaba kai tsaye.</string>
     <string name="routes_sort_by_name">Tsara bisa Suna</string>

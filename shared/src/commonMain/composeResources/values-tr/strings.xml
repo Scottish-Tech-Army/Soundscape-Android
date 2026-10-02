@@ -117,7 +117,7 @@
     <string name="user_activity_save_marker_title">Kayıtlı Nokta Olarak Kaydet</string>
     <string name="routes_title">Rotalar</string>
     <string name="routes_action_deleted">Rota silindi</string>
-    <string name="routes_no_routes_title">Rota Ara Noktalarına Başlarken</string>
+    <string name="routes_no_routes_title">Rotalara Başlarken</string>
     <string name="routes_no_routes_hint_1">Kendiniz veya başkası için bir rota oluşturun. Ekranın sağ üst köşesindeki “Yeni” düğmesini kullanın, ardından rotayı oluşturmak için kayıtlı noktaları ara nokta olarak ekleyin.</string>
     <string name="routes_no_routes_hint_2">Rotanızda yürürken, her ara noktaya ulaştığınızda Soundscape sizi bilgilendirir. Ardından Sesli İşaret otomatik olarak bir sonraki ara noktaya geçer.</string>
     <string name="routes_sort_by_name">Ada Göre Sırala</string>
@@ -1351,6 +1351,7 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="route_detail_action_start_route_reverse">Rotayı Tersine Başlat</string>
     <string name="route_detail_action_start_route_reverse_hint">bu rotayı tersine başlatmak</string>
     <string name="route_reverse_name">%1$s tersine</string>
+    <string name="route_detail_edit_no_waypoints">Rotayı başlatmadan önce ara noktalar ekleyin.</string>
     <string name="callouts_no_nearby_markers">Yakınınızda kayıtlı nokta yok</string>
     <string name="stationary_on_way">%1$s üzerinde hareketsiz</string>
     <string name="settings_relative_directions_text">Göreli Yön Modu</string>

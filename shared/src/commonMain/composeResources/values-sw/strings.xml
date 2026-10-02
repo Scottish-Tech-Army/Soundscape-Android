@@ -844,6 +844,7 @@
     <string name="route_detail_action_start_route_reverse">Anzisha Njia kwa Mpangilio wa Kinyume</string>
     <string name="route_detail_action_start_route_reverse_hint">kuanza kucheza njia hii kwa mpangilio wa kinyume</string>
     <string name="route_reverse_name">%1$s kwa mpangilio wa kinyume</string>
+    <string name="route_detail_edit_no_waypoints">Ongeza vituo kabla ya kuanzisha njia.</string>
     <string name="route_detail_action_stop_route_hint">kusimamisha uchezaji wa njia hii</string>
     <string name="route_detail_action_share_hint">kushiriki njia hii na programu nyingine</string>
     <string name="route_detail_action_edit_hint">kubadilisha au kupanga upya vituo kwenye njia</string>
@@ -871,7 +872,7 @@
     <string name="user_activity_save_marker_title">Hifadhi Alama</string>
     <string name="routes_title">Njia</string>
     <string name="routes_action_deleted">Njia imefutwa</string>
-    <string name="routes_no_routes_title">Anza na Vituo vya Njia</string>
+    <string name="routes_no_routes_title">Anza na Njia</string>
     <string name="routes_no_routes_hint_1">Unda njia kwa ajili yako au kwa mtu mwingine. Tumia kitufe cha “Mpya” kilichopo kona ya juu kulia ya skrini, kisha ongeza kundi la alama kama vituo ili kujenga njia hiyo.</string>
     <string name="routes_no_routes_hint_2">Unapotembea kwenye njia yako, Soundscape itatangaza kila kituo unapofika. Kisha Beacon ya Sauti itahamia kiotomatiki hadi kituo kinachofuata.</string>
     <string name="routes_sort_by_name">Panga kwa Jina</string>

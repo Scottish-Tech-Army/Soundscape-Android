@@ -802,6 +802,7 @@
     <string name="route_detail_action_start_route_reverse">Pokreni rutu unatrag</string>
     <string name="route_detail_action_start_route_reverse_hint">pokrenuli reprodukciju ove rute unatrag</string>
     <string name="route_reverse_name">%1$s unatrag</string>
+    <string name="route_detail_edit_no_waypoints">Dodajte putne točke prije pokretanja rute.</string>
     <string name="route_detail_action_stop_route_hint">zaustavili reprodukciju ove rute</string>
     <string name="route_detail_action_share_hint">podijelili ovu rutu s drugom aplikacijom</string>
     <string name="route_detail_action_edit_hint">izmijenili putne točke na ruti ili promijenili njihov redoslijed</string>
@@ -829,7 +830,7 @@
     <string name="user_activity_save_marker_title">Spremi oznaku</string>
     <string name="routes_title">Rute</string>
     <string name="routes_action_deleted">Ruta izbrisana</string>
-    <string name="routes_no_routes_title">Početak rada s putnim točkama rute</string>
+    <string name="routes_no_routes_title">Početak rada s rutama</string>
     <string name="routes_no_routes_hint_1">Izradite rutu za sebe ili za nekog drugog. Upotrijebite gumb „Nova” u gornjem desnom kutu zaslona, a zatim dodajte skup oznaka kao putne točke kako biste sastavili rutu.</string>
     <string name="routes_no_routes_hint_2">Dok hodate svojom rutom, Soundscape će najaviti svaku putnu točku kada do nje dođete. Zvučni svjetionik zatim automatski prelazi na sljedeću putnu točku.</string>
     <string name="routes_sort_by_name">Razvrstaj po nazivu</string>

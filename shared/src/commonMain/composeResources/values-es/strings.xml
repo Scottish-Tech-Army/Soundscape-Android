@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Guardar marcador</string>
     <string name="routes_title">Rutas</string>
     <string name="routes_action_deleted">Ruta eliminada</string>
-    <string name="routes_no_routes_title">Introducción a los puntos de ruta</string>
+    <string name="routes_no_routes_title">Introducción a las rutas</string>
     <string name="routes_no_routes_hint_1">Crea una ruta para ti o para otra persona. Usa el botón «Nuevo» de la esquina superior derecha de la pantalla y, después, agrega un conjunto de marcadores como puntos de referencia para formar la ruta.</string>
     <string name="routes_no_routes_hint_2">Mientras recorres tu ruta, Soundscape anunciará cada punto de ruta cuando llegues a él. Después, la señal de audio pasará automáticamente al siguiente punto de ruta.</string>
     <string name="routes_sort_by_name">Ordenar por nombre</string>
@@ -1355,6 +1355,7 @@ Sigue informándonos de cualquier problema, por pequeño que sea, a través de �
     <string name="route_detail_action_start_route_reverse">Iniciar ruta de regreso</string>
     <string name="route_detail_action_start_route_reverse_hint">iniciar la reproducción de esta ruta en sentido inverso</string>
     <string name="route_reverse_name">%1$s en sentido inverso</string>
+    <string name="route_detail_edit_no_waypoints">Agrega puntos de ruta antes de iniciar la ruta.</string>
     <string name="callouts_no_nearby_markers">No hay marcadores cercanos</string>
     <string name="stationary_on_way">Sin movimiento {es:en %1$s}</string>
     <string name="settings_relative_directions_text">Modo de direcciones relativas</string>

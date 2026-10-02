@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Spara platsmarkör</string>
     <string name="routes_title">Rutter</string>
     <string name="routes_action_deleted">Rutten har tagits bort</string>
-    <string name="routes_no_routes_title">Kom i gång med ruttbrytpunkter</string>
+    <string name="routes_no_routes_title">Kom i gång med rutter</string>
     <string name="routes_no_routes_hint_1">Skapa en rutt åt dig själv eller åt någon annan. Använd knappen ”Ny” uppe till höger på skärmen och lägg sedan till en uppsättning platsmarkörer som brytpunkter för att bygga upp rutten.</string>
     <string name="routes_no_routes_hint_2">När du går din rutt läser Soundscape upp varje brytpunkt när du kommer fram. Ljudfyren flyttas sedan automatiskt till nästa brytpunkt.</string>
     <string name="routes_sort_by_name">Sortera efter namn</string>
@@ -1351,6 +1351,7 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="route_detail_action_start_route_reverse">Starta rutt i omvänd ordning</string>
     <string name="route_detail_action_start_route_reverse_hint">starta uppspelning av den här rutten i omvänd ordning</string>
     <string name="route_reverse_name">%1$s i omvänd ordning</string>
+    <string name="route_detail_edit_no_waypoints">Lägg till brytpunkter innan du startar rutten.</string>
     <string name="callouts_no_nearby_markers">Det finns inga platsmarkörer i närheten</string>
     <string name="stationary_on_way">Ingen rörelse på %1$s</string>
     <string name="settings_relative_directions_text">Läge för relativa riktningar</string>

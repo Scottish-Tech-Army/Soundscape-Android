@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Markierung speichern</string>
     <string name="routes_title">Routen</string>
     <string name="routes_action_deleted">Route gelöscht</string>
-    <string name="routes_no_routes_title">Erste Schritte mit Routen-Wegpunkten</string>
+    <string name="routes_no_routes_title">Erste Schritte mit Routen</string>
     <string name="routes_no_routes_hint_1">Erstellen Sie eine Route für sich selbst oder für jemand anderen. Verwenden Sie die Schaltfläche „Neu“ oben rechts auf dem Bildschirm und fügen Sie dann eine Reihe von Markierungen als Wegpunkte hinzu, um die Route aufzubauen.</string>
     <string name="routes_no_routes_hint_2">Während Sie Ihrer Route folgen, kündigt Soundscape jeden Wegpunkt an, sobald Sie ihn erreichen. Das Audiobeacon wechselt dann automatisch zum nächsten Wegpunkt.</string>
     <string name="routes_sort_by_name">Nach Name sortieren</string>
@@ -1351,6 +1351,7 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="route_detail_action_start_route_reverse">Route rückwärts starten</string>
     <string name="route_detail_action_start_route_reverse_hint">Wiedergabe dieser Route rückwärts starten</string>
     <string name="route_reverse_name">%1$s (umgekehrt)</string>
+    <string name="route_detail_edit_no_waypoints">Fügen Sie Wegpunkte hinzu, bevor Sie die Route starten.</string>
     <string name="callouts_no_nearby_markers">Derzeit gibt es keine Markierungen in der Nähe</string>
     <string name="stationary_on_way">Nicht in Bewegung auf %1$s</string>
     <string name="settings_relative_directions_text">Modus für relative Richtungsangaben</string>

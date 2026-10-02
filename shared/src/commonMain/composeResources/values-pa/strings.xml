@@ -108,6 +108,7 @@
     <string name="route_detail_action_start_route_reverse">ਰੂਟ ਉਲਟੇ ਕ੍ਰਮ ਵਿੱਚ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="route_detail_action_start_route_reverse_hint">ਇਸ ਰੂਟ ਨੂੰ ਉਲਟੇ ਕ੍ਰਮ ਵਿੱਚ ਚਲਾਉਣਾ ਸ਼ੁਰੂ ਕਰਨ ਲਈ</string>
     <string name="route_reverse_name">%1$s ਉਲਟੇ ਕ੍ਰਮ ਵਿੱਚ</string>
+    <string name="route_detail_edit_no_waypoints">ਰੂਟ ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਮਾਰਗ ਬਿੰਦੂ ਜੋੜੋ।</string>
     <string name="route_detail_action_stop_route_hint">ਇਸ ਰੂਟ ਨੂੰ ਚਲਾਉਣਾ ਰੋਕਣ ਲਈ</string>
     <string name="route_detail_action_share_hint">ਇਸ ਰੂਟ ਨੂੰ ਕਿਸੇ ਹੋਰ ਐਪ ਨਾਲ ਸਾਂਝਾ ਕਰਨ ਲਈ</string>
     <string name="route_detail_action_edit_hint">ਰੂਟ ਦੇ ਮਾਰਗ ਬਿੰਦੂ ਬਦਲਣ ਜਾਂ ਉਨ੍ਹਾਂ ਦਾ ਕ੍ਰਮ ਬਦਲਣ ਲਈ</string>
@@ -138,7 +139,7 @@
     <string name="user_activity_save_marker_title">ਮਾਰਕਰ ਸੇਵ ਕਰੋ</string>
     <string name="routes_title">ਰੂਟ</string>
     <string name="routes_action_deleted">ਰੂਟ ਮਿਟਾਇਆ ਗਿਆ</string>
-    <string name="routes_no_routes_title">ਰੂਟ ਦੇ ਮਾਰਗ ਬਿੰਦੂਆਂ ਨਾਲ ਸ਼ੁਰੂਆਤ</string>
+    <string name="routes_no_routes_title">ਰੂਟਾਂ ਨਾਲ ਸ਼ੁਰੂਆਤ</string>
     <string name="routes_no_routes_hint_1">ਆਪਣੇ ਲਈ ਜਾਂ ਕਿਸੇ ਹੋਰ ਲਈ ਰੂਟ ਬਣਾਓ। ਸਕ੍ਰੀਨ ਦੇ ਉੱਪਰ ਸੱਜੇ ਕੋਨੇ ਵਿੱਚ “ਨਵਾਂ” ਬਟਨ ਵਰਤੋ, ਫਿਰ ਰੂਟ ਬਣਾਉਣ ਲਈ ਕੁਝ ਮਾਰਕਰਾਂ ਨੂੰ ਮਾਰਗ ਬਿੰਦੂਆਂ ਵਜੋਂ ਜੋੜੋ।</string>
     <string name="routes_no_routes_hint_2">ਜਦੋਂ ਤੁਸੀਂ ਆਪਣੇ ਰੂਟ 'ਤੇ ਤੁਰਦੇ ਹੋ, ਤਾਂ ਹਰ ਮਾਰਗ ਬਿੰਦੂ 'ਤੇ ਪਹੁੰਚਣ 'ਤੇ Soundscape ਉਸ ਦੀ ਘੋਸ਼ਣਾ ਕਰੇਗਾ। ਫਿਰ ਆਡੀਓ ਬੀਕਨ ਆਪਣੇ ਆਪ ਅਗਲੇ ਮਾਰਗ ਬਿੰਦੂ 'ਤੇ ਚਲਾ ਜਾਵੇਗਾ।</string>
     <string name="markers_title">ਮਾਰਕਰ</string>

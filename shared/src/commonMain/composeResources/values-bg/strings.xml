@@ -87,6 +87,7 @@
     <string name="route_detail_action_start_route_reverse">Стартирай маршрута в обратен ред</string>
     <string name="route_detail_action_start_route_reverse_hint">стартиране на възпроизвеждането на този маршрут в обратен ред</string>
     <string name="route_reverse_name">%1$s в обратен ред</string>
+    <string name="route_detail_edit_no_waypoints">Добавете пътни точки, преди да стартирате маршрута.</string>
     <string name="route_detail_action_stop_route_hint">спиране на възпроизвеждането на този маршрут</string>
     <string name="route_detail_action_share_hint">споделяне на този маршрут с друго приложение</string>
     <string name="route_detail_action_edit_hint">промяна или пренареждане на пътните точки в маршрута</string>
@@ -114,7 +115,7 @@
     <string name="user_activity_save_marker_title">Запази маркер</string>
     <string name="routes_title">Маршрути</string>
     <string name="routes_action_deleted">Маршрутът е изтрит</string>
-    <string name="routes_no_routes_title">Първи стъпки с пътните точки на маршрута</string>
+    <string name="routes_no_routes_title">Първи стъпки с маршрутите</string>
     <string name="routes_no_routes_hint_1">Създайте маршрут за себе си или за някой друг. Използвайте бутона „Нов“ в горния десен ъгъл на екрана, след което добавете набор от маркери като пътни точки, за да изградите маршрута.</string>
     <string name="routes_no_routes_hint_2">Докато вървите по маршрута си, Soundscape ще съобщава всяка пътна точка при пристигането Ви. След това аудио маякът автоматично ще се премести към следващата пътна точка.</string>
     <string name="routes_sort_by_name">Сортирай по име</string>

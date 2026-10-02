@@ -74,7 +74,7 @@
     <string name="user_activity_save_marker_title">Сохранить отметку</string>
     <string name="routes_title">Маршруты</string>
     <string name="routes_action_deleted">Маршрут удалён</string>
-    <string name="routes_no_routes_title">Начало работы с путевыми точками</string>
+    <string name="routes_no_routes_title">Начало работы с маршрутами</string>
     <string name="routes_no_routes_hint_1">Создайте маршрут для себя или для кого-то другого. Нажмите кнопку «Создать» в правом верхнем углу экрана, а затем добавьте набор отметок в качестве путевых точек, чтобы построить маршрут.</string>
     <string name="routes_no_routes_hint_2">Пока вы идёте по маршруту, Soundscape будет объявлять каждую путевую точку по прибытии. Затем звуковой маяк автоматически переместится к следующей путевой точке.</string>
     <string name="routes_sort_by_name">Сортировка по названию</string>
@@ -1359,6 +1359,7 @@
     <string name="route_detail_action_start_route_reverse">Начать маршрут в обратном порядке</string>
     <string name="route_detail_action_start_route_reverse_hint">запустить воспроизведение этого маршрута в обратном порядке</string>
     <string name="route_reverse_name">%1$s в обратном порядке</string>
+    <string name="route_detail_edit_no_waypoints">Добавьте путевые точки перед запуском маршрута.</string>
     <string name="callouts_no_nearby_markers">Рядом нет отметок</string>
     <string name="stationary_on_way">Вы стоите на %1$s</string>
     <string name="settings_relative_directions_text">Режим относительных направлений</string>

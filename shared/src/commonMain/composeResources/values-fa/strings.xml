@@ -77,7 +77,7 @@
     <string name="user_activity_save_marker_title">ذخیره‌ی نشانه</string>
     <string name="routes_title">مسیرها</string>
     <string name="routes_action_deleted">مسیر حذف شد</string>
-    <string name="routes_no_routes_title">ایجاد نقاط بین‌راهی در مسیر</string>
+    <string name="routes_no_routes_title">ایجاد مسیر</string>
     <string name="routes_no_routes_hint_1">برای خود یا دیگران یک مسیر ایجاد کنید. از دکمهٔ «جدید» در گوشهٔ بالای سمت چپ صفحه استفاده کنید، سپس تعدادی نشانه را به‌عنوان نقاط بین‌راهی اضافه کنید تا مسیر ساخته شود.</string>
     <string name="routes_no_routes_hint_2">هنگامی که در مسیر خود حرکت می‌کنید، ساند‌اسکیپ رسیدن شما به هر نقطه‌ی بین‌راهی را اعلام می‌کند. سپس جهت‌نمای صوتی به‌طور خودکار به نقطه‌ی بین‌راهی بعدی منتقل می‌شود.</string>
     <string name="routes_sort_by_name">مرتب‌سازی بر اساس نام</string>
@@ -1352,6 +1352,7 @@
     <string name="route_detail_action_start_route_reverse">شروع مسیر به‌صورت معکوس</string>
     <string name="route_detail_action_start_route_reverse_hint">پخش معکوس این مسیر را شروع کنید</string>
     <string name="route_reverse_name">%1$s به‌صورت معکوس</string>
+    <string name="route_detail_edit_no_waypoints">قبل از شروع مسیر، نقاط بین‌راهی اضافه کنید.</string>
     <string name="callouts_no_nearby_markers">در نزدیکی شما هیچ نشانه‌ای وجود ندارد</string>
     <string name="stationary_on_way">در %1$s حرکت نمی‌کنید</string>
     <string name="settings_relative_directions_text">حالت جهت‌های نسبی</string>

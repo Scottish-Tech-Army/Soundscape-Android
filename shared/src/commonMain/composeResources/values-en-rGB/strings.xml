@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Save Marker</string>
     <string name="routes_title">Routes</string>
     <string name="routes_action_deleted">Route deleted</string>
-    <string name="routes_no_routes_title">Getting Started with Route Waypoints</string>
+    <string name="routes_no_routes_title">Getting Started with Routes</string>
     <string name="routes_no_routes_hint_1">Create a route for yourself or for someone else. Use the “New” button at the top right of the screen, then add a set of markers as waypoints to build the route.</string>
     <string name="routes_no_routes_hint_2">As you walk your route, Soundscape will announce each waypoint when you arrive. The Audio Beacon will then automatically move to the next waypoint.</string>
     <string name="routes_sort_by_name">Sort by Name</string>
@@ -1351,6 +1351,7 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="route_detail_action_start_route_reverse">Start Route in Reverse</string>
     <string name="route_detail_action_start_route_reverse_hint">start playback of this route in reverse</string>
     <string name="route_reverse_name">%1$s in reverse</string>
+    <string name="route_detail_edit_no_waypoints">Add waypoints before starting the route.</string>
     <string name="callouts_no_nearby_markers">There are no nearby markers</string>
     <string name="stationary_on_way">Not moving on %1$s</string>
     <string name="settings_relative_directions_text">Relative directions mode</string>

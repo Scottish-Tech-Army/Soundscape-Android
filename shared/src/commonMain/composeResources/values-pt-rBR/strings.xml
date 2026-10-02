@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Salvar Favorito</string>
     <string name="routes_title">Rotas</string>
     <string name="routes_action_deleted">Rota excluída</string>
-    <string name="routes_no_routes_title">Introdução aos Localizadores de Rota</string>
+    <string name="routes_no_routes_title">Introdução às rotas</string>
     <string name="routes_no_routes_hint_1">Crie uma rota para você mesmo ou para outra pessoa. Use o botão “Novo” no canto superior direito da tela e, em seguida, adicione um conjunto de favoritos como localizadores para montar a rota.</string>
     <string name="routes_no_routes_hint_2">Enquanto você percorre sua rota, o Soundscape anuncia cada localizador ao chegar nele. Em seguida, o Sinalizador Sonoro avança automaticamente para o localizador seguinte.</string>
     <string name="routes_sort_by_name">Classificar por Nome</string>
@@ -1355,6 +1355,7 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="route_detail_action_start_route_reverse">Iniciar Rota em Ordem Inversa</string>
     <string name="route_detail_action_start_route_reverse_hint">iniciar a reprodução desta rota em ordem inversa</string>
     <string name="route_reverse_name">%1$s em ordem inversa</string>
+    <string name="route_detail_edit_no_waypoints">Adicione localizadores antes de iniciar a rota.</string>
     <string name="callouts_no_nearby_markers">Não há favoritos nas proximidades</string>
     <string name="stationary_on_way">Sem movimento {pt:em %1$s}</string>
     <string name="settings_relative_directions_text">Modo de direções relativas</string>
