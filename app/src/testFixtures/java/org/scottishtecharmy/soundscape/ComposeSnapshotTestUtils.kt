@@ -85,11 +85,10 @@ fun assertLayoutMatchesHybridBaseline(
     snapshot: String,
     snapshotType: String
 ) {
-    val context = InstrumentationRegistry.getInstrumentation().context
-    val baselineSubpathString = "baselines/${filename}"
-    val baselineText = loadBaselineFromAssets(context, baselineSubpathString)
-
     val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
+    val baselineSubpathString = "baselines/${filename}"
+    val baselineText = loadBaselineFromAssets(targetContext, baselineSubpathString)
+
     val outputDir: Path = System.getProperty("test.baselineOutputDir")
         ?.let { Paths.get(it) }
         ?: Paths.get(targetContext.filesDir.absolutePath)
