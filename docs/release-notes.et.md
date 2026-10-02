@@ -31,6 +31,10 @@ Vanemate versioonide märkmed on lehel
   häälteade ütleb nüüd, kui kaugel on äärekivi.
 * **Otsige kohatüüpi või koordinaate.** Otsige „apteek“ või „bussipeatus“, et leida lähimad, olgu
   nende nimi mis tahes, või kleepige koordinaadid, kaardilink või Plus Code.
+* **Eraldi nupud markerite ja marsruutide jaoks.** Ekraan *Markerid ja marsruudid* ning selle kaks
+  vahekaarti on jagatud ekraaniks *Markerid* ja ekraaniks *Marsruudid*, kummalgi oma nupp avakuval.
+  Ekraanil Markerid on nupp *Uus*, millega saad salvestada oma praeguse asukoha või lähedal asuva
+  koha.
 * **Avage koht teises kaardirakenduses**, näiteks Google Mapsis, asukoha üksikasjadest või loenditest.
 * **Rohkem avakuva helimajakalt.** See näitab nüüd kaugust ja suunda ning sellel on ekraanilugeja
   toimingud helimajakast teatamiseks, selle kohta rohkem kuulmiseks või markerina salvestamiseks.
@@ -154,6 +158,18 @@ Asukoha üksikasjades on uus nupp **Ava kaardirakenduses**, mis loetleb teie tel
 navigeerimisrakendused. Märkige *Kasuta alati seda rakendust* ja nupp muutub näiteks *Ava rakenduses
 Google Maps* ning avab selle kohe; pikk vajutus toob loendi tagasi. Loenditel *Lähedal asuvad kohad*
 ja *Markerid* on ka ekraanilugeja toimingud *Ava rakenduses…* ja *Jaga*.
+
+### Markerid ja marsruudid
+
+Markeritel ja marsruutidel oli varem üks ühine ekraan, *Markerid ja marsruudid*, kummagi jaoks oma
+vahekaardiga, ja kergesti ununes, millisel vahekaardil parasjagu oldi. Nüüd on need kaks eraldi
+ekraani, kummalgi oma nupp avakuval: *Markerid* ja *Marsruudid*, kohe nupu *Lähedal asuvad kohad*
+all.
+
+Kummalgi ekraanil on paremas ülanurgas nupp *Uus*. Ekraanil Marsruudid loob see marsruudi, nagu
+varemgi. Ekraanil Markerid on see uus: see näitab valikut *Praegune asukoht* ja jaotise *Lähedal
+asuvad kohad* kategooriaid, nii et saad markeri salvestada, ilma et peaksid koha leidmiseks
+avakuvale tagasi minema. Ekraanilugejad teatavad nupud nimedega *Uus marker* ja *Uus marsruut*.
 
 ### Helimajakas ja markerid
 

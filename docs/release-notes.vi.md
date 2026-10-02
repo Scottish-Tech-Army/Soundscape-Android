@@ -31,6 +31,10 @@ Ghi chú của các phiên bản cũ hơn nằm ở trang
   gần, và thông báo giờ cho biết còn bao xa đến mép vỉa hè.
 * **Tìm theo loại địa điểm, hoặc theo tọa độ.** Tìm "nhà thuốc" hoặc "trạm xe buýt" để thấy những nơi
   gần nhất, dù tên là gì, hoặc dán tọa độ, liên kết bản đồ hay Plus Code.
+* **Nút riêng cho Điểm đánh dấu và Lộ trình.** Màn hình *Điểm đánh dấu và lộ trình* cùng hai thẻ của
+  nó đã được tách thành màn hình *Điểm đánh dấu* và màn hình *Lộ trình*, mỗi màn hình có nút riêng
+  trên màn hình chính. Màn hình Điểm đánh dấu có nút *Tạo mới* để lưu vị trí hiện tại của bạn hoặc
+  một địa điểm gần đây.
 * **Mở một địa điểm trong ứng dụng bản đồ khác**, chẳng hạn Google Maps, từ Chi tiết vị trí hoặc từ các
   danh sách.
 * **Đèn hiệu trên màn hình chính làm được nhiều hơn.** Giờ nó hiển thị khoảng cách và hướng, và có các
@@ -156,6 +160,19 @@ Chi tiết vị trí có nút mới **Mở trong ứng dụng bản đồ**, li�
 điện thoại của bạn. Đánh dấu *Luôn dùng ứng dụng này* và nút sẽ đổi thành, ví dụ, *Mở trong Google Maps*,
 mở ngay ứng dụng đó; nhấn giữ sẽ hiện lại danh sách. Các danh sách *Địa điểm gần đây* và *Điểm đánh dấu*
 cũng có thao tác trình đọc màn hình *Mở trong…* và *Chia sẻ*.
+
+### Điểm đánh dấu và lộ trình
+
+Trước đây điểm đánh dấu và lộ trình dùng chung một màn hình, *Điểm đánh dấu và lộ trình*, với một
+thẻ cho mỗi loại, và rất dễ quên mình đang ở thẻ nào. Giờ đây chúng là hai màn hình riêng biệt, mỗi
+màn hình có nút riêng trên màn hình chính: *Điểm đánh dấu* và *Lộ trình*, ngay bên dưới *Địa điểm
+gần đây*.
+
+Mỗi màn hình có nút *Tạo mới* ở góc trên bên phải. Trên màn hình Lộ trình, nút này tạo lộ trình như
+trước. Trên màn hình Điểm đánh dấu, đây là tính năng mới: nút này hiển thị *Vị trí hiện tại* và các
+danh mục của *Địa điểm gần đây*, để bạn có thể lưu điểm đánh dấu mà không cần quay lại màn hình
+chính để tìm địa điểm trước. Trình đọc màn hình đọc các nút này là *Điểm đánh dấu mới* và *Lộ trình
+mới*.
 
 ### Đèn hiệu và điểm đánh dấu
 

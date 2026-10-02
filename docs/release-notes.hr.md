@@ -32,6 +32,9 @@ Bilješke za starija izdanja nalaze se na stranici
 * **Tražite vrstu mjesta ili koordinate.** Potražite „ljekarna“ ili „autobusna stanica“ da biste
   pronašli najbliže, bez obzira na to kako se zovu, ili zalijepite koordinate, poveznicu na kartu ili
   Plus Code.
+* **Zasebni gumbi za Oznake i Rute.** Zaslon *Oznake i rute* s dvije kartice podijeljen je na zaslon
+  *Oznake* i zaslon *Rute*, svaki s vlastitim gumbom na početnom zaslonu. Zaslon Oznake ima gumb
+  *Nova* za spremanje vaše trenutačne lokacije ili mjesta u blizini.
 * **Otvorite mjesto u drugoj aplikaciji za karte**, primjerice u Google kartama, iz pojedinosti o
   lokaciji ili iz popisa.
 * **Više od svjetionika na početnom zaslonu.** Sada prikazuje udaljenost i smjer te ima radnje za
@@ -156,6 +159,17 @@ karte i navigaciju na vašem telefonu. Označite *Uvijek koristi ovu aplikaciju*
 primjerice u *Otvori u aplikaciji Google karte*, te je odmah otvara; dugi pritisak vraća popis.
 Popisi *Mjesta u blizini* i *Oznake* također imaju radnje za čitač zaslona *Otvori u aplikaciji…* i
 *Podijeli*.
+
+### Oznake i rute
+
+Oznake i rute dosad su dijelile jedan zaslon, *Oznake i rute*, s karticom za svaku, i lako se moglo
+izgubiti iz vida na kojoj ste kartici. Sada su to dva zasebna zaslona, svaki s vlastitim gumbom na
+početnom zaslonu: *Oznake* i *Rute*, odmah ispod *Mjesta u blizini*.
+
+Svaki zaslon ima gumb *Nova* u gornjem desnom kutu. Na zaslonu Rute stvara rutu, kao i prije. Na
+zaslonu Oznake on je nov: nudi *Trenutačna lokacija* i kategorije *Mjesta u blizini*, pa oznaku
+možete spremiti bez vraćanja na početni zaslon da biste najprije pronašli mjesto. Čitači zaslona
+najavljuju gumbe kao *Nova oznaka* i *Nova ruta*.
 
 ### Svjetionik i oznake
 

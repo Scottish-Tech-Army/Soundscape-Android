@@ -32,6 +32,10 @@ Notele pentru versiunile mai vechi se află pe pagina
 * **Căutați un tip de loc sau niște coordonate.** Căutați „farmacie” sau „stație de autobuz” ca să le
   găsiți pe cele mai apropiate, indiferent cum se numesc, sau lipiți coordonate, un link de hartă sau
   un Plus Code.
+* **Butoane separate pentru Marcaje și Rute.** Ecranul *Marcaje și rute* și cele două file ale sale
+  au fost împărțite într-un ecran *Marcaje* și un ecran *Rute*, fiecare cu propriul buton pe ecranul
+  principal. Ecranul Marcaje are un buton *Nou* pentru a salva locația ta curentă sau un loc din
+  apropiere.
 * **Deschideți un loc în altă aplicație de hărți**, cum ar fi Google Maps, din detaliile locației sau
   din liste.
 * **Mai mult de la baliza de pe ecranul principal.** Acum arată distanța și direcția și are acțiuni
@@ -162,6 +166,17 @@ hărți și navigație de pe telefon. Bifați *Folosește întotdeauna această 
 de exemplu, *Deschide în Google Maps*, deschizând-o imediat; o apăsare lungă aduce înapoi lista.
 Listele *Locuri din apropiere* și *Marcaje* au și acțiunile pentru cititorul de ecran *Deschide în…*
 și *Partajează*.
+
+### Marcaje și rute
+
+Marcajele și rutele împărțeau un singur ecran, *Marcaje și rute*, cu câte o filă pentru fiecare, și
+era ușor să uiți pe ce filă te afli. Acum sunt două ecrane separate, fiecare cu propriul buton pe
+ecranul principal: *Marcaje* și *Rute*, chiar sub *Locuri din apropiere*.
+
+Fiecare ecran are un buton *Nou* în colțul din dreapta sus. Pe ecranul Rute creează o rută, ca
+înainte. Pe ecranul Marcaje este nou: afișează *Locația curentă* și categoriile din *Locuri din
+apropiere*, astfel încât poți salva un marcaj fără să te întorci mai întâi la ecranul principal
+pentru a găsi locul. Cititoarele de ecran anunță butoanele ca *Marcaj nou* și *Rută nouă*.
 
 ### Baliza și marcajele
 

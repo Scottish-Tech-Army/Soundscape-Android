@@ -31,6 +31,9 @@ Opombe za starejše različice so na strani
   jim približujete, obvestilo pa zdaj pove, kako daleč je robnik.
 * **Iščite vrsto kraja ali koordinate.** Poiščite »lekarna« ali »avtobusno postajališče« in našli
   boste najbližje, ne glede na ime, ali pa prilepite koordinate, povezavo do zemljevida ali Plus Code.
+* **Ločena gumba za Oznake in Poti.** Zaslon *Oznake in poti* z dvema zavihkoma je razdeljen na
+  zaslon *Oznake* in zaslon *Poti*, vsak z lastnim gumbom na domačem zaslonu. Zaslon Oznake ima gumb
+  *Nova* za shranjevanje vaše trenutne lokacije ali kraja v bližini.
 * **Odprite kraj v drugi aplikaciji za zemljevide**, na primer v Google Zemljevidih, iz podrobnosti
   lokacije ali iz seznamov.
 * **Več o svetilniku na domačem zaslonu.** Zdaj prikazuje razdaljo in smer ter ima dejanja za
@@ -156,6 +159,17 @@ zemljevide in navigacijo v vašem telefonu. Označite *Vedno uporabi to aplikaci
 na primer v *Odpri v aplikaciji Google Zemljevidi*, in jo takoj odpre; dolg pritisk znova prikaže
 seznam. Seznama *Kraji v bližini* in *Oznake* imata tudi dejanji za bralnik zaslona *Odpri v
 aplikaciji…* in *Deli*.
+
+### Oznake in poti
+
+Oznake in poti so si prej delile en zaslon, *Oznake in poti*, z zavihkom za vsako, in zlahka ste
+izgubili pregled, na katerem zavihku ste. Zdaj sta to dva ločena zaslona, vsak z lastnim gumbom na
+domačem zaslonu: *Oznake* in *Poti*, tik pod *Kraji v bližini*.
+
+Vsak zaslon ima gumb *Nova* v zgornjem desnem kotu. Na zaslonu Poti ustvari pot, kot doslej. Na
+zaslonu Oznake je nov: ponudi *Trenutna lokacija* in kategorije *Kraji v bližini*, tako da lahko
+oznako shranite, ne da bi se najprej vrnili na domači zaslon in poiskali kraj. Bralniki zaslona
+gumba napovedo kot *Nova oznaka* in *Nova pot*.
 
 ### Svetilnik in oznake
 

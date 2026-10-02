@@ -33,6 +33,10 @@ Le note delle versioni precedenti si trovano nella pagina
 * **Cercare un tipo di luogo, o delle coordinate.** Cerca «farmacia» o «fermata dell'autobus» per
   trovare le più vicine, comunque si chiamino, oppure incolla delle coordinate, un link di una mappa
   o un Plus Code.
+* **Pulsanti separati per Indicatori e Percorsi.** La schermata *Indicatori e Percorsi* con le sue
+  due schede è stata divisa in una schermata *Indicatori* e una schermata *Percorsi*, ciascuna con
+  il proprio pulsante nella schermata iniziale. La schermata Indicatori ha un pulsante *Nuovo* per
+  salvare la tua posizione attuale o un luogo nelle vicinanze.
 * **Aprire un luogo in un'altra app di mappe**, come Google Maps, dai dettagli della posizione o dagli
   elenchi.
 * **Più informazioni dall'audiofaro nella schermata principale.** Ora mostra distanza e direzione, e
@@ -169,6 +173,19 @@ mappe e di navigazione del telefono. Spunta *Usa sempre questa app* e il pulsant
 esempio, *Apri in Google Maps*, e la apre subito; una pressione prolungata fa tornare l'elenco. Gli
 elenchi *Luoghi nelle vicinanze* e *Indicatori* hanno anche le azioni per lo screen reader *Apri in…*
 e *Condividi*.
+
+### Indicatori e Percorsi
+
+Indicatori e percorsi condividevano un'unica schermata, *Indicatori e Percorsi*, con una scheda per
+ciascuno, ed era facile perdere di vista in quale scheda ti trovavi. Ora sono due schermate
+separate, ciascuna con il proprio pulsante nella schermata iniziale: *Indicatori* e *Percorsi*,
+subito sotto *Luoghi nelle vicinanze*.
+
+Ogni schermata ha un pulsante *Nuovo* in alto a destra. Nella schermata Percorsi crea un percorso,
+come prima. Nella schermata Indicatori è una novità: propone *Posizione attuale* e le categorie di
+*Luoghi nelle vicinanze*, così puoi salvare un indicatore senza dover prima tornare alla schermata
+iniziale per trovare il luogo. Gli screen reader annunciano i pulsanti come *Nuovo indicatore* e
+*Nuovo Percorso*.
 
 ### L'audiofaro e gli indicatori
 

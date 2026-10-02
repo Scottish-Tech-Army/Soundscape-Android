@@ -32,6 +32,9 @@ Bayanan sigogin da suka gabata suna shafin
   kusantowa, kuma sanarwar yanzu tana faɗin nisan gefen titin ƙafa.
 * **Nemi irin wuri, ko wurin taswira ta lambobi.** Nemi «kantin magani» ko «tashar bas» don samun mafi kusa,
   komai sunansu, ko liƙa lambobin wuri, hanyar haɗin taswira ko Plus Code.
+* **Maɓallai daban na Alamomi da Tafarkuna.** An raba allon *Alamomi da Tafarkuna* da shafukansa
+  biyu zuwa allon *Alamomi* da allon *Tafarkuna*, kowanne da maɓallinsa a babban allo. Allon Alamomi
+  yana da maɓallin *Sabo* don ajiye wurin da kake yanzu ko wani wuri na kusa.
 * **Buɗe wuri a wata manhajar taswira**, kamar Google Maps, daga Cikakkun Bayanan Wuri ko daga jerin.
 * **Ƙarin abubuwa daga siginar sauti a babban allo.** Yanzu tana nuna nisa da alkibla, kuma tana da ayyukan
   mai karanta allo don sanar da siginar, jin ƙarin bayani game da ita ko ajiye ta a matsayin alama.
@@ -161,6 +164,17 @@ Cikakkun Bayanan Wuri suna da sabon maɓalli, **Buɗe a manhajar taswira**, wand
 na kewayawa a wayarka. Zaɓi *Yi amfani da wannan manhaja koyaushe* sai maɓallin ya zama, misali, *Buɗe a
 Google Maps*, ya buɗe ta nan take; latsawa na tsawon lokaci yana dawo da jerin. Jerin *Wurare na Kusa* da
 *Alamomi* suma suna da ayyukan mai karanta allo *Buɗe a…* da *Raba*.
+
+### Alamomi da Tafarkuna
+
+A da alamomi da tafarkuna suna amfani da allo ɗaya, *Alamomi da Tafarkuna*, tare da shafi ga
+kowanne, kuma yana da sauƙi a manta da shafin da kake ciki. Yanzu sun zama allo biyu daban, kowanne
+da maɓallinsa a babban allo: *Alamomi* da *Tafarkuna*, ƙasa da *Wurare na Kusa* kaɗan.
+
+Kowane allo yana da maɓallin *Sabo* a saman dama. A allon Tafarkuna yana ƙirƙirar tafarki, kamar a
+da. A allon Alamomi sabon abu ne: yana nuna *Wurin da Kake Yanzu* da rukunan *Wurare na Kusa*, don
+haka za ka iya ajiye alama ba tare da ka koma babban allo don nemo wurin da farko ba. Masu karanta
+allo suna faɗin maɓallan a matsayin *Sabuwar Alama* da *Sabon Tafarki*.
 
 ### Siginar sauti da alamomi
 

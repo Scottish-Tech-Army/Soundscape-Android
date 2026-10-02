@@ -32,6 +32,10 @@ Opmerkingen bij oudere versies staan op de pagina
   als u nadert, en de aankondiging zegt nu hoe ver de stoeprand is.
 * **Zoek naar een soort plaats, of naar coördinaten.** Zoek op „apotheek” of „bushalte” om de
   dichtstbijzijnde te vinden, hoe ze ook heten, of plak coördinaten, een kaartlink of een Plus Code.
+* **Aparte knoppen voor Markeringen en Routes.** Het scherm *Markeringen en routes* met zijn twee
+  tabbladen is opgesplitst in een scherm *Markeringen* en een scherm *Routes*, elk met een eigen
+  knop op het startscherm. Het scherm Markeringen heeft een knop *Nieuw* om uw huidige locatie of
+  een plaats in de buurt op te slaan.
 * **Open een plaats in een andere kaart-app**, zoals Google Maps, vanuit de locatiedetails of de
   lijsten.
 * **Meer van het baken op het beginscherm.** Het toont nu de afstand en richting, en heeft
@@ -165,6 +169,19 @@ In de locatiedetails staat een nieuwe knop **Openen in kaart-app**, met een lijs
 navigatie-apps op uw telefoon. Vink *Altijd deze app gebruiken* aan en de knop heet bijvoorbeeld
 *Openen in Google Maps* en opent die meteen; lang drukken toont de lijst weer. De lijsten *Plaatsen in
 de buurt* en *Markeringen* hebben ook de schermlezeracties *Openen in…* en *Delen*.
+
+### Markeringen en routes
+
+Markeringen en routes deelden eerder één scherm, *Markeringen en routes*, met een tabblad voor elk,
+en het was makkelijk om uit het oog te verliezen op welk tabblad u was. Nu zijn het twee aparte
+schermen, elk met een eigen knop op het startscherm: *Markeringen* en *Routes*, net onder *Plaatsen
+in de buurt*.
+
+Elk scherm heeft rechtsboven een knop *Nieuw*. Op het scherm Routes maakt die een route, zoals
+voorheen. Op het scherm Markeringen is die nieuw: hij toont *Huidige locatie* en de categorieën van
+*Plaatsen in de buurt*, zodat u een markering kunt opslaan zonder eerst terug te gaan naar het
+startscherm om de plaats te zoeken. Schermlezers noemen de knoppen *Nieuwe markering* en *Nieuwe
+route*.
 
 ### Het baken en markeringen
 

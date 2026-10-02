@@ -31,6 +31,10 @@ Maelezo ya matoleo ya zamani yako kwenye ukurasa wa
   na tangazo sasa husema ukingo wa njia ya miguu uko umbali gani.
 * **Tafuta aina ya mahali, au viwianishi.** Tafuta «duka la dawa» au «kituo cha basi» ili kupata vilivyo
   karibu zaidi, vyovyote viitwavyo, au bandika viwianishi, kiungo cha ramani au Plus Code.
+* **Vitufe tofauti vya Alama na Njia.** Skrini ya *Alama na Njia* na vichupo vyake viwili
+  imegawanywa kuwa skrini ya *Alama* na skrini ya *Njia*, kila moja ikiwa na kitufe chake kwenye
+  skrini ya mwanzo. Skrini ya Alama ina kitufe cha *Mpya* cha kuhifadhi mahali ulipo sasa au sehemu
+  ya karibu.
 * **Fungua mahali katika programu nyingine ya ramani**, kama Google Maps, kutoka Taarifa za Mahali au
   kutoka kwenye orodha.
 * **Zaidi kutoka kwa beacon kwenye skrini ya mwanzo.** Sasa inaonyesha umbali na mwelekeo, na ina vitendo
@@ -159,6 +163,17 @@ Taarifa za Mahali zina kitufe kipya, **Fungua katika programu ya ramani**, kinac
 ramani na uelekezaji kwenye simu yako. Chagua *Tumia programu hii kila wakati* na kitufe kitakuwa, kwa
 mfano, *Fungua katika Google Maps*, na kuifungua mara moja; kubonyeza kwa muda mrefu hurudisha orodha.
 Orodha za *Sehemu za Karibu* na *Alama* pia zina vitendo vya kisoma skrini *Fungua katika…* na *Shiriki*.
+
+### Alama na Njia
+
+Alama na njia zilikuwa zikitumia skrini moja, *Alama na Njia*, yenye kichupo kwa kila moja, na
+ilikuwa rahisi kusahau uko kwenye kichupo kipi. Sasa ni skrini mbili tofauti, kila moja ikiwa na
+kitufe chake kwenye skrini ya mwanzo: *Alama* na *Njia*, chini kidogo ya *Sehemu za Karibu*.
+
+Kila skrini ina kitufe cha *Mpya* kwenye kona ya juu kulia. Kwenye skrini ya Njia kinaunda njia,
+kama awali. Kwenye skrini ya Alama ni kipya: kinaonyesha *Mahali Nilipo Sasa* na kategoria za
+*Sehemu za Karibu*, ili uweze kuhifadhi alama bila kurudi kwanza kwenye skrini ya mwanzo kutafuta
+mahali. Visomaji skrini hutaja vitufe hivi kama *Alama Mpya* na *Njia Mpya*.
 
 ### Beacon na alama
 

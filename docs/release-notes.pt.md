@@ -33,6 +33,10 @@ As notas de versões anteriores estão na página
 * **Procure um tipo de local, ou coordenadas.** Procure «farmácia» ou «paragem de autocarro» para
   encontrar as mais próximas, seja qual for o nome, ou cole coordenadas, uma ligação de mapa ou um
   Plus Code.
+* **Botões separados para Marcos e Rotas.** O ecrã *Marcos e Rotas* e os seus dois separadores foram
+  divididos num ecrã *Marcos* e num ecrã *Rotas*, cada um com o seu próprio botão no ecrã principal.
+  O ecrã Marcos tem um botão *Novo* para guardar a sua localização atual ou um local nas
+  proximidades.
 * **Abra um local noutra aplicação de mapas**, como o Google Maps, a partir dos detalhes da
   localização ou das listas.
 * **Mais informação sobre o sinal no ecrã principal.** Mostra agora a distância e a direção, e tem
@@ -165,6 +169,17 @@ aplicações de mapas e de navegação do seu telemóvel. Assinale *Usar sempre 
 passa a dizer, por exemplo, *Abrir em Google Maps*, abrindo-a de imediato; um toque longo volta a
 mostrar a lista. As listas *Locais nas Proximidades* e *Marcos* também têm as ações do leitor de
 ecrã *Abrir em…* e *Partilhar*.
+
+### Marcos e Rotas
+
+Os marcos e as rotas partilhavam um único ecrã, *Marcos e Rotas*, com um separador para cada um, e
+era fácil perder a noção de em que separador se estava. Agora são dois ecrãs separados, cada um com
+o seu próprio botão no ecrã principal: *Marcos* e *Rotas*, logo abaixo de *Locais nas Proximidades*.
+
+Cada ecrã tem um botão *Novo* no canto superior direito. No ecrã Rotas, cria uma rota, como antes.
+No ecrã Marcos, é novo: mostra *Localização Atual* e as categorias de *Locais nas Proximidades*,
+para que possa guardar um marco sem ter de voltar primeiro ao ecrã principal para encontrar o local.
+Os leitores de ecrã anunciam estes botões como *Novo Marco* e *Nova Rota*.
 
 ### O sinal e os marcos
 
