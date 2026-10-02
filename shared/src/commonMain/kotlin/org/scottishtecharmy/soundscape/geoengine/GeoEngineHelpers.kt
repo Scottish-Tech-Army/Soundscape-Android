@@ -683,52 +683,48 @@ private fun travellingReverseGeocodeName(
                         localized?.get(StringKey.DirectionsCloseToSettlementInline, nearestSettlementName)
                             ?: "close to $nearestSettlementName"
                         ),
-                    // Excludes the direction of travel - see the dedupText comment further below.
-                    dedupText = roadDedup("On $roadName close to $nearestSettlementName")
+                    // The same key as every other road-and-settlement phrasing - see below.
+                    dedupText = roadDedup("On $roadName and close to $nearestSettlementName")
                 )
             }
 
             val headingOffset = calculateHeadingOffset(
                 travelHeadingDegrees.toDouble(), gridState.ruler.bearing(location, settlementLocation)
             )
-            val (settlementPhrase, dedupSuffix) = when {
+            val settlementPhrase = when {
                 headingOffset <= 45.0 -> {
                     val distanceText = formatDistanceAndDirection(
                         gridState.ruler.distance(location, settlementLocation), null, localized,
                         speed = userGeometry.speed
                     )
-                    Pair(
-                        localized?.get(
-                            StringKey.DirectionsTowardsSettlement, nearestSettlementName, distanceText
-                        ) ?: "towards $nearestSettlementName, $distanceText away",
-                        "towards $nearestSettlementName"
-                    )
+                    localized?.get(
+                        StringKey.DirectionsTowardsSettlement, nearestSettlementName, distanceText
+                    ) ?: "towards $nearestSettlementName, $distanceText away"
                 }
                 headingOffset >= 135.0 -> {
                     val distanceText = formatDistanceAndDirection(
                         gridState.ruler.distance(location, settlementLocation), null, localized,
                         speed = userGeometry.speed
                     )
-                    Pair(
-                        localized?.get(
-                            StringKey.DirectionsAwayFromSettlement, nearestSettlementName, distanceText
-                        ) ?: "away from $nearestSettlementName, $distanceText away",
-                        "away from $nearestSettlementName"
-                    )
+                    localized?.get(
+                        StringKey.DirectionsAwayFromSettlement, nearestSettlementName, distanceText
+                    ) ?: "away from $nearestSettlementName, $distanceText away"
                 }
-                else -> Pair(
-                    localized?.get(StringKey.DirectionsNearSettlementInline, nearestSettlementName)
-                        ?: "near $nearestSettlementName",
-                    "near $nearestSettlementName"
-                )
+                else -> localized?.get(StringKey.DirectionsNearSettlementInline, nearestSettlementName)
+                    ?: "near $nearestSettlementName"
             }
             return ReverseGeocodeText(
                 text = "$phrase $settlementPhrase",
-                // Excludes both the ever-changing distance (see the "since station" case above)
-                // and the direction of travel - on a winding road the compass direction can shift
-                // tick to tick while the road and the towards/away/near relationship stay the
-                // same, and that alone shouldn't trigger a fresh announcement.
-                dedupText = roadDedup("On $roadName $dedupSuffix")
+                // Excludes the ever-changing distance (see the "since station" case above), the
+                // direction of travel, and whether the settlement is ahead, alongside or behind.
+                // On a winding road the compass direction shifts tick to tick, and in a housing
+                // estate every turn swings the settlement from "towards" to "near" to "away from"
+                // - each of which used to be a fresh key, so driving round a block re-announced
+                // the street at every corner. Being on the same road by the same settlement is
+                // the same thing to say, so all the road-and-settlement phrasings share one key,
+                // and losing the heading (which drops to the plain form below) doesn't change it
+                // either.
+                dedupText = roadDedup("On $roadName and close to $nearestSettlementName")
             )
         }
 

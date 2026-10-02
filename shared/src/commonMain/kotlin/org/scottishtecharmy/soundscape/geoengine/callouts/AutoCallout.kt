@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.RoadSettleTracker
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
@@ -80,6 +81,7 @@ class AutoCallout(
     private val roadSenseCalloutHistory = CalloutHistory()
     private val vehicleLandmarkFilter = LocationUpdateFilter(10000, 50.0)
     private val vehicleLandmarkCalloutHistory = CalloutHistory()
+    private val roadSettleTracker = RoadSettleTracker()
     // An announced crossing or stop is forgotten once well clear of it - see updateSweepWindow.
     // Must exceed the largest lookahead below, or something announced at range is forgotten while
     // still being approached and announced again on the next fix.
@@ -313,6 +315,7 @@ class AutoCallout(
         if (!onTrain && !recentlyOnTrain(userGeometry)) {
             lastStationTracker.clear()
         }
+        roadSettleTracker.update(userGeometry)
 
         // Deliberately below the bookkeeping above and not at the top of the function: the sticky
         // vehicle/train windows are read by callouts this setting has nothing to do with, so they
@@ -329,6 +332,14 @@ class AutoCallout(
 
         // Check that we're in a vehicle
         if (!userGeometry.inVehicle()) {
+            return null
+        }
+
+        // Hold off until a newly joined road is one the vehicle is staying on - see
+        // RoadSettleTracker. Before the location filter is updated, so the callout is made on the
+        // first fix after the road settles rather than up to 10s later. A train is matched to a
+        // railway rather than a road, so this has nothing to say about one.
+        if (!userGeometry.probablyOnTrain() && !roadSettleTracker.settled()) {
             return null
         }
 
