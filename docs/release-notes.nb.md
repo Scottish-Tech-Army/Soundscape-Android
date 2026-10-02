@@ -32,6 +32,9 @@ Merknader for eldre versjoner finnes på siden
 * **Søk etter en type sted, eller etter koordinater.** Søk etter «apotek» eller «bussholdeplass» for
   å finne de nærmeste, uansett hva de heter, eller lim inn koordinater, en kartlenke eller en Plus
   Code.
+* **Egne knapper for Markører og Ruter.** Skjermen *Markører og ruter* med sine to faner er delt i
+  en *Markører*-skjerm og en *Ruter*-skjerm, hver med sin egen knapp på startskjermen. Skjermen
+  Markører har en *Ny*-knapp for å lagre din nåværende posisjon eller et sted i nærheten.
 * **Åpne et sted i en annen kartapp**, for eksempel Google Maps, fra posisjonsinformasjonen eller fra
   listene.
 * **Mer fra lydsignalet på startskjermen.** Det viser nå avstand og retning, og har
@@ -159,6 +162,17 @@ Posisjonsinformasjonen har en ny knapp, **Åpne i kartapp**, som viser kart- og 
 telefonen din. Kryss av for *Bruk alltid denne appen*, så heter knappen for eksempel *Åpne i Google
 Maps* og åpner den med én gang; et langt trykk henter listen fram igjen. Listene *Steder i nærheten*
 og *Markører* har også skjermleserhandlingene *Åpne i …* og *Del*.
+
+### Markører og ruter
+
+Markører og ruter delte tidligere én skjerm, *Markører og ruter*, med en fane for hver, og det var
+lett å miste oversikten over hvilken fane man var på. Nå er de to separate skjermer, hver med sin
+egen knapp på startskjermen: *Markører* og *Ruter*, rett under *Steder i nærheten*.
+
+Hver skjerm har en *Ny*-knapp øverst til høyre. På skjermen Ruter oppretter den en rute, som før. På
+skjermen Markører er den ny: den viser *Nåværende posisjon* og kategoriene fra *Steder i nærheten*,
+så du kan lagre en markør uten å gå tilbake til startskjermen for å finne stedet først. Skjermlesere
+leser opp knappene som *Ny markør* og *Ny rute*.
 
 ### Lydsignalet og markører
 

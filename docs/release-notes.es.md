@@ -33,6 +33,10 @@ Las notas de versiones anteriores están en la página
 * **Busca un tipo de lugar, o unas coordenadas.** Busca «farmacia» o «parada de autobús» para
   encontrar las más cercanas, se llamen como se llamen, o pega unas coordenadas, un enlace de mapa o
   un Plus Code.
+* **Botones separados para Marcadores y Rutas.** La pantalla *Marcadores y rutas* y sus dos pestañas
+  se han dividido en una pantalla *Marcadores* y una pantalla *Rutas*, cada una con su propio botón
+  en la pantalla principal. La pantalla Marcadores tiene un botón *Nuevo* para guardar tu ubicación
+  actual o un lugar cercano.
 * **Abre un lugar en otra aplicación de mapas**, como Google Maps, desde los detalles de la ubicación
   o desde las listas.
 * **Más de la señal en la pantalla principal.** Ahora muestra la distancia y la dirección, y tiene
@@ -169,6 +173,19 @@ aplicaciones de mapas y de navegación de tu teléfono. Marca *Usar siempre esta
 pasa a ser, por ejemplo, *Abrir en Google Maps*, y la abre directamente; una pulsación larga vuelve a
 mostrar la lista. Las listas *Lugares cercanos* y *Marcadores* también tienen las acciones del lector
 de pantalla *Abrir en…* y *Compartir*.
+
+### Marcadores y rutas
+
+Los marcadores y las rutas compartían una sola pantalla, *Marcadores y rutas*, con una pestaña para
+cada uno, y era fácil perder de vista en qué pestaña estabas. Ahora son dos pantallas separadas,
+cada una con su propio botón en la pantalla principal: *Marcadores* y *Rutas*, justo debajo de
+*Lugares cercanos*.
+
+Cada pantalla tiene un botón *Nuevo* en la esquina superior derecha. En la pantalla Rutas crea una
+ruta, como antes. En la pantalla Marcadores es nuevo: muestra *Ubicación actual* y las categorías de
+*Lugares cercanos*, así que puedes guardar un marcador sin volver primero a la pantalla principal
+para buscar el lugar. Los lectores de pantalla anuncian los botones como *Nuevo marcador* y *Nueva
+ruta*.
 
 ### La señal y los marcadores
 

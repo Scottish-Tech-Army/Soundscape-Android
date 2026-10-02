@@ -32,6 +32,10 @@ Daha eski sürümlerin notları
 * **Bir yer türünü ya da koordinatları arayın.** Adları ne olursa olsun en yakınlarını bulmak için
   «eczane» ya da «otobüs durağı» diye arayın veya koordinat, harita bağlantısı ya da Plus Code
   yapıştırın.
+* **Kayıtlı Noktalar ve Rotalar için ayrı düğmeler.** *Kayıtlı Noktalar ve Rotalar* ekranı ve iki
+  sekmesi, *Kayıtlı Noktalar* ekranı ve *Rotalar* ekranı olarak ayrıldı; her birinin ana ekranda
+  kendi düğmesi var. Kayıtlı Noktalar ekranında, mevcut konumunuzu veya yakındaki bir yeri kaydetmek
+  için bir *Yeni* düğmesi bulunur.
 * **Bir yeri başka bir harita uygulamasında açın**, örneğin Google Haritalar'da; Konum Ayrıntıları'ndan
   ya da listelerden.
 * **Ana ekrandaki sesli işaretten daha fazlası.** Artık mesafeyi ve yönü gösteriyor; sesli işareti
@@ -161,6 +165,18 @@ Konum Ayrıntıları'nda telefonunuzdaki harita ve navigasyon uygulamalarını l
 düğme örneğin *Google Haritalar ile Aç* olur ve uygulamayı hemen açar; uzun basış listeyi geri getirir.
 *Yakındaki Yerler* ve *Kayıtlı Noktalar* listelerinde de *… ile Aç*
 ve *Paylaş* ekran okuyucu eylemleri var.
+
+### Kayıtlı Noktalar ve Rotalar
+
+Kayıtlı noktalar ve rotalar eskiden her biri için bir sekme bulunan tek bir ekranı, *Kayıtlı
+Noktalar ve Rotalar*'ı paylaşıyordu ve hangi sekmede olduğunuzu unutmak kolaydı. Artık her birinin
+ana ekranda kendi düğmesi olan iki ayrı ekran var: *Yakındaki Yerler*'in hemen altında *Kayıtlı
+Noktalar* ve *Rotalar*.
+
+Her ekranın sağ üst köşesinde bir *Yeni* düğmesi var. Rotalar ekranında, eskiden olduğu gibi bir
+rota oluşturur. Kayıtlı Noktalar ekranında ise yenidir: *Mevcut Konum*'u ve *Yakındaki Yerler*
+kategorilerini gösterir, böylece yeri bulmak için önce ana ekrana dönmeden bir kayıtlı nokta
+kaydedebilirsiniz. Ekran okuyucular bu düğmeleri *Yeni Kayıtlı Nokta* ve *Yeni Rota* olarak duyurur.
 
 ### Sesli işaret ve kayıtlı noktalar
 

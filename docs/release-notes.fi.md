@@ -32,6 +32,10 @@ Vanhempien versioiden tiedot löytyvät sivulta
 * **Hae paikan tyyppiä tai koordinaatteja.** Hae esimerkiksi ”apteekki” tai ”bussipysäkki”, niin
   löydät lähimmät, olipa niiden nimi mikä tahansa, tai liitä koordinaatit, karttalinkki tai Plus
   Code.
+* **Erilliset painikkeet merkitsimille ja reiteille.** *Merkitsimet ja reitit* -näyttö ja sen kaksi
+  välilehteä on jaettu *Merkitsimet*-näytöksi ja *Reitit*-näytöksi, joilla kummallakin on oma
+  painikkeensa aloitusnäytöllä. Merkitsimet-näytöllä on *Uusi*-painike, jolla tallennat nykyisen
+  sijaintisi tai lähellä olevan paikan.
 * **Avaa paikka toisessa karttasovelluksessa**, kuten Google Mapsissa, sijainnin tiedoista tai
   luetteloista.
 * **Enemmän majakasta aloitusnäytöllä.** Se näyttää nyt etäisyyden ja suunnan, ja siinä on
@@ -161,6 +165,19 @@ ja navigointisovellukset. Valitse *Käytä aina tätä sovellusta*, niin painikk
 *Avaa sovelluksessa Google Maps* ja se avaa sovelluksen heti; pitkä painallus tuo luettelon takaisin.
 *Lähiympäristön paikat*- ja *Merkitsimet*-luetteloissa on myös näytönlukijan toiminnot *Avaa
 sovelluksessa…* ja *Jaa*.
+
+### Merkitsimet ja reitit
+
+Merkitsimet ja reitit jakoivat aiemmin yhden näytön, *Merkitsimet ja reitit*, jossa kummallakin oli
+oma välilehtensä, ja oli helppo unohtaa, millä välilehdellä oli. Nyt ne ovat kaksi erillistä
+näyttöä, joilla kummallakin on oma painikkeensa aloitusnäytöllä: *Merkitsimet* ja *Reitit*, heti
+*Lähiympäristön paikat* -painikkeen alapuolella.
+
+Kummankin näytön oikeassa yläkulmassa on *Uusi*-painike. Reitit-näytöllä se luo reitin kuten
+ennenkin. Merkitsimet-näytöllä se on uusi: se näyttää *Nykyinen sijainti* -vaihtoehdon ja
+*Lähiympäristön paikat* -luokat, joten voit tallentaa merkitsimen palaamatta ensin aloitusnäytölle
+etsimään paikkaa. Näytönlukuohjelmat ilmoittavat painikkeet nimillä *Uusi merkitsin* ja *Uusi
+reitti*.
 
 ### Majakka ja merkitsimet
 

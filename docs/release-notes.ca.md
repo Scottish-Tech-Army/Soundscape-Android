@@ -32,6 +32,10 @@ Les notes de versions anteriors són a la pàgina
 * **Cerqueu un tipus de lloc, o unes coordenades.** Cerqueu «farmàcia» o «parada d'autobús» per
   trobar les més properes, es diguin com es diguin, o enganxeu unes coordenades, un enllaç de mapa o un
   Plus Code.
+* **Botons separats per a Marcadors i Rutes.** La pantalla *Marcadors i rutes* i les seves dues
+  pestanyes s'han dividit en una pantalla *Marcadors* i una pantalla *Rutes*, cadascuna amb el seu
+  propi botó a la pantalla d'inici. La pantalla Marcadors té un botó *Nou* per desar la teva
+  ubicació actual o un lloc proper.
 * **Obriu un lloc en una altra aplicació de mapes**, com Google Maps, des dels detalls de la ubicació
   o des de les llistes.
 * **Més de la balisa a la pantalla principal.** Ara mostra la distància i la direcció, i té accions
@@ -162,6 +166,18 @@ aplicacions de mapes i de navegació del vostre telèfon. Marqueu *Utilitza semp
 el botó passa a ser, per exemple, *Obre a Google Maps*, que l'obre directament; una pulsació llarga torna
 a mostrar la llista. Les llistes *Llocs propers* i *Marcadors* també tenen les accions del lector de
 pantalla *Obre a…* i *Comparteix*.
+
+### Marcadors i rutes
+
+Els marcadors i les rutes compartien una sola pantalla, *Marcadors i rutes*, amb una pestanya per a
+cadascun, i era fàcil perdre de vista en quina pestanya eres. Ara són dues pantalles separades,
+cadascuna amb el seu propi botó a la pantalla d'inici: *Marcadors* i *Rutes*, just a sota de *Llocs
+propers*.
+
+Cada pantalla té un botó *Nou* a la cantonada superior dreta. A la pantalla Rutes crea una ruta, com
+abans. A la pantalla Marcadors és nou: mostra *Ubicació actual* i les categories de *Llocs propers*,
+de manera que pots desar un marcador sense haver de tornar a la pantalla d'inici per trobar el lloc.
+Els lectors de pantalla anuncien els botons com a *Marcador nou* i *Ruta nova*.
 
 ### La balisa i els marcadors
 

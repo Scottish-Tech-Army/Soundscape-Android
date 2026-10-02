@@ -33,6 +33,10 @@ A korábbi verziók megjegyzései a
 * **Kereshet helytípusra vagy koordinátákra.** Keressen rá a „gyógyszertár” vagy a „buszmegálló”
   szóra, és megtalálja a legközelebbieket, bármi is a nevük, vagy illesszen be koordinátákat,
   térképhivatkozást vagy Plus Code-ot.
+* **Külön gomb a jelölőknek és az útvonalaknak.** A *Jelölők és útvonalak* képernyőt és két lapját
+  egy *Jelölők* és egy *Útvonalak* képernyőre bontottuk, mindkettőnek saját gombja van a
+  kezdőképernyőn. A Jelölők képernyőn egy *Új* gombbal mentheti a jelenlegi tartózkodási helyét vagy
+  egy közeli helyet.
 * **Megnyithat egy helyet egy másik térképalkalmazásban**, például a Google Térképben, a helyszín
   adataiból vagy a listákból.
 * **Többet tud az irányjelző hang a kezdőképernyőn.** Most már mutatja a távolságot és az irányt, és
@@ -165,6 +169,18 @@ A helyszín adataiban új gomb van, a **Megnyitás térképalkalmazásban**, ame
 lévő térkép- és navigációs alkalmazásokat. Jelölje be a *Mindig ezzel az alkalmazással* lehetőséget,
 és a gomb például *Megnyitás itt: Google Térkép* lesz, és azonnal megnyitja; hosszú megnyomással újra
 megjelenik a lista. A *Közeli helyek* és a *Jelölők* listában a *Megnyitás itt:…* és a *Megosztás* képernyőolvasó-művelet is elérhető.
+
+### Jelölők és útvonalak
+
+A jelölők és az útvonalak korábban egy képernyőn osztoztak, a *Jelölők és útvonalak* képernyőn,
+mindkettőnek saját lappal, és könnyű volt elfelejteni, melyik lapon van. Most két külön képernyő,
+mindkettőnek saját gombja van a kezdőképernyőn: *Jelölők* és *Útvonalak*, közvetlenül a *Közeli
+helyek* alatt.
+
+Mindkét képernyő jobb felső sarkában van egy *Új* gomb. Az Útvonalak képernyőn útvonalat hoz létre,
+ahogy eddig is. A Jelölők képernyőn új: felkínálja a *Jelenlegi hely* lehetőséget és a *Közeli
+helyek* kategóriáit, így jelölőt menthet anélkül, hogy előbb visszamenne a kezdőképernyőre
+megkeresni a helyet. A képernyőolvasók a gombokat *Új jelölő* és *Új útvonal* néven mondják be.
 
 ### Az irányjelző hang és a jelölők
 

@@ -31,6 +31,10 @@ Informacje o starszych wersjach znajdują się na stronie
   gdy się do nich zbliżasz, a powiadomienie mówi teraz, jak daleko jest do krawężnika.
 * **Szukaj rodzaju miejsca albo współrzędnych.** Wpisz „apteka” albo „przystanek autobusowy”, żeby
   znaleźć najbliższe, niezależnie od ich nazwy, albo wklej współrzędne, link do mapy lub Plus Code.
+* **Osobne przyciski dla znaczników i tras.** Ekran *Znaczniki i trasy* z dwiema kartami podzielono
+  na ekran *Znaczniki* i ekran *Zapisane trasy*, każdy z własnym przyciskiem na ekranie głównym.
+  Ekran Znaczniki ma przycisk *Nowy*, którym zapiszesz swoją bieżącą lokalizację lub miejsce w
+  pobliżu.
 * **Otwieraj miejsce w innej aplikacji z mapami**, np. w Mapach Google, ze szczegółów lokalizacji
   lub z list.
 * **Więcej z naprowadzania na ekranie głównym.** Pokazuje ono teraz odległość i kierunek oraz ma
@@ -161,6 +165,17 @@ aplikacje z mapami i nawigacją na twoim telefonie. Zaznacz *Zawsze używaj tej 
 zmieni się na przykład na *Otwórz w aplikacji Mapy Google* i od razu ją otworzy; długie naciśnięcie
 przywraca listę. Listy *Miejsca w pobliżu* i *Znaczniki* mają też akcje czytnika ekranu
 *Otwórz w aplikacji…* i *Udostępnij*.
+
+### Znaczniki i trasy
+
+Znaczniki i trasy dzieliły wcześniej jeden ekran, *Znaczniki i trasy*, z kartą dla każdego z nich, i
+łatwo było stracić orientację, na której karcie się jest. Teraz są to dwa osobne ekrany, każdy z
+własnym przyciskiem na ekranie głównym: *Znaczniki* i *Zapisane trasy*, tuż pod *Miejsca w pobliżu*.
+
+Każdy ekran ma przycisk *Nowy* w prawym górnym rogu. Na ekranie Zapisane trasy tworzy on trasę, tak
+jak dotąd. Na ekranie Znaczniki jest nowością: pokazuje *Bieżąca lokalizacja* i kategorie *Miejsca w
+pobliżu*, dzięki czemu zapiszesz znacznik bez wracania najpierw do ekranu głównego, żeby znaleźć
+miejsce. Czytniki ekranu ogłaszają te przyciski jako *Nowy znacznik* i *Nowa trasa*.
 
 ### Naprowadzanie i znaczniki
 

@@ -33,6 +33,11 @@ Hinweise zu älteren Versionen finden Sie auf der Seite
 * **Nach einer Art von Ort oder nach Koordinaten suchen.** Suchen Sie nach „Apotheke“ oder
   „Bushaltestelle“, um die nächstgelegenen zu finden, egal wie sie heißen, oder fügen Sie
   Koordinaten, einen Kartenlink oder einen Plus Code ein.
+* **Getrennte Schaltflächen für Markierungen und Routen.** Der Bildschirm *Markierungen und Routen*
+  mit seinen zwei Registerkarten wurde in einen Bildschirm *Markierungen* und einen Bildschirm
+  *Routen* aufgeteilt, jeder mit einer eigenen Schaltfläche auf dem Startbildschirm. Der Bildschirm
+  Markierungen hat eine Schaltfläche *Neu*, mit der Sie Ihren aktuellen Standort oder einen Ort in
+  der Nähe speichern.
 * **Einen Ort in einer anderen Karten-App öffnen**, etwa in Google Maps, aus den Standortdetails oder
   aus den Listen.
 * **Mehr vom Beacon auf dem Startbildschirm.** Er zeigt jetzt Entfernung und Richtung an und bietet
@@ -173,6 +178,19 @@ Navigations-Apps auf Ihrem Telefon auflistet. Kreuzen Sie *Immer diese App verwe
 die Taste zum Beispiel *In Google Maps öffnen* und öffnet die App sofort; langes Drücken bringt die
 Liste zurück. Die Listen *Orte in der Nähe* und *Markierungen* haben außerdem die Screenreader-Aktionen
 *In … öffnen* und *Teilen*.
+
+### Markierungen und Routen
+
+Markierungen und Routen teilten sich bisher einen Bildschirm, *Markierungen und Routen*, mit je
+einer Registerkarte, und man verlor leicht den Überblick, auf welcher Registerkarte man gerade war.
+Jetzt sind es zwei getrennte Bildschirme, jeder mit einer eigenen Schaltfläche auf dem
+Startbildschirm: *Markierungen* und *Routen*, direkt unter *Orte in der Nähe*.
+
+Jeder Bildschirm hat oben rechts eine Schaltfläche *Neu*. Auf dem Bildschirm Routen erstellt sie wie
+bisher eine Route. Auf dem Bildschirm Markierungen ist sie neu: Sie zeigt *Aktueller Standort* und
+die Kategorien von *Orte in der Nähe*, sodass Sie eine Markierung speichern können, ohne zuerst zum
+Startbildschirm zurückzukehren, um den Ort zu suchen. Screenreader kündigen die Schaltflächen als
+*Neue Markierung* und *Neue Route* an.
 
 ### Beacon und Markierungen
 

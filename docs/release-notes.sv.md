@@ -32,6 +32,10 @@ Information om äldre versioner finns på sidan
 * **Sök efter en typ av plats, eller efter koordinater.** Sök efter ”apotek” eller ”busshållplats” för
   att hitta de närmaste, vad de än heter, eller klistra in koordinater, en kartlänk eller en Plus
   Code.
+* **Separata knappar för Platsmarkörer och Rutter.** Skärmen *Platsmarkörer och rutter* med sina två
+  flikar har delats upp i en skärm *Platsmarkörer* och en skärm *Rutter*, var och en med sin egen
+  knapp på startskärmen. Skärmen Platsmarkörer har en knapp *Ny* för att spara din aktuella plats
+  eller en plats i närheten.
 * **Öppna en plats i en annan kartapp**, till exempel Google Maps, från platsuppgifterna eller från
   listorna.
 * **Mer från ljudfyren på startskärmen.** Den visar nu avstånd och riktning, och har
@@ -159,6 +163,18 @@ Platsuppgifterna har en ny knapp, **Öppna i kartapp**, som listar kart- och nav
 telefon. Kryssa i *Använd alltid den här appen* så heter knappen till exempel *Öppna i Google Maps*
 och öppnar den direkt; ett långt tryck tar fram listan igen. Listorna *Platser i närheten* och
 *Platsmarkörer* har också skärmläsaråtgärderna *Öppna i …* och *Dela*.
+
+### Platsmarkörer och rutter
+
+Platsmarkörer och rutter delade tidigare en skärm, *Platsmarkörer och rutter*, med en flik för
+vardera, och det var lätt att tappa bort vilken flik man var på. Nu är de två separata skärmar, var
+och en med sin egen knapp på startskärmen: *Platsmarkörer* och *Rutter*, precis under *Platser i
+närheten*.
+
+Varje skärm har en knapp *Ny* uppe till höger. På skärmen Rutter skapar den en rutt, som tidigare.
+På skärmen Platsmarkörer är den ny: den visar *Aktuell plats* och kategorierna under *Platser i
+närheten*, så att du kan spara en platsmarkör utan att först gå tillbaka till startskärmen för att
+hitta platsen. Skärmläsare läser upp knapparna som *Ny platsmarkör* och *Ny rutt*.
 
 ### Ljudfyren och platsmarkörer
 

@@ -34,6 +34,10 @@ Les notes des versions précédentes se trouvent sur la page
 * **Rechercher un type de lieu, ou des coordonnées.** Cherchez « pharmacie » ou « arrêt de bus » pour
   trouver les plus proches, quel que soit leur nom, ou collez des coordonnées, un lien de carte ou un
   Plus Code.
+* **Des boutons distincts pour les Marqueurs et les Itinéraires.** L’écran *Marqueurs et
+  Itinéraires* et ses deux onglets ont été séparés en un écran *Marqueurs* et un écran
+  *Itinéraires*, chacun avec son propre bouton sur l’écran d’accueil. L’écran Marqueurs dispose d’un
+  bouton *Nouveau* pour enregistrer votre emplacement actuel ou un lieu à proximité.
 * **Ouvrir un lieu dans une autre appli de cartes**, comme Google Maps, depuis les détails de
   l’emplacement ou depuis les listes.
 * **Plus d’informations sur la balise sonore à l’écran d’accueil.** Elle affiche maintenant la distance et
@@ -177,6 +181,19 @@ liste les applis de cartes et de navigation de votre téléphone. Cochez *Toujou
 cette appli* et le bouton devient, par exemple, *Ouvrir dans Google Maps*, qui l’ouvre tout de
 suite; un appui long fait revenir la liste. Les listes *Emplacements à proximité* et *Marqueurs* ont
 aussi les actions de lecteur d’écran *Ouvrir dans…* et *Partager*.
+
+### Marqueurs et Itinéraires
+
+Les Marqueurs et les Itinéraires partageaient un seul écran, *Marqueurs et Itinéraires*, avec un
+onglet pour chacun, et il était facile d’oublier dans quel onglet on se trouvait. Ce sont désormais
+deux écrans distincts, chacun avec son propre bouton sur l’écran d’accueil : *Marqueurs* et
+*Itinéraires*, juste sous *Emplacements à proximité*.
+
+Chaque écran dispose d’un bouton *Nouveau* dans le coin supérieur droit. Sur l’écran Itinéraires, il
+crée un Itinéraire, comme avant. Sur l’écran Marqueurs, il est nouveau : il propose *Emplacement
+actuel* et les catégories des *Emplacements à proximité*, pour que vous puissiez enregistrer un
+marqueur sans revenir d’abord à l’écran d’accueil pour trouver le lieu. Les lecteurs d’écran
+annoncent ces boutons comme *Nouveau marqueur* et *Nouvel Itinéraire*.
 
 ### La balise sonore et les marqueurs
 

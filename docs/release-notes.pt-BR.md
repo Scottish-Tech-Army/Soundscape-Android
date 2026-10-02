@@ -32,6 +32,10 @@ As notas de versões anteriores estão na página
 * **Pesquise um tipo de lugar, ou coordenadas.** Pesquise «farmácia» ou «ponto de ônibus» para
   encontrar os mais próximos, qualquer que seja o nome, ou cole coordenadas, um link de mapa ou um
   Plus Code.
+* **Botões separados para Favoritos e Rotas.** A tela *Favoritos e Rotas* e suas duas abas foram
+  divididas em uma tela *Favoritos* e uma tela *Rotas*, cada uma com seu próprio botão na tela
+  inicial. A tela Favoritos tem um botão *Novo* para salvar sua localização atual ou um local
+  próximo.
 * **Abra um lugar em outro aplicativo de mapas**, como o Google Maps, a partir dos detalhes da
   localização ou das listas.
 * **Mais do sinalizador na tela inicial.** Agora ele mostra a distância e a direção, e tem ações do
@@ -165,6 +169,17 @@ aplicativos de mapas e de navegação do seu celular. Marque *Sempre usar este a
 passa a ser, por exemplo, *Abrir em Google Maps*, abrindo-o na hora; um toque longo traz a lista de
 volta. As listas *Locais Próximos* e *Favoritos* também têm as ações do leitor de tela *Abrir em…* e
 *Compartilhar*.
+
+### Favoritos e Rotas
+
+Favoritos e rotas compartilhavam uma única tela, *Favoritos e Rotas*, com uma aba para cada um, e
+era fácil perder a noção de em qual aba você estava. Agora são duas telas separadas, cada uma com
+seu próprio botão na tela inicial: *Favoritos* e *Rotas*, logo abaixo de *Locais Próximos*.
+
+Cada tela tem um botão *Novo* no canto superior direito. Na tela Rotas, ele cria uma rota, como
+antes. Na tela Favoritos, ele é novo: mostra *Localização Atual* e as categorias de *Locais
+Próximos*, para que você possa salvar um favorito sem voltar primeiro à tela inicial para encontrar
+o local. Os leitores de tela anunciam esses botões como *Novo Favorito* e *Nova Rota*.
 
 ### O sinalizador e os favoritos
 

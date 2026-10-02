@@ -33,6 +33,10 @@ Catatan untuk versi lama ada di halaman
   Anda mendekat, dan pemberitahuannya kini menyebutkan jarak ke tepi trotoar.
 * **Cari jenis tempat, atau koordinat.** Cari "apotek" atau "halte bus" untuk menemukan yang terdekat,
   apa pun namanya, atau tempelkan koordinat, tautan peta, atau Plus Code.
+* **Tombol terpisah untuk Penanda dan Rute.** Layar *Penanda dan Rute* beserta dua tabnya telah
+  dipisah menjadi layar *Penanda* dan layar *Rute*, masing-masing dengan tombolnya sendiri di layar
+  utama. Layar Penanda memiliki tombol *Baru* untuk menyimpan lokasi Anda saat ini atau tempat di
+  sekitar.
 * **Buka tempat di aplikasi peta lain**, seperti Google Maps, dari Detail Lokasi atau dari daftar.
 * **Lebih banyak dari suar di layar utama.** Kini suar menampilkan jarak dan arah, dan punya aksi
   pembaca layar untuk memberitahukan suar, mendengar lebih banyak tentangnya, atau menyimpannya sebagai
@@ -163,6 +167,19 @@ Detail Lokasi punya tombol baru, **Buka di Aplikasi Peta**, yang menampilkan apl
 di ponsel Anda. Centang *Selalu gunakan aplikasi ini* dan tombol berubah menjadi, misalnya, *Buka di
 Google Maps*, yang langsung membukanya; tekan lama untuk memunculkan daftar lagi. Daftar *Tempat di
 Sekitar* dan *Penanda* juga punya aksi pembaca layar *Buka di…* dan *Bagikan*.
+
+### Penanda dan Rute
+
+Penanda dan rute dulu berbagi satu layar, *Penanda dan Rute*, dengan satu tab untuk masing-masing,
+dan mudah lupa sedang berada di tab mana. Sekarang keduanya menjadi dua layar terpisah,
+masing-masing dengan tombolnya sendiri di layar utama: *Penanda* dan *Rute*, tepat di bawah *Tempat
+di Sekitar*.
+
+Setiap layar memiliki tombol *Baru* di pojok kanan atas. Di layar Rute, tombol ini membuat rute
+seperti sebelumnya. Di layar Penanda, tombol ini baru: menampilkan *Lokasi Saat Ini* dan kategori
+*Tempat di Sekitar*, sehingga Anda dapat menyimpan penanda tanpa harus kembali ke layar utama untuk
+mencari tempatnya terlebih dahulu. Pembaca layar mengumumkan tombol-tombol ini sebagai *Penanda
+Baru* dan *Rute Baru*.
 
 ### Suar dan penanda
 

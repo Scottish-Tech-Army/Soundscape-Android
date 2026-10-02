@@ -32,6 +32,9 @@ Noter til ældre versioner findes på siden
 * **Søg efter en slags sted eller efter koordinater.** Søg efter "apotek" eller "busstoppested" for
   at finde de nærmeste, uanset hvad de hedder, eller indsæt koordinater, et kortlink eller en Plus
   Code.
+* **Separate knapper til Mærker og Ruter.** Skærmen *Mærker og ruter* og dens to faner er delt op i
+  en *Mærker*-skærm og en *Ruter*-skærm, hver med sin egen knap på startskærmen. Skærmen Mærker har
+  en *Ny*-knap til at gemme din aktuelle placering eller et sted i nærheden.
 * **Åbn et sted i en anden kortapp**, fx Google Maps, fra oplysningerne om placeringen eller fra
   listerne.
 * **Mere fra lydfyret på startskærmen.** Det viser nu afstand og retning og har skærmlæserhandlinger,
@@ -156,6 +159,17 @@ Oplysninger om placering har en ny knap, **Åbn i kortapp**, som viser kort- og 
 telefon. Sæt flueben i *Brug altid denne app*, så hedder knappen fx *Åbn i Google Maps* og åbner den
 med det samme; et langt tryk henter listen frem igen. Listerne *Steder i nærheden* og *Mærker* har
 også skærmlæserhandlingerne *Åbn i …* og *Del*.
+
+### Mærker og ruter
+
+Mærker og ruter delte tidligere én skærm, *Mærker og ruter*, med en fane til hver, og det var let at
+miste overblikket over, hvilken fane man var på. Nu er de to separate skærme, hver med sin egen knap
+på startskærmen: *Mærker* og *Ruter*, lige under *Steder i nærheden*.
+
+Hver skærm har en *Ny*-knap øverst til højre. På skærmen Ruter opretter den en rute som hidtil. På
+skærmen Mærker er den ny: den viser *Aktuel placering* og kategorierne fra *Steder i nærheden*, så
+du kan gemme et mærke uden først at gå tilbage til startskærmen for at finde stedet. Skærmlæsere
+annoncerer knapperne som *Nyt mærke* og *Ny rute*.
 
 ### Lydfyret og mærker
 

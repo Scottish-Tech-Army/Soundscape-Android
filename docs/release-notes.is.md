@@ -31,6 +31,9 @@ Nótur fyrir eldri útgáfur eru á síðunni
   þau, og tilkynningin segir nú hve langt er í gangstéttarbrúnina.
 * **Leita að tegund staðar, eða að hnitum.** Leitaðu að „apótek“ eða „strætóskýli“ til að finna þau
   næstu, hvað sem þau heita, eða límdu inn hnit, kortatengil eða Plus Code.
+* **Aðskildir hnappar fyrir Merki og Leiðir.** Skjánum *Merki og leiðir* og flipunum tveimur hefur
+  verið skipt í skjáinn *Merki* og skjáinn *Leiðir*, hvorn með sinn eigin hnapp á heimaskjánum. Á
+  skjánum Merki er hnappurinn *Nýtt* til að vista núverandi staðsetningu eða nálægan stað.
 * **Opna stað í öðru kortaforriti**, til dæmis Google Maps, úr upplýsingum um staðsetningu eða úr
   listunum.
 * **Meira frá hljóðvitanum á heimaskjánum.** Hann sýnir nú fjarlægð og stefnu og hefur aðgerðir fyrir
@@ -155,6 +158,17 @@ Upplýsingar um staðsetningu hafa nýjan hnapp, **Opna í kortaforriti**, sem s
 leiðsöguforritin í símanum. Hakaðu við *Nota alltaf þetta forrit* og þá heitir hnappurinn til dæmis
 *Opna í Google Maps* og opnar það strax; langt ýtt kallar listann aftur fram. Listarnir *Nálægir
 staðir* og *Merki* hafa líka skjálesaraaðgerðirnar *Opna í…* og *Deila*.
+
+### Merki og leiðir
+
+Merki og leiðir deildu áður einum skjá, *Merki og leiðir*, með flipa fyrir hvort, og auðvelt var að
+gleyma á hvaða flipa maður var. Nú eru þetta tveir aðskildir skjáir, hvor með sinn eigin hnapp á
+heimaskjánum: *Merki* og *Leiðir*, beint fyrir neðan *Nálægir staðir*.
+
+Á hvorum skjá er hnappurinn *Nýtt* efst til hægri. Á skjánum Leiðir býr hann til leið, eins og áður.
+Á skjánum Merki er hann nýr: hann býður upp á *Núverandi staðsetning* og flokkana undir *Nálægir
+staðir*, svo hægt er að vista merki án þess að fara fyrst aftur á heimaskjáinn til að finna staðinn.
+Skjálesarar lesa hnappana sem *Nýtt merki* og *Ný leið*.
 
 ### Hljóðvitinn og merki
 

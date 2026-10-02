@@ -32,6 +32,10 @@ Poznámky k starším verziám nájdete na stránke
 * **Hľadajte druh miesta alebo súradnice.** Vyhľadajte „lekáreň“ alebo „autobusová zastávka“ a
   nájdete tie najbližšie, nech sa volajú akokoľvek, alebo vložte súradnice, odkaz na mapu či Plus
   Code.
+* **Samostatné tlačidlá pre Značky a Trasy.** Obrazovka *Značky a trasy* s dvoma kartami bola
+  rozdelená na obrazovku *Značky* a obrazovku *Trasy*, každú s vlastným tlačidlom na domovskej
+  obrazovke. Obrazovka Značky má tlačidlo *Nová* na uloženie vašej aktuálnej polohy alebo miesta v
+  okolí.
 * **Otvorte miesto v inej mapovej aplikácii**, napríklad v Mapách Google, z podrobností o mieste alebo
   zo zoznamov.
 * **Viac z majáka na domovskej obrazovke.** Teraz ukazuje vzdialenosť a smer a má akcie pre čítačku
@@ -156,6 +160,17 @@ navigačné aplikácie vo vašom telefóne. Zaškrtnite *Vždy používať túto
 napríklad na *Otvoriť v aplikácii Mapy Google* a otvorí ju hneď; dlhé stlačenie vráti zoznam.
 Zoznamy *Miesta v okolí* a *Značky* majú aj akcie pre čítačku obrazovky *Otvoriť v aplikácii…* a
 *Zdieľať*.
+
+### Značky a trasy
+
+Značky a trasy predtým zdieľali jednu obrazovku, *Značky a trasy*, s kartou pre každú z nich, a
+ľahko sa stalo, že ste stratili prehľad, na ktorej karte ste. Teraz sú to dve samostatné obrazovky,
+každá s vlastným tlačidlom na domovskej obrazovke: *Značky* a *Trasy*, tesne pod *Miesta v okolí*.
+
+Každá obrazovka má v pravom hornom rohu tlačidlo *Nová*. Na obrazovke Trasy vytvorí trasu, ako
+doteraz. Na obrazovke Značky je nové: ponúkne *Aktuálna poloha* a kategórie *Miesta v okolí*, takže
+značku uložíte bez toho, aby ste sa museli najprv vrátiť na domovskú obrazovku a miesto hľadať.
+Čítačky obrazovky ohlasujú tlačidlá ako *Nová značka* a *Nová trasa*.
 
 ### Maják a značky
 
