@@ -60,7 +60,6 @@ import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.NavigationButton
-import org.scottishtecharmy.soundscape.components.SlowLoadingIndicator
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
@@ -278,8 +277,7 @@ fun SharedHomeContent(
                 )
                 // The button stays in place while the address is looked up, so that TalkBack
                 // keeps its focus on it (see SlowLoadingIndicator).
-                Box(contentAlignment = Alignment.CenterEnd) {
-                    NavigationButton(
+                NavigationButton(
                         onClick = {
                             if (location != null && !fetchingLocation) {
                                 fetchingLocation = true
@@ -297,16 +295,9 @@ fun SharedHomeContent(
                         modifier = Modifier
                             .talkbackHint(stringResource(Res.string.search_button_current_location_accessibility_hint))
                             .testTag("homeCurrentLocation"),
+                        loading = fetchingLocation,
+                        loadingTestTag = "homeCurrentLocationLoading",
                     )
-                    if (fetchingLocation) {
-                        SlowLoadingIndicator(
-                            color = currentAppButtonColors.contentColor,
-                            modifier = Modifier
-                                .padding(end = spacing.small * 2 + spacing.targetSize)
-                                .testTag("homeCurrentLocationLoading"),
-                        )
-                    }
-                }
                 if (location != null) {
                     val currentRoute = routePlayerState.routeData
                     if (currentRoute != null) {
