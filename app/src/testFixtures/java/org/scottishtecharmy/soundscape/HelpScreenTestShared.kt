@@ -117,7 +117,7 @@ object HelpScreenTestShared {
             arrayOf("faq_When should I use Soundscape%3f"),
             arrayOf("faq_What are Markers and how do I get the most out of them%3f"),
             arrayOf("faq_What can I set as a beacon%3f"),
-            arrayOf("faq_How do I use a beacon like a pro%3f"),
+            arrayOf("faq_How do I get the most out of a beacon%3f"),
             arrayOf("faq_Why does the audible beacon disappear sometimes%3f"),
             arrayOf("faq_Can I set a beacon on an address%3f"),
             arrayOf("faq_How do I set a beacon on my home%3f"),
@@ -139,7 +139,7 @@ object HelpScreenTestShared {
             arrayOf("faq_How do I use Soundscape with a wayfinding app%3f"),
             arrayOf("faq_How do I control what I hear and when I hear it in Soundscape%3f"),
             arrayOf("faq_Do I need to hold the phone in my hand all the time%3f"),
-            arrayOf("faq_What is Open Street Map and why do we use it for Soundscape%3f"),
+            arrayOf("faq_What is OpenStreetMap and why do we use it for Soundscape%3f"),
         )
     }
 }

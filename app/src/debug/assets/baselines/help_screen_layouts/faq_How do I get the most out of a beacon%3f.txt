@@ -1,0 +1,16 @@
+- [] ''  (bounds=(0,0 - 1080,2400))
+  - [] ''  (bounds=(0,63 - 1080,2337))
+    - [] ''  (bounds=(0,63 - 1080,2337))
+      - [] ''  (bounds=(0,231 - 1080,2337))
+        - [] How do I get the most out of a beacon?  (bounds=(42,294 - 680,337))
+        - [] You can think of the audible beacon like a "lighthouse for your ears": it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched "ring" sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched "ring", hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
+This design has a few natural results:
+There is no "correct" direction to travel when using the beacon – with Soundscape, you choose how to get there;
+The higher-pitched "ring" only helps you pinpoint the direction of the destination – it does not tell you how to get there;
+If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.  (bounds=(42,358 - 1038,2295))
+      - [] ''  (bounds=(0,63 - 1080,231))
+        - [] ''  (bounds=(0,63 - 1080,231))
+          - [appBarLeft] ''  (bounds=(11,100 - 209,194))
+            - [] Back  (bounds=(100,119 - 204,175))
+          - [] ''  (bounds=(483,105 - 597,189))
+            - [appBarTitle] FAQ  (bounds=(483,105 - 597,189))
