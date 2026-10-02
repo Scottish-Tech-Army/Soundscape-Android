@@ -543,44 +543,35 @@ dokka {
     }
 }
 
-fun adbPath(): String {
-    // Get the Android SDK path directly from Gradle
-    val sdkDir = project.extensions
-        .getByType<com.android.build.gradle.BaseExtension>()
-        .sdkDirectory
-        .absolutePath
-    val adbExtension = if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
-        ".exe"
-    } else {
-        ""
-    }
-    return "$sdkDir/platform-tools/adb$adbExtension"
-}
+fun adbPath(): String =
+    extensions.getByType<com.android.build.api.variant.ApplicationAndroidComponentsExtension>()
+            .sdkComponents.adb.get().asFile.absolutePath
 
 // NOTE 2025-11-18 Hugh Greene: It's hacky to hard-code the "androidTest" source set name here, but
 // there's no easy way to get it.
-val composeBaselinesTempTargetDir = "${project.layout.buildDirectory.get()}/tmp/androidTest-baselines"
-
-// We deliberately do not declare this as a Task output, otherwise the Gradle may hold the file
+val composeBaselinesTempDir = File(layout.buildDirectory.get().asFile, "tmp/androidTest-baselines")
+// We deliberately do not declare the tar file as a Task output, otherwise Gradle may hold the file
 // open for monitoring, preventing it from being deleted.
-val composeBaselinesTarFile = File(composeBaselinesTempTargetDir, "baselines.tar")
+val composeBaselinesTarFilePath = File(composeBaselinesTempDir, "baselines.tar")
 
 tasks.register<Exec>("pullComposeBaselines") {
-
-    // Need to create these at configuration time, not execution time, so we can set standardOutput.
-    Path(composeBaselinesTempTargetDir).createDirectories()
-    composeBaselinesTarFile.createNewFile()
+    val tarFile = composeBaselinesTarFilePath
+    val tempDir = composeBaselinesTempDir
+    val adb = adbPath()
+    val ns = project.android.namespace!!
 
     doFirst {
-        println("Pulling Compose baseline snapshots from emulator to '$composeBaselinesTarFile'")
+        tempDir.mkdirs()
+        tarFile.createNewFile()
+        standardOutput = tarFile.outputStream()
+        println("Pulling Compose baseline snapshots from emulator to '$tarFile'")
     }
 
     isIgnoreExitValue = false
-    standardOutput = composeBaselinesTarFile.outputStream()
     // Use adb to pull the whole folder as a TAR file.
-    commandLine(adbPath(), "exec-out",
+    commandLine(adb, "exec-out",
         "run-as",
-        project.android.namespace!!,
+        ns,
         "tar",
         "-C",
         "files",
@@ -591,18 +582,15 @@ tasks.register<Exec>("pullComposeBaselines") {
 }
 
 tasks.register<Copy>("extractComposeBaselines") {
-    val pullTask = tasks.findByName("pullComposeBaselines")!!
-    dependsOn(pullTask)
+    dependsOn(tasks.named("pullComposeBaselines"))
 
-    doFirst {
-        println(this.taskDependencies.toString())
-    }
-
-    from(tarTree(composeBaselinesTarFile))
+    val tarFile = composeBaselinesTarFilePath
     // NOTE 2025-11-18 Hugh Greene: It's hacky to hard-code the path here, but I don't know of a
     // better way to get it.
-    val localTargetDir = "$projectDir/src/debug/assets/baselines"
-    into(localTargetDir)
+    val targetDir = "$projectDir/src/debug/assets/baselines"
+
+    from(tarTree(tarFile))
+    into(targetDir)
     // Remove leading 'baselines/' from entries if desired
     eachFile {
         // Strip the top-level "baselines" folder
@@ -624,10 +612,10 @@ tasks.register<Copy>("extractComposeBaselines") {
     includeEmptyDirs = false
 
     doLast {
-        if (composeBaselinesTarFile.exists()) {
-            composeBaselinesTarFile.delete()
+        if (tarFile.exists()) {
+            tarFile.delete()
         }
-        println("Baselines moved from emulator to '$localTargetDir'. " +
+        println("Baselines moved from emulator to '$targetDir'. " +
                 "You can now review the changes and commit them.")
     }
 }
