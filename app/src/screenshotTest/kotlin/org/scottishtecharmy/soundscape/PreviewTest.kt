@@ -1,6 +1,11 @@
 package org.scottishtecharmy.soundscape
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,7 +35,9 @@ import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.offline_map_details_title
 import org.scottishtecharmy.soundscape.resources.tour_my_location
+import org.scottishtecharmy.soundscape.resources.ui_back_button_title
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.data.LocationType
@@ -57,6 +64,8 @@ import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMap
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.home.settings.SharedSettingsScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.FlexibleAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteViewModel
@@ -1383,14 +1392,34 @@ fun OfflineMapExtractDetailsPreview() {
             )
         }
     }
-    SharedOfflineMapExtractDetails(
-        extract = extract,
-        downloadExtract = { _, _ -> },
-        deleteExtract = {},
-        local = false,
-        userLocation = previewLngLatAlt(),
-        preferencesProvider = PreviewPreferencesProvider,
-    )
+    // The details draw no background or title bar of their own: in the app they sit inside
+    // SharedOfflineMapsScreen's Scaffold, so this reproduces that.
+    Scaffold(
+        topBar = {
+            FlexibleAppBar(
+                title = stringResource(Res.string.offline_map_details_title),
+                leftSide = {
+                    IconWithTextButton(
+                        text = stringResource(Res.string.ui_back_button_title),
+                        color = MaterialTheme.colorScheme.onSurface,
+                    ) {}
+                },
+            )
+        },
+    ) { padding ->
+        SharedOfflineMapExtractDetails(
+            extract = extract,
+            downloadExtract = { _, _ -> },
+            deleteExtract = {},
+            local = false,
+            userLocation = previewLngLatAlt(),
+            preferencesProvider = PreviewPreferencesProvider,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .background(MaterialTheme.colorScheme.surface),
+        )
+    }
 }
 
 @Composable
