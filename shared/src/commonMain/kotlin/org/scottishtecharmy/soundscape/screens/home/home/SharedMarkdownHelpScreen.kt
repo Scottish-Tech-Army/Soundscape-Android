@@ -56,7 +56,11 @@ fun SharedMarkdownHelpScreen(
 
     val blocks = remember(helpTopic.content) {
         val processor = MarkdownProcessor(helpTopic.content)
-        processor.getBlocks(isFaqSubPage, if (helpTopic is HelpTopic.MarkdownFaq) helpTopic.question else null)
+        processor.getBlocks(
+            isFaqSubPage = isFaqSubPage,
+            faqQuestion = if (helpTopic is HelpTopic.MarkdownFaq) helpTopic.question else null,
+            fileName = helpTopic.getMarkdownFileName()
+        )
     }
     val displayTitle = helpTopic.getDisplayTitle()
 
@@ -105,7 +109,7 @@ fun SharedMarkdownHelpScreen(
                                     color = MaterialTheme.colorScheme.onSurface,
                                 )
                             }
-                            is MarkdownBlock.Paragraph -> {
+                            is MarkdownBlock.Paragraphs -> {
                                 val text = parseHtmlToAnnotatedString(block.html)
                                 structureLog.unstructured("Text for HTML section: '${text.text}'")
                                 Text(
@@ -118,6 +122,15 @@ fun SharedMarkdownHelpScreen(
                                 LinkButton(
                                     text = block.text,
                                     route = if (block.destination.endsWith(".md")) "${SharedRoutes.HELP}/${block.destination}" else block.destination,
+                                    onNavigate = onNavigate,
+                                    structureLog = structureLog
+                                )
+                            }
+                            is MarkdownBlock.FaqQuestion -> {
+                                val route = "${SharedRoutes.HELP}/${HelpTopic.MarkdownFaq(block.fileName, block.text).toRouteParam()}"
+                                LinkButton(
+                                    text = block.text,
+                                    route = route,
                                     onNavigate = onNavigate,
                                     structureLog = structureLog
                                 )
