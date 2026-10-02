@@ -53,20 +53,19 @@ sealed class HelpTopic {
     ) : HelpTopic() {
 
         val content: String by lazy {
-            loadMarkdownAsset() ?: "# Error\n\nFailed to load help content"
+            processMarkdownContent(loadMarkdownAsset() ?: "# Error\n\nFailed to load help content")
         }
 
         val title: String by lazy {
-            val processedContent = content.processMarkdownContent()
             val flavour = CommonMarkFlavourDescriptor()
             val tree = MarkdownParser(flavour, true, CancellationToken.NonCancellable)
-                .buildMarkdownTreeFromString(processedContent as CharSequence)
+                .buildMarkdownTreeFromString(content as CharSequence)
             
             // Look for the first level 1 heading
             val h1 = tree.children.find { it.type == MarkdownElementTypes.ATX_1 }
             if (h1 != null) {
                 h1.children.find { it.type == MarkdownTokenTypes.ATX_CONTENT }
-                    ?.getTextInNode(processedContent)?.toString()?.trim() ?: getFallbackTitle()
+                    ?.getTextInNode(content)?.toString()?.trim() ?: getFallbackTitle()
             } else {
                 getFallbackTitle()
             }
@@ -104,22 +103,6 @@ sealed class HelpTopic {
             return null
         }
 
-        private fun String.processMarkdownContent(): String {
-            // Strip YAML front matter
-            val content = if (this.startsWith("---")) {
-                val endOfFrontMatter = this.indexOf("---", 3)
-                if (endOfFrontMatter != -1) {
-                    this.substring(endOfFrontMatter + 3).trimStart()
-                } else {
-                    this
-                }
-            } else {
-                this
-            }
-
-            // Resolve {% link ... %} tags
-            return content.replace(Regex("""\{% link (?:[^/]+/)*([^ ]+\.md) %\}"""), "$1")
-        }
     }
 
     class MarkdownPage(fileName: String) : MarkdownHelpTopic(fileName) {

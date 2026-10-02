@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.home.home
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class MarkdownProcessorTest {
@@ -150,5 +151,33 @@ class MarkdownProcessorTest {
         val html = (blocks[1] as MarkdownBlock.Paragraphs).html
         assertTrue(html.contains("Answer paragraph 1"))
         assertTrue(html.contains("Answer paragraph 2"))
+    }
+
+    @Test
+    fun testFrontMatterStripped() {
+        val raw = """
+            ---
+            title: Test Page
+            layout: page
+            parent: "Using Soundscape"
+            has_toc: false
+            ---
+
+            # Test Page
+
+            Content here.
+        """.trimIndent()
+        val processed = processMarkdownContent(raw)
+        assertFalse(processed.startsWith("---"))
+        assertFalse(processed.contains("layout: page"))
+        assertTrue(processed.startsWith("# Test Page"))
+        assertTrue(processed.contains("Content here."))
+    }
+
+    @Test
+    fun testLinkTagsResolved() {
+        val raw = "See [Voices]({% link voices/help-voices.md %}) for details."
+        val processed = processMarkdownContent(raw)
+        assertEquals("See [Voices](help-voices.md) for details.", processed)
     }
 }

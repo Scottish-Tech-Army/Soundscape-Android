@@ -16,6 +16,22 @@ sealed class MarkdownBlock {
     data class FaqQuestion(val text: String, val fileName: String) : MarkdownBlock()
 }
 
+private val LINK_TAG = Regex("""\{% link (?:[^/]+/)*([^ ]+\.md) %\}""")
+
+fun processMarkdownContent(raw: String): String {
+    val withoutFrontMatter = if (raw.startsWith("---")) {
+        val endOfFrontMatter = raw.indexOf("---", 3)
+        if (endOfFrontMatter != -1) {
+            raw.substring(endOfFrontMatter + 3).trimStart()
+        } else {
+            raw
+        }
+    } else {
+        raw
+    }
+    return withoutFrontMatter.replace(LINK_TAG, "$1")
+}
+
 class MarkdownProcessor(content: String) {
 
     private val content = content
