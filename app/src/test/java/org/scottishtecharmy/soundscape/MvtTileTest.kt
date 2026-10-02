@@ -4659,6 +4659,74 @@ class MvtTileTest {
     }
 
     /**
+     * Replays two recorded motorway drives and checks exactly which junctions they announce.
+     *
+     * A junction is found by walking along the carriageway being driven (see
+     * AlongWayKind.HIGHWAY_JUNCTION), so what's checked here is that each one is still reached and
+     * that nothing is announced from another road or the other carriageway. These two drives
+     * don't depend on the walk keeping to the carriageway past a slip road (Way.isRamp) - that is
+     * AlongWayTest.sameRoadKeepsToTheCarriagewayPastASlipRoad. Left out on purpose, and announced
+     * before junctions were attached to Ways: M73 junction 3 (Mollinsburn), passed on the M80; and the opposite
+     * carriageway's nodes, such as M90 junction 2A (Halbeath), M9 junctions 5 and 6 (whose
+     * northbound nodes are kilometres away), M80 junction 6A (Castlecary) and M876 junction 8
+     * (Kinnaird).
+     */
+    @Test
+    fun testMotorwayJunctionsAnnounced() {
+        val resultsStorageDir = File("gpxFiles/")
+        if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
+        val expected = mapOf(
+            "Motorway" to setOf(
+                "Junction 1, Checkbar",
+                "Junction 2, Glenbervie",
+                "Junction 3, Bowtrees",
+                "Junction 5, Auchenkilns Junction",
+                "Junction 6, Old Inns Junction",
+                "Junction 7, Haggs Interchange",
+                "Junction 7, Kinnaird House Interchange",
+                "Junction 8, Bankhead Interchange",
+            ),
+            "MotorwayForTravel" to setOf(
+                "Junction 1A, Queensferry Junction",
+                "Junction 1B, Ferrytoll",
+                "Junction 1B, Winchburgh",
+                "Junction 1C, Admiralty",
+                "Junction 1, Checkbar",
+                "Junction 1, Scotstoun",
+                "Junction 2, Glenbervie",
+                "Junction 2, Masterton",
+                "Junction 3, Burghmuir Junction",
+                "Junction 3, Halbeath",
+                "Junction 3, Hornshill Interchange",
+                "Junction 4, Cocklaw Junction",
+                "Junction 4, Lathallan Interchange",
+                "Junction 4, Mollinsburn Junction",
+                "Junction 5, Auchenkilns Junction",
+                "Junction 5, Cadgers Brae",
+                "Junction 5, Gairneybridge",
+                "Junction 6A, Castlecary Interchange",
+                "Junction 6, Old Inns Junction",
+                "Junction 7, Haggs Interchange",
+                "Junction 7, Kinnaird House Interchange",
+                "Junction 8, Kinnaird Interchange",
+            ),
+        )
+        val junction = Regex("Junction [^ ,]+(, .+)?")
+        for ((drive, junctions) in expected) {
+            val calloutFile = "gpxFiles/$drive-junctions.txt"
+            testMovingGrid(
+                "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$drive.gpx",
+                calloutFile,
+                "gpxFiles/$drive-junctions.geojson"
+            )
+            val announced = File(calloutFile).readLines()
+                .mapNotNull { junction.find(it)?.value?.trim() }
+                .toSet()
+            assertEquals("Junctions announced on $drive", junctions, announced)
+        }
+    }
+
+    /**
      * One trace through the whole callout path, written out as text and as GeoJSON for eyeballing
      * on geojson.io - each callout is the field-of-view triangle that produced it, carrying its
      * spoken lines as properties.

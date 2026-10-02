@@ -71,10 +71,10 @@ enum class AlongWayPosition {
 }
 
 /**
- * A feature positioned at a known distance along a [Way] - today a river/canal or railway
- * crossing, in future a bus stop, station or highway junction. Held in [Way.alongWayFeatures],
- * sorted by [distanceFromStart], so that "what's next along this road?" is a lookup rather than a
- * geographic search.
+ * A feature positioned at a known distance along a [Way] - a river/canal, railway or road
+ * crossing, a bus stop or station, or a highway junction - see [AlongWayKind]. Held in
+ * [Way.alongWayFeatures], sorted by [distanceFromStart], so that "what's next along this road?" is
+ * a lookup rather than a geographic search.
  *
  * @param distanceFromStart metres from the owning Way's START intersection, measured along that
  * Way's own geometry. See [Way.distanceAlongWay] for the caveat about points which don't actually

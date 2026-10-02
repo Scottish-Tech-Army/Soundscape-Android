@@ -86,9 +86,8 @@ enum class WayContinuation {
 /**
  * Index of the first entry strictly beyond [distance] in a list sorted by distanceFromStart.
  *
- * Binary search rather than a scan. The lists are short while only crossings are recorded, but
- * this is the primitive transit stops and highway junctions will use too, and a busy road carries
- * a lot more of those than it does bridges.
+ * Binary search rather than a scan. A busy road carries a lot more transit stops and highway
+ * junctions than it does bridges.
  */
 internal fun List<AlongWayFeature>.firstIndexBeyond(distance: Double): Int {
     var low = 0
