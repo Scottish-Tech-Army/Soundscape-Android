@@ -982,6 +982,67 @@ open class GridState(
         return attached
     }
 
+    // How far off a road a junction node can sit and still be taken as being on it. Like a
+    // railway=stop, OSM puts it on the carriageway itself: measured across the M8, M80, A8 and
+    // A725 junctions in the test extracts, every one was at 0.0m from its own carriageway Ways and
+    // slip road, with the opposite carriageway 10-20m away and the nearest local road 5m away. So
+    // this only has to absorb the tile's coordinate quantisation.
+    private val highwayJunctionWayToleranceMetres = 2.0
+
+    /**
+     * Records on each road junction which roads it is on - see MvtFeature.junctionRoads - so that
+     * the travel callout only names a junction to somebody on its road.
+     *
+     * Searched for around the vehicle without that, a junction was announced on every road within
+     * reach of it: Cowcaddens Road and West Graham Street both got "at Junction 17, St George's
+     * Cross" from an M8 junction they don't touch.
+     *
+     * Every Way through the node counts, not just the nearest: the carriageway is split at the
+     * junction, and the slip road starts there too. Only Ways of the junction's own class, though.
+     * A slip road is classed with its road, so a motorway junction is on motorway Ways only, and
+     * that keeps it off a local road that happens to pass under the node - Carnoustie Street meets
+     * M8 junction 20 at 0.0m in the tiles, where it runs beneath it.
+     *
+     * A road is recorded by its ref and its name, which both carriageways share. That matters: a
+     * junction with an exit on only one side has a node on only that carriageway - M9 junctions 5
+     * and 6, M90 junction 2A - and it is still worth hearing about from the other.
+     */
+    private fun attachHighwayJunctionsToRoads(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val junctions = featureCollections[TreeId.HIGHWAY_JUNCTIONS.id].features
+        if (junctions.isEmpty()) return 0
+        val roadTree = localTrees[TreeId.ROADS.id]
+        var attached = 0
+
+        for (feature in junctions) {
+            val junction = feature as? MvtFeature ?: continue
+            val point = (junction.geometry as? Point)?.coordinates ?: continue
+            val junctionClass = junction.properties?.get("class") as? String ?: continue
+
+            val roads = mutableSetOf<String>()
+            for (candidate in roadTree.getNearbyCollection(
+                point, highwayJunctionWayToleranceMetres, ruler
+            )) {
+                val way = candidate as? Way ?: continue
+                if (way.featureValue != junctionClass) continue
+                val line = way.geometry as? LineString ?: continue
+                if (line.coordinates.size < 2) continue
+                if (ruler.distanceToLineString(point, line).distance >
+                    highwayJunctionWayToleranceMetres
+                ) continue
+                way.ref?.let { roads.add(it) }
+                way.name?.let { roads.add(it) }
+            }
+            if (roads.isNotEmpty()) {
+                junction.junctionRoads = roads
+                attached++
+            }
+        }
+        return attached
+    }
+
     /**
      * processGridState is now called from within the single thread that can access the tile grid.
      * This makes it somewhat performance critical. However, by doing this it allows us to
@@ -1041,16 +1102,18 @@ open class GridState(
         var transitStopsAttached = 0
         var railwayStopsAttached = 0
         var stationsAttached = 0
+        var junctionsAttached = 0
         val transitStopTiming = measureTime {
             transitStopsAttached = attachTransitStopsToWays(featureCollections, localTrees)
             railwayStopsAttached = attachRailwayStopsToWays(featureCollections, localTrees)
             // After the stop nodes, so that it can see which stations they already stand for.
             stationsAttached = attachStationsAsRailwayStops(featureCollections, localTrees)
+            junctionsAttached = attachHighwayJunctionsToRoads(featureCollections, localTrees)
         }
         println(
             "Transit stops took $transitStopTiming " +
                 "($transitStopsAttached road stops, $railwayStopsAttached railway stops, " +
-                "$stationsAttached stations as stops)"
+                "$stationsAttached stations as stops, $junctionsAttached highway junctions)"
         )
 
         if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
