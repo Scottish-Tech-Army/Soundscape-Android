@@ -73,10 +73,10 @@ Během cesty uslyšíte:
 
 * **Kde jste**, čas od času — silnici, po níž jedete, a směr jízdy, například „Jízda na sever po
   M8“. Silnice s číslem jsou ohlašovány svým číslem a Soundscape neopakuje tutéž silnici pokaždé,
-  když se změní název ulice.
+  když se změní název ulice. Silnice se ohlásí až poté, co po ní ujedete kus cesty, takže série odboček v obytné čtvrti nepřinese hlášení na každém rohu.
 * **Města a vesnice**, k nimž míříte, se vzdáleností, i ty, od nichž se vzdalujete nebo které jen
   míjíte.
-* **Dálniční křižovatky a sjezdy**, jakmile k nim dojedete.
+* **Dálniční křižovatky a sjezdy**, jakmile k nim dojedete. Jen ty na jízdním pásu, po kterém jedete – ne na silnici, kolem které projíždíte, ani na druhé straně dálnice.
 * **Velké orientační body**, které míjíte, například parky, nemocnice, stadiony a obchodní centra.
 * **Autobusové, tramvajové a vlakové zastávky**, které míjíte. Soundscape zmiňuje jen zastávky na
   vaší straně silnice, protože ty na protější straně slouží opačnému směru.
@@ -117,7 +117,7 @@ Nejčastěji o Soundscape slýcháme, že na rušných místech, jako je centrum
   opakuje. *Základní* ohlašuje jen ulice, křižovatky a orientační body. *Bez zvuku* nedělá žádná
   automatická hlášení, zatímco majáky, trasy a tlačítka na domovské obrazovce dál fungují. Nahrazuje
   starý přepínač *Povolit hlášení*; pokud jste ho měli vypnutý, najdete Podrobnost hlášení nastavenou
-  na Bez zvuku.
+  na Bez zvuku. Úrovně platí i při jízdě: *Zjednodušený* ohlašuje silnici, po které jedete, méně často a *Základní* jmenuje jen hlavní a číslované silnice a vynechává autobusové zastávky.
 * **Ulice a křižovatky** zapíná nebo vypíná hlášení o křižovatkách a o ulici, na které jste.
 * **Místa k ohlašování** je seznam k zaškrtnutí: Vše, Orientační body, Veřejná doprava, Jídlo a pití,
   Potraviny a smíšené zboží, Banky a bankomaty nebo Žádná místa. Zaškrtněte jich, kolik chcete,

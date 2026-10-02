@@ -76,10 +76,10 @@ Selama perjalanan Anda akan mendengar:
 
 * **Di mana Anda berada**, sesekali — jalan yang Anda lalui dan arah Anda, misalnya «Melaju ke utara
   di M8». Jalan bernomor diumumkan dengan nomornya, dan Soundscape tidak mengumumkan ulang jalan yang
-  sama setiap kali nama jalannya berubah.
+  sama setiap kali nama jalannya berubah. Sebuah jalan baru disebutkan setelah Anda melewatinya sejauh beberapa saat, sehingga serangkaian belokan di kompleks perumahan tidak memicu pemberitahuan di setiap tikungan.
 * **Kota dan desa** yang Anda tuju, lengkap dengan jaraknya, serta yang Anda tinggalkan atau sekadar
   Anda lewati.
-* **Simpang susun dan pintu keluar jalan tol** saat Anda mencapainya.
+* **Simpang susun dan pintu keluar jalan tol** saat Anda mencapainya. Hanya yang ada di jalur yang Anda lalui — bukan di jalan yang Anda lewati di dekatnya, atau di sisi lain jalan tol.
 * **Penanda besar** yang Anda lewati, seperti taman, rumah sakit, stadion, dan pusat perbelanjaan.
 * **Halte bus, trem, dan stasiun kereta** yang Anda lewati. Soundscape hanya menyebut halte di sisi
   jalan Anda, karena yang di seberang melayani arah sebaliknya.
@@ -125,7 +125,7 @@ pengganti daftar sakelar yang lama:
   kecil dan jalan servis serta lebih jarang mengulang. *Esensial* hanya menyebutkan jalan, persimpangan,
   dan landmark. *Senyap* tidak memberikan pemberitahuan otomatis sama sekali, sementara suar, rute,
   dan tombol di layar utama tetap berfungsi. Pengaturan ini menggantikan sakelar lama *Izinkan
-  Pemberitahuan*; jika sakelar itu mati, Tingkat Detail Pemberitahuan kini diatur ke Senyap.
+  Pemberitahuan*; jika sakelar itu mati, Tingkat Detail Pemberitahuan kini diatur ke Senyap. Tingkat ini juga berlaku saat bepergian: *Sederhana* lebih jarang menyebutkan jalan yang Anda lalui, dan *Esensial* hanya menyebutkan jalan utama dan jalan bernomor serta mengabaikan halte bus.
 * **Jalan dan Persimpangan** menyalakan atau mematikan pemberitahuan tentang persimpangan dan jalan
   yang sedang Anda lalui.
 * **Tempat yang Diberitahukan** adalah daftar yang bisa dicentang: Semua, Landmark, Transportasi Umum,

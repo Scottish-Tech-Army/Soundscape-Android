@@ -74,10 +74,10 @@ Počas cesty budete počuť:
 
 * **Kde ste**, čas od času — cestu, po ktorej idete, a smer jazdy, napríklad „Jazda na sever po M8“.
   Cesty s číslom sa ohlasujú svojím číslom a Soundscape neopakuje tú istú cestu vždy, keď sa zmení
-  názov ulice.
+  názov ulice. Cesta sa ohlási až potom, čo po nej prejdete kúsok, takže séria odbočiek cez obytnú štvrť neprinesie hlásenie na každom rohu.
 * **Mestá a dediny**, ku ktorým smerujete, so vzdialenosťou, ako aj tie, od ktorých sa vzďaľujete
   alebo ktoré len míňate.
-* **Diaľničné križovatky a zjazdy**, keď k nim prídete.
+* **Diaľničné križovatky a zjazdy**, keď k nim prídete. Iba tie na jazdnom páse, po ktorom idete – nie na ceste, okolo ktorej prechádzate, ani na druhej strane diaľnice.
 * **Veľké orientačné body**, ktoré míňate, napríklad parky, nemocnice, štadióny a nákupné centrá.
 * **Autobusové, električkové a vlakové zastávky**, ktoré míňate. Soundscape spomína len zastávky na
   vašej strane cesty, keďže tie na protiľahlej strane slúžia opačnému smeru.
@@ -119,7 +119,7 @@ nastavenia:
   menej sa opakuje. *Základný* ohlasuje len ulice, križovatky a orientačné body. *Bez zvuku* nerobí
   žiadne automatické hlásenia, zatiaľ čo majáky, trasy a tlačidlá na domovskej obrazovke ďalej
   fungujú. Nahrádza starý prepínač *Povoliť hlásenia*; ak ste ho mali vypnutý, nájdete Podrobnosť
-  hlásení nastavenú na Bez zvuku.
+  hlásení nastavenú na Bez zvuku. Úrovne platia aj pri cestovaní: *Zjednodušený* ohlasuje cestu, po ktorej idete, menej často a *Základný* uvádza iba hlavné a číslované cesty a vynecháva autobusové zastávky.
 * **Ulice a križovatky** zapína alebo vypína hlásenia o križovatkách a o ulici, na ktorej ste.
 * **Miesta na ohlasovanie** je zoznam na zaškrtnutie: Všetko, Orientačné body, Verejná doprava, Jedlo
   a nápoje, Potraviny a obchody so zmiešaným tovarom, Banky a bankomaty alebo Žiadne miesta.

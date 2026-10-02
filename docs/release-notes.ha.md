@@ -75,10 +75,10 @@ Yayin tafiya za ka ji:
 
 * **Inda kake**, lokaci zuwa lokaci — hanyar da kake kai da kuma inda kake fuskanta, misali «Tafiya
   arewa a kan M8». Ana sanar da hanyoyi masu lamba da lambarsu, kuma Soundscape ba ya sake sanar da
-  hanya guda a duk lokacin da sunan titin ya canza.
+  hanya guda a duk lokacin da sunan titin ya canza. Ana faɗin sunan hanya ne kawai bayan ka ɗan yi tafiya a kanta, don haka jerin juye-juye a cikin unguwar zama ba sa kawo sanarwa a kowace kwana.
 * **Garuruwa da kauyukan** da kake nufa, tare da nisa, da kuma wadanda kake nisantar su ko kake
   wucewa kusa da su kawai.
-* **Mahadar manyan hanyoyi da mafitarsu** idan ka isa gare su.
+* **Mahadar manyan hanyoyi da mafitarsu** idan ka isa gare su. Waɗanda ke ɓangaren hanyar da kake ciki kawai — ba na hanyar da kake wucewa kusa da ita ba, ko na ɗaya ɓangaren babbar hanyar ba.
 * **Manyan alamomi** yayin da kake wucewa, kamar wuraren shakatawa, asibitoci, filayen wasa da
   cibiyoyin sayayya.
 * **Tashoshin bas, tram da jirgin kasa** yayin da kake wucewa. Soundscape yana ambaton tashoshin da
@@ -124,7 +124,7 @@ Sashen *Sarrafa Sanarwa* na *Saitunan* yanzu yana da saiti uku maimakon tsohon j
   rage maimaitawa. *Muhimmi* yana sanar da tituna, mahaɗun hanyoyi da shahararrun wurare kawai. *Shiru* ba ya
   yin sanarwa ta kai tsaye ko kaɗan, amma siginar sauti, tafarkuna da maɓallan babban allo suna ci gaba da
   aiki. Yana maye gurbin tsohon makunnin *Ba da Izinin Sanarwowi*; idan ka kashe shi a da, Matakin Sanarwa
-  yanzu yana kan Shiru.
+  yanzu yana kan Shiru. Matakan suna aiki yayin tafiya a abin hawa ma: *Sauƙaƙe* yana ambaton hanyar da kake ciki ba sau da yawa ba, kuma *Muhimmi* yana ambaton manyan hanyoyi da hanyoyi masu lamba kawai, ba tare da tashoshin bas ba.
 * **Titina da Mahaɗun Hanyoyi** yana kunna ko kashe sanarwa game da mahaɗun hanyoyi da titin da kake kai.
 * **Wuraren da za a Sanar** jerin zaɓi ne: Komai, Shahararrun Wurare, Sufurin Jama'a, Abinci da Abin Sha,
   Kayan Abinci da Shagunan Sauƙi, Bankuna da ATM ko Babu Wurare. Zaɓi yawan da kake so, misali shahararrun

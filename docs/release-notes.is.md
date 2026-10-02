@@ -72,10 +72,10 @@ eða ferð út og gengur.
 
 * **Hvar þú ert**, öðru hverju — veginn sem þú ert á og stefnuna, til dæmis „Á leið norður eftir M8“.
   Vegir með númeri eru tilkynntir með númerinu og Soundscape endurtekur ekki sama veginn í hvert sinn
-  sem götuheitið breytist.
+  sem götuheitið breytist. Vegur er aðeins nefndur þegar þú hefur farið stuttan spöl eftir honum, svo að röð beygja í gegnum íbúðahverfi kallar ekki á tilkynningu við hvert horn.
 * **Bæi og þorp** sem þú stefnir að, ásamt fjarlægð, sem og þau sem þú fjarlægist eða ferð einfaldlega
   fram hjá.
-* **Vegamót og afreinar** þegar þú kemur að þeim.
+* **Vegamót og afreinar** þegar þú kemur að þeim. Aðeins þau sem eru á akbrautinni sem þú ert á – ekki á vegi sem þú ferð fram hjá eða hinum megin á hraðbrautinni.
 * **Stór kennileiti** sem þú ferð fram hjá, svo sem garða, sjúkrahús, leikvanga og verslunarmiðstöðvar.
 * **Strætó-, sporvagna- og lestarstöðvar** sem þú ferð fram hjá. Soundscape nefnir aðeins stöðvarnar
   þín megin við veginn, því þær hinum megin þjóna gagnstæðri átt.
@@ -118,7 +118,7 @@ rofalistans:
   endurtekur sig sjaldnar. *Nauðsynlegt* tilkynnir aðeins götur, gatnamót og kennileiti. *Þögult* gefur
   engar sjálfvirkar tilkynningar, en hljóðvitar, leiðir og hnapparnir á heimaskjánum virka áfram.
   Stillingin kemur í stað gamla rofans *Heimila tilkynningar*, og ef slökkt var á honum er
-  nákvæmnin nú stillt á Þögult.
+  nákvæmnin nú stillt á Þögult. Stigin gilda líka þegar þú ert á ferð: *Einfaldað* nefnir veginn sem þú ert á sjaldnar og *Nauðsynlegt* nefnir aðeins aðalvegi og númeraða vegi og sleppir stoppistöðvum.
 * **Götur og gatnamót** kveikir eða slekkur á tilkynningum um gatnamót og götuna sem þú ert á.
 * **Staðir til að tilkynna** er listi til að haka við: Allt, Kennileiti, Almenningssamgöngur, Matur og
   drykkur, Matvara og búðir, Bankar og hraðbankar eða Engir staðir. Hakaðu við eins marga og þú vilt,

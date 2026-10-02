@@ -82,10 +82,10 @@ Während der Fahrt hören Sie:
 * **Wo Sie sind**, in gewissen Abständen – die Straße, auf der Sie sich befinden, und Ihre
   Fahrtrichtung, zum Beispiel „Fahrt nach Norden auf der M8“. Straßen mit einer Nummer werden mit
   ihrer Nummer angesagt, und Soundscape wiederholt dieselbe Straße nicht jedes Mal, wenn sich deren
-  Straßenname ändert.
+  Straßenname ändert. Eine Straße wird erst genannt, wenn Sie ein kurzes Stück darauf gefahren sind, sodass eine Folge von Abbiegungen durch ein Wohngebiet nicht an jeder Ecke einen Hinweis auslöst.
 * **Städte und Dörfer**, auf die Sie zufahren, mit Entfernungsangabe, sowie solche, von denen Sie
   sich entfernen oder an denen Sie schlicht vorbeikommen.
-* **Autobahnkreuze und -ausfahrten**, sobald Sie sie erreichen.
+* **Autobahnkreuze und -ausfahrten**, sobald Sie sie erreichen. Nur die auf der Fahrbahn, auf der Sie fahren – nicht auf einer Straße in der Nähe oder auf der Gegenfahrbahn der Autobahn.
 * **Große Orientierungspunkte**, an denen Sie vorbeikommen, etwa Parks, Krankenhäuser, Stadien und
   Einkaufszentren.
 * **Bus-, Straßenbahn- und Bahnhaltestellen**, an denen Sie vorbeikommen. Soundscape nennt nur die
@@ -133,7 +133,7 @@ alten Liste von Schaltern jetzt drei Einstellungen:
   und Zufahrtsstraßen weg und wiederholt sich seltener. *Wesentlich* sagt nur Straßen, Kreuzungen und
   Orientierungspunkte an. *Stumm* macht überhaupt keine automatischen Hinweise mehr, während Beacons,
   Routen und die Tasten auf dem Startbildschirm weiter funktionieren. Die Einstellung ersetzt den alten
-  Schalter *Hinweise zulassen*; wenn Sie diesen ausgeschaltet hatten, steht der Detailgrad auf Stumm.
+  Schalter *Hinweise zulassen*; wenn Sie diesen ausgeschaltet hatten, steht der Detailgrad auf Stumm. Die Stufen gelten auch während der Fahrt: *Vereinfacht* nennt die Straße, auf der Sie fahren, seltener, und *Wesentlich* nennt nur Hauptstraßen und nummerierte Straßen und lässt Bushaltestellen weg.
 * **Straßen und Kreuzungen** schaltet die Hinweise zu Kreuzungen und zur Straße, auf der Sie sich
   befinden, ein oder aus.
 * **Anzusagende Orte** ist eine Liste zum Ankreuzen: Alles, Orientierungspunkte, Öffentliche

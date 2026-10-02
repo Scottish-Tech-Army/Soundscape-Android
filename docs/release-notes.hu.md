@@ -77,10 +77,10 @@ Utazás közben ezeket fogja hallani:
 
 * **Hol tart**, időnként — az utat, amelyen halad, és az irányát, például „Észak felé az M8-on”. A
   számozott utakat a számukkal mondja be, és a Soundscape nem ismétli meg ugyanazt az utat minden
-  alkalommal, amikor az utcanév megváltozik.
+  alkalommal, amikor az utcanév megváltozik. Egy utat csak akkor mond be, ha már megtett rajta egy rövid szakaszt, így egy lakóövezeten át vezető kanyarsor nem jár bemondással minden saroknál.
 * **Városok és falvak**, amelyek felé tart, a távolsággal együtt, valamint azok, amelyektől
   távolodik, vagy amelyeket egyszerűen elhagy.
-* **Autópálya-csomópontok és -lehajtók**, amint eléri őket.
+* **Autópálya-csomópontok és -lehajtók**, amint eléri őket. Csak azokat, amelyek az Ön által használt úttesten vannak – nem egy közeli úton vagy az autópálya másik oldalán.
 * **Nagy tájékozódási pontok**, amelyek mellett elhalad, például parkok, kórházak, stadionok és
   bevásárlóközpontok.
 * **Busz-, villamos- és vasúti megállók**, amelyek mellett elhalad. A Soundscape csak az Ön oldalán
@@ -126,7 +126,7 @@ beállítás van:
   szervizutakat, és ritkábban ismétli magát. A *Alapvető* csak az utcákat, a kereszteződéseket és a
   nevezetességeket mondja be. A *Néma* egyáltalán nem ad automatikus bemondásokat, az irányjelző hangok, az
   útvonalak és a kezdőképernyő gombjai azonban továbbra is működnek. A régi *Bemondások
-  engedélyezése* kapcsolót váltja fel; ha az ki volt kapcsolva, a részletesség most Némára van állítva.
+  engedélyezése* kapcsolót váltja fel; ha az ki volt kapcsolva, a részletesség most Némára van állítva. A szintek utazás közben is érvényesek: az *Egyszerűsített* ritkábban mondja be, melyik úton halad, az *Alapvető* pedig csak a főutakat és a számozott utakat nevezi meg, a buszmegállókat kihagyja.
 * Az **Utcák és kereszteződések** be- vagy kikapcsolja a kereszteződésekről és az éppen használt
   utcáról szóló bemondásokat.
 * A **Bemondandó helyek** egy bejelölhető lista: Minden, Nevezetességek, Tömegközlekedés, Étel és ital,

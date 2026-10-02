@@ -75,10 +75,10 @@ Matkan aikana kuulet:
 
 * **Missä olet**, aika ajoin — tien jolla ajat ja suuntasi, esimerkiksi »Matkalla pohjoiseen tietä M8
   pitkin«. Numeroidut tiet kuulutetaan numerollaan, eikä Soundscape kuuluta samaa tietä uudelleen aina
-  kun kadunnimi vaihtuu.
+  kun kadunnimi vaihtuu. Tie mainitaan vasta, kun olet kulkenut sitä hetken, joten käännösten sarja asuinalueen läpi ei tuo ilmoitusta joka kulmassa.
 * **Kaupungit ja kylät**, joita kohti matkaat, etäisyyden kera, sekä ne joista loitonnet tai jotka
   vain ohitat.
-* **Moottoritieliittymät ja -rampit** saapuessasi niiden kohdalle.
+* **Moottoritieliittymät ja -rampit** saapuessasi niiden kohdalle. Vain ne, jotka ovat omalla ajoradallasi – eivät läheisen tien tai moottoritien vastakkaisen ajoradan.
 * **Suuret maamerkit** ohittaessasi ne, kuten puistot, sairaalat, stadionit ja kauppakeskukset.
 * **Bussi-, raitiovaunu- ja juna-asemat** ohittaessasi ne. Soundscape mainitsee vain oman puolesi
   pysäkit, koska vastakkaisen puolen pysäkit palvelevat vastakkaista suuntaa.
@@ -122,7 +122,7 @@ kytkinluettelon sijaan:
   jättää pois pienet polut ja huoltotiet ja toistaa itseään harvemmin. *Olennainen* ilmoittaa vain
   kadut, risteykset ja maamerkit. *Äänetön* ei anna lainkaan automaattisia ilmoituksia, mutta
   majakat, reitit ja aloitusnäytön painikkeet toimivat edelleen. Se korvaa vanhan *Salli ilmoitukset*
-  -kytkimen, ja jos se oli pois päältä, tarkkuus on nyt Äänetön.
+  -kytkimen, ja jos se oli pois päältä, tarkkuus on nyt Äänetön. Tasot pätevät myös matkustaessa: *Yksinkertaistettu* kertoo tiestä, jolla olet, harvemmin, ja *Olennainen* mainitsee vain päätiet ja numeroidut tiet ja jättää linja-autopysäkit pois.
 * **Kadut ja risteykset** kytkee risteyksistä ja nykyisestä kadusta kertovat ilmoitukset päälle tai
   pois.
 * **Ilmoitettavat paikat** on valintaluettelo: Kaikki, Maamerkit, Julkinen liikenne, Ruoka ja juoma,

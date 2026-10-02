@@ -74,10 +74,10 @@ coborâți și mergeți pe jos.
 
 * **Unde vă aflați**, din când în când — drumul pe care circulați și direcția, de exemplu „Deplasare
   spre nord pe M8”. Drumurile cu număr sunt anunțate prin numărul lor, iar Soundscape nu reanunță
-  același drum de fiecare dată când se schimbă numele străzii.
+  același drum de fiecare dată când se schimbă numele străzii. Un drum este numit doar după ce ați parcurs o scurtă distanță pe el, astfel încât o serie de viraje printr-un cartier de locuințe nu aduce un anunț la fiecare colț.
 * **Orașele și satele** spre care vă îndreptați, cu distanța, precum și cele de care vă îndepărtați
   sau pe lângă care doar treceți.
-* **Nodurile și ieșirile de autostradă** pe măsură ce ajungeți la ele.
+* **Nodurile și ieșirile de autostradă** pe măsură ce ajungeți la ele. Doar cele de pe sensul pe care circulați – nu cele de pe un drum din apropiere sau de pe celălalt sens al autostrăzii.
 * **Repere mari** pe lângă care treceți, cum ar fi parcuri, spitale, stadioane și centre comerciale.
 * **Stații de autobuz, tramvai și tren** pe lângă care treceți. Soundscape menționează doar stațiile
   de pe partea dumneavoastră a drumului, întrucât cele de pe partea opusă deservesc sensul contrar.
@@ -122,7 +122,7 @@ comutatoare:
   serviciu și se repetă mai rar. *Esențial* anunță doar străzi, intersecții și repere. *Silențios* nu
   face deloc anunțuri automate, iar balizele, rutele și butoanele de pe ecranul principal continuă să
   funcționeze. Înlocuiește vechiul comutator *Permite anunțurile*; dacă îl aveați dezactivat, veți
-  găsi Detaliul anunțurilor setat pe Silențios.
+  găsi Detaliul anunțurilor setat pe Silențios. Nivelurile se aplică și când călătoriți: *Simplificat* numește mai rar drumul pe care vă aflați, iar *Esențial* numește doar drumurile principale și numerotate și omite stațiile de autobuz.
 * **Străzi și intersecții** activează sau dezactivează anunțurile despre intersecții și despre strada
   pe care vă aflați.
 * **Locuri de anunțat** este o listă de bifat: Tot, Repere, Transport public, Mâncare și băuturi,

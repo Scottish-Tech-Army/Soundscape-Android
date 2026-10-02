@@ -76,10 +76,10 @@ Onderweg hoort u:
 
 * **Waar u bent**, zo nu en dan: de weg waarop u zich bevindt en uw rijrichting, bijvoorbeeld
   «Noordwaarts over de M8». Genummerde wegen worden met hun nummer aangekondigd, en Soundscape
-  herhaalt dezelfde weg niet telkens wanneer de straatnaam verandert.
+  herhaalt dezelfde weg niet telkens wanneer de straatnaam verandert. Een weg wordt pas genoemd als u er een kort stuk over hebt gereden, zodat een reeks afslagen door een woonwijk niet op elke hoek een aankondiging oplevert.
 * **Steden en dorpen** waar u naartoe rijdt, met de afstand, evenals plaatsen waar u vandaan gaat of
   waar u eenvoudigweg langs komt.
-* **Knooppunten en afritten** zodra u ze bereikt.
+* **Knooppunten en afritten** zodra u ze bereikt. Alleen die op de rijbaan waarop u rijdt – niet op een weg waar u vlak langs komt of aan de andere kant van de snelweg.
 * **Grote oriëntatiepunten** waar u langs komt, zoals parken, ziekenhuizen, stadions en
   winkelcentra.
 * **Bus-, tram- en treinhaltes** waar u langs komt. Soundscape noemt alleen de haltes aan uw kant
@@ -126,7 +126,7 @@ plaats van de oude lijst met schakelaars:
   en herhaalt zich minder vaak. *Essentieel* kondigt alleen straten, kruispunten en herkenningspunten aan.
   *Stil* doet helemaal geen automatische aankondigingen, terwijl bakens, routes en de knoppen op het
   beginscherm gewoon blijven werken. Het vervangt de oude schakelaar *Aankondigingen toestaan*; als u
-  die had uitgezet, staat het detailniveau op Stil.
+  die had uitgezet, staat het detailniveau op Stil. De niveaus gelden ook als u reist: *Vereenvoudigd* noemt de weg waarop u rijdt minder vaak, en *Essentieel* noemt alleen hoofdwegen en genummerde wegen en laat bushaltes weg.
 * **Straten en kruispunten** zet de aankondigingen van kruispunten en van de straat waar u bent aan
   of uit.
 * **Aan te kondigen plaatsen** is een lijst om aan te vinken: Alles, Herkenningspunten, Openbaar
