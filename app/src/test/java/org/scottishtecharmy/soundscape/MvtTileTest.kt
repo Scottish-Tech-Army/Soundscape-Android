@@ -664,7 +664,7 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals("Traveling north along Allander Road near Milngavie", result!!.text)
-        assertEquals("On Allander Road near Milngavie", result.dedupText)
+        assertEquals("On Allander Road and close to Milngavie", result.dedupText)
     }
 
     @Test
