@@ -73,10 +73,10 @@ Trên đường đi bạn sẽ nghe:
 
 * **Bạn đang ở đâu**, thỉnh thoảng — con đường bạn đang đi và hướng di chuyển, ví dụ «Đang đi về phía
   bắc trên M8». Những con đường có số hiệu được thông báo bằng số hiệu, và Soundscape không lặp lại
-  cùng một con đường mỗi lần tên phố thay đổi.
+  cùng một con đường mỗi lần tên phố thay đổi. Tên đường chỉ được nêu khi bạn đã đi trên đó một đoạn ngắn, nên khi rẽ liên tục qua một khu dân cư, bạn sẽ không nghe thông báo ở mỗi góc phố.
 * **Các thị trấn và làng mạc** bạn đang tiến tới, kèm khoảng cách, cũng như những nơi bạn đang rời xa
   hoặc chỉ đi ngang qua.
-* **Các nút giao và lối ra đường cao tốc** khi bạn tới nơi.
+* **Các nút giao và lối ra đường cao tốc** khi bạn tới nơi. Chỉ những nút giao ở phía làn đường bạn đang đi — không phải trên con đường bạn đi ngang gần đó hay ở chiều ngược lại của đường cao tốc.
 * **Những mốc lớn** khi bạn đi ngang, chẳng hạn công viên, bệnh viện, sân vận động và trung tâm mua
   sắm.
 * **Các điểm dừng xe buýt, tàu điện và ga tàu** khi bạn đi ngang. Soundscape chỉ nhắc những điểm dừng
@@ -121,7 +121,7 @@ cũ:
   lặp lại hơn. *Thiết yếu* chỉ thông báo đường phố, giao lộ và điểm mốc. *Im lặng* hoàn toàn không đưa
   ra thông báo tự động, trong khi đèn hiệu, lộ trình và các nút trên màn hình chính vẫn hoạt động. Nó
   thay cho công tắc cũ *Cho phép thông báo âm thanh*; nếu bạn đã tắt công tắc đó, Mức chi tiết thông
-  báo giờ sẽ ở Im lặng.
+  báo giờ sẽ ở Im lặng. Các mức này cũng áp dụng khi bạn di chuyển: *Đơn giản* ít nêu tên con đường bạn đang đi hơn, còn *Thiết yếu* chỉ nêu đường chính và đường có số hiệu, và bỏ qua điểm dừng xe buýt.
 * **Đường phố và giao lộ** bật hoặc tắt thông báo về giao lộ và con đường bạn đang đi.
 * **Địa điểm cần thông báo** là một danh sách để đánh dấu: Tất cả, Điểm mốc, Phương tiện công cộng, Ăn
   uống, Cửa hàng tạp hóa và cửa hàng tiện lợi, Ngân hàng và ATM, hoặc Không địa điểm. Đánh dấu bao nhiêu

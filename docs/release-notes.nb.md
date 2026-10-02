@@ -75,9 +75,9 @@ Underveis hører du:
 
 * **Hvor du er**, med jevne mellomrom — veien du kjører på og retningen din, for eksempel «Kjører
   nordover langs M8». Veier med nummer kunngjøres med nummeret sitt, og Soundscape gjentar ikke den
-  samme veien hver gang gatenavnet skifter.
+  samme veien hver gang gatenavnet skifter. En vei nevnes først når du har fulgt den et lite stykke, så en rekke svinger gjennom et boligfelt ikke gir en melding i hvert hjørne.
 * **Byer og tettsteder** du kjører mot, med avstanden, samt de du kjører fra eller bare passerer.
-* **Motorveikryss og avkjørsler** når du når dem.
+* **Motorveikryss og avkjørsler** når du når dem. Bare de på den siden av motorveien du kjører på – ikke på en vei du passerer i nærheten.
 * **Store landemerker** du passerer, som parker, sykehus, stadioner og kjøpesentre.
 * **Buss-, trikke- og togholdeplasser** du passerer. Soundscape nevner bare holdeplassene på din side
   av veien, siden de på motsatt side betjener motsatt retning.
@@ -121,7 +121,7 @@ listen med brytere:
   tjenesteveier og gjentar seg sjeldnere. *Grunnleggende* leser bare opp gater, veikryss og landemerker.
   *Lydløs* gir ingen automatiske meldinger i det hele tatt, mens lydsignaler, ruter og knappene på
   startskjermen fortsatt virker. Den erstatter den gamle bryteren *Tillat meldinger*, og hvis du
-  hadde den slått av, står detaljnivået nå på Lydløs.
+  hadde den slått av, står detaljnivået nå på Lydløs. Nivåene gjelder også når du reiser: *Forenklet* nevner veien du er på sjeldnere, og *Grunnleggende* nevner bare hovedveier og nummererte veier og utelater busstopp.
 * **Gater og veikryss** slår meldinger om veikryss og om gaten du er på, av eller på.
 * **Steder som skal leses opp** er en liste du kan krysse av i: Alt, Landemerker, Offentlig
   transport, Mat og drikke, Dagligvarer og nærbutikker, Banker og minibanker eller Ingen steder. Kryss

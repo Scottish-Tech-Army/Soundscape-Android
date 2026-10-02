@@ -73,10 +73,10 @@ Tijekom putovanja čut ćete:
 
 * **Gdje se nalazite**, s vremena na vrijeme — cestu kojom se krećete i smjer, primjerice „Vožnja
   prema sjeveru cestom M8”. Ceste s brojem najavljuju se svojim brojem, a Soundscape ne ponavlja istu
-  cestu svaki put kad se promijeni naziv ulice.
+  cestu svaki put kad se promijeni naziv ulice. Cesta se najavljuje tek kad se njome provezete kraći dio, pa niz skretanja kroz stambeno naselje ne donosi najavu na svakom uglu.
 * **Gradove i sela** prema kojima idete, s udaljenošću, kao i one od kojih se udaljavate ili pokraj
   kojih jednostavno prolazite.
-* **Čvorišta i izlaze s autoceste** kada do njih dođete.
+* **Čvorišta i izlaze s autoceste** kada do njih dođete. Samo oni na kolniku kojim se vozite – ne na obližnjoj cesti ni na suprotnoj strani autoceste.
 * **Velike orijentire** pokraj kojih prolazite, poput parkova, bolnica, stadiona i trgovačkih centara.
 * **Autobusna, tramvajska i željeznička stajališta** pokraj kojih prolazite. Soundscape spominje samo
   stajališta na vašoj strani ceste jer ona na suprotnoj strani služe suprotnom smjeru.
@@ -117,7 +117,7 @@ Odjeljak *Upravljanje najavama* u *Postavkama* sada umjesto starog popisa prekid
   rjeđe se ponavlja. *Osnovno* najavljuje samo ulice, raskrižja i znamenitosti. *Bez zvuka* uopće ne daje
   automatske najave, dok svjetionici, rute i tipke na početnom zaslonu i dalje rade. Zamjenjuje stari
   prekidač *Omogući najave*; ako ste ga imali isključenog, razina detalja sada je postavljena na Bez
-  zvuka.
+  zvuka. Razine vrijede i dok putujete: *Pojednostavljeno* rjeđe navodi cestu kojom se vozite, a *Osnovno* navodi samo glavne i numerirane ceste i izostavlja autobusna stajališta.
 * **Ulice i raskrižja** uključuje ili isključuje najave raskrižja i ulice na kojoj se nalazite.
 * **Mjesta za najavu** je popis za označavanje: Sve, Znamenitosti, Javni prijevoz, Hrana i piće,
   Namirnice i trgovine mješovitom robom, Banke i bankomati ili Bez mjesta. Označite ih koliko želite,

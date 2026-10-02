@@ -78,10 +78,10 @@ Durante il viaggio sentirai:
 
 * **Dove ti trovi**, di tanto in tanto: la strada su cui sei e la direzione di marcia, per esempio
   «In viaggio verso nord lungo la M8». Le strade con un numero vengono annunciate con il loro numero
-  e Soundscape non riannuncia la stessa strada a ogni cambio di toponimo.
+  e Soundscape non riannuncia la stessa strada a ogni cambio di toponimo. Una strada viene nominata solo dopo che l'hai percorsa per un breve tratto, così una serie di svolte in un quartiere residenziale non porta una notifica a ogni angolo.
 * **Città e paesi** verso cui ti dirigi, con la distanza, oltre a quelli da cui ti allontani o
   davanti a cui semplicemente passi.
-* **Svincoli e uscite autostradali** quando li raggiungi.
+* **Svincoli e uscite autostradali** quando li raggiungi. Solo quelli della carreggiata che stai percorrendo, non quelli di una strada vicina o della carreggiata opposta dell'autostrada.
 * **Grandi punti di riferimento** mentre li superi, come parchi, ospedali, stadi e centri
   commerciali.
 * **Fermate di autobus, tram e treno** mentre le superi. Soundscape cita solo le fermate sul tuo
@@ -129,7 +129,7 @@ della vecchia lista di interruttori:
   solo strade, incroci e punti di riferimento. *Silenzioso* non fa nessuna notifica automatica, mentre
   audiofari, percorsi e pulsanti della schermata principale continuano a funzionare. Sostituisce il
   vecchio interruttore *Consenti notifiche*: se lo avevi disattivato, troverai il Dettaglio delle
-  notifiche impostato su Silenzioso.
+  notifiche impostato su Silenzioso. I livelli valgono anche quando viaggi: *Semplificato* nomina meno spesso la strada che stai percorrendo, ed *Essenziale* nomina solo le strade principali e numerate e tralascia le fermate dell'autobus.
 * **Strade e incroci** attiva o disattiva le notifiche sugli incroci e sulla strada in cui ti trovi.
 * **Luoghi da annunciare** è un elenco da spuntare: Tutto, Punti di riferimento, Trasporto pubblico,
   Cibi e bevande, Generi alimentari e minimarket, Banche e sportelli bancomat oppure Nessun luogo.

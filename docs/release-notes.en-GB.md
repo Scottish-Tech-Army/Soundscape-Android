@@ -70,10 +70,13 @@ While you're travelling you'll hear:
 
 * **Where you are**, every so often - the road you're on and the direction you're going, for
   example "Travelling north along M8". Roads with a number are announced by their number, and
-  Soundscape won't keep re-announcing the same road each time its street name changes.
+  Soundscape won't keep re-announcing the same road each time its street name changes. A road is
+  only named once you've stayed on it for a short distance, so a run of turns through a housing
+  estate doesn't bring a callout at every corner.
 * **Towns and villages** you're heading towards, with the distance, as well as ones you're moving
   away from or simply passing.
-* **Motorway junctions and exits** as you reach them.
+* **Motorway junctions and exits** as you reach them, on the carriageway you're on - not ones on a
+  road you're passing nearby, or on the other side of the motorway.
 * **Large landmarks** as you pass them, such as parks, hospitals, stadiums and shopping centres.
 * **Bus, tram and train stops** as you pass them. Soundscape only mentions the stops on your side
   of the road, since the ones on the far side serve the opposite direction.
@@ -119,7 +122,9 @@ list of switches:
   repeats itself less often. *Essential* calls out only streets, junctions and landmarks. *Silent* makes
   no automatic callouts at all, while beacons, routes and the home screen buttons carry on working.
   It replaces the old *Allow Callouts* switch, and if you had that switched off you'll find
-  Callout Detail set to Silent.
+  Callout Detail set to Silent. The levels apply when you're travelling too: *Simplified*
+  describes the road you're on less often, and *Essential* names only main and numbered roads and
+  leaves out bus stops.
 * **Streets and Junctions** turns the callouts for intersections and the road you're on on or off.
 * **Places to Call Out** is a list you can tick: Everything, Landmarks, Public Transit, Food and
   Drink, Groceries, Banks or No Places. Tick as many as you like - for example landmarks and bus

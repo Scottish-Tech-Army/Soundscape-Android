@@ -74,10 +74,10 @@ Podczas podróży usłyszysz:
 
 * **Gdzie jesteś**, co jakiś czas — drogę, którą jedziesz, i kierunek jazdy, na przykład „Jazda na
   północ drogą M8”. Drogi z numerem Soundscape nazywa ich numerem, a Soundscape nie powtarza tej samej
-  drogi za każdym razem, gdy zmienia się nazwa ulicy.
+  drogi za każdym razem, gdy zmienia się nazwa ulicy. Droga jest wymieniana dopiero wtedy, gdy przejedziesz nią krótki odcinek, więc seria skrętów przez osiedle nie powoduje powiadomienia na każdym rogu.
 * **Miasta i wsie**, w kierunku których jedziesz, wraz z odległością, a także te, od których się
   oddalasz lub które po prostu mijasz.
-* **Węzły i zjazdy z autostrady**, gdy do nich dojeżdżasz.
+* **Węzły i zjazdy z autostrady**, gdy do nich dojeżdżasz. Tylko te na jezdni, którą jedziesz – nie na pobliskiej drodze ani po drugiej stronie autostrady.
 * **Duże punkty orientacyjne**, które mijasz, takie jak parki, szpitale, stadiony i centra handlowe.
 * **Przystanki autobusowe, tramwajowe i stacje kolejowe**, które mijasz. Soundscape wymienia tylko
   przystanki po twojej stronie drogi, ponieważ te po przeciwnej obsługują przeciwny kierunek.
@@ -122,7 +122,7 @@ przełączników:
   mniejsze ścieżki i drogi dojazdowe i rzadziej się powtarza. *Podstawowy* powiadamia tylko o ulicach,
   skrzyżowaniach i punktach orientacyjnych. *Wyciszony* nie daje żadnych automatycznych powiadomień, a
   dźwięk naprowadzający, trasy i przyciski ekranu głównego nadal działają. Zastępuje dawny przełącznik
-  *Zezwól na powiadomienia*; jeśli był wyłączony, szczegółowość jest teraz ustawiona na Wyciszony.
+  *Zezwól na powiadomienia*; jeśli był wyłączony, szczegółowość jest teraz ustawiona na Wyciszony. Poziomy obowiązują też w podróży: *Uproszczony* rzadziej podaje drogę, którą jedziesz, a *Podstawowy* wymienia tylko drogi główne i numerowane i pomija przystanki autobusowe.
 * **Ulice i skrzyżowania** włącza lub wyłącza powiadomienia o skrzyżowaniach i o ulicy, na której
   jesteś.
 * **Powiadamiaj o miejscach** to lista do zaznaczenia: Wszystko, Punkty orientacyjne, Transport

@@ -76,10 +76,10 @@ Durante a viagem você vai ouvir:
 
 * **Onde você está**, de tempos em tempos: a rodovia em que está e a direção em que segue, por
   exemplo «Seguindo para o norte pela M8». Rodovias com número são anunciadas pelo número, e o
-  Soundscape não repete a mesma rodovia toda vez que o nome da rua muda.
+  Soundscape não repete a mesma rodovia toda vez que o nome da rua muda. Uma via só é anunciada depois que você percorre um trecho curto nela, para que uma sequência de curvas por um bairro residencial não gere uma notificação a cada esquina.
 * **Cidades e vilarejos** para os quais você está indo, com a distância, além daqueles dos quais
   você se afasta ou pelos quais simplesmente passa.
-* **Entroncamentos e saídas de rodovia** ao alcançá-los.
+* **Entroncamentos e saídas de rodovia** ao alcançá-los. Apenas os da pista em que você está — não os de uma via próxima nem os do outro sentido da rodovia.
 * **Grandes pontos de referência** ao passar por eles, como parques, hospitais, estádios e shopping
   centers.
 * **Pontos de ônibus, de bonde e estações de trem** ao passar por eles. O Soundscape menciona apenas
@@ -126,7 +126,7 @@ lista de chaves:
   pontos de referência. *Silencioso* não faz nenhuma notificação automática, enquanto sinalizadores,
   rotas e os botões da tela inicial continuam funcionando. Ele substitui a antiga chave *Permitir
   Notificações*: se ela estava desligada, você vai encontrar o Detalhe das Notificações em
-  Silencioso.
+  Silencioso. Os níveis também valem quando você viaja: *Simplificado* anuncia a via em que você está com menos frequência, e *Essencial* nomeia apenas as rodovias principais e numeradas e omite os pontos de ônibus.
 * **Ruas e Cruzamentos** liga ou desliga as notificações de cruzamentos e da rua em que você está.
 * **Locais a Anunciar** é uma lista para marcar: Tudo, Pontos de Referência, Transporte Público,
   Alimentos e Bebidas, Mercearias e Lojas de Conveniência, Bancos e Caixas Eletrônicos ou Nenhum

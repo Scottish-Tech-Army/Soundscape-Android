@@ -75,10 +75,10 @@ Durante a viagem irá ouvir:
 
 * **Onde está**, de tempos a tempos: a estrada em que segue e a direção que leva, por exemplo «A
   seguir para norte pela M8». As estradas com número são anunciadas pelo número e o Soundscape não
-  volta a anunciar a mesma estrada sempre que muda o nome da rua.
+  volta a anunciar a mesma estrada sempre que muda o nome da rua. Uma estrada só é anunciada depois de a percorrer durante uma curta distância, para que uma série de mudanças de direção num bairro residencial não traga um aviso a cada esquina.
 * **Vilas e cidades** para onde se dirige, com a distância, bem como aquelas de que se afasta ou por
   que simplesmente passa.
-* **Nós e saídas de autoestrada** quando os alcança.
+* **Nós e saídas de autoestrada** quando os alcança. Apenas os da faixa de rodagem em que circula — não os de uma estrada por onde passa perto, nem os do outro sentido da autoestrada.
 * **Grandes pontos de referência** por que passa, como parques, hospitais, estádios e centros
   comerciais.
 * **Paragens de autocarro, elétrico e comboio** por que passa. O Soundscape menciona apenas as
@@ -125,7 +125,7 @@ de interruptores:
   secundários e vias de serviço e repete-se menos. *Essencial* anuncia apenas ruas, cruzamentos e
   pontos de referência. *Silencioso* não faz avisos automáticos, enquanto os sinais, os percursos e
   os botões do ecrã principal continuam a funcionar. Substitui o antigo interruptor *Permitir
-  Avisos*: se o tinha desligado, vai encontrar o Detalhe dos Avisos em Silencioso.
+  Avisos*: se o tinha desligado, vai encontrar o Detalhe dos Avisos em Silencioso. Os níveis também se aplicam quando viaja: *Simplificado* anuncia com menos frequência a estrada em que está, e *Essencial* nomeia apenas as estradas principais e numeradas e omite as paragens de autocarro.
 * **Ruas e Cruzamentos** liga ou desliga os avisos sobre cruzamentos e sobre a rua onde está.
 * **Locais a Anunciar** é uma lista para assinalar: Tudo, Pontos de Referência, Transportes Públicos,
   Gastronomia, Mercearias e Lojas de Conveniência, Bancos e Caixas Multibanco ou Nenhum Local.

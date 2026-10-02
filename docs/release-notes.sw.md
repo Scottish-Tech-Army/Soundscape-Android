@@ -74,10 +74,10 @@ Wakati wa safari utasikia:
 
 * **Ulipo**, mara kwa mara — barabara uliyopo na mwelekeo wako, kwa mfano «Unaelekea kaskazini kwenye
   M8». Barabara zenye namba hutangazwa kwa namba zake, na Soundscape hairudii barabara ileile kila
-  jina la mtaa linapobadilika.
+  jina la mtaa linapobadilika. Barabara hutajwa tu baada ya kuwa umeifuata kwa umbali mfupi, kwa hivyo mfululizo wa kona katika mtaa wa makazi hauleti tangazo kila kona.
 * **Miji na vijiji** unavyoelekea, pamoja na umbali, pia vile unavyoviacha nyuma au unavyopita tu
   karibu navyo.
-* **Makutano na maeneo ya kutokea barabara kuu** unapoyafikia.
+* **Makutano na maeneo ya kutokea barabara kuu** unapoyafikia. Yale tu yaliyo upande wa barabara unaoutumia — si ya barabara unayoipita karibu, wala ya upande wa pili wa barabara kuu.
 * **Alama kubwa** unapozipita, kama bustani, hospitali, viwanja vya michezo na vituo vya ununuzi.
 * **Vituo vya basi, tramu na treni** unapovipita. Soundscape hutaja tu vituo vilivyo upande wako wa
   barabara, kwa kuwa vile vya upande wa pili hutumikia mwelekeo tofauti.
@@ -122,7 +122,7 @@ orodha ya zamani ya swichi:
   mara chache. *Muhimu* hutangaza barabara, makutano na vivutio pekee. *Kimya* haitoi matangazo ya kiotomatiki
   kabisa, huku beacon, njia na vitufe vya skrini ya mwanzo vikiendelea kufanya kazi. Unachukua nafasi ya
   swichi ya zamani *Ruhusu Matangazo ya Sauti*; kama ulikuwa umeizima, Kiwango cha Matangazo sasa kiko
-  kwenye Kimya.
+  kwenye Kimya. Viwango hivi vinatumika pia unaposafiri: *Rahisi* hutaja barabara uliyopo mara chache zaidi, na *Muhimu* hutaja barabara kuu na barabara zenye namba pekee na huacha vituo vya basi.
 * **Barabara na Makutano** huwasha au kuzima matangazo ya makutano na ya barabara uliyopo.
 * **Sehemu za Kutangaza** ni orodha ya kuchagua: Kila Kitu, Vivutio, Usafiri wa Umma, Chakula na Vinywaji,
   Maduka ya Vyakula na Bidhaa Muhimu, Benki na Mashine za ATM au Hakuna Sehemu. Chagua nyingi kadri

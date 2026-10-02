@@ -73,10 +73,10 @@ Durant el trajecte sentireu:
 
 * **On sou**, de tant en tant: la carretera per on aneu i la direcció, per exemple «Circulant cap al
   nord per la M8». Les carreteres amb número s'anuncien pel número, i Soundscape no torna a anunciar
-  la mateixa carretera cada cop que en canvia el nom del carrer.
+  la mateixa carretera cada cop que en canvia el nom del carrer. Una carretera només s'anomena quan hi heu fet un tram curt, de manera que una tirallonga de girs per una urbanització no comporta un avís a cada cantonada.
 * **Pobles i ciutats** cap on aneu, amb la distància, així com aquells dels quals us allunyeu o
   simplement passeu a prop.
-* **Enllaços i sortides d'autopista** quan hi arribeu.
+* **Enllaços i sortides d'autopista** quan hi arribeu. Només els de la calçada per on aneu, no els d'una carretera propera ni els de l'altre sentit de l'autopista.
 * **Grans punts de referència** en passar-hi, com ara parcs, hospitals, estadis i centres comercials.
 * **Parades d'autobús, de tramvia i estacions de tren** en passar-hi. Soundscape només esmenta les
   parades del vostre costat de la via, ja que les del costat contrari serveixen el sentit oposat.
@@ -122,7 +122,7 @@ l'antiga llista d'interruptors:
   de servei i es repeteix menys. *Essencial* només anuncia carrers, cruïlles i punts de referència.
   *Silenciós* no fa cap avís automàtic, mentre que les balises, les rutes i els botons de la pantalla
   principal continuen funcionant. Substitueix l'antic interruptor *Permet els avisos de veu*: si el
-  teníeu desactivat, trobareu el Detall dels avisos de veu a Silenciós.
+  teníeu desactivat, trobareu el Detall dels avisos de veu a Silenciós. Els nivells també s'apliquen quan viatgeu: *Simplificat* descriu menys sovint la carretera per on aneu, i *Essencial* només anomena les carreteres principals i numerades i deixa de banda les parades d'autobús.
 * **Carrers i cruïlles** activa o desactiva els avisos de cruïlles i del carrer on sou.
 * **Llocs per anunciar** és una llista per marcar: Tot, Punts de referència, Transport públic, Menjar i
   begudes, Queviures i botigues de conveniència, Bancs i caixers automàtics o Cap lloc. Marqueu-ne tants

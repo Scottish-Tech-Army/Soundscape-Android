@@ -79,10 +79,10 @@ Mientras viajas oirás:
 
 * **Dónde estás**, de vez en cuando: la carretera por la que circulas y la dirección que llevas, por
   ejemplo «Circulando hacia el norte por la M8». Las carreteras con número se anuncian por su
-  número, y Soundscape no repite la misma carretera cada vez que cambia el nombre de la calle.
+  número, y Soundscape no repite la misma carretera cada vez que cambia el nombre de la calle. Una carretera solo se nombra cuando llevas un tramo corto por ella, así que una serie de giros por una urbanización no provoca un aviso en cada esquina.
 * **Pueblos y ciudades** hacia los que te diriges, con la distancia, así como aquellos de los que te
   alejas o por los que simplemente pasas.
-* **Enlaces y salidas de autopista** al llegar a ellos.
+* **Enlaces y salidas de autopista** al llegar a ellos. Solo los de la calzada por la que vas, no los de una carretera cercana ni los del otro sentido de la autopista.
 * **Grandes puntos de referencia** al pasar junto a ellos, como parques, hospitales, estadios y
   centros comerciales.
 * **Paradas de autobús, tranvía y tren** al pasar junto a ellas. Soundscape solo menciona las
@@ -128,7 +128,7 @@ antigua lista de interruptores:
   secundarios y las vías de servicio y se repite menos. *Esencial* solo avisa de calles, cruces y
   puntos de referencia. *Silencioso* no hace ningún aviso automático, mientras que las señales, las
   rutas y los botones de la pantalla principal siguen funcionando. Sustituye al antiguo interruptor
-  *Permitir avisos*: si lo tenías desactivado, verás el Detalle de los avisos en Silencioso.
+  *Permitir avisos*: si lo tenías desactivado, verás el Detalle de los avisos en Silencioso. Los niveles también se aplican cuando viajas: *Simplificado* describe con menos frecuencia la carretera por la que vas, y *Esencial* solo nombra las carreteras principales y numeradas y omite las paradas de autobús.
 * **Calles y cruces** activa o desactiva los avisos de cruces y de la calle en la que estás.
 * **Lugares de los que avisar** es una lista para marcar: Todo, Puntos de referencia, Transporte
   público, Comida y bebidas, Comestibles y tiendas multiservicios, Bancos y cajeros automáticos o

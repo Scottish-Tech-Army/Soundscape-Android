@@ -83,10 +83,10 @@ Pendant le trajet, vous entendrez :
 
 * **Où vous êtes**, de temps à autre : la route sur laquelle vous circulez et votre direction, par
   exemple « En direction du nord sur la M8 ». Les routes numérotées sont annoncées par leur numéro,
-  et Soundscape ne réannonce pas la même route à chaque changement de nom de rue.
+  et Soundscape ne réannonce pas la même route à chaque changement de nom de rue. Une route n'est annoncée qu'après que vous l'avez suivie sur une courte distance, si bien qu'une série de virages dans un quartier résidentiel ne déclenche pas une annonce à chaque coin de rue.
 * **Les villes et les villages** vers lesquels vous vous dirigez, avec la distance, ainsi que ceux
   dont vous vous éloignez ou devant lesquels vous passez simplement.
-* **Les échangeurs et les sorties d'autoroute** au moment où vous les atteignez.
+* **Les échangeurs et les sorties d'autoroute** au moment où vous les atteignez. Seulement ceux de la chaussée sur laquelle vous roulez, et non ceux d'une route voisine ou de l'autre sens de l'autoroute.
 * **Les grands points de repère** devant lesquels vous passez : parcs, hôpitaux, stades et centres
   commerciaux.
 * **Les arrêts d’autobus, de tramway et les gares** devant lesquels vous passez. Soundscape ne mentionne
@@ -135,7 +135,7 @@ trois réglages à la place de l’ancienne liste d’interrupteurs :
   croisements et les repères. *Silencieux* ne fait plus aucune annonce automatique, tandis que
   les balises sonores, les itinéraires et les boutons de l’écran d’accueil continuent de fonctionner. Il
   remplace l’ancien interrupteur *Autoriser les annonces* : si vous l’aviez désactivé, vous
-  trouverez le Détail des annonces réglé sur Silencieux.
+  trouverez le Détail des annonces réglé sur Silencieux. Les niveaux s'appliquent aussi pendant vos déplacements : *Simplifié* annonce moins souvent la route sur laquelle vous êtes, et *Minimal* ne nomme que les routes principales et numérotées, sans les arrêts de bus.
 * **Rues et croisements** active ou désactive les annonces sur les croisements et sur la
   rue où vous êtes.
 * **Lieux à annoncer** est une liste à cocher : Tout, Repères, Transport public, Alimentation et

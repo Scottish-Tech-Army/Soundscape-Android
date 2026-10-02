@@ -72,10 +72,10 @@ Sõidu ajal kuuled:
 
 * **Kus sa oled**, aeg-ajalt — tee, millel sõidad, ja sinu suund, näiteks „Sõit põhja suunas mööda
   M8-t”. Numbriga teed teatatakse nende numbriga ning Soundscape ei korda sama teed iga kord, kui
-  tänava nimi muutub.
+  tänava nimi muutub. Teed nimetatakse alles siis, kui oled sellel natuke maad sõitnud, nii et pöörete jada läbi elurajooni ei too kaasa teadet igal nurgal.
 * **Linnad ja külad**, mille poole liigud, koos vahemaaga, samuti need, millest eemaldud või millest
   lihtsalt möödud.
-* **Maanteesõlmed ja mahasõidud**, kui nendeni jõuad.
+* **Maanteesõlmed ja mahasõidud**, kui nendeni jõuad. Ainult need, mis on sinu sõidusuunas – mitte lähedal asuval teel ega kiirtee vastassuunas.
 * **Suured maamärgid**, millest möödud, näiteks pargid, haiglad, staadionid ja kaubanduskeskused.
 * **Bussi-, trammi- ja rongipeatused**, millest möödud. Soundscape mainib ainult sinupoolseid
   peatusi, sest teisel pool teed asuvad teenindavad vastassuunda.
@@ -118,7 +118,7 @@ seadistust:
   rajad ja teenindusteed ning kordab ennast harvem. *Põhiline* teatab ainult tänavatest, ristmikest ja
   maamärkidest. *Hääletu* ei tee üldse automaatseid häälteateid, kuid helimajakad, marsruudid ja
   avakuva nupud töötavad edasi. See asendab vana lüliti *Luba häälteated*; kui see oli välja lülitatud,
-  on detailsus nüüd seatud olekusse Hääletu.
+  on detailsus nüüd seatud olekusse Hääletu. Tasemed kehtivad ka sõites: *Lihtsustatud* nimetab teed, millel oled, harvemini ja *Põhiline* nimetab ainult põhi- ja numbriga teid ning jätab bussipeatused välja.
 * **Tänavad ja ristmikud** lülitab sisse või välja häälteated ristmike ja tänava kohta, millel olete.
 * **Teatatavad kohad** on märgitav loend: Kõik, Maamärgid, Ühistransport, Toit ja jook, Toidupoed ja
   väikepoed, Pangad ja sularahaautomaadid või Ühtegi kohta. Märkige nii palju, kui soovite, näiteks

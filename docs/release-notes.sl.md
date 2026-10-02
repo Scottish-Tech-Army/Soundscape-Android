@@ -72,10 +72,10 @@ Med potovanjem boste slišali:
 
 * **Kje ste**, občasno — cesto, po kateri vozite, in svojo smer, na primer »Vožnja proti severu po
   M8«. Ceste s številko se najavijo s svojo številko, Soundscape pa iste ceste ne ponavlja vsakič, ko
-  se spremeni ime ulice.
+  se spremeni ime ulice. Cesta je imenovana šele, ko se po njej peljete kratek odsek, tako da niz zavojev skozi stanovanjsko sosesko ne prinese obvestila na vsakem vogalu.
 * **Mesta in vasi**, proti katerim se peljete, z razdaljo, pa tudi tiste, od katerih se oddaljujete
   ali jih zgolj mimoidete.
-* **Avtocestna vozlišča in izvoze**, ko jih dosežete.
+* **Avtocestna vozlišča in izvoze**, ko jih dosežete. Samo tista na smernem vozišču, po katerem vozite – ne na bližnji cesti ali na nasprotni strani avtoceste.
 * **Velike orientirje**, mimo katerih peljete, kot so parki, bolnišnice, stadioni in nakupovalna
   središča.
 * **Avtobusna, tramvajska in železniška postajališča**, mimo katerih peljete. Soundscape omenja le
@@ -118,7 +118,7 @@ nastavitve:
   ter se redkeje ponavlja. *Osnovno* najavi samo ulice, križišča in znamenitosti. *Brez zvoka* ne daje
   nobenih samodejnih obvestil, svetilniki, poti in gumbi na domačem zaslonu pa še naprej delujejo.
   Nadomešča staro stikalo *Omogoči zvočna obvestila*; če ste ga imeli izklopljenega, je raven
-  podrobnosti zdaj nastavljena na Brez zvoka.
+  podrobnosti zdaj nastavljena na Brez zvoka. Ravni veljajo tudi med potovanjem: *Poenostavljeno* redkeje navaja cesto, po kateri vozite, *Osnovno* pa navaja samo glavne in oštevilčene ceste in izpusti avtobusna postajališča.
 * **Ulice in križišča** vklopi ali izklopi obvestila o križiščih in o ulici, na kateri ste.
 * **Kraji za oznanjanje** je seznam za označevanje: Vse, Znamenitosti, Javni prevoz, Hrana in pijača,
   Trgovine z živili in mešanim blagom, Banke in bankomati ali Brez krajev. Označite jih, kolikor

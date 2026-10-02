@@ -75,10 +75,10 @@ Under resan hör du:
 
 * **Var du är**, då och då — vägen du färdas på och din riktning, till exempel »Färd norrut längs
   M8«. Vägar med nummer annonseras med sitt nummer, och Soundscape upprepar inte samma väg varje
-  gång gatunamnet ändras.
+  gång gatunamnet ändras. En väg nämns först när du har följt den en kort sträcka, så att en rad svängar genom ett bostadsområde inte ger ett informationsljud i varje hörn.
 * **Städer och byar** som du färdas mot, med avståndet, liksom sådana du färdas ifrån eller helt
   enkelt passerar.
-* **Motorvägskorsningar och avfarter** när du når dem.
+* **Motorvägskorsningar och avfarter** när du når dem. Bara de på den körbana du färdas på – inte på en väg du passerar i närheten eller på motorvägens andra sida.
 * **Stora landmärken** som du passerar, till exempel parker, sjukhus, arenor och köpcentrum.
 * **Buss-, spårvagns- och tåghållplatser** som du passerar. Soundscape nämner bara hållplatser på din
   sida av vägen, eftersom de på motsatt sida betjänar motsatt riktning.
@@ -122,7 +122,7 @@ gamla listan med reglage:
   servicevägar och upprepar sig mer sällan. *Grundläggande* läser bara upp gator, vägkorsningar och
   landmärken. *Tyst* ger inga automatiska informationsljud alls, medan ljudfyrar, rutter och knapparna
   på startskärmen fortsätter att fungera. Den ersätter det gamla reglaget *Tillåt informationsljud*,
-  och om du hade det avstängt står detaljnivån nu på Tyst.
+  och om du hade det avstängt står detaljnivån nu på Tyst. Nivåerna gäller också när du reser: *Förenklad* nämner vägen du är på mer sällan, och *Grundläggande* nämner bara huvudvägar och numrerade vägar och utelämnar busshållplatser.
 * **Gator och vägkorsningar** slår på eller av informationsljud om vägkorsningar och om gatan du är
   på.
 * **Platser att läsa upp** är en lista att kryssa i: Allt, Landmärken, Kollektivtrafik, Mat och

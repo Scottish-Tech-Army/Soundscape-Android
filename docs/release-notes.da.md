@@ -73,9 +73,9 @@ Undervejs hører du:
 
 * **Hvor du er**, med jævne mellemrum — vejen, du kører på, og din retning, for eksempel »Kører mod
   nord ad M8«. Veje med et nummer meldes med deres nummer, og Soundscape gentager ikke den samme vej,
-  hver gang gadenavnet skifter.
+  hver gang gadenavnet skifter. En vej nævnes først, når du har fulgt den et lille stykke, så en række sving gennem et boligkvarter ikke giver en lydbesked ved hvert hjørne.
 * **Byer og landsbyer**, du kører imod, med afstanden, samt dem, du kører væk fra eller blot passerer.
-* **Motorvejskryds og frakørsler**, når du når dem.
+* **Motorvejskryds og frakørsler**, når du når dem. Kun dem på den side af motorvejen, du kører på – ikke på en vej, du passerer tæt på.
 * **Store landemærker**, du passerer, såsom parker, hospitaler, stadioner og indkøbscentre.
 * **Bus-, sporvogns- og togstoppesteder**, du passerer. Soundscape nævner kun stoppesteder i din side
   af vejen, da dem på den modsatte side betjener den modsatte retning.
@@ -119,7 +119,7 @@ gamle liste med kontakter:
   servicevej og gentager sig sjældnere. *Essentiel* annoncerer kun gader, vejkryds og landemærker.
   *Lydløs* giver slet ingen automatiske lydbeskeder, mens lydfyr, ruter og knapperne på startskærmen
   fortsat virker. Indstillingen erstatter den gamle kontakt *Tillad lydbeskeder*, og hvis du havde
-  slået den fra, står detaljeniveauet nu på Lydløs.
+  slået den fra, står detaljeniveauet nu på Lydløs. Niveauerne gælder også, når du rejser: *Forenklet* beskriver vejen, du er på, sjældnere, og *Essentiel* nævner kun hovedveje og nummererede veje og udelader busstoppesteder.
 * **Gader og vejkryds** slår lydbeskeder om vejkryds og om den gade, du er på, til eller fra.
 * **Steder der skal annonceres** er en liste, du kan sætte flueben i: Alt, Landemærker, Offentlig
   transport, Mad og drikke, Dagligvarer og nærbutikker, Banker og hæveautomater eller Ingen steder.

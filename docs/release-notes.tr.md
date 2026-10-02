@@ -76,10 +76,10 @@ Yolculuk sırasında şunları duyacaksınız:
 
 * **Nerede olduğunuzu**, zaman zaman — üzerinde gittiğiniz yolu ve yönünüzü, örneğin "M8 üzerinde
   kuzeye doğru". Numaralı yollar numaralarıyla duyurulur ve Soundscape, sokak adı her değiştiğinde aynı
-  yolu yeniden duyurmaz.
+  yolu yeniden duyurmaz. Bir yolun adı ancak üzerinde kısa bir mesafe gittikten sonra söylenir; böylece bir yerleşim bölgesinde art arda dönüşler her köşede anons getirmez.
 * **Yöneldiğiniz kasaba ve köyleri**, mesafesiyle birlikte; ayrıca uzaklaştığınız ya da yalnızca
   yanından geçtiğiniz yerleri.
-* **Otoyol kavşaklarını ve çıkışlarını**, onlara ulaştığınızda.
+* **Otoyol kavşaklarını ve çıkışlarını**, onlara ulaştığınızda. Yalnızca bulunduğunuz yöndekiler; yakınından geçtiğiniz bir yoldakiler ya da otoyolun karşı yönündekiler değil.
 * **Büyük yer imlerini** yanlarından geçerken: parklar, hastaneler, stadyumlar ve alışveriş merkezleri
   gibi.
 * **Otobüs, tramvay ve tren duraklarını** yanlarından geçerken. Soundscape yalnızca yolun sizin
@@ -123,7 +123,7 @@ Soundscape hakkında en sık duyduğumuz şey, şehir merkezi gibi kalabalık ye
   kendini daha seyrek tekrarlar. *Temel* yalnızca sokakları, kavşakları ve simge yapıları anons eder.
   *Sessiz* hiç otomatik anons yapmaz; sesli işaretler, rotalar ve ana ekran düğmeleri ise çalışmaya
   devam eder. Eski *Anonsları Etkinleştir* anahtarının yerini alır; o anahtar kapalıysa Anons Ayrıntısı
-  artık Sessiz'e ayarlıdır.
+  artık Sessiz'e ayarlıdır. Seviyeler yolculuk sırasında da geçerlidir: *Sadeleştirilmiş* bulunduğunuz yolu daha seyrek söyler, *Temel* ise yalnızca ana yolları ve numaralı yolları söyler ve otobüs duraklarını atlar.
 * **Sokaklar ve Kavşaklar**, kavşaklarla ve üzerinde bulunduğunuz yolla ilgili anonsları açar ya da
   kapatır.
 * **Anons Edilecek Yerler** işaretlenebilir bir listedir: Her Şey, Simge Yapılar, Toplu Taşıma, Yiyecek
