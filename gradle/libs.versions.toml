@@ -46,6 +46,7 @@ firebaseBom = "34.17.0"
 junitJupiter = "6.1.2"
 coreKtx = "1.19.0"
 junit = "4.13.2"
+robolectric = "4.17"
 mockitoCore = "5.20.0"
 mockitoKotlin = "6.1.0"
 kotlinTestJunit = "2.3.10"
@@ -125,6 +126,7 @@ html-mermaid-dokka-plugin = { module = "com.glureau:html-mermaid-dokka-plugin", 
 json = { module = "org.json:json", version.ref = "json" }
 jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jtsCore" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 kable-core = { module = "com.juul.kable:kable-core", version.ref = "kable" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
