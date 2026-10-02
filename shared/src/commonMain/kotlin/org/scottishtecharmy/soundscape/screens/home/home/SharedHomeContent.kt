@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,30 +23,26 @@ import androidx.compose.material.icons.rounded.Fullscreen
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.CustomAccessibilityAction
-import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -59,6 +54,7 @@ import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.NavigationButton
+import org.scottishtecharmy.soundscape.components.SlowLoadingIndicator
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
@@ -75,7 +71,6 @@ import org.scottishtecharmy.soundscape.resources.beacon_action_unmute_beacon_acc
 import org.scottishtecharmy.soundscape.resources.beacon_action_callout_beacon
 import org.scottishtecharmy.soundscape.resources.behavior_experiences_route_nav_title
 import org.scottishtecharmy.soundscape.resources.callouts_action_more_info
-import org.scottishtecharmy.soundscape.resources.general_loading_start
 import org.scottishtecharmy.soundscape.resources.markers_action_add_to_markers
 import org.scottishtecharmy.soundscape.resources.location_detail_full_screen_hint
 import org.scottishtecharmy.soundscape.resources.permissions_button
@@ -244,36 +239,12 @@ fun SharedHomeContent(
                         .talkbackHint(stringResource(Res.string.search_button_routes_accessibility_hint))
                         .testTag("homeRoutes"),
                 )
-                if (fetchingLocation) {
-                    var announceLoading by remember { mutableStateOf(false) }
-                    LaunchedEffect(Unit) {
-                        kotlinx.coroutines.delay(1500)
-                        announceLoading = true
-                    }
-                    val loadingText = stringResource(Res.string.general_loading_start)
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .defaultMinSize(minHeight = 48.dp)
-                            .then(
-                                if (announceLoading) {
-                                    Modifier.semantics {
-                                        contentDescription = loadingText
-                                        liveRegion = LiveRegionMode.Polite
-                                    }
-                                } else {
-                                    Modifier
-                                },
-                            )
-                            .testTag("homeCurrentLocationLoading"),
-                    ) {
-                        CircularProgressIndicator()
-                    }
-                } else {
+                // The button stays in place while the address is looked up, so that TalkBack
+                // keeps its focus on it (see SlowLoadingIndicator).
+                Box(contentAlignment = Alignment.CenterEnd) {
                     NavigationButton(
                         onClick = {
-                            if (location != null) {
+                            if (location != null && !fetchingLocation) {
                                 fetchingLocation = true
                                 coroutineScope.launch {
                                     val ld = withContext(Dispatchers.Default) {
@@ -290,6 +261,14 @@ fun SharedHomeContent(
                             .talkbackHint(stringResource(Res.string.search_button_current_location_accessibility_hint))
                             .testTag("homeCurrentLocation"),
                     )
+                    if (fetchingLocation) {
+                        SlowLoadingIndicator(
+                            color = currentAppButtonColors.contentColor,
+                            modifier = Modifier
+                                .padding(end = spacing.small * 2 + spacing.targetSize)
+                                .testTag("homeCurrentLocationLoading"),
+                        )
+                    }
                 }
                 if (location != null) {
                     val currentRoute = routePlayerState.routeData

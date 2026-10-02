@@ -8,19 +8,17 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -28,17 +26,12 @@ import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.ui.platform.testTag
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.semantics.LiveRegionMode
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.liveRegion
-import androidx.compose.ui.semantics.semantics
-import org.scottishtecharmy.soundscape.resources.general_loading_start
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.components.SlowLoadingIndicator
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.platform.ioDispatcher
@@ -55,7 +48,6 @@ import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiS
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.filterLocations
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.placesNearbyFolders
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
-import org.scottishtecharmy.soundscape.screens.talkbackHidden
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -178,8 +170,7 @@ private fun AddMarkerList(
             userLocation?.let { currentLocation ->
                 item {
                     // The row stays in place while the address is looked up, so that TalkBack
-                    // keeps its focus on it rather than jumping back to the top of the screen.
-                    // The spinner stays silent unless the lookup is slow, when it announces once.
+                    // keeps its focus on it (see SlowLoadingIndicator).
                     // LocationItem emits its row and divider as siblings, so the Column keeps
                     // them stacked inside the Box.
                     Box(contentAlignment = Alignment.CenterEnd) {
@@ -212,22 +203,9 @@ private fun AddMarkerList(
                             )
                         }
                         if (fetchingLocation) {
-                            var announceLoading by remember { mutableStateOf(false) }
-                            LaunchedEffect(Unit) {
-                                kotlinx.coroutines.delay(3000)
-                                announceLoading = true
-                            }
-                            val loadingLabel = stringResource(Res.string.general_loading_start)
-                            CircularProgressIndicator(
+                            SlowLoadingIndicator(
                                 modifier = Modifier
                                     .padding(end = spacing.targetSize)
-                                    .size(spacing.medium)
-                                    .then(
-                                        if (announceLoading) Modifier.semantics {
-                                            contentDescription = loadingLabel
-                                            liveRegion = LiveRegionMode.Polite
-                                        } else Modifier.talkbackHidden()
-                                    )
                                     .testTag("addMarkerCurrentLocationLoading"),
                             )
                         }
