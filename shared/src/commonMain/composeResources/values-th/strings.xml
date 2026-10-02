@@ -265,7 +265,6 @@
     <string name="route_detail_action_start_route_reverse">เริ่มเส้นทางแบบย้อนกลับ</string>
     <string name="route_detail_action_start_route_reverse_hint">เริ่มเล่นเส้นทางนี้แบบย้อนกลับ</string>
     <string name="route_reverse_name">%1$s แบบย้อนกลับ</string>
-    <string name="route_detail_action_start_route_disabled_hint">เพิ่มจุดผ่านทางก่อนเริ่มเส้นทาง</string>
     <string name="route_detail_action_stop_route_hint">หยุดเล่นเส้นทางนี้</string>
     <string name="route_detail_action_share_hint">แชร์เส้นทางนี้กับแอปอื่น</string>
     <string name="route_detail_action_edit_hint">เปลี่ยนแปลงหรือจัดลำดับจุดผ่านทางในเส้นทางใหม่</string>

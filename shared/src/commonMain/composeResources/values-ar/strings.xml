@@ -567,7 +567,6 @@
     <string name="route_detail_action_start_route_reverse">بدء المسار بالعكس</string>
     <string name="route_detail_action_start_route_reverse_hint">بدء تشغيل هذا المسار بالعكس</string>
     <string name="route_reverse_name">%1$s بالعكس</string>
-    <string name="route_detail_action_start_route_disabled_hint">إضافة نقاط مسار قبل بدء المسار</string>
     <string name="route_detail_action_stop_route_hint">إيقاف تشغيل هذا المسار</string>
     <string name="route_detail_action_share_hint">مشاركة هذا المسار مع تطبيق آخر</string>
     <string name="route_detail_action_edit_hint">تغيير نقاط المسار أو إعادة ترتيبها في المسار</string>

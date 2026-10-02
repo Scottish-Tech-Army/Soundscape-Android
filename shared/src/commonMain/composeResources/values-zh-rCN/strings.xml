@@ -68,7 +68,6 @@
     <string name="route_detail_action_stop_route">停止路线</string>
     <string name="route_detail_action_edit">编辑路线</string>
     <string name="route_detail_action_start_route_hint">开始播放此路线</string>
-    <string name="route_detail_action_start_route_disabled_hint">在开始路线之前添加航点</string>
     <string name="route_detail_action_stop_route_hint">停止播放此路线</string>
     <string name="route_detail_action_share_hint">与其他应用分享此路线</string>
     <string name="route_detail_action_edit_hint">更改或重新排列路线中的航点</string>

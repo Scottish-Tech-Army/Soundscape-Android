@@ -87,7 +87,6 @@
     <string name="route_detail_action_start_route_reverse">பாதையை தலைகீழாகத் தொடங்கு</string>
     <string name="route_detail_action_start_route_reverse_hint">இந்த பாதையை தலைகீழாக இயக்கத் தொடங்க</string>
     <string name="route_reverse_name">%1$s தலைகீழாக</string>
-    <string name="route_detail_action_start_route_disabled_hint">பாதையைத் தொடங்கும் முன் வழிப்புள்ளிகளைச் சேர்க்க</string>
     <string name="route_detail_action_stop_route_hint">இந்த பாதையின் இயக்கத்தை நிறுத்த</string>
     <string name="route_detail_action_share_hint">இந்த பாதையை மற்றொரு செயலியுடன் பகிர</string>
     <string name="route_detail_action_edit_hint">பாதையிலுள்ள வழிப்புள்ளிகளை மாற்ற அல்லது வரிசைமாற்ற</string>

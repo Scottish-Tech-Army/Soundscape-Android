@@ -68,7 +68,6 @@
     <string name="route_detail_action_stop_route">मार्ग रोकें</string>
     <string name="route_detail_action_edit">मार्ग संपादित करें</string>
     <string name="route_detail_action_start_route_hint">इस मार्ग का प्लेबैक शुरू करें</string>
-    <string name="route_detail_action_start_route_disabled_hint">मार्ग शुरू करने से पहले मार्ग बिंदु जोड़ें</string>
     <string name="route_detail_action_stop_route_hint">इस मार्ग का प्लेबैक रोकें</string>
     <string name="route_detail_action_share_hint">इस मार्ग को किसी अन्य ऐप के साथ साझा करें</string>
     <string name="route_detail_action_edit_hint">मार्ग के मार्ग बिंदुओं को बदलें या पुनर्व्यवस्थित करें</string>

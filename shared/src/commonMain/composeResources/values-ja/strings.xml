@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">ルートを中止する</string>
     <string name="route_detail_action_edit">ルートを編集</string>
     <string name="route_detail_action_start_route_hint">このルートの再生を開始します</string>
-    <string name="route_detail_action_start_route_disabled_hint">ルートを開始する前にウェイポイントを追加してください</string>
     <string name="route_detail_action_stop_route_hint">このルートの再生を停止します</string>
     <string name="route_detail_action_share_hint">このルートを他のアプリと共有します</string>
     <string name="route_detail_action_edit_hint">ルートのウェイポイントを変更したり、順序を並べ替えます</string>

@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Detener ruta</string>
     <string name="route_detail_action_edit">Editar ruta</string>
     <string name="route_detail_action_start_route_hint">iniciar la reproducción de esta ruta</string>
-    <string name="route_detail_action_start_route_disabled_hint">agregar puntos antes de iniciar la ruta</string>
     <string name="route_detail_action_stop_route_hint">detener la reproducción de esta ruta</string>
     <string name="route_detail_action_share_hint">compartir esta ruta con otra aplicación</string>
     <string name="route_detail_action_edit_hint">cambiar o reordenar los puntos de ruta de la ruta</string>

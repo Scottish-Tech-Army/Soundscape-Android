@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Parar Rota</string>
     <string name="route_detail_action_edit">Editar Rota</string>
     <string name="route_detail_action_start_route_hint">iniciar a reprodução desta rota</string>
-    <string name="route_detail_action_start_route_disabled_hint">adicionar pontos de passagem antes de iniciar a rota</string>
     <string name="route_detail_action_stop_route_hint">parar a reprodução desta rota</string>
     <string name="route_detail_action_share_hint">partilhar esta rota com outra aplicação</string>
     <string name="route_detail_action_edit_hint">alterar ou reordenar os pontos de passagem da rota</string>

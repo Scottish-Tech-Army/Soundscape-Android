@@ -87,7 +87,6 @@
     <string name="route_detail_action_start_route_reverse">రూట్‌ను వెనుకవైపు ప్రారంభించు</string>
     <string name="route_detail_action_start_route_reverse_hint">ఈ రూట్ ప్లేబ్యాక్‌ను వెనుకవైపు ప్రారంభించడానికి</string>
     <string name="route_reverse_name">%1$s వెనుకవైపు</string>
-    <string name="route_detail_action_start_route_disabled_hint">రూట్‌ను ప్రారంభించే ముందు వేపాయింట్‌లను జోడించండి</string>
     <string name="route_detail_action_stop_route_hint">ఈ రూట్ ప్లేబ్యాక్‌ను ఆపివేయడానికి</string>
     <string name="route_detail_action_share_hint">ఈ రూట్‌ను మరొక యాప్‌తో పంచుకోవడానికి</string>
     <string name="route_detail_action_edit_hint">రూట్‌లోని వేపాయింట్‌లను మార్చడానికి లేదా క్రమాన్ని మార్చడానికి</string>

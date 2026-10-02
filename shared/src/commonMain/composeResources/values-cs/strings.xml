@@ -803,7 +803,6 @@
     <string name="route_detail_action_start_route_reverse">Spustit trasu v opačném pořadí</string>
     <string name="route_detail_action_start_route_reverse_hint">spustíte přehrávání této trasy v opačném pořadí</string>
     <string name="route_reverse_name">%1$s pozpátku</string>
-    <string name="route_detail_action_start_route_disabled_hint">přidáte trasové body před spuštěním trasy</string>
     <string name="route_detail_action_stop_route_hint">zastavíte přehrávání této trasy</string>
     <string name="route_detail_action_share_hint">sdílíte tuto trasu s jinou aplikací</string>
     <string name="route_detail_action_edit_hint">změníte nebo přeuspořádáte trasové body v trase</string>

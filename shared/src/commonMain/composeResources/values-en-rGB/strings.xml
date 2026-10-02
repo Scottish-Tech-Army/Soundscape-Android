@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Stop Route</string>
     <string name="route_detail_action_edit">Edit Route</string>
     <string name="route_detail_action_start_route_hint">start playback of this route</string>
-    <string name="route_detail_action_start_route_disabled_hint">add waypoints before starting the route</string>
     <string name="route_detail_action_stop_route_hint">stop playback of this route</string>
     <string name="route_detail_action_share_hint">share this route with another app</string>
     <string name="route_detail_action_edit_hint">change or reorder the waypoints in the route</string>

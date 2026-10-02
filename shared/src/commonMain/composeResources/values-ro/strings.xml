@@ -68,7 +68,6 @@
     <string name="route_detail_action_stop_route">Oprește ruta</string>
     <string name="route_detail_action_edit">Editează ruta</string>
     <string name="route_detail_action_start_route_hint">a porni redarea acestei rute</string>
-    <string name="route_detail_action_start_route_disabled_hint">a adăuga puncte de traseu înainte de a porni ruta</string>
     <string name="route_detail_action_stop_route_hint">a opri redarea acestei rute</string>
     <string name="route_detail_action_share_hint">a partaja această rută cu o altă aplicație</string>
     <string name="route_detail_action_edit_hint">a modifica sau reordona punctele de traseu din rută</string>

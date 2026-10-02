@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Stoppa rutten</string>
     <string name="route_detail_action_edit">Redigera rutt</string>
     <string name="route_detail_action_start_route_hint">spela upp den här rutten</string>
-    <string name="route_detail_action_start_route_disabled_hint">lägga till brytpunkter innan du startar rutten</string>
     <string name="route_detail_action_stop_route_hint">stoppa uppspelning av den här rutten</string>
     <string name="route_detail_action_share_hint">dela den här rutten med en annan app</string>
     <string name="route_detail_action_edit_hint">ändra eller ordna om brytpunkterna i rutten</string>

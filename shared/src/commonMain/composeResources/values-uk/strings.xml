@@ -51,7 +51,6 @@
     <string name="route_detail_action_stop_route">Зупинити маршрут</string>
     <string name="route_detail_action_edit">Редагувати маршрут</string>
     <string name="route_detail_action_start_route_hint">розпочати відтворення цього маршруту</string>
-    <string name="route_detail_action_start_route_disabled_hint">додати зупинки перед початком маршруту</string>
     <string name="route_detail_action_stop_route_hint">зупинити відтворення цього маршруту</string>
     <string name="route_detail_action_share_hint">поділитися цим маршрутом з іншою програмою</string>
     <string name="route_detail_action_edit_hint">змінити або переставити зупинки в маршруті</string>

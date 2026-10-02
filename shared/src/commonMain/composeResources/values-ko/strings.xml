@@ -87,7 +87,6 @@
     <string name="route_detail_action_start_route_reverse">경로 역순으로 시작</string>
     <string name="route_detail_action_start_route_reverse_hint">이 경로를 역순으로 재생 시작하기</string>
     <string name="route_reverse_name">%1$s (역순)</string>
-    <string name="route_detail_action_start_route_disabled_hint">경로를 시작하기 전에 경유지 추가하기</string>
     <string name="route_detail_action_stop_route_hint">이 경로 재생 중지하기</string>
     <string name="route_detail_action_share_hint">다른 앱으로 이 경로 공유하기</string>
     <string name="route_detail_action_edit_hint">경로의 경유지 변경 또는 순서 바꾸기</string>

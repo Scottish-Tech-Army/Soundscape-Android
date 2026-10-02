@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Arrêter l’Itinéraire</string>
     <string name="route_detail_action_edit">Modifier l’itinéraire</string>
     <string name="route_detail_action_start_route_hint">démarrer la lecture de cet itinéraire</string>
-    <string name="route_detail_action_start_route_disabled_hint">ajouter des étapes avant de démarrer l’itinéraire</string>
     <string name="route_detail_action_stop_route_hint">arrêter la lecture de cet itinéraire</string>
     <string name="route_detail_action_share_hint">partager cet itinéraire avec une autre appli</string>
     <string name="route_detail_action_edit_hint">modifier ou réorganiser les étapes de l’itinéraire</string>

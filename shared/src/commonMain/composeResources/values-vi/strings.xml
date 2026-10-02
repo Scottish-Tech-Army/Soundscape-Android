@@ -632,7 +632,6 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="route_detail_action_start_route_reverse">Bắt đầu lộ trình theo chiều ngược lại</string>
     <string name="route_detail_action_start_route_reverse_hint">bắt đầu phát lộ trình này theo chiều ngược lại</string>
     <string name="route_reverse_name">%1$s theo chiều ngược lại</string>
-    <string name="route_detail_action_start_route_disabled_hint">thêm điểm dừng trước khi bắt đầu lộ trình</string>
     <string name="route_detail_action_stop_route_hint">dừng phát lộ trình này</string>
     <string name="route_detail_action_share_hint">chia sẻ lộ trình này với một ứng dụng khác</string>
     <string name="route_detail_action_edit_hint">thay đổi hoặc sắp xếp lại các điểm dừng trong lộ trình</string>

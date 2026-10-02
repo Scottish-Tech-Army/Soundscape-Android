@@ -53,7 +53,6 @@
     <string name="route_detail_action_stop_route">توقف مسیر</string>
     <string name="route_detail_action_edit">ویرایش مسیر</string>
     <string name="route_detail_action_start_route_hint">پخش این مسیر را شروع کنید</string>
-    <string name="route_detail_action_start_route_disabled_hint">قبل از شروع مسیر نقاط بین‌راهی اضافه کنید</string>
     <string name="route_detail_action_stop_route_hint">پخش این مسیر را متوقف کنید</string>
     <string name="route_detail_action_share_hint">این مسیر را با یک اپلیکیشن دیگر به اشتراک بگذارید</string>
     <string name="route_detail_action_edit_hint">نقاط بین‌راهی مسیر را تغییر دهید یا ترتیب آنها را عوض کنید</string>

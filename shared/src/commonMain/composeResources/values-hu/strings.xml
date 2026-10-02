@@ -801,7 +801,6 @@
     <string name="route_detail_action_start_route_reverse">Útvonal indítása fordított irányban</string>
     <string name="route_detail_action_start_route_reverse_hint">az útvonal lejátszásának elindítása fordított irányban</string>
     <string name="route_reverse_name">%1$s visszafelé</string>
-    <string name="route_detail_action_start_route_disabled_hint">útvonalpontok hozzáadása az útvonal indítása előtt</string>
     <string name="route_detail_action_stop_route_hint">az útvonal lejátszásának leállítása</string>
     <string name="route_detail_action_share_hint">az útvonal megosztása másik alkalmazással</string>
     <string name="route_detail_action_edit_hint">az útvonalpontok módosítása vagy átrendezése az útvonalon</string>

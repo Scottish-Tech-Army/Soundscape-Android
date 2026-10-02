@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Route stoppen</string>
     <string name="route_detail_action_edit">Route bewerken</string>
     <string name="route_detail_action_start_route_hint">deze route afspelen</string>
-    <string name="route_detail_action_start_route_disabled_hint">routepunten toevoegen voordat u de route start</string>
     <string name="route_detail_action_stop_route_hint">het afspelen van deze route stoppen</string>
     <string name="route_detail_action_share_hint">deze route met een andere app delen</string>
     <string name="route_detail_action_edit_hint">de routepunten in deze route wijzigen of opnieuw ordenen</string>

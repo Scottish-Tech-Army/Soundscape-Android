@@ -87,7 +87,6 @@
     <string name="route_detail_action_start_route_reverse">Стартирай маршрута в обратен ред</string>
     <string name="route_detail_action_start_route_reverse_hint">стартиране на възпроизвеждането на този маршрут в обратен ред</string>
     <string name="route_reverse_name">%1$s в обратен ред</string>
-    <string name="route_detail_action_start_route_disabled_hint">добавяне на пътни точки, преди да стартирате маршрута</string>
     <string name="route_detail_action_stop_route_hint">спиране на възпроизвеждането на този маршрут</string>
     <string name="route_detail_action_share_hint">споделяне на този маршрут с друго приложение</string>
     <string name="route_detail_action_edit_hint">промяна или пренареждане на пътните точки в маршрута</string>

@@ -87,7 +87,6 @@
     <string name="route_detail_action_start_route_reverse">Inicia la ruta en sentit invers</string>
     <string name="route_detail_action_start_route_reverse_hint">iniciar la reproducció d'aquesta ruta en sentit invers</string>
     <string name="route_reverse_name">%1$s en sentit invers</string>
-    <string name="route_detail_action_start_route_disabled_hint">afegir punts de ruta abans d'iniciar la ruta</string>
     <string name="route_detail_action_stop_route_hint">aturar la reproducció d'aquesta ruta</string>
     <string name="route_detail_action_share_hint">compartir aquesta ruta amb una altra aplicació</string>
     <string name="route_detail_action_edit_hint">canviar o reordenar els punts de ruta</string>

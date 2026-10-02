@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Interromper Rota</string>
     <string name="route_detail_action_edit">Editar Rota</string>
     <string name="route_detail_action_start_route_hint">iniciar a reprodução desta rota</string>
-    <string name="route_detail_action_start_route_disabled_hint">adicionar localizadores antes de iniciar a rota</string>
     <string name="route_detail_action_stop_route_hint">interromper a reprodução desta rota</string>
     <string name="route_detail_action_share_hint">compartilhar esta rota com outro aplicativo</string>
     <string name="route_detail_action_edit_hint">alterar ou reordenar os localizadores da rota</string>

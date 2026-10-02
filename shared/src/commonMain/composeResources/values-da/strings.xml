@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Stop rute</string>
     <string name="route_detail_action_edit">Rediger rute</string>
     <string name="route_detail_action_start_route_hint">starte afspilning af denne rute</string>
-    <string name="route_detail_action_start_route_disabled_hint">tilføje vejpunkter, før du starter ruten</string>
     <string name="route_detail_action_stop_route_hint">stoppe afspilning af denne rute</string>
     <string name="route_detail_action_share_hint">dele denne rute med en anden app</string>
     <string name="route_detail_action_edit_hint">ændre eller omarrangere vejpunkterne i ruten</string>
