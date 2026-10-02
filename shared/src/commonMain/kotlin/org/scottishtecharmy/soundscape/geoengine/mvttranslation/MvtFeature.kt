@@ -128,6 +128,13 @@ open class MvtFeature : Feature() {
      */
     var nearestSettlement: String? = null
 
+    /**
+     * For a highway junction, the refs and names of the roads it is on - its carriageways and slip
+     * roads, recorded at tile load time by GridState.attachHighwayJunctionsToRoads. Null for
+     * anything else, and for a junction with no road of its own class under it.
+     */
+    var junctionRoads: Set<String>? = null
+
     fun setProperty(key: String, value: Any) {
         (properties ?: HashMap()).also {
             it[key] = value
@@ -155,6 +162,7 @@ open class MvtFeature : Feature() {
         superCategory = other.superCategory
         nearestWay = other.nearestWay
         nearestSettlement = other.nearestSettlement
+        junctionRoads = other.junctionRoads
     }
 
     /**

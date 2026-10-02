@@ -2769,13 +2769,106 @@ class MvtTileTest {
         assertEquals("M80", result.extraDedupText)
     }
 
+    // Beside M8 junction 17, St George's Cross, where Cowcaddens Road and West Graham Street
+    // pass within a few hundred metres of the junction without touching it.
+    private val stGeorgesCrossLocation = LngLatAlt(-4.2650, 55.8690)
+
+    private fun stGeorgesCross(gridState: GridState) =
+        gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS).getAllCollection().features
+            .map { it as MvtFeature }
+            .filter { it.name == "St George's Cross" }
+
+    /**
+     * A junction records the road it is on - the M8 - and nothing else: not the A804, which
+     * passes within 14m of junction 17.
+     */
+    @Test
+    fun testHighwayJunctionsRecordTheirRoad() {
+        val gridState = getGridStateForLocation(stGeorgesCrossLocation, MAX_ZOOM_LEVEL, 3)
+        val junctions = stGeorgesCross(gridState)
+        assertTrue(junctions.isNotEmpty())
+        for (junction in junctions) {
+            val roads = junction.junctionRoads
+            assertNotNull(roads)
+            assertTrue("$roads", "M8" in roads!!)
+            assertFalse("$roads", "A804" in roads)
+        }
+    }
+
+    /**
+     * Driving along Cowcaddens Road past M8 junction 17 used to be "Traveling northwest along
+     * Cowcaddens Road at Junction 17, St George's Cross", because the junction was found by
+     * searching around the vehicle. It is on the M8, not on Cowcaddens Road.
+     */
+    @Test
+    fun testTravelCalloutIgnoresAJunctionOnAnotherRoad() {
+        val gridState = getGridStateForLocation(stGeorgesCrossLocation, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(stGeorgesCrossLocation, 12, 3)
+        val ruler = gridState.ruler
+        // The point on Cowcaddens Road nearest either carriageway's junction 17 node
+        val junctionPoints = stGeorgesCross(gridState).map { (it.geometry as Point).coordinates }
+        val (cowcaddensRoad, location) = gridState.getFeatureTree(TreeId.ROADS).getAllCollection()
+            .features
+            .map { it as Way }
+            .filter { it.name == "Cowcaddens Road" }
+            .flatMap { way ->
+                junctionPoints.map { junction ->
+                    way to ruler.distanceToLineString(junction, way.geometry as LineString).point
+                }
+            }
+            .minBy { (_, point) -> junctionPoints.minOf { ruler.distance(point, it) } }
+        assertTrue(junctionPoints.minOf { ruler.distance(location, it) } < 500.0)
+
+        for (heading in listOf(null, 0.0, 90.0, 180.0, 270.0)) {
+            val userGeometry = UserGeometry(
+                location = location, speed = 15.0, mapMatchedWay = cowcaddensRoad,
+                travelHeading = heading
+            )
+            val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+            assertNotNull(result)
+            assertFalse(
+                "Heading $heading: ${result!!.text}", result.text.contains("Junction")
+            )
+        }
+    }
+
+    /**
+     * A road running north through [location], with a junction of [junctionClass] on it 50m
+     * ahead, recorded the way GridState.attachHighwayJunctionsToRoads records one, since a junction
+     * is only named to somebody on its road. Real tile data doesn't reliably offer minor junctions
+     * at a stable test location.
+     */
+    private fun roadWithJunction(
+        gridState: GridState, location: LngLatAlt, junctionName: String, junctionClass: String
+    ): Way {
+        val ruler = gridState.ruler
+        val junction = MvtFeature().apply {
+            geometry = Point(ruler.offset(location, 0.0, 50.0))
+            name = junctionName
+            featureType = "highway"
+            featureValue = "highway_junction"
+            setProperty("class", junctionClass)
+            junctionRoads = setOf("Test Road")
+        }
+        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(junction) })
+        return Way().apply {
+            geometry = LineString(
+                ruler.offset(location, 0.0, -100.0), ruler.offset(location, 0.0, 200.0)
+            )
+            name = "Test Road"
+            featureType = "highway"
+            featureValue = "primary"
+            length = 300.0
+        }
+    }
+
     /**
      * Minor road junctions (secondary/tertiary/residential/unclassified) shouldn't compete with
      * major ones (motorway/trunk/primary) for attention while driving - they're only called out
      * once nothing notable (a major junction or a passed landmark - see
-     * NotableVehicleEventTracker) has been announced for a while. This synthesizes a minor
-     * junction via direct FeatureTree injection (real tile data doesn't reliably offer minor
-     * junctions at a stable test location) and checks it's suppressed shortly after a notable
+     * NotableVehicleEventTracker) has been announced for a while. This puts a minor junction on
+     * a test road (see roadWithJunction) and checks it's suppressed shortly after a notable
      * event.
      */
     @Test
@@ -2784,21 +2877,15 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
-        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
-        val minorJunction = MvtFeature().apply {
-            geometry = Point(junctionLocation)
-            name = "Minor Junction"
-            featureType = "highway"
-            featureValue = "highway_junction"
-            setProperty("class", "residential")
-        }
-        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(minorJunction) })
+        val road = roadWithJunction(gridState, location, "Minor Junction", "residential")
 
         val tracker = NotableVehicleEventTracker()
         tracker.recordEvent(99_000L)
         val userGeometry =
-            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 100_000L)
+            UserGeometry(
+                location = location, speed = 15.0, timestampMilliseconds = 100_000L,
+                mapMatchedWay = road, travelHeading = 0.0
+            )
         val result = describeReverseGeocode(
             userGeometry, gridState, settlementGrid, null, notableEventTracker = tracker
         )
@@ -2817,20 +2904,14 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
-        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
-        val minorJunction = MvtFeature().apply {
-            geometry = Point(junctionLocation)
-            name = "Minor Junction"
-            featureType = "highway"
-            featureValue = "highway_junction"
-            setProperty("class", "residential")
-        }
-        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(minorJunction) })
+        val road = roadWithJunction(gridState, location, "Minor Junction", "residential")
 
         val tracker = NotableVehicleEventTracker()
         val userGeometry =
-            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 100_000L)
+            UserGeometry(
+                location = location, speed = 15.0, timestampMilliseconds = 100_000L,
+                mapMatchedWay = road, travelHeading = 0.0
+            )
         val result = describeReverseGeocode(
             userGeometry, gridState, settlementGrid, null, notableEventTracker = tracker
         )
@@ -2849,21 +2930,15 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
-        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
-        val majorJunction = MvtFeature().apply {
-            geometry = Point(junctionLocation)
-            name = "Major Junction"
-            featureType = "highway"
-            featureValue = "highway_junction"
-            setProperty("class", "primary")
-        }
-        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(majorJunction) })
+        val road = roadWithJunction(gridState, location, "Major Junction", "primary")
 
         val tracker = NotableVehicleEventTracker()
         tracker.recordEvent(99_000L)
         val userGeometry =
-            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 100_000L)
+            UserGeometry(
+                location = location, speed = 15.0, timestampMilliseconds = 100_000L,
+                mapMatchedWay = road, travelHeading = 0.0
+            )
         val result = describeReverseGeocode(
             userGeometry, gridState, settlementGrid, null, notableEventTracker = tracker
         )
@@ -2886,18 +2961,11 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
-        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
-        val pathJunction = MvtFeature().apply {
-            geometry = Point(junctionLocation)
-            name = "Path Junction"
-            featureType = "highway"
-            featureValue = "highway_junction"
-            setProperty("class", "footway")
-        }
-        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(pathJunction) })
+        val road = roadWithJunction(gridState, location, "Path Junction", "footway")
 
-        val userGeometry = UserGeometry(location = location, speed = 15.0)
+        val userGeometry = UserGeometry(
+            location = location, speed = 15.0, mapMatchedWay = road, travelHeading = 0.0
+        )
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
