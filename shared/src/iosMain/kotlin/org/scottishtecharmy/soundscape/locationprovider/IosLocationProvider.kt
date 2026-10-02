@@ -4,11 +4,10 @@ import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
 import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
 import platform.CoreLocation.CLActivityTypeOther
-import platform.CoreLocation.CLActivityTypeOtherNavigation
 import platform.CoreLocation.CLLocation
 import platform.CoreLocation.CLLocationManager
 import platform.CoreLocation.CLLocationManagerDelegateProtocol
-import platform.CoreLocation.kCLLocationAccuracyBest
+import platform.CoreLocation.kCLLocationAccuracyBestForNavigation
 import platform.CoreLocation.kCLLocationAccuracyNearestTenMeters
 import platform.Foundation.NSDate
 import platform.Foundation.NSError
@@ -45,6 +44,41 @@ private const val MAX_CACHED_FIX_AGE_SECONDS = 60.0
  */
 private const val COURSE_ACCURACY_SCALE = 0.5
 
+/**
+ * Converts a CoreLocation fix into the geoengine's SoundscapeLocation.
+ *
+ * CoreLocation reports an invalid course, speed, course accuracy or speed accuracy as a
+ * negative sentinel rather than by a separate flag, so each one is turned into the
+ * corresponding has* flag here. Without that the geoengine reads -1 as a real value: see
+ * GeoEngine.createUserGeometry, where a bearing with no accuracy beside it is trusted
+ * ungated, and GeoEngine.startMonitoringLocation, where the stationary detector's
+ * "moving by bearing" input is false for every fix if hasBearingAccuracy never gets set.
+ *
+ * The course accuracy is also rescaled onto Android's scale - see COURSE_ACCURACY_SCALE.
+ */
+@OptIn(ExperimentalForeignApi::class)
+internal fun CLLocation.toSoundscapeLocation(): SoundscapeLocation {
+    val location = this
+    return location.coordinate.useContents {
+        SoundscapeLocation(
+            latitude = latitude,
+            longitude = longitude,
+            accuracy = location.horizontalAccuracy.toFloat(),
+            bearing = location.course.toFloat(),
+            bearingAccuracyDegrees =
+                (location.courseAccuracy * COURSE_ACCURACY_SCALE).toFloat(),
+            speed = location.speed.toFloat(),
+            speedAccuracyMetersPerSecond = location.speedAccuracy.toFloat(),
+            hasAccuracy = location.horizontalAccuracy >= 0,
+            hasBearing = location.course >= 0,
+            hasBearingAccuracy = location.courseAccuracy >= 0,
+            hasSpeed = location.speed >= 0,
+            hasSpeedAccuracy = location.speedAccuracy >= 0,
+            timestampMilliseconds = (location.timestamp.timeIntervalSince1970 * 1000).toLong(),
+        )
+    }
+}
+
 class IosLocationProvider : LocationProvider() {
 
     private val locationManager = CLLocationManager()
@@ -64,8 +98,12 @@ class IosLocationProvider : LocationProvider() {
     override fun start(accuracy: Accuracy) {
         locationManager.delegate = delegate
 
+        // BestForNavigation, as the legacy iOS app used: Apple's highest setting, meant for
+        // navigation apps, which it says adds other sensor data to the GPS. Separate passes down a
+        // street (2026-10-02) showed no clear difference from Best, so this is for parity with the
+        // app iOS users had rather than a measured gain, and Apple says it can cost more power.
         locationManager.desiredAccuracy = when (accuracy) {
-            Accuracy.High -> kCLLocationAccuracyBest
+            Accuracy.High -> kCLLocationAccuracyBestForNavigation
             Accuracy.Balanced -> kCLLocationAccuracyNearestTenMeters
         }
 
@@ -76,10 +114,13 @@ class IosLocationProvider : LocationProvider() {
             Accuracy.High -> false
         }
 
-        locationManager.activityType = when (accuracy) {
-            Accuracy.Balanced -> CLActivityTypeOther
-            Accuracy.High -> CLActivityTypeOtherNavigation
-        }
+        // Other, CoreLocation's default and what the legacy iOS app used: Soundscape is used on foot
+        // and as a passenger alike, which Fitness (walking, running, cycling) and OtherNavigation
+        // (boats, trains, planes) each describe only half of. Recording through four location
+        // managers at once showed CoreLocation gives every client the same fixes whatever its
+        // activity type (2026-10-02), so this only steers automatic pausing, which High accuracy
+        // turns off anyway.
+        locationManager.activityType = CLActivityTypeOther
 
         locationManager.startUpdatingLocation()
         seedFromCachedFix()
@@ -114,38 +155,9 @@ class IosLocationProvider : LocationProvider() {
         pause()
     }
 
-    /**
-     * Publishes a fix on both flows, mirroring the Android providers.
-     *
-     * CoreLocation reports an invalid course, speed, course accuracy or speed accuracy as a
-     * negative sentinel rather than by a separate flag, so each one is turned into the
-     * corresponding has* flag here. Without that the geoengine reads -1 as a real value: see
-     * GeoEngine.createUserGeometry, where a bearing with no accuracy beside it is trusted
-     * ungated, and GeoEngine.startMonitoringLocation, where the stationary detector's
-     * "moving by bearing" input is false for every fix if hasBearingAccuracy never gets set.
-     *
-     * The course accuracy is also rescaled onto Android's scale - see COURSE_ACCURACY_SCALE.
-     */
-    @OptIn(ExperimentalForeignApi::class)
+    /** Publishes a fix on both flows, mirroring the Android providers. */
     internal fun onLocationUpdate(location: CLLocation) {
-        val coordinate = location.coordinate.useContents {
-            SoundscapeLocation(
-                latitude = latitude,
-                longitude = longitude,
-                accuracy = location.horizontalAccuracy.toFloat(),
-                bearing = location.course.toFloat(),
-                bearingAccuracyDegrees =
-                    (location.courseAccuracy * COURSE_ACCURACY_SCALE).toFloat(),
-                speed = location.speed.toFloat(),
-                speedAccuracyMetersPerSecond = location.speedAccuracy.toFloat(),
-                hasAccuracy = location.horizontalAccuracy >= 0,
-                hasBearing = location.course >= 0,
-                hasBearingAccuracy = location.courseAccuracy >= 0,
-                hasSpeed = location.speed >= 0,
-                hasSpeedAccuracy = location.speedAccuracy >= 0,
-                timestampMilliseconds = (location.timestamp.timeIntervalSince1970 * 1000).toLong(),
-            )
-        }
+        val coordinate = location.toSoundscapeLocation()
         mutableLocationFlow.value = coordinate
         mutableFilteredLocationFlow.value = filter.filterPosition(coordinate)
     }
