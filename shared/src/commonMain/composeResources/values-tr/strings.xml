@@ -1569,7 +1569,7 @@ Ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen ana men
     <string name="markers_sort_action_distance_ascending">mesafeye göre en yakından başlayarak sıralamak</string>
     <string name="markers_sort_action_distance_descending">mesafeye göre en uzaktan başlayarak sıralamak</string>
     <string name="callouts_verbosity">Anons Ayrıntısı</string>
-    <string name="callouts_verbosity_description">Anons ayrıntısı, yürürken Soundscape'in size ne kadar şey anlatacağını belirler. Ayrıntılı mod yakındaki her şeyi anons eder. Sadeleştirilmiş mod küçük patikaları ve servis yollarını atlar ve kendini daha seyrek tekrarlar. Temel mod yalnızca sokakları, kavşakları ve simge yapıları anons eder. Sessiz mod hiç otomatik anons yapmaz; sesli işaretler, rotalar ve ana ekrandaki düğmeler çalışmaya devam eder.</string>
+    <string name="callouts_verbosity_description">Anons ayrıntısı, yürürken veya yolculuk ederken Soundscape'in size ne kadar şey anlatacağını belirler. Ayrıntılı mod yakındaki her şeyi anons eder. Sadeleştirilmiş mod küçük patikaları ve servis yollarını atlar ve kendini daha seyrek tekrarlar. Temel mod yalnızca sokakları, kavşakları ve simge yapıları anons eder; araba veya otobüsle yolculuk ederken ise yalnızca ana yolları ve numaralı yolları anons eder, otobüs duraklarını anons etmez. Sessiz mod hiç otomatik anons yapmaz; sesli işaretler, rotalar ve ana ekrandaki düğmeler çalışmaya devam eder.</string>
     <string name="callouts_verbosity_level_silent">Sessiz</string>
     <string name="callouts_verbosity_level_quiet">Temel</string>
     <string name="callouts_verbosity_level_balanced">Sadeleştirilmiş</string>

@@ -1585,7 +1585,7 @@ Continua informant-nos de qualsevol problema, per petit que sigui, mitjançant �
     <string name="markers_sort_action_distance_ascending">ordenar per distància, del més proper al més llunyà</string>
     <string name="markers_sort_action_distance_descending">ordenar per distància, del més llunyà al més proper</string>
     <string name="callouts_verbosity">Detall dels avisos de veu</string>
-    <string name="callouts_verbosity_description">El detall dels avisos de veu controla quantes coses t'explica Soundscape mentre camines. El mode Detallat anuncia tot el que hi ha a prop. El mode Simplificat deixa de banda els camins secundaris i les vies de servei, i es repeteix menys sovint. El mode Essencial només anuncia carrers, cruïlles i punts de referència. El mode Silenciós no fa cap avís de veu automàtic, i hi deixa les balises, les rutes i els botons de la pantalla principal.</string>
+    <string name="callouts_verbosity_description">El detall dels avisos de veu controla quantes coses t'explica Soundscape mentre camines o et desplaces. El mode Detallat anuncia tot el que hi ha a prop. El mode Simplificat deixa de banda els camins secundaris i les vies de servei, i es repeteix menys sovint. El mode Essencial només anuncia carrers, cruïlles i punts de referència, i quan viatges en cotxe o autobús, només les carreteres principals i numerades, sense parades d'autobús. El mode Silenciós no fa cap avís de veu automàtic, i hi deixa les balises, les rutes i els botons de la pantalla principal.</string>
     <string name="callouts_verbosity_level_silent">Silenciós</string>
     <string name="callouts_verbosity_level_quiet">Essencial</string>
     <string name="callouts_verbosity_level_balanced">Simplificat</string>

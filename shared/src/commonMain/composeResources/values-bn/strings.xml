@@ -1569,7 +1569,7 @@
     <string name="markers_sort_action_distance_ascending">দূরত্ব অনুযায়ী সাজাতে, সবচেয়ে কাছেরগুলো আগে</string>
     <string name="markers_sort_action_distance_descending">দূরত্ব অনুযায়ী সাজাতে, সবচেয়ে দূরেরগুলো আগে</string>
     <string name="callouts_verbosity">কলআউট বিবরণ</string>
-    <string name="callouts_verbosity_description">কলআউট বিবরণ ঠিক করে আপনি হাঁটার সময় Soundscape আপনাকে কতটা জানাবে। বিস্তারিত মোড কাছাকাছি সবকিছু কলআউট করে। সরলীকৃত মোড ছোট পথ ও সার্ভিস রাস্তা বাদ দেয় এবং কম ঘন ঘন পুনরাবৃত্তি করে। প্রয়োজনীয় মোড শুধু রাস্তা, মোড় ও ল্যান্ডমার্ক কলআউট করে। নীরব মোড কোনো স্বয়ংক্রিয় কলআউটই করে না, তবে বীকন, রুট ও হোম স্ক্রিনের বোতামগুলি কাজ করতে থাকে।</string>
+    <string name="callouts_verbosity_description">কলআউট বিবরণ ঠিক করে আপনি হাঁটার বা যাতায়াতের সময় Soundscape আপনাকে কতটা জানাবে। বিস্তারিত মোড কাছাকাছি সবকিছু কলআউট করে। সরলীকৃত মোড ছোট পথ ও সার্ভিস রাস্তা বাদ দেয় এবং কম ঘন ঘন পুনরাবৃত্তি করে। প্রয়োজনীয় মোড শুধু রাস্তা, মোড় ও ল্যান্ডমার্ক কলআউট করে, আর গাড়ি বা বাসে যাতায়াতের সময় শুধু প্রধান ও নম্বরযুক্ত সড়ক, বাস স্টপ ছাড়াই। নীরব মোড কোনো স্বয়ংক্রিয় কলআউটই করে না, তবে বীকন, রুট ও হোম স্ক্রিনের বোতামগুলি কাজ করতে থাকে।</string>
     <string name="callouts_verbosity_level_silent">নীরব</string>
     <string name="callouts_verbosity_level_quiet">প্রয়োজনীয়</string>
     <string name="callouts_verbosity_level_balanced">সরলীকৃত</string>

@@ -1569,7 +1569,7 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="markers_sort_action_distance_ascending">kupanga kwa umbali, karibu zaidi kwanza</string>
     <string name="markers_sort_action_distance_descending">kupanga kwa umbali, mbali zaidi kwanza</string>
     <string name="callouts_verbosity">Kiwango cha Matangazo</string>
-    <string name="callouts_verbosity_description">Kiwango cha matangazo hudhibiti kiasi ambacho Soundscape hukueleza unapotembea. Hali ya Kwa Kina hutangaza kila kitu kilicho karibu. Hali ya Rahisi huacha njia ndogo na barabara za huduma, na hujirudia mara chache zaidi. Hali ya Muhimu hutangaza barabara, makutano na vivutio pekee. Hali ya Kimya haitoi matangazo ya kiotomatiki kabisa, lakini beacon, njia na vitufe vya skrini ya mwanzo huendelea kufanya kazi.</string>
+    <string name="callouts_verbosity_description">Kiwango cha matangazo hudhibiti kiasi ambacho Soundscape hukueleza unapotembea au kusafiri. Hali ya Kwa Kina hutangaza kila kitu kilicho karibu. Hali ya Rahisi huacha njia ndogo na barabara za huduma, na hujirudia mara chache zaidi. Hali ya Muhimu hutangaza barabara, makutano na vivutio pekee, na unaposafiri kwa gari au basi, barabara kuu na barabara zenye namba pekee, bila vituo vya basi. Hali ya Kimya haitoi matangazo ya kiotomatiki kabisa, lakini beacon, njia na vitufe vya skrini ya mwanzo huendelea kufanya kazi.</string>
     <string name="callouts_verbosity_level_silent">Kimya</string>
     <string name="callouts_verbosity_level_quiet">Muhimu</string>
     <string name="callouts_verbosity_level_balanced">Rahisi</string>

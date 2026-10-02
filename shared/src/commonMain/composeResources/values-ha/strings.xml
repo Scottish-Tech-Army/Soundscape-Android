@@ -1569,7 +1569,7 @@ Da fatan za a ci gaba da ba da rahoton duk wata matsala, ko da ƙarama ce, ta ha
     <string name="markers_sort_action_distance_ascending">tsara bisa nisa, mafi kusa da farko</string>
     <string name="markers_sort_action_distance_descending">tsara bisa nisa, mafi nisa da farko</string>
     <string name="callouts_verbosity">Matakin Sanarwa</string>
-    <string name="callouts_verbosity_description">Matakin sanarwa yana sarrafa yawan abin da Soundscape ke gaya muku yayin tafiyarku. Yanayin Cikakke yana sanar da duk abin da ke kusa. Yanayin Sauƙaƙe yana barin ƙananan hanyoyi da hanyoyin hidima, kuma ba ya maimaita sau da yawa. Yanayin Muhimmi yana sanar da titina, mahaɗun hanyoyi da shahararrun wurare kawai. Yanayin Shiru ba ya yin sanarwa ta atomatik ko kaɗan, amma siginar sauti, tafarkuna da maɓallan babban allo suna ci gaba da aiki.</string>
+    <string name="callouts_verbosity_description">Matakin sanarwa yana sarrafa yawan abin da Soundscape ke gaya muku yayin tafiyarku da ƙafa ko a abin hawa. Yanayin Cikakke yana sanar da duk abin da ke kusa. Yanayin Sauƙaƙe yana barin ƙananan hanyoyi da hanyoyin hidima, kuma ba ya maimaita sau da yawa. Yanayin Muhimmi yana sanar da titina, mahaɗun hanyoyi da shahararrun wurare kawai, kuma idan kuna tafiya a mota ko bas, manyan hanyoyi da hanyoyi masu lamba kawai, ba tare da tashoshin bas ba. Yanayin Shiru ba ya yin sanarwa ta atomatik ko kaɗan, amma siginar sauti, tafarkuna da maɓallan babban allo suna ci gaba da aiki.</string>
     <string name="callouts_verbosity_level_silent">Shiru</string>
     <string name="callouts_verbosity_level_quiet">Muhimmi</string>
     <string name="callouts_verbosity_level_balanced">Sauƙaƙe</string>

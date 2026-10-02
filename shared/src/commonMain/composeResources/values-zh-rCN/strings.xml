@@ -1553,7 +1553,7 @@
     <string name="markers_sort_action_distance_ascending">按距离由近到远排序</string>
     <string name="markers_sort_action_distance_descending">按距离由远到近排序</string>
     <string name="callouts_verbosity">提示详细程度</string>
-    <string name="callouts_verbosity_description">提示详细程度决定 Soundscape 在您行走时告诉您多少内容。详细模式会播报附近的一切。简化模式会略过次要小路和辅路，重复的次数也更少。基本模式只播报街道、路口和地标。静音模式完全不做自动播报，但信标、路线和主屏幕上的按钮仍可使用。</string>
+    <string name="callouts_verbosity_description">提示详细程度决定 Soundscape 在您步行或出行时告诉您多少内容。详细模式会播报附近的一切。简化模式会略过次要小路和辅路，重复的次数也更少。基本模式只播报街道、路口和地标；乘车或乘公交出行时，只播报主干道和编号道路，不播报公交站。静音模式完全不做自动播报，但信标、路线和主屏幕上的按钮仍可使用。</string>
     <string name="callouts_verbosity_level_silent">静音</string>
     <string name="callouts_verbosity_level_quiet">基本</string>
     <string name="callouts_verbosity_level_balanced">简化</string>

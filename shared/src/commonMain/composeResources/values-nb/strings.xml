@@ -1569,7 +1569,7 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="markers_sort_action_distance_ascending">sortere etter avstand, nærmeste først</string>
     <string name="markers_sort_action_distance_descending">sortere etter avstand, fjerneste først</string>
     <string name="callouts_verbosity">Detaljnivå for meldinger</string>
-    <string name="callouts_verbosity_description">Detaljnivået for meldinger styrer hvor mye Soundscape forteller deg mens du går. Modusen Detaljert leser opp alt i nærheten. Modusen Forenklet utelater mindre stier og stikkveier, og gjentar seg sjeldnere. Modusen Grunnleggende leser bare opp gater, veikryss og landemerker. Modusen Lydløs gir ingen automatiske meldinger i det hele tatt, men beholder lydsignaler, ruter og knappene på startskjermen.</string>
+    <string name="callouts_verbosity_description">Detaljnivået for meldinger styrer hvor mye Soundscape forteller deg mens du går eller reiser. Modusen Detaljert leser opp alt i nærheten. Modusen Forenklet utelater mindre stier og stikkveier, og gjentar seg sjeldnere. Modusen Grunnleggende leser bare opp gater, veikryss og landemerker, og når du reiser med bil eller buss, bare hovedveier og nummererte veier, uten busstopp. Modusen Lydløs gir ingen automatiske meldinger i det hele tatt, men beholder lydsignaler, ruter og knappene på startskjermen.</string>
     <string name="callouts_verbosity_level_silent">Lydløs</string>
     <string name="callouts_verbosity_level_quiet">Grunnleggende</string>
     <string name="callouts_verbosity_level_balanced">Forenklet</string>

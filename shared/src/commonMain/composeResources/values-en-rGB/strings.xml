@@ -1569,7 +1569,7 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="markers_sort_action_distance_ascending">sort by distance, nearest first</string>
     <string name="markers_sort_action_distance_descending">sort by distance, furthest first</string>
     <string name="callouts_verbosity">Callout Detail</string>
-    <string name="callouts_verbosity_description">Callout detail controls how much Soundscape tells you about as you walk. Detailed mode calls out everything nearby. Simplified mode leaves out minor paths and service roads, and repeats itself less often. Essential mode calls out streets, junctions and landmarks only. Silent mode makes no automatic callouts at all, leaving beacons, routes and the buttons on the home screen.</string>
+    <string name="callouts_verbosity_description">Callout detail controls how much Soundscape tells you about as you walk or travel. Detailed mode calls out everything nearby. Simplified mode leaves out minor paths and service roads, and repeats itself less often. Essential mode calls out streets, junctions and landmarks only, and when travelling by car or bus, only main and numbered roads, with no bus stops. Silent mode makes no automatic callouts at all, leaving beacons, routes and the buttons on the home screen.</string>
     <string name="callouts_verbosity_level_silent">Silent</string>
     <string name="callouts_verbosity_level_quiet">Essential</string>
     <string name="callouts_verbosity_level_balanced">Simplified</string>

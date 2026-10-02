@@ -1569,7 +1569,7 @@ Bliv endelig ved med at rapportere eventuelle problemer, uanset hvor små de er,
     <string name="markers_sort_action_distance_ascending">sortere efter afstand, nærmeste først</string>
     <string name="markers_sort_action_distance_descending">sortere efter afstand, fjerneste først</string>
     <string name="callouts_verbosity">Detaljeniveau for lydbeskeder</string>
-    <string name="callouts_verbosity_description">Detaljeniveauet for lydbeskeder styrer, hvor meget Soundscape fortæller dig om, mens du går. Tilstanden Detaljeret annoncerer alt i nærheden. Tilstanden Forenklet udelader mindre stier og stikveje og gentager sig selv sjældnere. Tilstanden Essentiel annoncerer kun gader, vejkryds og landemærker. Tilstanden Lydløs laver slet ingen automatiske lydbeskeder, men bevarer lydfyr, ruter og knapperne på startskærmen.</string>
+    <string name="callouts_verbosity_description">Detaljeniveauet for lydbeskeder styrer, hvor meget Soundscape fortæller dig om, mens du går eller rejser. Tilstanden Detaljeret annoncerer alt i nærheden. Tilstanden Forenklet udelader mindre stier og stikveje og gentager sig selv sjældnere. Tilstanden Essentiel annoncerer kun gader, vejkryds og landemærker, og når du rejser i bil eller bus, kun hovedveje og nummererede veje, uden busstoppesteder. Tilstanden Lydløs laver slet ingen automatiske lydbeskeder, men bevarer lydfyr, ruter og knapperne på startskærmen.</string>
     <string name="callouts_verbosity_level_silent">Lydløs</string>
     <string name="callouts_verbosity_level_quiet">Essentiel</string>
     <string name="callouts_verbosity_level_balanced">Forenklet</string>

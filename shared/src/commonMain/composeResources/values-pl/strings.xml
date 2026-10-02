@@ -1601,7 +1601,7 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="markers_sort_action_distance_ascending">posortować według odległości, od najbliższych</string>
     <string name="markers_sort_action_distance_descending">posortować według odległości, od najdalszych</string>
     <string name="callouts_verbosity">Szczegółowość powiadomień</string>
-    <string name="callouts_verbosity_description">Szczegółowość powiadomień określa, jak dużo Soundscape mówi ci podczas chodzenia. Tryb Szczegółowy powiadamia o wszystkim w pobliżu. Tryb Uproszczony pomija mniejsze ścieżki i drogi serwisowe oraz rzadziej się powtarza. Tryb Podstawowy powiadamia tylko o ulicach, skrzyżowaniach i punktach orientacyjnych. Tryb Wyciszony nie tworzy żadnych automatycznych powiadomień, pozostawiając dźwięki naprowadzające, trasy i przyciski na ekranie głównym.</string>
+    <string name="callouts_verbosity_description">Szczegółowość powiadomień określa, jak dużo Soundscape mówi ci podczas chodzenia lub podróży. Tryb Szczegółowy powiadamia o wszystkim w pobliżu. Tryb Uproszczony pomija mniejsze ścieżki i drogi serwisowe oraz rzadziej się powtarza. Tryb Podstawowy powiadamia tylko o ulicach, skrzyżowaniach i punktach orientacyjnych, a podczas jazdy samochodem lub autobusem tylko o drogach głównych i numerowanych, bez przystanków autobusowych. Tryb Wyciszony nie tworzy żadnych automatycznych powiadomień, pozostawiając dźwięki naprowadzające, trasy i przyciski na ekranie głównym.</string>
     <string name="callouts_verbosity_level_silent">Wyciszony</string>
     <string name="callouts_verbosity_level_quiet">Podstawowy</string>
     <string name="callouts_verbosity_level_balanced">Uproszczony</string>

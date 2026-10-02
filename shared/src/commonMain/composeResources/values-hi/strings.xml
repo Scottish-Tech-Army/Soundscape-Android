@@ -1569,7 +1569,7 @@
     <string name="markers_sort_action_distance_ascending">दूरी के अनुसार क्रमबद्ध करें, सबसे नज़दीक पहले</string>
     <string name="markers_sort_action_distance_descending">दूरी के अनुसार क्रमबद्ध करें, सबसे दूर पहले</string>
     <string name="callouts_verbosity">कॉलआउट विवरण</string>
-    <string name="callouts_verbosity_description">कॉलआउट विवरण यह तय करता है कि चलते समय Soundscape आपको कितनी चीज़ों के बारे में बताए। विस्तृत मोड आसपास की हर चीज़ कॉलआउट करता है। सरलीकृत मोड छोटे रास्तों और सर्विस सड़कों को छोड़ देता है और खुद को कम बार दोहराता है। आवश्यक मोड केवल सड़कें, चौराहे और लैंडमार्क कॉलआउट करता है। मौन मोड कोई भी स्वचालित कॉलआउट नहीं करता, पर बीकन, मार्ग और होम स्क्रीन के बटन काम करते रहते हैं।</string>
+    <string name="callouts_verbosity_description">कॉलआउट विवरण यह तय करता है कि चलते या यात्रा करते समय Soundscape आपको कितनी चीज़ों के बारे में बताए। विस्तृत मोड आसपास की हर चीज़ कॉलआउट करता है। सरलीकृत मोड छोटे रास्तों और सर्विस सड़कों को छोड़ देता है और खुद को कम बार दोहराता है। आवश्यक मोड केवल सड़कें, चौराहे और लैंडमार्क कॉलआउट करता है, और कार या बस से यात्रा करते समय केवल मुख्य और नंबर वाली सड़कें, बस स्टॉप के बिना। मौन मोड कोई भी स्वचालित कॉलआउट नहीं करता, पर बीकन, मार्ग और होम स्क्रीन के बटन काम करते रहते हैं।</string>
     <string name="callouts_verbosity_level_silent">मौन</string>
     <string name="callouts_verbosity_level_quiet">आवश्यक</string>
     <string name="callouts_verbosity_level_balanced">सरलीकृत</string>

@@ -1569,7 +1569,7 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="markers_sort_action_distance_ascending">lajitellaksesi etäisyyden mukaan, lähimmät ensin</string>
     <string name="markers_sort_action_distance_descending">lajitellaksesi etäisyyden mukaan, kauimmaiset ensin</string>
     <string name="callouts_verbosity">Ilmoitusten tarkkuus</string>
-    <string name="callouts_verbosity_description">Ilmoitusten tarkkuus määrää, kuinka paljon Soundscape kertoo sinulle kävellessäsi. Yksityiskohtainen-tila ilmoittaa kaiken lähistöllä olevan. Yksinkertaistettu-tila jättää pois pienemmät polut ja huoltotiet ja toistaa itseään harvemmin. Olennainen-tila ilmoittaa vain kadut, risteykset ja maamerkit. Äänetön-tila ei anna lainkaan automaattisia ilmoituksia, vaan jättää käyttöön majakat, reitit ja aloitusnäytön painikkeet.</string>
+    <string name="callouts_verbosity_description">Ilmoitusten tarkkuus määrää, kuinka paljon Soundscape kertoo sinulle kävellessäsi tai matkustaessasi. Yksityiskohtainen-tila ilmoittaa kaiken lähistöllä olevan. Yksinkertaistettu-tila jättää pois pienemmät polut ja huoltotiet ja toistaa itseään harvemmin. Olennainen-tila ilmoittaa vain kadut, risteykset ja maamerkit, ja autolla tai linja-autolla matkustaessa vain päätiet ja numeroidut tiet ilman linja-autopysäkkejä. Äänetön-tila ei anna lainkaan automaattisia ilmoituksia, vaan jättää käyttöön majakat, reitit ja aloitusnäytön painikkeet.</string>
     <string name="callouts_verbosity_level_silent">Äänetön</string>
     <string name="callouts_verbosity_level_quiet">Olennainen</string>
     <string name="callouts_verbosity_level_balanced">Yksinkertaistettu</string>

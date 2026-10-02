@@ -1601,7 +1601,7 @@ Ak narazíte na akýkoľvek problém, aj keď sa zdá byť malý, dajte nám o �
     <string name="markers_sort_action_distance_ascending">zoradiť podľa vzdialenosti, od najbližších</string>
     <string name="markers_sort_action_distance_descending">zoradiť podľa vzdialenosti, od najvzdialenejších</string>
     <string name="callouts_verbosity">Podrobnosť hlásení</string>
-    <string name="callouts_verbosity_description">Podrobnosť hlásení určuje, koľko toho vám Soundscape hovorí, keď kráčate. Režim Podrobný ohlasuje všetko v okolí. Režim Zjednodušený vynecháva vedľajšie chodníky a účelové cesty a opakuje sa menej často. Režim Základný ohlasuje iba ulice, križovatky a orientačné body. Režim Bez zvuku nevydáva žiadne automatické hlásenia a ponecháva majáky, trasy a tlačidlá na domovskej obrazovke.</string>
+    <string name="callouts_verbosity_description">Podrobnosť hlásení určuje, koľko toho vám Soundscape hovorí, keď kráčate alebo cestujete. Režim Podrobný ohlasuje všetko v okolí. Režim Zjednodušený vynecháva vedľajšie chodníky a účelové cesty a opakuje sa menej často. Režim Základný ohlasuje iba ulice, križovatky a orientačné body a pri jazde autom alebo autobusom iba hlavné a číslované cesty, bez autobusových zastávok. Režim Bez zvuku nevydáva žiadne automatické hlásenia a ponecháva majáky, trasy a tlačidlá na domovskej obrazovke.</string>
     <string name="callouts_verbosity_level_silent">Bez zvuku</string>
     <string name="callouts_verbosity_level_quiet">Základný</string>
     <string name="callouts_verbosity_level_balanced">Zjednodušený</string>

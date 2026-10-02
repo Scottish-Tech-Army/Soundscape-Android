@@ -1569,7 +1569,7 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="markers_sort_action_distance_ascending">raða eftir fjarlægð, næst fyrst</string>
     <string name="markers_sort_action_distance_descending">raða eftir fjarlægð, fjærst fyrst</string>
     <string name="callouts_verbosity">Nákvæmni tilkynninga</string>
-    <string name="callouts_verbosity_description">Nákvæmni tilkynninga stýrir því hversu mikið Soundscape segir þér frá á meðan þú gengur. Hamurinn Ítarlegt tilkynnir allt sem er í nágrenninu. Hamurinn Einfaldað sleppir minni stígum og þjónustuvegum og endurtekur sig sjaldnar. Hamurinn Nauðsynlegt tilkynnir aðeins götur, gatnamót og kennileiti. Hamurinn Þögult gefur engar sjálfvirkar tilkynningar, en hljóðvitar, leiðir og hnapparnir á heimaskjánum virka áfram.</string>
+    <string name="callouts_verbosity_description">Nákvæmni tilkynninga stýrir því hversu mikið Soundscape segir þér frá á meðan þú gengur eða ferðast. Hamurinn Ítarlegt tilkynnir allt sem er í nágrenninu. Hamurinn Einfaldað sleppir minni stígum og þjónustuvegum og endurtekur sig sjaldnar. Hamurinn Nauðsynlegt tilkynnir aðeins götur, gatnamót og kennileiti, og þegar þú ferðast í bíl eða strætó aðeins aðalvegi og númeraða vegi, án stoppistöðva. Hamurinn Þögult gefur engar sjálfvirkar tilkynningar, en hljóðvitar, leiðir og hnapparnir á heimaskjánum virka áfram.</string>
     <string name="callouts_verbosity_level_silent">Þögult</string>
     <string name="callouts_verbosity_level_quiet">Nauðsynlegt</string>
     <string name="callouts_verbosity_level_balanced">Einfaldað</string>

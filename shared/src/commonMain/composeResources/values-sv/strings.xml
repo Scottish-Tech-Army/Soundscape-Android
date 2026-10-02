@@ -1569,7 +1569,7 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="markers_sort_action_distance_ascending">sortera efter avstånd, närmaste först</string>
     <string name="markers_sort_action_distance_descending">sortera efter avstånd, längst bort först</string>
     <string name="callouts_verbosity">Detaljnivå för informationsljud</string>
-    <string name="callouts_verbosity_description">Detaljnivån för informationsljud styr hur mycket Soundscape berättar för dig medan du går. Läget Detaljerad läser upp allt i närheten. Läget Förenklad utelämnar mindre stigar och servicevägar och upprepar sig mer sällan. Läget Grundläggande läser bara upp gator, vägkorsningar och landmärken. Läget Tyst ger inga automatiska informationsljud alls, utan lämnar kvar ljudfyrar, rutter och knapparna på startskärmen.</string>
+    <string name="callouts_verbosity_description">Detaljnivån för informationsljud styr hur mycket Soundscape berättar för dig medan du går eller reser. Läget Detaljerad läser upp allt i närheten. Läget Förenklad utelämnar mindre stigar och servicevägar och upprepar sig mer sällan. Läget Grundläggande läser bara upp gator, vägkorsningar och landmärken, och när du reser med bil eller buss bara huvudvägar och numrerade vägar, utan busshållplatser. Läget Tyst ger inga automatiska informationsljud alls, utan lämnar kvar ljudfyrar, rutter och knapparna på startskärmen.</string>
     <string name="callouts_verbosity_level_silent">Tyst</string>
     <string name="callouts_verbosity_level_quiet">Grundläggande</string>
     <string name="callouts_verbosity_level_balanced">Förenklad</string>

@@ -1585,7 +1585,7 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="markers_sort_action_distance_ascending">a sorta după distanță, de la cel mai apropiat la cel mai îndepărtat</string>
     <string name="markers_sort_action_distance_descending">a sorta după distanță, de la cel mai îndepărtat la cel mai apropiat</string>
     <string name="callouts_verbosity">Detaliul anunțurilor</string>
-    <string name="callouts_verbosity_description">Detaliul anunțurilor stabilește despre cât de multe lucruri îți vorbește Soundscape în timp ce mergi. Modul Detaliat anunță tot ce se află în apropiere. Modul Simplificat lasă deoparte potecile secundare și drumurile de serviciu și se repetă mai rar. Modul Esențial anunță doar străzi, intersecții și repere. Modul Silențios nu face niciun anunț automat, lăsând balizele, rutele și butoanele de pe ecranul principal.</string>
+    <string name="callouts_verbosity_description">Detaliul anunțurilor stabilește despre cât de multe lucruri îți vorbește Soundscape în timp ce mergi pe jos sau călătorești. Modul Detaliat anunță tot ce se află în apropiere. Modul Simplificat lasă deoparte potecile secundare și drumurile de serviciu și se repetă mai rar. Modul Esențial anunță doar străzi, intersecții și repere, iar când călătorești cu mașina sau cu autobuzul, doar drumurile principale și numerotate, fără stații de autobuz. Modul Silențios nu face niciun anunț automat, lăsând balizele, rutele și butoanele de pe ecranul principal.</string>
     <string name="callouts_verbosity_level_silent">Silențios</string>
     <string name="callouts_verbosity_level_quiet">Esențial</string>
     <string name="callouts_verbosity_level_balanced">Simplificat</string>
