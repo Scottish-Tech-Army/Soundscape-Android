@@ -50,7 +50,6 @@
     <string name="route_detail_action_stop_route">Остановить маршрут</string>
     <string name="route_detail_action_edit">Изменить маршрут</string>
     <string name="route_detail_action_start_route_hint">начать воспроизведение этого маршрута</string>
-    <string name="route_detail_action_start_route_disabled_hint">добавить путевые точки перед запуском маршрута</string>
     <string name="route_detail_action_stop_route_hint">остановить воспроизведение этого маршрута</string>
     <string name="route_detail_action_share_hint">поделиться этим маршрутом через другое приложение</string>
     <string name="route_detail_action_edit_hint">изменить или переупорядочить путевые точки маршрута</string>

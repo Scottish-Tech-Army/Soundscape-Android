@@ -844,7 +844,6 @@
     <string name="route_detail_action_start_route_reverse">Anzisha Njia kwa Mpangilio wa Kinyume</string>
     <string name="route_detail_action_start_route_reverse_hint">kuanza kucheza njia hii kwa mpangilio wa kinyume</string>
     <string name="route_reverse_name">%1$s kwa mpangilio wa kinyume</string>
-    <string name="route_detail_action_start_route_disabled_hint">kuongeza vituo kabla ya kuanzisha njia</string>
     <string name="route_detail_action_stop_route_hint">kusimamisha uchezaji wa njia hii</string>
     <string name="route_detail_action_share_hint">kushiriki njia hii na programu nyingine</string>
     <string name="route_detail_action_edit_hint">kubadilisha au kupanga upya vituo kwenye njia</string>

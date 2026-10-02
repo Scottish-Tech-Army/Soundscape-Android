@@ -810,7 +810,6 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="route_detail_action_start_route_reverse">Mulai Rute Terbalik</string>
     <string name="route_detail_action_start_route_reverse_hint">memulai pemutaran rute ini secara terbalik</string>
     <string name="route_reverse_name">%1$s secara terbalik</string>
-    <string name="route_detail_action_start_route_disabled_hint">menambahkan titik rute sebelum memulai rute</string>
     <string name="route_detail_action_stop_route_hint">menghentikan pemutaran rute ini</string>
     <string name="route_detail_action_share_hint">membagikan rute ini dengan aplikasi lain</string>
     <string name="route_detail_action_edit_hint">mengubah atau mengatur ulang urutan titik rute dalam rute</string>

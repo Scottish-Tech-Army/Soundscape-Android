@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Interrompi Percorso</string>
     <string name="route_detail_action_edit">Modifica percorso</string>
     <string name="route_detail_action_start_route_hint">avviare la riproduzione di questo percorso</string>
-    <string name="route_detail_action_start_route_disabled_hint">aggiungere waypoint prima di avviare il percorso</string>
     <string name="route_detail_action_stop_route_hint">interrompere la riproduzione di questo percorso</string>
     <string name="route_detail_action_share_hint">condividere questo percorso con un'altra app</string>
     <string name="route_detail_action_edit_hint">modificare o riordinare i waypoint nel percorso</string>

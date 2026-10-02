@@ -443,7 +443,6 @@
     <string name="route_detail_action_start_route_reverse">Покрени руту уназад</string>
     <string name="route_detail_action_start_route_reverse_hint">покренете репродукцију ове руте уназад</string>
     <string name="route_reverse_name">%1$s уназад</string>
-    <string name="route_detail_action_start_route_disabled_hint">додате путне тачке пре покретања руте</string>
     <string name="route_detail_action_stop_route_hint">зауставите репродукцију ове руте</string>
     <string name="route_detail_action_share_hint">поделите ову руту са другом апликацијом</string>
     <string name="route_detail_action_edit_hint">промените или преуредите путне тачке на рути</string>

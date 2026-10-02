@@ -87,7 +87,6 @@
     <string name="route_detail_action_start_route_reverse">Zaženi pot v obratni smeri</string>
     <string name="route_detail_action_start_route_reverse_hint">začetek predvajanja te poti v obratni smeri</string>
     <string name="route_reverse_name">%1$s v obratni smeri</string>
-    <string name="route_detail_action_start_route_disabled_hint">dodajanje točk poti pred začetkom poti</string>
     <string name="route_detail_action_stop_route_hint">zaustavitev predvajanja te poti</string>
     <string name="route_detail_action_share_hint">deljenje te poti z drugo aplikacijo</string>
     <string name="route_detail_action_edit_hint">spreminjanje ali preurejanje točk poti</string>

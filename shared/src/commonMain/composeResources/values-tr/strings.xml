@@ -90,7 +90,6 @@
     <string name="route_detail_action_stop_route">Rotayı Durdur</string>
     <string name="route_detail_action_edit">Rotayı Düzenle</string>
     <string name="route_detail_action_start_route_hint">bu rotayı oynatmaya başlamak</string>
-    <string name="route_detail_action_start_route_disabled_hint">rotayı başlatmadan önce ara noktalar eklemek</string>
     <string name="route_detail_action_stop_route_hint">bu rotayı durdurmak</string>
     <string name="route_detail_action_share_hint">bu rotayı başka bir uygulama ile paylaşmak</string>
     <string name="route_detail_action_edit_hint">rotadaki ara noktaları değiştirmek veya sırasını yeniden düzenlemek</string>

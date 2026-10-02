@@ -52,7 +52,6 @@
     <string name="route_detail_action_stop_route">Zatrzymaj trasę</string>
     <string name="route_detail_action_edit">Edytuj trasę</string>
     <string name="route_detail_action_start_route_hint">rozpocząć odtwarzanie tej trasy</string>
-    <string name="route_detail_action_start_route_disabled_hint">dodać punkty trasy przed rozpoczęciem trasy</string>
     <string name="route_detail_action_stop_route_hint">zatrzymać odtwarzanie tej trasy</string>
     <string name="route_detail_action_share_hint">udostępnić tę trasę innej aplikacji</string>
     <string name="route_detail_action_edit_hint">zmienić lub przestawić kolejność punktów trasy</string>

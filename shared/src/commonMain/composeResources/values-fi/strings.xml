@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Pysäytä reitti</string>
     <string name="route_detail_action_edit">Muokkaa reittiä</string>
     <string name="route_detail_action_start_route_hint">aloittaaksesi tämän reitin toiston</string>
-    <string name="route_detail_action_start_route_disabled_hint">lisätäksesi reittipisteitä ennen reitin aloittamista</string>
     <string name="route_detail_action_stop_route_hint">pysäyttääksesi tämän reitin toiston</string>
     <string name="route_detail_action_share_hint">jakaaksesi tämän reitin toiseen sovellukseen</string>
     <string name="route_detail_action_edit_hint">muokataksesi reittipisteitä tai muuttaaksesi niiden järjestystä</string>

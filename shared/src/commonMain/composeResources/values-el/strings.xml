@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Διακοπή διαδρομής</string>
     <string name="route_detail_action_edit">Επεξεργασία διαδρομής</string>
     <string name="route_detail_action_start_route_hint">ξεκινήστε την αναπαραγωγή αυτής της διαδρομής</string>
-    <string name="route_detail_action_start_route_disabled_hint">προσθέστε σημεία πορείας πριν ξεκινήσετε τη διαδρομή</string>
     <string name="route_detail_action_stop_route_hint">σταματήστε την αναπαραγωγή αυτής της διαδρομής</string>
     <string name="route_detail_action_share_hint">μοιραστείτε αυτή τη διαδρομή με άλλη εφαρμογή</string>
     <string name="route_detail_action_edit_hint">αλλάξτε ή αναδιατάξτε τα σημεία πορείας στη διαδρομή</string>

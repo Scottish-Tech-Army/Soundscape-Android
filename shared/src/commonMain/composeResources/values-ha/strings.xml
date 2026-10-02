@@ -265,7 +265,6 @@
     <string name="route_detail_action_start_route_reverse">Fara Tafarki a Baya</string>
     <string name="route_detail_action_start_route_reverse_hint">fara kunna wannan tafarki a baya</string>
     <string name="route_reverse_name">%1$s a baya</string>
-    <string name="route_detail_action_start_route_disabled_hint">ƙara matsayai kafin fara tafarki</string>
     <string name="route_detail_action_stop_route_hint">dakatar da kunna wannan tafarki</string>
     <string name="route_detail_action_share_hint">raba wannan tafarki da wani app</string>
     <string name="route_detail_action_edit_hint">canza ko sake tsara matsayai a cikin tafarki</string>

@@ -52,7 +52,6 @@
     <string name="route_detail_action_stop_route">Stöðva leið</string>
     <string name="route_detail_action_edit">Breyta leið</string>
     <string name="route_detail_action_start_route_hint">hefja spilun þessarar leiðar</string>
-    <string name="route_detail_action_start_route_disabled_hint">bæta við leiðarpunktum áður en leiðin hefst</string>
     <string name="route_detail_action_stop_route_hint">stöðva spilun þessarar leiðar</string>
     <string name="route_detail_action_share_hint">deila þessari leið með öðru forriti</string>
     <string name="route_detail_action_edit_hint">breyta eða endurraða leiðarpunktum leiðarinnar</string>

@@ -44,7 +44,6 @@
     <string name="route_detail_action_stop_route">Route anhalten</string>
     <string name="route_detail_action_edit">Route bearbeiten</string>
     <string name="route_detail_action_start_route_hint">Die Wiedergabe dieser Route starten</string>
-    <string name="route_detail_action_start_route_disabled_hint">Wegpunkte hinzufügen, bevor Sie die Route starten</string>
     <string name="route_detail_action_stop_route_hint">Die Wiedergabe dieser Route anhalten</string>
     <string name="route_detail_action_share_hint">Diese Route mit einer anderen App teilen</string>
     <string name="route_detail_action_edit_hint">Die Wegpunkte in der Route ändern oder neu anordnen</string>

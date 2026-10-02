@@ -86,7 +86,6 @@
     <string name="route_detail_action_start_route_reverse">Alusta marsruuti vastupidises suunas</string>
     <string name="route_detail_action_start_route_reverse_hint">alustada selle marsruudi taasesitust vastupidises suunas</string>
     <string name="route_reverse_name">%1$s vastupidises suunas</string>
-    <string name="route_detail_action_start_route_disabled_hint">lisada teekonnapunktid enne marsruudi alustamist</string>
     <string name="route_detail_action_stop_route_hint">peatada selle marsruudi taasesitus</string>
     <string name="route_detail_action_share_hint">jagada seda marsruuti teise rakendusega</string>
     <string name="route_detail_action_edit_hint">muuta või ümber järjestada marsruudi teekonnapunkte</string>
