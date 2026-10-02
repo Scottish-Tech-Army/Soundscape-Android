@@ -41,6 +41,8 @@ android {
             // Let JVM unit tests touch android.util.Log (etc.) without mocking - they
             // return default values instead of throwing "not mocked".
             isReturnDefaultValues = true
+            // Robolectric tests (e.g. HomeScreenTextFitTest) render real app resources.
+            isIncludeAndroidResources = true
         }
     }
 
@@ -399,6 +401,9 @@ dependencies {
     testImplementation(libs.ktor.client.mock)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.robolectric)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.ui.test.junit4)
 
     androidTestImplementation(libs.androidx.junit.v121)
     androidTestImplementation(libs.androidx.espresso.core.v351)
@@ -494,6 +499,13 @@ tasks.withType<Test>().configureEach {
     // classes share one JVM. Since Osaka's, the densest of them, that's more than Gradle's default
     // 512 MB test heap holds.
     maxHeapSize = "2g"
+
+    // Robolectric (HomeScreenTextFitTest) reaches into FileDescriptor internals, which newer
+    // JDKs only allow when the package is explicitly opened to it.
+    jvmArgs(
+        "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
+        "--add-opens=java.base/java.io=ALL-UNNAMED",
+    )
 
     // Matches the AGP-generated testDebugUnitTest/testReleaseUnitTest/testReleaseTestUnitTest
     // tasks, but not nightlyUnitTest below (that one includes the category instead).
