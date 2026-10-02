@@ -281,7 +281,7 @@
     <!-- Feedback given when a route is deleted -->
     <string name="routes_action_deleted">Route deleted</string>
     <!-- Title of the view that is shown when the user navigates to the routes list, but they have not yet created any routes -->
-    <string name="routes_no_routes_title">Getting Started with Route Waypoints</string>
+    <string name="routes_no_routes_title">Getting Started with Routes</string>
     <!-- This text is displayed to the user when they navigate to the routes list but have not yet created any routes. It explains how a route is a set of ordered markers. Plain text: it is not rendered as markdown. The New button is at the top right of the screen; in right-to-left languages the layout is mirrored, so say top left. UI names: “New” is `markers_routes_action_new` (screen readers announce it as `route_detail_action_create`). -->
     <string name="routes_no_routes_hint_1">Create a route for yourself or for someone else. Use the “New” button at the top right of the screen, then add a set of markers as waypoints to build the route.</string>
     <!-- This text is displayed to the user when they navigate to the routes list but have not yet created any routes. It explains that the beacon will automatically shift between the route waypoints as they walk the route. -->
