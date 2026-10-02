@@ -567,6 +567,7 @@
     <string name="route_detail_action_start_route_reverse">بدء المسار بالعكس</string>
     <string name="route_detail_action_start_route_reverse_hint">بدء تشغيل هذا المسار بالعكس</string>
     <string name="route_reverse_name">%1$s بالعكس</string>
+    <string name="route_detail_edit_no_waypoints">أضف نقاط مسار قبل بدء المسار.</string>
     <string name="route_detail_action_stop_route_hint">إيقاف تشغيل هذا المسار</string>
     <string name="route_detail_action_share_hint">مشاركة هذا المسار مع تطبيق آخر</string>
     <string name="route_detail_action_edit_hint">تغيير نقاط المسار أو إعادة ترتيبها في المسار</string>
@@ -594,7 +595,7 @@
     <string name="user_activity_save_marker_title">حفظ العلامة</string>
     <string name="routes_title">المسارات</string>
     <string name="routes_action_deleted">تم حذف المسار</string>
-    <string name="routes_no_routes_title">البدء مع نقاط المسار</string>
+    <string name="routes_no_routes_title">البدء مع المسارات</string>
     <string name="routes_no_routes_hint_1">أنشئ مسارًا لنفسك أو لشخص آخر. استخدم زر «جديد» في الزاوية العلوية اليسرى من الشاشة، ثم أضف مجموعة من العلامات كنقاط مسار لبناء المسار.</string>
     <string name="routes_no_routes_hint_2">أثناء سيرك في مسارك، سيعلن Soundscape عن كل نقطة مسار عند وصولك إليها. ثم تنتقل المنارة الصوتية تلقائيًا إلى نقطة المسار التالية.</string>
     <string name="routes_sort_by_name">الترتيب حسب الاسم</string>

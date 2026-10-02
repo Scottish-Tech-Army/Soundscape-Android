@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Markering opslaan</string>
     <string name="routes_title">Routes</string>
     <string name="routes_action_deleted">Route verwijderd</string>
-    <string name="routes_no_routes_title">Aan de slag met routepunten</string>
+    <string name="routes_no_routes_title">Aan de slag met routes</string>
     <string name="routes_no_routes_hint_1">Maak een route voor uzelf of voor iemand anders. Gebruik de knop ‘Nieuw’ rechtsboven in het scherm en voeg daarna een set markeringen als routepunten toe om de route samen te stellen.</string>
     <string name="routes_no_routes_hint_2">Terwijl u uw route loopt, kondigt Soundscape elk routepunt aan zodra u er aankomt. Het audiobaken gaat daarna automatisch naar het volgende routepunt.</string>
     <string name="routes_sort_by_name">Sorteren op naam</string>
@@ -1351,6 +1351,7 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="route_detail_action_start_route_reverse">Route in omgekeerde volgorde starten</string>
     <string name="route_detail_action_start_route_reverse_hint">deze route in omgekeerde volgorde afspelen</string>
     <string name="route_reverse_name">%1$s in omgekeerde volgorde</string>
+    <string name="route_detail_edit_no_waypoints">Voeg routepunten toe voordat u de route start.</string>
     <string name="callouts_no_nearby_markers">Er zijn geen markeringen in de buurt</string>
     <string name="stationary_on_way">U beweegt niet op %1$s</string>
     <string name="settings_relative_directions_text">Modus voor relatieve richtingen</string>

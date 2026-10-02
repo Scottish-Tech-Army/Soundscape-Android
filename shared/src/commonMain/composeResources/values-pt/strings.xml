@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Guardar Marco</string>
     <string name="routes_title">Rotas</string>
     <string name="routes_action_deleted">Rota eliminada</string>
-    <string name="routes_no_routes_title">Começar a Utilizar Pontos de Passagem de Rota</string>
+    <string name="routes_no_routes_title">Começar a Utilizar Rotas</string>
     <string name="routes_no_routes_hint_1">Crie uma rota para si ou para outra pessoa. Use o botão «Novo» no canto superior direito do ecrã e, em seguida, adicione um conjunto de marcos como pontos de passagem para construir a rota.</string>
     <string name="routes_no_routes_hint_2">À medida que percorre a sua rota, o Soundscape anuncia cada ponto de passagem quando lá chega. O Sinal de Áudio passa depois automaticamente para o ponto de passagem seguinte.</string>
     <string name="routes_sort_by_name">Ordenar por Nome</string>
@@ -1355,6 +1355,7 @@ Continue a comunicar quaisquer problemas, por pequenos que sejam, através de «
     <string name="route_detail_action_start_route_reverse">Iniciar Rota em Sentido Inverso</string>
     <string name="route_detail_action_start_route_reverse_hint">iniciar a reprodução desta rota em sentido inverso</string>
     <string name="route_reverse_name">%1$s em sentido inverso</string>
+    <string name="route_detail_edit_no_waypoints">Adicione pontos de passagem antes de iniciar a rota.</string>
     <string name="callouts_no_nearby_markers">Não existem marcos nas proximidades</string>
     <string name="stationary_on_way">Sem movimento {pt:em %1$s}</string>
     <string name="settings_relative_directions_text">Modo de direções relativas</string>

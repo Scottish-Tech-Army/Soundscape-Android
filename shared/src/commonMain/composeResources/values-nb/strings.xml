@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Lagre markør</string>
     <string name="routes_title">Ruter</string>
     <string name="routes_action_deleted">Ruten er slettet</string>
-    <string name="routes_no_routes_title">Kom i gang med ruteveipunkter</string>
+    <string name="routes_no_routes_title">Kom i gang med ruter</string>
     <string name="routes_no_routes_hint_1">Opprett en rute for deg selv eller for noen andre. Bruk knappen «Ny» øverst til høyre på skjermen, og legg deretter til et sett med markører som veipunkter for å bygge opp ruten.</string>
     <string name="routes_no_routes_hint_2">Mens du går ruten din, kunngjør Soundscape hvert veipunkt når du kommer frem. Lydsignalet flytter seg deretter automatisk til neste veipunkt.</string>
     <string name="routes_sort_by_name">Sorter etter navn</string>
@@ -1351,6 +1351,7 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="route_detail_action_start_route_reverse">Start rute i revers</string>
     <string name="route_detail_action_start_route_reverse_hint">starte avspilling av denne ruten i omvendt rekkefølge</string>
     <string name="route_reverse_name">%1$s i omvendt rekkefølge</string>
+    <string name="route_detail_edit_no_waypoints">Legg til veipunkter før du starter ruten.</string>
     <string name="callouts_no_nearby_markers">Det er ingen markører i nærheten</string>
     <string name="stationary_on_way">Ikke i bevegelse på %1$s</string>
     <string name="settings_relative_directions_text">Modus for relative retninger</string>

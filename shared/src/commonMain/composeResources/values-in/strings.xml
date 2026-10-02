@@ -810,6 +810,7 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="route_detail_action_start_route_reverse">Mulai Rute Terbalik</string>
     <string name="route_detail_action_start_route_reverse_hint">memulai pemutaran rute ini secara terbalik</string>
     <string name="route_reverse_name">%1$s secara terbalik</string>
+    <string name="route_detail_edit_no_waypoints">Tambahkan titik rute sebelum memulai rute.</string>
     <string name="route_detail_action_stop_route_hint">menghentikan pemutaran rute ini</string>
     <string name="route_detail_action_share_hint">membagikan rute ini dengan aplikasi lain</string>
     <string name="route_detail_action_edit_hint">mengubah atau mengatur ulang urutan titik rute dalam rute</string>
@@ -837,7 +838,7 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="user_activity_save_marker_title">Simpan Penanda</string>
     <string name="routes_title">Rute</string>
     <string name="routes_action_deleted">Rute dihapus</string>
-    <string name="routes_no_routes_title">Memulai dengan Titik Rute</string>
+    <string name="routes_no_routes_title">Memulai dengan Rute</string>
     <string name="routes_no_routes_hint_1">Buat rute untuk diri Anda sendiri atau untuk orang lain. Gunakan tombol “Baru” di pojok kanan atas layar, lalu tambahkan sekumpulan penanda sebagai titik rute untuk menyusun rute tersebut.</string>
     <string name="routes_no_routes_hint_2">Saat Anda menyusuri rute Anda, Soundscape akan mengumumkan setiap titik rute ketika Anda tiba. Suar Audio kemudian otomatis berpindah ke titik rute berikutnya.</string>
     <string name="routes_sort_by_name">Urutkan berdasarkan Nama</string>

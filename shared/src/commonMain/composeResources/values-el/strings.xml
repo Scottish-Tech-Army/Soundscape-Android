@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Αποθήκευση δείκτη</string>
     <string name="routes_title">Διαδρομές</string>
     <string name="routes_action_deleted">Η διαδρομή διαγράφηκε</string>
-    <string name="routes_no_routes_title">Ξεκινώντας με τα σημεία πορείας διαδρομής</string>
+    <string name="routes_no_routes_title">Ξεκινώντας με τις διαδρομές</string>
     <string name="routes_no_routes_hint_1">Δημιουργήστε μια διαδρομή για τον εαυτό σας ή για κάποιον άλλο. Χρησιμοποιήστε το κουμπί «Νέο» στην πάνω δεξιά γωνία της οθόνης και, στη συνέχεια, προσθέστε ένα σύνολο δεικτών ως σημεία πορείας για να συνθέσετε τη διαδρομή.</string>
     <string name="routes_no_routes_hint_2">Καθώς περπατάτε τη διαδρομή σας, το Soundscape θα ανακοινώνει κάθε σημείο πορείας μόλις φτάνετε σε αυτό. Στη συνέχεια, το Ηχητικό σήμα θα μετακινείται αυτόματα στο επόμενο σημείο πορείας.</string>
     <string name="routes_sort_by_name">Ταξινόμηση κατά όνομα</string>
@@ -1351,6 +1351,7 @@
     <string name="route_detail_action_start_route_reverse">Έναρξη διαδρομής (αντίστροφα)</string>
     <string name="route_detail_action_start_route_reverse_hint">ξεκινήστε την αναπαραγωγή αυτής της διαδρομής σε αντίστροφη σειρά</string>
     <string name="route_reverse_name">%1$s σε αντίστροφη σειρά</string>
+    <string name="route_detail_edit_no_waypoints">Προσθέστε σημεία πορείας πριν ξεκινήσετε τη διαδρομή.</string>
     <string name="callouts_no_nearby_markers">Δεν υπάρχουν κοντινοί δείκτες</string>
     <string name="stationary_on_way">Χωρίς κίνηση στην %1$s</string>
     <string name="settings_relative_directions_text">Λειτουργία σχετικών κατευθύνσεων</string>

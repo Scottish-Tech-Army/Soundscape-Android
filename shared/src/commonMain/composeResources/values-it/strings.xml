@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Salva indicatore</string>
     <string name="routes_title">Percorsi</string>
     <string name="routes_action_deleted">Percorso eliminato</string>
-    <string name="routes_no_routes_title">Introduzione ai waypoint di percorso</string>
+    <string name="routes_no_routes_title">Introduzione ai percorsi</string>
     <string name="routes_no_routes_hint_1">Crea un percorso per te o per qualcun altro. Usa il pulsante «Nuovo» nell'angolo in alto a destra dello schermo, poi aggiungi una serie di indicatori come waypoint per comporre il percorso.</string>
     <string name="routes_no_routes_hint_2">Mentre percorri il tuo percorso, Soundscape annuncia ogni waypoint quando lo raggiungi. L'audiofaro passa poi automaticamente al waypoint successivo.</string>
     <string name="routes_sort_by_name">Ordina per nome</string>
@@ -1355,6 +1355,7 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="route_detail_action_start_route_reverse">Avvia Percorso in senso inverso</string>
     <string name="route_detail_action_start_route_reverse_hint">avviare la riproduzione di questo percorso in senso inverso</string>
     <string name="route_reverse_name">%1$s in senso inverso</string>
+    <string name="route_detail_edit_no_waypoints">Aggiungi dei waypoint prima di avviare il percorso.</string>
     <string name="callouts_no_nearby_markers">Non ci sono indicatori nelle vicinanze</string>
     <string name="stationary_on_way">Non in movimento {it:su %1$s}</string>
     <string name="settings_relative_directions_text">Modalità direzioni relative</string>

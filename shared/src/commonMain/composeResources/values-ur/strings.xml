@@ -632,6 +632,7 @@
     <string name="route_detail_action_start_route_reverse">روٹ کو الٹی ترتیب میں شروع کریں</string>
     <string name="route_detail_action_start_route_reverse_hint">اس روٹ کا پلے بیک الٹی ترتیب میں شروع کرنے</string>
     <string name="route_reverse_name">%1$s (الٹی ترتیب میں)</string>
+    <string name="route_detail_edit_no_waypoints">روٹ شروع کرنے سے پہلے ویپوائنٹس شامل کریں۔</string>
     <string name="route_detail_action_stop_route_hint">اس روٹ کا پلے بیک روکنے</string>
     <string name="route_detail_action_share_hint">اس روٹ کو دوسری ایپ کے ساتھ شیئر کرنے</string>
     <string name="route_detail_action_edit_hint">روٹ میں ویپوائنٹس کو تبدیل یا دوبارہ ترتیب دینے</string>
@@ -659,7 +660,7 @@
     <string name="user_activity_save_marker_title">مارکر محفوظ کریں</string>
     <string name="routes_title">روٹس</string>
     <string name="routes_action_deleted">روٹ حذف کر دیا گیا</string>
-    <string name="routes_no_routes_title">روٹ ویپوائنٹس کے ساتھ آغاز کریں</string>
+    <string name="routes_no_routes_title">روٹس کے ساتھ آغاز کریں</string>
     <string name="routes_no_routes_hint_1">اپنے لیے یا کسی اور کے لیے ایک روٹ بنائیں۔ اسکرین کے اوپری بائیں کونے میں موجود “نیا” بٹن استعمال کریں، پھر روٹ تشکیل دینے کے لیے مارکرز کو ویپوائنٹس کے طور پر شامل کریں۔</string>
     <string name="routes_no_routes_hint_2">جب آپ اپنے روٹ پر چل رہے ہوں گے تو Soundscape آپ کو ہر ویپوائنٹ پر پہنچنے کی اطلاع دے گا۔ اس کے بعد آڈیو بیکن خود بخود اگلے ویپوائنٹ کی طرف بڑھ جائے گا۔</string>
     <string name="routes_sort_by_name">نام کے لحاظ سے ترتیب دیں</string>

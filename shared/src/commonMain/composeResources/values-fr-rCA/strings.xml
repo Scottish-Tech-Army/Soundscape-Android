@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">Enregistrer le marqueur</string>
     <string name="routes_title">Itinéraires</string>
     <string name="routes_action_deleted">Itinéraire supprimé</string>
-    <string name="routes_no_routes_title">Premiers pas avec les étapes d’Itinéraire</string>
+    <string name="routes_no_routes_title">Mise en route avec les Itinéraires</string>
     <string name="routes_no_routes_hint_1">Créez un Itinéraire pour vous-même ou pour une autre personne. Utilisez le bouton « Nouveau » dans le coin supérieur droit de l’écran, puis ajoutez un ensemble de Marqueurs comme étapes pour composer l’Itinéraire.</string>
     <string name="routes_no_routes_hint_2">Pendant que vous parcourez votre Itinéraire, Soundscape annonce chaque étape lorsque vous y arrivez. La balise sonore passe ensuite automatiquement à l’étape suivante.</string>
     <string name="routes_sort_by_name">Trier par nom</string>
@@ -1355,6 +1355,7 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="route_detail_action_start_route_reverse">Démarrer l’itinéraire en sens inverse</string>
     <string name="route_detail_action_start_route_reverse_hint">démarrer la lecture de cet itinéraire en sens inverse</string>
     <string name="route_reverse_name">%1$s (en sens inverse)</string>
+    <string name="route_detail_edit_no_waypoints">Ajoutez des étapes avant de démarrer l’Itinéraire.</string>
     <string name="callouts_no_nearby_markers">Aucun marqueur à proximité</string>
     <string name="stationary_on_way">Immobile {fr:sur %1$s}</string>
     <string name="settings_relative_directions_text">Mode des directions relatives</string>

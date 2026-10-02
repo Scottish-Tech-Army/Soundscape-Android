@@ -76,7 +76,7 @@
     <string name="user_activity_save_marker_title">Zapisz znacznik</string>
     <string name="routes_title">Zapisane trasy</string>
     <string name="routes_action_deleted">Trasa usunięta</string>
-    <string name="routes_no_routes_title">Pierwsze kroki z punktami trasy</string>
+    <string name="routes_no_routes_title">Pierwsze kroki z trasami</string>
     <string name="routes_no_routes_hint_1">Utwórz trasę dla siebie lub dla kogoś innego. Użyj przycisku „Nowy” w prawym górnym rogu ekranu, a następnie dodaj zestaw znaczników jako punkty trasy, aby ją zbudować.</string>
     <string name="routes_no_routes_hint_2">Gdy pokonujesz swoją trasę, Soundscape powiadamia o każdym punkcie trasy w momencie dotarcia do niego. Dźwięk naprowadzający automatycznie przełącza się wtedy na następny punkt trasy.</string>
     <string name="routes_sort_by_name">Sortuj według nazwy</string>
@@ -1359,6 +1359,7 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="route_detail_action_start_route_reverse">Rozpocznij trasę w odwrotnej kolejności</string>
     <string name="route_detail_action_start_route_reverse_hint">rozpocząć odtwarzanie tej trasy w odwrotnej kolejności</string>
     <string name="route_reverse_name">%1$s w odwrotnej kolejności</string>
+    <string name="route_detail_edit_no_waypoints">Przed rozpoczęciem trasy dodaj punkty trasy.</string>
     <string name="callouts_no_nearby_markers">W pobliżu nie ma żadnych znaczników</string>
     <string name="stationary_on_way">Nie poruszasz się na %1$s</string>
     <string name="settings_relative_directions_text">Tryb kierunków względnych</string>

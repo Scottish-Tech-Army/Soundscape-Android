@@ -75,7 +75,7 @@
     <string name="user_activity_save_marker_title">Зберегти мітку</string>
     <string name="routes_title">Маршрути</string>
     <string name="routes_action_deleted">Маршрут видалено</string>
-    <string name="routes_no_routes_title">Почніть зі створення зупинок</string>
+    <string name="routes_no_routes_title">Почніть зі створення маршрутів</string>
     <string name="routes_no_routes_hint_1">Створіть маршрут для себе чи для когось іншого. Натисніть кнопку «Створити» у верхньому правому куті екрана, а потім додавайте мітки як зупинки, щоб скласти маршрут.</string>
     <string name="routes_no_routes_hint_2">Коли ви йдете своїм маршрутом, Soundscape повідомлятиме вас про прибуття до кожної зупинки. Після цього звуковий маячок автоматично переміститься до наступної зупинки.</string>
     <string name="routes_sort_by_name">Сортувати за назвою</string>
@@ -1359,6 +1359,7 @@
     <string name="route_detail_action_start_route_reverse">Розпочати маршрут у зворотному порядку</string>
     <string name="route_detail_action_start_route_reverse_hint">почати відтворення цього маршруту у зворотному порядку</string>
     <string name="route_reverse_name">%1$s у зворотному порядку</string>
+    <string name="route_detail_edit_no_waypoints">Додайте зупинки перед початком маршруту.</string>
     <string name="callouts_no_nearby_markers">Поблизу немає міток</string>
     <string name="stationary_on_way">Ви стоїте на %1$s</string>
     <string name="settings_relative_directions_text">Режим відносних напрямків</string>

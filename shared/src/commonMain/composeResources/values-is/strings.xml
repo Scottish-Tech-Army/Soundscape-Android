@@ -76,7 +76,7 @@
     <string name="user_activity_save_marker_title">Vista merki</string>
     <string name="routes_title">Leiðir</string>
     <string name="routes_action_deleted">Leið eytt</string>
-    <string name="routes_no_routes_title">Fyrstu skref með leiðarpunktum</string>
+    <string name="routes_no_routes_title">Fyrstu skref með leiðum</string>
     <string name="routes_no_routes_hint_1">Búðu til leið fyrir þig eða einhvern annan. Notaðu hnappinn „Nýtt“ efst í hægra horni skjásins og bættu síðan við merkjum sem leiðarpunktum til að setja leiðina saman.</string>
     <string name="routes_no_routes_hint_2">Þegar þú gengur leiðina þína tilkynnir Soundscape hvern leiðarpunkt um leið og þú kemur að honum. Hljóðvitinn færist svo sjálfkrafa á næsta leiðarpunkt.</string>
     <string name="routes_sort_by_name">raða eftir nafni</string>
@@ -1351,6 +1351,7 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="route_detail_action_start_route_reverse">Hefja leið í öfugri röð</string>
     <string name="route_detail_action_start_route_reverse_hint">hefja spilun leiðarinnar í öfugri röð</string>
     <string name="route_reverse_name">%1$s í öfugri röð</string>
+    <string name="route_detail_edit_no_waypoints">Bættu við leiðarpunktum áður en leiðin hefst.</string>
     <string name="callouts_no_nearby_markers">Engin nálæg merki</string>
     <string name="stationary_on_way">Kyrrstaða á %1$s</string>
     <string name="settings_relative_directions_text">Afstæðar áttir</string>

@@ -95,7 +95,7 @@
     <string name="user_activity_save_marker_title">Salvează marcaj</string>
     <string name="routes_title">Rute</string>
     <string name="routes_action_deleted">Rută ștearsă</string>
-    <string name="routes_no_routes_title">Primii pași cu punctele de traseu ale rutelor</string>
+    <string name="routes_no_routes_title">Primii pași cu rutele</string>
     <string name="routes_no_routes_hint_1">Creează o rută pentru tine sau pentru altcineva. Folosește butonul „Nou” din colțul din dreapta sus al ecranului, apoi adaugă un set de marcaje ca puncte de traseu pentru a construi ruta.</string>
     <string name="routes_no_routes_hint_2">Pe măsură ce parcurgi ruta, Soundscape va anunța fiecare punct de traseu când ajungi la el. Apoi baliza audio va trece automat la următorul punct de traseu.</string>
     <string name="routes_sort_by_name">Sortează după nume</string>
@@ -1355,6 +1355,7 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="route_detail_action_start_route_reverse">Pornește ruta în sens invers</string>
     <string name="route_detail_action_start_route_reverse_hint">a porni redarea acestei rute în sens invers</string>
     <string name="route_reverse_name">%1$s în sens invers</string>
+    <string name="route_detail_edit_no_waypoints">Adaugă puncte de traseu înainte de a porni ruta.</string>
     <string name="callouts_no_nearby_markers">Nu există marcaje în apropiere</string>
     <string name="stationary_on_way">Fără deplasare pe %1$s</string>
     <string name="settings_relative_directions_text">Mod direcții relative</string>

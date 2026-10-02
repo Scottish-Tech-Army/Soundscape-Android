@@ -632,6 +632,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="route_detail_action_start_route_reverse">Bắt đầu lộ trình theo chiều ngược lại</string>
     <string name="route_detail_action_start_route_reverse_hint">bắt đầu phát lộ trình này theo chiều ngược lại</string>
     <string name="route_reverse_name">%1$s theo chiều ngược lại</string>
+    <string name="route_detail_edit_no_waypoints">Thêm điểm dừng trước khi bắt đầu lộ trình.</string>
     <string name="route_detail_action_stop_route_hint">dừng phát lộ trình này</string>
     <string name="route_detail_action_share_hint">chia sẻ lộ trình này với một ứng dụng khác</string>
     <string name="route_detail_action_edit_hint">thay đổi hoặc sắp xếp lại các điểm dừng trong lộ trình</string>
@@ -659,7 +660,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="user_activity_save_marker_title">Lưu điểm đánh dấu</string>
     <string name="routes_title">Lộ trình</string>
     <string name="routes_action_deleted">Đã xóa lộ trình</string>
-    <string name="routes_no_routes_title">Bắt đầu với các điểm dừng trên lộ trình</string>
+    <string name="routes_no_routes_title">Bắt đầu với lộ trình</string>
     <string name="routes_no_routes_hint_1">Tạo một lộ trình cho bản thân hoặc cho người khác. Dùng nút “Tạo mới” ở góc trên bên phải màn hình, sau đó thêm các điểm đánh dấu làm điểm dừng để tạo nên lộ trình.</string>
     <string name="routes_no_routes_hint_2">Khi bạn đi trên lộ trình của mình, Soundscape sẽ thông báo mỗi khi bạn đến một điểm dừng. Sau đó đèn hiệu âm thanh sẽ tự động chuyển sang điểm dừng tiếp theo.</string>
     <string name="routes_sort_by_name">Sắp xếp theo tên</string>

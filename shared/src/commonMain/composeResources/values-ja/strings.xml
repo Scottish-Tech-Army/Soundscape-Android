@@ -68,7 +68,7 @@
     <string name="user_activity_save_marker_title">マーカーを保存</string>
     <string name="routes_title">ルート</string>
     <string name="routes_action_deleted">ルート削除済み</string>
-    <string name="routes_no_routes_title">ルート ウェイポイントの使い方</string>
+    <string name="routes_no_routes_title">ルートの使い方</string>
     <string name="routes_no_routes_hint_1">自分自身のため、または誰かのためにルートを作成できます。画面右上の「新規」ボタンを使用し、マーカーのセットをウェイポイントとして追加して、ルートを組み立ててください。</string>
     <string name="routes_no_routes_hint_2">ルートを歩いていると、各ウェイポイントに到着するたびに Soundscape が読み上げます。その後、音声ビーコンは自動的に次のウェイポイントへ移動します。</string>
     <string name="routes_sort_by_name">名前で並べ替え</string>
@@ -1347,6 +1347,7 @@
     <string name="route_detail_action_start_route_reverse">ルートを逆順で開始する</string>
     <string name="route_detail_action_start_route_reverse_hint">このルートを逆順で再生します</string>
     <string name="route_reverse_name">%1$s（逆順）</string>
+    <string name="route_detail_edit_no_waypoints">ルートを開始する前にウェイポイントを追加してください。</string>
     <string name="callouts_no_nearby_markers">近くにマーカーはありません</string>
     <string name="stationary_on_way">%1$s 上で移動していません</string>
     <string name="settings_relative_directions_text">相対方向モード</string>
