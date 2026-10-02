@@ -49,7 +49,7 @@ import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.menu_open_source_licenses
 import org.scottishtecharmy.soundscape.resources.ui_back_button_title
-import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
@@ -161,16 +161,16 @@ fun MarkdownHelpScreen(
     onNavigate: (String) -> Unit,
     onNavigateUp: () -> Unit,
     onOpenSourceLicenses: (() -> Unit)? = null,
+    preferencesProvider: PreferencesProvider? = null,
     modifier: Modifier = Modifier,
     structureLog: StructureLog = StructureLog {}
 ) {
     structureLog.start("HelpScreen")
 
-    val context = LocalContext.current
     val textContentRenderer = remember { TextContentRenderer.builder().build() }
     val htmlRenderer = remember { HtmlRenderer.builder().build() }
 
-    val helpTopic = HelpTopic.fromRouteParam(topic, null) as? HelpTopic.MarkdownHelpTopic
+    val helpTopic = HelpTopic.fromRouteParam(topic, preferencesProvider) as? HelpTopic.MarkdownHelpTopic
         ?: return
     val isFaqSubPage = helpTopic is HelpTopic.MarkdownFaq
 

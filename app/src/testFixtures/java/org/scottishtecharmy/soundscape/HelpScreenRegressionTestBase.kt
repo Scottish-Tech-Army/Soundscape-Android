@@ -22,6 +22,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.StructureLog
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -76,6 +77,7 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
             topic = topic,
             onNavigate = {},
             onNavigateUp = {},
+            preferencesProvider = FakeMarkdownPreferencesProvider,
             modifier = Modifier
                 .windowInsetsPadding(WindowInsets.safeDrawing)
                 .semantics { testTagsAsResourceId = true },
@@ -87,4 +89,16 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
     protected abstract fun makeStructureLog(): StructureLog
 
     protected abstract fun compareAgainstBaseline(structureLog: StructureLog)
+}
+
+private object FakeMarkdownPreferencesProvider : PreferencesProvider {
+    override fun getBoolean(key: String, default: Boolean) =
+        if (key == PreferenceKeys.MARKDOWN_HELP) true else default
+    override fun getString(key: String, default: String) = default
+    override fun getFloat(key: String, default: Float) = default
+    override fun putBoolean(key: String, value: Boolean) {}
+    override fun putString(key: String, value: String) {}
+    override fun clearAll() {}
+    override fun addListener(listener: org.scottishtecharmy.soundscape.preferences.PreferencesListener) {}
+    override fun removeListener(listener: org.scottishtecharmy.soundscape.preferences.PreferencesListener) {}
 }

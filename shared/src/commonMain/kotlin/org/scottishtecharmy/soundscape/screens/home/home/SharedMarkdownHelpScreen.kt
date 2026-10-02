@@ -36,18 +36,21 @@ import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+
 @Composable
 fun SharedMarkdownHelpScreen(
     topic: String,
     onNavigate: (String) -> Unit,
     onNavigateUp: () -> Unit,
     onOpenSourceLicenses: (() -> Unit)? = null,
+    preferencesProvider: PreferencesProvider? = null,
     modifier: Modifier = Modifier,
     structureLog: StructureLog = StructureLog {}
 ) {
     structureLog.start("HelpScreen")
 
-    val helpTopic = HelpTopic.fromRouteParam(topic, null) as? HelpTopic.MarkdownHelpTopic
+    val helpTopic = HelpTopic.fromRouteParam(topic, preferencesProvider) as? HelpTopic.MarkdownHelpTopic
         ?: return
     val isFaqSubPage = helpTopic is HelpTopic.MarkdownFaq
 

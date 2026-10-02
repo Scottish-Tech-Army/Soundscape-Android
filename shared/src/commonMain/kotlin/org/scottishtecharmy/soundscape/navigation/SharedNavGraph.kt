@@ -582,6 +582,7 @@ fun SharedNavHost(
                     } else {
                         null
                     },
+                    preferencesProvider = preferencesProvider,
                 )
             } else {
                 SharedHelpScreen(
