@@ -68,7 +68,7 @@ private fun SemanticsNode.layoutInfo(): String {
             // Ignore (for now) the fact that we refactored the regression tests.
             .replace("HelpScreenRegressionTestBase", "HelpScreenRegressionTest")
     }
-    return "(bounds=${bounds.toShortString()}, modifiers=[$modifiers])"
+    return "(bounds=${bounds.toShortString()})"
 }
 
 private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
