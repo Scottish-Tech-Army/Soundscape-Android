@@ -1,8 +1,6 @@
 package org.scottishtecharmy.soundscape
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.assertIsDisplayed
@@ -28,6 +26,7 @@ import org.scottishtecharmy.soundscape.resources.markers_action_add_to_markers
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.RouteFunctions
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeContent
+import org.scottishtecharmy.soundscape.screens.home.home.rememberFullScreenableMap
 import org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -68,7 +67,6 @@ class HomeBeaconCardTest {
         onSaveMarker: ((LocationDescription) -> Unit)? = {},
         routeFunctions: RouteFunctions = RouteFunctions(),
     ) {
-        val fullscreenMap = remember { mutableStateOf(false) }
         SoundscapeTheme(MutableStateFlow(ThemeState())) {
             SharedHomeContent(
                 location = userLocation,
@@ -78,7 +76,6 @@ class HomeBeaconCardTest {
                     currentWaypoint = 0,
                     beaconOnly = true,
                 ),
-                heading = 0.0f,
                 onNavigate = {},
                 onSelectLocation = {},
                 onShowRouteDetails = {},
@@ -93,7 +90,13 @@ class HomeBeaconCardTest {
                 streetPreviewFunctions = StreetPreviewFunctions(),
                 routeFunctions = routeFunctions,
                 goToAppSettings = {},
-                fullscreenMap = fullscreenMap,
+                map = rememberFullScreenableMap(
+                    mapCenter = null,
+                    userLocation = null,
+                    userSymbolRotation = 0f,
+                    beaconLocation = null,
+                    routeData = null,
+                ),
                 permissionsRequired = false,
                 showMap = false,
             )

@@ -60,7 +60,7 @@ import org.scottishtecharmy.soundscape.resources.share_title
 import org.scottishtecharmy.soundscape.resources.waypoint_title
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
-import org.scottishtecharmy.soundscape.screens.home.home.PlatformMapContainer
+import org.scottishtecharmy.soundscape.screens.home.home.rememberFullScreenableMap
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
@@ -109,7 +109,14 @@ fun SharedRouteDetailsScreen(
     // Centre on the route's start, falling back to where we are if the route has no waypoints -
     // an empty LngLatAlt() would put the map out in the Atlantic at 0,0.
     val firstWaypoint = waypoints.firstOrNull()?.location ?: userLocation ?: LngLatAlt()
-    val fullscreenMap = remember { mutableStateOf(false) }
+    val map = rememberFullScreenableMap(
+        mapCenter = firstWaypoint,
+        userLocation = userLocation,
+        userSymbolRotation = heading,
+        beaconLocation = null,
+        routeData = routeWithMarkers,
+    )
+    val fullscreenMap = map.fullscreen
     var mapInteracting by remember { mutableStateOf(false) }
     val contentScrollState = rememberScrollState()
 
@@ -125,15 +132,7 @@ fun SharedRouteDetailsScreen(
         }
     ) { innerPadding ->
         if (fullscreenMap.value && showMap) {
-            PlatformMapContainer(
-                beaconLocation = null,
-                routeData = routeWithMarkers,
-                allowScrolling = true,
-                mapCenter = firstWaypoint,
-                userLocation = userLocation,
-                userSymbolRotation = heading,
-                modifier = Modifier.fillMaxSize(),
-            )
+            map.FullScreen()
         } else {
             Box(
                 modifier = Modifier
@@ -244,13 +243,7 @@ fun SharedRouteDetailsScreen(
                             }
                         }
                         if (showMap) {
-                            PlatformMapContainer(
-                                beaconLocation = null,
-                                routeData = routeWithMarkers,
-                                allowScrolling = false,
-                                mapCenter = firstWaypoint,
-                                userLocation = userLocation,
-                                userSymbolRotation = heading,
+                            map.Inline(
                                 modifier = Modifier.fillMaxWidth().weight(1f).smallPadding(),
                                 onInteractionChanged = { mapInteracting = it },
                             )

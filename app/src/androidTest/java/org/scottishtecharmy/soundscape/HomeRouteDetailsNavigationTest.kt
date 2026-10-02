@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -18,6 +17,7 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.RouteFunctions
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeContent
+import org.scottishtecharmy.soundscape.screens.home.home.rememberFullScreenableMap
 import org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -61,17 +61,12 @@ class HomeRouteDetailsNavigationTest {
     fun routeDetailsButton_handsOverTheRoute_ratherThanNavigatingToAnUnknownRoute() {
         var routeDetailsFor: LocationDescription? = null
         val navigatedTo = mutableListOf<String>()
-        // Hoisted out of the composition - creating it inside would be recreated on every
-        // recomposition (and lint rejects it).
-        val fullscreenMap = mutableStateOf(false)
-
         composeTestRule.setContent {
             SoundscapeTheme(MutableStateFlow(ThemeState())) {
                 SharedHomeContent(
                     location = LngLatAlt(-4.3239319, 55.9446396),
                     beaconState = null,
                     routePlayerState = RoutePlayerState(routeData = route, currentWaypoint = 0),
-                    heading = 0.0f,
                     onNavigate = { navigatedTo.add(it) },
                     onSelectLocation = {},
                     onShowRouteDetails = { routeDetailsFor = it },
@@ -84,7 +79,13 @@ class HomeRouteDetailsNavigationTest {
                     streetPreviewFunctions = StreetPreviewFunctions(),
                     routeFunctions = RouteFunctions(),
                     goToAppSettings = {},
-                    fullscreenMap = fullscreenMap,
+                    map = rememberFullScreenableMap(
+                        mapCenter = null,
+                        userLocation = null,
+                        userSymbolRotation = 0f,
+                        beaconLocation = null,
+                        routeData = null,
+                    ),
                     permissionsRequired = false,
                     showMap = false,
                 )

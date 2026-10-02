@@ -28,7 +28,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -181,7 +180,6 @@ fun SharedHomeContent(
     location: LngLatAlt?,
     beaconState: BeaconState?,
     routePlayerState: RoutePlayerState,
-    heading: Float,
     onNavigate: (String) -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
     onShowRouteDetails: (LocationDescription) -> Unit,
@@ -194,7 +192,7 @@ fun SharedHomeContent(
     streetPreviewFunctions: StreetPreviewFunctions,
     routeFunctions: RouteFunctions,
     goToAppSettings: () -> Unit,
-    fullscreenMap: MutableState<Boolean>,
+    map: FullScreenableMap,
     permissionsRequired: Boolean,
     showMap: Boolean,
     modifier: Modifier = Modifier,
@@ -426,14 +424,7 @@ fun SharedHomeContent(
                             }
                             if (showMap) {
                                 Row(modifier = Modifier.fillMaxWidth().mapSlot(2.0f)) {
-                                    PlatformMapContainer(
-                                        beaconLocation = beaconState?.location,
-                                        routeData = routePlayerState.routeData,
-                                        currentBeaconWaypointIndex = routePlayerState.currentWaypoint,
-                                        mapCenter = location,
-                                        allowScrolling = false,
-                                        userLocation = location,
-                                        userSymbolRotation = heading,
+                                    map.Inline(
                                         modifier = Modifier.fillMaxWidth().extraSmallPadding(),
                                         onInteractionChanged = { mapInteracting = it },
                                     )
@@ -516,7 +507,7 @@ fun SharedHomeContent(
 
                                 if (showMap) {
                                     CardButton(
-                                        onClick = { fullscreenMap.value = !fullscreenMap.value },
+                                        onClick = { map.fullscreen.value = !map.fullscreen.value },
                                         imageVector = Icons.Rounded.Fullscreen,
                                         contentDescriptionId = Res.string.location_detail_full_screen_hint,
                                         testTag = "routeFullScreenMap",
@@ -525,13 +516,7 @@ fun SharedHomeContent(
                             }
                         }
                     } else if (showMap) {
-                        PlatformMapContainer(
-                            beaconLocation = beaconState?.location,
-                            routeData = null,
-                            mapCenter = location,
-                            allowScrolling = false,
-                            userLocation = location,
-                            userSymbolRotation = heading,
+                        map.Inline(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .mapSlot(1f)
