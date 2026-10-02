@@ -1,11 +1,17 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.view.SurfaceView
+import android.view.View
+import android.view.ViewGroup
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import org.maplibre.spatialk.geojson.Geometry
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -98,6 +104,8 @@ actual fun PlatformMapContainer(
         )
     }
 
+    RedrawUntilSurfacesCreated()
+
     MapContainerLibre(
         mapCenter = mapCenter,
         allowScrolling = allowScrolling,
@@ -112,4 +120,43 @@ actual fun PlatformMapContainer(
         onInteractionChanged = onInteractionChanged,
         onBeaconLocationEdited = onBeaconLocationEdited,
     )
+}
+
+/**
+ * Keeps asking for frames until every SurfaceView on screen has its surface, for up to
+ * [SURFACE_CREATION_FRAMES] frames after the map is composed.
+ *
+ * A SurfaceView only creates its surface from a pre-draw pass, and MapLibre's is attached partway
+ * through the frame that composes the map - after that frame's pre-draw has already gone by. It
+ * gets its surface on the next frame, but nothing guarantees there is one: once the map has been
+ * composed the screen can be completely static. On a phone with a compass the heading keeps
+ * redrawing the user symbol so it never shows, but on one without (the Cubot J10) pressing the full
+ * screen map button left a blank map with no surface until the screen was turned off and on again.
+ * It happened every time with a finger press and only sometimes with an instant one, because a
+ * short press's ripple was often still animating and so supplied the frame.
+ */
+@Composable
+private fun RedrawUntilSurfacesCreated() {
+    val view = LocalView.current
+    LaunchedEffect(view) {
+        repeat(SURFACE_CREATION_FRAMES) {
+            withFrameNanos { }
+            if (!hasShownSurfaceViewWithoutSurface(view.rootView)) return@LaunchedEffect
+            view.invalidate()
+        }
+    }
+}
+
+private const val SURFACE_CREATION_FRAMES = 60
+
+private fun hasShownSurfaceViewWithoutSurface(view: View): Boolean {
+    if (view is SurfaceView && view.isShown && view.width > 0 && view.height > 0 &&
+        !view.holder.surface.isValid
+    ) return true
+    if (view is ViewGroup) {
+        for (i in 0 until view.childCount) {
+            if (hasShownSurfaceViewWithoutSurface(view.getChildAt(i))) return true
+        }
+    }
+    return false
 }
