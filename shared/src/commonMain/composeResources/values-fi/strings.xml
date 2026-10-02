@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Nykyinen sijainti</string>
     <string name="search_nearby_screen_title">Lähiympäristön paikat</string>
     <string name="search_view_markers">Merkitsimet ja reitit</string>
-    <string name="search_button_markers_accessibility_hint">valitaksesi tai muokataksesi tallennettuja merkitsimiä ja reittejä</string>
     <string name="search_button_nearby_accessibility_hint">tutkiaksesi lähellä olevia ravintoloita, joukkoliikennepysäkkejä ja muita kohteita</string>
     <string name="search_button_current_location_accessibility_hint">esikatsellaksesi, tallentaaksesi tai jakaaksesi nykyisen sijaintisi ystävän kanssa</string>
     <string name="filter_all">Kaikki paikat</string>
@@ -1244,7 +1243,6 @@ Ilmoita meille jatkossakin kaikista ongelmista, olivatpa ne kuinka pieniä tahan
     <string name="tour_ahead">Seuraava painike on Edessäpäin. Se kertoo, mitä edessäsi on. Napauta Edessäpäin.</string>
     <string name="tour_nearby_markers">Viimeinen painike on Lähiympäristön merkitsimet, joka ilmoittaa tallennetut paikat ympärilläsi. Napauta Lähiympäristön merkitsimet kokeillaksesi.</string>
     <string name="tour_markers_and_routes">Olet nyt onnistuneesti luonut merkitsimen. Soitetaan äänimajakka opastamaan meitä sinne. Napauta Merkitsimet ja reitit, joka on heti Lähiympäristön paikat -painikkeen alapuolella.</string>
-    <string name="tour_markers">Merkitsimet ja reitit -näytöllä on kaksi välilehteä. Toinen välilehti listaa reitit, jotka ovat merkitsimien soittolistoja. Toinen listaa yksittäiset merkitsimet. Napauta Merkitsimet siirtyäksesi kyseiselle välilehdelle ja etsiäksesi luomasi merkitsimen.</string>
     <string name="tour_start_beacon">Olet nyt Merkitsimet-välilehdellä, joka listaa kaikki tallennetut merkitsimesi. Valitse merkitsin ja kun Sijainnin tiedot -näyttö avautuu, napauta Käynnistä äänimajakka.</string>
     <string name="tour_beacon_demo">Nyt kuulet äänimajakan. Se kuuluu määränpääsi suunnasta. Kun käännät puhelinta, kuulet majakan liikkuvan ja äänen muuttuvan. Kokeile nyt.</string>
     <string name="tour_beacon_demo_locked">Kun puhelimesi on lukittu, majakka soi silti. Jos kävelet tai olet ajoneuvossa, sovellus käyttää kulkusuuntaasi äänimajakan toistamiseen. Myös lukittuna voit kuitenkin pitää puhelinta vaakatasossa edessäsi kuin kompassia. Silloin majakka käyttää puhelimen osoittamaa suuntaa. Kokeile nyt.</string>

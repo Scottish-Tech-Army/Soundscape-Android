@@ -89,12 +89,14 @@ import org.scottishtecharmy.soundscape.resources.route_detail_action_previous_di
 import org.scottishtecharmy.soundscape.resources.route_detail_action_previous_hint
 import org.scottishtecharmy.soundscape.resources.route_detail_action_stop_route
 import org.scottishtecharmy.soundscape.resources.route_waypoint_progress
+import org.scottishtecharmy.soundscape.resources.routes_title
+import org.scottishtecharmy.soundscape.resources.markers_title
 import org.scottishtecharmy.soundscape.resources.search_button_current_location_accessibility_hint
-import org.scottishtecharmy.soundscape.resources.search_button_markers_accessibility_hint
+import org.scottishtecharmy.soundscape.resources.search_button_markers_only_accessibility_hint
+import org.scottishtecharmy.soundscape.resources.search_button_routes_accessibility_hint
 import org.scottishtecharmy.soundscape.resources.search_button_nearby_accessibility_hint
 import org.scottishtecharmy.soundscape.resources.search_nearby_screen_title
 import org.scottishtecharmy.soundscape.resources.search_use_current_location
-import org.scottishtecharmy.soundscape.resources.search_view_markers
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackHint
@@ -227,12 +229,20 @@ fun SharedHomeContent(
                         .testTag("homePlacesNearby"),
                 )
                 NavigationButton(
-                    onClick = { onNavigate(SharedRoutes.MARKERS_AND_ROUTES) },
-                    text = stringResource(Res.string.search_view_markers),
+                    onClick = { onNavigate(SharedRoutes.MARKERS) },
+                    text = stringResource(Res.string.markers_title),
                     horizontalPadding = spacing.small,
                     modifier = Modifier
-                        .talkbackHint(stringResource(Res.string.search_button_markers_accessibility_hint))
-                        .testTag("homeMarkersAndRoutes"),
+                        .talkbackHint(stringResource(Res.string.search_button_markers_only_accessibility_hint))
+                        .testTag("homeMarkers"),
+                )
+                NavigationButton(
+                    onClick = { onNavigate(SharedRoutes.ROUTES) },
+                    text = stringResource(Res.string.routes_title),
+                    horizontalPadding = spacing.small,
+                    modifier = Modifier
+                        .talkbackHint(stringResource(Res.string.search_button_routes_accessibility_hint))
+                        .testTag("homeRoutes"),
                 )
                 if (fetchingLocation) {
                     var announceLoading by remember { mutableStateOf(false) }

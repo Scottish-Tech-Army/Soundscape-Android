@@ -230,8 +230,4 @@ open class HomeViewModel(
             }
         }
     }
-
-    fun setRoutesAndMarkersTab(pickRoutes: Boolean) {
-        _state.update { it.copy(routesTabSelected = pickRoutes) }
-    }
 }

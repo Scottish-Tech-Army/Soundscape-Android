@@ -115,7 +115,6 @@
     <string name="search_use_current_location">Locația curentă</string>
     <string name="search_nearby_screen_title">Locuri din apropiere</string>
     <string name="search_view_markers">Marcaje și rute</string>
-    <string name="search_button_markers_accessibility_hint">a selecta sau edita marcajele și rutele salvate</string>
     <string name="search_button_nearby_accessibility_hint">a explora restaurante, stații de transport și altele din apropiere</string>
     <string name="search_button_current_location_accessibility_hint">a previzualiza, marca sau partaja locația ta curentă cu un prieten</string>
     <string name="filter_all">Toate locurile</string>
@@ -1276,7 +1275,6 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="tour_ahead">Următorul buton este Înaintea mea. Acesta îți spune ce se află în fața ta. Atinge Înaintea mea.</string>
     <string name="tour_nearby_markers">Ultimul buton este Marcaje din apropiere, care anunță locurile salvate din jurul tău. Atinge Marcaje din apropiere pentru a încerca.</string>
     <string name="tour_markers_and_routes">Ai creat cu succes un marcaj. Să pornim o baliză audio care să ne ghideze către acea locație. Atinge Marcaje și rute, chiar sub Locuri din apropiere.</string>
-    <string name="tour_markers">Ecranul Marcaje și rute are două file. O filă listează rutele, care sunt liste de redare de marcaje. Cealaltă listează marcajele individuale. Atinge Marcaje pentru a trece la acea filă și a găsi marcajul pe care l-ai creat.</string>
     <string name="tour_start_beacon">Te afli acum pe fila Marcaje, care listează toate marcajele salvate. Selectează un marcaj, iar când apare ecranul Detalii locație, atinge Pornește baliza audio.</string>
     <string name="tour_beacon_demo">Acum poți auzi baliza audio. Aceasta se aude din direcția destinației tale. Pe măsură ce rotești telefonul, poți auzi cum baliza se mișcă și își schimbă sunetul. Încearcă acum.</string>
     <string name="tour_beacon_demo_locked">Când telefonul este blocat, baliza audio va continua să se audă. Dacă mergi pe jos sau te afli într-un vehicul, aplicația folosește direcția ta de deplasare pentru redarea balizei audio. Cu toate acestea, chiar și cu telefonul blocat, îl poți ține orizontal în fața ta, ca o busolă. Atunci baliza folosește direcția în care este îndreptat telefonul. Încearcă acum.</string>

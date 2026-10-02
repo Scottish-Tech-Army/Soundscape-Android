@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Aktuell plats</string>
     <string name="search_nearby_screen_title">Platser i närheten</string>
     <string name="search_view_markers">Platsmarkörer och rutter</string>
-    <string name="search_button_markers_accessibility_hint">välja eller redigera dina sparade platsmarkörer och rutter</string>
     <string name="search_button_nearby_accessibility_hint">utforska närliggande restauranger, hållplatser och mer</string>
     <string name="search_button_current_location_accessibility_hint">förhandsgranska, markera eller dela din aktuella plats med en vän</string>
     <string name="filter_all">Alla platser</string>
@@ -1244,7 +1243,6 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="tour_ahead">Nästa knapp är Framför mig. Den berättar vad som finns framför dig. Tryck på Framför mig.</string>
     <string name="tour_nearby_markers">Sista knappen är Platsmarkörer i närheten, som läser upp sparade platser runt dig. Tryck på Platsmarkörer i närheten för att prova.</string>
     <string name="tour_markers_and_routes">Du har nu skapat en platsmarkör. Vi ska spela upp en ljudfyr som vägleder oss till den platsen. Tryck på Platsmarkörer och rutter, precis under Platser i närheten.</string>
-    <string name="tour_markers">Skärmen Platsmarkörer och rutter har två flikar. En flik listar rutter, som är spellistor av platsmarkörer. Den andra listar enskilda platsmarkörer. Tryck på Platsmarkörer för att byta till den fliken och hitta den platsmarkör du skapade.</string>
     <string name="tour_start_beacon">Du är nu på fliken Platsmarkörer som visar alla dina sparade platsmarkörer. Välj en platsmarkör och när skärmen Platsuppgifter visas trycker du på Ställ in ljudfyr.</string>
     <string name="tour_beacon_demo">Nu kan du höra ljudfyren. Den spelas upp från målets riktning. När du vrider på telefonen hör du hur ljudfyren rör sig och ändrar karaktär. Prova nu.</string>
     <string name="tour_beacon_demo_locked">När telefonen är låst fortsätter ljudfyren att spelas. Om du går eller färdas i ett fordon använder appen din färdriktning för att spela upp ljudfyren. Även när telefonen är låst kan du hålla den plant framför dig som en kompass. Då använder ljudfyren den riktning som telefonen pekar mot. Prova nu.</string>

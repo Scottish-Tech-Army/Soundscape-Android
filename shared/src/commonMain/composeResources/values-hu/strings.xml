@@ -655,7 +655,6 @@
     <string name="tour_ahead">A következő gomb az Előttem. Ez elmondja, hogy mi van Ön előtt. Koppintson az Előttem gombra.</string>
     <string name="tour_nearby_markers">Az utolsó gomb a Közeli jelölők, amely bemondja az Ön közelében található elmentett helyeket. Koppintson a Közeli jelölők gombra, hogy kipróbálja.</string>
     <string name="tour_markers_and_routes">Sikeresen létrehozott egy jelölőt. Indítsunk el egy irányjelző hangot, amely elvezet minket ehhez a helyhez. Koppintson a Jelölők és útvonalak lehetőségre, közvetlenül a Közeli helyek alatt.</string>
-    <string name="tour_markers">A Jelölők és útvonalak képernyőn két fül található. Az egyik fül az útvonalakat sorolja fel, amelyek jelölőkből álló lejátszási listák. A másik az egyes jelölőket sorolja fel. Koppintson a Jelölők fülre, hogy átváltson arra a fülre, és megtalálja az Ön által létrehozott jelölőt.</string>
     <string name="tour_start_beacon">Most a Jelölők fülön van, amely felsorolja az összes elmentett jelölőjét. Válasszon ki egy jelölőt, és amikor megjelenik a Helyszín adatai képernyő, koppintson az Irányjelző hang indítása gombra.</string>
     <string name="tour_beacon_demo">Most hallhatja az irányjelző hangot a célja felől. Ahogy elforgatja a telefonját, hallani fogja, hogy az irányjelző hang elmozdul, és megváltozik a hangzása. Próbálja ki most.</string>
     <string name="tour_beacon_demo_locked">Amikor a telefonja zárolva van, az irányjelző hang továbbra is szól. Ha gyalogol vagy járműben ül, az alkalmazás a haladási irányát használja az irányjelző hang lejátszásához. Zárolt állapotban azonban a telefonját laposan maga elé tarthatja, mint egy iránytűt. Ekkor az irányjelző hang azt az irányt használja, amerre a telefonja mutat. Próbálja ki most.</string>
@@ -849,7 +848,6 @@
     <string name="search_use_current_location">Jelenlegi hely</string>
     <string name="search_nearby_screen_title">Közeli helyek</string>
     <string name="search_view_markers">Jelölők és útvonalak</string>
-    <string name="search_button_markers_accessibility_hint">a mentett jelölők és útvonalak kiválasztása vagy szerkesztése</string>
     <string name="search_button_nearby_accessibility_hint">közeli éttermek, tömegközlekedési megállók és egyéb helyek felfedezése</string>
     <string name="search_button_current_location_accessibility_hint">a jelenlegi helyzete előnézete, megjelölése vagy megosztása egy baráttal</string>
     <string name="filter_all">Minden hely</string>

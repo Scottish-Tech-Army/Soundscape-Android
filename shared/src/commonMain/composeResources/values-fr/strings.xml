@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Emplacement actuel</string>
     <string name="search_nearby_screen_title">Emplacements à proximité</string>
     <string name="search_view_markers">Marqueurs et itinéraires</string>
-    <string name="search_button_markers_accessibility_hint">sélectionner ou modifier vos marqueurs et itinéraires enregistrés</string>
     <string name="search_button_nearby_accessibility_hint">explorer les restaurants, les arrêts de transport en commun et autres lieux à proximité</string>
     <string name="search_button_current_location_accessibility_hint">prévisualiser, marquer ou partager votre emplacement actuel avec un ami</string>
     <string name="filter_all">Tous les emplacements</string>
@@ -1248,7 +1247,6 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="tour_ahead">Le bouton suivant est Devant moi. Il vous indique ce qui se trouve devant vous. Appuyez sur Devant moi.</string>
     <string name="tour_nearby_markers">Le dernier bouton est Marqueurs à proximité, qui annonce les emplacements enregistrés autour de vous. Appuyez sur Marqueurs à proximité pour l’essayer.</string>
     <string name="tour_markers_and_routes">Vous avez maintenant créé un marqueur avec succès. Activons une balise sonore pour nous guider jusqu’à cet emplacement. Appuyez sur Marqueurs et itinéraires, juste sous Emplacements à proximité.</string>
-    <string name="tour_markers">L’écran Marqueurs et itinéraires comporte deux onglets. Un onglet liste les itinéraires, qui sont des listes de lecture de marqueurs. L’autre onglet répertorie les marqueurs individuels. Appuyez sur Marqueurs pour passer à cet onglet et trouver le marqueur que vous avez créé.</string>
     <string name="tour_start_beacon">Vous êtes maintenant dans l’onglet Marqueurs qui liste tous vos marqueurs enregistrés. Sélectionnez un marqueur, puis, lorsque l’écran Détails de l’emplacement s’affiche, appuyez sur Démarrer la balise sonore.</string>
     <string name="tour_beacon_demo">Vous pouvez maintenant entendre la balise sonore. Elle est émise depuis la direction de votre destination. Lorsque vous tournez le téléphone, vous entendez la balise se déplacer et changer de sonorité. Essayez maintenant.</string>
     <string name="tour_beacon_demo_locked">Lorsque votre téléphone est verrouillé, la balise sonore continue de se faire entendre. Si vous marchez ou êtes dans un véhicule, l’application utilise la direction de votre déplacement pour émettre la balise. Cependant, même lorsque votre téléphone est verrouillé, vous pouvez le tenir à plat devant vous, comme une boussole. La balise utilise alors la direction vers laquelle le téléphone est orienté. Essayez maintenant.</string>

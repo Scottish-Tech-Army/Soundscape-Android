@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Posizione attuale</string>
     <string name="search_nearby_screen_title">Luoghi nelle vicinanze</string>
     <string name="search_view_markers">Indicatori e Percorsi</string>
-    <string name="search_button_markers_accessibility_hint">selezionare o modificare i tuoi indicatori e percorsi salvati</string>
     <string name="search_button_nearby_accessibility_hint">esplorare ristoranti, fermate del trasporto pubblico e altro nelle vicinanze</string>
     <string name="search_button_current_location_accessibility_hint">visualizzare in anteprima, contrassegnare o condividere la tua posizione attuale con un amico</string>
     <string name="filter_all">Tutti i luoghi</string>
@@ -1248,7 +1247,6 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="tour_ahead">Il pulsante successivo è «Davanti a me». Ti dice cosa si trova davanti a te. Tocca «Davanti a me».</string>
     <string name="tour_nearby_markers">L'ultimo pulsante è «Indicatori nelle vicinanze», che annuncia i luoghi salvati intorno a te. Tocca «Indicatori nelle vicinanze» per provarlo.</string>
     <string name="tour_markers_and_routes">Hai creato correttamente un indicatore. Riproduciamo un audiofaro per guidarci verso quella posizione. Tocca Indicatori e Percorsi, subito sotto Luoghi nelle vicinanze.</string>
-    <string name="tour_markers">La schermata Indicatori e Percorsi ha due schede. Una scheda elenca i percorsi, che sono playlist di indicatori. L'altra elenca gli indicatori singoli. Tocca Indicatori per passare a quella scheda e trovare l'indicatore che hai creato.</string>
     <string name="tour_start_beacon">Ora sei nella scheda Indicatori che elenca tutti gli indicatori salvati. Seleziona un indicatore e, quando viene visualizzata la schermata Dettagli posizione, tocca «Avvia audiofaro».</string>
     <string name="tour_beacon_demo">Adesso puoi ascoltare l'audiofaro. Suona dalla direzione della tua destinazione. Quando ruoti il telefono, senti l'audiofaro spostarsi e modificare il suo suono. Provalo ora.</string>
     <string name="tour_beacon_demo_locked">Quando il telefono è bloccato, l'audiofaro continua a suonare. Se stai camminando o sei su un veicolo, l'app utilizza la direzione del tuo movimento per riprodurre l'audiofaro. Tuttavia, anche quando il telefono è bloccato puoi tenerlo piatto davanti a te, come una bussola. In quel caso l'audiofaro utilizza la direzione verso cui il telefono è orientato. Provalo ora.</string>

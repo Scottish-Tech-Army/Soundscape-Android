@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Current Location</string>
     <string name="search_nearby_screen_title">Places Nearby</string>
     <string name="search_view_markers">Markers and Routes</string>
-    <string name="search_button_markers_accessibility_hint">select or edit your saved markers and routes</string>
     <string name="search_button_nearby_accessibility_hint">explore nearby restaurants, public transport stops and more</string>
     <string name="search_button_current_location_accessibility_hint">preview, mark, or share your current location with a friend</string>
     <string name="filter_all">All Places</string>
@@ -1244,7 +1243,6 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="tour_ahead">The next button is Ahead of Me. It tells you what’s in front of you. Tap Ahead of Me.</string>
     <string name="tour_nearby_markers">The final button is Nearby Markers, which announces saved places around you. Tap Nearby Markers to try it.</string>
     <string name="tour_markers_and_routes">You have now successfully created a marker. Let's play an audio beacon to guide us to that location. Tap Markers and Routes, just below Places Nearby.</string>
-    <string name="tour_markers">The Markers and Routes screen has two tabs. One tab lists routes, which are playlists of markers. The other tab lists individual markers. Tap Markers to switch to that tab and find the marker you created.</string>
     <string name="tour_start_beacon">You’re now on the Markers tab, which lists all your saved markers. Select a marker, and when the Location Details screen appears tap Start Audio Beacon.</string>
     <string name="tour_beacon_demo">You can now hear the audio beacon. It plays from the direction of your destination. As you turn your phone, you can hear the beacon move and change how it sounds. Try it now.</string>
     <string name="tour_beacon_demo_locked">When your phone is locked, the beacon will still play. If you are walking or in a vehicle, the app uses your direction of travel to play the audio beacon. However, even when your phone is locked, you can hold it flat in front of you, like a compass. Then the beacon uses the direction your phone is pointing. Try it now.</string>

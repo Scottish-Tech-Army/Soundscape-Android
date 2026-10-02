@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Localização Atual</string>
     <string name="search_nearby_screen_title">Locais Próximos</string>
     <string name="search_view_markers">Favoritos e Rotas</string>
-    <string name="search_button_markers_accessibility_hint">selecionar ou editar seus favoritos e rotas salvos</string>
     <string name="search_button_nearby_accessibility_hint">explorar restaurantes, pontos de transporte e muito mais nas proximidades</string>
     <string name="search_button_current_location_accessibility_hint">pré-visualizar, marcar ou compartilhar sua localização atual com um amigo</string>
     <string name="filter_all">Todos os Locais</string>
@@ -1248,7 +1247,6 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="tour_ahead">O próximo botão é “À Minha Frente”. Ele informa o que há à sua frente. Toque em “À Minha Frente”.</string>
     <string name="tour_nearby_markers">O último botão é “Favoritos nas Proximidades”, que anuncia os locais salvos ao seu redor. Toque em “Favoritos nas Proximidades” para experimentar.</string>
     <string name="tour_markers_and_routes">Você criou um favorito com sucesso. Vamos reproduzir um sinalizador sonoro para nos guiar até esse local. Toque em Favoritos e Rotas, logo abaixo de Locais Próximos.</string>
-    <string name="tour_markers">A tela Favoritos e Rotas tem duas abas. Uma aba lista as rotas, que são sequências de favoritos. A outra lista os favoritos individuais. Toque em Favoritos para mudar para essa aba e localizar o favorito que você criou.</string>
     <string name="tour_start_beacon">Você está agora na aba Favoritos, que lista todos os seus favoritos salvos. Selecione um favorito e, quando a tela Detalhes da Localização aparecer, toque em “Iniciar Sinalizador Sonoro”.</string>
     <string name="tour_beacon_demo">Agora você pode ouvir o sinalizador sonoro. Ele é reproduzido a partir da direção do seu destino. Ao girar o telefone, você ouvirá o sinalizador se mover e alterar seu som. Experimente agora.</string>
     <string name="tour_beacon_demo_locked">Quando seu telefone está bloqueado, o sinalizador continuará a tocar. Se você estiver caminhando ou em um veículo, o app usa a direção do seu deslocamento para reproduzir o sinalizador sonoro. Entretanto, mesmo com o telefone bloqueado, você pode segurá‑lo na horizontal à sua frente, como uma bússola. Nesse caso, o sinalizador usa a direção para a qual o telefone aponta. Experimente agora.</string>

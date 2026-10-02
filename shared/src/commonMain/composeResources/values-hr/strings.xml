@@ -655,7 +655,6 @@
     <string name="tour_ahead">Sljedeći gumb je Ispred mene. On vam govori što se nalazi ispred vas. Dodirnite Ispred mene.</string>
     <string name="tour_nearby_markers">Posljednji gumb je Oznake u blizini, koji najavljuje spremljena mjesta oko vas. Dodirnite Oznake u blizini kako biste to isprobali.</string>
     <string name="tour_markers_and_routes">Uspješno ste stvorili oznaku. Pokrenimo zvučni svjetionik koji će nas voditi do te lokacije. Dodirnite Oznake i rute, odmah ispod Mjesta u blizini.</string>
-    <string name="tour_markers">Zaslon Oznake i rute ima dvije kartice. Jedna kartica prikazuje rute, koje su popisi za reprodukciju oznaka. Druga prikazuje pojedinačne oznake. Dodirnite Oznake kako biste prešli na tu karticu i pronašli oznaku koju ste stvorili.</string>
     <string name="tour_start_beacon">Sada ste na kartici Oznake, koja prikazuje sve vaše spremljene oznake. Odaberite oznaku, a kada se prikaže zaslon Pojedinosti o lokaciji, dodirnite Postavi zvučni svjetionik.</string>
     <string name="tour_beacon_demo">Sada čujete zvučni svjetionik. Reproducira se iz smjera vašeg odredišta. Dok okrećete telefon, čujete kako se svjetionik pomiče i mijenja svoj zvuk. Isprobajte to sada.</string>
     <string name="tour_beacon_demo_locked">Kada je vaš telefon zaključan, svjetionik se i dalje reproducira. Ako hodate ili se vozite u vozilu, aplikacija koristi smjer vašeg kretanja za reprodukciju zvučnog svjetionika. Međutim, čak i kada je telefon zaključan, možete ga držati vodoravno ispred sebe, poput kompasa. Tada svjetionik koristi smjer u kojem je telefon usmjeren. Isprobajte to sada.</string>
@@ -850,7 +849,6 @@
     <string name="search_use_current_location">Trenutačna lokacija</string>
     <string name="search_nearby_screen_title">Mjesta u blizini</string>
     <string name="search_view_markers">Oznake i rute</string>
-    <string name="search_button_markers_accessibility_hint">odabrali ili uredili svoje spremljene oznake i rute</string>
     <string name="search_button_nearby_accessibility_hint">istražili obližnje restorane, stajališta javnog prijevoza i još mnogo toga</string>
     <string name="search_button_current_location_accessibility_hint">pregledali, označili ili podijelili svoju trenutačnu lokaciju s prijateljem</string>
     <string name="filter_all">Sva mjesta</string>

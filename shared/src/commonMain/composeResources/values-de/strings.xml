@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Aktueller Standort</string>
     <string name="search_nearby_screen_title">Orte in der Nähe</string>
     <string name="search_view_markers">Markierungen und Routen</string>
-    <string name="search_button_markers_accessibility_hint">Ihre gespeicherten Markierungen und Routen auswählen oder bearbeiten</string>
     <string name="search_button_nearby_accessibility_hint">Nahegelegene Restaurants, Haltestellen und mehr erkunden</string>
     <string name="search_button_current_location_accessibility_hint">Ihren aktuellen Standort in der Vorschau anzeigen, markieren oder mit einem Freund teilen</string>
     <string name="filter_all">Alle Orte</string>
@@ -1244,7 +1243,6 @@ Bitte melden Sie weiterhin alle Probleme, egal wie klein, über „Support konta
     <string name="tour_ahead">Die nächste Schaltfläche ist „Vor mir“. Sie informiert Sie darüber, was sich vor Ihnen befindet. Tippen Sie auf „Vor mir“.</string>
     <string name="tour_nearby_markers">Die letzte Schaltfläche ist „Markierungen in der Nähe“ – sie kündigt gespeicherte Orte in Ihrer Umgebung an. Tippen Sie auf „Markierungen in der Nähe“, um es auszuprobieren.</string>
     <string name="tour_markers_and_routes">Sie haben nun erfolgreich eine Markierung erstellt. Lassen Sie uns ein Audiobeacon abspielen, das uns zu diesem Ort führt. Tippen Sie auf „Markierungen und Routen“, direkt unter „Orte in der Nähe“.</string>
-    <string name="tour_markers">Der Bildschirm „Markierungen und Routen“ hat zwei Registerkarten. Eine Registerkarte listet Routen auf, also Wiedergabelisten von Markierungen. Die andere listet einzelne Markierungen auf. Tippen Sie auf „Markierungen“, um zu dieser Registerkarte zu wechseln und die von Ihnen erstellte Markierung zu finden.</string>
     <string name="tour_start_beacon">Sie sind jetzt auf der Registerkarte „Markierungen“, die alle gespeicherten Markierungen anzeigt. Wählen Sie eine Markierung aus, und wenn der Bildschirm mit den Standortdetails erscheint, tippen Sie auf „Audiobeacon starten“.</string>
     <string name="tour_beacon_demo">Sie können nun das Audiobeacon hören. Es ertönt aus der Richtung Ihres Ziels. Wenn Sie Ihr Telefon drehen, hören Sie, wie sich das Beacon bewegt und seinen Klang verändert. Probieren Sie es jetzt aus.</string>
     <string name="tour_beacon_demo_locked">Das Beacon spielt auch weiter, wenn Ihr Telefon gesperrt ist. Wenn Sie gehen oder in einem Fahrzeug sitzen, verwendet die App Ihre Fahrtrichtung, um das Audiobeacon abzuspielen. Selbst bei gesperrtem Telefon können Sie es jedoch flach vor sich halten, wie einen Kompass. Dann verwendet das Beacon die Richtung, in die Ihr Telefon zeigt. Probieren Sie es jetzt aus.</string>

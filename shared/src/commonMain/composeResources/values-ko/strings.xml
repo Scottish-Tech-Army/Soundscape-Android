@@ -134,7 +134,6 @@
     <string name="search_use_current_location">현재 위치</string>
     <string name="search_nearby_screen_title">주변 장소</string>
     <string name="search_view_markers">마커 및 경로</string>
-    <string name="search_button_markers_accessibility_hint">저장된 마커와 경로 선택 또는 편집하기</string>
     <string name="search_button_nearby_accessibility_hint">주변 음식점, 대중교통 정류장 등 둘러보기</string>
     <string name="search_button_current_location_accessibility_hint">현재 위치 미리보기, 마커 저장 또는 친구와 공유하기</string>
     <string name="filter_all">모든 장소</string>
@@ -1407,7 +1406,6 @@
     <string name="tour_ahead">다음 버튼은 내 앞쪽입니다. 앞에 무엇이 있는지 알려줍니다. 내 앞쪽을 탭하세요.</string>
     <string name="tour_nearby_markers">마지막 버튼은 주변 마커이며, 주변에 저장된 장소를 안내해 줍니다. 주변 마커를 탭하여 사용해 보세요.</string>
     <string name="tour_markers_and_routes">마커를 성공적으로 생성했습니다. 이제 그 위치까지 안내해 줄 오디오 비콘을 재생해 보겠습니다. 주변 장소 바로 아래에 있는 '마커 및 경로'를 탭하세요.</string>
-    <string name="tour_markers">마커 및 경로 화면에는 두 개의 탭이 있습니다. 한 탭에는 마커들의 재생 목록인 경로가 표시됩니다. 다른 탭에는 개별 마커가 표시됩니다. '마커'를 탭하여 해당 탭으로 전환한 후 방금 만든 마커를 찾아보세요.</string>
     <string name="tour_start_beacon">이제 저장된 모든 마커가 나열된 마커 탭에 있습니다. 마커를 선택하고 위치 세부 정보 화면이 나타나면 '오디오 비콘 시작'을 탭하세요.</string>
     <string name="tour_beacon_demo">이제 오디오 비콘 소리가 들립니다. 이 소리는 목적지 방향에서 재생됩니다. 휴대폰을 돌리면 비콘 소리가 이동하며 변화하는 것을 들을 수 있습니다. 지금 한번 해 보세요.</string>
     <string name="tour_beacon_demo_locked">휴대폰이 잠겨 있어도 비콘은 계속 재생됩니다. 걷고 있거나 차량에 타고 있는 경우, 앱은 이동 방향을 사용하여 오디오 비콘을 재생합니다. 하지만 휴대폰이 잠긴 상태에서도 나침반처럼 앞에 평평하게 들 수 있습니다. 그러면 비콘은 휴대폰이 가리키는 방향을 사용합니다. 지금 한번 해 보세요.</string>

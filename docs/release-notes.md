@@ -27,6 +27,9 @@ Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release
   distance as you approach, and the callout now says how far away the kerb is.
 * **Search for a type of place, or a coordinate.** Search for "pharmacy" or "bus stop" to find the
   nearest ones, whatever they're called, or paste in coordinates, a map link or a plus code.
+* **Separate Markers and Routes buttons.** The *Markers and Routes* screen and its two tabs have
+  been split into a *Markers* screen and a *Routes* screen, each with its own button on the home
+  screen. The Markers screen has a *New* button for saving your current location or a place nearby.
 * **Open a place in another map app**, such as Google Maps, from Location Details or the lists.
 * **More from the beacon on the home screen.** It now shows the distance and direction, and has
   screen reader actions to call out the beacon, hear more about it or save it as a marker.
@@ -154,6 +157,17 @@ Location Details has a new **Open in Maps App** button, which lists the map and 
 your phone. Tick *Always use this app* and the button changes to, for example, *Open in Google
 Maps*, opening it straight away; a long press brings the list back. The Places Nearby and Markers
 lists have *Open in* and *Share* screen reader actions as well.
+
+### Markers and Routes
+
+Markers and routes used to share one screen, *Markers and Routes*, with a tab for each, and it was
+easy to lose track of which tab you were on. They are now two separate screens, each with its own
+button on the home screen: *Markers* and *Routes*, just below *Places Nearby*.
+
+Each screen has a *New* button at the top right. On the Routes screen it creates a route, as before.
+On the Markers screen it's new: it lists *Current Location* and the *Places Nearby* categories, so
+you can save a marker without going back to the home screen to find the place first. Screen readers
+announce the buttons as *New Marker* and *New Route*.
 
 ### The beacon and markers
 

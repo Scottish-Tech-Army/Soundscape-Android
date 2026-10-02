@@ -15,10 +15,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import androidx.compose.material3.Scaffold
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.resources.markers_routes_action_new
+import org.scottishtecharmy.soundscape.resources.markers_title
+import org.scottishtecharmy.soundscape.resources.markers_action_create
+import org.scottishtecharmy.soundscape.resources.markers_action_create_hint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.ic_markers
@@ -41,6 +48,47 @@ fun MarkersScreen(
     onShowError: (String) -> Unit = {},
     onStartBeacon: (LngLatAlt, String) -> Unit = { _, _ -> },
     itemActions: LocationListActions = LocationListActions(),
+    onNavigateUp: () -> Unit = {},
+    onAddMarker: () -> Unit = {},
+) {
+    Scaffold(
+        modifier = Modifier.testTag("markersScreen"),
+        topBar = {
+            CustomAppBar(
+                title = stringResource(Res.string.markers_title),
+                onNavigateUp = onNavigateUp,
+                rightButtonTitle = stringResource(Res.string.markers_routes_action_new),
+                rightButtonDescription = stringResource(Res.string.markers_action_create),
+                rightButtonHint = stringResource(Res.string.markers_action_create_hint),
+                onRightButton = onAddMarker,
+            )
+        }
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
+            MarkersList(
+                uiState = uiState,
+                clearErrorMessage = clearErrorMessage,
+                onCycleSort = onCycleSort,
+                userLocation = userLocation,
+                onSelectItem = onSelectItem,
+                onShowError = onShowError,
+                onStartBeacon = onStartBeacon,
+                itemActions = itemActions,
+            )
+        }
+    }
+}
+
+@Composable
+private fun MarkersList(
+    uiState: MarkersAndRoutesUiState,
+    clearErrorMessage: () -> Unit,
+    onCycleSort: () -> Unit,
+    userLocation: LngLatAlt?,
+    onSelectItem: (LocationDescription) -> Unit,
+    onShowError: (String) -> Unit,
+    onStartBeacon: (LngLatAlt, String) -> Unit,
+    itemActions: LocationListActions,
 ) {
     Column(
         modifier =

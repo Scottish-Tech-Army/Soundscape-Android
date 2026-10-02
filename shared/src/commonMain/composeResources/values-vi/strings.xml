@@ -679,7 +679,6 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="search_use_current_location">Vị trí hiện tại</string>
     <string name="search_nearby_screen_title">Địa điểm gần đây</string>
     <string name="search_view_markers">Điểm đánh dấu và lộ trình</string>
-    <string name="search_button_markers_accessibility_hint">chọn hoặc chỉnh sửa các điểm đánh dấu và lộ trình đã lưu của bạn</string>
     <string name="search_button_nearby_accessibility_hint">khám phá các nhà hàng, điểm dừng phương tiện công cộng gần đây và hơn thế nữa</string>
     <string name="search_button_current_location_accessibility_hint">giả lập, đánh dấu, hoặc chia sẻ vị trí hiện tại của bạn với bạn bè</string>
     <string name="filter_all">Tất cả địa điểm</string>
@@ -1229,7 +1228,6 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="tour_ahead">Nút tiếp theo là Phía trước tôi. Nút này cho bạn biết những gì ở phía trước bạn. Hãy chạm vào Phía trước tôi.</string>
     <string name="tour_nearby_markers">Nút cuối cùng là Điểm đánh dấu gần đây, thông báo các địa điểm đã lưu xung quanh bạn. Hãy chạm vào Điểm đánh dấu gần đây để thử.</string>
     <string name="tour_markers_and_routes">Bạn đã tạo thành công một điểm đánh dấu. Bây giờ hãy phát một đèn hiệu âm thanh để dẫn chúng ta đến địa điểm đó. Hãy chạm vào Điểm đánh dấu và lộ trình, nằm ngay bên dưới Địa điểm gần đây.</string>
-    <string name="tour_markers">Màn hình Điểm đánh dấu và lộ trình có hai thẻ. Một thẻ hiển thị các lộ trình, là danh sách các điểm đánh dấu. Thẻ còn lại hiển thị từng điểm đánh dấu riêng lẻ. Hãy chạm vào Điểm đánh dấu để chuyển sang thẻ đó và tìm điểm đánh dấu mà bạn đã tạo.</string>
     <string name="tour_start_beacon">Bây giờ bạn đang ở thẻ Điểm đánh dấu, liệt kê tất cả các điểm đánh dấu đã lưu của bạn. Hãy chọn một điểm đánh dấu, và khi màn hình Chi tiết vị trí xuất hiện, chạm vào Bắt đầu đèn hiệu âm thanh.</string>
     <string name="tour_beacon_demo">Bây giờ bạn có thể nghe thấy đèn hiệu âm thanh. Nó phát ra từ hướng điểm đến của bạn. Khi bạn xoay điện thoại, bạn sẽ nghe thấy đèn hiệu di chuyển và âm thanh thay đổi. Hãy thử ngay bây giờ.</string>
     <string name="tour_beacon_demo_locked">Ngay cả khi điện thoại của bạn bị khóa, đèn hiệu vẫn tiếp tục phát. Nếu bạn đang đi bộ hoặc ở trong xe, ứng dụng sẽ sử dụng hướng di chuyển của bạn khi phát đèn hiệu âm thanh. Tuy nhiên, ngay cả khi bị khóa, bạn vẫn có thể cầm điện thoại nằm ngang trước mặt như một chiếc la bàn, khi đó đèn hiệu sẽ sử dụng hướng mà điện thoại đang chỉ tới. Hãy thử ngay bây giờ.</string>

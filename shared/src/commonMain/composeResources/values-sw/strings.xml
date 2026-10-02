@@ -891,7 +891,6 @@
     <string name="search_use_current_location">Mahali Nilipo Sasa</string>
     <string name="search_nearby_screen_title">Sehemu za Karibu</string>
     <string name="search_view_markers">Alama na Njia</string>
-    <string name="search_button_markers_accessibility_hint">kuchagua au kuhariri alama na njia zako zilizohifadhiwa</string>
     <string name="search_button_nearby_accessibility_hint">kuchunguza mikahawa ya karibu, vituo vya usafiri na zaidi</string>
     <string name="search_button_current_location_accessibility_hint">kuiga, kuweka alama, au kushiriki mahali ulipo sasa na rafiki</string>
     <string name="filter_all">Sehemu Zote</string>
@@ -1244,7 +1243,6 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="tour_ahead">Kitufe kinachofuata ni Mbele Yangu. Hiki hukuambia kilicho mbele yako. Gusa Mbele Yangu.</string>
     <string name="tour_nearby_markers">Kitufe cha mwisho ni Alama za Karibu, ambacho hutangaza sehemu zilizohifadhiwa karibu nawe. Gusa Alama za Karibu ujaribu hilo.</string>
     <string name="tour_markers_and_routes">Sasa umefanikiwa kutengeneza alama. Hebu tucheze beacon ya sauti itakayotuongoza hadi mahali hapo. Gusa Alama na Njia, chini kidogo ya Sehemu za Karibu.</string>
-    <string name="tour_markers">Skrini ya Alama na Njia ina vichupo viwili. Kichupo kimoja huonyesha njia, ambazo ni mfululizo wa alama. Kingine huonyesha alama mahususi. Gusa Alama ili kubadilisha kwenda kichupo hicho na kupata alama uliyotengeneza.</string>
     <string name="tour_start_beacon">Sasa uko kwenye kichupo cha Alama ambacho huonyesha alama zako zote zilizohifadhiwa. Chagua alama, na skrini ya Taarifa za Mahali itakapoonekana, gusa Anzisha Beacon ya Sauti.</string>
     <string name="tour_beacon_demo">Sasa unaweza kusikia beacon ya sauti. Inachezwa kutoka mwelekeo wa mahali unapoelekea. Unapozungusha simu yako, utasikia beacon ikisogea na sauti yake ikibadilika. Jaribu sasa.</string>
     <string name="tour_beacon_demo_locked">Simu yako ikiwa imefungwa, beacon bado itaendelea kucheza. Ikiwa unatembea au uko ndani ya gari, programu hutumia mwelekeo wa safari yako kucheza beacon ya sauti. Hata hivyo, hata simu ikiwa imefungwa, unaweza kuishikilia kwa usawa mbele yako, kama dira. Kisha beacon hutumia mwelekeo unaoelekeza simu yako. Jaribu sasa.</string>

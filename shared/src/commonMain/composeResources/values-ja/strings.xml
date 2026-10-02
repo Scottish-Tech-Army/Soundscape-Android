@@ -88,7 +88,6 @@
     <string name="search_use_current_location">現在地</string>
     <string name="search_nearby_screen_title">近くの場所</string>
     <string name="search_view_markers">マーカーおよびルート</string>
-    <string name="search_button_markers_accessibility_hint">保存したマーカーやルートを選択または編集します</string>
     <string name="search_button_nearby_accessibility_hint">近くのレストラン、公共交通の停留所などを探索します</string>
     <string name="search_button_current_location_accessibility_hint">現在地をプレビューしたり、マーカーとして保存したり、友人と共有したりします</string>
     <string name="filter_all">すべての場所</string>
@@ -1240,7 +1239,6 @@
     <string name="tour_ahead">次のボタンは「前方」です。あなたの前方にあるものについて教えてくれます。「前方」をタップしてください。</string>
     <string name="tour_nearby_markers">最後のボタンは「近くのマーカー」で、周囲にある保存した場所を読み上げます。「近くのマーカー」をタップして試してみてください。</string>
     <string name="tour_markers_and_routes">これでマーカーが作成されました。次に、その場所へ誘導する音声ビーコンを鳴らしてみましょう。「近くの場所」のすぐ下にある「マーカーおよびルート」をタップしてください。</string>
-    <string name="tour_markers">「マーカーおよびルート」画面には 2 つのタブがあります。一方のタブにはルートが表示されます。ルートはマーカーのプレイリストです。もう一方のタブには個別のマーカーが表示されます。「マーカー」をタップしてそのタブに切り替え、作成したマーカーを探してください。</string>
     <string name="tour_start_beacon">いま「マーカー」タブを表示しており、保存したマーカーが一覧で表示されています。マーカーを選択し、「場所の詳細」画面が表示されたら 「音声ビーコンを開始」 をタップしてください。</string>
     <string name="tour_beacon_demo">音声ビーコンが聞こえるはずです。目的地の方向から再生されます。端末を回すと、ビーコンの音が移動して聞こえ方が変わるのが分かります。今試してみてください。</string>
     <string name="tour_beacon_demo_locked">端末がロックされていてもビーコンは再生されます。歩行中や乗り物に乗っているときは、アプリは移動方向を使って音声ビーコンを再生します。ただし端末がロックされていても、コンパスのように端末を水平に前方へ向けて持つことができます。その場合、ビーコンは端末が向いている方向を使用します。今試してみてください。</string>

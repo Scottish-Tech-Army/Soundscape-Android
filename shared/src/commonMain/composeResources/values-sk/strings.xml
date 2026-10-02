@@ -299,7 +299,6 @@
     <string name="tour_ahead">Ďalšie tlačidlo je Predo mnou. Povie vám, čo sa nachádza pred vami. Ťuknite na Predo mnou.</string>
     <string name="tour_nearby_markers">Posledné tlačidlo je Značky v okolí, ktoré ohlási uložené miesta vo vašom okolí. Ťuknite na Značky v okolí a vyskúšajte to.</string>
     <string name="tour_markers_and_routes">Práve ste úspešne vytvorili značku. Prehrajme si zvukový maják, ktorý nás k tomuto miestu navedie. Ťuknite na Značky a trasy, tesne pod Miestami v okolí.</string>
-    <string name="tour_markers">Obrazovka Značky a trasy má dve karty. Jedna karta zobrazuje trasy, čo sú playlisty značiek. Druhá zobrazuje jednotlivé značky. Ťuknutím na Značky prepnite na túto kartu a nájdite značku, ktorú ste vytvorili.</string>
     <string name="tour_start_beacon">Teraz ste na karte Značky, ktorá zobrazuje všetky vaše uložené značky. Vyberte značku, a keď sa zobrazí obrazovka Podrobnosti o mieste, ťuknite na Spustiť zvukový maják.</string>
     <string name="tour_beacon_demo">Teraz počujete zvukový maják. Prehráva sa zo smeru vášho cieľa. Keď telefónom otočíte, počujete, ako sa maják presúva a mení svoj zvuk. Skúste to teraz.</string>
     <string name="tour_beacon_demo_locked">Aj keď je telefón uzamknutý, maják bude naďalej hrať. Ak kráčate alebo cestujete vozidlom, aplikácia pri prehrávaní zvukového majáka použije smer vášho pohybu. Aj keď je telefón uzamknutý, môžete ho však držať naplocho pred sebou, ako kompas. Maják potom použije smer, ktorým je telefón natočený. Skúste to teraz.</string>
@@ -851,7 +850,6 @@
     <string name="search_use_current_location">Aktuálna poloha</string>
     <string name="search_nearby_screen_title">Miesta v okolí</string>
     <string name="search_view_markers">Značky a trasy</string>
-    <string name="search_button_markers_accessibility_hint">vybrať alebo upraviť uložené značky a trasy</string>
     <string name="search_button_nearby_accessibility_hint">preskúmať okolité reštaurácie, zastávky verejnej dopravy a ďalšie miesta</string>
     <string name="search_button_current_location_accessibility_hint">zobraziť ukážku, označiť alebo zdieľať svoju aktuálnu polohu s priateľom</string>
     <string name="filter_all">Všetky miesta</string>

@@ -1,6 +1,6 @@
 appId: org.scottishtecharmy.soundscape
-# Exercises the Markers & Routes management screen: tab switching, the sort
-# controls, and editing an existing marker.
+# Exercises the Markers screen: the sort controls, editing an existing marker,
+# and creating marker "C" at the current location with the New button.
 #
 # Depends on markers "A" and "B" having been created by LocationDetails.yaml, so
 # this flow must run after it in the suite.
@@ -13,13 +13,11 @@ appId: org.scottishtecharmy.soundscape
     env:
       screen: Home
 
-- tapOn:
-    id: homeMarkersAndRoutes
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: homeMarkers
 
-
-# The screen opens on the Routes tab by default - switch to Markers.
-- tapOn:
-    id: markersTab
 - assertVisible:
     id: "LocationItem-A-0"
 - assertVisible:
@@ -29,12 +27,6 @@ appId: org.scottishtecharmy.soundscape
     id: "LocationItem-A-.*"
 - assertVisible:
     id: "LocationItem-B-.*"
-
-# Confirm tab navigation works in both directions.
-- tapOn:
-    id: routesTab
-- tapOn:
-    id: markersTab
 
 # Open marker A and edit its annotation, then save.
 - tapOn:
@@ -49,3 +41,28 @@ appId: org.scottishtecharmy.soundscape
 - inputText: "Updated by Maestro"
 - tapOn:
     id: flexibleAppBarRight
+
+# Create marker C from the New button, using the current location.
+- runFlow:
+    file: WaitForScreen.yaml
+    env:
+      screen: Home
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: homeMarkers
+- tapOn:
+    id: appBarRight
+- tapOn:
+    id: addMarkerCurrentLocation
+- tapOn:
+    id: name-clearTextField
+- tapOn:
+    id: markerName
+- inputText: "C"
+- tapOn:
+    id: flexibleAppBarRight
+
+# Saving returns to the Markers screen, which now lists C.
+- assertVisible:
+    id: "LocationItem-C-.*"

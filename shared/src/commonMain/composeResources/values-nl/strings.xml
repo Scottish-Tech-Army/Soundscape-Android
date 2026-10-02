@@ -88,7 +88,6 @@
     <string name="search_use_current_location">Huidige locatie</string>
     <string name="search_nearby_screen_title">Plaatsen in de buurt</string>
     <string name="search_view_markers">Markeringen en routes</string>
-    <string name="search_button_markers_accessibility_hint">uw opgeslagen markeringen en routes selecteren of bewerken</string>
     <string name="search_button_nearby_accessibility_hint">nabijgelegen restaurants, haltes van het openbaar vervoer en meer verkennen</string>
     <string name="search_button_current_location_accessibility_hint">uw huidige locatie virtueel verkennen, als markering opslaan of delen met een vriend</string>
     <string name="filter_all">Alle plaatsen</string>
@@ -1244,7 +1243,6 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="tour_ahead">De volgende knop is Vóór me. Deze vertelt u wat zich voor u bevindt. Tik op Vóór me.</string>
     <string name="tour_nearby_markers">De laatste knop is Markeringen in de buurt, die opgeslagen plaatsen om u heen aankondigt. Tik op Markeringen in de buurt om het te proberen.</string>
     <string name="tour_markers_and_routes">U hebt nu succesvol een markering gemaakt. Laten we een audiobaken afspelen om ons naar die locatie te leiden. Tik op Markeringen en routes, net onder Plaatsen in de buurt.</string>
-    <string name="tour_markers">Het scherm Markeringen en routes heeft twee tabbladen. Op het ene tabblad staan routes, dat zijn afspeellijsten van markeringen. Op het andere staan individuele markeringen. Tik op Markeringen om naar dat tabblad te schakelen en de door u gemaakte markering te vinden.</string>
     <string name="tour_start_beacon">U bevindt zich nu op het tabblad Markeringen met al uw opgeslagen markeringen. Selecteer een markering en zodra het scherm Locatiedetails verschijnt, tikt u op Audiobaken starten.</string>
     <string name="tour_beacon_demo">U hoort nu het audiobaken. Het klinkt vanuit de richting van uw bestemming. Als u uw telefoon draait, hoort u het baken verschuiven en van klank veranderen. Probeer het nu.</string>
     <string name="tour_beacon_demo_locked">Wanneer uw telefoon vergrendeld is, blijft het baken toch spelen. Als u loopt of in een voertuig zit, gebruikt de app de richting van uw beweging om het audiobaken af te spelen. Ook wanneer uw telefoon vergrendeld is, kunt u hem echter vlak voor u houden als een kompas. Het baken gebruikt dan de richting waarin uw telefoon wijst. Probeer het nu.</string>
