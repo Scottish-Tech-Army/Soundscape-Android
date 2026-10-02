@@ -19,6 +19,7 @@ import org.intellij.markdown.parser.MarkdownParser
 import org.intellij.markdown.MarkdownElementTypes
 import org.intellij.markdown.MarkdownTokenTypes
 import org.intellij.markdown.ast.getTextInNode
+import org.intellij.markdown.parser.CancellationToken
 
 sealed class HelpTopic {
     // This class uses urlEncode/decode because FAQ entries may contain "?", which is otherwise
@@ -58,7 +59,8 @@ sealed class HelpTopic {
         val title: String by lazy {
             val processedContent = content.processMarkdownContent()
             val flavour = CommonMarkFlavourDescriptor()
-            val tree = MarkdownParser(flavour).buildMarkdownTreeFromString(processedContent)
+            val tree = MarkdownParser(flavour, true, CancellationToken.NonCancellable)
+                .buildMarkdownTreeFromString(processedContent as CharSequence)
             
             // Look for the first level 1 heading
             val h1 = tree.children.find { it.type == MarkdownElementTypes.ATX_1 }

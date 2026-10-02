@@ -6,6 +6,7 @@ import org.intellij.markdown.ast.ASTNode
 import org.intellij.markdown.ast.getTextInNode
 import org.intellij.markdown.flavours.commonmark.CommonMarkFlavourDescriptor
 import org.intellij.markdown.html.HtmlGenerator
+import org.intellij.markdown.parser.CancellationToken
 import org.intellij.markdown.parser.MarkdownParser
 
 sealed class MarkdownBlock {
@@ -18,9 +19,10 @@ class MarkdownProcessor(private val content: String) {
 
     fun getBlocks(isFaqSubPage: Boolean, faqQuestion: String? = null): List<MarkdownBlock> {
         val flavour = CommonMarkFlavourDescriptor()
-        val rootNode = MarkdownParser(flavour).buildMarkdownTreeFromString(content)
+        val rootNode = MarkdownParser(flavour, true, CancellationToken.NonCancellable)
+            .buildMarkdownTreeFromString(content as CharSequence)
         
-        val nodes = rootNode.children.filter { it.type !is MarkdownTokenTypes }
+        val nodes = rootNode.children
         
         val processedNodes = if (isFaqSubPage && faqQuestion != null) {
             filterNodesForFaq(nodes, faqQuestion)
@@ -64,27 +66,28 @@ class MarkdownProcessor(private val content: String) {
         return nodes
     }
 
+    // TODO 2026-10-01 HughG: This isn't following the grouping logic, it's producing a flat list.
     private fun groupNodesToBlocks(nodes: List<ASTNode>, flavour: CommonMarkFlavourDescriptor): List<MarkdownBlock> {
         val blocks = mutableListOf<MarkdownBlock>()
         
         for (node in nodes) {
-            when {
-                node.type == MarkdownElementTypes.ATX_1 -> {
+            when (node.type) {
+                MarkdownElementTypes.ATX_1 -> {
                     val text = node.children.find { it.type == MarkdownTokenTypes.ATX_CONTENT }
                         ?.getTextInNode(content)?.toString()?.trim() ?: ""
                     blocks.add(MarkdownBlock.Heading(text, 1))
                 }
-                node.type == MarkdownElementTypes.ATX_2 -> {
+                MarkdownElementTypes.ATX_2 -> {
                     val text = node.children.find { it.type == MarkdownTokenTypes.ATX_CONTENT }
                         ?.getTextInNode(content)?.toString()?.trim() ?: ""
                     blocks.add(MarkdownBlock.Heading(text, 2))
                 }
-                node.type == MarkdownElementTypes.ATX_3 -> {
+                MarkdownElementTypes.ATX_3 -> {
                     val text = node.children.find { it.type == MarkdownTokenTypes.ATX_CONTENT }
                         ?.getTextInNode(content)?.toString()?.trim() ?: ""
                     blocks.add(MarkdownBlock.Heading(text, 3))
                 }
-                node.type == MarkdownElementTypes.PARAGRAPH && isOnlyLink(node) -> {
+                MarkdownElementTypes.PARAGRAPH if isOnlyLink(node) -> {
                     val linkNode = findLinkNode(node)!!
                     val text = linkNode.children.find { it.type == MarkdownElementTypes.LINK_TEXT }
                         ?.getTextInNode(content)?.toString()?.removePrefix("[")?.removeSuffix("]")?.trim() ?: ""

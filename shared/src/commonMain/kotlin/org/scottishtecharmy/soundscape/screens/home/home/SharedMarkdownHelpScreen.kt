@@ -74,6 +74,7 @@ fun SharedMarkdownHelpScreen(
                 modifier = Modifier.padding(padding)
             ) {
                 structureLog.start("Box")
+                // Help topic page
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
