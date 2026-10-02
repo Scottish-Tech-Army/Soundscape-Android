@@ -117,20 +117,21 @@ This uses a bit more of the UI, but once it's set up it should be fairly straigh
 
 #### Create some markers
 
-Markers are points on the map which can be combined into a route. They're saved from the Location
-Details screen, and there are several ways to get there:
+Markers are points on the map which can be combined into a route. There are several ways to save
+one:
 
+* Tap _Markers_ on the Home screen, then the _New_ button in the top right, and pick _Current
+  Location_ or a place from one of the _Places Nearby_ categories.
 * Tap _Current Location_ on the Home screen and save a marker at your current location.
 * Tap _Places Nearby_ on the Home screen and pick one of the nearby points.
 * Search, and tap one of the results.
 
-Saved markers appear under the _Markers and Routes_ button on the Home screen. Once you have a few,
-you can make a route from them.
+The last three take you to the Location Details screen, where you tap _Save as Marker_. Saved markers
+are listed on the _Markers_ screen. Once you have a few, you can make a route from them.
 
 #### Create a route
 
-1. On the _Markers and Routes_ screen, select the _Routes_ tab and tap the **+** icon in the top
-   right.
+1. Tap _Routes_ on the Home screen, then the _New_ button in the top right.
 1. Type a name for your route, and a description if you want one.
 1. Tap _Add Waypoints_ and add the markers you've created, selecting them in the order you want
    them to appear in the route. Tap _Done_.
