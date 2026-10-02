@@ -321,6 +321,36 @@ class AlongWayTest {
         assertEquals("Up The A81", found?.feature?.name)
     }
 
+    /**
+     * A motorway slip road usually carries the motorway's ref, so by ref alone a diverge looks
+     * like two continuations of the M90. The slip road is marked as a ramp, and the walk keeps to
+     * the carriageway.
+     */
+    @Test
+    fun sameRoadKeepsToTheCarriagewayPastASlipRoad() {
+        fun motorway(from: Double, to: Double, ramp: Boolean = false) =
+            straightWay("", from, to).apply {
+                name = null
+                ref = "M90"
+                featureValue = "motorway"
+                if (ramp) setProperty("ramp", 1L)
+            }
+        val first = motorway(0.0, 100.0)
+        val second = motorway(100.0, 200.0)
+        val diverge = join(first, second)
+        second.addAlong(50.0, "Junction 3", AlongWayKind.HIGHWAY_JUNCTION)
+
+        val slipRoad = motorway(100.0, 180.0, ramp = true)
+        slipRoad.intersections[WayEnd.START.id] = diverge
+        diverge.members.add(slipRoad)
+
+        val found = nextAlongWayFeature(
+            WayCursor(first, 20.0, forwards = true), 500.0,
+            continuation = WayContinuation.SAME_ROAD
+        )
+        assertEquals("Junction 3", found?.feature?.name)
+    }
+
     @Test
     fun sameRoadStopsWhenTheContinuationIsAmbiguous() {
         val first = straightWay("Main Street", 0.0, 100.0)

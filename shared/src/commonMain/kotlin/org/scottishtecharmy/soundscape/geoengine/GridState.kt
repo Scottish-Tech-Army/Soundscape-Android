@@ -990,24 +990,17 @@ open class GridState(
     private val highwayJunctionWayToleranceMetres = 2.0
 
     /**
-     * Records on each road junction which roads it is on - see MvtFeature.junctionRoads - so that
-     * the travel callout only names a junction to somebody on its road.
+     * Records each road junction against the Ways it sits on, as a HIGHWAY_JUNCTION
+     * AlongWayFeature - see AlongWayKind.HIGHWAY_JUNCTION for why.
      *
-     * Searched for around the vehicle without that, a junction was announced on every road within
-     * reach of it: Cowcaddens Road and West Graham Street both got "at Junction 17, St George's
-     * Cross" from an M8 junction they don't touch.
-     *
-     * Every Way through the node counts, not just the nearest: the carriageway is split at the
-     * junction, and the slip road starts there too. Only Ways of the junction's own class, though.
-     * A slip road is classed with its road, so a motorway junction is on motorway Ways only, and
-     * that keeps it off a local road that happens to pass under the node - Carnoustie Street meets
-     * M8 junction 20 at 0.0m in the tiles, where it runs beneath it.
-     *
-     * A road is recorded by its ref and its name, which both carriageways share. That matters: a
-     * junction with an exit on only one side has a node on only that carriageway - M9 junctions 5
-     * and 6, M90 junction 2A - and it is still worth hearing about from the other.
+     * Every Way through the node gets it, not just the nearest: the carriageway is split at the
+     * junction, so it is the end of one Way and the start of the next, and the slip road starts
+     * there too. Only Ways of the junction's own class, though. A slip road is classed with its
+     * road, so a motorway junction is on motorway Ways only, and that keeps it off a local road
+     * that happens to pass under the node - Carnoustie Street meets M8 junction 20 at 0.0m in the
+     * tiles, where it runs beneath it.
      */
-    private fun attachHighwayJunctionsToRoads(
+    private fun attachHighwayJunctionsToWays(
         featureCollections: Array<FeatureCollection>,
         localTrees: Array<FeatureTree>
     ): Int {
@@ -1021,7 +1014,6 @@ open class GridState(
             val point = (junction.geometry as? Point)?.coordinates ?: continue
             val junctionClass = junction.properties?.get("class") as? String ?: continue
 
-            val roads = mutableSetOf<String>()
             for (candidate in roadTree.getNearbyCollection(
                 point, highwayJunctionWayToleranceMetres, ruler
             )) {
@@ -1032,11 +1024,21 @@ open class GridState(
                 if (ruler.distanceToLineString(point, line).distance >
                     highwayJunctionWayToleranceMetres
                 ) continue
-                way.ref?.let { roads.add(it) }
-                way.name?.let { roads.add(it) }
-            }
-            if (roads.isNotEmpty()) {
-                junction.junctionRoads = roads
+
+                way.addAlongWayFeature(
+                    AlongWayFeature(
+                        // Clamped because a junction usually sits on the node where the
+                        // carriageway is split, which is the end of the Way, and measuring along
+                        // the line can come out a few millimetres longer than Way.length.
+                        distanceFromStart = way.distanceAlongWay(point, ruler)
+                            .coerceAtMost(way.length),
+                        point = point,
+                        kind = AlongWayKind.HIGHWAY_JUNCTION,
+                        name = junction.name,
+                        feature = junction,
+                        translatedName = junction.translatedName
+                    )
+                )
                 attached++
             }
         }
@@ -1108,7 +1110,7 @@ open class GridState(
             railwayStopsAttached = attachRailwayStopsToWays(featureCollections, localTrees)
             // After the stop nodes, so that it can see which stations they already stand for.
             stationsAttached = attachStationsAsRailwayStops(featureCollections, localTrees)
-            junctionsAttached = attachHighwayJunctionsToRoads(featureCollections, localTrees)
+            junctionsAttached = attachHighwayJunctionsToWays(featureCollections, localTrees)
         }
         println(
             "Transit stops took $transitStopTiming " +
