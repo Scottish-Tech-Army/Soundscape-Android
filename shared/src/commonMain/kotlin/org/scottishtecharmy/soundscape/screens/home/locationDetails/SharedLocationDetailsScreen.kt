@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -59,7 +58,7 @@ import org.scottishtecharmy.soundscape.resources.share_title
 import org.scottishtecharmy.soundscape.resources.universal_links_alert_action_marker
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
-import org.scottishtecharmy.soundscape.screens.home.home.PlatformMapContainer
+import org.scottishtecharmy.soundscape.screens.home.home.rememberFullScreenableMap
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -97,7 +96,14 @@ fun SharedLocationDetailsScreen(
         PreferenceKeys.SHOW_MAP,
         PreferenceDefaults.SHOW_MAP,
     )
-    val fullscreenMap = remember { mutableStateOf(false) }
+    val map = rememberFullScreenableMap(
+        mapCenter = locationDescription.location,
+        userLocation = userLocation,
+        userSymbolRotation = heading,
+        beaconLocation = locationDescription.location,
+        routeData = null,
+    )
+    val fullscreenMap = map.fullscreen
     var mapInteracting by remember { mutableStateOf(false) }
     val contentScrollState = rememberScrollState()
 
@@ -116,15 +122,7 @@ fun SharedLocationDetailsScreen(
         },
     ) { padding ->
         if (fullscreenMap.value && showMap) {
-            PlatformMapContainer(
-                beaconLocation = locationDescription.location,
-                allowScrolling = true,
-                mapCenter = locationDescription.location,
-                userLocation = userLocation,
-                userSymbolRotation = heading,
-                routeData = null,
-                modifier = Modifier.fillMaxSize(),
-            )
+            map.FullScreen()
         } else {
             Column(
                 modifier = Modifier
@@ -158,13 +156,7 @@ fun SharedLocationDetailsScreen(
 
                 // Map showing the location
                 if (showMap) {
-                    PlatformMapContainer(
-                        mapCenter = locationDescription.location,
-                        allowScrolling = false,
-                        userLocation = userLocation,
-                        userSymbolRotation = heading,
-                        beaconLocation = locationDescription.location,
-                        routeData = null,
+                    map.Inline(
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1.0f),

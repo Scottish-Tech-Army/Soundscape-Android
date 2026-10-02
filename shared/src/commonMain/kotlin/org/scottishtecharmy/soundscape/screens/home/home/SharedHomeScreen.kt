@@ -5,7 +5,6 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -79,7 +78,15 @@ fun SharedHomeScreen(
         PreferenceDefaults.SHOW_MAP,
     )
     var drawerOpen by remember { mutableStateOf(false) }
-    val fullscreenMap = remember { mutableStateOf(false) }
+    val map = rememberFullScreenableMap(
+        mapCenter = state.location,
+        userLocation = state.location,
+        userSymbolRotation = state.heading,
+        beaconLocation = state.beaconState?.location,
+        routeData = state.currentRouteData.routeData,
+        currentBeaconWaypointIndex = state.currentRouteData.currentWaypoint,
+    )
+    val fullscreenMap = map.fullscreen
     val keyboardOpen = keyboardAsState()
     var searchExpanded by remember { mutableStateOf(false) }
     // Stays true from the moment the search popup opens the IME until the IME has
@@ -160,24 +167,12 @@ fun SharedHomeScreen(
             }
 
             if (fullscreenMap.value && showMap) {
-                state.location?.let { location ->
-                    PlatformMapContainer(
-                        beaconLocation = state.beaconState?.location,
-                        routeData = state.currentRouteData.routeData,
-                        currentBeaconWaypointIndex = state.currentRouteData.currentWaypoint,
-                        mapCenter = location,
-                        allowScrolling = false,
-                        userLocation = location,
-                        userSymbolRotation = state.heading,
-                        modifier = Modifier.fillMaxSize(),
-                    )
-                }
+                map.FullScreen()
             } else {
                 SharedHomeContent(
                     location = state.location,
                     beaconState = state.beaconState,
                     routePlayerState = state.currentRouteData,
-                    heading = state.heading,
                     modifier = Modifier.padding(innerPadding),
                     onNavigate = onNavigate,
                     onSelectLocation = onSelectLocation,
@@ -201,7 +196,7 @@ fun SharedHomeScreen(
                     routeFunctions = routeFunctions,
                     streetPreviewFunctions = streetPreviewFunctions,
                     goToAppSettings = goToAppSettings,
-                    fullscreenMap = fullscreenMap,
+                    map = map,
                     permissionsRequired = permissionsRequired,
                     showMap = showMap,
                 )
