@@ -1553,7 +1553,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="markers_sort_action_distance_ascending">sắp xếp theo khoảng cách, gần nhất trước</string>
     <string name="markers_sort_action_distance_descending">sắp xếp theo khoảng cách, xa nhất trước</string>
     <string name="callouts_verbosity">Mức chi tiết thông báo</string>
-    <string name="callouts_verbosity_description">Mức chi tiết thông báo quyết định Soundscape kể cho bạn nghe nhiều hay ít khi bạn đi bộ. Chế độ Chi tiết thông báo mọi thứ ở gần. Chế độ Đơn giản bỏ qua các lối đi nhỏ và đường nội bộ, đồng thời ít lặp lại hơn. Chế độ Thiết yếu chỉ thông báo đường phố, giao lộ và điểm mốc. Chế độ Im lặng hoàn toàn không đưa ra thông báo tự động nào, nhưng đèn hiệu, lộ trình và các nút trên màn hình chính vẫn hoạt động.</string>
+    <string name="callouts_verbosity_description">Mức chi tiết thông báo quyết định Soundscape kể cho bạn nghe nhiều hay ít khi bạn đi bộ hoặc di chuyển. Chế độ Chi tiết thông báo mọi thứ ở gần. Chế độ Đơn giản bỏ qua các lối đi nhỏ và đường nội bộ, đồng thời ít lặp lại hơn. Chế độ Thiết yếu chỉ thông báo đường phố, giao lộ và điểm mốc, và khi bạn đi ô tô hoặc xe buýt thì chỉ thông báo đường chính và đường có số hiệu, không thông báo điểm dừng xe buýt. Chế độ Im lặng hoàn toàn không đưa ra thông báo tự động nào, nhưng đèn hiệu, lộ trình và các nút trên màn hình chính vẫn hoạt động.</string>
     <string name="callouts_verbosity_level_silent">Im lặng</string>
     <string name="callouts_verbosity_level_quiet">Thiết yếu</string>
     <string name="callouts_verbosity_level_balanced">Đơn giản</string>

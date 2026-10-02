@@ -1553,7 +1553,7 @@
     <string name="markers_sort_action_distance_ascending">距離の近い順に並べ替えます</string>
     <string name="markers_sort_action_distance_descending">距離の遠い順に並べ替えます</string>
     <string name="callouts_verbosity">コールアウトの詳細度</string>
-    <string name="callouts_verbosity_description">コールアウトの詳細度は、歩行中に Soundscape がどれだけ知らせるかを決めます。詳細モードでは近くのものをすべてコールアウトします。簡略モードでは細い小道や管理用道路を省き、繰り返しも少なくなります。基本モードでは道路、交差点、ランドマークだけをコールアウトします。無音モードでは自動コールアウトを一切行わず、ビーコン、ルート、ホーム画面のボタンはそのまま使えます。</string>
+    <string name="callouts_verbosity_description">コールアウトの詳細度は、歩行中や移動中に Soundscape がどれだけ知らせるかを決めます。詳細モードでは近くのものをすべてコールアウトします。簡略モードでは細い小道や管理用道路を省き、繰り返しも少なくなります。基本モードでは道路、交差点、ランドマークだけをコールアウトし、車やバスでの移動中は主要道路と番号付きの道路だけで、バス停は知らせません。無音モードでは自動コールアウトを一切行わず、ビーコン、ルート、ホーム画面のボタンはそのまま使えます。</string>
     <string name="callouts_verbosity_level_silent">無音</string>
     <string name="callouts_verbosity_level_quiet">基本</string>
     <string name="callouts_verbosity_level_balanced">簡略</string>

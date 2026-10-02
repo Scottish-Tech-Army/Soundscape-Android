@@ -1569,7 +1569,7 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="markers_sort_action_distance_ascending">sortida kauguse järgi, lähimad eespool</string>
     <string name="markers_sort_action_distance_descending">sortida kauguse järgi, kaugeimad eespool</string>
     <string name="callouts_verbosity">Häälteadete detailsus</string>
-    <string name="callouts_verbosity_description">Häälteadete detailsus määrab, kui paljust Soundscape teile kõndides räägib. Režiim Üksikasjalik teatab kõigest lähedal asuvast. Režiim Lihtsustatud jätab välja väiksemad rajad ja teenindusteed ning kordab end harvemini. Režiim Põhiline teatab ainult tänavatest, ristmikest ja maamärkidest. Režiim Hääletu ei anna üldse automaatseid häälteateid, kuid jätab alles helimajakad, marsruudid ja avakuva nupud.</string>
+    <string name="callouts_verbosity_description">Häälteadete detailsus määrab, kui paljust Soundscape teile kõndides või sõites räägib. Režiim Üksikasjalik teatab kõigest lähedal asuvast. Režiim Lihtsustatud jätab välja väiksemad rajad ja teenindusteed ning kordab end harvemini. Režiim Põhiline teatab ainult tänavatest, ristmikest ja maamärkidest ning autos või bussis sõites ainult põhimaanteedest ja numbriga teedest, ilma bussipeatusteta. Režiim Hääletu ei anna üldse automaatseid häälteateid, kuid jätab alles helimajakad, marsruudid ja avakuva nupud.</string>
     <string name="callouts_verbosity_level_silent">Hääletu</string>
     <string name="callouts_verbosity_level_quiet">Põhiline</string>
     <string name="callouts_verbosity_level_balanced">Lihtsustatud</string>

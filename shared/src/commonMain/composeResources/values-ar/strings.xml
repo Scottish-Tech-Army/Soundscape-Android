@@ -1633,7 +1633,7 @@
     <string name="markers_sort_action_distance_ascending">الترتيب حسب المسافة، الأقرب أولاً</string>
     <string name="markers_sort_action_distance_descending">الترتيب حسب المسافة، الأبعد أولاً</string>
     <string name="callouts_verbosity">تفاصيل النداءات الصوتية</string>
-    <string name="callouts_verbosity_description">تحدد تفاصيل النداءات الصوتية مقدار ما يخبرك به Soundscape أثناء سيرك. الوضع المفصّل ينادي بكل ما هو قريب منك. الوضع المبسّط يتجاهل الممرات الفرعية وطرق الخدمة، ويكرر نفسه بوتيرة أقل. الوضع الأساسي ينادي بالشوارع والتقاطعات والمعالم فقط. أما الوضع الصامت فلا يصدر أي نداءات صوتية تلقائية، مع إبقاء المنارات والمسارات والأزرار في الشاشة الرئيسية.</string>
+    <string name="callouts_verbosity_description">تحدد تفاصيل النداءات الصوتية مقدار ما يخبرك به Soundscape أثناء سيرك أو تنقلك. الوضع المفصّل ينادي بكل ما هو قريب منك. الوضع المبسّط يتجاهل الممرات الفرعية وطرق الخدمة، ويكرر نفسه بوتيرة أقل. الوضع الأساسي ينادي بالشوارع والتقاطعات والمعالم فقط، وعند التنقل بالسيارة أو الحافلة بالطرق الرئيسية والطرق المرقّمة فقط، دون محطات الحافلات. أما الوضع الصامت فلا يصدر أي نداءات صوتية تلقائية، مع إبقاء المنارات والمسارات والأزرار في الشاشة الرئيسية.</string>
     <string name="callouts_verbosity_level_silent">صامت</string>
     <string name="callouts_verbosity_level_quiet">أساسي</string>
     <string name="callouts_verbosity_level_balanced">مبسّط</string>

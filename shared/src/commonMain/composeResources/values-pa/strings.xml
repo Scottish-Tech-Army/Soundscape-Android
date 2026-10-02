@@ -196,7 +196,7 @@
     <string name="callouts_audio_beacon_distance">ਬੀਕਨ ਇਸ ਵੇਲੇ %1$s ਦੂਰ ਹੈ</string>
     <string name="callouts_no_beacon_active">ਕੋਈ ਬੀਕਨ ਚਾਲੂ ਨਹੀਂ ਹੈ</string>
     <string name="callouts_verbosity">ਘੋਸ਼ਣਾ ਦਾ ਵੇਰਵਾ</string>
-    <string name="callouts_verbosity_description">ਘੋਸ਼ਣਾ ਦਾ ਵੇਰਵਾ ਤੈਅ ਕਰਦਾ ਹੈ ਕਿ ਤੁਰਦੇ ਸਮੇਂ Soundscape ਤੁਹਾਨੂੰ ਕਿੰਨਾ ਕੁਝ ਦੱਸੇ। ਵਿਸਤ੍ਰਿਤ ਮੋਡ ਨੇੜੇ ਦੀ ਹਰ ਚੀਜ਼ ਦੀ ਘੋਸ਼ਣਾ ਕਰਦਾ ਹੈ। ਸਰਲ ਮੋਡ ਛੋਟੇ ਰਸਤਿਆਂ ਅਤੇ ਸਰਵਿਸ ਸੜਕਾਂ ਨੂੰ ਛੱਡ ਦਿੰਦਾ ਹੈ, ਅਤੇ ਘੱਟ ਦੁਹਰਾਉਂਦਾ ਹੈ। ਜ਼ਰੂਰੀ ਮੋਡ ਸਿਰਫ਼ ਸੜਕਾਂ, ਚੌਂਕਾਂ ਅਤੇ ਲੈਂਡਮਾਰਕਾਂ ਦੀ ਘੋਸ਼ਣਾ ਕਰਦਾ ਹੈ। ਚੁੱਪ ਮੋਡ ਕੋਈ ਆਪਣੇ-ਆਪ ਘੋਸ਼ਣਾ ਨਹੀਂ ਕਰਦਾ, ਪਰ ਬੀਕਨ, ਰੂਟ ਅਤੇ ਹੋਮ ਸਕ੍ਰੀਨ ਦੇ ਬਟਨ ਕੰਮ ਕਰਦੇ ਰਹਿੰਦੇ ਹਨ।</string>
+    <string name="callouts_verbosity_description">ਘੋਸ਼ਣਾ ਦਾ ਵੇਰਵਾ ਤੈਅ ਕਰਦਾ ਹੈ ਕਿ ਤੁਰਦੇ ਜਾਂ ਸਫ਼ਰ ਕਰਦੇ ਸਮੇਂ Soundscape ਤੁਹਾਨੂੰ ਕਿੰਨਾ ਕੁਝ ਦੱਸੇ। ਵਿਸਤ੍ਰਿਤ ਮੋਡ ਨੇੜੇ ਦੀ ਹਰ ਚੀਜ਼ ਦੀ ਘੋਸ਼ਣਾ ਕਰਦਾ ਹੈ। ਸਰਲ ਮੋਡ ਛੋਟੇ ਰਸਤਿਆਂ ਅਤੇ ਸਰਵਿਸ ਸੜਕਾਂ ਨੂੰ ਛੱਡ ਦਿੰਦਾ ਹੈ, ਅਤੇ ਘੱਟ ਦੁਹਰਾਉਂਦਾ ਹੈ। ਜ਼ਰੂਰੀ ਮੋਡ ਸਿਰਫ਼ ਸੜਕਾਂ, ਚੌਂਕਾਂ ਅਤੇ ਲੈਂਡਮਾਰਕਾਂ ਦੀ ਘੋਸ਼ਣਾ ਕਰਦਾ ਹੈ, ਅਤੇ ਕਾਰ ਜਾਂ ਬੱਸ ਵਿੱਚ ਸਫ਼ਰ ਕਰਦੇ ਸਮੇਂ ਸਿਰਫ਼ ਮੁੱਖ ਅਤੇ ਨੰਬਰ ਵਾਲੀਆਂ ਸੜਕਾਂ ਦੀ, ਬੱਸ ਸਟਾਪਾਂ ਤੋਂ ਬਿਨਾਂ। ਚੁੱਪ ਮੋਡ ਕੋਈ ਆਪਣੇ-ਆਪ ਘੋਸ਼ਣਾ ਨਹੀਂ ਕਰਦਾ, ਪਰ ਬੀਕਨ, ਰੂਟ ਅਤੇ ਹੋਮ ਸਕ੍ਰੀਨ ਦੇ ਬਟਨ ਕੰਮ ਕਰਦੇ ਰਹਿੰਦੇ ਹਨ।</string>
     <string name="callouts_verbosity_level_silent">ਚੁੱਪ</string>
     <string name="callouts_verbosity_level_quiet">ਜ਼ਰੂਰੀ</string>
     <string name="callouts_verbosity_level_balanced">ਸਰਲ</string>

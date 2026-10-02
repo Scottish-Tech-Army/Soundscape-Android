@@ -1569,7 +1569,7 @@
     <string name="markers_sort_action_distance_ascending">فاصلے کے لحاظ سے، قریب ترین پہلے، ترتیب دینے</string>
     <string name="markers_sort_action_distance_descending">فاصلے کے لحاظ سے، دور ترین پہلے، ترتیب دینے</string>
     <string name="callouts_verbosity">کالآؤٹ تفصیل</string>
-    <string name="callouts_verbosity_description">کالآؤٹ تفصیل یہ طے کرتی ہے کہ چلتے ہوئے Soundscape آپ کو کتنی چیزوں کے بارے میں بتائے۔ تفصیلی موڈ قریب کی ہر چیز پکارتا ہے۔ سادہ موڈ چھوٹے راستوں اور سروس سڑکوں کو چھوڑ دیتا ہے اور خود کو کم بار دہراتا ہے۔ ضروری موڈ صرف سڑکیں، چوراہے اور نشانات پکارتا ہے۔ خاموش موڈ کوئی بھی خودکار کالآؤٹ نہیں کرتا، البتہ بیکنز، روٹس اور ہوم اسکرین کے بٹن کام کرتے رہتے ہیں۔</string>
+    <string name="callouts_verbosity_description">کالآؤٹ تفصیل یہ طے کرتی ہے کہ چلتے یا سفر کرتے ہوئے Soundscape آپ کو کتنی چیزوں کے بارے میں بتائے۔ تفصیلی موڈ قریب کی ہر چیز پکارتا ہے۔ سادہ موڈ چھوٹے راستوں اور سروس سڑکوں کو چھوڑ دیتا ہے اور خود کو کم بار دہراتا ہے۔ ضروری موڈ صرف سڑکیں، چوراہے اور نشانات پکارتا ہے، اور کار یا بس میں سفر کرتے ہوئے صرف بڑی اور نمبر والی سڑکیں، بس اسٹاپ کے بغیر۔ خاموش موڈ کوئی بھی خودکار کالآؤٹ نہیں کرتا، البتہ بیکنز، روٹس اور ہوم اسکرین کے بٹن کام کرتے رہتے ہیں۔</string>
     <string name="callouts_verbosity_level_silent">خاموش</string>
     <string name="callouts_verbosity_level_quiet">ضروری</string>
     <string name="callouts_verbosity_level_balanced">سادہ</string>

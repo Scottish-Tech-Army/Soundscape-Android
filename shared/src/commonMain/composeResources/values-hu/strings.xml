@@ -1569,7 +1569,7 @@ Kérjük, továbbra is jelezze nekünk a felmerülő problémákat, bármilyen k
     <string name="markers_sort_action_distance_ascending">rendezés távolság szerint, a legközelebbiek elöl</string>
     <string name="markers_sort_action_distance_descending">rendezés távolság szerint, a legtávolabbiak elöl</string>
     <string name="callouts_verbosity">Bemondások részletessége</string>
-    <string name="callouts_verbosity_description">A bemondások részletessége szabályozza, hogy a Soundscape mennyi mindenről tájékoztat séta közben. A Részletes mód mindent bemond a közelben. Az Egyszerűsített mód kihagyja a kisebb ösvényeket és a kiszolgáló utakat, és ritkábban ismétli magát. Az Alapvető mód csak utcákat, kereszteződéseket és nevezetességeket mond be. A Néma mód egyáltalán nem ad automatikus bemondásokat, de az irányjelző hangok, az útvonalak és a kezdőképernyő gombjai megmaradnak.</string>
+    <string name="callouts_verbosity_description">A bemondások részletessége szabályozza, hogy a Soundscape mennyi mindenről tájékoztat séta vagy utazás közben. A Részletes mód mindent bemond a közelben. Az Egyszerűsített mód kihagyja a kisebb ösvényeket és a kiszolgáló utakat, és ritkábban ismétli magát. Az Alapvető mód csak utcákat, kereszteződéseket és nevezetességeket mond be, autós vagy buszos utazáskor pedig csak a főutakat és a számozott utakat, buszmegállók nélkül. A Néma mód egyáltalán nem ad automatikus bemondásokat, de az irányjelző hangok, az útvonalak és a kezdőképernyő gombjai megmaradnak.</string>
     <string name="callouts_verbosity_level_silent">Néma</string>
     <string name="callouts_verbosity_level_quiet">Alapvető</string>
     <string name="callouts_verbosity_level_balanced">Egyszerűsített</string>

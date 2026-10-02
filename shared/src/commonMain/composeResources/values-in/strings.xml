@@ -1553,7 +1553,7 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="markers_sort_action_distance_ascending">mengurutkan berdasarkan jarak, terdekat dulu</string>
     <string name="markers_sort_action_distance_descending">mengurutkan berdasarkan jarak, terjauh dulu</string>
     <string name="callouts_verbosity">Tingkat Detail Pemberitahuan</string>
-    <string name="callouts_verbosity_description">Tingkat detail pemberitahuan menentukan seberapa banyak yang diberitahukan Soundscape kepada Anda saat berjalan. Mode Rinci menyebutkan segala sesuatu di sekitar. Mode Sederhana mengabaikan jalan setapak kecil dan jalan servis, serta lebih jarang mengulang. Mode Esensial hanya menyebutkan jalan, persimpangan, dan landmark. Mode Senyap tidak memberikan pemberitahuan otomatis sama sekali, tetapi suar, rute, dan tombol di layar utama tetap berfungsi.</string>
+    <string name="callouts_verbosity_description">Tingkat detail pemberitahuan menentukan seberapa banyak yang diberitahukan Soundscape kepada Anda saat berjalan atau bepergian. Mode Rinci menyebutkan segala sesuatu di sekitar. Mode Sederhana mengabaikan jalan setapak kecil dan jalan servis, serta lebih jarang mengulang. Mode Esensial hanya menyebutkan jalan, persimpangan, dan landmark, dan saat bepergian dengan mobil atau bus, hanya jalan utama dan jalan bernomor, tanpa halte bus. Mode Senyap tidak memberikan pemberitahuan otomatis sama sekali, tetapi suar, rute, dan tombol di layar utama tetap berfungsi.</string>
     <string name="callouts_verbosity_level_silent">Senyap</string>
     <string name="callouts_verbosity_level_quiet">Esensial</string>
     <string name="callouts_verbosity_level_balanced">Sederhana</string>

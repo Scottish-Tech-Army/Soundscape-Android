@@ -1553,7 +1553,7 @@
     <string name="markers_sort_action_distance_ascending">가까운 곳부터 거리순으로 정렬</string>
     <string name="markers_sort_action_distance_descending">먼 곳부터 거리순으로 정렬</string>
     <string name="callouts_verbosity">안내 상세도</string>
-    <string name="callouts_verbosity_description">안내 상세도는 걷는 동안 Soundscape가 얼마나 많이 알려줄지 조절합니다. 상세 모드는 주변의 모든 것을 안내합니다. 간소화 모드는 작은 샛길과 이면도로를 제외하고, 같은 내용을 덜 자주 반복합니다. 핵심 모드는 도로, 교차로, 랜드마크만 안내합니다. 무음 모드는 자동 안내를 전혀 하지 않으며, 비콘과 경로, 홈 화면의 버튼은 그대로 사용할 수 있습니다.</string>
+    <string name="callouts_verbosity_description">안내 상세도는 걷거나 이동하는 동안 Soundscape가 얼마나 많이 알려줄지 조절합니다. 상세 모드는 주변의 모든 것을 안내합니다. 간소화 모드는 작은 샛길과 이면도로를 제외하고, 같은 내용을 덜 자주 반복합니다. 핵심 모드는 도로, 교차로, 랜드마크만 안내하며, 자동차나 버스로 이동할 때는 주요 도로와 번호가 있는 도로만 안내하고 버스 정류장은 안내하지 않습니다. 무음 모드는 자동 안내를 전혀 하지 않으며, 비콘과 경로, 홈 화면의 버튼은 그대로 사용할 수 있습니다.</string>
     <string name="callouts_verbosity_level_silent">무음</string>
     <string name="callouts_verbosity_level_quiet">핵심</string>
     <string name="callouts_verbosity_level_balanced">간소화</string>

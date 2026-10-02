@@ -1585,7 +1585,7 @@ Molimo vas da nam i dalje prijavljujete sve probleme, koliko god bili mali, pute
     <string name="markers_sort_action_distance_ascending">razvrstali po udaljenosti, najbliže prvo</string>
     <string name="markers_sort_action_distance_descending">razvrstali po udaljenosti, najdalje prvo</string>
     <string name="callouts_verbosity">Razina detalja najava</string>
-    <string name="callouts_verbosity_description">Razina detalja najava određuje koliko vam Soundscape govori dok hodate. Način Detaljno najavljuje sve u blizini. Način Pojednostavljeno izostavlja sporedne staze i servisne ceste te se rjeđe ponavlja. Način Osnovno najavljuje samo ulice, raskrižja i znamenitosti. Način Bez zvuka ne izgovara nikakve automatske najave, a ostaju svjetionici, rute i gumbi na početnom zaslonu.</string>
+    <string name="callouts_verbosity_description">Razina detalja najava određuje koliko vam Soundscape govori dok hodate ili putujete. Način Detaljno najavljuje sve u blizini. Način Pojednostavljeno izostavlja sporedne staze i servisne ceste te se rjeđe ponavlja. Način Osnovno najavljuje samo ulice, raskrižja i znamenitosti, a dok putujete automobilom ili autobusom samo glavne i numerirane ceste, bez autobusnih stajališta. Način Bez zvuka ne izgovara nikakve automatske najave, a ostaju svjetionici, rute i gumbi na početnom zaslonu.</string>
     <string name="callouts_verbosity_level_silent">Bez zvuka</string>
     <string name="callouts_verbosity_level_quiet">Osnovno</string>
     <string name="callouts_verbosity_level_balanced">Pojednostavljeno</string>

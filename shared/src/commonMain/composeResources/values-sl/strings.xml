@@ -1601,7 +1601,7 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="markers_sort_action_distance_ascending">razvrščanje po razdalji, najprej najbližje</string>
     <string name="markers_sort_action_distance_descending">razvrščanje po razdalji, najprej najbolj oddaljene</string>
     <string name="callouts_verbosity">Raven podrobnosti obvestil</string>
-    <string name="callouts_verbosity_description">Raven podrobnosti obvestil določa, koliko vam Soundscape pove med hojo. Način Podrobno oznani vse v bližini. Način Poenostavljeno izpusti manjše poti in dovozne ceste ter se redkeje ponavlja. Način Osnovno oznani samo ulice, križišča in znamenitosti. Način Brez zvoka ne poda nobenih samodejnih obvestil, ostanejo pa svetilniki, poti in gumbi na začetnem zaslonu.</string>
+    <string name="callouts_verbosity_description">Raven podrobnosti obvestil določa, koliko vam Soundscape pove med hojo ali vožnjo. Način Podrobno oznani vse v bližini. Način Poenostavljeno izpusti manjše poti in dovozne ceste ter se redkeje ponavlja. Način Osnovno oznani samo ulice, križišča in znamenitosti, med vožnjo z avtomobilom ali avtobusom pa samo glavne in oštevilčene ceste, brez avtobusnih postajališč. Način Brez zvoka ne poda nobenih samodejnih obvestil, ostanejo pa svetilniki, poti in gumbi na začetnem zaslonu.</string>
     <string name="callouts_verbosity_level_silent">Brez zvoka</string>
     <string name="callouts_verbosity_level_quiet">Osnovno</string>
     <string name="callouts_verbosity_level_balanced">Poenostavljeno</string>

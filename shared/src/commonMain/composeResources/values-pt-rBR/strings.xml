@@ -1585,7 +1585,7 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="markers_sort_action_distance_ascending">classificar por distância, do mais próximo ao mais distante</string>
     <string name="markers_sort_action_distance_descending">classificar por distância, do mais distante ao mais próximo</string>
     <string name="callouts_verbosity">Detalhe das Notificações</string>
-    <string name="callouts_verbosity_description">O detalhe das notificações controla quanto o Soundscape conta a você enquanto caminha. O modo Detalhado anuncia tudo o que está por perto. O modo Simplificado deixa de fora os caminhos secundários e as vias de serviço, e se repete com menos frequência. O modo Essencial anuncia apenas ruas, cruzamentos e pontos de referência. O modo Silencioso não faz nenhuma notificação automática, mantendo os sinalizadores, as rotas e os botões da tela inicial.</string>
+    <string name="callouts_verbosity_description">O detalhe das notificações controla quanto o Soundscape conta a você enquanto caminha ou viaja. O modo Detalhado anuncia tudo o que está por perto. O modo Simplificado deixa de fora os caminhos secundários e as vias de serviço, e se repete com menos frequência. O modo Essencial anuncia apenas ruas, cruzamentos e pontos de referência e, quando você viaja de carro ou ônibus, apenas as rodovias principais e numeradas, sem pontos de ônibus. O modo Silencioso não faz nenhuma notificação automática, mantendo os sinalizadores, as rotas e os botões da tela inicial.</string>
     <string name="callouts_verbosity_level_silent">Silencioso</string>
     <string name="callouts_verbosity_level_quiet">Essencial</string>
     <string name="callouts_verbosity_level_balanced">Simplificado</string>
