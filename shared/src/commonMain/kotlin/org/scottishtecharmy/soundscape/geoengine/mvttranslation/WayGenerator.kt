@@ -117,8 +117,8 @@ class Way : MvtFeature() {
     var wayType = WayType.REGULAR
 
     /**
-     * Features positioned along this Way - crossings today, transit stops and junctions in future
-     * - kept sorted ascending by [AlongWayFeature.distanceFromStart] so that "what's next along
+     * Features positioned along this Way - crossings, transit and railway stops, and highway
+     * junctions - kept sorted ascending by [AlongWayFeature.distanceFromStart] so that "what's next along
      * this road?" is a lookup rather than a geographic search. Add via [addAlongWayFeature] to
      * maintain that ordering.
      *
