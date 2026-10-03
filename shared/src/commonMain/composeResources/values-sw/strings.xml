@@ -1646,6 +1646,7 @@ Tafadhali endelea kuripoti tatizo lolote, hata liwe dogo kiasi gani, kupitia “
     <string name="search_no_offline_maps">Utafutaji unafanya kazi nje ya mtandao, lakini hakuna ramani ya nje ya mtandao iliyopakuliwa kwa mahali ulipo.</string>
     <string name="location_detail_adjust_marker_location">Hariri Mahali</string>
     <string name="location_detail_adjust_marker_location_instructions">Buruta ramani ili kusogeza mahali pa alama. Gusa Imekamilika ili kuhifadhi mahali papya, au Ghairi ili kupaacha bila kubadilika.</string>
+    <string name="location_detail_unknown_location">Mahali Pasipojulikana</string>
     <string name="location_detail_action_open_in_app">Fungua katika programu ya ramani</string>
     <string name="location_detail_action_open_in_named_app">Fungua katika %1$s</string>
     <string name="location_detail_action_open_in_app_hint">kuona mahali hapa katika programu nyingine ya ramani au ya uelekezaji</string>

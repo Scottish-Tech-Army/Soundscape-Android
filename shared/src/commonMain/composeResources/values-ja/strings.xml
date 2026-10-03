@@ -1630,6 +1630,7 @@
     <string name="search_no_offline_maps">検索はオフラインで動作していますが、現在地のオフラインマップがダウンロードされていません。</string>
     <string name="location_detail_adjust_marker_location">位置を編集</string>
     <string name="location_detail_adjust_marker_location_instructions">地図をドラッグしてマーカーの位置を移動します。新しい位置を確定するには「完了」を、変更しない場合は「キャンセル」をタップしてください。</string>
+    <string name="location_detail_unknown_location">不明な場所</string>
     <string name="location_detail_action_open_in_app">地図アプリで開く</string>
     <string name="location_detail_action_open_in_named_app">%1$sで開く</string>
     <string name="location_detail_action_open_in_app_hint">この場所を他の地図アプリやナビアプリで表示します</string>

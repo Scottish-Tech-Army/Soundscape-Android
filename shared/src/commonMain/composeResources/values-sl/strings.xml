@@ -1678,6 +1678,7 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="search_no_offline_maps">Iskanje deluje brez povezave, vendar za kraj, kjer ste, ni prenesen noben zemljevid brez povezave.</string>
     <string name="location_detail_adjust_marker_location">Uredi lokacijo</string>
     <string name="location_detail_adjust_marker_location_instructions">Povlecite zemljevid, da premaknete lokacijo oznake. Tapnite Končano, da obdržite novo lokacijo, ali Prekliči, da jo pustite nespremenjeno.</string>
+    <string name="location_detail_unknown_location">Neznana lokacija</string>
     <string name="location_detail_action_open_in_app">Odpri v aplikaciji za zemljevide</string>
     <string name="location_detail_action_open_in_named_app">Odpri v aplikaciji %1$s</string>
     <string name="location_detail_action_open_in_app_hint">ogled te lokacije v drugi aplikaciji za zemljevide ali navigacijo</string>

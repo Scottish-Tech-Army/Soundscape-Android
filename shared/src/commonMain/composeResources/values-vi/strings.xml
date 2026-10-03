@@ -1630,6 +1630,7 @@ Vui lòng tiếp tục báo cáo bất kỳ vấn đề nào bạn gặp phải,
     <string name="search_no_offline_maps">Tìm kiếm đang hoạt động ngoại tuyến, nhưng chưa tải xuống bản đồ ngoại tuyến nào cho nơi bạn đang ở.</string>
     <string name="location_detail_adjust_marker_location">Chỉnh sửa vị trí</string>
     <string name="location_detail_adjust_marker_location_instructions">Kéo bản đồ để di chuyển vị trí điểm đánh dấu. Nhấn Xong để giữ vị trí mới, hoặc Hủy để giữ nguyên vị trí cũ.</string>
+    <string name="location_detail_unknown_location">Vị trí không xác định</string>
     <string name="location_detail_action_open_in_app">Mở trong ứng dụng bản đồ</string>
     <string name="location_detail_action_open_in_named_app">Mở trong %1$s</string>
     <string name="location_detail_action_open_in_app_hint">xem vị trí này trong một ứng dụng bản đồ hoặc dẫn đường khác</string>

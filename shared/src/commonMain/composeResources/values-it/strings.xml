@@ -1662,6 +1662,7 @@ Continua a segnalarci eventuali problemi, per quanto piccoli, tramite «Contatta
     <string name="search_no_offline_maps">La ricerca funziona offline, ma non è stata scaricata nessuna mappa offline della zona in cui ti trovi.</string>
     <string name="location_detail_adjust_marker_location">Modifica posizione</string>
     <string name="location_detail_adjust_marker_location_instructions">Trascina la mappa per spostare la posizione dell'indicatore. Tocca Fatto per mantenere la nuova posizione o Annulla per lasciarla invariata.</string>
+    <string name="location_detail_unknown_location">Posizione sconosciuta</string>
     <string name="location_detail_action_open_in_app">Apri in un'app di mappe</string>
     <string name="location_detail_action_open_in_named_app">Apri in %1$s</string>
     <string name="location_detail_action_open_in_app_hint">visualizzare questa posizione in un'altra app di mappe o di navigazione</string>

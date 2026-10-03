@@ -1646,6 +1646,7 @@
     <string name="search_no_offline_maps">தேடல் ஆஃப்லைனில் இயங்குகிறது, ஆனால் நீங்கள் இருக்கும் இடத்திற்கான ஆஃப்லைன் வரைபடம் எதுவும் பதிவிறக்கப்படவில்லை.</string>
     <string name="location_detail_adjust_marker_location">இருப்பிடத்தைத் திருத்து</string>
     <string name="location_detail_adjust_marker_location_instructions">குறிப்பானின் இருப்பிடத்தை நகர்த்த வரைபடத்தை இழுக்கவும். புதிய இருப்பிடத்தை வைத்திருக்க ‘முடிந்தது’ என்பதைத் தட்டவும், அல்லது இருப்பிடத்தை மாற்றாமல் விட ‘ரத்துசெய்’ என்பதைத் தட்டவும்.</string>
+    <string name="location_detail_unknown_location">அறியப்படாத இருப்பிடம்</string>
     <string name="location_detail_action_open_in_app">வரைபடச் செயலியில் திற</string>
     <string name="location_detail_action_open_in_named_app">%1$s இல் திற</string>
     <string name="location_detail_action_open_in_app_hint">இந்த இடத்தை மற்றொரு வரைபட அல்லது வழிசெலுத்தல் செயலியில் பார்க்க</string>

@@ -101,6 +101,7 @@
     <string name="location_detail_full_screen_for_edit_hint">ਨਕਸ਼ੇ ਨੂੰ ਪੂਰੀ ਸਕ੍ਰੀਨ 'ਤੇ ਦਿਖਾਉਣ ਅਤੇ ਮਾਰਕਰ ਦਾ ਟਿਕਾਣਾ ਬਦਲਣ ਲਈ</string>
     <string name="location_detail_adjust_marker_location">ਟਿਕਾਣਾ ਬਦਲੋ</string>
     <string name="location_detail_adjust_marker_location_instructions">ਮਾਰਕਰ ਦਾ ਟਿਕਾਣਾ ਹਿਲਾਉਣ ਲਈ ਨਕਸ਼ੇ ਨੂੰ ਖਿੱਚੋ। ਨਵਾਂ ਟਿਕਾਣਾ ਰੱਖਣ ਲਈ ‘ਹੋ ਗਿਆ’ 'ਤੇ ਟੈਪ ਕਰੋ, ਜਾਂ ਇਸਨੂੰ ਬਿਨਾਂ ਬਦਲੇ ਛੱਡਣ ਲਈ ‘ਰੱਦ ਕਰੋ’ 'ਤੇ ਟੈਪ ਕਰੋ।</string>
+    <string name="location_detail_unknown_location">ਅਣਜਾਣ ਟਿਕਾਣਾ</string>
     <string name="route_detail_action_start_route">ਰੂਟ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="route_detail_action_stop_route">ਰੂਟ ਰੋਕੋ</string>
     <string name="route_detail_action_edit">ਰੂਟ ਸੋਧੋ</string>

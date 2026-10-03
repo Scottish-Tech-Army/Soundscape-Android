@@ -1678,6 +1678,7 @@ Ak narazíte na akýkoľvek problém, aj keď sa zdá byť malý, dajte nám o �
     <string name="search_no_offline_maps">Vyhľadávanie funguje offline, ale pre miesto, kde sa nachádzate, nie je stiahnutá žiadna offline mapa.</string>
     <string name="location_detail_adjust_marker_location">Upraviť polohu</string>
     <string name="location_detail_adjust_marker_location_instructions">Potiahnutím mapy presuniete polohu značky. Ťuknutím na Hotovo novú polohu uložíte, ťuknutím na Zrušiť zostane poloha nezmenená.</string>
+    <string name="location_detail_unknown_location">Neznáma poloha</string>
     <string name="location_detail_action_open_in_app">Otvoriť v mapovej aplikácii</string>
     <string name="location_detail_action_open_in_named_app">Otvoriť v aplikácii %1$s</string>
     <string name="location_detail_action_open_in_app_hint">zobraziť toto miesto v inej mapovej alebo navigačnej aplikácii</string>

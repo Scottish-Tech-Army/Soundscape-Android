@@ -1662,6 +1662,7 @@ Continue relatando quaisquer problemas, por menores que sejam, por meio de “Co
     <string name="search_no_offline_maps">A pesquisa está funcionando offline, mas não há nenhum mapa offline baixado para o lugar onde você está.</string>
     <string name="location_detail_adjust_marker_location">Editar localização</string>
     <string name="location_detail_adjust_marker_location_instructions">Arraste o mapa para mover a localização do favorito. Toque em Concluído para manter a nova localização ou em Cancelar para deixá-la inalterada.</string>
+    <string name="location_detail_unknown_location">Localização Desconhecida</string>
     <string name="location_detail_action_open_in_app">Abrir em um aplicativo de mapa</string>
     <string name="location_detail_action_open_in_named_app">Abrir em %1$s</string>
     <string name="location_detail_action_open_in_app_hint">ver esta localização em outro aplicativo de mapa ou de navegação</string>

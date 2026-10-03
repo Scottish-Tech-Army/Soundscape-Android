@@ -1646,6 +1646,7 @@
     <string name="search_no_offline_maps">অনুসন্ধান অফলাইনে চলছে, কিন্তু আপনি যেখানে আছেন তার জন্য কোনো অফলাইন মানচিত্র ডাউনলোড করা নেই।</string>
     <string name="location_detail_adjust_marker_location">অবস্থান সম্পাদনা করুন</string>
     <string name="location_detail_adjust_marker_location_instructions">মার্কারের অবস্থান সরাতে মানচিত্রটি টেনে আনুন। নতুন অবস্থান রাখতে ‘সম্পন্ন’-এ ট্যাপ করুন, অথবা অবস্থান অপরিবর্তিত রাখতে ‘বাতিল’-এ ট্যাপ করুন।</string>
+    <string name="location_detail_unknown_location">অজানা অবস্থান</string>
     <string name="location_detail_action_open_in_app">ম্যাপ অ্যাপে খুলুন</string>
     <string name="location_detail_action_open_in_named_app">%1$s-এ খুলুন</string>
     <string name="location_detail_action_open_in_app_hint">অন্য কোনো ম্যাপ বা নেভিগেশন অ্যাপে এই অবস্থানটি দেখতে</string>
