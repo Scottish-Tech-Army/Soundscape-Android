@@ -207,6 +207,7 @@ fun MainViewController() = ComposeUIViewController {
             onStartRouteByName = { name ->
                 service.performAction(SoundscapeAction.StartRouteNamed(name))
             },
+            onPerformAction = { action -> service.performDeepLinkAction(action) },
             onRouteStop = {
                 service.routeStop()
                 audioTour.onBeaconStopped()

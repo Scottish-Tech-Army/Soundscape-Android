@@ -12,6 +12,7 @@ import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.actions.ActionResult
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.actions.SoundscapeActionExecutor
+import org.scottishtecharmy.soundscape.actions.executeForDeepLink
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.backup.IosCloudBackup
 import org.scottishtecharmy.soundscape.migration.hasPendingLegacyMigration
@@ -247,6 +248,13 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             if (result !is ActionResult.Ok) {
                 println("IosSoundscapeService: $action -> $result")
             }
+        }
+    }
+
+    /** An audio menu action from a soundscape:// link - see IncomingIntent.PerformAction. */
+    fun performDeepLinkAction(action: SoundscapeAction) {
+        scope.launch {
+            actions.executeForDeepLink(action, this@IosSoundscapeService)
         }
     }
 

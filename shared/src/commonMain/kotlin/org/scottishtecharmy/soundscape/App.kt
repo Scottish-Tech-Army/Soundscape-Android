@@ -9,6 +9,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.StateFlow
+import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
@@ -46,6 +47,8 @@ data class AppCallbacks(
     val onStartRoute: (Long) -> Unit = {},
     val onStartRouteInReverse: (Long) -> Unit = {},
     val onStartRouteByName: (String) -> Unit = {},
+    /** An audio menu action asked for by a soundscape:// link - see IncomingIntent.PerformAction. */
+    val onPerformAction: (SoundscapeAction) -> Unit = {},
     val onMyLocation: () -> Unit = {},
     val onWhatsAroundMe: () -> Unit = {},
     val onAheadOfMe: () -> Unit = {},

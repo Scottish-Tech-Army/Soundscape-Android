@@ -134,6 +134,7 @@ class SoundscapeIntents(
      * - geo:/soundscape: URLs with lat,lon → geocoded then OpenLocation (best-effort)
      * - soundscape://feature/... → OpenFeature
      * - soundscape://route/{name|stop} → StartRouteByName / StopRoute
+     * - soundscape://action/{name} and soundscape://beacon/{name} → PerformAction
      * - https://links.soundscape.scottishtecharmy.org/v1/sharemarker?... → OpenLocation
      * - text/plain ACTION_SEND containing maps.app.goo.gl → follow + geocode
      * - content:// JSON or GPX route file → ImportRoute
@@ -216,6 +217,11 @@ class SoundscapeIntents(
 
             is IncomingIntent.StartRouteByName -> {
                 AnalyticsProvider.getInstance().logEvent("intentStartRoute", null)
+                bus.publish(intent)
+            }
+
+            is IncomingIntent.PerformAction -> {
+                AnalyticsProvider.getInstance().logEvent("intentAction", null)
                 bus.publish(intent)
             }
 
