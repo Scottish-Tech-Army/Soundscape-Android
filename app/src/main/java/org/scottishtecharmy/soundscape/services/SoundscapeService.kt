@@ -281,7 +281,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             tileClient = tileClient,
             routeDao = routeDao,
             offlineExtractPath = offlineExtractPath,
-            hasNetwork = { networkUtils.hasNetwork() },
+            // Validated rather than just connected: this only chooses between Photon and the
+            // offline geocoder, and on a network that can't reach the internet Photon would
+            // just wait for its timeout. The tile client above keeps the plain check.
+            hasNetwork = { networkUtils.hasValidatedInternet() },
             photonSearch = PhotonSearchProvider,
             platformGeocoder = platformGeocoder,
             streetPreviewEnabled = streetPreviewEnabled,
