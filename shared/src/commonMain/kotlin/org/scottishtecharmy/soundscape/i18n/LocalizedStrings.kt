@@ -260,6 +260,8 @@ enum class StringKey {
     ActionAtRouteEnd,
     ActionNoOtherWaypoints,
     ActionServiceNotRunning,
+    /** The name given to a place that nothing could name - see GeoEngine.getLocationDescription. */
+    UnknownLocation,
     CalloutDetailSet,
     ActionNoSuchCalloutDetail,
     CalloutDetailSilent,

@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
@@ -48,6 +49,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
@@ -946,32 +948,58 @@ class GeoEngine {
         }
     }
 
+    /**
+     * A name or address for [location], from the network geocoders when they answer in time and
+     * otherwise from the offline one.
+     *
+     * The offline geocoder is asked first. It reads the map data already loaded around the user,
+     * so it is quick, but it only has an answer when there is some: an offline map of the area,
+     * or tiles which were fetched while there was a connection. Whether it has one decides how
+     * long the network is worth waiting for:
+     *
+     *  - an offline answer, and a network: the network is given a short while to do better
+     *  - no offline answer, but a network: it is the only source, so it gets its full timeout
+     *  - no network: the offline answer is used straight away, and when there is none of that
+     *    either, nothing can name the place and it is called "Unknown location" without waiting
+     *
+     * Blocking, so never to be called on the main thread.
+     */
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getLocationDescription(location: LngLatAlt): LocationDescription {
+
+        // An answer which is somewhere else isn't a description of this location
+        fun LocationDescription?.ifNearby(): LocationDescription? =
+            this?.takeIf { ruler.distance(it.location, location) < 50.0 }
 
         val geocode = runBlocking {
             withContext(gridState.treeContext) {
                 val userGeometry = UserGeometry(location)
-                // On a poor connection - or one that claims to be up but where DNS never answers -
-                // the network geocoder can take its full HTTP timeout, so cap the wait and fall
-                // back to the offline geocoder rather than leave the user waiting.
-                withTimeoutOrNull(LOCATION_DESCRIPTION_TIMEOUT_MS) {
-                    geocoder.getAddressFromLngLat(userGeometry, localizedStrings, false)
-                } ?: multiGeocoder.offlineGeocoder.getAddressFromLngLat(
-                    userGeometry,
-                    localizedStrings,
-                    false
-                )
+                val offline = multiGeocoder.offlineGeocoder
+                    .getAddressFromLngLat(userGeometry, localizedStrings, false)
+                    .ifNearby()
+
+                if (multiGeocoder.searchesOffline()) return@withContext offline
+
+                // The lookup runs in a scope of its own, and only the wait for it is timed. A
+                // timeout around the lookup itself can only end when the lookup lets it, and
+                // the platform geocoder doesn't: on Android 12 and earlier it's a blocking call.
+                val lookup = CoroutineScope(Job()).async(gridState.treeContext) {
+                    multiGeocoder.getOnlineAddressFromLngLat(userGeometry, localizedStrings, false)
+                }
+                val timeout =
+                    if (offline != null) ONLINE_DESCRIPTION_TIMEOUT_WITH_FALLBACK_MS
+                    else ONLINE_DESCRIPTION_TIMEOUT_WITHOUT_FALLBACK_MS
+                val online = withTimeoutOrNull(timeout) { lookup.await() }
+                lookup.cancel()
+                online.ifNearby() ?: offline
             }
         }
         if (geocode != null) {
-            if (ruler.distance(geocode.location, location) < 50.0) {
-                geocode.location = location
-                return geocode
-            }
+            geocode.location = location
+            return geocode
         }
         return LocationDescription(
-            name = "New location",
+            name = localizedStrings.get(StringKey.UnknownLocation),
             location = location
         )
     }
@@ -982,8 +1010,14 @@ class GeoEngine {
         // How near a searched-for coordinate the geocoded address must be to describe it
         private const val COORDINATE_ADDRESS_RANGE_METERS = 200.0
 
-        // How long getLocationDescription waits for the network geocoder before going offline
-        private const val LOCATION_DESCRIPTION_TIMEOUT_MS = 4000L
+        // How long getLocationDescription waits for the network geocoders when the offline one
+        // has already answered - on a poor connection, or one that claims to be up but where
+        // DNS never answers, they can otherwise take their full timeouts
+        private const val ONLINE_DESCRIPTION_TIMEOUT_WITH_FALLBACK_MS = 4000L
+
+        // ...and when it hasn't, so that they are the only hope of a name. Photon's own HTTP
+        // timeout is 10 seconds, and this stops the platform geocoder taking longer still.
+        private const val ONLINE_DESCRIPTION_TIMEOUT_WITHOUT_FALLBACK_MS = 10000L
     }
 }
 

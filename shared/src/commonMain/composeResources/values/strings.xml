@@ -204,6 +204,8 @@
     <string name="location_detail_adjust_marker_location">Edit location</string>
     <!-- Instructions shown above the full-screen map while adjusting a marker's location. The marker stays in the middle of the map, so dragging the map moves the marker. UI names: *Done* is `general_alert_done`; *Cancel* is `general_alert_cancel`. -->
     <string name="location_detail_adjust_marker_location_instructions">Drag the map to move the marker's location. Tap on Done to keep the new location, or Cancel to leave it unchanged.</string>
+    <!-- The name shown for a place when Soundscape cannot work out a name or address for it - there is no internet connection to look it up, and no map data for that area. It is the title of the Location Details screen, and the default name if the place is saved as a marker. -->
+    <string name="location_detail_unknown_location">Unknown location</string>
     <!-- Title for the action to start playing the audio for a route -->
     <string name="route_detail_action_start_route">Start Route</string>
     <!-- Title for the action to stop playing the audio for a route -->

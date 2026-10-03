@@ -120,6 +120,37 @@ class MultiGeocoderTest {
         )
     }
 
+    // ---- getOnlineAddressFromLngLat: the network answer alone, for GeoEngine's timed wait --------
+
+    @Test
+    fun getOnlineAddressFromLngLat_withNetwork_asksPhoton() = runTest {
+        val cafe = multiPhotonFeature(origin, "Costa")
+        val photonSearch = MultiFakePhotonSearch(
+            reverseResult = FeatureCollection().apply { addFeature(cafe) }
+        )
+        val multiGeocoder = buildMultiGeocoder(photonSearch = photonSearch, hasNetwork = { true })
+
+        val result = multiGeocoder.getOnlineAddressFromLngLat(UserGeometry(origin), null, false)
+
+        assertEquals(1, photonSearch.reverseCallCount)
+        assertEquals("Costa", result?.featureName?.text)
+    }
+
+    @Test
+    fun getOnlineAddressFromLngLat_withoutNetworkOrInOfflineMode_isNullWithoutAsking() = runTest {
+        val photonSearch = MultiFakePhotonSearch()
+        val noNetwork = buildMultiGeocoder(photonSearch = photonSearch, hasNetwork = { false })
+        val offlineMode = buildMultiGeocoder(
+            photonSearch = photonSearch,
+            hasNetwork = { true },
+            geocoderMode = { "Offline" },
+        )
+
+        assertNull(noNetwork.getOnlineAddressFromLngLat(UserGeometry(origin), null, false))
+        assertNull(offlineMode.getOnlineAddressFromLngLat(UserGeometry(origin), null, false))
+        assertEquals(0, photonSearch.reverseCallCount)
+    }
+
     // ---- getAddressFromLocationName: marker search (always runs, independent of network) --------
 
     @Test
