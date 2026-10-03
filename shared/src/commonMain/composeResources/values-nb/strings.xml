@@ -1646,6 +1646,7 @@ Fortsett gjerne å rapportere eventuelle problemer, uansett hvor små de er, via
     <string name="search_no_offline_maps">Søket fungerer offline, men det er ikke lastet ned noe offline-kart for stedet der du er.</string>
     <string name="location_detail_adjust_marker_location">Rediger plassering</string>
     <string name="location_detail_adjust_marker_location_instructions">Dra i kartet for å flytte markørens plassering. Trykk på Ferdig for å beholde den nye plasseringen, eller Avbryt for å la den være uendret.</string>
+    <string name="location_detail_unknown_location">Ukjent posisjon</string>
     <string name="location_detail_action_open_in_app">Åpne i kartapp</string>
     <string name="location_detail_action_open_in_named_app">Åpne i %1$s</string>
     <string name="location_detail_action_open_in_app_hint">se denne posisjonen i en annen kart- eller navigasjonsapp</string>

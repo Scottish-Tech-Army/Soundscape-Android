@@ -1646,6 +1646,7 @@ Fortsätt gärna rapportera eventuella problem, hur små de än är, via ”Kont
     <string name="search_no_offline_maps">Sökningen fungerar offline, men ingen offlinekarta är nedladdad för platsen där du är.</string>
     <string name="location_detail_adjust_marker_location">Redigera plats</string>
     <string name="location_detail_adjust_marker_location_instructions">Dra i kartan för att flytta platsmarkören. Tryck på Klart för att behålla den nya platsen eller på Avbryt för att lämna den oförändrad.</string>
+    <string name="location_detail_unknown_location">Okänd plats</string>
     <string name="location_detail_action_open_in_app">Öppna i kartapp</string>
     <string name="location_detail_action_open_in_named_app">Öppna i %1$s</string>
     <string name="location_detail_action_open_in_app_hint">visa den här platsen i en annan kart- eller navigeringsapp</string>

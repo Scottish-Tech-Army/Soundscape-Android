@@ -1678,6 +1678,7 @@ Prosimy o dalsze zgłaszanie wszelkich problemów, nawet najmniejszych, za pomoc
     <string name="search_no_offline_maps">Wyszukiwanie działa offline, ale nie pobrano mapy offline dla miejsca, w którym jesteś.</string>
     <string name="location_detail_adjust_marker_location">Edytuj lokalizację</string>
     <string name="location_detail_adjust_marker_location_instructions">Przeciągnij mapę, aby przesunąć lokalizację znacznika. Stuknij „Gotowe”, aby zachować nową lokalizację, lub „Anuluj”, aby pozostawić ją bez zmian.</string>
+    <string name="location_detail_unknown_location">Nieznana lokalizacja</string>
     <string name="location_detail_action_open_in_app">Otwórz w aplikacji z mapami</string>
     <string name="location_detail_action_open_in_named_app">Otwórz w aplikacji %1$s</string>
     <string name="location_detail_action_open_in_app_hint">wyświetlić tę lokalizację w innej aplikacji z mapami lub nawigacją</string>

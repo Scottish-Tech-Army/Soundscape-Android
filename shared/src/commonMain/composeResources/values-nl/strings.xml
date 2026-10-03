@@ -1646,6 +1646,7 @@ Meld eventuele problemen, hoe klein ook, via “Contact opnemen met ondersteunin
     <string name="search_no_offline_maps">Zoeken werkt offline, maar er is geen offline kaart gedownload van de plek waar u bent.</string>
     <string name="location_detail_adjust_marker_location">Locatie bewerken</string>
     <string name="location_detail_adjust_marker_location_instructions">Sleep de kaart om de locatie van de markering te verplaatsen. Tik op Gereed om de nieuwe locatie te behouden of op Annuleren om deze ongewijzigd te laten.</string>
+    <string name="location_detail_unknown_location">Onbekende locatie</string>
     <string name="location_detail_action_open_in_app">Openen in kaart-app</string>
     <string name="location_detail_action_open_in_named_app">Openen in %1$s</string>
     <string name="location_detail_action_open_in_app_hint">deze locatie bekijken in een andere kaart- of navigatie-app</string>

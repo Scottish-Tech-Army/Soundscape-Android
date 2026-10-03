@@ -1646,6 +1646,7 @@ Kérjük, továbbra is jelezze nekünk a felmerülő problémákat, bármilyen k
     <string name="search_no_offline_maps">A keresés offline működik, de a tartózkodási helyéről nincs letöltött offline térkép.</string>
     <string name="location_detail_adjust_marker_location">Helyzet szerkesztése</string>
     <string name="location_detail_adjust_marker_location_instructions">Húzza a térképet a jelölő helyzetének áthelyezéséhez. Koppintson a Kész gombra az új helyzet megtartásához, vagy a Mégse gombra, ha változatlanul szeretné hagyni.</string>
+    <string name="location_detail_unknown_location">Ismeretlen hely</string>
     <string name="location_detail_action_open_in_app">Megnyitás térképalkalmazásban</string>
     <string name="location_detail_action_open_in_named_app">Megnyitás itt: %1$s</string>
     <string name="location_detail_action_open_in_app_hint">a helyszín megtekintése másik térkép- vagy navigációs alkalmazásban</string>

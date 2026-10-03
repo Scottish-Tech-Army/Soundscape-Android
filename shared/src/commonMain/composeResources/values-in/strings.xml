@@ -1630,6 +1630,7 @@ Silakan terus laporkan masalah apa pun, sekecil apa pun itu, melalui “Hubungi 
     <string name="search_no_offline_maps">Pencarian sedang berjalan secara offline, tetapi tidak ada peta offline yang diunduh untuk lokasi Anda.</string>
     <string name="location_detail_adjust_marker_location">Edit Lokasi</string>
     <string name="location_detail_adjust_marker_location_instructions">Seret peta untuk memindahkan lokasi penanda. Ketuk Selesai untuk menyimpan lokasi baru, atau Batal untuk membiarkannya tidak berubah.</string>
+    <string name="location_detail_unknown_location">Lokasi Tidak Diketahui</string>
     <string name="location_detail_action_open_in_app">Buka di Aplikasi Peta</string>
     <string name="location_detail_action_open_in_named_app">Buka di %1$s</string>
     <string name="location_detail_action_open_in_app_hint">melihat lokasi ini di aplikasi peta atau navigasi lain</string>

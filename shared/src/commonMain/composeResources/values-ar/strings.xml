@@ -1710,6 +1710,7 @@
     <string name="search_no_offline_maps">البحث يعمل بدون اتصال، لكن لا توجد خريطة بدون اتصال منزّلة لموقعك الحالي.</string>
     <string name="location_detail_adjust_marker_location">تعديل الموقع</string>
     <string name="location_detail_adjust_marker_location_instructions">اسحب الخريطة لتحريك موقع العلامة. اضغط على «تم» للاحتفاظ بالموقع الجديد، أو على «إلغاء» لتركه دون تغيير.</string>
+    <string name="location_detail_unknown_location">موقع غير معروف</string>
     <string name="location_detail_action_open_in_app">فتح في تطبيق الخرائط</string>
     <string name="location_detail_action_open_in_named_app">فتح في %1$s</string>
     <string name="location_detail_action_open_in_app_hint">عرض هذا الموقع في تطبيق خرائط أو ملاحة آخر</string>

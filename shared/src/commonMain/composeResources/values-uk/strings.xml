@@ -1678,6 +1678,7 @@
     <string name="search_no_offline_maps">Пошук працює офлайн, але для місця, де ви перебуваєте, не завантажено жодної офлайн‑карти.</string>
     <string name="location_detail_adjust_marker_location">Редагування місцезнаходження</string>
     <string name="location_detail_adjust_marker_location_instructions">Перетягніть карту, щоб перемістити мітку. Натисніть «Готово», щоб зберегти нове місцезнаходження, або «Скасувати», щоб залишити його без змін.</string>
+    <string name="location_detail_unknown_location">Невідоме місцезнаходження</string>
     <string name="location_detail_action_open_in_app">Відкрити в картографічній програмі</string>
     <string name="location_detail_action_open_in_named_app">Відкрити в програмі %1$s</string>
     <string name="location_detail_action_open_in_app_hint">переглянути це місце в іншій картографічній або навігаційній програмі</string>

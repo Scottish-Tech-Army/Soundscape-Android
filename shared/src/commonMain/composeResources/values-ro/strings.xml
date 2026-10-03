@@ -1662,6 +1662,7 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="search_no_offline_maps">Căutarea funcționează offline, dar nu este descărcată nicio hartă offline pentru locul în care te afli.</string>
     <string name="location_detail_adjust_marker_location">Editează locația</string>
     <string name="location_detail_adjust_marker_location_instructions">Trage harta pentru a muta locația marcajului. Atinge Gata pentru a păstra noua locație sau Anulează pentru a o lăsa neschimbată.</string>
+    <string name="location_detail_unknown_location">Locație necunoscută</string>
     <string name="location_detail_action_open_in_app">Deschide în aplicația de hărți</string>
     <string name="location_detail_action_open_in_named_app">Deschide în %1$s</string>
     <string name="location_detail_action_open_in_app_hint">a vedea această locație într-o altă aplicație de hărți sau de navigație</string>

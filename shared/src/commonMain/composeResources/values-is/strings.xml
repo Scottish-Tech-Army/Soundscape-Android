@@ -1646,6 +1646,7 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="search_no_offline_maps">Leitin virkar án nettengingar, en ekkert ónettengt kort hefur verið sótt fyrir staðinn þar sem þú ert.</string>
     <string name="location_detail_adjust_marker_location">Breyta staðsetningu</string>
     <string name="location_detail_adjust_marker_location_instructions">Dragðu kortið til að færa staðsetningu merkisins. Ýttu á Lokið til að halda nýju staðsetningunni eða Hætta við til að hafa hana óbreytta.</string>
+    <string name="location_detail_unknown_location">Óþekkt staðsetning</string>
     <string name="location_detail_action_open_in_app">Opna í kortaforriti</string>
     <string name="location_detail_action_open_in_named_app">Opna í %1$s</string>
     <string name="location_detail_action_open_in_app_hint">skoða þessa staðsetningu í öðru korta- eða leiðsöguforriti</string>

@@ -1662,6 +1662,7 @@ Merci de continuer à nous signaler tout problème, aussi minime soit-il, via «
     <string name="search_no_offline_maps">La recherche fonctionne hors ligne, mais aucune carte hors ligne n’est téléchargée pour l’endroit où vous vous trouvez.</string>
     <string name="location_detail_adjust_marker_location">Modifier l’emplacement</string>
     <string name="location_detail_adjust_marker_location_instructions">Faites glisser la carte pour déplacer l’emplacement du marqueur. Appuyez sur Terminé pour conserver le nouvel emplacement, ou sur Annuler pour le laisser inchangé.</string>
+    <string name="location_detail_unknown_location">Emplacement inconnu</string>
     <string name="location_detail_action_open_in_app">Ouvrir dans une application de cartes</string>
     <string name="location_detail_action_open_in_named_app">Ouvrir dans %1$s</string>
     <string name="location_detail_action_open_in_app_hint">afficher cet emplacement dans une autre application de cartes ou de navigation</string>

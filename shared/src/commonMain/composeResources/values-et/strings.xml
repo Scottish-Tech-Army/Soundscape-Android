@@ -1646,6 +1646,7 @@ Palun anna edaspidigi kõigist probleemidest teada, olgu need kui tahes väikese
     <string name="search_no_offline_maps">Otsing töötab võrguühenduseta, kuid sinu asukoha kohta pole ühtegi võrguühenduseta kaarti alla laaditud.</string>
     <string name="location_detail_adjust_marker_location">Muuda asukohta</string>
     <string name="location_detail_adjust_marker_location_instructions">Lohista kaarti, et markeri asukohta liigutada. Puuduta nuppu Valmis, et uus asukoht alles jätta, või nuppu Katkesta, et jätta asukoht muutmata.</string>
+    <string name="location_detail_unknown_location">Tundmatu asukoht</string>
     <string name="location_detail_action_open_in_app">Ava kaardirakenduses</string>
     <string name="location_detail_action_open_in_named_app">Ava rakenduses %1$s</string>
     <string name="location_detail_action_open_in_app_hint">vaadata seda asukohta teises kaardi- või navigeerimisrakenduses</string>

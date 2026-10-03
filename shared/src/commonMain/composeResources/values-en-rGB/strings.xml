@@ -1646,6 +1646,7 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="search_no_offline_maps">Search is working offline, but there’s no offline map downloaded for where you are.</string>
     <string name="location_detail_adjust_marker_location">Edit location</string>
     <string name="location_detail_adjust_marker_location_instructions">Drag the map to move the marker's location. Tap on Done to keep the new location, or Cancel to leave it unchanged.</string>
+    <string name="location_detail_unknown_location">Unknown location</string>
     <string name="location_detail_action_open_in_app">Open in Maps App</string>
     <string name="location_detail_action_open_in_named_app">Open in %1$s</string>
     <string name="location_detail_action_open_in_app_hint">view this location in another map or navigation app</string>

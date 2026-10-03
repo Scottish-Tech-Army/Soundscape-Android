@@ -1646,6 +1646,7 @@
     <string name="search_no_offline_maps">Η αναζήτηση λειτουργεί εκτός σύνδεσης, αλλά δεν έχει γίνει λήψη χάρτη εκτός σύνδεσης για την περιοχή όπου βρίσκεστε.</string>
     <string name="location_detail_adjust_marker_location">Επεξεργασία θέσης</string>
     <string name="location_detail_adjust_marker_location_instructions">Σύρετε τον χάρτη για να μετακινήσετε τη θέση του δείκτη. Πατήστε Έτοιμο για να διατηρήσετε τη νέα θέση ή Ακύρωση για να την αφήσετε αμετάβλητη.</string>
+    <string name="location_detail_unknown_location">Άγνωστη τοποθεσία</string>
     <string name="location_detail_action_open_in_app">Άνοιγμα σε εφαρμογή χαρτών</string>
     <string name="location_detail_action_open_in_named_app">Άνοιγμα στην εφαρμογή %1$s</string>
     <string name="location_detail_action_open_in_app_hint">δείτε αυτήν την τοποθεσία σε άλλη εφαρμογή χαρτών ή πλοήγησης</string>

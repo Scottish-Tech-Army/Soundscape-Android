@@ -1630,6 +1630,7 @@
     <string name="search_no_offline_maps">การค้นหากำลังทำงานแบบออฟไลน์ แต่ยังไม่ได้ดาวน์โหลดแผนที่ออฟไลน์ของบริเวณที่คุณอยู่</string>
     <string name="location_detail_adjust_marker_location">แก้ไขตำแหน่ง</string>
     <string name="location_detail_adjust_marker_location_instructions">ลากแผนที่เพื่อย้ายตำแหน่งของหมุด แตะ “เสร็จสิ้น” เพื่อใช้ตำแหน่งใหม่ หรือแตะ “ยกเลิก” เพื่อคงตำแหน่งเดิมไว้</string>
+    <string name="location_detail_unknown_location">ตำแหน่งที่ไม่รู้จัก</string>
     <string name="location_detail_action_open_in_app">เปิดในแอปแผนที่</string>
     <string name="location_detail_action_open_in_named_app">เปิดใน %1$s</string>
     <string name="location_detail_action_open_in_app_hint">ดูตำแหน่งนี้ในแอปแผนที่หรือแอปนำทางอื่น</string>
