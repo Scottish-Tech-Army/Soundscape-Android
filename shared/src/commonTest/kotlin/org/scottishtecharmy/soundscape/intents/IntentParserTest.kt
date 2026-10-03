@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.intents
 
+import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -102,6 +103,45 @@ class IntentParserTest {
         val result = IntentParser.parseUrl("soundscape://route/My%20Walk")
         assertTrue(result is IncomingIntent.StartRouteByName)
         assertEquals("My Walk", result.name)
+    }
+
+    @Test
+    fun soundscapeActionCoversTheAudioMenu() {
+        val expected = mapOf(
+            "my-location" to SoundscapeAction.MyLocation,
+            "around-me" to SoundscapeAction.AroundMe,
+            "ahead-of-me" to SoundscapeAction.AheadOfMe,
+            "nearby-markers" to SoundscapeAction.NearbyMarkers,
+            "callout-beacon" to SoundscapeAction.CalloutBeacon,
+            "beacon-info" to SoundscapeAction.BeaconInfo,
+            "next-waypoint" to SoundscapeAction.NextWaypoint,
+            "previous-waypoint" to SoundscapeAction.PreviousWaypoint,
+            "mute-beacon" to SoundscapeAction.ToggleBeaconMute,
+            "stop-route" to SoundscapeAction.StopRoute,
+            "stop-beacon" to SoundscapeAction.StopBeacon,
+        )
+        for ((path, action) in expected) {
+            assertEquals(
+                IncomingIntent.PerformAction(action),
+                IntentParser.parseUrl("soundscape://action/$path"),
+                path,
+            )
+        }
+    }
+
+    @Test
+    fun soundscapeActionUnknownOrMissingIsNull() {
+        assertNull(IntentParser.parseUrl("soundscape://action/bogus"))
+        assertNull(IntentParser.parseUrl("soundscape://action"))
+    }
+
+    @Test
+    fun soundscapeBeaconByName() {
+        assertEquals(
+            IncomingIntent.PerformAction(SoundscapeAction.BeaconOnMarkerNamed("Bus Stop")),
+            IntentParser.parseUrl("soundscape://beacon/Bus%20Stop"),
+        )
+        assertNull(IntentParser.parseUrl("soundscape://beacon"))
     }
 
     @Test

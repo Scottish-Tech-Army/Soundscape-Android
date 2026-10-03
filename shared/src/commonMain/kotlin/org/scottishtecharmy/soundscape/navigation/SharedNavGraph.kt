@@ -113,6 +113,7 @@ fun SharedNavHost(
             }
 
             is IncomingIntent.StartRouteByName -> callbacks.onStartRouteByName(intent.name)
+            is IncomingIntent.PerformAction -> callbacks.onPerformAction(intent.action)
         }
         flows.onPendingIntentHandled?.invoke()
     }

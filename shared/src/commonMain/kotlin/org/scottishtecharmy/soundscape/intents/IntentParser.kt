@@ -6,6 +6,7 @@ import kotlinx.serialization.json.doubleOrNull
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
@@ -25,6 +26,28 @@ object IntentParser {
     private const val MAX_ROUTE_FILE_BYTES = 1_000_000
 
     private val coordinateRegex = Regex("(-?[0-9]+\\.?[0-9]*),(-?[0-9]+\\.?[0-9]*)")
+
+    /**
+     * soundscape://action/{path} for each fixed action in AudioMenu.buildRootMenu(), so
+     * that anything able to open a link - a Shortcuts or Tasker automation, a home screen
+     * widget, an NFC tag - can do what the audio menu does. Stop Beacon has no menu entry,
+     * but is here as the counterpart of starting one with soundscape://beacon/{name}.
+     * Stop Route is here as well as soundscape://route/stop, which a route named "stop"
+     * would otherwise shadow.
+     */
+    private val actionPaths: Map<String, SoundscapeAction> = mapOf(
+        "my-location" to SoundscapeAction.MyLocation,
+        "around-me" to SoundscapeAction.AroundMe,
+        "ahead-of-me" to SoundscapeAction.AheadOfMe,
+        "nearby-markers" to SoundscapeAction.NearbyMarkers,
+        "callout-beacon" to SoundscapeAction.CalloutBeacon,
+        "beacon-info" to SoundscapeAction.BeaconInfo,
+        "next-waypoint" to SoundscapeAction.NextWaypoint,
+        "previous-waypoint" to SoundscapeAction.PreviousWaypoint,
+        "mute-beacon" to SoundscapeAction.ToggleBeaconMute,
+        "stop-route" to SoundscapeAction.StopRoute,
+        "stop-beacon" to SoundscapeAction.StopBeacon,
+    )
 
     fun parseUrl(url: String): IncomingIntent? {
         val parsed = parseUri(url) ?: return null
@@ -97,6 +120,18 @@ object IntentParser {
             val first = pathSegments.firstOrNull() ?: return null
             if (first == "stop") return IncomingIntent.StopRoute
             return IncomingIntent.StartRouteByName(first)
+        }
+
+        // soundscape://action/{name} - the audio menu's fixed actions, see [actionPaths]
+        if (host == "action") {
+            val action = actionPaths[pathSegments.firstOrNull()] ?: return null
+            return IncomingIntent.PerformAction(action)
+        }
+
+        // soundscape://beacon/{marker name}  - the audio menu's Start Beacon list
+        if (host == "beacon") {
+            val name = pathSegments.firstOrNull() ?: return null
+            return IncomingIntent.PerformAction(SoundscapeAction.BeaconOnMarkerNamed(name))
         }
 
         // soundscape://location?lat=&lon=&name=  (preferred — used by the iOS

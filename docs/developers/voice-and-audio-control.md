@@ -143,6 +143,30 @@ Callback filtering
 └── Main Menu
 ```
 
+## Deep links
+Every action in the audio menu can also be triggered by opening a `soundscape://` link, so anything that can open a link - an iOS Shortcut, a Tasker task, a home screen widget, an NFC tag - can drive the app. They are parsed by `IntentParser` in shared code, on both platforms, and run through the same `SoundscapeActionExecutor` as the Siri and Gemini commands, so all of these front ends offer the same set of features. If you add an action to the audio menu, add a link for it in `IntentParser.actionPaths` too.
+
+| Link | Does |
+|---|---|
+| `soundscape://action/my-location` | My Location |
+| `soundscape://action/around-me` | Around Me |
+| `soundscape://action/ahead-of-me` | Ahead of Me |
+| `soundscape://action/nearby-markers` | Nearby Markers |
+| `soundscape://action/callout-beacon` | Calls out the beacon's distance |
+| `soundscape://action/beacon-info` | Calls out more about the beacon |
+| `soundscape://action/next-waypoint` | Next Waypoint |
+| `soundscape://action/previous-waypoint` | Previous Waypoint |
+| `soundscape://action/mute-beacon` | Mute Beacon |
+| `soundscape://action/stop-route` | Stop Route |
+| `soundscape://action/stop-beacon` | Stops the beacon (not in the audio menu) |
+| `soundscape://route/{route name}` | Starts the route with the closest matching name |
+| `soundscape://route/stop` | Stop Route |
+| `soundscape://beacon/{marker name}` | Starts a beacon on the marker with the closest matching name |
+
+Names are percent-encoded, e.g. `soundscape://route/My%20Walk`. A link with no assistant behind it has nobody to report back, so when an action can't be done - no route playing, no marker of that name, no location yet - the app speaks the reason itself. A successful action is silent apart from its own audio, except Stop Beacon, which confirms it as stopping a beacon makes no other sound.
+
+The other `soundscape://` links open screens rather than performing actions: `soundscape://feature/routes`, `soundscape://feature/markers`, and `soundscape://location?lat=..&lon=..&name=..`, which opens Location Details. These are also what the Android app shortcuts and the iOS Share Extension use.
+
 ## How Bluetooth headphones work (or don't)
 One of the main issues that came to light whilst developing Voice control pertains to how Bluetooth headphones and headsets work. For the vast majority of these, they can either be playing high quality stereo audio OR you can use the microphone, you can't do both. This is because microphone input is only supported in handset profile and that only supports mono audio at a low sample rate. Gamers have known this for a long time, and gaming headphones are usually either wired or support other wireless protocols in addition to Bluetooth. Alternatively, gamers may use a separate wired microphone for Discord and Bluetooth headphones for in game audio. The low microphone quality is why it's almost impossible to buy a standalone Bluetooth microphone. Instead, wireless microphones normally attach to phones with a USB dongle.
 

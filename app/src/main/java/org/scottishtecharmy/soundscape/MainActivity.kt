@@ -53,6 +53,7 @@ import org.jetbrains.compose.resources.getString
 import org.koin.android.ext.android.inject
 import org.scottishtecharmy.soundscape.actions.ActionResult
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
+import org.scottishtecharmy.soundscape.actions.executeForDeepLink
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
@@ -940,6 +941,23 @@ class MainActivity : AppCompatActivity() {
             if (result !is ActionResult.Ok) {
                 Log.w(TAG, "Couldn't start route \"$name\": $result")
             }
+        }
+    }
+
+    /**
+     * Runs an audio menu action asked for by a soundscape:// link, through the same
+     * SoundscapeActionExecutor as the assistants. Used by the IncomingIntent.PerformAction
+     * dispatch path.
+     */
+    fun performAction(action: SoundscapeAction) {
+        val service = soundscapeServiceConnection.soundscapeService
+        val actions = service?.actions
+        if (actions == null) {
+            Log.w(TAG, "Service not running, can't perform $action")
+            return
+        }
+        lifecycleScope.launch {
+            actions.executeForDeepLink(action, service)
         }
     }
 

@@ -182,6 +182,7 @@ fun HomeScreen(
                 serviceConnection.soundscapeService?.routeStartReverse(routeId)
             },
             onStartRouteByName = { name -> activity.startRouteByName(name) },
+            onPerformAction = { action -> activity.performAction(action) },
             onMyLocation = { viewModel.myLocation(); audioTour.onButtonPressed(TourButton.MY_LOCATION) },
             onWhatsAroundMe = { viewModel.whatsAroundMe(); audioTour.onButtonPressed(TourButton.AROUND_ME) },
             onAheadOfMe = { viewModel.aheadOfMe(); audioTour.onButtonPressed(TourButton.AHEAD_OF_ME) },
