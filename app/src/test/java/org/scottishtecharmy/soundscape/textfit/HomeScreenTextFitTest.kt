@@ -72,7 +72,6 @@ class HomeScreenTextFitTest(private val qualifier: String, private val fontScale
                     onNavigate = {},
                     onSelectLocation = {},
                     preferencesProvider = TestPreferencesProvider,
-                    onMapLongClick = null,
                     bottomButtonFunctions = BottomButtonFunctions(),
                     routeFunctions = RouteFunctions(),
                     streetPreviewFunctions = StreetPreviewFunctions(),

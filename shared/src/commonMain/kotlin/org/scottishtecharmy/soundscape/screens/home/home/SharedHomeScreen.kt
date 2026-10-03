@@ -25,7 +25,6 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.platform.analyticsEnabled
 import org.scottishtecharmy.soundscape.platform.appVersionMinorTrimmed
@@ -54,7 +53,6 @@ fun SharedHomeScreen(
     /** Saves the beacon's location as a marker, for the beacon card's "Add to Markers" action. */
     onSaveMarker: ((LocationDescription) -> Unit)? = null,
     preferencesProvider: PreferencesProvider?,
-    onMapLongClick: ((LngLatAlt) -> Boolean)?,
     bottomButtonFunctions: BottomButtonFunctions,
     routeFunctions: RouteFunctions,
     streetPreviewFunctions: StreetPreviewFunctions,
@@ -191,7 +189,6 @@ fun SharedHomeScreen(
                             onExpandedChange = { searchExpanded = it },
                         )
                     },
-                    onMapLongClick = onMapLongClick,
                     streetPreviewState = state.streetPreviewState,
                     routeFunctions = routeFunctions,
                     streetPreviewFunctions = streetPreviewFunctions,

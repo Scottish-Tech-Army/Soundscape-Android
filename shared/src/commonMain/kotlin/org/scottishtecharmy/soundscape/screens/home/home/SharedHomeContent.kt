@@ -185,7 +185,6 @@ fun SharedHomeContent(
     onShowRouteDetails: (LocationDescription) -> Unit,
     /** Saves the beacon's location as a marker, for the beacon card's "Add to Markers" action. */
     onSaveMarker: ((LocationDescription) -> Unit)? = null,
-    onMapLongClick: ((LngLatAlt) -> Boolean)?,
     getCurrentLocationDescription: () -> LocationDescription,
     searchBar: @Composable () -> Unit,
     streetPreviewState: StreetPreviewState,

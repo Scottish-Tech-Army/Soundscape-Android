@@ -199,7 +199,6 @@ fun SharedNavHost(
                         )
                     },
                     preferencesProvider = preferencesProvider,
-                    onMapLongClick = callbacks.onMapLongClick,
                     bottomButtonFunctions = org.scottishtecharmy.soundscape.screens.home.home.BottomButtonFunctions(
                         myLocation = callbacks.onMyLocation,
                         aroundMe = callbacks.onWhatsAroundMe,

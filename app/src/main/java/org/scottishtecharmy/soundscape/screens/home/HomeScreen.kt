@@ -37,7 +37,6 @@ import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.onboarding.language.getLanguageMismatch
-import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import kotlin.system.exitProcess
 
@@ -124,16 +123,6 @@ fun HomeScreen(
     val navStateHolder = remember { NavigationStateHolder() }
     val callbackScope = androidx.compose.runtime.rememberCoroutineScope()
 
-    val onMapLongClickListener: (LngLatAlt) -> Boolean = remember(viewModel, navStateHolder) {
-        { lngLatAlt: LngLatAlt ->
-            val ld =
-                viewModel.getLocationDescription(lngLatAlt) ?: LocationDescription("", lngLatAlt)
-            navStateHolder.navigateWithLocation(navController, SharedRoutes.LOCATION_DETAILS, ld)
-            AnalyticsProvider.getInstance().logEvent("longPressOnMap", null)
-            true
-        }
-    }
-
     val flows = remember(
         audioTour,
         audioTourRunningFlow,
@@ -204,7 +193,6 @@ fun HomeScreen(
             onContactSupport = contactSupport,
             onToggleAudioTour = { audioTour.toggleState() },
             onAudioTourInstructionAcknowledged = { audioTour.onInstructionAcknowledged() },
-            onMapLongClick = onMapLongClickListener,
             onGoToAppSettings = { org.scottishtecharmy.soundscape.utils.goToAppSettings(context) },
             onGetCurrentLocationDescription = {
                 val location = viewModel.state.value.location

@@ -102,7 +102,6 @@ data class AppCallbacks(
     val onContactSupport: () -> Unit = {},
     val onToggleAudioTour: () -> Unit = {},
     val onAudioTourInstructionAcknowledged: () -> Unit = {},
-    val onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
     val onGoToAppSettings: () -> Unit = {},
     val onGetCurrentLocationDescription: () -> LocationDescription = {
         LocationDescription(

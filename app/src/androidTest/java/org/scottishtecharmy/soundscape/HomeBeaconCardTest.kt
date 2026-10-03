@@ -80,7 +80,6 @@ class HomeBeaconCardTest {
                 onSelectLocation = {},
                 onShowRouteDetails = {},
                 onSaveMarker = onSaveMarker,
-                onMapLongClick = null,
                 getCurrentLocationDescription = {
                     LocationDescription(name = "Milngavie", location = LngLatAlt())
                 },
