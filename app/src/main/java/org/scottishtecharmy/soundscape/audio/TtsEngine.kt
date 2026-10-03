@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Collections
 import java.util.Locale
+import java.util.concurrent.Executors
 
 class TtsEngine(
     val audioEngine: NativeAudioEngine,
@@ -36,6 +37,19 @@ class TtsEngine(
     private var sharedPreferences: SharedPreferences? = null
     private var context: Context? = null
 
+    // stop(), synthesizeToFile() and shutdown() are blocking binder calls into the system TTS
+    // service, and TextToSpeech serializes them behind one internal lock. When the service wedges
+    // - seen in the field with stop() never returning - every caller piles up behind that lock, and
+    // callers on the main thread (onboarding buttons, Service.onDestroy) ANR. So those calls are
+    // only ever made here, on one thread, in the order they were requested.
+    private val binderExecutor = Executors.newSingleThreadExecutor { runnable ->
+        Thread(runnable, "TtsBinder")
+    }
+    private val binderQueueLock = Any()
+    // True while the last call queued on binderExecutor is a stop(), so that callouts repeatedly
+    // clearing the queue while the service is wedged don't pile up redundant stops behind it
+    private var lastQueuedIsStop = false
+
     fun getCurrentLabelAndName(): String? {
         return engineLabelAndName
     }
@@ -53,7 +67,13 @@ class TtsEngine(
 
         stop()
         textToSpeech.setOnUtteranceProgressListener(null)
-        textToSpeech.shutdown()
+        val tts = textToSpeech
+        synchronized(binderQueueLock) {
+            if (!binderExecutor.isShutdown) {
+                binderExecutor.execute { tts.shutdown() }
+                binderExecutor.shutdown()
+            }
+        }
     }
 
     fun initialize(context: Context) {
@@ -362,10 +382,17 @@ class TtsEngine(
     }
 
     fun stop() {
-        textToSpeech.stop()
+        synchronized(binderQueueLock) {
+            if (!lastQueuedIsStop && !binderExecutor.isShutdown) {
+                lastQueuedIsStop = true
+                binderExecutor.execute { textToSpeech.stop() }
+            }
+        }
         currentUtteranceId = null
 
-        // Close all of the previously queued sockets to terminate their playback
+        // Close all of the previously queued sockets to terminate their playback. This is done
+        // here rather than on binderExecutor so that it only hits the utterances queued so far,
+        // and so that their playback ends now even if the queued stop() is held up.
         synchronized(ttsSockets) {
             for (ttsSocketPair in ttsSockets) {
                 Log.d("TTS", "Close socket pair for " + ttsSocketPair.value[1].fd.toString())
@@ -404,7 +431,16 @@ class TtsEngine(
             ttsSocketPair[1].fd,
             utteranceId
         )
-        textToSpeech.synthesizeToFile(text, params, ttsSocket, utteranceId)
+        synchronized(binderQueueLock) {
+            if (!binderExecutor.isShutdown) {
+                lastQueuedIsStop = false
+                binderExecutor.execute {
+                    // Skip it if a stop() has already closed its socket while it was queued
+                    if (ttsSockets.containsKey(utteranceId))
+                        textToSpeech.synthesizeToFile(text, params, ttsSocket, utteranceId)
+                }
+            }
+        }
         return ttsHandle
     }
 

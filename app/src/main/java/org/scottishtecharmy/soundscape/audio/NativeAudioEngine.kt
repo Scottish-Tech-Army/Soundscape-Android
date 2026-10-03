@@ -353,13 +353,13 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
         if(engineHandle == 0L)
             return
 
-        if (!ttsEngine.checkTextToSpeechInitialization(true))
-            return
-
-        // Stop the Text to Speech engine. This makes a blocking binder call to the system TTS
-        // service, so it MUST NOT be held inside engineMutex: a slow or wedged TTS service would
-        // otherwise freeze the whole audio engine (geometry updates, beacons, ...) behind the lock.
-        ttsEngine.stop()
+        // Don't wait for initialization: this is called from the main thread, and until the TTS
+        // engine is initialized it can't have any speech of its own to stop.
+        if (ttsEngine.checkTextToSpeechInitialization(false)) {
+            // Queues the stop for TtsEngine's binder thread, so it doesn't block whatever thread
+            // we're called on even when the system TTS service is wedged.
+            ttsEngine.stop()
+        }
 
         // Clear the queue in the engine. This is a native call that does need the engine mutex.
         synchronized(engineMutex) {
