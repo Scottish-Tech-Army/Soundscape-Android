@@ -165,6 +165,8 @@ Every action in the audio menu can also be triggered by opening a `soundscape://
 
 Names are percent-encoded, e.g. `soundscape://route/My%20Walk`. A link with no assistant behind it has nobody to report back, so when an action can't be done - no route playing, no marker of that name, no location yet - the app speaks the reason itself. A successful action is silent apart from its own audio, except Stop Beacon, which confirms it as stopping a beacon makes no other sound.
 
+A link says nothing about who sent it, so the `action/` and `beacon/` links are not accepted from web pages: on Android the app ignores them when the intent carries the `BROWSABLE` category, which a browser adds to every link it opens (see `SoundscapeIntents.parse`). Another app or an automation doesn't add it, and can use them freely. To test one from adb, leave the category off: `adb shell am start -a android.intent.action.VIEW -d "soundscape://action/around-me"`. On iOS, Safari asks the user before it opens the app. The `route/` links are older and are still accepted from anywhere.
+
 The other `soundscape://` links open screens rather than performing actions: `soundscape://feature/routes`, `soundscape://feature/markers`, and `soundscape://location?lat=..&lon=..&name=..`, which opens Location Details. These are also what the Android app shortcuts and the iOS Share Extension use.
 
 ## How Bluetooth headphones work (or don't)
