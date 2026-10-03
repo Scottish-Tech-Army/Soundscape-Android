@@ -103,7 +103,10 @@
             </intent-filter>
 
             <intent-filter>
-                <!-- soundscape intents to set a street preview location -->
+                <!-- soundscape:// links: open a location or a screen, start or stop a route, or
+                     perform an audio menu action. BROWSABLE so that location links work from
+                     web pages and email; the action links are refused when they come from a
+                     browser, in SoundscapeIntents.parse, as a filter can't exclude hosts. -->
                 <data android:scheme="soundscape" />
                 <action android:name="android.intent.action.VIEW" />
 
