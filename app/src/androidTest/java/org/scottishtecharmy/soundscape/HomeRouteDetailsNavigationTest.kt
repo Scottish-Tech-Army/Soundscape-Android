@@ -70,7 +70,6 @@ class HomeRouteDetailsNavigationTest {
                     onNavigate = { navigatedTo.add(it) },
                     onSelectLocation = {},
                     onShowRouteDetails = { routeDetailsFor = it },
-                    onMapLongClick = null,
                     getCurrentLocationDescription = {
                         LocationDescription(name = "Milngavie", location = LngLatAlt())
                     },

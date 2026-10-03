@@ -311,7 +311,6 @@ fun MainViewController() = ComposeUIViewController {
             onContactSupport = { presentContactSupport(service) },
             onToggleAudioTour = { audioTour.toggleState() },
             onAudioTourInstructionAcknowledged = { audioTour.onInstructionAcknowledged() },
-            onMapLongClick = null,
             onGoToAppSettings = {
                 val url = NSURL.URLWithString("app-settings:")
                 if (url != null) openExternalUrl(url)

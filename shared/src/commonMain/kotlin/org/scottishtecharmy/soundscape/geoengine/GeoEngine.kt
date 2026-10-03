@@ -951,7 +951,17 @@ class GeoEngine {
 
         val geocode = runBlocking {
             withContext(gridState.treeContext) {
-                geocoder.getAddressFromLngLat(UserGeometry(location), localizedStrings, false)
+                val userGeometry = UserGeometry(location)
+                // On a poor connection - or one that claims to be up but where DNS never answers -
+                // the network geocoder can take its full HTTP timeout, so cap the wait and fall
+                // back to the offline geocoder rather than leave the user waiting.
+                withTimeoutOrNull(LOCATION_DESCRIPTION_TIMEOUT_MS) {
+                    geocoder.getAddressFromLngLat(userGeometry, localizedStrings, false)
+                } ?: multiGeocoder.offlineGeocoder.getAddressFromLngLat(
+                    userGeometry,
+                    localizedStrings,
+                    false
+                )
             }
         }
         if (geocode != null) {
@@ -971,6 +981,9 @@ class GeoEngine {
 
         // How near a searched-for coordinate the geocoded address must be to describe it
         private const val COORDINATE_ADDRESS_RANGE_METERS = 200.0
+
+        // How long getLocationDescription waits for the network geocoder before going offline
+        private const val LOCATION_DESCRIPTION_TIMEOUT_MS = 4000L
     }
 }
 

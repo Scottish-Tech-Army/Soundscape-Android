@@ -98,7 +98,6 @@ fun FullScreenMapFab(
  * that panning the map moves it, and each new location is reported through this callback
  * @param currentBeaconWaypointIndex The waypoint index the beacon marker currently represents
  * (0-based); shown as a 1-based number label on the beacon marker, matching route waypoint markers
- * @param onMapLongClick Callback when the map is long-pressed, receives the location
  * @param styleUri The URI of the map style to use
  * @param routeMarkerImages Pre-rendered marker images for route waypoints
  * @param onInteractionChanged Callback fired with true while a multi-touch (pinch) gesture is
@@ -125,7 +124,6 @@ fun MapContainerLibre(
     modifier: Modifier = Modifier,
     onBeaconLocationEdited: ((LngLatAlt) -> Unit)? = null,
     currentBeaconWaypointIndex: Int = 0,
-    onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
     baseStyle: BaseStyle,
     routeMarkerImages: List<ImageBitmap>? = null,
     extractGeometry: Geometry? = null,

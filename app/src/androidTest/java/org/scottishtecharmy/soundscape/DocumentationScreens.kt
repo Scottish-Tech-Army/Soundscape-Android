@@ -131,7 +131,6 @@ class DocumentationScreens {
                 onNavigate = {},
                 onSelectLocation = {},
                 preferencesProvider = null,
-                onMapLongClick = { false },
                 bottomButtonFunctions = BottomButtonFunctions(),
                 getCurrentLocationDescription = {
                     LocationDescription(
@@ -173,7 +172,6 @@ class DocumentationScreens {
                 onNavigate = {},
                 onSelectLocation = {},
                 preferencesProvider = null,
-                onMapLongClick = { false },
                 bottomButtonFunctions = BottomButtonFunctions(),
                 getCurrentLocationDescription = {
                     LocationDescription(

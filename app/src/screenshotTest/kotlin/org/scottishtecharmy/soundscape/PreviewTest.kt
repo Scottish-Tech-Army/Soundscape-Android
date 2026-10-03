@@ -938,7 +938,6 @@ private fun BaseHomePreview(state: HomeState) {
         onNavigate = {},
         onSelectLocation = {},
         preferencesProvider = PreviewPreferencesProvider,
-        onMapLongClick = null,
         bottomButtonFunctions = BottomButtonFunctions(),
         routeFunctions = RouteFunctions(),
         streetPreviewFunctions = StreetPreviewFunctions(),
