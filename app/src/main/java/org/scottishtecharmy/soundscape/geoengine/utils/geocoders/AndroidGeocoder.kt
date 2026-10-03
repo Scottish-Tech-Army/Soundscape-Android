@@ -12,6 +12,10 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -113,7 +117,9 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
 
         val location = userGeometry.location
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            return suspendCoroutine { continuation ->
+            // Cancellable, so that a caller which has given up waiting - see
+            // GeoEngine.getLocationDescription - isn't held until the listener is called
+            return suspendCancellableCoroutine { continuation ->
                 try {
                     geocoder.getFromLocation(
                         location.latitude, location.longitude, 5,
@@ -152,8 +158,15 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
         } else {
             @Suppress("DEPRECATION")
             try {
-                val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 5)
+                // A blocking call which can sit for seconds on a bad network. It runs on the IO
+                // dispatcher so that it doesn't hold the caller's thread - the single TreeContext
+                // thread, which the offline geocoder needs as the fallback.
+                val addresses = withContext(Dispatchers.IO) {
+                    geocoder.getFromLocation(location.latitude, location.longitude, 5)
+                }
                 return addresses?.firstOrNull()?.toLocationDescription(null)
+            } catch (e: CancellationException) {
+                throw e
             } catch (e: Exception) {
                 AnalyticsProvider.getInstance()
                     .logEvent("androidGeocoderError", mapOf("exception" to e.toString()))

@@ -155,6 +155,20 @@ class MultiGeocoder(
         merged.sortedBy { ruler.distance(nearbyLocation, it.location) }
     }
 
+    /**
+     * The network geocoders' answer on its own, with no falling back to the offline one, or null
+     * straight away when [searchesOffline]. For a caller which asks [offlineGeocoder] itself, so
+     * that it can decide how long the network is worth waiting for.
+     */
+    suspend fun getOnlineAddressFromLngLat(
+        userGeometry: UserGeometry,
+        localizedStrings: LocalizedStrings?,
+        ignoreHouseNumbers: Boolean
+    ): LocationDescription? {
+        if (searchesOffline()) return null
+        return fusedGeocoder.getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers)
+    }
+
     override suspend fun getAddressFromLngLat(
         userGeometry: UserGeometry,
         localizedStrings: LocalizedStrings?,
