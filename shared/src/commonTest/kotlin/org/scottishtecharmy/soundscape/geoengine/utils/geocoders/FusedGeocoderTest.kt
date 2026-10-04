@@ -2,6 +2,8 @@
 
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.test.currentTime
 import kotlinx.coroutines.test.runTest
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
@@ -21,22 +23,32 @@ import kotlin.test.assertNull
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
-/** Minimal fake of the platform (Android/iOS) geocoder - just returns whatever it's told to. */
+/**
+ * Minimal fake of the platform (Android/iOS) geocoder - just returns whatever it's told to, after
+ * [delayMs] of the test's virtual time.
+ */
 private class FakePlatformGeocoder(
     private val locationNameResult: List<LocationDescription>? = null,
     private val lngLatResult: LocationDescription? = null,
+    private val delayMs: Long = 0,
 ) : SoundscapeGeocoder() {
     override suspend fun getAddressFromLocationName(
         locationName: String,
         nearbyLocation: LngLatAlt,
         localizedStrings: LocalizedStrings?
-    ): List<LocationDescription>? = locationNameResult
+    ): List<LocationDescription>? {
+        delay(delayMs)
+        return locationNameResult
+    }
 
     override suspend fun getAddressFromLngLat(
         userGeometry: UserGeometry,
         localizedStrings: LocalizedStrings?,
         ignoreHouseNumbers: Boolean
-    ): LocationDescription? = lngLatResult
+    ): LocationDescription? {
+        delay(delayMs)
+        return lngLatResult
+    }
 }
 
 /**
@@ -65,6 +77,7 @@ private class FakePlaceSearchGeocoder(
 private class FusedFakePhotonSearch(
     private val searchResult: FeatureCollection? = FeatureCollection(),
     private val reverseResult: FeatureCollection? = FeatureCollection(),
+    private val delayMs: Long = 0,
 ) : PhotonSearch {
     override suspend fun getSearchResults(
         searchString: String,
@@ -73,13 +86,19 @@ private class FusedFakePhotonSearch(
         language: String?,
         limit: UInt,
         bias: Float,
-    ): FeatureCollection? = searchResult
+    ): FeatureCollection? {
+        delay(delayMs)
+        return searchResult
+    }
 
     override suspend fun reverseGeocodeLocation(
         latitude: Double?,
         longitude: Double?,
         language: String?,
-    ): FeatureCollection? = reverseResult
+    ): FeatureCollection? {
+        delay(delayMs)
+        return reverseResult
+    }
 }
 
 private fun fusedPhotonFeature(location: LngLatAlt, name: String): Feature {
@@ -125,8 +144,10 @@ class FusedGeocoderTest {
         )
     }
 
-    private fun photonGeocoderReturningNothing(): PhotonGeocoder =
-        PhotonGeocoder(FusedFakePhotonSearch(searchResult = null, reverseResult = null))
+    private fun photonGeocoderReturningNothing(delayMs: Long = 0): PhotonGeocoder =
+        PhotonGeocoder(
+            FusedFakePhotonSearch(searchResult = null, reverseResult = null, delayMs = delayMs)
+        )
 
     // ---- getAddressFromLocationName -------------------------------------------------------------
 
@@ -455,5 +476,36 @@ class FusedGeocoderTest {
         val result = fused.getAddressFromLngLat(UserGeometry(location = origin), null, false)
 
         assertNull(result)
+    }
+
+    // ---- Timing ----------------------------------------------------------------------------------
+
+    // The geocoders are asked at the same time, so the two together take as long as the slower of
+    // them rather than the sum. runTest's clock is virtual, so these are exact.
+
+    @Test
+    fun getAddressFromLocationName_geocodersRunAtTheSameTime() = runTest {
+        val fused = FusedGeocoder(
+            buildGridState(),
+            photonGeocoderReturningNothing(delayMs = 2000),
+            FakePlatformGeocoder(locationNameResult = null, delayMs = 3000),
+        )
+
+        fused.getAddressFromLocationName("Costa", origin, null)
+
+        assertEquals(3000, currentTime)
+    }
+
+    @Test
+    fun getAddressFromLngLat_geocodersRunAtTheSameTime() = runTest {
+        val fused = FusedGeocoder(
+            buildGridState(),
+            photonGeocoderReturningNothing(delayMs = 2000),
+            FakePlatformGeocoder(lngLatResult = null, delayMs = 3000),
+        )
+
+        fused.getAddressFromLngLat(UserGeometry(location = origin), null, false)
+
+        assertEquals(3000, currentTime)
     }
 }
