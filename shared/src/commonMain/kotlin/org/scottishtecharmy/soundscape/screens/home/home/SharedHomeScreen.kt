@@ -164,40 +164,36 @@ fun SharedHomeScreen(
                 )
             }
 
-            if (fullscreenMap.value && showMap) {
-                map.FullScreen()
-            } else {
-                SharedHomeContent(
-                    location = state.location,
-                    beaconState = state.beaconState,
-                    routePlayerState = state.currentRouteData,
-                    modifier = Modifier.padding(innerPadding),
-                    onNavigate = onNavigate,
-                    onSelectLocation = onSelectLocation,
-                    onShowRouteDetails = onShowRouteDetails,
-                    onSaveMarker = onSaveMarker,
-                    getCurrentLocationDescription = getCurrentLocationDescription,
-                    searchBar = {
-                        MainSearchBar(
-                            results = state.searchItems.orEmpty(),
-                            onTriggerSearch = searchFunctions.onTriggerSearch,
-                            onItemClick = { item -> onSelectLocation(item) },
-                            hint = stringResource(Res.string.search_bar_hint),
-                            userLocation = state.location,
-                            isSearching = state.searchInProgress,
-                            withoutOfflineMaps = state.searchWithoutOfflineMaps,
-                            onExpandedChange = { searchExpanded = it },
-                        )
-                    },
-                    streetPreviewState = state.streetPreviewState,
-                    routeFunctions = routeFunctions,
-                    streetPreviewFunctions = streetPreviewFunctions,
-                    goToAppSettings = goToAppSettings,
-                    map = map,
-                    permissionsRequired = permissionsRequired,
-                    showMap = showMap,
-                )
-            }
+            SharedHomeContent(
+                location = state.location,
+                beaconState = state.beaconState,
+                routePlayerState = state.currentRouteData,
+                modifier = Modifier.padding(innerPadding),
+                onNavigate = onNavigate,
+                onSelectLocation = onSelectLocation,
+                onShowRouteDetails = onShowRouteDetails,
+                onSaveMarker = onSaveMarker,
+                getCurrentLocationDescription = getCurrentLocationDescription,
+                searchBar = {
+                    MainSearchBar(
+                        results = state.searchItems.orEmpty(),
+                        onTriggerSearch = searchFunctions.onTriggerSearch,
+                        onItemClick = { item -> onSelectLocation(item) },
+                        hint = stringResource(Res.string.search_bar_hint),
+                        userLocation = state.location,
+                        isSearching = state.searchInProgress,
+                        withoutOfflineMaps = state.searchWithoutOfflineMaps,
+                        onExpandedChange = { searchExpanded = it },
+                    )
+                },
+                streetPreviewState = state.streetPreviewState,
+                routeFunctions = routeFunctions,
+                streetPreviewFunctions = streetPreviewFunctions,
+                goToAppSettings = goToAppSettings,
+                map = map,
+                permissionsRequired = permissionsRequired,
+                showMap = showMap,
+            )
         }
 
         AnimatedVisibility(
