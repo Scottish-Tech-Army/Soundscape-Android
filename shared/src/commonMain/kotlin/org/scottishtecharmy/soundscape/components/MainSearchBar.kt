@@ -20,9 +20,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
@@ -43,15 +40,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import org.jetbrains.compose.resources.stringResource
@@ -68,7 +61,6 @@ import org.scottishtecharmy.soundscape.platform.ClearDialogScrim
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackLive
-import org.scottishtecharmy.soundscape.screens.talkbackPasteAction
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -89,7 +81,6 @@ fun MainSearchBar(
     val textStyle = MaterialTheme.typography.bodyLarge.copy(color = colors.onSurface)
     var query by rememberSaveable { mutableStateOf("") }
     var expanded by rememberSaveable { mutableStateOf(false) }
-    val focusRequester = remember { FocusRequester() }
     val searchLocation = remember { mutableStateOf(userLocation) }
 
     LaunchedEffect(expanded) { onExpandedChange(expanded) }
@@ -148,12 +139,6 @@ fun MainSearchBar(
                 }
             }
 
-            LaunchedEffect(expanded) {
-                if (expanded) {
-                    focusRequester.requestFocus()
-                }
-            }
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -182,35 +167,12 @@ fun MainSearchBar(
                                 )
                             }
 
-                            BasicTextField(
+                            SearchTextField(
                                 value = query,
                                 onValueChange = { query = it },
-                                singleLine = true,
-                                cursorBrush = SolidColor(colors.primary),
-                                textStyle = textStyle,
-                                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                                keyboardActions = KeyboardActions(onSearch = { triggerSearch() }),
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .focusRequester(focusRequester)
-                                    .testTag("mainSearchBarTextField")
-                                    // A screen reader user has no Search key to press after
-                                    // pasting, so search for what they pasted straight away.
-                                    .talkbackPasteAction { pasted ->
-                                        query += pasted
-                                        triggerSearch()
-                                    },
-                                decorationBox = { inner ->
-                                    Box(Modifier.fillMaxWidth()) {
-                                        if (query.isEmpty()) {
-                                            Text(
-                                                text = stringResource(Res.string.settings_section_search),
-                                                style = textStyle.copy(color = colors.onSurfaceVariant)
-                                            )
-                                        }
-                                        inner()
-                                    }
-                                }
+                                onSearch = triggerSearch,
+                                hint = stringResource(Res.string.settings_section_search),
+                                modifier = Modifier.weight(1f)
                             )
 
                             if (query.isNotEmpty()) {

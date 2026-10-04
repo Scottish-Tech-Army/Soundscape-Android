@@ -205,7 +205,7 @@ private fun attachedToNonInteractiveWrapper(proxy: UIView) {
  * isn't used here.
  */
 @Composable
-private fun rememberVoiceOverRunning(): Boolean {
+internal fun rememberVoiceOverRunning(): Boolean {
     var running by remember { mutableStateOf(UIAccessibilityIsVoiceOverRunning()) }
 
     DisposableEffect(Unit) {
