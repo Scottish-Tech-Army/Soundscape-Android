@@ -14,6 +14,7 @@ import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
+import java.io.IOException
 import java.util.Collections
 import java.util.Locale
 import java.util.concurrent.Executors
@@ -102,11 +103,11 @@ class TtsEngine(
     fun checkTextToSpeechInitialization(block: Boolean): Boolean {
         var timeout = 2000
         while (!textToSpeechInitialized) {
+            if (!block || (timeout <= 0))
+                return false
             Thread.sleep(100)
             timeout -= 100
             Log.d(TAG, "$timeout")
-            if (!block || (timeout <= 0))
-                return false
         }
 
         return true
@@ -431,16 +432,31 @@ class TtsEngine(
             ttsSocketPair[1].fd,
             utteranceId
         )
-        synchronized(binderQueueLock) {
-            if (!binderExecutor.isShutdown) {
+        val queued = synchronized(binderQueueLock) {
+            if (binderExecutor.isShutdown) {
+                false
+            } else {
                 lastQueuedIsStop = false
                 binderExecutor.execute {
-                    // Skip it if a stop() has already closed its socket while it was queued
-                    if (ttsSockets.containsKey(utteranceId))
-                        textToSpeech.synthesizeToFile(text, params, ttsSocket, utteranceId)
+                    // Skip it if a stop() has already closed its socket while it was queued. The
+                    // service is handed a duplicate, because a stop() can still close the socket
+                    // at any point from here on and passing a closed one to the service throws.
+                    val socket = synchronized(ttsSockets) {
+                        try {
+                            if (ttsSockets.containsKey(utteranceId)) ttsSocket.dup() else null
+                        } catch (e: IOException) {
+                            Log.e(TAG, "Couldn't duplicate socket for $utteranceId: $e")
+                            null
+                        }
+                    }
+                    socket?.use { textToSpeech.synthesizeToFile(text, params, it, utteranceId) }
                 }
+                true
             }
         }
+        // The engine is being destroyed, so nothing will ever write to the socket. Closing it ends
+        // the native source's wait for audio, as it does in stop().
+        if (!queued) clearOutUtteranceSockets(utteranceId)
         return ttsHandle
     }
 
