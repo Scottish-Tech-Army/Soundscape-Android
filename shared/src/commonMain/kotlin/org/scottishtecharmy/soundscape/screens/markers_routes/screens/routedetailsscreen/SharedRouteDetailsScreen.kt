@@ -131,147 +131,151 @@ fun SharedRouteDetailsScreen(
             if (showMap) FullScreenMapFab(fullscreenMap)
         }
     ) { innerPadding ->
-        if (fullscreenMap.value && showMap) {
-            map.FullScreen()
-        } else {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-            ) {
-                if (waypoints.isEmpty() && routeName.isEmpty()) {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(stringResource(Res.string.route_not_found))
-                    }
-                } else {
-                    Column(
-                        modifier = Modifier
+        // Full screen is the same content with everything but the map left out - see
+        // FullScreenableMap for why the map has to stay where it is.
+        val fullscreen = fullscreenMap.value && showMap
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            if (waypoints.isEmpty() && routeName.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(stringResource(Res.string.route_not_found))
+                }
+            } else {
+                Column(
+                    modifier = if (fullscreen) {
+                        Modifier.fillMaxSize()
+                    } else {
+                        Modifier
                             .fillMaxSize()
                             .background(MaterialTheme.colorScheme.surface)
                             .smallPadding()
                             .verticalScroll(contentScrollState, enabled = !mapInteracting)
+                    }
+                ) {
+                    if (!fullscreen) Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .smallPadding(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .smallPadding(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Column {
+                        Column {
+                            Text(
+                                text = routeName,
+                                style = MaterialTheme.typography.headlineMedium,
+                                modifier = Modifier.padding(bottom = spacing.extraSmall),
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            if (routeDescription.isNotEmpty()) {
                                 Text(
-                                    text = routeName,
-                                    style = MaterialTheme.typography.headlineMedium,
-                                    modifier = Modifier.padding(bottom = spacing.extraSmall),
+                                    text = routeDescription,
+                                    style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
-                                if (routeDescription.isNotEmpty()) {
-                                    Text(
-                                        text = routeDescription,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onSurface
-                                    )
-                                }
                             }
                         }
-                        Column(modifier = Modifier.smallPadding()) {
-                            if (isRoutePlaying) {
-                                IconWithTextButton(
-                                    modifier = Modifier.fillMaxWidth().testTag("routeDetailsStopButton"),
-                                    icon = Icons.Default.Stop,
-                                    textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                    text = stringResource(Res.string.route_detail_action_stop_route),
-                                    talkbackHint = stringResource(Res.string.route_detail_action_stop_route_hint),
-                                    color = MaterialTheme.colorScheme.onSurface
-                                ) {
-                                    onStopRoute()
-                                }
-                            } else {
-                                IconWithTextButton(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    buttonTestTag = "routeDetailsStartButton",
-                                    icon = Icons.Default.PlayArrow,
-                                    textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                    talkbackHint = stringResource(Res.string.route_detail_action_start_route_hint),
-                                    text = stringResource(Res.string.route_detail_action_start_route),
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                    // Speaks the first waypoint's beacon-set text and starts its beacon.
-                                    startsSpeech = true,
-                                ) {
-                                    onStartRoute()
-                                }
-                                IconWithTextButton(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    buttonTestTag = "routeDetailsStartReverseButton",
-                                    icon = Icons.Default.SwapVert,
-                                    textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                    talkbackHint = stringResource(Res.string.route_detail_action_start_route_reverse_hint),
-                                    text = stringResource(Res.string.route_detail_action_start_route_reverse),
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                    // Same, walking the waypoints in reverse.
-                                    startsSpeech = true,
-                                ) {
-                                    onStartRouteInReverse()
-                                }
-                            }
+                    }
+                    if (!fullscreen) Column(modifier = Modifier.smallPadding()) {
+                        if (isRoutePlaying) {
                             IconWithTextButton(
-                                modifier = Modifier.fillMaxWidth()
-                                    .defaultMinSize(minHeight = spacing.targetSize)
-                                    .testTag("routeDetailsEditButton"),
-                                icon = Icons.Default.Edit,
+                                modifier = Modifier.fillMaxWidth().testTag("routeDetailsStopButton"),
+                                icon = Icons.Default.Stop,
                                 textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                text = stringResource(Res.string.route_detail_action_edit),
-                                talkbackHint = stringResource(Res.string.route_detail_action_edit_hint),
+                                text = stringResource(Res.string.route_detail_action_stop_route),
+                                talkbackHint = stringResource(Res.string.route_detail_action_stop_route_hint),
                                 color = MaterialTheme.colorScheme.onSurface
                             ) {
-                                onEditRoute()
+                                onStopRoute()
                             }
-                            if (onShareRoute != null) {
-                                IconWithTextButton(
-                                    modifier = Modifier.fillMaxWidth().testTag("routeDetailsShareButton"),
-                                    icon = Icons.Default.Share,
-                                    textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                    text = stringResource(Res.string.share_title),
-                                    talkbackHint = stringResource(Res.string.route_detail_action_share_hint),
-                                    color = MaterialTheme.colorScheme.onSurface
-                                ) {
-                                    onShareRoute()
-                                }
+                        } else {
+                            IconWithTextButton(
+                                modifier = Modifier.fillMaxWidth(),
+                                buttonTestTag = "routeDetailsStartButton",
+                                icon = Icons.Default.PlayArrow,
+                                textModifier = Modifier.padding(horizontal = spacing.extraSmall),
+                                talkbackHint = stringResource(Res.string.route_detail_action_start_route_hint),
+                                text = stringResource(Res.string.route_detail_action_start_route),
+                                color = MaterialTheme.colorScheme.onSurface,
+                                // Speaks the first waypoint's beacon-set text and starts its beacon.
+                                startsSpeech = true,
+                            ) {
+                                onStartRoute()
+                            }
+                            IconWithTextButton(
+                                modifier = Modifier.fillMaxWidth(),
+                                buttonTestTag = "routeDetailsStartReverseButton",
+                                icon = Icons.Default.SwapVert,
+                                textModifier = Modifier.padding(horizontal = spacing.extraSmall),
+                                talkbackHint = stringResource(Res.string.route_detail_action_start_route_reverse_hint),
+                                text = stringResource(Res.string.route_detail_action_start_route_reverse),
+                                color = MaterialTheme.colorScheme.onSurface,
+                                // Same, walking the waypoints in reverse.
+                                startsSpeech = true,
+                            ) {
+                                onStartRouteInReverse()
                             }
                         }
-                        if (showMap) {
-                            map.Inline(
-                                modifier = Modifier.fillMaxWidth().weight(1f).smallPadding(),
-                                onInteractionChanged = { mapInteracting = it },
-                            )
-                        }
-                        Spacer(modifier = Modifier.size(spacing.medium))
-
-                        LazyColumn(
-                            verticalArrangement = Arrangement.spacedBy(spacing.tiny),
-                            modifier = Modifier.weight(2f)
+                        IconWithTextButton(
+                            modifier = Modifier.fillMaxWidth()
+                                .defaultMinSize(minHeight = spacing.targetSize)
+                                .testTag("routeDetailsEditButton"),
+                            icon = Icons.Default.Edit,
+                            textModifier = Modifier.padding(horizontal = spacing.extraSmall),
+                            text = stringResource(Res.string.route_detail_action_edit),
+                            talkbackHint = stringResource(Res.string.route_detail_action_edit_hint),
+                            color = MaterialTheme.colorScheme.onSurface
                         ) {
-                            itemsIndexed(waypoints) { index, waypoint ->
-                                // Pass the waypoint itself rather than a copy: it carries the
-                                // marker's databaseId, which the details screen needs to offer
-                                // "Edit marker" rather than "Save as marker".
-                                LocationItem(
-                                    item = waypoint,
-                                    decoration = LocationItemDecoration(
-                                        location = false,
-                                        index = index,
-                                        indexDescription = stringResource(Res.string.waypoint_title),
-                                        details = EnabledFunction(
-                                            enabled = onSelectWaypoint != null,
-                                            functionLocation = { onSelectWaypoint?.invoke(it) },
-                                        ),
-                                    ),
-                                    userLocation = userLocation
-                                )
+                            onEditRoute()
+                        }
+                        if (onShareRoute != null) {
+                            IconWithTextButton(
+                                modifier = Modifier.fillMaxWidth().testTag("routeDetailsShareButton"),
+                                icon = Icons.Default.Share,
+                                textModifier = Modifier.padding(horizontal = spacing.extraSmall),
+                                text = stringResource(Res.string.share_title),
+                                talkbackHint = stringResource(Res.string.route_detail_action_share_hint),
+                                color = MaterialTheme.colorScheme.onSurface
+                            ) {
+                                onShareRoute()
                             }
+                        }
+                    }
+                    if (showMap) {
+                        map.Content(
+                            modifier = if (fullscreen) Modifier.fillMaxSize()
+                            else Modifier.fillMaxWidth().weight(1f).smallPadding(),
+                            onInteractionChanged = { mapInteracting = it },
+                        )
+                    }
+                    if (!fullscreen) Spacer(modifier = Modifier.size(spacing.medium))
+
+                    if (!fullscreen) LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(spacing.tiny),
+                        modifier = Modifier.weight(2f)
+                    ) {
+                        itemsIndexed(waypoints) { index, waypoint ->
+                            // Pass the waypoint itself rather than a copy: it carries the
+                            // marker's databaseId, which the details screen needs to offer
+                            // "Edit marker" rather than "Save as marker".
+                            LocationItem(
+                                item = waypoint,
+                                decoration = LocationItemDecoration(
+                                    location = false,
+                                    index = index,
+                                    indexDescription = stringResource(Res.string.waypoint_title),
+                                    details = EnabledFunction(
+                                        enabled = onSelectWaypoint != null,
+                                        functionLocation = { onSelectWaypoint?.invoke(it) },
+                                    ),
+                                ),
+                                userLocation = userLocation
+                            )
                         }
                     }
                 }

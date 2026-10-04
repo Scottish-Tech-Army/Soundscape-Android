@@ -1,11 +1,9 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.movableContentOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
@@ -14,32 +12,47 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 /**
- * A screen's map, which can be shown either in its place in the screen's content ([Inline]) or
- * filling the screen ([FullScreen]), with [fullscreen] saying which. A screen calls exactly one of
- * the two on each composition.
+ * A screen's map, which is shown either in its place in the screen's content or filling the screen,
+ * with [fullscreen] saying which.
  *
- * It's one map either way. The map is movable content, so going full screen moves the existing map
- * into the full screen slot and resizes it - keeping its camera, style and tiles - rather than
- * throwing it away and building a second one from scratch, which on a slow phone meant several
- * seconds of blank map every time the button was pressed.
+ * It's one map either way, and it has to stay where it is in the composition: the screen calls
+ * [Content] from the same place whether or not it's full screen, and goes full screen by leaving
+ * out the content around the map and giving it a modifier that fills the space. The map is then
+ * only resized. Composing it somewhere else instead - whether as a second map or by moving this one
+ * - detaches its view on Android, which throws away the map's surface and everything it has on the
+ * GPU, and it is seconds on a slow phone before the map is drawn again.
+ *
+ * The screen should also only call [Content] once it knows the size the map is to be. A map that
+ * is created at one size and resized a frame later sets its surface's crop twice in quick
+ * succession, and on some Android phones (a Samsung A54 on Android 16) the first can be applied
+ * last: the map then shows only as much of itself as its first size, with black for the rest.
  */
 @Stable
 class FullScreenableMap internal constructor(
     val fullscreen: MutableState<Boolean>,
-    private val map: @Composable (allowScrolling: Boolean, onInteractionChanged: (Boolean) -> Unit, modifier: Modifier) -> Unit,
+    private val content: State<MapContent>,
 ) {
     /**
-     * The map in its place in the screen's content. Panning is off so that a drag scrolls the
-     * content instead - see MapContainerLibre's onInteractionChanged for the pinch that does reach
-     * the map.
+     * The map. Panning is off unless it's full screen, so that a drag scrolls the screen's content
+     * instead - see MapContainerLibre's onInteractionChanged for the pinch that does reach the map.
      */
     @Composable
-    fun Inline(modifier: Modifier, onInteractionChanged: (Boolean) -> Unit = {}) =
-        map(false, onInteractionChanged, modifier)
-
-    /** The map filling the screen, where there's nothing to scroll and so it can be panned. */
-    @Composable
-    fun FullScreen(modifier: Modifier = Modifier.fillMaxSize()) = map(true, {}, modifier)
+    fun Content(modifier: Modifier, onInteractionChanged: (Boolean) -> Unit = {}) {
+        val c = content.value
+        if (c.mapCenter != null) {
+            PlatformMapContainer(
+                mapCenter = c.mapCenter,
+                allowScrolling = fullscreen.value,
+                userLocation = c.userLocation,
+                userSymbolRotation = c.userSymbolRotation,
+                beaconLocation = c.beaconLocation,
+                routeData = c.routeData,
+                currentBeaconWaypointIndex = c.currentBeaconWaypointIndex,
+                modifier = modifier,
+                onInteractionChanged = onInteractionChanged,
+            )
+        }
+    }
 }
 
 /**
@@ -55,8 +68,6 @@ fun rememberFullScreenableMap(
     routeData: RouteWithMarkers?,
     currentBeaconWaypointIndex: Int = 0,
 ): FullScreenableMap {
-    // The movable content is created once, so it reads the latest of these rather than capturing
-    // the first.
     val content: State<MapContent> = rememberUpdatedState(
         MapContent(
             mapCenter,
@@ -67,30 +78,10 @@ fun rememberFullScreenableMap(
             currentBeaconWaypointIndex,
         )
     )
-    return remember {
-        FullScreenableMap(
-            fullscreen = mutableStateOf(false),
-            map = movableContentOf { allowScrolling: Boolean, onInteractionChanged: (Boolean) -> Unit, modifier: Modifier ->
-                val c = content.value
-                if (c.mapCenter != null) {
-                    PlatformMapContainer(
-                        mapCenter = c.mapCenter,
-                        allowScrolling = allowScrolling,
-                        userLocation = c.userLocation,
-                        userSymbolRotation = c.userSymbolRotation,
-                        beaconLocation = c.beaconLocation,
-                        routeData = c.routeData,
-                        currentBeaconWaypointIndex = c.currentBeaconWaypointIndex,
-                        modifier = modifier,
-                        onInteractionChanged = onInteractionChanged,
-                    )
-                }
-            },
-        )
-    }
+    return remember { FullScreenableMap(fullscreen = mutableStateOf(false), content = content) }
 }
 
-private data class MapContent(
+internal data class MapContent(
     val mapCenter: LngLatAlt?,
     val userLocation: LngLatAlt?,
     val userSymbolRotation: Float,

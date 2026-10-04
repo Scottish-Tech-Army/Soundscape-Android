@@ -24,6 +24,7 @@ import androidx.compose.material.icons.rounded.Fullscreen
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -35,6 +36,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
@@ -51,7 +54,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.layout.Measurable
+import androidx.compose.ui.layout.MeasureResult
+import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.node.LayoutModifierNode
+import androidx.compose.ui.node.ModifierNodeElement
+import androidx.compose.ui.node.invalidateMeasurement
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.runtime.mutableIntStateOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -201,14 +211,22 @@ fun SharedHomeContent(
     var mapInteracting by remember { mutableStateOf(false) }
     val contentScrollState = rememberScrollState()
 
+    // Full screen is this same content with everything but the map left out, and the map filling
+    // the space - see FullScreenableMap for why the map has to stay where it is.
+    val fullscreen = map.fullscreen.value && showMap
+
     // The map takes whatever height the rest of the scrolling content leaves free, so that the
     // home screen fits without scrolling where it can. It's never smaller than MAP_MIN_HEIGHT,
     // or taller than it is wide; if even the minimum doesn't fit, the screen scrolls as before.
-    // Until the first layout has been measured the map keeps its old fixed shape.
+    // Until the first layout has been measured the map keeps its old fixed shape. The measurements
+    // are left alone while the map is full screen, so that it comes back at the size it had.
     val density = LocalDensity.current
     var viewportHeightPx by remember { mutableIntStateOf(0) }
-    var contentHeightPx by remember { mutableIntStateOf(0) }
-    var mapSlotSize by remember { mutableStateOf(IntSize.Zero) }
+    // The map is among different content, and a different shape, when there's a beacon or route,
+    // so what was measured for one doesn't hold for the other.
+    val mapInCard = routePlayerState.routeData != null
+    var contentHeightPx by remember(mapInCard) { mutableIntStateOf(0) }
+    var mapSlotSize by remember(mapInCard) { mutableStateOf(IntSize.Zero) }
     val mapSlotHeight: Dp? =
         if (viewportHeightPx == 0 || contentHeightPx == 0 || mapSlotSize == IntSize.Zero) {
             null
@@ -221,60 +239,75 @@ fun SharedHomeContent(
                     .toDp()
             }
         }
+    // The map isn't created until its slot has been measured, so that it's created at the size
+    // it's going to be. On Android a map that is resized just after it's created can be left
+    // showing only as much of itself as its first size (see FullScreenableMap). Once it has been
+    // created it stays, through the slot being measured again when a beacon starts or stops.
+    val mapCreated = remember { booleanArrayOf(false) }
+    if (fullscreen || mapSlotHeight != null) mapCreated[0] = true
+    val mapSized = mapCreated[0]
     fun Modifier.mapSlot(defaultAspectRatio: Float) =
         (if (mapSlotHeight != null) height(mapSlotHeight) else aspectRatio(defaultAspectRatio))
-            .onSizeChanged { mapSlotSize = it }
+            .onSizeChanged { if (!fullscreen) mapSlotSize = it }
 
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(modifier = modifier.fillMaxSize().remeasureOnChange(fullscreen)) {
         Column(
             verticalArrangement = Arrangement.spacedBy(spacing.small),
             modifier = Modifier.fillMaxSize(),
         ) {
-            if (streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
-                StreetPreview(streetPreviewState, streetPreviewFunctions)
-            } else {
-                searchBar()
+            if (!fullscreen) {
+                if (streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
+                    StreetPreview(streetPreviewState, streetPreviewFunctions)
+                } else {
+                    searchBar()
+                }
             }
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(spacing.small),
-                modifier = Modifier
-                    .weight(1f)
-                    .onSizeChanged { viewportHeightPx = it.height }
-                    .verticalScroll(contentScrollState, enabled = !mapInteracting)
-                    // The scroll container stretches short content to fill the viewport, which
-                    // would hide free space from the map sizing; measure the natural height.
-                    .wrapContentHeight(Alignment.Top)
-                    .onSizeChanged { contentHeightPx = it.height },
+                modifier = if (fullscreen) {
+                    // Nothing to scroll, and the map needs the height to be bounded to fill it
+                    Modifier.weight(1f)
+                } else {
+                    Modifier
+                        .weight(1f)
+                        .onSizeChanged { viewportHeightPx = it.height }
+                        .verticalScroll(contentScrollState, enabled = !mapInteracting)
+                        // The scroll container stretches short content to fill the viewport, which
+                        // would hide free space from the map sizing; measure the natural height.
+                        .wrapContentHeight(Alignment.Top)
+                        .onSizeChanged { contentHeightPx = it.height }
+                },
             ) {
-                NavigationButton(
-                    onClick = { onNavigate(SharedRoutes.PLACES_NEARBY) },
-                    text = stringResource(Res.string.search_nearby_screen_title),
-                    horizontalPadding = spacing.small,
-                    modifier = Modifier
-                        .semantics { heading() }
-                        .talkbackHint(stringResource(Res.string.search_button_nearby_accessibility_hint))
-                        .testTag("homePlacesNearby"),
-                )
-                NavigationButton(
-                    onClick = { onNavigate(SharedRoutes.MARKERS) },
-                    text = stringResource(Res.string.markers_title),
-                    horizontalPadding = spacing.small,
-                    modifier = Modifier
-                        .talkbackHint(stringResource(Res.string.search_button_markers_only_accessibility_hint))
-                        .testTag("homeMarkers"),
-                )
-                NavigationButton(
-                    onClick = { onNavigate(SharedRoutes.ROUTES) },
-                    text = stringResource(Res.string.routes_title),
-                    horizontalPadding = spacing.small,
-                    modifier = Modifier
-                        .talkbackHint(stringResource(Res.string.search_button_routes_accessibility_hint))
-                        .testTag("homeRoutes"),
-                )
-                // The button stays in place while the address is looked up, so that TalkBack
-                // keeps its focus on it (see SlowLoadingIndicator).
-                NavigationButton(
+                if (!fullscreen) {
+                    NavigationButton(
+                        onClick = { onNavigate(SharedRoutes.PLACES_NEARBY) },
+                        text = stringResource(Res.string.search_nearby_screen_title),
+                        horizontalPadding = spacing.small,
+                        modifier = Modifier
+                            .semantics { heading() }
+                            .talkbackHint(stringResource(Res.string.search_button_nearby_accessibility_hint))
+                            .testTag("homePlacesNearby"),
+                    )
+                    NavigationButton(
+                        onClick = { onNavigate(SharedRoutes.MARKERS) },
+                        text = stringResource(Res.string.markers_title),
+                        horizontalPadding = spacing.small,
+                        modifier = Modifier
+                            .talkbackHint(stringResource(Res.string.search_button_markers_only_accessibility_hint))
+                            .testTag("homeMarkers"),
+                    )
+                    NavigationButton(
+                        onClick = { onNavigate(SharedRoutes.ROUTES) },
+                        text = stringResource(Res.string.routes_title),
+                        horizontalPadding = spacing.small,
+                        modifier = Modifier
+                            .talkbackHint(stringResource(Res.string.search_button_routes_accessibility_hint))
+                            .testTag("homeRoutes"),
+                    )
+                    // The button stays in place while the address is looked up, so that TalkBack
+                    // keeps its focus on it (see SlowLoadingIndicator).
+                    NavigationButton(
                         onClick = {
                             if (location != null && !fetchingLocation) {
                                 fetchingLocation = true
@@ -295,141 +328,178 @@ fun SharedHomeContent(
                         loading = fetchingLocation,
                         loadingTestTag = "homeCurrentLocationLoading",
                     )
+                }
                 if (location != null) {
                     val currentRoute = routePlayerState.routeData
-                    if (currentRoute != null) {
-                        Card(modifier = Modifier.smallPadding()) {
-                            // The waypoint the beacon is currently on. For a beacon (rather than
-                            // a route) this is RoutePlayer's single-waypoint pseudo-route, whose
-                            // marker carries the name the beacon was started with.
-                            val beaconWaypoint =
-                                currentRoute.markers.getOrNull(routePlayerState.currentWaypoint)
-                            val beaconLocation =
-                                beaconWaypoint?.getLngLatAlt() ?: beaconState?.location
-                            val beaconName = beaconWaypoint?.name ?: currentRoute.route.name
-                            // Resolved here rather than at the Text, because the card's semantics
-                            // replace the Text's and the screen reader reads this string directly.
-                            val progressText = resolveGrammarMarkers(
-                                if (currentRoute.markers.size > 1) {
-                                    stringResource(
-                                        Res.string.route_waypoint_progress,
-                                        currentRoute.route.name,
-                                        routePlayerState.currentWaypoint + 1,
-                                        currentRoute.markers.size,
-                                    )
-                                } else {
-                                    stringResource(
-                                        Res.string.route_beacon_progress,
-                                        currentRoute.route.name,
-                                    )
-                                }
-                            )
-
-                            // "700 m, NW" on screen, "700 metres, north west" for the screen
-                            // reader - the same split the original iOS app used, where there is
-                            // room for the word in speech but not in the panel.
-                            val distanceStrings = remember(location, beaconLocation) {
-                                if (beaconLocation == null) {
-                                    "" to ""
-                                } else {
-                                    val ruler = location.createCheapRuler()
-                                    val distance = ruler.distance(location, beaconLocation)
-                                    val bearing = ruler.bearing(location, beaconLocation)
-                                    val localized = ComposeLocalizedStrings()
-                                    formatDistanceAndDirection(
-                                        distance,
-                                        bearing,
-                                        localized,
-                                        abbreviatedDirection = true,
-                                    ) to formatDistanceAndDirection(
-                                        distance,
-                                        bearing,
-                                        localized,
-                                        forAccessibility = true,
-                                    )
-                                }
-                            }
-                            val (distanceString, distanceStringA11y) = distanceStrings
-
-                            val calloutLabel = stringResource(Res.string.beacon_action_callout_beacon)
-                            val moreInfoLabel = stringResource(Res.string.callouts_action_more_info)
-                            val addToMarkersLabel =
-                                stringResource(Res.string.markers_action_add_to_markers)
-                            // Mute and Remove are the buttons below and deliberately aren't
-                            // repeated here - iOS offers both ways and the duplication confuses
-                            // more than it helps (issue #908). Call out and More Info both speak
-                            // through the service's TTS, not the screen reader, so that they can
-                            // be triggered without the screen too.
-                            val beaconActions = buildList {
-                                add(
-                                    CustomAccessibilityAction(calloutLabel) {
-                                        routeFunctions.calloutBeacon()
-                                        true
+                    if (currentRoute != null || showMap) {
+                        // The card is there whether or not there's a beacon, and just isn't drawn
+                        // as one without, so that the map is in the same place in the composition
+                        // either way (see FullScreenableMap) and starting or stopping a beacon
+                        // resizes it rather than replacing it.
+                        val asCard = currentRoute != null && !fullscreen
+                        Card(
+                            modifier = when {
+                                fullscreen -> Modifier.fillMaxSize()
+                                // No padding above it: the column's spacing is enough, and with
+                                // more the card is the thing that makes the screen scroll
+                                asCard -> Modifier.padding(
+                                    start = spacing.small,
+                                    end = spacing.small,
+                                    bottom = spacing.small,
+                                )
+                                else -> Modifier
+                            },
+                            shape = if (asCard) CardDefaults.shape else RectangleShape,
+                            colors = if (asCard) {
+                                CardDefaults.cardColors()
+                            } else {
+                                CardDefaults.cardColors(containerColor = Color.Transparent)
+                            },
+                        ) {
+                            if (currentRoute != null) {
+                                // The waypoint the beacon is currently on. For a beacon (rather than
+                                // a route) this is RoutePlayer's single-waypoint pseudo-route, whose
+                                // marker carries the name the beacon was started with.
+                                val beaconWaypoint =
+                                    currentRoute.markers.getOrNull(routePlayerState.currentWaypoint)
+                                val beaconLocation =
+                                    beaconWaypoint?.getLngLatAlt() ?: beaconState?.location
+                                val beaconName = beaconWaypoint?.name ?: currentRoute.route.name
+                                // Resolved here rather than at the Text, because the card's semantics
+                                // replace the Text's and the screen reader reads this string directly.
+                                val progressText = resolveGrammarMarkers(
+                                    if (currentRoute.markers.size > 1) {
+                                        stringResource(
+                                            Res.string.route_waypoint_progress,
+                                            currentRoute.route.name,
+                                            routePlayerState.currentWaypoint + 1,
+                                            currentRoute.markers.size,
+                                        )
+                                    } else {
+                                        stringResource(
+                                            Res.string.route_beacon_progress,
+                                            currentRoute.route.name,
+                                        )
                                     }
                                 )
-                                if (beaconLocation != null) {
+
+                                // "700 m, NW" on screen, "700 metres, north west" for the screen
+                                // reader - the same split the original iOS app used, where there is
+                                // room for the word in speech but not in the panel.
+                                val distanceStrings = remember(location, beaconLocation) {
+                                    if (beaconLocation == null) {
+                                        "" to ""
+                                    } else {
+                                        val ruler = location.createCheapRuler()
+                                        val distance = ruler.distance(location, beaconLocation)
+                                        val bearing = ruler.bearing(location, beaconLocation)
+                                        val localized = ComposeLocalizedStrings()
+                                        formatDistanceAndDirection(
+                                            distance,
+                                            bearing,
+                                            localized,
+                                            abbreviatedDirection = true,
+                                        ) to formatDistanceAndDirection(
+                                            distance,
+                                            bearing,
+                                            localized,
+                                            forAccessibility = true,
+                                        )
+                                    }
+                                }
+                                val (distanceString, distanceStringA11y) = distanceStrings
+
+                                val calloutLabel = stringResource(Res.string.beacon_action_callout_beacon)
+                                val moreInfoLabel = stringResource(Res.string.callouts_action_more_info)
+                                val addToMarkersLabel =
+                                    stringResource(Res.string.markers_action_add_to_markers)
+                                // Mute and Remove are the buttons below and deliberately aren't
+                                // repeated here - iOS offers both ways and the duplication confuses
+                                // more than it helps (issue #908). Call out and More Info both speak
+                                // through the service's TTS, not the screen reader, so that they can
+                                // be triggered without the screen too.
+                                val beaconActions = buildList {
                                     add(
-                                        CustomAccessibilityAction(moreInfoLabel) {
-                                            routeFunctions.beaconMoreInfo()
+                                        CustomAccessibilityAction(calloutLabel) {
+                                            routeFunctions.calloutBeacon()
                                             true
                                         }
                                     )
-                                    // Already a saved marker, so nothing to add - the same test
-                                    // the iOS app made before offering this action.
-                                    if (onSaveMarker != null &&
-                                        (beaconWaypoint?.markerId ?: 0L) == 0L
-                                    ) {
+                                    if (beaconLocation != null) {
                                         add(
-                                            CustomAccessibilityAction(addToMarkersLabel) {
-                                                onSaveMarker(
-                                                    LocationDescription(
-                                                        name = beaconName,
-                                                        location = beaconLocation,
-                                                    )
-                                                )
+                                            CustomAccessibilityAction(moreInfoLabel) {
+                                                routeFunctions.beaconMoreInfo()
                                                 true
                                             }
+                                        )
+                                        // Already a saved marker, so nothing to add - the same test
+                                        // the iOS app made before offering this action.
+                                        if (onSaveMarker != null &&
+                                            (beaconWaypoint?.markerId ?: 0L) == 0L
+                                        ) {
+                                            add(
+                                                CustomAccessibilityAction(addToMarkersLabel) {
+                                                    onSaveMarker(
+                                                        LocationDescription(
+                                                            name = beaconName,
+                                                            location = beaconLocation,
+                                                        )
+                                                    )
+                                                    true
+                                                }
+                                            )
+                                        }
+                                    }
+                                }
+
+                                if (!fullscreen) Column(
+                                    modifier = Modifier
+                                        .smallPadding()
+                                        .testTag("routeBeaconTitle")
+                                        .clearAndSetSemantics {
+                                            contentDescription = listOf(progressText, distanceStringA11y)
+                                                .filter { it.isNotEmpty() }
+                                                .joinToString(", ")
+                                            onClick(label = calloutLabel) {
+                                                routeFunctions.calloutBeacon()
+                                                true
+                                            }
+                                            customActions = beaconActions
+                                        },
+                                ) {
+                                    Text(
+                                        text = progressText,
+                                        style = MaterialTheme.typography.labelLarge,
+                                    )
+                                    if (distanceString.isNotEmpty()) {
+                                        Text(
+                                            text = distanceString,
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            modifier = Modifier.testTag("routeBeaconDistance"),
                                         )
                                     }
                                 }
                             }
-
-                            Column(
-                                modifier = Modifier
-                                    .smallPadding()
-                                    .testTag("routeBeaconTitle")
-                                    .clearAndSetSemantics {
-                                        contentDescription = listOf(progressText, distanceStringA11y)
-                                            .filter { it.isNotEmpty() }
-                                            .joinToString(", ")
-                                        onClick(label = calloutLabel) {
-                                            routeFunctions.calloutBeacon()
-                                            true
-                                        }
-                                        customActions = beaconActions
-                                    },
-                            ) {
-                                Text(
-                                    text = progressText,
-                                    style = MaterialTheme.typography.labelLarge,
-                                )
-                                if (distanceString.isNotEmpty()) {
-                                    Text(
-                                        text = distanceString,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        modifier = Modifier.testTag("routeBeaconDistance"),
-                                    )
-                                }
-                            }
                             if (showMap) {
-                                Row(modifier = Modifier.fillMaxWidth().mapSlot(2.0f)) {
-                                    map.Inline(
-                                        modifier = Modifier.fillMaxWidth().extraSmallPadding(),
+                                Box(
+                                    modifier = when {
+                                        fullscreen -> Modifier.fillMaxWidth().weight(1f)
+                                        currentRoute != null ->
+                                            Modifier.fillMaxWidth().mapSlot(2.0f).extraSmallPadding()
+                                        // Edge to edge, with the column's spacing above it
+                                        else -> Modifier
+                                            .fillMaxWidth()
+                                            .mapSlot(1f)
+                                            .padding(bottom = spacing.small)
+                                    },
+                                ) {
+                                    if (mapSized) map.Content(
+                                        modifier = Modifier.fillMaxSize(),
                                         onInteractionChanged = { mapInteracting = it },
                                     )
                                 }
                             }
-                            Row(
+                            if (currentRoute != null && !fullscreen) Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(spacing.targetSize)
@@ -514,14 +584,6 @@ fun SharedHomeContent(
                                 }
                             }
                         }
-                    } else if (showMap) {
-                        map.Inline(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .mapSlot(1f)
-                                .mediumPadding(),
-                            onInteractionChanged = { mapInteracting = it },
-                        )
                     }
                 } else {
                     if (permissionsRequired) {
@@ -553,5 +615,28 @@ fun SharedHomeContent(
     }
 }
 
+/**
+ * Measures the content again on the frame in which [key] changes.
+ *
+ * Going full screen takes the bottom bar away, and the Scaffold passes that on as a change to the
+ * padding it gave this content. It makes the change while it is being measured, and content that
+ * has no other reason to be measured again only finds out on the next frame - so the map filled
+ * the old space for a frame before it was resized again to the new one.
+ */
+private fun Modifier.remeasureOnChange(key: Any?): Modifier = this then RemeasureOnChangeElement(key)
+
+private data class RemeasureOnChangeElement(val key: Any?) :
+    ModifierNodeElement<RemeasureOnChangeNode>() {
+    override fun create() = RemeasureOnChangeNode()
+    override fun update(node: RemeasureOnChangeNode) = node.invalidateMeasurement()
+}
+
+private class RemeasureOnChangeNode : Modifier.Node(), LayoutModifierNode {
+    override fun MeasureScope.measure(measurable: Measurable, constraints: Constraints): MeasureResult {
+        val placeable = measurable.measure(constraints)
+        return layout(placeable.width, placeable.height) { placeable.place(0, 0) }
+    }
+}
+
 /** The smallest the home screen map shrinks to when fitting it into the free space. */
-private val MAP_MIN_HEIGHT = 160.dp
+private val MAP_MIN_HEIGHT = 140.dp

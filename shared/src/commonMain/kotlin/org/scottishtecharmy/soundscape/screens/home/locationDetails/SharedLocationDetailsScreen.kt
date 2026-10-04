@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -121,16 +122,22 @@ fun SharedLocationDetailsScreen(
             )
         },
     ) { padding ->
-        if (fullscreenMap.value && showMap) {
-            map.FullScreen()
-        } else {
-            Column(
-                modifier = Modifier
+        // Full screen is the same content with everything but the map left out - see
+        // FullScreenableMap for why the map has to stay where it is.
+        val fullscreen = fullscreenMap.value && showMap
+        Column(
+            modifier = if (fullscreen) {
+                // Nothing to scroll, and the map needs the height to be bounded to fill it
+                Modifier.padding(padding).fillMaxSize()
+            } else {
+                Modifier
                     .padding(padding)
                     .verticalScroll(contentScrollState, enabled = !mapInteracting)
-                    .background(MaterialTheme.colorScheme.surface),
-                verticalArrangement = Arrangement.spacedBy(spacing.small),
-            ) {
+                    .background(MaterialTheme.colorScheme.surface)
+            },
+            verticalArrangement = Arrangement.spacedBy(spacing.small),
+        ) {
+            if (!fullscreen) {
                 // Location info section
                 LocationDescriptionTextsSection(
                     locationDescription = locationDescription,
@@ -153,16 +160,20 @@ fun SharedLocationDetailsScreen(
                     onOpenInMapApp = onOpenInMapApp,
                     onOfflineMaps = onOfflineMaps,
                 )
+            }
 
-                // Map showing the location
-                if (showMap) {
-                    map.Inline(
-                        modifier = Modifier
+            // Map showing the location
+            if (showMap) {
+                map.Content(
+                    modifier = if (fullscreen) {
+                        Modifier.fillMaxSize()
+                    } else {
+                        Modifier
                             .fillMaxWidth()
-                            .aspectRatio(1.0f),
-                        onInteractionChanged = { mapInteracting = it },
-                    )
-                }
+                            .aspectRatio(1.0f)
+                    },
+                    onInteractionChanged = { mapInteracting = it },
+                )
             }
         }
     }
