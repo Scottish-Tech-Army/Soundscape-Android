@@ -46,7 +46,6 @@ import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
@@ -57,7 +56,9 @@ import org.scottishtecharmy.soundscape.resources.search_searching
 import org.scottishtecharmy.soundscape.resources.settings_section_search
 import org.scottishtecharmy.soundscape.resources.text_field_clear_text
 import org.scottishtecharmy.soundscape.resources.ui_back_button_title
-import org.scottishtecharmy.soundscape.platform.ClearDialogScrim
+import org.scottishtecharmy.soundscape.platform.FullScreenDialogWindow
+import org.scottishtecharmy.soundscape.platform.fullScreenDialogProperties
+import org.scottishtecharmy.soundscape.platform.fullScreenDialogSystemBarsPadding
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackLive
@@ -124,9 +125,9 @@ fun MainSearchBar(
     if (expanded) {
         Dialog(
             onDismissRequest = { expanded = false },
-            properties = DialogProperties(usePlatformDefaultWidth = false)
+            properties = fullScreenDialogProperties()
         ) {
-            ClearDialogScrim()
+            FullScreenDialogWindow()
             val keyboardController = LocalSoftwareKeyboardController.current
 
             // Run the search for whatever is in the field, ignoring a field with nothing in it.
@@ -144,7 +145,7 @@ fun MainSearchBar(
                     .fillMaxSize()
                     .background(colors.background)
             ) {
-                Column(modifier = Modifier.fillMaxSize()) {
+                Column(modifier = Modifier.fillMaxSize().fullScreenDialogSystemBarsPadding()) {
                     // Search header
                     Surface(color = colors.surface) {
                         Row(
