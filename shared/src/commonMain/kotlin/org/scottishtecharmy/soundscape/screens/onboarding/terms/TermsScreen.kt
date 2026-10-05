@@ -43,6 +43,8 @@ import org.scottishtecharmy.soundscape.resources.terms_of_use_message
 import org.scottishtecharmy.soundscape.resources.terms_of_use_service_agreement
 import org.scottishtecharmy.soundscape.resources.terms_of_use_title
 import org.scottishtecharmy.soundscape.resources.ui_continue
+import org.scottishtecharmy.soundscape.screens.home.home.markdownToHtml
+import org.scottishtecharmy.soundscape.screens.home.home.parseHtmlToAnnotatedString
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -156,8 +158,9 @@ fun TermsItem(text: String) {
             .fillMaxWidth()
     ) {
         Spacer(modifier = Modifier.width(spacing.medium))
+        // The terms are Markdown, with the name they define marked for emphasis
         Text(
-            text = text,
+            text = parseHtmlToAnnotatedString(markdownToHtml(text)),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface
         )
