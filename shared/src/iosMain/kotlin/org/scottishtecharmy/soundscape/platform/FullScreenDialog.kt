@@ -9,3 +9,7 @@ actual fun fullScreenDialogProperties(): DialogProperties =
 
 @Composable
 actual fun Modifier.fullScreenDialogSystemBarsPadding(): Modifier = this
+
+@Composable
+actual fun FullScreenDialogWindow() {
+}

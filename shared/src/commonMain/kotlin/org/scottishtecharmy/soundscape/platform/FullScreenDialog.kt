@@ -21,3 +21,12 @@ expect fun fullScreenDialogProperties(): DialogProperties
  */
 @Composable
 expect fun Modifier.fullScreenDialogSystemBarsPadding(): Modifier
+
+/**
+ * Call from inside the content of a Dialog using [fullScreenDialogProperties] to set up its
+ * Android window. It stops the platform dimming the screen behind the dialog, because the dim
+ * fading out on dismiss shows as a flash over the home screen. It also has the system bar icons
+ * drawn to contrast with the theme's background, which is what is behind them.
+ */
+@Composable
+expect fun FullScreenDialogWindow()
