@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="SplashTheme.Soundscape" parent="Theme.AppCompat">
+    <!-- Before Android 12 there is no splash screen, and MainActivity doesn't call
+         installSplashScreen() to switch to postSplashScreenTheme. This theme is what the
+         activity keeps, so it mustn't have an action bar. -->
+    <style name="SplashTheme.Soundscape" parent="Theme.AppCompat.NoActionBar">
         <item name="postSplashScreenTheme">@style/Theme.SoundscapeAlpha</item>
     </style>
 </resources>
