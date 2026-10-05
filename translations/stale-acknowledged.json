@@ -11,7 +11,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_tip_create_marker_at_bus_stop": "476522c9c44a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -33,9 +36,11 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "bg": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -51,7 +56,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_tip_create_marker_at_bus_stop": "476522c9c44a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -75,7 +83,9 @@
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
   "stationary_on_way": "5b5a78ba18ff",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "bn": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -86,7 +96,10 @@
   "faq_controlling_what_you_hear_answer": "449eb0d42df9",
   "faq_difference_from_map_apps_answer": "4aff038ecccf",
   "faq_headset_battery_impact_question": "21525ca27d0a",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -107,7 +120,9 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "ca": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -122,7 +137,10 @@
   "faq_headset_battery_impact_answer": "d88ddd3458bc",
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_how_close_to_destination_question": "6ea83e067d17",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -145,8 +163,10 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_markers_and_routes": "b70e8feb3e4c",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "cs": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -161,7 +181,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_tip_turning_beacon_off": "6afdd4060c81",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -186,8 +209,10 @@
   "osm_vacant": "15744ee3657b",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
+  "terms_of_use_message": "3adc167f094a",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "da": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -198,7 +223,10 @@
   "faq_difference_from_map_apps_answer": "4aff038ecccf",
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -218,7 +246,9 @@
   "osm_supermarket": "7247fb59abbd",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "de": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -233,7 +263,10 @@
   "faq_difference_from_map_apps_answer": "4aff038ecccf",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
   "faq_use_with_wayfinding_apps_answer": "94e9b0a14061",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -251,7 +284,9 @@
   "osm_slipway": "e26ec51daf62",
   "osm_supermarket": "7247fb59abbd",
   "relative_degrees_direction": "79b773736901",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "el": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -266,8 +301,11 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_supported_headsets_answer": "3a623c785541",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_how_2": "840a8a03fff4",
@@ -285,7 +323,9 @@
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
   "settings_reset_dialog_message": "91231407bc9c",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "en-rGB": {
   "callouts_mobility_description": "3a88353a4e78",
@@ -311,6 +351,9 @@
   "faq_turn_beacon_back_on_answer": "599101432a4d",
   "faq_use_with_wayfinding_apps_answer": "94e9b0a14061",
   "faq_what_can_I_set_answer": "919dafceea93",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_creating_markers_content_1": "01bbfb394b10",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_destination_beacons_how_1": "fd5d747f9b68",
@@ -328,7 +371,9 @@
   "osm_supermarket": "7247fb59abbd",
   "relative_degrees_direction": "79b773736901",
   "settings_help_section_home_screen_buttons": "7235dbda15f6",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "es": {
   "callouts_mobility_description": "3a88353a4e78",
@@ -351,8 +396,11 @@
   "faq_turn_beacon_back_on_answer": "599101432a4d",
   "faq_use_with_wayfinding_apps_answer": "94e9b0a14061",
   "faq_what_can_I_set_answer": "919dafceea93",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "help_config_voices_content_ios": "d1af68b7cd4f",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_creating_markers_content_1": "01bbfb394b10",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_destination_beacons_how_1": "fd5d747f9b68",
@@ -376,7 +424,9 @@
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
   "settings_help_section_home_screen_buttons": "7235dbda15f6",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "et": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -392,7 +442,10 @@
   "faq_tip_create_marker_at_bus_stop": "476522c9c44a",
   "faq_tip_turning_beacon_off": "6afdd4060c81",
   "faq_what_is_osm_question": "08215a998862",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -408,8 +461,10 @@
   "osm_supermarket": "7247fb59abbd",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
+  "terms_of_use_message": "3adc167f094a",
   "tour_markers_and_routes": "b70e8feb3e4c",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "fa": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -426,7 +481,10 @@
   "faq_supported_headsets_answer": "3a623c785541",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
   "faq_what_is_osm_question": "08215a998862",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -453,8 +511,10 @@
   "route_detail_action_share_hint": "37b075bd98a0",
   "route_detail_action_stop_route_hint": "e2f0ce8cd79f",
   "sleep_sleep_acc_hint": "10244bec9cd7",
+  "terms_of_use_message": "3adc167f094a",
   "tour_welcome": "666a4a282e29",
-  "ui_menu_hint": "1441af1e05d6"
+  "ui_menu_hint": "1441af1e05d6",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "fi": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -470,7 +530,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
   "faq_use_with_wayfinding_apps_answer": "94e9b0a14061",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -495,7 +558,9 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "fr": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -507,7 +572,10 @@
   "faq_headset_battery_impact_answer": "d88ddd3458bc",
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
@@ -527,8 +595,10 @@
   "osm_supermarket": "7247fb59abbd",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "fr-rCA": {
   "callouts_mobility_description": "3a88353a4e78",
@@ -541,7 +611,10 @@
   "faq_headset_battery_impact_answer": "d88ddd3458bc",
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -559,7 +632,9 @@
   "osm_supermarket": "7247fb59abbd",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "ha": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -574,7 +649,10 @@
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_supported_headsets_answer": "3a623c785541",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_remote_control_how": "53e05837e127",
   "menu_manage_callouts": "335964ae4ce9",
   "new_version_info_details": "2af5f6c176c7",
@@ -595,7 +673,9 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "hi": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -608,8 +688,11 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_tip_turning_beacon_off": "6afdd4060c81",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
@@ -644,13 +727,15 @@
   "route_detail_action_start_route_hint": "b526abc3a752",
   "route_detail_action_stop_route_hint": "e2f0ce8cd79f",
   "sleep_sleep_acc_hint": "10244bec9cd7",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
   "tour_markers_and_routes": "b70e8feb3e4c",
   "tour_select_place": "1c22aa155fdc",
   "tour_welcome": "666a4a282e29",
   "ui_action_button_ahead_of_me_acc_hint": "625066a15dde",
   "ui_action_button_my_location_acc_hint": "37161d115da3",
-  "ui_menu_hint": "1441af1e05d6"
+  "ui_menu_hint": "1441af1e05d6",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "hr": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -665,7 +750,10 @@
   "faq_tip_create_marker_at_bus_stop": "476522c9c44a",
   "faq_tip_turning_beacon_off": "6afdd4060c81",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "menu_manage_callouts": "335964ae4ce9",
@@ -685,7 +773,9 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "hu": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -701,7 +791,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_tip_turning_beacon_off": "6afdd4060c81",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -725,7 +818,9 @@
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
   "settings_explanation": "8cd6d8c93d4c",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "in": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -736,7 +831,10 @@
   "faq_controlling_what_you_hear_answer": "449eb0d42df9",
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "menu_manage_callouts": "335964ae4ce9",
@@ -755,9 +853,11 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "is": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -775,7 +875,10 @@
   "faq_how_close_to_destination_question": "6ea83e067d17",
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
@@ -797,8 +900,10 @@
   "osm_supermarket": "7247fb59abbd",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "it": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -813,8 +918,11 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -834,7 +942,9 @@
   "osm_supermarket": "7247fb59abbd",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "ja": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -849,7 +959,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_supported_headsets_answer": "3a623c785541",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_creating_markers_content_1": "01bbfb394b10",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
@@ -868,9 +981,11 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
   "tour_markers_and_routes": "b70e8feb3e4c",
   "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073",
   "voice_cmd_no_markers": "fea7206cacb4",
   "voice_cmd_no_routes": "07577e54c674"
  },
@@ -886,7 +1001,10 @@
   "faq_tip_turning_beacon_off": "6afdd4060c81",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
   "faq_what_is_osm_question": "08215a998862",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -903,9 +1021,11 @@
   "osm_pyrotechnics": "4141d1e7a165",
   "osm_supermarket": "7247fb59abbd",
   "relative_degrees_direction": "79b773736901",
+  "terms_of_use_message": "3adc167f094a",
   "tour_markers_and_routes": "b70e8feb3e4c",
   "tour_select_place": "1c22aa155fdc",
   "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073",
   "voice_cmd_no_markers": "fea7206cacb4",
   "voice_cmd_no_routes": "07577e54c674"
  },
@@ -921,7 +1041,10 @@
   "faq_tip_create_marker_at_bus_stop": "476522c9c44a",
   "faq_tip_turning_beacon_off": "6afdd4060c81",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -941,9 +1064,11 @@
   "osm_supermarket": "7247fb59abbd",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
+  "terms_of_use_message": "3adc167f094a",
   "tour_markers_and_routes": "b70e8feb3e4c",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "nb": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -955,7 +1080,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -979,8 +1107,10 @@
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
   "settings_reset_dialog_message": "91231407bc9c",
+  "terms_of_use_message": "3adc167f094a",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "nl": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -997,7 +1127,10 @@
   "faq_tip_finding_bus_stops": "61e238f53b19",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
   "faq_use_with_wayfinding_apps_answer": "94e9b0a14061",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
@@ -1021,17 +1154,24 @@
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
   "sleep_sleep_acc_hint": "10244bec9cd7",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "pa": {
   "faq_controlling_what_you_hear_answer": "449eb0d42df9",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "menu_manage_callouts": "335964ae4ce9",
   "new_version_info_details": "2af5f6c176c7",
   "relative_degrees_direction": "79b773736901",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "pl": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -1045,7 +1185,10 @@
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
   "faq_what_is_osm_question": "08215a998862",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_destination_beacons_what": "d01a7cdea446",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -1060,8 +1203,10 @@
   "osm_slipway": "e26ec51daf62",
   "osm_supermarket": "7247fb59abbd",
   "relative_degrees_direction": "79b773736901",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "pt": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -1076,7 +1221,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_how_close_to_destination_question": "6ea83e067d17",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1107,12 +1255,14 @@
   "route_detail_action_stop_route_hint": "e2f0ce8cd79f",
   "search_button_nearby_accessibility_hint": "392656c5ac30",
   "sleep_sleep_acc_hint": "10244bec9cd7",
+  "terms_of_use_message": "3adc167f094a",
   "tour_welcome": "666a4a282e29",
   "ui_action_button_ahead_of_me_acc_hint": "625066a15dde",
   "ui_action_button_around_me_acc_hint": "e0855861daf4",
   "ui_action_button_my_location_acc_hint": "37161d115da3",
   "ui_action_button_nearby_markers_acc_hint": "337c822f608a",
-  "ui_menu_hint": "1441af1e05d6"
+  "ui_menu_hint": "1441af1e05d6",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "pt-rBR": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -1125,7 +1275,10 @@
   "faq_difference_from_map_apps_answer": "4aff038ecccf",
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1146,7 +1299,9 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "ro": {
   "callouts_mobility_description": "3a88353a4e78",
@@ -1159,8 +1314,11 @@
   "faq_headset_battery_impact_answer": "d88ddd3458bc",
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -1180,8 +1338,10 @@
   "osm_supermarket": "7247fb59abbd",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
+  "terms_of_use_message": "3adc167f094a",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "ru": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -1195,7 +1355,10 @@
   "faq_how_close_to_destination_question": "6ea83e067d17",
   "faq_supported_headsets_answer": "3a623c785541",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
   "menu_manage_callouts": "335964ae4ce9",
@@ -1214,8 +1377,10 @@
   "osm_vacant": "15744ee3657b",
   "osm_water_ski": "807ca2a97461",
   "relative_degrees_direction": "79b773736901",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "sk": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -1229,7 +1394,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_tip_turning_beacon_off": "6afdd4060c81",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1254,8 +1422,10 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "sl": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -1271,7 +1441,10 @@
   "faq_tip_create_marker_at_bus_stop": "476522c9c44a",
   "faq_tip_turning_beacon_off": "6afdd4060c81",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1295,8 +1468,10 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "sr": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -1310,7 +1485,10 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_tip_turning_beacon_off": "6afdd4060c81",
   "faq_what_is_osm_question": "08215a998862",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1334,8 +1512,10 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "sv": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -1349,7 +1529,10 @@
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_supported_headsets_answer": "3a623c785541",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_destination_beacons_what": "d01a7cdea446",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -1373,7 +1556,9 @@
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
   "settings_reset_dialog_message": "91231407bc9c",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "sw": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -1387,8 +1572,11 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_tip_create_marker_at_bus_stop": "476522c9c44a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1411,8 +1599,10 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "ta": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -1424,8 +1614,11 @@
   "faq_difference_from_map_apps_answer": "4aff038ecccf",
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_how_to_use_beacon_answer": "721204058846",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1446,8 +1639,10 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "te": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -1460,8 +1655,11 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1490,7 +1688,9 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "th": {
   "advanced_markers_and_routes_clear_all_alert_message": "fb738568e46f",
@@ -1504,8 +1704,11 @@
   "faq_supported_headsets_answer": "3a623c785541",
   "faq_tip_create_marker_at_bus_stop": "476522c9c44a",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1535,10 +1738,12 @@
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
   "settings_search_results_language_description": "c9c45e9a06f7",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
   "tour_markers_and_routes": "b70e8feb3e4c",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "tr": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -1551,8 +1756,11 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1579,9 +1787,11 @@
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
   "stationary_on_way": "5b5a78ba18ff",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "uk": {
   "all_places_nearby_description": "472149d07f9d",
@@ -1598,8 +1808,11 @@
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_how_to_use_beacon_question": "de7694a26107",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_1": "6fe75a122076",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
@@ -1629,7 +1842,9 @@
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
   "stationary_on_way": "5b5a78ba18ff",
-  "tour_welcome": "666a4a282e29"
+  "terms_of_use_message": "3adc167f094a",
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "ur": {
   "beacon_settings_style_description": "a5a039ea45e5",
@@ -1642,8 +1857,11 @@
   "faq_headset_battery_impact_question": "21525ca27d0a",
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
   "help_text_routes_content_what": "eb7cae092fc0",
@@ -1670,11 +1888,13 @@
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
   "settings_search_results_language_description": "c9c45e9a06f7",
   "stationary_on_way": "5b5a78ba18ff",
+  "terms_of_use_message": "3adc167f094a",
   "tour_create_marker_done": "8448cb74a748",
   "tour_create_marker_started": "fadca6e33ddb",
   "tour_markers": "e8b2f8ea13f7",
   "tour_markers_and_routes": "b70e8feb3e4c",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "vi": {
   "all_places_nearby_description": "472149d07f9d",
@@ -1689,8 +1909,11 @@
   "faq_supported_headsets_answer": "3a623c785541",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
   "faq_what_is_osm_question": "08215a998862",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_customizing_markers_content_2": "7ffe1a7f225c",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -1714,11 +1937,13 @@
   "relative_degrees_direction": "79b773736901",
   "route_detail_action_next_disabled_hint": "b0165eeb5e1c",
   "route_detail_action_previous_disabled_hint": "df9a9f0e3dbe",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
   "tour_create_marker_done": "8448cb74a748",
   "tour_markers_and_routes": "b70e8feb3e4c",
   "tour_select_place": "1c22aa155fdc",
-  "tour_welcome": "666a4a282e29"
+  "tour_welcome": "666a4a282e29",
+  "universal_links_marker_share_message": "c2c264c1f073"
  },
  "zh-rCN": {
   "all_places_nearby_description": "472149d07f9d",
@@ -1734,8 +1959,11 @@
   "faq_how_to_use_beacon_answer": "721204058846",
   "faq_supported_headsets_answer": "3a623c785541",
   "faq_turn_beacon_back_on_answer": "599101432a4d",
+  "faq_when_to_use_soundscape_answer": "53ee63699840",
   "faq_why_not_every_business_answer": "e845f543765c",
   "first_launch_prompt_title": "cd6298ccaf3c",
+  "help_text_assistant_commands_ios": "ecf73eec8858",
+  "help_text_assistant_how_ios": "053bd8dd6d92",
   "help_text_creating_markers_content_1": "01bbfb394b10",
   "help_text_markers_content_3": "b33a95bc893b",
   "help_text_remote_control_how": "53e05837e127",
@@ -1770,10 +1998,12 @@
   "route_detail_action_start_route_hint": "b526abc3a752",
   "route_detail_action_stop_route_hint": "e2f0ce8cd79f",
   "search_button_current_location_accessibility_hint": "85937ce49b43",
+  "terms_of_use_message": "3adc167f094a",
   "tour_continue_hint": "b987060e7600",
   "tour_select_place": "1c22aa155fdc",
   "tour_welcome": "666a4a282e29",
   "ui_action_button_ahead_of_me_acc_hint": "625066a15dde",
-  "ui_menu_hint": "1441af1e05d6"
+  "ui_menu_hint": "1441af1e05d6",
+  "universal_links_marker_share_message": "c2c264c1f073"
  }
 }
