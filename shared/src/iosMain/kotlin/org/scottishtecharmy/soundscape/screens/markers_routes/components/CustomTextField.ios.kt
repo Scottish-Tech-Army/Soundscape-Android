@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import org.scottishtecharmy.soundscape.components.NativeTextField
 import org.scottishtecharmy.soundscape.components.usesNativeTextFields
-import org.scottishtecharmy.soundscape.screens.activationHint
 import org.scottishtecharmy.soundscape.screens.talkbackHidden
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -59,8 +58,9 @@ actual fun CustomTextField(
                 value = value,
                 onValueChange = onValueChange,
                 label = fieldName,
-                // VoiceOver reads a hint verbatim, so "Double tap to ..." is supplied here
-                hint = activationHint(fieldHint),
+                // VoiceOver follows a text field's hint with its own "Double tap to edit", so
+                // unlike a button's hint this one isn't phrased with activationHint()
+                hint = fieldHint,
                 textStyle = textStyle,
                 // These fields are in pages that scroll
                 inScrollingContainer = true,
