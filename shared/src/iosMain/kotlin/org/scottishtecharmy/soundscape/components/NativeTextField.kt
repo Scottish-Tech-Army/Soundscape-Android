@@ -90,8 +90,8 @@ private val scrollableFieldProperties =
  * [usesNativeTextFields].
  *
  * Native accessibility resolution means that we own what VoiceOver says rather than Compose:
- * [label] and [hint] are spoken, with [hint] read verbatim, and [identifier] stands in for a
- * testTag. [placeholder] is what's drawn in the field while it's empty.
+ * [label] and [hint] are spoken, with VoiceOver adding its own "Double tap to edit" after
+ * [hint], and [identifier] stands in for a testTag. [placeholder] is what's drawn in the field while it's empty.
  *
  * [onReturn] is called for the keyboard's Return key, drawn as [returnKeyType], and returns
  * whether to put the keyboard away - Compose's keyboard controller knows nothing about this
