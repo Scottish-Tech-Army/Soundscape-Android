@@ -244,7 +244,7 @@ private val stringResourceByKey: Map<String, StringResource> by lazy {
 
 fun findStringResourceByKey(key: String): StringResource? = stringResourceByKey[key]
 
-private fun markdownToHtml(markdown: String): String {
+internal fun markdownToHtml(markdown: String): String {
     val flavour = CommonMarkFlavourDescriptor()
     val tree = MarkdownParser(flavour, true, CancellationToken.NonCancellable)
         .buildMarkdownTreeFromString(markdown as CharSequence)
