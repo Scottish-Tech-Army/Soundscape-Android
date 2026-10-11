@@ -24,3 +24,9 @@ expect val analyticsEnabled: Boolean
  * content is fundamentally platform-specific (e.g. TTS setup steps).
  */
 expect val isIos: Boolean
+
+/**
+ * `true` for a debug build, which is where the options that exist only for development show up.
+ * Android: BuildConfig.DEBUG. iOS: a debug binary.
+ */
+expect val isDebugBuild: Boolean

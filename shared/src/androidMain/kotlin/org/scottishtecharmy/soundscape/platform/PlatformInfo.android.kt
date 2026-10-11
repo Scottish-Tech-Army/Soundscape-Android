@@ -15,3 +15,10 @@ actual val analyticsEnabled: Boolean = try {
 }
 
 actual val isIos: Boolean = false
+
+actual val isDebugBuild: Boolean = try {
+    val buildConfigClass = Class.forName("org.scottishtecharmy.soundscape.BuildConfig")
+    buildConfigClass.getField("DEBUG").getBoolean(null)
+} catch (_: Throwable) {
+    false
+}

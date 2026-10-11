@@ -12,3 +12,6 @@ actual fun appVersionName(): String {
 actual val analyticsEnabled: Boolean = true
 
 actual val isIos: Boolean = true
+
+@OptIn(kotlin.experimental.ExperimentalNativeApi::class)
+actual val isDebugBuild: Boolean = Platform.isDebugBinary

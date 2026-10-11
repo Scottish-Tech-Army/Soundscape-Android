@@ -44,6 +44,7 @@ import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
+import org.scottishtecharmy.soundscape.platform.isDebugBuild
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.geoengine.callouts.PlacesToCallOut
@@ -675,31 +676,34 @@ fun SharedSettingsScreen(
                 )
             }
             if (expandedSection.value == "debug") {
-                listPreference(
-                    key = PreferenceKeys.POI_RANK_STRATEGY,
-                    defaultValue = PreferenceDefaults.POI_RANK_STRATEGY,
-                    values = PoiRankStrategy.keys,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        Text(text = "Nearby POI ranking", color = textColor)
-                    },
-                    item = { value, currentValue, onClick ->
-                        ListPreferenceItem(
-                            poiRankDescriptions[PoiRankStrategy.keys.indexOf(value)],
-                            value,
-                            currentValue,
-                            onClick,
-                            PoiRankStrategy.keys.indexOf(value),
-                            PoiRankStrategy.keys.size
-                        )
-                    },
-                    summary = {
-                        ClickableOption(
-                            poiRankDescriptions[PoiRankStrategy.keys.indexOf(it)],
-                            textColor
-                        )
-                    },
-                )
+                // Not in release builds: it chooses between prototypes, not something to ship
+                if (isDebugBuild) {
+                    listPreference(
+                        key = PreferenceKeys.POI_RANK_STRATEGY,
+                        defaultValue = PreferenceDefaults.POI_RANK_STRATEGY,
+                        values = PoiRankStrategy.keys,
+                        modifier = expandedSectionModifier,
+                        title = {
+                            Text(text = "Nearby POI ranking", color = textColor)
+                        },
+                        item = { value, currentValue, onClick ->
+                            ListPreferenceItem(
+                                poiRankDescriptions[PoiRankStrategy.keys.indexOf(value)],
+                                value,
+                                currentValue,
+                                onClick,
+                                PoiRankStrategy.keys.indexOf(value),
+                                PoiRankStrategy.keys.size
+                            )
+                        },
+                        summary = {
+                            ClickableOption(
+                                poiRankDescriptions[PoiRankStrategy.keys.indexOf(it)],
+                                textColor
+                            )
+                        },
+                    )
+                }
 
                 switchPreference(
                     key = PreferenceKeys.RECORD_TRAVEL,
