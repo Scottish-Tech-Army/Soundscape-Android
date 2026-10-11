@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geoengine.utils.bestPoiForSpeech
 import org.scottishtecharmy.soundscape.geoengine.utils.address.JapaneseAddress
+import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -221,6 +222,11 @@ class OfflineGeocoder(
             }
         }
         if (nearbyWay != null) {
+            // A pavement is described as the street it runs beside, which is only known once its
+            // name has been confected. Nothing guarantees that has happened by now, and without
+            // it the first answer was "On Pavement next to Filton Road".
+            if (nearbyWay.isSidewalkOrCrossing() && (nearbyWay.properties?.get("pavement") == null))
+                confectNamesForRoad(nearbyWay, gridState, localizedStrings)
             val pavement = (nearbyWay.properties?.get("pavement") as String?)
                 .takeUnless { it.isNullOrEmpty() }
             val nearbyName = pavement
@@ -425,7 +431,14 @@ class OfflineGeocoder(
         ) as Way?
         if (nearestRoad != null) {
             // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
-            val roadName = nearestRoad.getName(null, gridState, null, true)
+            val confectedName = nearestRoad.getName(null, gridState, localizedStrings, true)
+            // A pavement is the nearest way to anywhere just off a street, and its address is the
+            // street rather than "Pavement next to" it
+            val pavement = (nearestRoad.properties?.get("pavement") as String?)
+                .takeUnless { it.isNullOrEmpty() }
+            val roadName = pavement
+                ?.let { (nearestRoad.properties?.get("pavementTranslated") as String?) ?: it }
+                ?: confectedName
             if (roadName.isNotEmpty()) {
                 return if (nearestSettlementName != null) {
                     LocationDescription(
