@@ -26,6 +26,13 @@ import org.scottishtecharmy.soundscape.utils.addressCountryCode
 import org.scottishtecharmy.soundscape.utils.deferredToLocationDescription
 
 /**
+ * How far along a street its only junction or landmark can be and still have a place described as
+ * "near" it. Where there's something either side, or a heading, 10 metres is the limit and
+ * anything further is "between" or "until" - this is for an address with neither to fall back on.
+ */
+private const val NEAR_SINGLE_LANDMARK_METRES = 100.0
+
+/**
  * The OfflineGeocoder class abstracts away the use of map tile data on the phone for geocoding and
  * reverse geocoding. If the map tiles are present on the device already, this can be used without
  * any Internet connection.
@@ -332,6 +339,24 @@ class OfflineGeocoder(
                 }
                 if (text.isNotEmpty()) {
                     return LocationDescription(text, userGeometry.location)
+                }
+                if (!nameNearbyFeatures) {
+                    // There's a named street here but not enough along it to place the location
+                    // by - only one junction or landmark, and no heading to say which side of it
+                    // this is. "Near" reads the same from either side, so it can still be said of
+                    // something a little way along; further off than that, the street on its own
+                    // is still the address. Without this the answer came from the nearest way of
+                    // any kind further down, which can be a path that's closer than the street
+                    // the place is on.
+                    if (!directional && (closest != null) &&
+                        (closest.distance < NEAR_SINGLE_LANDMARK_METRES)
+                    ) {
+                        text = localizedStrings?.get(
+                            StringKey.StreetDescriptionRelativeNear, nearbyName, closest.name
+                        ) ?: "On $nearbyName near ${closest.name}"
+                        return LocationDescription(text, userGeometry.location)
+                    }
+                    return LocationDescription(nearbyName, userGeometry.location)
                 }
             }
         }
