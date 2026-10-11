@@ -181,6 +181,27 @@ class IntersectionsTestMvt {
     }
 
     /**
+     * Pavements aren't called out as ways leaving a junction. A footway is only found to be a
+     * pavement as its name is confected, so the first callout here - before anything had asked
+     * for that name - included "Pavement next to Long Down Avenue continues ahead", and every
+     * later one left it out.
+     */
+    @Test
+    fun intersectionCalloutLeavesOutPavementsFirstTime() {
+        val (_, callout) = calloutWalkingIn(
+            LngLatAlt(-2.5440826767238023, 51.49794221303514), 98.7
+        )
+        Assert.assertNotNull(callout)
+        Assert.assertEquals(
+            listOf(
+                "DirectionsNameGoesLeft(Long Down Avenue)",
+                "DirectionsNameGoesRight(Long Down Avenue)"
+            ),
+            callout!!.positionedStrings.drop(1).map { it.text }
+        )
+    }
+
+    /**
      * The network distance to the intersection, which is what a spoken "intersection in N metres"
      * is built from. On a straight approach it should agree closely with the straight-line
      * distance; the point of measuring it along the graph is the cases where it doesn't.

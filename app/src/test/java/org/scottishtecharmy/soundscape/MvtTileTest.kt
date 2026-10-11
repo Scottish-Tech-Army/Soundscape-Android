@@ -519,6 +519,62 @@ class MvtTileTest {
     }
 
     /**
+     * Somebody walking along a pavement is on the street it runs beside, and is told so. Which
+     * street that is only becomes known as the pavement's name is confected, and nothing has to
+     * have asked for that before the first My Location - which answered "On Pavement next to
+     * Filton Road just before Harry Stoke Road" and then got it right every time after.
+     */
+    @Test
+    fun testReverseGeocodeOnAPavementNamesTheStreetFirstTime() {
+        val location = LngLatAlt(-2.544861137866974, 51.50496446342322)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val geocoder = OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
+
+        runBlocking {
+            kotlinx.coroutines.withContext(gridState.treeContext) {
+                val pavement = gridState.getNearestFeature(
+                    TreeId.ROADS_AND_PATHS, gridState.ruler, location, 5.0
+                ) as Way
+                assertEquals("sidewalk", pavement.properties?.get("footway"))
+                // Not yet known to be a pavement, which is the state the fault needed
+                assertNull(pavement.properties?.get("pavement"))
+
+                assertEquals(
+                    "On Filton Road just before Harry Stoke Road",
+                    geocoder.getAddressFromLngLat(
+                        UserGeometry(location, phoneHeading = 90.0, mapMatchedWay = pavement),
+                        null,
+                        false
+                    )?.name
+                )
+            }
+        }
+    }
+
+    /**
+     * Too far from any named road to be given an address on it, the last resort is the nearest
+     * way of any kind - and beside a street that's its pavement. The address is still the street,
+     * not "Pavement next to Coldharbour Lane".
+     */
+    @Test
+    fun testReverseGeocodeLastResortNamesTheStreetNotItsPavement() {
+        val location = LngLatAlt(-2.54553, 51.50275)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val geocoder = OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
+
+        runBlocking {
+            kotlinx.coroutines.withContext(gridState.treeContext) {
+                assertEquals(
+                    "Coldharbour Lane",
+                    geocoder.getAddressForFeature(UserGeometry(location), null, false)?.name
+                )
+            }
+        }
+    }
+
+    /**
      * "just before"/"just after"/"until"/"since" describe where a location is relative to the
      * direction you're travelling, which StreetDescription.describeLocation only knows from a
      * heading - without one it fills ahead and behind in arbitrarily. Reverse geocoding a bare

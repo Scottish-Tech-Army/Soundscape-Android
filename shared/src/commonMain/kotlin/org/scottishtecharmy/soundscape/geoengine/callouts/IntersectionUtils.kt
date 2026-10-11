@@ -694,6 +694,11 @@ fun addIntersectionCalloutFromDescription(
     val intersectionResults = trackedCallout.positionedStrings.toMutableList()
     for (way in description.intersection.members) {
 
+        // Pavements aren't called out. A footway is only found to be one as its name is confected,
+        // so that has to happen before asking - otherwise the first callout at a junction says
+        // "Pavement next to Filton Road goes left" and every later one leaves it out.
+        if (way.isSidewalkOrCrossing() && (way.properties?.get("pavement") == null))
+            confectNamesForRoad(way, gridState, localized)
         if (way.properties?.get("pavement") != null)
             continue
 
