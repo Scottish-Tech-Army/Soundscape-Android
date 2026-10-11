@@ -485,6 +485,40 @@ class MvtTileTest {
     }
 
     /**
+     * A street is never described by its own pavement. The Tesco Express on Coldharbour Lane in
+     * Bristol sits beside a junction where the only other thing meeting the road is the footway
+     * running alongside it, which gave "On Coldharbour Lane between Pavement next to Coldharbour
+     * Lane and...": the footway is only found to be a pavement as its name is confected, and the
+     * junction was being admitted to the StreetDescription before that had happened.
+     *
+     * Without that junction there's only the university further along to place the shop by, which
+     * needs a heading to say which side of it the shop is. The address of the place is then that
+     * it's near the university, and with a heading the university is what it's measured from.
+     */
+    @Test
+    fun testReverseGeocodeDoesNotDescribeAStreetByItsOwnPavement() {
+        val location = LngLatAlt(-2.54373, 51.50155)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val geocoder = OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
+
+        runBlocking {
+            kotlinx.coroutines.withContext(gridState.treeContext) {
+                assertEquals(
+                    "On Coldharbour Lane near University of the West of England (Frenchay Campus)",
+                    geocoder.getAddressForFeature(UserGeometry(location), null, false)?.name
+                )
+                assertEquals(
+                    "On Coldharbour Lane, 35 metres since University of the West of England (Frenchay Campus)",
+                    geocoder.getAddressFromLngLat(
+                        UserGeometry(location, phoneHeading = 90.0), null, false
+                    )?.name
+                )
+            }
+        }
+    }
+
+    /**
      * "just before"/"just after"/"until"/"since" describe where a location is relative to the
      * direction you're travelling, which StreetDescription.describeLocation only knows from a
      * heading - without one it fills ahead and behind in arbitrarily. Reverse geocoding a bare
@@ -4744,7 +4778,7 @@ class MvtTileTest {
     fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
-        val testFile = "TreeCoveredWalk-iphone"
+        val testFile = "bristol-bus"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
             "gpxFiles/$testFile.txt",
