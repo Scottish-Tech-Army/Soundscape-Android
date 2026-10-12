@@ -3,6 +3,7 @@ title: La technologie derrière Soundscape
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 200
 lang: fr-CA
 permalink: /users/how-it-works.html
 machine-translated: true

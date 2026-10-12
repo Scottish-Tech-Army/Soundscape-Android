@@ -3,6 +3,7 @@ title: 음성
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 100
 lang: ko
 permalink: /users/help-voices.html
 ---

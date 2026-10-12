@@ -3,6 +3,7 @@ title: Hääled
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 100
 lang: et
 permalink: /users/help-voices.html
 ---

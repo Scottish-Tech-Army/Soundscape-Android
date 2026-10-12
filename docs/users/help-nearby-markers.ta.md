@@ -3,6 +3,7 @@ title: அருகிலுள்ள குறிப்பான்கள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 50
 lang: ta
 permalink: /users/help-nearby-markers.html
 ---

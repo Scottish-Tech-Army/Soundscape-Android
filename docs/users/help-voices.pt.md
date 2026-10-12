@@ -3,6 +3,7 @@ title: Vozes
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
+nav_order: 100
 lang: pt
 permalink: /users/help-voices.html
 ---

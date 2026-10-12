@@ -3,6 +3,7 @@ title: Близки маркери
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
+nav_order: 50
 lang: bg
 permalink: /users/help-nearby-markers.html
 ---

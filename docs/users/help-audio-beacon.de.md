@@ -3,6 +3,7 @@ title: Audiobeacon
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 60
 lang: de
 permalink: /users/help-audio-beacon.html
 ---

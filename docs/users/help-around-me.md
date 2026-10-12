@@ -3,6 +3,7 @@ title: Around Me
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 40
 ---
 
 # Around Me

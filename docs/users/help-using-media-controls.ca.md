@@ -3,6 +3,7 @@ title: Utilitzar els controls multimèdia
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 110
 lang: ca
 permalink: /users/help-using-media-controls.html
 ---

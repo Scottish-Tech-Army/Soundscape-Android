@@ -3,6 +3,7 @@ title: Ses Seçenekleri
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 100
 lang: tr
 permalink: /users/help-voices.html
 ---

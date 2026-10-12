@@ -3,6 +3,7 @@ title: Xung quanh tôi
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 40
 lang: vi
 permalink: /users/help-around-me.html
 ---

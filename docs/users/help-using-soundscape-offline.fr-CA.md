@@ -3,6 +3,7 @@ title: Utiliser Soundscape hors ligne
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 140
 lang: fr-CA
 permalink: /users/help-using-soundscape-offline.html
 ---

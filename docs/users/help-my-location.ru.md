@@ -3,6 +3,7 @@ title: Моё местоположение
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 20
 lang: ru
 permalink: /users/help-my-location.html
 ---

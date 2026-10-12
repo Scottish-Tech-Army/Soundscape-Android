@@ -3,6 +3,7 @@ title: Usahihi wa GPS
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 150
 lang: sw
 permalink: /users/help-gps-accuracy.html
 ---

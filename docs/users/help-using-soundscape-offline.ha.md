@@ -3,6 +3,7 @@ title: Amfani da Soundscape Ba Tare da Intanet Ba
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 140
 lang: ha
 permalink: /users/help-using-soundscape-offline.html
 ---

@@ -3,6 +3,7 @@ title: Samodejna zvočna obvestila
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
+nav_order: 70
 lang: sl
 permalink: /users/help-automatic-callouts.html
 ---

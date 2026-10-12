@@ -3,6 +3,7 @@ title: 自動コールアウト
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 70
 lang: ja
 permalink: /users/help-automatic-callouts.html
 ---

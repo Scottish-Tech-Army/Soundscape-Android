@@ -3,6 +3,7 @@ title: सुझाव
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
+nav_order: 130
 lang: hi
 permalink: /users/help-tips.html
 ---

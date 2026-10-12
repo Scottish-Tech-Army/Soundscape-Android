@@ -3,6 +3,7 @@ title: Using Media Controls
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 110
 lang: en-GB
 permalink: /users/help-using-media-controls.html
 ---

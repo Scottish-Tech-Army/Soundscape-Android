@@ -3,6 +3,7 @@ title: Tekniken bakom Soundscape
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 200
 lang: sv
 permalink: /users/how-it-works.html
 machine-translated: true

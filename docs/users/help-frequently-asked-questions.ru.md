@@ -3,6 +3,7 @@ title: Частые вопросы
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 160
 lang: ru
 permalink: /users/help-frequently-asked-questions.html
 ---

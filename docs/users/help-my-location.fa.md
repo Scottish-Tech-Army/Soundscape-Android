@@ -3,6 +3,7 @@ title: موقعیت مکانی من
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 20
 lang: fa
 permalink: /users/help-my-location.html
 ---

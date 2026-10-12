@@ -3,6 +3,7 @@ title: Lokasi Saya
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 20
 lang: id
 permalink: /users/help-my-location.html
 ---

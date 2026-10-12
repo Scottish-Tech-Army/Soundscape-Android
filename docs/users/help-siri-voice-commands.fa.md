@@ -3,6 +3,7 @@ title: فرمان‌های صوتی Siri
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 120
 lang: fa
 permalink: /users/help-siri-voice-commands.html
 ---

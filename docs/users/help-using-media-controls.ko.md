@@ -3,6 +3,7 @@ title: 미디어 제어 사용하기
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 110
 lang: ko
 permalink: /users/help-using-media-controls.html
 ---

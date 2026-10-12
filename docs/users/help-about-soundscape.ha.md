@@ -3,6 +3,7 @@ title: Game da Soundscape
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 170
 lang: ha
 permalink: /users/help-about-soundscape.html
 ---

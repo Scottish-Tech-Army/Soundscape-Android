@@ -3,6 +3,7 @@ title: Soundscape をオフラインで使う
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 140
 lang: ja
 permalink: /users/help-using-soundscape-offline.html
 ---

@@ -3,6 +3,7 @@ title: Automatske najave
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 70
 lang: hr
 permalink: /users/help-automatic-callouts.html
 ---

@@ -3,6 +3,7 @@ title: Dźwięk naprowadzający
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 60
 lang: pl
 permalink: /users/help-audio-beacon.html
 ---

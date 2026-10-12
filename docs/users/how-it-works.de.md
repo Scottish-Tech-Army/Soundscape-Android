@@ -3,6 +3,7 @@ title: Die Technik hinter Soundscape
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 200
 lang: de
 permalink: /users/how-it-works.html
 machine-translated: true

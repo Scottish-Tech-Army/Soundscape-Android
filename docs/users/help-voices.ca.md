@@ -3,6 +3,7 @@ title: Veus
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 100
 lang: ca
 permalink: /users/help-voices.html
 ---

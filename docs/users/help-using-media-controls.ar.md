@@ -3,6 +3,7 @@ title: استخدام أزرار التحكم بالوسائط
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 110
 lang: ar
 permalink: /users/help-using-media-controls.html
 ---

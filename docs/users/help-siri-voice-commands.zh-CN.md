@@ -3,6 +3,7 @@ title: Siri 语音命令
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 120
 lang: zh-CN
 permalink: /users/help-siri-voice-commands.html
 ---

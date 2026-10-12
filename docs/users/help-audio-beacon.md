@@ -3,6 +3,7 @@ title: Audio Beacon
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 60
 ---
 
 # Audio Beacon

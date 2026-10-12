@@ -3,6 +3,7 @@ title: Голоса
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 100
 lang: ru
 permalink: /users/help-voices.html
 ---

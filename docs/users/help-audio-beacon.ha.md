@@ -3,6 +3,7 @@ title: Siginar Sauti
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 60
 lang: ha
 permalink: /users/help-audio-beacon.html
 ---

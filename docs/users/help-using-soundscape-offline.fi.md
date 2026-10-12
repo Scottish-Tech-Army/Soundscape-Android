@@ -3,6 +3,7 @@ title: Soundscapen käyttö offline-tilassa
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 140
 lang: fi
 permalink: /users/help-using-soundscape-offline.html
 ---

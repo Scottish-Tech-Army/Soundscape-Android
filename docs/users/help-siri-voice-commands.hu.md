@@ -3,6 +3,7 @@ title: Siri hangparancsok
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 120
 lang: hu
 permalink: /users/help-siri-voice-commands.html
 ---

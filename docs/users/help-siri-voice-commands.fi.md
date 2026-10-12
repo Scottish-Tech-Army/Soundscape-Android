@@ -3,6 +3,7 @@ title: Sirin äänikomennot
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 120
 lang: fi
 permalink: /users/help-siri-voice-commands.html
 ---

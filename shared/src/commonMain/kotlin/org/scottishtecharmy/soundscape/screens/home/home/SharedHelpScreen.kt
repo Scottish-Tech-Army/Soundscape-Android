@@ -254,6 +254,43 @@ internal fun markdownToHtml(markdown: String): String {
     return HtmlGenerator(markdown, tree, flavour).generateHtml()
 }
 
+// The Help index: the section headings and the pages under each, in the order the app shows
+// them. [siri] adds the Siri page, which the app only links on iOS.
+private fun helpIndex(siri: Boolean): List<Section> = listOfNotNull(
+    Section(Res.string.help_getting_started_section_title, SectionType.Title),
+    Section(Res.string.help_basics_page_title, SectionType.Link),
+
+    Section(Res.string.settings_help_section_home_screen_buttons, SectionType.Title),
+    Section(Res.string.directions_my_location, SectionType.Link),
+    Section(Res.string.help_orient_page_title, SectionType.Link),
+    Section(Res.string.help_explore_page_title, SectionType.Link),
+    Section(Res.string.callouts_nearby_markers, SectionType.Link),
+
+    Section(Res.string.settings_help_section_beacons_and_pois, SectionType.Title),
+    Section(Res.string.beacon_audio_beacon, SectionType.Link),
+    Section(Res.string.callouts_automatic_callouts, SectionType.Link),
+
+    Section(Res.string.search_view_markers, SectionType.Title),
+    Section(Res.string.markers_title, SectionType.Link),
+    Section(Res.string.routes_title, SectionType.Link),
+
+    Section(Res.string.help_configuration_section_title, SectionType.Title),
+    Section(Res.string.voice_voices, SectionType.Link),
+    Section(Res.string.help_remote_page_title, SectionType.Link),
+    if (siri) Section(Res.string.help_assistant_page_title, SectionType.Link) else null,
+
+    Section(Res.string.help_more_help_section_title, SectionType.Title),
+    Section(Res.string.faq_tips_title, SectionType.Link),
+    Section(Res.string.help_offline_page_title, SectionType.Link),
+    Section(Res.string.help_gps_accuracy_page_title, SectionType.Link),
+    Section(Res.string.faq_title, SectionType.Link),
+)
+
+// Every page the Help index can link to, in index order. The docs site lists its pages in
+// this order, and it has the Siri page whichever platform generates it.
+val helpPageOrder: List<StringResource>
+    get() = helpIndex(siri = true).filter { it.type == SectionType.Link }.map { it.textId }
+
 // This is a list of all the possible Sections that can be displayed as part of the help screen.
 // Each one has a unique titleId which is used to identify it in the route.
 val helpPages = listOf(
@@ -443,38 +480,7 @@ val helpPages = listOf(
     ),
     // The index. What a new user needs first comes first; configuration comes after the features
     // it configures.
-    Sections(
-        Res.string.menu_help,
-        listOfNotNull(
-            Section(Res.string.help_getting_started_section_title, SectionType.Title),
-            Section(Res.string.help_basics_page_title, SectionType.Link),
-
-            Section(Res.string.settings_help_section_home_screen_buttons, SectionType.Title),
-            Section(Res.string.directions_my_location, SectionType.Link),
-            Section(Res.string.help_orient_page_title, SectionType.Link),
-            Section(Res.string.help_explore_page_title, SectionType.Link),
-            Section(Res.string.callouts_nearby_markers, SectionType.Link),
-
-            Section(Res.string.settings_help_section_beacons_and_pois, SectionType.Title),
-            Section(Res.string.beacon_audio_beacon, SectionType.Link),
-            Section(Res.string.callouts_automatic_callouts, SectionType.Link),
-
-            Section(Res.string.search_view_markers, SectionType.Title),
-            Section(Res.string.markers_title, SectionType.Link),
-            Section(Res.string.routes_title, SectionType.Link),
-
-            Section(Res.string.help_configuration_section_title, SectionType.Title),
-            Section(Res.string.voice_voices, SectionType.Link),
-            Section(Res.string.help_remote_page_title, SectionType.Link),
-            if (isIos) Section(Res.string.help_assistant_page_title, SectionType.Link) else null,
-
-            Section(Res.string.help_more_help_section_title, SectionType.Title),
-            Section(Res.string.faq_tips_title, SectionType.Link),
-            Section(Res.string.help_offline_page_title, SectionType.Link),
-            Section(Res.string.help_gps_accuracy_page_title, SectionType.Link),
-            Section(Res.string.faq_title, SectionType.Link),
-        )
-    ),
+    Sections(Res.string.menu_help, helpIndex(siri = isIos)),
     Sections(
         Res.string.faq_title,
         listOf(

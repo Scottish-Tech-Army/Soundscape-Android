@@ -3,6 +3,7 @@ title: Umarnin Murya na Siri
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 120
 lang: ha
 permalink: /users/help-siri-voice-commands.html
 ---

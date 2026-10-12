@@ -3,6 +3,7 @@ title: Karibu Nami
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 40
 lang: sw
 permalink: /users/help-around-me.html
 ---

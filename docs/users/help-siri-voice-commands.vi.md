@@ -3,6 +3,7 @@ title: Lệnh thoại Siri
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 120
 lang: vi
 permalink: /users/help-siri-voice-commands.html
 ---

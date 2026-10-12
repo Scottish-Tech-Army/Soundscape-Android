@@ -3,6 +3,7 @@ title: Технології, що лежать в основі Soundscape
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 200
 lang: uk
 permalink: /users/how-it-works.html
 machine-translated: true

@@ -3,6 +3,7 @@ title: Voci
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 100
 lang: ro
 permalink: /users/help-voices.html
 ---

@@ -3,6 +3,7 @@ title: Automatic Callouts
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 70
 lang: en-GB
 permalink: /users/help-automatic-callouts.html
 ---

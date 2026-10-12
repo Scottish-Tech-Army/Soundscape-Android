@@ -3,6 +3,7 @@ title: Вокруг меня
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 40
 lang: ru
 permalink: /users/help-around-me.html
 ---

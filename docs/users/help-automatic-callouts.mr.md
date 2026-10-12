@@ -3,6 +3,7 @@ title: स्वयंचलित ध्वनी सूचना
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
+nav_order: 70
 lang: mr
 permalink: /users/help-automatic-callouts.html
 ---

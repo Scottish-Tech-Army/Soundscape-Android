@@ -3,6 +3,7 @@ title: ਮਾਰਕਰ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 80
 lang: pa
 permalink: /users/help-markers.html
 ---

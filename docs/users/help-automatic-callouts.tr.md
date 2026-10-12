@@ -3,6 +3,7 @@ title: Otomatik Anonslar
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 70
 lang: tr
 permalink: /users/help-automatic-callouts.html
 ---

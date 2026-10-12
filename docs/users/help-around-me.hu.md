@@ -3,6 +3,7 @@ title: Körülöttem
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 40
 lang: hu
 permalink: /users/help-around-me.html
 ---

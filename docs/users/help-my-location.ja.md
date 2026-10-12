@@ -3,6 +3,7 @@ title: 現在地
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 20
 lang: ja
 permalink: /users/help-my-location.html
 ---

@@ -3,6 +3,7 @@ title: Algengar spurningar
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 160
 lang: is
 permalink: /users/help-frequently-asked-questions.html
 ---

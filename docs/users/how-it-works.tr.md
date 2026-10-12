@@ -3,6 +3,7 @@ title: Soundscape’in arkasındaki teknoloji
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 200
 lang: tr
 permalink: /users/how-it-works.html
 machine-translated: true

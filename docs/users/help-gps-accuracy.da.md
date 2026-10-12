@@ -3,6 +3,7 @@ title: GPS-nøjagtighed
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 150
 lang: da
 permalink: /users/help-gps-accuracy.html
 ---

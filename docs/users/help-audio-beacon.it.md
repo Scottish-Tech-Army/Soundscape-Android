@@ -3,6 +3,7 @@ title: Audiofaro
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 60
 lang: it
 permalink: /users/help-audio-beacon.html
 ---

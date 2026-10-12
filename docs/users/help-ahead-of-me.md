@@ -3,6 +3,7 @@ title: Ahead of Me
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 30
 ---
 
 # Ahead of Me

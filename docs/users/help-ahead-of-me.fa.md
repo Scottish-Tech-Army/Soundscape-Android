@@ -3,6 +3,7 @@ title: مقابل من
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 30
 lang: fa
 permalink: /users/help-ahead-of-me.html
 ---

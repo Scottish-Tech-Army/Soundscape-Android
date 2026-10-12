@@ -3,6 +3,7 @@ title: Soundscape のしくみ
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 10
 lang: ja
 permalink: /users/help-how-soundscape-works.html
 ---

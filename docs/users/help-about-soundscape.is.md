@@ -3,6 +3,7 @@ title: Um Soundscape
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 170
 lang: is
 permalink: /users/help-about-soundscape.html
 ---

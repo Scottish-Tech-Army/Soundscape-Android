@@ -3,6 +3,7 @@ title: Soundscape’i kasutamine võrguühenduseta
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 140
 lang: et
 permalink: /users/help-using-soundscape-offline.html
 ---

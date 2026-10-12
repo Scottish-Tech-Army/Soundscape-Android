@@ -3,6 +3,7 @@ title: GPS-noggrannhet
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 150
 lang: sv
 permalink: /users/help-gps-accuracy.html
 ---

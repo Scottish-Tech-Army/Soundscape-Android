@@ -3,6 +3,7 @@ title: Automatiske lydbeskeder
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 70
 lang: da
 permalink: /users/help-automatic-callouts.html
 ---

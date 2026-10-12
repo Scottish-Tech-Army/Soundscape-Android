@@ -3,6 +3,7 @@ title: 音频信标
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 60
 lang: zh-CN
 permalink: /users/help-audio-beacon.html
 ---

@@ -3,6 +3,7 @@ title: Balise sonore
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 60
 lang: fr
 permalink: /users/help-audio-beacon.html
 ---

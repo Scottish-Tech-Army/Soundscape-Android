@@ -3,6 +3,7 @@ title: Độ chính xác GPS
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 150
 lang: vi
 permalink: /users/help-gps-accuracy.html
 ---

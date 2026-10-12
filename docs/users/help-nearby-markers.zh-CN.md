@@ -3,6 +3,7 @@ title: 附近标记点
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 50
 lang: zh-CN
 permalink: /users/help-nearby-markers.html
 ---

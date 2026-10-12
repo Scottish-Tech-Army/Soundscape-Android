@@ -3,6 +3,7 @@ title: Thông báo âm thanh tự động
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 70
 lang: vi
 permalink: /users/help-automatic-callouts.html
 ---

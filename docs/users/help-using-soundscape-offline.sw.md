@@ -3,6 +3,7 @@ title: Kutumia Soundscape Nje ya Mtandao
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 140
 lang: sw
 permalink: /users/help-using-soundscape-offline.html
 ---

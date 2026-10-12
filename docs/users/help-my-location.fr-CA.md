@@ -3,6 +3,7 @@ title: Mon emplacement
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 20
 lang: fr-CA
 permalink: /users/help-my-location.html
 ---

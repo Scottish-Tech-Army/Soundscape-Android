@@ -3,6 +3,7 @@ title: Nálæg merki
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 50
 lang: is
 permalink: /users/help-nearby-markers.html
 ---

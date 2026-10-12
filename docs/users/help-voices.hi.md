@@ -3,6 +3,7 @@ title: आवाज़ें
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
+nav_order: 100
 lang: hi
 permalink: /users/help-voices.html
 ---

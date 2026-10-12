@@ -3,6 +3,7 @@ title: درباره‌ی ساند‌اسکیپ
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 170
 lang: fa
 permalink: /users/help-about-soundscape.html
 ---

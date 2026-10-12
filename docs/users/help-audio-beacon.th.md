@@ -3,6 +3,7 @@ title: บีคอนเสียง
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 60
 lang: th
 permalink: /users/help-audio-beacon.html
 ---

@@ -3,6 +3,7 @@ title: Äänimajakka
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 60
 lang: fi
 permalink: /users/help-audio-beacon.html
 ---

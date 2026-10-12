@@ -3,6 +3,7 @@ title: Uporaba aplikacije Soundscape brez povezave
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
+nav_order: 140
 lang: sl
 permalink: /users/help-using-soundscape-offline.html
 ---

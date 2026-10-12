@@ -3,6 +3,7 @@ title: Min posisjon
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 20
 lang: nb
 permalink: /users/help-my-location.html
 ---

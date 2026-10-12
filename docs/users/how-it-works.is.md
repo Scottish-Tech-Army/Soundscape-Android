@@ -3,6 +3,7 @@ title: Tæknin á bak við Soundscape
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 200
 lang: is
 permalink: /users/how-it-works.html
 machine-translated: true

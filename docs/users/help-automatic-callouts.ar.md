@@ -3,6 +3,7 @@ title: النداءات الصوتية التلقائية
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 70
 lang: ar
 permalink: /users/help-automatic-callouts.html
 ---

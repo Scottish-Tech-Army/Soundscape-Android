@@ -3,6 +3,7 @@ title: Glasovni ukazi za Siri
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
+nav_order: 120
 lang: sl
 permalink: /users/help-siri-voice-commands.html
 ---

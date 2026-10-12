@@ -3,6 +3,7 @@ title: Ακρίβεια GPS
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 150
 lang: el
 permalink: /users/help-gps-accuracy.html
 ---

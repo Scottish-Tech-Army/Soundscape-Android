@@ -3,6 +3,7 @@ title: Avisos de veu automàtics
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 70
 lang: ca
 permalink: /users/help-automatic-callouts.html
 ---

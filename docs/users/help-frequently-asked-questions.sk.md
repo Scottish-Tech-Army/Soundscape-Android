@@ -3,6 +3,7 @@ title: Často kladené otázky
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 160
 lang: sk
 permalink: /users/help-frequently-asked-questions.html
 ---

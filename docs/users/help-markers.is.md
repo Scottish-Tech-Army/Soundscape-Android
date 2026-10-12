@@ -3,6 +3,7 @@ title: Merki
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 80
 lang: is
 permalink: /users/help-markers.html
 ---

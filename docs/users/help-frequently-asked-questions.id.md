@@ -3,6 +3,7 @@ title: Pertanyaan yang Sering Diajukan
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 160
 lang: id
 permalink: /users/help-frequently-asked-questions.html
 ---

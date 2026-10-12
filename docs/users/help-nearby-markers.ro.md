@@ -3,6 +3,7 @@ title: Marcaje din apropiere
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 50
 lang: ro
 permalink: /users/help-nearby-markers.html
 ---

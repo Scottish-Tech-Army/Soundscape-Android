@@ -3,6 +3,7 @@ title: Мітки поблизу
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 50
 lang: uk
 permalink: /users/help-nearby-markers.html
 ---

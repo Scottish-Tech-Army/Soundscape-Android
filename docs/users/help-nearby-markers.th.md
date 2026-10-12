@@ -3,6 +3,7 @@ title: หมุดใกล้เคียง
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 50
 lang: th
 permalink: /users/help-nearby-markers.html
 ---

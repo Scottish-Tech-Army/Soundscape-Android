@@ -3,6 +3,7 @@ title: Používání Soundscape offline
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
+nav_order: 140
 lang: cs
 permalink: /users/help-using-soundscape-offline.html
 ---

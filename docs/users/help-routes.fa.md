@@ -3,6 +3,7 @@ title: مسیرها
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 90
 lang: fa
 permalink: /users/help-routes.html
 ---

@@ -3,6 +3,7 @@ title: Znaczniki
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 80
 lang: pl
 permalink: /users/help-markers.html
 ---

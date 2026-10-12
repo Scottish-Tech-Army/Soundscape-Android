@@ -3,6 +3,7 @@ title: Soundscape hoạt động như thế nào
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 10
 lang: vi
 permalink: /users/help-how-soundscape-works.html
 ---

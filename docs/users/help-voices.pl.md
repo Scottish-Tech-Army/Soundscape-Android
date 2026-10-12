@@ -3,6 +3,7 @@ title: Wybór głosu TTS
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 100
 lang: pl
 permalink: /users/help-voices.html
 ---

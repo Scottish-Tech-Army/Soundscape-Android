@@ -3,6 +3,7 @@ title: Hogyan működik a Soundscape
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 10
 lang: hu
 permalink: /users/help-how-soundscape-works.html
 ---

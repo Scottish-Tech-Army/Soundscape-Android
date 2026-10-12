@@ -3,6 +3,7 @@ title: Sesli İşaret
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 60
 lang: tr
 permalink: /users/help-audio-beacon.html
 ---

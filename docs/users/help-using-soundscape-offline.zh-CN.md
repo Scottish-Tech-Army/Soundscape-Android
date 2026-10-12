@@ -3,6 +3,7 @@ title: 离线使用 Soundscape
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 140
 lang: zh-CN
 permalink: /users/help-using-soundscape-offline.html
 ---

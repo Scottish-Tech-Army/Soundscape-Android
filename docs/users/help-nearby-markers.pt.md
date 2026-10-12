@@ -3,6 +3,7 @@ title: Marcos nas Proximidades
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
+nav_order: 50
 lang: pt
 permalink: /users/help-nearby-markers.html
 ---

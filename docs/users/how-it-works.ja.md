@@ -3,6 +3,7 @@ title: Soundscape を支える技術
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 200
 lang: ja
 permalink: /users/how-it-works.html
 machine-translated: true

@@ -3,6 +3,7 @@ title: Soundscapen taustalla oleva tekniikka
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 200
 lang: fi
 permalink: /users/how-it-works.html
 machine-translated: true

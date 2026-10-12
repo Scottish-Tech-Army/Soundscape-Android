@@ -3,6 +3,7 @@ title: 我的位置
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 20
 lang: zh-CN
 permalink: /users/help-my-location.html
 ---

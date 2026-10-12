@@ -3,6 +3,7 @@ title: ਰੂਟ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 90
 lang: pa
 permalink: /users/help-routes.html
 ---

@@ -3,6 +3,7 @@ title: Гласове
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
+nav_order: 100
 lang: bg
 permalink: /users/help-voices.html
 ---

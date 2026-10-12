@@ -3,6 +3,7 @@ title: Annonces automatiques
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 70
 lang: fr
 permalink: /users/help-automatic-callouts.html
 ---

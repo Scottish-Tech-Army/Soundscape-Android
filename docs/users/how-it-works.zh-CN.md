@@ -3,6 +3,7 @@ title: Soundscape 背后的技术
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 200
 lang: zh-CN
 permalink: /users/how-it-works.html
 machine-translated: true

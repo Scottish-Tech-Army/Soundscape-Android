@@ -3,6 +3,7 @@ title: よくあるご質問 (FAQ)
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 160
 lang: ja
 permalink: /users/help-frequently-asked-questions.html
 ---

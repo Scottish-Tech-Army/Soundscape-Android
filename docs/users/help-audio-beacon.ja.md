@@ -3,6 +3,7 @@ title: 音声ビーコン
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 60
 lang: ja
 permalink: /users/help-audio-beacon.html
 ---

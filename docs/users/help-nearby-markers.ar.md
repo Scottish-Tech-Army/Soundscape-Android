@@ -3,6 +3,7 @@ title: العلامات القريبة
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 50
 lang: ar
 permalink: /users/help-nearby-markers.html
 ---

@@ -3,6 +3,7 @@ title: Soundscape 오프라인으로 사용하기
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 140
 lang: ko
 permalink: /users/help-using-soundscape-offline.html
 ---

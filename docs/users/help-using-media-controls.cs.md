@@ -3,6 +3,7 @@ title: Používání ovládacích prvků médií
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
+nav_order: 110
 lang: cs
 permalink: /users/help-using-media-controls.html
 ---

@@ -3,6 +3,7 @@ title: Voix
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 100
 lang: fr
 permalink: /users/help-voices.html
 ---

@@ -3,6 +3,7 @@ title: Siri व्हॉइस आदेश
 layout: page
 parent: "Soundscape वापरणे"
 has_toc: false
+nav_order: 120
 lang: mr
 permalink: /users/help-siri-voice-commands.html
 ---

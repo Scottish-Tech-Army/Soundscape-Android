@@ -3,6 +3,7 @@ title: Ruter
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 90
 lang: nb
 permalink: /users/help-routes.html
 ---

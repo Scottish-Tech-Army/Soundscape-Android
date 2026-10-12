@@ -3,6 +3,7 @@ title: குறிப்புகள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 130
 lang: ta
 permalink: /users/help-tips.html
 ---

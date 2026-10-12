@@ -3,6 +3,7 @@ title: Η τεχνολογία πίσω από το Soundscape
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 200
 lang: el
 permalink: /users/how-it-works.html
 machine-translated: true

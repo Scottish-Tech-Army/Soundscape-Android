@@ -3,6 +3,7 @@ title: Teknologien bak Soundscape
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 200
 lang: nb
 permalink: /users/how-it-works.html
 machine-translated: true

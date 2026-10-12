@@ -3,6 +3,7 @@ title: 前方
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 30
 lang: ja
 permalink: /users/help-ahead-of-me.html
 ---

@@ -3,6 +3,7 @@ title: Suara
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 100
 lang: id
 permalink: /users/help-voices.html
 ---

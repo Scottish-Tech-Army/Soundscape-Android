@@ -3,6 +3,7 @@ title: Daidaiton GPS
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 150
 lang: ha
 permalink: /users/help-gps-accuracy.html
 ---

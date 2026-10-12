@@ -3,6 +3,7 @@ title: Utilisation des commandes multimédias
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 110
 lang: fr
 permalink: /users/help-using-media-controls.html
 ---

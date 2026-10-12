@@ -3,6 +3,7 @@ title: Soundscape 작동 방식
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 10
 lang: ko
 permalink: /users/help-how-soundscape-works.html
 ---

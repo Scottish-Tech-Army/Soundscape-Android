@@ -3,6 +3,7 @@ title: Om Soundscape
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 170
 lang: sv
 permalink: /users/help-about-soundscape.html
 ---

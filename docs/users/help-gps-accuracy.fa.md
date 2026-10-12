@@ -3,6 +3,7 @@ title: دقت GPS
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 150
 lang: fa
 permalink: /users/help-gps-accuracy.html
 ---

@@ -3,6 +3,7 @@ title: Come funziona Soundscape
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 10
 lang: it
 permalink: /users/help-how-soundscape-works.html
 ---

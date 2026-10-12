@@ -3,6 +3,7 @@ title: Közeli jelölők
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 50
 lang: hu
 permalink: /users/help-nearby-markers.html
 ---

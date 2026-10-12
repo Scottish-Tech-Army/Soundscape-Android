@@ -3,6 +3,7 @@ title: GPS-i täpsus
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 150
 lang: et
 permalink: /users/help-gps-accuracy.html
 ---

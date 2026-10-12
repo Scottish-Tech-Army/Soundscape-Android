@@ -3,6 +3,7 @@ title: Vidokezo
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 130
 lang: sw
 permalink: /users/help-tips.html
 ---

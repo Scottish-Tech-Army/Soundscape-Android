@@ -3,6 +3,7 @@ title: Leiðir
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 90
 lang: is
 permalink: /users/help-routes.html
 ---

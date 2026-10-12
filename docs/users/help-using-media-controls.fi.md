@@ -3,6 +3,7 @@ title: Mediasäädinten käyttö
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 110
 lang: fi
 permalink: /users/help-using-media-controls.html
 ---

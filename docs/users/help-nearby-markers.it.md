@@ -3,6 +3,7 @@ title: Indicatori nelle vicinanze
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 50
 lang: it
 permalink: /users/help-nearby-markers.html
 ---

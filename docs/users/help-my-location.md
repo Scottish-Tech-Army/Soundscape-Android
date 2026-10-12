@@ -3,6 +3,7 @@ title: My Location
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 20
 ---
 
 # My Location

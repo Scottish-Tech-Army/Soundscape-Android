@@ -3,6 +3,7 @@ title: Brug af Soundscape offline
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 140
 lang: da
 permalink: /users/help-using-soundscape-offline.html
 ---

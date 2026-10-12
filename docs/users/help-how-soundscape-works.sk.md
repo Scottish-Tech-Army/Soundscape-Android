@@ -3,6 +3,7 @@ title: Ako Soundscape funguje
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 10
 lang: sk
 permalink: /users/help-how-soundscape-works.html
 ---

@@ -3,6 +3,7 @@ title: คำถามที่พบบ่อย
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 160
 lang: th
 permalink: /users/help-frequently-asked-questions.html
 ---

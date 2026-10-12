@@ -3,6 +3,7 @@ title: GPS ਸਟੀਕਤਾ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 150
 lang: pa
 permalink: /users/help-gps-accuracy.html
 ---

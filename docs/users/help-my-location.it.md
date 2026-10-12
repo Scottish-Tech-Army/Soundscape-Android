@@ -3,6 +3,7 @@ title: La mia posizione
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 20
 lang: it
 permalink: /users/help-my-location.html
 ---

@@ -3,6 +3,7 @@ title: వాయిస్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 100
 lang: te
 permalink: /users/help-voices.html
 ---

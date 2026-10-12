@@ -3,6 +3,7 @@ title: Siri వాయిస్ కమాండ్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 120
 lang: te
 permalink: /users/help-siri-voice-commands.html
 ---

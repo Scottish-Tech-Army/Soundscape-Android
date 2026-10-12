@@ -3,6 +3,7 @@ title: 声
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 100
 lang: ja
 permalink: /users/help-voices.html
 ---

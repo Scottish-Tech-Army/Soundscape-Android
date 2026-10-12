@@ -3,6 +3,7 @@ title: Sugerencias
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
+nav_order: 130
 lang: es
 permalink: /users/help-tips.html
 ---

@@ -3,6 +3,7 @@ title: 마커
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 80
 lang: ko
 permalink: /users/help-markers.html
 ---

@@ -3,6 +3,7 @@ title: Moja lokacija
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 20
 lang: hr
 permalink: /users/help-my-location.html
 ---

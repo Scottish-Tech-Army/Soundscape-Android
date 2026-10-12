@@ -3,6 +3,7 @@ title: 내 위치
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 20
 lang: ko
 permalink: /users/help-my-location.html
 ---

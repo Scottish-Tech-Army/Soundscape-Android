@@ -3,6 +3,7 @@ title: Kuhusu Soundscape
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 170
 lang: sw
 permalink: /users/help-about-soundscape.html
 ---

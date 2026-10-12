@@ -3,6 +3,7 @@ title: Tietoja Soundscapesta
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 170
 lang: fi
 permalink: /users/help-about-soundscape.html
 ---

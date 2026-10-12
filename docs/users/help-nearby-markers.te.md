@@ -3,6 +3,7 @@ title: సమీప మార్కర్‌లు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 50
 lang: te
 permalink: /users/help-nearby-markers.html
 ---

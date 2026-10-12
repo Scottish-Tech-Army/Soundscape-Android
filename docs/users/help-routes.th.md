@@ -3,6 +3,7 @@ title: เส้นทาง
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 90
 lang: th
 permalink: /users/help-routes.html
 ---

@@ -3,6 +3,7 @@ title: Suar Audio
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 60
 lang: id
 permalink: /users/help-audio-beacon.html
 ---

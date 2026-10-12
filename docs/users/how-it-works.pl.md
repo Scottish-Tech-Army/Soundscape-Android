@@ -3,6 +3,7 @@ title: Technologia stojąca za Soundscape
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 200
 lang: pl
 permalink: /users/how-it-works.html
 machine-translated: true

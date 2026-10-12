@@ -3,6 +3,7 @@ title: Automatikus bemondások
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 70
 lang: hu
 permalink: /users/help-automatic-callouts.html
 ---

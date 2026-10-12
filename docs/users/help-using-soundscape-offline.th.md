@@ -3,6 +3,7 @@ title: การใช้ Soundscape แบบออฟไลน์
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 140
 lang: th
 permalink: /users/help-using-soundscape-offline.html
 ---

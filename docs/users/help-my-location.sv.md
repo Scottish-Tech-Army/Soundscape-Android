@@ -3,6 +3,7 @@ title: Min plats
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 20
 lang: sv
 permalink: /users/help-my-location.html
 ---

@@ -3,6 +3,7 @@ title: メディアコントロールの使用
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 110
 lang: ja
 permalink: /users/help-using-media-controls.html
 ---

@@ -3,6 +3,7 @@ title: Siri ভয়েস কমান্ড
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
+nav_order: 120
 lang: bn
 permalink: /users/help-siri-voice-commands.html
 ---

@@ -3,6 +3,7 @@ title: GPS ఖచ్చితత్వం
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 150
 lang: te
 permalink: /users/help-gps-accuracy.html
 ---

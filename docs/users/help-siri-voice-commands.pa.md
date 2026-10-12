@@ -3,6 +3,7 @@ title: Siri ਆਵਾਜ਼ੀ ਹੁਕਮ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 120
 lang: pa
 permalink: /users/help-siri-voice-commands.html
 ---

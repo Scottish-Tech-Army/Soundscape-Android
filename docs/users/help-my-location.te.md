@@ -3,6 +3,7 @@ title: నా స్థానం
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 20
 lang: te
 permalink: /users/help-my-location.html
 ---

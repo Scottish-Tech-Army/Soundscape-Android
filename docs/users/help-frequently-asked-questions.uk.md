@@ -3,6 +3,7 @@ title: Поширені запитання
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 160
 lang: uk
 permalink: /users/help-frequently-asked-questions.html
 ---

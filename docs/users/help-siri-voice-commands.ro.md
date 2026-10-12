@@ -3,6 +3,7 @@ title: Comenzi vocale Siri
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 120
 lang: ro
 permalink: /users/help-siri-voice-commands.html
 ---

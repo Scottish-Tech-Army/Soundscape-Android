@@ -3,6 +3,7 @@ title: Χρήση του Soundscape εκτός σύνδεσης
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 140
 lang: el
 permalink: /users/help-using-soundscape-offline.html
 ---

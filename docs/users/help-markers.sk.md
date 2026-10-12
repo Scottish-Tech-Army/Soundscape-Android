@@ -3,6 +3,7 @@ title: Značky
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 80
 lang: sk
 permalink: /users/help-markers.html
 ---

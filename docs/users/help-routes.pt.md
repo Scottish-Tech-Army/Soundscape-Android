@@ -3,6 +3,7 @@ title: Rotas
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
+nav_order: 90
 lang: pt
 permalink: /users/help-routes.html
 ---

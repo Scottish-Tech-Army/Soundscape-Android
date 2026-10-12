@@ -3,6 +3,7 @@ title: Yakındaki Kayıtlı Noktalar
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 50
 lang: tr
 permalink: /users/help-nearby-markers.html
 ---

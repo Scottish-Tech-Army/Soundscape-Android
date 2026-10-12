@@ -3,6 +3,7 @@ title: Around Me
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 40
 lang: en-GB
 permalink: /users/help-around-me.html
 ---

@@ -3,6 +3,7 @@ title: أوامر Siri الصوتية
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 120
 lang: ar
 permalink: /users/help-siri-voice-commands.html
 ---

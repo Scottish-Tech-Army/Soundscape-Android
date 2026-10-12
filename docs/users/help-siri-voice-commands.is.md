@@ -3,6 +3,7 @@ title: Raddskipanir með Siri
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 120
 lang: is
 permalink: /users/help-siri-voice-commands.html
 ---

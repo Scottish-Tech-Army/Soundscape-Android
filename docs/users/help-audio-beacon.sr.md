@@ -3,6 +3,7 @@ title: Звучни бакен
 layout: page
 parent: "Коришћење Soundscape"
 has_toc: false
+nav_order: 60
 lang: sr
 permalink: /users/help-audio-beacon.html
 ---

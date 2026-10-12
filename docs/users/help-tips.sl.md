@@ -3,6 +3,7 @@ title: Nasveti
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
+nav_order: 130
 lang: sl
 permalink: /users/help-tips.html
 ---

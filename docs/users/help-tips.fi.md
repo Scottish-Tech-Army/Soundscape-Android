@@ -3,6 +3,7 @@ title: Vinkkejä
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 130
 lang: fi
 permalink: /users/help-tips.html
 ---

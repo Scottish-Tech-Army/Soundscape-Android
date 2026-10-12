@@ -3,6 +3,7 @@ title: تجاویز
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 130
 lang: ur
 permalink: /users/help-tips.html
 ---

@@ -3,6 +3,7 @@ title: دقة GPS
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 150
 lang: ar
 permalink: /users/help-gps-accuracy.html
 ---

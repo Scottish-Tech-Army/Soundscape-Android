@@ -3,6 +3,7 @@ title: GPS doğruluğu
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 150
 lang: tr
 permalink: /users/help-gps-accuracy.html
 ---

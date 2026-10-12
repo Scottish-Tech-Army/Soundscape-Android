@@ -3,6 +3,7 @@ title: Κοντινοί δείκτες
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 50
 lang: el
 permalink: /users/help-nearby-markers.html
 ---

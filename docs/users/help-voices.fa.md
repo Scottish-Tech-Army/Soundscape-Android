@@ -3,6 +3,7 @@ title: صدای موتور صوتی
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 100
 lang: fa
 permalink: /users/help-voices.html
 ---

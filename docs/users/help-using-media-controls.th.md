@@ -3,6 +3,7 @@ title: การใช้ปุ่มควบคุมสื่อ
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 110
 lang: th
 permalink: /users/help-using-media-controls.html
 ---

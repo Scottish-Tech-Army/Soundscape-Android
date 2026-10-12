@@ -3,6 +3,7 @@ title: Yadda Soundscape Yake Aiki
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 10
 lang: ha
 permalink: /users/help-how-soundscape-works.html
 ---

@@ -3,6 +3,7 @@ title: Oznake u blizini
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 50
 lang: hr
 permalink: /users/help-nearby-markers.html
 ---

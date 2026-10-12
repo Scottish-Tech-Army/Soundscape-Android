@@ -3,6 +3,7 @@ title: Teave Soundscape'i kohta
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 170
 lang: et
 permalink: /users/help-about-soundscape.html
 ---

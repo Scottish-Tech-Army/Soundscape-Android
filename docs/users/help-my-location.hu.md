@@ -3,6 +3,7 @@ title: Saját helyzetem
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 20
 lang: hu
 permalink: /users/help-my-location.html
 ---

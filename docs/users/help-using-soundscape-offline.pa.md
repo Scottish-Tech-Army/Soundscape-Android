@@ -3,6 +3,7 @@ title: Soundscape ਨੂੰ ਆਫ਼ਲਾਈਨ ਵਰਤਣਾ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 140
 lang: pa
 permalink: /users/help-using-soundscape-offline.html
 ---

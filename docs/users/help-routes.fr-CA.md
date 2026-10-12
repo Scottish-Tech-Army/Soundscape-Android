@@ -3,6 +3,7 @@ title: Itinéraires
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 90
 lang: fr-CA
 permalink: /users/help-routes.html
 ---

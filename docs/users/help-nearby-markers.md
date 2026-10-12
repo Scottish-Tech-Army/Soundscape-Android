@@ -3,6 +3,7 @@ title: Nearby Markers
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 50
 ---
 
 # Nearby Markers

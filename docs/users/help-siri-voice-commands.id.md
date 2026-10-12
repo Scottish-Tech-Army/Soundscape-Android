@@ -3,6 +3,7 @@ title: Perintah Suara Siri
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 120
 lang: id
 permalink: /users/help-siri-voice-commands.html
 ---

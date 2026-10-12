@@ -3,6 +3,7 @@ title: Em Meu Redor
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
+nav_order: 40
 lang: pt
 permalink: /users/help-around-me.html
 ---

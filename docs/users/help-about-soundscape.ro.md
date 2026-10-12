@@ -3,6 +3,7 @@ title: Despre Soundscape
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 170
 lang: ro
 permalink: /users/help-about-soundscape.html
 ---

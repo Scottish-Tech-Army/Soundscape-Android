@@ -3,6 +3,7 @@ title: Foran mig
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 30
 lang: da
 permalink: /users/help-ahead-of-me.html
 ---

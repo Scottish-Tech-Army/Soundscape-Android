@@ -3,6 +3,7 @@ title: เกี่ยวกับ Soundscape
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 170
 lang: th
 permalink: /users/help-about-soundscape.html
 ---

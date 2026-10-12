@@ -3,6 +3,7 @@ title: ਮੀਡੀਆ ਕੰਟਰੋਲ ਵਰਤਣਾ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 110
 lang: pa
 permalink: /users/help-using-media-controls.html
 ---

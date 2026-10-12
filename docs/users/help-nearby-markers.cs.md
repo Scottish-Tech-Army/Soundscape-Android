@@ -3,6 +3,7 @@ title: Značky v okolí
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
+nav_order: 50
 lang: cs
 permalink: /users/help-nearby-markers.html
 ---

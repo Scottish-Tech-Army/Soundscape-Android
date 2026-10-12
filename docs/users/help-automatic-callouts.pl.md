@@ -3,6 +3,7 @@ title: Automatyczne powiadomienia głosowe
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 70
 lang: pl
 permalink: /users/help-automatic-callouts.html
 ---

@@ -3,6 +3,7 @@ title: ルート
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 90
 lang: ja
 permalink: /users/help-routes.html
 ---

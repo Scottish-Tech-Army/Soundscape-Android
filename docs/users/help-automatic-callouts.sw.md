@@ -3,6 +3,7 @@ title: Matangazo ya Sauti Kiotomatiki
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 70
 lang: sw
 permalink: /users/help-automatic-callouts.html
 ---

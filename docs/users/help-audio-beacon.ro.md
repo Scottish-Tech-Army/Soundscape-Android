@@ -3,6 +3,7 @@ title: Baliză audio
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 60
 lang: ro
 permalink: /users/help-audio-beacon.html
 ---

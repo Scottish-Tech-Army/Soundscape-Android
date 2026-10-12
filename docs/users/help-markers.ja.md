@@ -3,6 +3,7 @@ title: マーカー
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 80
 lang: ja
 permalink: /users/help-markers.html
 ---

@@ -3,6 +3,7 @@ title: Marcadors propers
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 50
 lang: ca
 permalink: /users/help-nearby-markers.html
 ---

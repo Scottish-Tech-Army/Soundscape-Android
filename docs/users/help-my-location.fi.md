@@ -3,6 +3,7 @@ title: Oma sijaintini
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 20
 lang: fi
 permalink: /users/help-my-location.html
 ---

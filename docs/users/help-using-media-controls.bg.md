@@ -3,6 +3,7 @@ title: Използване на медийните контроли
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
+nav_order: 110
 lang: bg
 permalink: /users/help-using-media-controls.html
 ---

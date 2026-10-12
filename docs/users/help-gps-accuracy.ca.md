@@ -3,6 +3,7 @@ title: Precisió del GPS
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 150
 lang: ca
 permalink: /users/help-gps-accuracy.html
 ---

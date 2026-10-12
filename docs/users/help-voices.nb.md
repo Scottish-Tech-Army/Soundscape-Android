@@ -3,6 +3,7 @@ title: Stemmer
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 100
 lang: nb
 permalink: /users/help-voices.html
 ---

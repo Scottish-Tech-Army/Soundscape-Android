@@ -3,6 +3,7 @@ title: Использование Soundscape без интернета
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 140
 lang: ru
 permalink: /users/help-using-soundscape-offline.html
 ---

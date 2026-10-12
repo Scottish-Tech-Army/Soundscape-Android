@@ -3,6 +3,7 @@ title: Маркери
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
+nav_order: 80
 lang: bg
 permalink: /users/help-markers.html
 ---

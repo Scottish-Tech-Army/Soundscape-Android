@@ -3,6 +3,7 @@ title: చిట్కాలు
 layout: page
 parent: "Soundscape వాడకం"
 has_toc: false
+nav_order: 130
 lang: te
 permalink: /users/help-tips.html
 ---

@@ -3,6 +3,7 @@ title: 常见问题
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 160
 lang: zh-CN
 permalink: /users/help-frequently-asked-questions.html
 ---

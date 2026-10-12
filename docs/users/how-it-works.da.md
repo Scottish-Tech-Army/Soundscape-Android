@@ -3,6 +3,7 @@ title: Teknologien bag Soundscape
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 200
 lang: da
 permalink: /users/how-it-works.html
 machine-translated: true
