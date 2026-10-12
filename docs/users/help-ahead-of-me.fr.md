@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Devant moi
 
-## De quoi s’agit-il ?
+*Devant moi* annonce jusqu’à cinq lieux situés devant vous. Vous entendez chacun depuis sa propre direction, avec sa distance. Utilisez-le dans une rue que vous ne connaissez pas, pour savoir ce qui vous attend.
 
-Le bouton *Devant moi* vous indique jusqu’à cinq éléments se trouvant devant vous. *Devant moi* est conçu pour vous aider à explorer ce qui se présente devant vous lorsque vous découvrez une nouvelle zone.
-
-## Quand l’utiliser ?
-
-Lorsque vous marchez dans la rue, essayez d’utiliser *Devant moi* pour découvrir les lieux et les éléments qui se présentent plus loin, de part et d’autre de la rue.
-
-## Comment ça fonctionne ?
-
-Comme avec les quatre boutons situés en bas de l’écran d’accueil, tenez votre téléphone à plat (écran face au ciel) et le haut de votre téléphone pointé vers la direction face à vous avant d’appuyer sur le bouton *Devant moi*. Cette opération agit comme une boussole et indique à l’application la direction face à vous. Appuyez simplement sur le bouton *Devant moi* et vous entendrez plusieurs points d’intérêt devant vous.
+Si vous êtes à l’arrêt, pointez d’abord le haut de votre téléphone dans la direction à laquelle vous faites face. Si votre téléphone est verrouillé, ou si Soundscape n’est pas à l’écran, tenez aussi votre téléphone à plat.
 

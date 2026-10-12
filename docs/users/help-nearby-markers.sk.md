@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Značky v okolí
 
-## Čo to je?
+*Značky v okolí* ohlási až štyri vaše značky, tie, ktoré sú k vám najbližšie. Každú počujete z jej smeru aj so vzdialenosťou. Použite ich, keď sa chcete zorientovať podľa miest, ktoré už poznáte. Značky vzdialené viac ako približne 2 kilometre sa vynechávajú.
 
-Tlačidlo *Značky v okolí* vám povie o až štyroch značkách, ktoré sú vám najbližšie. *Značky v okolí* má za cieľ pomôcť vám zorientovať sa pomocou miest, ktoré už poznáte.
-
-## Kedy to použiť?
-
-Keď sa snažíte zorientovať a získať prehľad o svojom okolí, použite *Značky v okolí*, aby ste počuli o polohe miest, ktoré poznáte.
-
-## Ako to funguje?
-
-Rovnako ako pri všetkých štyroch tlačidlách v spodnej časti domovskej obrazovky, pred stlačením tlačidla *Značky v okolí* držte telefón vodorovne (obrazovkou smerom k oblohe) tak, aby horná časť telefónu smerovala v smere, ktorým ste otočení. Toto funguje ako kompas, ktorý aplikácii oznamuje, ktorým smerom ste otočení. Jednoducho ťuknite na tlačidlo *Značky v okolí* a počujete až štyri značky vo vašej blízkosti.
+Ak stojíte na mieste, najprv namierte horný okraj telefónu smerom, ktorým stojíte čelom. Ak je telefón zamknutý alebo Soundscape nie je na obrazovke, držte telefón aj naplocho.
 

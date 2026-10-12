@@ -9,121 +9,76 @@ permalink: /users/help-frequently-asked-questions.html
 
 # Perguntas Frequentes
 
-## O que é o Soundscape e como devo usá-lo?
+## Sobre o Soundscape
 
 ### Quando devo usar o Soundscape?
-O Soundscape tem recursos e benefícios que se estendem por uma variedade de cenários e escalas de tempo. O valor do Soundscape para você também pode mudar com o tempo. Portanto, a forma como ele é utilizado hoje pode ser diferente da forma como será utilizado daqui a três meses. Com frequência, as pessoas pensam nos aplicativos em termos de *este aplicativo é bom para solucionar o quê?* O Soundscape certamente pode ser usado para necessidades específicas – como focar em um destino quando você estiver a caminho, ajudar a se orientar na saída de uma estação do metrô, se localizar ao sair de um carro, ou encontrar os nomes de ruas ou a distância até o próximo cruzamento. Entretanto, a filosofia por trás do Soundscape é *iluminar seu mundo com som* – ele foi projetado para ser usado sempre que você estiver na rua, para fornecer a percepção ambiental das proximidades, como os nomes das ruas em que está, a direção para onde você está indo e os nomes das empresas pelas quais está passando. Nesse modo de uso, nossos usuários mencionaram o Soundscape como um *ótimo aplicativo auxiliar*, que dá suporte à *serendipidade*, ajuda a *preencher as lacunas em seu mapa mental* e fornece mais *confiança ao caminhar*. Veja alguns outros exemplos de como nossos usuários estão usando o Soundscape na vida deles:
-
-O Soundscape me ajudou a encontrar o caminho depois de descer do ônibus e seguir na direção errada.
-
-Mesmo na cidade onde vivo há três anos, tive uma ideia melhor do que está ao meu redor [com o Soundscape].
-
-O som 3D aprimora minha experiência de caminhada, à medida que me sinto mais conectado ao ambiente… É mais provável que eu tente uma nova rota agora que tenho o aplicativo para usar.
-
-Sinto falta da serendipidade de caminhar a esmo e observar as coisas. Ter o Soundscape é bom – não exige esforço para ouvir sobre tudo o que está ao meu redor. As informações relacionais são úteis e é um ótimo aplicativo para percepção da situação e para a exploração de corredores comerciais.
-
-[Eu usei o Soundscape] para localizar um pub no meio de York. [Eu] usei uma variedade de suas opções para localizá-lo primeiro e depois para realmente encontrá-lo. Ele me levou a menos de três metros da porta – brilhante!
-
-### O que são favoritos e como obter o máximo deles?
-Favoritos são locais que você salvou. Podem ser lugares que já aparecem no aplicativo ou locais totalmente novos que você mesmo adicionou. Para adicionar um, selecione *Favoritos* na tela inicial, depois o botão *Novo* no canto superior direito da tela, e escolha sua localização atual ou um local próximo. Você também pode salvar qualquer lugar que encontrar na tela inicial, usando a barra de pesquisa, o botão *Locais Próximos* ou o botão *Localização Atual*. Ao selecionar um lugar, você vai para a tela *Detalhes da Localização*, onde seleciona o botão chamado *Salvar como Favorito*.
-
-## Como obter o melhor do Soundscape?
-
-### O que posso definir como um sinalizador?
-Você pode definir um sinalizador sonoro em qualquer comércio, local, ponto de interesse, endereço ou cruzamento. Há algumas maneiras de adicionar um sinalizador a um local. Primeiro, visualize os detalhes de uma localização usando a barra de pesquisa para procurar um lugar ou tocando em um dos botões *Locais Próximos*, *Favoritos* ou *Localização Atual* e selecionando uma localização. Em seguida, na tela *Detalhes da Localização*, selecione o botão *Iniciar Sinalizador Sonoro*. Ao tocar nele, você retornará à tela inicial e será ativado um sinalizador audível vindo da direção do local selecionado. O nome do local, juntamente com sua distância e endereço físico, se disponível, será exibido na tela principal.
-
-### Como aproveitar ao máximo um sinalizador?
-Você pode pensar no sinalizador audível como um *farol para os seus ouvidos*: ele informa onde está o seu destino, em linha reta a partir da sua localização atual. Como um farol, ele não diz como chegar lá – você ainda poderá ter de tomar decisões de navegação ao longo do caminho para contornar obstáculos. O som rítmico contínuo do sinalizador vem da direção do destino e ajuda você a manter a noção de onde o destino está em relação a você enquanto caminha. Quando você estiver caminhando diretamente em direção ao destino, ou apontar o telefone para o destino, ouvirá um som mais agudo de *tilintar*. Isso ajuda você a localizar com precisão a direção do destino, já que a direção do som rítmico pode ser difícil de ouvir em ambientes barulhentos. Para encontrar o som mais agudo de *tilintar*, segure o telefone na horizontal e gire lentamente em círculo; virar a cabeça na mesma direção do telefone garantirá a melhor experiência de áudio espacial.
-
-Esse design traz algumas consequências naturais:
-
-1. Não existe uma direção *correta* para seguir ao usar o sinalizador — com o Soundscape você escolhe como chegar;
-
-2. O som mais agudo de *tilintar* ajuda apenas a localizar a direção do destino — não indica como chegar até ele;
-
-3. Se você já souber, em linhas gerais, como chegar ao seu destino, poderá silenciar o sinalizador durante a maior parte da viagem e ativá‑lo apenas quando estiver se aproximando do destino.
-
-### Por que o sinalizador audível desaparece às vezes?
-O sinalizador audível do Soundscape é fundamentalmente uma dica direcional, dizendo a você onde está seu destino em relação à direção para a qual você está voltado. Quando o Soundscape não tiver certeza sobre a direção para a qual você está voltado, ele reduzirá o volume do sinalizador. Com mais frequência, isso ocorrerá se você estiver caminhando com o telefone guardado no bolso ou em uma bolsa e parar de se mover, como para atravessar uma rua. O sinalizador ficará mais alto quando você começar a se mover novamente ou se você segurar o telefone na horizontal e apontá-lo na direção para a qual está voltado.
-
-### Posso definir um sinalizador em um endereço?
-Sim, você pode. Endereços não são listados por padrão, mas podem ser encontrados usando o campo de pesquisa. Para salvar esse endereço e não precisar procurá‑lo novamente, você pode adicioná‑lo como um favorito na tela *Detalhes da Localização* selecionando o botão *Salvar como Favorito*.
-
-### Como definir um sinalizador em minha casa?
-O Soundscape dá suporte à configuração de sinalizadores em endereços. Para definir um sinalizador em sua residência, ou em qualquer outro endereço, procure uma localização usando a barra de pesquisa da tela inicial. Em seguida, na tela *Detalhes da Localização*, toque no botão *Iniciar Sinalizador Sonoro*.
-
-### Quando eu definir um sinalizador em um destino, até que distância o Soundscape me levará?
-O Soundscape pode determinar a localização do seu destino em alguns metros, mas não menos. Quando o Soundscape determinar sua proximidade ao destino, você ouvirá uma notificação final de que seu destino está próximo e o sinalizador será desligado.
-
-### Posso ativar o sinalizador novamente quando estiver perto do meu destino?
-Sim, você poderá reativar o sinalizador assim que o Soundscape desativá-lo ao selecionar o *Botão Desativar Mudo do Sinalizador*; entretanto, como a precisão dos Serviços de Localização é de apenas cerca de 10 metros, não podemos garantir o comportamento do sinalizador quando você estiver a alguns metros do seu destino.
-
-### Por que o Soundscape notifica sobre nomes de rua duas vezes quando eu me aproximo de um cruzamento?
-Para acomodar uma variedade de formatos de cruzamentos, o Soundscape descreve cruzamentos como segmentos de rodovias que partem de um ponto comum. O Soundscape usa áudio espacial para indicar os nomes das ruas que vão para a esquerda, à frente e para a direita, nessa ordem. Se a descrição do cruzamento começar com a rua em que você está em vez da que está à esquerda, então o cruzamento forma um T deitado, com a rua onde você está continuando à frente e uma rua chegando pela direita. Da mesma forma, se a descrição incluir apenas uma rua à esquerda e à direita, você saberá que a rua em que está termina em um T à sua frente. Esse método de descrever cruzamentos também funciona quando uma rua muda de nome em um cruzamento.
-
-### Por que o Soundscape não anuncia todas as empresas pelas quais eu passo?
-O Soundscape foi projetado para não dar notificações demais. Ele também usa o OpenStreetMap como fonte de dados. O OpenStreetMap (OSM, https://www.openstreetmap.org/) é um mapa-múndi construído e editado por uma comunidade de colaboradores individuais. Se uma empresa ou ponto de interesse não for anunciado pelo Soundscape, o motivo mais provável é que nenhum membro da comunidade do OSM ainda tenha adicionado essa empresa aos dados — ou, em alguns casos, não a tenha atualizado.
-
-### Por que algumas notificações param quando estou em um veículo?
-Para evitar que o número de notificações fique imenso, algumas categorias, como cruzamentos, não serão anunciadas automaticamente quando você estiver em um veículo.
-
-### E se eu não entender uma notificação ou perdê-la por causa do ruído do ambiente?
-O Soundscape não guarda uma lista das notificações anteriores, mas você pode pedir a qualquer momento que ele descreva de novo o que está ao seu redor. *Minha Localização* informa onde você está, e *Ao Meu Redor* e *À Minha Frente* anunciam os locais ao seu redor e à sua frente. Os três botões ficam na parte inferior da tela inicial. Se você usa os controles de mídia dos seus fones de ouvido no *Modo Original*, ⏭ Próximo anuncia *Ao Meu Redor* quando nenhuma rota está em reprodução.
-
-## Como funciona o Soundscape?
-
-### Em quais telefones o Soundscape pode ser executado?
-O Soundscape está atualmente disponível para iPhones com iOS 16 ou posterior, e para telefones Android com Android 11 ou posterior.
-
-### Quais fones de ouvido devo usar com o Soundscape?
-Os fones de ouvido usados com o Soundscape são uma questão de preferência, e cada opção tem vantagens e desvantagens. O único requisito é usar um par de fones de ouvido estéreo para que você possa aproveitar a vantagem das notificações de áudio espacial 3D do Soundscape.
-
-### Como o Soundscape afeta a bateria do meu telefone?
-A duração da bateria varia significativamente dependendo do modelo e da idade do seu telefone. O que mais consome bateria é manter a tela ligada; portanto, para maximizar a autonomia do seu telefone, mantenha a tela bloqueada sempre que possível. Para ajudar a reduzir o impacto na bateria do seu aparelho, o Soundscape dispõe dos modos Suspensão e Soneca. Para reduzir ainda mais o consumo de bateria, quando você não estiver usando o Soundscape, encerre o aplicativo forçando o fechamento pelo seletor de aplicativos do seu telefone.
-
-### Como usar o modo Suspensão para minimizar o impacto do Soundscape na bateria do meu telefone?
-Para colocar o Soundscape no modo Suspensão, selecione o botão *Colocar em Suspensão* no canto superior direito da tela inicial. Ao selecionar essa opção, o Soundscape deixará de usar os Serviços de Localização e os dados móveis até que você o desperte.
-
-### Como usar o modo Soneca para minimizar o impacto do Soundscape na bateria do meu telefone?
-Para colocar o Soundscape em modo Soneca, selecione o botão *Colocar em Suspensão* no canto superior direito da tela inicial. Uma vez que o Soundscape estiver no modo Suspensão, selecione o botão *Despertar quando eu sair* e o Soundscape entrará em um estado de baixo consumo até que você deixe sua localização atual.
-
-### Como a minha opção de fones de ouvido afeta a duração da bateria do meu telefone?
-Em nossos testes, o consumo de bateria de fones de ouvido Bluetooth é comparável ao de fones de ouvido com fio e não deve ser um fator significativo a ser considerado na seleção de um fone de ouvido.
-
-### Como a execução do Soundscape em segundo plano afeta a vida útil da bateria do meu telefone?
-O Soundscape utiliza Serviços de Localização para determinar onde você está. Em nossos testes, o Soundscape não consome mais bateria do que a média dos aplicativos de mapa; mas se você estiver preocupado com o consumo de bateria do telefone, veja algumas dicas que ajudarão a reduzir o uso:
-
-1. Desative a tela o máximo possível quando não estiver interagindo com o aplicativo.
-
-2. Quando não estiver usando o aplicativo, feche-o. O Soundscape usa serviços de localização continuamente quando está em execução para que ele sempre saiba sua localização, mesmo quando você não estiver se movendo. Não se esqueça de reiniciar o aplicativo quando retomar sua jornada.
-
-3. No clima frio, mantenha seu telefone aquecido, já que as baterias não funcionam da maneira ideal em temperaturas mais baixas.
-
-### Qual a quantidade de dados móveis usados pelo Soundscape?
-O volume de dados móveis usado depende de como se usa o Soundscape. Criamos o aplicativo para usar apenas um pequeno volume de dados quando você está fora de casa, por exemplo salvando os pontos conforme você anda, para que você não precise baixá-los novamente toda vez que voltar a algum lugar onde já esteve. Para reduzir o volume de dados móveis usado, conecte-se a uma rede Wi-Fi sempre que possível, especialmente para baixar o aplicativo. Quando você não estiver usando o Soundscape, use o botão *Colocar em Suspensão* para colocá-lo em suspensão, ou force o fechamento do aplicativo.
+Use o Soundscape sempre que estiver na rua. Ele funciona em segundo plano e diz as ruas em que você está e os lugares por onde passa. Ele também pode ajudar em uma tarefa específica, como acompanhar um lugar para onde você está caminhando.
 
 ### Como o Soundscape é diferente de outros aplicativos de mapa?
-O Soundscape fornece uma descrição ambiente dos seus arredores para auxiliar na exploração e orientação. Usando áudio espacial, o Soundscape anunciará pontos de interesse, parques, ruas e cruzamentos a partir da direção em que eles realmente se encontram no seu ambiente imediato enquanto você caminha. Por exemplo, se você passar por uma loja à sua direita, ouvirá o nome da loja vindo da direita. Ao se aproximar de um cruzamento, você ouvirá o nome de cada via vindo da direção correspondente — começando pela esquerda, depois à sua frente e, em seguida, à direita.
+A maioria dos aplicativos de mapa dá instruções passo a passo. O Soundscape diz o que está ao seu redor e toca um sinalizador vindo da direção do seu destino. Você escolhe o caminho.
 
-Em vez de instruções passo a passo, como costumam fornecer outros aplicativos de mapas, o Soundscape reproduz um sinalizador sonoro na direção do seu destino, permitindo que você chegue lá da maneira que funcionar melhor para você, usando a maior consciência do ambiente e da localização do destino. O Soundscape foi projetado para rodar em segundo plano, permitindo que você use um aplicativo de navegação passo a passo enquanto ele continua a fornecer percepção ambiental durante o seu deslocamento até o destino.
+Você pode usar os dois juntos. Inicie as instruções no seu aplicativo de mapa e depois defina um sinalizador do Soundscape no mesmo lugar.
 
-### Como usar o Soundscape com um aplicativo de navegação?
-O Soundscape foi projetado para ajudar a preencher os detalhes sobre seu ambiente que talvez você não tivesse percebido de outra forma. Embora não tenha sido projetado como um aplicativo de navegação passo a passo, ele pode ser usado em conjunto com tais aplicativos para fornecer informações complementares. Para usar o Soundscape com esses aplicativos, inicie seu aplicativo de navegação primeiro. Em seguida, vá para o Soundscape e defina um sinalizador no mesmo destino do aplicativo de navegação. Nesse ponto, ambos os aplicativos estarão em execução e você ouvirá instruções de caminhada do seu aplicativo de navegação, obtendo atualizações sobre os pontos de interesse, os cruzamentos e sua distância até o destino do Soundscape.
+### Preciso segurar o telefone o tempo todo?
+Não. Enquanto você caminha, o Soundscape usa a sua direção de deslocamento. Por isso, o telefone pode ficar em um bolso ou em uma bolsa. Pegue o telefone quando não estiver em movimento e quiser que as direções estejam certas. Aponte a parte de cima do telefone para a sua frente. Se o telefone estiver bloqueado, ou se o Soundscape não estiver na tela, segure também o telefone na horizontal.
 
-### Como controlar o que ouço e quando ouço no Soundscape?
-O Soundscape oferece várias formas de controlar o que você ouve e quando:
+## Sinalizadores e Notificações
 
-1. Parar todo o áudio imediatamente: toque duas vezes na tela com dois dedos para desligar instantaneamente todo o áudio, incluindo qualquer notificação que esteja sendo reproduzida e o sinalizador, caso esteja ativo. As notificações serão retomadas automaticamente quando você se aproximar do próximo cruzamento ou ponto de interesse, mas o sinalizador audível não será retomado. Se desejar voltar a ouvir o sinalizador, selecione o botão *Desativar Mudo do Sinalizador* na tela principal.
+### Posso definir um sinalizador em um endereço, como a minha casa?
+Sim. Digite o endereço na barra de pesquisa da tela inicial e selecione-o nos resultados. Depois selecione *Iniciar Sinalizador Sonoro*. Para guardar o endereço para a próxima vez, selecione *Salvar como Favorito*.
 
-2. Parar as notificações automáticas: quando você não estiver em deslocamento ou já tiver chegado ao destino, provavelmente não precisará que o Soundscape continue informando sobre o que há ao seu redor. Em vez de sair do aplicativo, você pode colocá-lo em modo Soneca; nesse modo ele será reativado quando você sair do local atual. Ou é possível colocá-lo no modo Suspensão, e então ele permanecerá desligado até que você o reative. Como alternativa, você pode acessar *Ajustes* no menu e definir *Detalhe das Notificações* como *Silencioso* na seção *Gerenciar Notificações*.
+### Como aproveitar ao máximo um sinalizador?
+Pense no sinalizador como um farol para os seus ouvidos. Ele mostra onde o lugar fica em linha reta, não o caminho até lá. Você continua escolhendo como contornar prédios e atravessar ruas.
 
-3. Parar o sinalizador: há vários cenários em que você pode definir um destino sem precisar do sinalizador audível. Por exemplo, talvez você saiba exatamente como chegar ao destino, mas ainda queira atualizações automáticas sobre a distância. Ou você pode precisar do sinalizador sonoro apenas quando estiver se aproximando. Em qualquer caso, escolha quando ouvir o sinalizador alternando o botão *Ativar Mudo do Sinalizador*/*Desativar Mudo do Sinalizador* na tela principal.
+O sinalizador muda de som quando você fica de frente para o lugar. Para encontrar esse som, segure o telefone na horizontal e gire devagar.
 
-Se ainda quiser interagir com o Soundscape, mas não quiser ouvir as notificações automáticas, defina *Detalhe das Notificações* como *Silencioso* na seção *Gerenciar Notificações* da tela *Ajustes* do menu. Ou, se não for usar o Soundscape, coloque-o no modo Suspensão ou no modo Soneca usando o botão *Colocar em Suspensão* na tela inicial.
+Se você conhece a maior parte do caminho, silencie o sinalizador e reative o som quando estiver perto.
 
-### Preciso ficar com o telefone nas mãos o tempo todo?
-Não! Ao caminhar, você pode guardar o telefone em uma bolsa, bolso ou onde for mais conveniente. O Soundscape usará a direção do seu deslocamento para determinar quais notificações anunciar à sua esquerda e à sua direita. Quando você parar de se mover, o Soundscape não saberá em que direção você está voltado. Se o sinalizador audível estiver ligado, você perceberá que o som diminui até que você comece a se mover novamente. Você pode tirar o telefone para pressionar os botões de localização e exploração na parte inferior da tela inicial a qualquer momento, mas certifique‑se de segurá‑lo com a parte superior apontando para a direção em que você está voltado e com a tela voltada para o céu. Nessa posição *plana*, o Soundscape usará a bússola do telefone para determinar para onde você está voltado e fornecer notificações espaciais precisas. Se o sinalizador estiver ligado, você também notará que ele volta ao volume total.
+### O que acontece quando eu chego ao meu destino?
+Quando você está a cerca de 12 metros, o Soundscape avisa e remove o sinalizador. O telefone não consegue determinar a sua posição com mais exatidão do que isso, então use as suas outras habilidades nos últimos passos. Para ouvir o sinalizador de novo, defina-o de novo.
 
-### O que é o OpenStreetMap e por que usá-lo para o Soundscape?
-O Soundscape usa dados de mapas para criar suas notificações de áudio. Nossa principal fonte de mapas é o OpenStreetMap (www.openstreetmap.org). É uma plataforma de mapeamento criada por uma comunidade de colaboradores. Organizações e pessoas físicas podem usar as ferramentas do OpenStreetMap para melhorar os dados e tornar seus espaços mais acessíveis.
+### Por que o sinalizador soa diferente quando eu paro de caminhar?
+Com o telefone em um bolso ou em uma bolsa, o Soundscape calcula a direção em que você está de frente a partir da sua direção de deslocamento. Quando você para, ele não consegue mais saber, então o sinalizador soa como se você estivesse de costas para o lugar. Volte a caminhar, ou aponte a parte de cima do telefone para a sua frente. Se o telefone estiver bloqueado, ou se o Soundscape não estiver na tela, segure também o telefone na horizontal.
+
+### Por que eu ouço o nome de uma rua duas vezes em um cruzamento?
+O Soundscape diz o nome de cada rua que sai do cruzamento, vindo da direção para onde ela vai. Uma rua que cruza a sua vai para a esquerda e para a direita, então você ouve o nome dela duas vezes. Se você ouvir apenas uma esquerda e uma direita, a sua rua termina à frente.
+
+### Por que o Soundscape não anuncia todas as empresas pelas quais eu passo?
+O Soundscape obtém os lugares do OpenStreetMap, um mapa criado por voluntários. Se um estabelecimento não estiver nesse mapa, o Soundscape não consegue anunciá-lo. O Soundscape também limita as notificações para que você não ouça demais. Para ouvir mais, defina *Detalhe das Notificações* como *Detalhado* e confira *Locais a Anunciar*.
+
+### O que muda quando estou em um veículo?
+O Soundscape para de anunciar cruzamentos e lojas próximas, porque eles passam rápido demais. Em vez disso, anuncia a via em que você está, pontos de referência, pontos e estações, rios e túneis.
+
+### E se eu perder uma notificação?
+O Soundscape não guarda uma lista das notificações anteriores. Peça de novo com os botões na parte inferior da tela inicial: *Minha Localização*, *Ao Meu Redor* ou *À Minha Frente*.
+
+### Como deixo o Soundscape mais discreto?
+1. Para ouvir menos notificações, abra *Ajustes*, selecione *Gerenciar Notificações* e diminua o *Detalhe das Notificações*. *Silencioso* interrompe todas as notificações automáticas.
+
+2. Para silenciar o sinalizador, selecione *Ativar Mudo do Sinalizador* na tela inicial.
+
+3. Para parar o Soundscape por um tempo, selecione *Colocar em Suspensão* na parte superior da tela inicial.
+
+## Telefones, Bateria e Mapas
+
+### Em quais telefones o Soundscape pode ser executado?
+O Soundscape funciona em iPhones com iOS 16 ou posterior, e em telefones Android com Android 11 ou posterior.
+
+### Preciso de fones de ouvido?
+Não. O Soundscape funciona pelo alto-falante do telefone. Fones de ouvido estéreo dão uma noção de direção muito mais clara, e qualquer par com fio ou Bluetooth serve.
+
+### Como economizo bateria?
+O Soundscape usa a sua localização o tempo todo, e isso gasta bateria. Para gastar menos:
+
+1. Mantenha a tela desligada quando não estiver usando.
+
+2. Quando parar por um tempo, selecione *Colocar em Suspensão* na parte superior da tela inicial. Selecione *Despertar quando eu sair* se quiser que o Soundscape desperte quando você seguir em frente.
+
+3. Quando terminar, feche o Soundscape.
+
+### Qual a quantidade de dados móveis usados pelo Soundscape?
+O Soundscape baixa uma pequena quantidade de dados do mapa conforme você se desloca. Para usar muito menos, baixe um mapa offline pelo Wi-Fi antes de viajar. Abra o menu e selecione *Mapas Offline*.
+
+### O que é o OpenStreetMap?
+O OpenStreetMap é um mapa livre do mundo, criado por voluntários. O Soundscape o usa para ruas e lugares. Qualquer pessoa pode adicionar ou corrigir um lugar em www.openstreetmap.org, e a mudança chega ao Soundscape em uma atualização posterior do mapa.
 

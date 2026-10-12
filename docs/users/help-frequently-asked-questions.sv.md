@@ -9,121 +9,76 @@ permalink: /users/help-frequently-asked-questions.html
 
 # Vanliga frågor
 
-## Vad är Soundscape och hur använder jag appen?
+## Om Soundscape
 
 ### När bör jag använda Soundscape?
-Soundscape har funktioner och fördelar som täcker många olika situationer och tidsperspektiv. Värdet av Soundscape för dig kan också förändras över tid, så hur du använder appen i dag kan skilja sig från hur du använder den om tre månader. Man tänker ofta på appar i termer av *”vilket problem är den här appen bra på att lösa?”* Soundscape kan absolut användas för specifika behov – som att hålla koll på ett mål medan du är på väg dit, hjälpa dig att orientera dig när du kommer ut från en tunnelbanestation, hitta rätt när du kliver ur en bil, eller ta reda på gatunamnen vid eller avståndet till nästa vägkorsning. Filosofin bakom Soundscape är dock att *”lysa upp din värld med ljud”* – appen är gjord för att användas när som helst du är ute, för att ge dig en löpande medvetenhet om omgivningen, som namnen på gatorna du går på, riktningen du är på väg åt och namnen på företagen du passerar. I det här användningssättet kallar våra användare Soundscape för en *”trevlig färdkamrat”*, som stödjer *”slumpartade upptäckter”*, hjälper till att *”fylla i luckorna i din mentala karta”* och ger mer *”trygghet när du går”*. Här är några andra exempel på hur våra användare använder Soundscape i sin vardag:
-
-”Soundscape hjälpte mig tillbaka på rätt spår efter att jag klivit av bussen och gått åt fel håll.”
-
-”Även i staden där jag har bott i 3 år har jag [med Soundscape] fått en bättre bild av vad som finns runt omkring mig.”
-
-”3D-ljudet förhöjer min upplevelse av en promenad, eftersom jag känner mig mer förbunden med min omgivning… Jag är mer benägen att prova en ny rutt nu när jag har appen.”
-
-”Jag saknar de slumpartade upptäckterna av att gå omkring och lägga märke till saker. Det är skönt att ha Soundscape – det krävs ingen ansträngning för att höra om saker runt omkring mig. Den relationella informationen är användbar och det är en fantastisk app för situationsmedvetenhet och för att utforska affärsgator.”
-
-”[Jag använde Soundscape] för att hitta en pub mitt i York. [Jag] använde flera av dess alternativ för att först lokalisera den och sedan faktiskt hitta den. Den tog mig till 3 meter från dörren – lysande!”
-
-### Vad är platsmarkörer och hur använder jag dem på bästa sätt?
-Platsmarkörer är platser som du har sparat. De kan vara platser som går att hitta i appen eller helt nya platser som du själv lagt till. För att lägga till en väljer du *Platsmarkörer* på startskärmen, sedan knappen *Ny* uppe till höger på skärmen, och väljer din aktuella plats eller en plats i närheten. Du kan också spara vilken plats som helst som du hittar från startskärmen, med sökfältet, knappen *Platser i närheten* eller knappen *Aktuell plats*. När du väljer en plats kommer du till skärmen *Platsuppgifter*, där du väljer knappen *Spara som platsmarkör*.
-
-## Hur använder jag Soundscape smartast?
-
-### Vad kan jag ställa in som en ljudfyr?
-Du kan ställa in en ljudfyr på vilken verksamhet, plats, intressepunkt, adress eller vägkorsning som helst. Det finns flera sätt att lägga till en ljudfyr på en plats. Visa först platsens uppgifter genom att antingen söka efter platsen via sökfältet eller trycka på någon av knapparna *Platser i närheten*, *Platsmarkörer* eller *Aktuell plats* och välja en plats. Välj sedan knappen *Ställ in ljudfyr* på skärmen *Platsuppgifter*. Genom att trycka på den återvänder du till startskärmen och aktiverar en hörbar ljudfyr som kommer från den riktning platsen ligger i. Namnet på platsen, tillsammans med avståndet till den och gatuadressen om den finns, visas nu på huvudskärmen.
-
-### Hur får jag ut mest av en ljudfyr?
-Du kan se den hörbara ljudfyren som en *fyr för dina öron*: den berättar var ditt mål finns, i rak linje från din nuvarande plats. Precis som en fyr talar den inte om hur du tar dig dit – du kan fortfarande behöva göra vägval längs vägen för att ta dig runt hinder. Ljudfyrens kontinuerliga rytmiska ljud kommer från målets riktning och hjälper dig att hålla koll på var målet finns i förhållande till dig medan du går. När du går rakt mot målet, eller riktar telefonen mot målet, hör du en högre ton, en *klinga*. Det hjälper dig att avgöra målets riktning exakt, eftersom riktningen på det rytmiska ljudet ibland kan vara svår att höra i bullriga miljöer. För att hitta den högre *klingan* håller du telefonen plant och vrider dig långsamt runt; om du vänder huvudet åt samma håll som telefonen får du bästa möjliga rumsljudupplevelse.
-
-Den här utformningen får några naturliga följder:
-
-1. Det finns ingen *rätt* riktning att färdas i när du använder ljudfyren – med Soundscape väljer du själv hur du tar dig dit;
-
-2. Den högre *klingan* hjälper dig bara att avgöra målets riktning – den talar inte om hur du tar dig dit;
-
-3. Om du i stort sett vet hur du tar dig till ditt mål kanske du vill stänga av ljudfyrens ljud under större delen av resan och slå på det först när du närmar dig målet.
-
-### Varför försvinner ljudfyren ibland?
-Ljudfyren i Soundscape vägleder dig genom att berätta för dig var målet finns i förhållande till det håll du är vänd åt. När Soundscape är osäker på åt vilket håll du är vänd, blir ljudfyren tystare. Det kan hända om du har promenerat med telefonen i en ficka eller väska, och du stannar för att exempelvis korsa en gata. Ljudfyren låter högre när du börjar gå igen, eller om du håller telefonen plant och pekar den åt det håll du är vänd.
-
-### Kan jag ställa in en ljudfyr för en adress?
-Ja, det kan du. Adresser listas inte som standard men går att hitta via sökfältet. För att spara en adress så att du slipper söka igen kan du lägga till den som en platsmarkör från skärmen *Platsuppgifter* genom att välja knappen *Spara som platsmarkör*.
-
-### Hur ställer jag in en ljudfyr för min bostad?
-I Soundscape kan du ställa in ljudfyrar för adresser. Om du vill ställa in en ljudfyr för din bostad eller en annan adress söker du efter en plats med sökfältet på huvudskärmen. Tryck sedan på knappen *Ställ in ljudfyr* på skärmen *Platsuppgifter*.
-
-### När jag ställer in en ljudfyr på ett mål, hur nära tar Soundscape mig?
-Soundscape kan fastställa ditt mål på några meter när, men inte mindre. När Soundscape fastställer att du börjar närma dig målet hör du ett sista informationsljud om att målet ligger i närheten, och ljudfyren stängs av.
-
-### Kan jag aktivera ljudfyren igen när jag närmar mig målet?
-Ja, du kan aktivera ljudfyren igen när Soundscape stängt av den genom att välja knappen *Sätt på ljudfyr*. Men eftersom precisionen i Platstjänster bara är cirka 10 meter, kan vi inte garantera hur ljudfyren beter sig när du bara är några meter från målet.
-
-### Varför läser Soundscape upp vägnamn två gånger när jag närmar mig en vägkorsning?
-För att kunna hantera olika typer av vägkorsningar beskriver Soundscape vägkorsningarna som vägsegment som utgår från en gemensam punkt. Soundscape använder rumsbestämda ljud för att ange namnen på vägarna som går till vänster, rakt fram och åt höger, i den ordningen. Om beskrivningen av vägkorsningen inleds med vägen som du befinner dig på i stället för den till vänster, bildar vägkorsningen ett liggande T där vägen du befinner dig på fortsätter rakt fram och en väg korsar den från höger. Om beskrivningen bara omfattar en väg till vänster och en till höger om dig, vet du att vägen du befinner dig på slutar i en T-korsning framför dig. Den här metoden att beskriva vägkorsningar fungerar också när en väg byter namn vid en vägkorsning.
-
-### Varför läser Soundscape inte upp alla företag som jag passerar?
-Soundscape är utformat för att inte ge dig alltför många informationsljud. Appen använder också OpenStreetMap som datakälla. OpenStreetMap (OSM, https://www.openstreetmap.org/) är en världskarta som byggs och redigeras av en community av enskilda bidragsgivare. Om ett företag eller en intressepunkt inte läses upp av Soundscape beror det troligen på att ingen i OSM-communityn ännu har lagt till företaget i data – eller i vissa fall inte uppdaterat det.
-
-### Varför hörs inte alla informationsljud när jag befinner mig i ett fordon?
-För att det inte ska bli för många informationsljud meddelas vissa kategorier, som vägkorsningar, inte automatiskt om du färdas med ett fordon.
-
-### Vad ska jag göra om jag inte förstår ett informationsljud eller jag missar det på grund av buller?
-Soundscape sparar ingen lista över tidigare informationsljud, men du kan när som helst be appen att beskriva din omgivning igen. *Min plats* talar om var du är, och *Omkring mig* och *Framför mig* läser upp platserna omkring dig och framför dig. Alla tre knapparna finns längst ned på startskärmen. Om du använder mediekontrollerna på dina hörlurar i *Originalläge* läser ⏭ Nästa upp *Omkring mig* när ingen rutt spelas upp.
-
-## Hur fungerar Soundscape?
-
-### Vilken telefon går det att köra Soundscape på?
-Soundscape är för närvarande tillgängligt för iPhone med iOS 16 eller senare och för Android-telefoner med Android 11 eller senare.
-
-### Vilka hörlurar bör jag använda med Soundscape?
-Vilka hörlurar du bör använda med Soundscape beror på dina egna preferenser. Det finns för- och nackdelar med alla alternativ. Det enda kravet är att du måste använda stereohörlurar så att du hör de rumsbestämda informationsljuden i 3D i Soundscape.
-
-### Hur påverkar Soundscape min telefons batteri?
-Batteritiden varierar mycket beroende på telefonens modell och ålder. Det som drar mest batteri är att skärmen är på, så för att maximera telefonens batteritid bör du hålla skärmen låst när det är möjligt. För att minska påverkan på telefonens batteri har Soundscape ett viloläge och ett snoozeläge. För att minska batterianvändningen ytterligare bör du, när du inte använder Soundscape, stänga appen via telefonens appväxlare.
-
-### Hur minskar jag Soundscapes påverkan på telefonens batteri genom att använda viloläget?
-För att sätta Soundscape i viloläge väljer du knappen *Inaktivera* uppe till höger på startskärmen. När du gör det kommer Soundscape att sluta använda Platstjänster och mobildata tills du väcker den.
-
-### Hur minskar jag Soundscapes påverkan på telefonens batteri genom att använda snoozeläget?
-För att sätta Soundscape i snoozeläge väljer du knappen *Inaktivera* uppe till höger på startskärmen. När Soundscape är i viloläge trycker du på knappen *Väck Soundscape när jag lämnar* så går Soundscape ner i ett lågeffekttillstånd tills du lämnar din nuvarande plats.
-
-### Påverkar valet av hörlurar telefonens batteritid?
-Enligt våra tester är Bluetooth-hörlurarnas batteriförbrukning jämförbar med sladdförsedda hörlurars och detta bör inte vara något du behöver ta hänsyn till när du väljer hörlurar.
-
-### Hur påverkas telefonens batteri när jag kör Soundscape i bakgrunden?
-Soundscape använder Platstjänster för att avgöra var du befinner dig. Enligt våra tester förbrukar inte Soundscape mer batteri än en genomsnittlig kartapp, men om du oroar dig för telefonens batteriförbrukning kommer här några tips som sparar på batteriet:
-
-1. Stäng av skärmen så ofta som möjligt när du inte använder appen.
-
-2. Stäng appen när du inte använder den. Soundscape använder platstjänster kontinuerligt medan den körs, så att appen alltid vet var du befinner dig, även när du inte rör dig. Glöm inte att starta om appen när du fortsätter resan.
-
-3. Håll telefonen varm om det är kallt ute, eftersom batterierna fungerar sämre då.
-
-### Hur mycket mobildata använder Soundscape?
-Hur mycket mobildata som används beror på hur du använder Soundscape. Vi har utformat appen så att den bara använder en liten mängd data när du är ute, till exempel genom att spara punkter medan du går så att du inte behöver ladda ned dem igen varje gång du går tillbaka till en plats du redan varit på. Om du vill minska mängden mobildata som används ska du ansluta till Wi-Fi så ofta som möjligt, speciellt när du ska ladda ned appen. När du inte använder Soundscape bör du inaktivera Soundscape med knappen *Inaktivera* eller stänga appen.
+Använd Soundscape när du är ute. Appen körs i bakgrunden och talar om vilka gator du är på och vilka platser du passerar. Den kan också hjälpa till med en enskild uppgift, till exempel att hålla reda på en plats du går till.
 
 ### Vad är skillnaden mellan Soundscape och andra kartappar?
-Soundscape ger en omgivningsbeskrivning som hjälper vid utforskning och navigering. Med rumsbestämt ljud läser Soundscape upp intressepunkter, parker, gator och vägkorsningar från den riktning de faktiskt ligger i din omedelbara omgivning när du går. Till exempel, om du passerar en butik på din högra sida hör du butikens namn komma från höger. När du närmar dig en vägkorsning hör du varje vägnamn från den riktning vägen går – i ordning: först till vänster, sedan rakt fram och därefter till höger.
+De flesta kartappar ger sväng-för-sväng-anvisningar. Soundscape talar om vad som finns omkring dig och spelar en ljudfyr från riktningen till ditt mål. Du väljer vägen.
 
-Istället för de sväng‑för‑sväng‑väganvisningar som ofta erbjuds av andra kartappar spelar Soundscape upp en hörbar ljudfyr i riktning mot ditt mål. Denna ljudfyr gör det möjligt för dig att ta dig dit på det sätt som passar dig bäst, genom att öka din medvetenhet om omgivningarna och målets läge. Soundscape är utformat för att köras i bakgrunden, så att du kan använda en navigeringsapp med sväng‑för‑sväng‑anvisningar samtidigt som Soundscape fortsätter att ge omgivningsinformation under färden.
-
-### Hur använder jag Soundscape tillsammans med en navigeringsapp?
-Soundscape är tänkt att fylla i detaljer om din omgivning som du annars inte skulle vara medveten om. Det är inte tänkt att du ska kunna navigera sväng för sväng med den. Den kan dock användas för att komplettera sådana navigeringsappar. Om du vill använda Soundscape med sådana appar ska du först starta navigeringsappen. Sedan går du över till Soundscape och ställer in en ljudfyr på samma mål som navigeringsappen. Nu körs båda apparna och du kommer att höra vägvisningar från navigeringsappen samtidigt som du får uppdateringar om intressepunkter, vägkorsningar och avståndet till ditt mål från Soundscape.
-
-### Hur styr jag vad jag hör och när jag hör det i Soundscape?
-Soundscape ger flera sätt att styra vad du hör och när:
-
-1. Stoppa allt ljud omedelbart: Dubbeltryck på skärmen med två fingrar för att omedelbart stänga av allt ljud, inklusive eventuella informationsljud som spelas upp och ljudfyren om den är på. Informationsljuden återupptas automatiskt när du närmar dig nästa vägkorsning eller intressepunkt, men den hörbara ljudfyren gör det inte. Välj knappen *Sätt på ljudfyr* på huvudskärmen för att börja höra ljudfyren igen.
-
-2. Stoppa automatiska informationsljud: När du inte är på väg någonstans eller har nått ditt mål behöver Soundscape förmodligen inte fortsätta meddela dig om vad som finns omkring dig. I stället för att avsluta appen kan du sätta Soundscape i snoozeläge – då väcks den när du lämnar platsen – eller sätta Soundscape i viloläge, då den förblir avstängd tills du själv aktiverar den igen. Alternativt kan du välja *Inställningar* i menyn och ställa in *Detaljnivå för informationsljud* på *Tyst* i avsnittet *Hantera informationsljud*.
-
-3. Stoppa ljudfyren: Det finns flera situationer där du kan ställa in ett mål men inte behöva ljudfyren på. Du kanske till exempel vet exakt hur du ska ta dig till målet men ändå vill ha automatiska uppdateringar om hur långt det är kvar, eller så behöver du ljudfyren bara när du närmar dig målet. I båda fallen kan du välja när du vill höra ljudfyren genom att växla knappen *Stäng av ljudfyr*/*Sätt på ljudfyr* på huvudskärmen.
-
-Om du fortfarande vill interagera med Soundscape men inte vill höra automatiska informationsljud kan du ställa in *Detaljnivå för informationsljud* på *Tyst* i avsnittet *Hantera informationsljud* på skärmen *Inställningar* i menyn. Om du inte tänker använda Soundscape kan du istället sätta appen i viloläge eller snoozeläge med knappen *Inaktivera* på startskärmen.
+Du kan använda båda tillsammans. Starta vägbeskrivningen i din kartapp och ställ sedan in en ljudfyr i Soundscape på samma plats.
 
 ### Måste jag hålla telefonen i handen hela tiden?
-Nej! När du går kan du ha telefonen i en väska eller ficka eller där det är praktiskt. Soundscape använder den riktning du går i för att avgöra vilka informationsljud som ska läsas upp till din vänster respektive höger. När du står still vet inte Soundscape vilken riktning du är vänd åt. Om ljudfyren är på blir den tystare tills du börjar gå igen. Du kan ta upp telefonen när som helst för att trycka på knapparna för plats och utforskning längst ner på startskärmen, men se till att hålla telefonen plant med överkanten pekande i den riktning du står vänd och skärmen mot himlen. I denna *platta* position använder Soundscape telefonens kompass för att avgöra vilken riktning du pekar åt och ge korrekta rumsbestämda uppläsningar. Om ljudfyren är på märker du också att den återgår till full volym.
+Nej. När du går använder Soundscape din färdriktning. Telefonen kan alltså ligga kvar i en ficka eller väska. Ta fram den när du står still och vill att riktningarna ska stämma. Rikta telefonens överkant åt det håll du är vänd. Om telefonen är låst, eller om Soundscape inte visas på skärmen, håller du också telefonen plant.
 
-### Vad är OpenStreetMap och varför använder vi det för Soundscape?
-Soundscape använder kartdata för att skapa sina informationsljud. Vår främsta kartkälla är OpenStreetMap (www.openstreetmap.org). Det är en kartplattform som skapats av en community av bidragsgivare. Organisationer och enskilda kan använda OpenStreetMaps verktyg för att förbättra data och göra sina lokaler mer tillgängliga.
+## Ljudfyrar och informationsljud
+
+### Kan jag ställa in en ljudfyr på en adress, till exempel mitt hem?
+Ja. Skriv adressen i sökfältet på startskärmen och välj den i resultaten. Välj sedan *Ställ in ljudfyr*. Om du vill spara adressen till nästa gång väljer du *Spara som platsmarkör*.
+
+### Hur får jag ut mest av en ljudfyr?
+Tänk på ljudfyren som en fyr för dina öron. Den visar var platsen ligger fågelvägen, inte vägen dit. Du väljer fortfarande själv hur du går runt byggnader och över gator.
+
+Ljudfyren byter ljud när du är vänd mot platsen. Om du vill hitta det ljudet håller du telefonen plant och vrider dig långsamt.
+
+Om du kan större delen av vägen stänger du av ljudfyrens ljud och sätter på det igen när du är nära.
+
+### Vad händer när jag kommer fram till mitt mål?
+När du är ungefär 12 meter bort talar Soundscape om det och tar bort ljudfyren. Telefonen kan inte bestämma din position mer exakt än så, så använd dina andra färdigheter de sista stegen. Om du vill höra ljudfyren igen ställer du in den på nytt.
+
+### Varför låter ljudfyren annorlunda när jag slutar gå?
+Med telefonen i en ficka eller väska räknar Soundscape ut åt vilket håll du är vänd utifrån din färdriktning. När du stannar går det inte längre, så ljudfyren låter som om du vore vänd bort från platsen. Börja gå igen, eller rikta telefonens överkant åt det håll du är vänd. Om telefonen är låst, eller om Soundscape inte visas på skärmen, håller du också telefonen plant.
+
+### Varför hör jag ett gatunamn två gånger vid en vägkorsning?
+Soundscape nämner varje väg som går ut från vägkorsningen, från den riktning den går åt. En väg som korsar din går både åt vänster och åt höger, så du hör namnet två gånger. Om du bara hör en vänster och en höger tar din väg slut framför dig.
+
+### Varför läser Soundscape inte upp alla företag som jag passerar?
+Soundscape hämtar sina platser från OpenStreetMap, en karta som byggs av frivilliga. Om ett företag saknas på den kartan kan Soundscape inte läsa upp det. Soundscape begränsar också informationsljuden så att du inte hör för många. Om du vill höra fler ställer du in *Detaljnivå för informationsljud* på *Detaljerad* och kontrollerar *Platser att läsa upp*.
+
+### Vad ändras när jag åker i ett fordon?
+Soundscape slutar läsa upp vägkorsningar och butiker i närheten, eftersom de passerar för fort. I stället läser appen upp vägen du är på, landmärken, hållplatser och stationer, floder och tunnlar.
+
+### Vad gör jag om jag missar ett informationsljud?
+Soundscape sparar ingen lista över tidigare informationsljud. Fråga igen med knapparna längst ned på startskärmen: *Min plats*, *Omkring mig* eller *Framför mig*.
+
+### Hur gör jag Soundscape tystare?
+1. Om du vill höra färre informationsljud öppnar du *Inställningar*, väljer *Hantera informationsljud* och sänker *Detaljnivå för informationsljud*. *Tyst* stoppar alla automatiska informationsljud.
+
+2. Om du vill tysta ljudfyren väljer du *Stäng av ljudfyr* på startskärmen.
+
+3. Om du vill stoppa Soundscape en stund väljer du *Inaktivera* högst upp på startskärmen.
+
+## Telefoner, batteri och kartor
+
+### Vilken telefon går det att köra Soundscape på?
+Soundscape fungerar på iPhone med iOS 16 eller senare, och på Android-telefoner med Android 11 eller senare.
+
+### Behöver jag hörlurar?
+Nej. Soundscape fungerar genom telefonens högtalare. Stereohörlurar ger en mycket tydligare känsla av riktning, och alla trådbundna hörlurar eller Bluetooth-hörlurar går bra.
+
+### Hur sparar jag batteri?
+Soundscape använder din plats hela tiden, och det drar batteri. Så här drar du mindre:
+
+1. Ha skärmen avstängd när du inte använder den.
+
+2. När du stannar en stund väljer du *Inaktivera* högst upp på startskärmen. Välj *Väck Soundscape när jag lämnar* om du vill att Soundscape ska vakna när du går vidare.
+
+3. Stäng Soundscape när du är klar.
+
+### Hur mycket mobildata använder Soundscape?
+Soundscape laddar ned en liten mängd kartdata medan du rör dig. Om du vill använda mycket mindre laddar du ned en offlinekarta via wifi innan du reser. Öppna menyn och välj *Offlinekartor*.
+
+### Vad är OpenStreetMap?
+OpenStreetMap är en fri karta över världen, byggd av frivilliga. Soundscape använder den för gator och platser. Vem som helst kan lägga till eller rätta en plats på www.openstreetmap.org, och ändringen når Soundscape i en senare kartuppdatering.
 

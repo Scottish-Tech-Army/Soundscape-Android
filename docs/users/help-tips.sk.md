@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Tipy
 
-Blízke autobusové zastávky nájdete výberom filtra *Verejná doprava* v zozname *Miesta v okolí*.
+Ak chcete nájsť autobusové zastávky v okolí, vyberte *Miesta v okolí* a zvoľte *Verejná doprava*.
 
-Maják si môžete nastaviť na akúkoľvek adresu. Na hlavnej obrazovke vyhľadajte adresu pomocou vyhľadávacieho poľa. Potom výberom adresy vo výsledkoch vyhľadávania otvoríte obrazovku *Podrobnosti o mieste*. Táto obrazovka obsahuje možnosť *Spustiť zvukový maják* na danú adresu. Týmto spôsobom si môžete nastaviť maják aj na obchody, miesta, zaujímavé miesta a bydliská, ktoré nie sú súčasťou OpenStreetMap.
+Ak často cestujete tým istým autobusom, uložte si svoje zastávky ako značky. Nastavte maják na zastávku, kde vystupujete, a Soundscape vám počas jazdy hovorí, ako je ďaleko.
 
-Ak pravidelne cestujete na určitej autobusovej linke, uložte si svoje nástupné a výstupné zastávky ako značky. Vďaka tomu sa uložia a budete ich vedieť ľahko znova nájsť. Nájdete ich po výbere *Značky* na domovskej obrazovke. Môžete si na ne nastaviť maják a pravidelne dostávať informácie o tom, ako blízko sa nachádzate k svojej výstupnej zastávke. Poznámka: rytmický zvuk môžete vypnúť a napriek tomu budete cestou dostávať informácie o vzdialenosti.
+Maják môžete stlmiť a napriek tomu počuť, ako ďaleko miesto je. Soundscape vám pri pohybe z času na čas povie vzdialenosť.
 
-Ak si telefón odložíte do vrecka a zastavíte sa, zvuk majáka stíchne, pretože Soundscape nevie zistiť, ktorým smerom ste otočení. Ak to chcete napraviť, opäť sa pohnite, alebo telefón vytiahnite a držte ho vodorovne.
+Ak chcete miesto preskúmať vopred, otvorte jeho *Podrobnosti o mieste* a vyberte *Simulovať polohu*. Soundscape sa potom správa, akoby telefón bol na tomto mieste.
 
-Soundscape funguje najlepšie, keď telefón držíte vodorovne s obrazovkou smerom k oblohe a hornou časťou telefónu smerujúcou od vás.
-
-Rytmický zvuk majáka môžete zapnúť alebo vypnúť pomocou tlačidla na stlmenie na domovskej obrazovke. Aj keď je maják stlmený, budete stále dostávať informácie o vzdialenosti k svojmu cieľu približne každých 50 metrov.
-
-Ak chcete Soundscape naďalej používať, ale nechcete počuť automatické hlásenia, nastavte *Podrobnosť hlásení* na *Bez zvuku* v časti *Spravovať hlásenia* na obrazovke *Nastavenia*, ktorú nájdete v menu. Ak Soundscape nejaký čas nebudete používať, môžete ho namiesto toho pomocou tlačidla *Spánok* na domovskej obrazovke prepnúť do Režimu spánku alebo do režimu Driemanie.
+Ak chcete pokyny krok za krokom, otvorte *Podrobnosti o mieste* daného miesta a vyberte *Otvoriť v mapovej aplikácii*. Soundscape beží ďalej, kým druhá aplikácia dáva pokyny.
 

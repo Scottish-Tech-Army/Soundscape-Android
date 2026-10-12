@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Vóór me
 
-## Wat is het?
+*Vóór me* kondigt maximaal vijf plaatsen aan die voor u liggen. U hoort elke plaats uit haar eigen richting, met de afstand. Gebruik de knop in een straat die u niet kent, om te horen wat eraan komt.
 
-De knop *Vóór me* vertelt u over maximaal vijf dingen die zich voor u bevinden. *Vóór me* is bedoeld om u te helpen de weg voor u te verkennen wanneer u een nieuw gebied leert kennen.
-
-## Wanneer zou ik het moeten gebruiken?
-
-Wanneer u door de straat loopt, kunt u met *Vóór me* de plaatsen en dingen ontdekken die voor u aan beide kanten van de straat verschijnen.
-
-## Hoe werkt het?
-
-Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u kijkt, voordat u op *Vóór me* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Vóór me* en u hoort verschillende referentiepunten die zich ongeveer voor u bevinden.
+Staat u stil, richt dan eerst de bovenkant van uw telefoon in de richting waarin u kijkt. Is uw telefoon vergrendeld, of staat Soundscape niet op het scherm, houd uw telefoon dan ook plat.
 

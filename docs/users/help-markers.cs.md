@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Značky
 
-Se Soundscape můžete označit svůj svět a cokoli, na čem vám záleží, podobně jako špendlíky na mapě.
+Značka je místo, které máte uložené. Může to být jakékoli místo, které je pro vás důležité: váš domov, autobusová zastávka, vchod do budovy nebo přechod.
 
-Můžete si označit místa, která jsou pro vás osobní a důležitá, jako je váš domov, kancelář nebo oblíbený obchod s potravinami. Můžete označit jakékoli místo nebo adresu a také věci, které se na mapách běžně neuvádějí, například: vchody do budov nebo parků, tlačítka na přechodech pro chodce, přechody pro chodce, mosty, autobusové zastávky nebo dokonce oblíbený strom vašeho psa. Používejte tyto značky jako orientační body během své cesty.
+Soundscape ohlašuje vaše značky, když je míjíte. Na značku můžete nastavit zvukový maják, přidat ji do trasy nebo si nejbližší značky poslechnout tlačítkem *Značky v okolí*.
 
-Abyste mohli označená místa využívat, Soundscape je automaticky ohlásí, když kolem nich procházíte nebo se k nim přibližujete, nebo můžete použít tlačítko *Značky v okolí* ve spodní části domovské obrazovky a poslechnout si prostorové hlášení označených míst kolem vás. Můžete dokonce nastavit zvukový maják na libovolném označeném místě. Když to uděláte, uslyšíte již známý zvukový maják Soundscape a můžete ho ovládat jako obvykle.
+## Vytváření značek
+
+1. Na domovské obrazovce vyberte *Značky* a pak vyberte *Nová*.
+
+2. Zvolte *Aktuální poloha* nebo místo ze seznamu *Místa v okolí*.
+
+3. Pokud chcete, změňte název a přidejte poznámky. Soundscape přečte poznámky spolu se značkou.
+
+4. Vyberte *Hotovo*.
+
+Uložit můžete také jakékoli místo, které najdete. Otevřete jeho *Podrobnosti o místě* a vyberte *Uložit jako značku*.
+
+## Přizpůsobení značek
+
+Vyberte značku na obrazovce *Značky* a pak vyberte *Upravit značku*. Můžete změnit její název, poznámky a polohu nebo vybrat *Odstranit značku*. Odstraněním se značka odebere i z vašich tras.
 

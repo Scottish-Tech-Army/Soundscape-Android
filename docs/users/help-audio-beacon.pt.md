@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Sinal de Áudio
 
-## O que é?
+Um sinal de áudio é um som que vem da direção de um local que escolhe. Diz-lhe onde fica o local em linha reta. Não dá indicações passo a passo, por isso é você que escolhe o caminho.
 
-A definição de um sinal numa localização nas proximidades permite que o Soundscape o mantenha informado reproduzindo um som proveniente da direção dessa localização. Este sinal pode ser desativado ou ativado no ecrã principal. Adicionalmente, o Soundscape apresenta informações sobre a localização no ecrã principal, incluindo a distância a que o local se encontra e o endereço, se este for conhecido.
+## Definir um Sinal
 
-## Quando devo utilizá-lo?
+1. Encontre o local. Use a barra de pesquisa, *Locais nas Proximidades*, *Marcos* ou *Localização Atual* no ecrã principal.
 
-A definição de um sinal é útil quando pretende monitorizar um marco familiar à medida que explora uma nova área ou quando está a dirigir-se para um local e pretende ser informado sobre o ambiente que o rodeia ao longo do caminho. A funcionalidade de sinal não fornece direções curva-a-curva, mas proporciona um som audível contínuo que indica a direção do sinal relativamente à sua localização atual. Utilizando o sinal de áudio, as suas competências de navegação e até mesmo a sua aplicação de navegação favorita, pode escolher a forma como pretende chegar a localizações nas suas proximidades.
+2. Selecione o local para abrir *Detalhes da Localização*.
 
-## Como funciona?
+3. Selecione *Iniciar Sinal de Áudio*.
 
-**Para definir um sinal :**
+O Soundscape regressa ao ecrã principal e o sinal começa. O ecrã principal mostra o nome do local e a que distância fica.
 
- Primeiro, visualize os detalhes de uma localização, usando a barra de pesquisa para procurar um local ou tocando num dos botões *Locais nas Proximidades*, *Marcos* ou *Localização Atual* e selecionando uma localização. Depois, no ecrã *Detalhes da Localização*, selecione o botão *Iniciar Sinal de Áudio*. Ao tocar neste botão, regressa ao ecrã principal e é ativado um sinal audível vindo da direção do local selecionado. O nome do local, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal.
+## Encontrar a Direção
 
-**Para remover o sinal atual:**
+O sinal muda de som quando fica de frente para o local ou caminha a direito na sua direção. Para encontrar esse som, segure o telemóvel na horizontal e rode devagar. Pode escolher outro som para o sinal em *Definições*.
 
-Basta tocar no botão *Parar Rota* no ecrã principal.
+## Desativar o Som do Sinal
 
-**Para silenciar o sinal audível:**
+Selecione *Desativar Sinal* no ecrã principal. O Soundscape continua a dizer-lhe a que distância fica o local à medida que se desloca. Selecione *Ativar Sinal* para voltar a ouvir o sinal.
 
-Toque no botão *Desativar Sinal* ao lado do botão *Parar Rota* no ecrã principal.
+## Remover o Sinal
+
+Selecione *Parar Rota* no ecrã principal. O botão tem este nome mesmo quando o sinal não faz parte de uma rota.
+
+## Quando Chega
+
+Quando está a cerca de 12 metros do local, o Soundscape avisa e remove o sinal. O telemóvel não consegue determinar a sua posição com mais exatidão. Para voltar a ouvir o sinal, defina-o de novo.
+
+Um sinal definido num local a menos de 30 metros fica ativo até o remover.
 

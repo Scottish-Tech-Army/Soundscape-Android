@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Uporaba kontrolnikov predstavnosti
 
-## Kaj je to?
+Soundscape lahko upravljate s predstavnostnimi gumbi na slušalkah: *predvajaj/premor*, *naprej* in *nazaj*. To deluje z žičnimi slušalkami in slušalkami Bluetooth. Deluje tudi, ko je Soundscape v ozadju ali je telefon zaklenjen.
 
-Do določenih funkcij v aplikaciji Soundscape lahko dostopate s pomočjo gumbov za upravljanje predvajanja na slušalkah. Ta funkcija deluje s katerimikoli žičnimi ali Bluetooth slušalkami, ki imajo gumbe za upravljanje predvajanja, kot so Predvajaj, Premor, Naprej, Nazaj in drugi. Različne slušalke lahko vključujejo različne gumbe, zato si oglejte spodnji seznam dejanj, da ugotovite, kateri so na voljo vam.
+Vse slušalke nimajo vseh treh gumbov.
 
-## Kdaj naj to uporabim?
+Gumbi upravljajo Soundscape le, ko nobena druga aplikacija ne predvaja zvoka. Če poslušate glasbo ali podkast, gumbi upravljajo tisto aplikacijo.
 
-Gumbe za upravljanje predvajanja na slušalkah lahko uporabljate, ko Soundscape deluje – ne glede na to, ali aplikacijo aktivno uporabljate, ali teče v ozadju ali je vaša naprava zaklenjena. Gumbi za upravljanje predvajanja na slušalkah pa ne bodo delovali s Soundscape, če z drugo aplikacijo predvajate zvok, kot so glasba, podkasti ali videoposnetki.
+Gumbi lahko delujejo na dva načina: *Izvirni način* ali *Zvočni meni*. Za izbiro odprite meni in izberite *Nastavitve*, nato *Kontrolniki za predstavnost*.
 
-## Kako deluje?
+## Izvirni način
 
-Za predstavnostne kontrolnike sta na voljo 2 načina delovanja. Način lahko izberete v razdelku *Nastavitve* *Kontrolniki za predstavnost*. Načina sta:
+*Predvajaj/premor* utiša svetilnik. Pritisnite znova, da slišite svetilnik.
 
- *Izvirni način*. 
+*Naprej* premakne svetilnik na naslednjo točko poti, ko sledite poti. Sicer oznani *Okoli mene*.
 
-⏯ Predvajaj/Premor: vklopi in izklopi zvok svetilnika. 
+*Nazaj* premakne svetilnik na prejšnjo točko poti, ko sledite poti. Sicer spremeni nastavitev *Raven podrobnosti obvestil*. Vsak pritisk gre eno raven tišje: *Podrobno*, *Poenostavljeno*, *Osnovno*, nato *Brez zvoka*. Še en pritisk se vrne na *Podrobno*. Soundscape izgovori ime nove ravni.
 
-⏭ Naprej: Če se predvaja pot, premakne zvočni svetilnik na naslednjo točko poti. Če se ne predvaja nobena pot, izgovori *Okoli mene*.
+## Zvočni meni
 
-⏮ Nazaj: Če se predvaja pot, premakne zvočni svetilnik na prejšnjo točko poti. Če se ne predvaja nobena pot, spremeni *Raven podrobnosti obvestil* za eno raven tiše ob vsakem pritisku: *Podrobno*, *Poenostavljeno*, *Osnovno*, *Brez zvoka* in nazaj na *Podrobno*.
+Zvočni meni vam z istimi tremi gumbi ponudi več dejanj. Soundscape vsako možnost prebere na glas.
 
+*Naprej* se premakne na naslednjo možnost. Po zadnji možnosti se vrne na prvo.
 
+*Predvajaj/premor* izbere možnost, ki ste jo pravkar slišali.
 
-*Zvočni meni*. 
+*Nazaj* spremeni nastavitev *Raven podrobnosti obvestil*, enako kot *Izvirni način*.
 
-
-
-⏭ Naprej se pomika po vrsti menijskih možnosti, ki jih aplikacija opiše z govorno sintezo, in se po zadnji vrne na prvo. ⏯ Predvajaj/Premor nato sproži izvedbo opisane možnosti. Obstaja en sam meni najvišje ravni, ki ima kot možnosti samo podmenije. Vsak podmeni vsebuje skupino podobnih dejanj.
-
-⏮ Nazaj se ne pomika po meniju. Namesto tega spremeni *Raven podrobnosti obvestil*, povsem enako kot v izvirnem načinu, tako da isti gumb utiša aplikacijo v obeh načinih.
+Meni se začne s štirimi skupinami: *Poslušaj okolico*, *Upravljanje poti*, *Zaženi pot* in *Zaženi zvočni svetilnik*. Izberite skupino, da slišite njena dejanja. *Poslušaj okolico* in *Upravljanje poti* se končata z možnostjo *Glavni meni*, ki vas vrne k štirim skupinam.
 

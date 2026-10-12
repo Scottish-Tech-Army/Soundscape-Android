@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## Točnost GPS-a
 
-Soundscape može opisati vašu okolinu samo onoliko točno koliko vaš telefon zna gdje se nalazite. Točnost od 10 metara (30 stopa) ili bolja je dobra, do 20 metara (60 stopa) je upotrebljiva, a sve iznad toga znači da najave mogu navesti pogrešnu stranu ulice ili stići sa zakašnjenjem.
+Soundscape može opisati vašu okolinu samo onoliko točno koliko vaš telefon zna gdje se nalazite. Točnost od 10 metara ili bolja je dobra. Do 20 metara je prihvatljiva. Iznad toga najave mogu navesti pogrešnu stranu ulice ili zakasniti.
 
-Točnost je obično najlošija u zatvorenom prostoru, između visokih zgrada te otprilike u prvoj minuti nakon izlaska van. Ako vrijednost u nastavku ostane loša dok ste vani na otvorenom, pokušajte isključiti pa ponovno uključiti usluge lociranja na telefonu.
+Točnost je obično najlošija u zatvorenom prostoru, među visokim zgradama i u prvoj minuti nakon izlaska van. Ako vrijednost u nastavku ostane loša dok ste vani na otvorenom, isključite pa ponovno uključite usluge lokacije na telefonu.
 
 Trenutačna točnost: %1$s (%2$s)
 

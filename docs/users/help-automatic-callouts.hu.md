@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatikus bemondások
 
-## Mi ez?
+Séta közben a Soundscape bemondja, mi van a közelében. Minden nevet a hely irányából hall. A bemondások utcákra, kereszteződésekre, üzletekre, buszmegállókra, nevezetességekre és a saját jelölőire vonatkoznak.
 
-A Soundscape képes tájékoztatni Önt a környezetében lévő dolgokról, amint azokhoz közeledik, azáltal, hogy bemondja a nevüket abból az irányból, amerre találhatók. Az alkalmazás ezt automatikusan megteszi mindenféle dologgal kapcsolatban, például üzletekkel, buszmegállókkal, sőt kereszteződésekkel is. Beállíthatja, hogy az alkalmazás mit mondjon be automatikusan a *Beállítások* képernyő *Bemondások kezelése* részében, és az összes bemondást kikapcsolhatja, ha azt szeretné, hogy az alkalmazás néma legyen.
+## Kereszteződések
 
-## Mikor használnám?
+Amikor egy kereszteződéshez közeledik, a Soundscape megnevez minden utat, amely onnan kiindul. Hallja, melyik út megy balra, melyik folytatódik egyenesen, és melyik megy jobbra.
 
-**Új terület felfedezése:**
+## Mennyit hall
 
- Kapcsolja be az automatikus bemondásokat, és sétáljon körbe, hogy hallja a különféle üzleteket, éttermeket és hasonlókat, amint elhalad mellettük.
+Nyissa meg a menüt, és válassza a *Beállítások*, majd a *Bemondások kezelése* lehetőséget. A *Bemondások részletessége* beállításnak négy szintje van.
 
-**Séta egy adott helyre:**
+A *Részletes* mindent bemond, ami a közelben van.
 
- Amikor egy adott hely felé tart, a kereszteződésekre vonatkozó automatikus bemondások különösen hasznosak lehetnek. A kereszteződés-bemondások tájékoztatják a kereszteződés elrendezéséről, amint közeledik hozzá, és megerősítik, hogy melyik úton van, amikor elhagyja azt.
+Az *Egyszerűsített* kihagyja a kisebb ösvényeket és a szervizutakat, és kevesebbet ismétel.
 
-**Amikor csendre van szüksége:**
+Az *Alapvető* csak az utcákat, a kereszteződéseket és a nevezetességeket mondja be.
 
- Amikor éppen át készül kelni egy úton, vagy egyszerűen csak azt szeretné, hogy az alkalmazás csendben legyen, kikapcsolhatja a bemondásokat. Ha a bemondások ki vannak kapcsolva, az alkalmazás csak akkor ad tájékoztatást, ha kézzel megérinti a *Saját helyzetem*, a *Közeli jelölők*, a *Körülöttem* vagy az *Előttem* gombok egyikét.
+A *Néma* nem ad automatikus bemondást. Az irányjelző hangok, az útvonalak és a kezdőképernyő gombjai továbbra is működnek.
 
-## Hogyan működik?
+## Mit hall
 
-**A bemondások be- vagy kikapcsolása:**
+A *Bemondások kezelése* részben van még két beállítás. Az *Utcák és kereszteződések* be- vagy kikapcsolja az utcák és kereszteződések bemondását. A *Bemondandó helyek* azt választja ki, milyen típusú helyeket hall, például *Tömegközlekedés* vagy *Étel és ital*. A jelölőit a Soundscape mindig bemondja.
 
- A bemondások kikapcsolása elnémítja az alkalmazást. A bemondásokat a *Beállítások* képernyő *Bemondások kezelése* részében kapcsolhatja ki úgy, hogy a *Bemondások részletessége* beállítást *Néma* értékre állítja, és bármely másik szint kiválasztásával kapcsolhatja vissza. iPhone-on ugyanezt úgy teheti meg, hogy megkéri rá a Sirit, Androidon pedig a Geminin keresztül fog működni, amint a Google kiadja hozzá a támogatást. A Soundscape-et fokozatosan is halkíthatja a fülhallgatója médiavezérlő gombjaival: az *előző* minden egyes megnyomása egy szinttel lejjebb lép a *Részletes*, *Egyszerűsített*, *Alapvető* és *Néma* szinteken, egy további megnyomás pedig visszatér a *Részletes* szintre. Lásd a *Médiavezérlők használata* súgótémakört. Ehelyett használhatja az *Alvás* gombot is a kezdőképernyő jobb felső sarkában, hogy leállítsa a Soundscape bemondásait, amíg fel nem ébreszti.
+## A Soundscape halkabbra állítása
 
-**Annak kezelése, hogy milyen bemondásokat hall:**
+Nyomja meg az *előző* gombot a fejhallgató vezérlőjén. Minden megnyomás egy szinttel halkabbra lép: *Részletes*, *Egyszerűsített*, *Alapvető*, majd *Néma*. Még egy megnyomás visszatér a *Részletes* szintre. Lásd a *Médiavezérlők használata* súgóoldalt.
 
- Ha ki szeretné választani, hogy a Soundscape milyen típusú dolgokat mondjon be automatikusan, lépjen a *Beállítások* képernyőre a *Kezdőképernyő* menüjén keresztül. A *Beállítások* képernyő *Bemondások kezelése* részében választhatja ki a *Bemondások részletessége* beállítással, hogy mennyit mondjon az alkalmazás, hogy bemondja-e az *Utcák és kereszteződések* elemeit, és hogy melyek a *Bemondandó helyek*. Ha az összes bemondást ki szeretné kapcsolni, állítsa a *Bemondások részletessége* beállítást *Néma* értékre.
+## A Soundscape leállítása egy időre
+
+Válassza az *Alvás* gombot a kezdőképernyő tetején. A Soundscape nem használja tovább a helyzetét, és nem ad hangot, amíg a *Felébresztés most* lehetőséget nem választja. Vagy válassza a *Felébredés távozáskor* lehetőséget, és a Soundscape felébred, amikor elhagyja azt a helyet, ahol éppen van.
+
+## Járművön vagy vonaton
+
+A Soundscape észreveszi, ha járműsebességgel halad. Ilyenkor nem mondja be a kereszteződéseket és a közeli üzleteket, mert túl gyorsan haladnak el. Helyettük bemondja az utat, amelyen halad, a nevezetességeket, a megállókat és állomásokat, a folyókat és az alagutakat.
 

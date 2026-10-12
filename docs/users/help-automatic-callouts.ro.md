@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Anunțuri automate
 
-## Ce este?
+În timp ce mergi, Soundscape anunță ce se află în apropiere. Auzi fiecare nume din direcția locului. Anunțurile includ străzi, intersecții, magazine, stații de autobuz, repere și marcajele tale.
 
-Soundscape te poate informa despre lucrurile din jur pe măsură ce te apropii de ele, anunțându-le numele din direcția în care se află. Aplicația va face acest lucru automat pentru tot felul de elemente, cum ar fi afaceri, stații de autobuz și chiar intersecții. Poți configura ce anunță aplicația în mod automat în secțiunea *Gestionare anunțuri* din ecranul *Setări*, și poți dezactiva toate anunțurile când dorești ca aplicația să fie silențioasă.
+## Intersecții
 
-## Când aș folosi această funcție?
+Când te apropii de o intersecție, Soundscape numește fiecare drum care pleacă din ea. Auzi care drum merge la stânga, care continuă înainte și care merge la dreapta.
 
-**Explorarea unei zone noi:**
+## Cât de mult auzi
 
- Activează anunțurile automate și plimbă-te pentru a auzi despre toate magazinele, restaurantele și altele asemenea pe măsură ce treci pe lângă ele.
+Deschide meniul și selectează *Setări*, apoi *Gestionare anunțuri*. *Detaliul anunțurilor* are patru niveluri.
 
-**Deplasarea către o locație specifică:**
+*Detaliat* anunță tot ce se află în apropiere.
 
- Când te îndrepți către un anumit loc, anunțurile automate pentru intersecții pot fi deosebit de utile. Anunțurile pentru intersecții te informează despre configurația intersecțiilor pe măsură ce te apropii de ele și confirmă strada pe care te afli când le părăsești.
+*Simplificat* omite potecile mici și drumurile de serviciu și se repetă mai rar.
 
-**Când ai nevoie de liniște:**
+*Esențial* anunță doar străzile, intersecțiile și reperele.
 
- Când ești pe punctul de a traversa o stradă sau pur și simplu ai nevoie ca aplicația să fie silențioasă, poți dezactiva anunțurile. Când anunțurile sunt dezactivate, aplicația te va informa doar dacă apeși manual unul dintre butoanele *Locația mea*, *Marcaje din apropiere*, *În jurul meu* sau *Înaintea mea*.
+*Silențios* nu face anunțuri automate. Balizele, rutele și butoanele de pe ecranul principal funcționează în continuare.
 
-## Cum funcționează?
+## Ce auzi
 
-**Activarea sau dezactivarea anunțurilor:**
+*Gestionare anunțuri* mai are două setări. *Străzi și intersecții* activează sau dezactivează anunțurile despre străzi și intersecții. *Locuri de anunțat* alege ce tipuri de locuri auzi, de exemplu *Transport public* sau *Mâncare și băuturi*. Marcajele tale sunt anunțate întotdeauna.
 
- Dezactivarea anunțurilor va face aplicația silențioasă. Anunțurile pot fi dezactivate în secțiunea *Gestionare anunțuri* din ecranul *Setări*, setând *Detaliul anunțurilor* pe *Silențios*, și pot fi reactivate alegând orice alt nivel. Pe iPhone poți face același lucru cerându-i lui Siri, iar pe Android același lucru va funcționa prin Gemini imediat ce Google va lansa suportul pentru asta. Poți totodată să faci Soundscape mai discret treptat, cu butoanele de control media de pe căști: fiecare apăsare pe *anterior* coboară cu un nivel prin *Detaliat*, *Simplificat*, *Esențial* și *Silențios*, iar încă o apăsare revine la *Detaliat*. Vezi subiectul de ajutor *Utilizarea comenzilor media*. Alternativ, poți folosi butonul *Repaus* din colțul din dreapta sus al ecranului principal pentru ca Soundscape să nu mai facă anunțuri până când îl trezești.
+## Cum faci Soundscape mai discret
 
-**Gestionarea anunțurilor pe care le auzi:**
+Apasă *anterior* pe comenzile căștilor. Fiecare apăsare coboară un nivel: *Detaliat*, *Simplificat*, *Esențial*, apoi *Silențios*. Încă o apăsare revine la *Detaliat*. Vezi pagina de ajutor *Utilizarea comenzilor media*.
 
- Pentru a alege tipurile de elemente pe care Soundscape le va anunța automat, accesează ecranul *Setări* din meniul de pe ecranul *Principal*. În secțiunea *Gestionare anunțuri* din ecranul *Setări* alegi cât de mult vorbește aplicația, cu *Detaliul anunțurilor*, dacă anunță *Străzi și intersecții* și care sunt *Locuri de anunțat*. Dacă dorești să dezactivezi toate anunțurile, setează *Detaliul anunțurilor* pe *Silențios*.
+## Oprirea Soundscape pentru o vreme
+
+Selectează butonul *Repaus* din partea de sus a ecranului principal. Soundscape nu îți mai folosește locația și nu scoate niciun sunet până când selectezi *Trezire acum*. Sau selectează *Trezire la plecare*, iar Soundscape se trezește când pleci din locul în care te afli.
+
+## Într-un vehicul sau în tren
+
+Soundscape observă când te deplasezi cu viteza unui vehicul. Atunci nu mai anunță intersecțiile și magazinele din apropiere, pentru că trec prea repede. În schimb, anunță drumul pe care te afli, reperele, stațiile și gările, râurile și tunelurile.
 

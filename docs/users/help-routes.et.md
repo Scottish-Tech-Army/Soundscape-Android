@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Marsruudid
 
-## Mis see on?
+Marsruut on loend asukohtadest, mida nimetatakse teekonnapunktideks ja mida külastad järjekorras. Soundscape määrab helimajaka esimesele teekonnapunktile. Kui kohale jõuad, ütleb see seda ja viib helimajaka järgmisele.
 
-Marsruudid on teekonnapunktide jada. Teid teavitatakse igasse teekonnapunkti jõudmisel ja helimajakas liigub automaatselt järgmisele teekonnapunktile.
+Kasuta marsruuti uue teekonna õppimiseks või selleks, et tuttaval teekonnal õigel teel püsida.
 
-## Millal seda kasutada?
+## Marsruudi loomine
 
-Võite soovida luua ja kasutada marsruuti kohas, mida juba tunnete, et püsida õigel teel. Või võite soovida kasutada marsruuti selleks, et õppida tundma uut teekonda.
+1. Vali avakuval *Marsruudid* ja seejärel *Uus*.
 
-## Kuidas see töötab?
+2. Anna marsruudile nimi. Võid lisada kirjelduse.
 
-**Marsruudi loomine:**
+3. Vali *Lisa teekonnapunktid* ja vali markerid. Saad lisada ka oma praeguse asukoha või lähedal oleva koha.
 
- Kõigepealt valige avakuval *Marsruudid* ja seejärel ekraani paremas ülanurgas nupp *Uus*. Andke marsruudile nimi ja soovi korral kirjeldus, seejärel lisage teekonnapunkte, kas liikudes või valides neid oma markerite loendist. Teekonnapunktide järjekorda marsruudil saate igal ajal muuta, muutes marsruuti.
+4. Vali *Valmis*.
 
-**Marsruudi muutmine:**
+## Marsruudi järgimine
 
- Valige oma marsruut ekraanil *Marsruudid* ja seejärel valige *Muuda marsruuti*. Siit saate lisada ja eemaldada teekonnapunkte ning muuta marsruudi nime ja kirjeldust.
+Vali marsruut kuval *Marsruudid* ja seejärel vali *Alusta marsruuti*. Selle läbimiseks tagurpidi vali *Alusta marsruuti vastupidises suunas*. Avakuval liigutavad *Järgmine teekonnapunkt* ja *Eelmine teekonnapunkt* helimajakat mööda marsruuti. *Peata marsruut* lõpetab selle.
 
-**Marsruudi jagamine:**
+## Marsruudi muutmine
 
- Valige oma marsruut ekraanil *Marsruudid* ja seejärel valige suvand *Jaga*, kasutades kõiki teile tavapäraselt saadaolevaid jagamisvõimalusi.
+Vali marsruut kuval *Marsruudid* ja seejärel vali *Muuda marsruuti*. Saad teekonnapunkte lisada, eemaldada ja ümber järjestada, muuta nime ja kirjeldust või marsruudi kustutada.
+
+## Marsruudi jagamine
+
+Vali marsruut kuval *Marsruudid* ja seejärel vali *Jaga*.
 

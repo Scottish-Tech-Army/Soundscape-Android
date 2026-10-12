@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Rute
 
-## Ce este?
+O rută este o listă de locații, numite puncte de traseu, pe care le vizitezi în ordine. Soundscape setează o baliză pe primul punct de traseu. Când ajungi, îți spune și mută baliza la următorul.
 
-Rutele sunt o serie de puncte de traseu. Vei fi informat la sosirea la fiecare punct de traseu, iar baliza audio va avansa automat la următorul punct de traseu.
+Folosește o rută ca să înveți un drum nou sau ca să nu te abați de la unul pe care îl cunoști.
 
-## Când aș folosi această funcție?
+## Crearea unei rute
 
-Este posibil să dorești să creezi și să folosești o rută într-un loc pe care îl cunoști deja, ca să te ajute să rămâi pe drumul cel bun. Sau poate vrei să folosești o rută ca să înveți un traseu nou.
+1. Selectează *Rute* pe ecranul principal, apoi selectează *Nou*.
 
-## Cum funcționează?
+2. Dă-i rutei un nume. Poți adăuga o descriere.
 
-**Crearea unei rute:**
+3. Selectează *Adaugă puncte de traseu* și alege marcaje. Poți adăuga și locația ta curentă sau un loc din apropiere.
 
- Mai întâi, selectează *Rute* pe ecranul principal și apoi selectează butonul *Nou* din colțul din dreapta sus al ecranului. Dă rutei un nume și o descriere opțională, apoi adaugă puncte de traseu pe parcurs sau alege-le din lista ta de marcaje. Poți rearanja ordinea punctelor de traseu de-a lungul unei rute oricând prin editarea rutei.
+4. Selectează *Gata*.
 
-**Editarea unei rute :**
+## Urmarea unei rute
 
- Selectează ruta pe ecranul *Rute* și apoi selectează *Editează ruta*. De aici poți adăuga și elimina puncte de traseu, precum și edita numele și descrierea rutei.
+Selectează ruta pe ecranul *Rute*, apoi selectează *Pornește ruta*. Pentru a o urma în sens invers, selectează *Pornește ruta în sens invers*. Pe ecranul principal, *Punctul de traseu următor* și *Punctul de traseu anterior* mută baliza de-a lungul rutei. *Oprește ruta* o încheie.
 
-**Partajarea unei rute:**
+## Modificarea unei rute
 
- Selectează ruta ta de pe ecranul *Rute* și apoi selectează opțiunea *Partajează* folosind toate opțiunile obișnuite de partajare disponibile.
+Selectează ruta pe ecranul *Rute*, apoi selectează *Editează ruta*. Poți adăuga, elimina și reordona puncte de traseu, poți schimba numele și descrierea sau poți șterge ruta.
+
+## Partajarea unei rute
+
+Selectează ruta pe ecranul *Rute*, apoi selectează *Partajează*.
 

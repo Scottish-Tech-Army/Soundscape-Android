@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## GPS doğruluğu
 
-Soundscape, çevrenizi ancak telefonunuzun nerede olduğunuzu bildiği kadar doğru tarif edebilir. 10 metre (30 fit) veya daha iyi doğruluk iyidir, 20 metreye (60 fit) kadar kullanılabilir ve bundan fazlası, anonsların sokağın yanlış tarafını söyleyebileceği veya geç gelebileceği anlamına gelir.
+Soundscape çevrenizi ancak telefonunuzun nerede olduğunuzu bildiği kadar iyi anlatabilir. 10 metre veya daha iyi bir doğruluk iyidir. 20 metreye kadar kabul edilebilir. Bunun üzerinde anonslar sokağın yanlış tarafını söyleyebilir veya geç gelebilir.
 
-Doğruluk genellikle kapalı alanlarda, yüksek binaların arasında ve dışarı çıktıktan sonraki ilk bir dakika kadar en kötü durumdadır. Açık alanda dışarıdayken aşağıdaki değer kötü kalmaya devam ederse telefonunuzun konum servislerini kapatıp yeniden açmayı deneyin.
+Doğruluk genellikle kapalı alanlarda, yüksek binaların arasında ve dışarı çıktıktan sonraki ilk dakikada en kötüdür. Açık havada, açık bir alandayken aşağıdaki değer kötü kalmaya devam ederse telefonunuzun konum hizmetlerini kapatıp yeniden açın.
 
 Mevcut doğruluk: %1$s (%2$s)
 

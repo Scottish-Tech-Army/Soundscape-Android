@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Mẹo
 
-Bạn có thể tìm các điểm dừng xe buýt gần đó bằng cách chọn bộ lọc *Phương tiện công cộng* trong danh sách *Địa điểm gần đây*.
+Để tìm các điểm dừng xe buýt gần đó, hãy chọn *Địa điểm gần đây* rồi chọn *Phương tiện công cộng*.
 
-Bạn có thể đặt đèn hiệu trên bất kỳ địa chỉ nào. Từ màn hình chính, hãy tìm kiếm địa chỉ đó bằng thanh tìm kiếm. Sau đó chọn địa chỉ trong kết quả tìm kiếm để mở màn hình *Chi tiết vị trí*. Màn hình này có tùy chọn *Bắt đầu đèn hiệu âm thanh* tại địa chỉ đó. Bằng cách này, bạn có thể đặt đèn hiệu trên các cửa hàng, địa điểm, địa điểm quan tâm và nhà ở không có trong OpenStreetMap.
+Nếu bạn thường đi cùng một tuyến xe buýt, hãy lưu các điểm dừng của bạn làm điểm đánh dấu. Đặt đèn hiệu tại điểm dừng nơi bạn xuống xe, và Soundscape cho bạn biết nó còn cách bao xa trong lúc đi xe.
 
-Nếu có một tuyến xe buýt bạn thường xuyên đi, hãy lưu điểm lên và điểm xuống của bạn làm điểm đánh dấu. Bằng cách này, chúng sẽ được lưu lại để bạn dễ dàng tìm lại. Chọn *Điểm đánh dấu* trên màn hình chính để tìm chúng. Bạn có thể đặt đèn hiệu trên chúng để nhận cập nhật định kỳ về khoảng cách còn lại đến điểm xuống của mình. Lưu ý: ngay cả khi tắt âm thanh nhịp điệu, bạn vẫn nhận được cập nhật khoảng cách trong suốt hành trình.
+Bạn có thể tắt tiếng đèn hiệu mà vẫn nghe được địa điểm còn cách bao xa. Soundscape thỉnh thoảng đọc khoảng cách khi bạn di chuyển.
 
-Nếu bạn cất điện thoại vào túi và dừng di chuyển, âm thanh đèn hiệu sẽ nhỏ đi vì Soundscape không thể biết bạn đang hướng mặt về phía nào. Hãy khắc phục bằng cách bắt đầu đi bộ trở lại, hoặc lấy điện thoại ra và giữ nằm ngang.
+Để tìm hiểu một địa điểm trước khi đến, hãy mở *Chi tiết vị trí* của địa điểm đó và chọn *Giả lập vị trí*. Khi đó Soundscape hoạt động như thể bạn đang ở đó.
 
-Soundscape hoạt động tốt nhất khi bạn giữ điện thoại nằm ngang với màn hình hướng lên trời và đầu điện thoại chỉ ra xa bạn.
-
-Bạn có thể bật và tắt âm thanh nhịp điệu của đèn hiệu bằng nút tắt tiếng trên màn hình chính. Ngay cả khi đèn hiệu đang tắt tiếng, bạn vẫn nhận được cập nhật về khoảng cách đến điểm đến sau mỗi khoảng 50 mét.
-
-Để tiếp tục dùng Soundscape mà không nghe thông báo tự động, hãy đặt *Mức chi tiết thông báo* thành *Im lặng* trong phần *Quản lý thông báo thoại* của màn hình *Cài đặt* từ menu. Nếu bạn sẽ không dùng Soundscape trong một thời gian, hãy dùng nút *Ngủ* trên màn hình chính để đưa ứng dụng vào chế độ ngủ hoặc tạm nghỉ.
+Để được chỉ đường từng chặng, hãy mở *Chi tiết vị trí* của một địa điểm và chọn *Mở trong ứng dụng bản đồ*. Soundscape vẫn chạy trong khi ứng dụng kia chỉ đường.
 

@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Stemmer
 
-Soundscape kan bruke alle stemmene du har lastet ned til Android‑telefonen din i innstillingene for tekst‑til‑tale. I Soundscape‑appen, for å velge en stemme annet enn Androids standardstemme, gå til *Innstillinger* fra hovedmenyen, utvid seksjonen *Lyd* og velg deretter *Stemmer*.
+Soundscape kan bruke alle stemmer som er installert på telefonen din. For å legge til stemmer åpner du telefonens innstillinger og finner *Tekst-til-tale-utdata*. For å velge en stemme i Soundscape åpner du menyen og velger *Innstillinger*, deretter *Lyd* og deretter *Stemmer*.
 

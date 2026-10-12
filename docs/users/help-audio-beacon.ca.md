@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Balisa sonora
 
-## Què és?
+Una balisa sonora és un so que ve de la direcció d'un lloc que tries tu. Et diu on és el lloc en línia recta. No dona indicacions pas a pas, així que tu tries el teu camí.
 
-Establir una balisa en una ubicació propera permet que Soundscape et mantingui informat reproduint un so que prové de la direcció d'aquesta ubicació. Aquesta balisa es pot silenciar o activar des de la pantalla principal. A més, Soundscape mostra informació sobre la ubicació a la pantalla principal, incloent-hi la distància fins a aquesta i la seva adreça, si es coneix.
+## Posar una balisa
 
-## Quan l'hauria d'utilitzar?
+1. Busca el lloc. Fes servir la barra de cerca, *Llocs propers*, *Marcadors* o *Ubicació actual* a la pantalla principal.
 
-Establir una balisa és útil quan vols fer un seguiment d'un punt de referència familiar mentre explores una zona nova, o quan vas cap a algun lloc i vols estar informat sobre el teu entorn pel camí. La funció de balisa no et dona indicacions pas a pas, però et proporciona un so audible continu que t'indica la direcció cap a la balisa, en relació amb el lloc on ets actualment. Utilitzant la balisa sonora, les teves habilitats d'orientació existents, i fins i tot la teva aplicació de navegació preferida, pots triar com vols arribar tu mateix als llocs propers.
+2. Selecciona el lloc per obrir *Detalls de la ubicació*.
 
-## Com funciona?
+3. Selecciona *Inicia la balisa sonora*.
 
-**Per establir una balisa:**
+Soundscape torna a la pantalla principal i la balisa comença. La pantalla principal mostra el nom del lloc i a quina distància és.
 
- Primer, visualitza els detalls d'una ubicació utilitzant la barra de cerca per cercar un lloc, o tocant un dels botons *Llocs propers*, *Marcadors* o *Ubicació actual* i seleccionant una ubicació. Després, des de la pantalla *Detalls de la ubicació*, selecciona el botó *Inicia la balisa sonora*. En tocar-lo tornaràs a la pantalla principal i s'activarà una balisa audible que prové de la direcció del lloc que has seleccionat. El nom del lloc, juntament amb la seva distància i adreça física, si està disponible, es mostrarà ara a la pantalla principal.
+## Trobar la direcció
 
-**Per eliminar la balisa actual:**
+La balisa canvia de so quan mires cap al lloc o camines directament cap a ell. Per trobar aquest so, aguanta el telèfon pla i gira a poc a poc. Pots triar un altre so per a la balisa a *Configuració*.
 
- Simplement prem el botó *Atura la ruta* a la pantalla principal.
+## Silenciar la balisa
 
-**Per silenciar la balisa audible:**
+Selecciona *Silencia la balisa* a la pantalla principal. Soundscape et continua dient a quina distància és el lloc mentre et mous. Selecciona *Activa el so de la balisa* per tornar a sentir la balisa.
 
- Toca el botó *Silencia la balisa* al costat del botó *Atura la ruta* a la pantalla principal.
+## Treure la balisa
+
+Selecciona *Atura la ruta* a la pantalla principal. El botó té aquest nom encara que la balisa no formi part d'una ruta.
+
+## Quan arribes
+
+Quan ets a uns 12 metres del lloc, Soundscape t'ho diu i treu la balisa. El telèfon no pot determinar la teva posició amb més exactitud. Per tornar a sentir la balisa, torna-la a posar.
+
+Una balisa posada en un lloc a menys de 30 metres continua activa fins que la treus.
 

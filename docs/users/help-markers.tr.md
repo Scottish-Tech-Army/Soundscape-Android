@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Kayıtlı Noktalar
 
-Soundscape ile dünyayı ve önem verdiğiniz her şeyi, bir haritadaki iğneler gibi işaretleyebilirsiniz.
+Kayıtlı nokta, kaydettiğiniz bir yerdir. Sizin için önemli olan herhangi bir yer olabilir: eviniz, bir otobüs durağı, bir bina girişi veya bir yaya geçidi.
 
-Eviniz, ofisiniz veya tercih ettiğiniz market gibi sizin için kişisel olarak önemli yerleri işaretleyebilirsiniz. Herhangi bir yeri veya adresi işaretleyebileceğiniz gibi, genellikle haritalarda bulunmayan şeyleri de işaretleyebilirsiniz: bina veya park girişleri, yaya butonları, yaya geçitleri, köprüler, otobüs durakları, hatta köpeğinizin favori ağacı. Bu kayıtlı noktaları yürüyüşünüz boyunca referans olarak kullanın.
+Soundscape, yanlarından geçerken kayıtlı noktalarınızı anons eder. Bir kayıtlı noktaya sesli işaret ayarlayabilir, onu bir rotaya ekleyebilir veya *Yakındaki Kayıtlı Noktalar* düğmesiyle en yakın olanları duyabilirsiniz.
 
-İşaretlenmiş yerleri deneyimlemek için, Soundscape yürürken veya onlara yaklaşırken işaretlenmiş yerleri otomatik olarak anons eder; ayrıca ana ekranın alt kısmındaki *Yakındaki Kayıtlı Noktalar* düğmesini kullanarak çevrenizdeki işaretlenmiş yerlerin mekânsal anonsunu dinleyebilirsiniz. Hatta herhangi bir işaretlenmiş yerde sesli işaret de ayarlayabilirsiniz. Bunu yaptığınızda, aşina olduğunuz Soundscape sesli işareti çalacak ve onu her zamanki gibi kullanabilirsiniz.
+## Kayıtlı Nokta Oluşturma
+
+1. Ana ekranda *Kayıtlı Noktalar* seçeneğini, sonra *Yeni* seçeneğini seçin.
+
+2. *Mevcut Konum* seçeneğini veya *Yakındaki Yerler* bölümünden bir yeri seçin.
+
+3. İsterseniz adı değiştirin ve not ekleyin. Soundscape notları kayıtlı noktayla birlikte okur.
+
+4. *Tamam* seçeneğini seçin.
+
+Bulduğunuz herhangi bir yeri de kaydedebilirsiniz. Yerin *Konum Ayrıntıları* ekranını açın ve *Kayıtlı Nokta Olarak Kaydet* seçeneğini seçin.
+
+## Kayıtlı Noktaları Özelleştirme
+
+*Kayıtlı Noktalar* ekranında kayıtlı noktayı seçin, sonra *Kayıtlı Noktayı Düzenle* seçeneğini seçin. Adını, notlarını ve konumunu değiştirebilir veya *Kayıtlı Noktayı Sil* seçeneğini seçebilirsiniz. Bir kayıtlı noktayı silmek onu rotalarınızdan da kaldırır.
 

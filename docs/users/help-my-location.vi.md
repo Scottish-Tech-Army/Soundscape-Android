@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Vị trí của tôi
 
-## Đây là gì?
+*Vị trí của tôi* cho bạn biết bạn đang ở đâu. Nó cho biết bạn đang quay mặt hoặc di chuyển về hướng nào, rồi đến con đường hoặc địa chỉ nơi bạn đang đứng. Hãy dùng khi bạn xuống xe buýt, ra khỏi một tòa nhà hoặc mất phương hướng.
 
-Nút *Vị trí của tôi* nhanh chóng cung cấp thông tin giúp bạn xác định vị trí hiện tại của mình. *Vị trí của tôi* cho bạn biết về vị trí hiện tại của bạn, bao gồm những thứ như hướng bạn đang nhìn về, các con đường hoặc giao lộ gần đó ở đâu, và các địa điểm quan tâm gần đó ở đâu.
-
-## Khi nào tôi nên dùng tính năng này?
-
-*Vị trí của tôi* hữu ích khi bạn cần xác định mình đang ở đâu hoặc đang hướng mặt về phương nào.
-
-## Tính năng này hoạt động như thế nào?
-
-Cũng như với cả bốn nút ở dưới cùng màn hình chính, hãy giữ điện thoại nằm ngang (màn hình hướng lên trời) với đầu điện thoại chỉ về hướng bạn đang nhìn trước khi nhấn nút *Vị trí của tôi*. Cách cầm này hoạt động như một chiếc la bàn, cho ứng dụng biết bạn đang hướng mặt về phía nào. Chỉ cần nhấn nút *Vị trí của tôi* và lắng nghe.
+Nếu bạn đang đứng yên, trước tiên hãy hướng cạnh trên của điện thoại về phía bạn đang quay mặt. Nếu điện thoại đang khóa, hoặc Soundscape không hiện trên màn hình, hãy giữ thêm điện thoại nằm ngang.
 

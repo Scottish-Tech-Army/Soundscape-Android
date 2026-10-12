@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatske najave
 
-## Što je to?
+Dok hodate, Soundscape najavljuje što je u vašoj blizini. Svaki naziv čujete iz smjera mjesta. Najave obuhvaćaju ulice, raskrižja, trgovine, autobusna stajališta, znamenitosti i vaše vlastite oznake.
 
-Soundscape vam može reći o stvarima u vašoj okolini dok im se približavate tako što najavljuje njihov naziv iz smjera u kojem se nalaze. Aplikacija to radi automatski za razne stvari poput trgovina, autobusnih stajališta pa čak i raskrižja. Možete odrediti što aplikacija automatski najavljuje u odjeljku *Upravljanje najavama* na zaslonu *Postavke*, a sve najave možete i potpuno isključiti kada želite da aplikacija bude tiha.
+## Raskrižja
 
-## Kada se ovo koristi?
+Kad se približavate raskrižju, Soundscape imenuje svaku cestu koja iz njega izlazi. Čujete koja cesta ide lijevo, koja se nastavlja ravno i koja ide desno.
 
-**Istraživanje novog područja:**
+## Koliko čujete
 
- Uključite automatske najave i prošećite okolinom kako biste čuli o svim raznim trgovinama, restoranima i sličnome dok prolazite pored njih.
+Otvorite izbornik i odaberite *Postavke*, zatim *Upravljanje najavama*. *Razina detalja najava* ima četiri razine.
 
-**Hod prema određenoj lokaciji:**
+*Detaljno* najavljuje sve u blizini.
 
- Kada ste na putu prema određenoj lokaciji, automatske najave raskrižja mogu biti posebno korisne. Najave raskrižja govore vam o rasporedu raskrižja dok im se približavate i potvrđuju cestu na kojoj se nalazite kada ih napustite.
+*Pojednostavljeno* izostavlja manje staze i servisne ceste te se manje ponavlja.
 
-**Kada vam treba tišina:**
+*Osnovno* najavljuje samo ulice, raskrižja i znamenitosti.
 
- Kada se spremate prijeći cestu ili jednostavno trebate da aplikacija bude tiha, možete isključiti najave. Kada su najave isključene, aplikacija će vam davati informacije samo ako ručno dodirnete jedan od gumba *Moja lokacija*, *Oznake u blizini*, *Oko mene* ili *Ispred mene*.
+*Bez zvuka* ne daje automatske najave. Svjetionici, rute i gumbi na početnom zaslonu i dalje rade.
 
-## Kako to funkcionira?
+## Što čujete
 
-**Uključivanje ili isključivanje najava:**
+*Upravljanje najavama* ima još dvije postavke. *Ulice i raskrižja* uključuje ili isključuje najave ulica i raskrižja. *Mjesta za najavu* određuje koje vrste mjesta čujete, na primjer *Javni prijevoz* ili *Hrana i piće*. Vaše se oznake uvijek najavljuju.
 
- Isključivanjem najava utišat ćete aplikaciju. Najave se mogu isključiti u odjeljku *Upravljanje najavama* na zaslonu *Postavke* postavljanjem opcije *Razina detalja najava* na *Bez zvuka*, a ponovno se uključuju odabirom bilo koje druge razine. Na iPhoneu isto možete učiniti tako da to zatražite od Siri, a na Androidu će isto raditi putem Geminija čim Google objavi podršku za to. Soundscape možete i postupno utišavati gumbima za upravljanje medijima na slušalicama: svaki pritisak na *prethodno* spušta razinu kroz *Detaljno*, *Pojednostavljeno*, *Osnovno* i *Bez zvuka*, a još jedan pritisak vraća na *Detaljno*. Pogledajte temu pomoći *Upotreba upravljanja medijima*. Također, možete koristiti gumb *Mirovanje* u gornjem desnom kutu početnog zaslona kako biste zaustavili Soundscape da izgovara najave dok ga ne probudite.
+## Kako stišati Soundscape
 
-**Upravljanje najavama koje čujete:**
+Pritisnite *previous* na upravljaču slušalica. Svaki pritisak prelazi jednu razinu tiše: *Detaljno*, *Pojednostavljeno*, *Osnovno*, zatim *Bez zvuka*. Još jedan pritisak vraća na *Detaljno*. Pogledajte stranicu pomoći *Upotreba upravljanja medijima*.
 
- Kako biste odabrali vrste stvari koje će Soundscape automatski najavljivati, otvorite zaslon *Postavke* pomoću izbornika na zaslonu *Početni*. U odjeljku *Upravljanje najavama* na zaslonu *Postavke* birate koliko aplikacija govori pomoću opcije *Razina detalja najava*, najavljuje li *Ulice i raskrižja* te koja su *Mjesta za najavu*. Ako želite isključiti sve najave, postavite *Razina detalja najava* na *Bez zvuka*.
+## Zaustavljanje Soundscapea na neko vrijeme
+
+Odaberite gumb *Mirovanje* na vrhu početnog zaslona. Soundscape prestaje koristiti vašu lokaciju i ne proizvodi nikakav zvuk dok ne odaberete *Probudi odmah*. Ili odaberite *Probudi pri odlasku*, pa se Soundscape probudi kad napustite mjesto na kojem ste.
+
+## U vozilu ili u vlaku
+
+Soundscape primjećuje kad se krećete brzinom vozila. Tada prestaje najavljivati raskrižja i obližnje trgovine jer prebrzo prolaze. Umjesto toga najavljuje cestu kojom se krećete, znamenitosti, stajališta i kolodvore, rijeke i tunele.
 

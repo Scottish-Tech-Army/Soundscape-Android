@@ -9,121 +9,76 @@ permalink: /users/help-frequently-asked-questions.html
 
 # Pertanyaan yang Sering Diajukan
 
-## Apa itu Soundscape dan bagaimana cara menggunakannya?
+## Tentang Soundscape
 
 ### Kapan sebaiknya saya menggunakan Soundscape?
-Soundscape memiliki fitur dan manfaat yang mencakup berbagai skenario dan rentang waktu. Nilai Soundscape bagi Anda juga dapat berubah seiring waktu, sehingga cara Anda menggunakannya hari ini mungkin berbeda dengan cara Anda menggunakannya tiga bulan mendatang. Orang sering memikirkan aplikasi dari segi *masalah apa yang paling bisa diselesaikan aplikasi ini?* Soundscape tentu dapat digunakan untuk kebutuhan tertentu – seperti memantau tujuan saat Anda menuju ke sana, membantu Anda mengetahui arah saat keluar dari stasiun metro, mengetahui posisi saat keluar dari mobil, atau mencari nama jalan atau jarak menuju persimpangan berikutnya. Namun, filosofi di balik Soundscape adalah *menerangi dunia Anda dengan suara* – aplikasi ini dirancang untuk digunakan kapan pun Anda sedang bepergian, untuk memberi Anda kesadaran ambien terhadap sekitar, seperti nama jalan yang Anda lalui, arah yang Anda tuju, dan nama bisnis yang Anda lewati. Dalam mode penggunaan ini, para pengguna kami menyebut Soundscape sebagai *teman perjalanan yang menyenangkan*, yang mendukung *kejutan-kejutan menyenangkan*, membantu *mengisi celah dalam peta mental Anda*, dan memberikan lebih banyak *kepercayaan diri saat berjalan*. Berikut beberapa contoh lain bagaimana pengguna kami menggunakan Soundscape dalam kehidupan mereka:
-
-“Soundscape membantu saya kembali ke jalur yang benar setelah saya turun dari bus dan berjalan ke arah yang salah.”
-
-“Bahkan di kota tempat saya tinggal selama 3 tahun, saya telah membangun gambaran yang lebih baik tentang apa yang ada di sekitar saya [dengan Soundscape].”
-
-“Suara 3D meningkatkan pengalaman jalan kaki saya, karena saya merasa lebih terhubung dengan lingkungan saya… Saya lebih cenderung mencoba rute baru sekarang karena saya memiliki aplikasi ini.”
-
-“Saya rindu kejutan-kejutan menyenangkan saat berjalan-jalan dan memperhatikan sekitar. Memiliki Soundscape sangat menyenangkan – tidak perlu usaha untuk mendengar tentang hal-hal di sekitar saya. Informasi relasionalnya berguna dan aplikasi ini sangat baik untuk kesadaran situasional dan menjelajahi kawasan komersial.”
-
-“[Saya menggunakan Soundscape] untuk menemukan sebuah pub di tengah kota York. [Saya] menggunakan berbagai opsinya untuk pertama-tama menemukan lokasinya lalu benar-benar mencapainya. Aplikasi ini membawa saya hingga jarak 3 meter dari pintu – luar biasa!”
-
-### Apa itu Penanda dan bagaimana cara memanfaatkannya secara maksimal?
-Penanda adalah tempat yang telah Anda simpan. Bisa berupa tempat yang dapat ditemukan di dalam aplikasi, atau tempat yang sepenuhnya baru yang Anda tambahkan sendiri. Untuk menambahkannya, pilih *Penanda* di layar utama, lalu pilih tombol *Baru* di pojok kanan atas layar dan pilih lokasi Anda saat ini atau tempat di sekitar. Anda juga dapat menyimpan tempat apa pun yang Anda temukan dari layar utama, menggunakan bilah pencarian, tombol *Tempat di Sekitar*, atau tombol *Lokasi Saat Ini*. Memilih suatu tempat akan membawa Anda ke layar *Detail Lokasi*, tempat Anda memilih tombol bernama *Simpan sebagai Penanda*.
-
-## Bagaimana cara mendapatkan pengalaman terbaik dari Soundscape?
-
-### Apa saja yang dapat saya jadikan suar?
-Anda dapat mengatur suar audio pada bisnis, tempat, tempat menarik, alamat, atau persimpangan apa pun. Ada beberapa cara untuk menambahkan suar pada suatu lokasi. Pertama, lihat detail suatu lokasi dengan menggunakan bilah pencarian untuk mencari tempat, atau ketuk salah satu tombol *Tempat di Sekitar*, *Penanda*, atau *Lokasi Saat Ini* lalu pilih lokasi. Lalu dari layar *Detail Lokasi*, pilih tombol *Mulai Suar Audio*. Mengetuk tombol ini akan membawa Anda kembali ke layar utama dan mengaktifkan suar yang terdengar dari arah tempat yang Anda pilih. Nama tempat beserta jaraknya dan alamat fisiknya, jika tersedia, kini akan ditampilkan di layar utama.
-
-### Bagaimana cara memanfaatkan suar audio secara maksimal?
-Anda dapat menganggap suar audio sebagai *mercusuar bagi telinga Anda*: suar ini memberi tahu Anda di mana tujuan Anda berada, dalam garis lurus dari lokasi Anda saat ini. Seperti mercusuar, suar ini tidak memberi tahu cara mencapainya – Anda mungkin masih perlu membuat keputusan navigasi di sepanjang jalan untuk menghindari rintangan. Suara ritmis yang terus-menerus dari suar datang dari arah tujuan, dan membantu Anda tetap mengetahui di mana tujuan berada relatif terhadap Anda saat berjalan. Ketika Anda berjalan langsung menuju tujuan, atau mengarahkan ponsel ke tujuan, Anda akan mendengar suara *dering* bernada lebih tinggi. Ini membantu Anda menentukan arah tujuan dengan tepat, karena arah suara ritmis kadang sulit didengar di lingkungan yang bising. Untuk menemukan *dering* bernada lebih tinggi tersebut, pegang ponsel secara datar dan berputarlah perlahan; memutar kepala ke arah yang sama dengan ponsel akan memberi Anda pengalaman audio spasial terbaik.
-
-Desain ini memiliki beberapa konsekuensi alami:
-
-1. Tidak ada arah *yang benar* untuk ditempuh saat menggunakan suar – dengan Soundscape, Anda yang memilih cara mencapainya;
-
-2. *Dering* bernada lebih tinggi hanya membantu Anda menentukan arah tujuan – bukan memberi tahu cara mencapainya;
-
-3. Jika Anda pada umumnya sudah tahu cara mencapai tujuan, Anda mungkin ingin membisukan suar selama sebagian besar perjalanan dan menyalakannya hanya saat Anda mendekati tujuan.
-
-### Mengapa suar audio terkadang menghilang?
-Suar audio Soundscape pada dasarnya adalah isyarat arah, yang memberi tahu Anda di mana tujuan Anda berada relatif terhadap arah hadap Anda. Ketika Soundscape tidak yakin ke arah mana Anda menghadap, aplikasi akan mengurangi volume suar. Hal ini paling sering terjadi jika Anda berjalan dengan ponsel disimpan di saku atau tas, dan Anda berhenti bergerak, misalnya untuk menyeberang jalan. Suar akan kembali lebih keras begitu Anda mulai bergerak lagi, atau jika Anda memegang ponsel secara rata dan mengarahkannya ke arah hadap Anda.
-
-### Bisakah saya mengatur suar pada sebuah alamat?
-Bisa. Alamat tidak dicantumkan secara default tetapi dapat ditemukan menggunakan kolom pencarian. Untuk menyimpan alamat ini agar Anda tidak perlu mencarinya lagi, Anda dapat menambahkannya sebagai penanda dari layar *Detail Lokasi* dengan memilih tombol *Simpan sebagai Penanda*.
-
-### Bagaimana cara mengatur suar di rumah saya?
-Soundscape mendukung pengaturan suar pada alamat. Untuk mengatur suar di rumah Anda, atau alamat lainnya, cari lokasi menggunakan bilah pencarian di layar utama. Lalu di layar *Detail Lokasi*, ketuk tombol *Mulai Suar Audio*.
-
-### Saat saya mengatur suar pada suatu tujuan, seberapa dekat Soundscape akan membawa saya ke sana?
-Soundscape dapat menentukan lokasi tujuan Anda hingga jarak beberapa meter, tidak kurang dari itu. Ketika Soundscape menentukan bahwa Anda sudah dekat dengan tujuan, Anda akan mendengar pemberitahuan terakhir bahwa tujuan Anda sudah dekat, dan suar akan mati.
-
-### Bisakah saya menyalakan kembali suar saat sudah dekat dengan tujuan saya?
-Ya, Anda dapat menyalakan kembali suar setelah Soundscape mematikannya dengan memilih tombol *Aktifkan Suara Suar*; namun, karena Layanan Lokasi hanya akurat hingga sekitar 10 meter, kami tidak dapat menjamin perilaku suar saat Anda berada dalam jarak beberapa meter dari tujuan Anda.
-
-### Mengapa Soundscape menyebutkan nama jalan dua kali saat saya mendekati persimpangan?
-Untuk mengakomodasi berbagai bentuk persimpangan, Soundscape menjelaskan persimpangan sebagai ruas-ruas jalan yang bercabang dari satu titik yang sama. Soundscape menggunakan audio spasial untuk menyebutkan nama-nama jalan yang mengarah ke kiri, lurus ke depan, dan ke kanan, secara berurutan. Jika penjelasan persimpangan dimulai dengan jalan yang sedang Anda lalui alih-alih jalan di sebelah kiri, maka persimpangan tersebut membentuk huruf T yang menyamping, dengan jalan yang sedang Anda lalui terus ke depan dan sebuah jalan bertemu dari sebelah kanan. Demikian pula, jika penjelasan hanya mencakup jalan di sebelah kiri dan kanan, Anda akan tahu bahwa jalan yang sedang Anda lalui berakhir pada persimpangan berbentuk T di depan Anda. Metode penjelasan persimpangan ini juga berfungsi ketika sebuah jalan berganti nama di persimpangan.
-
-### Mengapa Soundscape tidak mengumumkan setiap bisnis yang saya lewati?
-Soundscape dirancang agar tidak memberi Anda terlalu banyak pemberitahuan. Aplikasi ini juga menggunakan OpenStreetMap sebagai sumber datanya. OpenStreetMap (OSM, https://www.openstreetmap.org/) adalah peta dunia yang dibangun dan disunting oleh komunitas kontributor perorangan. Jika Soundscape tidak mengumumkan sebuah bisnis atau tempat menarik, kemungkinan besar penyebabnya adalah belum ada anggota komunitas OSM yang menambahkan bisnis tersebut ke dalam data, atau dalam beberapa kasus belum memperbaruinya.
-
-### Mengapa sebagian pemberitahuan berhenti ketika saya berada di dalam kendaraan?
-Untuk mencegah jumlah pemberitahuan menjadi terlalu banyak, beberapa kategori, seperti persimpangan, tidak diumumkan secara otomatis saat Anda bepergian dengan kendaraan.
-
-### Bagaimana jika saya tidak memahami sebuah pemberitahuan atau melewatkannya karena kebisingan sekitar?
-Soundscape tidak menyimpan daftar pemberitahuan sebelumnya, tetapi Anda dapat memintanya menjelaskan kembali lingkungan sekitar Anda kapan saja. *Lokasi Saya* memberi tahu di mana Anda berada, sedangkan *Di Sekitar Saya* dan *Di Depan Saya* membacakan tempat-tempat di sekitar dan di depan Anda. Ketiga tombol ini ada di bagian bawah layar utama. Jika Anda menggunakan kontrol media di headphone dalam *Mode asli*, ⏭ Berikutnya membacakan *Di Sekitar Saya* saat tidak ada rute yang sedang diputar.
-
-## Bagaimana cara kerja Soundscape?
-
-### Ponsel apa yang dapat menjalankan Soundscape?
-Soundscape saat ini tersedia untuk iPhone dengan iOS 16 atau yang lebih baru, dan untuk ponsel Android dengan Android 11 atau yang lebih baru.
-
-### Headphone apa yang sebaiknya saya gunakan dengan Soundscape?
-Headphone mana yang Anda gunakan dengan Soundscape adalah masalah preferensi pribadi, dan setiap pilihan memiliki kelebihan dan kekurangannya masing-masing. Satu-satunya syarat adalah menggunakan headphone stereo agar Anda dapat memanfaatkan pemberitahuan audio spasial 3D dari Soundscape.
-
-### Bagaimana pengaruh Soundscape terhadap baterai ponsel saya?
-Daya tahan baterai sangat bervariasi tergantung pada model dan usia ponsel Anda. Penyebab utama borosnya baterai adalah layar yang menyala, jadi untuk memaksimalkan daya tahan baterai ponsel Anda, sebaiknya jaga layar tetap terkunci sebisa mungkin. Untuk membantu meminimalkan dampak pada baterai ponsel Anda, Soundscape memiliki Mode Tidur dan Mode Tunda. Untuk lebih mengurangi penggunaan baterai, saat Anda tidak menggunakan Soundscape, sebaiknya tutup paksa aplikasi melalui App Switcher ponsel Anda.
-
-### Bagaimana cara menggunakan Mode Tidur untuk meminimalkan dampak Soundscape pada baterai ponsel saya?
-Untuk mengaktifkan Mode Tidur di Soundscape, pilih tombol *Tidur* di pojok kanan atas layar utama. Saat Anda memilih ini, Soundscape akan berhenti menggunakan Layanan Lokasi dan data seluler sampai Anda membangunkannya.
-
-### Bagaimana cara menggunakan Mode Tunda untuk meminimalkan dampak Soundscape pada baterai ponsel saya?
-Untuk mengaktifkan Mode Tunda di Soundscape, pilih tombol *Tidur* di pojok kanan atas layar utama. Setelah Soundscape berada dalam Mode Tidur, pilih tombol *Bangun Saat Pergi* dan Soundscape akan masuk ke keadaan hemat daya sampai Anda meninggalkan lokasi Anda saat ini.
-
-### Bagaimana pengaruh pilihan headphone saya terhadap daya tahan baterai ponsel saya?
-Dalam pengujian kami, konsumsi baterai headphone Bluetooth sebanding dengan konsumsi baterai headphone berkabel dan tidak seharusnya menjadi faktor penting saat memilih headphone.
-
-### Bagaimana pengaruh menjalankan Soundscape di latar belakang terhadap daya tahan baterai ponsel saya?
-Soundscape menggunakan Layanan Lokasi untuk menentukan di mana Anda berada. Dalam pengujian kami, Soundscape tidak mengonsumsi baterai lebih banyak dibandingkan aplikasi peta pada umumnya; tetapi jika Anda khawatir tentang konsumsi baterai ponsel Anda, berikut beberapa tips yang dapat membantu menurunkan penggunaannya:
-
-1. Matikan tampilan layar sebanyak mungkin saat Anda tidak sedang berinteraksi dengan aplikasi.
-
-2. Saat tidak menggunakan aplikasi, tutup aplikasi tersebut. Soundscape menggunakan layanan lokasi secara terus-menerus selama berjalan agar selalu mengetahui posisi Anda, bahkan saat Anda tidak bergerak. Jangan lupa memulai ulang aplikasi saat Anda melanjutkan perjalanan.
-
-3. Dalam cuaca dingin, jaga ponsel Anda tetap hangat karena baterai bekerja kurang optimal pada suhu yang lebih dingin.
-
-### Berapa banyak data seluler yang digunakan Soundscape?
-Jumlah data seluler yang digunakan tergantung pada cara Anda menggunakan Soundscape. Kami telah merancang aplikasi ini untuk hanya menggunakan sedikit data saat Anda bepergian, misalnya dengan menyimpan titik-titik lokasi saat Anda berjalan sehingga Anda tidak perlu mengunduhnya lagi setiap kali kembali ke tempat yang sudah pernah Anda kunjungi. Untuk mengurangi penggunaan data seluler, pastikan Anda terhubung ke Wi-Fi sebisa mungkin, terutama untuk mengunduh aplikasi. Saat Anda tidak menggunakan Soundscape, sebaiknya gunakan tombol *Tidur* untuk membuat Soundscape tidur atau tutup paksa aplikasi.
+Gunakan Soundscape kapan pun Anda berada di luar. Soundscape berjalan di latar belakang dan memberi tahu jalan yang Anda lalui serta tempat yang Anda lewati. Soundscape juga dapat membantu satu tugas, seperti memantau tempat yang sedang Anda tuju.
 
 ### Apa yang membedakan Soundscape dari aplikasi peta lainnya?
-Soundscape memberikan gambaran ambien tentang sekitar Anda untuk membantu penjelajahan dan pencarian arah. Dengan menggunakan audio spasial, Soundscape akan menyebutkan tempat menarik, taman, jalan, dan persimpangan dari arah tempat tersebut berada secara fisik di lingkungan langsung Anda saat Anda berjalan. Misalnya, jika Anda melewati sebuah toko di sebelah kanan, Anda akan mendengar nama toko tersebut terdengar dari sebelah kanan Anda. Saat Anda mendekati persimpangan, Anda akan mendengar setiap nama jalan terdengar dari arah jalan tersebut mengarah, dimulai dari kiri, lurus ke depan, lalu kanan.
+Sebagian besar aplikasi peta memberi petunjuk belokan demi belokan. Soundscape memberi tahu apa yang ada di sekitar Anda dan memutar suar dari arah tujuan Anda. Anda yang memilih jalannya.
 
-Alih-alih memberikan petunjuk arah langkah demi langkah seperti yang sering diberikan aplikasi peta lainnya, Soundscape akan memutar suar audio ke arah tujuan Anda, memberdayakan Anda untuk menuju ke sana dengan cara yang paling sesuai bagi Anda, menggunakan kesadaran yang meningkat terhadap sekitar Anda dan lokasi tujuan Anda. Soundscape dirancang untuk berjalan di latar belakang, memungkinkan Anda menggunakan aplikasi petunjuk arah langkah demi langkah, sambil tetap memberikan kesadaran lingkungan saat Anda menuju tujuan Anda.
+Anda dapat menggunakan keduanya bersamaan. Mulai petunjuk arah di aplikasi peta Anda, lalu pasang suar Soundscape pada tempat yang sama.
 
-### Bagaimana cara menggunakan Soundscape dengan aplikasi pencarian arah?
-Soundscape dirancang untuk membantu melengkapi detail tentang lingkungan Anda yang mungkin belum Anda sadari. Meskipun bukan dirancang sebagai aplikasi navigasi langkah demi langkah, aplikasi ini dapat digunakan bersamaan dengan aplikasi semacam itu untuk memberikan informasi pelengkap. Untuk menggunakan Soundscape dengan aplikasi tersebut, mulai aplikasi navigasi Anda terlebih dahulu. Kemudian, pindah ke Soundscape dan atur suar pada tujuan yang sama seperti di aplikasi navigasi. Pada titik ini, kedua aplikasi akan berjalan bersamaan dan Anda akan mendengar petunjuk arah jalan kaki dari aplikasi navigasi Anda, sambil mendapatkan pembaruan tentang tempat menarik, persimpangan, dan jarak Anda ke tujuan dari Soundscape.
+### Apakah saya harus memegang ponsel sepanjang waktu?
+Tidak. Saat Anda berjalan, Soundscape menggunakan arah perjalanan Anda. Jadi ponsel bisa tetap di saku atau tas. Keluarkan ponsel saat Anda berdiri diam dan ingin arahnya tepat. Arahkan bagian atas ponsel ke arah hadap Anda. Jika ponsel terkunci, atau Soundscape tidak ada di layar, pegang juga ponsel secara mendatar.
 
-### Bagaimana cara mengontrol apa yang saya dengar dan kapan saya mendengarnya di Soundscape?
-Soundscape menyediakan beberapa cara untuk mengontrol apa yang Anda dengar dan kapan:
+## Suar dan Pemberitahuan
 
-1. Menghentikan semua audio dengan segera: Ketuk layar dua kali dengan dua jari untuk segera mematikan semua audio, termasuk pemberitahuan yang sedang diputar dan suar jika sedang aktif. Pemberitahuan akan otomatis dilanjutkan saat Anda mendekati persimpangan atau tempat menarik berikutnya, tetapi suar audio tidak akan. Pilih tombol *Aktifkan Suara Suar* di layar utama untuk kembali mendengarkan suar.
+### Bisakah saya memasang suar pada sebuah alamat, misalnya rumah saya?
+Bisa. Ketik alamat di bilah pencarian pada layar utama dan pilih di hasil pencarian. Lalu pilih *Mulai Suar Audio*. Untuk menyimpan alamat itu untuk lain kali, pilih *Simpan sebagai Penanda*.
 
-2. Menghentikan pemberitahuan otomatis: Saat Anda tidak sedang bepergian atau sudah sampai di tujuan, kemungkinan Anda tidak memerlukan Soundscape untuk terus memberi tahu Anda tentang hal-hal di sekitar. Alih-alih keluar dari aplikasi, Anda dapat mengaktifkan Mode Tunda pada Soundscape dan aplikasi akan aktif kembali saat Anda pergi, atau Anda dapat mengaktifkan Mode Tidur pada Soundscape dan aplikasi akan tetap nonaktif sampai Anda mengaktifkannya kembali. Sebagai alternatif, Anda dapat memilih *Pengaturan* dari menu dan mengatur *Tingkat Detail Pemberitahuan* ke *Senyap* di bagian *Kelola Pemberitahuan*.
+### Bagaimana cara memanfaatkan suar audio secara maksimal?
+Anggap suar sebagai mercusuar untuk telinga Anda. Suar menunjukkan di mana tempat itu berada dalam garis lurus, bukan jalan menuju ke sana. Anda tetap memilih sendiri cara mengitari gedung dan menyeberang jalan.
 
-3. Menghentikan suar: Ada beberapa skenario ketika Anda mungkin mengatur tujuan tetapi tidak memerlukan suar audio aktif. Misalnya, Anda mungkin sudah tahu persis cara menuju tujuan Anda tetapi tetap ingin pembaruan otomatis tentang seberapa jauh Anda. Atau Anda mungkin hanya memerlukan suar audio saat mendekati tujuan. Apa pun kasusnya, Anda dapat memilih kapan mendengar suar dengan mengetuk tombol *nonaktifkan suara suar*/*aktifkan suara suar* di layar utama.
+Suara suar berubah saat Anda menghadap ke tempat itu. Untuk menemukan suara itu, pegang ponsel secara mendatar dan berputarlah perlahan.
 
-Jika Anda masih ingin berinteraksi dengan Soundscape tetapi tidak ingin mendengar pemberitahuan otomatis, Anda dapat mengatur *Tingkat Detail Pemberitahuan* ke *Senyap* di bagian *Kelola Pemberitahuan* pada layar *Pengaturan* dari menu. Atau, jika Anda tidak akan menggunakan Soundscape, Anda dapat mengaktifkan Mode Tidur atau Mode Tunda menggunakan tombol *Tidur* di layar utama.
+Jika Anda sudah tahu sebagian besar jalannya, nonaktifkan suara suar dan aktifkan lagi saat Anda sudah dekat.
 
-### Apakah saya perlu memegang ponsel di tangan sepanjang waktu?
-Tidak! Saat berjalan, Anda dapat menyimpan ponsel di dalam tas, saku, atau di mana pun yang nyaman. Soundscape akan menggunakan arah Anda berjalan untuk mengetahui pemberitahuan mana yang harus diumumkan di sebelah kiri dan kanan Anda. Saat Anda berhenti bergerak, Soundscape tidak dapat mengetahui arah hadap Anda. Jika suar audio sedang aktif, Anda akan menyadari suaranya melemah sampai Anda mulai bergerak lagi. Anda dapat mengeluarkan ponsel untuk menekan tombol lokasi dan penjelajahan di bagian bawah layar utama kapan saja, tetapi pastikan Anda memegang ponsel dengan bagian atas ponsel mengarah ke arah hadap Anda dan layar menghadap ke langit. Dalam posisi *rata* ini, Soundscape akan menggunakan kompas ponsel untuk menentukan arah hadap Anda dan memberikan pemberitahuan spasial yang akurat. Jika suar sedang aktif, Anda juga akan menyadari volumenya kembali penuh.
+### Apa yang terjadi saat saya sampai di tujuan?
+Saat jarak Anda sekitar 12 meter, Soundscape memberi tahu Anda dan menghapus suar. Ponsel tidak dapat menentukan posisi Anda lebih tepat dari itu, jadi gunakan keterampilan Anda yang lain untuk beberapa langkah terakhir. Untuk mendengar suar lagi, pasang lagi suarnya.
 
-### Apa itu OpenStreetMap dan mengapa kami menggunakannya untuk Soundscape?
-Soundscape menggunakan data peta untuk membuat pemberitahuan audionya. Sumber peta utama kami adalah OpenStreetMap (www.openstreetmap.org). Ini adalah platform pemetaan yang dibuat oleh komunitas kontributor. Organisasi dan perorangan dapat menggunakan alat OpenStreetMap untuk meningkatkan kualitas data dan membuat ruang mereka lebih mudah diakses.
+### Mengapa suar terdengar berbeda saat saya berhenti berjalan?
+Saat ponsel ada di saku atau tas, Soundscape menentukan arah hadap Anda dari arah perjalanan Anda. Saat Anda berhenti, Soundscape tidak bisa lagi mengetahuinya, sehingga suar terdengar seolah-olah Anda membelakangi tempat itu. Mulailah berjalan lagi, atau arahkan bagian atas ponsel ke arah hadap Anda. Jika ponsel terkunci, atau Soundscape tidak ada di layar, pegang juga ponsel secara mendatar.
+
+### Mengapa saya mendengar nama jalan dua kali di persimpangan?
+Soundscape menyebut nama setiap jalan yang keluar dari persimpangan, dari arah jalan itu menuju. Jalan yang memotong jalan Anda mengarah ke kiri dan ke kanan, sehingga Anda mendengar namanya dua kali. Jika Anda hanya mendengar kiri dan kanan, jalan Anda berakhir di depan.
+
+### Mengapa Soundscape tidak mengumumkan setiap bisnis yang saya lewati?
+Soundscape mengambil data tempat dari OpenStreetMap, peta yang dibuat oleh para sukarelawan. Jika sebuah tempat usaha tidak ada di peta itu, Soundscape tidak dapat memberitahukannya. Soundscape juga membatasi pemberitahuan agar Anda tidak mendengar terlalu banyak. Untuk mendengar lebih banyak, atur *Tingkat Detail Pemberitahuan* ke *Rinci* dan periksa *Tempat yang Diberitahukan*.
+
+### Apa yang berubah saat saya berada di kendaraan?
+Soundscape berhenti memberitahukan persimpangan dan toko terdekat, karena terlalu cepat terlewati. Sebagai gantinya, Soundscape memberitahukan jalan yang Anda lalui, landmark, halte dan stasiun, sungai, dan terowongan.
+
+### Bagaimana jika saya melewatkan sebuah pemberitahuan?
+Soundscape tidak menyimpan daftar pemberitahuan yang sudah lewat. Tanyakan lagi dengan tombol di bagian bawah layar utama: *Lokasi Saya*, *Di Sekitar Saya*, atau *Di Depan Saya*.
+
+### Bagaimana cara membuat Soundscape lebih tenang?
+1. Untuk mendengar lebih sedikit pemberitahuan, buka *Pengaturan*, pilih *Kelola Pemberitahuan*, dan turunkan *Tingkat Detail Pemberitahuan*. *Senyap* menghentikan semua pemberitahuan otomatis.
+
+2. Untuk membungkam suar, pilih *Nonaktifkan Suara Suar* di layar utama.
+
+3. Untuk menghentikan Soundscape sementara, pilih *Tidur* di bagian atas layar utama.
+
+## Ponsel, Baterai, dan Peta
+
+### Ponsel apa yang dapat menjalankan Soundscape?
+Soundscape berjalan di iPhone dengan iOS 16 atau yang lebih baru, dan di ponsel Android dengan Android 11 atau yang lebih baru.
+
+### Apakah saya memerlukan headphone?
+Tidak. Soundscape berfungsi melalui speaker ponsel Anda. Headphone stereo memberi kesan arah yang jauh lebih jelas, dan headphone berkabel atau Bluetooth apa pun bisa dipakai.
+
+### Bagaimana cara menghemat baterai?
+Soundscape menggunakan lokasi Anda sepanjang waktu, dan itu memakai baterai. Agar lebih hemat:
+
+1. Biarkan layar mati saat Anda tidak menggunakannya.
+
+2. Saat Anda berhenti sebentar, pilih *Tidur* di bagian atas layar utama. Pilih *Bangun Saat Pergi* jika Anda ingin Soundscape bangun saat Anda melanjutkan perjalanan.
+
+3. Setelah selesai, tutup Soundscape.
+
+### Berapa banyak data seluler yang digunakan Soundscape?
+Soundscape mengunduh sedikit data peta saat Anda bergerak. Agar jauh lebih hemat, unduh peta offline melalui Wi-Fi sebelum Anda bepergian. Buka menu dan pilih *Peta offline*.
+
+### Apa itu OpenStreetMap?
+OpenStreetMap adalah peta dunia yang bebas, dibuat oleh para sukarelawan. Soundscape menggunakannya untuk jalan dan tempat. Siapa pun dapat menambahkan atau memperbaiki tempat di www.openstreetmap.org, dan perubahannya sampai ke Soundscape pada pembaruan peta berikutnya.
 

@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Baliză audio
 
-## Ce este?
+O baliză audio este un sunet care vine din direcția unui loc ales de tine. Îți spune unde se află locul în linie dreaptă. Nu oferă indicații pas cu pas, așa că tu îți alegi drumul până acolo.
 
-Setarea unei balize pe o locație din apropiere permite Soundscape să te țină informat prin redarea unui sunet din direcția locației respective. Această baliză poate fi dezactivată sau activată de pe ecranul principal. În plus, Soundscape afișează informații despre locație pe ecranul principal, inclusiv distanța până la aceasta și adresa stradală, dacă este cunoscută.
+## Setarea unei balize
 
-## Când aș folosi această funcție?
+1. Găsește locul. Folosește bara de căutare, *Locuri din apropiere*, *Marcaje* sau *Locația curentă* de pe ecranul principal.
 
-Setarea unei balize este utilă atunci când vrei să urmărești un reper familiar în timp ce explorezi o zonă nouă sau când te deplasezi undeva și vrei să fii informat despre împrejurimi pe parcurs. Funcția de baliză nu îți oferă indicații pas cu pas, dar îți oferă un sunet audibil continuu care îți indică direcția balizei, relativ la locația ta actuală. Folosind baliza audio, abilitățile tale de orientare existente și chiar aplicația ta preferată de navigare, poți alege singur cum să ajungi la locațiile din apropiere.
+2. Selectează locul pentru a deschide *Detalii locație*.
 
-## Cum funcționează?
+3. Selectează *Pornește baliza audio*.
 
-**Pentru a seta o baliză :**
+Soundscape revine la ecranul principal și baliza pornește. Ecranul principal arată numele locului și cât de departe este.
 
- Mai întâi, vizualizează detaliile unei locații fie folosind bara de căutare pentru a căuta un loc, fie atingând unul din butoanele *Locuri din apropiere*, *Marcaje* sau *Locația curentă* și selectând o locație. Apoi, din ecranul *Detalii locație*, selectează butonul *Pornește baliza audio*. Atingând acest buton vei reveni la ecranul principal și vei activa o baliză audibilă emisă din direcția locului selectat. Numele locului, împreună cu distanța până la acesta și adresa sa fizică, dacă sunt disponibile, vor fi afișate acum pe ecranul principal.
+## Găsirea direcției
 
-**Pentru a elimina baliza curentă :**
+Baliza își schimbă sunetul când ești cu fața spre loc sau mergi drept spre el. Pentru a găsi acel sunet, ține telefonul în poziție orizontală și întoarce-te încet. Poți alege un alt sunet pentru baliză în *Setări*.
 
- Pur și simplu apasă butonul *Oprește ruta* de pe ecranul principal.
+## Dezactivarea sunetului balizei
 
-**Pentru a dezactiva sunetul balizei audibile :**
+Selectează *Dezactivează sunetul balizei* pe ecranul principal. Soundscape îți spune în continuare cât de departe este locul, pe măsură ce te deplasezi. Selectează *Activează sunetul balizei* pentru a auzi din nou baliza.
 
- Atinge butonul *Dezactivează sunetul balizei* de lângă butonul *Oprește ruta* de pe ecranul principal.
+## Eliminarea balizei
+
+Selectează *Oprește ruta* pe ecranul principal. Butonul are acest nume chiar și atunci când baliza nu face parte dintr-o rută.
+
+## Când ajungi
+
+Când ești la aproximativ 12 metri de loc, Soundscape îți spune și elimină baliza. Telefonul nu îți poate determina poziția mai exact de atât. Pentru a auzi din nou baliza, seteaz-o din nou.
+
+O baliză setată pe un loc aflat la mai puțin de 30 de metri rămâne activă până când o elimini.
 

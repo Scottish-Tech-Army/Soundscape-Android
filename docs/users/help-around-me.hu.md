@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Körülöttem
 
-## Mi ez?
+A *Körülöttem* legfeljebb négy közeli helyet mond be: egyet elöl, egyet jobbra, egyet hátul és egyet balra. Mindegyiket a saját irányából hallja, a távolságával együtt. Használja arra, hogy tájékozódjon, amikor megérkezik valahová.
 
-A *Körülöttem* gomb egy-egy dologról tájékoztat az Ön körüli négy negyedben (elöl, jobbra, hátul és balra). A *Körülöttem* célja, hogy segítsen tájékozódni a környezetéhez képest.
-
-## Mikor használnám?
-
-Amikor tájékozódni próbál, és el szeretné helyezni magát a környezetéhez képest, használja a *Körülöttem* funkciót, hogy meghallja, mi van a közelében.
-
-## Hogyan működik?
-
-Mint a kezdőképernyő alján található mind a négy gomb esetében, tartsa a telefonját vízszintesen (a képernyővel az ég felé), és a telefon teteje mutasson abba az irányba, amerre néz, mielőtt megnyomja a *Körülöttem* gombot. Ez iránytűként működik, és megmondja az alkalmazásnak, merre néz. Egyszerűen koppintson a *Körülöttem* gombra, és négy, az Ön körül elhelyezkedő érdekes helyet fog hallani.
+Ha egy helyben áll, először fordítsa a telefon felső szélét abba az irányba, amerre néz. Ha a telefon zárolva van, vagy a Soundscape nincs a képernyőn, tartsa a telefont vízszintesen is.
 

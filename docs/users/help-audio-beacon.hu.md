@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Irányjelző hang
 
-## Mi ez?
+Az irányjelző hang egy olyan hang, amely az Ön által választott hely irányából szól. Megmondja, merre van a hely légvonalban. Nem ad lépésről lépésre útbaigazítást, így az odavezető utat Ön választja meg.
 
-Ha irányjelző hangot állít be egy közeli helyre, a Soundscape folyamatosan tájékoztatja Önt azáltal, hogy hangot játszik le az adott hely irányából. Ez az irányjelző hang a kezdőképernyőn némítható vagy visszakapcsolható. Emellett a Soundscape megjeleníti a hely adatait a kezdőképernyőn, beleértve a távolságát és – ha ismert – az utcacímét.
+## Irányjelző hang beállítása
 
-## Mikor használnám?
+1. Keresse meg a helyet. Használja a keresősávot, vagy a kezdőképernyőn a *Közeli helyek*, a *Jelölők* vagy a *Jelenlegi hely* lehetőséget.
 
-Az irányjelző hang beállítása akkor hasznos, ha egy ismerős tereptárgyat szeretne nyomon követni új terület felfedezése közben, vagy amikor valahová tart, és útközben tájékozódni szeretne a környezetéről. Az irányjelző hang nem ad lépésről lépésre navigációt, viszont folyamatosan szól, és megmutatja, merre van a célpont az Ön jelenlegi helyzetéhez képest. Az irányjelző hang, a meglévő tájékozódási képességei, sőt akár a kedvenc navigációs alkalmazása segítségével Ön döntheti el, hogyan szeretne eljutni a közeli helyekre.
+2. Válassza ki a helyet a *Helyszín adatai* megnyitásához.
 
-## Hogyan működik?
+3. Válassza az *Irányjelző hang indítása* lehetőséget.
 
-**Irányjelző hang beállítása:**
+A Soundscape visszatér a kezdőképernyőre, és az irányjelző hang elindul. A kezdőképernyő megmutatja a hely nevét és azt, hogy milyen messze van.
 
- Először tekintse meg egy hely adatait: használja a keresősávot egy hely kereséséhez, vagy koppintson a *Közeli helyek*, a *Jelölők*, vagy a *Jelenlegi hely* gombok egyikére, majd válasszon egy helyet. Ezután a *Helyszín adatai* képernyőn válassza az *Irányjelző hang indítása* gombot. Ha erre koppint, visszatér a kezdőképernyőre, és bekapcsol egy irányjelző hang a kiválasztott hely irányából. A hely neve, valamint – ha elérhető – a távolsága és a fizikai címe mostantól megjelenik a főképernyőn.
+## Az irány megtalálása
 
-**A jelenlegi irányjelző hang eltávolítása:**
+Az irányjelző hang megváltozik, amikor a hely felé néz, vagy egyenesen felé sétál. Ennek a hangnak a megtalálásához tartsa a telefont vízszintesen, és forduljon lassan körbe. Másik irányjelző hangot a *Beállítások* menüben választhat.
 
- Egyszerűen nyomja meg az *Útvonal leállítása* gombot a kezdőképernyőn.
+## Az irányjelző hang némítása
 
-**Az irányjelző hang némítása:**
+A kezdőképernyőn válassza az *Irányjelző hang némítása* lehetőséget. A Soundscape mozgás közben továbbra is megmondja, milyen messze van a hely. Ha újra hallani szeretné az irányjelző hangot, válassza az *Irányjelző hang némításának feloldása* lehetőséget.
 
- Koppintson az *Irányjelző hang némítása* gombra, amely az *Útvonal leállítása* gomb mellett található a kezdőképernyőn.
+## Az irányjelző hang eltávolítása
+
+A kezdőképernyőn válassza az *Útvonal leállítása* lehetőséget. A gombnak akkor is ez a neve, ha az irányjelző hang nem egy útvonal része.
+
+## Amikor megérkezik
+
+Amikor körülbelül 12 méterre van a helytől, a Soundscape szól, és eltávolítja az irányjelző hangot. A telefon ennél pontosabban nem tudja meghatározni a helyzetét. Ha újra hallani szeretné az irányjelző hangot, állítsa be újra.
+
+A 30 méternél közelebbi helyre beállított irányjelző hang addig szól, amíg el nem távolítja.
 

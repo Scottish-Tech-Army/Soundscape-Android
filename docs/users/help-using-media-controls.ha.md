@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Amfani da Maɓallan Sarrafa Sauti
 
-## Menene wannan?
+Kuna iya sarrafa Soundscape da maɓallan sauti na belun kunnenku: *kunna/dakata*, *na gaba* da *na baya*. Wannan yana aiki da belun kunne masu waya da na Bluetooth. Yana kuma aiki idan Soundscape yana bayan fage ko wayarku a kulle take.
 
-Za ku iya samun damar wasu fasalulluka a cikin Soundscape ta amfani da maɓallan sarrafa sauti da ke a belun kunnenku. Wannan aikin yana aiki tare da kowace irin belun kunne, ko waya ko Bluetooth, da ke da maɓallan sarrafa kamar Kunna, Dakata, Na Gaba, Na Baya da sauransu. Belun kunne daban-daban na iya samun maɓallai daban-daban saboda haka a duba jerin ayyukan da ke ƙasa domin sanin waɗanda ke akwai a gare ku.
+Ba dukan belun kunne ne ke da maɓallai ukun duka ba.
 
-## Yaushe zan yi amfani da shi?
+Maɓallan suna sarrafa Soundscape ne kawai idan babu wata manhaja da ke kunna sauti. Idan kuna kunna kiɗa ko podcast, maɓallan suna sarrafa waccan manhajar ne.
 
-Ana iya amfani da maɓallan sarrafa sauti na belun kunne yayin da Soundscape ke aiki — ko kuna amfani da manhajar kai tsaye, ko tana aiki a bango, ko na'urarku tana kulle. Duk da haka, maɓallan sarrafa sauti na belun kunne ba za su yi aiki da Soundscape ba idan kuna kunna sauti, kamar waƙa, podcast ko bidiyo, ta wata manhajar daban.
+Maɓallan na iya aiki ta hanyoyi biyu: *Yanayin Asali* ko *Menu na Sauti*. Don zaɓa, ku buɗe menu sannan ku zaɓi *Saitunan*, sai *Maɓallan Sarrafa Sauti*.
 
-## Yaya yake aiki?
+## Yanayin Asali
 
-Akwai yanayoyin aiki guda 2 na maɓallan sarrafawa. Ana iya zaɓar yanayin a sashen *Saitunan* *Maɓallan Sarrafa Sauti*. Yanayoyin sune:
+*Kunna/dakata* yana kashe sautin sigina. Ku sake danna shi don jin siginar.
 
- *Yanayin Asali*. 
+*Na gaba* yana matsar da siginar zuwa matsayi na gaba idan kuna bin tafarki. Idan ba haka ba, yana sanar da *Kewaye da Ni*.
 
-⏯ Kunna/Dakata: Yana kunna ko kashe siginar sauti. 
+*Na baya* yana matsar da siginar zuwa matsayi na baya idan kuna bin tafarki. Idan ba haka ba, yana canja *Matakin Sanarwa*. Kowane dannawa yana sauka mataki ɗaya: *Cikakke*, *Sauƙaƙe*, *Muhimmi*, sannan *Shiru*. Ƙarin dannawa ɗaya yana komawa *Cikakke*. Soundscape yana faɗin sunan sabon matakin.
 
-⏭ Na Gaba: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar gaba a tafarkin. Idan ba a kunna wani tafarki ba, yana sanar da *Kewaye da Ni*.
+## Menu na Sauti
 
-⏮ Na Baya: Idan ana kunna tafarki, yana matsar da siginar sauti zuwa tashar da ta gabata a tafarkin. Idan ba a kunna wani tafarki ba, yana canza *Matakin Sanarwa* zuwa mataki ɗaya na ƙasa a kowane danna: *Cikakke*, *Sauƙaƙe*, *Muhimmi*, *Shiru*, sannan ya koma *Cikakke*.
+Menu na sauti yana ba ku ƙarin ayyuka da waɗannan maɓallai ukun. Soundscape yana karanta kowane zaɓi da babbar murya.
 
+*Na gaba* yana zuwa zaɓi na gaba. Bayan zaɓi na ƙarshe yana komawa na farko.
 
+*Kunna/dakata* yana zaɓar zaɓin da kuka ji yanzu.
 
-*Menu na Sauti*. 
+*Na baya* yana canja *Matakin Sanarwa*, kamar yadda yake a *Yanayin Asali*.
 
-
-
-⏭ Na Gaba yana motsawa cikin jerin zaɓuɓɓukan menu waɗanda manhajar ke bayyanawa ta rubutu-zuwa-murya, kuma yana komawa na farko bayan na ƙarshe. Sannan ⏯ Kunna/Dakata yana sa manhajar ta gudanar da zaɓin da aka bayyana. Akwai babban menu guda ɗaya wanda kawai ke da ƙananan menu a matsayin zaɓuɓɓuka. Kowane ƙaramin menu yana da ƙungiyar ayyuka masu kama da juna.
-
-⏮ Na Baya ba ya motsawa cikin menu. Maimakon haka yana canza *Matakin Sanarwa*, kamar yadda yake yi a Yanayin Asali, don haka maɓalli ɗaya yana rage maganar manhajar a kowane yanayi da kuke amfani da shi.
+Menu ɗin yana farawa da rukunoni huɗu: *Ji Abin da ke Kewaye da Ni*, *Sarrafa Tafarki*, *Fara Tafarki* da *Fara Siginar Sauti*. Ku zaɓi rukuni don jin ayyukansa. *Ji Abin da ke Kewaye da Ni* da *Sarrafa Tafarki* suna ƙarewa da *Babban Menu*, wanda yake mayar da ku zuwa rukunonin huɗu.
 

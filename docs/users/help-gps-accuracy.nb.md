@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## GPS-nøyaktighet
 
-Soundscape kan bare beskrive omgivelsene dine så nøyaktig som telefonen vet hvor du er. En nøyaktighet på 10 meter (30 fot) eller bedre er god, opptil 20 meter (60 fot) er brukbar, og alt over det betyr at meldinger kan nevne feil side av gaten eller komme for sent.
+Soundscape kan bare beskrive omgivelsene dine så godt som telefonen vet hvor du er. En nøyaktighet på 10 meter eller bedre er bra. Opptil 20 meter er greit. Over det kan meldinger nevne feil side av gaten eller komme for sent.
 
-Nøyaktigheten er vanligvis dårligst innendørs, mellom høye bygninger og det første minuttet eller så etter at du har gått ut. Hvis tallet nedenfor forblir dårlig mens du er utendørs i åpent terreng, kan du prøve å slå stedstjenestene på telefonen av og på igjen.
+Nøyaktigheten er vanligvis dårligst innendørs, mellom høye bygninger og det første minuttet etter at du har gått ut. Hvis tallet nedenfor fortsatt er dårlig mens du er ute i det fri, slår du posisjonstjenestene på telefonen av og på igjen.
 
 Nåværende nøyaktighet: %1$s (%2$s)
 

@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatic Callouts
 
-## What is it?
+As you walk, Soundscape calls out what is near you. You hear each name from the direction of the place. Callouts cover streets, intersections, shops, bus stops, landmarks and your own markers.
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things, such as businesses, bus stops and even intersections. You can configure what the app automatically calls out in the *Manage Callouts* section of the *Settings* screen, and you can turn all callouts off when you want the app to be silent.
+## Intersections
 
-## When would I use it?
+As you approach an intersection, Soundscape names each road that leaves it. You hear which road goes left, which continues ahead and which goes right.
 
-**Exploring a new area**:
+## How Much You Hear
 
- Turn automatic callouts on and walk around to hear about all of the different shops, restaurants, and the like as you pass them.
+Open the menu and select *Settings*, then *Manage Callouts*. *Callout Detail* has four levels.
 
-**Walking to a specific location**:
+*Detailed* calls out everything nearby.
 
- When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
+*Simplified* leaves out minor paths and service roads, and repeats itself less.
 
-**When you need silence**:
+*Essential* calls out only streets, intersections and landmarks.
 
- When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *My Location*, *Nearby Markers*, *Around Me*, or *Ahead of Me* buttons.
+*Silent* makes no automatic callouts. Beacons, routes and the home screen buttons still work.
 
-## How does it work?
+## What You Hear
 
-**Turning callouts on or off:**
+*Manage Callouts* has two more settings. *Streets and Junctions* turns street and intersection callouts on or off. *Places to Call Out* chooses which kinds of place you hear, such as *Public Transport* or *Food and Drink*. Your markers are always called out.
 
-Turning callouts off will silence the app. You can turn callouts off in the *Manage Callouts* section of the *Settings* screen by setting *Callout Detail* to *Silent*, and turn them back on by choosing any other level. On iPhone you can do the same by asking Siri, and on Android the same will work through Gemini once Google releases support for it. You can also make Soundscape quieter a step at a time with the media control buttons on your headphones: each press of *previous* moves down through *Detailed*, *Simplified*, *Essential* and *Silent*, and one more press goes back to *Detailed*. See the *Using Media Controls* help topic. Alternatively, use the *Sleep* button in the top-right corner of the home screen to stop Soundscape making callouts until you wake it up.
+## Making Soundscape Quieter
 
-**Managing which callouts you hear:**
+Press *previous* on your headphone controls. Each press moves one level quieter: *Detailed*, *Simplified*, *Essential*, then *Silent*. One more press returns to *Detailed*. See the *Using Media Controls* help page.
 
-To choose the types of things Soundscape will automatically call out, open the *Settings* screen from the menu on the *Home* screen. The *Manage Callouts* section of the *Settings* screen is where you choose how much the app says with *Callout Detail*, whether it calls out *Streets and Junctions*, and which *Places to Call Out*. To turn off all callouts, set *Callout Detail* to *Silent*.
+## Stopping Soundscape for a While
+
+Select the *Sleep* button at the top of the home screen. Soundscape stops using your location and makes no sound until you select *Wake Up Now*. Or select *Wake On Leave*, and Soundscape wakes up when you leave the place you are in.
+
+## In a Vehicle or on a Train
+
+Soundscape notices when you are travelling at vehicle speed. It then stops calling out intersections and nearby shops, because they pass too quickly. Instead it calls out the road you are on, landmarks, stops and stations, rivers and tunnels.
 

@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Pemberitahuan Otomatis
 
-## Apa itu?
+Saat Anda berjalan, Soundscape memberitahukan apa yang ada di dekat Anda. Anda mendengar setiap nama dari arah tempatnya. Pemberitahuan mencakup jalan, persimpangan, toko, halte bus, landmark, dan penanda Anda sendiri.
 
-Soundscape dapat memberi tahu Anda tentang hal-hal di sekitar Anda saat Anda mendekatinya, dengan menyebutkan namanya dari arah tempat tersebut berada. Aplikasi akan melakukan ini secara otomatis untuk berbagai hal seperti bisnis, halte bus, dan bahkan persimpangan. Anda dapat mengatur apa saja yang secara otomatis disebutkan aplikasi di bagian *Kelola Pemberitahuan* pada layar *Pengaturan*, dan Anda dapat mematikan semua pemberitahuan saat Anda ingin aplikasi diam.
+## Persimpangan
 
-## Kapan saya menggunakannya?
+Saat Anda mendekati persimpangan, Soundscape menyebut nama setiap jalan yang keluar dari persimpangan itu. Anda mendengar jalan mana yang ke kiri, mana yang terus lurus, dan mana yang ke kanan.
 
-**Menjelajahi area baru :**
+## Seberapa Banyak yang Anda Dengar
 
- Aktifkan pemberitahuan otomatis dan berjalanlah untuk mendengar tentang berbagai toko, restoran, dan sejenisnya saat Anda melewatinya.
+Buka menu dan pilih *Pengaturan*, lalu *Kelola Pemberitahuan*. *Tingkat Detail Pemberitahuan* memiliki empat tingkat.
 
-**Berjalan menuju lokasi tertentu :**
+*Rinci* memberitahukan semua yang ada di sekitar.
 
- Saat Anda sedang menuju suatu lokasi tertentu, pemberitahuan otomatis untuk persimpangan bisa sangat berguna. Pemberitahuan persimpangan memberi tahu Anda tentang tata letak persimpangan saat Anda mendekatinya, dan menegaskan jalan yang sedang Anda lalui saat Anda meninggalkannya.
+*Sederhana* melewatkan jalan setapak kecil dan jalan layanan, dan lebih jarang mengulang.
 
-**Saat Anda membutuhkan keheningan :**
+*Esensial* hanya memberitahukan jalan, persimpangan, dan landmark.
 
- Saat Anda akan menyeberang jalan atau hanya ingin aplikasi diam, Anda dapat mematikan pemberitahuan. Ketika pemberitahuan dimatikan, aplikasi hanya akan memberikan informasi jika Anda menekan salah satu tombol *Lokasi Saya*, *Penanda Terdekat*, *Di Sekitar Saya*, atau *Di Depan Saya*.
+*Senyap* tidak memberi pemberitahuan otomatis. Suar, rute, dan tombol layar utama tetap berfungsi.
 
-## Bagaimana cara kerjanya?
+## Apa yang Anda Dengar
 
-**Mengaktifkan atau menonaktifkan pemberitahuan :**
+*Kelola Pemberitahuan* memiliki dua pengaturan lagi. *Jalan dan Persimpangan* menyalakan atau mematikan pemberitahuan jalan dan persimpangan. *Tempat yang Diberitahukan* memilih jenis tempat yang Anda dengar, seperti *Transportasi Umum* atau *Makanan dan Minuman*. Penanda Anda selalu diberitahukan.
 
- Menonaktifkan pemberitahuan akan membuat aplikasi diam. Pemberitahuan dapat dinonaktifkan di bagian *Kelola Pemberitahuan* pada layar *Pengaturan* dengan mengatur *Tingkat Detail Pemberitahuan* ke *Senyap*, dan diaktifkan kembali dengan memilih tingkat mana pun yang lain. Di iPhone, Anda dapat melakukan hal yang sama dengan meminta bantuan Siri, dan di Android hal yang sama akan berfungsi melalui Gemini setelah Google merilis dukungannya. Anda juga dapat membuat Soundscape lebih senyap setahap demi setahap dengan tombol kontrol media pada headphone Anda: setiap penekanan *sebelumnya* turun satu tingkat melalui *Rinci*, *Sederhana*, *Esensial*, dan *Senyap*, lalu satu penekanan lagi kembali ke *Rinci*. Lihat topik bantuan *Menggunakan Kontrol Media*. Sebagai alternatif, Anda dapat menggunakan tombol *Tidur* di pojok kanan atas layar utama untuk menghentikan Soundscape memberikan pemberitahuan sampai Anda membangunkannya.
+## Membuat Soundscape Lebih Tenang
 
-**Mengelola pemberitahuan yang Anda dengar :**
+Tekan *sebelumnya* pada kontrol headphone Anda. Setiap tekanan turun satu tingkat: *Rinci*, *Sederhana*, *Esensial*, lalu *Senyap*. Satu tekanan lagi kembali ke *Rinci*. Lihat halaman bantuan *Menggunakan Kontrol Media*.
 
- Untuk memilih jenis hal yang akan secara otomatis disebutkan Soundscape, buka layar *Pengaturan* menggunakan menu di layar *Beranda*. Di bagian *Kelola Pemberitahuan* pada layar *Pengaturan* itulah Anda memilih seberapa banyak yang dikatakan aplikasi dengan *Tingkat Detail Pemberitahuan*, apakah aplikasi menyebutkan *Jalan dan Persimpangan*, dan apa saja *Tempat yang Diberitahukan*. Jika Anda ingin menonaktifkan semua pemberitahuan, atur *Tingkat Detail Pemberitahuan* ke *Senyap*.
+## Menghentikan Soundscape Sementara
+
+Pilih tombol *Tidur* di bagian atas layar utama. Soundscape berhenti menggunakan lokasi Anda dan tidak bersuara sampai Anda memilih *Bangunkan Sekarang*. Atau pilih *Bangun Saat Pergi*, dan Soundscape bangun saat Anda meninggalkan tempat Anda berada.
+
+## Di Kendaraan atau Kereta
+
+Soundscape mengetahui saat Anda melaju dengan kecepatan kendaraan. Soundscape lalu berhenti memberitahukan persimpangan dan toko terdekat, karena terlalu cepat terlewati. Sebagai gantinya, Soundscape memberitahukan jalan yang Anda lalui, landmark, halte dan stasiun, sungai, dan terowongan.
 

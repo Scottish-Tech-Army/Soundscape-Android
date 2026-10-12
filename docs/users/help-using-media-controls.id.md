@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Menggunakan Kontrol Media
 
-## Apa itu?
+Anda dapat mengontrol Soundscape dengan tombol media di headphone: *putar/jeda*, *berikutnya*, dan *sebelumnya*. Ini berfungsi dengan headphone berkabel dan Bluetooth. Ini juga berfungsi saat Soundscape berada di latar belakang atau ponsel terkunci.
 
-Anda dapat mengakses fitur tertentu di Soundscape dengan bantuan tombol kontrol media di headphone Anda. Fungsi ini bekerja dengan headphone berkabel maupun Bluetooth apa pun yang memiliki tombol kontrol media seperti Putar, Jeda, Berikutnya, Sebelumnya, dan lainnya. Headphone yang berbeda mungkin memiliki tombol yang berbeda pula, jadi silakan lihat daftar aksi di bawah ini untuk mengetahui mana yang tersedia untuk Anda.
+Tidak semua headphone memiliki ketiga tombol tersebut.
 
-## Kapan saya menggunakannya?
+Tombol hanya mengontrol Soundscape saat tidak ada aplikasi lain yang memutar audio. Jika Anda memutar musik atau podcast, tombol mengontrol aplikasi itu.
 
-Kontrol media headphone dapat digunakan selama Soundscape berjalan — baik saat Anda sedang aktif menggunakan aplikasi, saat aplikasi berjalan di latar belakang, maupun saat perangkat Anda terkunci. Namun, tombol kontrol media headphone tidak akan berfungsi dengan Soundscape jika Anda sedang memutar audio, seperti musik, podcast, atau video, dengan aplikasi lain.
+Tombol dapat bekerja dengan dua cara: *Mode asli* atau *Menu audio*. Untuk memilih, buka menu dan pilih *Pengaturan*, lalu *Kontrol Media*.
 
-## Bagaimana cara kerjanya?
+## Mode asli
 
-Ada 2 mode pengoperasian untuk kontrol media. Mode dapat dipilih di bagian *Pengaturan* *Kontrol Media*. Mode-mode tersebut adalah:
+*Putar/jeda* menonaktifkan suara suar. Tekan lagi untuk mendengar suar.
 
- *Mode asli*. 
+*Berikutnya* memindahkan suar ke titik rute berikutnya saat Anda mengikuti rute. Jika tidak, tombol ini membacakan *Di Sekitar Saya*.
 
-⏯ Putar/Jeda: Mengaktifkan atau menonaktifkan suara suar. 
+*Sebelumnya* memindahkan suar ke titik rute sebelumnya saat Anda mengikuti rute. Jika tidak, tombol ini mengubah *Tingkat Detail Pemberitahuan*. Setiap tekanan turun satu tingkat: *Rinci*, *Sederhana*, *Esensial*, lalu *Senyap*. Satu tekanan lagi kembali ke *Rinci*. Soundscape menyebutkan nama tingkat yang baru.
 
-⏭ Berikutnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute berikutnya dalam rute. Jika tidak ada rute yang sedang diputar, bacakan *Di Sekitar Saya*.
+## Menu audio
 
-⏮ Sebelumnya: Jika sebuah rute sedang diputar, pindahkan suar audio ke titik rute sebelumnya dalam rute. Jika tidak ada rute yang sedang diputar, ubah *Tingkat Detail Pemberitahuan* satu tingkat lebih senyap pada setiap penekanan: *Rinci*, *Sederhana*, *Esensial*, *Senyap*, lalu kembali ke *Rinci*.
+Menu audio memberi Anda lebih banyak tindakan dengan tiga tombol yang sama. Soundscape membacakan setiap pilihan.
 
+*Berikutnya* pindah ke pilihan berikutnya. Setelah pilihan terakhir, menu kembali ke yang pertama.
 
+*Putar/jeda* memilih pilihan yang baru saja Anda dengar.
 
-*Menu audio*. 
+*Sebelumnya* mengubah *Tingkat Detail Pemberitahuan*, sama seperti di *Mode asli*.
 
-
-
-⏭ Berikutnya berpindah melalui serangkaian opsi menu yang dijelaskan aplikasi melalui text-to-speech, dan kembali ke opsi pertama setelah yang terakhir. ⏯ Putar/Jeda kemudian memicu aplikasi untuk menjalankan opsi yang dijelaskan tersebut. Ada satu menu tingkat atas tunggal yang hanya memiliki submenu sebagai opsi. Setiap submenu memiliki sekelompok aksi serupa yang mungkin dilakukan.
-
-⏮ Sebelumnya tidak berpindah melalui menu. Sebagai gantinya, tombol ini mengubah *Tingkat Detail Pemberitahuan*, persis seperti pada mode asli, sehingga tombol yang sama membuat aplikasi lebih senyap pada mode mana pun yang Anda gunakan.
+Menu dimulai dengan empat grup: *Dengar Sekitar Saya*, *Kontrol rute*, *Mulai Rute*, dan *Mulai Suar Audio*. Pilih sebuah grup untuk mendengar tindakannya. *Dengar Sekitar Saya* dan *Kontrol rute* diakhiri dengan *Menu utama*, yang membawa Anda kembali ke empat grup itu.
 

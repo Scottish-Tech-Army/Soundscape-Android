@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Phía trước tôi
 
-## Đây là gì?
+*Phía trước tôi* thông báo tối đa năm địa điểm phía trước bạn. Bạn nghe từng địa điểm từ hướng của nó, kèm khoảng cách. Hãy dùng trên con đường bạn chưa quen, để biết phía trước có gì.
 
-Nút *Phía trước tôi* cho bạn biết về tối đa năm thứ ở phía trước bạn. *Phía trước tôi* được thiết kế để giúp bạn khám phá con đường phía trước khi bạn đang tìm hiểu về một khu vực mới.
-
-## Khi nào tôi nên dùng tính năng này?
-
-Khi bạn đang đi bộ trên phố, hãy thử dùng *Phía trước tôi* để khám phá những địa điểm và sự vật sắp xuất hiện ở cả hai bên con phố phía trước.
-
-## Tính năng này hoạt động như thế nào?
-
-Cũng như với cả bốn nút ở dưới cùng màn hình chính, hãy giữ điện thoại nằm ngang (màn hình hướng lên trời) với đầu điện thoại chỉ về hướng bạn đang nhìn trước khi nhấn nút *Phía trước tôi*. Cách cầm này hoạt động như một chiếc la bàn, cho ứng dụng biết bạn đang hướng mặt về phía nào. Chỉ cần nhấn nút *Phía trước tôi* và bạn sẽ nghe được vài địa điểm quan tâm nằm gần như ở phía trước bạn.
+Nếu bạn đang đứng yên, trước tiên hãy hướng cạnh trên của điện thoại về phía bạn đang quay mặt. Nếu điện thoại đang khóa, hoặc Soundscape không hiện trên màn hình, hãy giữ thêm điện thoại nằm ngang.
 

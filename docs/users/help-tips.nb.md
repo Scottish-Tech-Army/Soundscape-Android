@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Tips
 
-Du finner busstopp i nærheten ved å velge filteret *Offentlig transport* i listen *Steder i nærheten*.
+For å finne busstopp i nærheten velger du *Steder i nærheten* og deretter *Offentlig transport*.
 
-Du kan angi et lydsignal på hvilken som helst adresse. Fra hovedskjermen søker du etter adressen med søkefeltet. Velg deretter adressen i søkeresultatene for å åpne skjermen *Posisjonsinformasjon*. Denne skjermen har alternativet *Start lydsignal* for adressen. På denne måten kan du angi et lydsignal på virksomheter, steder, interessepunkter og boliger som ikke finnes i OpenStreetMap.
+Hvis du ofte tar den samme bussen, kan du lagre holdeplassene dine som markører. Sett et lydsignal på holdeplassen der du går av, så forteller Soundscape deg hvor langt unna den er mens du kjører.
 
-Hvis du bruker en bussrute regelmessig, kan du lagre påstignings‑ og avstigningsstoppene som markører. Da blir de lagret, og du finner dem enkelt igjen. Velg *Markører* på startskjermen for å finne dem. Du kan angi et lydsignal på dem for å få periodiske oppdateringer om hvor nær du er avstigningsstedet. Merk: du kan slå av den rytmiske lyden og fortsatt få avstandsoppdateringer underveis.
+Du kan slå av lyden på lydsignalet og likevel høre hvor langt unna stedet er. Soundscape sier avstanden fra tid til annen mens du beveger deg.
 
-Hvis du legger telefonen i lomma og slutter å bevege deg, blir lydsignalet svakere fordi Soundscape ikke vet hvilken retning du er vendt mot. Du løser dette ved å begynne å gå igjen, eller ved å ta ut telefonen og holde den flatt.
+For å utforske et sted før du drar dit åpner du *Posisjonsinformasjon* for stedet og velger *Simuler posisjon*. Soundscape oppfører seg da som om du var der.
 
-Soundscape fungerer best når du holder telefonen flatt med skjermen mot himmelen og toppen av telefonen pekende vekk fra deg.
-
-Du kan slå av og på den rytmiske lyden til lydsignalet ved å bruke demp-knappen på startskjermen. Hvis lydsignalet er dempet, får du fortsatt oppdateringer om avstanden til destinasjonen omtrent hver 50. meter.
-
-For å fortsette å bruke Soundscape uten å høre automatiske meldinger, setter du *Detaljnivå for meldinger* til *Lydløs* i seksjonen *Administrer meldinger* på *Innstillinger*-skjermen fra menyen. Hvis du ikke skal bruke Soundscape på en stund, kan du i stedet sette den i pausemodus eller dvalemodus ved å bruke knappen *Sett i dvalemodus* på startskjermen.
+For veibeskrivelse sving for sving åpner du *Posisjonsinformasjon* for et sted og velger *Åpne i kartapp*. Soundscape fortsetter å kjøre mens den andre appen gir veibeskrivelse.
 

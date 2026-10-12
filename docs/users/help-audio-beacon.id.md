@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Suar Audio
 
-## Apa itu?
+Suar audio adalah suara yang terdengar dari arah tempat yang Anda pilih. Suar memberi tahu di mana tempat itu berada dalam garis lurus. Suar tidak memberi petunjuk belokan demi belokan, jadi Anda memilih sendiri jalan ke sana.
 
-Mengatur suar pada lokasi terdekat memungkinkan Soundscape terus memberi Anda informasi dengan memutar suara dari arah lokasi tersebut. Suar ini dapat dibisukan atau diaktifkan kembali di layar utama. Selain itu, Soundscape menampilkan informasi tentang lokasi tersebut di layar utama, termasuk jarak ke lokasi itu dan alamat jalannya jika diketahui.
+## Memasang Suar
 
-## Kapan saya menggunakannya?
+1. Temukan tempatnya. Gunakan bilah pencarian, *Tempat di Sekitar*, *Penanda*, atau *Lokasi Saat Ini* di layar utama.
 
-Mengatur suar berguna saat Anda ingin memantau tempat yang familiar ketika menjelajahi area baru, atau saat Anda sedang menuju suatu tempat dan ingin tetap mendapat informasi tentang sekitar Anda sepanjang perjalanan. Fitur suar tidak memberikan petunjuk arah langkah demi langkah, tetapi memberikan suara terus-menerus yang menunjukkan arah menuju suar relatif terhadap posisi Anda saat ini. Dengan menggunakan Suar Audio, kemampuan mencari arah yang sudah Anda miliki, dan bahkan aplikasi navigasi favorit Anda, Anda dapat memilih sendiri cara untuk menuju lokasi-lokasi terdekat.
+2. Pilih tempat itu untuk membuka *Detail Lokasi*.
 
-## Bagaimana cara kerjanya?
+3. Pilih *Mulai Suar Audio*.
 
-**Untuk mengatur suar :**
+Soundscape kembali ke layar utama dan suar dimulai. Layar utama menampilkan nama tempat dan jaraknya.
 
- Pertama, lihat detail suatu lokasi dengan menggunakan bilah pencarian untuk mencari tempat, atau ketuk salah satu tombol *Tempat di Sekitar*, *Penanda*, atau *Lokasi Saat Ini* lalu pilih lokasi. Lalu dari layar *Detail Lokasi*, pilih tombol *Mulai Suar Audio*. Mengetuk tombol ini akan membawa Anda kembali ke layar utama dan mengaktifkan suar yang terdengar dari arah tempat yang Anda pilih. Nama tempat beserta jaraknya dan alamat fisiknya, jika tersedia, kini akan ditampilkan di layar utama.
+## Menemukan Arah
 
-**Untuk menghapus suar saat ini :**
+Suara suar berubah saat Anda menghadap ke tempat itu atau berjalan lurus ke arahnya. Untuk menemukan suara itu, pegang ponsel secara mendatar dan berputarlah perlahan. Anda dapat memilih suara suar yang lain di *Pengaturan*.
 
- Cukup tekan tombol *Hentikan Rute* di layar utama.
+## Menonaktifkan Suara Suar
 
-**Untuk membisukan suar :**
+Pilih *Nonaktifkan Suara Suar* di layar utama. Soundscape tetap memberi tahu seberapa jauh tempat itu saat Anda bergerak. Pilih *Aktifkan Suara Suar* untuk mendengar suar lagi.
 
- Ketuk tombol *Nonaktifkan Suara Suar* di sebelah tombol *Hentikan Rute* di layar utama.
+## Menghapus Suar
+
+Pilih *Hentikan Rute* di layar utama. Tombol ini memakai nama tersebut meskipun suar bukan bagian dari rute.
+
+## Saat Anda Tiba
+
+Saat Anda berada sekitar 12 meter dari tempat itu, Soundscape memberi tahu Anda dan menghapus suar. Ponsel tidak dapat menentukan posisi Anda lebih tepat dari itu. Untuk mendengar suar lagi, pasang lagi suarnya.
+
+Suar yang dipasang pada tempat yang jaraknya kurang dari 30 meter tetap menyala sampai Anda menghapusnya.
 

@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Sjálfvirkar tilkynningar
 
-## Hvað er það?
+Á meðan þú gengur tilkynnir Soundscape það sem er nálægt þér. Þú heyrir hvert heiti úr átt að staðnum. Tilkynningar ná yfir götur, gatnamót, verslanir, stoppistöðvar, kennileiti og þín eigin merki.
 
-Soundscape getur sagt þér frá hlutum í kringum þig þegar þú nálgast þá með því að kalla upp nöfn þeirra úr þeirri átt sem þeir eru í. Forritið gerir þetta sjálfkrafa fyrir alls konar hluti, eins og fyrirtæki, strætóstopp og jafnvel gatnamót. Þú getur stillt hvað forritið kallar upp sjálfkrafa í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar*, og þú getur slökkt á öllum tilkynningum þegar þú vilt að forritið verði hljótt.
+## Gatnamót
 
-## Hvenær ætti að nota það?
+Þegar þú nálgast gatnamót nefnir Soundscape hverja götu sem liggur frá þeim. Þú heyrir hvaða gata liggur til vinstri, hver heldur beint áfram og hver liggur til hægri.
 
-**Þegar verið er að kanna nýtt svæði:**
+## Hversu mikið þú heyrir
 
-Kveiktu á sjálfvirkum tilkynningum og gakktu um til að heyra um mismunandi verslanir, veitingastaði og fleira þegar þú ferð framhjá þeim.
+Opnaðu valmyndina og veldu *Stillingar* og síðan *Stjórna tilkynningum*. *Nákvæmni tilkynninga* hefur fjögur stig.
 
-**Að ganga að ákveðnum stað:**
+*Ítarlegt* tilkynnir allt sem er nálægt.
 
-Þegar þú ert á leið að tilteknum stað geta sjálfvirkar tilkynningar um gatnamót verið sérstaklega gagnlegar. Gatnamóta-tilkynningar segja þér um uppbyggingu gatnamóta þegar þú nálgast þau og staðfesta veginn sem þú ert á þegar þú yfirgefur þau.
+*Einfaldað* sleppir minni stígum og þjónustuvegum og endurtekur sig sjaldnar.
 
-**Þegar þú þarft þögn:**
+*Nauðsynlegt* tilkynnir aðeins götur, gatnamót og kennileiti.
 
-Þegar þú ætlar að fara yfir veg eða þarft einfaldlega að forritið sé hljótt, geturðu slökkt á tilkynningum. Þegar tilkynningar eru slökktar mun forritið aðeins gefa þér upplýsingar ef þú ýtir á einn af hnöppunum *Mín staðsetning*, *Nálæg merki*, *Í kringum mig* eða *Fyrir framan mig*.
+*Þögult* gefur engar sjálfvirkar tilkynningar. Hljóðvitar, leiðir og hnapparnir á heimaskjánum virka áfram.
 
-## Hvernig virkar það?
+## Hvað þú heyrir
 
-**Kveikja eða slökkva á tilkynningum:**
+*Stjórna tilkynningum* hefur tvær stillingar í viðbót. *Götur og gatnamót* kveikir eða slekkur á tilkynningum um götur og gatnamót. *Staðir til að tilkynna* velur hvaða tegundir staða þú heyrir, til dæmis *Almenningssamgöngur* eða *Matur og drykkur*. Merkin þín eru alltaf tilkynnt.
 
- Ef slökkt er á tilkynningum verður forritið hljótt. Hægt er að slökkva á tilkynningum í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* með því að stilla *Nákvæmni tilkynninga* á *Þögult*, og kveikja aftur á þeim með því að velja hvaða annað stig sem er. Á iPhone getur þú gert það sama með því að biðja Siri um það og á Android mun það virka í gegnum Gemini um leið og Google gefur út stuðning við það. Þú getur einnig lækkað í Soundscape eitt þrep í einu með fjölmiðlahnöppunum á heyrnartólunum þínum: hver ýting á *fyrri* færir þig niður um eitt þrep í gegnum *Ítarlegt*, *Einfaldað*, *Nauðsynlegt* og *Þögult*, og enn ein ýting fer aftur í *Ítarlegt*. Sjá hjálparefnið *Notkun fjölmiðlastýringa*. Að öðrum kosti geturðu notað hnappinn *Fara í dvala* efst í hægra horni heimaskjásins til að stöðva tilkynningar Soundscape þar til þú vekur forritið.
+## Að gera Soundscape hljóðlátara
 
-**Stjórna því hvaða tilkynningar þú heyrir:**
+Ýttu á *fyrri* á stýringum heyrnartólanna. Hver ýting fer einu stigi neðar: *Ítarlegt*, *Einfaldað*, *Nauðsynlegt* og síðan *Þögult*. Ein ýting í viðbót fer aftur í *Ítarlegt*. Sjá hjálparsíðuna *Notkun fjölmiðlastýringa*.
 
- Til að velja hvaða tegundir hluta Soundscape tilkynnir sjálfkrafa skaltu fara í skjáinn *Stillingar* í valmyndinni á *Heimaskjánum*. Í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* velur þú hversu mikið forritið segir með *Nákvæmni tilkynninga*, hvort það tilkynnir *Götur og gatnamót* og hvaða *Staðir til að tilkynna* eru valdir. Ef þú vilt slökkva á öllum tilkynningum skaltu stilla *Nákvæmni tilkynninga* á *Þögult*.
+## Að stöðva Soundscape um stund
+
+Veldu hnappinn *Fara í dvala* efst á heimaskjánum. Soundscape hættir að nota staðsetningu þína og gefur ekkert hljóð frá sér þar til þú velur *Vakna núna*. Eða veldu *Vakna við brottför*, og þá vaknar Soundscape þegar þú ferð af staðnum þar sem þú ert.
+
+## Í farartæki eða lest
+
+Soundscape tekur eftir því þegar þú ferðast á hraða farartækis. Þá hættir það að tilkynna gatnamót og nálægar verslanir, því þau fara of hratt hjá. Í staðinn tilkynnir það veginn sem þú ert á, kennileiti, stoppistöðvar og stöðvar, ár og göng.
 

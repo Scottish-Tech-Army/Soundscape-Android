@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Marcadores cercanos
 
-## ¿Qué es?
+*Marcadores cercanos* avisa de hasta cuatro de tus marcadores, los más cercanos a ti. Oyes cada uno desde su propia dirección, con su distancia. Úsalo para orientarte a partir de lugares que ya conoces. Los marcadores a más de unos 2 kilómetros se omiten.
 
-El botón *Marcadores cercanos* te informa de hasta cuatro marcadores que están cerca de ti. *Marcadores cercanos* está pensado para ayudarte a orientarte con lugares que ya conoces.
-
-## ¿Cuándo lo usaría?
-
-Cuando intentes orientarte en tu entorno, usa *«Marcadores cercanos»* para escuchar sobre las ubicaciones de los lugares que conoces.
-
-## ¿Cómo funciona?
-
-Como con los cuatro botones de la parte inferior de la pantalla principal, mantén el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección en la que estás mirando antes de presionar el botón *«Marcadores cercanos»*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección estás orientado. Solo tienes que pulsar en el botón *«Marcadores cercanos»* y escuchar hasta cuatro marcadores cerca de ti.
+Si no te estás moviendo, apunta primero la parte superior del teléfono hacia donde miras. Si tu teléfono está bloqueado, o Soundscape no está en la pantalla, sujeta además el teléfono en posición horizontal.
 

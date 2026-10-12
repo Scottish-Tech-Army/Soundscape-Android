@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatiske lydbeskeder
 
-## Hvad er det?
+Mens du går, annoncerer Soundscape, hvad der er i nærheden. Du hører hvert navn fra stedets retning. Lydbeskederne dækker gader, vejkryds, butikker, busstoppesteder, landemærker og dine egne mærker.
 
-Soundscape kan fortælle dig om ting omkring dig, når du nærmer dig dem, ved at annoncere deres navn fra den retning, de ligger i. Appen gør dette automatisk for alle slags objekter, f.eks. virksomheder, busstoppesteder og endda kryds. Du kan konfigurere, hvad appen automatisk annoncerer, i afsnittet *Administrer lydbeskeder* på skærmen *Indstillinger*, og du kan slå alle lydbeskeder fra, når du ønsker, at appen skal være stille.
+## Vejkryds
 
-## Hvornår ville jeg bruge det?
+Når du nærmer dig et vejkryds, nævner Soundscape hver vej, der fører væk fra det. Du hører, hvilken vej der går til venstre, hvilken der fortsætter ligeud, og hvilken der går til højre.
 
-**Udforskning af et nyt område**:
+## Hvor meget du hører
 
- Slå automatiske lydbeskeder til, og gå rundt for at høre om alle de forskellige butikker, restauranter og lignende, når du passerer dem.
+Åbn menuen, og vælg *Indstillinger* og derefter *Administrer lydbeskeder*. *Detaljeniveau for lydbeskeder* har fire niveauer.
 
-**Når du går til et bestemt sted**:
+*Detaljeret* annoncerer alt i nærheden.
 
- Når du er på vej til et bestemt sted, kan automatiske lydbeskeder om kryds være særligt nyttige. Lydbeskeder om kryds fortæller dig om krydsenes opbygning, når du nærmer dig dem, og bekræfter den vej, du er på, når du forlader dem.
+*Forenklet* udelader mindre stier og serviceveje og gentager sig mindre.
 
-**Når du har brug for stilhed**:
+*Essentiel* annoncerer kun gader, vejkryds og landemærker.
 
- Når du er ved at krydse en vej eller bare har brug for, at appen er stille, kan du slå lydbeskeder fra. Når lydbeskeder er slået fra, sender appen dig kun oplysninger, hvis du manuelt trykker på én af knapperne *Min placering*, *Mærker i nærheden*, *Omkring mig* eller *Foran mig*.
+*Lydløs* giver ingen automatiske lydbeskeder. Lydfyr, ruter og knapperne på startskærmen virker stadig.
 
-## Hvordan virker det?
+## Hvad du hører
 
-**Slå lydbeskeder til eller fra:**
+*Administrer lydbeskeder* har to indstillinger mere. *Gader og vejkryds* slår lydbeskeder om gader og vejkryds til eller fra. *Steder der skal annonceres* vælger, hvilke slags steder du hører, for eksempel *Offentlig transport* eller *Mad og drikke*. Dine mærker bliver altid annonceret.
 
- Hvis du slår lydbeskeder fra, vil appen være tavs. Du kan slå lydbeskeder fra i afsnittet *Administrer lydbeskeder* på skærmen *Indstillinger* ved at sætte *Detaljeniveau for lydbeskeder* til *Lydløs*, og slå dem til igen ved at vælge et hvilket som helst andet niveau. På iPhone kan du gøre det samme ved at bede Siri om det, og på Android vil det virke via Gemini, når Google frigiver understøttelse af det. Du kan også gøre Soundscape mere stille et trin ad gangen med medieknapperne på dine hovedtelefoner: hvert tryk på *forrige* går et trin ned gennem *Detaljeret*, *Forenklet*, *Essentiel* og *Lydløs*, og endnu et tryk vender tilbage til *Detaljeret*. Se hjælpeemnet *Brug af mediebetjeningsknapper*. Alternativt kan du bruge knappen *Dvale* i øverste højre hjørne af startskærmen for at få Soundscape til at stoppe med at lave lydbeskeder, indtil du vækker den.
+## Gør Soundscape mere stille
 
-**Administrer hvilke lydbeskeder du hører:**
+Tryk på *forrige* på betjeningen på dine hovedtelefoner. Hvert tryk går ét niveau mere stille: *Detaljeret*, *Forenklet*, *Essentiel* og så *Lydløs*. Et tryk mere går tilbage til *Detaljeret*. Se hjælpesiden *Brug af mediebetjeningsknapper*.
 
- For at vælge, hvilke typer ting Soundscape automatisk vil annoncere, skal du gå til skærmen *Indstillinger* via menuen på skærmen *Start*. I afsnittet *Administrer lydbeskeder* på skærmen *Indstillinger* vælger du, hvor meget appen siger, med *Detaljeniveau for lydbeskeder*, om den annoncerer *Gader og vejkryds*, og hvilke *Steder der skal annonceres*. Hvis du vil slå alle lydbeskeder fra, skal du sætte *Detaljeniveau for lydbeskeder* til *Lydløs*.
+## Stop Soundscape i et stykke tid
+
+Vælg knappen *Dvale* øverst på startskærmen. Soundscape holder op med at bruge din placering og siger ingenting, før du vælger *Aktivér nu*. Eller vælg *Væk, når jeg forlader stedet*, så vågner Soundscape, når du forlader det sted, du er på.
+
+## I et køretøj eller i et tog
+
+Soundscape opdager, når du bevæger dig med et køretøjs fart. Så holder den op med at annoncere vejkryds og butikker i nærheden, fordi de passerer for hurtigt. I stedet annoncerer den vejen, du er på, landemærker, stoppesteder og stationer, floder og tunneler.
 

@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Marcos
 
-Com o Soundscape, pode marcar o seu mundo e tudo o que lhe interessa, como pinos num mapa.
+Um marco é um local que guardou. Pode ser qualquer local que seja importante para si: a sua casa, uma paragem de autocarro, a entrada de um edifício ou uma passadeira.
 
-Pode marcar locais pessoais e relevantes para si, como a sua casa, o seu escritório ou a sua mercearia favorita. Pode marcar qualquer local ou endereço, e também coisas que normalmente não aparecem nos mapas, por exemplo: entradas de edifícios ou parques, botões de passadeira, passadeiras, pontes, paragens de autocarro ou até a árvore favorita do seu cão. Utilize estes marcos como referências ao longo da sua caminhada.
+O Soundscape anuncia os seus marcos quando passa por eles. Pode definir um sinal de áudio num marco, adicioná-lo a uma rota ou ouvir os mais próximos com o botão *Marcos nas Proximidades*.
 
-Para experienciar locais marcados, o Soundscape anunciará automaticamente os marcos à medida que passa por eles ou se aproxima, ou pode também usar o botão *Marcos nas Proximidades* na parte inferior do ecrã principal para ouvir um aviso espacial dos marcos à sua volta. Pode até definir um sinal de áudio em qualquer marco. Ao fazê‑lo, ouvirá o Sinal de Áudio do Soundscape com o qual já está familiarizado e poderá operá‑lo normalmente.
+## Criar Marcos
+
+1. Selecione *Marcos* no ecrã principal e depois selecione *Novo*.
+
+2. Escolha *Localização Atual*, ou um local em *Locais nas Proximidades*.
+
+3. Altere o nome, se quiser, e adicione notas. O Soundscape lê as notas juntamente com o marco.
+
+4. Selecione *OK*.
+
+Também pode guardar qualquer local que encontre. Abra os respetivos *Detalhes da Localização* e selecione *Guardar como Marco*.
+
+## Personalizar Marcos
+
+Selecione o marco no ecrã *Marcos* e depois selecione *Editar Marco*. Pode alterar o nome, as notas e a posição, ou selecionar *Eliminar Marco*. Eliminar um marco também o remove das suas rotas.
 

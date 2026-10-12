@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Kutumia Vidhibiti vya Sauti
 
-## Ni nini?
+Unaweza kuidhibiti Soundscape kwa vitufe vya midia kwenye vipokea sauti vyako: *cheza/simamisha*, *ifuatayo* na *iliyotangulia*. Hii inafanya kazi na vipokea sauti vya waya na vya Bluetooth. Pia inafanya kazi Soundscape ikiwa chinichini au simu yako ikiwa imefungwa.
 
-Unaweza kufikia baadhi ya vipengele katika Soundscape kwa msaada wa vitufe vya kudhibiti sauti vilivyo kwenye vipokea sauti vyako. Kipengele hiki hufanya kazi na vipokea sauti vyovyote vyenye waya au Bluetooth vyenye vitufe vya kudhibiti kama Cheza, Simamisha, Ifuatayo, Iliyotangulia na vingine. Vipokea sauti tofauti vinaweza kuwa na vitufe tofauti, hivyo tafadhali rejelea orodha ya vitendo hapa chini ili kubaini ni vipi vinavyopatikana kwako.
+Si vipokea sauti vyote vilivyo na vitufe vyote vitatu.
 
-## Ni lini nitaitumia?
+Vitufe vinaidhibiti Soundscape tu wakati hakuna programu nyingine inayocheza sauti. Ikiwa unacheza muziki au podikasti, vitufe vinaidhibiti programu hiyo badala yake.
 
-Vitufe vya kudhibiti sauti vya vipokea sauti vinaweza kutumika wakati Soundscape inafanya kazi — iwe unatumia programu moja kwa moja, iko nyuma, au simu yako imefungwa. Hata hivyo, vitufe vya kudhibiti sauti vya vipokea sauti havitafanya kazi na Soundscape ikiwa unacheza sauti, kama muziki, podikasti au video, kwa programu nyingine.
+Vitufe vinaweza kufanya kazi kwa njia mbili: *Hali ya Awali* au *Menyu ya Sauti*. Ili kuchagua, fungua menyu na uchague *Mipangilio*, kisha *Vidhibiti vya Sauti*.
 
-## Inafanyaje kazi?
+## Hali ya Awali
 
-Kuna hali 2 za uendeshaji za vitufe vya kudhibiti sauti. Hali inaweza kuchaguliwa katika sehemu ya *Mipangilio* *Vidhibiti vya Sauti*. Hali hizo ni:
+*Cheza/simamisha* inazima sauti ya beacon. Bonyeza tena ili kuisikia beacon.
 
- *Hali ya Awali*. 
+*Ifuatayo* inaisogeza beacon hadi kituo kinachofuata unapofuata njia. Vinginevyo inatangaza *Karibu Nami*.
 
-⏯ Cheza/Simamisha: Hubadilisha kuwasha na kuzima sauti ya beacon. 
+*Iliyotangulia* inaisogeza beacon hadi kituo kilichopita unapofuata njia. Vinginevyo inabadilisha *Kiwango cha Matangazo*. Kila mbonyezo unashuka kiwango kimoja: *Kwa Kina*, *Rahisi*, *Muhimu*, kisha *Kimya*. Mbonyezo mmoja zaidi unarudi kwenye *Kwa Kina*. Soundscape inasema jina la kiwango kipya.
 
-⏭ Ifuatayo: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kinachofuata katika njia hiyo. Ikiwa hakuna njia inayochezwa, hutangaza *Karibu Nami*.
+## Menyu ya Sauti
 
-⏮ Iliyotangulia: Ikiwa njia inachezwa, husogeza beacon ya sauti hadi kituo kilichotangulia katika njia hiyo. Ikiwa hakuna njia inayochezwa, hubadilisha *Kiwango cha Matangazo*, kikiwa kimya zaidi kwa kiwango kimoja kila unapobonyeza: *Kwa Kina*, *Rahisi*, *Muhimu*, *Kimya*, kisha kurudi kwenye *Kwa Kina*.
+Menyu ya sauti inakupa vitendo zaidi kwa vitufe vilevile vitatu. Soundscape inasoma kila chaguo kwa sauti.
 
+*Ifuatayo* inaenda kwenye chaguo linalofuata. Baada ya chaguo la mwisho inarudi kwenye la kwanza.
 
+*Cheza/simamisha* inachagua chaguo ulilolisikia hivi punde.
 
-*Menyu ya Sauti*. 
+*Iliyotangulia* inabadilisha *Kiwango cha Matangazo*, sawa na katika *Hali ya Awali*.
 
-
-
-⏭ Ifuatayo husogea kupitia mfululizo wa chaguo za menyu ambazo programu huzieleza kwa maandishi kwenda sauti, na hurudi kwenye chaguo la kwanza baada ya la mwisho. ⏯ Cheza/Simamisha kisha huamsha programu kutekeleza chaguo lililoelezwa. Kuna menyu moja ya ngazi ya juu ambayo ina menyu ndogo tu kama chaguo. Kila menyu ndogo ina kundi la vitendo vinavyofanana.
-
-⏮ Iliyotangulia haisogei kupitia menyu. Badala yake hubadilisha *Kiwango cha Matangazo*, sawasawa na inavyofanya katika Hali ya Awali, hivyo kitufe kilekile hupunguza matangazo ya programu katika hali yoyote unayotumia.
+Menyu inaanza na makundi manne: *Sikia Mazingira Yangu*, *Udhibiti wa Njia*, *Anzisha Njia* na *Anzisha Beacon ya Sauti*. Chagua kundi ili kusikia vitendo vyake. *Sikia Mazingira Yangu* na *Udhibiti wa Njia* zinaishia na *Menyu kuu*, inayokurudisha kwenye makundi manne.
 

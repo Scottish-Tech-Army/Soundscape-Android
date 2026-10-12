@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Mín staðsetning
 
-## Hvað er það?
+*Mín staðsetning* segir þér hvar þú ert. Hún segir í hvaða átt þú snýrð eða ferðast, og síðan götuna eða heimilisfangið þar sem þú ert. Notaðu hana þegar þú stígur úr strætó, ferð út úr byggingu eða missir áttirnar.
 
-Hnappurinn *Mín staðsetning* gefur þér fljótt upplýsingar sem hjálpa þér að átta þig á því hvar þú ert, meðal annars hvaða átt þú snýrð, hvar nálægar götur eða gatnamót eru og hvar áhugaverðir staðir eru í kring.
-
-## Hvenær ætti að nota það?
-
-*Mín staðsetning* er gagnleg þegar þú þarft að átta þig á því hvar þú ert eða í hvaða höfuðátt þú snýrð.
-
-## Hvernig virkar það?
-
-Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn upp að himni) og toppinn á símanum í þá átt sem þú snýrð, áður en þú ýtir á *Mín staðsetning* hnappinn. Þetta virkar eins og áttaviti og segir forritinu hvaða átt þú snýrð. Ýttu einfaldlega á hnappinn og hlustaðu.
+Ef þú stendur kyrr skaltu fyrst beina efri brún símans í þá átt sem þú snýrð. Ef síminn er læstur, eða Soundscape er ekki á skjánum, skaltu líka halda símanum flötum.
 

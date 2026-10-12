@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Wskazówki
 
-Pobliskie przystanki autobusowe znajdziesz, wybierając filtr *„Transport publiczny”* na liście *„Miejsca w pobliżu”*.
+Aby znaleźć pobliskie przystanki autobusowe, wybierz *Miejsca w pobliżu*, a potem *Transport publiczny*.
 
-Możesz ustawić dźwięk naprowadzający na dowolny adres. Na ekranie głównym wyszukaj adres za pomocą paska wyszukiwania. Następnie wybierz adres w wynikach wyszukiwania, aby otworzyć ekran *„Szczegóły lokalizacji”*. Ten ekran zawiera opcję *„Uruchom dźwięk naprowadzający”* dla tego adresu. W ten sposób możesz ustawić naprowadzanie na firmy, miejsca, punkty zainteresowania i domy, których nie ma w OpenStreetMap.
+Jeśli często jeździsz tym samym autobusem, zapisz swoje przystanki jako znaczniki. Włącz naprowadzanie na przystanek, na którym wysiadasz, a Soundscape będzie ci mówić podczas jazdy, jak daleko on jest.
 
-Jeśli regularnie korzystasz z określonej linii autobusowej, zapisz przystanki, na których wsiadasz i wysiadasz, jako znaczniki. Dzięki temu zostaną zapisane i łatwo je odnajdziesz. Aby je znaleźć, wybierz *„Znaczniki”* na ekranie głównym. Możesz ustawić na nich dźwięk naprowadzający, aby otrzymywać okresowe informacje o tym, jak blisko jesteś przystanku, na którym chcesz wysiąść. Uwaga: możesz wyłączyć rytmiczny dźwięk i nadal otrzymywać aktualizacje odległości w trakcie trasy.
+Możesz wyciszyć dźwięk naprowadzający i nadal słyszeć, jak daleko jest miejsce. Soundscape co jakiś czas podaje odległość, gdy się przemieszczasz.
 
-Jeśli włożysz telefon do kieszeni i się zatrzymasz, dźwięk naprowadzający przycicha, ponieważ Soundscape nie wie, w którą stronę patrzysz. Aby to naprawić, zacznij znów iść albo wyjmij telefon i trzymaj go płasko.
+Aby poznać miejsce, zanim tam pójdziesz, otwórz jego *Szczegóły lokalizacji* i wybierz *Podgląd lokalizacji*. Soundscape zachowuje się wtedy tak, jakby telefon był w tamtym miejscu.
 
-Soundscape działa najlepiej, gdy trzymasz telefon płasko, ekranem do góry, z górną krawędzią skierowaną od siebie.
-
-Możesz włączać i wyłączać rytmiczny dźwięk naprowadzający przyciskiem wyciszania na ekranie głównym. Jeśli dźwięk naprowadzający jest wyciszony, nadal będziesz otrzymywać informacje o odległości do celu mniej więcej co 50 metrów.
-
-Aby dalej korzystać z Soundscape bez słuchania automatycznych powiadomień, ustaw *„Szczegółowość powiadomień”* na *„Wyciszony”* w sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”* w menu. Jeśli przez jakiś czas nie zamierzasz używać Soundscape, możesz zamiast tego przełączyć aplikację w Tryb uśpienia lub Tryb drzemki, korzystając z przycisku *„Tryb uśpienia”* na ekranie głównym.
+Aby dostać wskazówki zakręt po zakręcie, otwórz *Szczegóły lokalizacji* miejsca i wybierz *Otwórz w aplikacji z mapami*. Soundscape działa dalej, gdy druga aplikacja podaje wskazówki.
 

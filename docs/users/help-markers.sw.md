@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Alama
 
-Kwa Soundscape, unaweza kuweka alama katika dunia yako na kitu chochote unachokijali, kama pini kwenye ramani.
+Alama ni sehemu uliyoihifadhi. Inaweza kuwa sehemu yoyote iliyo muhimu kwako: nyumbani kwako, kituo cha basi, lango la jengo au kivuko cha barabara.
 
-Unaweza kuweka alama kwenye sehemu za binafsi na muhimu kwako kama nyumbani kwako, ofisini kwako au duka lako la vyakula unalolipenda. Unaweza kuweka alama kwenye mahali au anwani yoyote, na pia kwenye vitu ambavyo kwa kawaida havionyeshwi kwenye ramani, kwa mfano: milango ya kuingilia majengo au bustani, vitufe vya kuvukia watembea kwa miguu, vivukio vya watembea kwa miguu, madaraja, vituo vya mabasi, au hata mti unaopendwa na mbwa wako. Tumia alama hizi kama vielelezo wakati wa matembezi yako.
+Soundscape inatangaza alama zako unapozipita. Unaweza kuweka beacon ya sauti kwenye alama, kuiongeza kwenye njia, au kusikia zilizo karibu zaidi kwa kitufe cha *Alama za Karibu*.
 
-Ili kupata uzoefu wa mahali yaliyowekewa alama, Soundscape itatangaza kiotomatiki mahali hayo unapopita karibu nayo au kuyakaribia, au unaweza pia kutumia kitufe cha *Alama za Karibu* kilichopo chini ya skrini ya mwanzo ili kusikia tangazo la sauti ya pande tatu la mahali yaliyowekewa alama yanayokuzunguka. Unaweza hata kuweka beacon ya sauti kwenye mahali popote palipowekewa alama. Ukifanya hivyo, beacon ya sauti ya Soundscape unayoifahamu itasikika nawe unaweza kuiendesha kama kawaida.
+## Kuunda Alama
+
+1. Chagua *Alama* kwenye skrini ya mwanzo, kisha uchague *Mpya*.
+
+2. Chagua *Mahali Nilipo Sasa*, au sehemu kutoka *Sehemu za Karibu*.
+
+3. Badilisha jina ukitaka, na uongeze maelezo. Soundscape inasoma maelezo hayo pamoja na alama.
+
+4. Chagua *Imekamilika*.
+
+Unaweza pia kuhifadhi sehemu yoyote unayoipata. Fungua *Taarifa za Mahali* za sehemu hiyo na uchague *Hifadhi kama Alama*.
+
+## Kubinafsisha Alama
+
+Chagua alama kwenye skrini ya *Alama*, kisha uchague *Hariri Alama*. Unaweza kubadilisha jina lake, maelezo yake na mahali ilipo, au uchague *Futa Alama*. Kufuta alama pia kunaiondoa kwenye njia zako.
 

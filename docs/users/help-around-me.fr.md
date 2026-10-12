@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Autour de moi
 
-## De quoi s’agit-il ?
+*Autour de moi* annonce jusqu’à quatre lieux proches de vous : un devant, un à droite, un derrière et un à gauche. Vous entendez chacun depuis sa propre direction, avec sa distance. Utilisez-le pour vous repérer quand vous arrivez quelque part.
 
-Le bouton *Autour de moi* vous indique un lieu dans chacun des quatre quadrants autour de vous (devant, à droite, derrière et à gauche). *Autour de moi* est conçu pour vous aider à vous orienter dans votre environnement.
-
-## Quand l’utiliser ?
-
-Lorsque vous essayez de trouver vos repères et de vous orienter dans votre environnement, utilisez *Autour de moi* pour entendre ce qui vous entoure.
-
-## Comment ça fonctionne ?
-
-Comme avec les quatre boutons situés en bas de l’écran d’accueil, tenez votre téléphone à plat (écran face au ciel) et le haut de votre téléphone pointé vers la direction face à vous avant d’appuyer sur le bouton *Autour de moi*. Cette opération agit comme une boussole et indique à l’application la direction face à vous. Appuyez simplement sur le bouton *Autour de moi* et vous entendrez quatre points d’intérêt autour de vous.
+Si vous êtes à l’arrêt, pointez d’abord le haut de votre téléphone dans la direction à laquelle vous faites face. Si votre téléphone est verrouillé, ou si Soundscape n’est pas à l’écran, tenez aussi votre téléphone à plat.
 

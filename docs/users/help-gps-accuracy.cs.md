@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## Přesnost GPS
 
-Soundscape dokáže popsat vaše okolí jen tak přesně, jak přesně váš telefon ví, kde se nacházíte. Přesnost 10 metrů (30 stop) nebo lepší je dobrá, do 20 metrů (60 stop) je použitelná a cokoli horšího znamená, že hlášení mohou uvádět špatnou stranu ulice nebo přicházet pozdě.
+Soundscape dokáže popsat vaše okolí jen tak přesně, jak telefon ví, kde jste. Přesnost 10 metrů nebo lepší je dobrá. Do 20 metrů je přijatelná. Při horší přesnosti mohou hlášení jmenovat špatnou stranu ulice nebo přijít pozdě.
 
-Přesnost bývá nejhorší uvnitř budov, mezi vysokými domy a zhruba první minutu poté, co vyjdete ven. Pokud údaj níže zůstává špatný, i když jste venku na otevřeném prostranství, zkuste v telefonu vypnout a znovu zapnout služby určování polohy.
+Přesnost bývá nejhorší uvnitř budov, mezi vysokými domy a v první minutě po odchodu ven. Pokud hodnota níže zůstává špatná, i když stojíte venku na volném prostranství, vypněte a znovu zapněte polohové služby telefonu.
 
 Aktuální přesnost: %1$s (%2$s)
 

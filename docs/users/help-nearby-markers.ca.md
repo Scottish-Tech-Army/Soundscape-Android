@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Marcadors propers
 
-## Què és?
+*Marcadors propers* anuncia fins a quatre dels teus marcadors, els que tens més a prop. Sents cadascun des de la seva direcció, amb la distància. Fes-lo servir per orientar-te a partir de llocs que ja coneixes. Els marcadors a més d'uns 2 quilòmetres s'ometen.
 
-El botó *Marcadors propers* t'informa sobre fins a quatre marcadors que són els més propers a tu. *Marcadors propers* té la finalitat d'ajudar-te a orientar-te utilitzant llocs que ja coneixes.
-
-## Quan l'hauria d'utilitzar?
-
-Quan intentis orientar-te i situar-te respecte al teu entorn, utilitza *Marcadors propers* per escoltar informació sobre la ubicació de llocs que coneixes.
-
-## Com funciona?
-
-Com passa amb els quatre botons de la part inferior de la pantalla principal, sostén el telèfon amb la pantalla plana (mirant cap al cel) i la part superior del telèfon apuntant en la direcció cap a la qual estàs orientat abans de prémer el botó *Marcadors propers*. Això funciona com una brúixola que indica a l'aplicació cap a quina direcció estàs orientat. Simplement, toca el botó *Marcadors propers* i escoltaràs fins a quatre marcadors propers a tu.
+Si no t'estàs movent, apunta primer la part superior del telèfon cap on mires. Si el telèfon està bloquejat, o Soundscape no és a la pantalla, aguanta també el telèfon pla.
 

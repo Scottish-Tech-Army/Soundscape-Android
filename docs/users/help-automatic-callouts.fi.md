@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automaattiset ilmoitukset
 
-## Mikä se on?
+Kun kävelet, Soundscape ilmoittaa, mitä lähelläsi on. Kuulet jokaisen nimen paikan suunnasta. Ilmoitukset kattavat kadut, risteykset, kaupat, linja-autopysäkit, maamerkit ja omat merkitsimesi.
 
-Soundscape voi kertoa sinulle ympärilläsi olevista kohteista, kun lähestyt niitä, ilmoittamalla niiden nimet siitä suunnasta, jossa ne sijaitsevat. Sovellus tekee tämän automaattisesti monenlaisille kohteille, kuten yrityksille, linja‑autopysäkeille ja jopa risteyksille. Voit määrittää, mitä sovellus ilmoittaa automaattisesti, *Ilmoitusten hallinta* -osiosta *Asetukset*‑näytöllä, ja voit myös kytkeä kaikki ilmoitukset pois päältä, kun haluat sovelluksen olevan hiljaa.
+## Risteykset
 
-## Milloin käyttäisin sitä?
+Kun lähestyt risteystä, Soundscape nimeää jokaisen tien, joka lähtee siitä. Kuulet, mikä tie lähtee vasemmalle, mikä jatkuu suoraan ja mikä lähtee oikealle.
 
-**Uuteen alueeseen tutustuminen :**
+## Kuinka paljon kuulet
 
- Ota automaattiset ilmoitukset käyttöön ja kävele ympäriinsä kuullaksesi tietoja eri kaupoista, ravintoloista ja muista niiden kaltaisista maamerkeistä, kun ohitat ne.
+Avaa valikko ja valitse *Asetukset* ja sitten *Ilmoitusten hallinta*. Asetuksessa *Ilmoitusten tarkkuus* on neljä tasoa.
 
-**Tiettyyn sijaintiin kävely :**
+*Yksityiskohtainen* ilmoittaa kaiken lähellä olevan.
 
- Kun olet matkalla tiettyyn sijaintiin, automaattiset risteysten ilmoitukset voivat olla erityisen hyödyllisiä. Risteysten ilmoitukset kertovat sinulle risteysten asettelusta, kun lähestyt niitä, ja varmistavat tien, jolla olet, kun lähdet niistä.
+*Yksinkertaistettu* jättää pois pienet polut ja huoltotiet ja toistaa itseään vähemmän.
 
-**Kun tarvitset hiljaisuutta :**
+*Olennainen* ilmoittaa vain kadut, risteykset ja maamerkit.
 
- Kun olet aikeissa ylittää tien tai sinun tarvitsee muusta syystä hiljentää sovellus, voit ottaa ilmoitukset pois käytöstä. Kun ilmoitukset ovat pois käytöstä, sovellus kertoo sinulle tietoja ainoastaan, jos valitset manuaalisesti jonkin seuraavista painikkeista: *Oma sijaintini*, *Lähiympäristön merkitsimet*, *Lähiympäristö* tai *Edessäpäin*.
+*Äänetön* ei anna automaattisia ilmoituksia. Majakat, reitit ja aloitusnäytön painikkeet toimivat edelleen.
 
-## Kuinka se toimii?
+## Mitä kuulet
 
-**Ilmoitusten kytkeminen päälle tai pois :**
+Kohdassa *Ilmoitusten hallinta* on kaksi muuta asetusta. *Kadut ja risteykset* kytkee katujen ja risteysten ilmoitukset päälle tai pois. *Ilmoitettavat paikat* valitsee, minkä tyyppisiä paikkoja kuulet, esimerkiksi *Julkinen liikenne* tai *Ruoka ja juoma*. Merkitsimesi ilmoitetaan aina.
 
- Ilmoitusten pois kytkeminen hiljentää sovelluksen. Ilmoitukset voi kytkeä pois *Asetukset*-näytön *Ilmoitusten hallinta* -osiosta asettamalla *Ilmoitusten tarkkuus* arvoon *Äänetön*, ja takaisin päälle valitsemalla minkä tahansa muun tason. iPhonessa voit tehdä saman pyytämällä sitä Siriltä, ja Androidissa sama toimii Geminin kautta, kun Google julkaisee sille tuen. Voit myös hiljentää Soundscapea askel kerrallaan kuulokkeidesi mediasäätöpainikkeilla: jokainen *edellinen*-painallus laskee tasoa järjestyksessä *Yksityiskohtainen*, *Yksinkertaistettu*, *Olennainen* ja *Äänetön*, ja vielä yksi painallus palaa tasolle *Yksityiskohtainen*. Katso ohjeaihe *Mediasäädinten käyttö*. Vaihtoehtoisesti voit käyttää aloitusnäytön oikeassa yläkulmassa olevaa *Siirry lepotilaan* -painiketta estääksesi Soundscapea tekemästä ilmoituksia, kunnes herätät sen.
+## Soundscapen hiljentäminen
 
-**Ilmoitusten kuuntelemisen hallinta :**
+Paina kuulokkeidesi säätimistä *edellinen*. Jokainen painallus siirtyy yhden tason hiljaisemmaksi: *Yksityiskohtainen*, *Yksinkertaistettu*, *Olennainen* ja sitten *Äänetön*. Vielä yksi painallus palaa tasolle *Yksityiskohtainen*. Katso ohjesivu *Mediasäädinten käyttö*.
 
- Valitaksesi, minkä tyyppisiä asioita Soundscape ilmoittaa automaattisesti, siirry *Aloitusnäytön* valikon kautta *Asetukset*-näyttöön. *Asetukset*-näytön *Ilmoitusten hallinta* -osiossa valitset, kuinka paljon sovellus puhuu, asetuksella *Ilmoitusten tarkkuus*, ilmoittaako se *Kadut ja risteykset* ja mitkä ovat *Ilmoitettavat paikat*. Jos haluat kytkeä kaikki ilmoitukset pois, aseta *Ilmoitusten tarkkuus* arvoon *Äänetön*.
+## Soundscapen pysäyttäminen hetkeksi
+
+Valitse aloitusnäytön yläreunasta painike *Siirry lepotilaan*. Soundscape lakkaa käyttämästä sijaintiasi ja on hiljaa, kunnes valitset *Herää nyt*. Tai valitse *Herää kun poistut*, niin Soundscape herää, kun lähdet paikasta, jossa olet.
+
+## Ajoneuvossa tai junassa
+
+Soundscape huomaa, kun liikut ajoneuvon nopeudella. Silloin se lakkaa ilmoittamasta risteyksiä ja lähellä olevia kauppoja, koska ne menevät ohi liian nopeasti. Sen sijaan se ilmoittaa tien, jolla olet, maamerkit, pysäkit ja asemat, joet ja tunnelit.
 

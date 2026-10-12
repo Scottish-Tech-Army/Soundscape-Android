@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Ljudfyr
 
-## Vad är det?
+En ljudfyr är ett ljud som hörs från riktningen till en plats du väljer. Den talar om var platsen ligger fågelvägen. Den ger inga sväng-för-sväng-anvisningar, så du väljer själv vägen dit.
 
-Om du ställer in en ljudfyr på en plats i närheten kan Soundscape hålla dig informerad genom att spela upp ett ljud som kommer från den platsens riktning. Du kan stänga av eller sätta på ljudfyren på startskärmen. På startskärmen i Soundscape visas också information om platsen, bland annat avståndet till den och gatuadressen om den är känd.
+## Ställa in en ljudfyr
 
-## När ska jag använda det?
+1. Hitta platsen. Använd sökfältet, *Platser i närheten*, *Platsmarkörer* eller *Aktuell plats* på startskärmen.
 
-Det kan vara användbart att ställa in en ljudfyr om du vill hålla reda på landmärken medan du utforskar ett nytt område eller när du går någonstans och vill hålla dig informerad om omgivningarna utmed vägen. Med ljudfyren får du inga väganvisningar, utan du hör ett ljud som anger ljudfyrens riktning i förhållande till platsen där du befinner dig. Genom att använda ljudfyren, din egen förmåga att hitta och kanske en navigeringsapp kan du välja hur du vill ta dig fram till en plats i närheten.
+2. Välj platsen för att öppna *Platsuppgifter*.
 
-## Hur fungerar det?
+3. Välj *Ställ in ljudfyr*.
 
-**För att ställa in en ljudfyr:**
+Soundscape går tillbaka till startskärmen och ljudfyren startar. Startskärmen visar platsens namn och hur långt bort den ligger.
 
-Först visar du detaljerna för en plats genom att antingen använda sökfältet för att söka efter en plats eller trycka på någon av knapparna *Platser i närheten*, *Platsmarkörer* eller *Aktuell plats* och välja en plats. Välj sedan knappen *Ställ in ljudfyr* på skärmen *Platsuppgifter*. Genom att trycka på den återvänder du till startskärmen och aktiverar en hörbar ljudfyr som kommer från den riktning platsen ligger i. Namnet på platsen, tillsammans med avståndet till den och gatuadressen om den finns, visas nu på huvudskärmen.
+## Hitta riktningen
 
-**För att ta bort den aktuella ljudfyren:**
+Ljudfyren byter ljud när du är vänd mot platsen eller går rakt mot den. Om du vill hitta det ljudet håller du telefonen plant och vrider dig långsamt. Du kan välja ett annat ljud för ljudfyren i *Inställningar*.
 
-Tryck helt enkelt på *Stoppa rutten*-knappen på startskärmen.
+## Stänga av ljudfyrens ljud
 
-**För att stänga av den hörbara ljudfyren:**
+Välj *Stäng av ljudfyr* på startskärmen. Soundscape fortsätter att tala om hur långt bort platsen ligger medan du rör dig. Välj *Sätt på ljudfyr* för att höra ljudfyren igen.
 
-Tryck på knappen *Stäng av ljudfyr* bredvid knappen *Stoppa rutten* på startskärmen.
+## Ta bort ljudfyren
+
+Välj *Stoppa rutten* på startskärmen. Knappen heter så även när ljudfyren inte ingår i en rutt.
+
+## När du kommer fram
+
+När du är ungefär 12 meter från platsen talar Soundscape om det och tar bort ljudfyren. Telefonen kan inte bestämma din position mer exakt än så. Om du vill höra ljudfyren igen ställer du in den på nytt.
+
+En ljudfyr som ställs in på en plats mindre än 30 meter bort är kvar tills du tar bort den.
 

@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Avisos Automáticos
 
-## O que é?
+Enquanto caminha, o Soundscape anuncia o que está perto de si. Ouve cada nome a partir da direção do local. Os avisos abrangem ruas, cruzamentos, lojas, paragens de autocarro, pontos de referência e os seus próprios marcos.
 
-O Soundscape pode informar‑o sobre o que o rodeia à medida que se aproxima, anunciando o nome desses locais vindo da direção em que se encontram. A aplicação faz isto automaticamente para todo o tipo de locais, como empresas, paragens de autocarro e até cruzamentos. Pode configurar o que a aplicação anuncia automaticamente na secção *Gerir Avisos* do ecrã *Definições*, e pode desativar todos os avisos quando quiser que a aplicação esteja silenciosa.
+## Cruzamentos
 
-## Quando devo utilizá-lo?
+Quando se aproxima de um cruzamento, o Soundscape diz o nome de cada rua que sai dele. Ouve qual a rua que vai para a esquerda, qual continua em frente e qual vai para a direita.
 
-**Explorar uma nova área :**
+## Quanto Ouve
 
- Ative os avisos automáticos e caminhe para ouvir informações sobre as várias lojas, restaurantes e outros estabelecimentos por onde passar.
+Abra o menu e selecione *Definições* e depois *Gerir Avisos*. *Detalhe dos Avisos* tem quatro níveis.
 
-**Caminhar para uma localização específica :**
+*Detalhado* anuncia tudo o que está nas proximidades.
 
- Quando estiver a dirigir-se para uma localização específica, os avisos automáticos de cruzamentos podem ser especialmente úteis. Os avisos de cruzamentos informam-no sobre a disposição dos cruzamentos à medida que se aproxima e confirmam a rua em que se encontra depois de passar por eles.
+*Simplificado* deixa de fora os caminhos menores e as vias de serviço, e repete-se menos.
 
-**Quando necessita de silêncio :**
+*Essencial* anuncia apenas ruas, cruzamentos e pontos de referência.
 
- Quando está prestes a atravessar uma rua, ou apenas quando necessita que a aplicação esteja silenciosa, pode desativar os avisos. Quando os avisos estão desativados, a aplicação só o informará se tocar manualmente num dos botões *A Minha Localização*, *Marcos nas Proximidades*, *Em Meu Redor* ou *À Minha Frente*.
+*Silencioso* não faz avisos automáticos. Os sinais, as rotas e os botões do ecrã principal continuam a funcionar.
 
-## Como funciona?
+## O Que Ouve
 
-**Ativar ou desativar os avisos :**
+*Gerir Avisos* tem mais duas definições. *Ruas e Cruzamentos* ativa ou desativa os avisos de ruas e cruzamentos. *Locais a Anunciar* escolhe os tipos de local que ouve, como *Transportes Públicos* ou *Gastronomia*. Os seus marcos são sempre anunciados.
 
- Desativar os avisos fará com que a aplicação fique silenciosa. Os avisos podem ser desativados na secção *Gerir Avisos* do ecrã *Definições*, definindo *Detalhe dos Avisos* como *Silencioso*, e voltam a ser ativados escolhendo qualquer outro nível. No iPhone pode fazer o mesmo pedindo à Siri e, no Android, o mesmo vai funcionar através do Gemini assim que a Google disponibilizar o suporte. Também pode tornar o Soundscape mais discreto passo a passo com os botões de controlo multimédia dos seus auscultadores: cada toque em *anterior* desce um nível ao longo de *Detalhado*, *Simplificado*, *Essencial* e *Silencioso*, e mais um toque regressa a *Detalhado*. Consulte o tópico de ajuda *Utilizar Controlos Multimédia*. Alternativamente, pode usar o botão *Suspender* no canto superior direito do ecrã principal para impedir que o Soundscape faça avisos até que o reative.
+## Tornar o Soundscape Mais Discreto
 
-**Gerir quais avisos ouve :**
+Prima *anterior* nos controlos dos seus auscultadores. Cada toque desce um nível: *Detalhado*, *Simplificado*, *Essencial* e depois *Silencioso*. Mais um toque regressa a *Detalhado*. Consulte a página de ajuda *Utilizar Controlos Multimédia*.
 
- Para escolher os tipos de itens que o Soundscape anunciará automaticamente, aceda ao ecrã *Definições* através do menu no ecrã *Principal*. É na secção *Gerir Avisos* do ecrã *Definições* que escolhe quanto a aplicação diz, com *Detalhe dos Avisos*, se anuncia *Ruas e Cruzamentos* e quais os *Locais a Anunciar*. Se pretender desativar todos os avisos, defina *Detalhe dos Avisos* como *Silencioso*.
+## Parar o Soundscape Durante Algum Tempo
+
+Selecione o botão *Suspender* na parte superior do ecrã principal. O Soundscape deixa de usar a sua localização e não emite qualquer som até selecionar *Reativar Agora*. Ou selecione *Reativar ao sair*, e o Soundscape reativa-se quando sair do local onde está.
+
+## Num Veículo ou num Comboio
+
+O Soundscape repara quando se desloca à velocidade de um veículo. Deixa então de anunciar cruzamentos e lojas próximas, porque passam depressa demais. Em vez disso, anuncia a estrada em que segue, pontos de referência, paragens e estações, rios e túneis.
 

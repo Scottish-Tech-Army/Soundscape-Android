@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Di Depan Saya
 
-## Apa itu?
+*Di Depan Saya* memberitahukan hingga lima tempat di depan Anda. Anda mendengar masing-masing dari arahnya sendiri, beserta jaraknya. Gunakan di jalan yang belum Anda kenal, untuk mengetahui apa yang ada di depan.
 
-Tombol *Di Depan Saya* memberi tahu Anda tentang hingga lima hal di depan Anda. *Di Depan Saya* dimaksudkan untuk membantu Anda menjelajahi jalan di depan saat Anda sedang mengenal area baru.
-
-## Kapan saya menggunakannya?
-
-Saat Anda berjalan menyusuri jalan, coba gunakan *Di Depan Saya* untuk menemukan tempat dan hal-hal yang akan muncul di kedua sisi jalan di depan.
-
-## Bagaimana cara kerjanya?
-
-Seperti keempat tombol lainnya di bagian bawah layar utama, pegang ponsel Anda dengan layar rata (menghadap ke langit) dan bagian atas ponsel mengarah ke arah hadap Anda sebelum menekan tombol *Di Depan Saya*. Ini berfungsi seperti kompas yang memberi tahu aplikasi arah hadap Anda. Cukup ketuk tombol *Di Depan Saya* dan Anda akan mendengar beberapa tempat menarik yang kira-kira berada di depan Anda.
+Jika Anda berdiri diam, arahkan dulu bagian atas ponsel ke arah hadap Anda. Jika ponsel terkunci, atau Soundscape tidak ada di layar, pegang juga ponsel secara mendatar.
 

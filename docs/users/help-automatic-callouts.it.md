@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Notifiche automatiche
 
-## Cos'è?
+Mentre cammini, Soundscape annuncia ciò che hai vicino. Senti ogni nome dalla direzione del luogo. Le notifiche riguardano strade, incroci, negozi, fermate dell'autobus, punti di riferimento e i tuoi indicatori.
 
-Soundscape può informarti su ciò che ti circonda mentre ti avvicini, annunciando il nome dalla direzione in cui si trova. L'app lo fa automaticamente per vari elementi, come attività commerciali, fermate dell'autobus e persino incroci. Puoi configurare cosa l'app annuncia automaticamente nella sezione *Gestisci notifiche* della schermata *Impostazioni*, e puoi disattivare tutte le notifiche quando vuoi che l'app resti silenziosa.
+## Incroci
 
-## Quando si usa?
+Quando ti avvicini a un incrocio, Soundscape nomina ogni strada che ne esce. Senti quale strada va a sinistra, quale prosegue dritto e quale va a destra.
 
-**Esplorazione di una nuova area :**
+## Quanto senti
 
- Attiva le notifiche automatiche e cammina per ascoltare tutti i negozi, ristoranti e cose simili mentre li incontri.
+Apri il menu e seleziona *Impostazioni*, poi *Gestisci notifiche*. *Dettaglio delle notifiche* ha quattro livelli.
 
-**Percorso verso una posizione specifica :**
+*Dettagliato* annuncia tutto ciò che è nelle vicinanze.
 
- Quando ti stai dirigendo verso una determinata posizione, le notifiche automatiche per gli incroci possono essere particolarmente utili. Le notifiche degli incroci ti informano sulla disposizione degli incroci man mano che ti avvicini e ti indicano la strada in cui ti trovi quando li lasci.
+*Semplificato* tralascia i sentieri minori e le strade di servizio, e si ripete meno.
 
-**Necessità di silenzio :**
+*Essenziale* annuncia solo strade, incroci e punti di riferimento.
 
- Quando stai per attraversare una strada o hai solo bisogno che l'app sia silenziosa, puoi disattivare le notifiche. Quando le notifiche sono disattivate, l'app ti fornirà informazioni solo se tocchi manualmente uno dei pulsanti *La mia posizione*, *Indicatori nelle vicinanze*, *Intorno a me* o *Davanti a me*.
+*Silenzioso* non fa notifiche automatiche. Audiofari, percorsi e pulsanti della schermata iniziale continuano a funzionare.
 
-## Come funziona?
+## Che cosa senti
 
-**Attivare o disattivare le notifiche :**
+*Gestisci notifiche* ha altre due impostazioni. *Strade e incroci* attiva o disattiva le notifiche di strade e incroci. *Luoghi da annunciare* sceglie quali tipi di luogo senti, ad esempio *Trasporto pubblico* o *Cibi e bevande*. I tuoi indicatori vengono sempre annunciati.
 
- Disattivando le notifiche l'app resta in silenzio. Puoi disattivare le notifiche nella sezione *Gestisci notifiche* della schermata *Impostazioni* impostando *Dettaglio delle notifiche* su *Silenzioso*, e riattivarle scegliendo un qualsiasi altro livello. Su iPhone puoi fare lo stesso chiedendolo a Siri, e su Android funzionerà allo stesso modo con Gemini non appena Google ne rilascerà il supporto. Puoi anche rendere Soundscape più discreto un passo alla volta con i comandi multimediali dei tuoi auricolari: ogni pressione di *indietro* scende di un livello tra *Dettagliato*, *Semplificato*, *Essenziale* e *Silenzioso*, e un'ulteriore pressione torna a *Dettagliato*. Consulta l'argomento della guida *Utilizzo dei controlli di riproduzione*. In alternativa, puoi usare il pulsante *Sospendi* nell'angolo in alto a destra della schermata principale per impedire a Soundscape di riprodurre notifiche finché non lo riattiverai.
+## Rendere Soundscape più discreto
 
-**Gestione delle notifiche che senti :**
+Premi *indietro* sui comandi dei tuoi auricolari. Ogni pressione scende di un livello: *Dettagliato*, *Semplificato*, *Essenziale*, poi *Silenzioso*. Un'altra pressione torna a *Dettagliato*. Consulta la pagina della guida *Utilizzo dei controlli di riproduzione*.
 
- Per scegliere i tipi di elementi che Soundscape annuncerà automaticamente, vai alla schermata *Impostazioni* usando il menu nella schermata *Home*. Nella sezione *Gestisci notifiche* della schermata *Impostazioni* scegli quanto dice l'app con *Dettaglio delle notifiche*, se annunciare *Strade e incroci* e quali *Luoghi da annunciare*. Se desideri disattivare tutte le notifiche, imposta *Dettaglio delle notifiche* su *Silenzioso*.
+## Fermare Soundscape per un po'
+
+Seleziona il pulsante *Sospendi* in alto nella schermata iniziale. Soundscape smette di usare la tua posizione e non emette alcun suono finché non selezioni *Riattiva ora*. Oppure seleziona *Riattiva quando mi allontano*, e Soundscape si riattiva quando lasci il luogo in cui ti trovi.
+
+## In un veicolo o in treno
+
+Soundscape si accorge quando ti sposti alla velocità di un veicolo. Smette allora di annunciare incroci e negozi vicini, perché passano troppo in fretta. Annuncia invece la strada su cui ti trovi, i punti di riferimento, le fermate e le stazioni, i fiumi e le gallerie.
 

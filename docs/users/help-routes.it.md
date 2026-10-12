@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Percorsi
 
-## Cos'è?
+Un percorso è un elenco di luoghi, chiamati waypoint, che visiti in ordine. Soundscape imposta un audiofaro sul primo waypoint. Quando arrivi, te lo dice e sposta l'audiofaro su quello successivo.
 
-I percorsi sono una serie di waypoint. Riceverai una notifica all'arrivo a ciascun waypoint e l'audiofaro avanzerà automaticamente al successivo waypoint.
+Usa un percorso per imparare un tragitto nuovo, o per non perdere la strada in uno che conosci.
 
-## Quando si usa?
+## Creare un percorso
 
-Puoi creare e usare un percorso in un luogo che già conosci, per aiutarti a rimanere sulla strada giusta. Oppure puoi usare un percorso per imparare un nuovo tragitto.
+1. Seleziona *Percorsi* nella schermata iniziale, poi seleziona *Nuovo*.
 
-## Come funziona?
+2. Dai un nome al percorso. Puoi aggiungere una descrizione.
 
-**Creazione di un percorso**:
+3. Seleziona *Aggiungi waypoint* e scegli degli indicatori. Puoi anche aggiungere la tua posizione attuale o un luogo nelle vicinanze.
 
- Seleziona *Percorsi* nella schermata iniziale, quindi il pulsante *Nuovo* nell'angolo in alto a destra dello schermo. Assegna un nome al percorso e immetti una descrizione facoltativa, quindi aggiungi waypoint durante il tuo tragitto o sceglili dall'elenco di Indicatori. Puoi modificare in qualsiasi momento l'ordine dei waypoint lungo un percorso modificando quest'ultimo.
+4. Seleziona *Fatto*.
 
-**Modifica di un percorso :**
+## Seguire un percorso
 
- Seleziona il percorso nella schermata *Percorsi* e poi scegli *Modifica percorso*. Da qui puoi aggiungere o rimuovere waypoint, oltre a modificare il nome e la descrizione del percorso.
+Seleziona il percorso nella schermata *Percorsi*, poi seleziona *Avvia Percorso*. Per seguirlo al contrario, seleziona *Avvia Percorso in senso inverso*. Nella schermata iniziale, *Waypoint successivo* e *Waypoint precedente* spostano l'audiofaro lungo il percorso. *Interrompi Percorso* lo termina.
 
-**Condivisione di un percorso**:
+## Modificare un percorso
 
- Seleziona il percorso nella schermata *Percorsi* e poi scegli l'opzione *Condividi* usando una delle solite opzioni di condivisione disponibili.
+Seleziona il percorso nella schermata *Percorsi*, poi seleziona *Modifica percorso*. Puoi aggiungere, rimuovere e riordinare i waypoint, cambiare il nome e la descrizione, oppure eliminare il percorso.
+
+## Condividere un percorso
+
+Seleziona il percorso nella schermata *Percorsi*, poi seleziona *Condividi*.
 

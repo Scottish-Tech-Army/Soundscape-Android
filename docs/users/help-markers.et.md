@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Markerid
 
-Soundscape'iga saate märkida oma maailma ja kõike, mis teile korda läheb, nagu nõelu kaardil.
+Marker on koht, mille oled salvestanud. See võib olla mis tahes koht, mis on sulle oluline: sinu kodu, bussipeatus, hoone sissepääs või ülekäigurada.
 
-Saate märkida kohti, mis on teile isiklikud ja olulised, näiteks oma kodu, kontori või lemmik toidupoe. Saate märkida iga koha või aadressi ning ka asju, mida tavaliselt kaartidel ei näidata, näiteks: hoonete või parkide sissepääsud, jalakäijate ülekäigunupud, ülekäigurajad, sillad, bussipeatused või isegi oma koera lemmikpuu. Kasutage neid märgiseid teekonnal orientiiridena.
+Soundscape teatab sinu markeritest, kui neist möödud. Saad markerile määrata helimajaka, lisada selle marsruudile või kuulata lähimaid nupuga *Lähedal asuvad markerid*.
 
-Märgitud kohtade kogemiseks teatab Soundscape automaatselt märgitud kohtadest, kui te neist mööda kõnnite või neile lähenete, või saate kasutada avakuva allosas olevat nuppu *Lähedal asuvad markerid*, et kuulda enda ümber olevate märgitud kohtade ruumilist häälteadet. Saate isegi seada helimajaka igale märgitud kohale. Kui teete seda, kuulete teile tuttavat Soundscape'i helimajakat ning saate seda tavapäraselt kasutada.
+## Markerite loomine
+
+1. Vali avakuval *Markerid* ja seejärel *Uus*.
+
+2. Vali *Praegune asukoht* või koht jaotisest *Lähedal asuvad kohad*.
+
+3. Soovi korral muuda nime ja lisa märkmeid. Soundscape loeb märkmed koos markeriga ette.
+
+4. Vali *Valmis*.
+
+Saad salvestada ka mis tahes leitud koha. Ava selle *Asukoha üksikasjad* ja vali *Salvesta markerina*.
+
+## Markerite kohandamine
+
+Vali marker kuval *Markerid* ja seejärel vali *Muuda markerit*. Saad muuta selle nime, märkmeid ja asukohta või valida *Kustuta marker*. Markeri kustutamine eemaldab selle ka sinu marsruutidelt.
 

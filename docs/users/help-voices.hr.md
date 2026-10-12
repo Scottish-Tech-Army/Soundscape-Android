@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Glasovi
 
-Soundscape može koristiti bilo koji od glasova koje ste preuzeli na svoj Android telefon u postavkama izlaza pretvorbe teksta u govor. Unutar aplikacije Soundscape, da biste odabrali glas koji nije zadani Android glas, idite na *Postavke* u glavnom izborniku, proširite odjeljak *Zvuk* i zatim odaberite *Glasovi*.
+Soundscape može koristiti bilo koji glas instaliran na vašem telefonu. Da biste dodali glasove, otvorite postavke telefona i pronađite *Pretvaranje teksta u govor*. Da biste odabrali glas u Soundscapeu, otvorite izbornik i odaberite *Postavke*, zatim *Zvuk*, zatim *Glasovi*.
 

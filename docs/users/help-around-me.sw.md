@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Karibu Nami
 
-## Ni nini?
+*Karibu Nami* inatangaza hadi sehemu nne zilizo karibu nawe: moja mbele, moja kulia, moja nyuma na moja kushoto. Unasikia kila moja kutoka upande wake, pamoja na umbali wake. Itumie ili kujua ulipo unapofika mahali fulani.
 
-Kitufe cha *Karibu Nami* hukujulisha kuhusu kitu kimoja katika kila moja ya pande nne zinazokuzunguka (mbele, kulia, nyuma, na kushoto). *Karibu Nami* imekusudiwa kukusaidia kujielekeza kwa mazingira yanayokuzunguka.
-
-## Ni lini nitaitumia?
-
-Unapojaribu kujielekeza na kujua mazingira yanayokuzunguka, tumia *Karibu Nami* ili kusikia kuhusu vitu vinavyokuzunguka.
-
-## Inafanyaje kazi?
-
-Kama ilivyo kwa vitufe vyote vinne vilivyo chini ya skrini ya mwanzo, shikilia simu yako ikiwa gorofa (ikielekeza juu angani) na sehemu ya juu ya simu ikielekeza upande unaoelekea kabla ya kubonyeza kitufe cha *Karibu Nami*. Hii hufanya kazi kama dira inayoijulisha programu upande unaoelekea. Gusa tu kitufe cha *Karibu Nami* nawe utasikia sehemu nne za kuvutia zilizopangwa zikikuzunguka.
+Ikiwa umesimama mahali pamoja, kwanza elekeza sehemu ya juu ya simu upande unaoelekea. Ikiwa simu yako imefungwa, au Soundscape haipo kwenye skrini, shikilia simu kwa usawa pia.
 

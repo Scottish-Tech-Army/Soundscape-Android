@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatische aankondigingen
 
-## Wat is het?
+Terwijl u loopt, kondigt Soundscape aan wat er bij u in de buurt is. U hoort elke naam uit de richting van de plaats. Aangekondigd worden straten, kruispunten, winkels, bushaltes, herkenningspunten en uw eigen markeringen.
 
-Soundscape kan u vertellen wat er om u heen is terwijl u eraan nadert, door de naam van een plaats aan te kondigen vanuit de richting waarin deze zich bevindt. De app doet dit automatisch voor allerlei zaken, zoals bedrijven, bushaltes en zelfs kruispunten. U kunt instellen wat de app automatisch aankondigt in de sectie *Aankondigingen beheren* op het scherm *Instellingen*, en u kunt alle aankondigingen uitschakelen wanneer u wilt dat de app stil is.
+## Kruispunten
 
-## Wanneer zou ik het moeten gebruiken?
+Wanneer u een kruispunt nadert, noemt Soundscape elke weg die ervan weggaat. U hoort welke weg naar links gaat, welke rechtdoor loopt en welke naar rechts gaat.
 
-**Een nieuw gebied verkennen :**
+## Hoeveel u hoort
 
- Schakel automatische aankondigingen in en loop rond om informatie te horen over verschillende winkels, restaurants en andere punten die u passeert.
+Open het menu en selecteer *Instellingen* en dan *Aankondigingen beheren*. *Detailniveau aankondigingen* heeft vier niveaus.
 
-**Lopen naar een specifieke locatie :**
+*Uitgebreid* kondigt alles in de buurt aan.
 
- Als u onderweg bent naar een bepaalde locatie, zijn automatische aankondigingen voor kruispunten heel handig. Aankondigingen voor kruispunten geven de indeling van het kruispunt aan terwijl u ernaartoe loopt en bevestigen op welke weg u bent, wanneer u het kruispunt verlaat.
+*Vereenvoudigd* laat kleine paden en ventwegen weg en herhaalt zich minder.
 
-**Wanneer u stilte wilt :**
+*Essentieel* kondigt alleen straten, kruispunten en herkenningspunten aan.
 
- Wanneer u een weg wilt oversteken of wilt dat de app stil is, kunt u de aankondigingen uitzetten. Wanneer aankondigingen uit zijn, geeft de app alleen informatie door als u handmatig tikt op de knoppen *Mijn locatie*, *Markeringen in de buurt*, *Om me heen* of *Vóór me*.
+*Stil* geeft geen automatische aankondigingen. Bakens, routes en de knoppen op het startscherm blijven werken.
 
-## Hoe werkt het?
+## Wat u hoort
 
-**Aankondigingen in- of uitschakelen :**
+*Aankondigingen beheren* heeft nog twee instellingen. *Straten en kruispunten* zet aankondigingen van straten en kruispunten aan of uit. Met *Aan te kondigen plaatsen* kiest u welke soorten plaatsen u hoort, zoals *Openbaar vervoer* of *Eten en drinken*. Uw markeringen worden altijd aangekondigd.
 
- Het uitschakelen van aankondigingen zorgt dat de app stil is. U kunt aankondigingen uitschakelen in de sectie *Aankondigingen beheren* op het scherm *Instellingen* door *Detailniveau aankondigingen* op *Stil* te zetten, en weer inschakelen door een ander niveau te kiezen. Op de iPhone kunt u hetzelfde doen door het aan Siri te vragen, en op Android zal hetzelfde via Gemini werken zodra Google daar ondersteuning voor uitbrengt. U kunt Soundscape ook stap voor stap rustiger maken met de mediaknoppen op uw koptelefoon: elke druk op *vorige* gaat een stap omlaag langs *Uitgebreid*, *Vereenvoudigd*, *Essentieel* en *Stil*, en nog een druk gaat terug naar *Uitgebreid*. Zie het helponderwerp *Mediaregelaars gebruiken*. Een andere optie is de knop *Slapen* rechtsboven op het hoofdscherm te gebruiken om te voorkomen dat Soundscape aankondigingen maakt totdat u het wekt.
+## Soundscape stiller maken
 
-**Beheren welke aankondigingen u hoort :**
+Druk op *vorige* op de bediening van uw koptelefoon. Elke druk gaat één niveau stiller: *Uitgebreid*, *Vereenvoudigd*, *Essentieel* en dan *Stil*. Nog een druk gaat terug naar *Uitgebreid*. Zie de helppagina *Mediaregelaars gebruiken*.
 
- Om de soorten zaken te kiezen die Soundscape automatisch aankondigt, gaat u via het menu op het *Start*-scherm naar het *Instellingen*-scherm. In de sectie *Aankondigingen beheren* op het *Instellingen*-scherm kiest u met *Detailniveau aankondigingen* hoeveel de app zegt, of ze *Straten en kruispunten* aankondigt, en welke *Aan te kondigen plaatsen* er zijn. Wilt u alle aankondigingen uitschakelen, zet dan *Detailniveau aankondigingen* op *Stil*.
+## Soundscape een tijdje stoppen
+
+Selecteer de knop *Slapen* boven aan het startscherm. Soundscape gebruikt uw locatie dan niet meer en maakt geen geluid totdat u *Nu activeren* selecteert. Of selecteer *Wek bij vertrek*. Soundscape wordt dan wakker wanneer u de plek verlaat waar u bent.
+
+## In een voertuig of in de trein
+
+Soundscape merkt wanneer u zich met de snelheid van een voertuig verplaatst. Het kondigt dan geen kruispunten en winkels in de buurt meer aan, omdat die te snel voorbijgaan. In plaats daarvan kondigt het de weg aan waarop u zich bevindt, herkenningspunten, haltes en stations, rivieren en tunnels.
 

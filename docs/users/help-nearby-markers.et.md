@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Lähedal asuvad markerid
 
-## Mis see on?
+*Lähedal asuvad markerid* teatab kuni neljast sinu markerist, neist, mis on sulle kõige lähemal. Kuuled igaüht selle enda suunast koos kaugusega. Kasuta seda, et orienteeruda juba tuttavate kohtade järgi. Markerid, mis on kaugemal kui umbes 2 kilomeetrit, jäetakse välja.
 
-Nupp *Lähedal asuvad markerid* räägib teile kuni neljast teile kõige lähemal asuvast markerist. *Lähedal asuvad markerid* on mõeldud aitama teil orienteeruda, kasutades kohti, mida te juba tunnete.
-
-## Millal seda kasutada?
-
-Kui üritate orienteeruda ja oma ümbruses kohaneda, kasutage *Lähedal asuvad markerid*, et kuulda teile tuttavate kohtade asukohtadest.
-
-## Kuidas see töötab?
-
-Nagu kõigi nelja avakuva allosas oleva nupu puhul, hoidke enne nupu *Lähedal asuvad markerid* vajutamist telefoni tasapinnaliselt (ekraan taeva poole) ja telefoni ülaosa suunatuna sinnapoole, kuhu vaatate. See toimib kompassina, mis ütleb rakendusele, millises suunas te vaatate. Puudutage lihtsalt nuppu *Lähedal asuvad markerid* ja kuulete kuni nelja teie lähedal asuvat markerit.
+Kui seisad paigal, suuna esmalt telefoni ülemine serv sinna, kuhu sa näoga oled. Kui telefon on lukus või Soundscape ei ole ekraanil, hoia telefoni lisaks ka horisontaalselt.
 

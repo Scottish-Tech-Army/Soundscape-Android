@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Alama za Karibu
 
-## Ni nini?
+*Alama za Karibu* inatangaza hadi alama zako nne, zile zilizo karibu nawe zaidi. Unasikia kila moja kutoka upande wake, pamoja na umbali wake. Itumie ili kujua ulipo kwa kutumia sehemu unazozijua tayari. Alama zilizo umbali wa zaidi ya takriban kilomita 2 huachwa.
 
-Kitufe cha *Alama za Karibu* hukujulisha kuhusu hadi alama nne zilizo karibu zaidi na wewe. *Alama za Karibu* imekusudiwa kukusaidia kujielekeza kwa kutumia mahali unapoyafahamu tayari.
-
-## Ni lini nitaitumia?
-
-Unapojaribu kujielekeza na kujua mazingira yanayokuzunguka, tumia *Alama za Karibu* ili kusikia kuhusu mahali zilipo sehemu unazozifahamu.
-
-## Inafanyaje kazi?
-
-Kama ilivyo kwa vitufe vyote vinne vilivyo chini ya skrini ya mwanzo, shikilia simu yako ikiwa gorofa (ikielekeza juu angani) na sehemu ya juu ya simu ikielekeza upande unaoelekea kabla ya kubonyeza kitufe cha *Alama za Karibu*. Hii hufanya kazi kama dira inayoijulisha programu upande unaoelekea. Gusa tu kitufe cha *Alama za Karibu* nawe utasikia hadi alama nne zilizo karibu nawe.
+Ikiwa umesimama mahali pamoja, kwanza elekeza sehemu ya juu ya simu upande unaoelekea. Ikiwa simu yako imefungwa, au Soundscape haipo kwenye skrini, shikilia simu kwa usawa pia.
 

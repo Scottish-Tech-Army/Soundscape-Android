@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Oznake v bližini
 
-## Kaj je to?
+*Oznake v bližini* oznani do štiri vaše oznake, tiste, ki so vam najbližje. Vsako slišite iz njene smeri, z razdaljo. Uporabite jih, da se orientirate po krajih, ki jih že poznate. Oznake, oddaljene več kot približno 2 kilometra, so izpuščene.
 
-Gumb *Oznake v bližini* vam pove o do štirih oznakah, ki so vam najbližje. *Oznake v bližini* vam pomagajo pri orientaciji z uporabo krajev, ki jih že poznate.
-
-## Kdaj naj to uporabim?
-
-Kadar se poskušate orientirati in seznaniti s svojo okolico, uporabite *Oznake v bližini*, da slišite o lokacijah krajev, ki jih poznate.
-
-## Kako deluje?
-
-Kot pri vseh štirih gumbih na dnu domačega zaslona telefon držite tako, da je zaslon vodoraven (obrnjen proti nebu), vrh telefona pa naj kaže v smer, v katero ste obrnjeni, preden pritisnete gumb *Oznake v bližini*. To deluje kot kompas, ki aplikaciji pove, v katero smer ste obrnjeni. Preprosto tapnite gumb *Oznake v bližini* in slišali boste do štirih oznak v vaši bližini.
+Če stojite na mestu, najprej usmerite zgornji rob telefona v smer, v katero gledate. Če je telefon zaklenjen ali Soundscape ni na zaslonu, držite telefon tudi vodoravno.
 

@@ -7,25 +7,33 @@ has_toc: false
 
 # Audio Beacon
 
-## What is it?
+An audio beacon is a sound that plays from the direction of a place you choose. It tells you where the place is in a straight line. It does not give turn-by-turn directions, so you choose your own way there.
 
-Setting a beacon on a nearby location allows Soundscape to keep you informed by playing a sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
+## Setting a Beacon
 
-## When would I use it?
+1. Find the place. Use the search bar, *Places Nearby*, *Markers* or *Current Location* on the home screen.
 
-Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
+2. Select the place to open *Location Details*.
 
-## How does it work?
+3. Select *Start Audio Beacon*.
 
-**To set a beacon :**
+Soundscape returns to the home screen and the beacon starts. The home screen shows the name of the place and how far away it is.
 
- First, view the details for a location by either using the search bar to search for a place, or tapping one of the *Places Nearby*, *Markers*, or *Current Location* buttons and selecting a location. Then from the *Location Details* screen, select the *Start Audio Beacon* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place along with its distance and physical address, if available, will now be displayed on the main screen.
+## Finding the Direction
 
-**To remove the current beacon :**
+The beacon changes sound when you face the place or walk straight toward it. To find that sound, hold your phone flat and turn slowly. You can choose a different beacon sound in *Settings*.
 
- Simply press the *Stop Route* button on the home screen.
+## Muting the Beacon
 
-**To mute the audible beacon :**
+Select *Mute Beacon* on the home screen. Soundscape still tells you how far away the place is as you move. Select *Unmute Beacon* to hear the beacon again.
 
- Tap the *Mute Beacon* button next to the *Stop Route* button on the home screen.
+## Removing the Beacon
+
+Select *Stop Route* on the home screen. The button has this name even when the beacon is not part of a route.
+
+## When You Arrive
+
+When you are about 40 feet from the place, Soundscape tells you and removes the beacon. Your phone cannot find your position more exactly than that. To hear the beacon again, set it again.
+
+A beacon set on a place less than 100 feet away stays on until you remove it.
 

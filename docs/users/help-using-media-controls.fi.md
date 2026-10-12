@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Mediasäädinten käyttö
 
-## Mikä se on?
+Voit ohjata Soundscapea kuulokkeidesi mediapainikkeilla: *toista/tauko*, *seuraava* ja *edellinen*. Tämä toimii langallisilla ja Bluetooth-kuulokkeilla. Se toimii myös silloin, kun Soundscape on taustalla tai puhelin on lukittu.
 
-Voit käyttää joitakin Soundscapen toimintoja kuulokkeidesi mediaohjauspainikkeiden avulla. Tämä toimii millä tahansa langallisilla tai Bluetooth-kuulokkeilla, joissa on mediaohjauspainikkeet, kuten Toista, Pysäytä, Seuraava, Edellinen ja niin edelleen. Eri kuulokkeissa voi olla erilaiset painikkeet, joten tarkista alla olevasta toimintoluettelosta, mitkä niistä ovat käytettävissäsi.
+Kaikissa kuulokkeissa ei ole kaikkia kolmea painiketta.
 
-## Milloin käyttäisin sitä?
+Painikkeet ohjaavat Soundscapea vain silloin, kun mikään muu sovellus ei toista ääntä. Jos kuuntelet musiikkia tai podcastia, painikkeet ohjaavat sitä sovellusta.
 
-Kuulokkeiden mediasäätimiä voidaan käyttää, kun Soundscape on päällä — riippumatta siitä, käytätkö sovellusta aktiivisesti, onko se taustalla vai onko laitteesi lukittu. Kuulokkeiden mediasäätimet eivät kuitenkaan toimi Soundscapen kanssa, jos toistat toisella sovelluksella ääntä, kuten musiikkia, podcasteja tai videoita.
+Painikkeet voivat toimia kahdella tavalla: *Alkuperäinen tila* tai *Äänivalikko*. Valitse tapa avaamalla valikko ja valitsemalla *Asetukset* ja sitten *Mediasäätimet*.
 
-## Kuinka se toimii?
+## Alkuperäinen tila
 
-Mediasäätimille on kaksi toimintatilaa. Tilan voi valita *Asetukset* -> *Mediasäätimet* -osiosta. Tilat ovat:
+*Toista/tauko* hiljentää majakan. Paina uudelleen, niin kuulet majakan.
 
- *Alkuperäinen tila*. 
+*Seuraava* siirtää majakan seuraavaan reittipisteeseen, kun seuraat reittiä. Muuten se antaa ilmoituksen *Lähiympäristö*.
 
-⏯ Toista/Pysäytä: Kytkee äänimajakan äänen päälle ja pois. 
+*Edellinen* siirtää majakan edelliseen reittipisteeseen, kun seuraat reittiä. Muuten se muuttaa asetusta *Ilmoitusten tarkkuus*. Jokainen painallus siirtyy yhden tason hiljaisemmaksi: *Yksityiskohtainen*, *Yksinkertaistettu*, *Olennainen* ja sitten *Äänetön*. Vielä yksi painallus palaa tasolle *Yksityiskohtainen*. Soundscape sanoo uuden tason nimen.
 
-⏭ Seuraava: Jos reittiä toistetaan, siirtää äänimajakan reitin seuraavaan reittipisteeseen. Jos reittiä ei toisteta, antaa ilmoituksen *Lähiympäristö*.
+## Äänivalikko
 
-⏮ Edellinen: Jos reittiä toistetaan, siirtää äänimajakan reitin edelliseen reittipisteeseen. Jos reittiä ei toisteta, muuttaa asetusta *Ilmoitusten tarkkuus* yhden askeleen hiljaisemmaksi joka painalluksella: *Yksityiskohtainen*, *Yksinkertaistettu*, *Olennainen*, *Äänetön*, ja takaisin tasolle *Yksityiskohtainen*.
+Äänivalikko antaa enemmän toimintoja samoilla kolmella painikkeella. Soundscape lukee jokaisen vaihtoehdon ääneen.
 
+*Seuraava* siirtyy seuraavaan vaihtoehtoon. Viimeisen vaihtoehdon jälkeen se palaa ensimmäiseen.
 
+*Toista/tauko* valitsee vaihtoehdon, jonka juuri kuulit.
 
-*Äänivalikko*. 
+*Edellinen* muuttaa asetusta *Ilmoitusten tarkkuus* samoin kuin tilassa *Alkuperäinen tila*.
 
-
-
-⏭ Seuraava selaa valikkovaihtoehtoja, jotka sovellus kuvailee tekstistä puheeksi -äänellä, ja palaa viimeisen jälkeen ensimmäiseen. ⏯ Toista/Pysäytä saa sovelluksen suorittamaan kuvatun vaihtoehdon. On yksi ylätason valikko, jonka vaihtoehtoina ovat alivalikot. Jokaisella alivalikolla on joukko samankaltaisia toimintoja.
-
-⏮ Edellinen ei selaa valikkoa. Sen sijaan se muuttaa asetusta *Ilmoitusten tarkkuus* täsmälleen kuten alkuperäisessä tilassa, joten sama painike hiljentää sovellusta kummassa tahansa tilassa.
+Valikko alkaa neljällä ryhmällä: *Kuuntele ympäristöä*, *Reitin hallinta*, *Aloita reitti* ja *Käynnistä äänimajakka*. Valitse ryhmä, niin kuulet sen toiminnot. *Kuuntele ympäristöä* ja *Reitin hallinta* päättyvät vaihtoehtoon *Päävalikko*, joka vie sinut takaisin neljään ryhmään.
 

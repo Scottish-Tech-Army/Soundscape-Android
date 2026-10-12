@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Vozes
 
-O Soundscape pode usar qualquer uma das vozes que você tenha baixado para o seu telefone Android nas configurações de saída de Texto para Fala. Dentro do app Soundscape, para selecionar uma voz diferente da padrão do Android, acesse *Ajustes* no menu principal, expanda a seção *Áudio* e então selecione *Vozes*.
+O Soundscape pode usar qualquer voz instalada no seu telefone. Para adicionar vozes, abra as configurações do telefone e procure *Saída de conversão de texto em voz*. Para escolher uma voz no Soundscape, abra o menu e selecione *Ajustes*, depois *Áudio* e depois *Vozes*.
 

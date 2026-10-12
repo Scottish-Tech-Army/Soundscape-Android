@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatische Hinweise
 
-## Was ist es?
+Beim Gehen sagt Soundscape an, was in Ihrer Nähe ist. Sie hören jeden Namen aus der Richtung des Ortes. Angesagt werden Straßen, Kreuzungen, Geschäfte, Bushaltestellen, Orientierungspunkte und Ihre eigenen Markierungen.
 
-Soundscape kann Ihnen mitteilen, was sich um Sie herum befindet, indem es beim Näherkommen den Namen aus der Richtung ansagt, in der sich das Objekt befindet. Die App macht dies automatisch für verschiedene Dinge wie Geschäfte, Bushaltestellen und sogar Kreuzungen. Welche Elemente die App automatisch ansagt, können Sie im Abschnitt *„Hinweise verwalten“* auf dem Bildschirm *„Einstellungen“* festlegen. Wenn die App still sein soll, können Sie alle Hinweise ausschalten.
+## Kreuzungen
 
-## Wann würde ich es verwenden?
+Wenn Sie sich einer Kreuzung nähern, nennt Soundscape jede Straße, die von ihr abgeht. Sie hören, welche Straße nach links führt, welche geradeaus weitergeht und welche nach rechts führt.
 
-**Erkunden eines neuen Gebiets**:
+## Wie viel Sie hören
 
- Aktivieren Sie die automatischen Hinweise, und laufen Sie herum, um Hinweise zu den Geschäften, Restaurants und anderen Points-of-Interest, an denen Sie vorbeilaufen, zu erhalten.
+Öffnen Sie das Menü und wählen Sie *Einstellungen*, dann *Hinweise verwalten*. *Detailgrad der Hinweise* hat vier Stufen.
 
-**Unterwegs zu einem bestimmten Standort**:
+*Ausführlich* sagt alles in der Nähe an.
 
- Wenn Sie auf dem Weg zu einem bestimmten Standort sind, können automatische Hinweise auf Kreuzungen besonders nützlich sein. Hinweise auf Kreuzungen informieren Sie über die Art der Kreuzung, der Sie sich nähern, und bestätigen die Straße, auf der Sie sich befinden, wenn Sie die Kreuzung passiert haben.
+*Vereinfacht* lässt kleine Wege und Zufahrtsstraßen weg und wiederholt sich seltener.
 
-**Wenn Sie Ruhe brauchen**:
+*Wesentlich* sagt nur Straßen, Kreuzungen und Orientierungspunkte an.
 
- Wenn Sie eine Straße überqueren müssen oder die App einfach stummschalten möchten, können Sie die Hinweise deaktivieren. Dann wird die App Sie nur noch informieren, wenn Sie manuell auf eine der Schaltflächen *„Mein Standort“*, *„Markierungen in der Nähe“*, *„Um mich herum“* oder *„Vor mir“* tippen.
+*Stumm* macht keine automatischen Hinweise. Beacons, Routen und die Schaltflächen auf dem Startbildschirm funktionieren weiterhin.
 
-## Wie funktioniert es?
+## Was Sie hören
 
-**Hinweise ein- oder ausschalten:**
+*Hinweise verwalten* hat zwei weitere Einstellungen. *Straßen und Kreuzungen* schaltet Hinweise auf Straßen und Kreuzungen ein oder aus. Mit *Anzusagende Orte* wählen Sie, welche Arten von Orten Sie hören, zum Beispiel *Öffentliche Verkehrsmittel* oder *Essen und Trinken*. Ihre Markierungen werden immer angesagt.
 
- Das Ausschalten der Hinweise macht die App stumm. Hinweise können im Abschnitt *„Hinweise verwalten“* des Bildschirms *„Einstellungen“* ausgeschaltet werden, indem Sie *„Detailgrad der Hinweise“* auf *„Stumm“* setzen, und durch die Wahl einer beliebigen anderen Stufe wieder eingeschaltet werden. Auf dem iPhone erreichen Sie dasselbe, indem Sie Siri darum bitten, und unter Android wird es über Gemini funktionieren, sobald Google die Unterstützung dafür freigibt. Sie können Soundscape außerdem mit den Mediensteuertasten Ihrer Kopfhörer schrittweise leiser stellen: Jeder Druck auf *„Zurück“* geht eine Stufe abwärts durch *„Ausführlich“*, *„Vereinfacht“*, *„Wesentlich“* und *„Stumm“*, und ein weiterer Druck kehrt zu *„Ausführlich“* zurück. Siehe das Hilfethema *„Mediensteuerungen verwenden“*. Alternativ können Sie die Schaltfläche *„Ruhemodus aktivieren“* oben rechts auf dem Startbildschirm verwenden, damit Soundscape keine Hinweise mehr ausgibt, bis Sie die App aufwecken.
+## Soundscape leiser stellen
 
-**Verwalten, welche Hinweise Sie hören:**
+Drücken Sie *Zurück* auf der Steuerung Ihrer Kopfhörer. Jeder Druck geht eine Stufe leiser: *Ausführlich*, *Vereinfacht*, *Wesentlich*, dann *Stumm*. Ein weiterer Druck kehrt zu *Ausführlich* zurück. Siehe die Hilfeseite *Mediensteuerungen verwenden*.
 
- Um auszuwählen, welche Arten von Objekten Soundscape automatisch ansagt, rufen Sie über das Menü auf dem *„Startbildschirm“* den Bildschirm *„Einstellungen“* auf. Im Abschnitt *„Hinweise verwalten“* des Bildschirms *„Einstellungen“* wählen Sie mit *„Detailgrad der Hinweise“*, wie viel die App sagt, ob sie *„Straßen und Kreuzungen“* ansagt und unter *„Anzusagende Orte“*, welche Orte angesagt werden. Wenn Sie alle Hinweise ausschalten möchten, setzen Sie *„Detailgrad der Hinweise“* auf *„Stumm“*.
+## Soundscape eine Weile anhalten
+
+Wählen Sie die Schaltfläche *Ruhemodus aktivieren* oben auf dem Startbildschirm. Soundscape nutzt Ihren Standort dann nicht mehr und bleibt still, bis Sie *Jetzt aktivieren* wählen. Oder wählen Sie *Beim Verlassen aufwecken*. Dann wacht Soundscape auf, wenn Sie den Ort verlassen, an dem Sie gerade sind.
+
+## Im Fahrzeug oder im Zug
+
+Soundscape bemerkt, wenn Sie so schnell wie ein Fahrzeug unterwegs sind. Kreuzungen und Geschäfte in der Nähe werden dann nicht mehr angesagt, weil sie zu schnell vorbeiziehen. Stattdessen sagt Soundscape die Straße an, auf der Sie sind, sowie Orientierungspunkte, Haltestellen und Bahnhöfe, Flüsse und Tunnel.
 

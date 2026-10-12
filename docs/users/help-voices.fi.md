@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Puheen äänet
 
-Soundscape voi käyttää mitä tahansa Android‑puhelimeesi ladattuja puheääniä Tekstistä puheeksi -asetuksissa. Valitaksesi Soundscape‑sovelluksessa muun kuin Androidin oletusäänen, siirry päävalikosta *Asetukset*-kohtaan, avaa *Ääni*-osio ja valitse sieltä *Äänet*.
+Soundscape voi käyttää mitä tahansa puhelimeesi asennettua ääntä. Jos haluat lisätä ääniä, avaa puhelimen asetukset ja etsi kohta *Tekstistä puheeksi -toisto*. Jos haluat valita äänen Soundscapessa, avaa valikko ja valitse *Asetukset*, sitten *Ääni* ja sitten *Puheen äänet*.
 

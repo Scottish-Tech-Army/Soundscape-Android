@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Merki
 
-Með Soundscape geturðu merkt heiminn þinn og það sem þér þykir mikilvægt, eins og nál á korti.
+Merki er staður sem þú hefur vistað. Það getur verið hvaða staður sem skiptir þig máli: heimilið þitt, stoppistöð, inngangur að byggingu eða gangbraut.
 
-Þú getur merkt staði sem eru persónulegir og þér mikilvægir, eins og heimilið þitt, vinnustaðinn eða uppáhalds matvöruverslunina þína. Þú getur merkt hvaða stað eða heimilisfang sem er, og einnig hluti sem venjulega eru ekki á kortum, til dæmis: innganga að byggingum eða görðum, hnappa fyrir gangbrautarljós, gangbrautir, brýr, strætóstopp eða jafnvel uppáhaldstré hundsins þíns. Notaðu þessi merki sem viðmiðun á göngunni þinni.
+Soundscape tilkynnir merkin þín þegar þú ferð fram hjá þeim. Þú getur sett hljóðvita á merki, bætt því við leið eða heyrt þau sem eru næst með hnappnum *Nálæg merki*.
 
-Til að upplifa vistuð merki mun Soundscape sjálfkrafa tilkynna vistuð merki þegar þú gengur framhjá þeim eða nálgast þau. Þú getur líka notað hnappinn *Nálæg merki* neðst á heimaskjánum til að heyra tilkynningu í rúmhljóði um vistuð merki í kringum þig. Þú getur jafnvel sett hljóðvita á hvaða vistað merki sem er. Þá munt þú heyra hljóðvitann úr Soundscape eins og venjulega og geta notað hann á sama hátt.
+## Búa til merki
+
+1. Veldu *Merki* á heimaskjánum og veldu síðan *Nýtt*.
+
+2. Veldu *Núverandi staðsetning*, eða stað úr *Nálægir staðir*.
+
+3. Breyttu heitinu ef þú vilt og bættu við athugasemdum. Soundscape les athugasemdirnar upp með merkinu.
+
+4. Veldu *Lokið*.
+
+Þú getur líka vistað hvaða stað sem þú finnur. Opnaðu *Upplýsingar um staðsetningu* fyrir staðinn og veldu *Vista sem merki*.
+
+## Sérsníða merki
+
+Veldu merkið á skjánum *Merki* og veldu síðan *Breyta merki*. Þú getur breytt heiti þess, athugasemdum og staðsetningu, eða valið *Eyða merki*. Þegar merki er eytt er það líka fjarlægt úr leiðunum þínum.
 

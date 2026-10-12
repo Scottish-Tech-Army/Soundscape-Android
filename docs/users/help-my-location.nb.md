@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Min posisjon
 
-## Hva er det?
+*Min posisjon* forteller deg hvor du er. Den sier hvilken vei du er vendt eller beveger deg, og deretter gaten eller adressen du er ved. Bruk den når du går av en buss, forlater en bygning eller mister orienteringen.
 
-Knappen *Min posisjon* gir deg raskt informasjon som hjelper deg med å finne ut hvor du er. *Min posisjon* forteller deg om nåværende posisjon deriblant ting som retningen du er vendt mot, hvor veier og veikryss i nærheten er og hvor interessepunkter i nærheten er.
-
-## Når skal jeg bruke den?
-
-*Min posisjon* er nyttig når du må finne ut hvor du er eller hvilken himmelretning du er vendt mot.
-
-## Hvordan fungerer den?
-
-Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Min posisjon*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Min posisjon* og lytt.
+Hvis du står stille, peker du først toppen av telefonen i den retningen du er vendt. Hvis telefonen er låst, eller Soundscape ikke er på skjermen, holder du også telefonen flatt.
 

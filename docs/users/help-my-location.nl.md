@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Mijn locatie
 
-## Wat is het?
+*Mijn locatie* vertelt u waar u bent. U hoort welke kant u op kijkt of op gaat, en daarna de straat of het adres waar u bent. Gebruik de knop wanneer u uit een bus stapt, een gebouw verlaat of de weg kwijt bent.
 
-De knop *Mijn locatie* geeft snel informatie over de omgeving zodat u kunt achterhalen waar u zich bevindt. *Mijn locatie* geeft informatie over uw huidige locatie, de richting waarin u kijkt, en waar naburige wegen, kruispunten en referentiepunten zijn.
-
-## Wanneer zou ik het moeten gebruiken?
-
-*Mijn locatie* is handig wanneer u wilt weten waar u bent of wat de hoofdrichting is waarin u kijkt.
-
-## Hoe werkt het?
-
-Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u kijkt, voordat u op *Mijn locatie* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Mijn locatie* en luister.
+Staat u stil, richt dan eerst de bovenkant van uw telefoon in de richting waarin u kijkt. Is uw telefoon vergrendeld, of staat Soundscape niet op het scherm, houd uw telefoon dan ook plat.
 

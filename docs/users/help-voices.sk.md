@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Hlasy
 
-Soundscape môže používať ktorýkoľvek z hlasov, ktoré ste si stiahli do telefónu s Androidom v nastaveniach výstupu prevodu textu na reč. Ak chcete v aplikácii Soundscape vybrať iný hlas ako predvolený hlas Androidu, prejdite z hlavného menu do sekcie *Nastavenia*, rozbaľte sekciu *Zvuk* a potom vyberte *Hlasy*.
+Soundscape môže používať akýkoľvek hlas nainštalovaný v telefóne. Ak chcete pridať hlasy, otvorte nastavenia telefónu a nájdite *Výstup prevodu textu na reč*. Ak chcete vybrať hlas v Soundscape, otvorte menu a vyberte *Nastavenia*, potom *Zvuk* a potom *Hlasy*.
 

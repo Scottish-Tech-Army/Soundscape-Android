@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Conseils
 
-Vous pouvez trouver les arrêts de bus à proximité en sélectionnant le filtre *Transport en commun* dans la liste *Emplacements à proximité*.
+Pour trouver les arrêts d’autobus proches, sélectionnez *Emplacements à proximité* et choisissez *Transport en commun*.
 
-Vous pouvez définir une balise sonore sur n’importe quelle adresse. Depuis l’écran principal, recherchez l’adresse à l’aide de la barre de recherche. Sélectionnez ensuite l’adresse dans les résultats de recherche pour ouvrir l’écran *Détails de l’emplacement*. Cet écran comporte une option *Démarrer la balise* pour cette adresse. De cette façon, vous pouvez définir une balise sur des commerces, lieux, points d’intérêt et habitations qui ne figurent pas dans OpenStreetMap.
+Si vous prenez souvent le même autobus, enregistrez vos arrêts comme marqueurs. Placez une balise sur l’arrêt où vous descendez, et Soundscape vous indique sa distance pendant le trajet.
 
-Si vous empruntez régulièrement une ligne de bus, enregistrez vos arrêts d’embarquement et de descente comme Marqueurs. Ils seront ainsi sauvegardés et faciles à retrouver. Sélectionnez *Marqueurs* sur l’écran d’accueil pour les trouver. Vous pouvez y définir une balise sonore pour recevoir des mises à jour périodiques sur la distance qui vous sépare de votre arrêt de sortie. Remarque : vous pouvez couper le son rythmique et continuer à recevoir des mises à jour de distance en cours de route.
+Vous pouvez couper le son de la balise et continuer d’entendre la distance du lieu. Soundscape annonce la distance de temps en temps pendant vos déplacements.
 
-Si vous placez votre téléphone dans votre poche et arrêtez de vous déplacer, le son de la balise sonore diminue, car Soundscape ne peut pas déterminer la direction dans laquelle vous êtes tourné. Pour y remédier, recommencez à marcher, ou sortez votre téléphone et tenez-le à plat.
+Pour explorer un lieu avant d’y aller, ouvrez ses *Détails de l’emplacement* et sélectionnez *Simuler un emplacement*. Soundscape se comporte alors comme si vous y étiez.
 
-Soundscape fonctionne de manière optimale lorsque vous tenez le téléphone à plat avec l’écran face au ciel et le haut du téléphone dirigé devant vous.
-
-Vous pouvez activer et désactiver le son rythmique de la balise sonore à l’aide du bouton de coupure du son de l’écran d’accueil. Si le son de la balise est coupé, vous recevrez toujours des mises à jour sur votre distance par rapport à votre destination environ tous les 50 mètres.
-
-Pour continuer à utiliser Soundscape sans entendre les annonces automatiques, réglez *Détail des annonces* sur *Silencieux* dans la section *Gérer les annonces* de l’écran *Réglages* du menu. Si vous ne comptez pas utiliser Soundscape pendant un moment, vous pouvez plutôt le mettre en mode Mettre en veille ou Désactiver temporairement à l’aide du bouton *Mettre en veille* sur l’écran d’accueil.
+Pour des instructions de navigation étape par étape, ouvrez les *Détails de l’emplacement* d’un lieu et sélectionnez *Ouvrir dans une appli de cartes*. Soundscape continue de fonctionner pendant que l’autre appli vous guide.
 

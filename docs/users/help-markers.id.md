@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Penanda
 
-Dengan Soundscape, Anda dapat menandai dunia Anda dan apa pun yang Anda pedulikan, seperti pin di peta.
+Penanda adalah tempat yang telah Anda simpan. Penanda bisa berupa tempat apa pun yang penting bagi Anda: rumah Anda, halte bus, pintu masuk gedung, atau penyeberangan.
 
-Anda dapat menandai tempat-tempat yang bersifat pribadi dan relevan bagi Anda, seperti rumah, kantor, atau toko kelontong favorit Anda. Anda dapat menandai tempat atau alamat apa pun, dan juga hal-hal yang biasanya tidak ditampilkan di peta, misalnya: pintu masuk gedung atau taman, tombol penyeberangan, zebra cross, jembatan, halte bus, atau bahkan pohon favorit anjing Anda. Gunakan penanda-penanda ini sebagai acuan sepanjang perjalanan Anda.
+Soundscape memberitahukan penanda Anda saat Anda melewatinya. Anda dapat memasang suar audio pada penanda, menambahkannya ke rute, atau mendengar yang terdekat dengan tombol *Penanda Terdekat*.
 
-Untuk merasakan tempat yang ditandai, Soundscape akan secara otomatis menyebutkan tempat yang ditandai saat Anda melewati atau mendekatinya, atau Anda juga dapat menggunakan tombol *Penanda Terdekat* di bagian bawah layar utama untuk mendengar pemberitahuan spasial tentang tempat yang ditandai di sekitar Anda. Anda bahkan dapat mengatur suar audio pada tempat yang ditandai mana pun. Saat Anda melakukan ini, suar audio Soundscape yang sudah Anda kenal akan terdengar dan dapat Anda gunakan seperti biasa.
+## Membuat Penanda
+
+1. Pilih *Penanda* di layar utama, lalu pilih *Baru*.
+
+2. Pilih *Lokasi Saat Ini*, atau sebuah tempat dari *Tempat di Sekitar*.
+
+3. Ubah namanya jika mau, dan tambahkan catatan. Soundscape membacakan catatan itu bersama penandanya.
+
+4. Pilih *Selesai*.
+
+Anda juga dapat menyimpan tempat apa pun yang Anda temukan. Buka *Detail Lokasi* tempat itu dan pilih *Simpan sebagai Penanda*.
+
+## Menyesuaikan Penanda
+
+Pilih penanda di layar *Penanda*, lalu pilih *Edit Penanda*. Anda dapat mengubah nama, catatan, dan posisinya, atau memilih *Hapus Penanda*. Menghapus penanda juga mengeluarkannya dari rute Anda.
 

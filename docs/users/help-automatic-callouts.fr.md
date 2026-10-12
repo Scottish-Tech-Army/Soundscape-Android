@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Annonces automatiques
 
-## De quoi s’agit-il ?
+Pendant que vous marchez, Soundscape annonce ce qui est proche de vous. Vous entendez chaque nom depuis la direction du lieu. Les annonces portent sur les rues, les croisements, les commerces, les arrêts de bus, les repères et vos propres marqueurs.
 
-Soundscape peut vous informer des éléments qui vous entourent à mesure que vous vous en approchez en annonçant leur nom depuis la direction où ils se trouvent. L’application fait cela automatiquement pour toutes sortes d’éléments, comme des commerces, des arrêts de bus et même des croisements. Vous pouvez configurer ce que l’application annonce automatiquement dans la section *Gérer les annonces* de l’écran *Réglages*, et vous pouvez désactiver toutes les annonces lorsque vous souhaitez que l’application reste silencieuse.
+## Croisements
 
-## Quand l’utiliser ?
+Quand vous approchez d’un croisement, Soundscape nomme chaque voie qui en part. Vous entendez quelle voie part à gauche, laquelle continue tout droit et laquelle part à droite.
 
-**Exploration d’un nouvel environnement :**
+## La quantité d’annonces
 
- Activez les annonces automatiques et promenez-vous pour en savoir plus sur les différents commerces, restaurants et autres, à mesure que vous passez à côté.
+Ouvrez le menu et sélectionnez *Réglages*, puis *Gérer les annonces*. *Détail des annonces* propose quatre niveaux.
 
-**Marcher vers un emplacement spécifique :**
+*Détaillé* annonce tout ce qui est à proximité.
 
- Lorsque vous vous dirigez vers un emplacement spécifique, les annonces automatiques des croisements peuvent s’avérer particulièrement utiles. Les annonces de croisements vous indiquent la disposition des croisements à mesure que vous vous en approchez, et vous confirment ensuite la route sur laquelle vous vous trouvez.
+*Simplifié* laisse de côté les petits chemins et les voies de service, et se répète moins.
 
-**Lorsque vous avez besoin de silence :**
+*Minimal* annonce seulement les rues, les croisements et les repères.
 
- Lorsque vous êtes sur le point de traverser une route ou si vous souhaitez simplement que l’application soit silencieuse, il vous suffit de désactiver les annonces. Une fois cela fait, l’application vous fournira uniquement des informations si vous appuyez manuellement sur l’un des boutons *Mon emplacement*, *Marqueurs à proximité*, *Autour de moi* ou *Devant moi*.
+*Silencieux* ne fait aucune annonce automatique. Les balises, les itinéraires et les boutons de l’écran d’accueil fonctionnent toujours.
 
-## Comment ça fonctionne ?
+## Ce que vous entendez
 
-**Activer ou désactiver les annonces :**
+*Gérer les annonces* contient deux autres réglages. *Rues et croisements* active ou désactive les annonces de rues et de croisements. *Lieux à annoncer* choisit les types de lieux que vous entendez, par exemple *Transports en commun* ou *Alimentation et boissons*. Vos marqueurs sont toujours annoncés.
 
- Désactiver les annonces mettra l’application en silence. Les annonces peuvent être désactivées dans la section *Gérer les annonces* de l’écran *Réglages* en réglant *Détail des annonces* sur *Silencieux*, et réactivées en choisissant n’importe quel autre niveau. Sur iPhone, vous pouvez faire de même en le demandant à Siri, et sur Android, cela fonctionnera avec Gemini dès que Google en publiera la prise en charge. Vous pouvez aussi rendre Soundscape plus discret par paliers à l’aide des boutons de contrôle multimédia de vos écouteurs : chaque appui sur *précédent* descend d’un niveau parmi *Détaillé*, *Simplifié*, *Minimal* et *Silencieux*, et un appui de plus revient à *Détaillé*. Consultez la rubrique d’aide *Utilisation des commandes multimédias*. Enfin, vous pouvez utiliser le bouton *Mettre en pause* dans le coin supérieur droit de l’écran d’accueil pour empêcher Soundscape d’émettre des annonces jusqu’à ce que vous le réactiviez.
+## Rendre Soundscape plus discret
 
-**Gérer les annonces que vous entendez :**
+Appuyez sur *précédent* sur les commandes de vos écouteurs. Chaque appui descend d’un niveau : *Détaillé*, *Simplifié*, *Minimal*, puis *Silencieux*. Un appui de plus revient à *Détaillé*. Consultez la page d’aide *Utilisation des commandes multimédias*.
 
- Pour choisir les types d’éléments que Soundscape annoncera automatiquement, allez dans l’écran *Réglages* depuis le menu de l’écran *Accueil*. C’est dans la section *Gérer les annonces* de l’écran *Réglages* que vous choisissez la quantité d’informations annoncées avec *Détail des annonces*, si l’application annonce les *Rues et croisements*, et quels sont les *Lieux à annoncer*. Si vous souhaitez couper toutes les annonces, réglez *Détail des annonces* sur *Silencieux*.
+## Arrêter Soundscape un moment
+
+Sélectionnez le bouton *Mettre en pause* en haut de l’écran d’accueil. Soundscape cesse d’utiliser votre position et n’émet aucun son jusqu’à ce que vous sélectionniez *Reprendre maintenant*. Vous pouvez aussi sélectionner *Reprendre au déplacement*. Soundscape reprend alors quand vous quittez le lieu où vous êtes.
+
+## En véhicule ou en train
+
+Soundscape remarque quand vous vous déplacez à la vitesse d’un véhicule. Il cesse alors d’annoncer les croisements et les commerces proches, car ils défilent trop vite. À la place, il annonce la route sur laquelle vous êtes, les repères, les arrêts et les gares, les rivières et les tunnels.
 

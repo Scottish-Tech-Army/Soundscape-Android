@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Bliskie znaczniki
 
-## Co to jest?
+*Bliskie znaczniki* powiadamia o maksymalnie czterech twoich znacznikach, tych najbliżej ciebie. Każdy słyszysz z jego własnego kierunku, razem z odległością. Użyj tego przycisku, aby zorientować się według miejsc, które już znasz. Znaczniki oddalone o więcej niż około 2 kilometry są pomijane.
 
-Przycisk *„Bliskie znaczniki”* informuje o maksymalnie czterech znacznikach znajdujących się najbliżej Ciebie. *„Bliskie znaczniki”* ma pomóc Ci się zorientować, korzystając z miejsc, które już znasz.
-
-## Kiedy używać?
-
-Gdy próbujesz się zorientować i ustalić swoje położenie, użyj *„Bliskie znaczniki”*, aby usłyszeć o lokalizacjach miejsc, które znasz.
-
-## Jak to działa?
-
-Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk *„Bliskie znaczniki”*. To działa jak kompas, informując aplikację o kierunku, w którym patrzysz. Po prostu naciśnij przycisk *„Bliskie znaczniki”* i usłyszysz do czterech znaczników w swojej okolicy.
+Jeśli stoisz w miejscu, najpierw skieruj górną krawędź telefonu w stronę, w którą patrzysz. Jeśli telefon jest zablokowany albo Soundscape nie jest widoczny na ekranie, trzymaj też telefon poziomo.
 

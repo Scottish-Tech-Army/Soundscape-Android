@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Znaczniki
 
-Dzięki Soundscape możesz oznaczać swój świat i wszystko, co jest dla Ciebie ważne — jak pinezki na mapie.
+Znacznik to zapisane przez ciebie miejsce. Może to być dowolne miejsce, które jest dla ciebie ważne: dom, przystanek autobusowy, wejście do budynku albo przejście dla pieszych.
 
-Możesz oznaczać miejsca osobiste i ważne dla Ciebie, takie jak dom, biuro czy ulubiony sklep spożywczy. Możesz oznaczyć dowolne miejsce lub adres, a także rzeczy, których zwykle nie ma na mapach, na przykład: wejścia do budynków lub parków, przyciski dla pieszych, przejścia dla pieszych, mosty, przystanki autobusowe, a nawet ulubione drzewo Twojego psa. Używaj tych znaczników jako punktów odniesienia podczas spaceru.
+Soundscape powiadamia o twoich znacznikach, gdy je mijasz. Możesz włączyć naprowadzanie na znacznik, dodać go do trasy albo usłyszeć najbliższe znaczniki przyciskiem *Bliskie znaczniki*.
 
-Aby doświadczyć działania oznaczonych miejsc, Soundscape będzie automatycznie powiadamiał o oznaczonych miejscach, gdy je mijasz lub się do nich zbliżasz, możesz też użyć przycisku *„Bliskie znaczniki”* na dole ekranu głównego, aby usłyszeć przestrzenne komunikaty o oznaczonych miejscach wokół Ciebie. Możesz nawet ustawić dźwięk naprowadzający na dowolny oznaczony punkt. Wtedy usłyszysz znany dźwięk naprowadzający Soundscape i możesz nim sterować jak zwykle.
+## Tworzenie znaczników
+
+1. Wybierz *Znaczniki* na ekranie głównym, a potem wybierz *Nowy*.
+
+2. Wybierz *Bieżąca lokalizacja* albo miejsce z listy *Miejsca w pobliżu*.
+
+3. Jeśli chcesz, zmień nazwę i dodaj notatki. Soundscape odczytuje notatki razem ze znacznikiem.
+
+4. Wybierz *Gotowe*.
+
+Możesz też zapisać dowolne miejsce, które znajdziesz. Otwórz jego *Szczegóły lokalizacji* i wybierz *Zapisz jako znacznik*.
+
+## Dostosowywanie znaczników
+
+Wybierz znacznik na ekranie *Znaczniki*, a potem wybierz *Edytuj znacznik*. Możesz zmienić jego nazwę, notatki i położenie albo wybrać *Usuń znacznik*. Usunięcie znacznika usuwa go także z twoich tras.
 

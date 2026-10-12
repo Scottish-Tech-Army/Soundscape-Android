@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Notkun fjölmiðlastýringa
 
-## Hvað er það?
+Þú getur stjórnað Soundscape með fjölmiðlahnöppunum á heyrnartólunum þínum: *spila/hlé*, *næsta* og *fyrri*. Þetta virkar með snúrutengdum heyrnartólum og Bluetooth-heyrnartólum. Það virkar líka þegar Soundscape er í bakgrunni eða síminn er læstur.
 
-Þú getur nálgast ákveðna eiginleika í Soundscape með hjálp fjölmiðlastýringahnappa á heyrnartólunum þínum. Þetta virkar með bæði snúru- og Bluetooth-heyrnartólum sem hafa hnappa eins og Spila, Hlé, Næsta, Fyrra o.s.frv. Mismunandi heyrnartól geta haft mismunandi hnappa, svo skoðaðu listann yfir aðgerðir hér að neðan til að sjá hvaða hnöppum þú hefur aðgang að.
+Ekki eru öll heyrnartól með alla þrjá hnappana.
 
-## Hvenær ætti að nota það?
+Hnapparnir stjórna Soundscape aðeins þegar ekkert annað forrit er að spila hljóð. Ef þú ert að spila tónlist eða hlaðvarp stjórna hnapparnir því forriti í staðinn.
 
-Fjölmiðlastýringar á heyrnartólum er hægt að nota á meðan Soundscape er í gangi — hvort sem þú ert að nota forritið, það keyrir í bakgrunni eða tækið er læst. Fjölmiðlahnappar á heyrnartólum virka hins vegar ekki fyrir Soundscape ef annað forrit er að spila hljóð, til dæmis tónlist, hlaðvörp eða myndbönd.
+Hnapparnir geta virkað á tvo vegu: *Upprunalegur hamur* eða *Hljóðvalmynd*. Til að velja skaltu opna valmyndina og velja *Stillingar* og síðan *Fjölmiðlastýringar*.
 
-## Hvernig virkar það?
+## Upprunalegur hamur
 
-Það eru 2 rekstrarhamir fyrir fjölmiðlastýringar. Hamurinn er valinn í kaflanum *Stillingar* » *Fjölmiðlastýringar*. Hamirnir eru:
+*Spila/hlé* slekkur á hljóði hljóðvitans. Ýttu aftur til að heyra hljóðvitann.
 
- *Upprunalegur hamur*. 
+*Næsta* færir hljóðvitann á næsta leiðarpunkt þegar þú fylgir leið. Annars tilkynnir það *Í kringum mig*.
 
-⏯ Spila/Hlé: Kveikir og slekkur á hljóði hljóðvita. 
+*Fyrri* færir hljóðvitann á fyrri leiðarpunkt þegar þú fylgir leið. Annars breytir það stillingunni *Nákvæmni tilkynninga*. Hver ýting fer einu stigi neðar: *Ítarlegt*, *Einfaldað*, *Nauðsynlegt* og síðan *Þögult*. Ein ýting í viðbót fer aftur í *Ítarlegt*. Soundscape segir heiti nýja stigsins.
 
-⏭ Næsta: Ef leið er í spilun færist hljóðviti á næsta leiðarpunkt í leiðinni. Ef engin leið er í spilun segir forritið *Í kringum mig*.
+## Hljóðvalmynd
 
-⏮ Fyrri: Ef leið er í spilun færist hljóðviti á fyrri leiðarpunkt í leiðinni. Ef engin leið er í spilun breytist *Nákvæmni tilkynninga* um eitt þrep niður við hverja ýtingu: *Ítarlegt*, *Einfaldað*, *Nauðsynlegt*, *Þögult*, og aftur í *Ítarlegt*.
+Hljóðvalmyndin gefur þér fleiri aðgerðir með sömu þremur hnöppunum. Soundscape les hvern valkost upphátt.
 
+*Næsta* fer á næsta valkost. Eftir síðasta valkostinn fer það aftur á þann fyrsta.
 
+*Spila/hlé* velur valkostinn sem þú heyrðir síðast.
 
-*Hljóðvalmynd*. 
+*Fyrri* breytir stillingunni *Nákvæmni tilkynninga*, eins og í *Upprunalegur hamur*.
 
-
-
-⏭ Næsta færist í gegnum röð valkosta í valmynd sem forritið lýsir með talgervli og fer aftur á þann fyrsta eftir þann síðasta. ⏯ Spila/Hlé lætur forritið síðan framkvæma þann valkost sem lýst var. Það er ein yfirvalmynd sem inniheldur aðeins undirvalmyndir sem valkosti. Hver undirvalmynd inniheldur hóp af svipuðum aðgerðum.
-
-⏮ Fyrri færist ekki í gegnum valmyndina. Í staðinn breytir hún *Nákvæmni tilkynninga*, nákvæmlega eins og í upprunalega hamnum, þannig að sami hnappur lækkar í forritinu í hvorum hamnum sem er.
+Valmyndin byrjar á fjórum flokkum: *Lýsing á umhverfi*, *Stjórnun leiða*, *Hefja leið* og *Kveikja á hljóðvita*. Veldu flokk til að heyra aðgerðir hans. *Lýsing á umhverfi* og *Stjórnun leiða* enda á *Aðalvalmynd*, sem fer með þig aftur í flokkana fjóra.
 

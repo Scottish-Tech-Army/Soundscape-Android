@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Utilisation des commandes multimédias
 
-## De quoi s’agit-il?
+Vous pouvez contrôler Soundscape avec les boutons multimédias de vos écouteurs : *lecture/pause*, *suivant* et *précédent*. Cela fonctionne avec des écouteurs filaires ou Bluetooth. Cela fonctionne aussi quand Soundscape est en arrière-plan ou que votre téléphone est verrouillé.
 
-Vous pouvez accéder à certaines fonctionnalités de Soundscape grâce aux boutons de commandes multimédias de votre casque. Cette fonctionnalité fonctionne avec tous les casques avec fil ou Bluetooth comportant des boutons de commandes multimédias comme Lecture, Pause, Suivant, Précédent, etc. Les boutons peuvent varier selon les casques, consultez la liste des actions ci-dessous pour déterminer celles qui sont disponibles.
+Tous les écouteurs n’ont pas les trois boutons.
 
-## Utilisation
+Les boutons ne contrôlent Soundscape que si aucune autre appli ne diffuse de son. Si vous écoutez de la musique ou un balado, les boutons contrôlent cette appli à la place.
 
-Les boutons de commandes multimédias des casques peuvent être utilisés lorsque Soundscape est en cours d’exécution, que vous utilisiez activement l’appli, qu’elle s’exécute en arrière-plan ou que votre appareil soit verrouillé. Toutefois, les boutons de commandes multimédias des casques ne fonctionnent pas avec Soundscape si vous lisez de l’audio, comme de la musique, des balados ou des vidéos, avec une autre appli.
+Les boutons peuvent fonctionner de deux façons : *Mode original* ou *Menu audio*. Pour choisir, ouvrez le menu et sélectionnez *Réglages*, puis *Contrôles multimédias*.
 
-## Fonctionnement
+## Mode original
 
-Il existe 2 modes de fonctionnement pour les contrôles multimédias. Le mode se sélectionne dans la section *Réglages* *Contrôles multimédias*. Les modes sont :
+*Lecture/pause* coupe le son de la balise. Appuyez de nouveau pour entendre la balise.
 
- *Mode original*. 
+*Suivant* déplace la balise vers l’étape suivante quand vous suivez un itinéraire. Sinon, il annonce *Autour de moi*.
 
-⏯ Lecture/Pause : active ou désactive le son de la balise sonore. 
+*Précédent* déplace la balise vers l’étape précédente quand vous suivez un itinéraire. Sinon, il modifie le *Détail des annonces*. Chaque appui descend d’un niveau : *Détaillé*, *Simplifié*, *Minimal*, puis *Silencieux*. Un appui de plus revient à *Détaillé*. Soundscape dit le nom du nouveau niveau.
 
-⏭ Suivant : si un itinéraire est en cours de lecture, déplace la balise vers l’étape suivante de l’itinéraire. Si aucun itinéraire n’est en cours, annonce *Autour de moi*.
+## Menu audio
 
-⏮ Précédent : si un itinéraire est en cours de lecture, déplace la balise vers l’étape précédente de l’itinéraire. Si aucun itinéraire n’est en cours, modifie le *Détail des annonces*, d’un niveau plus discret à chaque appui : *Détaillé*, *Simplifié*, *Minimal*, *Silencieux*, puis retour à *Détaillé*.
+Le menu audio vous donne accès à plus d’actions avec les trois mêmes boutons. Soundscape lit chaque option à voix haute.
 
+*Suivant* passe à l’option suivante. Après la dernière option, il revient à la première.
 
+*Lecture/pause* sélectionne l’option que vous venez d’entendre.
 
-*Menu audio*. 
+*Précédent* modifie le *Détail des annonces*, comme en *Mode original*.
 
-
-
-⏭ Suivant parcourt une série d’options de menu que l’appli décrit par synthèse vocale, en revenant à la première après la dernière. ⏯ Lecture/Pause déclenche ensuite l’exécution de l’option décrite. Il y a un seul menu de niveau supérieur qui ne contient que des sous-menus comme options. Chaque sous-menu regroupe un ensemble d’actions similaires.
-
-⏮ Précédent ne parcourt pas le menu. Il modifie à la place le *Détail des annonces*, exactement comme en mode original, de sorte que le même bouton rend l’appli plus discrète quel que soit le mode utilisé.
+Le menu commence par quatre groupes : *Écouter mon environnement*, *Contrôle de l’itinéraire*, *Démarrer un Itinéraire* et *Démarrer la balise*. Sélectionnez un groupe pour entendre ses actions. *Écouter mon environnement* et *Contrôle de l’itinéraire* se terminent par *Menu principal*, qui vous ramène aux quatre groupes.
 

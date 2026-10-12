@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Ahead of Me
 
-## What is it?
+*Ahead of Me* calls out up to five places in front of you. You hear each one from its own direction, with its distance. Use it on a street you do not know, to learn what is coming up.
 
-The *Ahead of Me* button tells you about up to five things ahead of you. *Ahead of Me* is intended to help you explore the way ahead when you are learning about a new area.
-
-## When would I use it?
-
-When you are walking down the street, try using *Ahead of Me* to discover the places and things coming up on either side of the street ahead.
-
-## How does it work?
-
-As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *Ahead of Me* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *Ahead of Me* button and you will hear several points of interest all roughly ahead of you.
+If you are standing still, first point the top of your phone the way you are facing. If your phone is locked, or Soundscape is not on the screen, hold your phone flat as well.
 

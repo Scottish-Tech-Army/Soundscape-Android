@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Delante de mí
 
-## ¿Qué es?
+*Delante de mí* avisa de hasta cinco lugares que tienes delante. Oyes cada uno desde su propia dirección, con su distancia. Úsalo en una calle que no conoces, para saber qué viene a continuación.
 
-El botón *Delante de mí* te informa de hasta cinco elementos que hay delante de ti. *Delante de mí* está pensado para explorar lo que se encuentra delante de ti cuando estás conociendo una zona nueva.
-
-## ¿Cuándo lo usaría?
-
-Cuando camines por la calle, intenta usar *Delante de mí* para descubrir los lugares y los elementos que aparezcan en cualquier lado de la calle delante de ti.
-
-## ¿Cómo funciona?
-
-Como con los cuatro botones de la parte inferior de la pantalla principal, mantén el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección en la que estás mirando antes de presionar el botón *«Delante de mí»*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección estás orientado. Solo tienes que pulsar en el botón *«Delante de mí»* y oirás varios puntos de interés que estén más o menos delante de ti.
+Si no te estás moviendo, apunta primero la parte superior del teléfono hacia donde miras. Si tu teléfono está bloqueado, o Soundscape no está en la pantalla, sujeta además el teléfono en posición horizontal.
 

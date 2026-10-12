@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Uso de controles multimedia
 
-## ¿Qué es?
+Puedes controlar Soundscape con los botones multimedia de tus auriculares: *reproducir/pausa*, *siguiente* y *anterior*. Funciona con auriculares con cable y Bluetooth. También funciona cuando Soundscape está en segundo plano o tu teléfono está bloqueado.
 
-Puedes obtener acceso a determinadas características de Soundscape con la ayuda de los botones de control multimedia de tus auriculares. Esta funcionalidad funciona con auriculares Bluetooth o por cable que tengan botones de control multimedia, como Reproducir, Pausa, Siguiente, Anterior y otros. Distintos modelos de auriculares pueden incluir diferentes botones; consulta la lista de acciones a continuación para determinar cuáles están disponibles para ti.
+No todos los auriculares tienen los tres botones.
 
-## ¿Cuándo lo usaría?
+Los botones solo controlan Soundscape cuando ninguna otra aplicación está reproduciendo audio. Si estás escuchando música o un pódcast, los botones controlan esa aplicación.
 
-Los controles multimedia de los auriculares se pueden usar mientras Soundscape se está ejecutando, tanto si estás usando la aplicación activamente, como si se ejecuta en segundo plano o si el dispositivo está bloqueado. Sin embargo, los botones de control multimedia de los auriculares no funcionarán con Soundscape si estás reproduciendo audio, como música, podcasts o vídeos, con otra aplicación.
+Los botones pueden funcionar de dos maneras: *Modo Original* o *Menú de audio*. Para elegir, abre el menú y selecciona *Ajustes* y después *Controles multimedia*.
 
-## ¿Cómo funciona?
+## Modo Original
 
-Existen 2 modos de funcionamiento para los controles multimedia. El modo se puede seleccionar en la sección *Ajustes* *Controles multimedia*. Los modos son:
+*Reproducir/pausa* silencia la señal. Púlsalo otra vez para oír la señal.
 
- *Modo Original*. 
+*Siguiente* mueve la señal al siguiente punto de ruta cuando sigues una ruta. Si no, avisa de *Alrededor de mí*.
 
-⏯ Reproducir/Pausa: Activa o desactiva el audio de la señal. 
+*Anterior* mueve la señal al punto de ruta anterior cuando sigues una ruta. Si no, cambia el *Detalle de los avisos*. Cada pulsación baja un nivel: *Detallado*, *Simplificado*, *Esencial* y después *Silencioso*. Una pulsación más vuelve a *Detallado*. Soundscape dice el nombre del nuevo nivel.
 
-⏭ Siguiente: Si se está reproduciendo una ruta, mueve la señal de audio al siguiente punto de ruta de la ruta. Si no se está reproduciendo ninguna ruta, avisa de *Alrededor de mí*.
+## Menú de audio
 
-⏮ Anterior: Si se está reproduciendo una ruta, mueve la señal de audio al punto de ruta anterior de la ruta. Si no se está reproduciendo ninguna ruta, cambia el *Detalle de los avisos*, un nivel más discreto con cada pulsación: *Detallado*, *Simplificado*, *Esencial*, *Silencioso*, y de vuelta a *Detallado*.
+El menú de audio te da más acciones con los mismos tres botones. Soundscape lee cada opción en voz alta.
 
+*Siguiente* pasa a la opción siguiente. Después de la última opción vuelve a la primera.
 
+*Reproducir/pausa* selecciona la opción que acabas de oír.
 
-*Menú de audio*. 
+*Anterior* cambia el *Detalle de los avisos*, igual que en el *Modo Original*.
 
-
-
-⏭ Siguiente avanza por una serie de opciones de menú que la aplicación describe mediante síntesis de voz, y vuelve a la primera después de la última. ⏯ Reproducir/Pausa hace entonces que la aplicación ejecute la opción descrita. Hay un único menú de primer nivel que solo tiene submenús como opciones. Cada submenú agrupa un conjunto de acciones similares.
-
-⏮ Anterior no avanza por el menú. En su lugar cambia el *Detalle de los avisos*, exactamente igual que en el modo Original, de modo que el mismo botón hace que la aplicación hable menos en cualquiera de los dos modos.
+El menú empieza con cuatro grupos: *Escuchar mi entorno*, *Control de ruta*, *Iniciar ruta* e *Iniciar señal de audio*. Selecciona un grupo para oír sus acciones. *Escuchar mi entorno* y *Control de ruta* terminan con *Menú principal*, que te lleva de vuelta a los cuatro grupos.
 

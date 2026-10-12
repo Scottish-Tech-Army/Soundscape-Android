@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # La mia posizione
 
-## Cos'è?
+*La mia posizione* ti dice dove sei. Dice in che direzione guardi o ti stai spostando, poi la strada o l'indirizzo in cui ti trovi. Usalo quando scendi da un autobus, esci da un edificio o perdi l'orientamento.
 
-Il pulsante *«La mia posizione»* ti fornisce rapidamente informazioni che ti aiutano a capire dove ti trovi attualmente. *«La mia posizione»* ti indica la tua posizione attuale, comprese altre informazioni come la direzione verso cui sei rivolto, dove sono le strade o gli incroci e dove si trovano i punti di interesse nelle vicinanze.
-
-## Quando si usa?
-
-*«La mia posizione»* è utile quando devi capire dove sei o verso quale punto cardinale sei rivolto.
-
-## Come funziona?
-
-Come per tutti e quattro i pulsanti nella parte inferiore della schermata iniziale, tieni il telefono con lo schermo piatto (rivolto verso il cielo) e la parte superiore del telefono che punta davanti a te prima di premere il pulsante *«La mia posizione»*. Questo pulsante funziona come una bussola che dice all'app verso quale direzione sei rivolto. Tocca semplicemente il pulsante *«La mia posizione»* e ascolta.
+Se non ti muovi, punta prima la parte superiore del telefono nella direzione in cui guardi. Se il telefono è bloccato, o Soundscape non è sullo schermo, tieni anche il telefono in piano.
 

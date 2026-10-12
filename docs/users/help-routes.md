@@ -7,25 +7,29 @@ has_toc: false
 
 # Routes
 
-## What is it?
+A route is a list of locations, called waypoints, that you visit in order. Soundscape sets a beacon on the first waypoint. When you arrive, it tells you and moves the beacon to the next one.
 
-Routes are a series of waypoints. You will be informed on arrival at each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
+Use a route to learn a new journey, or to stay on track on one you know.
 
-## When would I use it?
+## Creating a Route
 
-You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
+1. Select *Routes* on the home screen, then select *New*.
 
-## How does it work?
+2. Give the route a name. You can add a description.
 
-**Creating a route :**
+3. Select *Add Waypoints* and choose markers. You can also add your current location or a place nearby.
 
- First, select *Routes* on the home screen, and then select the *New* button at the top right of the screen. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+4. Select *Done*.
 
-**Editing a route :**
+## Following a Route
 
- Select your route on the *Routes* screen and then select *Edit Route*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+Select the route on the *Routes* screen, then select *Start Route*. To follow it backwards, select *Start Route in Reverse*. On the home screen, *Next Waypoint* and *Previous Waypoint* move the beacon along the route. *Stop Route* ends it.
 
-**Sharing a route :**
+## Changing a Route
 
- Select your route on the *Routes* screen and then select the option to *Share* using all of the usual share options available to you.
+Select the route on the *Routes* screen, then select *Edit Route*. You can add, remove and reorder waypoints, change the name and description, or delete the route.
+
+## Sharing a Route
+
+Select the route on the *Routes* screen, then select *Share*.
 

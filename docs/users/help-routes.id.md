@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Rute
 
-## Apa itu?
+Rute adalah daftar lokasi, yang disebut titik rute, yang Anda kunjungi secara berurutan. Soundscape memasang suar pada titik rute pertama. Saat Anda tiba, Soundscape memberi tahu Anda dan memindahkan suar ke titik berikutnya.
 
-Rute adalah serangkaian titik rute. Anda akan diberi tahu saat tiba di setiap titik rute, dan Suar Audio akan secara otomatis berpindah ke titik rute berikutnya.
+Gunakan rute untuk mempelajari perjalanan baru, atau agar tetap di jalur pada perjalanan yang sudah Anda kenal.
 
-## Kapan saya menggunakannya?
+## Membuat Rute
 
-Anda mungkin ingin membuat dan menggunakan rute di tempat yang sudah Anda kenal, agar Anda tetap berada di jalur yang benar. Atau Anda mungkin ingin menggunakan rute untuk membantu Anda mempelajari perjalanan baru.
+1. Pilih *Rute* di layar utama, lalu pilih *Baru*.
 
-## Bagaimana cara kerjanya?
+2. Beri nama rute itu. Anda dapat menambahkan deskripsi.
 
-**Membuat rute :**
+3. Pilih *Tambah Titik Rute* dan pilih penanda. Anda juga dapat menambahkan lokasi Anda saat ini atau tempat di sekitar.
 
- Pertama, pilih *Rute* di layar utama, lalu pilih tombol *Baru* di pojok kanan atas layar. Beri nama rute dan deskripsi opsional, lalu tambahkan titik rute sambil berjalan atau pilih dari daftar Penanda Anda. Anda dapat menyusun ulang urutan titik rute di sepanjang rute kapan saja dengan mengedit rute tersebut.
+4. Pilih *Selesai*.
 
-**Mengedit rute :**
+## Mengikuti Rute
 
- Pilih rute Anda di layar *Rute* lalu pilih *Edit Rute*. Dari sini Anda dapat menambah dan menghapus titik rute, serta mengedit nama dan deskripsi rute.
+Pilih rute di layar *Rute*, lalu pilih *Mulai Rute*. Untuk mengikutinya dari arah sebaliknya, pilih *Mulai Rute Terbalik*. Di layar utama, *Titik Rute Berikutnya* dan *Titik Rute Sebelumnya* memindahkan suar di sepanjang rute. *Hentikan Rute* mengakhirinya.
 
-**Membagikan rute :**
+## Mengubah Rute
 
- Pilih rute Anda di layar *Rute* lalu pilih opsi *Bagikan* menggunakan semua opsi berbagi biasa yang tersedia untuk Anda.
+Pilih rute di layar *Rute*, lalu pilih *Edit Rute*. Anda dapat menambah, menghapus, dan mengurutkan ulang titik rute, mengubah nama dan deskripsi, atau menghapus rute.
+
+## Membagikan Rute
+
+Pilih rute di layar *Rute*, lalu pilih *Bagikan*.
 

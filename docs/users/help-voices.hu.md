@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Hangok
 
-A Soundscape bármelyik, az Android telefonjára letöltött hangot használhatja a szövegfelolvasás kimeneti beállításaiban. A Soundscape alkalmazáson belül az alapértelmezett Android hangtól eltérő hang kiválasztásához nyissa meg a főmenüből a *Beállítások* menüpontot, bontsa ki a *Hang* szakaszt, majd válassza a *Hangok* lehetőséget.
+A Soundscape a telefonjára telepített bármelyik hangot használhatja. Hangok hozzáadásához nyissa meg a telefon beállításait, és keresse meg a *Szövegfelolvasó kimenete* elemet. Ha a Soundscape-ben szeretne hangot választani, nyissa meg a menüt, és válassza a *Beállítások*, majd a *Hang*, majd a *Hangok* lehetőséget.
 

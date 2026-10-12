@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Giọng đọc
 
-Soundscape có thể sử dụng bất kỳ giọng đọc nào bạn đã tải xuống điện thoại Android của mình trong phần cài đặt đầu ra Chuyển văn bản thành giọng nói. Trong ứng dụng Soundscape, để chọn một giọng đọc khác với giọng mặc định của Android, hãy vào *Cài đặt* từ menu chính, mở rộng phần *Âm thanh*, rồi chọn *Giọng đọc*.
+Soundscape có thể dùng bất kỳ giọng đọc nào đã cài trên điện thoại của bạn. Để thêm giọng đọc, hãy mở cài đặt của điện thoại và tìm *Đầu ra chuyển văn bản thành giọng nói*. Để chọn giọng đọc trong Soundscape, hãy mở menu và chọn *Cài đặt*, rồi *Âm thanh*, rồi *Giọng đọc*.
 

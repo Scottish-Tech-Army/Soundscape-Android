@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Framför mig
 
-## Vad är det?
+*Framför mig* läser upp högst fem platser framför dig. Du hör var och en från sin egen riktning, med avståndet. Använd den på en gata du inte känner till, för att få veta vad som kommer.
 
-Knappen *Framför mig* berättar om upp till fem saker som finns framför dig. *Framför mig* är avsedd att hjälpa dig utforska vad som kommer i din väg när du lär dig känna ett nytt område.
-
-## När ska jag använda det?
-
-När du går på en gata kan du testa att använda *”Framför mig”* för att upptäcka platser och annat som dyker upp vid sidan av gatan.
-
-## Hur fungerar det?
-
-Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonens överkant åt det håll du är vänd innan du trycker på knappen *Framför mig*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *Framför mig* så hör du flera olika intressepunkter som finns framför dig.
+Om du står still riktar du först telefonens överkant åt det håll du är vänd. Om telefonen är låst, eller om Soundscape inte visas på skärmen, håller du också telefonen plant.
 

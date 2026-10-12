@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Gaba da Ni
 
-## Menene wannan?
+*Gaba da Ni* yana sanar da wurare har guda biyar da ke gabanku. Kuna jin kowanne daga ɓangarensa, tare da nisansa. Ku yi amfani da shi a titin da ba ku sani ba, don sanin abin da ke tafe.
 
-Maɓallin *Gaba da Ni* yana gaya muku game da abubuwa har guda biyar da ke gabanku. An ƙirƙiri *Gaba da Ni* domin taimaka muku bincikar hanyar da ke gabanku yayin da kuke koyon sabon yanki.
-
-## Yaushe zan yi amfani da shi?
-
-Idan kuna tafiya a kan titi, gwada amfani da *Gaba da Ni* don gano wurare da abubuwan da ke zuwa a ɓangarorin biyu na titin da ke gabanku.
-
-## Yaya yake aiki?
-
-Kamar sauran dukkan maɓallai huɗu da ke ƙasan babban allo, riƙe wayarku a kwance (fuska sama zuwa sama) tare da saman wayar yana nuni da alkiblar da kuke fuskanta kafin ku danna maɓallin *Gaba da Ni*. Wannan yana aiki kamar kamfas wanda ke gaya wa manhajar alkiblar da kuke fuskanta. Kawai, danna maɓallin *Gaba da Ni* kuma za ku ji wurare masu ban sha'awa da dama, kusan duk suna gabanku.
+Idan kuna tsaye a wuri ɗaya, ku fara nuna saman wayar zuwa inda kuke fuskanta. Idan wayarku a kulle take, ko Soundscape ba ya kan allo, ku kuma riƙe wayar a kwance.
 

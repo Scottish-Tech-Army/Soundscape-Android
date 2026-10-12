@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Okolo mňa
 
-## Čo to je?
+*Okolo mňa* ohlási až štyri miesta vo vašom okolí: jedno vpredu, jedno vpravo, jedno vzadu a jedno vľavo. Každé počujete z jeho smeru aj so vzdialenosťou. Použite ho, keď sa chcete zorientovať po príchode na nové miesto.
 
-Tlačidlo *Okolo mňa* vám povie o jednej veci v každom zo štyroch kvadrantov okolo vás (vpredu, vpravo, vzadu a vľavo). *Okolo mňa* má za cieľ pomôcť vám zorientovať sa vo svojom okolí.
-
-## Kedy to použiť?
-
-Keď sa snažíte zorientovať a získať prehľad o svojom okolí, použite *Okolo mňa*, aby ste počuli o veciach vo vašom okolí.
-
-## Ako to funguje?
-
-Rovnako ako pri všetkých štyroch tlačidlách v spodnej časti domovskej obrazovky, pred stlačením tlačidla *Okolo mňa* držte telefón vodorovne (obrazovkou smerom k oblohe) tak, aby horná časť telefónu smerovala v smere, ktorým ste otočení. Toto funguje ako kompas, ktorý aplikácii oznamuje, ktorým smerom ste otočení. Jednoducho ťuknite na tlačidlo *Okolo mňa* a počujete štyri zaujímavé miesta rozmiestnené okolo vás.
+Ak stojíte na mieste, najprv namierte horný okraj telefónu smerom, ktorým stojíte čelom. Ak je telefón zamknutý alebo Soundscape nie je na obrazovke, držte telefón aj naplocho.
 

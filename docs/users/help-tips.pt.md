@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Sugestões
 
-Pode encontrar paragens de autocarro nas proximidades selecionando o filtro *Transportes Públicos* na lista *Locais nas Proximidades*.
+Para encontrar paragens de autocarro próximas, selecione *Locais nas Proximidades* e escolha *Transportes Públicos*.
 
-Pode definir um sinal em qualquer endereço. No ecrã principal, pesquise o endereço com a barra de pesquisa. Depois, selecione o endereço nos resultados da pesquisa para abrir o ecrã *Detalhes da Localização*. Este ecrã tem a opção *Iniciar Sinal de Áudio* para esse endereço. Desta forma, pode definir um sinal em empresas, locais, pontos de interesse e habitações que não constam do OpenStreetMap.
+Se apanha muitas vezes o mesmo autocarro, guarde as suas paragens como marcos. Defina um sinal na paragem onde sai, e o Soundscape diz-lhe a que distância ela fica durante a viagem.
 
-Se utiliza regularmente uma linha de autocarro, guarde as suas paragens de entrada e saída como Marcos. Deste modo ficam guardadas e poderá encontrá‑las facilmente. Selecione *Marcos* no ecrã principal para as encontrar. Pode definir um sinal sobre essas paragens para receber atualizações periódicas sobre a distância até à sua paragem de saída. Nota: pode desativar o som rítmico e continuar a receber atualizações de distância ao longo do percurso.
+Pode desativar o som do sinal e continuar a ouvir a que distância fica o local. O Soundscape diz a distância de vez em quando à medida que se desloca.
 
-Se guardar o telemóvel no bolso e ficar imóvel, o som do sinal fica mais baixo porque o Soundscape não consegue identificar para que direção está virado. Para o resolver, comece novamente a caminhar, ou pegue no telemóvel e segure‑o numa posição plana.
+Para explorar um local antes de lá ir, abra os respetivos *Detalhes da Localização* e selecione *Simular Localização*. O Soundscape comporta-se então como se lá estivesse.
 
-O Soundscape funciona melhor quando segura no telemóvel numa posição plana, com o ecrã virado para o céu e a extremidade superior do telemóvel apontada na direção oposta à do seu corpo.
-
-Pode ativar e desativar o som rítmico do sinal utilizando o botão Desativar Sinal no ecrã principal. Se o sinal estiver desativado, continuará a receber atualizações sobre a distância a que se encontra do destino aproximadamente a cada 50 metros.
-
-Para continuar a utilizar o Soundscape sem ouvir avisos automáticos, defina *Detalhe dos Avisos* como *Silencioso* na secção *Gerir Avisos* do ecrã *Definições* a partir do menu. Se não for usar o Soundscape durante algum tempo, pode em alternativa colocá-lo em Modo de Suspensão ou em Modo de Pausa usando o botão *Suspender* no ecrã principal.
+Para obter indicações passo a passo, abra os *Detalhes da Localização* de um local e selecione *Abrir numa aplicação de mapas*. O Soundscape continua a funcionar enquanto a outra aplicação dá as indicações.
 

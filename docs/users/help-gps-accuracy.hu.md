@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## GPS-pontosság
 
-A Soundscape csak olyan pontosan tudja leírni a környezetét, amilyen pontosan a telefonja tudja, hol van. A 10 méteres (30 láb) vagy jobb pontosság jó, 20 méterig (60 láb) használható, efölött pedig a bemondások az utca rossz oldalát említhetik, vagy késve érkezhetnek.
+A Soundscape csak olyan pontosan tudja leírni a környezetét, amilyen pontosan a telefonja tudja, hol van. A 10 méteres vagy annál jobb pontosság jó. 20 méterig elfogadható. Ennél rosszabb pontosságnál a bemondások az utca rossz oldalát nevezhetik meg, vagy későn érkezhetnek.
 
-A pontosság általában beltérben, magas épületek között, valamint nagyjából az első percben a legrosszabb, miután kilépett a szabadba. Ha az alábbi érték akkor is rossz marad, amikor a szabadban, nyílt terepen van, próbálja meg ki-, majd újra bekapcsolni a telefon helyszolgáltatásait.
+A pontosság általában épületben, magas épületek között és a szabadba lépés utáni első percben a legrosszabb. Ha az alábbi érték akkor is gyenge marad, amikor a szabadban, nyílt terepen van, kapcsolja ki, majd újra be a telefon helymeghatározási szolgáltatását.
 
 Jelenlegi pontosság: %1$s (%2$s)
 

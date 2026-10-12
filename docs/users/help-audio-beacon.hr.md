@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Zvučni svjetionik
 
-## Što je to?
+Zvučni svjetionik je zvuk koji dolazi iz smjera mjesta koje odaberete. Govori vam gdje je mjesto zračnom linijom. Ne daje upute skretanje po skretanje, pa sami birate put do njega.
 
-Postavljanje svjetionika na obližnju lokaciju omogućuje Soundscapeu da vas obavještava puštanjem zvuka koji dolazi iz smjera te lokacije. Ovaj svjetionik možete utišati ili uključiti na početnom zaslonu. Osim toga, Soundscape prikazuje informacije o lokaciji na početnom zaslonu, uključujući udaljenost do nje i njezinu adresu, ako je poznata.
+## Postavljanje svjetionika
 
-## Kada se ovo koristi?
+1. Pronađite mjesto. Upotrijebite traku za pretraživanje, *Mjesta u blizini*, *Oznake* ili *Trenutačna lokacija* na početnom zaslonu.
 
-Postavljanje svjetionika korisno je kada želite pratiti poznatu znamenitost dok istražujete novo područje ili kada idete nekamo i želite biti obaviješteni o svojoj okolini usput. Značajka svjetionika ne daje vam upute korak po korak, ali daje vam neprekidan zvučni signal koji vam govori smjer prema svjetioniku, u odnosu na vaš trenutni položaj. Uz pomoć zvučnog svjetionika, vlastitih vještina snalaženja, pa čak i omiljene aplikacije za navigaciju, sami možete odlučiti kako doći do obližnjih lokacija.
+2. Odaberite mjesto da biste otvorili *Pojedinosti o lokaciji*.
 
-## Kako to funkcionira?
+3. Odaberite *Postavi zvučni svjetionik*.
 
-**Postavljanje svjetionika:**
+Soundscape se vraća na početni zaslon i svjetionik počinje. Početni zaslon prikazuje naziv mjesta i koliko je udaljeno.
 
- Najprije pogledajte detalje lokacije koristeći traku za pretraživanje kako biste pronašli mjesto, ili dodirom na gumb *Mjesta u blizini*, *Oznake* ili *Trenutačna lokacija* i odabirom lokacije. Zatim na zaslonu *Pojedinosti o lokaciji* odaberite gumb *Postavi zvučni svjetionik*. Dodirom na njega vratit ćete se na početni zaslon i uključiti zvučni svjetionik koji dolazi iz smjera odabranog mjesta. Naziv mjesta, zajedno s udaljenošću i fizičkom adresom, ako je dostupna, sada će biti prikazani na glavnom zaslonu.
+## Pronalaženje smjera
 
-**Uklanjanje trenutnog svjetionika:**
+Svjetionik mijenja zvuk kad gledate prema mjestu ili hodate ravno prema njemu. Da biste pronašli taj zvuk, držite telefon vodoravno i polako se okrećite. Drugi zvuk svjetionika možete odabrati u *Postavke*.
 
- Jednostavno pritisnite gumb *Zaustavi rutu* na početnom zaslonu.
+## Utišavanje svjetionika
 
-**Utišavanje zvučnog svjetionika:**
+Odaberite *Utišaj svjetionik* na početnom zaslonu. Soundscape vam i dalje govori koliko je mjesto udaljeno dok se krećete. Odaberite *Uključi zvuk svjetionika* da biste ponovno čuli svjetionik.
 
- Dodirnite gumb *Utišaj svjetionik* pored gumba *Zaustavi rutu* na početnom zaslonu.
+## Uklanjanje svjetionika
+
+Odaberite *Zaustavi rutu* na početnom zaslonu. Gumb ima taj naziv i kad svjetionik nije dio rute.
+
+## Kad stignete
+
+Kad ste oko 12 metara od mjesta, Soundscape vam to kaže i uklanja svjetionik. Telefon ne može točnije odrediti vaš položaj. Da biste ponovno čuli svjetionik, postavite ga ponovno.
+
+Svjetionik postavljen na mjesto udaljeno manje od 30 metara ostaje uključen dok ga ne uklonite.
 

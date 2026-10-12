@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Moja lokalizacja
 
-## Co to jest?
+*Moja lokalizacja* mówi ci, gdzie jesteś. Podaje, w którą stronę patrzysz lub się poruszasz, a potem ulicę lub adres, przy którym jesteś. Użyj tego przycisku, gdy wysiadasz z autobusu, wychodzisz z budynku albo tracisz orientację.
 
-Przycisk *„Moja lokalizacja”* szybko podaje informacje, które pomogą ustalić, gdzie się aktualnie znajdujesz. *„Moja lokalizacja”* informuje o Twojej bieżącej pozycji, w tym o kierunku, w którym patrzysz, o pobliskich drogach i skrzyżowaniach oraz o pobliskich punktach zainteresowania.
-
-## Kiedy używać?
-
-*„Moja lokalizacja”* jest przydatna, gdy musisz ustalić, gdzie jesteś lub w którą stronę świata patrzysz.
-
-## Jak to działa?
-
-Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk *„Moja lokalizacja”*. To działa jak kompas, informując aplikację, w którym kierunku patrzysz. Po prostu naciśnij przycisk *„Moja lokalizacja”* i słuchaj.
+Jeśli stoisz w miejscu, najpierw skieruj górną krawędź telefonu w stronę, w którą patrzysz. Jeśli telefon jest zablokowany albo Soundscape nie jest widoczny na ekranie, trzymaj też telefon poziomo.
 

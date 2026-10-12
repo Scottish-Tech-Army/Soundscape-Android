@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Tipps
 
-Sie finden nahegelegene Bushaltestellen, indem Sie in der Liste *„Orte in der Nähe“* den Filter *„Öffentliche Verkehrsmittel“* auswählen.
+Um Bushaltestellen in der Nähe zu finden, wählen Sie *Orte in der Nähe* und dann *Öffentliche Verkehrsmittel*.
 
-Sie können auf jede Adresse ein Beacon setzen. Suchen Sie dazu auf dem Startbildschirm über die Suchleiste nach der Adresse. Wählen Sie dann die Adresse in den Suchergebnissen aus, um den Bildschirm *„Standortdetails“* zu öffnen. Auf diesem Bildschirm gibt es die Option *„Audiobeacon starten“* für die Adresse. Auf diese Weise können Sie Beacons auf Geschäfte, Orte, Points of Interest und Wohnhäuser setzen, die nicht in OpenStreetMap erfasst sind.
+Wenn Sie oft denselben Bus nehmen, speichern Sie Ihre Haltestellen als Markierungen. Setzen Sie ein Beacon auf die Haltestelle, an der Sie aussteigen. Soundscape sagt Ihnen dann während der Fahrt, wie weit sie entfernt ist.
 
-Wenn Sie eine Buslinie regelmäßig nutzen, speichern Sie Ihre Ein‑ und Ausstiegshaltestellen als Markierungen. So sind sie gespeichert und leicht wiederzufinden. Wählen Sie auf dem Startbildschirm *„Markierungen“*, um sie zu finden. Sie können ein Beacon darauf setzen, um regelmäßig zu erfahren, wie nahe Sie Ihrer Ausstiegshaltestelle sind. Hinweis: Sie können den rhythmischen Ton ausschalten und erhalten trotzdem weiterhin Entfernungsangaben.
+Sie können das Beacon stummschalten und trotzdem hören, wie weit der Ort entfernt ist. Soundscape sagt die Entfernung unterwegs von Zeit zu Zeit an.
 
-Wenn Sie Ihr Telefon in die Tasche stecken und stehen bleiben, wird der Beacon‑Ton leiser, weil Soundscape nicht erkennen kann, in welche Richtung Sie blicken. Um das zu beheben, gehen Sie wieder los oder nehmen Sie Ihr Telefon heraus und halten Sie es flach.
+Um einen Ort vor dem Besuch zu erkunden, öffnen Sie seine *Standortdetails* und wählen Sie *Standort simulieren*. Soundscape verhält sich dann so, als wären Sie dort.
 
-Soundscape funktioniert am besten, wenn Sie das Telefon flach halten, so dass der Bildschirm in den Himmel zeigt und die Oberseite des Telefons von Ihnen weg zeigt.
-
-Sie können den rhythmischen Ton des Beacons mit der Stummschalttaste auf dem Startbildschirm ein- und ausschalten. Wenn das Beacon stummgeschaltet ist, erhalten Sie weiterhin etwa alle 50 Meter Angaben zur Entfernung zu Ihrem Ziel.
-
-Wenn Sie Soundscape weiterhin nutzen möchten, ohne automatische Hinweise zu hören, setzen Sie im Menü im Abschnitt *„Hinweise verwalten“* des Bildschirms *„Einstellungen“* den *„Detailgrad der Hinweise“* auf *„Stumm“*. Wenn Sie Soundscape eine Weile nicht nutzen werden, können Sie die App stattdessen über die Schaltfläche *„Ruhemodus aktivieren“* auf dem Startbildschirm in den Ruhe- oder Standbymodus versetzen.
+Für eine Schritt-für-Schritt-Wegbeschreibung öffnen Sie die *Standortdetails* eines Ortes und wählen Sie *In Karten-App öffnen*. Soundscape läuft weiter, während die andere App den Weg ansagt.
 

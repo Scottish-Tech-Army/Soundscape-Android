@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Markører i nærheten
 
-## Hva er det?
+*Markører i nærheten* leser opp inntil fire av markørene dine, de som er nærmest deg. Du hører hver av dem fra sin egen retning, med avstanden. Bruk den til å orientere deg ut fra steder du allerede kjenner. Markører som er mer enn omtrent 2 kilometer unna, tas ikke med.
 
-Knappen *Markører i nærheten* forteller deg om opptil fire markører som er nærmest deg. *Markører i nærheten* er beregnet på å hjelpe deg med å orientere deg selv ved å bruke steder du allerede vet om.
-
-## Når skal jeg bruke den?
-
-Når du prøver å orientere deg i omgivelsene, kan du bruke *Markører i nærheten* til å høre om steder du kjenner til.
-
-## Hvordan fungerer den?
-
-Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Markører i nærheten*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Markører i nærheten* så hører du opptil fire markører i nærheten av deg.
+Hvis du står stille, peker du først toppen av telefonen i den retningen du er vendt. Hvis telefonen er låst, eller Soundscape ikke er på skjermen, holder du også telefonen flatt.
 

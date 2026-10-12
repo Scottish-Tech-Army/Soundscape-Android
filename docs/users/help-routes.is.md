@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Leiðir
 
-## Hvað er það?
+Leið er listi yfir staði, sem kallast leiðarpunktar, sem þú heimsækir í röð. Soundscape setur hljóðvita á fyrsta leiðarpunktinn. Þegar þú kemur þangað lætur það þig vita og færir hljóðvitann á þann næsta.
 
-Leið er röð af leiðarpunktum. Þér verður tilkynnt þegar þú kemur að hverjum leiðarpunkti og hljóðvitinn færist þá sjálfkrafa á næsta leiðarpunkt.
+Notaðu leið til að læra nýja ferð, eða til að halda stefnunni á ferð sem þú þekkir.
 
-## Hvenær ætti að nota það?
+## Að búa til leið
 
-Þú gætir viljað búa til og nota leið á stað sem þú þekkir nú þegar, til að halda þér á réttri leið. Eða þú gætir viljað nota leið til að læra nýja leið.
+1. Veldu *Leiðir* á heimaskjánum og veldu síðan *Nýtt*.
 
-## Hvernig virkar það?
+2. Gefðu leiðinni heiti. Þú getur bætt við lýsingu.
 
-**Að búa til leið:**
+3. Veldu *Bæta við leiðarpunktum* og veldu merki. Þú getur líka bætt við núverandi staðsetningu þinni eða nálægum stað.
 
-Fyrst skaltu velja *Leiðir* á heimaskjánum og síðan hnappinn *Nýtt* efst í hægra horni skjásins. Gefðu leiðinni nafn og valfrjálsa lýsingu, bættu síðan við leiðarpunktum eftir því sem þú ferð eða veldu þá af listanum þínum yfir merki. Þú getur breytt röð leiðarpunktanna meðfram leið hvenær sem er með því að breyta leiðinni.
+4. Veldu *Lokið*.
 
-**Að breyta leið :**
+## Að fylgja leið
 
-Veldu leiðina þína á skjánum *Leiðir* og veldu síðan *Breyta leið*. Héðan geturðu bætt við og fjarlægt leiðarpunkta og breytt nafni og lýsingu leiðarinnar.
+Veldu leiðina á skjánum *Leiðir* og veldu síðan *Hefja leið*. Til að fara hana í öfuga átt skaltu velja *Hefja leið í öfugri röð*. Á heimaskjánum færa *Næsti leiðarpunktur* og *Fyrri leiðarpunktur* hljóðvitann eftir leiðinni. *Stöðva leið* lýkur henni.
 
-**Deila leið :**
+## Að breyta leið
 
-Veldu leiðina þína á skjánum *Leiðir* og veldu síðan valkostinn *Deila* með þeim hefðbundnu deilingarmöguleikum sem í boði eru.
+Veldu leiðina á skjánum *Leiðir* og veldu síðan *Breyta leið*. Þú getur bætt við leiðarpunktum, fjarlægt þá og endurraðað þeim, breytt heitinu og lýsingunni, eða eytt leiðinni.
+
+## Að deila leið
+
+Veldu leiðina á skjánum *Leiðir* og veldu síðan *Deila*.
 

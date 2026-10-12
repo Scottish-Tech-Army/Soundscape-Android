@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Utilizzo dei controlli di riproduzione
 
-## Cos'è?
+Puoi controllare Soundscape con i pulsanti multimediali dei tuoi auricolari: *riproduci/pausa*, *avanti* e *indietro*. Funziona con auricolari con filo e Bluetooth. Funziona anche quando Soundscape è in background o il telefono è bloccato.
 
-È possibile accedere a determinate funzioni in Soundscape con l'aiuto dei pulsanti dei controlli di riproduzione degli auricolari. Questa opzione funziona con auricolari cablati o Bluetooth dotati di pulsanti dei controlli di riproduzione come Riproduci, Pausa, Avanti, Indietro e così via. Altri auricolari potrebbero includere pulsanti diversi, quindi fai riferimento al seguente elenco di azioni per determinare quali sono disponibili.
+Non tutti gli auricolari hanno tutti e tre i pulsanti.
 
-## Quando si usa?
+I pulsanti controllano Soundscape solo quando nessun'altra app sta riproducendo audio. Se stai ascoltando musica o un podcast, i pulsanti controllano quell'app.
 
-I controlli di riproduzione degli auricolari possono essere utilizzati mentre Soundscape è in esecuzione, sia che tu stia usando attivamente l'app, sia che questa sia in background, sia che il dispositivo sia bloccato. Tuttavia, i pulsanti dei controlli di riproduzione degli auricolari non funzionano con Soundscape se stai riproducendo audio, come musica, podcast o video, con un'altra app.
+I pulsanti possono funzionare in due modi: *Modalità originale* o *Menu audio*. Per scegliere, apri il menu e seleziona *Impostazioni*, poi *Controlli multimediali*.
 
-## Come funziona?
+## Modalità originale
 
-Esistono 2 modalità di funzionamento per i controlli multimediali. La modalità può essere selezionata nella sezione *Impostazioni* > *Controlli multimediali*. Le modalità sono:
+*Riproduci/pausa* disattiva l'audio dell'audiofaro. Premilo di nuovo per sentire l'audiofaro.
 
- *Modalità originale*. 
+*Avanti* sposta l'audiofaro al waypoint successivo quando stai seguendo un percorso. Altrimenti annuncia *Intorno a me*.
 
-⏯ Riproduci/Pausa: Attiva o disattiva l'audio dell'audiofaro. 
+*Indietro* sposta l'audiofaro al waypoint precedente quando stai seguendo un percorso. Altrimenti cambia il *Dettaglio delle notifiche*. Ogni pressione scende di un livello: *Dettagliato*, *Semplificato*, *Essenziale*, poi *Silenzioso*. Un'altra pressione torna a *Dettagliato*. Soundscape dice il nome del nuovo livello.
 
-⏭ Avanti: Se è in riproduzione un percorso, sposta l'audiofaro al Waypoint successivo del percorso. Se non è in riproduzione alcun percorso, fa annunciare *Intorno a me*.
+## Menu audio
 
-⏮ Indietro: Se è in riproduzione un percorso, sposta l'audiofaro al Waypoint precedente del percorso. Se non è in riproduzione alcun percorso, cambia il *Dettaglio delle notifiche*, di un livello più discreto a ogni pressione: *Dettagliato*, *Semplificato*, *Essenziale*, *Silenzioso*, e di nuovo *Dettagliato*.
+Il menu audio ti offre più azioni con gli stessi tre pulsanti. Soundscape legge ogni opzione ad alta voce.
 
+*Avanti* passa all'opzione successiva. Dopo l'ultima opzione torna alla prima.
 
+*Riproduci/pausa* seleziona l'opzione che hai appena sentito.
 
-*Menu audio*. 
+*Indietro* cambia il *Dettaglio delle notifiche*, come nella *Modalità originale*.
 
-
-
-⏭ Avanti scorre una serie di opzioni di menu che l'app descrive tramite sintesi vocale, tornando alla prima dopo l'ultima. ⏯ Riproduci/Pausa attiva quindi l'esecuzione dell'opzione descritta. Esiste un unico menu di primo livello che contiene solo sotto-menu come opzioni. Ciascun sotto-menu raggruppa un insieme di azioni simili.
-
-⏮ Indietro non scorre il menu. Cambia invece il *Dettaglio delle notifiche*, esattamente come nella modalità originale, così lo stesso pulsante rende l'app più discreta in entrambe le modalità.
+Il menu inizia con quattro gruppi: *Ascolta i miei dintorni*, *Controllo percorso*, *Avvia Percorso* e *Avvia audiofaro*. Seleziona un gruppo per sentirne le azioni. *Ascolta i miei dintorni* e *Controllo percorso* finiscono con *Menu principale*, che ti riporta ai quattro gruppi.
 

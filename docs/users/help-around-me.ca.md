@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Al meu voltant
 
-## Què és?
+*Al meu voltant* anuncia fins a quatre llocs propers: un al davant, un a la dreta, un al darrere i un a l'esquerra. Sents cadascun des de la seva direcció, amb la distància. Fes-lo servir per orientar-te quan arribis a algun lloc.
 
-El botó *Al meu voltant* t'informa sobre una cosa a cadascun dels quatre quadrants al teu voltant (davant, a la dreta, darrere i a l'esquerra). *Al meu voltant* té la finalitat d'ajudar-te a orientar-te respecte al teu entorn.
-
-## Quan l'hauria d'utilitzar?
-
-Quan intentis orientar-te i situar-te respecte al teu entorn, utilitza *Al meu voltant* per escoltar informació sobre les coses del teu voltant.
-
-## Com funciona?
-
-Com passa amb els quatre botons de la part inferior de la pantalla principal, sostén el telèfon amb la pantalla plana (mirant cap al cel) i la part superior del telèfon apuntant en la direcció cap a la qual estàs orientat abans de prémer el botó *Al meu voltant*. Això funciona com una brúixola que indica a l'aplicació cap a quina direcció estàs orientat. Simplement, toca el botó *Al meu voltant* i escoltaràs quatre punts d'interès disposats al teu voltant.
+Si no t'estàs movent, apunta primer la part superior del telèfon cap on mires. Si el telèfon està bloquejat, o Soundscape no és a la pantalla, aguanta també el telèfon pla.
 

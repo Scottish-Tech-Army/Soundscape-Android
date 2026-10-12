@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Lydsignal
 
-## Hva er det?
+Et lydsignal er en lyd som kommer fra retningen til et sted du velger. Det forteller deg hvor stedet ligger i rett linje. Det gir ikke veibeskrivelse sving for sving, så du velger selv veien dit.
 
-Ved å angi et lydsignal på en posisjon i nærheten kan Soundscape holde deg oppdatert ved å spille av en lyd som kommer fra retningen til posisjonen. Lydsignalet kan slås av eller på på startskjermen. Soundscape viser i tillegg informasjon om posisjonen på startskjermen deriblant avstanden til den og gateadressen hvis den er kjent.
+## Sette et lydsignal
 
-## Når skal jeg bruke den?
+1. Finn stedet. Bruk søkefeltet, *Steder i nærheten*, *Markører* eller *Nåværende posisjon* på startskjermen.
 
-Det kan være nyttig å angi et lydsignal når du vil følge med på et kjent landemerke mens du utforsker et nytt område, eller når du går et sted og vil være oppdatert på omgivelsene på veien. Lydsignalfunksjonen gir ikke veibeskrivelser, men gir deg et kontinuerlig lydsignal som forteller deg retning til lydsignalet i forhold til der du for øyeblikket er. Ved å bruke lydsignalet, eksisterende navigasjonsferdigheter og en navigasjonsapp du liker, kan du selv velge hvordan du kommer til posisjoner i nærheten.
+2. Velg stedet for å åpne *Posisjonsinformasjon*.
 
-## Hvordan fungerer den?
+3. Velg *Start lydsignal*.
 
-**For å angi et lydsignal :**
+Soundscape går tilbake til startskjermen, og lydsignalet starter. Startskjermen viser navnet på stedet og hvor langt unna det er.
 
- Først, vis detaljene for et sted enten ved å bruke søkefeltet for å søke etter et sted, eller ved å trykke på en av knappene *Steder i nærheten*, *Markører* eller *Nåværende posisjon* og velge et sted. Velg deretter knappen *Start lydsignal* på skjermen *Posisjonsinformasjon*. Når du trykker på denne, kommer du tilbake til startskjermen og et hørbart lydsignal som kommer fra retningen til det valgte stedet slås på. Navnet på stedet, sammen med avstanden og gateadressen hvis tilgjengelig, vises nå på hovedskjermen.
+## Finne retningen
 
-**For å fjerne det nåværende lydsignalet:**
+Lydsignalet skifter lyd når du er vendt mot stedet eller går rett mot det. For å finne den lyden holder du telefonen flatt og snur deg sakte. Du kan velge en annen lyd for lydsignalet i *Innstillinger*.
 
-Trykk bare på knappen *Stopp rute* på startskjermen.
+## Slå av lyden på lydsignalet
 
-**For å dempe lydsignalet:**
+Velg *Slå av lydsignal* på startskjermen. Soundscape forteller deg fortsatt hvor langt unna stedet er mens du beveger deg. Velg *Slå på lydsignal* for å høre lydsignalet igjen.
 
-Trykk på knappen *Slå av lydsignal* ved siden av knappen *Stopp rute* på startskjermen.
+## Fjerne lydsignalet
+
+Velg *Stopp rute* på startskjermen. Knappen heter dette også når lydsignalet ikke er en del av en rute.
+
+## Når du kommer frem
+
+Når du er omtrent 12 meter fra stedet, sier Soundscape fra og fjerner lydsignalet. Telefonen kan ikke finne posisjonen din mer nøyaktig enn det. For å høre lydsignalet igjen setter du det på nytt.
+
+Et lydsignal som settes på et sted mindre enn 30 meter unna, blir stående til du fjerner det.
 

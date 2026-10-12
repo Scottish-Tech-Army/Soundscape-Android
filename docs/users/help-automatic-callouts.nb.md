@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatiske meldinger
 
-## Hva er det?
+Mens du går, leser Soundscape opp det som er i nærheten. Du hører hvert navn fra retningen til stedet. Meldingene dekker gater, veikryss, butikker, busstopp, landemerker og dine egne markører.
 
-Soundscape kan fortelle deg om ting rundt deg når du nærmer deg dem ved å lese opp navnet deres fra den retningen de befinner seg i. Appen gjør dette automatisk for ulike typer steder, som virksomheter, busstopp og til og med veikryss. Du kan konfigurere hva appen leser opp automatisk i seksjonen *Administrer meldinger* på *Innstillinger*-skjermen, og du kan slå av alle meldinger når du vil at appen skal være stille.
+## Veikryss
 
-## Når skal jeg bruke den?
+Når du nærmer deg et veikryss, nevner Soundscape hver vei som går ut fra det. Du hører hvilken vei som går til venstre, hvilken som fortsetter rett frem, og hvilken som går til høyre.
 
-**Utforsk et nytt område**:
+## Hvor mye du hører
 
- Slå på automatiske meldinger og gå rundt for å høre alt om de ulike butikkene, restaurantene og lignende når du går forbi dem.
+Åpne menyen og velg *Innstillinger* og deretter *Administrer meldinger*. *Detaljnivå for meldinger* har fire nivåer.
 
-**Gå til et bestemt sted**:
+*Detaljert* leser opp alt i nærheten.
 
- Når du er på vei til et bestemt sted, kan automatiske meldinger for veikryss være svært nyttige. Veikryssmeldinger kan fortelle deg om oppsettet til veikryss når du nærmer deg, og bekrefte veien du er på, når du forlater dem.
+*Forenklet* utelater mindre stier og serviceveier, og gjentar seg mindre.
 
-**Når du trenger stillhet**:
+*Grunnleggende* leser bare opp gater, veikryss og landemerker.
 
- Når du er i ferd med å krysse en vei eller bare vil at appen skal være stille, kan du slå av meldinger. Når meldinger er av, forteller appen bare informasjonen hvis du manuelt trykker på en av knappene *Min posisjon*, *Markører i nærheten*, *Rundt meg* eller *Foran meg*.
+*Lydløs* gir ingen automatiske meldinger. Lydsignaler, ruter og knappene på startskjermen fungerer fortsatt.
 
-## Hvordan fungerer den?
+## Hva du hører
 
-**Slå meldinger av eller på :**
+*Administrer meldinger* har to innstillinger til. *Gater og veikryss* slår meldinger om gater og veikryss av eller på. *Steder som skal leses opp* velger hvilke typer steder du hører, for eksempel *Offentlig transport* eller *Mat og drikke*. Markørene dine blir alltid lest opp.
 
- Å slå av meldinger gjør appen stille. Meldinger kan slås av i seksjonen *Administrer meldinger* på *Innstillinger*-skjermen ved å sette *Detaljnivå for meldinger* til *Lydløs*, og slås på igjen ved å velge et hvilket som helst annet nivå. På iPhone kan du gjøre det samme ved å be Siri om det, og på Android vil det samme fungere via Gemini når Google lanserer støtte for det. Du kan også gjøre Soundscape stillere ett trinn om gangen med mediekontrollknappene på hodetelefonene dine: hvert trykk på *forrige* går ett trinn ned gjennom *Detaljert*, *Forenklet*, *Grunnleggende* og *Lydløs*, og enda et trykk går tilbake til *Detaljert*. Se hjelpeemnet *Bruk mediekontroller*. Alternativt kan du bruke knappen *Sett i dvalemodus* øverst til høyre på startskjermen for å stoppe Soundscape fra å lese opp meldinger til du vekker appen.
+## Gjøre Soundscape stillere
 
-**Administrere hvilke meldinger du hører :**
+Trykk på *forrige* på kontrollene på hodetelefonene dine. Hvert trykk går ett nivå stillere: *Detaljert*, *Forenklet*, *Grunnleggende* og så *Lydløs*. Ett trykk til går tilbake til *Detaljert*. Se hjelpesiden *Bruk mediekontroller*.
 
- For å velge hvilke typer ting Soundscape automatisk skal lese opp, gå til skjermen *Innstillinger* via menyen på startskjermen. I seksjonen *Administrer meldinger* på *Innstillinger*-skjermen velger du hvor mye appen sier med *Detaljnivå for meldinger*, om den leser opp *Gater og veikryss*, og hvilke *Steder som skal leses opp*. Hvis du ønsker å slå av alle meldinger, setter du *Detaljnivå for meldinger* til *Lydløs*.
+## Stoppe Soundscape en stund
+
+Velg knappen *Sett i dvalemodus* øverst på startskjermen. Soundscape slutter å bruke posisjonen din og lager ingen lyd før du velger *Vekk nå*. Eller velg *Vekk meg når jeg forlater stedet*, så våkner Soundscape når du forlater stedet du er på.
+
+## I et kjøretøy eller på et tog
+
+Soundscape merker når du beveger deg i kjøretøyfart. Da slutter appen å lese opp veikryss og butikker i nærheten, fordi de passerer for fort. I stedet leser den opp veien du er på, landemerker, holdeplasser og stasjoner, elver og tunneler.
 

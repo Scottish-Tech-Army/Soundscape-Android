@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # A Minha Localização
 
-## O que é?
+*A Minha Localização* diz-lhe onde está. Diz a direção em que está de frente ou em que se desloca, e depois a rua ou a morada onde se encontra. Use-o quando sair de um autocarro, sair de um edifício ou perder a orientação.
 
-O botão *«A Minha Localização»* fornece rapidamente informações que o ajudam a determinar onde se encontra atualmente. *«A Minha Localização»* informa-o sobre a sua localização atual, incluindo aspetos como a direção em que está virado, a localização de ruas ou cruzamentos nas proximidades e a localização de pontos de interesse nas proximidades.
-
-## Quando devo utilizá-lo?
-
-*«A Minha Localização»* é útil quando necessita de saber onde se encontra ou para que ponto cardial está virado.
-
-## Como funciona?
-
-Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior do telemóvel apontada na direção em que está virado antes de premir o botão *«A Minha Localização»*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *«A Minha Localização»* e ouvir.
+Se não estiver em movimento, aponte primeiro a parte de cima do telemóvel para a sua frente. Se o telemóvel estiver bloqueado, ou se o Soundscape não estiver no ecrã, segure também o telemóvel na horizontal.
 

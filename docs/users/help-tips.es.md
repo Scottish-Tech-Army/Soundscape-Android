@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Sugerencias
 
-Puedes encontrar paradas de autobús cercanas seleccionando el filtro *Transporte público* en la lista *Lugares cercanos*.
+Para encontrar paradas de autobús cercanas, selecciona *Lugares cercanos* y elige *Transporte público*.
 
-Puedes establecer una señal en cualquier dirección. Desde la pantalla principal, busca la dirección con la barra de búsqueda. A continuación, selecciona la dirección en los resultados de búsqueda para abrir la pantalla *Detalles de la ubicación*. Esta pantalla incluye la opción *Iniciar señal de audio* para esa dirección. De este modo, puedes establecer una señal en negocios, lugares, puntos de interés y viviendas que no estén en OpenStreetMap.
+Si tomas a menudo el mismo autobús, guarda tus paradas como marcadores. Coloca una señal en la parada donde te bajas, y Soundscape te dice a qué distancia está durante el viaje.
 
-Si usas una línea de autobús con regularidad, guarda tus paradas de subida y bajada como Marcadores. Así quedarán guardadas y podrás encontrarlas fácilmente. Selecciona *Marcadores* en la pantalla principal para encontrarlas. Puedes establecer una señal en ellas para recibir actualizaciones periódicas sobre lo cerca que estás de tu parada de bajada. Nota: puedes desactivar el sonido rítmico y seguir recibiendo actualizaciones de la distancia durante el recorrido.
+Puedes silenciar la señal y seguir oyendo a qué distancia está el lugar. Soundscape dice la distancia de vez en cuando mientras te mueves.
 
-Si metes el teléfono en el bolsillo y dejas de moverte, el sonido de la señal baja de volumen porque Soundscape no puede saber hacia qué dirección estás orientado. Para solucionarlo, empieza a andar de nuevo, o saca el teléfono y mantenlo en posición horizontal.
+Para explorar un lugar antes de ir, abre sus *Detalles de la ubicación* y selecciona *Simular ubicación*. Soundscape se comporta entonces como si estuvieras allí.
 
-Soundscape funciona mejor cuando mantienes el teléfono en posición horizontal con la pantalla hacia arriba y la parte superior del teléfono apuntando al lado contrario de ti.
-
-Puedes activar y desactivar el sonido rítmico de la señal con el botón de silencio de la pantalla principal. Si la señal está silenciada, seguirás recibiendo actualizaciones de la distancia a tu destino aproximadamente cada 50 metros.
-
-Para seguir usando Soundscape sin oír avisos automáticos, ajusta *Detalle de los avisos* a *Silencioso* en la sección *Administrar avisos* de la pantalla *Ajustes* del menú. Si no vas a usar Soundscape durante un tiempo, puedes ponerlo en modo de suspensión o de aplazamiento con el botón *Suspender* de la pantalla principal.
+Para obtener indicaciones paso a paso, abre los *Detalles de la ubicación* de un lugar y selecciona *Abrir en aplicación de mapas*. Soundscape sigue funcionando mientras la otra aplicación da las indicaciones.
 

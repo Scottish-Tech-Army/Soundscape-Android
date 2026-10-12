@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Siginar Sauti
 
-## Menene wannan?
+Siginar sauti sauti ce da ke fitowa daga ɓangaren wurin da kuka zaɓa. Tana gaya muku inda wurin yake a miƙaƙƙen layi. Ba ta ba da umarnin hanya mataki-mataki, don haka ku ne kuke zaɓar hanyarku zuwa can.
 
-Kafa siginar sauti a wani wuri da ke kusa yana ba wa Soundscape damar ci gaba da sanar da ku ta hanyar kunna sauti daga wajen wannan wurin. Ana iya kashe ko kunna sautin wannan sigina daga babban allo. Bugu da ƙari, Soundscape yana nuna bayanan wurin a babban allo, wanda ya haɗa da nisan zuwa wurin da adireshin titinsa idan an san shi.
+## Saita Sigina
 
-## Yaushe zan yi amfani da shi?
+1. Ku nemo wurin. Ku yi amfani da sandar bincike, *Wurare na Kusa*, *Alamomi* ko *Wurin da Kake Yanzu* a babban allo.
 
-Kafa siginar sauti yana da amfani idan kuna son bin diddigin wani sanannen wuri yayin da kuke bincikar sabon yanki, ko kuma idan kuna zuwa wani wuri kuma kuna son sanin abin da ke kewaye da ku a hanya. Fasalin siginar sauti ba ya ba ku umarni na mataki-mataki, amma yana ba ku sautin da ke ci gaba da kunnawa wanda ke nuna muku alkiblar zuwa siginar, dangane da inda kuke a halin yanzu. Ta amfani da siginar sauti, ƙwarewarku ta wajen nemo hanya, har ma da manhajar tafiya da kuka fi so, za ku iya zaɓar yadda kuke son isa wurare kusa da ku da kanku.
+2. Ku zaɓi wurin don buɗe *Cikakkun Bayanan Wuri*.
 
-## Yaya yake aiki?
+3. Ku zaɓi *Fara Siginar Sauti*.
 
-**Don kafa siginar sauti :**
+Soundscape yana komawa babban allo, siginar kuma ta fara. Babban allo yana nuna sunan wurin da nisansa.
 
- Da farko, duba cikakkun bayanan wuri ko dai ta amfani da sandar bincike don neman wuri, ko kuma ta danna ɗaya daga cikin maɓallan *Wurare na Kusa*, *Alamomi*, ko *Wurin da Kake Yanzu* sannan ku zaɓi wuri. Sannan daga allon *Cikakkun Bayanan Wuri*, zaɓi maɓallin *Fara Siginar Sauti*. Danna wannan zai mayar da ku zuwa babban allo kuma ya kunna siginar sauti mai zuwa daga wajen wurin da kuka zaɓa. Sunan wurin tare da nisansa da adireshinsa na zahiri, idan akwai, yanzu za su bayyana a babban allo.
+## Nemo Alkibla
 
-**Don cire siginar sauti ta yanzu :**
+Siginar tana canja sauti idan kuna fuskantar wurin ko kuna tafiya kai tsaye zuwa gare shi. Don samun wannan sautin, ku riƙe wayarku a kwance sannan ku juya a hankali. Kuna iya zaɓar wani sautin sigina a *Saitunan*.
 
- Kawai danna maɓallin *Tsayar da Tafarki* a babban allo.
+## Kashe Sautin Sigina
 
-**Don kashe siginar sauti :**
+Ku zaɓi *Kashe Siginar Sauti* a babban allo. Soundscape yana ci gaba da gaya muku nisan wurin yayin da kuke motsawa. Ku zaɓi *Kunna Siginar Sauti* don sake jin siginar.
 
- Danna maɓallin *Kashe Siginar Sauti* kusa da maɓallin *Tsayar da Tafarki* a babban allo.
+## Cire Sigina
+
+Ku zaɓi *Tsayar da Tafarki* a babban allo. Maɓallin yana da wannan sunan ko da siginar ba ta cikin wani tafarki.
+
+## Idan Kun Isa
+
+Idan kuna kusan mita 12 daga wurin, Soundscape yana gaya muku sannan ya cire siginar. Wayarku ba za ta iya gano inda kuke daidai fiye da haka ba. Don sake jin siginar, ku sake saita ta.
+
+Siginar da aka saita a wurin da bai kai mita 30 ba tana ci gaba da aiki har sai kun cire ta.
 

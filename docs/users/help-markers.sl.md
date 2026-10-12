@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Oznake
 
-S Soundscape lahko označite svoj svet in vse, kar vam je pomembno, podobno kot bucike na zemljevidu.
+Oznaka je kraj, ki ste ga shranili. To je lahko kateri koli kraj, ki vam je pomemben: vaš dom, avtobusno postajališče, vhod v stavbo ali prehod za pešce.
 
-Označite lahko kraje, ki so osebni in vam pomembni, kot so vaš dom, pisarna ali najljubša trgovina z živili. Označite lahko kateri koli kraj ali naslov, pa tudi stvari, ki jih na zemljevidih običajno ni, na primer: vhode v stavbe ali parke, gumbe za prehod za pešce, prehode za pešce, mostove, avtobusne postaje ali celo najljubše drevo vašega psa. Te oznake uporabite kot orientacijske točke na svojem sprehodu.
+Soundscape oznanja vaše oznake, ko greste mimo njih. Na oznako lahko nastavite zvočni svetilnik, jo dodate poti ali z gumbom *Oznake v bližini* slišite najbližje.
 
-Da bi doživeli označene kraje, jih bo Soundscape samodejno oznanil, ko boste šli mimo njih ali se jim približali, lahko pa uporabite tudi gumb *Oznake v bližini* na dnu domačega zaslona, da slišite prostorsko obvestilo o označenih krajih okoli vas. Na katerem koli označenem kraju lahko celo nastavite zvočni svetilnik. Ko to storite, boste slišali znani zvočni svetilnik Soundscape in ga lahko upravljate kot običajno.
+## Ustvarjanje oznak
+
+1. Na domačem zaslonu izberite *Oznake*, nato izberite *Nova*.
+
+2. Izberite *Trenutna lokacija* ali kraj s seznama *Kraji v bližini*.
+
+3. Če želite, spremenite ime in dodajte opombe. Soundscape opombe prebere skupaj z oznako.
+
+4. Izberite *Končano*.
+
+Shranite lahko tudi kateri koli kraj, ki ga najdete. Odprite njegove *Podrobnosti lokacije* in izberite *Shrani kot oznako*.
+
+## Prilagajanje oznak
+
+Izberite oznako na zaslonu *Oznake*, nato izberite *Uredi oznako*. Spremenite lahko njeno ime, opombe in položaj ali izberete *Izbriši oznako*. Z izbrisom se oznaka odstrani tudi iz vaših poti.
 

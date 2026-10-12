@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Sinalizador Sonoro
 
-## O que é?
+Um sinalizador sonoro é um som que vem da direção de um lugar que você escolhe. Ele diz onde o lugar fica em linha reta. Ele não dá instruções passo a passo, então é você quem escolhe o caminho.
 
-A definição de um sinalizador em uma localização nas proximidades permite que o Soundscape mantenha você informado ao reproduzir um som vindo da direção da localização. O mudo do sinalizador pode ser ativado ou desativado na tela inicial. Além disso, o Soundscape exibe informações sobre a localização na tela inicial, incluindo a distância até ela e o endereço, se for conhecido.
+## Definir um Sinalizador
 
-## Quando eu o usaria?
+1. Encontre o lugar. Use a barra de pesquisa, *Locais Próximos*, *Favoritos* ou *Localização Atual* na tela inicial.
 
-A definição de um sinalizador será útil quando você quiser rastrear um ponto de referência familiar enquanto explora uma nova área ou quando for a algum lugar e quiser ser informado sobre os arredores ao longo do caminho. O recurso de sinalizador não dá a você instruções passo a passo, mas oferece um som audível contínuo que mostra a direção do sinalizador em relação à sua localização atual. Usando o sinalizador sonoro, suas habilidades de orientação e até mesmo seu aplicativo de navegação favorito, você poderá escolher por conta própria como deseja chegar aos locais próximos.
+2. Selecione o lugar para abrir *Detalhes da Localização*.
 
-## Como ele funciona?
+3. Selecione *Iniciar Sinalizador Sonoro*.
 
-**Para definir um sinalizador :**
+O Soundscape volta para a tela inicial e o sinalizador começa. A tela inicial mostra o nome do lugar e a que distância ele está.
 
- Primeiro, visualize os detalhes de uma localização usando a barra de pesquisa para procurar um lugar, ou tocando em um dos botões *Locais Próximos*, *Favoritos* ou *Localização Atual* e selecionando uma localização. Em seguida, na tela *Detalhes da Localização*, selecione o botão *Iniciar Sinalizador Sonoro*. Ao tocar nele, você retornará à tela inicial e será ativado um sinalizador audível vindo da direção do local selecionado. O nome do local, juntamente com sua distância e endereço físico, se disponível, será exibido na tela principal.
+## Encontrar a Direção
 
-**Para remover o sinalizador atual :**
+O sinalizador muda de som quando você fica de frente para o lugar ou caminha direto até ele. Para encontrar esse som, segure o telefone na horizontal e gire devagar. Você pode escolher outro som para o sinalizador em *Ajustes*.
 
- Basta pressionar o botão *Interromper Rota* na tela inicial.
+## Silenciar o Sinalizador
 
-**Para silenciar o sinalizador audível :**
+Selecione *Ativar Mudo do Sinalizador* na tela inicial. O Soundscape continua dizendo a que distância o lugar está conforme você se desloca. Selecione *Desativar Mudo do Sinalizador* para ouvir o sinalizador de novo.
 
- Toque no botão *Ativar Mudo do Sinalizador* ao lado do botão *Interromper Rota* na tela inicial.
+## Remover o Sinalizador
+
+Selecione *Interromper Rota* na tela inicial. O botão tem esse nome mesmo quando o sinalizador não faz parte de uma rota.
+
+## Quando Você Chega
+
+Quando você está a cerca de 12 metros do lugar, o Soundscape avisa e remove o sinalizador. O telefone não consegue determinar a sua posição com mais exatidão do que isso. Para ouvir o sinalizador de novo, defina-o de novo.
+
+Um sinalizador definido em um lugar a menos de 30 metros continua ativo até você removê-lo.
 

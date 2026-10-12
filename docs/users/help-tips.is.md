@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Góð ráð
 
-Þú getur fundið nálæg strætóstopp með því að velja síuna *Almenningssamgöngur* í listanum *Nálægir staðir*.
+Til að finna nálægar stoppistöðvar skaltu velja *Nálægir staðir* og síðan *Almenningssamgöngur*.
 
-Þú getur sett hljóðvita á hvaða heimilisfang sem er. Á aðalskjánum leitarðu að heimilisfanginu með leitarstikunni. Veldu síðan heimilisfangið í leitarniðurstöðunum til að opna skjáinn *Upplýsingar um staðsetningu*. Á þessum skjá er valkosturinn *Kveikja á hljóðvita* fyrir heimilisfangið. Með þessum hætti geturðu sett hljóðvita á fyrirtæki, staði, áhugaverða staði og heimili sem eru ekki í OpenStreetMap.
+Ef þú tekur oft sama strætó skaltu vista stoppistöðvarnar þínar sem merki. Settu hljóðvita á stoppistöðina þar sem þú ferð út, og Soundscape segir þér hversu langt í burtu hún er á meðan þú ert í vagninum.
 
-Ef þú tekur reglulega ákveðna strætisvagnaleið skaltu vista uppstignings- og niðurstigningarstaðina sem merki. Þá verða þeir vistaðir svo þú finnur þá auðveldlega aftur. Veldu *Merki* á heimaskjánum til að finna þá. Þú getur sett hljóðvita á þá til að fá reglulegar uppfærslur um hversu nálægt þú ert niðurstigningarstaðnum. Athugaðu: þú getur slökkt á taktfasta hljóðinu og færð samt fjarlægðaruppfærslur á leiðinni.
+Þú getur slökkt á hljóði hljóðvitans og samt heyrt hversu langt í burtu staðurinn er. Soundscape segir fjarlægðina öðru hverju á meðan þú ert á ferð.
 
-Ef þú setur símann í vasann og hættir að hreyfa þig dofnar hljóðvitinn því Soundscape getur ekki greint í hvaða átt þú snýrð. Til að laga þetta skaltu byrja aftur að ganga, eða taka símann upp og halda honum flötum.
+Til að kanna stað áður en þú ferð þangað skaltu opna *Upplýsingar um staðsetningu* fyrir staðinn og velja *Herma staðsetningu*. Soundscape hagar sér þá eins og þú værir þar.
 
-Soundscape virkar best þegar þú heldur símanum flötum með skjáinn snúinn upp að himni og toppinn á símanum snúinn frá þér.
-
-Þú getur kveikt og slökkt á taktfasta hljóði hljóðvitans með þögunarhnappnum á heimaskjánum. Ef hljóðvitinn er þaggaður færðu samt uppfærslur um fjarlægðina að áfangastaðnum um það bil á 50 metra fresti.
-
-Til að halda áfram að nota Soundscape án þess að heyra sjálfvirkar tilkynningar skaltu stilla *Nákvæmni tilkynninga* á *Þögult* í kaflanum *Stjórna tilkynningum* á skjánum *Stillingar* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape um stund geturðu í staðinn sett það í dvalaham eða lúra-ham með hnappnum *Fara í dvala* á heimaskjánum.
+Til að fá leiðbeiningar skref fyrir skref skaltu opna *Upplýsingar um staðsetningu* fyrir stað og velja *Opna í kortaforriti*. Soundscape heldur áfram að keyra á meðan hitt forritið gefur leiðbeiningar.
 

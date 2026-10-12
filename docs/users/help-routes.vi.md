@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Lộ trình
 
-## Đây là gì?
+Lộ trình là một danh sách các vị trí, gọi là điểm dừng, mà bạn ghé qua theo thứ tự. Soundscape đặt đèn hiệu tại điểm dừng đầu tiên. Khi bạn đến nơi, nó báo cho bạn và chuyển đèn hiệu sang điểm tiếp theo.
 
-Lộ trình là một chuỗi các điểm dừng. Bạn sẽ được thông báo khi đến mỗi điểm dừng, và đèn hiệu âm thanh sẽ tự động chuyển sang điểm dừng tiếp theo.
+Hãy dùng lộ trình để học một chặng đường mới, hoặc để không đi lạc trên chặng đường bạn đã biết.
 
-## Khi nào tôi nên dùng tính năng này?
+## Tạo lộ trình
 
-Bạn có thể muốn tạo và sử dụng một lộ trình ở nơi bạn đã quen thuộc để đảm bảo mình luôn đi đúng hướng. Hoặc bạn có thể dùng một lộ trình để làm quen với một hành trình mới.
+1. Chọn *Lộ trình* trên màn hình chính, rồi chọn *Tạo mới*.
 
-## Tính năng này hoạt động như thế nào?
+2. Đặt tên cho lộ trình. Bạn có thể thêm mô tả.
 
-**Tạo một lộ trình :**
+3. Chọn *Thêm điểm dừng* và chọn các điểm đánh dấu. Bạn cũng có thể thêm vị trí hiện tại hoặc một địa điểm gần đó.
 
- Trước tiên, hãy chọn *Lộ trình* trên màn hình chính, rồi chọn nút *Tạo mới* ở góc trên bên phải màn hình. Đặt tên cho lộ trình và thêm mô tả (không bắt buộc), sau đó thêm các điểm dừng trong khi di chuyển hoặc chọn chúng từ danh sách Điểm đánh dấu của bạn. Bạn có thể sắp xếp lại thứ tự các điểm dừng trên lộ trình bất cứ lúc nào bằng cách chỉnh sửa lộ trình.
+4. Chọn *Xong*.
 
-**Chỉnh sửa một lộ trình :**
+## Đi theo lộ trình
 
- Chọn lộ trình của bạn trên màn hình *Lộ trình* rồi chọn *Chỉnh sửa lộ trình*. Từ đây bạn có thể thêm và xóa các điểm dừng, cũng như chỉnh sửa tên và mô tả của lộ trình.
+Chọn lộ trình trên màn hình *Lộ trình*, rồi chọn *Bắt đầu lộ trình*. Để đi theo chiều ngược lại, hãy chọn *Bắt đầu lộ trình theo chiều ngược lại*. Trên màn hình chính, *Điểm dừng tiếp theo* và *Điểm dừng trước* chuyển đèn hiệu dọc theo lộ trình. *Dừng lộ trình* kết thúc lộ trình.
 
-**Chia sẻ một lộ trình :**
+## Thay đổi lộ trình
 
- Chọn lộ trình của bạn trên màn hình *Lộ trình* rồi chọn tùy chọn *Chia sẻ*, sử dụng tất cả các tùy chọn chia sẻ thông thường có sẵn cho bạn.
+Chọn lộ trình trên màn hình *Lộ trình*, rồi chọn *Chỉnh sửa lộ trình*. Bạn có thể thêm, bớt và sắp xếp lại các điểm dừng, đổi tên và mô tả, hoặc xóa lộ trình.
+
+## Chia sẻ lộ trình
+
+Chọn lộ trình trên màn hình *Lộ trình*, rồi chọn *Chia sẻ*.
 

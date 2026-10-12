@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Mediensteuerungen verwenden
 
-## Was ist es?
+Sie können Soundscape mit den Medientasten Ihrer Kopfhörer steuern: *Wiedergabe/Pause*, *Weiter* und *Zurück*. Das funktioniert mit kabelgebundenen und Bluetooth-Kopfhörern. Es funktioniert auch, wenn Soundscape im Hintergrund läuft oder Ihr Telefon gesperrt ist.
 
-Sie können auf bestimmte Funktionen in Soundscape über die Mediensteuerungen an Ihren Kopfhörern zugreifen. Dies funktioniert mit jedem kabelgebundenen oder Bluetooth-Kopfhörer, der über Mediensteuertasten wie Wiedergabe, Pause, Weiter, Zurück und andere verfügt. Verschiedene Kopfhörer können unterschiedliche Tasten haben, daher sehen Sie bitte in der Liste der Aktionen unten nach, welche für Sie verfügbar sind.
+Nicht alle Kopfhörer haben alle drei Tasten.
 
-## Wann würde ich es verwenden?
+Die Tasten steuern Soundscape nur, wenn keine andere App Audio abspielt. Wenn Sie Musik oder einen Podcast hören, steuern die Tasten stattdessen diese App.
 
-Die Mediensteuerung Ihrer Kopfhörer kann verwendet werden, während Soundscape läuft – egal, ob Sie die App gerade aktiv nutzen, sie im Hintergrund läuft oder Ihr Gerät gesperrt ist. Die Mediensteuertasten der Kopfhörer funktionieren jedoch nicht mit Soundscape, wenn Sie mit einer anderen App Audio abspielen, etwa Musik, Podcasts oder Videos.
+Die Tasten können auf zwei Arten arbeiten: *Originalmodus* oder *Audio‑Menü*. Zur Auswahl öffnen Sie das Menü und wählen Sie *Einstellungen*, dann *Mediensteuerungen*.
 
-## Wie funktioniert es?
+## Originalmodus
 
-Es gibt zwei Betriebsmodi für die Mediensteuerungen. Den Modus können Sie im Abschnitt *Einstellungen* *Mediensteuerungen* auswählen. Die Modi sind:
+*Wiedergabe/Pause* schaltet das Beacon stumm. Drücken Sie die Taste erneut, um das Beacon wieder zu hören.
 
- *Originalmodus*. 
+*Weiter* verschiebt das Beacon zum nächsten Wegpunkt, wenn Sie einer Route folgen. Sonst wird *Um mich herum* angesagt.
 
-⏯ Wiedergabe/Pause: Schaltet den Ton des Beacons ein und aus. 
+*Zurück* verschiebt das Beacon zum vorherigen Wegpunkt, wenn Sie einer Route folgen. Sonst ändert die Taste den *Detailgrad der Hinweise*. Jeder Druck geht eine Stufe leiser: *Ausführlich*, *Vereinfacht*, *Wesentlich*, dann *Stumm*. Ein weiterer Druck kehrt zu *Ausführlich* zurück. Soundscape sagt den Namen der neuen Stufe.
 
-⏭ Weiter: Wenn gerade eine Route abgespielt wird, wird das Audiobeacon zum nächsten Wegpunkt der Route verschoben. Wenn keine Route abgespielt wird, wird *Um mich herum* angesagt.
+## Audio‑Menü
 
-⏮ Zurück: Wenn gerade eine Route abgespielt wird, wird das Audiobeacon zum vorherigen Wegpunkt der Route verschoben. Wenn keine Route abgespielt wird, ändert sich der *Detailgrad der Hinweise*, mit jedem Druck eine Stufe leiser: *Ausführlich*, *Vereinfacht*, *Wesentlich*, *Stumm*, und dann zurück zu *Ausführlich*.
+Das Audio-Menü bietet Ihnen mit denselben drei Tasten mehr Aktionen. Soundscape liest jede Option vor.
 
+*Weiter* geht zur nächsten Option. Nach der letzten Option beginnt das Menü wieder bei der ersten.
 
+*Wiedergabe/Pause* wählt die Option aus, die Sie gerade gehört haben.
 
-*Audio-Menü*. 
+*Zurück* ändert den *Detailgrad der Hinweise*, genau wie im *Originalmodus*.
 
-
-
-⏭ Weiter bewegt sich durch eine Reihe von Menüoptionen, die die App per Sprachausgabe beschreibt, und kehrt nach der letzten wieder zur ersten zurück. ⏯ Wiedergabe/Pause veranlasst die App dann, die beschriebene Option auszuführen. Es gibt ein einziges oberstes Menü, das nur Untermenüs als Optionen enthält. Jedes Untermenü fasst eine Gruppe ähnlicher möglicher Aktionen zusammen.
-
-⏮ Zurück bewegt sich nicht durch das Menü. Stattdessen ändert es den *Detailgrad der Hinweise*, genau wie im Originalmodus, sodass dieselbe Taste die App in beiden Modi leiser stellt.
+Das Menü beginnt mit vier Gruppen: *Meine Umgebung*, *Routensteuerung*, *Route starten* und *Audiobeacon starten*. Wählen Sie eine Gruppe aus, um ihre Aktionen zu hören. *Meine Umgebung* und *Routensteuerung* enden mit *Hauptmenü*. Damit kommen Sie zurück zu den vier Gruppen.
 

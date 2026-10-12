@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Suggerimenti
 
-Puoi trovare le fermate degli autobus nelle vicinanze selezionando il filtro *Trasporto pubblico* nella lista *Luoghi nelle vicinanze*.
+Per trovare le fermate dell'autobus vicine, seleziona *Luoghi nelle vicinanze* e scegli *Trasporto pubblico*.
 
-Puoi impostare un audiofaro su qualsiasi indirizzo. Dalla schermata principale cerca l'indirizzo con la barra di ricerca. Poi seleziona l'indirizzo nei risultati di ricerca per aprire la schermata *Dettagli posizione*. Questa schermata include l'opzione *Avvia audiofaro* per quell'indirizzo. In questo modo puoi impostare un audiofaro su attività commerciali, luoghi, punti di interesse e abitazioni che non sono presenti in OpenStreetMap.
+Se prendi spesso lo stesso autobus, salva le tue fermate come indicatori. Imposta un audiofaro sulla fermata in cui scendi, e Soundscape ti dice quanto dista durante il viaggio.
 
-Se prendi regolarmente una linea di autobus, salva le fermate di salita e discesa come Indicatori. In questo modo saranno salvate e potrai ritrovarle facilmente. Seleziona *Indicatori* nella schermata iniziale per trovarle. Puoi impostare un audiofaro su di esse per ricevere aggiornamenti periodici su quanto sei vicino alla fermata di discesa. Nota: puoi disattivare il suono ritmico e continuare comunque a ricevere aggiornamenti sulla distanza lungo il percorso.
+Puoi disattivare l'audio dell'audiofaro e sentire comunque quanto dista il luogo. Soundscape dice la distanza di tanto in tanto mentre ti sposti.
 
-Se metti il telefono in tasca e smetti di muoverti, il suono dell'audiofaro diventa meno percettibile perché Soundscape non riesce a capire in quale direzione sei rivolto. Per risolvere il problema, ricomincia a camminare oppure tira fuori il telefono e tienilo piatto.
+Per esplorare un luogo prima di andarci, apri i suoi *Dettagli posizione* e seleziona *Simula posizione*. Soundscape si comporta allora come se tu fossi lì.
 
-Soundscape funziona in modo ottimale quando si tiene il telefono piatto con lo schermo rivolto verso il cielo e la parte superiore del telefono che punta davanti a te.
-
-Puoi attivare e disattivare il suono ritmico dell'audiofaro utilizzando il pulsante di disattivazione dell'audio nella schermata iniziale. Se l'audiofaro è disattivato, riceverai comunque gli aggiornamenti sulla distanza dalla destinazione all'incirca ogni 50 metri.
-
-Per continuare a usare Soundscape senza ascoltare le notifiche automatiche, imposta *Dettaglio delle notifiche* su *Silenzioso* nella sezione *Gestisci notifiche* della schermata *Impostazioni* dal menu. Se non userai Soundscape per un po', puoi invece metterlo in modalità Sospendi o Posponi usando il pulsante *Sospendi* nella schermata principale.
+Per avere indicazioni passo passo, apri i *Dettagli posizione* di un luogo e seleziona *Apri in un'app di mappe*. Soundscape continua a funzionare mentre l'altra app dà le indicazioni.
 

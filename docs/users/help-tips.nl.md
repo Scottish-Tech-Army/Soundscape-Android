@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Tips
 
-U kunt nabijgelegen bushaltes vinden door in de lijst *Plaatsen in de buurt* het filter *Openbaar vervoer* te selecteren.
+Om bushaltes in de buurt te vinden, selecteert u *Plaatsen in de buurt* en kiest u *Openbaar vervoer*.
 
-U kunt een baken instellen op elk adres. Zoek vanaf het hoofdscherm met de zoekbalk naar het adres. Selecteer vervolgens het adres in de zoekresultaten om het scherm *Locatiedetails* te openen. Op dit scherm staat de optie *Audiobaken starten* voor dat adres. Op deze manier kunt u een baken instellen op bedrijven, plaatsen, referentiepunten en woningen die niet in OpenStreetMap staan.
+Neemt u vaak dezelfde bus, sla dan uw haltes op als markeringen. Stel een baken in op de halte waar u uitstapt. Soundscape vertelt u dan tijdens de rit hoe ver die is.
 
-Als u regelmatig een buslijn neemt, slaat u uw instap‑ en uitstaphaltes op als markeringen. Zo worden ze opgeslagen en vindt u ze later gemakkelijk terug. Selecteer *Markeringen* op het startscherm om ze te vinden. U kunt er een audiobaken op instellen om periodieke updates te krijgen over hoe dicht u bij uw uitstaphalte bent. Opmerking: u kunt het ritmische geluid uitschakelen en toch afstandsupdates onderweg ontvangen.
+U kunt het baken dempen en toch horen hoe ver de plaats is. Soundscape zegt de afstand af en toe terwijl u onderweg bent.
 
-Als u uw telefoon in uw zak houdt en niet verder loopt, wordt het bakengeluid zachter omdat Soundscape niet kan bepalen in welke richting u kijkt. Los dit op door weer te gaan lopen, of door uw telefoon tevoorschijn te halen en horizontaal voor u uit te houden.
+Wilt u een plaats verkennen voordat u erheen gaat? Open dan de *Locatiedetails* van de plaats en selecteer *Locatie simuleren*. Soundscape gedraagt zich dan alsof u daar bent.
 
-Soundscape werkt het beste als u de telefoon vlak houdt met het scherm naar boven en de bovenkant van de telefoon van u af wijzend.
-
-U kunt het ritmische geluid van het baken aan- en uitzetten met de knop Dempen op het hoofdscherm. Als het baken is gedempt, krijgt u ongeveer om de 50 meter nog steeds updates over de afstand tot uw bestemming.
-
-Wilt u Soundscape blijven gebruiken zonder automatische aankondigingen te horen, zet dan *Detailniveau aankondigingen* op *Stil* in het gedeelte *Aankondigingen beheren* van het scherm *Instellingen* in het menu. Als u Soundscape een tijdje niet gaat gebruiken, kunt u het via de knop *Slapen* op het startscherm in de slaap- of sluimerstand zetten.
+Voor een stapsgewijze routebeschrijving opent u de *Locatiedetails* van een plaats en selecteert u *Openen in kaart-app*. Soundscape blijft werken terwijl de andere app de route aangeeft.
 

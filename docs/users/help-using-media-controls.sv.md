@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Använda mediereglage
 
-## Vad är det?
+Du kan styra Soundscape med medieknapparna på dina hörlurar: *spela/pausa*, *nästa* och *föregående*. Det fungerar med trådbundna hörlurar och Bluetooth-hörlurar. Det fungerar också när Soundscape är i bakgrunden eller telefonen är låst.
 
-Du kan få tillgång till vissa funktioner i Soundscape med hjälp av mediereglageknapparna på dina hörlurar. Detta fungerar både med sladdförsedda hörlurar och Bluetooth-hörlurar som är utrustade med knappar som Spela upp, Paus, Nästa och Föregående. Olika hörlurar har olika typer av knappar. Använd listan med åtgärder nedan för att ta reda på vilka som finns.
+Alla hörlurar har inte alla tre knapparna.
 
-## När ska jag använda det?
+Knapparna styr bara Soundscape när ingen annan app spelar upp ljud. Om du spelar musik eller en podd styr knapparna den appen i stället.
 
-Du kan använda hörlurarnas mediereglage medan Soundscape körs – oavsett om du använder appen aktivt, om den körs i bakgrunden eller om enheten är låst. Mediereglagen på hörlurarna fungerar dock inte med Soundscape om du spelar ljud, som musik, poddsändningar eller filmer, med en annan app.
+Knapparna kan fungera på två sätt: *Originalläge* eller *Ljudmeny*. Om du vill välja öppnar du menyn och väljer *Inställningar* och sedan *Mediereglage*.
 
-## Hur fungerar det?
+## Originalläge
 
-Det finns 2 driftlägen för mediereglagen. Läget väljs i *Inställningar*-avsnittet *Mediereglage*. Lägena är:
+*Spela/pausa* stänger av ljudfyrens ljud. Tryck igen för att höra ljudfyren.
 
- *Originalläge*. 
+*Nästa* flyttar ljudfyren till nästa brytpunkt när du följer en rutt. Annars läser den upp *Omkring mig*.
 
-⏯ Spela/pausa: Växlar ljudfyrens ljud mellan på och av. 
+*Föregående* flyttar ljudfyren till föregående brytpunkt när du följer en rutt. Annars ändrar den *Detaljnivå för informationsljud*. Varje tryck går en nivå tystare: *Detaljerad*, *Förenklad*, *Grundläggande* och sedan *Tyst*. Ett tryck till går tillbaka till *Detaljerad*. Soundscape säger namnet på den nya nivån.
 
-⏭ Nästa: Om en rutt spelas upp flyttar ljudfyren till nästa brytpunkt i rutten. Om ingen rutt spelas upp läser appen upp *Omkring mig*.
+## Ljudmeny
 
-⏮ Föregående: Om en rutt spelas upp flyttar ljudfyren till föregående brytpunkt i rutten. Om ingen rutt spelas upp ändras *Detaljnivå för informationsljud* ett steg tystare för varje tryck: *Detaljerad*, *Förenklad*, *Grundläggande*, *Tyst*, och tillbaka till *Detaljerad*.
+Ljudmenyn ger dig fler åtgärder med samma tre knappar. Soundscape läser upp varje alternativ.
 
+*Nästa* går till nästa alternativ. Efter det sista alternativet börjar menyn om från det första.
 
+*Spela/pausa* väljer det alternativ du just hörde.
 
-*Ljudmeny*. 
+*Föregående* ändrar *Detaljnivå för informationsljud*, precis som i *Originalläge*.
 
-
-
-⏭ Nästa bläddrar genom en serie menyval som appen beskriver med talsyntes och återgår till det första efter det sista. ⏯ Spela/pausa utför sedan det alternativ som beskrivs. Det finns en överordnad meny som endast innehåller undermenyer som alternativ. Varje undermeny innehåller en grupp liknande åtgärder.
-
-⏮ Föregående bläddrar inte genom menyn. I stället ändrar den *Detaljnivå för informationsljud*, precis som i originalläget, så att samma knapp gör appen tystare oavsett vilket läge du använder.
+Menyn börjar med fyra grupper: *Lyssna på mina omgivningar*, *Ruttkontroll*, *Starta rutt* och *Ställ in ljudfyr*. Välj en grupp för att höra dess åtgärder. *Lyssna på mina omgivningar* och *Ruttkontroll* slutar med *Huvudmeny*, som tar dig tillbaka till de fyra grupperna.
 

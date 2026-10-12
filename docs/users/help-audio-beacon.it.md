@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Audiofaro
 
-## Cos'è?
+Un audiofaro è un suono che proviene dalla direzione di un luogo scelto da te. Ti dice dove si trova il luogo in linea retta. Non dà indicazioni passo passo, quindi il percorso lo scegli tu.
 
-L'impostazione di un audiofaro su una posizione nelle vicinanze consente a Soundscape di tenerti informato riproducendo un suono proveniente dalla direzione di quella posizione. Questo audiofaro può essere disattivato o riattivato nella schermata iniziale. Inoltre, Soundscape visualizza nella schermata iniziale le informazioni sulla posizione, inclusa la distanza alla destinazione e il suo indirizzo, se conosciuto.
+## Impostare un audiofaro
 
-## Quando si usa?
+1. Trova il luogo. Usa la barra di ricerca, *Luoghi nelle vicinanze*, *Indicatori* o *Posizione attuale* nella schermata iniziale.
 
-L'impostazione di un audiofaro è utile quando desideri tenere traccia di un punto di riferimento che conosci mentre esplori una nuova area o quando stai andando da qualche parte e desideri essere informato sull'ambiente circostante lungo il percorso. La funzione audiofaro non fornisce indicazioni dettagliate, ma offre un suono udibile continuo che ti indica la direzione verso l'audiofaro rispetto a dove ti trovi attualmente. Utilizzando l'audiofaro con le tue capacità di orientamento e persino con la tua app di navigazione preferita, puoi scegliere tu stesso come raggiungere le posizioni nelle vicinanze.
+2. Seleziona il luogo per aprire *Dettagli posizione*.
 
-## Come funziona?
+3. Seleziona *Avvia audiofaro*.
 
-**Per impostare un audiofaro :**
+Soundscape torna alla schermata iniziale e l'audiofaro parte. La schermata iniziale mostra il nome del luogo e quanto dista.
 
- Per prima cosa, visualizza i dettagli di una posizione cercandola con la barra di ricerca oppure toccando uno dei pulsanti *Luoghi nelle vicinanze*, *Indicatori* o *Posizione attuale* e selezionando una posizione. Poi, dalla schermata *Dettagli posizione*, seleziona il pulsante *Avvia audiofaro*. Toccandolo verrai riportato alla schermata principale e verrà attivato un audiofaro udibile dalla direzione del luogo selezionato. Nella schermata principale verranno ora mostrati il nome del luogo, la distanza e l'indirizzo fisico, se disponibili.
+## Trovare la direzione
 
-**Per rimuovere l'audiofaro corrente :**
+L'audiofaro cambia suono quando guardi verso il luogo o cammini dritto verso di esso. Per trovare quel suono, tieni il telefono in piano e girati lentamente. Puoi scegliere un altro suono per l'audiofaro in *Impostazioni*.
 
-Basta premere il pulsante *Interrompi Percorso* nella schermata iniziale.
+## Disattivare l'audio dell'audiofaro
 
-**Per disattivare l'audiofaro :**
+Seleziona *Disattiva audio audiofaro* nella schermata iniziale. Soundscape continua a dirti quanto dista il luogo mentre ti sposti. Seleziona *Attiva audio audiofaro* per sentire di nuovo l'audiofaro.
 
-Tocca il pulsante *Disattiva audio audiofaro* accanto al pulsante *Interrompi Percorso* nella schermata iniziale.
+## Rimuovere l'audiofaro
+
+Seleziona *Interrompi Percorso* nella schermata iniziale. Il pulsante ha questo nome anche quando l'audiofaro non fa parte di un percorso.
+
+## Quando arrivi
+
+Quando sei a circa 12 metri dal luogo, Soundscape te lo dice e rimuove l'audiofaro. Il telefono non può determinare la tua posizione con più precisione. Per sentire di nuovo l'audiofaro, impostalo di nuovo.
+
+Un audiofaro impostato su un luogo a meno di 30 metri resta attivo finché non lo rimuovi.
 

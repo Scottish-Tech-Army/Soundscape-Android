@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Audiobaken
 
-## Wat is het?
+Een audiobaken is een geluid dat klinkt uit de richting van een plaats die u kiest. Het vertelt u waar de plaats in rechte lijn ligt. Het geeft geen stapsgewijze routebeschrijving, dus u kiest zelf uw weg ernaartoe.
 
-Als u een baken instelt op een locatie in de buurt kan Soundscape u op de hoogte houden door een geluid te laten klinken vanuit de richting van die locatie. Dit baken kan al dan niet worden gedempt op het hoofdscherm. Bovendien geeft Soundscape informatie over de locatie weer op het hoofdscherm met de afstand en het adres, indien bekend.
+## Een baken instellen
 
-## Wanneer zou ik het moeten gebruiken?
+1. Zoek de plaats. Gebruik de zoekbalk, *Plaatsen in de buurt*, *Markeringen* of *Huidige locatie* op het startscherm.
 
-Het instellen van een baken is handig wanneer u een herkenningspunt wilt volgen bij het verkennen van een nieuw gebied of wanneer u ergens naartoe gaat en onderweg informatie wilt horen over de omgeving. De bakenfunctie geeft geen routebeschrijving maar een voortdurend hoorbaar geluid dat de richting van het baken aangeeft in relatie tot de plek waar u zich bevindt. Met het audiobaken, uw eigen navigatievaardigheden en desgewenst uw favoriete navigatie-app, kunt u zelf kiezen hoe u zich naar locaties in de buurt begeeft.
+2. Selecteer de plaats om *Locatiedetails* te openen.
 
-## Hoe werkt het?
+3. Selecteer *Audiobaken starten*.
 
-**Om een baken in te stellen :**
+Soundscape gaat terug naar het startscherm en het baken start. Het startscherm toont de naam van de plaats en hoe ver die is.
 
-Bekijk eerst de gegevens van een locatie door in de zoekbalk naar een plaats te zoeken, of door te tikken op één van de knoppen *Plaatsen in de buurt*, *Markeringen* of *Huidige locatie* en vervolgens een locatie te kiezen. Selecteer vervolgens op het scherm *Locatiedetails* de knop *Audiobaken starten*. Als u daarop tikt, keert u terug naar het hoofdscherm en wordt er een hoorbaar baken ingeschakeld dat klinkt vanuit de richting van de gekozen plaats. De naam van de plaats met de afstand en het fysieke adres, indien beschikbaar, wordt nu op het hoofdscherm weergegeven.
+## De richting vinden
 
-**Om het huidige baken te verwijderen :**
+Het baken verandert van klank wanneer u naar de plaats kijkt of er recht op af loopt. Om die klank te vinden, houdt u uw telefoon plat en draait u langzaam rond. In *Instellingen* kunt u een ander bakengeluid kiezen.
 
-Tik op de knop *Route stoppen* op het hoofdscherm.
+## Het baken dempen
 
-**Om het hoorbare baken te dempen :**
+Selecteer *Baken dempen* op het startscherm. Soundscape blijft u onderweg vertellen hoe ver de plaats is. Selecteer *Baken dempen opheffen* om het baken weer te horen.
 
-Tik op de knop *Baken dempen* naast de knop *Route stoppen* op het hoofdscherm.
+## Het baken verwijderen
+
+Selecteer *Route stoppen* op het startscherm. De knop heeft deze naam ook als het baken geen deel van een route is.
+
+## Wanneer u aankomt
+
+Wanneer u ongeveer 12 meter van de plaats bent, zegt Soundscape dat en verwijdert het baken. Nauwkeuriger kan uw telefoon uw positie niet bepalen. Wilt u het baken weer horen, stel het dan opnieuw in.
+
+Een baken op een plaats die minder dan 30 meter ver is, blijft aan totdat u het verwijdert.
 

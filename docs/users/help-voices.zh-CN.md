@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # 语音
 
-Soundscape 可以使用已下载到您 Android 手机的任意语音（在文字转语音输出设置中下载）。要在 Soundscape 应用内选择非默认的 Android 语音，请从主菜单进入*设置*，展开*音频*部分，然后选择*语音*。
+Soundscape 可以使用手机上安装的任何语音。要添加语音，请打开手机的设置并找到*文字转语音输出*。要在 Soundscape 中选择语音，请打开菜单，依次选择*设置*、*音频*、*语音*。
 

@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatické hlásenia
 
-## Čo to je?
+Keď kráčate, Soundscape ohlasuje, čo je vo vašom okolí. Každý názov počujete zo smeru daného miesta. Hlásenia zahŕňajú ulice, križovatky, obchody, autobusové zastávky, orientačné body a vaše vlastné značky.
 
-Soundscape vám môže povedať o veciach vo vašom okolí, keď sa k nim priblížite, tým, že vám oznámi ich názov zo smeru, kde sa nachádzajú. Aplikácia to robí automaticky pre najrôznejšie veci, ako sú obchody, autobusové zastávky či dokonca križovatky. To, čo aplikácia automaticky oznamuje, môžete nastaviť v časti *Spravovať hlásenia* na obrazovke *Nastavenia*, a keď chcete, aby aplikácia mlčala, môžete všetky hlásenia vypnúť.
+## Križovatky
 
-## Kedy to použiť?
+Keď sa blížite ku križovatke, Soundscape menuje každú cestu, ktorá z nej vychádza. Počujete, ktorá cesta vedie doľava, ktorá pokračuje rovno a ktorá vedie doprava.
 
-**Skúmanie novej oblasti:**
+## Koľko toho počujete
 
- Zapnite automatické hlásenia a prejdite sa okolo, aby ste popri prechádzaní počuli o rôznych obchodoch, reštauráciách a podobne.
+Otvorte menu a vyberte *Nastavenia* a potom *Spravovať hlásenia*. *Podrobnosť hlásení* má štyri úrovne.
 
-**Chôdza na konkrétne miesto:**
+*Podrobný* ohlasuje všetko v okolí.
 
- Keď smerujete na konkrétne miesto, obzvlášť užitočné môžu byť automatické hlásenia križovatiek. Hlásenia križovatiek vám pri priblížení opíšu ich usporiadanie a pri ich opustení vám potvrdia, na akej ceste sa nachádzate.
+*Zjednodušený* vynecháva menšie chodníky a obslužné cesty a menej sa opakuje.
 
-**Keď potrebujete ticho:**
+*Základný* ohlasuje len ulice, križovatky a orientačné body.
 
- Keď sa chystáte prejsť cez cestu, alebo jednoducho potrebujete, aby aplikácia mlčala, môžete hlásenia vypnúť. Keď sú hlásenia vypnuté, aplikácia vám poskytne informácie iba vtedy, keď sami ťuknete na jedno z tlačidiel *Moja poloha*, *Značky v okolí*, *Okolo mňa* alebo *Predo mnou*.
+*Bez zvuku* nedáva žiadne automatické hlásenia. Majáky, trasy a tlačidlá na domovskej obrazovke fungujú ďalej.
 
-## Ako to funguje?
+## Čo počujete
 
-**Zapnutie alebo vypnutie hlásení:**
+*Spravovať hlásenia* má ešte dve nastavenia. *Ulice a križovatky* zapína alebo vypína hlásenia ulíc a križovatiek. *Miesta na ohlasovanie* určuje, aké druhy miest počujete, napríklad *Verejná doprava* alebo *Jedlo a nápoje*. Vaše značky sa ohlasujú vždy.
 
- Vypnutím hlásení stlmíte aplikáciu. Hlásenia môžete vypnúť v časti *Spravovať hlásenia* na obrazovke *Nastavenia* nastavením položky *Podrobnosť hlásení* na *Bez zvuku* a znova ich zapnúť výberom ktorejkoľvek inej úrovne. Na iPhone môžete to isté urobiť tak, že o to požiadate Siri, a na Androide to bude fungovať cez Gemini, hneď ako na to Google vydá podporu. Soundscape môžete tiež postupne stlmovať tlačidlami na ovládanie médií na slúchadlách: každé stlačenie *predchádzajúce* posunie o úroveň nižšie cez *Podrobný*, *Zjednodušený*, *Základný* a *Bez zvuku* a ďalšie stlačenie sa vráti na *Podrobný*. Pozrite si tému pomocníka *Používanie ovládacích prvkov médií*. Prípadne môžete použiť tlačidlo *Spánok* v pravom hornom rohu domovskej obrazovky, čím zastavíte hlásenia aplikácie Soundscape, kým ju nezobudíte.
+## Ako Soundscape stíšiť
 
-**Správa toho, aké hlásenia počujete:**
+Stlačte *predchádzajúce* na ovládaní slúchadiel. Každé stlačenie prejde o jednu úroveň tichšie: *Podrobný*, *Zjednodušený*, *Základný* a potom *Bez zvuku*. Ďalšie stlačenie sa vráti na *Podrobný*. Pozrite si stránku pomocníka *Používanie ovládacích prvkov médií*.
 
- Ak chcete zvoliť typy vecí, ktoré vám Soundscape bude automaticky oznamovať, prejdite pomocou menu na obrazovke *Domov* na obrazovku *Nastavenia*. V časti *Spravovať hlásenia* na obrazovke *Nastavenia* si volíte, koľko toho aplikácia hovorí, pomocou položky *Podrobnosť hlásení*, či ohlasuje *Ulice a križovatky* a aké sú *Miesta na ohlasovanie*. Ak chcete vypnúť všetky hlásenia, nastavte *Podrobnosť hlásení* na *Bez zvuku*.
+## Zastavenie Soundscape na chvíľu
+
+Vyberte tlačidlo *Spánok* v hornej časti domovskej obrazovky. Soundscape prestane používať vašu polohu a mlčí, kým nevyberiete *Prebudiť teraz*. Alebo vyberte *Prebudiť pri odchode* a Soundscape sa prebudí, keď opustíte miesto, kde ste.
+
+## Vo vozidle alebo vo vlaku
+
+Soundscape rozpozná, keď sa pohybujete rýchlosťou vozidla. Potom prestane ohlasovať križovatky a obchody v okolí, pretože míňajú príliš rýchlo. Namiesto toho ohlasuje cestu, po ktorej idete, orientačné body, zastávky a stanice, rieky a tunely.
 

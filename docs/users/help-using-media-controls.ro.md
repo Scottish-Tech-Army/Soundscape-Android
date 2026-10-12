@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Utilizarea comenzilor media
 
-## Ce este?
+Poți controla Soundscape cu butoanele media de pe căști: *redare/pauză*, *următorul* și *anterior*. Funcționează cu căști cu fir și cu căști Bluetooth. Funcționează și când Soundscape este în fundal sau telefonul este blocat.
 
-Poți accesa anumite funcții din Soundscape cu ajutorul butoanelor de control media de pe căști. Această funcționalitate funcționează cu orice căști cu fir sau Bluetooth care au butoane de control media precum Redare, Pauză, Următorul, Anteriorul și altele. Diferitele căști pot include butoane diferite, așa că te rugăm să consulți lista de acțiuni de mai jos pentru a determina care sunt disponibile pentru tine.
+Nu toate căștile au toate cele trei butoane.
 
-## Când aș folosi această funcție?
+Butoanele controlează Soundscape doar când nicio altă aplicație nu redă sunet. Dacă asculți muzică sau un podcast, butoanele controlează acea aplicație.
 
-Butoanele de control media de pe căști pot fi folosite în timp ce Soundscape rulează — fie că folosești activ aplicația, fie că aceasta rulează în fundal, fie că dispozitivul tău este blocat. Totuși, butoanele de control media de pe căști nu vor funcționa cu Soundscape dacă redai conținut audio, precum muzică, podcasturi sau videoclipuri, cu altă aplicație.
+Butoanele pot funcționa în două feluri: *Mod original* sau *Meniu audio*. Pentru a alege, deschide meniul și selectează *Setări*, apoi *Controale media*.
 
-## Cum funcționează?
+## Mod original
 
-Există 2 moduri de operare pentru controalele media. Modul poate fi selectat în secțiunea *Controale media* din *Setări*. Modurile sunt:
+*Redare/pauză* dezactivează sunetul balizei. Apasă din nou pentru a auzi baliza.
 
- *Mod original*. 
+*Următorul* mută baliza la punctul de traseu următor când urmezi o rută. Altfel, anunță *În jurul meu*.
 
-⏯ Redare/Pauză: Comută sunetul balizei audio pornit/oprit. 
+*Anterior* mută baliza la punctul de traseu anterior când urmezi o rută. Altfel, schimbă *Detaliul anunțurilor*. Fiecare apăsare coboară un nivel: *Detaliat*, *Simplificat*, *Esențial*, apoi *Silențios*. Încă o apăsare revine la *Detaliat*. Soundscape spune numele noului nivel.
 
-⏭ Următorul: Dacă o rută este redată, mută baliza audio la punctul de traseu următor din rută. Dacă nicio rută nu este redată, anunță *În jurul meu*.
+## Meniu audio
 
-⏮ Anterior: Dacă o rută este redată, mută baliza audio la punctul de traseu anterior din rută. Dacă nicio rută nu este redată, schimbă *Detaliul anunțurilor*, cu un nivel mai discret la fiecare apăsare: *Detaliat*, *Simplificat*, *Esențial*, *Silențios*, apoi înapoi la *Detaliat*.
+Meniul audio îți oferă mai multe acțiuni cu aceleași trei butoane. Soundscape citește cu voce tare fiecare opțiune.
 
+*Următorul* trece la opțiunea următoare. După ultima opțiune revine la prima.
 
+*Redare/pauză* selectează opțiunea pe care tocmai ai auzit-o.
 
-*Meniu audio*. 
+*Anterior* schimbă *Detaliul anunțurilor*, la fel ca în *Mod original*.
 
-
-
-⏭ Următorul parcurge o serie de opțiuni dintr-un meniu pe care aplicația le descrie prin text în vorbire, revenind la prima după ultima. ⏯ Redare/Pauză declanșează apoi aplicația să execute opțiunea descrisă. Există un singur meniu de nivel superior care are doar submeniuri ca opțiuni. Fiecare submeniu conține un grup de acțiuni similare.
-
-⏮ Anterior nu parcurge meniul. În schimb, schimbă *Detaliul anunțurilor*, exact ca în modul original, astfel încât același buton face aplicația mai discretă în oricare dintre moduri.
+Meniul începe cu patru grupuri: *Ascultă împrejurimile*, *Control rută*, *Pornește ruta* și *Pornește baliza audio*. Selectează un grup pentru a-i auzi acțiunile. *Ascultă împrejurimile* și *Control rută* se termină cu *Meniu principal*, care te duce înapoi la cele patru grupuri.
 

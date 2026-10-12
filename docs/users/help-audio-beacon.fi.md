@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Äänimajakka
 
-## Mikä se on?
+Äänimajakka on ääni, joka kuuluu valitsemasi paikan suunnasta. Se kertoo, missä paikka on linnuntietä. Se ei anna käännös käännökseltä -ohjeita, joten valitset itse reittisi perille.
 
-Majakan asettaminen lähiympäristön kohteeseen mahdollistaa sen, että Soundscape voi pitää sinut ajan tasalla toistamalla ääntä, joka tulee kyseisen kohteen suunnasta. Tämä majakka voidaan hiljentää tai sen hiljentäminen poistaa aloitusnäytöllä. Lisäksi Soundscape näyttää tietoja sijainnista aloitusnäytöllä, mukaan lukien etäisyyden siihen ja sen katuosoitteen, jos se on tiedossa.
+## Majakan asettaminen
 
-## Milloin käyttäisin sitä?
+1. Etsi paikka. Käytä aloitusnäytön hakupalkkia tai kohtia *Lähiympäristön paikat*, *Merkitsimet* tai *Nykyinen sijainti*.
 
-Majakan määrittäminen on hyödyllistä, kun haluat seurata tuttua maamerkkiä samalla, kun tutustut uuteen alueeseen tai kun olet menossa jonnekin ja haluat tietoja ympäristöstäsi matkalla sinne. Majakkatoiminto ei anna käännösohjeita, vaan se antaa sinulle jatkuvasti kuuluvan äänen, joka kertoo sinulle majakan sijainnin suhteessa nykyiseen sijaintiisi. Äänimajakan, suunnistustaitojesi ja jopa suosikkinavigointisovelluksesi avulla voit itse valita, kuinka haluat päästä lähiympäristön sijainteihin.
+2. Valitse paikka, niin *Sijainnin tiedot* avautuu.
 
-## Kuinka se toimii?
+3. Valitse *Käynnistä äänimajakka*.
 
-**Majakan asettaminen :**
+Soundscape palaa aloitusnäyttöön ja majakka käynnistyy. Aloitusnäytössä näkyy paikan nimi ja etäisyys sinne.
 
- Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin seuraavista painikkeista: *Lähiympäristön paikat*, *Merkitsimet* tai *Nykyinen sijainti* ja valitsemalla haluamasi sijainti. Valitse sitten *Sijainnin tiedot* -näytöltä *Käynnistä äänimajakka* -painike. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt pääruudulla.
+## Suunnan löytäminen
 
-**Majakan poistaminen :**
+Majakan ääni muuttuu, kun olet kääntynyt paikkaa kohti tai kävelet suoraan sitä kohti. Löydät tämän äänen, kun pidät puhelinta vaakatasossa ja käännyt hitaasti. Voit valita majakalle toisen äänen kohdassa *Asetukset*.
 
- Paina aloitusnäytöllä yksinkertaisesti *Pysäytä reitti* -painiketta.
+## Majakan hiljentäminen
 
-**Äänimajakan hiljentäminen :**
+Valitse aloitusnäytöstä *Hiljennä majakka*. Soundscape kertoo edelleen liikkuessasi, kuinka kaukana paikka on. Valitse *Poista majakan hiljennys*, niin kuulet majakan taas.
 
- Napauta aloitusnäytöllä *Pysäytä reitti* -painikkeen vieressä olevaa *Hiljennä majakka* -painiketta.
+## Majakan poistaminen
+
+Valitse aloitusnäytöstä *Pysäytä reitti*. Painikkeella on tämä nimi silloinkin, kun majakka ei ole osa reittiä.
+
+## Kun saavut perille
+
+Kun olet noin 12 metrin päässä paikasta, Soundscape kertoo siitä ja poistaa majakan. Puhelin ei pysty määrittämään sijaintiasi sitä tarkemmin. Jos haluat kuulla majakan uudelleen, aseta se uudelleen.
+
+Majakka, joka asetetaan alle 30 metrin päässä olevaan paikkaan, pysyy päällä, kunnes poistat sen.
 

@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Avisos de veu automàtics
 
-## Què és?
+Mentre camines, Soundscape anuncia el que tens a prop. Sents cada nom des de la direcció del lloc. Els avisos de veu inclouen carrers, cruïlles, botigues, parades d'autobús, punts de referència i els teus marcadors.
 
-Soundscape et pot informar sobre les coses del teu voltant a mesura que t'hi acostes, anunciant el seu nom des de la direcció on es troben. L'aplicació ho farà automàticament per a tota mena de coses, com ara negocis, parades d'autobús i fins i tot cruïlles. Pots configurar què anuncia automàticament l'aplicació a la secció *Gestiona els avisos de veu* de la pantalla *Configuració*, i pots desactivar tots els avisos de veu quan vulguis que l'aplicació estigui en silenci.
+## Cruïlles
 
-## Quan l'hauria d'utilitzar?
+Quan t'acostes a una cruïlla, Soundscape anomena cada carrer que en surt. Sents quin carrer va a l'esquerra, quin continua recte i quin va a la dreta.
 
-**Explorant una zona nova:**
+## Quant sents
 
- Activa els avisos de veu automàtics i camina per escoltar informació sobre les diferents botigues, restaurants i similars a mesura que hi passes.
+Obre el menú i selecciona *Configuració* i després *Gestiona els avisos de veu*. *Detall dels avisos de veu* té quatre nivells.
 
-**Caminant cap a una ubicació específica:**
+*Detallat* anuncia tot el que hi ha a prop.
 
- Quan et dirigeixes cap a una ubicació concreta, els avisos de veu automàtics de cruïlles poden ser especialment útils. Els avisos de cruïlla t'informen sobre la disposició de les cruïlles a mesura que t'hi acostes, i confirmen el carrer en què ets quan les deixes enrere.
+*Simplificat* deixa de banda els camins menors i les vies de servei, i es repeteix menys.
 
-**Quan necessites silenci:**
+*Essencial* anuncia només carrers, cruïlles i punts de referència.
 
- Quan estàs a punt de creuar un carrer o simplement necessites que l'aplicació estigui en silenci, pots desactivar els avisos de veu. Quan els avisos de veu estan desactivats, l'aplicació només et donarà informació si toques manualment un dels botons *La meva ubicació*, *Marcadors propers*, *Al meu voltant* o *Davant meu*.
+*Silenciós* no fa cap avís de veu automàtic. Les balises, les rutes i els botons de la pantalla principal continuen funcionant.
 
-## Com funciona?
+## Què sents
 
-**Activar o desactivar els avisos de veu:**
+*Gestiona els avisos de veu* té dos paràmetres més. *Carrers i cruïlles* activa o desactiva els avisos de carrers i cruïlles. *Llocs per anunciar* tria quins tipus de lloc sents, com ara *Transport públic* o *Menjar i begudes*. Els teus marcadors s'anuncien sempre.
 
- Desactivar els avisos de veu silenciarà l'aplicació. Els avisos de veu es poden desactivar a la secció *Gestiona els avisos de veu* de la pantalla *Configuració*, posant *Detall dels avisos de veu* a *Silenciós*, i es tornen a activar triant qualsevol altre nivell. A l’iPhone pots fer el mateix demanant-ho al Siri, i a Android funcionarà igual amb el Gemini quan Google n’hi publiqui la compatibilitat. També pots fer que Soundscape sigui més discret pas a pas amb els botons de control multimèdia dels teus auriculars: cada pulsació d'*anterior* baixa un nivell per *Detallat*, *Simplificat*, *Essencial* i *Silenciós*, i una pulsació més torna a *Detallat*. Consulta el tema d'ajuda *Utilitzar els controls multimèdia*. Alternativament, pots utilitzar el botó *Repòs* a la cantonada superior dreta de la pantalla principal per aturar que Soundscape faci avisos de veu fins que el reactivis.
+## Fer que Soundscape parli menys
 
-**Gestionar quins avisos de veu escoltes:**
+Prem *anterior* als controls dels auriculars. Cada pulsació baixa un nivell: *Detallat*, *Simplificat*, *Essencial* i després *Silenciós*. Una pulsació més torna a *Detallat*. Consulta la pàgina d'ajuda *Utilitzar els controls multimèdia*.
 
- Per triar els tipus de coses que Soundscape anunciarà automàticament, ves a la pantalla *Configuració* utilitzant el menú de la pantalla *Principal*. A la secció *Gestiona els avisos de veu* de la pantalla *Configuració* és on tries quant diu l'aplicació amb *Detall dels avisos de veu*, si anuncia *Carrers i cruïlles* i quins són els *Llocs per anunciar*. Si vols desactivar tots els avisos de veu, posa *Detall dels avisos de veu* a *Silenciós*.
+## Aturar Soundscape una estona
+
+Selecciona el botó *Repòs* a la part superior de la pantalla principal. Soundscape deixa de fer servir la teva ubicació i no fa cap so fins que selecciones *Desperta ara*. O selecciona *Desperta en sortir*, i Soundscape es desperta quan surts del lloc on ets.
+
+## En un vehicle o en tren
+
+Soundscape detecta quan et desplaces a la velocitat d'un vehicle. Llavors deixa d'anunciar les cruïlles i les botigues properes, perquè passen massa de pressa. En canvi, anuncia la via per on vas, els punts de referència, les parades i estacions, els rius i els túnels.
 

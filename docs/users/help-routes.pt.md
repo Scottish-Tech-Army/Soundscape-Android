@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Rotas
 
-## O que é?
+Uma rota é uma lista de locais, chamados pontos de passagem, que visita por ordem. O Soundscape define um sinal no primeiro ponto de passagem. Quando chega, avisa e move o sinal para o seguinte.
 
-As rotas são uma série de pontos de passagem. Será informado quando chegar a cada ponto de passagem e o Sinal de Áudio avançará automaticamente para o ponto de passagem seguinte.
+Use uma rota para aprender um percurso novo, ou para não se desviar num que já conhece.
 
-## Quando devo utilizá-lo?
+## Criar uma Rota
 
-Poderá pretender criar e utilizar uma rota num local que já conhece, para o ajudar a manter‑se no caminho certo. Ou poderá querer usar uma rota para o ajudar a aprender um percurso novo.
+1. Selecione *Rotas* no ecrã principal e depois selecione *Novo*.
 
-## Como funciona?
+2. Dê um nome à rota. Pode adicionar uma descrição.
 
-**Criar uma rota :**
+3. Selecione *Adicionar Pontos de Passagem* e escolha marcos. Também pode adicionar a sua localização atual ou um local nas proximidades.
 
- Selecione *Rotas* no ecrã principal e, em seguida, selecione o botão *Novo* no canto superior direito do ecrã. Atribua um nome e uma descrição opcional à rota e, em seguida, adicione pontos de passagem durante o percurso ou selecione-os na lista de Marcos. É possível reordenar a lista de pontos de passagem numa rota a qualquer momento editando a rota.
+4. Selecione *OK*.
 
-**Editar uma rota :**
+## Seguir uma Rota
 
- Selecione a sua rota no ecrã *Rotas* e, em seguida, selecione *Editar Rota*. A partir daqui pode adicionar e remover pontos de passagem, bem como editar o nome e a descrição da rota.
+Selecione a rota no ecrã *Rotas* e depois selecione *Iniciar Rota*. Para a seguir no sentido contrário, selecione *Iniciar Rota em Sentido Inverso*. No ecrã principal, *Ponto de Passagem Seguinte* e *Ponto de Passagem Anterior* movem o sinal ao longo da rota. *Parar Rota* termina-a.
 
-**Partilhar uma rota :**
+## Alterar uma Rota
 
-Selecione a sua rota no ecrã *«Rotas»* e, em seguida, selecione a opção *«Partilhar»* utilizando as opções de partilha habituais disponíveis.
+Selecione a rota no ecrã *Rotas* e depois selecione *Editar Rota*. Pode adicionar, remover e reordenar pontos de passagem, alterar o nome e a descrição, ou eliminar a rota.
+
+## Partilhar uma Rota
+
+Selecione a rota no ecrã *Rotas* e depois selecione *Partilhar*.
 

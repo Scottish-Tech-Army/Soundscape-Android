@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Sfaturi
 
-Poți găsi stațiile de autobuz din apropiere selectând filtrul *Transport public* în lista *Locuri din apropiere*.
+Pentru a găsi stațiile de autobuz din apropiere, selectează *Locuri din apropiere* și alege *Transport public*.
 
-Poți seta o baliză pe orice adresă. Din ecranul principal, caută adresa folosind bara de căutare. Apoi selectează adresa în rezultatele căutării pentru a deschide ecranul *Detalii locație*. Acest ecran are opțiunea *Pornește baliza audio* pentru acea adresă. În acest fel, poți seta o baliză pe afaceri, locuri, puncte de interes și locuințe care nu se regăsesc în OpenStreetMap.
+Dacă iei des același autobuz, salvează-ți stațiile ca marcaje. Setează o baliză pe stația la care cobori, iar Soundscape îți spune cât de departe este în timpul călătoriei.
 
-Dacă circuli regulat pe o linie de autobuz, salvează stațiile la care urci și cobori ca marcaje. Astfel vor fi salvate și le vei găsi ușor. Selectează *Marcaje* pe ecranul principal pentru a le găsi. Poți seta o baliză pe ele pentru a primi actualizări periodice despre cât de aproape ești de stația la care trebuie să cobori. Notă: poți dezactiva sunetul ritmic și vei primi în continuare actualizări despre distanță pe parcurs.
+Poți dezactiva sunetul balizei și să auzi în continuare cât de departe este locul. Soundscape spune distanța din când în când, pe măsură ce te deplasezi.
 
-Dacă îți pui telefonul în buzunar și te oprești din mers, sunetul balizei devine mai silențios deoarece Soundscape nu poate determina în ce direcție ești orientat. Pentru a rezolva, începe să mergi din nou sau scoate telefonul și ține-l orizontal.
+Pentru a explora un loc înainte să mergi acolo, deschide *Detalii locație* pentru acel loc și selectează *Simulare locație*. Soundscape se comportă atunci ca și cum ai fi acolo.
 
-Soundscape funcționează cel mai bine când ții telefonul orizontal, cu ecranul orientat spre cer și cu partea de sus a telefonului îndreptată în direcția opusă ție.
-
-Poți activa și dezactiva sunetul ritmic al balizei folosind butonul de dezactivare a sunetului de pe ecranul principal. Dacă sunetul balizei este dezactivat, vei primi în continuare actualizări despre distanța până la destinație aproximativ la fiecare 50 de metri.
-
-Pentru a continua să folosești Soundscape fără să auzi anunțuri automate, setează *Detaliul anunțurilor* pe *Silențios* în secțiunea *Gestionare anunțuri* a ecranului *Setări*, accesând meniul. Dacă nu vei folosi Soundscape pentru o perioadă, poți în schimb să îl pui în modul Repaus sau Amânare utilizând butonul *Repaus* de pe ecranul principal.
+Pentru indicații pas cu pas, deschide *Detalii locație* pentru un loc și selectează *Deschide în aplicația de hărți*. Soundscape continuă să ruleze în timp ce cealaltă aplicație dă indicații.
 

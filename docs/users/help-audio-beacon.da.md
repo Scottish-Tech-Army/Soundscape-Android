@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Lydfyr
 
-## Hvad er det?
+Et lydfyr er en lyd, der kommer fra retningen af et sted, du vælger. Det fortæller dig, hvor stedet ligger i lige linje. Det giver ikke rutevejledning sving for sving, så du vælger selv vejen derhen.
 
-Hvis du indstiller et lydfyr på et sted i nærheden, kan Soundscape holde dig informeret ved at afspille en lyd, der kommer fra retningen af det pågældende sted. Dette lydfyr kan slås til eller fra på startskærmen. Derudover viser Soundscape oplysninger om placeringen på startskærmen, herunder afstanden til den og dens adresse, hvis den er kendt.
+## Sådan sætter du et lydfyr
 
-## Hvornår ville jeg bruge det?
+1. Find stedet. Brug søgefeltet, *Steder i nærheden*, *Mærker* eller *Aktuel placering* på startskærmen.
 
-Det er nyttigt at sætte et lydfyr, når du vil holde styr på et velkendt landemærke, når du udforsker et nyt område, eller når du skal et sted hen og vil have oplysninger om dine omgivelser undervejs. Lydfyrfunktionen giver dig ikke trinvise anvisninger, men den giver dig en kontinuerlig hørbar lyd, der fortæller dig retningen til lydfyret i forhold til, hvor du befinder dig i øjeblikket. Ved hjælp af lydfyret og dine eksisterende færdigheder til at finde vej og måske din foretrukne navigationsapp kan du selv vælge, hvordan du vil komme til steder i nærheden.
+2. Vælg stedet for at åbne *Oplysninger om placering*.
 
-## Hvordan virker det?
+3. Vælg *Start lydfyr*.
 
-**For at sætte et lydfyr:**
+Soundscape går tilbage til startskærmen, og lydfyret starter. Startskærmen viser stedets navn, og hvor langt væk det er.
 
- Først skal du se oplysningerne for en placering ved enten at søge efter et sted i søgefeltet eller ved at trykke på en af knapperne *Steder i nærheden*, *Mærker* eller *Aktuel placering* og vælge en placering. Vælg derefter knappen *Start lydfyr* på skærmen *Oplysninger om placering*. Når du trykker på denne, vender du tilbage til startskærmen, og et hørbart lydfyr fra den valgte placering tændes. Navnet på stedet samt dets afstand og fysiske adresse, hvis tilgængelig, vises nu på hovedskærmen.
+## Find retningen
 
-**For at fjerne det aktuelle lydfyr:**
+Lydfyret skifter lyd, når du vender mod stedet eller går lige mod det. For at finde den lyd skal du holde telefonen fladt og dreje dig langsomt. Du kan vælge en anden lyd til lydfyret i *Indstillinger*.
 
- Tryk blot på knappen *Stop rute* på startskærmen.
+## Slå lydfyrets lyd fra
 
-**For at slå det hørbare lydfyr fra:**
+Vælg *Slå lydfyr fra* på startskærmen. Soundscape fortæller dig stadig, hvor langt væk stedet er, mens du bevæger dig. Vælg *Slå lydfyr til* for at høre lydfyret igen.
 
- Tryk på knappen *Slå lydfyr fra* ved siden af knappen *Stop rute* på startskærmen.
+## Fjern lydfyret
+
+Vælg *Stop rute* på startskærmen. Knappen hedder sådan, også når lydfyret ikke er en del af en rute.
+
+## Når du ankommer
+
+Når du er cirka 12 meter fra stedet, fortæller Soundscape dig det og fjerner lydfyret. Telefonen kan ikke finde din position mere præcist end det. Hvis du vil høre lydfyret igen, skal du sætte det igen.
+
+Et lydfyr, der sættes på et sted mindre end 30 meter væk, bliver ved, indtil du fjerner det.
 

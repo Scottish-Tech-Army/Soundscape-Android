@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Markeringen
 
-Met Soundscape kunt u uw wereld markeren en alles wat u belangrijk vindt, zoals pinnen op een kaart.
+Een markering is een plaats die u hebt opgeslagen. Dat kan elke plaats zijn die voor u belangrijk is: uw huis, een bushalte, de ingang van een gebouw of een oversteekplaats.
 
-U kunt plaatsen markeren die persoonlijk en belangrijk voor u zijn, zoals uw huis, uw werkplek of uw favoriete supermarkt. U kunt elke plaats of elk adres markeren, en ook dingen die normaal gesproken niet op kaarten staan, bijvoorbeeld: ingangen van gebouwen of parken, drukknoppen bij oversteekplaatsen, zebrapaden, bruggen, bushaltes of zelfs de favoriete boom van uw hond. Gebruik deze markeringen als referentie tijdens uw wandeling.
+Soundscape kondigt uw markeringen aan wanneer u erlangs komt. U kunt een audiobaken op een markering instellen, haar aan een route toevoegen of de dichtstbijzijnde horen met de knop *Markeringen in de buurt*.
 
-Om gemarkeerde plaatsen te ervaren, kondigt Soundscape automatisch gemarkeerde plaatsen aan terwijl u erlangs loopt of ze nadert, of u kunt de knop *Markeringen in de buurt* onderaan het hoofdscherm gebruiken om ruimtelijke aankondigingen te horen van gemarkeerde plaatsen om u heen. U kunt zelfs op elke gemarkeerde plaats een audiobaken instellen. Wanneer u dat doet, hoort u het voor u bekende Soundscape‑audiobaken en kunt u het zoals gebruikelijk bedienen.
+## Markeringen maken
+
+1. Selecteer *Markeringen* op het startscherm en selecteer dan *Nieuw*.
+
+2. Kies *Huidige locatie*, of een plaats uit *Plaatsen in de buurt*.
+
+3. Wijzig de naam als u wilt, en voeg aantekeningen toe. Soundscape leest de aantekeningen voor bij de markering.
+
+4. Selecteer *Gereed*.
+
+U kunt ook elke plaats opslaan die u vindt. Open de *Locatiedetails* van de plaats en selecteer *Opslaan als markering*.
+
+## Markeringen aanpassen
+
+Selecteer de markering op het scherm *Markeringen* en selecteer dan *Markering bewerken*. U kunt de naam, de aantekeningen en de positie wijzigen, of *Markering verwijderen* selecteren. Als u een markering verwijdert, verdwijnt die ook uit uw routes.
 

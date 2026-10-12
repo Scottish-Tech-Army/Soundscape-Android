@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Ses Seçenekleri
 
-Soundscape, Android telefonunuza Metinden Sese çıkış ayarlarında indirdiğiniz herhangi bir sesi kullanabilir. Soundscape uygulaması içinde varsayılan Android sesinden farklı bir ses seçmek için ana menüden *Ayarlar*'a gidin, *Ses* bölümünü genişletin ve ardından *Ses Seçenekleri*'ni seçin.
+Soundscape telefonunuzda yüklü olan herhangi bir sesi kullanabilir. Ses eklemek için telefonunuzun ayarlarını açın ve *Metin okuma çıkışı* bölümünü bulun. Soundscape içinde bir ses seçmek için menüyü açın ve *Ayarlar*, sonra *Ses*, sonra *Ses Seçenekleri* seçeneğini seçin.
 

@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Saját helyzetem
 
-## Mi ez?
+A *Saját helyzetem* megmondja, hol van. Elmondja, merre néz vagy merre halad, majd az utcát vagy a címet, ahol van. Használja, amikor leszáll egy buszról, kilép egy épületből, vagy elveszíti a tájékozódást.
 
-A *Saját helyzetem* gomb gyorsan olyan információkat ad, amelyek segítenek kideríteni, hol tartózkodik éppen. A *Saját helyzetem* tájékoztatja a jelenlegi helyéről, például arról, hogy merre néz, hol vannak a közeli utak vagy kereszteződések, és hol találhatók a közeli érdekes helyek.
-
-## Mikor használnám?
-
-*Saját helyzetem* akkor hasznos, ha ki kell derítenie, hol van, vagy hogy melyik égtáj felé néz.
-
-## Hogyan működik?
-
-Mint a kezdőképernyő alján található mind a négy gomb esetében, tartsa a telefonját vízszintesen (a képernyővel az ég felé), és a telefon teteje mutasson abba az irányba, amerre néz, mielőtt megnyomja a *Saját helyzetem* gombot. Ez iránytűként működik, és megmondja az alkalmazásnak, merre néz. Egyszerűen koppintson a *Saját helyzetem* gombra, és hallgassa meg.
+Ha egy helyben áll, először fordítsa a telefon felső szélét abba az irányba, amerre néz. Ha a telefon zárolva van, vagy a Soundscape nincs a képernyőn, tartsa a telefont vízszintesen is.
 

@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Itinéraires
 
-## De quoi s’agit-il ?
+Un itinéraire est une liste de lieux, appelés étapes, que vous parcourez dans l’ordre. Soundscape place une balise sur la première étape. Quand vous arrivez, il vous le dit et déplace la balise vers l’étape suivante.
 
-Un itinéraire correspond à une série d’étapes. Vous êtes informé quand vous arrivez à chaque étape, et la balise sonore avance automatiquement jusqu’à l’étape suivante.
+Utilisez un itinéraire pour apprendre un nouveau trajet, ou pour ne pas vous écarter d’un trajet que vous connaissez.
 
-## Quand l’utiliser ?
+## Créer un itinéraire
 
-Vous pouvez créer et utiliser un itinéraire dans un endroit que vous connaissez déjà, pour vous aider à rester sur la bonne voie. Ou vous pouvez utiliser un itinéraire pour vous aider à apprendre un nouveau trajet.
+1. Sélectionnez *Itinéraires* sur l’écran d’accueil, puis *Nouveau*.
 
-## Comment ça fonctionne ?
+2. Donnez un nom à l’itinéraire. Vous pouvez ajouter une description.
 
-**Création d’un itinéraire :**
+3. Sélectionnez *Ajouter des étapes* et choisissez des marqueurs. Vous pouvez aussi ajouter votre emplacement actuel ou un lieu à proximité.
 
- Tout d’abord, sélectionnez *Itinéraires* sur l’écran d’accueil, puis sélectionnez le bouton *Nouveau* dans le coin supérieur droit de l’écran. Donnez à l’itinéraire un nom et une description facultative, puis ajoutez des étapes à mesure que vous vous déplacez ou choisissez-les dans votre liste de marqueurs. Vous pouvez réorganiser l’ordre des étapes sur un itinéraire à tout moment en modifiant l’itinéraire.
+4. Sélectionnez *Terminé*.
 
-**Modification d’un itinéraire :**
+## Suivre un itinéraire
 
-Sélectionnez votre itinéraire sur l’écran *Itinéraires* puis choisissez *Modifier l’itinéraire*. À partir d’ici, vous pouvez ajouter ou supprimer des étapes, ainsi que modifier le nom et la description de l’itinéraire.
+Sélectionnez l’itinéraire sur l’écran *Itinéraires*, puis sélectionnez *Démarrer l’itinéraire*. Pour le suivre dans l’autre sens, sélectionnez *Démarrer l’itinéraire en sens inverse*. Sur l’écran d’accueil, *Étape suivante* et *Étape précédente* déplacent la balise le long de l’itinéraire. *Arrêter l’itinéraire* y met fin.
 
-**Partage d’un itinéraire :**
+## Modifier un itinéraire
 
- Sélectionnez votre itinéraire sur l’écran *Itinéraires* puis sélectionnez l’option *Partager* en utilisant les options de partage habituelles à votre disposition.
+Sélectionnez l’itinéraire sur l’écran *Itinéraires*, puis sélectionnez *Modifier l’itinéraire*. Vous pouvez ajouter, retirer et réordonner des étapes, changer le nom et la description, ou supprimer l’itinéraire.
+
+## Partager un itinéraire
+
+Sélectionnez l’itinéraire sur l’écran *Itinéraires*, puis sélectionnez *Partager*.
 

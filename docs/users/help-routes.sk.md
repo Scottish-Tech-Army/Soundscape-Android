@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Trasy
 
-## Čo to je?
+Trasa je zoznam miest, ktoré sa nazývajú body trasy a ktoré navštevujete po poradí. Soundscape nastaví maják na prvý bod trasy. Keď dorazíte, povie vám to a presunie maják na ďalší.
 
-Trasy sú séria bodov trasy. Pri príchode ku každému bodu trasy budete informovaní a zvukový maják automaticky prejde na ďalší bod trasy.
+Trasu použite, keď sa učíte novú cestu alebo sa chcete udržať na ceste, ktorú poznáte.
 
-## Kedy to použiť?
+## Vytvorenie trasy
 
-Trasu si možno budete chcieť vytvoriť a použiť na mieste, ktoré už poznáte, aby ste sa držali správnej cesty. Alebo môžete trasu použiť na to, aby ste sa naučili novú cestu.
+1. Na domovskej obrazovke vyberte *Trasy* a potom vyberte *Nová*.
 
-## Ako to funguje?
+2. Dajte trase názov. Môžete pridať popis.
 
-**Vytvorenie trasy:**
+3. Vyberte *Pridať body trasy* a zvoľte značky. Môžete pridať aj svoju aktuálnu polohu alebo miesto v okolí.
 
- Najprv na domovskej obrazovke vyberte *Trasy* a potom tlačidlo *Nová* v pravom hornom rohu obrazovky. Zadajte názov trasy a voliteľný popis, a potom priebežne pridávajte body trasy alebo ich vyberte zo svojho zoznamu značiek. Poradie bodov na trase môžete kedykoľvek zmeniť úpravou trasy.
+4. Vyberte *Hotovo*.
 
-**Úprava trasy:**
+## Prechádzanie trasy
 
- Vyberte svoju trasu na obrazovke *Trasy* a potom vyberte *Upraviť trasu*. Odtiaľto môžete pridávať a odstraňovať body trasy, ako aj upravovať názov a popis trasy.
+Vyberte trasu na obrazovke *Trasy* a potom vyberte *Spustiť trasu*. Ak ju chcete prejsť opačným smerom, vyberte *Spustiť trasu opačným smerom*. Na domovskej obrazovke presúvajú *Ďalší bod trasy* a *Predchádzajúci bod trasy* maják po trase. *Zastaviť trasu* ju ukončí.
 
-**Zdieľanie trasy:**
+## Zmena trasy
 
- Vyberte svoju trasu na obrazovke *Trasy* a potom vyberte možnosť *Zdieľať* pomocou ktorejkoľvek z bežných možností zdieľania, ktoré máte k dispozícii.
+Vyberte trasu na obrazovke *Trasy* a potom vyberte *Upraviť trasu*. Môžete pridávať a odstraňovať body trasy a meniť ich poradie, zmeniť názov a popis alebo trasu odstrániť.
+
+## Zdieľanie trasy
+
+Vyberte trasu na obrazovke *Trasy* a potom vyberte *Zdieľať*.
 

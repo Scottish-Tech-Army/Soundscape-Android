@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatiska informationsljud
 
-## Vad är det?
+När du går läser Soundscape upp det som finns i närheten. Du hör varje namn från platsens riktning. Informationsljuden gäller gator, vägkorsningar, butiker, busshållplatser, landmärken och dina egna platsmarkörer.
 
-Soundscape kan berätta om saker i din omgivning när du närmar dig dem genom att läsa upp deras namn från den riktning där de befinner sig. Appen gör detta automatiskt för många olika typer av objekt, till exempel företag, busshållplatser och till och med vägkorsningar. Du kan konfigurera vad appen automatiskt läser upp i *Hantera informationsljud*-avsnittet på skärmen *Inställningar*, och du kan stänga av alla informationsljud när du vill att appen ska vara tyst.
+## Vägkorsningar
 
-## När ska jag använda det?
+När du närmar dig en vägkorsning nämner Soundscape varje väg som går ut från den. Du hör vilken väg som går åt vänster, vilken som fortsätter rakt fram och vilken som går åt höger.
 
-**Utforska ett nytt område**:
+## Hur mycket du hör
 
- Aktivera automatiska informationsljud om du vill höra om olika butiker, restauranger och annat medan du passerar dem.
+Öppna menyn och välj *Inställningar* och sedan *Hantera informationsljud*. *Detaljnivå för informationsljud* har fyra nivåer.
 
-**Gå till en viss plats**:
+*Detaljerad* läser upp allt i närheten.
 
- När du är på väg till en viss plats kan det vara användbart med automatiska informationsljud för vägkorsningar. Sådana informationsljud berättar om vilka vägar som finns i vägkorsningen medan du närmar dig, och berättar vilken väg du går på när du lämnat korsningen.
+*Förenklad* hoppar över mindre stigar och servicevägar och upprepar sig mindre.
 
-**När du vill att det ska vara tyst**:
+*Grundläggande* läser bara upp gator, vägkorsningar och landmärken.
 
- När du ska korsa en väg eller bara vill att appen ska vara tyst kan du inaktivera informationsljuden. När de är inaktiverade får du bara information från appen om du manuellt trycker på någon av knapparna *”Min plats”*, *”Platsmarkörer i närheten”*, *”Omkring mig”* eller *”Framför mig”*.
+*Tyst* ger inga automatiska informationsljud. Ljudfyrar, rutter och knapparna på startskärmen fungerar fortfarande.
 
-## Hur fungerar det?
+## Vad du hör
 
-**Aktivera eller inaktivera informationsljud:**
+*Hantera informationsljud* har två inställningar till. *Gator och vägkorsningar* slår på eller av informationsljud för gator och vägkorsningar. *Platser att läsa upp* väljer vilka typer av platser du hör, till exempel *Kollektivtrafik* eller *Mat och dryck*. Dina platsmarkörer läses alltid upp.
 
- Att stänga av informationsljuden gör appen tyst. Du kan stänga av informationsljuden i avsnittet *Hantera informationsljud* på skärmen *Inställningar* genom att ställa in *Detaljnivå för informationsljud* på *Tyst*, och slå på dem igen genom att välja vilken annan nivå som helst. På iPhone kan du göra samma sak genom att be Siri om det, och på Android kommer samma sak att fungera via Gemini när Google släpper stöd för det. Du kan också göra Soundscape tystare ett steg i taget med mediereglageknapparna på dina hörlurar: varje tryck på *föregående* går ett steg nedåt genom *Detaljerad*, *Förenklad*, *Grundläggande* och *Tyst*, och ytterligare ett tryck går tillbaka till *Detaljerad*. Se hjälpavsnittet *Använda mediereglage*. Alternativt kan du använda knappen *Inaktivera* uppe till höger på startskärmen för att förhindra att Soundscape spelar upp informationsljud tills du väcker appen.
+## Göra Soundscape tystare
 
-**Hantera vilka informationsljud du hör:**
+Tryck på *föregående* på hörlurarnas reglage. Varje tryck går en nivå tystare: *Detaljerad*, *Förenklad*, *Grundläggande* och sedan *Tyst*. Ett tryck till går tillbaka till *Detaljerad*. Se hjälpsidan *Använda mediereglage*.
 
- För att välja vilka typer av saker Soundscape automatiskt ska läsa upp, gå till skärmen *Inställningar* via menyn på skärmen *Start*. I avsnittet *Hantera informationsljud* på skärmen *Inställningar* väljer du hur mycket appen säger med *Detaljnivå för informationsljud*, om den läser upp *Gator och vägkorsningar* och vilka *Platser att läsa upp* som gäller. Om du vill stänga av alla informationsljud ställer du in *Detaljnivå för informationsljud* på *Tyst*.
+## Stoppa Soundscape en stund
+
+Välj knappen *Inaktivera* högst upp på startskärmen. Soundscape slutar använda din plats och är tyst tills du väljer *Aktivera nu*. Eller välj *Väck Soundscape när jag lämnar*, så vaknar Soundscape när du lämnar platsen där du är.
+
+## I ett fordon eller på ett tåg
+
+Soundscape märker när du färdas i fordonsfart. Då slutar appen läsa upp vägkorsningar och butiker i närheten, eftersom de passerar för fort. I stället läser den upp vägen du är på, landmärken, hållplatser och stationer, floder och tunnlar.
 

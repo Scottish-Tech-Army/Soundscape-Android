@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Jelölők
 
-A Soundscape segítségével megjelölheti a világát és mindent, ami fontos Önnek, mint a térképeken elhelyezett tűk.
+A jelölő egy Ön által elmentett hely. Bármilyen hely lehet, amely fontos Önnek: az otthona, egy buszmegálló, egy épület bejárata vagy egy gyalogátkelő.
 
-Megjelölheti azokat a helyeket, amelyek személyesek és fontosak az Ön számára, például az otthonát, a munkahelyét vagy a kedvenc élelmiszerboltját. Bármely helyet vagy címet megjelölhet, és olyan dolgokat is, amelyek általában nem szerepelnek a térképeken, például: épületek vagy parkok bejáratait, gyalogosjelző-nyomógombokat, gyalogátkelőhelyeket, hidakat, buszmegállókat, vagy akár a kutyája kedvenc fáját. Használja ezeket a jelöléseket referenciapontként a sétái során.
+A Soundscape bemondja a jelölőit, amikor elhalad mellettük. Beállíthat irányjelző hangot egy jelölőre, hozzáadhatja egy útvonalhoz, vagy a *Közeli jelölők* gombbal meghallgathatja a legközelebbieket.
 
-A megjelölt helyek megtapasztalásához a Soundscape automatikusan bemondja a megjelölt helyeket, amint elhalad mellettük vagy közeledik hozzájuk, de használhatja a *Közeli jelölők* gombot is a kezdőképernyő alján, hogy térbeli bemondást halljon az Ön körüli megjelölt helyekről. Akár bármely megjelölt helyre is beállíthat irányjelző hangot. Ha ezt teszi, a jól ismert Soundscape irányjelző hangot fogja hallani, és a szokásos módon kezelheti azt.
+## Jelölők létrehozása
+
+1. A kezdőképernyőn válassza a *Jelölők*, majd az *Új* lehetőséget.
+
+2. Válassza a *Jelenlegi hely* lehetőséget, vagy egy helyet a *Közeli helyek* közül.
+
+3. Ha szeretné, módosítsa a nevet, és adjon hozzá jegyzeteket. A Soundscape a jelölővel együtt felolvassa a jegyzeteket.
+
+4. Válassza a *Kész* lehetőséget.
+
+Bármelyik megtalált helyet is elmentheti. Nyissa meg a *Helyszín adatai* képernyőt, és válassza a *Mentés jelölőként* lehetőséget.
+
+## Jelölők testreszabása
+
+Válassza ki a jelölőt a *Jelölők* képernyőn, majd válassza a *Jelölő szerkesztése* lehetőséget. Módosíthatja a nevét, a jegyzeteit és a helyzetét, vagy választhatja a *Jelölő törlése* lehetőséget. A jelölő törlése az útvonalaiból is eltávolítja azt.
 

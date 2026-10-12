@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Előttem
 
-## Mi ez?
+Az *Előttem* legfeljebb öt, Ön előtt lévő helyet mond be. Mindegyiket a saját irányából hallja, a távolságával együtt. Használja olyan utcán, amelyet nem ismer, hogy megtudja, mi következik.
 
-Az *Előttem* gomb legfeljebb öt, Ön előtt található dologról tájékoztat. Az *Előttem* célja, hogy segítsen felfedezni az Ön előtt lévő utat, amikor egy új területet ismer meg.
-
-## Mikor használnám?
-
-Amikor az utcán sétál, próbálja ki az *Előttem* funkciót, hogy felfedezze az utca mindkét oldalán, Ön előtt található helyeket és dolgokat.
-
-## Hogyan működik?
-
-Mint a kezdőképernyő alján található mind a négy gomb esetében, tartsa a telefonját vízszintesen (a képernyővel az ég felé), és a telefon teteje mutasson abba az irányba, amerre néz, mielőtt megnyomja az *Előttem* gombot. Ez iránytűként működik, és megmondja az alkalmazásnak, merre néz. Egyszerűen koppintson az *Előttem* gombra, és több, nagyjából Ön előtt található érdekes helyet fog hallani.
+Ha egy helyben áll, először fordítsa a telefon felső szélét abba az irányba, amerre néz. Ha a telefon zárolva van, vagy a Soundscape nincs a képernyőn, tartsa a telefont vízszintesen is.
 

@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Moja lokacija
 
-## Kaj je to?
+*Moja lokacija* vam pove, kje ste. Pove, v katero smer gledate ali se gibljete, nato pa ulico ali naslov, kjer ste. Uporabite jo, ko izstopite iz avtobusa, zapustite stavbo ali izgubite orientacijo.
 
-Gumb *Moja lokacija* vam hitro poda podatke, ki vam pomagajo ugotoviti, kje trenutno ste. *Moja lokacija* vam pove o vaši trenutni lokaciji, vključno s smerjo, v katero ste obrnjeni, kje so bližnje ceste ali križišča in kje so bližnje zanimivosti.
-
-## Kdaj naj to uporabim?
-
-*Moja lokacija* je uporabna, kadar morate ugotoviti, kje ste, ali v katero smer neba ste obrnjeni.
-
-## Kako deluje?
-
-Kot pri vseh štirih gumbih na dnu domačega zaslona telefon držite tako, da je zaslon vodoraven (obrnjen proti nebu), vrh telefona pa naj kaže v smer, v katero ste obrnjeni, preden pritisnete gumb *Moja lokacija*. To deluje kot kompas, ki aplikaciji pove, v katero smer ste obrnjeni. Preprosto tapnite gumb *Moja lokacija* in poslušajte.
+Če stojite na mestu, najprej usmerite zgornji rob telefona v smer, v katero gledate. Če je telefon zaklenjen ali Soundscape ni na zaslonu, držite telefon tudi vodoravno.
 

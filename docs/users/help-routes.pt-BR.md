@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Rotas
 
-## O que é?
+Uma rota é uma lista de locais, chamados localizadores, que você visita em ordem. O Soundscape define um sinalizador no primeiro localizador. Quando você chega, ele avisa e move o sinalizador para o próximo.
 
-As rotas são compostas por uma série de localizadores. Você será informado toda vez que chegar a um localizador, e o Sinalizador Sonoro avançará automaticamente para o localizador seguinte.
+Use uma rota para aprender um trajeto novo, ou para não sair do caminho em um que você já conhece.
 
-## Quando eu o usaria?
+## Criar uma Rota
 
-Talvez você queira criar e usar uma rota em um lugar que já conhece, para ajudar a se manter no caminho certo. Ou talvez queira usar uma rota para aprender um trajeto novo.
+1. Selecione *Rotas* na tela inicial e depois selecione *Novo*.
 
-## Como ele funciona?
+2. Dê um nome à rota. Você pode adicionar uma descrição.
 
-**Criando uma rota**:
+3. Selecione *Adicionar Localizadores* e escolha favoritos. Você também pode adicionar a sua localização atual ou um lugar próximo.
 
- Primeiro, selecione *Rotas* na tela inicial e, em seguida, o botão *Novo* no canto superior direito da tela. Dê um nome à rota e forneça uma descrição opcional. Adicione localizadores conforme avança ou escolha-os em uma lista de Favoritos. Você pode reorganizar a ordem dos localizadores ao longo da rota quando quiser. Basta editar a rota.
+4. Selecione *Concluído*.
 
-**Editando uma rota :**
+## Seguir uma Rota
 
- Selecione sua rota na tela *Rotas* e então selecione *Editar Rota*. A partir daqui, você pode adicionar e remover localizadores, além de editar o nome e a descrição da rota.
+Selecione a rota na tela *Rotas* e depois selecione *Iniciar Rota*. Para segui-la no sentido contrário, selecione *Iniciar Rota em Ordem Inversa*. Na tela inicial, *Próximo Localizador* e *Localizador Anterior* movem o sinalizador ao longo da rota. *Interromper Rota* encerra a rota.
 
-**Compartilhando uma rota:**
+## Alterar uma Rota
 
-Selecione sua rota na tela *“Rotas”* e então selecione a opção *“Compartilhar”* usando todas as opções de compartilhamento usuais disponíveis.
+Selecione a rota na tela *Rotas* e depois selecione *Editar Rota*. Você pode adicionar, remover e reordenar localizadores, mudar o nome e a descrição, ou excluir a rota.
+
+## Compartilhar uma Rota
+
+Selecione a rota na tela *Rotas* e depois selecione *Compartilhar*.
 

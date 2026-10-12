@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Nálæg merki
 
-## Hvað er það?
+*Nálæg merki* tilkynnir allt að fjögur af merkjunum þínum, þau sem eru næst þér. Þú heyrir hvert þeirra úr sinni átt, með fjarlægðinni. Notaðu það til að átta þig út frá stöðum sem þú þekkir nú þegar. Merkjum sem eru í meira en um 2 kílómetra fjarlægð er sleppt.
 
-Hnappurinn *Nálæg merki* segir þér frá allt að fjórum merkjum sem eru næst þér. *Nálæg merki* er ætlað að hjálpa þér að átta þig á aðstæðum með því að nota staði sem þú þekkir nú þegar.
-
-## Hvenær ætti að nota það?
-
-Þegar þú ert að reyna að átta þig á umhverfinu skaltu nota *Nálæg merki* til að heyra hvar staðir sem þú þekkir eru.
-
-## Hvernig virkar það?
-
-Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn upp að himni) og toppinn á símanum í þá átt sem þú snýrð, áður en þú ýtir á *Nálæg merki* hnappinn. Þetta virkar eins og áttaviti. Ýttu einfaldlega á hnappinn og þú heyrir allt að fjögur merki nálægt þér.
+Ef þú stendur kyrr skaltu fyrst beina efri brún símans í þá átt sem þú snýrð. Ef síminn er læstur, eða Soundscape er ekki á skjánum, skaltu líka halda símanum flötum.
 

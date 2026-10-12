@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Používanie ovládacích prvkov médií
 
-## Čo to je?
+Soundscape môžete ovládať tlačidlami médií na slúchadlách: *prehrať/pozastaviť*, *ďalej* a *predchádzajúce*. Funguje to s káblovými slúchadlami aj so slúchadlami Bluetooth. Funguje to aj vtedy, keď je Soundscape na pozadí alebo je telefón zamknutý.
 
-K niektorým funkciám aplikácie Soundscape sa môžete dostať pomocou tlačidiel na ovládanie médií na vašich slúchadlách. Táto funkcia funguje s akýmikoľvek káblovými alebo Bluetooth slúchadlami, ktoré majú tlačidlá na ovládanie médií, ako sú Prehrať, Pozastaviť, Ďalej, Predchádzajúce a ďalšie. Rôzne slúchadlá môžu mať rôzne tlačidlá, preto si pozrite nižšie uvedený zoznam akcií a zistite, ktoré sú pre vás dostupné.
+Nie všetky slúchadlá majú všetky tri tlačidlá.
 
-## Kedy to použiť?
+Tlačidlá ovládajú Soundscape len vtedy, keď zvuk neprehráva žiadna iná aplikácia. Ak počúvate hudbu alebo podcast, tlačidlá ovládajú túto aplikáciu.
 
-Ovládacie prvky médií na slúchadlách môžete používať, kým je Soundscape spustený – či už aplikáciu práve aktívne používate, beží na pozadí, alebo je vaše zariadenie uzamknuté. Tlačidlá na ovládanie médií na slúchadlách však nebudú s aplikáciou Soundscape fungovať, ak v inej aplikácii prehrávate zvuk, napríklad hudbu, podcasty alebo videá.
+Tlačidlá môžu fungovať dvoma spôsobmi: *Pôvodný režim* alebo *Zvukové menu*. Spôsob vyberiete tak, že otvoríte menu a vyberiete *Nastavenia* a potom *Ovládanie médií*.
 
-## Ako to funguje?
+## Pôvodný režim
 
-Existujú 2 režimy fungovania ovládacích prvkov médií. Režim je možné vybrať v časti *Nastavenia* *Ovládanie médií*. Režimy sú:
+*Prehrať/pozastaviť* stlmí maják. Ďalším stlačením maják znova začujete.
 
- *Pôvodný režim*. 
+*Ďalej* presunie maják na ďalší bod trasy, keď idete po trase. Inak ohlási *Okolo mňa*.
 
-⏯ Prehrať/Pozastaviť: Zapne alebo vypne zvuk majáka. 
+*Predchádzajúce* presunie maják na predchádzajúci bod trasy, keď idete po trase. Inak zmení *Podrobnosť hlásení*. Každé stlačenie prejde o jednu úroveň tichšie: *Podrobný*, *Zjednodušený*, *Základný* a potom *Bez zvuku*. Ďalšie stlačenie sa vráti na *Podrobný*. Soundscape povie názov novej úrovne.
 
-⏭ Ďalej: Ak sa práve prehráva trasa, presunie zvukový maják na ďalší bod trasy. Ak sa neprehráva žiadna trasa, oznámi *Okolo mňa*.
+## Zvukové menu
 
-⏮ Predchádzajúce: Ak sa práve prehráva trasa, presunie zvukový maják na predchádzajúci bod trasy. Ak sa neprehráva žiadna trasa, zmení *Podrobnosť hlásení* o jednu úroveň tichšie pri každom stlačení: *Podrobný*, *Zjednodušený*, *Základný*, *Bez zvuku* a späť na *Podrobný*.
+Zvukové menu vám dáva viac akcií s rovnakými tromi tlačidlami. Soundscape každú možnosť prečíta nahlas.
 
+*Ďalej* prejde na ďalšiu možnosť. Po poslednej možnosti sa vráti na prvú.
 
+*Prehrať/pozastaviť* vyberie možnosť, ktorá práve zaznela.
 
-*Zvukové menu*. 
+*Predchádzajúce* zmení *Podrobnosť hlásení*, rovnako ako *Pôvodný režim*.
 
-
-
-⏭ Ďalej prechádza sériou možností menu, ktoré aplikácia opisuje pomocou syntézy reči, a po poslednej sa vracia k prvej. ⏯ Prehrať/Pozastaviť potom spustí vykonanie opísanej možnosti. Existuje jedno hlavné menu, ktoré má ako možnosti iba podmenu. Každé podmenu obsahuje skupinu podobných možných akcií.
-
-⏮ Predchádzajúce menu neprechádza. Namiesto toho mení *Podrobnosť hlásení* presne tak ako v pôvodnom režime, takže to isté tlačidlo stlmuje aplikáciu v ktoromkoľvek z režimov.
+Menu sa začína štyrmi skupinami: *Počúvať svoje okolie*, *Ovládanie trasy*, *Spustiť trasu* a *Spustiť zvukový maják*. Vyberte skupinu a začujete jej akcie. *Počúvať svoje okolie* a *Ovládanie trasy* sa končia položkou *Hlavné menu*, ktorá vás vráti k štyrom skupinám.
 

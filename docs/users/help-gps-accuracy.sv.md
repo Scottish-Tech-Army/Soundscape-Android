@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## GPS-noggrannhet
 
-Soundscape kan bara beskriva din omgivning så exakt som telefonen vet var du är. En noggrannhet på 10 meter (30 fot) eller bättre är bra, upp till 20 meter (60 fot) är användbart, och allt över det betyder att informationsljud kan nämna fel sida av gatan eller komma för sent.
+Soundscape kan bara beskriva din omgivning så bra som telefonen vet var du är. En noggrannhet på 10 meter eller bättre är bra. Upp till 20 meter är okej. Över det kan informationsljud nämna fel sida av gatan eller komma för sent.
 
-Noggrannheten är oftast sämst inomhus, bland höga byggnader och under ungefär den första minuten efter att du har gått ut. Om värdet nedan förblir dåligt medan du är utomhus på en öppen plats kan du prova att stänga av och sätta på telefonens platstjänster igen.
+Noggrannheten är oftast sämst inomhus, mellan höga byggnader och under den första minuten efter att du har gått ut. Om värdet nedan fortsätter vara dåligt när du är ute i det fria stänger du av platstjänsterna på telefonen och sätter på dem igen.
 
 Aktuell noggrannhet: %1$s (%2$s)
 

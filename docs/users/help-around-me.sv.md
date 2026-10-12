@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Omkring mig
 
-## Vad är det?
+*Omkring mig* läser upp högst fyra platser nära dig: en framför, en till höger, en bakom och en till vänster. Du hör var och en från sin egen riktning, med avståndet. Använd den för att orientera dig när du kommer till en ny plats.
 
-Knappen *”Omkring mig”* berättar om en sak i var och en av de fyra kvadranterna omkring dig (framför, till höger, bakom och till vänster). *”Omkring mig”* hjälper dig att orientera dig i omgivningarna.
-
-## När ska jag använda det?
-
-När du försöker orientera dig i omgivningarna kan du använda *”Omkring mig”* för att höra om vad som finns omkring dig.
-
-## Hur fungerar det?
-
-Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonens överkant åt det håll du är vänd innan du trycker på knappen *Omkring mig*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *Omkring mig* så hör du fyra intressepunkter som finns omkring dig.
+Om du står still riktar du först telefonens överkant åt det håll du är vänd. Om telefonen är låst, eller om Soundscape inte visas på skärmen, håller du också telefonen plant.
 

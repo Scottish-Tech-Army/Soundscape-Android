@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Sanarwowi Kai Tsaye
 
-## Menene wannan?
+Yayin da kuke tafiya, Soundscape yana sanar da abin da ke kusa da ku. Kuna jin kowane suna daga ɓangaren wurin. Sanarwowi suna ƙunshe da tituna, mahaɗun hanyoyi, shaguna, tashoshin bas, shahararrun wurare da alamominku.
 
-Soundscape na iya gaya muku game da abubuwan da ke kewaye da ku yayin da kuke kusantowa gare su, ta hanyar sanar da sunayensu daga wajen da suke. Manhajar za ta yi wannan kai tsaye ga kowane irin abu kamar shaguna, tashoshin bas, har ma da mahaɗar hanyoyi. Za ku iya daidaita irin abin da manhajar ke sanarwa kai tsaye a sashen *Sarrafa Sanarwa* na allon *Saitunan*, kuma za ku iya kashe dukkan sanarwa idan kuna son manhajar ta yi shiru.
+## Mahaɗun Hanyoyi
 
-## Yaushe zan yi amfani da shi?
+Idan kuna kusantar mahaɗar hanya, Soundscape yana ambaton kowace hanya da ke fita daga gare ta. Kuna jin wace hanya ce ke zuwa hagu, wacce ke ci gaba a gaba, da wacce ke zuwa dama.
 
-**Binciken sabon yanki :**
+## Yawan Abin da Kuke Ji
 
- Kunna sanarwa ta atomatik sannan ku yi tafiya don jin labarin shaguna daban-daban, gidajen abinci, da makamantansu yayin da kuke wucewa ta wurinsu.
+Ku buɗe menu sannan ku zaɓi *Saitunan*, sai *Sarrafa Sanarwa*. *Matakin Sanarwa* yana da matakai huɗu.
 
-**Tafiya zuwa wani takamaiman wuri :**
+*Cikakke* yana sanar da duk abin da ke kusa.
 
- Idan kuna kan hanyarku zuwa wani takamaiman wuri, sanarwar mahaɗar hanyoyi ta atomatik na iya zama da amfani sosai. Sanarwar mahaɗar hanyoyi tana gaya muku tsarin mahaɗar yayin da kuke kusantowa, kuma tana tabbatar muku da titin da kuke kai idan kuka bar mahaɗar.
+*Sauƙaƙe* yana barin ƙananan hanyoyi da hanyoyin sabis, kuma ba ya yawan maimaitawa.
 
-**Idan kuna bukatar shiru :**
+*Muhimmi* yana sanar da tituna, mahaɗun hanyoyi da shahararrun wurare kawai.
 
- Idan kuna gab da ƙetare titi ko kuna bukatar manhajar ta yi shiru kawai, za ku iya kashe sanarwa. Idan an kashe sanarwa, manhajar za ta ba ku bayani ne kawai idan kuka danna ɗaya daga cikin maɓallan *Wurina*, *Alamomi na Kusa*, *Kewaye da Ni*, ko *Gaba da Ni* da kanku.
+*Shiru* ba ya yin kowace sanarwa kai tsaye. Sigina, tafarkuna da maɓallan babban allo suna ci gaba da aiki.
 
-## Yaya yake aiki?
+## Abin da Kuke Ji
 
-**Kunna ko kashe sanarwa :**
+*Sarrafa Sanarwa* yana da ƙarin saituna biyu. *Titina da Mahaɗun Hanyoyi* yana kunna ko kashe sanarwowin tituna da mahaɗun hanyoyi. *Wuraren da za a Sanar* yana zaɓar irin wuraren da kuke ji, kamar *Sufurin Jama'a* ko *Abinci da Abin Sha*. Ana sanar da alamominku koyaushe.
 
- Kashe sanarwa zai sa manhajar ta yi shiru. Ana iya kashe sanarwa a sashen *Sarrafa Sanarwa* na allon *Saitunan* ta hanyar sanya *Matakin Sanarwa* ya zama *Shiru*, kuma ana sake kunna su ta zaɓar kowane mataki na daban. A iPhone za ku iya yin haka ta hanyar neman Siri ya yi muku, kuma a Android haka zai yi aiki ta Gemini da zarar Google ya fitar da goyon baya a kai. Bugu da ƙari, za ku iya rage yawan maganar Soundscape mataki-mataki ta maɓallan sarrafa sauti na belun kunnenku: kowane danna *na baya* yana sauka mataki ɗaya ta *Cikakke*, *Sauƙaƙe*, *Muhimmi* da *Shiru*, sannan ƙarin danna ɗaya yana komawa *Cikakke*. Duba batun taimako na *Amfani da Maɓallan Sarrafa Sauti*. Ko kuma, za ku iya amfani da maɓallin *Barci* da ke a saman dama na babban allo don dakatar da Soundscape daga yin sanarwa har sai kun farkar da ita.
+## Rage Maganar Soundscape
 
-**Sarrafa irin sanarwar da kuke ji :**
+Ku danna *na baya* a kan maɓallan belun kunnenku. Kowane dannawa yana sauka mataki ɗaya: *Cikakke*, *Sauƙaƙe*, *Muhimmi*, sannan *Shiru*. Ƙarin dannawa ɗaya yana komawa *Cikakke*. Duba shafin taimako *Amfani da Maɓallan Sarrafa Sauti*.
 
- Don zaɓar irin abubuwan da Soundscape zai riƙa sanarwa kai tsaye, je zuwa allon *Saitunan* ta amfani da menu a allon *Gida*. A sashen *Sarrafa Sanarwa* na allon *Saitunan* ne kuke zaɓar yawan maganar manhajar da *Matakin Sanarwa*, ko za ta sanar da *Titina da Mahaɗun Hanyoyi*, da kuma waɗanne ne *Wuraren da za a Sanar*. Idan kuna son kashe dukkan sanarwa, sanya *Matakin Sanarwa* ya zama *Shiru*.
+## Tsayar da Soundscape na Ɗan Lokaci
+
+Ku zaɓi maɓallin *Barci* da ke saman babban allo. Soundscape yana daina amfani da wurinku kuma ba ya yin wani sauti har sai kun zaɓi *Farka Yanzu*. Ko ku zaɓi *Farka Idan Na Tafi*, sai Soundscape ya farka idan kun bar wurin da kuke.
+
+## A Cikin Abin Hawa ko Jirgin Ƙasa
+
+Soundscape yana gane lokacin da kuke tafiya da saurin abin hawa. Sai ya daina sanar da mahaɗun hanyoyi da shagunan da ke kusa, domin suna wucewa da sauri sosai. A maimakon haka yana sanar da hanyar da kuke kai, shahararrun wurare, tashoshi, koguna da ramukan ƙarƙashin ƙasa.
 

@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## Natančnost GPS
 
-Soundscape lahko vašo okolico opiše le tako natančno, kot natančno vaš telefon ve, kje ste. Natančnost 10 metrov (30 čevljev) ali boljša je dobra, do 20 metrov (60 čevljev) je uporabna, vse nad tem pa pomeni, da lahko zvočna obvestila navedejo napačno stran ulice ali pridejo prepozno.
+Soundscape lahko vašo okolico opiše le tako natančno, kot vaš telefon ve, kje ste. Natančnost 10 metrov ali boljša je dobra. Do 20 metrov je sprejemljiva. Nad tem lahko zvočna obvestila navedejo napačno stran ulice ali zamujajo.
 
-Natančnost je običajno najslabša v zaprtih prostorih, med visokimi stavbami in približno prvo minuto po tem, ko greste ven. Če vrednost spodaj ostane slaba, ko ste zunaj na odprtem, poskusite izklopiti in znova vklopiti lokacijske storitve telefona.
+Natančnost je običajno najslabša v zaprtih prostorih, med visokimi stavbami in v prvi minuti po izhodu na prosto. Če vrednost spodaj ostane slaba, ko ste zunaj na odprtem, izklopite in znova vklopite lokacijske storitve telefona.
 
 Trenutna natančnost: %1$s (%2$s)
 

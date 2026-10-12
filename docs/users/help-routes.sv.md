@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Rutter
 
-## Vad är det?
+En rutt är en lista med platser, kallade brytpunkter, som du besöker i ordning. Soundscape ställer in en ljudfyr på den första brytpunkten. När du kommer fram talar appen om det och flyttar ljudfyren till nästa.
 
-Rutter är en serie brytpunkter. Du kommer att bli informerad när du kommer till varje brytpunkt och ljudfyren kommer automatiskt att fortsätta till nästa brytpunkt.
+Använd en rutt för att lära dig en ny väg, eller för att hålla kursen på en väg du känner till.
 
-## När ska jag använda det?
+## Skapa en rutt
 
-Du kanske vill skapa och använda en rutt på en plats som du redan känner till, för att hålla dig på rätt väg. Eller så vill du använda en rutt för att lära dig en ny sträcka.
+1. Välj *Rutter* på startskärmen och välj sedan *Ny*.
 
-## Hur fungerar det?
+2. Ge rutten ett namn. Du kan lägga till en beskrivning.
 
-**Skapa en rutt:**
+3. Välj *Lägg till brytpunkter* och välj platsmarkörer. Du kan också lägga till din aktuella plats eller en plats i närheten.
 
- Välj först *Rutter* på startskärmen och välj sedan knappen *Ny* uppe till höger på skärmen. Ge rutten ett namn och en valfri beskrivning och lägg sedan till brytpunkter när du går eller välj dem från listan med platsmarkörer. Du kan när som helst ändra ordningen på brytpunkterna längs en rutt genom att redigera rutten.
+4. Välj *Klart*.
 
-**Redigera en rutt:**
+## Följa en rutt
 
-Välj din rutt på skärmen *Rutter* och välj sedan *Redigera rutt*. Här kan du lägga till och ta bort brytpunkter samt ändra ruttnamn och beskrivning.
+Välj rutten på skärmen *Rutter* och välj sedan *Starta rutt*. Om du vill följa den baklänges väljer du *Starta rutt i omvänd ordning*. På startskärmen flyttar *Nästa brytpunkt* och *Föregående brytpunkt* ljudfyren längs rutten. *Stoppa rutten* avslutar den.
 
-**Dela en rutt :**
+## Ändra en rutt
 
- Välj din rutt på skärmen *”Rutter”* och välj sedan alternativet *”Dela”* med de vanliga delningsalternativ som finns tillgängliga.
+Välj rutten på skärmen *Rutter* och välj sedan *Redigera rutt*. Du kan lägga till, ta bort och ändra ordning på brytpunkter, ändra namn och beskrivning eller ta bort rutten.
+
+## Dela en rutt
+
+Välj rutten på skärmen *Rutter* och välj sedan *Dela*.
 

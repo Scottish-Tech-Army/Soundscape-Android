@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Samodejna zvočna obvestila
 
-## Kaj je to?
+Med hojo Soundscape oznanja, kaj je v vaši bližini. Vsako ime slišite iz smeri kraja. Zvočna obvestila zajemajo ulice, križišča, trgovine, avtobusna postajališča, znamenitosti in vaše lastne oznake.
 
-Soundscape vam lahko pove o stvareh v vaši okolici, ko se jim približujete, tako da izgovori njihovo ime iz smeri, kjer se nahajajo. Aplikacija to samodejno počne za najrazličnejše stvari, kot so podjetja, avtobusne postaje in celo križišča. Kaj naj aplikacija samodejno oznanja, lahko nastavite v razdelku *Upravljanje zvočnih obvestil* na zaslonu *Nastavitve*, vsa zvočna obvestila pa lahko tudi izklopite, kadar želite, da je aplikacija tiha.
+## Križišča
 
-## Kdaj naj to uporabim?
+Ko se bližate križišču, Soundscape imenuje vsako cesto, ki vodi iz njega. Slišite, katera cesta gre levo, katera se nadaljuje naravnost in katera gre desno.
 
-**Raziskovanje novega območja :**
+## Koliko slišite
 
- Vklopite samodejna zvočna obvestila in se sprehodite, da boste slišali o različnih trgovinah, restavracijah in podobnem, ko boste šli mimo njih.
+Odprite meni in izberite *Nastavitve*, nato *Upravljanje zvočnih obvestil*. *Raven podrobnosti obvestil* ima štiri ravni.
 
-**Hoja do določene lokacije :**
+*Podrobno* oznanja vse v bližini.
 
- Kadar ste na poti do določene lokacije, so lahko samodejna zvočna obvestila o križiščih še posebej koristna. Obvestila o križiščih vam povedo o razporeditvi križišča, ko se mu približujete, in potrdijo cesto, na kateri ste, ko ga zapustite.
+*Poenostavljeno* izpusti manjše poti in servisne ceste ter se manj ponavlja.
 
-**Ko potrebujete tišino :**
+*Osnovno* oznanja samo ulice, križišča in znamenitosti.
 
- Ko nameravate prečkati cesto ali preprosto potrebujete, da aplikacija molči, lahko izklopite zvočna obvestila. Ko so obvestila izklopljena, vam aplikacija poda podatke le, če ročno tapnete enega od gumbov *Moja lokacija*, *Oznake v bližini*, *Okoli mene* ali *Pred menoj*.
+*Brez zvoka* ne daje samodejnih zvočnih obvestil. Svetilniki, poti in gumbi na domačem zaslonu delujejo še naprej.
 
-## Kako deluje?
+## Kaj slišite
 
-**Vklop ali izklop zvočnih obvestil :**
+*Upravljanje zvočnih obvestil* ima še dve nastavitvi. *Ulice in križišča* vklopi ali izklopi obvestila o ulicah in križiščih. *Kraji za oznanjanje* določa, katere vrste krajev slišite, na primer *Javni prevoz* ali *Hrana in pijača*. Vaše oznake so vedno oznanjene.
 
- Izklop zvočnih obvestil utiša aplikacijo. Obvestila lahko izklopite v razdelku *Upravljanje zvočnih obvestil* na zaslonu *Nastavitve* tako, da *Raven podrobnosti obvestil* nastavite na *Brez zvoka*, znova pa jih vklopite z izbiro katere koli druge ravni. Na iPhonu lahko isto naredite tako, da za to prosite Siri, v Androidu pa bo isto delovalo prek Geminija, ko bo Google izdal podporo za to. Soundscape lahko postopoma utišate tudi z gumbi za upravljanje predvajanja na slušalkah: vsak pritisk na *nazaj* se pomakne eno raven navzdol po *Podrobno*, *Poenostavljeno*, *Osnovno* in *Brez zvoka*, še en pritisk pa se vrne na *Podrobno*. Glejte temo pomoči *Uporaba kontrolnikov predstavnosti*. Prav tako lahko uporabite gumb *Spanje* v zgornjem desnem kotu domačega zaslona, da Soundscape preneha podajati zvočna obvestila, dokler ga ne prebudite.
+## Kako utišati Soundscape
 
-**Upravljanje, katera zvočna obvestila slišite :**
+Pritisnite *nazaj* na upravljalniku slušalk. Vsak pritisk gre eno raven tišje: *Podrobno*, *Poenostavljeno*, *Osnovno*, nato *Brez zvoka*. Še en pritisk se vrne na *Podrobno*. Glejte stran pomoči *Uporaba kontrolnikov predstavnosti*.
 
- Če želite izbrati vrste stvari, ki jih bo Soundscape samodejno oznanjal, odprite zaslon *Nastavitve* prek menija na zaslonu *Domov*. V razdelku *Upravljanje zvočnih obvestil* na zaslonu *Nastavitve* izberete, koliko aplikacija pove, z možnostjo *Raven podrobnosti obvestil*, ali oznanja *Ulice in križišča* in kateri so *Kraji za oznanjanje*. Če želite izklopiti vsa zvočna obvestila, nastavite *Raven podrobnosti obvestil* na *Brez zvoka*.
+## Zaustavitev aplikacije Soundscape za nekaj časa
+
+Izberite gumb *Spanje* na vrhu domačega zaslona. Soundscape preneha uporabljati vašo lokacijo in je tiho, dokler ne izberete *Prebudi zdaj*. Ali izberite *Prebudi ob odhodu* in Soundscape se prebudi, ko zapustite kraj, kjer ste.
+
+## V vozilu ali na vlaku
+
+Soundscape zazna, ko se gibljete s hitrostjo vozila. Takrat preneha oznanjati križišča in trgovine v bližini, ker prehitro minejo. Namesto tega oznanja cesto, po kateri se peljete, znamenitosti, postajališča in postaje, reke in predore.
 

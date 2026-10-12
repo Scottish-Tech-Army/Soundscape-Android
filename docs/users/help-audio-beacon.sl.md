@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Zvočni svetilnik
 
-## Kaj je to?
+Zvočni svetilnik je zvok, ki prihaja iz smeri kraja, ki ga izberete. Pove vam, kje je kraj v zračni črti. Ne daje navodil zavoj za zavojem, zato pot do tja izberete sami.
 
-Nastavitev svetilnika na bližnji lokaciji omogoča, da vas Soundscape obvešča s predvajanjem zvoka, ki prihaja iz smeri te lokacije. Ta svetilnik lahko na domačem zaslonu utišate ali vklopite zvok. Poleg tega Soundscape na domačem zaslonu prikazuje podatke o lokaciji, vključno z razdaljo do nje in njenim naslovom, če je znan.
+## Nastavitev svetilnika
 
-## Kdaj naj to uporabim?
+1. Poiščite kraj. Uporabite iskalno polje, *Kraji v bližini*, *Oznake* ali *Trenutna lokacija* na domačem zaslonu.
 
-Nastavitev svetilnika je uporabna, kadar želite slediti znani orientacijski točki med raziskovanjem novega območja, ali kadar greste nekam in želite biti obveščeni o okolici na poti. Funkcija svetilnika vam ne daje navodil korak za korakom, temveč vam daje neprekinjen zvok, ki vam pove smer svetilnika glede na vaš trenutni položaj. Z zvočnim svetilnikom, svojimi obstoječimi veščinami orientacije in celo priljubljeno navigacijsko aplikacijo lahko sami izberete, kako priti do bližnjih lokacij.
+2. Izberite kraj, da odprete *Podrobnosti lokacije*.
 
-## Kako deluje?
+3. Izberite *Zaženi zvočni svetilnik*.
 
-**Nastavitev svetilnika :**
+Soundscape se vrne na domači zaslon in svetilnik se začne. Domači zaslon prikazuje ime kraja in njegovo oddaljenost.
 
- Najprej si oglejte podrobnosti lokacije, tako da uporabite iskalno vrstico za iskanje kraja ali tapnete enega od gumbov *Kraji v bližini*, *Oznake* ali *Trenutna lokacija* in izberete lokacijo. Nato na zaslonu *Podrobnosti lokacije* izberite gumb *Zaženi zvočni svetilnik*. S tapom se boste vrnili na domači zaslon, vklopil pa se bo zvočni svetilnik, ki prihaja iz smeri izbranega kraja. Ime kraja skupaj z razdaljo do njega in fizičnim naslovom, če je na voljo, bo zdaj prikazano na glavnem zaslonu.
+## Iskanje smeri
 
-**Odstranitev trenutnega svetilnika :**
+Svetilnik spremeni zvok, ko gledate proti kraju ali hodite naravnost proti njemu. Ta zvok najdete tako, da držite telefon vodoravno in se počasi obračate. Drug zvok svetilnika lahko izberete v *Nastavitve*.
 
- Preprosto pritisnite gumb *Zaustavi pot* na domačem zaslonu.
+## Utišanje svetilnika
 
-**Utišanje zvočnega svetilnika :**
+Na domačem zaslonu izberite *Utišaj svetilnik*. Soundscape vam med gibanjem še naprej pove, kako daleč je kraj. Izberite *Odtišaj svetilnik*, da svetilnik znova slišite.
 
- Tapnite gumb *Utišaj svetilnik* poleg gumba *Zaustavi pot* na domačem zaslonu.
+## Odstranitev svetilnika
+
+Na domačem zaslonu izberite *Zaustavi pot*. Gumb ima to ime tudi takrat, ko svetilnik ni del poti.
+
+## Ko prispete
+
+Ko ste približno 12 metrov od kraja, vam Soundscape to pove in odstrani svetilnik. Telefon vašega položaja ne more določiti natančneje. Če želite svetilnik znova slišati, ga nastavite znova.
+
+Svetilnik, nastavljen na kraj, ki je oddaljen manj kot 30 metrov, ostane vklopljen, dokler ga ne odstranite.
 

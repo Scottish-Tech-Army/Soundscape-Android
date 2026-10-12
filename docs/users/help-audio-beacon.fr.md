@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Balise sonore
 
-## De quoi s’agit-il ?
+Une balise sonore est un son qui vient de la direction d’un lieu que vous choisissez. Elle vous indique où se trouve le lieu en ligne droite. Elle ne donne pas d’instructions de navigation étape par étape. Vous choisissez donc vous-même votre chemin.
 
-La définition d’une balise sonore à un emplacement situé à proximité permet à Soundscape de vous tenir informé en lisant un son provenant de la direction de cet emplacement. Le son de cette balise peut être désactivé ou réactivé depuis l’écran d’accueil. En outre, Soundscape affiche des informations sur l’emplacement sur l’écran d’accueil, notamment la distance pour s’y rendre et son adresse si celle-ci est connue.
+## Placer une balise
 
-## Quand l’utiliser ?
+1. Trouvez le lieu. Utilisez la barre de recherche, *Emplacements à proximité*, *Marqueurs* ou *Emplacement actuel* sur l’écran d’accueil.
 
-La définition d’une balise sonore est utile pour effectuer le suivi d’un repère familier quand vous explorez un nouvel environnement ou lorsque vous allez quelque part et que vous souhaitez rester informé de ce qui vous entoure sur votre trajet. La fonctionnalité de balise ne vous fournit pas d’indications pas à pas, mais émet un son audible continu vous indiquant la direction de la balise, en fonction de votre emplacement actuel. Grâce à la balise, vos compétences d’orientation et même votre application de navigation préférée, vous pouvez choisir comment accéder à des emplacements situés à proximité par vous-même.
+2. Sélectionnez le lieu pour ouvrir *Détails de l’emplacement*.
 
-## Comment ça fonctionne ?
+3. Sélectionnez *Démarrer la balise*.
 
-**Pour définir une balise sonore :**
+Soundscape revient à l’écran d’accueil et la balise démarre. L’écran d’accueil affiche le nom du lieu et sa distance.
 
-Tout d’abord, consultez les détails d’un emplacement en utilisant la barre de recherche pour rechercher un lieu, ou en appuyant sur l’un des boutons *Emplacements à proximité*, *Marqueurs* ou *Emplacement actuel* et en sélectionnant un emplacement. Ensuite, depuis l’écran *Détails de l’emplacement*, sélectionnez le bouton *Démarrer la balise*. En appuyant dessus, vous revenez à l’écran d’accueil et activez une balise émise depuis la direction du lieu sélectionné. Le nom du lieu ainsi que sa distance et son adresse physique, si disponibles, seront désormais affichés sur l’écran principal.
+## Trouver la direction
 
-**Pour supprimer la balise sonore actuelle :**
+Le son de la balise change quand vous faites face au lieu ou que vous marchez droit vers lui. Pour trouver ce son, tenez votre téléphone à plat et tournez-vous lentement. Vous pouvez choisir un autre son de balise dans les *Réglages*.
 
-Appuyez simplement sur le bouton *Arrêter l’itinéraire* sur l’écran d’accueil.
+## Couper le son de la balise
 
-**Pour couper le son de la balise sonore :**
+Sélectionnez *Désactiver le son de la balise* sur l’écran d’accueil. Soundscape continue de vous indiquer la distance du lieu pendant vos déplacements. Sélectionnez *Réactiver le son de la balise* pour entendre de nouveau la balise.
 
-Appuyez sur le bouton *Désactiver le son de la balise* à côté du bouton *Arrêter l’itinéraire* sur l’écran d’accueil.
+## Retirer la balise
+
+Sélectionnez *Arrêter l’itinéraire* sur l’écran d’accueil. Le bouton porte ce nom même quand la balise ne fait pas partie d’un itinéraire.
+
+## À votre arrivée
+
+Quand vous êtes à environ 12 mètres du lieu, Soundscape vous le dit et retire la balise. Votre téléphone ne peut pas déterminer votre position plus précisément. Pour entendre de nouveau la balise, placez-la de nouveau.
+
+Une balise placée sur un lieu situé à moins de 30 mètres reste active jusqu’à ce que vous la retiriez.
 

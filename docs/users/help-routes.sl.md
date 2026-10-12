@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Poti
 
-## Kaj je to?
+Pot je seznam lokacij, imenovanih točke poti, ki jih obiščete po vrsti. Soundscape nastavi svetilnik na prvo točko poti. Ko prispete, vam to pove in premakne svetilnik na naslednjo.
 
-Poti so zaporedje točk poti. Ob prihodu na vsako točko poti boste obveščeni, zvočni svetilnik pa se bo samodejno premaknil na naslednjo točko poti.
+Pot uporabite, da se naučite novo traso ali da ne zaidete na trasi, ki jo poznate.
 
-## Kdaj naj to uporabim?
+## Ustvarjanje poti
 
-Pot morda želite ustvariti in uporabiti na kraju, ki ga že poznate, da ostanete na pravi poti. Ali pa želite pot uporabiti, da se naučite nove poti.
+1. Na domačem zaslonu izberite *Poti*, nato izberite *Nova*.
 
-## Kako deluje?
+2. Poti dajte ime. Dodate lahko opis.
 
-**Ustvarjanje poti :**
+3. Izberite *Dodaj točke poti* in izberite oznake. Dodate lahko tudi svojo trenutno lokacijo ali kraj v bližini.
 
- Najprej na domačem zaslonu izberite *Poti* in nato izberite gumb *Nova* v zgornjem desnem kotu zaslona. Poti dajte ime in neobvezen opis, nato pa dodajajte točke poti sproti ali jih izberite s seznama oznak. Vrstni red točk poti lahko kadar koli spremenite z urejanjem poti.
+4. Izberite *Končano*.
 
-**Urejanje poti :**
+## Sledenje poti
 
- Izberite svojo pot na zaslonu *Poti* in nato izberite *Uredi pot*. Od tu lahko dodajate in odstranjujete točke poti ter urejate ime in opis poti.
+Izberite pot na zaslonu *Poti*, nato izberite *Zaženi pot*. Če ji želite slediti v nasprotni smeri, izberite *Zaženi pot v obratni smeri*. Na domačem zaslonu *Naslednja točka poti* in *Prejšnja točka poti* premikata svetilnik vzdolž poti. *Zaustavi pot* jo konča.
 
-**Deljenje poti :**
+## Spreminjanje poti
 
- Izberite svojo pot na zaslonu *Poti* in nato izberite možnost *Deli* z vsemi običajnimi možnostmi deljenja, ki so vam na voljo.
+Izberite pot na zaslonu *Poti*, nato izberite *Uredi pot*. Točke poti lahko dodajate, odstranjujete in prerazporejate, spremenite ime in opis ali pot izbrišete.
+
+## Deljenje poti
+
+Izberite pot na zaslonu *Poti*, nato izberite *Deli*.
 

@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Muryoyi
 
-Soundscape na iya amfani da kowace muryar da ka sauke a wayarka ta Android a cikin saitunan fitarwar Rubutu-zuwa-Magana. A cikin manhajar Soundscape, don zaɓar murya dabam da wadda ta zo tare da Android, je zuwa *Saitunan* daga babban menu, buɗe sashin *Sauti*, sannan ka zaɓi *Muryoyi*.
+Soundscape yana iya amfani da kowace murya da aka girka a wayarku. Don ƙara muryoyi, ku buɗe saitunan wayarku sannan ku nemi *Fitar da rubutu zuwa magana*. Don zaɓar murya a cikin Soundscape, ku buɗe menu sannan ku zaɓi *Saitunan*, sai *Sauti*, sai *Muryoyi*.
 

@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Dźwięk naprowadzający
 
-## Co to jest?
+Dźwięk naprowadzający to dźwięk dobiegający z kierunku miejsca, które wybierzesz. Mówi ci, gdzie jest to miejsce w linii prostej. Nie podaje wskazówek zakręt po zakręcie, więc drogę wybierasz samodzielnie.
 
-Ustawienie naprowadzania na pobliską lokalizację pozwala Soundscape prowadzić cię, odtwarzając dźwięk dochodzący z kierunku tej lokalizacji. Ten dźwięk można wyciszyć lub włączyć ponownie na ekranie głównym. Dodatkowo Soundscape wyświetla na ekranie głównym informacje o tej lokalizacji, w tym odległość oraz adres, jeśli jest znany.
+## Włączanie naprowadzania
 
-## Kiedy używać?
+1. Znajdź miejsce. Użyj paska wyszukiwania albo pozycji *Miejsca w pobliżu*, *Znaczniki* lub *Bieżąca lokalizacja* na ekranie głównym.
 
-Ustawienie naprowadzania dźwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz otrzymywać informacje o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.
+2. Wybierz miejsce, aby otworzyć *Szczegóły lokalizacji*.
 
-## Jak to działa?
+3. Wybierz *Uruchom dźwięk naprowadzający*.
 
-**Aby ustawić dźwięk naprowadzający:**
+Soundscape wraca do ekranu głównego i naprowadzanie się zaczyna. Ekran główny pokazuje nazwę miejsca i odległość do niego.
 
- Najpierw wyświetl szczegóły lokalizacji, wyszukując miejsce w pasku wyszukiwania lub stukając w jeden z przycisków *„Miejsca w pobliżu”*, *„Znaczniki”* lub *„Bieżąca lokalizacja”* i wybierając lokalizację. Następnie na ekranie *„Szczegóły lokalizacji”* wybierz przycisk *„Uruchom dźwięk naprowadzający”*. Stuknięcie tego przycisku spowoduje powrót do ekranu głównego i włączenie dźwięku naprowadzającego dochodzącego z kierunku wybranej lokalizacji. Nazwa miejsca wraz z jego odległością oraz fizycznym adresem (jeśli dostępny) zostaną teraz wyświetlone na ekranie głównym.
+## Znajdowanie kierunku
 
-**Aby zakończyć bieżące naprowadzanie:**
+Dźwięk naprowadzający zmienia się, gdy patrzysz w stronę miejsca albo idziesz prosto do niego. Aby znaleźć ten dźwięk, trzymaj telefon poziomo i powoli się obracaj. Inny dźwięk naprowadzający możesz wybrać w *Ustawienia*.
 
- Po prostu naciśnij przycisk *„Zatrzymaj trasę”* na ekranie głównym.
+## Wyciszanie dźwięku naprowadzającego
 
-**Aby wyciszyć dźwięk naprowadzający:**
+Wybierz *Wycisz dźwięk naprowadzający* na ekranie głównym. Soundscape nadal mówi ci po drodze, jak daleko jest miejsce. Wybierz *Włącz dźwięk naprowadzający*, aby znów słyszeć dźwięk naprowadzający.
 
- Stuknij przycisk *„Wycisz dźwięk naprowadzający”* obok przycisku *„Zatrzymaj trasę”* na ekranie głównym.
+## Wyłączanie naprowadzania
+
+Wybierz *Zatrzymaj trasę* na ekranie głównym. Przycisk ma tę nazwę także wtedy, gdy naprowadzanie nie jest częścią trasy.
+
+## Gdy dotrzesz na miejsce
+
+Gdy jesteś około 12 metrów od miejsca, Soundscape mówi ci o tym i wyłącza naprowadzanie. Telefon nie potrafi ustalić twojej pozycji dokładniej. Aby znów słyszeć dźwięk naprowadzający, włącz naprowadzanie ponownie.
+
+Naprowadzanie na miejsce oddalone o mniej niż 30 metrów działa, dopóki go nie wyłączysz.
 

@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Reitit
 
-## Mikä se on?
+Reitti on luettelo sijainteja, joita kutsutaan reittipisteiksi ja joissa käyt järjestyksessä. Soundscape asettaa majakan ensimmäiseen reittipisteeseen. Kun saavut perille, se kertoo siitä ja siirtää majakan seuraavaan.
 
-Reitit ovat reittipisteiden sarjoja. Sinulle ilmoitetaan kuhunkin reittipisteeseen saapumisesta, ja äänimajakka siirtyy automaattisesti seuraavaan reittipisteeseen.
+Käytä reittiä, kun opettelet uutta matkaa tai haluat pysyä oikealla tiellä tutulla matkalla.
 
-## Milloin käyttäisin sitä?
+## Reitin luominen
 
-Saatat haluta luoda reitin ja käyttää sitä paikassa, jonka jo tunnet, jotta pysyt oikealla polulla. Tai saatat haluta käyttää reittiä opetellaksesi uuden matkan.
+1. Valitse aloitusnäytöstä *Reitit* ja valitse sitten *Uusi*.
 
-## Kuinka se toimii?
+2. Anna reitille nimi. Voit lisätä kuvauksen.
 
-**Reitin luominen :**
+3. Valitse *Lisää reittipisteitä* ja valitse merkitsimiä. Voit lisätä myös nykyisen sijaintisi tai lähellä olevan paikan.
 
- Valitse ensin aloitusnäytöltä *Reitit* ja valitse sitten näytön oikeassa yläkulmassa oleva *Uusi*-painike. Anna reitille nimi ja valinnainen kuvaus ja lisää sitten reittipisteitä matkan varrella, tai valitse ne merkitsinluettelosta. Voit järjestää reittipisteet uudelleen reitissä koska tahansa muokkaamalla reittiä.
+4. Valitse *Valmis*.
 
-**Reitin muokkaaminen :**
+## Reitin seuraaminen
 
- Valitse reittisi *Reitit*-näytössä ja valitse sitten *Muokkaa reittiä*. Täältä voit lisätä ja poistaa reittipisteitä sekä muokata reitin nimeä ja kuvausta.
+Valitse reitti näytöstä *Reitit* ja valitse sitten *Aloita reitti*. Jos haluat kulkea sen takaperin, valitse *Aloita reitti takaperin*. Aloitusnäytössä *Seuraava reittipiste* ja *Edellinen reittipiste* siirtävät majakkaa reittiä pitkin. *Pysäytä reitti* lopettaa reitin.
 
-**Reitin jakaminen:**
+## Reitin muuttaminen
 
- Valitse reittisi *Reitit*-näytöltä ja valitse sitten *Jaa* -vaihtoehto käyttäen tavallisia jakamismahdollisuuksia.
+Valitse reitti näytöstä *Reitit* ja valitse sitten *Muokkaa reittiä*. Voit lisätä ja poistaa reittipisteitä ja muuttaa niiden järjestystä, muuttaa nimeä ja kuvausta tai poistaa reitin.
+
+## Reitin jakaminen
+
+Valitse reitti näytöstä *Reitit* ja valitse sitten *Jaa*.
 

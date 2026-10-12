@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Favoritos
 
-Com o Soundscape, você pode marcar seu mundo e tudo o que lhe interessa, como pinos em um mapa.
+Um favorito é um lugar que você salvou. Pode ser qualquer lugar importante para você: a sua casa, um ponto de ônibus, a entrada de um prédio ou uma faixa de pedestres.
 
-Você pode marcar lugares pessoais e relevantes para você, como sua casa, seu escritório ou sua mercearia preferida. É possível marcar qualquer local ou endereço, e também coisas que normalmente não aparecem nos mapas, por exemplo: entradas de edifícios ou de parques, botões de pedestres, faixas de pedestres, pontes, pontos de ônibus ou até a árvore favorita do seu cachorro. Use essas marcações como referências ao longo do caminho.
+O Soundscape anuncia os seus favoritos quando você passa por eles. Você pode definir um sinalizador sonoro em um favorito, adicioná-lo a uma rota ou ouvir os mais próximos com o botão *Favoritos nas Proximidades*.
 
-Para ouvir os locais marcados, o Soundscape anunciará automaticamente os locais marcados à medida que você passa por eles ou se aproxima, ou você também pode usar o botão *Favoritos nas Proximidades* na parte inferior da tela inicial para ouvir uma notificação espacial dos locais marcados ao seu redor. Você pode até definir um sinalizador sonoro em qualquer local marcado. Ao fazer isso, você ouvirá o sinalizador sonoro do Soundscape com o qual está familiarizado e poderá operá‑lo normalmente.
+## Criando Favoritos
+
+1. Selecione *Favoritos* na tela inicial e depois selecione *Novo*.
+
+2. Escolha *Localização Atual*, ou um lugar em *Locais Próximos*.
+
+3. Mude o nome, se quiser, e adicione notas. O Soundscape lê as notas junto com o favorito.
+
+4. Selecione *Concluído*.
+
+Você também pode salvar qualquer lugar que encontrar. Abra os *Detalhes da Localização* dele e selecione *Salvar como Favorito*.
+
+## Personalizando Favoritos
+
+Selecione o favorito na tela *Favoritos* e depois selecione *Editar Favorito*. Você pode mudar o nome, as notas e a posição, ou selecionar *Excluir Favorito*. Excluir um favorito também o remove das suas rotas.
 

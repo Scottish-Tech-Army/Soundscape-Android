@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Marcaje din apropiere
 
-## Ce este?
+*Marcaje din apropiere* anunță până la patru dintre marcajele tale, cele mai apropiate de tine. Îl auzi pe fiecare din direcția lui, împreună cu distanța. Folosește-l pentru a te orienta după locuri pe care le știi deja. Marcajele aflate la mai mult de aproximativ 2 kilometri sunt omise.
 
-Butonul *Marcaje din apropiere* te informează despre până la patru marcaje care sunt cele mai aproape de tine. *Marcaje din apropiere* este conceput pentru a te ajuta să te orientezi folosind locuri pe care le cunoști deja.
-
-## Când aș folosi această funcție?
-
-Când încerci să te orientezi și să te familiarizezi cu împrejurimile, folosește *Marcaje din apropiere* pentru a auzi despre locațiile locurilor pe care le cunoști.
-
-## Cum funcționează?
-
-La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *Marcaje din apropiere*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *Marcaje din apropiere* și vei auzi până la patru marcaje din apropierea ta.
+Dacă stai pe loc, îndreaptă mai întâi partea de sus a telefonului în direcția spre care ești cu fața. Dacă telefonul este blocat sau Soundscape nu este pe ecran, ține telefonul și în poziție orizontală.
 

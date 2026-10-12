@@ -9,121 +9,76 @@ permalink: /users/help-frequently-asked-questions.html
 
 # Gyakran ismételt kérdések
 
-## Mi az a Soundscape, és hogyan használjam?
+## A Soundscape-ről
 
 ### Mikor használjam a Soundscape-et?
-A Soundscape-nek számos funkciója és előnye van, amelyek sokféle helyzetet és időtávot ölelnek fel. A Soundscape értéke idővel változhat is az Ön számára, így ahogyan ma használja, eltérhet attól, ahogyan három hónap múlva fogja használni. Az emberek gyakran úgy gondolnak az alkalmazásokra, hogy *milyen problémát old meg jól ez az alkalmazás?* A Soundscape kétségtelenül használható konkrét igényekre – például egy célpont nyomon követésére útközben, tájékozódásra, amikor kilép egy metróállomásról, tájékozódásra, amikor kiszáll egy autóból, vagy a következő kereszteződés utcaneveinek vagy távolságának megállapítására. A Soundscape mögötti filozófia azonban az, hogy *hanggal világítsa meg a világát* – arra tervezték, hogy bármikor használható legyen, amikor útközben van, hogy folyamatos tájékozódási érzetet nyújtson a környezetéről, például azoknak az utcáknak a nevét, amelyeken jár, az irányt, amerre halad, és azoknak az üzleteknek a nevét, amelyek mellett elhalad. Ebben a használati módban felhasználóink a Soundscape-et *kellemes társalkalmazásnak* nevezték, amely támogatja a *véletlen felfedezéseket*, segít *kitölteni a mentális térkép hiányosságait*, és nagyobb *magabiztosságot ad séta közben*. Íme néhány további példa arra, hogyan használják felhasználóink a Soundscape-et az életükben:
-
-A Soundscape segített visszatalálnom a helyes útra, miután leszálltam a buszról, és rossz irányba indultam el.
-
-Még abban a városban is, ahol már 3 éve élek, jobb képet alkottam magamnak arról, mi van körülöttem [a Soundscape-pel].
-
-A 3D hang javítja a séta élményét, mert jobban kapcsolódom a környezetemhez… nagyobb eséllyel próbálok ki új útvonalat, most hogy van erre az alkalmazásom.
-
-Hiányzik a séta közbeni véletlen felfedezés élménye. Jó, hogy megvan a Soundscape – nem igényel erőfeszítést, hogy halljak a körülöttem lévő dolgokról. A kapcsolati információk hasznosak, és remek alkalmazás a helyzettudatossághoz és az üzleti negyedek felfedezéséhez.
-
-[A Soundscape-et arra használtam], hogy megtaláljak egy kocsmát York belvárosában. [Számos] lehetőségét kihasználtam, hogy először behatároljam, majd ténylegesen megtaláljam. 3 méteren belülre vitt az ajtajához – zseniális!
-
-### Mik azok a jelölők, és hogyan hozhatom ki belőlük a legtöbbet?
-A jelölők olyan helyek, amelyeket elmentett. Lehetnek olyan helyek, amelyek megtalálhatók az alkalmazásban, vagy lehetnek teljesen új helyek, amelyeket Ön maga adott hozzá. Jelölő hozzáadásához válassza a *Jelölők* gombot a kezdőképernyőn, majd a képernyő jobb felső sarkában lévő *Új* gombot, és válassza ki a jelenlegi helyét vagy egy közeli helyet. A kezdőképernyőn talált bármely helyet is elmentheti a keresősávval, a *Közeli helyek* gombbal vagy a *Jelenlegi hely* gombbal. Egy hely kiválasztása a *Helyszín adatai* képernyőre viszi, ahol a *Mentés jelölőként* nevű gombot kell választania.
-
-## Hogyan hozhatom ki a legtöbbet a Soundscape-ből?
-
-### Mit állíthatok be irányjelző hangnak?
-Irányjelző hangot állíthat be bármely üzletre, helyre, érdekes helyre, címre vagy kereszteződésre. Néhány módon adhat irányjelző hangot egy helyhez. Először tekintse meg egy hely adatait: használja a keresősávot egy hely kereséséhez, vagy koppintson a *Közeli helyek*, a *Jelölők*, vagy a *Jelenlegi hely* gombok egyikére, majd válasszon egy helyet. Ezután a *Helyszín adatai* képernyőn válassza az *Irányjelző hang indítása* gombot. Ha erre koppint, visszatér a kezdőképernyőre, és bekapcsol egy irányjelző hang a kiválasztott hely irányából. A hely neve, valamint – ha elérhető – a távolsága és a fizikai címe mostantól megjelenik a főképernyőn.
-
-### Hogyan hozhatom ki a legtöbbet az irányjelző hangból?
-Az irányjelző hangot úgy is felfoghatja, mint a *fülei világítótornyát*: megmondja, hol van a célpontja, egyenes vonalban a jelenlegi helyétől. Akárcsak egy világítótorony, ez sem mondja meg, hogyan jusson el oda – útközben még mindig navigációs döntéseket kell hoznia, hogy megkerülje az akadályokat. Az irányjelző hang folyamatosan, ritmikusan szól a célpont irányából, és segít tudatában tartani, hol van a célpont Önhöz képest, miközben sétál. Amikor közvetlenül a célpont felé sétál, vagy a telefont a célpont felé irányítja, egy magasabb hangmagasságú *csengő* hangot fog hallani. Ez segít pontosan meghatározni a célpont irányát, mivel a ritmikus hang irányát néha nehéz meghallani zajos környezetben. A magasabb hangmagasságú *csengő* hang megtalálásához tartsa a telefont vízszintesen, és lassan forduljon körbe; ha a fejét is abba az irányba fordítja, amerre a telefon mutat, azzal éri el a legjobb térbeli hangélményt.
-
-Ennek a kialakításnak néhány természetes következménye van:
-
-1. Nincs *helyes* irány, amerre haladni kell az irányjelző hang használatakor – a Soundscape-pel Ön dönti el, hogyan jut el oda;
-
-2. A magasabb hangmagasságú *csengő* csak a célpont irányának pontos meghatározásában segít – nem mondja meg, hogyan jusson oda;
-
-3. Ha általában tudja, hogyan jusson el a célpontjához, elnémíthatja az irányjelző hangot az út nagy részére, és csak akkor kapcsolhatja vissza, amikor közeledik a célponthoz.
-
-### Miért tűnik el néha az irányjelző hang?
-A Soundscape irányjelző hangja alapvetően iránymutatás: megmutatja, hol van a célpontja ahhoz az irányhoz képest, amerre néz. Amikor a Soundscape bizonytalan abban, hogy merre néz, lehalkítja az irányjelző hangot. Ez leggyakrabban akkor fordul elő, ha zsebben vagy táskában tartott telefonnal sétált, és megáll, például hogy átkeljen egy úton. Az irányjelző hang ismét hangosabb lesz, amint újra elindul, vagy ha vízszintesen tartja a telefont, és abba az irányba mutat vele, amerre néz.
-
-### Beállíthatok irányjelző hangot egy címre?
-Igen, ez lehetséges. A címek alapértelmezés szerint nincsenek felsorolva, de a keresőmező segítségével megtalálhatók. Ha el szeretné menteni ezt a címet, hogy ne kelljen újra rákeresnie, hozzáadhatja jelölőként a *Helyszín adatai* képernyőn a *Mentés jelölőként* gomb kiválasztásával.
-
-### Hogyan állítsak be irányjelző hangot az otthonomra?
-A Soundscape támogatja az irányjelző hangok beállítását címekre. Ha irányjelző hangot szeretne beállítani az otthonára vagy bármely más címre, keressen rá egy helyre a főképernyő keresősávjával. Ezután a *Helyszín adatai* képernyőn koppintson az *Irányjelző hang indítása* gombra.
-
-### Ha irányjelző hangot állítok be egy célpontra, milyen közel visz oda a Soundscape?
-A Soundscape néhány méteres pontossággal képes meghatározni a célpont helyét, ennél pontosabban nem. Amikor a Soundscape megállapítja, hogy közel van a célpontjához, egy utolsó bemondást fog hallani arról, hogy a célpontja a közelben van, majd az irányjelző hang kikapcsol.
-
-### Visszakapcsolhatom az irányjelző hangot, amikor közel vagyok a célpontomhoz?
-Igen, miután a Soundscape kikapcsolta az irányjelző hangot, visszakapcsolhatja az *irányjelző hang némításának feloldása gomb* kiválasztásával; mivel azonban a Helyszolgáltatások pontossága csak körülbelül 10 méter, nem tudjuk garantálni az irányjelző hang viselkedését, amikor néhány méteren belül van a célpontjához.
-
-### Miért mondja be a Soundscape kétszer az utcaneveket, amikor egy kereszteződéshez közeledem?
-A kereszteződések sokféle elrendezésének kezelésére a Soundscape a kereszteződéseket egy közös pontból induló útszakaszokként írja le. A Soundscape térbeli hangot használ, hogy jelezze a balra, egyenesen előre és jobbra vezető utak nevét, ebben a sorrendben. Ha a kereszteződés leírása azzal az úttal kezdődik, amelyen éppen van, nem pedig egy balra lévővel, akkor a kereszteződés egy oldalára fordított T betűt formál: az Ön útja egyenesen folytatódik, és egy út csatlakozik hozzá jobbról. Hasonlóképpen, ha a leírás csak egy balra és egy jobbra lévő utat tartalmaz, akkor tudni fogja, hogy az útja T alakban ér véget Ön előtt. Ez a kereszteződés-leírási módszer akkor is működik, amikor egy út neve megváltozik a kereszteződésnél.
-
-### Miért nem mond be a Soundscape minden üzletet, amely mellett elhaladok?
-A Soundscape-et úgy tervezték, hogy ne adjon túl sok bemondást. Emellett az OpenStreetMapet használja adatforrásként. Az OpenStreetMap (OSM, https://www.openstreetmap.org/) a világ térképe, amelyet egyéni közreműködők közössége épít és szerkeszt. Ha a Soundscape nem mond be egy üzletet vagy érdekes helyet, a legvalószínűbb ok az, hogy az OSM közösség egyik tagja még nem adta hozzá az adatokhoz, vagy egyes esetekben nem frissítette azt.
-
-### Miért állnak le egyes bemondások, amikor járműben vagyok?
-Annak érdekében, hogy a bemondások száma ne legyen elárasztó, bizonyos kategóriákat, például a kereszteződéseket, nem mondja be automatikusan az alkalmazás, amikor járműben utazik.
-
-### Mi van, ha nem értek meg egy bemondást, vagy lemaradok róla a környezeti zaj miatt?
-A Soundscape nem őrzi meg a korábbi bemondások listáját, de bármikor kérheti, hogy írja le újra a környezetét. A *Saját helyzetem* megmondja, hol van, a *Körülöttem* és az *Előttem* pedig bemondja az Ön körüli és az Ön előtti helyeket. Mindhárom gomb a kezdőképernyő alján található. Ha a fejhallgató médiavezérlőit használja, és az *Eredeti mód* van kiválasztva, a ⏭ Következő bemondja a *Körülöttem* adatait, amikor nincs lejátszás alatt útvonal.
-
-## Hogyan működik a Soundscape?
-
-### Milyen telefonon fut a Soundscape?
-A Soundscape jelenleg elérhető iOS 16-ot vagy újabb verziót futtató iPhone-okhoz, valamint Android 11-et vagy újabb verziót futtató Android-telefonokhoz.
-
-### Milyen fülhallgatót használjak a Soundscape-hez?
-Hogy melyik fülhallgatót használja a Soundscape-hez, egyéni preferencia kérdése, és minden lehetőségnek megvannak a maga előnyei és hátrányai. Az egyetlen követelmény, hogy egy sztereó fülhallgatót használjon, hogy kihasználhassa a Soundscape 3D térbeli bemondásainak előnyeit.
-
-### Hogyan hat a Soundscape a telefonom akkumulátorára?
-Az akkumulátor élettartama jelentősen változik a telefon típusától és korától függően. A legnagyobb terhelést a bekapcsolt képernyő jelenti, ezért a telefon akkumulátor-élettartamának maximalizálásához tartsa zárolva a képernyőt, amikor csak lehetséges. Az akkumulátorra gyakorolt hatás csökkentése érdekében a Soundscape rendelkezik Alvó és Szundi móddal. Az akkumulátorhasználat további csökkentéséhez, amikor nem használja a Soundscape-et, zárja be teljesen a telefon Alkalmazásváltójával.
-
-### Hogyan használjam az Alvó módot, hogy minimalizáljam a Soundscape hatását a telefonom akkumulátorára?
-Ahhoz, hogy a Soundscape-et Alvó módba állítsa, válassza az *Alvás* gombot a kezdőképernyő jobb felső sarkában. Ha ezt kiválasztja, a Soundscape leállítja a Helyszolgáltatások és a mobiladatok használatát, amíg fel nem ébreszti.
-
-### Hogyan használjam a Szundi módot, hogy minimalizáljam a Soundscape hatását a telefonom akkumulátorára?
-Ahhoz, hogy a Soundscape-et Szundi módba állítsa, válassza az *Alvás* gombot a kezdőképernyő jobb felső sarkában. Miután a Soundscape Alvó módban van, válassza a *Felébredés távozáskor* gombot, és a Soundscape alacsony fogyasztású állapotba kerül, amíg el nem hagyja a jelenlegi helyét.
-
-### Hogyan befolyásolja a fülhallgató-választásom a telefonom akkumulátor-élettartamát?
-Teszteink szerint a Bluetooth-os fülhallgatók akkumulátor-fogyasztása hasonló a vezetékes fülhallgatókéhoz, így ez nem jelent jelentős szempontot a fülhallgató kiválasztásakor.
-
-### Hogyan hat a telefonom akkumulátor-élettartamára, ha a Soundscape a háttérben fut?
-A Soundscape a Helyszolgáltatásokat használja annak meghatározásához, hogy hol van. Teszteink szerint a Soundscape nem fogyaszt több akkumulátort, mint egy átlagos térképalkalmazás; de ha aggódik a telefonja akkumulátor-fogyasztása miatt, az alábbi néhány tipp segít csökkenteni a használatot:
-
-1. Kapcsolja ki a képernyőt, amikor csak lehetséges, ha éppen nem használja az alkalmazást.
-
-2. Amikor nem használja az alkalmazást, zárja be. A Soundscape futás közben folyamatosan használja a helyszolgáltatásokat, hogy mindig tudja a helyzetét, még akkor is, ha nem mozog. Ne felejtse el újraindítani az alkalmazást, amikor folytatja az útját.
-
-3. Hideg időben tartsa melegen a telefonját, mivel az akkumulátorok rosszabbul teljesítenek alacsonyabb hőmérsékleten.
-
-### Mennyi mobiladatot használ a Soundscape?
-A felhasznált mobiladat mennyisége attól függ, hogyan használja a Soundscape-et. Az alkalmazást úgy terveztük, hogy csak kis mennyiségű adatot használjon, amikor úton van, például úgy, hogy elmenti a pontokat séta közben, így nem kell azokat újra letöltenie minden alkalommal, amikor visszatér egy már meglátogatott helyre. A felhasznált mobiladat mennyiségének csökkentéséhez lehetőleg mindig csatlakozzon Wi-Fi hálózathoz, különösen az alkalmazás letöltésekor. Amikor nem használja a Soundscape-et, használja az *Alvás* gombot, hogy elaltassa a Soundscape-et, vagy zárja be teljesen az alkalmazást.
+Használja a Soundscape-et, valahányszor úton van. A háttérben fut, és megmondja, melyik utcában jár, és milyen helyek mellett halad el. Egy-egy feladatban is segíthet, például abban, hogy nyomon kövesse a helyet, ahová sétál.
 
 ### Miben különbözik a Soundscape más térképalkalmazásoktól?
-A Soundscape a felfedezés és a tájékozódás elősegítésére a környezet folyamatos leírását nyújtja. Térbeli hang segítségével a Soundscape bemondja az érdekes helyeket, parkokat, utakat és kereszteződéseket abból az irányból, ahol azok fizikailag találhatók a közvetlen környezetében, séta közben. Ha például elhalad egy üzlet mellett a jobb oldalán, az üzlet nevét a jobb oldaláról fogja hallani. Amikor egy kereszteződéshez közeledik, az egyes utcaneveket abból az irányból fogja hallani, amerre vezetnek, kezdve a bal oldalával, majd egyenesen előre és jobbra.
+A legtöbb térképalkalmazás lépésről lépésre ad útbaigazítást. A Soundscape megmondja, mi van Ön körül, és az úti cél irányából szólaltatja meg az irányjelző hangot. Az utat Ön választja meg.
 
-A más térképalkalmazások által gyakran nyújtott lépésről lépésre navigáció helyett a Soundscape irányjelző hangot játszik le a célpontja irányából, lehetővé téve, hogy úgy jusson el oda, ahogy Önnek a legjobban megfelel, kihasználva a környezetéről és a célpontja helyéről szerzett fokozott tudatosságát. A Soundscape-et úgy tervezték, hogy a háttérben fusson, lehetővé téve, hogy egy lépésről lépésre navigáló alkalmazást is használjon, miközben továbbra is folyamatos tájékozódási érzetet nyújt, ahogy a célpontja felé halad.
-
-### Hogyan használjam a Soundscape-et egy navigációs alkalmazással együtt?
-A Soundscape-et arra tervezték, hogy segítsen kitölteni a környezetéről szóló olyan részleteket, amelyekről egyébként nem lenne tudomása. Bár nem lépésről lépésre navigáló alkalmazásnak tervezték, más ilyen alkalmazások mellett is használható, hogy kiegészítő információt nyújtson. Ha ezekkel az alkalmazásokkal együtt szeretné használni a Soundscape-et, először indítsa el a navigációs alkalmazást. Ezután váltson át a Soundscape-re, és állítson be irányjelző hangot ugyanarra a célpontra, mint amit a navigációs alkalmazásban beállított. Ekkor mindkét alkalmazás futni fog, és a navigációs alkalmazástól gyalogos útvonalutasításokat fog hallani, miközben a Soundscape-től frissítéseket kap az érdekes helyekről, kereszteződésekről és a célpontjától mért távolságáról.
-
-### Hogyan szabályozhatom, hogy mit és mikor hallok a Soundscape-ben?
-A Soundscape több módot is kínál arra, hogy szabályozza, mit és mikor hall:
-
-1. Minden hang azonnali leállítása: Koppintson duplán a képernyőre két ujjal, hogy azonnal kikapcsoljon minden hangot, beleértve az éppen lejátszott bemondást és az irányjelző hangot, ha az be van kapcsolva. A bemondások automatikusan folytatódnak, amikor a következő kereszteződéshez vagy érdekes helyhez közeledik, de az irányjelző hang nem. Válassza az *irányjelző hang némításának feloldása* gombot a főképernyőn, hogy ismét hallja az irányjelző hangot.
-
-2. Automatikus bemondások leállítása: Amikor nem utazik, vagy elérte a célpontját, valószínűleg nincs szüksége arra, hogy a Soundscape továbbra is tájékoztassa a környezetében lévő dolgokról. Ahelyett, hogy kilépne az alkalmazásból, Szundi módba állíthatja a Soundscape-et, amely újra felébred, amikor elhagyja a jelenlegi helyét, vagy Alvó módba állíthatja, amely kikapcsolva marad, amíg vissza nem kapcsolja. Ehelyett kiválaszthatja a *Beállítások* menüpontot, és a *Bemondások kezelése* részben a *Bemondások részletessége* beállítást *Néma* értékre állíthatja.
-
-3. Az irányjelző hang leállítása: Számos olyan helyzet van, amikor beállíthat egy célpontot, de nincs szüksége bekapcsolt irányjelző hangra. Előfordulhat például, hogy pontosan tudja, hogyan jusson el a célpontjához, de mégis szeretne automatikus frissítéseket kapni arról, milyen messze van tőle. Vagy csak akkor van szüksége az irányjelző hangra, amikor közeledik a célpontjához. Bármelyik esetről is legyen szó, a főképernyőn az *irányjelző hang némítása*/*irányjelző hang némításának feloldása* gomb átváltásával döntheti el, mikor hallja az irányjelző hangot.
-
-Ha továbbra is szeretne interakcióba lépni a Soundscape-pel, de nem szeretne automatikus bemondásokat hallani, a menüből elérhető *Beállítások* képernyő *Bemondások kezelése* részében a *Bemondások részletessége* beállítást *Néma* értékre állíthatja. Vagy ha nem fogja használni a Soundscape-et, Alvó vagy Szundi módba állíthatja a kezdőképernyőn található *Alvás* gombbal.
+A kettőt együtt is használhatja. Indítsa el az útbaigazítást a térképalkalmazásban, majd állítson be a Soundscape-ben irányjelző hangot ugyanarra a helyre.
 
 ### Végig a kezemben kell tartanom a telefont?
-Nem! Séta közben elteheti a telefont egy táskába, zsebbe, vagy bárhová, ahol kényelmes. A Soundscape a haladási irányát fogja használni annak megállapítására, hogy mely bemondásokat mondja be a bal, illetve a jobb oldaláról. Amikor megáll, a Soundscape nem tudja, merre néz. Ha az irányjelző hang be van kapcsolva, észre fogja venni, hogy elhalkul, amíg újra el nem indul. Bármikor előveheti a telefont, hogy megnyomja a kezdőképernyő alján található helyzet- és felfedezőgombokat, de ilyenkor ügyeljen arra, hogy a telefon teteje abba az irányba mutasson, amerre néz, a képernyő pedig az ég felé nézzen. Ebben a *vízszintes* helyzetben a Soundscape a telefon iránytűjét használja annak meghatározására, merre néz, és pontos térbeli bemondásokat ad. Ha az irányjelző hang be van kapcsolva, azt is észre fogja venni, hogy visszaáll a teljes hangerőre.
+Nem. Séta közben a Soundscape a haladási irányát használja. A telefon ezért zsebben vagy táskában maradhat. Vegye elő, amikor egy helyben áll, és azt szeretné, hogy az irányok pontosak legyenek. Fordítsa a telefon felső szélét abba az irányba, amerre néz. Ha a telefon zárolva van, vagy a Soundscape nincs a képernyőn, tartsa a telefont vízszintesen is.
 
-### Mi az az OpenStreetMap, és miért ezt használjuk a Soundscape-hez?
-A Soundscape térképadatokat használ a bemondásai létrehozásához. Fő térképforrásunk az OpenStreetMap (www.openstreetmap.org). Ez egy térképészeti platform, amelyet közreműködők közössége hozott létre. Szervezetek és magánszemélyek az OpenStreetMap eszközeivel javíthatják az adatokat, és akadálymentesebbé tehetik a tereiket.
+## Irányjelző hangok és bemondások
+
+### Beállíthatok irányjelző hangot egy címre, például az otthonomra?
+Igen. Írja be a címet a kezdőképernyő keresősávjába, és válassza ki a találatok közül. Ezután válassza az *Irányjelző hang indítása* lehetőséget. Ha a címet meg szeretné őrizni a következő alkalomra, válassza a *Mentés jelölőként* lehetőséget.
+
+### Hogyan hozhatom ki a legtöbbet az irányjelző hangból?
+Gondoljon az irányjelző hangra úgy, mint egy világítótoronyra a fülének. Azt mutatja meg, merre van a hely légvonalban, nem az odavezető utat. Továbbra is Ön választja meg, hogyan kerüli meg az épületeket, és hol kel át az utakon.
+
+Az irányjelző hang megváltozik, amikor a hely felé néz. Ennek a hangnak a megtalálásához tartsa a telefont vízszintesen, és forduljon lassan körbe.
+
+Ha az út nagy részét ismeri, némítsa az irányjelző hangot, és oldja fel a némítást, amikor közel jár.
+
+### Mi történik, amikor megérkezem az úti célomhoz?
+Amikor körülbelül 12 méterre van, a Soundscape szól, és eltávolítja az irányjelző hangot. A telefon ennél pontosabban nem tudja meghatározni a helyzetét, ezért az utolsó néhány lépésnél használja a többi készségét. Ha újra hallani szeretné az irányjelző hangot, állítsa be újra.
+
+### Miért szól másképp az irányjelző hang, amikor megállok?
+Ha a telefon zsebben vagy táskában van, a Soundscape a haladási irányából állapítja meg, merre néz. Amikor megáll, ezt már nem tudja megállapítani, ezért az irányjelző hang úgy szól, mintha háttal állna a helynek. Induljon el újra, vagy fordítsa a telefon felső szélét abba az irányba, amerre néz. Ha a telefon zárolva van, vagy a Soundscape nincs a képernyőn, tartsa a telefont vízszintesen is.
+
+### Miért hallok egy utcanevet kétszer egy kereszteződésnél?
+A Soundscape megnevez minden utat, amely a kereszteződésből kiindul, abból az irányból, amerre az út vezet. Az az út, amely keresztezi az Önét, balra és jobbra is megy, ezért a nevét kétszer hallja. Ha csak egy bal és egy jobb oldalit hall, az Ön útja előrefelé véget ér.
+
+### Miért nem mond be a Soundscape minden üzletet, amely mellett elhaladok?
+A Soundscape a helyeket az OpenStreetMapből veszi, egy önkéntesek által készített térképből. Ha egy üzlet hiányzik erről a térképről, a Soundscape nem tudja bemondani. A Soundscape korlátozza is a bemondásokat, hogy ne halljon túl sokat. Ha többet szeretne hallani, állítsa a *Bemondások részletessége* beállítást *Részletes* szintre, és ellenőrizze a *Bemondandó helyek* beállítást.
+
+### Mi változik, amikor járműben utazom?
+A Soundscape nem mondja be a kereszteződéseket és a közeli üzleteket, mert túl gyorsan haladnak el. Helyettük bemondja az utat, amelyen halad, a nevezetességeket, a megállókat és állomásokat, a folyókat és az alagutakat.
+
+### Mi van, ha lemaradok egy bemondásról?
+A Soundscape nem őrzi meg a korábbi bemondások listáját. Kérdezzen újra a kezdőképernyő alján lévő gombokkal: *Saját helyzetem*, *Körülöttem* vagy *Előttem*.
+
+### Hogyan állíthatom halkabbra a Soundscape-et?
+1. Ha kevesebb bemondást szeretne hallani, nyissa meg a *Beállítások* menüt, válassza a *Bemondások kezelése* lehetőséget, és csökkentse a *Bemondások részletessége* szintjét. A *Néma* minden automatikus bemondást leállít.
+
+2. Az irányjelző hang elnémításához válassza a kezdőképernyőn az *Irányjelző hang némítása* lehetőséget.
+
+3. Ha egy időre le szeretné állítani a Soundscape-et, válassza az *Alvás* lehetőséget a kezdőképernyő tetején.
+
+## Telefonok, akkumulátor és térképek
+
+### Milyen telefonon fut a Soundscape?
+A Soundscape iOS 16 vagy újabb rendszerű iPhone-okon, valamint Android 11 vagy újabb rendszerű Android-telefonokon fut.
+
+### Szükségem van fejhallgatóra?
+Nem. A Soundscape a telefon hangszóróján keresztül is működik. Sztereó fejhallgatóval sokkal tisztábban érzékelhető az irány, és bármilyen vezetékes vagy Bluetooth fejhallgató megfelel.
+
+### Hogyan kíméljem az akkumulátort?
+A Soundscape folyamatosan használja a helyzetét, és ez fogyasztja az akkumulátort. Így fogyaszthat kevesebbet:
+
+1. Tartsa kikapcsolva a képernyőt, amikor nem használja.
+
+2. Amikor egy időre megáll, válassza az *Alvás* lehetőséget a kezdőképernyő tetején. Válassza a *Felébredés távozáskor* lehetőséget, ha azt szeretné, hogy a Soundscape felébredjen, amikor továbbindul.
+
+3. Ha végzett, zárja be a Soundscape-et.
+
+### Mennyi mobiladatot használ a Soundscape?
+A Soundscape mozgás közben kis mennyiségű térképadatot tölt le. Ha sokkal kevesebbet szeretne használni, utazás előtt töltsön le egy offline térképet Wi-Fin. Nyissa meg a menüt, és válassza az *Offline térképek* lehetőséget.
+
+### Mi az OpenStreetMap?
+Az OpenStreetMap a világ szabad térképe, amelyet önkéntesek készítenek. A Soundscape ezt használja az utcákhoz és a helyekhez. Bárki hozzáadhat vagy kijavíthat egy helyet a www.openstreetmap.org oldalon, és a változás egy későbbi térképfrissítéssel jut el a Soundscape-be.
 

@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Utilitzar els controls multimèdia
 
-## Què és?
+Pots controlar Soundscape amb els botons multimèdia dels auriculars: *reprodueix/pausa*, *següent* i *anterior*. Funciona amb auriculars amb cable i Bluetooth. També funciona quan Soundscape és en segon pla o el telèfon està bloquejat.
 
-Pots accedir a certes funcions de Soundscape amb l'ajuda dels botons de control multimèdia dels teus auriculars. Aquesta funcionalitat funciona amb qualsevol auricular amb fil o Bluetooth que tingui botons de control multimèdia com Reprodueix, Pausa, Següent, Anterior i altres. Diferents auriculars poden incloure botons diferents, així que consulta la llista d'accions a continuació per determinar quins estan disponibles per a tu.
+No tots els auriculars tenen els tres botons.
 
-## Quan l'hauria d'utilitzar?
+Els botons només controlen Soundscape quan cap altra aplicació reprodueix àudio. Si escoltes música o un pòdcast, els botons controlen aquella aplicació.
 
-Els controls multimèdia dels auriculars es poden utilitzar mentre Soundscape s'executa, tant si estàs utilitzant l'aplicació activament, com si s'executa en segon pla o el dispositiu està bloquejat. Tanmateix, els botons de control multimèdia dels auriculars no funcionaran amb Soundscape si estàs reproduint àudio, com ara música, pòdcasts o vídeos, amb una altra aplicació.
+Els botons poden funcionar de dues maneres: *Mode original* o *Menú d'àudio*. Per triar, obre el menú i selecciona *Configuració* i després *Controls multimèdia*.
 
-## Com funciona?
+## Mode original
 
-Hi ha 2 modes de funcionament per als controls multimèdia. El mode es pot seleccionar a la secció *Configuració* *Controls multimèdia*. Els modes són:
+*Reprodueix/pausa* silencia la balisa. Prem-lo una altra vegada per sentir la balisa.
 
- *Mode original*. 
+*Següent* mou la balisa al punt de ruta següent quan segueixes una ruta. Si no, anuncia *Al meu voltant*.
 
-⏯ Reprodueix/Pausa: Activa o desactiva l'àudio de la balisa. 
+*Anterior* mou la balisa al punt de ruta anterior quan segueixes una ruta. Si no, canvia el *Detall dels avisos de veu*. Cada pulsació baixa un nivell: *Detallat*, *Simplificat*, *Essencial* i després *Silenciós*. Una pulsació més torna a *Detallat*. Soundscape diu el nom del nou nivell.
 
-⏭ Següent: Si s'està reproduint una ruta, mou la balisa sonora al punt de ruta següent de la ruta. Si no s'està reproduint cap ruta, anuncia *Al meu voltant*.
+## Menú d'àudio
 
-⏮ Anterior: Si s'està reproduint una ruta, mou la balisa sonora al punt de ruta anterior de la ruta. Si no s'està reproduint cap ruta, canvia el *Detall dels avisos de veu*, un nivell més discret a cada pulsació: *Detallat*, *Simplificat*, *Essencial*, *Silenciós*, i torna a *Detallat*.
+El menú d'àudio et dona més accions amb els mateixos tres botons. Soundscape llegeix cada opció en veu alta.
 
+*Següent* passa a l'opció següent. Després de l'última opció torna a la primera.
 
+*Reprodueix/pausa* selecciona l'opció que acabes de sentir.
 
-*Menú d'àudio*. 
+*Anterior* canvia el *Detall dels avisos de veu*, igual que al *Mode original*.
 
-
-
-⏭ Següent es mou per una sèrie d'opcions de menú que l'aplicació descriu mitjançant conversió de text a veu, i torna a la primera després de l'última. ⏯ Reprodueix/Pausa activa llavors que l'aplicació executi l'opció descrita. Hi ha un únic menú de nivell superior que només té submenús com a opcions. Cada submenú té un grup d'accions possibles similars.
-
-⏮ Anterior no es mou pel menú. En lloc d'això canvia el *Detall dels avisos de veu*, exactament igual que en el mode original, de manera que el mateix botó fa que l'aplicació sigui més discreta en qualsevol dels dos modes.
+El menú comença amb quatre grups: *Escolta el meu entorn*, *Control de ruta*, *Inicia la ruta* i *Inicia la balisa sonora*. Selecciona un grup per sentir-ne les accions. *Escolta el meu entorn* i *Control de ruta* acaben amb *Menú principal*, que et torna als quatre grups.
 

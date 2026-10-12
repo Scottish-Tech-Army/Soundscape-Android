@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Um mich herum
 
-## Was ist es?
+*Um mich herum* sagt bis zu vier Orte in Ihrer Nähe an: einen vor Ihnen, einen rechts, einen hinter Ihnen und einen links. Sie hören jeden aus seiner eigenen Richtung, mit seiner Entfernung. So orientieren Sie sich, wenn Sie irgendwo ankommen.
 
-Die Schaltfläche *„Um mich herum“* informiert über jeweils einen Point-of-Interest in jedem der vier Quadranten um Sie herum (vorne, rechts, hinten und links). *„Um mich herum“* soll Ihnen helfen, sich in Ihrer Umgebung zu orientieren.
-
-## Wann würde ich es verwenden?
-
-Wenn Sie versuchen, sich zu orientieren und sich in Ihrer Umgebung zurechtzufinden, verwenden Sie *„Um mich herum“*, um mehr über die Umgebung um Sie herum zu erfahren.
-
-## Wie funktioniert es?
-
-Wie bei allen vier Schaltflächen am unteren Rand des Startbildschirms, halten Sie Ihr Telefon mit dem Bildschirm flach (zum Himmel zeigend) und mit der Oberseite in die Richtung, in die Sie schauen, bevor Sie die Schaltfläche *„Um mich herum“* antippen. Dies wirkt wie ein Kompass, der der App mitteilt, in welche Richtung Sie schauen. Tippen Sie einfach auf die Schaltfläche *„Um mich herum“*, und Sie werden Hinweise zu vier Points-of-Interest hören, die sich im Bereich um Sie herum befinden.
+Wenn Sie stehen, richten Sie zuerst die Oberkante Ihres Telefons in Ihre Blickrichtung. Ist Ihr Telefon gesperrt oder Soundscape nicht auf dem Bildschirm, halten Sie das Telefon außerdem flach.
 

@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Okoli mene
 
-## Kaj je to?
+*Okoli mene* oznani do štiri kraje v vaši bližini: enega spredaj, enega desno, enega zadaj in enega levo. Vsakega slišite iz njegove smeri, z razdaljo. Uporabite ga, da se orientirate, ko nekam prispete.
 
-Gumb *Okoli mene* vam pove o eni stvari v vsakem od štirih kvadrantov okoli vas (spredaj, desno, zadaj in levo). *Okoli mene* vam pomaga pri orientaciji v okolici.
-
-## Kdaj naj to uporabim?
-
-Kadar se poskušate orientirati in seznaniti s svojo okolico, uporabite *Okoli mene*, da slišite o stvareh okoli vas.
-
-## Kako deluje?
-
-Kot pri vseh štirih gumbih na dnu domačega zaslona telefon držite tako, da je zaslon vodoraven (obrnjen proti nebu), vrh telefona pa naj kaže v smer, v katero ste obrnjeni, preden pritisnete gumb *Okoli mene*. To deluje kot kompas, ki aplikaciji pove, v katero smer ste obrnjeni. Preprosto tapnite gumb *Okoli mene* in slišali boste štiri zanimivosti, razporejene okoli vas.
+Če stojite na mestu, najprej usmerite zgornji rob telefona v smer, v katero gledate. Če je telefon zaklenjen ali Soundscape ni na zaslonu, držite telefon tudi vodoravno.
 

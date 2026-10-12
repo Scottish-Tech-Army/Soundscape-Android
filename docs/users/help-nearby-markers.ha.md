@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Alamomi na Kusa
 
-## Menene wannan?
+*Alamomi na Kusa* yana sanar da alamominku har guda huɗu, waɗanda suka fi kusa da ku. Kuna jin kowacce daga ɓangarenta, tare da nisanta. Ku yi amfani da shi don gane inda kuke ta wuraren da kuka riga kuka sani. Ana barin alamomin da suka wuce kusan kilomita 2.
 
-Maɓallin *Alamomi na Kusa* yana gaya muku game da alamomi har guda huɗu waɗanda suka fi kusanci da ku. An ƙirƙiri *Alamomi na Kusa* domin taimaka muku daidaita kanku ta amfani da wurare da kuka riga kuka sani.
-
-## Yaushe zan yi amfani da shi?
-
-Idan kuna ƙoƙarin gane inda kuke da kuma daidaita kanku da abin da ke kewaye da ku, yi amfani da *Alamomi na Kusa* don jin wurin da wuraren da kuka sani suke.
-
-## Yaya yake aiki?
-
-Kamar sauran dukkan maɓallai huɗu da ke ƙasan babban allo, riƙe wayarku a kwance (fuska sama zuwa sama) tare da saman wayar yana nuni da alkiblar da kuke fuskanta kafin ku danna maɓallin *Alamomi na Kusa*. Wannan yana aiki kamar kamfas wanda ke gaya wa manhajar alkiblar da kuke fuskanta. Kawai, danna maɓallin *Alamomi na Kusa* kuma za ku ji alamomi har guda huɗu kusa da ku.
+Idan kuna tsaye a wuri ɗaya, ku fara nuna saman wayar zuwa inda kuke fuskanta. Idan wayarku a kulle take, ko Soundscape ba ya kan allo, ku kuma riƙe wayar a kwance.
 

@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Marcadores
 
-Con Soundscape, puedes marcar tu mundo y todo lo que te interesa, como alfileres en un mapa.
+Un marcador es un lugar que has guardado. Puede ser cualquier lugar que te importe: tu casa, una parada de autobús, la entrada de un edificio o un paso de peatones.
 
-Puedes marcar lugares que sean personales y relevantes para ti, como tu casa, tu oficina o tu tienda de comestibles preferida. Puedes marcar cualquier lugar o dirección, y también cosas que normalmente no aparecen en los mapas, por ejemplo: entradas a edificios o parques, pulsadores para cruzar la calle, pasos de peatones, puentes, paradas de autobús o incluso el árbol favorito de tu perro. Usa estas marcas como referencia durante tu paseo.
+Soundscape avisa de tus marcadores cuando pasas junto a ellos. Puedes colocar una señal de audio en un marcador, añadirlo a una ruta u oír los más cercanos con el botón *Marcadores cercanos*.
 
-Para que conozcas los lugares marcados, Soundscape avisará automáticamente de ellos mientras pasas a pie o te aproximas a ellos o bien, puedes usar el botón *Marcadores cercanos* de la parte inferior de la pantalla principal de Soundscape para oír un aviso espacial de los lugares marcados a tu alrededor. Además, puedes establecer una señal de audio en cualquier lugar marcado. Cuando hagas esto, se oirá la señal de audio de Soundscape que conoces y podrás usarla de la manera habitual.
+## Creación de marcadores
+
+1. Selecciona *Marcadores* en la pantalla principal y después *Nuevo*.
+
+2. Elige *Ubicación actual* o un lugar de *Lugares cercanos*.
+
+3. Cambia el nombre si quieres y añade notas. Soundscape lee las notas junto con el marcador.
+
+4. Selecciona *Listo*.
+
+También puedes guardar cualquier lugar que encuentres. Abre sus *Detalles de la ubicación* y selecciona *Guardar como marcador*.
+
+## Personalización de marcadores
+
+Selecciona el marcador en la pantalla *Marcadores* y después selecciona *Editar marcador*. Puedes cambiar su nombre, sus notas y su posición, o seleccionar *Eliminar marcador*. Al eliminar un marcador, también se quita de tus rutas.
 

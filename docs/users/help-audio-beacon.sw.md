@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Beacon ya Sauti
 
-## Ni nini?
+Beacon ya sauti ni sauti inayotoka upande wa sehemu unayoichagua. Inakuambia sehemu ilipo kwa mstari ulionyooka. Haitoi maelekezo ya hatua kwa hatua, kwa hiyo unachagua njia yako mwenyewe ya kufika huko.
 
-Kuweka beacon kwenye mahali pa karibu huiwezesha Soundscape kukujulisha kwa kucheza sauti ikitoka upande wa mahali hapo. Beacon hii inaweza kunyamazishwa au kuwashwa tena kwenye skrini ya mwanzo. Zaidi ya hayo, Soundscape huonyesha taarifa kuhusu mahali hapo kwenye skrini ya mwanzo, ikiwemo umbali kufikia mahali hapo na anwani yake ya barabara ikiwa inajulikana.
+## Kuweka Beacon
 
-## Ni lini nitaitumia?
+1. Tafuta sehemu hiyo. Tumia upau wa utafutaji, *Sehemu za Karibu*, *Alama* au *Mahali Nilipo Sasa* kwenye skrini ya mwanzo.
 
-Kuweka beacon ni muhimu unapotaka kufuatilia kivutio unachokifahamu wakati unachunguza eneo jipya, au unapokwenda mahali na unataka kujulishwa kuhusu mazingira yanayokuzunguka njiani. Kipengele cha beacon hakikupi maelekezo ya hatua kwa hatua, bali hukupa sauti endelevu inayokujulisha upande ulipo beacon, kulingana na mahali ulipo sasa. Kwa kutumia beacon ya sauti, ujuzi wako wa kutafuta njia, na hata programu yako uipendayo ya uelekezaji, unaweza kuchagua jinsi unavyotaka kufika mahali pa karibu wewe mwenyewe.
+2. Chagua sehemu hiyo ili kufungua *Taarifa za Mahali*.
 
-## Inafanyaje kazi?
+3. Chagua *Anzisha Beacon ya Sauti*.
 
-**Kuweka beacon :**
+Soundscape inarudi kwenye skrini ya mwanzo na beacon inaanza. Skrini ya mwanzo inaonyesha jina la sehemu na umbali wake.
 
- Kwanza, tazama maelezo ya mahali kwa kutumia upau wa utafutaji kutafuta mahali, au kwa kugusa moja ya vitufe vya *Sehemu za Karibu*, *Alama*, au *Mahali Nilipo Sasa* kisha uchague mahali. Kisha kutoka kwenye skrini ya *Taarifa za Mahali*, chagua kitufe cha *Anzisha Beacon ya Sauti*. Kugusa hii kutakurudisha kwenye skrini ya mwanzo na kuwasha beacon inayosikika ikitoka upande wa mahali ulipochagua. Jina la mahali pamoja na umbali wake na anwani yake ya kimwili, ikiwa inajulikana, sasa vitaonyeshwa kwenye skrini kuu.
+## Kupata Mwelekeo
 
-**Kuondoa beacon ya sasa :**
+Beacon inabadilisha sauti unapoielekea sehemu hiyo au unapotembea moja kwa moja kuiendea. Ili kuipata sauti hiyo, shikilia simu yako kwa usawa na ugeuke polepole. Unaweza kuchagua sauti nyingine ya beacon katika *Mipangilio*.
 
- Bonyeza tu kitufe cha *Simamisha Njia* kwenye skrini ya mwanzo.
+## Kuzima Sauti ya Beacon
 
-**Kunyamazisha beacon inayosikika :**
+Chagua *Zima Sauti ya Beacon* kwenye skrini ya mwanzo. Soundscape bado inakuambia sehemu iko umbali gani kadiri unavyosogea. Chagua *Washa Sauti ya Beacon* ili kuisikia beacon tena.
 
- Gusa kitufe cha *Zima Sauti ya Beacon* kilicho karibu na kitufe cha *Simamisha Njia* kwenye skrini ya mwanzo.
+## Kuondoa Beacon
+
+Chagua *Simamisha Njia* kwenye skrini ya mwanzo. Kitufe kina jina hili hata wakati beacon si sehemu ya njia.
+
+## Unapofika
+
+Unapokuwa umbali wa takriban mita 12 kutoka kwenye sehemu hiyo, Soundscape inakuambia na kuiondoa beacon. Simu yako haiwezi kupata mahali ulipo kwa usahihi zaidi ya hapo. Ili kuisikia beacon tena, iweke tena.
+
+Beacon iliyowekwa kwenye sehemu iliyo umbali wa chini ya mita 30 inabaki ikiwa imewashwa hadi uiondoe.
 

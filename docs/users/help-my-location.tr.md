@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Konumum
 
-## Bu nedir?
+*Konumum* nerede olduğunuzu söyler. Hangi yöne baktığınızı veya ilerlediğinizi, sonra da bulunduğunuz sokağı veya adresi söyler. Otobüsten indiğinizde, bir binadan çıktığınızda veya yönünüzü kaybettiğinizde kullanın.
 
-*Konumum* düğmesi, şu anda nerede olduğunuzu anlamanıza yardımcı olan bilgileri hızla verir. *Konumum*, baktığınız yön, yakındaki yollar veya kavşaklar ve yakındaki ilgi noktaları gibi mevcut konumunuz hakkında bilgi verir.
-
-## Ne zaman kullanırım?
-
-*Konumum*, nerede olduğunuzu veya hangi yöne baktığınızı anlamanız gerektiğinde kullanışlıdır.
-
-## Nasıl çalışır?
-
-Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *Konumum* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *Konumum* düğmesine dokunun ve dinleyin.
+Yerinizde duruyorsanız önce telefonun üst kenarını baktığınız yöne doğrultun. Telefonunuz kilitliyse veya Soundscape ekranda değilse telefonu ayrıca yatay tutun.
 

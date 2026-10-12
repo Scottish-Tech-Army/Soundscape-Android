@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Médiavezérlők használata
 
-## Mi ez?
+A Soundscape-et a fejhallgatója médiagombjaival is vezérelheti: *lejátszás/szünet*, *következő* és *előző*. Ez vezetékes és Bluetooth fejhallgatóval is működik. Akkor is működik, ha a Soundscape a háttérben fut, vagy a telefon zárolva van.
 
-A Soundscape bizonyos funkcióihoz a fülhallgató médiavezérlő gombjaival is hozzáférhet. Ez a funkció minden olyan vezetékes vagy Bluetooth-os fülhallgatóval működik, amelyen médiavezérlő gombok találhatók, például Lejátszás, Szünet, Következő, Előző és mások. A különböző fülhallgatók eltérő gombokat tartalmazhatnak, ezért az alábbi műveletlistából állapítsa meg, melyek érhetők el az Ön eszközén.
+Nem minden fejhallgatón van meg mind a három gomb.
 
-## Mikor használnám?
+A gombok csak akkor vezérlik a Soundscape-et, ha más alkalmazás nem játszik le hangot. Ha zenét vagy podcastot hallgat, a gombok azt az alkalmazást vezérlik.
 
-A fülhallgató médiavezérlő gombjai akkor használhatók, amikor a Soundscape fut – akár éppen aktívan használja az alkalmazást, akár a háttérben fut, akár zárolva van az eszköze. A fülhallgató médiavezérlő gombjai azonban nem működnek a Soundscape-pel, ha egy másik alkalmazásban hangot, például zenét, podcastot vagy videót játszik le.
+A gombok kétféleképpen működhetnek: *Eredeti mód* vagy *Hangmenü*. A választáshoz nyissa meg a menüt, és válassza a *Beállítások*, majd a *Médiavezérlők* lehetőséget.
 
-## Hogyan működik?
+## Eredeti mód
 
-A médiavezérlőknek 2 üzemmódja van. Az üzemmód a *Beállítások* *Médiavezérlők* részében választható ki. Az üzemmódok a következők:
+A *lejátszás/szünet* némítja az irányjelző hangot. Nyomja meg újra, ha hallani szeretné.
 
- *Eredeti mód*. 
+A *következő* az irányjelző hangot a következő útvonalpontra helyezi át, amikor útvonalat követ. Egyébként bemondja a *Körülöttem* adatait.
 
-⏯ Lejátszás/Szünet: Be- vagy kikapcsolja az irányjelző hangot. 
+Az *előző* az irányjelző hangot az előző útvonalpontra helyezi át, amikor útvonalat követ. Egyébként a *Bemondások részletessége* beállítást módosítja. Minden megnyomás egy szinttel halkabbra lép: *Részletes*, *Egyszerűsített*, *Alapvető*, majd *Néma*. Még egy megnyomás visszatér a *Részletes* szintre. A Soundscape kimondja az új szint nevét.
 
-⏭ Következő: Ha egy útvonal van lejátszás alatt, az irányjelző hangot az útvonal következő útvonalpontjára mozgatja. Ha nincs útvonal lejátszás alatt, bemondja a *Körülöttem* adatait.
+## Hangmenü
 
-⏮ Előző: Ha egy útvonal van lejátszás alatt, az irányjelző hangot az útvonal előző útvonalpontjára mozgatja. Ha nincs útvonal lejátszás alatt, minden egyes megnyomással egy szinttel halkabbra állítja a *Bemondások részletessége* beállítást: *Részletes*, *Egyszerűsített*, *Alapvető*, *Néma*, majd vissza a *Részletes* szintre.
+A hangmenü ugyanazzal a három gombbal több műveletet kínál. A Soundscape minden lehetőséget hangosan felolvas.
 
+A *következő* a következő lehetőségre lép. Az utolsó lehetőség után visszatér az elsőre.
 
+A *lejátszás/szünet* kiválasztja azt a lehetőséget, amelyet éppen hallott.
 
-*Hangmenü*. 
+Az *előző* a *Bemondások részletessége* beállítást módosítja, ugyanúgy, mint az *Eredeti mód*.
 
-
-
-⏭ Következő végiglépked egy sor menüopción, amelyeket az alkalmazás szövegfelolvasással ismertet, és az utolsó után visszatér az elsőhöz. Az ⏯ Lejátszás/Szünet ezután elindítja az ismertetett opció végrehajtását. Egyetlen felső szintű menü van, amelynek csak almenük az opciói. Minden almenü hasonló lehetséges műveletek egy csoportját tartalmazza.
-
-⏮ Előző nem lépked végig a menün. Ehelyett a *Bemondások részletessége* beállítást módosítja, pontosan úgy, mint Eredeti módban, így ugyanaz a gomb halkítja az alkalmazást bármelyik módot is használja.
+A menü négy csoporttal kezdődik: *A környezetem meghallgatása*, *Útvonal vezérlése*, *Útvonal indítása* és *Irányjelző hang indítása*. Válasszon ki egy csoportot a műveletei meghallgatásához. *A környezetem meghallgatása* és az *Útvonal vezérlése* végén a *Főmenü* áll, amely visszavisz a négy csoporthoz.
 

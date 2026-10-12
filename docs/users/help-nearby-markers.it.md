@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Indicatori nelle vicinanze
 
-## Cos'è?
+*Indicatori nelle vicinanze* annuncia fino a quattro dei tuoi indicatori, quelli più vicini a te. Senti ognuno dalla propria direzione, con la sua distanza. Usalo per orientarti grazie a luoghi che conosci già. Gli indicatori a più di circa 2 chilometri vengono tralasciati.
 
-Il pulsante *«Indicatori nelle vicinanze»* indica fino a quattro indicatori più vicini a te. *«Indicatori nelle vicinanze»* ha lo scopo di aiutarti a orientarti tramite i luoghi che già conosci.
-
-## Quando si usa?
-
-Quando cerchi di orientarti rispetto all'ambiente circostante, utilizza *«Indicatori nelle vicinanze»* per conoscere la posizione dei luoghi che conosci.
-
-## Come funziona?
-
-Come per tutti e quattro i pulsanti nella parte inferiore della schermata iniziale, tieni il telefono con lo schermo piatto (rivolto verso il cielo) e la parte superiore del telefono che punta davanti a te prima di premere il pulsante *«Indicatori nelle vicinanze»*. Questo pulsante funziona come una bussola che dice all'app in quale direzione sei rivolto. Tocca semplicemente il pulsante *«Indicatori nelle vicinanze»* e sentirai fino a quattro indicatori vicino a te.
+Se non ti muovi, punta prima la parte superiore del telefono nella direzione in cui guardi. Se il telefono è bloccato, o Soundscape non è sullo schermo, tieni anche il telefono in piano.
 

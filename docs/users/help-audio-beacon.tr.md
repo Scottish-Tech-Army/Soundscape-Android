@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Sesli İşaret
 
-## Bu nedir?
+Sesli işaret, seçtiğiniz bir yerin yönünden gelen bir sestir. Yerin kuş uçuşu nerede olduğunu söyler. Adım adım yol tarifi vermez, bu yüzden oraya gideceğiniz yolu siz seçersiniz.
 
-Yakın bir konuma işaret ayarlamak, Soundscape'in o konumun yönünden gelen bir ses çalarak sizi bilgilendirmesini sağlar. Bu işaret, ana ekranda sessize alınabilir veya sesi açılabilir. Ayrıca Soundscape, ana ekranda konum hakkında bilgi gösterir; buna konuma olan mesafe ve biliniyorsa sokak adresi dahildir.
+## İşaret Ayarlama
 
-## Ne zaman kullanırım?
+1. Yeri bulun. Ana ekrandaki arama çubuğunu, *Yakındaki Yerler*, *Kayıtlı Noktalar* veya *Mevcut Konum* seçeneğini kullanın.
 
-İşaret ayarlamak, yeni bir alanda gezerken tanıdık bir yer işaretini takip etmek istediğinizde ya da bir yere giderken çevreniz hakkında bilgi almak istediğinizde kullanışlıdır. İşaret özelliği adım adım yol tarifi vermez; ancak şu anda bulunduğunuz konuma göre işarete olan yönü sürekli bir sesli sinyal olarak bildirir. Sesli işareti, mevcut yol bulma becerilerinizi ve hatta en sevdiğiniz navigasyon uygulamasını kullanarak yakın konumlara kendi tercihlerinize göre nasıl gideceğinizi seçebilirsiniz.
+2. *Konum Ayrıntıları* ekranını açmak için yeri seçin.
 
-## Nasıl çalışır?
+3. *Sesli İşareti Başlat* seçeneğini seçin.
 
-**Sesli İşaret ayarlamak için :**
+Soundscape ana ekrana döner ve işaret başlar. Ana ekran yerin adını ve ne kadar uzakta olduğunu gösterir.
 
- Önce, arama çubuğunu kullanarak bir yer arayarak ya da *Yakındaki Yerler*, *Kayıtlı Noktalar* veya *Mevcut Konum* düğmelerinden birine dokunup bir konum seçerek o konumun ayrıntılarını görüntüleyin. Ardından *Konum Ayrıntıları* ekranından *Sesli İşareti Başlat* düğmesini seçin. Buna dokunduğunuzda ana ekrana dönecek ve seçtiğiniz yerin bulunduğu yönden gelen duyulabilir bir işaret açılacaktır. Yerin adı ile birlikte mesafesi ve biliniyorsa fiziksel adresi artık ana ekranda gösterilecektir.
+## Yönü Bulma
 
-**Mevcut işareti kaldırmak için :**
+Yüzünüz yere dönükken veya doğrudan ona doğru yürürken işaretin sesi değişir. Bu sesi bulmak için telefonunuzu yatay tutun ve yavaşça dönün. *Ayarlar* bölümünden farklı bir işaret sesi seçebilirsiniz.
 
- Ana ekrandaki *Rotayı Durdur* düğmesine dokunun.
+## İşareti Sessize Alma
 
-**Sesli işareti sessize almak için:**
+Ana ekranda *İşareti Sessize Al* seçeneğini seçin. Soundscape siz hareket ettikçe yerin ne kadar uzakta olduğunu söylemeye devam eder. İşareti yeniden duymak için *İşaretin Sesini Aç* seçeneğini seçin.
 
- Ana ekranda *Rotayı Durdur* düğmesinin yanındaki *İşareti Sessize Al* düğmesine dokunun.
+## İşareti Kaldırma
+
+Ana ekranda *Rotayı Durdur* seçeneğini seçin. İşaret bir rotanın parçası olmasa bile düğmenin adı budur.
+
+## Vardığınızda
+
+Yere yaklaşık 12 metre kaldığında Soundscape bunu size söyler ve işareti kaldırır. Telefonunuz konumunuzu bundan daha kesin bulamaz. İşareti yeniden duymak için onu yeniden ayarlayın.
+
+30 metreden daha yakın bir yere ayarlanan işaret, siz kaldırana kadar açık kalır.
 

@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Señal de audio
 
-## ¿Qué es?
+Una señal de audio es un sonido que suena desde la dirección de un lugar que tú eliges. Te indica dónde está el lugar en línea recta. No da indicaciones paso a paso, así que tú eliges tu propio camino.
 
-Establecer una señal en una ubicación cercana permite a Soundscape mantenerte informado reproduciendo un sonido procedente de la dirección de esa ubicación. Esta señal se puede silenciar o reactivar en la pantalla principal. Además, Soundscape muestra en la pantalla principal información sobre la ubicación, incluida la distancia hasta ella y su dirección postal si se conoce.
+## Colocar una señal
 
-## ¿Cuándo lo usaría?
+1. Busca el lugar. Usa la barra de búsqueda, *Lugares cercanos*, *Marcadores* o *Ubicación actual* en la pantalla principal.
 
-Establecer una señal es útil cuando deseas realizar un seguimiento de un punto de referencia conocido mientras exploras una zona nueva o cuando vas a algún lugar y deseas estar informado sobre tu entorno por el camino. La característica de señal no te ofrece indicaciones paso a paso, sino que te proporciona un sonido audible continuo que te indica la dirección hasta la señal, en relación con el lugar donde te encuentras actualmente. Con la señal de audio, tus capacidades de orientación existentes e incluso tu aplicación de navegación favorita, puedes elegir cómo deseas llegar a las ubicaciones cercanas.
+2. Selecciona el lugar para abrir *Detalles de la ubicación*.
 
-## ¿Cómo funciona?
+3. Selecciona *Iniciar señal de audio*.
 
-**Para establecer una señal**:
+Soundscape vuelve a la pantalla principal y la señal empieza a sonar. La pantalla principal muestra el nombre del lugar y a qué distancia está.
 
- en primer lugar, ve los detalles de una ubicación usando la barra de búsqueda para buscar un lugar, o pulsando en uno de los botones *Lugares cercanos*, *Marcadores* o *Ubicación actual* y seleccionando una ubicación. En la pantalla *Detalles de la ubicación*, selecciona el botón *Iniciar señal de audio*. Al pulsar en él, volverás a la pantalla principal y se activará una señal de audio proveniente de la dirección del lugar que has seleccionado. El nombre del lugar, junto con su distancia y dirección física, si están disponibles, aparecerán ahora en la pantalla principal de la aplicación.
+## Encontrar la dirección
 
-**Para quitar la señal actual**:
+La señal cambia de sonido cuando miras hacia el lugar o caminas directamente hacia él. Para encontrar ese sonido, sujeta el teléfono en posición horizontal y gira despacio. Puedes elegir otro sonido para la señal en *Ajustes*.
 
- solo tienes que presionar el botón *Detener ruta* de la pantalla principal.
+## Silenciar la señal
 
-**Para silenciar la señal de audio**:
+Selecciona *Silenciar señal* en la pantalla principal. Soundscape te sigue diciendo a qué distancia está el lugar mientras te mueves. Selecciona *Reactivar señal* para volver a oír la señal.
 
- pulsa en el botón *Silenciar señal* junto al botón *Detener ruta* en la pantalla principal.
+## Quitar la señal
+
+Selecciona *Detener ruta* en la pantalla principal. El botón tiene este nombre aunque la señal no forme parte de una ruta.
+
+## Cuando llegas
+
+Cuando estás a unos 12 metros del lugar, Soundscape te avisa y quita la señal. Tu teléfono no puede determinar tu posición con más exactitud. Para volver a oír la señal, colócala de nuevo.
+
+Una señal colocada en un lugar a menos de 30 metros sigue activa hasta que la quitas.
 

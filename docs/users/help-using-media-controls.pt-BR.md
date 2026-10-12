@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Uso dos Controles de Mídia
 
-## O que é?
+Você pode controlar o Soundscape com os botões de mídia dos seus fones de ouvido: *reproduzir/pausar*, *próximo* e *anterior*. Isso funciona com fones com fio e Bluetooth. Também funciona quando o Soundscape está em segundo plano ou o telefone está bloqueado.
 
-Você pode acessar determinados recursos do Soundscape com a ajuda dos botões de controle de mídia nos fones de ouvido. Esse recurso funciona com quaisquer fones de ouvido com fio ou Bluetooth que tenham botões de controle de mídia como Reproduzir, Pausar, Próximo, Anterior e outros. Os fones de ouvido diferentes podem incluir botões diferentes, então consulte a lista de ações a seguir para determinar quais estão disponíveis para você.
+Nem todos os fones de ouvido têm os três botões.
 
-## Quando eu o usaria?
+Os botões só controlam o Soundscape quando nenhum outro aplicativo está reproduzindo áudio. Se você estiver ouvindo música ou um podcast, os botões controlam esse aplicativo.
 
-Os controles de mídia dos fones de ouvido podem ser usados enquanto o Soundscape está em execução — esteja você usando o aplicativo ativamente, esteja ele em segundo plano ou esteja seu dispositivo bloqueado. No entanto, os botões de controle de mídia dos fones de ouvido não funcionarão com o Soundscape se você estiver reproduzindo áudio, como música, podcasts ou vídeos, em outro aplicativo.
+Os botões podem funcionar de duas maneiras: *Modo Original* ou *Menu de Áudio*. Para escolher, abra o menu e selecione *Ajustes* e depois *Controles de Mídia*.
 
-## Como ele funciona?
+## Modo Original
 
-Existem 2 modos de operação para os controles de mídia. O modo pode ser selecionado em *Ajustes* → *Controles de Mídia*. Os modos são:
+*Reproduzir/pausar* silencia o sinalizador. Pressione de novo para ouvir o sinalizador.
 
- *Modo Original*. 
+*Próximo* move o sinalizador para o próximo localizador quando você está seguindo uma rota. Caso contrário, anuncia *Ao Meu Redor*.
 
-⏯ Reproduzir/Pausar: Alterna o áudio do sinalizador sonoro (liga/desliga). 
+*Anterior* move o sinalizador para o localizador anterior quando você está seguindo uma rota. Caso contrário, muda o *Detalhe das Notificações*. Cada toque desce um nível: *Detalhado*, *Simplificado*, *Essencial* e depois *Silencioso*. Mais um toque volta para *Detalhado*. O Soundscape diz o nome do novo nível.
 
-⏭ Próximo: Se uma rota estiver em reprodução, move o sinalizador sonoro para o próximo localizador da rota. Se nenhuma rota estiver em reprodução, anuncia *Ao Meu Redor*.
+## Menu de Áudio
 
-⏮ Anterior: Se uma rota estiver em reprodução, move o sinalizador sonoro para o localizador anterior da rota. Se nenhuma rota estiver em reprodução, altera o *Detalhe das Notificações*, um nível mais discreto a cada toque: *Detalhado*, *Simplificado*, *Essencial*, *Silencioso*, e de volta a *Detalhado*.
+O menu de áudio oferece mais ações com os mesmos três botões. O Soundscape lê cada opção em voz alta.
 
+*Próximo* passa para a opção seguinte. Depois da última opção, volta para a primeira.
 
+*Reproduzir/pausar* seleciona a opção que você acabou de ouvir.
 
-*Modo Menu de Áudio*. 
+*Anterior* muda o *Detalhe das Notificações*, como no *Modo Original*.
 
-
-
-⏭ Próximo navega por uma série de opções de menu que o aplicativo descreve por síntese de voz, voltando à primeira depois da última. ⏯ Reproduzir/Pausar então aciona o aplicativo para executar a opção descrita. Há um único menu de nível superior que apenas contém submenus como opções. Cada submenu agrupa um conjunto de ações semelhantes.
-
-⏮ Anterior não navega pelo menu. Em vez disso, altera o *Detalhe das Notificações*, exatamente como no modo Original, de modo que o mesmo botão deixa o aplicativo mais discreto em qualquer um dos modos.
+O menu começa com quatro grupos: *Ouvir Meus Arredores*, *Controle de Rota*, *Iniciar Rota* e *Iniciar Sinalizador Sonoro*. Selecione um grupo para ouvir as ações dele. *Ouvir Meus Arredores* e *Controle de Rota* terminam com *Menu principal*, que leva você de volta aos quatro grupos.
 

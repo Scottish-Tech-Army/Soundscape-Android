@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Ruter
 
-## Hvad er det?
+En rute er en liste over steder, kaldet vejpunkter, som du besøger i rækkefølge. Soundscape sætter et lydfyr på det første vejpunkt. Når du ankommer, fortæller den dig det og flytter lydfyret til det næste.
 
-Ruter er en række vejpunkter. Du vil blive informeret ved ankomsten til hvert vejpunkt, og lydfyret vil automatisk gå videre til næste vejpunkt.
+Brug en rute til at lære en ny tur, eller til at holde kursen på en tur, du kender.
 
-## Hvornår ville jeg bruge det?
+## Opret en rute
 
-Du vil måske oprette og bruge en rute et sted, du allerede kender, så du kan holde dig på rette vej. Eller du vil måske bruge en rute til at lære en ny tur at kende.
+1. Vælg *Ruter* på startskærmen, og vælg derefter *Ny*.
 
-## Hvordan virker det?
+2. Giv ruten et navn. Du kan tilføje en beskrivelse.
 
-**Oprette en rute**:
+3. Vælg *Tilføj vejpunkter*, og vælg mærker. Du kan også tilføje din aktuelle placering eller et sted i nærheden.
 
-Vælg først *Ruter* på startskærmen, og vælg derefter knappen *Ny* i øverste højre hjørne af skærmen. Giv ruten et navn og en valgfri beskrivelse, og tilføj derefter vejpunkter, mens du går, eller vælg dem på listen over mærker. Du kan til enhver tid omarrangere rækkefølgen af vejpunkterne langs en rute ved at redigere ruten.
+4. Vælg *Udført*.
 
-**Redigering af en rute:**
+## Følg en rute
 
- Vælg din rute på skærmen *Ruter* og vælg derefter *Rediger rute*. Herfra kan du tilføje og fjerne vejpunkter samt redigere rutens navn og beskrivelse.
+Vælg ruten på skærmen *Ruter*, og vælg derefter *Start rute*. Hvis du vil følge den baglæns, skal du vælge *Start rute i omvendt rækkefølge*. På startskærmen flytter *Næste vejpunkt* og *Forrige vejpunkt* lydfyret langs ruten. *Stop rute* afslutter den.
 
-**Deling af en rute :**
+## Ret en rute
 
- Vælg din rute på skærmen *Ruter* og vælg derefter muligheden *Del* ved hjælp af de sædvanlige delingsmuligheder, der er tilgængelige for dig.
+Vælg ruten på skærmen *Ruter*, og vælg derefter *Rediger rute*. Du kan tilføje, fjerne og flytte rundt på vejpunkter, ændre navn og beskrivelse eller slette ruten.
+
+## Del en rute
+
+Vælg ruten på skærmen *Ruter*, og vælg derefter *Del*.
 

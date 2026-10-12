@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Útvonalak
 
-## Mi ez?
+Az útvonal helyek listája, amelyeket útvonalpontoknak hívunk, és amelyeket sorrendben keres fel. A Soundscape az első útvonalpontra állítja az irányjelző hangot. Amikor megérkezik, szól, és a következőre helyezi át az irányjelző hangot.
 
-Az útvonalak útvonalpontok sorozatai. Minden útvonalpont elérésekor értesítést kap, és az irányjelző hang automatikusan a következő útvonalpontra vált.
+Használjon útvonalat egy új út megtanulásához, vagy ahhoz, hogy egy ismert úton ne térjen le.
 
-## Mikor használnám?
+## Útvonal létrehozása
 
-Létrehozhat és használhat egy útvonalat egy Önnek már ismerős helyen, hogy a helyes úton maradjon. Vagy használhat egy útvonalat ahhoz, hogy megtanuljon egy új útvonalat.
+1. A kezdőképernyőn válassza az *Útvonalak*, majd az *Új* lehetőséget.
 
-## Hogyan működik?
+2. Adjon nevet az útvonalnak. Leírást is hozzáadhat.
 
-**Útvonal létrehozása:**
+3. Válassza az *Útvonalpontok hozzáadása* lehetőséget, és válasszon jelölőket. A jelenlegi helyét vagy egy közeli helyet is hozzáadhatja.
 
- Először válassza az *Útvonalak* gombot a kezdőképernyőn, majd válassza a képernyő jobb felső sarkában lévő *Új* gombot. Adjon nevet az útvonalnak, és opcionálisan írjon hozzá leírást, majd adjon hozzá útvonalpontokat útközben, vagy válassza ki őket a jelölőlistájából. Az útvonal szerkesztésével bármikor átrendezheti az útvonalpontok sorrendjét.
+4. Válassza a *Kész* lehetőséget.
 
-**Útvonal szerkesztése:**
+## Útvonal követése
 
- Válassza ki az útvonalát az *Útvonalak* képernyőn, majd válassza az *Útvonal szerkesztése* lehetőséget. Innen hozzáadhat és eltávolíthat útvonalpontokat, valamint szerkesztheti az útvonal nevét és leírását.
+Válassza ki az útvonalat az *Útvonalak* képernyőn, majd válassza az *Útvonal indítása* lehetőséget. Ha visszafelé szeretné követni, válassza az *Útvonal indítása fordított irányban* lehetőséget. A kezdőképernyőn a *Következő útvonalpont* és az *Előző útvonalpont* az útvonal mentén mozgatja az irányjelző hangot. Az *Útvonal leállítása* befejezi az útvonalat.
 
-**Útvonal megosztása:**
+## Útvonal módosítása
 
- Válassza ki az útvonalát az *Útvonalak* képernyőn, majd válassza a *Megosztás* lehetőséget, és használja a szokásos megosztási lehetőségek bármelyikét.
+Válassza ki az útvonalat az *Útvonalak* képernyőn, majd válassza az *Útvonal szerkesztése* lehetőséget. Hozzáadhat, eltávolíthat és átrendezhet útvonalpontokat, módosíthatja a nevet és a leírást, vagy törölheti az útvonalat.
+
+## Útvonal megosztása
+
+Válassza ki az útvonalat az *Útvonalak* képernyőn, majd válassza a *Megosztás* lehetőséget.
 

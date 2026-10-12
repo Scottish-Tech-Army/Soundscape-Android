@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Marcaje
 
-Cu Soundscape, poți marca lumea ta și orice lucru important pentru tine, ca niște pini pe o hartă.
+Un marcaj este un loc pe care l-ai salvat. Poate fi orice loc important pentru tine: casa ta, o stație de autobuz, intrarea într-o clădire sau o trecere de pietoni.
 
-Poți marca locuri personale și relevante pentru tine, precum casa ta, biroul tău sau magazinul alimentar preferat. Poți marca orice loc sau adresă și, de asemenea, lucruri care în mod normal nu apar pe hărți, de exemplu: intrări în clădiri sau parcuri, butoane de semafor pentru pietoni, treceri de pietoni, poduri, stații de autobuz sau chiar copacul preferat al câinelui tău. Folosește aceste marcaje ca repere de-a lungul plimbării.
+Soundscape îți anunță marcajele când treci pe lângă ele. Poți seta o baliză audio pe un marcaj, îl poți adăuga la o rută sau le poți auzi pe cele mai apropiate cu butonul *Marcaje din apropiere*.
 
-Pentru a experimenta locurile marcate, Soundscape va anunța automat marcajele pe măsură ce treci pe lângă ele sau te apropii de ele, sau poți folosi butonul *Marcaje din apropiere* din partea de jos a ecranului principal pentru a auzi un anunț spațial al marcajelor din jurul tău. Poți chiar să setezi o baliză audio pentru orice loc marcat. Când faci acest lucru, baliza audio Soundscape pe care o cunoști deja va fi redată și o poți folosi ca de obicei.
+## Crearea marcajelor
+
+1. Selectează *Marcaje* pe ecranul principal, apoi selectează *Nou*.
+
+2. Alege *Locația curentă* sau un loc din *Locuri din apropiere*.
+
+3. Schimbă numele dacă vrei și adaugă note. Soundscape citește notele împreună cu marcajul.
+
+4. Selectează *Gata*.
+
+Poți salva și orice loc pe care îl găsești. Deschide *Detalii locație* pentru acel loc și selectează *Salvează ca marcaj*.
+
+## Personalizarea marcajelor
+
+Selectează marcajul pe ecranul *Marcaje*, apoi selectează *Editează marcaj*. Îi poți schimba numele, notele și poziția sau poți selecta *Șterge marcaj*. Ștergerea unui marcaj îl elimină și din rutele tale.
 

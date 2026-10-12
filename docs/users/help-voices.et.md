@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Hääled
 
-Soundscape saab kasutada kõiki hääli, mille oled oma Android-telefoni tekst-kõneks väljundi seadetes alla laadinud. Soundscape rakenduses saad valida vaikimisi Androidi häälest erineva hääle, minnes peamenüüst *Seadistused*, avades sektsiooni *Heli* ja seejärel valides *Hääled*.
+Soundscape saab kasutada mis tahes häält, mis on sinu telefoni installitud. Häälte lisamiseks ava telefoni seaded ja otsi üles *Kõnesünteesi väljund*. Hääle valimiseks Soundscape’is ava menüü ja vali *Seadistused*, seejärel *Heli* ja seejärel *Hääled*.
 

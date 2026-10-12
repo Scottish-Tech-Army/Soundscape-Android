@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Sterowanie przyciskami multimedialnymi
 
-## Co to jest?
+Możesz sterować Soundscape przyciskami multimedialnymi na słuchawkach: *odtwórz/pauza*, *następny* i *poprzedni*. Działa to ze słuchawkami przewodowymi i Bluetooth. Działa też wtedy, gdy Soundscape jest w tle albo telefon jest zablokowany.
 
-Do niektórych funkcji Soundscape możesz uzyskać dostęp za pomocą przycisków sterowania mediami w słuchawkach. Funkcjonalność działa z dowolnymi słuchawkami przewodowymi lub Bluetooth, które mają przyciski sterowania mediami, takie jak Odtwórz, Pauza, Następny, Poprzedni i inne. Różne modele słuchawek mogą mieć różny zestaw przycisków — zapoznaj się z poniższą listą akcji, aby sprawdzić, które z nich są dostępne dla Ciebie.
+Nie wszystkie słuchawki mają wszystkie trzy przyciski.
 
-## Kiedy używać?
+Przyciski sterują Soundscape tylko wtedy, gdy żadna inna aplikacja nie odtwarza dźwięku. Jeśli słuchasz muzyki lub podcastu, przyciski sterują tamtą aplikacją.
 
-Przycisków sterowania mediami w słuchawkach można używać, gdy Soundscape działa — niezależnie od tego, czy aktywnie korzystasz z aplikacji, czy działa ona w tle, czy urządzenie jest zablokowane. Przyciski sterowania mediami w słuchawkach nie będą jednak działać ze Soundscape, jeśli w innej aplikacji odtwarzasz dźwięk, na przykład muzykę, podcasty lub filmy.
+Przyciski mogą działać na dwa sposoby: *Tryb oryginalny* albo *Menu audio*. Aby wybrać, otwórz menu i wybierz *Ustawienia*, a potem *Sterowanie przyciskami multimedialnymi*.
 
-## Jak to działa?
+## Tryb oryginalny
 
-Elementy sterowania multimediami mają 2 tryby działania. Tryb można wybrać w sekcji *Ustawienia* *Tryb sterowania przyciskami multimedialnymi*. Tryby to:
+*Odtwórz/pauza* wycisza dźwięk naprowadzający. Naciśnij ponownie, aby znów go słyszeć.
 
- *Tryb oryginalny*. 
+*Następny* przenosi naprowadzanie do następnego punktu trasy, gdy idziesz trasą. W innym przypadku uruchamia *Wokół mnie*.
 
-⏯ Odtwórz/Pauza: włącza i wyłącza dźwięk naprowadzający. 
+*Poprzedni* przenosi naprowadzanie do poprzedniego punktu trasy, gdy idziesz trasą. W innym przypadku zmienia ustawienie *Szczegółowość powiadomień*. Każde naciśnięcie przechodzi o jeden poziom ciszej: *Szczegółowy*, *Uproszczony*, *Podstawowy*, a potem *Wyciszony*. Kolejne naciśnięcie wraca do poziomu *Szczegółowy*. Soundscape mówi nazwę nowego poziomu.
 
-⏭ Następny: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do następnego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, uruchamia *Wokół mnie*.
+## Menu audio
 
-⏮ Poprzedni: Jeśli trwa odtwarzanie trasy, przenosi dźwięk naprowadzający do poprzedniego punktu trasy. Jeśli żadna trasa nie jest odtwarzana, zmienia *Szczegółowość powiadomień* o jeden poziom ciszej przy każdym naciśnięciu: *Szczegółowy*, *Uproszczony*, *Podstawowy*, *Wyciszony* i z powrotem *Szczegółowy*.
+Menu audio daje więcej działań przy użyciu tych samych trzech przycisków. Soundscape odczytuje każdą opcję na głos.
 
+*Następny* przechodzi do następnej opcji. Po ostatniej opcji wraca do pierwszej.
 
+*Odtwórz/pauza* wybiera ostatnio usłyszaną opcję.
 
-*Menu audio*. 
+*Poprzedni* zmienia ustawienie *Szczegółowość powiadomień*, tak samo jak w trybie *Tryb oryginalny*.
 
-
-
-⏭ Następny przechodzi przez szereg opcji menu, które aplikacja opisuje za pomocą syntezatora mowy, i po ostatniej wraca do pierwszej. ⏯ Odtwórz/Pauza uruchamia następnie opisaną opcję. Istnieje jedno menu główne, którego elementami są tylko podmenu. Każde podmenu grupuje podobne akcje.
-
-⏮ Poprzedni nie przechodzi przez menu. Zamiast tego zmienia *Szczegółowość powiadomień*, dokładnie tak jak w trybie oryginalnym, więc ten sam przycisk wycisza aplikację niezależnie od używanego trybu.
+Menu zaczyna się od czterech grup: *Słuchaj opisu otoczenia*, *Sterowanie trasą*, *Rozpocznij trasę* i *Uruchom dźwięk naprowadzający*. Wybierz grupę, aby usłyszeć jej działania. Grupy *Słuchaj opisu otoczenia* i *Sterowanie trasą* kończą się pozycją *Menu główne*, która wraca do czterech grup.
 

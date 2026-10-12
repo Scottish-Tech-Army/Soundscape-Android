@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Mærker
 
-Med Soundscape kan du markere din verden og alt, der betyder noget for dig, som markører på et kort.
+Et mærke er et sted, du har gemt. Det kan være ethvert sted, der betyder noget for dig: dit hjem, et busstoppested, en indgang til en bygning eller en fodgængerovergang.
 
-Du kan markere steder, der er personlige og relevante for dig, f.eks. dit hjem, dit kontor eller din foretrukne købmand. Du kan markere ethvert sted eller enhver adresse, og du kan også markere ting, der normalt ikke vises på kort, for eksempel: indgange til bygninger eller parker, trykknapper for fodgængere, fodgængerovergange, broer, busstoppesteder eller endda din hunds foretrukne træ. Brug disse mærker som referencer på din tur.
+Soundscape annoncerer dine mærker, når du kommer forbi dem. Du kan sætte et lydfyr på et mærke, føje det til en rute eller høre de nærmeste med knappen *Mærker i nærheden*.
 
-For at opleve markerede steder vil Soundscape automatisk annoncere markerede steder, når du går forbi eller nærmer dig dem, eller du kan bruge knappen *Mærker i nærheden* nederst på startskærmen for at høre en rumlig oplæsning af markerede steder omkring dig. Du kan endda sætte et lydfyr på ethvert markeret sted. Når du gør det, høres det velkendte Soundscape‑lydfyr, som du kan betjene på sædvanlig vis.
+## Oprettelse af mærker
+
+1. Vælg *Mærker* på startskærmen, og vælg derefter *Ny*.
+
+2. Vælg *Aktuel placering* eller et sted fra *Steder i nærheden*.
+
+3. Ret navnet, hvis du vil, og tilføj noter. Soundscape læser noterne op sammen med mærket.
+
+4. Vælg *Udført*.
+
+Du kan også gemme ethvert sted, du finder. Åbn stedets *Oplysninger om placering*, og vælg *Gem som mærke*.
+
+## Tilpasning af mærker
+
+Vælg mærket på skærmen *Mærker*, og vælg derefter *Rediger mærke*. Du kan ændre navn, noter og position eller vælge *Slet mærke*. Når du sletter et mærke, fjernes det også fra dine ruter.
 

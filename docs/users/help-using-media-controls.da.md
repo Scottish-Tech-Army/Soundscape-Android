@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Brug af mediebetjeningsknapper
 
-## Hvad er det?
+Du kan styre Soundscape med medieknapperne på dine hovedtelefoner: *afspil/pause*, *næste* og *forrige*. Det virker med kablede hovedtelefoner og Bluetooth-hovedtelefoner. Det virker også, når Soundscape er i baggrunden, eller telefonen er låst.
 
-Du kan få adgang til visse funktioner i Soundscape ved hjælp af mediebetjeningsknapperne på hovedtelefonerne. Denne funktionalitet fungerer sammen med alle hovedtelefoner med kabel eller Bluetooth, der har mediebetjeningsknapper som Afspil, Pause, Næste, Forrige og andre. Forskellige hovedtelefoner kan have forskellige knapper, så se listen over handlinger nedenfor for at afgøre, hvilke der er tilgængelige for dig.
+Ikke alle hovedtelefoner har alle tre knapper.
 
-## Hvornår ville jeg bruge det?
+Knapperne styrer kun Soundscape, når ingen anden app afspiller lyd. Hvis du afspiller musik eller en podcast, styrer knapperne den app i stedet.
 
-Mediebetjeningsknapper på hovedtelefoner kan bruges, mens Soundscape kører — uanset om du bruger appen aktivt, om den kører i baggrunden, eller om din enhed er låst. Mediebetjeningsknapperne på hovedtelefoner fungerer dog ikke sammen med Soundscape, hvis du afspiller lyd, f.eks. musik, podcasts eller videoer, i en anden app.
+Knapperne kan virke på to måder: *Originaltilstand* eller *Lydmenu*. For at vælge skal du åbne menuen og vælge *Indstillinger* og derefter *Mediebetjeninger*.
 
-## Hvordan virker det?
+## Originaltilstand
 
-Der er 2 driftsmåder for mediebetjeningsknapperne. Tilstanden vælges i afsnittet *Indstillinger* > *Mediebetjeninger*. Måderne er:
+*Afspil/pause* slår lydfyrets lyd fra. Tryk igen for at høre lydfyret.
 
- *Originaltilstand*. 
+*Næste* flytter lydfyret til det næste vejpunkt, når du følger en rute. Ellers annoncerer den *Omkring mig*.
 
-⏯ Afspil/Pause: Slår lydfyret til eller fra. 
+*Forrige* flytter lydfyret til det forrige vejpunkt, når du følger en rute. Ellers ændrer den *Detaljeniveau for lydbeskeder*. Hvert tryk går ét niveau mere stille: *Detaljeret*, *Forenklet*, *Essentiel* og så *Lydløs*. Et tryk mere går tilbage til *Detaljeret*. Soundscape siger navnet på det nye niveau.
 
-⏭ Næste: Hvis en rute afspilles, flytter lydfyret til det næste vejpunkt i ruten. Hvis der ikke afspilles nogen rute, afspilles *Omkring mig*.
+## Lydmenu
 
-⏮ Forrige: Hvis en rute afspilles, flytter lydfyret til det forrige vejpunkt i ruten. Hvis der ikke afspilles nogen rute, ændres *Detaljeniveau for lydbeskeder* et trin mere stille for hvert tryk: *Detaljeret*, *Forenklet*, *Essentiel*, *Lydløs*, og tilbage til *Detaljeret*.
+Lydmenuen giver dig flere handlinger med de samme tre knapper. Soundscape læser hver mulighed højt.
 
+*Næste* går til den næste mulighed. Efter den sidste mulighed går den tilbage til den første.
 
+*Afspil/pause* vælger den mulighed, du lige har hørt.
 
-*Lydmenu*. 
+*Forrige* ændrer *Detaljeniveau for lydbeskeder*, ligesom i *Originaltilstand*.
 
-
-
-⏭ Næste bevæger sig gennem en række menumuligheder, som appen beskriver ved hjælp af tekst-til-tale, og vender tilbage til den første efter den sidste. ⏯ Afspil/Pause får derefter appen til at udføre den beskrevne mulighed. Der er én top-niveau-menu, som kun indeholder undermenuer som valgmuligheder. Hver undermenu indeholder en gruppe af lignende handlinger.
-
-⏮ Forrige bevæger sig ikke gennem menuen. I stedet ændrer den *Detaljeniveau for lydbeskeder*, præcis som i originaltilstanden, så den samme knap gør appen mere stille, uanset hvilken tilstand du bruger.
+Menuen begynder med fire grupper: *Hør mine omgivelser*, *Rutekontrol*, *Start rute* og *Start lydfyr*. Vælg en gruppe for at høre dens handlinger. *Hør mine omgivelser* og *Rutekontrol* slutter med *Topmenu*, som fører dig tilbage til de fire grupper.
 

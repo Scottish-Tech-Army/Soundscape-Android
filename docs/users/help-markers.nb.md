@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Markører
 
-Med Soundscape kan du markere verden din og alt du bryr deg om, som markører på et kart.
+En markør er et sted du har lagret. Det kan være et hvilket som helst sted som betyr noe for deg: hjemmet ditt, et busstopp, en inngang til en bygning eller et fotgjengerfelt.
 
-Du kan markere steder som er personlige og relevante for deg, som hjemmet ditt, kontoret ditt eller din foretrukne dagligvarebutikk. Du kan markere et hvilket som helst sted eller en adresse, og du kan også markere ting som vanligvis ikke vises på kart, for eksempel: innganger til bygninger eller parker, fotgjengerknapper, fotgjengeroverganger, broer, busstopp eller til og med hundens yndlingstre. Bruk disse markørene som referanser når du går.
+Soundscape leser opp markørene dine når du passerer dem. Du kan sette et lydsignal på en markør, legge den til i en rute eller høre de nærmeste med knappen *Markører i nærheten*.
 
-For å oppleve markerte steder vil Soundscape automatisk lese opp markerte steder når du går forbi eller nærmer deg dem, eller du kan bruke knappen *Markører i nærheten* nederst på startskjermen for å høre en romlig opplesning av markerte steder rundt deg. Du kan til og med angi et lydsignal på et hvilket som helst markert sted. Når du gjør dette, vil du høre det velkjente Soundscape‑lydsignalet, og du kan bruke det som vanlig.
+## Opprett markører
+
+1. Velg *Markører* på startskjermen, og velg deretter *Ny*.
+
+2. Velg *Nåværende posisjon*, eller et sted fra *Steder i nærheten*.
+
+3. Endre navnet hvis du vil, og legg til notater. Soundscape leser opp notatene sammen med markøren.
+
+4. Velg *Ferdig*.
+
+Du kan også lagre et hvilket som helst sted du finner. Åpne *Posisjonsinformasjon* for stedet og velg *Lagre som markør*.
+
+## Tilpass markører
+
+Velg markøren på skjermen *Markører*, og velg deretter *Rediger markør*. Du kan endre navnet, notatene og posisjonen, eller velge *Slett markør*. Når du sletter en markør, fjernes den også fra rutene dine.
 

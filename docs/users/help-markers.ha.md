@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Alamomi
 
-Da Soundscape, za ku iya yiwa duniyar ku alama tare da duk abin da kuke damuwa da shi, kamar alamomi a taswira.
+Alama wuri ne da kuka ajiye. Tana iya zama kowane wuri da yake da muhimmanci a gare ku: gidanku, tashar bas, ƙofar shiga gini ko wurin ƙetare hanya.
 
-Za ku iya yiwa wuraren da suka shafe ku kai tsaye alama, kamar gidanku, ofishinku, ko kantin sayar da kayan abinci da kuka fi so. Za ku iya yiwa kowane wuri ko adireshi alama, kuma za ku iya yiwa abubuwan da ba a saba nunawa a taswira ba alama, misali: ƙofofin gine-gine ko wuraren shakatawa, maɓallan neman ƙetare hanya, wuraren ƙetarawa na masu tafiya da ƙasa, gadoji, tashoshin bas, ko ma bishiyar da karenku ya fi so. Ku yi amfani da waɗannan alamomin a matsayin abin lura a tafiyarku.
+Soundscape yana sanar da alamominku idan kuna wucewa kusa da su. Kuna iya saita siginar sauti a kan alama, ku ƙara ta cikin tafarki, ko ku ji waɗanda suka fi kusa da maɓallin *Alamomi na Kusa*.
 
-Domin jin daɗin wuraren da aka yiwa alama, Soundscape zai sanar da wuraren da aka yiwa alama kai tsaye yayin da kuke wucewa ko kusantowa gare su, ko kuma za ku iya amfani da maɓallin *Alamomi na Kusa* da ke ƙasan babban allo don jin sanarwar sarari ta wuraren da aka yiwa alama a kewaye da ku. Har ma kuna iya kafa siginar sauti a kan duk wani wurin da aka yiwa alama. Idan kuka yi haka, siginar sautin Soundscape da kuka saba da ita za ta kunna kuma za ku iya sarrafa ta kamar yadda aka saba.
+## Ƙirƙirar Alamomi
+
+1. Ku zaɓi *Alamomi* a babban allo, sannan ku zaɓi *Sabo*.
+
+2. Ku zaɓi *Wurin da Kake Yanzu*, ko wani wuri daga *Wurare na Kusa*.
+
+3. Ku canja sunan idan kuna so, kuma ku ƙara bayanai. Soundscape yana karanta bayanan tare da alamar.
+
+4. Ku zaɓi *An Gama*.
+
+Kuna iya kuma ajiye kowane wuri da kuka samu. Ku buɗe *Cikakkun Bayanan Wuri* nasa sannan ku zaɓi *Ajiye a Matsayin Alama*.
+
+## Gyara Alamomi
+
+Ku zaɓi alamar a allon *Alamomi*, sannan ku zaɓi *Gyara Alama*. Kuna iya canja sunanta, bayananta da wurinta, ko ku zaɓi *Share Alama*. Share alama yana cire ta daga tafarkunanku ma.
 

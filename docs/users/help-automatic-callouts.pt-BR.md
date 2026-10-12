@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Notificações Automáticas
 
-## O que é?
+Enquanto você caminha, o Soundscape anuncia o que está perto de você. Você ouve cada nome vindo da direção do lugar. As notificações incluem ruas, cruzamentos, lojas, pontos de ônibus, pontos de referência e os seus próprios favoritos.
 
-O Soundscape pode informar sobre coisas ao seu redor à medida que você se aproxima, anunciando o nome delas a partir da direção em que se encontram. O aplicativo fará isso automaticamente para diversos tipos de locais, como comércios, pontos de ônibus e até cruzamentos. Você pode configurar o que o aplicativo anuncia automaticamente na seção *Gerenciar Notificações* da tela *Ajustes*, e pode desativar todas as notificações quando quiser que o aplicativo fique silencioso.
+## Cruzamentos
 
-## Quando eu o usaria?
+Quando você se aproxima de um cruzamento, o Soundscape diz o nome de cada rua que sai dele. Você ouve qual rua vai para a esquerda, qual continua em frente e qual vai para a direita.
 
-**Explorando uma nova área**:
+## Quanto Você Ouve
 
- ative as notificações automáticas e circule para ouvir mais sobre todas as lojas, restaurantes e muito mais à medida que passa por eles.
+Abra o menu e selecione *Ajustes* e depois *Gerenciar Notificações*. *Detalhe das Notificações* tem quatro níveis.
 
-**Caminhando até uma localização específica**:
+*Detalhado* anuncia tudo o que está por perto.
 
- quando você estiver a caminho de uma determinada localização, as notificações automáticas sobre cruzamentos serão particularmente úteis. As notificações sobre cruzamentos mostram o layout dos cruzamentos à medida que você se aproxima e confirmam a rua em que você está depois de passar por eles.
+*Simplificado* deixa de fora caminhos menores e vias de serviço, e se repete menos.
 
-**Quando você precisar de silêncio**:
+*Essencial* anuncia apenas ruas, cruzamentos e pontos de referência.
 
- quando estiver prestes a atravessar uma rua ou simplesmente precisar que o aplicativo fique quieto, você poderá desativar as notificações. Quando as notificações estiverem desativadas, o aplicativo só lhe dará informações se você tocar em um dos botões *“Minha Localização”*, *“Favoritos nas Proximidades”*, *“Ao Meu Redor”* ou *“À Minha Frente”*.
+*Silencioso* não faz notificações automáticas. Os sinalizadores, as rotas e os botões da tela inicial continuam funcionando.
 
-## Como ele funciona?
+## O Que Você Ouve
 
-**Ativar ou desativar as notificações :**
+*Gerenciar Notificações* tem mais dois ajustes. *Ruas e Cruzamentos* ativa ou desativa as notificações de ruas e cruzamentos. *Locais a Anunciar* escolhe os tipos de lugar que você ouve, como *Transporte Público* ou *Alimentos e Bebidas*. Os seus favoritos são sempre anunciados.
 
- Desativar as notificações silenciará o aplicativo. As notificações podem ser desativadas na seção *Gerenciar Notificações* da tela *Ajustes*, definindo *Detalhe das Notificações* como *Silencioso*, e são reativadas escolhendo qualquer outro nível. No iPhone, você pode fazer o mesmo pedindo à Siri e, no Android, o mesmo vai funcionar pelo Gemini assim que o Google liberar o suporte. Você também pode deixar o Soundscape mais discreto aos poucos com os botões de controle de mídia dos seus fones de ouvido: cada toque em *anterior* desce um nível entre *Detalhado*, *Simplificado*, *Essencial* e *Silencioso*, e mais um toque volta para *Detalhado*. Consulte o tópico de ajuda *Uso dos Controles de Mídia*. Como alternativa, você pode usar o botão *Colocar em Suspensão* no canto superior direito da tela inicial para impedir que o Soundscape faça notificações até que você o desperte.
+## Deixar o Soundscape Mais Discreto
 
-**Gerenciando quais notificações você ouve :**
+Pressione *anterior* nos controles dos seus fones de ouvido. Cada toque desce um nível: *Detalhado*, *Simplificado*, *Essencial* e depois *Silencioso*. Mais um toque volta para *Detalhado*. Consulte a página de ajuda *Uso dos Controles de Mídia*.
 
- Para escolher os tipos de coisas que o Soundscape anunciará automaticamente, vá à tela *Ajustes* usando o menu na tela *Inicial*. É na seção *Gerenciar Notificações* da tela *Ajustes* que você escolhe quanto o aplicativo fala, com *Detalhe das Notificações*, se ele anuncia *Ruas e Cruzamentos* e quais são os *Locais a Anunciar*. Se quiser desligar todas as notificações, defina *Detalhe das Notificações* como *Silencioso*.
+## Parar o Soundscape por um Tempo
+
+Selecione o botão *Colocar em Suspensão* na parte superior da tela inicial. O Soundscape para de usar a sua localização e não emite nenhum som até você selecionar *Despertar Agora*. Ou selecione *Despertar quando eu sair*, e o Soundscape desperta quando você sair do lugar onde está.
+
+## Em um Veículo ou em um Trem
+
+O Soundscape percebe quando você se desloca na velocidade de um veículo. Ele então para de anunciar cruzamentos e lojas próximas, porque eles passam rápido demais. Em vez disso, anuncia a via em que você está, pontos de referência, pontos e estações, rios e túneis.
 

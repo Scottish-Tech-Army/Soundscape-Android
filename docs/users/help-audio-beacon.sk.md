@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Zvukový maják
 
-## Čo to je?
+Zvukový maják je zvuk, ktorý znie zo smeru miesta, ktoré si vyberiete. Hovorí vám, kde miesto leží vzdušnou čiarou. Nedáva pokyny krok za krokom, takže cestu si vyberáte sami.
 
-Nastavením majáka na blízke miesto vám Soundscape umožňuje mať prehľad tým, že prehráva zvuk prichádzajúci zo smeru daného miesta. Tento maják je možné na domovskej obrazovke stlmiť alebo zapnúť. Okrem toho Soundscape zobrazuje na domovskej obrazovke informácie o danom mieste vrátane vzdialenosti k nemu a jeho adresy, ak je známa.
+## Nastavenie majáka
 
-## Kedy to použiť?
+1. Nájdite miesto. Použite vyhľadávacie pole, *Miesta v okolí*, *Značky* alebo *Aktuálna poloha* na domovskej obrazovke.
 
-Nastavenie majáka je užitočné, keď si chcete udržiavať prehľad o známom orientačnom bode počas skúmania novej oblasti, alebo keď niekam smerujete a chcete byť počas cesty informovaní o svojom okolí. Funkcia majáka vám neposkytuje navigáciu krok za krokom, ale poskytuje vám nepretržitý zvuk, ktorý vám udáva smer k majáku vzhľadom na vašu aktuálnu polohu. Pomocou zvukového majáka, svojich vlastných orientačných schopností, prípadne aj svojej obľúbenej navigačnej aplikácie si tak sami môžete zvoliť, ako sa dostanete na blízke miesta.
+2. Vyberte miesto a otvoria sa *Podrobnosti o mieste*.
 
-## Ako to funguje?
+3. Vyberte *Spustiť zvukový maják*.
 
-**Nastavenie majáka:**
+Soundscape sa vráti na domovskú obrazovku a maják sa spustí. Domovská obrazovka ukazuje názov miesta a ako je ďaleko.
 
- Najprv zobrazte podrobnosti o mieste – buď vyhľadaním miesta pomocou vyhľadávacieho poľa, alebo ťuknutím na jedno z tlačidiel *Miesta v okolí*, *Značky* alebo *Aktuálna poloha* a výberom miesta. Potom na obrazovke *Podrobnosti o mieste* vyberte tlačidlo *Spustiť zvukový maják*. Ťuknutím naň sa vrátite na domovskú obrazovku a zapne sa zvukový maják prichádzajúci zo smeru vybraného miesta. Na hlavnej obrazovke sa teraz zobrazí názov miesta spolu s jeho vzdialenosťou a fyzickou adresou, ak je k dispozícii.
+## Hľadanie smeru
 
-**Odstránenie aktuálneho majáka:**
+Maják zmení zvuk, keď stojíte čelom k miestu alebo idete priamo k nemu. Tento zvuk nájdete tak, že držíte telefón naplocho a pomaly sa otáčate. Iný zvuk majáka si môžete zvoliť v *Nastavenia*.
 
- Jednoducho stlačte tlačidlo *Zastaviť trasu* na domovskej obrazovke.
+## Stlmenie majáka
 
-**Stlmenie zvukového majáka:**
+Na domovskej obrazovke vyberte *Stlmiť maják*. Soundscape vám pri pohybe ďalej hovorí, ako ďaleko miesto je. Ak chcete maják znova počuť, vyberte *Zrušiť stlmenie majáka*.
 
- Ťuknite na tlačidlo *Stlmiť maják* vedľa tlačidla *Zastaviť trasu* na domovskej obrazovke.
+## Odstránenie majáka
+
+Na domovskej obrazovke vyberte *Zastaviť trasu*. Tlačidlo má tento názov, aj keď maják nie je súčasťou trasy.
+
+## Keď dorazíte
+
+Keď ste asi 12 metrov od miesta, Soundscape vám to povie a maják odstráni. Presnejšie telefón vašu polohu určiť nedokáže. Ak chcete maják znova počuť, nastavte ho znova.
+
+Maják nastavený na miesto vzdialené menej ako 30 metrov zostáva zapnutý, kým ho neodstránite.
 

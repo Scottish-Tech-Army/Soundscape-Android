@@ -9,15 +9,7 @@ permalink: /users/help-ahead-of-me.html
 
 # Mbele Yangu
 
-## Ni nini?
+*Mbele Yangu* inatangaza hadi sehemu tano zilizo mbele yako. Unasikia kila moja kutoka upande wake, pamoja na umbali wake. Itumie kwenye barabara usiyoijua, ili kujua kinachokuja mbele.
 
-Kitufe cha *Mbele Yangu* hukujulisha kuhusu hadi vitu vitano vilivyo mbele yako. *Mbele Yangu* imekusudiwa kukusaidia kuchunguza njia iliyo mbele yako unapojifunza kuhusu eneo jipya.
-
-## Ni lini nitaitumia?
-
-Unapotembea barabarani, jaribu kutumia *Mbele Yangu* ili kugundua mahali na vitu vinavyokuja pande zote mbili za barabara iliyo mbele.
-
-## Inafanyaje kazi?
-
-Kama ilivyo kwa vitufe vyote vinne vilivyo chini ya skrini ya mwanzo, shikilia simu yako ikiwa gorofa (ikielekeza juu angani) na sehemu ya juu ya simu ikielekeza upande unaoelekea kabla ya kubonyeza kitufe cha *Mbele Yangu*. Hii hufanya kazi kama dira inayoijulisha programu upande unaoelekea. Gusa tu kitufe cha *Mbele Yangu* nawe utasikia sehemu kadhaa za kuvutia zilizo karibu mbele yako.
+Ikiwa umesimama mahali pamoja, kwanza elekeza sehemu ya juu ya simu upande unaoelekea. Ikiwa simu yako imefungwa, au Soundscape haipo kwenye skrini, shikilia simu kwa usawa pia.
 

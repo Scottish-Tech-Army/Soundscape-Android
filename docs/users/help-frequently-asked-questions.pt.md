@@ -9,121 +9,76 @@ permalink: /users/help-frequently-asked-questions.html
 
 # Perguntas Mais Frequentes
 
-## O que é o Soundscape e como devo utilizá-lo?
+## Acerca do Soundscape
 
 ### Quando devo utilizar o Soundscape?
-O Soundscape tem funcionalidades e vantagens que abrangem uma variedade de cenários e escalas temporais. O valor do Soundscape para si também pode mudar ao longo do tempo, pelo que a forma como o utiliza hoje pode ser diferente da forma como o utilizará daqui a três meses. As pessoas pensam frequentemente nas aplicações em termos de *«que problema é que esta aplicação resolve bem?»* O Soundscape pode certamente ser utilizado para necessidades específicas – como acompanhar um destino enquanto se dirige para lá, ajudá‑lo a orientar‑se quando sai de uma estação de metro, situar‑se ao sair de um carro, ou descobrir os nomes das ruas ou a distância até ao cruzamento seguinte. No entanto, a filosofia por trás do Soundscape é *«iluminar o seu mundo com som»* – foi concebido para ser utilizado sempre que estiver na rua, para lhe dar uma perceção ambiente do que o rodeia, como os nomes das ruas em que se encontra, a direção em que segue e os nomes dos estabelecimentos por onde passa. Neste modo de utilização, os nossos utilizadores referem‑se ao Soundscape como uma *«boa aplicação de companhia»*, que favorece a *«serendipidade»*, ajuda a *«preencher as lacunas do seu mapa mental»* e proporciona mais *«confiança ao caminhar»*. Aqui ficam mais alguns exemplos de como os nossos utilizadores usam o Soundscape na sua vida:
-
-«O Soundscape ajudou‑me a voltar ao caminho certo depois de sair do autocarro e seguir na direção errada.»
-
-«Mesmo na cidade onde vivo há 3 anos, consegui construir uma melhor imagem do que me rodeia [com o Soundscape].»
-
-«O som 3D melhora a minha experiência de caminhada, pois sinto‑me mais ligado ao ambiente… Agora que tenho a aplicação, é mais provável que experimente uma rota nova.»
-
-«Tenho saudades da serendipidade de andar ao acaso e reparar em coisas. O Soundscape é útil, não requer qualquer esforço para ouvir informações sobre o que me rodeia. As informações relacionais são úteis e esta é uma aplicação excelente para consciência situacional e explorar áreas comerciais.»
-
-«[Utilizei o Soundscape] para localizar um pub no meio de York. [Eu] utilizei um conjunto de opções da aplicação primeiro para o localizar e depois para o encontrar de facto. Deixou-me a 3 metros da porta – brilhante!»
-
-### O que são Marcos e como posso tirar o máximo partido deles?
-Os marcos são locais que guardou. Podem ser locais que a aplicação consegue encontrar ou locais totalmente novos adicionados por si. Para adicionar um, selecione *Marcos* no ecrã principal, depois o botão *Novo* no canto superior direito do ecrã, e escolha a sua localização atual ou um local nas proximidades. Também pode guardar qualquer local que encontre a partir do ecrã principal, com a barra de pesquisa, o botão *Locais nas Proximidades* ou o botão *Localização Atual*. Ao selecionar um local, acede ao ecrã *Detalhes da Localização*, onde seleciona o botão *Guardar como Marco*.
-
-## Como posso tirar o máximo partido do Soundscape?
-
-### Que itens posso definir como um sinal?
-Pode definir um sinal de áudio em qualquer empresa, local, ponto de interesse, endereço ou cruzamento. Existem várias formas de adicionar um sinal numa localização. Primeiro, visualize os detalhes de uma localização usando a barra de pesquisa para procurar um local, ou tocando num dos botões *Locais nas Proximidades*, *Marcos* ou *Localização Atual* e selecionando um local. Depois, no ecrã *Detalhes da Localização*, selecione o botão *Iniciar Sinal de Áudio*. Ao tocar neste botão, regressa ao ecrã principal e é ativado um sinal audível vindo da direção do local selecionado. O nome do local, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal.
-
-### Como posso tirar o máximo partido de um sinal?
-Pode pensar no sinal audível como um *farol para os seus ouvidos*: indica‑lhe onde está o seu destino, em linha reta a partir da sua localização atual. Tal como um farol, não indica como lá chegar — poderá ainda ter de tomar decisões de navegação ao longo do percurso para contornar obstáculos. O som rítmico contínuo do sinal vem da direção do destino e ajuda‑o a manter a noção de onde o destino está em relação a si enquanto caminha. Quando caminha diretamente na direção do destino, ou aponta o telemóvel para o destino, ouvirá um som de *ping* mais agudo. Isto ajuda‑o a localizar com precisão a direção do destino, pois a direção do som rítmico pode por vezes ser difícil de ouvir em ambientes ruidosos. Para encontrar o *ping* mais agudo, segure o telemóvel plano e rode lentamente sobre si mesmo; virar a cabeça na mesma direção do telemóvel dar‑lhe‑á a melhor experiência de áudio espacial.
-
-Esta conceção tem algumas consequências naturais:
-
-1. Não existe uma direção *correta* a seguir quando utiliza o sinal — com o Soundscape é você quem decide como lá chegar;
-
-2. O *ping* mais agudo apenas o ajuda a localizar a direção do destino — não lhe indica como lá chegar;
-
-3. Se já souber, em termos gerais, como chegar ao destino, poderá optar por silenciar o sinal durante a maior parte da viagem e ativá‑lo apenas quando estiver a aproximar‑se do destino.
-
-### Por que motivo é que o sinal audível às vezes desaparece?
-O sinal audível do Soundscape é fundamentalmente uma sugestão direcional, indicando a localização do destino relativamente à direção em que está virado. Quando o Soundscape não tem a certeza da direção em que está virado, reduz o volume do sinal. Isto ocorre mais frequentemente se tiver estado a andar com o telemóvel guardado num bolso ou numa mala e tiver ficado imóvel (por exemplo, para atravessar uma rua). O sinal ficará mais alto quando voltar a mover-se, ou se segurar no telemóvel numa posição plana e o apontar para a direção em que está virado.
-
-### Posso definir um sinal num endereço?
-Sim, pode. Os endereços não são listados por predefinição, mas podem ser encontrados usando o campo de pesquisa. Para guardar este endereço e não ter de o procurar novamente, pode adicioná‑lo como um marco a partir do ecrã *Detalhes da Localização* selecionando o botão *Guardar como Marco*.
-
-### Como posso definir um sinal em minha casa?
-O Soundscape suporta a definição de sinais em endereços. Para definir um sinal em sua casa, ou em qualquer outro endereço, procure uma localização com a barra de pesquisa do ecrã principal. Depois, no ecrã *Detalhes da Localização*, toque no botão *Iniciar Sinal de Áudio*.
-
-### Quando definir um sinal num destino, até que distância é que o Soundscape me leva?
-O Soundscape pode determinar a localização do seu destino com uma precisão de alguns metros, mas não menos. Quando o Soundscape determinar que está perto do destino, ouvirá um aviso final de que o destino está por perto e o sinal será desativado.
-
-### Posso reativar o sinal quando estiver perto do meu destino?
-Sim, é possível reativar o sinal após o Soundscape o desativar selecionando o botão *Ativar Sinal*; no entanto, visto que os Serviços de localização só são precisos até uma distância aproximada de 10 metros, não podemos garantir o comportamento do sinal quando se encontrar a apenas alguns metros do destino.
-
-### Por que motivo é que o Soundscape lê os nomes das ruas duas vezes quando me aproximo de um cruzamento?
-Para acomodar uma vasta gama de formas de cruzamentos, o Soundscape descreve cruzamentos como segmentos de vias que têm um ponto de partida comum. O Soundscape utiliza áudio espacial para indicar os nomes das ruas que seguem para a esquerda, em frente e para a direita, por esta ordem. Se a descrição do cruzamento começar pela rua em que se encontra, em vez de uma rua à esquerda, então o cruzamento forma um T deitado, com a rua em que se encontra a continuar em frente e outra rua a cruzá‑la pela direita. De igual modo, se a descrição incluir apenas uma rua à esquerda e outra à direita, saberá que a rua em que se encontra termina num T à sua frente. Este método de descrever cruzamentos também funciona quando uma rua muda de nome num cruzamento.
-
-### Por que motivo é que o Soundscape não anuncia cada empresa por que passo?
-O Soundscape foi concebido para não lhe dar avisos em excesso. Utiliza também o OpenStreetMap como fonte de dados. O OpenStreetMap (OSM, https://www.openstreetmap.org/) é um mapa do mundo construído e editado por uma comunidade de colaboradores individuais. Se uma empresa ou um ponto de interesse não for anunciado pelo Soundscape, a razão mais provável é que ainda não tenha sido adicionado aos dados — ou, em alguns casos, atualizado — por um membro da comunidade do OSM.
-
-### Por que motivo é que alguns avisos param quando estou num veículo?
-Para evitar que o número de avisos se torne insuportável, algumas categorias (como cruzamentos) não são anunciadas automaticamente quando viajar num veículo.
-
-### O que acontece se não compreender um aviso ou se o perder devido ao ruído ambiente?
-O Soundscape não guarda uma lista dos avisos anteriores, mas pode pedir-lhe a qualquer momento que volte a descrever o que está à sua volta. *A Minha Localização* indica onde está, e *Em Meu Redor* e *À Minha Frente* anunciam os locais à sua volta e à sua frente. Os três botões encontram-se na parte inferior do ecrã principal. Se utilizar os controlos multimédia dos auscultadores no *Modo Original*, ⏭ Seguinte anuncia *Em Meu Redor* quando não estiver a ser reproduzida nenhuma rota.
-
-## Como funciona o Soundscape?
-
-### Que telemóveis são compatíveis com o Soundscape?
-O Soundscape está atualmente disponível para iPhones com iOS 16 ou posterior, e para telefones Android com Android 11 ou posterior.
-
-### Que auscultadores devo utilizar com o Soundscape?
-Os auscultadores que utilizar com o Soundscape são uma preferência pessoal e cada opção tem vantagens e compromissos. O único requisito é utilizar auscultadores estéreo para poder tirar partido dos avisos em áudio espacial 3D do Soundscape.
-
-### Qual é o impacto do Soundscape na bateria do meu telefone?
-A duração da bateria varia significativamente consoante o modelo e a idade do seu telemóvel. O maior consumo de bateria resulta da ativação do ecrã, pelo que, para maximizar a autonomia do telemóvel, deve manter o ecrã bloqueado sempre que possível. Para ajudar a reduzir o impacto no consumo da bateria, o Soundscape dispõe de um Modo de Suspensão e de um Modo de Pausa. Para reduzir ainda mais a utilização de bateria, quando não estiver a usar o Soundscape, deve forçar o encerramento da aplicação através do alternador de aplicações do seu telemóvel.
-
-### Como posso utilizar o Modo de Suspensão para minimizar o impacto do Soundscape na bateria do meu telemóvel?
-Para colocar o Soundscape em Modo de Suspensão, selecione o botão *Suspender* no canto superior direito do ecrã principal. Ao fazê‑lo, o Soundscape deixará de utilizar os Serviços de localização e os dados móveis até que o reative.
-
-### Como posso utilizar o Modo de Pausa para minimizar o impacto do Soundscape na bateria do meu telemóvel?
-Para colocar o Soundscape em Modo de Pausa, selecione o botão *Suspender* no canto superior direito do ecrã principal. Depois de o Soundscape estar em Modo de Suspensão, selecione o botão *Reativar ao sair* e o Soundscape entrará num estado de baixo consumo até que se afaste da sua localização atual.
-
-### Como é que a minha escolha de auscultadores afeta a duração da bateria do telemóvel?
-Nos nossos testes, o consumo de bateria dos auscultadores Bluetooth foi comparável ao de auscultadores com fios e não deverá ser um fator significativo a tomar em consideração para a escolha dos auscultadores.
-
-### Qual é o impacto da execução do Soundscape em segundo plano na duração da bateria do meu telemóvel?
-O Soundscape utiliza os Serviços de localização para determinar onde se encontra. Nos nossos testes, o Soundscape não consumiu mais bateria do que uma aplicação de mapas normal; no entanto, se estiver preocupado com o consumo da bateria do telemóvel, as sugestões seguintes ajudarão a reduzir a utilização:
-
-1. Desligue o ecrã sempre que puder quando não estiver a interagir com a aplicação.
-
-2. Quando não estiver a utilizar a aplicação, encerre-a. O Soundscape utiliza os serviços de localização continuamente quando está em execução para saber sempre a sua localização, mesmo quando está imóvel. Não se esqueça de reiniciar a aplicação quando retomar caminho.
-
-3. Mantenha o telemóvel quente quando o tempo estiver frio; o desempenho das baterias piora com temperaturas mais frias.
-
-### Que quantidade de dados móveis utiliza o Soundscape?
-A quantidade de dados móveis utilizada depende da forma como utiliza o Soundscape. Concebemos a aplicação para utilizar apenas uma pequena quantidade de dados quando está na rua, por exemplo guardando pontos à medida que caminha, para que não tenha de os transferir novamente sempre que voltar a um local onde já tenha estado. Para reduzir a quantidade de dados móveis utilizada, certifique-se de que está ligado a uma rede Wi-Fi sempre que possível, especialmente para transferir a aplicação. Quando não estiver a utilizar o Soundscape, deverá utilizar o botão *Suspender* para colocar o Soundscape em modo de suspensão; alternativamente, feche a aplicação.
+Use o Soundscape sempre que sair à rua. Funciona em segundo plano e diz-lhe as ruas em que está e os locais por onde passa. Também pode ajudar numa tarefa específica, como acompanhar um local para onde está a caminhar.
 
 ### Qual é a diferença entre o Soundscape e as outras aplicações de mapas?
-O Soundscape fornece uma descrição do ambiente que o rodeia para ajudar na exploração e na orientação. Utilizando áudio espacial, o Soundscape anunciará pontos de interesse, parques, ruas e cruzamentos a partir da direção em que se encontram fisicamente no seu ambiente imediato enquanto caminha. Por exemplo, se passar por uma loja à sua direita, ouvirá o nome da loja vindo da sua direita. Ao aproximar‑se de um cruzamento, ouvirá o nome de cada rua proveniente da direção para onde ela segue, começando pela esquerda, depois em frente e à direita.
+A maioria das aplicações de mapas dá indicações passo a passo. O Soundscape diz-lhe o que está à sua volta e reproduz um sinal a partir da direção do seu destino. Você escolhe o caminho.
 
-Em vez de direções curva‑a‑curva, como as que fornecem muitas outras aplicações de mapas, o Soundscape reproduz um sinal audível na direção do seu destino, permitindo‑lhe ir até lá da forma que melhor lhe convier, apoiando‑se numa maior perceção do ambiente e da localização do destino. O Soundscape foi concebido para funcionar em segundo plano, permitindo‑lhe usar uma aplicação de direções curva‑a‑curva enquanto continua a fornecer informação ambiental durante o seu percurso.
+Pode usar as duas coisas em conjunto. Inicie as indicações na sua aplicação de mapas e depois defina um sinal do Soundscape no mesmo local.
 
-### Posso utilizar o Soundscape com uma aplicação de navegação?
-O Soundscape foi concebido para ajudar a fornecer detalhes que poderá não conhecer sobre o ambiente que o rodeia. Embora não tenha sido concebido como uma aplicação de navegação curva-a-curva, pode ser utilizado juntamente com aplicações deste tipo para fornecer informações complementares. Para utilizar o Soundscape com estas aplicações, inicie primeiro a aplicação de navegação. Em seguida, passe para o Soundscape e defina um sinal no mesmo destino que a aplicação de navegação. Neste momento, ambas as aplicações estarão em execução e ouvirá direções de percurso da aplicação de navegação enquanto recebe atualizações sobre pontos de interesse, cruzamentos e a distância a que se encontra do destino provenientes do Soundscape.
+### Tenho de segurar o telemóvel o tempo todo?
+Não. Enquanto caminha, o Soundscape usa a sua direção de deslocação. Por isso, o telemóvel pode ficar num bolso ou numa mala. Tire-o quando não estiver em movimento e quiser que as direções estejam certas. Aponte a parte de cima do telemóvel para a sua frente. Se o telemóvel estiver bloqueado, ou se o Soundscape não estiver no ecrã, segure também o telemóvel na horizontal.
 
-### Como posso controlar o que oiço e quando o oiço no Soundscape?
-O Soundscape disponibiliza várias formas de controlar o que ouve e quando:
+## Sinais e Avisos
 
-1. Parar imediatamente todo o áudio: Toque duas vezes com dois dedos no ecrã para desligar de imediato todo o áudio, incluindo qualquer aviso que esteja a ser reproduzido e o Sinal de Áudio, se este estiver ativo. Os avisos serão retomados automaticamente quando se aproximar do próximo cruzamento ou ponto de interesse, mas o Sinal de Áudio não será retomado automaticamente. Selecione o botão *Ativar Sinal* no ecrã principal para voltar a ouvir o sinal.
+### Posso definir um sinal numa morada, como a minha casa?
+Sim. Escreva a morada na barra de pesquisa do ecrã principal e selecione-a nos resultados. Depois selecione *Iniciar Sinal de Áudio*. Para guardar a morada para a próxima vez, selecione *Guardar como Marco*.
 
-2. Parar os avisos automáticos: Quando não estiver a deslocar-se ou tiver chegado ao destino, provavelmente não precisará que o Soundscape continue a notificá-lo sobre o que o rodeia. Em vez de sair da aplicação, pode colocar o Soundscape em Modo de Pausa, e este reativar-se-á quando sair, ou pode colocá-lo em Modo de Suspensão, que permanecerá desligado até que o reative. Alternativamente, pode selecionar *Definições* no menu e definir *Detalhe dos Avisos* como *Silencioso* na secção *Gerir Avisos*.
+### Como posso tirar o máximo partido de um sinal?
+Pense no sinal como um farol para os seus ouvidos. Mostra onde fica o local em linha reta, não o caminho até lá. Continua a ser você a escolher como contornar edifícios e atravessar ruas.
 
-3. Parar o Sinal: Existem vários cenários em que pode definir um destino sem precisar que o Sinal de Áudio esteja ativo. Por exemplo, pode saber exatamente como chegar ao destino, mas ainda querer atualizações automáticas sobre a distância; ou pode só precisar do Sinal de Áudio quando se aproxima do destino. Seja qual for o caso, pode escolher quando ouvir o Sinal alternando o botão *Desativar Sinal*/*Ativar Sinal* no ecrã principal.
+O sinal muda de som quando fica de frente para o local. Para encontrar esse som, segure o telemóvel na horizontal e rode devagar.
 
-Se ainda quiser interagir com o Soundscape mas não quiser ouvir avisos automáticos, pode definir *Detalhe dos Avisos* como *Silencioso* na secção *Gerir Avisos* do ecrã *Definições* no menu. Ou, se não for usar o Soundscape, pode colocá-lo em Modo de Suspensão ou em Modo de Pausa utilizando o botão *Suspender* no ecrã principal.
+Se conhece a maior parte do caminho, desative o som do sinal e volte a ativá-lo quando estiver perto.
 
-### Preciso de levar sempre o telemóvel na mão?
-Não! Enquanto caminha, pode guardar o telemóvel num saco ou no bolso ou onde for mais conveniente. O Soundscape utilizará a direção em que está a caminhar para determinar quais os avisos a anunciar à sua esquerda e à sua direita. Quando parar de se mover, o Soundscape não sabe para que direção está virado. Se o sinal audível estiver ativo, irá notar que o som diminui até voltar a mover‑se. Pode retirar o telemóvel para pressionar os botões de localização e exploração na parte inferior do ecrã principal a qualquer momento, mas certifique‑se de segurar o telemóvel com a extremidade superior apontada para a direção em que está virado e com o ecrã virado para o céu. Nessa posição *plana*, o Soundscape usará a bússola do telemóvel para determinar para onde está virado e fornecer avisos espaciais precisos. Se o sinal estiver ativo, também notará que ele volta ao volume total.
+### O que acontece quando chego ao meu destino?
+Quando está a cerca de 12 metros, o Soundscape avisa e remove o sinal. O telemóvel não consegue determinar a sua posição com mais exatidão, por isso use as suas outras competências nos últimos passos. Para voltar a ouvir o sinal, defina-o de novo.
 
-### O que é o OpenStreetMap e por que motivo é utilizado no Soundscape?
-O Soundscape utiliza dados de mapas para criar os seus avisos de áudio. A nossa principal origem de mapas é o OpenStreetMap (www.openstreetmap.org). Trata‑se de uma plataforma de mapeamento criada por uma comunidade de colaboradores. Organizações e particulares podem utilizar as ferramentas do OpenStreetMap para melhorar os dados e tornar os seus espaços mais acessíveis.
+### Porque é que o sinal soa diferente quando paro de caminhar?
+Com o telemóvel num bolso ou numa mala, o Soundscape calcula a direção em que está de frente a partir da sua direção de deslocação. Quando para, deixa de o conseguir saber, por isso o sinal soa como se estivesse de costas para o local. Volte a caminhar, ou aponte a parte de cima do telemóvel para a sua frente. Se o telemóvel estiver bloqueado, ou se o Soundscape não estiver no ecrã, segure também o telemóvel na horizontal.
+
+### Porque é que ouço o nome de uma rua duas vezes num cruzamento?
+O Soundscape diz o nome de cada rua que sai do cruzamento, a partir da direção para onde ela vai. Uma rua que cruza a sua vai para a esquerda e para a direita, por isso ouve o nome duas vezes. Se ouvir apenas uma esquerda e uma direita, a sua rua termina à frente.
+
+### Por que motivo é que o Soundscape não anuncia cada empresa por que passo?
+O Soundscape obtém os seus locais do OpenStreetMap, um mapa criado por voluntários. Se um estabelecimento não estiver nesse mapa, o Soundscape não o consegue anunciar. O Soundscape também limita os avisos, para que não ouça demasiados. Para ouvir mais, defina *Detalhe dos Avisos* como *Detalhado* e verifique *Locais a Anunciar*.
+
+### O que muda quando estou num veículo?
+O Soundscape deixa de anunciar cruzamentos e lojas próximas, porque passam depressa demais. Em vez disso, anuncia a estrada em que segue, pontos de referência, paragens e estações, rios e túneis.
+
+### E se eu perder um aviso?
+O Soundscape não guarda uma lista dos avisos anteriores. Peça de novo com os botões na parte inferior do ecrã principal: *A Minha Localização*, *Em Meu Redor* ou *À Minha Frente*.
+
+### Como torno o Soundscape mais discreto?
+1. Para ouvir menos avisos, abra *Definições*, selecione *Gerir Avisos* e baixe o *Detalhe dos Avisos*. *Silencioso* para todos os avisos automáticos.
+
+2. Para silenciar o sinal, selecione *Desativar Sinal* no ecrã principal.
+
+3. Para parar o Soundscape durante algum tempo, selecione *Suspender* na parte superior do ecrã principal.
+
+## Telemóveis, Bateria e Mapas
+
+### Que telemóveis são compatíveis com o Soundscape?
+O Soundscape funciona em iPhones com iOS 16 ou posterior, e em telemóveis Android com Android 11 ou posterior.
+
+### Preciso de auscultadores?
+Não. O Soundscape funciona com o altifalante do telemóvel. Os auscultadores estéreo dão uma noção de direção muito mais clara, e serve qualquer par com fios ou Bluetooth.
+
+### Como poupo bateria?
+O Soundscape usa a sua localização o tempo todo, e isso gasta bateria. Para gastar menos:
+
+1. Mantenha o ecrã desligado quando não o estiver a usar.
+
+2. Quando parar durante algum tempo, selecione *Suspender* na parte superior do ecrã principal. Selecione *Reativar ao sair* se quiser que o Soundscape se reative quando seguir caminho.
+
+3. Quando terminar, feche o Soundscape.
+
+### Que quantidade de dados móveis utiliza o Soundscape?
+O Soundscape transfere uma pequena quantidade de dados do mapa à medida que se desloca. Para usar muito menos, transfira um mapa offline por Wi-Fi antes de viajar. Abra o menu e selecione *Mapas offline*.
+
+### O que é o OpenStreetMap?
+O OpenStreetMap é um mapa livre do mundo, criado por voluntários. O Soundscape usa-o para ruas e locais. Qualquer pessoa pode adicionar ou corrigir um local em www.openstreetmap.org, e a alteração chega ao Soundscape numa atualização posterior do mapa.
 

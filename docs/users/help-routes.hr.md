@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Rute
 
-## Što je to?
+Ruta je popis lokacija, koje se zovu putne točke, a posjećujete ih redom. Soundscape postavlja svjetionik na prvu putnu točku. Kad stignete, to vam kaže i pomiče svjetionik na sljedeću.
 
-Rute su niz putnih točaka. Bit ćete obaviješteni po dolasku na svaku putnu točku, a zvučni svjetionik automatski će se pomaknuti na sljedeću putnu točku.
+Koristite rutu da biste naučili novi put ili da ne skrenete s puta koji poznajete.
 
-## Kada se ovo koristi?
+## Stvaranje rute
 
-Rutu možda želite stvoriti i koristiti na mjestu koje već poznajete, kako biste ostali na pravom putu. Ili je možda želite koristiti kako biste naučili novo putovanje.
+1. Odaberite *Rute* na početnom zaslonu, zatim odaberite *Nova*.
 
-## Kako to funkcionira?
+2. Dajte ruti naziv. Možete dodati opis.
 
-**Stvaranje rute:**
+3. Odaberite *Dodaj putne točke* i odaberite oznake. Možete dodati i svoju trenutačnu lokaciju ili mjesto u blizini.
 
- Najprije na početnom zaslonu odaberite *Rute*, a zatim odaberite gumb *Nova* u gornjem desnom kutu zaslona. Dajte ruti naziv i, po želji, opis, a zatim dodajte putne točke usput ili ih odaberite sa svog popisa oznaka. Redoslijed putnih točaka možete u bilo kojem trenutku promijeniti uređivanjem rute.
+4. Odaberite *Gotovo*.
 
-**Uređivanje rute:**
+## Praćenje rute
 
- Odaberite svoju rutu na zaslonu *Rute*, a zatim odaberite *Uredi rutu*. Ovdje možete dodavati i uklanjati putne točke, kao i uređivati naziv i opis rute.
+Odaberite rutu na zaslonu *Rute*, zatim odaberite *Pokreni rutu*. Da biste je pratili u suprotnom smjeru, odaberite *Pokreni rutu unatrag*. Na početnom zaslonu *Sljedeća putna točka* i *Prethodna putna točka* pomiču svjetionik duž rute. *Zaustavi rutu* je završava.
 
-**Dijeljenje rute:**
+## Promjena rute
 
- Odaberite svoju rutu na zaslonu *Rute*, a zatim odaberite opciju *Podijeli*, koristeći sve uobičajene opcije dijeljenja koje su vam dostupne.
+Odaberite rutu na zaslonu *Rute*, zatim odaberite *Uredi rutu*. Možete dodavati, uklanjati i preslagivati putne točke, promijeniti naziv i opis ili izbrisati rutu.
+
+## Dijeljenje rute
+
+Odaberite rutu na zaslonu *Rute*, zatim odaberite *Podijeli*.
 

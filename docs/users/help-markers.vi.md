@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Điểm đánh dấu
 
-Với Soundscape, bạn có thể đánh dấu thế giới của mình và bất cứ điều gì bạn quan tâm, giống như các ghim trên bản đồ.
+Điểm đánh dấu là một địa điểm bạn đã lưu. Đó có thể là bất kỳ nơi nào quan trọng với bạn: nhà bạn, một điểm dừng xe buýt, lối vào một tòa nhà hoặc một lối qua đường.
 
-Bạn có thể đánh dấu những nơi có ý nghĩa riêng với bạn, như nhà riêng, văn phòng hay cửa hàng tạp hóa ưa thích. Bạn có thể đánh dấu bất kỳ địa điểm hay địa chỉ nào, và cả những thứ thường không có trên bản đồ, ví dụ: lối vào các tòa nhà hoặc công viên, nút bấm qua đường, vạch qua đường, cầu, điểm dừng xe buýt, hay thậm chí là cái cây yêu thích của chú chó nhà bạn. Hãy dùng những điểm đánh dấu này làm mốc tham chiếu trong suốt chuyến đi bộ.
+Soundscape thông báo các điểm đánh dấu của bạn khi bạn đi ngang qua. Bạn có thể đặt đèn hiệu âm thanh tại một điểm đánh dấu, thêm nó vào lộ trình, hoặc nghe những điểm gần nhất bằng nút *Điểm đánh dấu gần đây*.
 
-Để trải nghiệm các địa điểm đã đánh dấu, Soundscape sẽ tự động thông báo các địa điểm đã đánh dấu khi bạn đi ngang qua hoặc đến gần chúng, hoặc bạn cũng có thể dùng nút *Điểm đánh dấu gần đây* ở dưới cùng màn hình chính để nghe thông báo không gian về các địa điểm đã đánh dấu xung quanh bạn. Bạn thậm chí có thể đặt đèn hiệu âm thanh trên bất kỳ địa điểm đã đánh dấu nào. Khi làm điều này, đèn hiệu âm thanh Soundscape quen thuộc với bạn sẽ vang lên và bạn có thể điều khiển nó như bình thường.
+## Tạo điểm đánh dấu
+
+1. Chọn *Điểm đánh dấu* trên màn hình chính, rồi chọn *Tạo mới*.
+
+2. Chọn *Vị trí hiện tại*, hoặc một địa điểm trong *Địa điểm gần đây*.
+
+3. Đổi tên nếu muốn, và thêm ghi chú. Soundscape đọc ghi chú cùng với điểm đánh dấu.
+
+4. Chọn *Xong*.
+
+Bạn cũng có thể lưu bất kỳ địa điểm nào bạn tìm thấy. Mở *Chi tiết vị trí* của địa điểm đó và chọn *Lưu làm điểm đánh dấu*.
+
+## Tùy chỉnh điểm đánh dấu
+
+Chọn điểm đánh dấu trên màn hình *Điểm đánh dấu*, rồi chọn *Chỉnh sửa điểm đánh dấu*. Bạn có thể đổi tên, ghi chú và vị trí của nó, hoặc chọn *Xóa điểm đánh dấu*. Xóa một điểm đánh dấu cũng gỡ nó khỏi các lộ trình của bạn.
 

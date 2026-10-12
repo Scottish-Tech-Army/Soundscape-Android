@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## GPS-i täpsus
 
-Soundscape saab sinu ümbrust kirjeldada ainult nii täpselt, kui täpselt su telefon teab, kus sa oled. 10 meetri (30 jala) või parem täpsus on hea, kuni 20 meetrit (60 jalga) on kasutatav ja kõik sellest suurem tähendab, et häälteated võivad nimetada tänava vale poolt või hilineda.
+Soundscape saab sinu ümbrust kirjeldada ainult nii hästi, kui hästi telefon teab, kus sa oled. Täpsus 10 meetrit või parem on hea. Kuni 20 meetrit on rahuldav. Sellest halvema täpsuse korral võivad häälteated nimetada vale tänavapoole või hilineda.
 
-Täpsus on tavaliselt halvim siseruumides, kõrgete hoonete vahel ja umbes esimesel minutil pärast õue minekut. Kui allolev näit jääb halvaks ka siis, kui oled väljas avatud kohas, proovi telefoni asukohateenused välja ja uuesti sisse lülitada.
+Täpsus on tavaliselt halvim siseruumides, kõrgete hoonete vahel ja esimesel minutil pärast õue minemist. Kui allolev näit jääb halvaks ka siis, kui oled väljas lagedal, lülita telefoni asukohateenused välja ja uuesti sisse.
 
 Praegune täpsus: %1$s (%2$s)
 

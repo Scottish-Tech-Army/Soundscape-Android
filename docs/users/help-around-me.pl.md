@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Wokół mnie
 
-## Co to jest?
+*Wokół mnie* powiadamia o maksymalnie czterech miejscach w pobliżu: jednym z przodu, jednym po prawej, jednym z tyłu i jednym po lewej. Każde słyszysz z jego własnego kierunku, razem z odległością. Użyj tego przycisku, aby zorientować się po dotarciu w nowe miejsce.
 
-Przycisk *„Wokół mnie”* informuje o jednym obiekcie w każdej z czterech ćwiartek wokół Ciebie (przed, po prawej, za i po lewej). *„Wokół mnie”* ma pomóc Ci zorientować się w otoczeniu.
-
-## Kiedy używać?
-
-Gdy próbujesz się zorientować i ustalić swoje położenie, użyj *„Wokół mnie”*, aby usłyszeć o miejscach wokół Ciebie.
-
-## Jak to działa?
-
-Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk *„Wokół mnie”*. To działa jak kompas, informując aplikację, w którą stronę patrzysz. Po prostu stuknij przycisk *„Wokół mnie”* i usłyszysz cztery punkty zainteresowania rozmieszczone wokół Ciebie.
+Jeśli stoisz w miejscu, najpierw skieruj górną krawędź telefonu w stronę, w którą patrzysz. Jeśli telefon jest zablokowany albo Soundscape nie jest widoczny na ekranie, trzymaj też telefon poziomo.
 

@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Tafarkuna
 
-## Menene wannan?
+Tafarki jerin wurare ne, da ake kira matsayai, waɗanda kuke ziyarta bi da bi. Soundscape yana saita sigina a kan matsayi na farko. Idan kun isa, yana gaya muku sannan ya matsar da siginar zuwa na gaba.
 
-Tafarkuna jerin tashoshi ne. Za a sanar da ku idan kun isa kowace tasha, kuma Siginar Sauti za ta ci gaba zuwa tashar gaba kai tsaye.
+Ku yi amfani da tafarki don koyon sabuwar tafiya, ko don kada ku kauce a tafiyar da kuka sani.
 
-## Yaushe zan yi amfani da shi?
+## Ƙirƙirar Tafarki
 
-Kuna iya son ƙirƙira da amfani da tafarki a wani wuri da kuka riga kuka sani, domin ya taimaka muku ku kasance kan hanya madaidaiciya. Ko kuma kuna iya son amfani da tafarki domin ya taimaka muku ku koyi sabuwar tafiya.
+1. Ku zaɓi *Tafarkuna* a babban allo, sannan ku zaɓi *Sabo*.
 
-## Yaya yake aiki?
+2. Ku ba tafarkin suna. Kuna iya ƙara bayani.
 
-**Ƙirƙirar tafarki :**
+3. Ku zaɓi *Ƙara Matsayai* sannan ku zaɓi alamomi. Kuna iya kuma ƙara wurin da kuke yanzu ko wani wuri na kusa.
 
- Da farko, zaɓi *Tafarkuna* a babban allo, sannan ku zaɓi maɓallin *Sabo* da ke a saman dama na allo. Ku ba tafarkin suna da kuma bayanin da ba dole ba ne, sannan ku ƙara tashoshi yayin da kuke ci gaba ko ku zaɓe su daga jerin Alamominku. Za ku iya sake tsara jerin tashoshi a kan tafarki a kowane lokaci ta hanyar gyara tafarkin.
+4. Ku zaɓi *An Gama*.
 
-**Gyara tafarki :**
+## Bin Tafarki
 
- Zaɓi tafarkinku a allon *Tafarkuna* sannan ku zaɓi *Gyara Tafarki*. Daga nan za ku iya ƙarawa da cire tashoshi, da kuma gyara sunan da bayanin tafarkin.
+Ku zaɓi tafarkin a allon *Tafarkuna*, sannan ku zaɓi *Fara Tafarki*. Don bin sa daga ƙarshe zuwa farko, ku zaɓi *Fara Tafarki a Baya*. A babban allo, *Matsayi na Gaba* da *Matsayi na Baya* suna matsar da siginar a kan tafarkin. *Tsayar da Tafarki* yana ƙare shi.
 
-**Raba tafarki :**
+## Canja Tafarki
 
- Zaɓi tafarkinku a allon *Tafarkuna* sannan ku zaɓi zaɓin *Raba* ta amfani da duk zaɓuɓɓukan rabawa na yau da kullum da ke akwai gare ku.
+Ku zaɓi tafarkin a allon *Tafarkuna*, sannan ku zaɓi *Gyara Tafarki*. Kuna iya ƙara matsayai, cire su da sake jera su, canja sunan da bayanin, ko share tafarkin.
+
+## Raba Tafarki
+
+Ku zaɓi tafarkin a allon *Tafarkuna*, sannan ku zaɓi *Raba*.
 

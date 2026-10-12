@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## Dokładność GPS
 
-Soundscape może opisać twoje otoczenie tylko tak dokładnie, jak dokładnie twój telefon wie, gdzie jesteś. Dokładność 10 metrów (30 stóp) lub lepsza jest dobra, do 20 metrów (60 stóp) jest wystarczająca, a wszystko powyżej oznacza, że powiadomienia mogą wskazywać złą stronę ulicy lub pojawiać się z opóźnieniem.
+Soundscape może opisać otoczenie tylko tak dokładnie, jak telefon wie, gdzie jesteś. Dokładność 10 metrów lub lepsza jest dobra. Do 20 metrów jest w porządku. Powyżej tej wartości powiadomienia mogą wskazać złą stronę ulicy albo pojawić się za późno.
 
-Dokładność jest zwykle najgorsza wewnątrz budynków, wśród wysokiej zabudowy oraz przez mniej więcej pierwszą minutę po wyjściu na zewnątrz. Jeśli wartość poniżej pozostaje słaba, gdy jesteś na zewnątrz w otwartym terenie, spróbuj wyłączyć i ponownie włączyć usługi lokalizacji w telefonie.
+Dokładność jest zwykle najgorsza w budynkach, między wysokimi budynkami i w pierwszej minucie po wyjściu na zewnątrz. Jeśli wartość poniżej pozostaje słaba, gdy jesteś na otwartej przestrzeni, wyłącz i ponownie włącz usługi lokalizacji w telefonie.
 
 Bieżąca dokładność: %1$s (%2$s)
 

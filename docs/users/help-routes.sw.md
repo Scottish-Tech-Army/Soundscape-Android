@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Njia
 
-## Ni nini?
+Njia ni orodha ya mahali, panapoitwa vituo, unapopitia kwa mpangilio. Soundscape inaweka beacon kwenye kituo cha kwanza. Unapofika, inakuambia na kuisogeza beacon hadi kinachofuata.
 
-Njia ni mfululizo wa vituo. Utajulishwa unapofika kwenye kila kituo, na Beacon ya Sauti itaendelea kiotomatiki hadi kituo kinachofuata.
+Tumia njia ili kujifunza safari mpya, au ili usipotee kwenye safari unayoijua.
 
-## Ni lini nitaitumia?
+## Kuunda Njia
 
-Unaweza kutaka kuunda na kutumia njia mahali unapopafahamu tayari, ili ikusaidie kubaki kwenye mkondo sahihi. Au unaweza kutaka kutumia njia ili ikusaidie kujifunza safari mpya.
+1. Chagua *Njia* kwenye skrini ya mwanzo, kisha uchague *Mpya*.
 
-## Inafanyaje kazi?
+2. Ipe njia jina. Unaweza kuongeza maelezo.
 
-**Kuunda njia :**
+3. Chagua *Ongeza Vituo* na uchague alama. Unaweza pia kuongeza mahali ulipo sasa au sehemu iliyo karibu.
 
- Kwanza, chagua *Njia* kwenye skrini ya mwanzo, kisha chagua kitufe cha *Mpya* kilichopo kona ya juu kulia ya skrini. Ipe njia jina na maelezo ya hiari, kisha ongeza vituo unavyoendelea au uvichague kutoka kwenye orodha yako ya Alama. Unaweza kupanga upya mpangilio wa vituo katika njia wakati wowote kwa kuhariri njia hiyo.
+4. Chagua *Imekamilika*.
 
-**Kuhariri njia :**
+## Kufuata Njia
 
- Chagua njia yako kwenye skrini ya *Njia* kisha chagua *Hariri Njia*. Kutoka hapa unaweza kuongeza na kuondoa vituo, pamoja na kuhariri jina na maelezo ya njia.
+Chagua njia kwenye skrini ya *Njia*, kisha uchague *Anzisha Njia*. Ili kuifuata kinyumenyume, chagua *Anzisha Njia kwa Mpangilio wa Kinyume*. Kwenye skrini ya mwanzo, *Kituo Kinachofuata* na *Kituo Kilichopita* vinaisogeza beacon kando ya njia. *Simamisha Njia* inaimaliza.
 
-**Kushiriki njia :**
+## Kubadilisha Njia
 
- Chagua njia yako kwenye skrini ya *Njia* kisha chagua chaguo la *Shiriki* ukitumia chaguo zote za kawaida za kushiriki zinazopatikana kwako.
+Chagua njia kwenye skrini ya *Njia*, kisha uchague *Hariri Njia*. Unaweza kuongeza, kuondoa na kupanga upya vituo, kubadilisha jina na maelezo, au kufuta njia.
+
+## Kushiriki Njia
+
+Chagua njia kwenye skrini ya *Njia*, kisha uchague *Shiriki*.
 

@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Matangazo ya Sauti Kiotomatiki
 
-## Ni nini?
+Unapotembea, Soundscape inatangaza kilicho karibu nawe. Unasikia kila jina kutoka upande wa sehemu hiyo. Matangazo yanahusu barabara, makutano, maduka, vituo vya basi, vivutio na alama zako mwenyewe.
 
-Soundscape inaweza kukujulisha kuhusu vitu vinavyokuzunguka unapovikaribia kwa kutangaza jina lake kutoka upande vilipo. Programu hii hufanya hivi kiotomatiki kwa aina zote za vitu kama biashara, vituo vya mabasi, na hata makutano ya barabara. Unaweza kupanga programu itangaze nini kiotomatiki katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio*, na unaweza kuzima matangazo yote unapotaka programu ikae kimya.
+## Makutano
 
-## Ni lini nitaitumia?
+Unapokaribia makutano, Soundscape inataja kila barabara inayotoka hapo. Unasikia barabara ipi inaenda kushoto, ipi inaendelea mbele na ipi inaenda kulia.
 
-**Kuchunguza eneo jipya :**
+## Kiasi Unachosikia
 
- Washa matangazo ya kiotomatiki kisha utembee ili usikie kuhusu maduka mbalimbali, mikahawa, na mengineyo unapoyapita.
+Fungua menyu na uchague *Mipangilio*, kisha *Dhibiti Matangazo*. *Kiwango cha Matangazo* kina viwango vinne.
 
-**Kutembea kuelekea mahali maalum :**
+*Kwa Kina* inatangaza kila kitu kilicho karibu.
 
- Unapokuwa njiani kuelekea mahali fulani, matangazo ya kiotomatiki ya makutano ya barabara yanaweza kuwa muhimu sana. Matangazo ya makutano hukujulisha kuhusu muundo wa makutano unapoyakaribia, na kuthibitisha barabara uliyopo unapoyaacha.
+*Rahisi* inaacha vijia vidogo na barabara za huduma, na inajirudia mara chache zaidi.
 
-**Unapohitaji ukimya :**
+*Muhimu* inatangaza barabara, makutano na vivutio tu.
 
- Unapokaribia kuvuka barabara au unahitaji tu programu ikae kimya, unaweza kuzima matangazo. Matangazo yanapokuwa yamezimwa, programu itakupa taarifa tu ikiwa utagusa mwenyewe kimoja cha vitufe vya *Mahali Nilipo*, *Alama za Karibu*, *Karibu Nami*, au *Mbele Yangu*.
+*Kimya* haitoi matangazo yoyote ya kiotomatiki. Beacon, njia na vitufe vya skrini ya mwanzo bado vinafanya kazi.
 
-## Inafanyaje kazi?
+## Unachosikia
 
-**Kuwasha au kuzima matangazo :**
+*Dhibiti Matangazo* ina mipangilio mingine miwili. *Barabara na Makutano* inawasha au kuzima matangazo ya barabara na makutano. *Sehemu za Kutangaza* inachagua aina za sehemu unazosikia, kama vile *Usafiri wa Umma* au *Chakula na Vinywaji*. Alama zako hutangazwa kila wakati.
 
- Kuzima matangazo kutaifanya programu ikae kimya. Matangazo yanaweza kuzimwa katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio* kwa kuweka *Kiwango cha Matangazo* kuwa *Kimya*, na yanawashwa tena kwa kuchagua kiwango kingine chochote. Kwenye iPhone unaweza kufanya vivyo hivyo kwa kumwomba Siri, na kwenye Android vivyo hivyo vitafanya kazi kupitia Gemini mara Google itakapotoa uwezo huo. Unaweza pia kuifanya Soundscape iwe kimya hatua kwa hatua kwa kutumia vitufe vya kudhibiti sauti kwenye vipokea sauti vyako: kila unapobonyeza *iliyotangulia* hushuka kiwango kimoja kupitia *Kwa Kina*, *Rahisi*, *Muhimu* na *Kimya*, na kubonyeza mara nyingine hurudi kwenye *Kwa Kina*. Angalia mada ya usaidizi ya *Kutumia Vidhibiti vya Sauti*. Vinginevyo, unaweza kutumia kitufe cha *Lala* kilichopo kona ya juu kulia ya skrini ya mwanzo ili kuzuia Soundscape kutoa matangazo mpaka utakapoiamsha.
+## Kuifanya Soundscape Iseme Kidogo
 
-**Kudhibiti matangazo unayosikia :**
+Bonyeza *iliyotangulia* kwenye vidhibiti vya vipokea sauti vyako. Kila mbonyezo unashuka kiwango kimoja: *Kwa Kina*, *Rahisi*, *Muhimu*, kisha *Kimya*. Mbonyezo mmoja zaidi unarudi kwenye *Kwa Kina*. Angalia ukurasa wa usaidizi *Kutumia Vidhibiti vya Sauti*.
 
- Ili kuchagua aina za vitu ambavyo Soundscape itatangaza kiotomatiki, nenda kwenye skrini ya *Mipangilio* kwa kutumia menyu iliyopo kwenye skrini ya *Mwanzo*. Katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio* ndipo unachagua kiasi ambacho programu husema kwa kutumia *Kiwango cha Matangazo*, kama itatangaza *Barabara na Makutano*, na ni *Sehemu za Kutangaza* zipi. Ikiwa unataka kuzima matangazo yote, weka *Kiwango cha Matangazo* kuwa *Kimya*.
+## Kuisimamisha Soundscape kwa Muda
+
+Chagua kitufe cha *Lala* kilicho juu ya skrini ya mwanzo. Soundscape inaacha kutumia mahali ulipo na haitoi sauti yoyote hadi uchague *Amka Sasa*. Au chagua *Amka Ukiondoka*, na Soundscape itaamka utakapoondoka mahali ulipo.
+
+## Ndani ya Gari au Treni
+
+Soundscape inatambua unaposafiri kwa mwendo wa gari. Kisha inaacha kutangaza makutano na maduka ya karibu, kwa sababu yanapita haraka mno. Badala yake inatangaza barabara uliyomo, vivutio, vituo vya usafiri na stesheni, mito na mahandaki.
 

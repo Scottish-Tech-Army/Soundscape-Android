@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Nõuanded
 
-Lähedal asuvaid bussipeatusi leiate, valides loendis *Lähedal asuvad kohad* filtri *Ühistransport*.
+Lähedal olevate bussipeatuste leidmiseks vali *Lähedal asuvad kohad* ja seejärel *Ühistransport*.
 
-Helimajaka saate seada igale aadressile. Otsige aadressi põhikuva otsinguriba abil. Seejärel valige aadress otsingutulemustest, et avada ekraan *Asukoha üksikasjad*. Sellel ekraanil on suvand *Käivita helimajakas* selle aadressi kohta. Nii saate seada helimajaka ettevõtetele, kohtadele, huvipunktidele ja eluasemetele, mida OpenStreetMapis ei ole.
+Kui sõidad sageli sama bussiga, salvesta oma peatused markeritena. Määra helimajakas peatusele, kus sa maha lähed, ja Soundscape ütleb sõidu ajal, kui kaugel see on.
 
-Kui kasutate regulaarselt mõnda bussiliini, salvestage oma pealemineku- ja mahaminekupeatused markeritena. Nii jäävad need salvestatuks ja leiate need hõlpsalt uuesti. Nende leidmiseks valige avakuval *Markerid*. Saate neile seada helimajaka ning saate perioodilisi värskendusi selle kohta, kui lähedal olete oma mahaminekupeatusele. Märkus: saate rütmilise heli välja lülitada ja saate teekonnal ikkagi kauguse värskendusi.
+Saad helimajaka summutada ja ikkagi kuulda, kui kaugel koht on. Soundscape ütleb kaugust liikumise ajal aeg-ajalt.
 
-Kui panete telefoni taskusse ja seiskute, muutub helimajaka heli vaiksemaks, kuna Soundscape ei tea, millises suunas te vaatate. Selle parandamiseks hakake uuesti kõndima või võtke telefon välja ja hoidke seda tasapinnaliselt.
+Koha uurimiseks enne sinna minekut ava selle *Asukoha üksikasjad* ja vali *Simuleeri asukohta*. Soundscape käitub siis nii, nagu oleksid seal.
 
-Soundscape töötab kõige paremini, kui hoiate telefoni tasapinnaliselt, ekraan taeva poole ja telefoni ülaosa endast eemale suunatuna.
-
-Helimajaka rütmilise heli saate sisse ja välja lülitada avakuva vaigistusnupuga. Kui helimajakas on vaigistatud, saate ikkagi umbes iga 50 meetri järel värskendusi oma kauguse kohta sihtkohast.
-
-Et Soundscape'i edasi kasutada ilma automaatseid häälteateid kuulmata, seadke menüüst ekraani *Seadistused* jaotises *Halda häälteateid* valik *Häälteadete detailsus* väärtusele *Hääletu*. Kui te ei kavatse Soundscape'i mõnda aega kasutada, saate selle hoopis lülitada unerežiimi või uinakurežiimi, kasutades avakuval nuppu *Unerežiim*.
+Pöördepõhiste juhiste saamiseks ava koha *Asukoha üksikasjad* ja vali *Ava kaardirakenduses*. Soundscape töötab edasi, kuni teine rakendus juhiseid annab.
 

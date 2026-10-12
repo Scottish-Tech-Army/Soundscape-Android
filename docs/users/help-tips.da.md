@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Tips
 
-Du kan finde busstoppesteder i nærheden ved at vælge filteret *Offentlig transport* i listen *Steder i nærheden*.
+Hvis du vil finde busstoppesteder i nærheden, skal du vælge *Steder i nærheden* og derefter *Offentlig transport*.
 
-Du kan sætte et lydfyr på enhver adresse. Fra hovedskærmen søger du efter adressen med søgefeltet. Vælg derefter adressen i søgeresultaterne for at åbne skærmen *Oplysninger om placering*. Denne skærm har muligheden *Start lydfyr* for adressen. På den måde kan du sætte et lydfyr på virksomheder, steder, interessepunkter og boliger, som ikke findes i OpenStreetMap.
+Hvis du ofte tager den samme bus, kan du gemme dine stoppesteder som mærker. Sæt et lydfyr på det stoppested, hvor du står af, så fortæller Soundscape dig, hvor langt væk det er, mens du kører.
 
-Hvis du ofte tager en bestemt busrute, kan du gemme dine på- og afstigningsstoppesteder som mærker. På den måde bliver de gemt, så du nemt kan finde dem igen. Vælg *Mærker* på startskærmen for at finde dem. Du kan sætte et lydfyr på dem for at få periodiske opdateringer om, hvor tæt du er på dit udstigningsstop. Bemærk: du kan slå den rytmiske lyd fra og stadig få afstandsopdateringer undervejs.
+Du kan slå lydfyrets lyd fra og stadig høre, hvor langt væk stedet er. Soundscape siger afstanden en gang imellem, mens du bevæger dig.
 
-Hvis du lægger telefonen i lommen og holder op med at bevæge dig, bliver lydfyret mere dæmpet, fordi Soundscape ikke kan registrere, hvilken vej du vender. Løs det ved at begynde at gå igen, eller tag telefonen frem og hold den fladt.
+Hvis du vil udforske et sted, før du tager derhen, skal du åbne stedets *Oplysninger om placering* og vælge *Simuler placering*. Soundscape opfører sig så, som om du var der.
 
-Soundscape fungerer bedst, når du holder telefonen vandret, og skærmen peger mod himlen, og toppen af telefonen peger væk fra dig.
-
-Du kan tænde og slukke for lydfyrets rytmiske lyd ved hjælp af lydløsknappen på startskærmen. Hvis lydfyret er slået fra, får du stadig opdateringer om din afstand til din destination cirka hver 50. meter.
-
-Hvis du vil blive ved med at bruge Soundscape uden at høre automatiske lydbeskeder, skal du sætte *Detaljeniveau for lydbeskeder* til *Lydløs* i afsnittet *Administrer lydbeskeder* på skærmen *Indstillinger* via menuen. Hvis du ikke skal bruge Soundscape i et stykke tid, kan du i stedet sætte appen i dvale- eller slumretilstand med knappen *Dvale* på startskærmen.
+Hvis du vil have rutevejledning sving for sving, skal du åbne *Oplysninger om placering* for et sted og vælge *Åbn i kortapp*. Soundscape bliver ved med at køre, mens den anden app giver rutevejledning.
 

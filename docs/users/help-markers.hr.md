@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Oznake
 
-Uz Soundscape možete označiti svoj svijet i sve do čega vam je stalo, poput pribadača na karti.
+Oznaka je mjesto koje ste spremili. To može biti bilo koje mjesto koje vam je važno: vaš dom, autobusno stajalište, ulaz u zgradu ili pješački prijelaz.
 
-Možete označiti mjesta koja su vam osobna i važna, poput vašeg doma, ureda ili omiljene trgovine. Možete označiti bilo koje mjesto ili adresu, a možete označiti i stvari koje se obično ne prikazuju na kartama, primjerice: ulaze u zgrade ili parkove, gumbe za prelazak ceste, pješačke prijelaze, mostove, autobusna stajališta, pa čak i omiljeno stablo vašeg psa. Koristite te oznake kao referentne točke tijekom šetnje.
+Soundscape najavljuje vaše oznake dok prolazite pokraj njih. Na oznaku možete postaviti zvučni svjetionik, dodati je ruti ili čuti najbliže oznake gumbom *Oznake u blizini*.
 
-Kako biste doživjeli označena mjesta, Soundscape će automatski najavljivati označena mjesta dok prolazite pored njih ili im se približavate, ili možete koristiti gumb *Oznake u blizini* na dnu početnog zaslona kako biste čuli prostornu najavu označenih mjesta oko vas. Možete čak postaviti zvučni svjetionik na bilo koje označeno mjesto. Kada to učinite, čut ćete poznati zvučni svjetionik Soundscapea i moći ćete njime upravljati kao inače.
+## Izrada oznaka
+
+1. Odaberite *Oznake* na početnom zaslonu, zatim odaberite *Nova*.
+
+2. Odaberite *Trenutačna lokacija* ili mjesto s popisa *Mjesta u blizini*.
+
+3. Ako želite, promijenite naziv i dodajte bilješke. Soundscape čita bilješke zajedno s oznakom.
+
+4. Odaberite *Gotovo*.
+
+Možete spremiti i bilo koje mjesto koje pronađete. Otvorite njegove *Pojedinosti o lokaciji* i odaberite *Spremi kao oznaku*.
+
+## Prilagodba oznaka
+
+Odaberite oznaku na zaslonu *Oznake*, zatim odaberite *Uredi oznaku*. Možete promijeniti njezin naziv, bilješke i položaj ili odabrati *Izbriši oznaku*. Brisanjem se oznaka uklanja i iz vaših ruta.
 

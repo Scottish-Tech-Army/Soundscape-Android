@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Wybór głosu TTS
 
-Soundscape może korzystać z dowolnych głosów pobranych na telefon z Androidem w ustawieniach syntezy mowy (TTS). W aplikacji Soundscape, aby wybrać głos inny niż domyślny głos Androida, przejdź z menu głównego do *„Ustawienia”*, rozwiń sekcję *„Dźwięk”*, a następnie wybierz *„Wybór głosu TTS”*.
+Soundscape może używać dowolnego głosu zainstalowanego w telefonie. Aby dodać głosy, otwórz ustawienia telefonu i znajdź *Zamiana tekstu na mowę*. Aby wybrać głos w Soundscape, otwórz menu i wybierz *Ustawienia*, potem *Dźwięk*, a potem *Wybór głosu TTS*.
 

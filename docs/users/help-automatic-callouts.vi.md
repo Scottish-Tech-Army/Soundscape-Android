@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Thông báo âm thanh tự động
 
-## Đây là gì?
+Khi bạn đi bộ, Soundscape thông báo những gì ở gần bạn. Bạn nghe mỗi tên từ hướng của địa điểm đó. Thông báo bao gồm đường phố, giao lộ, cửa hàng, điểm dừng xe buýt, điểm mốc và các điểm đánh dấu của riêng bạn.
 
-Soundscape có thể cho bạn biết về những thứ xung quanh khi bạn đến gần chúng, bằng cách đọc to tên của chúng từ hướng mà chúng nằm. Ứng dụng sẽ tự động làm điều này cho đủ loại thứ như cửa hàng, điểm dừng xe buýt, và cả giao lộ. Bạn có thể tùy chỉnh những gì ứng dụng tự động thông báo trong phần *Quản lý thông báo thoại* của màn hình *Cài đặt*, và bạn có thể tắt toàn bộ thông báo khi muốn ứng dụng im lặng.
+## Giao lộ
 
-## Khi nào tôi nên dùng tính năng này?
+Khi bạn đến gần một giao lộ, Soundscape nêu tên từng con đường đi ra từ giao lộ đó. Bạn nghe đường nào đi sang trái, đường nào tiếp tục đi thẳng và đường nào đi sang phải.
 
-**Khám phá một khu vực mới :**
+## Bạn nghe nhiều hay ít
 
- Bật thông báo tự động và đi bộ xung quanh để nghe về các cửa hàng, nhà hàng, và những địa điểm tương tự khi bạn đi ngang qua chúng.
+Mở menu và chọn *Cài đặt*, rồi *Quản lý thông báo thoại*. *Mức chi tiết thông báo* có bốn mức.
 
-**Đi bộ đến một địa điểm cụ thể :**
+*Chi tiết* thông báo mọi thứ ở gần.
 
- Khi bạn đang trên đường đến một địa điểm cụ thể, thông báo tự động về giao lộ có thể đặc biệt hữu ích. Thông báo giao lộ cho bạn biết về cấu trúc của giao lộ khi bạn đến gần, và xác nhận con đường bạn đang đi khi bạn rời khỏi giao lộ đó.
+*Đơn giản* bỏ qua các lối đi nhỏ và đường nội bộ, và ít lặp lại hơn.
 
-**Khi bạn cần sự im lặng :**
+*Thiết yếu* chỉ thông báo đường phố, giao lộ và điểm mốc.
 
- Khi bạn sắp băng qua đường hoặc chỉ đơn giản cần ứng dụng im lặng, bạn có thể tắt thông báo. Khi thông báo tắt, ứng dụng chỉ cung cấp thông tin khi bạn tự tay nhấn vào một trong các nút *Vị trí của tôi*, *Điểm đánh dấu gần đây*, *Xung quanh tôi*, hoặc *Phía trước tôi*.
+*Im lặng* không phát thông báo tự động nào. Đèn hiệu, lộ trình và các nút trên màn hình chính vẫn hoạt động.
 
-## Tính năng này hoạt động như thế nào?
+## Bạn nghe những gì
 
-**Bật hoặc tắt thông báo :**
+*Quản lý thông báo thoại* còn hai cài đặt nữa. *Đường phố và giao lộ* bật hoặc tắt thông báo về đường phố và giao lộ. *Địa điểm cần thông báo* chọn những loại địa điểm bạn nghe, chẳng hạn *Phương tiện công cộng* hoặc *Ăn uống*. Các điểm đánh dấu của bạn luôn được thông báo.
 
- Tắt thông báo sẽ khiến ứng dụng im lặng. Bạn có thể tắt thông báo trong phần *Quản lý thông báo thoại* của màn hình *Cài đặt* bằng cách đặt *Mức chi tiết thông báo* thành *Im lặng*, và bật lại bằng cách chọn bất kỳ mức nào khác. Trên iPhone, bạn có thể làm điều tương tự bằng cách nhờ Siri, còn trên Android, điều tương tự sẽ hoạt động qua Gemini ngay khi Google phát hành tính năng hỗ trợ. Ngoài ra, bạn có thể giảm dần lượng thông tin Soundscape nói bằng các nút điều khiển media trên tai nghe: mỗi lần nhấn *trước đó* sẽ hạ xuống một mức theo thứ tự *Chi tiết*, *Đơn giản*, *Thiết yếu* và *Im lặng*, nhấn thêm một lần nữa sẽ quay lại *Chi tiết*. Xem chủ đề trợ giúp *Sử dụng nút điều khiển đa phương tiện*. Ngoài ra, bạn có thể dùng nút *Ngủ* ở góc trên bên phải màn hình chính để ngừng Soundscape đưa ra thông báo cho đến khi bạn đánh thức nó.
+## Làm cho Soundscape ít nói hơn
 
-**Quản lý những thông báo bạn nghe :**
+Nhấn *trước* trên bộ điều khiển của tai nghe. Mỗi lần nhấn giảm một mức: *Chi tiết*, *Đơn giản*, *Thiết yếu*, rồi *Im lặng*. Nhấn thêm một lần nữa sẽ quay lại *Chi tiết*. Xem trang trợ giúp *Sử dụng nút điều khiển đa phương tiện*.
 
- Để chọn các loại thông tin mà Soundscape sẽ tự động thông báo, hãy vào màn hình *Cài đặt* thông qua menu trên màn hình *Trang chủ*. Trong phần *Quản lý thông báo thoại* của màn hình *Cài đặt*, bạn chọn ứng dụng nói nhiều hay ít bằng *Mức chi tiết thông báo*, có thông báo *Đường phố và giao lộ* hay không, và những *Địa điểm cần thông báo* nào. Nếu bạn muốn tắt toàn bộ thông báo, hãy đặt *Mức chi tiết thông báo* thành *Im lặng*.
+## Tạm dừng Soundscape một lúc
+
+Chọn nút *Ngủ* ở đầu màn hình chính. Soundscape ngừng dùng vị trí của bạn và không phát âm thanh cho đến khi bạn chọn *Đánh thức ngay*. Hoặc chọn *Thức dậy khi rời đi*, và Soundscape thức dậy khi bạn rời khỏi nơi đang ở.
+
+## Trên xe hoặc trên tàu
+
+Soundscape nhận biết khi bạn di chuyển với tốc độ của xe. Khi đó nó ngừng thông báo giao lộ và cửa hàng gần đó, vì chúng trôi qua quá nhanh. Thay vào đó, nó thông báo con đường bạn đang đi, điểm mốc, trạm dừng và nhà ga, sông và đường hầm.
 

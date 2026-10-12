@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Merkitsimet
 
-Soundscapen avulla voit merkitä paikkoja ja asioita, joista välität – aivan kuin pistäisit nuppineuloja karttaan.
+Merkitsin on paikka, jonka olet tallentanut. Se voi olla mikä tahansa sinulle tärkeä paikka: kotisi, linja-autopysäkki, rakennuksen sisäänkäynti tai suojatie.
 
-Voit merkitä paikkoja, jotka ovat henkilökohtaisia ja itsellesi merkityksellisiä, kuten kotisi, toimistosi tai lempiruokakauppasi. Voit merkitä minkä tahansa paikan tai osoitteen, ja voit merkitä myös asioita, joita ei tavallisesti näytetä kartoissa, esimerkiksi: rakennusten tai puistojen sisäänkäyntejä, liikennevalojen painikkeita, suojateitä, siltoja, linja-autopysäkkejä tai jopa koirasi suosikkipuun. Käytä näitä merkitsimiä kiintopisteinä kävelylläsi.
+Soundscape ilmoittaa merkitsimesi, kun kuljet niiden ohi. Voit asettaa merkitsimeen äänimajakan, lisätä sen reittiin tai kuunnella lähimmät painikkeella *Lähiympäristön merkitsimet*.
 
-Soundscape ilmoittaa merkityistä paikoista automaattisesti, kun kävelet niiden ohi tai lähestyt niitä. Voit myös käyttää aloitusnäytön alareunassa olevaa *Lähiympäristön merkitsimet* -painiketta kuullaksesi merkittyjen paikkojen tilaääni-ilmoituksia ympäriltäsi. Voit jopa asettaa äänimajakan mille tahansa merkitylle paikalle. Tällöin kuulet tutun Soundscape‑äänimajakan ja voit käyttää sitä normaalisti.
+## Merkitsimien luominen
+
+1. Valitse aloitusnäytöstä *Merkitsimet* ja valitse sitten *Uusi*.
+
+2. Valitse *Nykyinen sijainti* tai paikka kohdasta *Lähiympäristön paikat*.
+
+3. Muuta nimeä, jos haluat, ja lisää muistiinpanoja. Soundscape lukee muistiinpanot merkitsimen yhteydessä.
+
+4. Valitse *Valmis*.
+
+Voit myös tallentaa minkä tahansa löytämäsi paikan. Avaa sen *Sijainnin tiedot* ja valitse *Tallenna merkitsimenä*.
+
+## Merkitsimien mukauttaminen
+
+Valitse merkitsin näytöstä *Merkitsimet* ja valitse sitten *Muokkaa merkitsintä*. Voit muuttaa sen nimeä, muistiinpanoja ja sijaintia tai valita *Poista merkitsin*. Kun poistat merkitsimen, se poistuu myös reiteistäsi.
 

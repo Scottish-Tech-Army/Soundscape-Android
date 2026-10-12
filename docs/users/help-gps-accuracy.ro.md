@@ -11,9 +11,9 @@ permalink: /users/help-gps-accuracy.html
 
 ## Precizia GPS
 
-Soundscape poate descrie împrejurimile tale doar cât de precis știe telefonul unde te afli. O precizie de 10 metri (30 de picioare) sau mai bună este considerată bună, până la 20 de metri (60 de picioare) este acceptabilă, iar orice valoare mai mare înseamnă că anunțurile pot indica partea greșită a străzii sau pot întârzia.
+Soundscape poate descrie împrejurimile doar atât de bine cât știe telefonul unde te afli. O precizie de 10 metri sau mai bună este bună. Până la 20 de metri este acceptabilă. Peste această valoare, anunțurile pot numi partea greșită a străzii sau pot veni târziu.
 
-Precizia este de obicei cea mai slabă în interior, printre clădiri înalte și aproximativ în primul minut după ce ieși afară. Dacă valoarea de mai jos rămâne slabă când ești afară, într-un spațiu deschis, încearcă să dezactivezi și să reactivezi serviciile de localizare ale telefonului.
+Precizia este de obicei cea mai slabă în interior, între clădiri înalte și în primul minut după ce ieși afară. Dacă valoarea de mai jos rămâne slabă când ești afară, în spațiu deschis, oprește și pornește din nou serviciile de localizare ale telefonului.
 
 Precizia actuală: %1$s (%2$s)
 

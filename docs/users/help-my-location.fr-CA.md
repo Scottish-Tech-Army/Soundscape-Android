@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Mon emplacement
 
-## De quoi s’agit-il?
+*Mon emplacement* vous dit où vous êtes. Il indique la direction à laquelle vous faites face ou dans laquelle vous vous déplacez, puis la rue ou l’adresse où vous vous trouvez. Utilisez-le quand vous descendez d’un autobus, sortez d’un bâtiment ou perdez vos repères.
 
-Le bouton *Mon emplacement* vous fournit rapidement des informations utiles pour savoir où vous vous trouvez actuellement. *Mon emplacement* vous indique votre emplacement actuel, notamment la direction dans laquelle vous êtes tourné, où se situent les routes et croisements proches et où se trouvent les points d’intérêt environnants.
-
-## Utilisation
-
-*Mon emplacement* est utile pour vous aider à vous situer ou à connaître le point cardinal face à vous.
-
-## Fonctionnement
-
-Comme avec les quatre boutons situés en bas de l’écran d’accueil, tenez votre téléphone à plat (écran face au ciel) et le haut de votre téléphone pointé vers la direction face à vous avant d’appuyer sur le bouton *Mon emplacement*. Cette opération agit comme une boussole et indique à l’appli la direction vers laquelle vous êtes tourné. Appuyez simplement sur le bouton *Mon emplacement* et écoutez.
+Si vous êtes à l’arrêt, pointez d’abord le haut de votre téléphone dans la direction à laquelle vous faites face. Si votre téléphone est verrouillé, ou si Soundscape n’est pas à l’écran, tenez aussi votre téléphone à plat.
 

@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Zapisane trasy
 
-## Co to jest?
+Trasa to lista lokalizacji, nazywanych punktami trasy, które odwiedzasz po kolei. Soundscape włącza naprowadzanie na pierwszy punkt trasy. Gdy tam dotrzesz, mówi ci o tym i przenosi naprowadzanie do następnego punktu.
 
-Trasy to ciąg punktów trasy. Soundscape poinformuje cię o dotarciu do każdego punktu, a dźwięk naprowadzający automatycznie przełączy się na następny punkt.
+Korzystaj z trasy, aby nauczyć się nowej drogi albo nie zboczyć z drogi, którą już znasz.
 
-## Kiedy używać?
+## Tworzenie trasy
 
-Możesz utworzyć i wykorzystać trasę w miejscu, które już znasz, aby trzymać się właściwej drogi. Możesz też użyć trasy, aby poznać nową drogę.
+1. Wybierz *Zapisane trasy* na ekranie głównym, a potem wybierz *Nowy*.
 
-## Jak to działa?
+2. Nadaj trasie nazwę. Możesz dodać opis.
 
-**Tworzenie trasy :**
+3. Wybierz *Dodaj punkty trasy* i wybierz znaczniki. Możesz też dodać swoją bieżącą lokalizację albo miejsce w pobliżu.
 
-Najpierw wybierz *Zapisane trasy* na ekranie głównym, a następnie naciśnij przycisk *Nowy* w prawym górnym rogu ekranu. Nadaj trasie nazwę i opcjonalny opis, a następnie dodawaj punkty trasy w trakcie tworzenia lub wybierz je ze swojej listy znaczników. Kolejność punktów trasy możesz zmienić w dowolnym momencie, edytując trasę.
+4. Wybierz *Gotowe*.
 
-**Edycja trasy:**
+## Przechodzenie trasy
 
- Wybierz swoją trasę na ekranie *„Zapisane trasy”*, a następnie wybierz *„Edytuj trasę”*. Z tego miejsca możesz dodawać i usuwać punkty trasy oraz edytować nazwę i opis trasy.
+Wybierz trasę na ekranie *Zapisane trasy*, a potem wybierz *Rozpocznij trasę*. Aby przejść ją w drugą stronę, wybierz *Rozpocznij trasę w odwrotnej kolejności*. Na ekranie głównym *Następny punkt trasy* i *Poprzedni punkt trasy* przenoszą naprowadzanie wzdłuż trasy. *Zatrzymaj trasę* ją kończy.
 
-**Udostępnianie trasy :**
+## Zmienianie trasy
 
- Wybierz swoją trasę na ekranie *Zapisane trasy*, a następnie wybierz opcję *Udostępnij*, korzystając z dostępnych standardowych opcji udostępniania.
+Wybierz trasę na ekranie *Zapisane trasy*, a potem wybierz *Edytuj trasę*. Możesz dodawać i usuwać punkty trasy oraz zmieniać ich kolejność, zmienić nazwę i opis albo usunąć trasę.
+
+## Udostępnianie trasy
+
+Wybierz trasę na ekranie *Zapisane trasy*, a potem wybierz *Udostępnij*.
 

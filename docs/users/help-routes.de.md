@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Routen
 
-## Was ist es?
+Eine Route ist eine Liste von Orten, den Wegpunkten, die Sie der Reihe nach aufsuchen. Soundscape setzt ein Beacon auf den ersten Wegpunkt. Wenn Sie ankommen, sagt Soundscape Ihnen das und verschiebt das Beacon zum nächsten Wegpunkt.
 
-Routen bestehen aus einer Reihe von Wegpunkten. Sie werden bei der Ankunft an jedem Wegpunkt informiert, und das Audiobeacon springt automatisch zum nächsten Wegpunkt.
+Nutzen Sie eine Route, um einen neuen Weg zu lernen oder auf einem bekannten Weg nicht vom Kurs abzukommen.
 
-## Wann würde ich es verwenden?
+## Route erstellen
 
-Sie können eine Route an einem Ort erstellen und nutzen, den Sie bereits kennen, um auf dem richtigen Weg zu bleiben. Oder Sie nutzen eine Route, um sich mit einem neuen Weg vertraut zu machen.
+1. Wählen Sie auf dem Startbildschirm *Routen* und dann *Neu*.
 
-## Wie funktioniert es?
+2. Geben Sie der Route einen Namen. Sie können eine Beschreibung hinzufügen.
 
-**Route erstellen:**
+3. Wählen Sie *Wegpunkte hinzufügen* und wählen Sie Markierungen aus. Sie können auch Ihren aktuellen Standort oder einen Ort in der Nähe hinzufügen.
 
- Wählen Sie zunächst auf dem Startbildschirm *„Routen“* und dann oben rechts auf dem Bildschirm die Schaltfläche *„Neu“* aus. Geben Sie der Route einen Namen und eine optionale Beschreibung, und fügen Sie dann nach und nach Wegpunkte hinzu, oder wählen Sie diese aus Ihrer Liste der Markierungen aus. Sie können die Reihenfolge der Wegpunkte entlang einer Route jederzeit neu anordnen, indem Sie die Route bearbeiten.
+4. Wählen Sie *Fertig*.
 
-**Route bearbeiten:**
+## Einer Route folgen
 
-Wählen Sie Ihre Route auf dem Bildschirm *„Routen“* und anschließend *„Route bearbeiten“*. Dort können Sie Wegpunkte hinzufügen und entfernen sowie den Namen und die Beschreibung der Route bearbeiten.
+Wählen Sie die Route auf dem Bildschirm *Routen* aus und dann *Route starten*. Um ihr in umgekehrter Richtung zu folgen, wählen Sie *Route rückwärts starten*. Auf dem Startbildschirm verschieben *Nächster Wegpunkt* und *Vorheriger Wegpunkt* das Beacon entlang der Route. *Route anhalten* beendet sie.
 
-**Route teilen:**
+## Route ändern
 
-Wählen Sie Ihre Route auf dem Bildschirm *„Routen“* und tippen Sie dann auf die Option *„Teilen“*, um eine der üblichen Freigabeoptionen zu verwenden.
+Wählen Sie die Route auf dem Bildschirm *Routen* aus und dann *Route bearbeiten*. Sie können Wegpunkte hinzufügen, entfernen und neu anordnen, Namen und Beschreibung ändern oder die Route löschen.
+
+## Route teilen
+
+Wählen Sie die Route auf dem Bildschirm *Routen* aus und dann *Teilen*.
 

@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatyczne powiadomienia głosowe
 
-## Co to jest?
+Gdy idziesz, Soundscape powiadamia o tym, co jest w pobliżu. Każdą nazwę słyszysz z kierunku danego miejsca. Powiadomienia dotyczą ulic, skrzyżowań, sklepów, przystanków autobusowych, punktów orientacyjnych i twoich własnych znaczników.
 
-Soundscape może informować o rzeczach wokół Ciebie w miarę zbliżania się do nich, podając ich nazwy z kierunku, w którym się znajdują. Aplikacja zrobi to automatycznie dla różnych obiektów, takich jak firmy, przystanki autobusowe, a nawet skrzyżowania. Możesz skonfigurować, o czym aplikacja ma automatycznie powiadamiać w sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”*, a gdy chcesz, aby aplikacja była cicha, możesz wyłączyć wszystkie powiadomienia.
+## Skrzyżowania
 
-## Kiedy używać?
+Gdy zbliżasz się do skrzyżowania, Soundscape podaje nazwę każdej drogi, która od niego odchodzi. Słyszysz, która droga prowadzi w lewo, która biegnie dalej prosto, a która prowadzi w prawo.
 
-**Odkrywanie nowej okolicy:**
+## Ile słyszysz
 
-Włącz automatyczne powiadomienia i chodź swobodnie, aby usłyszeć o różnych sklepach, restauracjach i podobnych miejscach, gdy je mijasz.
+Otwórz menu i wybierz *Ustawienia*, a potem *Zarządzaj powiadomieniami*. *Szczegółowość powiadomień* ma cztery poziomy.
 
-**W drodze do określonego miejsca :**
+*Szczegółowy* powiadamia o wszystkim w pobliżu.
 
-Gdy zmierzasz do konkretnego punktu, automatyczne powiadomienia o skrzyżowaniach mogą być szczególnie przydatne. Powiadomienia o skrzyżowaniach informują o układzie skrzyżowań podczas zbliżania się do nich i potwierdzają, którą ulicą się poruszasz, gdy je opuszczasz.
+*Uproszczony* pomija mniejsze ścieżki i drogi serwisowe oraz rzadziej się powtarza.
 
-**Gdy potrzebujesz ciszy :**
+*Podstawowy* powiadamia tylko o ulicach, skrzyżowaniach i punktach orientacyjnych.
 
-Jeśli zamierzasz przejść przez jezdnię lub po prostu potrzebujesz, aby aplikacja była cicha, możesz wyłączyć powiadomienia. Gdy powiadomienia są wyłączone, aplikacja przekaże informacje tylko wtedy, gdy ręcznie naciśniesz jeden z przycisków *„Moja lokalizacja”*, *„Bliskie znaczniki”*, *„Wokół mnie”* lub *„Przede mną”*.
+*Wyciszony* nie daje żadnych automatycznych powiadomień. Naprowadzanie, trasy i przyciski na ekranie głównym nadal działają.
 
-## Jak to działa?
+## Co słyszysz
 
-**Włączanie i wyłączanie powiadomień :**
+*Zarządzaj powiadomieniami* ma jeszcze dwa ustawienia. *Ulice i skrzyżowania* włącza lub wyłącza powiadomienia o ulicach i skrzyżowaniach. *Powiadamiaj o miejscach* pozwala wybrać, o jakich rodzajach miejsc słyszysz, na przykład *Transport publiczny* albo *Jedzenie i napoje*. O twoich znacznikach Soundscape powiadamia zawsze.
 
- Wyłączenie powiadomień sprawi, że aplikacja będzie cicha. Powiadomienia można wyłączyć w sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”*, ustawiając *„Szczegółowość powiadomień”* na *„Wyciszony”*, a włączyć z powrotem, wybierając dowolny inny poziom. Na iPhonie to samo możesz zrobić, prosząc o to Siri, a na Androidzie będzie to działać przez Gemini, gdy tylko Google udostępni taką obsługę. Możesz również stopniowo wyciszać Soundscape przyciskami multimedialnymi słuchawek: każde naciśnięcie *„poprzedni”* przechodzi o jeden poziom niżej przez *„Szczegółowy”*, *„Uproszczony”*, *„Podstawowy”* i *„Wyciszony”*, a kolejne naciśnięcie wraca do *„Szczegółowy”*. Zobacz temat pomocy *„Sterowanie przyciskami multimedialnymi”*. Alternatywnie możesz użyć przycisku *„Tryb uśpienia”* w prawym górnym rogu ekranu głównego, aby wstrzymać powiadomienia Soundscape aż do momentu, gdy obudzisz aplikację.
+## Jak sprawić, by Soundscape mówił mniej
 
-**Zarządzanie powiadomieniami, które słyszysz :**
+Naciśnij *poprzedni* na sterowaniu słuchawek. Każde naciśnięcie przechodzi o jeden poziom ciszej: *Szczegółowy*, *Uproszczony*, *Podstawowy*, a potem *Wyciszony*. Kolejne naciśnięcie wraca do poziomu *Szczegółowy*. Zobacz stronę pomocy *Sterowanie przyciskami multimedialnymi*.
 
- Aby wybrać rodzaje obiektów, o których Soundscape będzie automatycznie powiadamiać, przejdź do ekranu *„Ustawienia”* z menu na ekranie głównym. W sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”* wybierasz, jak dużo aplikacja mówi (*„Szczegółowość powiadomień”*), czy powiadamia o ulicach i skrzyżowaniach (*„Ulice i skrzyżowania”*) oraz o jakich miejscach powiadamia (*„Powiadamiaj o miejscach”*). Jeśli chcesz wyłączyć wszystkie powiadomienia, ustaw *„Szczegółowość powiadomień”* na *„Wyciszony”*.
+## Zatrzymanie Soundscape na jakiś czas
+
+Wybierz przycisk *Tryb uśpienia* u góry ekranu głównego. Soundscape przestaje korzystać z twojej lokalizacji i milczy, dopóki nie wybierzesz *Obudź teraz*. Możesz też wybrać *Obudź mnie, gdy opuszczę to miejsce*, a Soundscape obudzi się, gdy opuścisz miejsce, w którym jesteś.
+
+## W pojeździe lub w pociągu
+
+Soundscape zauważa, gdy poruszasz się z prędkością pojazdu. Przestaje wtedy powiadamiać o skrzyżowaniach i pobliskich sklepach, bo mijają zbyt szybko. Zamiast tego powiadamia o drodze, którą jedziesz, punktach orientacyjnych, przystankach i stacjach, rzekach i tunelach.
 

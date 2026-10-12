@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Stimmen
 
-Soundscape kann jede Stimme verwenden, die Sie auf Ihrem Android‑Telefon in den Einstellungen für die Text‑zu‑Sprache‑Ausgabe heruntergeladen haben. Um in der Soundscape‑App eine andere Stimme als die standardmäßige Android‑Stimme auszuwählen, öffnen Sie im Hauptmenü *„Einstellungen“*, erweitern Sie den Abschnitt *„Audio“* und wählen Sie dort *„Stimmen“* aus.
+Soundscape kann jede Stimme verwenden, die auf Ihrem Telefon installiert ist. Um Stimmen hinzuzufügen, öffnen Sie die Einstellungen Ihres Telefons und suchen Sie *Text-in-Sprache-Ausgabe*. Um in Soundscape eine Stimme auszuwählen, öffnen Sie das Menü und wählen Sie *Einstellungen*, dann *Audio*, dann *Stimmen*.
 

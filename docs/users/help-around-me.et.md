@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Minu ümber
 
-## Mis see on?
+*Minu ümber* teatab kuni neljast lähedal olevast kohast: üks ees, üks paremal, üks taga ja üks vasakul. Kuuled igaüht selle enda suunast koos kaugusega. Kasuta seda, et orienteeruda, kui jõuad kuhugi.
 
-Nupp *Minu ümber* räägib teile ühest asjast igas neljast teid ümbritsevast veerandist (ees, paremal, taga ja vasakul). *Minu ümber* on mõeldud aitama teil oma ümbruses orienteeruda.
-
-## Millal seda kasutada?
-
-Kui üritate orienteeruda ja oma ümbruses kohaneda, kasutage *Minu ümber*, et kuulda teid ümbritsevatest asjadest.
-
-## Kuidas see töötab?
-
-Nagu kõigi nelja avakuva allosas oleva nupu puhul, hoidke enne nupu *Minu ümber* vajutamist telefoni tasapinnaliselt (ekraan taeva poole) ja telefoni ülaosa suunatuna sinnapoole, kuhu vaatate. See toimib kompassina, mis ütleb rakendusele, millises suunas te vaatate. Puudutage lihtsalt nuppu *Minu ümber* ja kuulete nelja teid ümbritsevat huvipunkti.
+Kui seisad paigal, suuna esmalt telefoni ülemine serv sinna, kuhu sa näoga oled. Kui telefon on lukus või Soundscape ei ole ekraanil, hoia telefoni lisaks ka horisontaalselt.
 

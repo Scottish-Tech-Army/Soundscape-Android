@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Indicatori
 
-Con Soundscape puoi contrassegnare il tuo mondo e tutto ciò che ti interessa, come puntine su una mappa.
+Un indicatore è un luogo che hai salvato. Può essere qualsiasi luogo importante per te: casa tua, una fermata dell'autobus, l'ingresso di un edificio o un attraversamento.
 
-Puoi contrassegnare luoghi personali e importanti per te, come la tua casa, il tuo ufficio o il tuo negozio di alimentari preferito. Puoi contrassegnare qualsiasi luogo o indirizzo, e anche cose che normalmente non compaiono sulle mappe, ad esempio: ingressi di edifici o parchi, pulsanti per attraversare ai semafori, attraversamenti pedonali, ponti, fermate di autobus o persino l'albero preferito del tuo cane. Usa questi contrassegni come riferimenti lungo la tua passeggiata.
+Soundscape annuncia i tuoi indicatori quando ci passi vicino. Puoi impostare un audiofaro su un indicatore, aggiungerlo a un percorso o ascoltare quelli più vicini con il pulsante *Indicatori nelle vicinanze*.
 
-Per ascoltare i luoghi contrassegnati, Soundscape li annuncerà automaticamente mentre li superi o ti avvicini; in alternativa puoi usare il pulsante *Indicatori nelle vicinanze* nella parte inferiore della schermata principale per sentire un annuncio spaziale degli indicatori intorno a te. Puoi persino impostare un audiofaro su qualsiasi indicatore salvato. In tal caso sentirai l'audiofaro di Soundscape a cui sei abituato e potrai usarlo normalmente.
+## Creazione di indicatori
+
+1. Seleziona *Indicatori* nella schermata iniziale, poi seleziona *Nuovo*.
+
+2. Scegli *Posizione attuale*, oppure un luogo da *Luoghi nelle vicinanze*.
+
+3. Cambia il nome, se vuoi, e aggiungi delle note. Soundscape legge le note insieme all'indicatore.
+
+4. Seleziona *Fatto*.
+
+Puoi anche salvare qualsiasi luogo che trovi. Apri i suoi *Dettagli posizione* e seleziona *Salva come indicatore*.
+
+## Personalizzazione di indicatori
+
+Seleziona l'indicatore nella schermata *Indicatori*, poi seleziona *Modifica indicatore*. Puoi cambiarne il nome, le note e la posizione, oppure selezionare *Elimina indicatore*. Eliminando un indicatore lo rimuovi anche dai tuoi percorsi.
 

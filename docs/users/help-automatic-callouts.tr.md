@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Otomatik Anonslar
 
-## Bu nedir?
+Siz yürürken Soundscape yakınınızda ne olduğunu anons eder. Her adı yerin yönünden duyarsınız. Anonslar sokakları, kavşakları, dükkânları, otobüs duraklarını, simge yapıları ve kendi kayıtlı noktalarınızı kapsar.
 
-Soundscape, yaklaştığınızda bulunduğu yönden adını söyleyerek çevrenizdeki şeyleri size bildirebilir. Uygulama bunu işletmeler, otobüs durakları ve hatta kavşaklar gibi pek çok öğe için otomatik olarak yapar. Uygulamanın hangi öğeleri otomatik olarak anons edeceğini *Ayarlar* ekranındaki *Anonsları yönet* bölümünden yapılandırabilirsiniz; uygulamanın sessiz olmasını istediğinizde tüm anonsları kapatabilirsiniz.
+## Kavşaklar
 
-## Ne zaman kullanırım?
+Bir kavşağa yaklaşırken Soundscape oradan ayrılan her yolun adını söyler. Hangi yolun sola gittiğini, hangisinin düz devam ettiğini ve hangisinin sağa gittiğini duyarsınız.
 
-**Yeni bir alanı keşfetmek:**
+## Ne Kadar Duyarsınız
 
- Otomatik anonsları açın ve yanından geçerken farklı mağazaları, restoranları ve benzerlerini duymak için etrafta dolaşın.
+Menüyü açın ve *Ayarlar*, sonra *Anonsları yönet* seçeneğini seçin. *Anons Ayrıntısı* ayarının dört düzeyi vardır.
 
-**Belirli bir konuma yürürken:**
+*Ayrıntılı* yakındaki her şeyi anons eder.
 
- Belirli bir konuma giderken, kavşak anonsları özellikle faydalı olabilir. Kavşak anonsları, yaklaştığınızda kavşakların düzeni hakkında sizi bilgilendirir ve kavşaktan ayrıldığınızda üzerinde olduğunuz yolu doğrular.
+*Sadeleştirilmiş* küçük patikaları ve servis yollarını atlar ve kendini daha az tekrarlar.
 
-**Sessizliğe ihtiyaç duyduğunuzda:**
+*Temel* yalnızca sokakları, kavşakları ve simge yapıları anons eder.
 
- Bir yolu geçmek üzereyken veya uygulamanın sessiz olmasına ihtiyaç duyduğunuzda anonsları kapatabilirsiniz. Anonslar kapalıyken uygulama yalnızca *Konumum*, *Yakındaki Kayıtlı Noktalar*, *Etrafımda* veya *Önümde* düğmelerinden birine manuel olarak dokunduğunuzda bilgi verir.
+*Sessiz* hiçbir otomatik anons yapmaz. İşaretler, rotalar ve ana ekran düğmeleri çalışmaya devam eder.
 
-## Nasıl çalışır?
+## Neleri Duyarsınız
 
-**Anonsları açma veya kapatma :**
+*Anonsları yönet* bölümünde iki ayar daha vardır. *Sokaklar ve Kavşaklar* sokak ve kavşak anonslarını açar veya kapatır. *Anons Edilecek Yerler* hangi tür yerleri duyacağınızı seçer, örneğin *Toplu Taşıma* veya *Yiyecek ve İçecek*. Kayıtlı noktalarınız her zaman anons edilir.
 
- Anonsları kapatmak uygulamayı sessiz hale getirir. Anonslar, *Ayarlar* ekranının *Anonsları yönet* bölümünde *Anons Ayrıntısı* ayarını *Sessiz* yaparak kapatılabilir; başka herhangi bir düzey seçildiğinde yeniden açılır. iPhone'da aynısını Siri'den isteyerek yapabilirsiniz; Android'de ise Google desteği yayınladığında aynısı Gemini üzerinden çalışacak. Ayrıca kulaklığınızdaki medya kontrol düğmeleriyle Soundscape'i adım adım kısabilirsiniz: *geri* düğmesine her basış *Ayrıntılı*, *Sadeleştirilmiş*, *Temel* ve *Sessiz* düzeyleri arasında bir kademe aşağı iner, bir basış daha *Ayrıntılı* düzeyine döner. *Medya Kontrollerini Kullanma* yardım konusuna bakın. Alternatif olarak, ana ekranın sağ üst köşesindeki *Uyku Modu* düğmesini kullanarak Soundscape'in anons yapmasını, siz uyandırana kadar durdurabilirsiniz.
+## Soundscape'i Daha Sessiz Yapma
 
-**Hangi anonsları duyduğunuzu yönetme :**
+Kulaklık kumandanızdaki *geri* düğmesine basın. Her basış bir düzey daha sessize geçer: *Ayrıntılı*, *Sadeleştirilmiş*, *Temel*, sonra *Sessiz*. Bir basış daha *Ayrıntılı* düzeyine döner. *Medya Kontrollerini Kullanma* yardım sayfasına bakın.
 
- Soundscape'in otomatik olarak hangi tür öğeleri anons edeceğini seçmek için *Ana Ekran*daki menüyü kullanarak *Ayarlar* ekranına gidin. *Ayarlar* ekranının *Anonsları yönet* bölümünde, *Anons Ayrıntısı* ile uygulamanın ne kadar konuşacağını, *Sokaklar ve Kavşaklar* anonsu yapılıp yapılmayacağını ve hangi *Anons Edilecek Yerler* olduğunu seçersiniz. Tüm anonsları kapatmak isterseniz *Anons Ayrıntısı* ayarını *Sessiz* yapın.
+## Soundscape'i Bir Süre Durdurma
+
+Ana ekranın üstündeki *Uyku Modu* düğmesini seçin. Siz *Şimdi Uyandır* seçeneğini seçene kadar Soundscape konumunuzu kullanmayı bırakır ve hiç ses çıkarmaz. Ya da *Ayrıldığımda Uyandır* seçeneğini seçin; Soundscape bulunduğunuz yerden ayrıldığınızda uyanır.
+
+## Taşıtta veya Trende
+
+Soundscape taşıt hızında ilerlediğinizi fark eder. O zaman kavşakları ve yakındaki dükkânları anons etmeyi bırakır, çünkü çok hızlı geçerler. Bunun yerine bulunduğunuz yolu, simge yapıları, durakları ve istasyonları, nehirleri ve tünelleri anons eder.
 

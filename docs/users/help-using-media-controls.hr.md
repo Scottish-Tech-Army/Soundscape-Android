@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Upotreba upravljanja medijima
 
-## Što je to?
+Soundscapeom možete upravljati medijskim gumbima na slušalicama: *play/pause*, *next* i *previous*. To radi sa žičnim i Bluetooth slušalicama. Radi i kad je Soundscape u pozadini ili je telefon zaključan.
 
-Uz pomoć gumba za upravljanje medijima na slušalicama možete pristupiti određenim značajkama u Soundscapeu. Ova funkcija radi sa svim žičanim ili Bluetooth slušalicama koje imaju gumbe za upravljanje medijima poput Play, Pause, Next, Previous i drugih. Različite slušalice mogu imati različite gumbe, pa pogledajte popis radnji u nastavku kako biste utvrdili koje su vam dostupne.
+Nemaju sve slušalice sva tri gumba.
 
-## Kada se ovo koristi?
+Gumbi upravljaju Soundscapeom samo kad nijedna druga aplikacija ne reproducira zvuk. Ako slušate glazbu ili podcast, gumbi upravljaju tom aplikacijom.
 
-Gumbi za upravljanje medijima na slušalicama mogu se koristiti dok Soundscape radi — bilo da aktivno koristite aplikaciju, da radi u pozadini ili da je uređaj zaključan. Međutim, gumbi za upravljanje medijima na slušalicama neće raditi sa Soundscapeom ako drugom aplikacijom reproducirate zvuk, poput glazbe, podcasta ili videozapisa.
+Gumbi mogu raditi na dva načina: *Izvorni način* ili *Zvučni izbornik*. Da biste odabrali, otvorite izbornik i odaberite *Postavke*, zatim *Upravljanje medijima*.
 
-## Kako to funkcionira?
+## Izvorni način
 
-Postoje 2 načina rada gumba za upravljanje medijima. Način rada može se odabrati u odjeljku *Postavke* *Upravljanje medijima*. Načini rada su:
+*Play/pause* utišava svjetionik. Pritisnite ponovno da biste čuli svjetionik.
 
- *Izvorni način*. 
+*Next* pomiče svjetionik na sljedeću putnu točku kad pratite rutu. Inače najavljuje *Oko mene*.
 
-⏯ Play/Pause: Uključuje ili isključuje zvuk svjetionika. 
+*Previous* pomiče svjetionik na prethodnu putnu točku kad pratite rutu. Inače mijenja postavku *Razina detalja najava*. Svaki pritisak prelazi jednu razinu tiše: *Detaljno*, *Pojednostavljeno*, *Osnovno*, zatim *Bez zvuka*. Još jedan pritisak vraća na *Detaljno*. Soundscape izgovara naziv nove razine.
 
-⏭ Next: Ako se reproducira ruta, pomiče zvučni svjetionik na sljedeću putnu točku. Ako se ruta ne reproducira, najavljuje *Oko mene*.
+## Zvučni izbornik
 
-⏮ Previous: Ako se reproducira ruta, pomiče zvučni svjetionik na prethodnu putnu točku. Ako se ruta ne reproducira, mijenja *Razinu detalja najava*, za jednu razinu tiše pri svakom pritisku: *Detaljno*, *Pojednostavljeno*, *Osnovno*, *Bez zvuka*, pa natrag na *Detaljno*.
+Zvučni izbornik daje vam više radnji s ista tri gumba. Soundscape naglas čita svaku opciju.
 
+*Next* prelazi na sljedeću opciju. Nakon posljednje opcije vraća se na prvu.
 
+*Play/pause* odabire opciju koju ste upravo čuli.
 
-*Zvučni izbornik*. 
+*Previous* mijenja postavku *Razina detalja najava*, isto kao *Izvorni način*.
 
-
-
-⏭ Next kreće se kroz niz opcija izbornika koje aplikacija opisuje putem pretvorbe teksta u govor, a nakon posljednje se vraća na prvu. ⏯ Play/Pause zatim pokreće aplikaciju da izvrši opisanu opciju. Postoji jedan glavni izbornik koji ima samo podizbornike kao opcije. Svaki podizbornik sadrži skupinu sličnih mogućih radnji.
-
-⏮ Previous ne kreće se kroz izbornik. Umjesto toga mijenja *Razinu detalja najava*, jednako kao u izvornom načinu, pa isti gumb utišava aplikaciju u oba načina rada.
+Izbornik počinje s četiri skupine: *Poslušajte svoju okolinu*, *Upravljanje rutom*, *Pokreni rutu* i *Postavi zvučni svjetionik*. Odaberite skupinu da biste čuli njezine radnje. *Poslušajte svoju okolinu* i *Upravljanje rutom* završavaju stavkom *Glavni izbornik*, koja vas vraća na četiri skupine.
 

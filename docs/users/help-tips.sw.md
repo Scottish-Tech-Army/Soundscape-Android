@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Vidokezo
 
-Unaweza kupata vituo vya mabasi vya karibu kwa kuchagua kichujio cha *Usafiri wa Umma* katika orodha ya *Sehemu za Karibu*.
+Ili kupata vituo vya basi vilivyo karibu, chagua *Sehemu za Karibu* kisha uchague *Usafiri wa Umma*.
 
-Unaweza kuweka beacon kwenye anwani yoyote. Kutoka skrini kuu, tafuta anwani hiyo kwa kutumia upau wa utafutaji. Kisha baada ya kuchagua anwani katika matokeo ya utafutaji, skrini ya *Taarifa za Mahali* itaonyeshwa na ina chaguo la *Anzisha Beacon ya Sauti* kwenye anwani hiyo. Kwa njia hii, unaweza kuweka beacon kwenye biashara, mahali, sehemu za kuvutia, na makazi ambayo hayapo kwenye OpenStreetMap.
+Ikiwa unapanda basi lilelile mara nyingi, hifadhi vituo vyako kama alama. Weka beacon kwenye kituo unachoshukia, na Soundscape itakuambia kiko umbali gani ukiwa safarini.
 
-Ikiwa kuna njia ya basi unayoitumia mara kwa mara, weka vituo vyako vya kupanda na kushuka kama Alama. Kwa njia hii vitahifadhiwa ili uweze kuvipata tena kwa urahisi. Chagua *Alama* kwenye skrini ya mwanzo ili kuvipata. Unaweza kuweka beacon juu yake nawe utapata masasisho ya mara kwa mara kuhusu umbali wako hadi kituo chako cha kushukia. Kumbuka: unaweza kuzima sauti yenye mdundo nawe bado utapata masasisho ya umbali njiani.
+Unaweza kuzima sauti ya beacon na bado usikie sehemu iko umbali gani. Soundscape inasema umbali mara kwa mara kadiri unavyosogea.
 
-Ukiweka simu yako mfukoni na kusimama, sauti ya beacon hupungua kwa sababu Soundscape haiwezi kujua upande unaoelekea. Ili kurekebisha hili, anza kutembea tena, au toa simu yako na uishikilie ikiwa gorofa.
+Ili kuichunguza sehemu kabla ya kwenda, fungua *Taarifa za Mahali* za sehemu hiyo na uchague *Iga Mahali*. Kisha Soundscape inafanya kazi kana kwamba uko huko.
 
-Soundscape hufanya kazi vizuri zaidi unaposhikilia simu ikiwa gorofa na skrini ikielekeza angani na sehemu ya juu ya simu ikielekeza mbali nawe.
-
-Unaweza kuwasha na kuzima sauti yenye mdundo ya beacon kwa kutumia kitufe cha kunyamazisha kwenye skrini ya mwanzo. Ikiwa beacon imenyamazishwa, bado utapata masasisho kuhusu umbali wako hadi mahali unapoenda takriban kila mita 50.
-
-Ili kuendelea kutumia Soundscape bila kusikia matangazo ya kiotomatiki, weka *Kiwango cha Matangazo* kuwa *Kimya* katika sehemu ya *Dhibiti Matangazo* ya skrini ya *Mipangilio* kutoka kwenye menyu. Ikiwa hutaenda kutumia Soundscape kwa muda, unaweza badala yake kuiweka katika hali ya Kulala au Kusinzia kwa kutumia kitufe cha *Lala* kwenye skrini ya mwanzo.
+Kwa maelekezo ya hatua kwa hatua, fungua *Taarifa za Mahali* za sehemu na uchague *Fungua katika programu ya ramani*. Soundscape inaendelea kufanya kazi huku programu nyingine ikitoa maelekezo.
 

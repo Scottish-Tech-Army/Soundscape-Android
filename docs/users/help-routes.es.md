@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Rutas
 
-## ¿Qué es?
+Una ruta es una lista de ubicaciones, llamadas puntos de ruta, que visitas en orden. Soundscape coloca una señal en el primer punto de ruta. Cuando llegas, te avisa y mueve la señal al siguiente.
 
-Las rutas son una serie de puntos de ruta. Se te informará a tu llegada a cada uno de ellos y la señal de audio avanzará automáticamente hasta el siguiente.
+Usa una ruta para aprender un trayecto nuevo, o para no desviarte en uno que ya conoces.
 
-## ¿Cuándo lo usaría?
+## Crear una ruta
 
-Es posible que quieras crear y usar una ruta en un lugar que ya conoces, para ayudarte a mantenerte en el camino correcto. O puede que quieras usar una ruta para familiarizarte con un recorrido nuevo.
+1. Selecciona *Rutas* en la pantalla principal y después *Nuevo*.
 
-## ¿Cómo funciona?
+2. Ponle un nombre a la ruta. Puedes añadir una descripción.
 
-**Creación de una ruta**:
+3. Selecciona *Agregar puntos de ruta* y elige marcadores. También puedes añadir tu ubicación actual o un lugar cercano.
 
- en primer lugar, selecciona *Rutas* en la pantalla principal y, a continuación, el botón *Nuevo* de la esquina superior derecha de la pantalla. Asigna un nombre y una descripción opcional a la ruta, luego agrega puntos de ruta a medida que avances o elígelos en tu lista de marcadores. Puedes reorganizar el orden de los puntos de ruta a lo largo de una ruta en cualquier momento editando la ruta.
+4. Selecciona *Listo*.
 
-**Edición de una ruta**:
+## Seguir una ruta
 
- selecciona tu ruta en la pantalla *Rutas* y, a continuación, *Editar ruta*. Desde aquí, puedes agregar y eliminar puntos de ruta, así como editar el nombre y la descripción de la ruta.
+Selecciona la ruta en la pantalla *Rutas* y después selecciona *Iniciar ruta*. Para seguirla en sentido contrario, selecciona *Iniciar ruta de regreso*. En la pantalla principal, *Siguiente punto de ruta* y *Punto de ruta anterior* mueven la señal a lo largo de la ruta. *Detener ruta* la termina.
 
-**Uso compartido de una ruta**:
+## Cambiar una ruta
 
- selecciona tu ruta en la pantalla *«Rutas»* y, a continuación, la opción *«Compartir ruta»* utilizando todas las opciones de uso compartido habituales disponibles para ti.
+Selecciona la ruta en la pantalla *Rutas* y después selecciona *Editar ruta*. Puedes añadir, quitar y reordenar puntos de ruta, cambiar el nombre y la descripción, o eliminar la ruta.
+
+## Compartir una ruta
+
+Selecciona la ruta en la pantalla *Rutas* y después selecciona *Compartir*.
 

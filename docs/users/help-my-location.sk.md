@@ -9,15 +9,7 @@ permalink: /users/help-my-location.html
 
 # Moja poloha
 
-## Čo to je?
+*Moja poloha* vám povie, kde ste. Povie, ktorým smerom stojíte čelom alebo sa pohybujete, a potom ulicu alebo adresu, kde ste. Použite ju, keď vystúpite z autobusu, vyjdete z budovy alebo stratíte orientáciu.
 
-Tlačidlo *Moja poloha* vám rýchlo poskytne informácie, ktoré vám pomôžu zistiť, kde sa práve nachádzate. *Moja poloha* vám povie o vašej aktuálnej polohe vrátane smeru, ktorým ste otočení, kde sa nachádzajú blízke cesty alebo križovatky a kde sú blízke zaujímavé miesta.
-
-## Kedy to použiť?
-
-*Moja poloha* je užitočná, keď potrebujete zistiť, kde sa nachádzate alebo ktorým svetovým smerom ste otočení.
-
-## Ako to funguje?
-
-Rovnako ako pri všetkých štyroch tlačidlách v spodnej časti domovskej obrazovky, pred stlačením tlačidla *Moja poloha* držte telefón vodorovne (obrazovkou smerom k oblohe) tak, aby horná časť telefónu smerovala v smere, ktorým ste otočení. Toto funguje ako kompas, ktorý aplikácii oznamuje, ktorým smerom ste otočení. Jednoducho ťuknite na tlačidlo *Moja poloha* a počúvajte.
+Ak stojíte na mieste, najprv namierte horný okraj telefónu smerom, ktorým stojíte čelom. Ak je telefón zamknutý alebo Soundscape nie je na obrazovke, držte telefón aj naplocho.
 

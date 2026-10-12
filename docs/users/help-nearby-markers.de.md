@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Markierungen in der Nähe
 
-## Was ist es?
+*Markierungen in der Nähe* sagt bis zu vier Ihrer Markierungen an, und zwar die nächstgelegenen. Sie hören jede aus ihrer eigenen Richtung, mit ihrer Entfernung. So orientieren Sie sich an Orten, die Sie schon kennen. Markierungen, die mehr als etwa 2 Kilometer entfernt sind, werden ausgelassen.
 
-*„Markierungen in der Nähe“* informiert Sie über bis zu vier Markierungen, die sich in der Nähe befinden. *„Markierungen in der Nähe“* soll Ihnen helfen, sich anhand von Orten zu orientieren, die Sie bereits kennen.
-
-## Wann würde ich es verwenden?
-
-Wenn Sie versuchen, sich in Ihrer Umgebung zu orientieren, verwenden Sie *„Markierungen in der Nähe“*, um die Standorte von Ihnen bekannten Orten zu erfahren.
-
-## Wie funktioniert es?
-
-Wie bei allen vier Schaltflächen am unteren Rand des Startbildschirms halten Sie das Telefon mit dem Bildschirm flach (zum Himmel zeigend) und mit der Oberseite in die Richtung, in die Sie schauen, bevor Sie die Schaltfläche *„Markierungen in der Nähe“* antippen. Dies wirkt wie ein Kompass, der der App mitteilt, in welche Richtung Sie blicken. Tippen Sie einfach auf die Taste *„Markierungen in der Nähe“*, und Sie hören bis zu vier Markierungen in Ihrer Nähe.
+Wenn Sie stehen, richten Sie zuerst die Oberkante Ihres Telefons in Ihre Blickrichtung. Ist Ihr Telefon gesperrt oder Soundscape nicht auf dem Bildschirm, halten Sie das Telefon außerdem flach.
 

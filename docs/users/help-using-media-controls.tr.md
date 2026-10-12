@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Medya Kontrollerini Kullanma
 
-## Bu nedir?
+Soundscape'i kulaklığınızdaki medya düğmeleriyle kontrol edebilirsiniz: *oynat/duraklat*, *ileri* ve *geri*. Bu, kablolu ve Bluetooth kulaklıklarla çalışır. Soundscape arka plandayken veya telefonunuz kilitliyken de çalışır.
 
-Kulaklığınızdaki medya kontrol düğmeleri yardımıyla Soundscape'teki belirli özelliklere erişebilirsiniz. Bu işlev, Oynat, Duraklat, Sonraki, Önceki ve diğerleri gibi medya kontrol düğmelerine sahip kablolu veya Bluetooth kulaklıklarla çalışır. Farklı kulaklıklar farklı düğmeler içerebilir; hangi işlevlerin kullanılabilir olduğunu belirlemek için lütfen aşağıdaki eylemler listesine bakın.
+Her kulaklıkta üç düğmenin hepsi bulunmaz.
 
-## Ne zaman kullanırım?
+Düğmeler Soundscape'i yalnızca başka hiçbir uygulama ses çalmıyorken kontrol eder. Müzik veya podcast dinliyorsanız düğmeler o uygulamayı kontrol eder.
 
-Soundscape çalışırken kulaklık medya kontrollerini kullanabilirsiniz; uygulamayı kullanıyor olmanız, uygulamanın arka planda çalışması ya da cihazınızın kilitli olması fark etmez. Ancak başka bir uygulamayla müzik, podcast veya video gibi ses oynatıyorsanız, kulaklık medya kontrol düğmeleri Soundscape ile çalışmaz.
+Düğmeler iki şekilde çalışabilir: *Orijinal Mod* veya *Sesli Menü*. Seçmek için menüyü açın ve *Ayarlar*, sonra *Medya Kontrolleri* seçeneğini seçin.
 
-## Nasıl çalışır?
+## Orijinal Mod
 
-Medya kontrolleri için 2 çalışma modu vardır. Mod, *Ayarlar* ekranının *Medya Kontrolleri* bölümünden seçilebilir. Modlar şunlardır:
+*Oynat/duraklat* işareti sessize alır. İşareti duymak için yeniden basın.
 
- *Orijinal Mod*. 
+*İleri* bir rotayı izlerken işareti sonraki ara noktaya taşır. Aksi halde *Etrafımda* anonsunu yapar.
 
-⏯ Oynat/Duraklat: İşaret sesini açar veya kapatır. 
+*Geri* bir rotayı izlerken işareti önceki ara noktaya taşır. Aksi halde *Anons Ayrıntısı* ayarını değiştirir. Her basış bir düzey daha sessize geçer: *Ayrıntılı*, *Sadeleştirilmiş*, *Temel*, sonra *Sessiz*. Bir basış daha *Ayrıntılı* düzeyine döner. Soundscape yeni düzeyin adını söyler.
 
-⏭ İleri: Bir rota oynatılıyorsa sesli işareti rotadaki bir sonraki Ara Noktaya taşır. Hiçbir rota oynatılmıyorsa *Etrafımda* anonsunu yapar.
+## Sesli Menü
 
-⏮ Geri: Bir rota oynatılıyorsa sesli işareti rotadaki önceki Ara Noktaya taşır. Hiçbir rota oynatılmıyorsa *Anons Ayrıntısı* ayarını her basışta bir kademe daha sakin hale getirir: *Ayrıntılı*, *Sadeleştirilmiş*, *Temel*, *Sessiz* ve yeniden *Ayrıntılı*.
+Sesli menü aynı üç düğmeyle size daha fazla işlem sunar. Soundscape her seçeneği sesli okur.
 
+*İleri* sonraki seçeneğe geçer. Son seçenekten sonra ilkine döner.
 
+*Oynat/duraklat* az önce duyduğunuz seçeneği seçer.
 
-*Sesli Menü*. 
+*Geri* tıpkı *Orijinal Mod* gibi *Anons Ayrıntısı* ayarını değiştirir.
 
-
-
-⏭ İleri düğmesi, uygulamanın metin okumayla anlattığı bir dizi menü seçeneği arasında ilerler ve sonuncudan sonra yeniden ilkine döner. ⏯ Oynat/Duraklat düğmesi ise anlatılan seçeneğin uygulanmasını sağlar. Tek bir üst düzey menü vardır ve bunun seçenekleri yalnızca alt menülerdir. Her alt menü benzer eylemler grubunu içerir.
-
-⏮ Geri düğmesi menüde gezinmez. Bunun yerine *Anons Ayrıntısı* ayarını tıpkı Orijinal Mod'daki gibi değiştirir; böylece hangi modu kullanırsanız kullanın aynı düğme uygulamayı kısar.
+Menü dört grupla başlar: *Çevreyi Duyur*, *Rota kontrolü*, *Rotayı Başlat* ve *Sesli İşareti Başlat*. İşlemlerini duymak için bir grup seçin. *Çevreyi Duyur* ve *Rota kontrolü* grupları *Üst Menü* seçeneğiyle biter; bu seçenek sizi dört gruba geri götürür.
 

@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Tips
 
-Du kan hitta busshållplatser i närheten genom att välja filtret *Kollektivtrafik* i listan *Platser i närheten*.
+Om du vill hitta busshållplatser i närheten väljer du *Platser i närheten* och sedan *Kollektivtrafik*.
 
-Du kan ställa in en ljudfyr på vilken adress som helst. Från huvudskärmen söker du efter adressen med sökfältet. Välj sedan adressen i sökresultaten för att öppna skärmen *Platsuppgifter*. Den här skärmen har alternativet *Ställ in ljudfyr* för adressen. På så vis kan du ställa in en ljudfyr på företag, platser, intressepunkter och bostäder som inte finns i OpenStreetMap.
+Om du ofta åker samma buss sparar du dina hållplatser som platsmarkörer. Ställ in en ljudfyr på hållplatsen där du kliver av, så talar Soundscape om hur långt bort den är medan du åker.
 
-Om du regelbundet åker en viss busslinje kan du spara dina påstignings‑ och avstigningshållplatser som platsmarkörer. Då sparas de så att du enkelt hittar dem igen. Välj *Platsmarkörer* på startskärmen för att hitta dem. Du kan ställa in en ljudfyr på dem för att få regelbundna uppdateringar om hur nära du är din avstigningshållplats. Obs: du kan stänga av det rytmiska ljudet och ändå få avståndsuppdateringar under resans gång.
+Du kan stänga av ljudfyrens ljud och ändå höra hur långt bort platsen ligger. Soundscape säger avståndet då och då medan du rör dig.
 
-Om du lägger telefonen i fickan och slutar gå blir ljudfyren tystare eftersom Soundscape inte vet vilket håll du står åt. Du löser det genom att börja gå igen, eller ta upp telefonen och hålla den plant.
+Om du vill utforska en plats innan du åker dit öppnar du dess *Platsuppgifter* och väljer *Simulera plats*. Soundscape beter sig då som om du vore där.
 
-Soundscape fungerar bäst när du håller telefonen plant med skärmen riktad upp mot himlen och telefonens överkant riktad från dig.
-
-Du kan aktivera och inaktivera ljudfyrens rytmiska ljud med ljudavstängningsknappen på startskärmen. Om ljudfyren är avstängd får du ändå uppdateringar om avståndet till ditt mål ungefär var 50:e meter.
-
-Om du vill fortsätta använda Soundscape utan att höra automatiska informationsljud ställer du in *Detaljnivå för informationsljud* på *Tyst* i avsnittet *Hantera informationsljud* på skärmen *Inställningar* i menyn. Om du inte tänker använda Soundscape på ett tag kan du istället sätta appen i viloläge eller snoozeläge med knappen *Inaktivera* på startskärmen.
+Om du vill ha sväng-för-sväng-anvisningar öppnar du *Platsuppgifter* för en plats och väljer *Öppna i kartapp*. Soundscape fortsätter att köras medan den andra appen ger anvisningar.
 

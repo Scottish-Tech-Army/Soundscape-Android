@@ -9,5 +9,5 @@ permalink: /users/help-voices.html
 
 # Voix
 
-Soundscape peut utiliser n’importe laquelle des voix que vous avez téléchargées sur votre téléphone Android dans les paramètres de sortie de synthèse vocale. Dans l’appli Soundscape, pour sélectionner une voix autre que la voix Android par défaut, allez dans *Réglages* depuis le menu principal, développez la section *Audio* puis sélectionnez *Voix*.
+Soundscape peut utiliser toutes les voix installées sur votre téléphone. Pour ajouter des voix, ouvrez les paramètres de votre téléphone et cherchez *Sortie de la synthèse vocale*. Pour choisir une voix dans Soundscape, ouvrez le menu et sélectionnez *Réglages*, puis *Audio*, puis *Voix*.
 

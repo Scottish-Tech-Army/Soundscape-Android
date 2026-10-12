@@ -9,15 +9,7 @@ permalink: /users/help-nearby-markers.html
 
 # Platsmarkörer i närheten
 
-## Vad är det?
+*Platsmarkörer i närheten* läser upp högst fyra av dina platsmarkörer, de som ligger närmast. Du hör var och en från sin egen riktning, med avståndet. Använd den för att orientera dig efter platser du redan känner till. Platsmarkörer som ligger mer än ungefär 2 kilometer bort tas inte med.
 
-Knappen *”Platsmarkörer i närheten”* berättar om upp till fyra platsmarkörer som finns närmast dig. *”Platsmarkörer i närheten”* hjälper dig att orientera dig med hjälp av platser du redan känner till.
-
-## När ska jag använda det?
-
-När du försöker orientera dig i omgivningarna kan du använda *”Platsmarkörer i närheten”* för att höra om platser som du känner till.
-
-## Hur fungerar det?
-
-Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonens överkant åt det håll du är vänd innan du trycker på knappen *Platsmarkörer i närheten*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *Platsmarkörer i närheten* så hör du upp till fyra platsmarkörer i närheten.
+Om du står still riktar du först telefonens överkant åt det håll du är vänd. Om telefonen är låst, eller om Soundscape inte visas på skärmen, håller du också telefonen plant.
 

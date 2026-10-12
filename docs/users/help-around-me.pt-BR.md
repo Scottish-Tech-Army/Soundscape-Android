@@ -9,15 +9,7 @@ permalink: /users/help-around-me.html
 
 # Ao Meu Redor
 
-## O que é?
+*Ao Meu Redor* anuncia até quatro lugares perto de você: um à frente, um à direita, um atrás e um à esquerda. Você ouve cada um vindo da sua própria direção, com a distância. Use-o para se orientar quando chegar a algum lugar.
 
-O botão *Ao Meu Redor* mostra a você uma coisa em cada um dos quatro quadrantes ao seu redor (à frente, à direita, atrás e à esquerda). *Ao Meu Redor* destina-se a ajudar você a se orientar nos arredores.
-
-## Quando eu o usaria?
-
-Quando você estiver tentando se orientar em seus arredores, use *“Ao Meu Redor”* para ouvir sobre o que há ao seu redor.
-
-## Como ele funciona?
-
-Tal como acontece com os quatro botões da parte inferior da tela inicial, segure seu telefone com a tela na horizontal (com a tela voltada para cima) e o topo apontando na direção para a qual você está voltado, antes de pressionar o botão *Ao Meu Redor*. Isso age como uma bússola, mostrando ao aplicativo a direção para a qual você está voltado. Bastará tocar no botão *Ao Meu Redor* e você ouvirá quatro pontos de interesse dispostos ao seu redor.
+Se você não estiver em movimento, primeiro aponte a parte de cima do telefone para a sua frente. Se o telefone estiver bloqueado, ou se o Soundscape não estiver na tela, segure também o telefone na horizontal.
 

@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Hljóðviti
 
-## Hvað er það?
+Hljóðviti er hljóð sem berst úr átt að stað sem þú velur. Hann segir þér hvar staðurinn er í beinni línu. Hann gefur ekki leiðbeiningar skref fyrir skref, svo þú velur leiðina þangað upp á eigin spýtur.
 
-Með því að setja hljóðvita á nálægan stað getur Soundscape haldið þér upplýstum með því að spila hljóð úr þeirri átt sem staðurinn er. Hljóðvitann má þagga eða virkja aftur á heimaskjánum. Einnig sýnir Soundscape upplýsingar um staðinn á heimaskjánum, þar á meðal fjarlægðina að honum og heimilisfang hans, ef það er til.
+## Að setja hljóðvita
 
-## Hvenær ætti að nota það?
+1. Finndu staðinn. Notaðu leitarstikuna, *Nálægir staðir*, *Merki* eða *Núverandi staðsetning* á heimaskjánum.
 
-Það er gagnlegt að setja hljóðvita þegar þú vilt fylgjast með þekktu kennileiti meðan þú kannar nýtt svæði, eða þegar þú ert á leið eitthvert og vilt fá upplýsingar um umhverfið á leiðinni. Hljóðvitinn gefur ekki skref-fyrir-skref leiðbeiningar; hann spilar samfellt hljóð sem segir þér í hvaða átt hljóðvitinn er miðað við núverandi staðsetningu þína. Með því að nota hljóðvitann ásamt færni þinni í leiðsögn og jafnvel uppáhalds leiðsagnarforritinu þínu geturðu valið hvernig þú ferð að ná til staðarins.
+2. Veldu staðinn til að opna *Upplýsingar um staðsetningu*.
 
-## Hvernig virkar það?
+3. Veldu *Kveikja á hljóðvita*.
 
-**Til að setja hljóðvita :**
+Soundscape fer aftur á heimaskjáinn og hljóðvitinn byrjar. Heimaskjárinn sýnir heiti staðarins og hversu langt í burtu hann er.
 
-Fyrst skoðaðu upplýsingar um stað með því að nota leitarstikuna eða velja einn af hnöppunum *Nálægir staðir*, *Merki* eða *Núverandi staðsetning* og velja staðinn. Veldu síðan hnappinn *Kveikja á hljóðvita* á skjánum *Upplýsingar um staðsetningu*. Með því að ýta á hann snýrðu aftur á heimaskjáinn og kveikir á heyranlegum hljóðvita sem heyrist úr þeirri átt sem staðurinn er. Nafn staðarins, ásamt fjarlægð og heimilisfangi ef það er tiltækt, verður nú sýnt á aðalskjánum.
+## Að finna áttina
 
-**Til að fjarlægja núverandi hljóðvita :**
+Hljóðvitinn breytir um hljóð þegar þú snýrð að staðnum eða gengur beint í átt að honum. Til að finna það hljóð skaltu halda símanum flötum og snúa þér hægt. Þú getur valið annað hljóð fyrir hljóðvitann í *Stillingar*.
 
- Ýttu einfaldlega á hnappinn *Stöðva leið* á heimaskjánum.
+## Að slökkva á hljóði hljóðvitans
 
-**Til að þagga hljóðvitann :**
+Veldu *Slökkva á hljóðvita* á heimaskjánum. Soundscape segir þér áfram hversu langt í burtu staðurinn er á meðan þú ert á ferð. Veldu *Virkja hljóðvita* til að heyra hljóðvitann aftur.
 
- Ýttu á hnappinn *Slökkva á hljóðvita* við hliðina á hnappnum *Stöðva leið* á heimaskjánum.
+## Að fjarlægja hljóðvitann
+
+Veldu *Stöðva leið* á heimaskjánum. Hnappurinn heitir þetta líka þegar hljóðvitinn er ekki hluti af leið.
+
+## Þegar þú kemur á staðinn
+
+Þegar þú ert um 12 metra frá staðnum lætur Soundscape þig vita og fjarlægir hljóðvitann. Síminn getur ekki fundið staðsetningu þína nákvæmar en það. Til að heyra hljóðvitann aftur skaltu setja hann aftur.
+
+Hljóðviti sem er settur á stað í minna en 30 metra fjarlægð er áfram virkur þar til þú fjarlægir hann.
 

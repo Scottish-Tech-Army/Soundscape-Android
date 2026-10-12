@@ -9,25 +9,29 @@ permalink: /users/help-routes.html
 
 # Rotalar
 
-## Bu nedir?
+Rota, sırayla ziyaret ettiğiniz ve ara nokta denen konumların listesidir. Soundscape ilk ara noktaya bir işaret ayarlar. Oraya vardığınızda bunu size söyler ve işareti bir sonrakine taşır.
 
-Rotalar bir dizi ara noktadan oluşur. Her ara noktaya vardığınızda bilgilendirilirsiniz ve Sesli İşaret otomatik olarak bir sonraki ara noktaya ilerler.
+Yeni bir güzergâhı öğrenmek veya bildiğiniz bir güzergâhta yoldan çıkmamak için rota kullanın.
 
-## Ne zaman kullanırım?
+## Rota Oluşturma
 
-Zaten bildiğiniz bir yerde doğru yolda kaldığınızdan emin olmak için bir rota oluşturup kullanmak isteyebilirsiniz. Ya da yeni bir güzergâhı öğrenmek için bir rota kullanabilirsiniz.
+1. Ana ekranda *Rotalar* seçeneğini, sonra *Yeni* seçeneğini seçin.
 
-## Nasıl çalışır?
+2. Rotaya bir ad verin. Bir açıklama ekleyebilirsiniz.
 
-**Rota oluşturmak:**
+3. *Ara Nokta Ekle* seçeneğini seçin ve kayıtlı noktaları seçin. Mevcut konumunuzu veya yakındaki bir yeri de ekleyebilirsiniz.
 
- Önce ana ekranda *Rotalar*'ı seçin, ardından ekranın sağ üst köşesindeki *Yeni* düğmesine dokunun. Rotaya bir ad ve isteğe bağlı bir açıklama verin, ardından giderken ara noktalar ekleyin veya Kayıtlı Noktalar listenizden seçin. Rotayı düzenleyerek istediğiniz zaman bir güzergah boyunca ara noktaların sırasını yeniden düzenleyebilirsiniz.
+4. *Tamam* seçeneğini seçin.
 
-**Bir rotayı düzenleme :**
+## Rotayı İzleme
 
- *Rotalar* ekranında rotanızı seçin ve ardından *Rotayı Düzenle*'yi seçin. Buradan ara noktalar ekleyip kaldırabilir, ayrıca rotanın adını ve açıklamasını düzenleyebilirsiniz.
+*Rotalar* ekranında rotayı seçin, sonra *Rotayı Başlat* seçeneğini seçin. Rotayı ters yönde izlemek için *Rotayı Tersine Başlat* seçeneğini seçin. Ana ekranda *Sonraki Ara Nokta* ve *Önceki Ara Nokta* işareti rota boyunca taşır. *Rotayı Durdur* rotayı sonlandırır.
 
-**Rota paylaşmak:**
+## Rotayı Değiştirme
 
- *Rotalar* ekranında rotanızı seçin ve ardından size sunulan tüm paylaşım seçeneklerini kullanarak *Paylaş* seçeneğini belirleyin.
+*Rotalar* ekranında rotayı seçin, sonra *Rotayı Düzenle* seçeneğini seçin. Ara nokta ekleyebilir, kaldırabilir ve sırasını değiştirebilir, adı ve açıklamayı değiştirebilir veya rotayı silebilirsiniz.
+
+## Rotayı Paylaşma
+
+*Rotalar* ekranında rotayı seçin, sonra *Paylaş* seçeneğini seçin.
 

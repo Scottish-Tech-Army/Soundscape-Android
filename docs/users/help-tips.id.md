@@ -9,17 +9,13 @@ permalink: /users/help-tips.html
 
 # Tips
 
-Anda dapat menemukan halte bus terdekat dengan memilih filter *Transportasi Umum* pada daftar *Tempat di Sekitar*.
+Untuk menemukan halte bus terdekat, pilih *Tempat di Sekitar* lalu pilih *Transportasi Umum*.
 
-Anda dapat mengatur suar pada alamat apa pun. Dari layar utama, cari alamat tersebut menggunakan bilah pencarian. Lalu pilih alamat dari hasil pencarian untuk membuka layar *Detail Lokasi*. Layar ini memiliki opsi *Mulai Suar Audio* pada alamat tersebut. Dengan cara ini, Anda dapat mengatur suar pada bisnis, tempat, tempat menarik, dan rumah tinggal yang tidak ada di OpenStreetMap.
+Jika Anda sering naik bus yang sama, simpan halte Anda sebagai penanda. Pasang suar pada halte tempat Anda turun, dan Soundscape memberi tahu seberapa jauh halte itu selama perjalanan.
 
-Jika Anda rutin menggunakan sebuah rute bus, simpan halte naik dan turun Anda sebagai Penanda. Dengan begitu halte-halte tersebut tersimpan dan mudah Anda temukan lagi. Pilih *Penanda* di layar utama untuk menemukannya. Anda dapat mengatur suar pada halte tersebut untuk mendapatkan pembaruan berkala tentang seberapa dekat Anda dengan halte turun Anda. Catatan: Anda dapat menonaktifkan suara ritmis dan tetap mendapatkan pembaruan jarak di sepanjang perjalanan.
+Anda dapat menonaktifkan suara suar dan tetap mendengar seberapa jauh tempat itu. Soundscape menyebutkan jaraknya dari waktu ke waktu saat Anda bergerak.
 
-Jika Anda memasukkan ponsel ke dalam saku dan berhenti bergerak, suara suar akan melemah karena Soundscape tidak dapat mengetahui arah hadap Anda. Untuk mengatasinya, mulailah berjalan lagi, atau keluarkan ponsel Anda dan pegang secara datar.
+Untuk menjelajahi suatu tempat sebelum pergi ke sana, buka *Detail Lokasi* tempat itu dan pilih *Simulasikan Lokasi*. Soundscape lalu berperilaku seolah-olah Anda berada di sana.
 
-Soundscape bekerja paling baik saat Anda memegang ponsel secara rata dengan layar menghadap ke langit dan bagian atas ponsel mengarah menjauh dari Anda.
-
-Anda dapat mengaktifkan dan menonaktifkan suara ritmis suar menggunakan tombol bisukan di layar utama. Jika suar dibisukan, Anda tetap akan mendapatkan pembaruan tentang jarak ke tujuan Anda kira-kira setiap 50 meter.
-
-Untuk tetap menggunakan Soundscape tanpa mendengar pemberitahuan otomatis, atur *Tingkat Detail Pemberitahuan* ke *Senyap* di bagian *Kelola Pemberitahuan* pada layar *Pengaturan* dari menu. Jika Anda tidak akan menggunakan Soundscape untuk sementara waktu, Anda dapat mengaktifkan Mode Tidur atau Mode Tunda menggunakan tombol *Tidur* di layar utama.
+Untuk petunjuk belokan demi belokan, buka *Detail Lokasi* suatu tempat dan pilih *Buka di Aplikasi Peta*. Soundscape tetap berjalan selama aplikasi lain memberi petunjuk arah.
 

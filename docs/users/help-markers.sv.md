@@ -9,9 +9,23 @@ permalink: /users/help-markers.html
 
 # Platsmarkörer
 
-Med Soundscape kan du markera din omvärld och allt som är viktigt för dig – ungefär som kartnålar på en karta.
+En platsmarkör är en plats som du har sparat. Det kan vara vilken plats som helst som är viktig för dig: ditt hem, en busshållplats, en entré till en byggnad eller ett övergångsställe.
 
-Du kan markera platser som är personliga och viktiga för dig, som din bostad, din arbetsplats eller matbutiken du brukar handla i. Du kan markera valfri plats eller adress, och även sådant som vanligtvis inte finns med på kartor, till exempel: ingångar till byggnader eller parker, tryckknappar vid övergångsställen, övergångsställen, broar, busshållplatser eller till och med hundens favoritträd. Använd dessa markeringar som referenspunkter när du promenerar.
+Soundscape läser upp dina platsmarkörer när du passerar dem. Du kan ställa in en ljudfyr på en platsmarkör, lägga till den i en rutt eller höra de närmaste med knappen *Platsmarkörer i närheten*.
 
-För att uppleva markerade platser kommer Soundscape automatiskt att läsa upp platsmarkörer när du passerar dem eller närmar dig dem. Du kan också använda knappen *Platsmarkörer i närheten* längst ner på startskärmen för att höra en rumsbestämd uppläsning av platsmarkörer runt dig. Du kan till och med ställa in en ljudfyr på vilken platsmarkör som helst. Då hör du den ljudfyr du känner igen från Soundscape och kan använda den som vanligt.
+## Skapa platsmarkörer
+
+1. Välj *Platsmarkörer* på startskärmen och välj sedan *Ny*.
+
+2. Välj *Aktuell plats*, eller en plats från *Platser i närheten*.
+
+3. Ändra namnet om du vill, och lägg till anteckningar. Soundscape läser upp anteckningarna tillsammans med platsmarkören.
+
+4. Välj *Klart*.
+
+Du kan också spara vilken plats du än hittar. Öppna dess *Platsuppgifter* och välj *Spara som platsmarkör*.
+
+## Anpassa platsmarkörer
+
+Välj platsmarkören på skärmen *Platsmarkörer* och välj sedan *Redigera platsmarkör*. Du kan ändra namn, anteckningar och position, eller välja *Ta bort platsmarkör*. När du tar bort en platsmarkör försvinner den också från dina rutter.
 

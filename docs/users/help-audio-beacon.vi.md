@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Đèn hiệu âm thanh
 
-## Đây là gì?
+Đèn hiệu âm thanh là một âm thanh phát ra từ hướng của địa điểm bạn chọn. Nó cho bạn biết địa điểm ở đâu theo đường thẳng. Nó không chỉ đường từng chặng, vì vậy bạn tự chọn đường đi đến đó.
 
-Đặt đèn hiệu tại một địa điểm gần đó cho phép Soundscape liên tục thông báo cho bạn bằng cách phát âm thanh từ hướng của địa điểm đó. Đèn hiệu này có thể được tắt tiếng hoặc bật tiếng lại trên màn hình chính. Ngoài ra, Soundscape còn hiển thị thông tin về địa điểm đó trên màn hình chính, bao gồm khoảng cách đến đó và địa chỉ đường phố nếu có.
+## Đặt đèn hiệu
 
-## Khi nào tôi nên dùng tính năng này?
+1. Tìm địa điểm. Dùng thanh tìm kiếm, *Địa điểm gần đây*, *Điểm đánh dấu* hoặc *Vị trí hiện tại* trên màn hình chính.
 
-Việc đặt đèn hiệu rất hữu ích khi bạn muốn theo dõi một mốc quen thuộc trong lúc khám phá một khu vực mới, hoặc khi bạn đang đi đến đâu đó và muốn được thông báo về môi trường xung quanh trên đường đi. Tính năng đèn hiệu không đưa ra chỉ dẫn từng bước rẽ, nhưng nó cung cấp một âm thanh liên tục cho biết hướng đến đèn hiệu so với vị trí hiện tại của bạn. Bằng cách sử dụng đèn hiệu âm thanh, kỹ năng định hướng sẵn có của bạn, và thậm chí cả ứng dụng chỉ đường yêu thích của bạn, bạn có thể tự chọn cách để đến các địa điểm gần đó.
+2. Chọn địa điểm để mở *Chi tiết vị trí*.
 
-## Tính năng này hoạt động như thế nào?
+3. Chọn *Bắt đầu đèn hiệu âm thanh*.
 
-**Để đặt đèn hiệu :**
+Soundscape quay lại màn hình chính và đèn hiệu bắt đầu. Màn hình chính hiển thị tên địa điểm và khoảng cách đến đó.
 
- Trước tiên, hãy xem chi tiết của một địa điểm bằng cách dùng thanh tìm kiếm để tìm một nơi, hoặc nhấn vào một trong các nút *Địa điểm gần đây*, *Điểm đánh dấu*, hoặc *Vị trí hiện tại* rồi chọn một địa điểm. Sau đó, từ màn hình *Chi tiết vị trí*, hãy chọn nút *Bắt đầu đèn hiệu âm thanh*. Nhấn vào nút này sẽ đưa bạn trở về màn hình chính và bật đèn hiệu âm thanh phát ra từ hướng của địa điểm bạn đã chọn. Tên của địa điểm cùng với khoảng cách và địa chỉ đường phố (nếu có) giờ đây sẽ được hiển thị trên màn hình chính.
+## Tìm hướng
 
-**Để gỡ bỏ đèn hiệu hiện tại :**
+Đèn hiệu đổi âm thanh khi bạn quay mặt về phía địa điểm hoặc đi thẳng về phía đó. Để tìm âm thanh đó, hãy giữ điện thoại nằm ngang và xoay người chậm. Bạn có thể chọn âm thanh đèn hiệu khác trong *Cài đặt*.
 
- Chỉ cần nhấn nút *Dừng lộ trình* trên màn hình chính.
+## Tắt tiếng đèn hiệu
 
-**Để tắt tiếng đèn hiệu âm thanh :**
+Chọn *Tắt tiếng đèn hiệu* trên màn hình chính. Soundscape vẫn cho bạn biết địa điểm còn cách bao xa khi bạn di chuyển. Chọn *Bật tiếng đèn hiệu* để nghe lại đèn hiệu.
 
- Nhấn nút *Tắt tiếng đèn hiệu* bên cạnh nút *Dừng lộ trình* trên màn hình chính.
+## Gỡ đèn hiệu
+
+Chọn *Dừng lộ trình* trên màn hình chính. Nút vẫn mang tên này ngay cả khi đèn hiệu không thuộc lộ trình nào.
+
+## Khi bạn đến nơi
+
+Khi bạn cách địa điểm khoảng 12 mét, Soundscape báo cho bạn và gỡ đèn hiệu. Điện thoại không thể xác định vị trí của bạn chính xác hơn thế. Để nghe lại đèn hiệu, hãy đặt lại đèn hiệu.
+
+Đèn hiệu đặt tại địa điểm cách chưa đến 30 mét sẽ tiếp tục bật cho đến khi bạn gỡ nó.
 

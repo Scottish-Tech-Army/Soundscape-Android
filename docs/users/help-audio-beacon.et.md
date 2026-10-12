@@ -9,25 +9,33 @@ permalink: /users/help-audio-beacon.html
 
 # Helimajakas
 
-## Mis see on?
+Helimajakas on heli, mis kostab sinu valitud koha suunast. See ütleb, kus koht linnulennult asub. See ei anna pöördepõhiseid juhiseid, seega valid tee sinna ise.
 
-Helimajaka seadmine lähedal asuvale asukohale võimaldab Soundscape'il hoida teid kursis, mängides heli selle asukoha suunast. Seda helimajakat saab avakuval vaigistada või vaigistuse tühistada. Lisaks kuvab Soundscape avakuval teavet asukoha kohta, sealhulgas kaugust ja tänavaaadressi, kui see on teada.
+## Helimajaka määramine
 
-## Millal seda kasutada?
+1. Leia koht. Kasuta avakuval otsinguriba või valikuid *Lähedal asuvad kohad*, *Markerid* või *Praegune asukoht*.
 
-Helimajaka seadmine on kasulik, kui soovite jälgida tuttavat maamärki uue piirkonna avastamisel või kui olete kuhugi teel ja soovite olla kursis oma ümbrusega teekonnal. Helimajaka funktsioon ei anna samm-sammulisi juhiseid, kuid annab pideva kuuldava heli, mis näitab helimajaka suunda teie praeguse asukoha suhtes. Kasutades helimajakat, oma olemasolevaid orienteerumisoskusi ja isegi oma lemmiknavigatsioonirakendust, saate ise valida, kuidas lähedal asuvatesse kohtadesse jõuda.
+2. Vali koht, et avada *Asukoha üksikasjad*.
 
-## Kuidas see töötab?
+3. Vali *Käivita helimajakas*.
 
-**Helimajaka seadmine:**
+Soundscape naaseb avakuvale ja helimajakas käivitub. Avakuva näitab koha nime ja seda, kui kaugel see on.
 
- Kõigepealt vaadake asukoha üksikasju, kasutades kas otsinguriba koha otsimiseks või puudutades ühte nuppudest *Lähedal asuvad kohad*, *Markerid* või *Praegune asukoht* ja valides asukoha. Seejärel valige ekraanil *Asukoha üksikasjad* nupp *Käivita helimajakas*. Selle puudutamine viib teid tagasi avakuvale ja lülitab sisse kuuldava helimajaka valitud koha suunast. Koha nimi koos selle kauguse ja füüsilise aadressiga, kui see on saadaval, kuvatakse nüüd põhikuval.
+## Suuna leidmine
 
-**Praeguse helimajaka eemaldamine:**
+Helimajaka heli muutub, kui oled näoga koha poole või kõnnid otse selle suunas. Selle heli leidmiseks hoia telefoni horisontaalselt ja pööra end aeglaselt. Teise helimajaka heli saad valida jaotises *Seadistused*.
 
- Vajutage lihtsalt avakuval nuppu *Peata marsruut*.
+## Helimajaka summutamine
 
-**Kuuldava helimajaka vaigistamine:**
+Vali avakuval *Summuta helimajakas*. Soundscape ütleb sulle liikumise ajal endiselt, kui kaugel koht on. Helimajaka uuesti kuulmiseks vali *Tühista helimajaka vaigistus*.
 
- Puudutage avakuval nuppu *Summuta helimajakas*, mis asub nupu *Peata marsruut* kõrval.
+## Helimajaka eemaldamine
+
+Vali avakuval *Peata marsruut*. Nupul on see nimi ka siis, kui helimajakas ei ole marsruudi osa.
+
+## Kui jõuad kohale
+
+Kui oled kohast umbes 12 meetri kaugusel, ütleb Soundscape seda ja eemaldab helimajaka. Telefon ei suuda sinu asukohta sellest täpsemalt määrata. Helimajaka uuesti kuulmiseks määra see uuesti.
+
+Helimajakas, mis on määratud vähem kui 30 meetri kaugusel olevale kohale, jääb sisse, kuni sa selle eemaldad.
 

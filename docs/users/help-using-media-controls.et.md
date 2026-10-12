@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Meedianuppude kasutamine
 
-## Mis see on?
+Soundscape’i saad juhtida kõrvaklappide meedianuppudega: *esita/paus*, *järgmine* ja *eelmine*. See töötab juhtmega ja Bluetooth-kõrvaklappidega. See töötab ka siis, kui Soundscape on taustal või telefon on lukus.
 
-Teatud Soundscape'i funktsioonidele pääsete ligi oma kõrvaklappide meediumijuhtnuppude abil. See funktsioon töötab iga juhtme või Bluetoothiga ühendatud kõrvaklapiga, millel on meediumijuhtnupud, näiteks Esita, Paus, Järgmine, Eelmine ja teised. Erinevatel kõrvaklappidel võivad olla erinevad nupud, seega vaadake allolevat toimingute loendit, et teada saada, millised on teile saadaval.
+Kõigil kõrvaklappidel ei ole kõiki kolme nuppu.
 
-## Millal seda kasutada?
+Nupud juhivad Soundscape’i ainult siis, kui ükski teine rakendus heli ei esita. Kui kuulad muusikat või taskuhäälingut, juhivad nupud hoopis seda rakendust.
 
-Kõrvaklappide meediumijuhtnuppe saab kasutada, kui Soundscape töötab — olenemata sellest, kas kasutate rakendust parasjagu aktiivselt, kas see töötab taustal või kas teie seade on lukustatud. Kõrvaklappide meediumijuhtnupud ei tööta Soundscape'iga siiski siis, kui mängite teise rakendusega heli, näiteks muusikat, taskuhäälinguid või videoid.
+Nupud võivad töötada kahel viisil: *Algne režiim* või *Helimenüü*. Valimiseks ava menüü ja vali *Seadistused*, seejärel *Meediumijuhtnupud*.
 
-## Kuidas see töötab?
+## Algne režiim
 
-Meediumijuhtnuppudel on 2 töörežiimi. Režiimi saab valida jaotises *Seadistused* *Meediumijuhtnupud*. Režiimid on:
+*Esita/paus* summutab helimajaka. Helimajaka kuulmiseks vajuta uuesti.
 
- *Algne režiim*. 
+*Järgmine* viib helimajaka järgmisele teekonnapunktile, kui järgid marsruuti. Muul juhul teatab see *Minu ümber*.
 
-⏯ Esita/Paus: lülitab helimajaka heli sisse ja välja. 
+*Eelmine* viib helimajaka eelmisele teekonnapunktile, kui järgid marsruuti. Muul juhul muudab see seadet *Häälteadete detailsus*. Iga vajutus liigub ühe taseme võrra vaiksemaks: *Üksikasjalik*, *Lihtsustatud*, *Põhiline* ja seejärel *Hääletu*. Veel üks vajutus viib tagasi tasemele *Üksikasjalik*. Soundscape ütleb uue taseme nime.
 
-⏭ Järgmine: kui marsruuti esitatakse, liigutab helimajaka marsruudi järgmisele teekonnapunktile. Kui marsruuti ei esitata, teatab *Minu ümber*.
+## Helimenüü
 
-⏮ Eelmine: kui marsruuti esitatakse, liigutab helimajaka marsruudi eelmisele teekonnapunktile. Kui marsruuti ei esitata, muudab *Häälteadete detailsust* iga vajutusega ühe taseme võrra vaiksemaks: *Üksikasjalik*, *Lihtsustatud*, *Põhiline*, *Hääletu* ja tagasi tasemele *Üksikasjalik*.
+Helimenüü annab samade kolme nupuga rohkem toiminguid. Soundscape loeb iga valiku ette.
 
+*Järgmine* liigub järgmisele valikule. Pärast viimast valikut naaseb see esimesele.
 
+*Esita/paus* valib valiku, mida just kuulsid.
 
-*Helimenüü*. 
+*Eelmine* muudab seadet *Häälteadete detailsus*, täpselt nagu *Algne režiim*.
 
-
-
-⏭ Järgmine liigub läbi menüüvalikute seeria, mida rakendus kirjeldab teksti kõneks muutmise abil, ja naaseb pärast viimast esimese juurde. ⏯ Esita/Paus paneb seejärel rakenduse täitma kirjeldatud valikut. On üks ülataseme menüü, millel on valikutena ainult alammenüüd. Igal alammenüül on rühm sarnaseid võimalikke toiminguid.
-
-⏮ Eelmine ei liigu menüüs. Selle asemel muudab see *Häälteadete detailsust* täpselt nagu algses režiimis, nii et sama nupp vaigistab rakendust kummaski režiimis.
+Menüü algab nelja rühmaga: *Kuula oma ümbrust*, *Marsruudi juhtimine*, *Alusta marsruuti* ja *Käivita helimajakas*. Vali rühm, et kuulda selle toiminguid. *Kuula oma ümbrust* ja *Marsruudi juhtimine* lõpevad valikuga *Peamenüü*, mis viib sind tagasi nelja rühma juurde.
 

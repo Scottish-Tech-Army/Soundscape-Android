@@ -9,31 +9,37 @@ permalink: /users/help-automatic-callouts.html
 
 # Automatická hlášení
 
-## Co to je?
+Když jdete, Soundscape ohlašuje, co je ve vašem okolí. Každý název slyšíte ze směru daného místa. Hlášení zahrnují ulice, křižovatky, obchody, autobusové zastávky, orientační body a vaše vlastní značky.
 
-Soundscape vám může sdělovat informace o věcech ve vašem okolí, jakmile se k nim přiblížíte, tím, že oznámí jejich název ze směru, ve kterém se nacházejí. Aplikace to dělá automaticky pro nejrůznější věci, jako jsou obchody, autobusové zastávky a dokonce i křižovatky. To, co aplikace automaticky oznamuje, můžete nastavit v části *Spravovat hlášení* na obrazovce *Nastavení*, a všechna hlášení můžete kdykoli vypnout, pokud chcete, aby byla aplikace tichá.
+## Křižovatky
 
-## Kdy to použít?
+Když se blížíte ke křižovatce, Soundscape jmenuje každou cestu, která z ní vychází. Slyšíte, která cesta vede doleva, která pokračuje rovně a která vede doprava.
 
-**Průzkum nové oblasti:**
+## Kolik toho slyšíte
 
- Zapněte automatická hlášení a projděte se po okolí, abyste slyšeli o různých obchodech, restauracích a podobných místech, kolem kterých procházíte.
+Otevřete nabídku a vyberte *Nastavení* a pak *Spravovat hlášení*. *Podrobnost hlášení* má čtyři úrovně.
 
-**Cesta na konkrétní místo:**
+*Podrobný* ohlašuje vše v okolí.
 
- Když jste na cestě na konkrétní místo, mohou být obzvlášť užitečná automatická hlášení křižovatek. Hlášení křižovatek vám při přiblížení sdělí uspořádání křižovatky a při jejím opuštění potvrdí, na které ulici se nacházíte.
+*Zjednodušený* vynechává menší pěšiny a obslužné cesty a méně se opakuje.
 
-**Když potřebujete ticho:**
+*Základní* ohlašuje jen ulice, křižovatky a orientační body.
 
- Když se chystáte přejít silnici nebo prostě potřebujete, aby byla aplikace tichá, můžete hlášení vypnout. Když jsou hlášení vypnutá, aplikace vám podá informace pouze tehdy, když ručně klepnete na jedno z tlačítek *Moje poloha*, *Značky v okolí*, *Kolem mě* nebo *Přede mnou*.
+*Bez zvuku* nedává žádná automatická hlášení. Majáky, trasy a tlačítka na domovské obrazovce fungují dál.
 
-## Jak to funguje?
+## Co slyšíte
 
-**Zapnutí nebo vypnutí hlášení:**
+*Spravovat hlášení* má ještě dvě nastavení. *Ulice a křižovatky* zapíná nebo vypíná hlášení ulic a křižovatek. *Místa k ohlašování* určuje, jaké druhy míst slyšíte, například *Veřejná doprava* nebo *Jídlo a pití*. Vaše značky se ohlašují vždy.
 
- Vypnutím hlášení aplikaci ztišíte. Hlášení lze vypnout v části *Spravovat hlášení* na obrazovce *Nastavení* nastavením položky *Podrobnost hlášení* na *Bez zvuku* a znovu zapnout výběrem kterékoli jiné úrovně. Na iPhonu můžete totéž udělat požádáním Siri a na Androidu to bude fungovat přes Gemini, jakmile pro to Google vydá podporu. Soundscape můžete také postupně ztišovat tlačítky pro ovládání médií na sluchátkách: každé stisknutí *předchozí* posune o úroveň níž přes *Podrobný*, *Zjednodušený*, *Základní* a *Bez zvuku* a další stisknutí se vrátí na *Podrobný*. Viz téma nápovědy *Používání ovládacích prvků médií*. Případně můžete použít tlačítko *Spánek* v pravém horním rohu domovské obrazovky, které zastaví hlášení aplikace Soundscape, dokud ji neprobudíte.
+## Jak Soundscape ztišit
 
-**Správa toho, jaká hlášení slyšíte:**
+Stiskněte *předchozí* na ovládání sluchátek. Každé stisknutí přejde o jednu úroveň tišeji: *Podrobný*, *Zjednodušený*, *Základní* a pak *Bez zvuku*. Další stisknutí se vrátí na *Podrobný*. Viz stránka nápovědy *Používání ovládacích prvků médií*.
 
- Chcete-li zvolit typy věcí, které bude Soundscape automaticky oznamovat, přejděte na obrazovku *Nastavení* pomocí nabídky na obrazovce *Domů*. V části *Spravovat hlášení* na obrazovce *Nastavení* volíte, kolik toho aplikace říká, pomocí položky *Podrobnost hlášení*, zda ohlašuje *Ulice a křižovatky* a jaká jsou *Místa k ohlašování*. Chcete-li vypnout všechna hlášení, nastavte *Podrobnost hlášení* na *Bez zvuku*.
+## Zastavení Soundscape na chvíli
+
+Vyberte tlačítko *Spánek* v horní části domovské obrazovky. Soundscape přestane používat vaši polohu a mlčí, dokud nevyberete *Probudit hned*. Nebo vyberte *Probudit při odchodu* a Soundscape se probudí, až opustíte místo, kde jste.
+
+## Ve vozidle nebo ve vlaku
+
+Soundscape pozná, když se pohybujete rychlostí vozidla. Pak přestane ohlašovat křižovatky a obchody v okolí, protože míjejí příliš rychle. Místo toho ohlašuje silnici, po které jedete, orientační body, zastávky a stanice, řeky a tunely.
 

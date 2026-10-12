@@ -9,33 +9,31 @@ permalink: /users/help-using-media-controls.html
 
 # Sử dụng nút điều khiển đa phương tiện
 
-## Đây là gì?
+Bạn có thể điều khiển Soundscape bằng các nút đa phương tiện trên tai nghe: *phát/tạm dừng*, *tiếp theo* và *trước*. Cách này dùng được với tai nghe có dây và tai nghe Bluetooth. Nó cũng dùng được khi Soundscape chạy nền hoặc điện thoại đang khóa.
 
-Bạn có thể truy cập một số tính năng nhất định trong Soundscape bằng các nút điều khiển đa phương tiện trên tai nghe của mình. Chức năng này hoạt động với bất kỳ tai nghe có dây hoặc Bluetooth nào có các nút điều khiển đa phương tiện như Phát, Tạm dừng, Tiếp theo, Trước đó, và các nút khác. Các tai nghe khác nhau có thể có các nút khác nhau, vì vậy hãy tham khảo danh sách các thao tác bên dưới để biết những thao tác nào khả dụng với bạn.
+Không phải tai nghe nào cũng có đủ ba nút.
 
-## Khi nào tôi nên dùng tính năng này?
+Các nút chỉ điều khiển Soundscape khi không có ứng dụng nào khác đang phát âm thanh. Nếu bạn đang nghe nhạc hoặc podcast, các nút sẽ điều khiển ứng dụng đó.
 
-Bạn có thể dùng các nút điều khiển đa phương tiện trên tai nghe khi Soundscape đang chạy — dù bạn đang dùng ứng dụng, ứng dụng đang chạy nền, hay thiết bị của bạn đang khóa. Tuy nhiên, các nút điều khiển đa phương tiện trên tai nghe sẽ không hoạt động với Soundscape nếu bạn đang phát âm thanh như nhạc, podcast hoặc video bằng một ứng dụng khác.
+Các nút có thể hoạt động theo hai cách: *Chế độ gốc* hoặc *Menu âm thanh*. Để chọn, hãy mở menu và chọn *Cài đặt*, rồi *Điều khiển Đa phương tiện*.
 
-## Tính năng này hoạt động như thế nào?
+## Chế độ gốc
 
-Có 2 chế độ hoạt động cho các nút điều khiển đa phương tiện. Bạn có thể chọn chế độ trong phần *Cài đặt* *Điều khiển Đa phương tiện*. Các chế độ là:
+*Phát/tạm dừng* tắt tiếng đèn hiệu. Nhấn lại để nghe đèn hiệu.
 
- *Chế độ gốc*. 
+*Tiếp theo* chuyển đèn hiệu đến điểm dừng tiếp theo khi bạn đang đi theo một lộ trình. Nếu không, nút này thông báo *Xung quanh tôi*.
 
-⏯ Phát/Tạm dừng: Bật hoặc tắt âm thanh đèn hiệu. 
+*Trước* chuyển đèn hiệu đến điểm dừng trước khi bạn đang đi theo một lộ trình. Nếu không, nút này thay đổi *Mức chi tiết thông báo*. Mỗi lần nhấn giảm một mức: *Chi tiết*, *Đơn giản*, *Thiết yếu*, rồi *Im lặng*. Nhấn thêm một lần nữa sẽ quay lại *Chi tiết*. Soundscape đọc tên mức mới.
 
-⏭ Tiếp theo: Nếu một lộ trình đang phát, di chuyển đèn hiệu âm thanh đến Điểm dừng tiếp theo trong lộ trình. Nếu không có lộ trình nào đang phát, thông báo *Xung quanh tôi*.
+## Menu âm thanh
 
-⏮ Trước đó: Nếu một lộ trình đang phát, di chuyển đèn hiệu âm thanh đến Điểm dừng trước đó trong lộ trình. Nếu không có lộ trình nào đang phát, thay đổi *Mức chi tiết thông báo*, mỗi lần nhấn lại yên tĩnh hơn một mức: *Chi tiết*, *Đơn giản*, *Thiết yếu*, *Im lặng*, rồi quay lại *Chi tiết*.
+Menu âm thanh cho bạn nhiều thao tác hơn với cùng ba nút đó. Soundscape đọc to từng tùy chọn.
 
+*Tiếp theo* chuyển sang tùy chọn kế tiếp. Sau tùy chọn cuối cùng, menu quay lại tùy chọn đầu tiên.
 
+*Phát/tạm dừng* chọn tùy chọn bạn vừa nghe.
 
-*Menu âm thanh*. 
+*Trước* thay đổi *Mức chi tiết thông báo*, giống như ở *Chế độ gốc*.
 
-
-
-⏭ Tiếp theo di chuyển qua một loạt các tùy chọn menu mà ứng dụng mô tả bằng công nghệ chuyển văn bản thành giọng nói, và quay lại tùy chọn đầu tiên sau tùy chọn cuối cùng. ⏯ Phát/Tạm dừng sau đó kích hoạt ứng dụng thực hiện tùy chọn đã được mô tả. Có một menu cấp cao nhất duy nhất, chỉ có các menu con làm tùy chọn. Mỗi menu con có một nhóm các thao tác khả dĩ tương tự nhau.
-
-⏮ Trước đó không dùng để di chuyển qua menu. Thay vào đó, nút này thay đổi *Mức chi tiết thông báo*, giống hệt như trong Chế độ gốc, nên cùng một nút sẽ làm ứng dụng yên tĩnh hơn dù bạn dùng chế độ nào.
+Menu bắt đầu với bốn nhóm: *Nghe xung quanh tôi*, *Điều khiển lộ trình*, *Bắt đầu lộ trình* và *Bắt đầu đèn hiệu âm thanh*. Chọn một nhóm để nghe các thao tác của nhóm đó. *Nghe xung quanh tôi* và *Điều khiển lộ trình* kết thúc bằng *Menu chính*, đưa bạn trở lại bốn nhóm.
 
