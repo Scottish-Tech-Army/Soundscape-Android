@@ -1,5 +1,5 @@
 ---
-title: Så fungerar Soundscape
+title: Tekniken bakom Soundscape
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: sv
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Så fungerar Soundscape
+# Tekniken bakom Soundscape
 Syftet med den här sidan är att ge en allmän förståelse för hur Soundscape-appen fungerar under huven. Du behöver inte läsa det här för att använda appen, men det finns några anledningar till att den har skrivits:
 
 1. För att hjälpa intresserade nykomlingar till appen att förstå var dess begränsningar finns

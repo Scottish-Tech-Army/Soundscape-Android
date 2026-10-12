@@ -1,5 +1,5 @@
 ---
-title: Slik fungerer Soundscape
+title: Teknologien bak Soundscape
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: nb
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Slik fungerer Soundscape
+# Teknologien bak Soundscape
 Hensikten med denne siden er å gi en generell forståelse av hvordan Soundscape-appen fungerer under panseret. Du trenger ikke å lese dette for å bruke appen, men det er noen grunner til at den er skrevet:
 
 1. For å hjelpe interesserte nykommere til appen med å forstå hvor begrensningene ligger
