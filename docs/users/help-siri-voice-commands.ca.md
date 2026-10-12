@@ -3,6 +3,7 @@ title: Ordres de veu de Siri
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 120
 lang: ca
 permalink: /users/help-siri-voice-commands.html
 ---

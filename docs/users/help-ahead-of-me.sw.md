@@ -3,6 +3,7 @@ title: Mbele Yangu
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 30
 lang: sw
 permalink: /users/help-ahead-of-me.html
 ---

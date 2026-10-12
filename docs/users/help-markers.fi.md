@@ -3,6 +3,7 @@ title: Merkitsimet
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 80
 lang: fi
 permalink: /users/help-markers.html
 ---

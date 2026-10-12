@@ -3,6 +3,7 @@ title: Soundscape ਬਾਰੇ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 170
 lang: pa
 permalink: /users/help-about-soundscape.html
 ---

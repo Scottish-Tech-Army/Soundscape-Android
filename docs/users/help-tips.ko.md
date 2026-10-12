@@ -3,6 +3,7 @@ title: 팁
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 130
 lang: ko
 permalink: /users/help-tips.html
 ---

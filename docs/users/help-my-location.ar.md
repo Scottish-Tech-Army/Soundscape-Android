@@ -3,6 +3,7 @@ title: موقعي
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 20
 lang: ar
 permalink: /users/help-my-location.html
 ---

@@ -3,6 +3,7 @@ title: Siri 음성 명령
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 120
 lang: ko
 permalink: /users/help-siri-voice-commands.html
 ---

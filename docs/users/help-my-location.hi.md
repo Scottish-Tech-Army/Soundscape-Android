@@ -3,6 +3,7 @@ title: मेरा स्थान
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
+nav_order: 20
 lang: hi
 permalink: /users/help-my-location.html
 ---

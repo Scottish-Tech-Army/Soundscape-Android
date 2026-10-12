@@ -3,6 +3,7 @@ title: Marcaje
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 80
 lang: ro
 permalink: /users/help-markers.html
 ---

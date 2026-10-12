@@ -3,6 +3,7 @@ title: Preguntes freqüents
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 160
 lang: ca
 permalink: /users/help-frequently-asked-questions.html
 ---

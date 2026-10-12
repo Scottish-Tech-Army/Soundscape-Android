@@ -3,6 +3,7 @@ title: Hangok
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 100
 lang: hu
 permalink: /users/help-voices.html
 ---

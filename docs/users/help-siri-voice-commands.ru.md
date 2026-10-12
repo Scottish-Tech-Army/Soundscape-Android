@@ -3,6 +3,7 @@ title: Голосовые команды Siri
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 120
 lang: ru
 permalink: /users/help-siri-voice-commands.html
 ---

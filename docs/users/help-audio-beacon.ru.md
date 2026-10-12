@@ -3,6 +3,7 @@ title: Звуковой маяк
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 60
 lang: ru
 permalink: /users/help-audio-beacon.html
 ---

@@ -3,6 +3,7 @@ title: Siri صوتی کمانڈز
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 120
 lang: ur
 permalink: /users/help-siri-voice-commands.html
 ---

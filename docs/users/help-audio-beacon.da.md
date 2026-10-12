@@ -3,6 +3,7 @@ title: Lydfyr
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 60
 lang: da
 permalink: /users/help-audio-beacon.html
 ---

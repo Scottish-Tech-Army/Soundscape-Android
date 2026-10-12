@@ -3,6 +3,7 @@ title: Alamomi
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 80
 lang: ha
 permalink: /users/help-markers.html
 ---

@@ -3,6 +3,7 @@ title: Foire aux questions
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 160
 lang: fr
 permalink: /users/help-frequently-asked-questions.html
 ---

@@ -3,6 +3,7 @@ title: Médiavezérlők használata
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 110
 lang: hu
 permalink: /users/help-using-media-controls.html
 ---

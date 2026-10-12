@@ -3,6 +3,7 @@ title: Rute
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 90
 lang: id
 permalink: /users/help-routes.html
 ---

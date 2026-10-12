@@ -3,6 +3,7 @@ title: Korduma kippuvad küsimused
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 160
 lang: et
 permalink: /users/help-frequently-asked-questions.html
 ---

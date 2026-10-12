@@ -3,6 +3,7 @@ title: 자주 묻는 질문
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 160
 lang: ko
 permalink: /users/help-frequently-asked-questions.html
 ---

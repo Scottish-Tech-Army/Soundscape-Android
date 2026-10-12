@@ -3,6 +3,7 @@ title: Spraakopdrachten met Siri
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 120
 lang: nl
 permalink: /users/help-siri-voice-commands.html
 ---

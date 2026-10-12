@@ -3,6 +3,7 @@ title: جهت‌نمای صوتی
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 60
 lang: fa
 permalink: /users/help-audio-beacon.html
 ---

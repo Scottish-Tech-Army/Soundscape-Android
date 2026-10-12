@@ -3,6 +3,7 @@ title: Автоматичні оголошення
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 70
 lang: uk
 permalink: /users/help-automatic-callouts.html
 ---

@@ -3,6 +3,7 @@ title: Χρήση στοιχείων ελέγχου πολυμέσων
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 110
 lang: el
 permalink: /users/help-using-media-controls.html
 ---

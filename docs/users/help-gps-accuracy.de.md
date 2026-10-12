@@ -3,6 +3,7 @@ title: GPS-Genauigkeit
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 150
 lang: de
 permalink: /users/help-gps-accuracy.html
 ---

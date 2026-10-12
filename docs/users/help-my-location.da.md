@@ -3,6 +3,7 @@ title: Min placering
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 20
 lang: da
 permalink: /users/help-my-location.html
 ---

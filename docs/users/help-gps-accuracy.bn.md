@@ -3,6 +3,7 @@ title: GPS নির্ভুলতা
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
+nav_order: 150
 lang: bn
 permalink: /users/help-gps-accuracy.html
 ---

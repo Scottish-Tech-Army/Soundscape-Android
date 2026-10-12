@@ -3,6 +3,7 @@ title: Mahali Nilipo
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 20
 lang: sw
 permalink: /users/help-my-location.html
 ---

@@ -3,6 +3,7 @@ title: Automatiska informationsljud
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 70
 lang: sv
 permalink: /users/help-automatic-callouts.html
 ---

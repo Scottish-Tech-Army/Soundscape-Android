@@ -3,6 +3,7 @@ title: Sử dụng Soundscape ngoại tuyến
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 140
 lang: vi
 permalink: /users/help-using-soundscape-offline.html
 ---

@@ -3,6 +3,7 @@ title: Devant moi
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 30
 lang: fr
 permalink: /users/help-ahead-of-me.html
 ---

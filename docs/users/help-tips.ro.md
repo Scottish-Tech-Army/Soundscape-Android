@@ -3,6 +3,7 @@ title: Sfaturi
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 130
 lang: ro
 permalink: /users/help-tips.html
 ---

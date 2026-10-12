@@ -3,6 +3,7 @@ title: آوازیں
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 100
 lang: ur
 permalink: /users/help-voices.html
 ---

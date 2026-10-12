@@ -3,6 +3,7 @@ title: Mẹo
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 130
 lang: vi
 permalink: /users/help-tips.html
 ---

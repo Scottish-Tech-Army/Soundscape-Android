@@ -3,6 +3,7 @@ title: Înaintea mea
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 30
 lang: ro
 permalink: /users/help-ahead-of-me.html
 ---

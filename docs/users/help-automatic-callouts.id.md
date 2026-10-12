@@ -3,6 +3,7 @@ title: Pemberitahuan Otomatis
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 70
 lang: id
 permalink: /users/help-automatic-callouts.html
 ---

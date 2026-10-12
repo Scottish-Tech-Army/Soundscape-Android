@@ -3,6 +3,7 @@ title: Συμβουλές
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 130
 lang: el
 permalink: /users/help-tips.html
 ---

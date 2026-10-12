@@ -3,6 +3,7 @@ title: الأصوات
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 100
 lang: ar
 permalink: /users/help-voices.html
 ---

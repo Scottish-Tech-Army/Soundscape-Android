@@ -3,6 +3,7 @@ title: Quant a Soundscape
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 170
 lang: ca
 permalink: /users/help-about-soundscape.html
 ---

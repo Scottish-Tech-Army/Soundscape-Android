@@ -3,6 +3,7 @@ title: ऑडियो बीकन
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
+nav_order: 60
 lang: hi
 permalink: /users/help-audio-beacon.html
 ---

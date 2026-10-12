@@ -3,6 +3,7 @@ title: Commandes vocales Siri
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 120
 lang: fr-CA
 permalink: /users/help-siri-voice-commands.html
 ---

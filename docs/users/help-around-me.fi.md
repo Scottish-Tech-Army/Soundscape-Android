@@ -3,6 +3,7 @@ title: Lähiympäristö
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 40
 lang: fi
 permalink: /users/help-around-me.html
 ---

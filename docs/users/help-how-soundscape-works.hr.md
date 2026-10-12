@@ -3,6 +3,7 @@ title: Kako Soundscape radi
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 10
 lang: hr
 permalink: /users/help-how-soundscape-works.html
 ---

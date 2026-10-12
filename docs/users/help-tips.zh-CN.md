@@ -3,6 +3,7 @@ title: 使用技巧
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 130
 lang: zh-CN
 permalink: /users/help-tips.html
 ---

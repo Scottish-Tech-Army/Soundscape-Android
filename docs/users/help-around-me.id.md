@@ -3,6 +3,7 @@ title: Di Sekitar Saya
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 40
 lang: id
 permalink: /users/help-around-me.html
 ---

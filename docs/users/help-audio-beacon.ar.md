@@ -3,6 +3,7 @@ title: المنارة الصوتية
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 60
 lang: ar
 permalink: /users/help-audio-beacon.html
 ---

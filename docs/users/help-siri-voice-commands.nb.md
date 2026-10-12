@@ -3,6 +3,7 @@ title: Talekommandoer med Siri
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 120
 lang: nb
 permalink: /users/help-siri-voice-commands.html
 ---

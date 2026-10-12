@@ -3,6 +3,7 @@ title: میرا مقام
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 20
 lang: ur
 permalink: /users/help-my-location.html
 ---

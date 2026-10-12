@@ -3,6 +3,7 @@ title: العلامات
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 80
 lang: ar
 permalink: /users/help-markers.html
 ---

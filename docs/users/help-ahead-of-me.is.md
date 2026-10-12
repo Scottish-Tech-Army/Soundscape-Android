@@ -3,6 +3,7 @@ title: Fyrir framan mig
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 30
 lang: is
 permalink: /users/help-ahead-of-me.html
 ---

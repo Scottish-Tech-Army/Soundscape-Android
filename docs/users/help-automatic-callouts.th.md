@@ -3,6 +3,7 @@ title: การแจ้งเตือนด้วยเสียงอัต�
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 70
 lang: th
 permalink: /users/help-automatic-callouts.html
 ---

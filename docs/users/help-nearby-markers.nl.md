@@ -3,6 +3,7 @@ title: Markeringen in de buurt
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 50
 lang: nl
 permalink: /users/help-nearby-markers.html
 ---

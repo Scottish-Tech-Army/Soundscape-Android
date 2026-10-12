@@ -3,6 +3,7 @@ title: Moja poloha
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 20
 lang: sk
 permalink: /users/help-my-location.html
 ---

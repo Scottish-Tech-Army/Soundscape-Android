@@ -3,6 +3,7 @@ title: O aplikaci Soundscape
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
+nav_order: 170
 lang: cs
 permalink: /users/help-about-soundscape.html
 ---

@@ -3,6 +3,7 @@ title: Alamomi na Kusa
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 50
 lang: ha
 permalink: /users/help-nearby-markers.html
 ---

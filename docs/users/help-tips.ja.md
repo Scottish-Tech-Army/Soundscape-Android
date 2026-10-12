@@ -3,6 +3,7 @@ title: ヒント
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 130
 lang: ja
 permalink: /users/help-tips.html
 ---

@@ -3,6 +3,7 @@ title: ஒலி பீக்கன்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 60
 lang: ta
 permalink: /users/help-audio-beacon.html
 ---

@@ -3,6 +3,7 @@ title: Bruke Soundscape offline
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 140
 lang: nb
 permalink: /users/help-using-soundscape-offline.html
 ---

@@ -3,6 +3,7 @@ title: Hlasové príkazy pre Siri
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 120
 lang: sk
 permalink: /users/help-siri-voice-commands.html
 ---

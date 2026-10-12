@@ -3,6 +3,7 @@ title: ความแม่นยำของ GPS
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 150
 lang: th
 permalink: /users/help-gps-accuracy.html
 ---

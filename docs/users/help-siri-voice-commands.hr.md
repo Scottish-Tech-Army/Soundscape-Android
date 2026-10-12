@@ -3,6 +3,7 @@ title: Glasovne naredbe za Siri
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 120
 lang: hr
 permalink: /users/help-siri-voice-commands.html
 ---

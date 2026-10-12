@@ -3,6 +3,7 @@ title: Mærker i nærheden
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 50
 lang: da
 permalink: /users/help-nearby-markers.html
 ---

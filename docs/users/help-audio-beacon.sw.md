@@ -3,6 +3,7 @@ title: Beacon ya Sauti
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 60
 lang: sw
 permalink: /users/help-audio-beacon.html
 ---

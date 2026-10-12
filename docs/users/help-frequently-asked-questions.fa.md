@@ -3,6 +3,7 @@ title: پرسش‌های متداول
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 160
 lang: fa
 permalink: /users/help-frequently-asked-questions.html
 ---

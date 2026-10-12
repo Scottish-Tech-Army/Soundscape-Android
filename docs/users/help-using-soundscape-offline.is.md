@@ -3,6 +3,7 @@ title: Notkun Soundscape án nettengingar
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 140
 lang: is
 permalink: /users/help-using-soundscape-offline.html
 ---

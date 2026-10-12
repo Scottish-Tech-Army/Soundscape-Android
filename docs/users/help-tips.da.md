@@ -3,6 +3,7 @@ title: Tips
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 130
 lang: da
 permalink: /users/help-tips.html
 ---

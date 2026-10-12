@@ -3,6 +3,7 @@ title: Zvukový maják
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
+nav_order: 60
 lang: cs
 permalink: /users/help-audio-beacon.html
 ---

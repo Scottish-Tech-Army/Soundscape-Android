@@ -3,6 +3,7 @@ title: Om Soundscape
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 170
 lang: da
 permalink: /users/help-about-soundscape.html
 ---

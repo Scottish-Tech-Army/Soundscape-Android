@@ -3,6 +3,7 @@ title: ਅਕਸਰ ਪੁੱਛੇ ਜਾਂਦੇ ਸਵਾਲ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 160
 lang: pa
 permalink: /users/help-frequently-asked-questions.html
 ---

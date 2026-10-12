@@ -3,6 +3,7 @@ title: Sanarwowi Kai Tsaye
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 70
 lang: ha
 permalink: /users/help-automatic-callouts.html
 ---

@@ -3,6 +3,7 @@ title: Mediaregelaars gebruiken
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 110
 lang: nl
 permalink: /users/help-using-media-controls.html
 ---

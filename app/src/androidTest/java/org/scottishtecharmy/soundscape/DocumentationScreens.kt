@@ -32,6 +32,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.SearchFunctions
 import org.scottishtecharmy.soundscape.screens.home.home.SectionType
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions
+import org.scottishtecharmy.soundscape.screens.home.home.helpPageOrder
 import org.scottishtecharmy.soundscape.screens.home.home.helpPages
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.SharedRouteDetailsScreen
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
@@ -333,14 +334,16 @@ class DocumentationScreens {
 
     /**
      * Builds the markdown for a single help page rendered under [environment]'s locale.
-     * [parentLabel] is the localized "Using Soundscape" nav parent for [webLang].
+     * [parentLabel] is the localized "Using Soundscape" nav parent for [webLang], and
+     * [navOrder] is the page's place in that section's list.
      */
     private suspend fun buildPageMarkdown(
         environment: org.jetbrains.compose.resources.ResourceEnvironment,
         page: org.scottishtecharmy.soundscape.screens.home.home.Sections,
         webLang: String,
         slug: String,
-        parentLabel: String
+        parentLabel: String,
+        navOrder: Int
     ): String {
         suspend fun localized(resource: org.jetbrains.compose.resources.StringResource): String =
             org.jetbrains.compose.resources.getString(environment, resource)
@@ -355,6 +358,7 @@ class DocumentationScreens {
         // just-the-docs nests this page under the localized "Using Soundscape" section.
         sb.append("parent: \"$parentLabel\"\n")
         sb.append("has_toc: false\n")
+        sb.append("nav_order: $navOrder\n")
         if (webLang != "en") {
             sb.append("lang: $webLang\n")
             // Pin the permalink to the English page's URL so jekyll-polyglot matches this
@@ -435,7 +439,15 @@ class DocumentationScreens {
                     // strings fall back to English). The localized `parent:` keeps it nested
                     // under the language's "Using Soundscape" section instead of orphaning a
                     // fallback page whose English parent wouldn't match.
-                    val markdown = buildPageMarkdown(environment, page, webLang, slug, parentLabel)
+                    // List the pages in the order of the app's Help index; a page the index
+                    // doesn't link comes after the rest. The hand-written pages in docs/users
+                    // carry larger numbers of their own, so they follow all of these.
+                    val indexPosition = helpPageOrder.indexOf(page.titleId)
+                    val navOrder =
+                        10 * (if (indexPosition >= 0) indexPosition + 1 else helpPageOrder.size + 1)
+
+                    val markdown =
+                        buildPageMarkdown(environment, page, webLang, slug, parentLabel, navOrder)
 
                     val body = markdown.substringAfter("\n---\n")
                     if (webLang == "en") englishBodies[slug] = body

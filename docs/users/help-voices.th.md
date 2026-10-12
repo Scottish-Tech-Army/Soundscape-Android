@@ -3,6 +3,7 @@ title: เสียงพูด
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 100
 lang: th
 permalink: /users/help-voices.html
 ---

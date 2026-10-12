@@ -3,6 +3,7 @@ title: Gaba da Ni
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 30
 lang: ha
 permalink: /users/help-ahead-of-me.html
 ---

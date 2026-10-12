@@ -3,6 +3,7 @@ title: पास के मार्कर
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
+nav_order: 50
 lang: hi
 permalink: /users/help-nearby-markers.html
 ---

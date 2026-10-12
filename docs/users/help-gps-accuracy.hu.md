@@ -3,6 +3,7 @@ title: GPS-pontosság
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 150
 lang: hu
 permalink: /users/help-gps-accuracy.html
 ---

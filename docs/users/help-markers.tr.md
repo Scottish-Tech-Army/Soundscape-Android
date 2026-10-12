@@ -3,6 +3,7 @@ title: Kayıtlı Noktalar
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 80
 lang: tr
 permalink: /users/help-markers.html
 ---

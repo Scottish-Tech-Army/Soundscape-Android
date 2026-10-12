@@ -3,6 +3,7 @@ title: Savjeti
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 130
 lang: hr
 permalink: /users/help-tips.html
 ---

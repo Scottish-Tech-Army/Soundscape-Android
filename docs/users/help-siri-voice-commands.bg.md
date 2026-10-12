@@ -3,6 +3,7 @@ title: Гласови команди със Siri
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
+nav_order: 120
 lang: bg
 permalink: /users/help-siri-voice-commands.html
 ---

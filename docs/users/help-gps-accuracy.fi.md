@@ -3,6 +3,7 @@ title: GPS-tarkkuus
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 150
 lang: fi
 permalink: /users/help-gps-accuracy.html
 ---

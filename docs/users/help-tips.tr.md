@@ -3,6 +3,7 @@ title: İpuçları
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 130
 lang: tr
 permalink: /users/help-tips.html
 ---

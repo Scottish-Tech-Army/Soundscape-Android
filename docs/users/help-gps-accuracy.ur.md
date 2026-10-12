@@ -3,6 +3,7 @@ title: GPS کی درستگی
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 150
 lang: ur
 permalink: /users/help-gps-accuracy.html
 ---

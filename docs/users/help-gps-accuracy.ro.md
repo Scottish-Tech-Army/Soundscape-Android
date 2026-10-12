@@ -3,6 +3,7 @@ title: Precizia GPS
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 150
 lang: ro
 permalink: /users/help-gps-accuracy.html
 ---

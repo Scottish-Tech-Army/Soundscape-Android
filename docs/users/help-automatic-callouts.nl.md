@@ -3,6 +3,7 @@ title: Automatische aankondigingen
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 70
 lang: nl
 permalink: /users/help-automatic-callouts.html
 ---

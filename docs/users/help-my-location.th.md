@@ -3,6 +3,7 @@ title: ตำแหน่งของฉัน
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 20
 lang: th
 permalink: /users/help-my-location.html
 ---

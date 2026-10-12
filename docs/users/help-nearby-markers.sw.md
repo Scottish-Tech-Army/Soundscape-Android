@@ -3,6 +3,7 @@ title: Alama za Karibu
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 50
 lang: sw
 permalink: /users/help-nearby-markers.html
 ---

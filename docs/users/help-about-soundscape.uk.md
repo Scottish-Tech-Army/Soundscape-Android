@@ -3,6 +3,7 @@ title: Про Soundscape
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 170
 lang: uk
 permalink: /users/help-about-soundscape.html
 ---

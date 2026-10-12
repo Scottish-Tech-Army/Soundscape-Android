@@ -3,6 +3,7 @@ title: Alama
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 80
 lang: sw
 permalink: /users/help-markers.html
 ---

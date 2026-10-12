@@ -3,6 +3,7 @@ title: نشانه‌ها
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 80
 lang: fa
 permalink: /users/help-markers.html
 ---

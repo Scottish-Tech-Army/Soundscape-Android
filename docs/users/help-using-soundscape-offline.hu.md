@@ -3,6 +3,7 @@ title: A Soundscape használata offline
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 140
 lang: hu
 permalink: /users/help-using-soundscape-offline.html
 ---

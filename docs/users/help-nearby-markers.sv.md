@@ -3,6 +3,7 @@ title: Platsmarkörer i närheten
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 50
 lang: sv
 permalink: /users/help-nearby-markers.html
 ---

@@ -3,6 +3,7 @@ title: Ближайшие отметки
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 50
 lang: ru
 permalink: /users/help-nearby-markers.html
 ---

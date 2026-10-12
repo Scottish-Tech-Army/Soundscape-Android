@@ -3,6 +3,7 @@ title: Phía trước tôi
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 30
 lang: vi
 permalink: /users/help-ahead-of-me.html
 ---

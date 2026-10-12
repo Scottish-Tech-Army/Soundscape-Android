@@ -3,6 +3,7 @@ title: Tips
 layout: page
 parent: "Menggunakan Soundscape"
 has_toc: false
+nav_order: 130
 lang: id
 permalink: /users/help-tips.html
 ---

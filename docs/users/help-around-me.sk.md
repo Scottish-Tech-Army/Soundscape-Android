@@ -3,6 +3,7 @@ title: Okolo mňa
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 40
 lang: sk
 permalink: /users/help-around-me.html
 ---

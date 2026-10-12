@@ -3,6 +3,7 @@ title: Lähedal asuvad markerid
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 50
 lang: et
 permalink: /users/help-nearby-markers.html
 ---

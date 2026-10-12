@@ -3,6 +3,7 @@ title: Tips
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 130
 ---
 
 # Tips

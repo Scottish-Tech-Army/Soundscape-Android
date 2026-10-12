@@ -3,6 +3,7 @@ title: Sådan fungerer Soundscape
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 10
 lang: da
 permalink: /users/help-how-soundscape-works.html
 ---

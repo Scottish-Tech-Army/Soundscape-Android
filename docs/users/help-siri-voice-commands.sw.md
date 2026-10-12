@@ -3,6 +3,7 @@ title: Amri za Sauti za Siri
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 120
 lang: sw
 permalink: /users/help-siri-voice-commands.html
 ---

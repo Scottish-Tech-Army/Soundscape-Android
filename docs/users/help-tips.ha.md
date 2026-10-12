@@ -3,6 +3,7 @@ title: Shawarwari
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 130
 lang: ha
 permalink: /users/help-tips.html
 ---

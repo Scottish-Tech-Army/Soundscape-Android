@@ -3,6 +3,7 @@ title: Siri の音声コマンド
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 120
 lang: ja
 permalink: /users/help-siri-voice-commands.html
 ---

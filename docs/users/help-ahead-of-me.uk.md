@@ -3,6 +3,7 @@ title: Попереду мене
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 30
 lang: uk
 permalink: /users/help-ahead-of-me.html
 ---

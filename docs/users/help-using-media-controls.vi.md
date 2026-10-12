@@ -3,6 +3,7 @@ title: Sử dụng nút điều khiển đa phương tiện
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 110
 lang: vi
 permalink: /users/help-using-media-controls.html
 ---

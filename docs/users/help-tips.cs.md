@@ -3,6 +3,7 @@ title: Tipy
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
+nav_order: 130
 lang: cs
 permalink: /users/help-tips.html
 ---

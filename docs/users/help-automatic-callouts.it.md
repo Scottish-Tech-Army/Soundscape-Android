@@ -3,6 +3,7 @@ title: Notifiche automatiche
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 70
 lang: it
 permalink: /users/help-automatic-callouts.html
 ---

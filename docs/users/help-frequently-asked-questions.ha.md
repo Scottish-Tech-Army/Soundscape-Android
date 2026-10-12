@@ -3,6 +3,7 @@ title: Tambayoyin da Ake Yawan Yi
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 160
 lang: ha
 permalink: /users/help-frequently-asked-questions.html
 ---

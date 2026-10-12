@@ -3,6 +3,7 @@ title: 标记点
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 80
 lang: zh-CN
 permalink: /users/help-markers.html
 ---

@@ -3,6 +3,7 @@ title: الأسئلة الشائعة
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 160
 lang: ar
 permalink: /users/help-frequently-asked-questions.html
 ---

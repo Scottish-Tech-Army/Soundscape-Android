@@ -3,6 +3,7 @@ title: Sterowanie przyciskami multimedialnymi
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 110
 lang: pl
 permalink: /users/help-using-media-controls.html
 ---

@@ -3,6 +3,7 @@ title: Siri häälkäsklused
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 120
 lang: et
 permalink: /users/help-siri-voice-commands.html
 ---

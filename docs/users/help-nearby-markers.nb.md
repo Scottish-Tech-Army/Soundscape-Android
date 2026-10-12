@@ -3,6 +3,7 @@ title: Markører i nærheten
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 50
 lang: nb
 permalink: /users/help-nearby-markers.html
 ---

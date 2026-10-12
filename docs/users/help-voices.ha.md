@@ -3,6 +3,7 @@ title: Muryoyi
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 100
 lang: ha
 permalink: /users/help-voices.html
 ---

@@ -3,6 +3,7 @@ title: Siri குரல் கட்டளைகள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 120
 lang: ta
 permalink: /users/help-siri-voice-commands.html
 ---

@@ -3,6 +3,7 @@ title: Balisa sonora
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 60
 lang: ca
 permalink: /users/help-audio-beacon.html
 ---

@@ -3,6 +3,7 @@ title: Tippek
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 130
 lang: hu
 permalink: /users/help-tips.html
 ---

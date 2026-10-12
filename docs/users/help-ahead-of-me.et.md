@@ -3,6 +3,7 @@ title: Minu ees
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 30
 lang: et
 permalink: /users/help-ahead-of-me.html
 ---

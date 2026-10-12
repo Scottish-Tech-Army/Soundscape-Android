@@ -3,6 +3,7 @@ title: Notkun fjölmiðlastýringa
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 110
 lang: is
 permalink: /users/help-using-media-controls.html
 ---

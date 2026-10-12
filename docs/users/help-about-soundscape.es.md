@@ -3,6 +3,7 @@ title: Acerca de Soundscape
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
+nav_order: 170
 lang: es
 permalink: /users/help-about-soundscape.html
 ---

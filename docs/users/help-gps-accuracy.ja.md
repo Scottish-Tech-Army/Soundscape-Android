@@ -3,6 +3,7 @@ title: GPS の精度
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
+nav_order: 150
 lang: ja
 permalink: /users/help-gps-accuracy.html
 ---

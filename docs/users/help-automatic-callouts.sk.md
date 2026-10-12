@@ -3,6 +3,7 @@ title: Automatické hlásenia
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 70
 lang: sk
 permalink: /users/help-automatic-callouts.html
 ---

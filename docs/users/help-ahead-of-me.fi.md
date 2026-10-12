@@ -3,6 +3,7 @@ title: Edessäpäin
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 30
 lang: fi
 permalink: /users/help-ahead-of-me.html
 ---

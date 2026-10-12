@@ -3,6 +3,7 @@ title: Soundscape 정보
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 170
 lang: ko
 permalink: /users/help-about-soundscape.html
 ---

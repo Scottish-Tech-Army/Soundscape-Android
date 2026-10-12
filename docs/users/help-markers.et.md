@@ -3,6 +3,7 @@ title: Markerid
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 80
 lang: et
 permalink: /users/help-markers.html
 ---

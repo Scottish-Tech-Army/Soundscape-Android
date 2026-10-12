@@ -3,6 +3,7 @@ title: ساند‌اسکیپ چگونه کار می‌کند
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 10
 lang: fa
 permalink: /users/help-how-soundscape-works.html
 ---

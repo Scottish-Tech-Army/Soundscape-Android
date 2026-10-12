@@ -3,6 +3,7 @@ title: Γύρω μου
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
+nav_order: 40
 lang: el
 permalink: /users/help-around-me.html
 ---

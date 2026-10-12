@@ -3,6 +3,7 @@ title: 주변 마커
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 50
 lang: ko
 permalink: /users/help-nearby-markers.html
 ---

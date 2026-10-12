@@ -3,6 +3,7 @@ title: نشانه‌های نزدیک
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 50
 lang: fa
 permalink: /users/help-nearby-markers.html
 ---

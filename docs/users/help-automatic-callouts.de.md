@@ -3,6 +3,7 @@ title: Automatische Hinweise
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 70
 lang: de
 permalink: /users/help-automatic-callouts.html
 ---

@@ -3,6 +3,7 @@ title: استفاده از دکمه‌های کنترل پخش صوت و تصو�
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 110
 lang: fa
 permalink: /users/help-using-media-controls.html
 ---

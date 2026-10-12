@@ -3,6 +3,7 @@ title: Soundscape'i Çevrimdışı Kullanma
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 140
 lang: tr
 permalink: /users/help-using-soundscape-offline.html
 ---

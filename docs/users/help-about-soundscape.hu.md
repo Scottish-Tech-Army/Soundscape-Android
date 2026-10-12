@@ -3,6 +3,7 @@ title: A Soundscape névjegye
 layout: page
 parent: "A Soundscape használata"
 has_toc: false
+nav_order: 170
 lang: hu
 permalink: /users/help-about-soundscape.html
 ---

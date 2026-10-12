@@ -3,6 +3,7 @@ title: ਆਵਾਜ਼ਾਂ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 100
 lang: pa
 permalink: /users/help-voices.html
 ---

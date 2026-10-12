@@ -3,6 +3,7 @@ title: Automaattiset ilmoitukset
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 70
 lang: fi
 permalink: /users/help-automatic-callouts.html
 ---

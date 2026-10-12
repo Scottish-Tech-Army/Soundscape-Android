@@ -3,6 +3,7 @@ title: Tafarkuna
 layout: page
 parent: "Amfani da Soundscape"
 has_toc: false
+nav_order: 90
 lang: ha
 permalink: /users/help-routes.html
 ---

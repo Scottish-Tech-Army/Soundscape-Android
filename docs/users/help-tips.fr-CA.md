@@ -3,6 +3,7 @@ title: Conseils
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
+nav_order: 130
 lang: fr-CA
 permalink: /users/help-tips.html
 ---

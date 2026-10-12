@@ -3,6 +3,7 @@ title: Пред мен
 layout: page
 parent: "Използване на Soundscape"
 has_toc: false
+nav_order: 30
 lang: bg
 permalink: /users/help-ahead-of-me.html
 ---

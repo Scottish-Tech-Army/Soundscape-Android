@@ -3,6 +3,7 @@ title: Точність GPS
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 150
 lang: uk
 permalink: /users/help-gps-accuracy.html
 ---

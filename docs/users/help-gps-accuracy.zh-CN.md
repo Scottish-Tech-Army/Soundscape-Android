@@ -3,6 +3,7 @@ title: GPS 精度
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 150
 lang: zh-CN
 permalink: /users/help-gps-accuracy.html
 ---

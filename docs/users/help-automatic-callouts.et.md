@@ -3,6 +3,7 @@ title: Automaatsed häälteated
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 70
 lang: et
 permalink: /users/help-automatic-callouts.html
 ---

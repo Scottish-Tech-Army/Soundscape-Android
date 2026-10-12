@@ -3,6 +3,7 @@ title: Lộ trình
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 90
 lang: vi
 permalink: /users/help-routes.html
 ---

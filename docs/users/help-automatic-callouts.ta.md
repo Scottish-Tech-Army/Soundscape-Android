@@ -3,6 +3,7 @@ title: தானியங்கி அறிவிப்புகள்
 layout: page
 parent: "Soundscape பயன்படுத்துதல்"
 has_toc: false
+nav_order: 70
 lang: ta
 permalink: /users/help-automatic-callouts.html
 ---

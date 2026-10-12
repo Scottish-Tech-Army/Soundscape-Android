@@ -3,6 +3,7 @@ title: Vanlige spørsmål
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
+nav_order: 160
 lang: nb
 permalink: /users/help-frequently-asked-questions.html
 ---

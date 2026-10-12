@@ -3,6 +3,7 @@ title: ਆਪਣੇ-ਆਪ ਘੋਸ਼ਣਾਵਾਂ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 70
 lang: pa
 permalink: /users/help-automatic-callouts.html
 ---

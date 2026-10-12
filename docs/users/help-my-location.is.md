@@ -3,6 +3,7 @@ title: Mín staðsetning
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 20
 lang: is
 permalink: /users/help-my-location.html
 ---

@@ -3,6 +3,7 @@ title: Aina za Sauti
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 100
 lang: sw
 permalink: /users/help-voices.html
 ---

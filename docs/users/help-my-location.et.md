@@ -3,6 +3,7 @@ title: Minu asukoht
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 20
 lang: et
 permalink: /users/help-my-location.html
 ---

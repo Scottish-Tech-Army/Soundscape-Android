@@ -3,6 +3,7 @@ title: Njia
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 90
 lang: sw
 permalink: /users/help-routes.html
 ---

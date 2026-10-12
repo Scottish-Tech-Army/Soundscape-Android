@@ -3,6 +3,7 @@ title: Puheen äänet
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 100
 lang: fi
 permalink: /users/help-voices.html
 ---

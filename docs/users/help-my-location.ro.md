@@ -3,6 +3,7 @@ title: Locația mea
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 20
 lang: ro
 permalink: /users/help-my-location.html
 ---

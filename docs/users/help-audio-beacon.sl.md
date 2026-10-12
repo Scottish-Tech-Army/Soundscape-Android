@@ -3,6 +3,7 @@ title: Zvočni svetilnik
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
+nav_order: 60
 lang: sl
 permalink: /users/help-audio-beacon.html
 ---

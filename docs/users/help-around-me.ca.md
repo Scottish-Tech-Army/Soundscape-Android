@@ -3,6 +3,7 @@ title: Al meu voltant
 layout: page
 parent: "Utilitzar Soundscape"
 has_toc: false
+nav_order: 40
 lang: ca
 permalink: /users/help-around-me.html
 ---

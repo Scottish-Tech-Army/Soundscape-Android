@@ -3,6 +3,7 @@ title: 自动提示
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 70
 lang: zh-CN
 permalink: /users/help-automatic-callouts.html
 ---

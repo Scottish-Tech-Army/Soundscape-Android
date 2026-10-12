@@ -3,6 +3,7 @@ title: نکات کاربردی
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 130
 lang: fa
 permalink: /users/help-tips.html
 ---

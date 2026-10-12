@@ -3,6 +3,7 @@ title: Hlasy
 layout: page
 parent: "Používanie Soundscape"
 has_toc: false
+nav_order: 100
 lang: sk
 permalink: /users/help-voices.html
 ---

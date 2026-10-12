@@ -3,6 +3,7 @@ title: Stemmekommandoer med Siri
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
+nav_order: 120
 lang: da
 permalink: /users/help-siri-voice-commands.html
 ---

@@ -3,6 +3,7 @@ title: Zapisane trasy
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 90
 lang: pl
 permalink: /users/help-routes.html
 ---

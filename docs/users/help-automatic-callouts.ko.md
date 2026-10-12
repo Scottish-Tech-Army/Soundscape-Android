@@ -3,6 +3,7 @@ title: 자동 안내
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 70
 lang: ko
 permalink: /users/help-automatic-callouts.html
 ---

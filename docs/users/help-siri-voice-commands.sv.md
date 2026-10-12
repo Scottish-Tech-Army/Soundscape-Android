@@ -3,6 +3,7 @@ title: Röstkommandon med Siri
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 120
 lang: sv
 permalink: /users/help-siri-voice-commands.html
 ---

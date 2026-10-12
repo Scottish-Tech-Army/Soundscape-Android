@@ -3,6 +3,7 @@ title: Glasovi
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 100
 lang: hr
 permalink: /users/help-voices.html
 ---

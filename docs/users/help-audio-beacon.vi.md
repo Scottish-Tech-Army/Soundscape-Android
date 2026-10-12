@@ -3,6 +3,7 @@ title: Đèn hiệu âm thanh
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 60
 lang: vi
 permalink: /users/help-audio-beacon.html
 ---

@@ -3,6 +3,7 @@ title: Автоматические уточнения
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
+nav_order: 70
 lang: ru
 permalink: /users/help-automatic-callouts.html
 ---

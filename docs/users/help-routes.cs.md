@@ -3,6 +3,7 @@ title: Trasy
 layout: page
 parent: "Používání Soundscape"
 has_toc: false
+nav_order: 90
 lang: cs
 permalink: /users/help-routes.html
 ---

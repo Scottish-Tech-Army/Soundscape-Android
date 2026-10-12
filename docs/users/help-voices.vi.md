@@ -3,6 +3,7 @@ title: Giọng đọc
 layout: page
 parent: "Sử dụng Soundscape"
 has_toc: false
+nav_order: 100
 lang: vi
 permalink: /users/help-voices.html
 ---

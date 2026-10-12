@@ -3,6 +3,7 @@ title: Soundscape ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
+nav_order: 10
 lang: pa
 permalink: /users/help-how-soundscape-works.html
 ---

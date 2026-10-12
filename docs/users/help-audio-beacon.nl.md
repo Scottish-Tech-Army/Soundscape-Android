@@ -3,6 +3,7 @@ title: Audiobaken
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 60
 lang: nl
 permalink: /users/help-audio-beacon.html
 ---

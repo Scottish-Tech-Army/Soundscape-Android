@@ -3,6 +3,7 @@ title: Sprachbefehle mit Siri
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
+nav_order: 120
 lang: de
 permalink: /users/help-siri-voice-commands.html
 ---

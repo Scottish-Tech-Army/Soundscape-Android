@@ -3,6 +3,7 @@ title: Comandi vocali con Siri
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
+nav_order: 120
 lang: it
 permalink: /users/help-siri-voice-commands.html
 ---

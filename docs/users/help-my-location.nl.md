@@ -3,6 +3,7 @@ title: Mijn locatie
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
+nav_order: 20
 lang: nl
 permalink: /users/help-my-location.html
 ---

@@ -3,6 +3,7 @@ title: أمامي
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
+nav_order: 30
 lang: ar
 permalink: /users/help-ahead-of-me.html
 ---

@@ -3,6 +3,7 @@ title: 关于 Soundscape
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 170
 lang: zh-CN
 permalink: /users/help-about-soundscape.html
 ---

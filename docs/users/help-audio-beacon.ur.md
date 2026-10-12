@@ -3,6 +3,7 @@ title: آڈیو بیکن
 layout: page
 parent: "Soundscape کا استعمال"
 has_toc: false
+nav_order: 60
 lang: ur
 permalink: /users/help-audio-beacon.html
 ---

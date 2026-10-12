@@ -3,6 +3,7 @@ title: 语音
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 100
 lang: zh-CN
 permalink: /users/help-voices.html
 ---

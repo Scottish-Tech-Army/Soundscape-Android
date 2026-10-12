@@ -3,6 +3,7 @@ title: Hljóðviti
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 60
 lang: is
 permalink: /users/help-audio-beacon.html
 ---

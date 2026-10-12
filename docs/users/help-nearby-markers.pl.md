@@ -3,6 +3,7 @@ title: Bliskie znaczniki
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
+nav_order: 50
 lang: pl
 permalink: /users/help-nearby-markers.html
 ---

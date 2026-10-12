@@ -3,6 +3,7 @@ title: Голоси
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 100
 lang: uk
 permalink: /users/help-voices.html
 ---

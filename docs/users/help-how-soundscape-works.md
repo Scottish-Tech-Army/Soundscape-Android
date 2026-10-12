@@ -3,6 +3,7 @@ title: How Soundscape Works
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 10
 ---
 
 # How Soundscape Works

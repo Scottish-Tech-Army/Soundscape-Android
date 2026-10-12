@@ -3,6 +3,7 @@ title: Konumum
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 20
 lang: tr
 permalink: /users/help-my-location.html
 ---

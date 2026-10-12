@@ -3,6 +3,7 @@ title: Nõuanded
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
+nav_order: 130
 lang: et
 permalink: /users/help-tips.html
 ---

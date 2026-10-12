@@ -3,6 +3,7 @@ title: Zvučni svjetionik
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
+nav_order: 60
 lang: hr
 permalink: /users/help-audio-beacon.html
 ---

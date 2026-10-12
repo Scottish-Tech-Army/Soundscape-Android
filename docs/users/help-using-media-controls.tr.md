@@ -3,6 +3,7 @@ title: Medya Kontrollerini Kullanma
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
+nav_order: 110
 lang: tr
 permalink: /users/help-using-media-controls.html
 ---

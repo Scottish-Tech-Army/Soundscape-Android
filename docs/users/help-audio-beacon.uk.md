@@ -3,6 +3,7 @@ title: Звуковий маячок
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 60
 lang: uk
 permalink: /users/help-audio-beacon.html
 ---

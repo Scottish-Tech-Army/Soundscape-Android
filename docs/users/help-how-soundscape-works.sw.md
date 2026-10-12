@@ -3,6 +3,7 @@ title: Jinsi Soundscape Inavyofanya Kazi
 layout: page
 parent: "Kutumia Soundscape"
 has_toc: false
+nav_order: 10
 lang: sw
 permalink: /users/help-how-soundscape-works.html
 ---

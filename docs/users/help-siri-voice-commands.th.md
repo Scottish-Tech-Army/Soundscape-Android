@@ -3,6 +3,7 @@ title: คำสั่งเสียง Siri
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 120
 lang: th
 permalink: /users/help-siri-voice-commands.html
 ---

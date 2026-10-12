@@ -3,6 +3,7 @@ title: টিপস
 layout: page
 parent: "সাউন্ডস্কেপ ব্যবহার"
 has_toc: false
+nav_order: 130
 lang: bn
 permalink: /users/help-tips.html
 ---

@@ -3,6 +3,7 @@ title: Hvernig Soundscape virkar
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 10
 lang: is
 permalink: /users/help-how-soundscape-works.html
 ---

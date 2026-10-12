@@ -3,6 +3,7 @@ title: 경로
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
+nav_order: 90
 lang: ko
 permalink: /users/help-routes.html
 ---

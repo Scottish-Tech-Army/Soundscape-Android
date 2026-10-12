@@ -3,6 +3,7 @@ title: Anunțuri automate
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
+nav_order: 70
 lang: ro
 permalink: /users/help-automatic-callouts.html
 ---

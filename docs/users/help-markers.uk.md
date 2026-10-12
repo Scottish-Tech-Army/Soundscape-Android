@@ -3,6 +3,7 @@ title: Мітки
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
+nav_order: 80
 lang: uk
 permalink: /users/help-markers.html
 ---

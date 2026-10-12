@@ -3,6 +3,7 @@ title: استفاده‌ی آفلاین از ساند‌اسکیپ
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
+nav_order: 140
 lang: fa
 permalink: /users/help-using-soundscape-offline.html
 ---

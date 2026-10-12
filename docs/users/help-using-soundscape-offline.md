@@ -3,6 +3,7 @@ title: Using Soundscape Offline
 layout: page
 parent: "Using Soundscape"
 has_toc: false
+nav_order: 140
 ---
 
 # Using Soundscape Offline

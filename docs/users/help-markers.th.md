@@ -3,6 +3,7 @@ title: หมุด
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
+nav_order: 80
 lang: th
 permalink: /users/help-markers.html
 ---

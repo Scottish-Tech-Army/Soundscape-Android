@@ -3,6 +3,7 @@ title: Soundscape 的工作原理
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
+nav_order: 10
 lang: zh-CN
 permalink: /users/help-how-soundscape-works.html
 ---

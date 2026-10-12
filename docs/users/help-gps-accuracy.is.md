@@ -3,6 +3,7 @@ title: GPS-nákvæmni
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
+nav_order: 150
 lang: is
 permalink: /users/help-gps-accuracy.html
 ---

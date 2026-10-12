@@ -3,6 +3,7 @@ title: Lähiympäristön merkitsimet
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
+nav_order: 50
 lang: fi
 permalink: /users/help-nearby-markers.html
 ---

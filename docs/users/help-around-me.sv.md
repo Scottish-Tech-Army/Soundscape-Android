@@ -3,6 +3,7 @@ title: Omkring mig
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
+nav_order: 40
 lang: sv
 permalink: /users/help-around-me.html
 ---
