@@ -1,5 +1,5 @@
 ---
-title: Soundscape の仕組み
+title: Soundscape を支える技術
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,7 +7,7 @@ lang: ja
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Soundscape の仕組み
+# Soundscape を支える技術
 このページの目的は、Soundscape アプリが内部でどのように動作しているかを大まかに理解してもらうことです。アプリを使うのにこれを読む必要はありませんが、これを書いた理由はいくつかあります。
 
 1. このアプリに興味を持った新規の方が、その限界がどこにあるかを理解できるようにするため

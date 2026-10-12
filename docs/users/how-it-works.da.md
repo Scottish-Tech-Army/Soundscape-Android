@@ -1,5 +1,5 @@
 ---
-title: Sådan fungerer Soundscape
+title: Teknologien bag Soundscape
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: da
 permalink: /users/how-it-works.html
 machine-translated: true
 ---
-# Sådan fungerer Soundscape
+# Teknologien bag Soundscape
 Formålet med denne side er at give en generel forståelse af, hvordan Soundscape-appen fungerer under motorhjelmen. Du behøver ikke at læse dette for at bruge appen, men der er et par grunde til, at den er skrevet:
 
 1. For at hjælpe interesserede nyankomne til appen med at forstå, hvor dens begrænsninger ligger
