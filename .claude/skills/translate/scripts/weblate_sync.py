@@ -424,7 +424,9 @@ def _strings_sync():
 def needs_editing_units(c: wlc.Weblate, lang: str) -> list[dict[str, Any]]:
     """Units Weblate holds a translation for but marks as needing work (state 10-19)."""
     base_url = c.url
-    path = f"translations/{PROJECT}/{COMPONENT}/{lang}/units/?q=state:<translated"
+    # Weblate's URL for Norwegian is nb; every other language uses the repo's code.
+    code = {"nb_NO": "nb"}.get(lang, lang)
+    path = f"translations/{PROJECT}/{COMPONENT}/{code}/units/?q=state:<translated"
     units = []
     while path:
         data = with_retry(f"{lang} needs-editing", lambda p=path: c.get(p))
@@ -478,6 +480,12 @@ def cmd_clear_needs_editing(args: argparse.Namespace) -> None:
             if any('"' in t for t in u["target"]):
                 print(f"  held  {lang} {key}: has ASCII \" quotes, which Weblate would strip "
                       "on save; change them to typographic quotes in the repo first")
+                held += 1
+                continue
+            # The same save drops no-break spaces (French punctuation spacing).
+            if any("\u00a0" in t or "\u202f" in t for t in repo_forms):
+                print(f"  held  {lang} {key}: has no-break spaces, which Weblate would drop "
+                      "on save")
                 held += 1
                 continue
             plan.append((lang, key, u))
