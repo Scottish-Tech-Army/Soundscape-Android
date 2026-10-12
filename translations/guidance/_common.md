@@ -625,3 +625,17 @@ My Location, Around Me, Ahead of Me and Nearby Markers are named in four places:
 
 **How to apply:** a one-word name stays one word on the button. «Körülöttem», «Előttem», «Wurina» have no `\n`, like Arabic, Chinese and Japanese already did, even though `strings_sync.py apply` rejects a missing line break (those three were written to the XML directly). Don't abbreviate a name to make it fit: since 2026-10-01 (`HomeBottomAppBarButton`) each line of the label is drawn whole and shrunk to fit, down to 60%, instead of being wrapped mid-word, and the screen reader gets the label with `-\n` removed and `\n` turned into a space. Before that, Finnish «Oma si-\njaintini» was read with a long pause at the hyphen (Dave, TalkBack, 2026-10-01), and «Lähiympäristön», «Markierungen», «Platsmarkörer», «місцезнаходження», «местоположение» were split mid-word. A very long single word still shrinks a lot (uk/ru My Location reach the 60% floor), so prefer a two-word name when there is a natural one.
 
+
+## C28 — Help and FAQ rewritten in plain language (2026-10-12)
+
+The English help and FAQ were rewritten against the code in `67e99c61b` (short sentences, one idea each, Gunning fog under 10) and all 46 languages were retranslated from it in `ca202215b`. No native speaker has reviewed that pass.
+
+**How to apply** when touching a help or FAQ string:
+
+- **Keep it plain.** Translate sentence for sentence. Don't merge the short English sentences back into long ones, and don't add politeness padding.
+- **UI names are quoted bare, as `*Label*`,** exactly as the language's own string has them. A label that can't be inflected goes after a neutral verb or noun («select *X*», «the *X* button») instead of being declined.
+- **Units:** the base English is US English (feet and miles). Every other language, including en_GB, uses metres and kilometres: 30 ft = 10 m, 40 ft = 12 m, 60 ft = 20 m, 100 ft = 30 m, about a mile = about 2 km.
+- **No Android assistant is named.** Voice commands are Siri only for now: the page is titled "Siri Voice Commands", is linked from the help index on iOS only, and uses the `*_ios` strings on both platforms (the docs site is generated from them). The Android-variant strings were removed.
+- **Siri phrases** stay as each language's `AppShortcuts.strings` has them, in typographic quotes inside the asterisks. Where a language has no Siri phrases, the English phrase is quoted.
+- **Avoid gendering the user** (C15). "The way you are facing", "when you are standing still" and "a place you have saved" were all reworded where the literal translation needs a gendered participle (fr «à laquelle vous faites face», es «cuando no te muevas», it «in cui guardi», pl «w którą patrzysz», pt «para a sua frente»). FAQ questions in the first person were made impersonal in hi, ur, pa, mr, bn, ta and te for the same reason. Hausa uses the plural «ku» forms throughout these strings.
+- **iOS menu names** («Read & Speak», formerly «Spoken Content») were translated only for languages that already used a localised name; they are unverified against a device.
