@@ -10,7 +10,9 @@ machine-translated: true
 
 # リリースノート
 
-Soundscape 2.0 は大きなリリースで、現在クローズドベータの段階にあります。最も大きな変更点は、徒歩の
+Soundscape 2.0 は大きなリリースで、現在 Android ではオープンベータの段階にあります。
+つまり、[こちら](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape)から Play ストアにアクセスするだけで、どなたでもベータ版をご利用いただけます。
+最も大きな変更点は、徒歩の
 ときだけでなく、車・バス・電車で移動しているときにも Soundscape が役立つことを伝えられるようになった
 ことです。あわせて、場所の説明のしかたに関する細かな改良が多数、新しい言語が 20 か国語、そして長い
 修正一覧があります。

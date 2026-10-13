@@ -10,7 +10,9 @@ machine-translated: true
 
 # Sürüm notları
 
-Soundscape 2.0 büyük bir sürüm ve şu anda kapalı beta aşamasında. En önemli değişiklik, Soundscape'in
+Soundscape 2.0 büyük bir sürüm ve artık Android'de açık beta aşamasında.
+Bu, herkesin Play Store'a [buradan](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) giderek beta sürümüne kolayca erişebileceği anlamına geliyor.
+En önemli değişiklik, Soundscape'in
 artık yalnızca yürürken değil, arabayla, otobüsle veya trenle yolculuk ederken de söyleyecek yararlı
 bir şeyinin olması. Bunun yanında yerlerin nasıl tarif edildiğine dair pek çok küçük çalışma, yirmi
 yeni dil ve uzun bir düzeltme listesi var.

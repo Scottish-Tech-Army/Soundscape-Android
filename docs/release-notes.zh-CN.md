@@ -10,7 +10,9 @@ machine-translated: true
 
 # 发行说明
 
-Soundscape 2.0 是一次重要发布，目前处于封闭测试阶段。最大的变化是：现在你乘坐汽车、公交或火车出行时，
+Soundscape 2.0 是一次重要发布，目前已在 Android 上进入公开测试阶段。
+这意味着任何人只需[点击此处](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape)前往 Play 商店，即可获取测试版。
+最大的变化是：现在你乘坐汽车、公交或火车出行时，
 Soundscape 也有实用的内容可讲，而不再只是步行时才有。此外还有大量关于地点描述方式的细小改进、二十种
 新语言，以及一长串修复。
 

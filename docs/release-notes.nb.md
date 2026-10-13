@@ -10,7 +10,9 @@ machine-translated: true
 
 # Versjonsmerknader
 
-Soundscape 2.0 er en stor utgivelse og er for tiden i lukket beta. Den viktigste endringen er at
+Soundscape 2.0 er en stor utgivelse og er nå i åpen beta på Android.
+Det betyr at hvem som helst kan få tilgang til betaversjonen ved ganske enkelt å gå til Play-butikken [her](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Den viktigste endringen er at
 Soundscape nå har noe nyttig å si når du reiser med bil, buss eller tog, og ikke lenger bare når du
 går. I tillegg kommer mye mindre arbeid med hvordan steder beskrives, tjue nye språk og en lang liste
 med feilrettinger.

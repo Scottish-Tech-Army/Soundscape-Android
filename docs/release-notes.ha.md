@@ -10,7 +10,9 @@ machine-translated: true
 
 # Bayanan sakin sigar
 
-Soundscape 2.0 babban saki ne kuma a halin yanzu yana matakin gwaji na rufaffiyar beta. Babban
+Soundscape 2.0 babban saki ne kuma yanzu yana matakin gwaji na budaddiyar beta a Android.
+Wannan yana nufin kowa zai iya samun sakin beta ta hanyar zuwa Play Store kawai [a nan](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Babban
 canjin shi ne cewa yanzu Soundscape yana da abin da zai fada mai amfani lokacin da kake tafiya da
 mota, bas ko jirgin kasa, ba kawai lokacin da kake tafiya a kafa ba. Bugu da kari, an yi aiki mai
 yawa amma karami kan yadda ake bayyana wurare, an kara sabbin harsuna ashirin, kuma akwai dogon

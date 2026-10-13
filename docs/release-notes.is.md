@@ -10,7 +10,9 @@ machine-translated: true
 
 # Útgáfunótur
 
-Soundscape 2.0 er stór útgáfa og er sem stendur í lokaðri beta-prófun. Stærsta breytingin er sú að nú
+Soundscape 2.0 er stór útgáfa og er nú í opinni beta-prófun á Android.
+Það þýðir að hver sem er getur nálgast beta-útgáfuna einfaldlega með því að fara í Play Store [hér](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Stærsta breytingin er sú að nú
 hefur Soundscape eitthvað gagnlegt að segja þegar þú ferðast með bíl, strætó eða lest, ekki bara þegar
 þú gengur. Að auki hefur verið unnið mikið af smærri verkum um það hvernig staðir eru lýstir, tuttugu
 ný tungumál hafa bæst við og langur listi af lagfæringum.

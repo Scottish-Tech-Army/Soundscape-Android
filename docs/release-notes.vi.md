@@ -10,7 +10,9 @@ machine-translated: true
 
 # Ghi chú phát hành
 
-Soundscape 2.0 là một bản phát hành lớn và hiện đang trong giai đoạn beta khép kín. Thay đổi nổi bật
+Soundscape 2.0 là một bản phát hành lớn và hiện đang trong giai đoạn beta mở trên Android.
+Điều này có nghĩa là bất kỳ ai cũng có thể dùng bản beta chỉ bằng cách vào Cửa hàng Play [tại đây](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Thay đổi nổi bật
 nhất là giờ đây Soundscape có điều gì đó hữu ích để nói khi bạn đi ô tô, xe buýt hoặc tàu hỏa, chứ
 không chỉ khi đi bộ. Bên cạnh đó là rất nhiều công việc nhỏ hơn về cách mô tả địa điểm, hai mươi ngôn
 ngữ mới và một danh sách dài các bản sửa lỗi.

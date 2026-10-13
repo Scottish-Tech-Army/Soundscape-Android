@@ -10,7 +10,9 @@ machine-translated: true
 
 # Note de lansare
 
-Soundscape 2.0 este o versiune importantă și se află în prezent în beta închisă. Principala schimbare
+Soundscape 2.0 este o versiune importantă și se află acum în beta deschisă pe Android.
+Aceasta înseamnă că oricine poate accesa versiunea beta pur și simplu mergând în Magazinul Play [aici](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Principala schimbare
 este că Soundscape are acum ceva util de spus și atunci când călătoriți cu mașina, autobuzul sau
 trenul, nu doar când mergeți pe jos. Există de asemenea multă muncă de mai mică amploare privind modul
 în care sunt descrise locurile, douăzeci de limbi noi și o listă lungă de remedieri.

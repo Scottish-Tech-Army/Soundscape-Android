@@ -10,7 +10,9 @@ machine-translated: true
 
 # Maelezo ya toleo
 
-Soundscape 2.0 ni toleo kubwa na kwa sasa liko katika hatua ya beta iliyofungwa. Badiliko kuu ni
+Soundscape 2.0 ni toleo kubwa na sasa liko katika hatua ya beta iliyo wazi kwenye Android.
+Hii inamaanisha kwamba mtu yeyote anaweza kupata toleo la beta kwa kwenda tu kwenye Play Store [hapa](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Badiliko kuu ni
 kwamba sasa Soundscape ina jambo la maana la kusema unaposafiri kwa gari, basi au treni, siyo tu
 unapotembea kwa miguu. Zaidi ya hayo, kuna kazi nyingi ndogo kuhusu jinsi maeneo yanavyoelezwa,
 lugha mpya ishirini, na orodha ndefu ya marekebisho.

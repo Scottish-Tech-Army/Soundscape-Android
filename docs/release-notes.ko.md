@@ -10,7 +10,9 @@ machine-translated: true
 
 # 릴리스 노트
 
-Soundscape 2.0은 규모가 큰 릴리스이며 현재 비공개 베타 단계에 있습니다. 가장 큰 변화는 걸을 때뿐만
+Soundscape 2.0은 규모가 큰 릴리스이며 이제 Android에서 공개 베타 단계에 있습니다.
+즉, [여기](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape)에서 Play 스토어로 이동하기만 하면 누구나 베타 버전을 이용할 수 있습니다.
+가장 큰 변화는 걸을 때뿐만
 아니라 자동차, 버스, 기차로 이동할 때에도 Soundscape가 쓸모 있는 이야기를 해 준다는 점입니다. 이와
 함께 장소를 설명하는 방식에 대한 자잘한 작업이 많이 이루어졌고, 새로운 언어 스무 개가 추가되었으며,
 수정 목록도 깁니다.
