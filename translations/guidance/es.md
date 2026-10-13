@@ -4,7 +4,7 @@
 |---|---|
 | Weblate component | `androidkmp` |
 | Corpus at last sweep | 1522 translated units (2026-09-24) |
-| Last native-speaker input | 2026-09-30 (JJ, answers to `questions-es.md` Q1–Q3, via Dave) |
+| Last native-speaker input | 2026-10-13 (JJ, on the rewritten help and FAQ, via Dave) |
 | Reporter platform | GitHub issues, Weblate comments — Android and general |
 | Register | Informal «tú» everywhere, no exceptions (Dave's call, 2026-09-24 — see ES-R1) |
 
@@ -43,6 +43,7 @@ since May; treat `confirmed` as "confirmed then, unswept since" rather than
 | Sleep Mode | modo de suspensión | `confirmed` | 8 occurrences; lowercase mid-sentence is correct Spanish style, not a drift from the English title case |
 | Snooze Mode | modo de aplazamiento | `confirmed` | 5 occurrences, consistent |
 | Manage Callouts | Administrar avisos | `confirmed` | From JJ's FAQ edit (issue #892 attachment) |
+| Headphones | auriculares | `confirmed` | JJ 2026-10-13: *"most Latin Americans should be able to understand it through context. We shouldn't use the word "audífonos" because that could mean "hearing aids" in Spain Spanish."* 14 uses in 12 strings, consistent. «audífonos» appears once, correctly, in `osm_hearing_aids` («Tienda de audífonos») |
 
 ---
 
@@ -116,6 +117,48 @@ verb uses **«Pulsa»** (`tour_around_me`, `tour_ahead`: *"Pulsa
 than introducing a third verb.
 
 ---
+
+### ES-N1 — One Spanish for Spain and Latin America: avoid words that change meaning (`agreed` for the reported verb; the wider rule is `provisional`, awaiting Dave)
+
+We ship one `es`. It follows the es-ES baseline (see Baseline below), but Latin American
+users get it too, because there is no `es_419`. **JJ, 2026-10-13 (via Dave), on the
+rewritten help and FAQ:** *"some of the AI translation looks specific to Spain Spanish and
+not a generic form. For example, the verb "pararse" in Spain Spanish, meaning to hault, as
+in when you stop moving, may be confusing for Latin American speakers. Even Duolingo uses
+that word's Latin American meaning "to stand up" … we could rephrase that verb with
+something like "dejar de moverse"."*
+
+- **Never reflexive «pararse» / «parado» for "stop moving" or "standing still"**
+  (`agreed`). Use «dejar de moverse», «no moverse» or «detenerse». The 2026-10-13 sweep
+  found one use, `faq_why_does_beacon_disappear_answer` («Cuando te paras» → «Cuando
+  dejas de moverte»). The sibling strings already avoid it: «Cuando no te muevas», «Si no
+  te estás moviendo», «Cuando te detengas un rato», «Sin movimiento».
+- Not affected: the noun «parada» (bus stop, 23 uses), and non-reflexive «parar» for
+  "stop speaking" in `help_text_assistant_how_ios`.
+- **The wider rule (`provisional`):** where a word means different things in Spain and
+  Latin America, pick wording both understand. Where Spain's word is only *marked*, not
+  misleading, it stays for now. That is the case for the inherited place names
+  «Aparcamiento» (7), «Aseo(s)» (2), «Gasolinera» (2), «Ayuntamiento», and «móvil» in
+  `osm_mobile_phone` and `faq_mobile_data_use_question` (ES-M1). The search synonyms
+  already accept both sides («estacionamiento», «baño», «bencinera», «celulares»).
+  Inventory only, see the open questions.
+- **JJ's own example of the approach (2026-10-13):** «auriculares», not «audífonos», for
+  headphones. Spain's word wins here because the Latin American word means something
+  else in Spain (hearing aids), while «auriculares» is understood everywhere. So the test
+  is "does either side misread it", not "whose word is it".
+- A separate `es_419` is not planned: Dave raised it 2026-10-13 as one of two options and
+  has not chosen.
+
+### ES-N2 — "A place that matters to you" is «un lugar que te interese» (`agreed`, JJ 2026-10-13)
+
+**JJ:** *"the translation "un lugar que te importe" or "te importa" … sounds a bit too
+emotional for this context although they get what it means, kind of like when you care
+about someone. The way that Microsoft translated it was more like "un lugar que te
+interese" … That translation is a bit rougher, but it has more of the right tone."* A
+native speaker JJ consulted said the same. `tour_create_marker_started` already says
+«cualquier lugar que te interese»; `help_text_markers_content_1` said «que te importe»
+and is the one fix. No «importar» of this kind elsewhere (the other hits are "import a
+route").
 
 ### ES-G2 — Articles before map names (`fixed` in code, 2026-09-25)
 
@@ -199,6 +242,13 @@ Numbered as on `docs/translation-questions/questions-es.md` (Q1…Q2); Q2 is "an
 1. **The detail levels after the English rename (C22):** Detallado / Simplificado /
    Esencial / Silencioso, retranslated 2026-09-30 from «Equilibrado» / «Discreto».
    Distinct by ear? Better names for the middle two?
+
+2. **Spain-only place words (ES-N1):** would Latin American users be better served by
+   «Estacionamiento» for «Aparcamiento», «Baños» for «Aseos», «Estación de servicio» for
+   «Gasolinera», and «datos del celular» / «datos móviles»? Or are Spain's words fine as
+   long as they are understood?
+3. **"We don't need this extra FAQ question after the big rewrite":** which question, or
+   is this about closing the GitHub issue?
 
 Still waiting for a human: `osm_signal` («Señal» is also the Beacon term), and a device
 check of the iOS 26 menu names in `help_config_voices_content_ios`.
