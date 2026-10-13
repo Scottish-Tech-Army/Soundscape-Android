@@ -247,8 +247,6 @@ Numbered as on `docs/translation-questions/questions-es.md` (Q1…Q2); Q2 is "an
    «Estacionamiento» for «Aparcamiento», «Baños» for «Aseos», «Estación de servicio» for
    «Gasolinera», and «datos del celular» / «datos móviles»? Or are Spain's words fine as
    long as they are understood?
-3. **"We don't need this extra FAQ question after the big rewrite":** which question, or
-   is this about closing the GitHub issue?
 
 Still waiting for a human: `osm_signal` («Señal» is also the Beacon term), and a device
 check of the iOS 26 menu names in `help_config_voices_content_ios`.
