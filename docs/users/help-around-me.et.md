@@ -3,7 +3,7 @@ title: Minu ümber
 layout: page
 parent: "Soundscape'i kasutamine"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: et
 permalink: /users/help-around-me.html
 ---

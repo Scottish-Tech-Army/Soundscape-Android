@@ -3,7 +3,7 @@ title: حولي
 layout: page
 parent: "استخدام Soundscape"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: ar
 permalink: /users/help-around-me.html
 ---

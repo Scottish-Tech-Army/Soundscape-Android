@@ -3,7 +3,7 @@ title: รอบตัวฉัน
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: th
 permalink: /users/help-around-me.html
 ---

@@ -3,7 +3,7 @@ title: Rundt meg
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: nb
 permalink: /users/help-around-me.html
 ---

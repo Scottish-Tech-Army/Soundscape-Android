@@ -39,7 +39,7 @@ Si conoces casi todo el camino, silencia la señal y reactívala cuando estés c
 Cuando estás a unos 12 metros, Soundscape te avisa y quita la señal. Tu teléfono no puede determinar tu posición con más exactitud, así que usa tus otras habilidades para los últimos pasos. Para volver a oír la señal, colócala de nuevo.
 
 ### ¿Por qué la señal suena diferente cuando dejo de caminar?
-Con el teléfono en un bolsillo o en un bolso, Soundscape deduce hacia dónde miras a partir de tu dirección de desplazamiento. Cuando te paras, ya no puede saberlo, así que la señal suena como si estuvieras de espaldas al lugar. Vuelve a caminar, o apunta la parte superior del teléfono hacia donde miras. Si tu teléfono está bloqueado, o Soundscape no está en la pantalla, sujeta además el teléfono en posición horizontal.
+Con el teléfono en un bolsillo o en un bolso, Soundscape deduce hacia dónde miras a partir de tu dirección de desplazamiento. Cuando dejas de moverte, ya no puede saberlo, así que la señal suena como si estuvieras de espaldas al lugar. Vuelve a caminar, o apunta la parte superior del teléfono hacia donde miras. Si tu teléfono está bloqueado, o Soundscape no está en la pantalla, sujeta además el teléfono en posición horizontal.
 
 ### ¿Por qué oigo dos veces el nombre de una calle en un cruce?
 Soundscape nombra cada calle que sale del cruce, desde la dirección hacia la que va. Una calle que cruza la tuya va a la izquierda y a la derecha, así que oyes su nombre dos veces. Si solo oyes una a la izquierda y una a la derecha, tu calle termina delante.

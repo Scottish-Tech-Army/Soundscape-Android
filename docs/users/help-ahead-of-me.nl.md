@@ -3,7 +3,7 @@ title: Vóór me
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
-nav_order: 30
+nav_order: 40
 lang: nl
 permalink: /users/help-ahead-of-me.html
 ---

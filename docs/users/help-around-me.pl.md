@@ -3,7 +3,7 @@ title: Wokół mnie
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: pl
 permalink: /users/help-around-me.html
 ---

@@ -3,7 +3,7 @@ title: मेरे आसपास
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: hi
 permalink: /users/help-around-me.html
 ---

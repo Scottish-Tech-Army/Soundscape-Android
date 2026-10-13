@@ -3,7 +3,7 @@ title: În jurul meu
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: ro
 permalink: /users/help-around-me.html
 ---

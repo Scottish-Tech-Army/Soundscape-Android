@@ -3,7 +3,7 @@ title: ਮੇਰੇ ਆਲੇ-ਦੁਆਲੇ
 layout: page
 parent: "Soundscape ਦੀ ਵਰਤੋਂ"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: pa
 permalink: /users/help-around-me.html
 ---

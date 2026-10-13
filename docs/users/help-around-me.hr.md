@@ -3,7 +3,7 @@ title: Oko mene
 layout: page
 parent: "Korištenje Soundscape"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: hr
 permalink: /users/help-around-me.html
 ---

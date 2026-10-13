@@ -3,7 +3,7 @@ title: 내 주변
 layout: page
 parent: "Soundscape 사용하기"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: ko
 permalink: /users/help-around-me.html
 ---

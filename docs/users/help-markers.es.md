@@ -10,7 +10,7 @@ permalink: /users/help-markers.html
 
 # Marcadores
 
-Un marcador es un lugar que has guardado. Puede ser cualquier lugar que te importe: tu casa, una parada de autobús, la entrada de un edificio o un paso de peatones.
+Un marcador es un lugar que has guardado. Puede ser cualquier lugar que te interese: tu casa, una parada de autobús, la entrada de un edificio o un paso de peatones.
 
 Soundscape avisa de tus marcadores cuando pasas junto a ellos. Puedes colocar una señal de audio en un marcador, añadirlo a una ruta u oír los más cercanos con el botón *Marcadores cercanos*.
 

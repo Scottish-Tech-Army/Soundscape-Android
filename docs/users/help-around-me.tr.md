@@ -3,7 +3,7 @@ title: Etrafımda
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: tr
 permalink: /users/help-around-me.html
 ---

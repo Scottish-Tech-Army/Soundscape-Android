@@ -3,7 +3,7 @@ title: Okoli mene
 layout: page
 parent: "Uporaba Soundscape"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: sl
 permalink: /users/help-around-me.html
 ---

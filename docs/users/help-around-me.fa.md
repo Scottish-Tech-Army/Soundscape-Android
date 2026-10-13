@@ -3,7 +3,7 @@ title: اطراف من
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: fa
 permalink: /users/help-around-me.html
 ---

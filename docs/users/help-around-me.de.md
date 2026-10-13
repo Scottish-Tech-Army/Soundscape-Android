@@ -3,7 +3,7 @@ title: Um mich herum
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: de
 permalink: /users/help-around-me.html
 ---

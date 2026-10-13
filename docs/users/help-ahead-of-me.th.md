@@ -3,7 +3,7 @@ title: ข้างหน้าฉัน
 layout: page
 parent: "การใช้ Soundscape"
 has_toc: false
-nav_order: 30
+nav_order: 40
 lang: th
 permalink: /users/help-ahead-of-me.html
 ---

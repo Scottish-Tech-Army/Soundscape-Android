@@ -3,7 +3,7 @@ title: Om me heen
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
-nav_order: 40
+nav_order: 30
 lang: nl
 permalink: /users/help-around-me.html
 ---
