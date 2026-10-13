@@ -428,15 +428,29 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? =
         mediaSession
 
+    /**
+     * Media3's default implementation posts its own media notification and, every time the
+     * notification is refreshed, calls Context.startForegroundService() on this service followed
+     * by startForeground() with only the mediaPlayback type (or stopForeground() when it decides
+     * playback has stopped). Those calls are posted asynchronously, so one that lands after
+     * stopSelf() re-creates the service record with a pending "must call startForeground()", and
+     * the system then kills the app with a RemoteServiceException as soon as that record is
+     * stopped again (e.g. stopWithTask on exit). We own the foreground state and the notification
+     * ourselves, so Media3 must not touch either.
+     */
+    override fun onUpdateNotification(session: MediaSession, startInForegroundRequired: Boolean) {
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (!running) {
-            // Normally already done at the top of onCreate(); this is a fallback retry in case
-            // that attempt failed (e.g. the notification couldn't be built at the time).
-            if (startAsForegroundService()) {
-                // Reminds the user every hour that the Soundscape service is still running in the background
-                startServiceStillRunningTicker()
-                running = true
-            }
+        // Every Context.startForegroundService() has to be answered with startForeground(), not
+        // just the one that created the service: if a later one arrives while we aren't in the
+        // foreground and goes unanswered, the system ANRs us after the grace period, or crashes
+        // us if the service is stopped first. Normally this was already done at the top of
+        // onCreate(), in which case this simply re-asserts it.
+        if (startAsForegroundService() && !running) {
+            // Reminds the user every hour that the Soundscape service is still running in the background
+            startServiceStillRunningTicker()
+            running = true
         }
 
         if (!started) {
@@ -631,6 +645,14 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
                 serviceType
             )
         } catch (e: Exception) {
+            if (running) {
+                // We were only re-asserting a foreground state we already hold (see
+                // onStartCommand()), e.g. from the background where the system refuses it. The
+                // service is still running in the foreground, so don't report a failed start.
+                Log.w(TAG, "startForeground re-assert refused", e)
+                analytics.crashLogNotes("startForeground re-assert refused: $e")
+                return false
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
                 && e is ForegroundServiceStartNotAllowedException
             ) {
@@ -773,6 +795,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             // RemoteServiceException.
             .setSmallIcon(R.drawable.ic_notification)
             .setOngoing(true)
+            // startForeground() is re-asserted on every onStartCommand(); don't re-alert each time
+            .setOnlyAlertOnce(true)
             .setContentIntent(notifyPendingIntent)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
