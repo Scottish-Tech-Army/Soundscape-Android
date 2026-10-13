@@ -10,7 +10,9 @@ machine-translated: true
 
 # Catatan rilis
 
-Soundscape 2.0 adalah rilis besar dan saat ini berada dalam tahap beta tertutup. Perubahan paling
+Soundscape 2.0 adalah rilis besar dan kini berada dalam tahap beta terbuka di Android.
+Artinya, siapa pun dapat mengakses rilis beta cukup dengan membuka Play Store [di sini](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Perubahan paling
 menonjol adalah kini Soundscape punya sesuatu yang berguna untuk dikatakan ketika Anda bepergian
 dengan mobil, bus, atau kereta, bukan hanya ketika berjalan kaki. Selain itu ada banyak pekerjaan
 yang lebih kecil pada cara tempat dideskripsikan, dua puluh bahasa baru, dan daftar perbaikan yang

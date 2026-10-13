@@ -10,7 +10,9 @@ machine-translated: true
 
 # Julkaisutiedot
 
-Soundscape 2.0 on suuri julkaisu ja on tällä hetkellä suljetussa beta-vaiheessa. Tärkein muutos on,
+Soundscape 2.0 on suuri julkaisu ja on nyt avoimessa beta-vaiheessa Androidilla.
+Tämä tarkoittaa, että kuka tahansa pääsee käyttämään beta-versiota yksinkertaisesti siirtymällä Play Kauppaan [tästä](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Tärkein muutos on,
 että Soundscapella on nyt jotain hyödyllistä sanottavaa myös silloin, kun matkustat autolla, bussilla
 tai junalla, eikä enää vain kävellessäsi. Lisäksi paikkojen kuvaamiseen on tehty paljon pienempää
 työtä, mukana on kaksikymmentä uutta kieltä ja pitkä lista korjauksia.

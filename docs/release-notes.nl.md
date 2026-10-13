@@ -10,7 +10,9 @@ machine-translated: true
 
 # Releaseopmerkingen
 
-Soundscape 2.0 is een grote release en bevindt zich momenteel in een gesloten bèta. De belangrijkste
+Soundscape 2.0 is een grote release en bevindt zich nu in een open bèta op Android.
+Dat betekent dat iedereen toegang heeft tot de bètaversie door simpelweg [hier](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape) naar de Play Store te gaan.
+De belangrijkste
 verandering is dat Soundscape nu ook iets nuttigs te melden heeft wanneer u met de auto, de bus of
 de trein reist, en niet langer alleen wanneer u te voet gaat. Daarnaast is er veel kleiner werk
 verzet aan de manier waarop plaatsen worden beschreven, zijn er twintig nieuwe talen bijgekomen en

@@ -10,7 +10,9 @@ machine-translated: true
 
 # Poznámky k vydání
 
-Soundscape 2.0 je velké vydání a nachází se v současnosti v uzavřené beta verzi. Hlavní změnou je,
+Soundscape 2.0 je velké vydání a nyní je na Androidu v otevřené beta verzi.
+To znamená, že k beta verzi se může dostat kdokoli, stačí přejít do Obchodu Play [zde](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Hlavní změnou je,
 že Soundscape má nyní co užitečného říci i tehdy, když cestujete autem, autobusem nebo vlakem, a
 nejen když jdete pěšky. Přibyla také spousta drobnější práce na tom, jak jsou popisována místa,
 dvacet nových jazyků a dlouhý seznam oprav.

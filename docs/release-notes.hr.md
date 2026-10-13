@@ -10,7 +10,9 @@ machine-translated: true
 
 # Bilješke o izdanju
 
-Soundscape 2.0 veliko je izdanje i trenutačno je u zatvorenoj beta verziji. Glavna je promjena to što
+Soundscape 2.0 veliko je izdanje i sada je u otvorenoj beta verziji na Androidu.
+To znači da beta izdanju može pristupiti svatko, jednostavnim odlaskom u Trgovinu Play [ovdje](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Glavna je promjena to što
 Soundscape sada ima nešto korisno za reći i kada putujete automobilom, autobusom ili vlakom, a ne samo
 kada hodate. Uz to je obavljeno mnogo manjih zahvata u načinu opisivanja mjesta, dodano je dvadeset
 novih jezika i dug je popis ispravaka.

@@ -10,7 +10,9 @@ machine-translated: true
 
 # Väljalaskemärkmed
 
-Soundscape 2.0 on suur väljalase ja on praegu suletud beetajärgus. Kõige olulisem muudatus on see, et
+Soundscape 2.0 on suur väljalase ja on nüüd Androidis avatud beetajärgus.
+See tähendab, et beetaversiooni saab igaüks lihtsalt Play poest [siit](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+Kõige olulisem muudatus on see, et
 nüüd on Soundscape'il midagi kasulikku öelda ka siis, kui sõidad autoga, bussiga või rongiga, mitte
 üksnes jalgsi liikudes. Lisaks on tehtud palju väiksemat tööd kohtade kirjeldamise osas, lisandunud on
 kakskümmend uut keelt ja pikk paranduste loend.

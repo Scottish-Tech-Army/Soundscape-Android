@@ -10,7 +10,9 @@ machine-translated: true
 
 # Kiadási megjegyzések
 
-A Soundscape 2.0 nagy kiadás, és jelenleg zárt bétaverzióban érhető el. A legfontosabb változás, hogy
+A Soundscape 2.0 nagy kiadás, és Androidon mostantól nyílt bétaverzióban érhető el.
+Ez azt jelenti, hogy a bétaverzióhoz bárki hozzáférhet, egyszerűen a Play Áruházban, [itt](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
+A legfontosabb változás, hogy
 a Soundscape mostantól akkor is tud valami hasznosat mondani, amikor autóval, busszal vagy vonattal
 utazik, nem csupán gyaloglás közben. Emellett sok kisebb munka történt azon, ahogyan a helyeket
 leírja, húsz új nyelv került be, és hosszú a javítások listája.
