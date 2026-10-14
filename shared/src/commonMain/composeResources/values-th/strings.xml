@@ -772,6 +772,7 @@
     <string name="offline_maps_storage">แผนที่ถูกบันทึกไว้ที่ %1$s ซึ่งมีพื้นที่ว่างเหลือ %2$s</string>
     <string name="offline_maps_already_downloaded">แผนที่ที่ดาวน์โหลดแล้ว</string>
     <string name="offline_maps_extract_damaged">เสียหาย - ลบแล้วดาวน์โหลดใหม่</string>
+    <string name="offline_maps_extract_outdated">อัปเดตแผนที่นี้เพื่อใช้ฟีเจอร์ใหม่ของ Soundscape</string>
     <string name="offline_maps_nearby">แผนที่ออฟไลน์ใกล้เคียง</string>
     <string name="offline_maps_loading_manifest">กำลังโหลดรายการแผนที่ออฟไลน์</string>
     <string name="offline_maps_manifest_failed">ดาวน์โหลดข้อมูลแผนที่ออฟไลน์ไม่สำเร็จ</string>

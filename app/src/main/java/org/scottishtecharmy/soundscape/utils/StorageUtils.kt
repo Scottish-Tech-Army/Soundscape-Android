@@ -168,7 +168,15 @@ fun deleteOrphanedSidecars(dir: File) {
     }
 }
 
-fun findExtracts(path: String): FeatureCollection? {
+/**
+ * The extracts downloaded to [path], each annotated with whether it is usable and, given a way to
+ * find its current manifest entry with [manifestEntryFor], whether it is outdated (see
+ * isExtractOutdated). With no [manifestEntryFor], nothing is flagged as outdated.
+ */
+fun findExtracts(
+    path: String,
+    manifestEntryFor: (Feature) -> Feature? = { null },
+): FeatureCollection? {
     // Find any extracts that we have downloaded
     val extractsDir = File(path)
     if (extractsDir.exists() && extractsDir.isDirectory) {
@@ -188,6 +196,10 @@ fun findExtracts(path: String): FeatureCollection? {
                 // should run findExtracts off the main thread.
                 val properties = feature.properties ?: HashMap()
                 properties["usable"] = isPmtilesUsable(file.path)
+                // The schema the extract was built with comes from the file itself, not from its
+                // sidecar, which is the manifest entry as it was at download time.
+                properties["outdated"] =
+                    isExtractOutdated(readExtractSchema(file.path), manifestEntryFor(feature))
                 feature.properties = properties
                 extractCollection.addFeature(feature)
             } else

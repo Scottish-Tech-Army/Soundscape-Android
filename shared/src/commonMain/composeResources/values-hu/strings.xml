@@ -1315,6 +1315,7 @@
     <string name="offline_maps_storage">A térképek a(z) %1$s helyre kerülnek mentésre, amelyen %2$s szabad hely van</string>
     <string name="offline_maps_already_downloaded">Már letöltött térképek</string>
     <string name="offline_maps_extract_damaged">Sérült – törölje, és töltse le újra</string>
+    <string name="offline_maps_extract_outdated">Frissítse ezt a térképet a Soundscape új funkcióinak használatához.</string>
     <string name="offline_maps_nearby">Közeli offline térképek</string>
     <string name="offline_maps_loading_manifest">Offline térképek listájának betöltése</string>
     <string name="offline_maps_manifest_failed">Az offline térképadatok letöltése sikertelen</string>

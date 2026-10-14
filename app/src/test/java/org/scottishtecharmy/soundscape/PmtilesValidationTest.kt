@@ -1,10 +1,12 @@
 package org.scottishtecharmy.soundscape
 
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Assume.assumeTrue
 import org.junit.Test
 import org.scottishtecharmy.soundscape.utils.isPmtilesUsable
+import org.scottishtecharmy.soundscape.utils.readExtractSchema
 import java.io.File
 import java.io.RandomAccessFile
 import java.nio.file.Files
@@ -64,6 +66,16 @@ class PmtilesValidationTest {
     fun validExtractIsUsable() {
         assumeTrue("fixture not present", fixture.exists())
         assertTrue(isPmtilesUsable(fixture.path))
+    }
+
+    /**
+     * The fixture predates the "soundscape:schema" metadata entry, so it reads as schema 0. Update
+     * this once the fixtures are rebuilt with a versioned planetiler-openmaptiles.
+     */
+    @Test
+    fun unversionedExtractHasSchemaZero() {
+        assumeTrue("fixture not present", fixture.exists())
+        assertEquals(0, readExtractSchema(fixture.path))
     }
 
     /** An unmodified copy must also pass (guards the copy/corrupt machinery itself). */

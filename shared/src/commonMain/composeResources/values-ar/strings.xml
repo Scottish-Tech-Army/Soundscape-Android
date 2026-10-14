@@ -795,6 +795,7 @@
     <string name="offline_maps_storage">يتم حفظ الخرائط في %1$s التي تحتوي على مساحة متاحة قدرها %2$s</string>
     <string name="offline_maps_already_downloaded">الخرائط التي تم تنزيلها بالفعل</string>
     <string name="offline_maps_extract_damaged">تالفة - احذفها وأعد تنزيلها</string>
+    <string name="offline_maps_extract_outdated">حدّث هذه الخريطة لاستخدام ميزات Soundscape الجديدة.</string>
     <string name="offline_maps_nearby">الخرائط بدون اتصال القريبة</string>
     <string name="offline_maps_loading_manifest">جارٍ تحميل قائمة الخرائط بدون اتصال</string>
     <string name="offline_maps_manifest_failed">فشل تنزيل بيانات الخريطة بدون اتصال</string>

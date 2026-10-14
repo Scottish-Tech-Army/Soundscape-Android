@@ -1438,6 +1438,7 @@
     <string name="trademark_disclaimer">تمامی نام‌ها، لوگوها و نشان‌های تجاری محصولات و شرکت‌های شخص ثالث علامت تجاری یا علامت تجاری ثبت‌شده هستند و مالکیت آنها برای دارندگان مربوطه محفوظ است.</string>
     <string name="loading_indicator_content_description">در حال بارگذاری</string>
     <string name="offline_maps_extract_damaged">خراب — حذف کنید و دوباره دانلود نمایید</string>
+    <string name="offline_maps_extract_outdated">این نقشه را به‌روزرسانی کنید تا از قابلیت‌های جدید ساند‌اسکیپ استفاده کنید.</string>
     <string name="offline_map_details_update">به‌روزرسانی نقشه‌ی آفلاین</string>
     <string name="menu_exit_app">خروج از ساند‌اسکیپ</string>
     <string name="talkback_default_activate">فعال شود</string>

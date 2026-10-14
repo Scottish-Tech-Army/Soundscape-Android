@@ -28,6 +28,15 @@ const val PROTOMAPS_SUFFIX = "mvt"
 const val MANIFEST_NAME = "manifest.geojson.gz"
 
 /**
+ * The Soundscape tile schema version (SOUNDSCAPE_SCHEMA in planetiler-openmaptiles'
+ * OpenMapTilesProfile) that this version of the app makes use of. A downloaded offline extract
+ * built with an older schema is flagged as needing an update once the manifest shows that the
+ * server has a newer one - see isExtractOutdated. Bump this only when the app starts relying on
+ * new tile contents, not for routine map rebuilds.
+ */
+const val WANTED_EXTRACT_SCHEMA = 1
+
+/**
  * It's also useful to be able to use tiles served up locally when testing. When I
  * test locally I'm serving up the file like this:
  *

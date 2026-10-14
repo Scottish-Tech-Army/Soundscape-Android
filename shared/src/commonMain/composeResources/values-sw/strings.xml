@@ -965,6 +965,7 @@
     <string name="offline_maps_storage">Ramani zimehifadhiwa kwenye %1$s ambayo ina %2$s wazi</string>
     <string name="offline_maps_already_downloaded">Ramani zilizopakuliwa tayari</string>
     <string name="offline_maps_extract_damaged">Imeharibika - futa kisha upakue tena</string>
+    <string name="offline_maps_extract_outdated">Sasisha ramani hii ili kutumia vipengele vipya vya Soundscape.</string>
     <string name="offline_maps_nearby">Ramani za nje ya mtandao zilizo karibu</string>
     <string name="offline_maps_loading_manifest">Inapakia orodha ya ramani za nje ya mtandao</string>
     <string name="offline_maps_manifest_failed">Imeshindwa kupakua data ya ramani ya nje ya mtandao</string>

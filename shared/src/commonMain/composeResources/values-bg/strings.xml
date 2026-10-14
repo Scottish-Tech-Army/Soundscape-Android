@@ -1509,6 +1509,7 @@
     <string name="offline_maps_storage">Картите се запазват в %1$s, което разполага със %2$s свободно място</string>
     <string name="offline_maps_already_downloaded">Вече изтеглени карти</string>
     <string name="offline_maps_extract_damaged">Повредена - изтрийте и изтеглете отново</string>
+    <string name="offline_maps_extract_outdated">Актуализирайте тази карта, за да използвате новите функции на Soundscape.</string>
     <string name="offline_maps_nearby">Офлайн карти наблизо</string>
     <string name="offline_maps_loading_manifest">Зареждане на списъка с офлайн карти</string>
     <string name="offline_maps_manifest_failed">Неуспешно изтегляне на данните за офлайн картата</string>

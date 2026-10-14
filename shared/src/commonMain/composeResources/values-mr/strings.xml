@@ -827,6 +827,7 @@
     <string name="offline_maps_storage">नकाशे %1$s मध्ये सेव्ह केले जातात, ज्यात %2$s मोकळी जागा आहे</string>
     <string name="offline_maps_already_downloaded">आधीच डाउनलोड केलेले नकाशे</string>
     <string name="offline_maps_extract_damaged">खराब झाले - हटवा आणि पुन्हा डाउनलोड करा</string>
+    <string name="offline_maps_extract_outdated">Soundscape ची नवीन वैशिष्ट्ये वापरण्यासाठी हा नकाशा अद्ययावत करा.</string>
     <string name="offline_maps_nearby">जवळपासचे ऑफलाइन नकाशे</string>
     <string name="offline_maps_loading_manifest">ऑफलाइन नकाशांची यादी लोड होत आहे</string>
     <string name="offline_maps_manifest_failed">ऑफलाइन नकाशा डेटा डाउनलोड करण्यात अयशस्वी</string>

@@ -1347,6 +1347,7 @@
     <string name="offline_maps_storage">Mapy sa ukladajú na %1$s, kde je voľných %2$s</string>
     <string name="offline_maps_already_downloaded">Už stiahnuté mapy</string>
     <string name="offline_maps_extract_damaged">Poškodené – odstráňte a stiahnite znova</string>
+    <string name="offline_maps_extract_outdated">Aktualizujte túto mapu, aby ste mohli používať nové funkcie Soundscape.</string>
     <string name="offline_maps_nearby">Offline mapy v okolí</string>
     <string name="offline_maps_loading_manifest">Načítava sa zoznam offline máp</string>
     <string name="offline_maps_manifest_failed">Stiahnutie údajov offline mapy zlyhalo</string>

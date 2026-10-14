@@ -367,6 +367,7 @@
     <string name="offline_maps_storage">نقشے %1$s میں محفوظ کیے جاتے ہیں جس میں %2$s جگہ خالی ہے</string>
     <string name="offline_maps_already_downloaded">پہلے سے ڈاؤن لوڈ شدہ نقشے</string>
     <string name="offline_maps_extract_damaged">خراب - حذف کریں اور دوبارہ ڈاؤن لوڈ کریں</string>
+    <string name="offline_maps_extract_outdated">Soundscape کی نئی خصوصیات استعمال کرنے کے لیے یہ نقشہ اپ ڈیٹ کریں۔</string>
     <string name="offline_maps_nearby">قریبی آف لائن نقشے</string>
     <string name="offline_maps_loading_manifest">آف لائن نقشوں کی فہرست لوڈ ہو رہی ہے</string>
     <string name="offline_maps_manifest_failed">آف لائن نقشے کا ڈیٹا ڈاؤن لوڈ کرنے میں ناکامی</string>

@@ -32,7 +32,7 @@ The GeoJSON file is currently around 1MB uncompressed which is very manageable a
 Many countries end up as `MultiPolygon` - the UK is currently two `Polygon`, one for most of the UK and the other for Rockall, a tiny island in the Atlantic. This requires some care when dealing with it and we need to improve the `FeatureTree` support so that we can efficiently search to find which extracts apply to a given location.
 
 ### step2-generate-extracts-from-geojson.py
-Once we're happy with GeoJSON we pass it in to this script which creates the extracts themselves. Each extract is a standalone `.pmtiles` file that can be downloaded and used directly by the app. It also outputs a GeoJSON file which is the input GeoJSON file with the addition of a property for each `Feature` which contains the size of the extract. This is so the app can allow for informed selection of different extracts. With only country extracts being generated, most users will only have a single extract that includes their location, but if we add smaller city extracts then the number to choose from will increase.
+Once we're happy with GeoJSON we pass it in to this script which creates the extracts themselves. Each extract is a standalone `.pmtiles` file that can be downloaded and used directly by the app. It also outputs a GeoJSON file which is the input GeoJSON file with the addition of properties for each `Feature` which contain the size of the extract, its filename and its schema version (see [Schema version](#schema-version)). This is so the app can allow for informed selection of different extracts. With only country extracts being generated, most users will only have a single extract that includes their location, but if we add smaller city extracts then the number to choose from will increase.
 
 ## Serving up the extracts
 The extracts are all going to be made available from R2 on Cloudflare. This is by far the most cost effective way to serve up large files. The cost is for storage only (~1.5 cents per GB) with no charge for the bandwidth used downloading the files. There is a very small charge for each download, but there is a large number of free downloads (millions!) and so we should never hit that limit. 
@@ -49,7 +49,26 @@ The `maplibre` code can work directly from a `.pmtiles` file, but it can only ha
 Our own audio code which parses `.pmtiles` can use multiple sources, though there may be a small performance hit.
 
 ## Map updates
-Whenever we rebuild the planet wide map we should regenerate all of the extracts. Users don't have to download new extracts, though in future we may add more data to the maps for specific features and in that case new offline maps would be required for those features to work.
+Whenever we rebuild the planet wide map we should regenerate all of the extracts. Users don't have to download new extracts just because the OpenStreetMap data is fresher. However, when we add data to the maps that new app features rely on, users need new offline maps for those features to work, and the app tells them so.
+
+### Schema version
+The planet wide map carries a Soundscape schema version, an integer that we bump by hand only when the tile contents change in a way the app makes use of. It's `SOUNDSCAPE_SCHEMA` in `OpenMapTilesProfile.java` in our planetiler fork, which writes it into the JSON metadata of the `.pmtiles` file as `soundscape:schema`. The comment beside it records what each version added. `pmtiles extract` copies the metadata unchanged, so every extract carries the same version, and `step2-generate-extracts-from-geojson.py` reads it from the planet wide map and adds it to every manifest `Feature` as a `schema` property. Maps built before the version existed have no `soundscape:schema` and count as version 0.
+
+To check the version of any `.pmtiles` file:
+
+```
+pmtiles show <file>.pmtiles --metadata | jq -r '."soundscape:schema" // 0'
+```
+
+The planet build runs the packaged jar, not the compiled classes, so after changing the profile run `./mvnw package -DskipTests` before building, or the new version won't be in the map.
+
+On the app side, `WANTED_EXTRACT_SCHEMA` in `Configuration.kt` is the version that the app makes use of. The app reads the version from each downloaded extract itself, and when the Offline maps screen loads the manifest it flags any extract whose version is lower than both the manifest's `schema` for that extract and `WANTED_EXTRACT_SCHEMA`. Flagged extracts show *Update this map to use new Soundscape features.* in the list of downloaded maps. This means that:
+
+* a routine rebuild with the same version flags nothing,
+* a version the app doesn't use yet flags nothing, so the server can be updated before the app,
+* and an app release that wants a version the server doesn't have yet flags nothing until the new extracts are published.
+
+So adding new map data for a feature means bumping `SOUNDSCAPE_SCHEMA`, rebuilding the planet wide map and the extracts, and bumping `WANTED_EXTRACT_SCHEMA` in the app release that uses the new data.
 
 
 ## Minimum viable release

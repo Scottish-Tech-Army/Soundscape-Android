@@ -549,6 +549,7 @@
     <string name="offline_maps_storage">Ana ajiye taswirori a %1$s wanda ke da %2$s da suka rage</string>
     <string name="offline_maps_already_downloaded">Taswirorin da Aka Riga Aka Zazzage</string>
     <string name="offline_maps_extract_damaged">Ta Lalace - Share sannan a sake zazzagewa</string>
+    <string name="offline_maps_extract_outdated">Sabunta wannan taswira don amfani da sababbin fasalolin Soundscape.</string>
     <string name="offline_maps_nearby">Taswirorin Offline da ke Kusa</string>
     <string name="offline_maps_loading_manifest">Ana Ɗorawa Jerin Taswirorin Offline</string>
     <string name="offline_maps_manifest_failed">An Kasa Zazzage Bayanan Taswirar Offline</string>

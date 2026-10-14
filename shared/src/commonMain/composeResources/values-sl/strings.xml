@@ -1541,6 +1541,7 @@ Prosimo, da nam še naprej sporočate vse težave, ne glede na to, kako majhne s
     <string name="offline_maps_storage">Zemljevidi se shranjujejo v %1$s, kjer je na voljo %2$s prostora</string>
     <string name="offline_maps_already_downloaded">Že preneseni zemljevidi</string>
     <string name="offline_maps_extract_damaged">Poškodovano – izbrišite in znova prenesite</string>
+    <string name="offline_maps_extract_outdated">Posodobite ta zemljevid, da boste lahko uporabljali nove funkcije aplikacije Soundscape.</string>
     <string name="offline_maps_nearby">Zemljevidi brez povezave v bližini</string>
     <string name="offline_maps_loading_manifest">Nalaganje seznama zemljevidov brez povezave</string>
     <string name="offline_maps_manifest_failed">Prenos podatkov zemljevida brez povezave ni uspel</string>

@@ -1347,6 +1347,7 @@
     <string name="offline_maps_storage">Mapy se ukládají do %1$s, kde je volné místo %2$s</string>
     <string name="offline_maps_already_downloaded">Již stažené mapy</string>
     <string name="offline_maps_extract_damaged">Poškozeno – smazat a stáhnout znovu</string>
+    <string name="offline_maps_extract_outdated">Aktualizujte tuto mapu, abyste mohli používat nové funkce Soundscape.</string>
     <string name="offline_maps_nearby">Offline mapy v okolí</string>
     <string name="offline_maps_loading_manifest">Načítání seznamu offline map</string>
     <string name="offline_maps_manifest_failed">Stažení dat offline mapy se nezdařilo</string>

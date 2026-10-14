@@ -1442,6 +1442,7 @@ Te rugăm să continui să ne raportezi orice problemă, oricât de mică, prin 
     <string name="trademark_disclaimer">Toate denumirile și logourile produselor și companiilor terțe sunt mărci comerciale sau mărci înregistrate și rămân proprietatea titularilor lor.</string>
     <string name="loading_indicator_content_description">Se încarcă</string>
     <string name="offline_maps_extract_damaged">Deteriorat - șterge și descarcă din nou</string>
+    <string name="offline_maps_extract_outdated">Actualizează această hartă pentru a folosi funcțiile noi din Soundscape.</string>
     <string name="offline_map_details_update">Actualizează harta offline</string>
     <string name="menu_exit_app">Ieși din Soundscape</string>
     <string name="talkback_default_activate">a activa</string>

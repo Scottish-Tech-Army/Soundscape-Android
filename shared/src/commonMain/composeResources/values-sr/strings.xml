@@ -1331,6 +1331,7 @@
     <string name="offline_maps_storage">Мапе се чувају на %1$s, где има слободно %2$s</string>
     <string name="offline_maps_already_downloaded">Већ преузете мапе</string>
     <string name="offline_maps_extract_damaged">Оштећено – обришите и поново преузмите</string>
+    <string name="offline_maps_extract_outdated">Ажурирајте ову мапу да бисте користили нове функције апликације Soundscape.</string>
     <string name="offline_maps_nearby">Оближње офлајн мапе</string>
     <string name="offline_maps_loading_manifest">Учитавање листе офлајн мапа</string>
     <string name="offline_maps_manifest_failed">Преузимање података о офлајн мапама није успело</string>

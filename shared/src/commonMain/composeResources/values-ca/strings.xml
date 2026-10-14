@@ -610,6 +610,7 @@
     <string name="offline_maps_storage">Els mapes es desen a %1$s, que té %2$s lliures</string>
     <string name="offline_maps_already_downloaded">Mapes ja descarregats</string>
     <string name="offline_maps_extract_damaged">Malmès - suprimeix-lo i torna'l a descarregar</string>
+    <string name="offline_maps_extract_outdated">Actualitza aquest mapa per utilitzar les noves funcions de Soundscape.</string>
     <string name="offline_maps_nearby">Mapes fora de línia propers</string>
     <string name="offline_maps_loading_manifest">S'està carregant la llista de mapes fora de línia</string>
     <string name="offline_maps_manifest_failed">No s'han pogut descarregar les dades del mapa fora de línia</string>

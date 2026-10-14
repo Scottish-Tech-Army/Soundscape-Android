@@ -1437,6 +1437,7 @@ Vinsamlegast haltu áfram að láta okkur vita af öllum vandamálum, sama hvers
     <string name="trademark_disclaimer">Öll vörumerki, fyrirtækjanöfn og lógó þriðja aðila eru vörumerki eða skráð vörumerki og eru áfram eign þeirra sem eiga þau.</string>
     <string name="loading_indicator_content_description">Hleður</string>
     <string name="offline_maps_extract_damaged">Skemmt - eyða og hlaða niður aftur</string>
+    <string name="offline_maps_extract_outdated">Uppfærðu þetta kort til að nota nýja eiginleika Soundscape.</string>
     <string name="offline_map_details_update">Uppfæra ónettengt kort</string>
     <string name="menu_exit_app">Loka Soundscape</string>
     <string name="talkback_default_activate">virkja</string>

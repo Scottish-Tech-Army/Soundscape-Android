@@ -580,6 +580,7 @@
     <string name="offline_maps_storage">지도는 %1$s에 저장되며, 이 저장소에는 %2$s의 여유 공간이 있습니다</string>
     <string name="offline_maps_already_downloaded">다운로드된 지도</string>
     <string name="offline_maps_extract_damaged">손상됨 - 삭제 후 다시 다운로드하세요</string>
+    <string name="offline_maps_extract_outdated">Soundscape의 새 기능을 사용하려면 이 지도를 업데이트하세요.</string>
     <string name="offline_maps_nearby">주변 오프라인 지도</string>
     <string name="offline_maps_loading_manifest">오프라인 지도 목록을 불러오는 중</string>
     <string name="offline_maps_manifest_failed">오프라인 지도 데이터를 다운로드하지 못했습니다</string>
