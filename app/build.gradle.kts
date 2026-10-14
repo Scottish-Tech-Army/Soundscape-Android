@@ -33,11 +33,6 @@ android {
 
     }
 
-    @Suppress("UnstableApiUsage")
-    testFixtures {
-        enable = true
-    }
-
     bundle {
         language {
             enableSplit = false
@@ -426,7 +421,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core.v351)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
-    androidTestImplementation(testFixtures(project(":app")))
     debugImplementation(libs.leakcanary)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
@@ -505,17 +499,6 @@ dependencies {
 
     testImplementation(libs.json)
     testImplementation(libs.robolectric)
-
-    testFixturesImplementation(project(":shared"))
-    testFixturesImplementation(libs.androidx.preference.ktx)
-    testFixturesImplementation(platform(libs.androidx.compose.bom))
-    testFixturesImplementation(libs.ui.test.junit4)
-    testFixturesImplementation(libs.androidx.media3.common)
-    testFixturesImplementation(libs.androidx.junit.v121)
-    testFixturesImplementation(libs.ui)
-    testFixturesImplementation(libs.material3)
-    testFixturesImplementation(libs.androidx.navigation.compose)
-    testFixturesImplementation(libs.junit)
 }
 
 
@@ -565,92 +548,3 @@ dokka {
         }
     }
 }
-
-fun adbPath(): String =
-    extensions.getByType<com.android.build.api.variant.ApplicationAndroidComponentsExtension>()
-            .sdkComponents.adb.get().asFile.absolutePath
-
-// NOTE 2025-11-18 Hugh Greene: It's hacky to hard-code the "androidTest" source set name here, but
-// there's no easy way to get it.
-val composeBaselinesTempDir = File(layout.buildDirectory.get().asFile, "tmp/androidTest-baselines")
-// We deliberately do not declare the tar file as a Task output, otherwise Gradle may hold the file
-// open for monitoring, preventing it from being deleted.
-val composeBaselinesTarFilePath = File(composeBaselinesTempDir, "baselines.tar")
-
-tasks.register<Exec>("pullComposeBaselines") {
-    val tarFile = composeBaselinesTarFilePath
-    val tempDir = composeBaselinesTempDir
-    val adb = adbPath()
-    val ns = project.android.namespace!!
-
-    doFirst {
-        tempDir.mkdirs()
-        tarFile.createNewFile()
-        standardOutput = tarFile.outputStream()
-        println("Pulling Compose baseline snapshots from emulator to '$tarFile'")
-    }
-
-    isIgnoreExitValue = false
-    // Use adb to pull the whole folder as a TAR file.
-    commandLine(adb, "exec-out",
-        "run-as",
-        ns,
-        "tar",
-        "-C",
-        "files",
-        "-cf",
-        "-",
-        "baselines"
-    )
-}
-
-tasks.register<Copy>("extractComposeBaselines") {
-    dependsOn(tasks.named("pullComposeBaselines"))
-
-    val tarFile = composeBaselinesTarFilePath
-    // NOTE 2025-11-18 Hugh Greene: It's hacky to hard-code the path here, but I don't know of a
-    // better way to get it.
-    val targetDir = "$projectDir/src/debug/assets/baselines"
-
-    from(tarTree(tarFile))
-    into(targetDir)
-    // Remove leading 'baselines/' from entries if desired
-    eachFile {
-        // Strip the top-level "baselines" folder
-        if (relativePath.segments.firstOrNull() == "baselines") {
-            relativePath = RelativePath(
-                relativePath.isFile,
-                *relativePath.segments.drop(1).toTypedArray()
-            )
-        }
-    }
-    // Normalise line-endings of expected text files on Windows.
-    if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
-        filesMatching(listOf("**/*.txt")) {
-            // The filter closure is called with the line contents stripped of any platform's line
-            // endings, and the return value has local line endings added, so we just return "it".
-            filter { it }
-        }
-    }
-    includeEmptyDirs = false
-
-    doLast {
-        if (tarFile.exists()) {
-            tarFile.delete()
-        }
-        println("Baselines moved from emulator to '$targetDir'. " +
-                "You can now review the changes and commit them.")
-    }
-}
-
-// This can't use withType<AndroidTestTask> because that interface doesn't inherit from Task.
-tasks.configureEach {
-    if (this is AndroidTestTask) {
-       finalizedBy("extractComposeBaselines")
-    }
-}
-
-tasks.withType<Test>().configureEach {
-    systemProperty("test.baselineOutputDir", layout.buildDirectory.dir("outputs/robolectric-baselines").get().asFile.absolutePath)
-}
-
