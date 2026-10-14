@@ -1447,6 +1447,94 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="osm_water_fountain">Water Fountain</string>
     <!-- OpenStreetMap term. An area designed for practising a particular sport, normally designated with appropriate markings. Examples include tennis courts, basketball courts, soccer pitches, and riding arenas. -->
     <string name="osm_sports_field">Sports Field</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a pitch marked out for association football (soccer). -->
+    <string name="osm_pitch_soccer">Soccer Field</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a field marked out for American football. -->
+    <string name="osm_pitch_american_football">Football Field</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a baseball field or diamond. -->
+    <string name="osm_pitch_baseball">Baseball Field</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a softball field. -->
+    <string name="osm_pitch_softball">Softball Field</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a cricket pitch or ground. -->
+    <string name="osm_pitch_cricket">Cricket Pitch</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a rugby pitch, union or league. -->
+    <string name="osm_pitch_rugby">Rugby Pitch</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a pitch for field hockey, played on grass or artificial turf (not ice hockey). -->
+    <string name="osm_pitch_field_hockey">Field Hockey Field</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a small golf practice area for putting, mapped as a sports pitch for golf. -->
+    <string name="osm_pitch_golf">Putting Green</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a lawn for the game of bowls (lawn bowling). -->
+    <string name="osm_pitch_bowls">Bowling Green</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a tennis court. -->
+    <string name="osm_pitch_tennis">Tennis Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a basketball court. -->
+    <string name="osm_pitch_basketball">Basketball Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an outdoor court or pitch marked out for several different sports. -->
+    <string name="osm_pitch_multi">Multi-use Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a volleyball court. -->
+    <string name="osm_pitch_volleyball">Volleyball Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a sand court for beach volleyball. -->
+    <string name="osm_pitch_beachvolleyball">Beach Volleyball Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a court for pickleball, a paddle sport similar to tennis. -->
+    <string name="osm_pitch_pickleball">Pickleball Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a court for futsal, five-a-side indoor-style football. -->
+    <string name="osm_pitch_futsal">Futsal Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an enclosed court for padel, a racket sport similar to tennis and squash. -->
+    <string name="osm_pitch_padel">Padel Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a netball court. -->
+    <string name="osm_pitch_netball">Netball Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a court painted on the ground for the playground ball game four square. -->
+    <string name="osm_pitch_four_square">Four Square Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a badminton court. -->
+    <string name="osm_pitch_badminton">Badminton Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a court for team handball. -->
+    <string name="osm_pitch_handball">Handball Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a gravel court for boules or pétanque. -->
+    <string name="osm_pitch_boules">Boules Court</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a running track and field area for athletics. -->
+    <string name="osm_pitch_athletics">Athletics Track</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a track for running. -->
+    <string name="osm_pitch_running">Running Track</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a track for cycle racing or training. -->
+    <string name="osm_pitch_cycling">Cycling Track</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an off-road track for motocross motorbike racing. -->
+    <string name="osm_pitch_motocross">Motocross Track</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a track for go-kart racing. -->
+    <string name="osm_pitch_karting">Karting Track</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a track for BMX bicycle racing or riding. -->
+    <string name="osm_pitch_bmx">BMX Track</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a circuit or area for motor sport. -->
+    <string name="osm_pitch_motor">Motor Racing Circuit</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a track for horse racing. -->
+    <string name="osm_pitch_horse_racing">Racecourse</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a range for sport shooting. -->
+    <string name="osm_pitch_shooting">Shooting Range</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a range for archery. -->
+    <string name="osm_pitch_archery">Archery Range</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an ice rink marked out for ice hockey. -->
+    <string name="osm_pitch_ice_hockey">Ice Hockey Rink</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a slope for skiing. -->
+    <string name="osm_pitch_skiing">Ski Slope</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a skate park, with ramps and rails for skateboarding. -->
+    <string name="osm_pitch_skateboard">Skate Park</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an arena for horse riding. -->
+    <string name="osm_pitch_equestrian">Riding Arena</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an outdoor table tennis (ping pong) table. -->
+    <string name="osm_pitch_table_tennis">Table Tennis Table</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a chess board marked on the ground or a table, often with large pieces. -->
+    <string name="osm_pitch_chess">Outdoor Chess Board</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an area set aside for swimming. -->
+    <string name="osm_pitch_swimming">Swimming Area</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an outdoor area with exercise equipment. -->
+    <string name="osm_pitch_fitness">Outdoor Fitness Area</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an area for climbing, such as a bouldering wall. -->
+    <string name="osm_pitch_climbing">Climbing Area</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an area set aside for yoga. -->
+    <string name="osm_pitch_yoga">Yoga Area</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for an area for gymnastics. -->
+    <string name="osm_pitch_gymnastics">Gymnastics Area</string>
+    <!-- OpenStreetMap sports pitch, with the sport it is marked out for. Called out for a launch or landing site for paragliding or hang gliding. -->
+    <string name="osm_pitch_free_flying">Paragliding Site</string>
     <!-- OpenStreetMap term. A locality that is suitable for outdoors eating and may have any of a number of facilities to aid a picnic. -->
     <string name="osm_picnic_area">Picnic Area</string>
     <!-- OpenStreetMap term. The main entrance to a building. -->
@@ -2557,6 +2645,18 @@ Please continue to report any problems, however small, through “Contact suppor
     <string name="osm_gallery">Gallery</string>
     <!-- OpenStreetMap term artwork. Individual piece of public or museum-displayed art-->
     <string name="osm_artwork">Artwork</string>
+    <!-- OpenStreetMap artwork type. Called out for a painting applied directly to a wall. -->
+    <string name="osm_artwork_mural">Mural</string>
+    <!-- OpenStreetMap artwork type. Called out for a three-dimensional artwork, usually not depicting a specific person. -->
+    <string name="osm_artwork_sculpture">Sculpture</string>
+    <!-- OpenStreetMap artwork type. Called out for a sculpture depicting a person or animal. -->
+    <string name="osm_artwork_statue">Statue</string>
+    <!-- OpenStreetMap artwork type. Called out for a picture made from small pieces of tile, glass or stone. -->
+    <string name="osm_artwork_mosaic">Mosaic</string>
+    <!-- OpenStreetMap artwork type. Called out for permitted or notable graffiti art painted on a wall. -->
+    <string name="osm_artwork_graffiti">Graffiti</string>
+    <!-- OpenStreetMap artwork type. Called out for a large artwork, often in several parts, designed for a particular space. -->
+    <string name="osm_artwork_installation">Art Installation</string>
     <!-- OpenStreetMap term alpine_hut. Mountain shelter for hikers and climbers-->
     <string name="osm_alpine_hut">Alpine Hut</string>
     <!-- OpenStreetMap term plant. Industrial plant or production facility-->

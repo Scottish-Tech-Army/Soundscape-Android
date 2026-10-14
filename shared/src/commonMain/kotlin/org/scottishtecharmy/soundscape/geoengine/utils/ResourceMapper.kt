@@ -33,6 +33,12 @@ import org.scottishtecharmy.soundscape.resources.osm_architect
 import org.scottishtecharmy.soundscape.resources.osm_art
 import org.scottishtecharmy.soundscape.resources.osm_arts_centre
 import org.scottishtecharmy.soundscape.resources.osm_artwork
+import org.scottishtecharmy.soundscape.resources.osm_artwork_graffiti
+import org.scottishtecharmy.soundscape.resources.osm_artwork_installation
+import org.scottishtecharmy.soundscape.resources.osm_artwork_mosaic
+import org.scottishtecharmy.soundscape.resources.osm_artwork_mural
+import org.scottishtecharmy.soundscape.resources.osm_artwork_sculpture
+import org.scottishtecharmy.soundscape.resources.osm_artwork_statue
 import org.scottishtecharmy.soundscape.resources.osm_assembly_point
 import org.scottishtecharmy.soundscape.resources.osm_association
 import org.scottishtecharmy.soundscape.resources.osm_athletics
@@ -483,6 +489,50 @@ import org.scottishtecharmy.soundscape.resources.osm_picnic_area
 import org.scottishtecharmy.soundscape.resources.osm_picnic_table
 import org.scottishtecharmy.soundscape.resources.osm_pier
 import org.scottishtecharmy.soundscape.resources.osm_pillory
+import org.scottishtecharmy.soundscape.resources.osm_pitch_american_football
+import org.scottishtecharmy.soundscape.resources.osm_pitch_archery
+import org.scottishtecharmy.soundscape.resources.osm_pitch_athletics
+import org.scottishtecharmy.soundscape.resources.osm_pitch_badminton
+import org.scottishtecharmy.soundscape.resources.osm_pitch_baseball
+import org.scottishtecharmy.soundscape.resources.osm_pitch_basketball
+import org.scottishtecharmy.soundscape.resources.osm_pitch_beachvolleyball
+import org.scottishtecharmy.soundscape.resources.osm_pitch_bmx
+import org.scottishtecharmy.soundscape.resources.osm_pitch_boules
+import org.scottishtecharmy.soundscape.resources.osm_pitch_bowls
+import org.scottishtecharmy.soundscape.resources.osm_pitch_chess
+import org.scottishtecharmy.soundscape.resources.osm_pitch_climbing
+import org.scottishtecharmy.soundscape.resources.osm_pitch_cricket
+import org.scottishtecharmy.soundscape.resources.osm_pitch_cycling
+import org.scottishtecharmy.soundscape.resources.osm_pitch_equestrian
+import org.scottishtecharmy.soundscape.resources.osm_pitch_field_hockey
+import org.scottishtecharmy.soundscape.resources.osm_pitch_fitness
+import org.scottishtecharmy.soundscape.resources.osm_pitch_four_square
+import org.scottishtecharmy.soundscape.resources.osm_pitch_free_flying
+import org.scottishtecharmy.soundscape.resources.osm_pitch_futsal
+import org.scottishtecharmy.soundscape.resources.osm_pitch_golf
+import org.scottishtecharmy.soundscape.resources.osm_pitch_gymnastics
+import org.scottishtecharmy.soundscape.resources.osm_pitch_handball
+import org.scottishtecharmy.soundscape.resources.osm_pitch_horse_racing
+import org.scottishtecharmy.soundscape.resources.osm_pitch_ice_hockey
+import org.scottishtecharmy.soundscape.resources.osm_pitch_karting
+import org.scottishtecharmy.soundscape.resources.osm_pitch_motocross
+import org.scottishtecharmy.soundscape.resources.osm_pitch_motor
+import org.scottishtecharmy.soundscape.resources.osm_pitch_multi
+import org.scottishtecharmy.soundscape.resources.osm_pitch_netball
+import org.scottishtecharmy.soundscape.resources.osm_pitch_padel
+import org.scottishtecharmy.soundscape.resources.osm_pitch_pickleball
+import org.scottishtecharmy.soundscape.resources.osm_pitch_rugby
+import org.scottishtecharmy.soundscape.resources.osm_pitch_running
+import org.scottishtecharmy.soundscape.resources.osm_pitch_shooting
+import org.scottishtecharmy.soundscape.resources.osm_pitch_skateboard
+import org.scottishtecharmy.soundscape.resources.osm_pitch_skiing
+import org.scottishtecharmy.soundscape.resources.osm_pitch_soccer
+import org.scottishtecharmy.soundscape.resources.osm_pitch_softball
+import org.scottishtecharmy.soundscape.resources.osm_pitch_swimming
+import org.scottishtecharmy.soundscape.resources.osm_pitch_table_tennis
+import org.scottishtecharmy.soundscape.resources.osm_pitch_tennis
+import org.scottishtecharmy.soundscape.resources.osm_pitch_volleyball
+import org.scottishtecharmy.soundscape.resources.osm_pitch_yoga
 import org.scottishtecharmy.soundscape.resources.osm_place_of_worship
 import org.scottishtecharmy.soundscape.resources.osm_planetarium
 import org.scottishtecharmy.soundscape.resources.osm_plant
@@ -1525,10 +1575,79 @@ class ResourceMapper {
             }
         }
 
+        /**
+         * Names for a feature that depend on a second tag as well as its class, keyed
+         * "<class>_<value>": a pitch by its sport ("pitch_skateboard" is a Skate Park) and an
+         * artwork by its artwork_type ("artwork_mural"). These aren't OSM values, so they're kept
+         * out of [entries] - search would otherwise look for features tagged "pitch_skateboard".
+         */
+        private val qualifiedResourceMap: HashMap<String, StringResource> by
+        lazy {
+            HashMap<String, StringResource>().apply {
+                put("pitch_soccer", Res.string.osm_pitch_soccer)
+                put("pitch_american_football", Res.string.osm_pitch_american_football)
+                put("pitch_baseball", Res.string.osm_pitch_baseball)
+                put("pitch_softball", Res.string.osm_pitch_softball)
+                put("pitch_cricket", Res.string.osm_pitch_cricket)
+                put("pitch_rugby_union", Res.string.osm_pitch_rugby)
+                put("pitch_rugby_league", Res.string.osm_pitch_rugby)
+                put("pitch_rugby", Res.string.osm_pitch_rugby)
+                put("pitch_field_hockey", Res.string.osm_pitch_field_hockey)
+                put("pitch_hockey", Res.string.osm_pitch_field_hockey)
+                put("pitch_golf", Res.string.osm_pitch_golf)
+                put("pitch_bowls", Res.string.osm_pitch_bowls)
+                put("pitch_tennis", Res.string.osm_pitch_tennis)
+                put("pitch_basketball", Res.string.osm_pitch_basketball)
+                put("pitch_multi", Res.string.osm_pitch_multi)
+                put("pitch_volleyball", Res.string.osm_pitch_volleyball)
+                put("pitch_beachvolleyball", Res.string.osm_pitch_beachvolleyball)
+                put("pitch_pickleball", Res.string.osm_pitch_pickleball)
+                put("pitch_futsal", Res.string.osm_pitch_futsal)
+                put("pitch_padel", Res.string.osm_pitch_padel)
+                put("pitch_netball", Res.string.osm_pitch_netball)
+                put("pitch_four_square", Res.string.osm_pitch_four_square)
+                put("pitch_badminton", Res.string.osm_pitch_badminton)
+                put("pitch_handball", Res.string.osm_pitch_handball)
+                put("pitch_boules", Res.string.osm_pitch_boules)
+                put("pitch_athletics", Res.string.osm_pitch_athletics)
+                put("pitch_running", Res.string.osm_pitch_running)
+                put("pitch_cycling", Res.string.osm_pitch_cycling)
+                put("pitch_motocross", Res.string.osm_pitch_motocross)
+                put("pitch_karting", Res.string.osm_pitch_karting)
+                put("pitch_bmx", Res.string.osm_pitch_bmx)
+                put("pitch_motor", Res.string.osm_pitch_motor)
+                put("pitch_horse_racing", Res.string.osm_pitch_horse_racing)
+                put("pitch_shooting", Res.string.osm_pitch_shooting)
+                put("pitch_archery", Res.string.osm_pitch_archery)
+                put("pitch_ice_hockey", Res.string.osm_pitch_ice_hockey)
+                put("pitch_skiing", Res.string.osm_pitch_skiing)
+                put("pitch_skateboard", Res.string.osm_pitch_skateboard)
+                put("pitch_equestrian", Res.string.osm_pitch_equestrian)
+                put("pitch_table_tennis", Res.string.osm_pitch_table_tennis)
+                put("pitch_chess", Res.string.osm_pitch_chess)
+                put("pitch_swimming", Res.string.osm_pitch_swimming)
+                put("pitch_fitness", Res.string.osm_pitch_fitness)
+                put("pitch_climbing", Res.string.osm_pitch_climbing)
+                put("pitch_yoga", Res.string.osm_pitch_yoga)
+                put("pitch_gymnastics", Res.string.osm_pitch_gymnastics)
+                put("pitch_free_flying", Res.string.osm_pitch_free_flying)
+                put("artwork_mural", Res.string.osm_artwork_mural)
+                put("artwork_sculpture", Res.string.osm_artwork_sculpture)
+                put("artwork_statue", Res.string.osm_artwork_statue)
+                put("artwork_mosaic", Res.string.osm_artwork_mosaic)
+                put("artwork_graffiti", Res.string.osm_artwork_graffiti)
+                put("artwork_installation", Res.string.osm_artwork_installation)
+            }
+        }
+
+        /** The qualified key ("pitch_soccer") if it has a name, without recording a miss */
+        fun qualifiedKey(prefix: String, value: String?): String? =
+            value?.let { "${prefix}_$it" }?.takeIf { qualifiedResourceMap.containsKey(it) }
+
         fun getStringResource(key: String?): StringResource? {
             if ((key == null) || (key == "unclassified") || (key == "yes") || (key == "no"))
                 return null
-            val result = resourceMap.get(key)
+            val result = resourceMap.get(key) ?: qualifiedResourceMap.get(key)
             if (result == null) {
                 unfoundKeys.add(key)
             }

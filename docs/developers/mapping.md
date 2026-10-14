@@ -149,6 +149,7 @@ Also in this layer:
 * **Entrances** get `class=entrance`, `subclass` from the `entrance` tag, and a `railway` attribute for station entrances (`subway_entrance`, `train_station_entrance`).
 * **NAPTAN attributes** for UK bus stops, which is how stops get the name that's actually on the timetable and the sign: `naptanCode`, `naptanAtcoCode`, `naptanBearing`, `naptanCommonName`, `naptanStreet`, `naptanLandmark`, `naptanIndicator` and `naptanLocalityName`, from the corresponding `naptan:*` tags. `Bearing` gives the direction a stop serves.
 * **Address attributes**: `street`, `housenumber`, `block_number`, `neighbourhood`, `quarter` and `suburb`, from the matching `addr:*` tags.
+* **`artwork_type`** on `tourism=artwork` POIs (`mural`, `statue`, `sculpture`...). OpenMapTiles puts artworks in the `art_gallery` class alongside galleries and arts centres, so without this an unnamed mural could only be called out as "Artwork". Pitches need nothing extra: as upstream, their `subclass` is already the `sport` tag, which the app uses to call out a Skate Park or Football Pitch rather than a Sports Field.
 
 #### `housenumber` layer
 The same address attributes — `street`, `block_number`, `neighbourhood`, `quarter`, `suburb` — plus `housename` from `addr:housename`.

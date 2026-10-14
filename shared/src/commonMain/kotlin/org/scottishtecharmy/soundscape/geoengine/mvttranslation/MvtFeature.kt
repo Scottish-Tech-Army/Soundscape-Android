@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geoengine.TextForFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.Side
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -276,6 +277,7 @@ open class MvtFeature : Feature() {
 
         val osmText = if (localized != null) {
             osmFeatureKey?.let { localized.get(it) }
+                ?: specificTypeKey()?.let { localized.resolveFeatureClass(it) }
                 ?: featureClass?.let { localized.resolveFeatureClass(it) }
                 ?: featureSubClass?.let { localized.resolveFeatureClass(it) }
         } else {
@@ -295,5 +297,28 @@ open class MvtFeature : Feature() {
             return TextForFeature("", generic, additionalText)
 
         return TextForFeature(capitalizedText, generic, additionalText)
+    }
+
+    /**
+     * A name more specific than the class's, for the classes whose subclass says more. The
+     * class names are broad - every pitch is a "Sports Field", and OpenMapTiles puts artworks,
+     * galleries and arts centres all in "art_gallery" - so a skate park and a mural would
+     * otherwise be called out as a Sports Field and a Gallery. Other classes keep their class
+     * name first: a subclass such as a place of worship's religion isn't a name for the place.
+     */
+    private fun specificTypeKey(): String? = when (featureClass) {
+        // planetiler puts the pitch's sport in its subclass, sometimes several ("soccer;rugby")
+        "pitch" -> featureSubClass?.substringBefore(';')?.let { sport ->
+            ResourceMapper.qualifiedKey("pitch", sport) ?: sport
+        }
+        "art_gallery" ->
+            if (featureSubClass == "artwork")
+                ResourceMapper.qualifiedKey(
+                    "artwork",
+                    (properties?.get("artwork_type") as? String)?.substringBefore(';')
+                ) ?: featureSubClass
+            else
+                featureSubClass
+        else -> null
     }
 }
